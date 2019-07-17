@@ -1,7 +1,5 @@
-<i class="material-icons mdc-fab__icon {className}" {...props}><slot></slot></i>
+<i class="material-icons mdc-fab__icon {$$props.class || ''}" {...exclude($$props, ['class'])}><slot></slot></i>
 
 <script>
-  export let props = {};
-
-  export let className = '';
+  import exclude from '../exclude.js';
 </script>

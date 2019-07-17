@@ -11,10 +11,12 @@ Check them out: https://hperrin.github.io/svelte-material-ui/demo/
 Here's some code showing what's possible:
 
 ```html
-<Button raised><ButtonLabel>Raised Button</ButtonLabel></Button>
+<Button>Just a Button</Button>
+<Button raised><ButtonLabel>Raised Button, Using a Label</ButtonLabel></Button>
+<Button some-arbitrary-prop="placed on the actual button">Button</Button>
 
 <Fab on:click="{() => alert('Clicked!')}" extended>
-  <FabIcon props="{{style: 'margin-right: 12px;'}}">favorite</FabIcon>
+  <FabIcon style="margin-right: 12px;">favorite</FabIcon>
   <FabLabel>Extended FAB</FabLabel>
 </Fab>
 

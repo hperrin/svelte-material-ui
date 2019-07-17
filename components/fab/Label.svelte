@@ -1,7 +1,5 @@
-<span class="mdc-fab__label {className}" {...props}><slot></slot></span>
+<span class="mdc-fab__label {$$props.class || ''}" {...exclude($$props, ['class'])}><slot></slot></span>
 
 <script>
-  export let props = {};
-
-  export let className = '';
+  import exclude from '../exclude.js';
 </script>

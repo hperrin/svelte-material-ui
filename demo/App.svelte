@@ -5,7 +5,7 @@
     <h2>Button</h2>
 
     <p>
-      <Button on:click={() => btnClicked++}><ButtonLabel>Click Me</ButtonLabel></Button>
+      <Button on:click={() => btnClicked++} class="testyo"><ButtonLabel>Click Me</ButtonLabel></Button>
       <Button on:click={() => btnClicked++} disabled><ButtonLabel>Disabled</ButtonLabel></Button>
       <Button on:click={() => btnClicked++} ripple={false}><ButtonLabel>No Ripple</ButtonLabel></Button>
       <Button on:click={() => btnClicked++} raised><ButtonLabel>Raised</ButtonLabel></Button>
@@ -15,8 +15,8 @@
     </p>
 
     <p>
-      <Button on:click={() => btnClicked++}><ButtonIcon props={{style: 'margin-right: 12px;'}}>favorite</ButtonIcon><ButtonLabel>Icon</ButtonLabel></Button>
-      <Button on:click={() => btnClicked++}><ButtonLabel>Trailing Icon</ButtonLabel><ButtonIcon props={{style: 'margin-left: 12px;'}}>favorite</ButtonIcon></Button>
+      <Button on:click={() => btnClicked++}><ButtonIcon style="margin-right: 12px;">favorite</ButtonIcon><ButtonLabel>Icon</ButtonLabel></Button>
+      <Button on:click={() => btnClicked++}><ButtonLabel>Trailing Icon</ButtonLabel><ButtonIcon style="margin-left: 12px;">favorite</ButtonIcon></Button>
     </p>
 
     <p>Clicked: {btnClicked}</p>
@@ -28,7 +28,7 @@
     <p>
       <Fab on:click={() => fabClicked++}><FabIcon>favorite</FabIcon></Fab>
       <Fab on:click={() => fabClicked++} mini><FabIcon>favorite</FabIcon></Fab>
-      <Fab on:click={() => fabClicked++} extended><FabIcon props={{style: 'margin-right: 12px;'}}>favorite</FabIcon><FabLabel>Extended</FabLabel></Fab>
+      <Fab on:click={() => fabClicked++} extended><FabIcon style="margin-right: 12px;">favorite</FabIcon><FabLabel>Extended</FabLabel></Fab>
       <Fab on:click={() => fabClicked++} extended><FabLabel>Extended W/o Icon</FabLabel></Fab>
       <Fab on:click={() => fabClicked++} exited={fabExited}><FabIcon>favorite</FabIcon></Fab>
     </p>
