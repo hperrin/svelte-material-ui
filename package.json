@@ -1,6 +1,6 @@
 {
   "name": "svelte-material-ui",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "description": "Svelte Material UI Components",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,14 @@
     "watch": "webpack --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hperrin/svelte-material-ui.git"
+  },
   "author": "Hunter Perrin <hperrin@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/hperrin/svelte-material-ui/issues"
+  },
   "license": "Apache-2.0",
   "dependencies": {},
   "devDependencies": {
