@@ -1,6 +1,6 @@
 <button
   aria-label={label}
-  class="mdc-button {$$props.class || ''}"
+  class="mdc-button {className}"
   class:mdc-button--raised={raised}
   class:mdc-button--unelevated={unelevated}
   class:mdc-button--outlined={outlined}
@@ -14,7 +14,7 @@
   on:drag on:dragend on:dragenter on:dragstart on:dragleave on:dragover on:drop
   on:touchcancel on:touchend on:touchmove on:touchstart
   on:pointerover on:pointerenter on:pointerdown on:pointermove on:pointerup on:pointercancel on:pointerout on:pointerleave on:gotpointercapture on:lostpointercapture
-  {...exclude($$props, ['class', 'label', 'raised', 'unelevated', 'outlined', 'dense', 'ripple'])}
+  {...exclude($$props, ['className', 'label', 'raised', 'unelevated', 'outlined', 'dense', 'ripple'])}
 ><slot></slot></button>
 
 <script context="module">
@@ -25,9 +25,10 @@
 </script>
 
 <script>
-  import Ripple from '../ripple.js';
+  import Ripple from '../Ripple.js';
   import exclude from '../exclude.js';
 
+  export let className = '';
   export let label = '';
   export let ripple = true;
   export let disabled = false;

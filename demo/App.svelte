@@ -5,13 +5,14 @@
     <h2>Button</h2>
 
     <p>
-      <Button on:click={() => btnClicked++} class="testyo"><ButtonLabel>Click Me</ButtonLabel></Button>
+      <Button on:click={() => btnClicked++}><ButtonLabel>Click Me</ButtonLabel></Button>
       <Button on:click={() => btnClicked++} disabled><ButtonLabel>Disabled</ButtonLabel></Button>
       <Button on:click={() => btnClicked++} ripple={false}><ButtonLabel>No Ripple</ButtonLabel></Button>
       <Button on:click={() => btnClicked++} raised><ButtonLabel>Raised</ButtonLabel></Button>
       <Button on:click={() => btnClicked++} unelevated><ButtonLabel>Unelevated</ButtonLabel></Button>
       <Button on:click={() => btnClicked++} outlined><ButtonLabel>Outlined</ButtonLabel></Button>
       <Button on:click={() => btnClicked++} dense><ButtonLabel>Dense</ButtonLabel></Button>
+      <Button on:click={() => btnClicked++} className="myClass"><ButtonLabel>With a Class</ButtonLabel></Button>
     </p>
 
     <p>
@@ -49,3 +50,9 @@
   let fabClicked = 0;
   let fabExited = false;
 </script>
+
+<style>
+  :global(.myClass) {
+    text-decoration: underline !important;
+  }
+</style>
