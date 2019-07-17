@@ -31,7 +31,6 @@
   export let className = '';
   export let label = '';
   export let ripple = true;
-  export let disabled = false;
   export let raised = false;
   export let unelevated = false;
   export let outlined = false;

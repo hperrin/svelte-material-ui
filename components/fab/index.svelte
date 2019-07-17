@@ -30,7 +30,6 @@
   export let className = '';
   export let label = '';
   export let ripple = true;
-  export let disabled = false;
   export let mini = false;
   export let exited = false;
   export let extended = false;
