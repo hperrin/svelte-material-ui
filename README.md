@@ -2,7 +2,13 @@
 
 A work in progress for Svelte 3 components for Material UI.
 
-Some demo code showing what's possible:
+## Demos
+
+Check them out: https://hperrin.github.io/svelte-material-ui/demo/
+
+## Usage
+
+Here's some code showing what's possible:
 
 ```html
 <Button raised><ButtonLabel>Raised Button</ButtonLabel></Button>
@@ -18,6 +24,7 @@ Some demo code showing what's possible:
 </script>
 ```
 
+## License
 
 Copyright 2019 Hunter Perrin
 
