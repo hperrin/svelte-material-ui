@@ -1,23 +1,29 @@
 import {MDCRipple} from '@material/ripple/index';
 
-export default function Ripple(node, ripple) {
+export function Ripple(node, [ripple, unbounded]) {
   let instance;
 
   if (ripple) {
     instance = new MDCRipple(node);
+    if (unbounded) {
+      instance.unbounded = true;
+    }
   }
 
   return {
-    update(ripple) {
-      if (ripple) {
+    update([ripple, unbounded]) {
+      if (ripple && !instance) {
         instance = new MDCRipple(node);
-      } else {
-        instance.deactivate();
+      } else if (instance && !ripple) {
+        instance.destroy();
+      }
+      if (ripple) {
+        instance.unbounded = unbounded;
       }
     },
 
     destroy() {
-      instance.deactivate();
+      instance.destroy();
     }
   }
 }

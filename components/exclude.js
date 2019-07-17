@@ -1,4 +1,4 @@
-export default function exclude(obj, keys) {
+export function exclude(obj, keys) {
   let newObj = obj;
 
   for (let i = 0; i < keys.length; i++) {

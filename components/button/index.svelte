@@ -5,7 +5,7 @@
   class:mdc-button--unelevated={unelevated}
   class:mdc-button--outlined={outlined}
   class:mdc-button--dense={dense}
-  use:Ripple={ripple}
+  use:Ripple={[ripple, false]}
   on:focus on:blur
   on:fullscreenchange on:fullscreenerror on:scroll
   on:cut on:copy on:paste
@@ -25,8 +25,8 @@
 </script>
 
 <script>
-  import Ripple from '../Ripple.js';
-  import exclude from '../exclude.js';
+  import {Ripple} from '../Ripple.js';
+  import {exclude} from '../exclude.js';
 
   export let className = '';
   export let label = '';
@@ -37,6 +37,6 @@
   export let dense = false;
 </script>
 
-<style type="text/sass">
+<style lang="scss" global>
   @import "@material/button/mdc-button";
 </style>

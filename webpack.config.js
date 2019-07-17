@@ -1,5 +1,5 @@
 const path = require('path');
-const sass = require('svelte-preprocess-sass').sass;
+const preprocess = require('svelte-preprocess');
 
 module.exports = {
   mode: 'development',
@@ -19,11 +19,11 @@ module.exports = {
         use: {
           loader: 'svelte-loader',
           options: {
-            preprocess: {
-              style: sass({
+            preprocess: preprocess({
+              scss: {
                 includePaths: ['./node_modules'],
-              })
-            }
+              }
+            })
           }
         },
       },
@@ -32,13 +32,7 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           {loader: 'style-loader'},
-          {loader: 'css-loader'},
-          {
-            loader: 'sass-loader',
-            options: {
-              includePaths: ['./node_modules'],
-            },
-          }
+          {loader: 'css-loader'}
         ],
       },
       {

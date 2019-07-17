@@ -4,7 +4,7 @@
   class:mdc-fab--mini={mini}
   class:mdc-fab--exited={exited}
   class:mdc-fab--extended={extended}
-  use:Ripple={ripple}
+  use:Ripple={[ripple, false]}
   on:focus on:blur
   on:fullscreenchange on:fullscreenerror on:scroll
   on:cut on:copy on:paste
@@ -24,8 +24,8 @@
 </script>
 
 <script>
-  import Ripple from '../Ripple.js';
-  import exclude from '../exclude.js';
+  import {Ripple} from '../Ripple.js';
+  import {exclude} from '../exclude.js';
 
   export let className = '';
   export let label = '';
@@ -35,6 +35,6 @@
   export let extended = false;
 </script>
 
-<style type="text/sass">
+<style lang="scss" global>
   @import "@material/fab/mdc-fab";
 </style>

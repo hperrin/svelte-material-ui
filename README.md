@@ -1,6 +1,6 @@
 # Svelte Material UI Components
 
-A work in progress for Svelte 3 components for Material UI.
+A work in progress library of Svelte 3 components for Material UI.
 
 ## Demos
 
@@ -25,6 +25,13 @@ Here's some code showing what's possible:
   import Fab, {Label as FabLabel, Icon as FabIcon} from 'svelte-material-ui/components/fab';
 </script>
 ```
+
+* You can add any arbitrary property to elements.
+* Ripples are on by default, and can be turned off with `ripple={false}`.
+* All standard UI events are forwarded.
+* Things like labels and icons are named exports in each component.
+
+To bundle these in your own code, use the `svelte-preprocess` package.
 
 ## License
 
