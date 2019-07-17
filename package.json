@@ -1,0 +1,29 @@
+{
+  "name": "svelte-material-ui",
+  "version": "1.0.0-alpha.1",
+  "description": "Svelte Material UI Components",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "watch": "webpack --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Hunter Perrin <hperrin@gmail.com>",
+  "license": "Apache-2.0",
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/core": "^7.5.4",
+    "@babel/preset-env": "^7.5.4",
+    "@material/button": "^3.0.0",
+    "@material/fab": "^3.0.0",
+    "@material/ripple": "^3.0.0",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.0.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "svelte": "^3.6.7",
+    "svelte-loader": "^2.13.5",
+    "webpack": "^4.35.3",
+    "webpack-cli": "^3.3.6"
+  }
+}
