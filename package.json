@@ -27,6 +27,7 @@
     "@material/fab": "^3.0.0",
     "@material/icon-button": "^3.0.0",
     "@material/ripple": "^3.0.0",
+    "@material/typography": "^3.0.0",
     "babel-loader": "^8.0.6",
     "css-loader": "^3.0.0",
     "style-loader": "^0.23.1",

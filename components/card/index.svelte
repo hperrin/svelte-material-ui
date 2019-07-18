@@ -15,11 +15,17 @@
 ><slot></slot></div>
 
 <script context="module">
+  import Content from './Content';
   import PrimaryAction from './PrimaryAction';
   import Media from './Media';
   import MediaContent from './MediaContent';
+  import Actions from './Actions';
+  import ActionButtons from './ActionButtons';
+  import ActionIcons from './ActionIcons';
+  import Button from './Button';
+  import IconButton from './IconButton';
 
-  export {PrimaryAction, Media, MediaContent};
+  export {Content, PrimaryAction, Media, MediaContent, Actions, ActionButtons, ActionIcons, Button, IconButton};
 </script>
 
 <script>

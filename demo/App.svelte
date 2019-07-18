@@ -49,9 +49,15 @@
       <IconButton on:click={() => icbClicked++}>build</IconButton>
       <IconButton on:click={() => icbClicked++} disabled>search</IconButton> (disabled)
       <IconButton on:click={() => icbClicked++} ripple={false}>add_shopping_cart</IconButton> (no ripple)
-      <IconButton on:click={() => icbClicked++} toggleable bind:pressed={icbInitialOff}><IconButtonIcon on>star</IconButtonIcon><IconButtonIcon>star_border</IconButtonIcon></IconButton>
+      <IconButton on:click={() => icbClicked++} toggle bind:pressed={icbInitialOff}>
+        <IconButtonIcon on>star</IconButtonIcon>
+        <IconButtonIcon>star_border</IconButtonIcon>
+      </IconButton>
       {icbInitialOff ? '(on)' : '(off)'}
-      <IconButton on:click={() => icbClicked++} toggleable bind:pressed={icbInitialOn}><IconButtonIcon on>alarm_on</IconButtonIcon><IconButtonIcon>alarm_off</IconButtonIcon></IconButton>
+      <IconButton on:click={() => icbClicked++} toggle bind:pressed={icbInitialOn}>
+        <IconButtonIcon on>alarm_on</IconButtonIcon>
+        <IconButtonIcon>alarm_off</IconButtonIcon>
+      </IconButton>
       {icbInitialOn ? '(on)' : '(off)'}
     </p>
 
@@ -126,6 +132,8 @@
 
       <Card style="width: 250px;" padded>A padded card.</Card>
 
+      <Card style="width: 250px;"><CardContent>You can also use <code>Content</code>.</CardContent></Card>
+
       <Card style="width: 250px;" outlined padded>An outlined, padded card.</Card>
     </p>
 
@@ -133,7 +141,7 @@
       <Card style="width: 320px;">
         <CardMedia className="card-media-16x9" aspectRatio="16x9">
           <CardMediaContent>
-            <h2 style="color: #fff; position: absolute; bottom: 16px; left: 16px; margin: 0;">A card with 16x9 media.</h2>
+            <h2 class="mdc-typography mdc-typography--headline6" style="color: #fff; position: absolute; bottom: 16px; left: 16px; margin: 0;">A card with 16x9 media.</h2>
           </CardMediaContent>
         </CardMedia>
         <div style="padding: 16px; color: #888;">
@@ -144,8 +152,8 @@
       <Card style="width: 320px;">
         <CardMedia className="card-media-square" aspectRatio="square">
           <div style="color: #fff; position: absolute; bottom: 16px; left: 16px;">
-            <h2 style="margin: 0;">A card with square media.</h2>
-            <h3 style="margin: 0;">And a subtitle.</h3>
+            <h2 class="mdc-typography mdc-typography--headline6" style="margin: 0;">A card with square media.</h2>
+            <h3 class="mdc-typography mdc-typography--subtitle2" style="margin: 0;">And a subtitle.</h3>
           </div>
         </CardMedia>
       </Card>
@@ -153,24 +161,149 @@
 
     <p class="float-children">
       <Card style="width: 250px;">
-        <CardPrimaryAction on:click={() => icbClicked++} padded>Primary Action</CardPrimaryAction>
+        <CardPrimaryAction on:click={() => crdClicked++} padded>Primary Action</CardPrimaryAction>
       </Card>
 
       <Card style="width: 320px;">
-        <CardPrimaryAction on:click={() => icbClicked++}>
+        <CardPrimaryAction on:click={() => crdClicked++}>
           <CardMedia className="card-media-16x9" aspectRatio="16x9">
             <CardMediaContent>
-              <h2 style="color: #fff; position: absolute; bottom: 16px; left: 16px; margin: 0;">A card with media.</h2>
+              <h2 class="mdc-typography mdc-typography--headline6" style="color: #fff; position: absolute; bottom: 16px; left: 16px; margin: 0;">A card with media.</h2>
             </CardMediaContent>
           </CardMedia>
-          <div style="padding: 16px; color: #888;">
-            And some caption text. And it's all a primary action for the card.
-          </div>
+          <CardContent className="mdc-typography mdc-typography--body2">
+            And some info text. And it's all a primary action for the card.
+          </CardContent>
         </CardPrimaryAction>
       </Card>
     </p>
 
-    <p class="status">Clicked: {icbClicked}</p>
+    <p class="float-children">
+      <Card style="width: 320px;">
+        <CardContent>A card with actions.</CardContent>
+        <CardActions>
+          <CardButton on:click={() => crdClicked++}>
+            <ButtonLabel>Action</ButtonLabel>
+          </CardButton>
+          <CardButton on:click={() => crdClicked++}>
+            <ButtonLabel>Another</ButtonLabel>
+          </CardButton>
+        </CardActions>
+      </Card>
+
+      <Card style="width: 320px;">
+        <CardContent>A card with a full-bleed action.</CardContent>
+        <CardActions fullBleed>
+          <CardButton on:click={() => crdClicked++}>
+            <ButtonLabel>Action</ButtonLabel>
+            <i class="material-icons" aria-hidden="true">arrow_forward</i>
+          </CardButton>
+        </CardActions>
+      </Card>
+
+      <Card style="width: 320px;">
+        <CardContent>A card with action icons.</CardContent>
+        <CardActions>
+          <CardIconButton on:click={() => crdClicked++} toggle label="Add to favorites" title="Add to favorites">
+            <IconButtonIcon on>favorite</IconButtonIcon>
+            <IconButtonIcon>favorite_border</IconButtonIcon>
+          </CardIconButton>
+          <CardIconButton on:click={() => crdClicked++} title="Share">share</CardIconButton>
+          <CardIconButton on:click={() => crdClicked++} title="More options">more_vert</CardIconButton>
+        </CardActions>
+      </Card>
+
+      <Card style="width: 400px;">
+        <CardContent>A card with Both.</CardContent>
+        <CardActions>
+          <CardActionButtons>
+            <CardButton on:click={() => crdClicked++}>
+              <ButtonLabel>Action</ButtonLabel>
+            </CardButton>
+            <CardButton on:click={() => crdClicked++}>
+              <ButtonLabel>Another</ButtonLabel>
+            </CardButton>
+          </CardActionButtons>
+          <CardActionIcons>
+            <CardIconButton on:click={() => crdClicked++} toggle label="Add to favorites" title="Add to favorites">
+              <IconButtonIcon on>favorite</IconButtonIcon>
+              <IconButtonIcon>favorite_border</IconButtonIcon>
+            </CardIconButton>
+            <CardIconButton on:click={() => crdClicked++} title="Share">share</CardIconButton>
+            <CardIconButton on:click={() => crdClicked++} title="More options">more_vert</CardIconButton>
+          </CardActionIcons>
+        </CardActions>
+      </Card>
+    </p>
+
+    <p>
+      <Card style="width: 400px;">
+        <CardPrimaryAction on:click={() => crdClicked++}>
+          <CardMedia className="card-media-16x9" aspectRatio="16x9">
+            <CardMediaContent>
+              <div style="color: #fff; position: absolute; bottom: 16px; left: 16px;">
+                <h2 class="mdc-typography mdc-typography--headline6" style="margin: 0;">A card with media.</h2>
+                <h3 class="mdc-typography mdc-typography--subtitle2" style="margin: 0;">And a subtitle.</h3>
+              </div>
+            </CardMediaContent>
+          </CardMedia>
+          <CardContent className="mdc-typography mdc-typography--body2">
+            It's all in this card. It's a veritable smorgasbord of card features.
+          </CardContent>
+        </CardPrimaryAction>
+        <CardActions>
+          <CardActionButtons>
+            <CardButton on:click={() => crdClicked++}>
+              <ButtonLabel>Action</ButtonLabel>
+            </CardButton>
+            <CardButton on:click={() => crdClicked++}>
+              <ButtonLabel>Another</ButtonLabel>
+            </CardButton>
+          </CardActionButtons>
+          <CardActionIcons>
+            <CardIconButton on:click={() => crdClicked++} toggle label="Add to favorites" title="Add to favorites">
+              <IconButtonIcon on>favorite</IconButtonIcon>
+              <IconButtonIcon>favorite_border</IconButtonIcon>
+            </CardIconButton>
+            <CardIconButton on:click={() => crdClicked++} title="Share">share</CardIconButton>
+            <CardIconButton on:click={() => crdClicked++} title="More options">more_vert</CardIconButton>
+          </CardActionIcons>
+        </CardActions>
+      </Card>
+    </p>
+
+    <p>
+      <Card style="width: 400px;">
+        <CardPrimaryAction on:click={() => crdClicked++}>
+          <CardMedia className="card-media-16x9" aspectRatio="16x9"></CardMedia>
+          <CardContent className="mdc-typography mdc-typography--body2">
+            <h2 class="mdc-typography mdc-typography--headline6" style="margin: 0;">A card with media.</h2>
+            <h3 class="mdc-typography mdc-typography--subtitle2" style="margin: 0 0 10px; color: #888;">And a subtitle.</h3>
+            It's all in this card. It's a veritable smorgasbord of card features.
+          </CardContent>
+        </CardPrimaryAction>
+        <CardActions>
+          <CardActionButtons>
+            <CardButton on:click={() => crdClicked++}>
+              <ButtonLabel>Action</ButtonLabel>
+            </CardButton>
+            <CardButton on:click={() => crdClicked++}>
+              <ButtonLabel>Another</ButtonLabel>
+            </CardButton>
+          </CardActionButtons>
+          <CardActionIcons>
+            <CardIconButton on:click={() => crdClicked++} toggle label="Add to favorites" title="Add to favorites">
+              <IconButtonIcon on>favorite</IconButtonIcon>
+              <IconButtonIcon>favorite_border</IconButtonIcon>
+            </CardIconButton>
+            <CardIconButton on:click={() => crdClicked++} title="Share">share</CardIconButton>
+            <CardIconButton on:click={() => crdClicked++} title="More options">more_vert</CardIconButton>
+          </CardActionIcons>
+        </CardActions>
+      </Card>
+    </p>
+
+    <p class="status">Clicked: {crdClicked}</p>
   </section>
 </div>
 
@@ -179,7 +312,7 @@
   import Fab, {Label as FabLabel, Icon as FabIcon} from '../components/fab';
   import IconButton, {Icon as IconButtonIcon} from '../components/icon-button';
   import Chip, {Set as ChipSet, Icon as ChipIcon, Checkmark as ChipCheckmark, Text as ChipText} from '../components/chips';
-  import Card, {PrimaryAction as CardPrimaryAction, Media as CardMedia, MediaContent as CardMediaContent} from '../components/card';
+  import Card, {Content as CardContent, PrimaryAction as CardPrimaryAction, Media as CardMedia, MediaContent as CardMediaContent, Actions as CardActions, ActionButtons as CardActionButtons, ActionIcons as CardActionIcons, Button as CardButton, IconButton as CardIconButton} from '../components/card';
 
   let btnClicked = 0;
   let fabClicked = 0;
@@ -191,6 +324,7 @@
   let chpFilter = ['Shoes', 'Shirts'];
   let chpInput = [1, 2, 3, 4];
   let chpKeyed = [{k: 1, v: 'Apple'}, {k: 2, v: 'Apple'}, {k: 3, v: 'Apple'}, {k: 4, v: 'Apple'}];
+  let crdClicked = 0;
 
   function addInputChip() {
     if (chpInput.length) {
@@ -214,6 +348,8 @@
 </script>
 
 <style lang="scss">
+  @import "../components/typography";
+
   .container {
     background: #fff;
     margin: 2em auto;

@@ -4,9 +4,9 @@
   aria-hidden="true"
   aria-pressed={pressed}
   class="mdc-icon-button {className}"
-  class:material-icons={!toggleable}
+  class:material-icons={!toggle}
   class:mdc-icon-button--on={pressed}
-  use:Ripple={[ripple && !toggleable, true]}
+  use:Ripple={[ripple && !toggle, true]}
   on:MDCIconButtonToggle:change={handleChange}
   on:focus on:blur
   on:fullscreenchange on:fullscreenerror on:scroll
@@ -16,7 +16,7 @@
   on:drag on:dragend on:dragenter on:dragstart on:dragleave on:dragover on:drop
   on:touchcancel on:touchend on:touchmove on:touchstart
   on:pointerover on:pointerenter on:pointerdown on:pointermove on:pointerup on:pointercancel on:pointerout on:pointerleave on:gotpointercapture on:lostpointercapture
-  {...exclude($$props, ['className', 'label', 'ripple', 'toggleable', 'pressed'])}
+  {...exclude($$props, ['className', 'label', 'ripple', 'toggle', 'pressed'])}
 ><slot></slot></button>
 
 <script context="module">
@@ -34,24 +34,24 @@
   export let className = '';
   export let label = '';
   export let ripple = true;
-  export let toggleable = false;
+  export let toggle = false;
   export let pressed = false;
 
   let element;
   let toggleButton;
 
-  let oldToggleable = null;
-  $: if (element && toggleable !== oldToggleable) {
-    if (toggleable) {
+  let oldToggle = null;
+  $: if (element && toggle !== oldToggle) {
+    if (toggle) {
       toggleButton = new MDCIconButtonToggle(element);
       if (!ripple) {
         toggleButton.ripple.destroy();
       }
       toggleButton.on = pressed;
-    } else if (oldToggleable) {
+    } else if (oldToggle) {
       toggleButton.destroy();
     }
-    oldToggleable = toggleable;
+    oldToggle = toggle;
   }
 
   onDestroy(() => {

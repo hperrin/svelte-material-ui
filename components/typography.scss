@@ -1,0 +1,59 @@
+@import "@material/typography/mdc-typography";
+
+// All of the :global styles can be removed if I can get className to class.
+
+:global(.mdc-typography) {
+  @include mdc-typography-base;
+}
+
+:global(.mdc-typography--headline1), h1 {
+  @include mdc-typography('headline1');
+}
+
+:global(.mdc-typography--headline2), h2 {
+  @include mdc-typography('headline2');
+}
+
+:global(.mdc-typography--headline3), h3 {
+  @include mdc-typography('headline3');
+}
+
+:global(.mdc-typography--headline4), h4 {
+  @include mdc-typography('headline4');
+}
+
+:global(.mdc-typography--headline5), h5 {
+  @include mdc-typography('headline5');
+}
+
+:global(.mdc-typography--headline6), h6 {
+  @include mdc-typography('headline6');
+}
+
+:global(.mdc-typography--subtitle1) {
+  @include mdc-typography('subtitle1');
+}
+
+:global(.mdc-typography--subtitle2) {
+  @include mdc-typography('subtitle2');
+}
+
+:global(.mdc-typography--body1), html, body, p {
+  @include mdc-typography('body1');
+}
+
+:global(.mdc-typography--body2) {
+  @include mdc-typography('body2');
+}
+
+:global(.mdc-typography--caption), caption {
+  @include mdc-typography('caption');
+}
+
+:global(.mdc-typography--button) {
+  @include mdc-typography('button');
+}
+
+:global(.mdc-typography--overline) {
+  @include mdc-typography('overline');
+}
