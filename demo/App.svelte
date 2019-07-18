@@ -117,6 +117,61 @@
       <Button on:click={addKeyedChip}><ButtonLabel>Add</ButtonLabel></Button>
     </p>
   </section>
+
+  <section>
+    <h2>Cards</h2>
+
+    <p class="float-children">
+      <Card style="width: 250px;">A simple card.</Card>
+
+      <Card style="width: 250px;" padded>A padded card.</Card>
+
+      <Card style="width: 250px;" outlined padded>An outlined, padded card.</Card>
+    </p>
+
+    <p class="float-children">
+      <Card style="width: 320px;">
+        <CardMedia className="card-media-16x9" aspectRatio="16x9">
+          <CardMediaContent>
+            <h2 style="color: #fff; position: absolute; bottom: 16px; left: 16px; margin: 0;">A card with 16x9 media.</h2>
+          </CardMediaContent>
+        </CardMedia>
+        <div style="padding: 16px; color: #888;">
+          Here's some text down here.
+        </div>
+      </Card>
+
+      <Card style="width: 320px;">
+        <CardMedia className="card-media-square" aspectRatio="square">
+          <div style="color: #fff; position: absolute; bottom: 16px; left: 16px;">
+            <h2 style="margin: 0;">A card with square media.</h2>
+            <h3 style="margin: 0;">And a subtitle.</h3>
+          </div>
+        </CardMedia>
+      </Card>
+    </p>
+
+    <p class="float-children">
+      <Card style="width: 250px;">
+        <CardPrimaryAction on:click={() => icbClicked++} padded>Primary Action</CardPrimaryAction>
+      </Card>
+
+      <Card style="width: 320px;">
+        <CardPrimaryAction on:click={() => icbClicked++}>
+          <CardMedia className="card-media-16x9" aspectRatio="16x9">
+            <CardMediaContent>
+              <h2 style="color: #fff; position: absolute; bottom: 16px; left: 16px; margin: 0;">A card with media.</h2>
+            </CardMediaContent>
+          </CardMedia>
+          <div style="padding: 16px; color: #888;">
+            And some caption text. And it's all a primary action for the card.
+          </div>
+        </CardPrimaryAction>
+      </Card>
+    </p>
+
+    <p class="status">Clicked: {icbClicked}</p>
+  </section>
 </div>
 
 <script>
@@ -124,6 +179,7 @@
   import Fab, {Label as FabLabel, Icon as FabIcon} from '../components/fab';
   import IconButton, {Icon as IconButtonIcon} from '../components/icon-button';
   import Chip, {Set as ChipSet, Icon as ChipIcon, Checkmark as ChipCheckmark, Text as ChipText} from '../components/chips';
+  import Card, {PrimaryAction as CardPrimaryAction, Media as CardMedia, MediaContent as CardMediaContent} from '../components/card';
 
   let btnClicked = 0;
   let fabClicked = 0;
@@ -157,7 +213,7 @@
   }
 </script>
 
-<style>
+<style lang="scss">
   .container {
     background: #fff;
     margin: 2em auto;
@@ -165,7 +221,7 @@
     max-width: 960px;
   }
 
-  :global(.myClass) {
+  * :global(.myClass) {
     text-decoration: underline !important;
   }
 
@@ -176,5 +232,27 @@
   .status {
     font-family: monospace;
     font-size: .9em;
+  }
+
+  .float-children {
+    :global(> *) {
+      float: left;
+      margin-right: 16px;
+      margin-bottom: 16px;
+    }
+
+    &::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+  }
+
+  * :global(.card-media-16x9) {
+    background-image: url(https://via.placeholder.com/320x180.png?text=16x9);
+  }
+
+  * :global(.card-media-square) {
+    background-image: url(https://via.placeholder.com/320x320.png?text=square);
   }
 </style>

@@ -16,7 +16,7 @@
   on:pointerover on:pointerenter on:pointerdown on:pointermove on:pointerup on:pointercancel on:pointerout on:pointerleave on:gotpointercapture on:lostpointercapture
   {...exclude($$props, ['className', 'chips', 'key', 'selected', 'choice', 'filter', 'input'])}
 >
-  {#each chips as chip, i (key(chip, i))}
+  {#each chips as chip, i (key(chip))}
     <slot {chip}></slot>
   {/each}
 </div>
