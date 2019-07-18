@@ -144,9 +144,9 @@
             <h2 class="mdc-typography mdc-typography--headline6" style="color: #fff; position: absolute; bottom: 16px; left: 16px; margin: 0;">A card with 16x9 media.</h2>
           </CardMediaContent>
         </CardMedia>
-        <div style="padding: 16px; color: #888;">
+        <CardContent style="color: #888;">
           Here's some text down here.
-        </div>
+        </CardContent>
       </Card>
 
       <Card style="width: 320px;">
