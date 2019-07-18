@@ -57,12 +57,65 @@
 
     <p class="status">Clicked: {icbClicked}</p>
   </section>
+
+  <section>
+    <h2>Chips</h2>
+
+    <p>
+      <ChipSet chips={['one', 'two', 'three', 'four', 'five']} let:chip>
+        <Chip shouldRemoveOnTrailingIconClick={false}>
+          {#if chip === 'four'}
+            <ChipIcon leading>book</ChipIcon>
+          {/if}
+          <ChipText>{chip}</ChipText>
+          {#if chip === 'five'}
+            <ChipIcon trailing>commute</ChipIcon>
+          {/if}
+        </Chip>
+      </ChipSet>
+    </p>
+
+    <p>
+      Choice Chips
+      <ChipSet chips={['Morning', 'Afternoon', 'Evening', 'Night']} let:chip choice bind:selected={chpChoice}>
+        <Chip tabindex="0">{chip}</Chip>
+      </ChipSet>
+    </p>
+
+    <p>
+      Programmatically select:
+      <Button on:click={() => chpChoice = 'Morning'}><ButtonLabel>Morning</ButtonLabel></Button>
+      <Button on:click={() => chpChoice = 'Afternoon'}><ButtonLabel>Afternoon</ButtonLabel></Button>
+      <Button on:click={() => chpChoice = 'Evening'}><ButtonLabel>Evening</ButtonLabel></Button>
+      <Button on:click={() => chpChoice = 'Night'}><ButtonLabel>Night</ButtonLabel></Button>
+    </p>
+
+    <p class="status">Selected: {chpChoice}</p>
+
+    <p>
+      Filter Chips
+      <ChipSet chips={['Shoes', 'Pants', 'Shirts', 'Hats']} let:chip filter bind:selected={chpFilter}>
+        <Chip tabindex="0"><ChipCheckmark /><ChipText>{chip}</ChipText></Chip>
+      </ChipSet>
+    </p>
+
+    <p class="status">Selected: {chpFilter.join(', ')}</p>
+
+    <p>
+      Input Chips
+      <ChipSet chips={chpInput} let:chip input>
+        <Chip><ChipText>{chip}</ChipText><ChipIcon trailing tabindex="0">cancel</ChipIcon></Chip>
+      </ChipSet>
+      <Button on:click={addChip}><ButtonLabel>Add</ButtonLabel></Button>
+    </p>
+  </section>
 </div>
 
 <script>
   import Button, {Label as ButtonLabel, Icon as ButtonIcon} from '../components/button';
   import Fab, {Label as FabLabel, Icon as FabIcon} from '../components/fab';
   import IconButton, {Icon as IconButtonIcon} from '../components/icon-button';
+  import Chip, {Set as ChipSet, Icon as ChipIcon, Checkmark as ChipCheckmark, Text as ChipText} from '../components/chips';
 
   let btnClicked = 0;
   let fabClicked = 0;
@@ -70,6 +123,19 @@
   let icbClicked = 0;
   let icbInitialOff = false;
   let icbInitialOn = true;
+  let chpChoice = 'Morning';
+  let chpFilter = ['Shoes', 'Shirts'];
+  let chpInput = [1, 2, 3, 4];
+
+  function addChip() {
+    if (chpInput.length) {
+      chpInput.push(chpInput[chpInput.length - 1] + 1);
+      chpInput = chpInput;
+    } else {
+      chpInput.push(1);
+      chpInput = chpInput;
+    }
+  }
 </script>
 
 <style>

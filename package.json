@@ -22,6 +22,7 @@
     "@babel/core": "^7.5.4",
     "@babel/preset-env": "^7.5.4",
     "@material/button": "^3.0.0",
+    "@material/chips": "^3.0.0",
     "@material/fab": "^3.0.0",
     "@material/icon-button": "^3.0.0",
     "@material/ripple": "^3.0.0",

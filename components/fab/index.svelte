@@ -13,7 +13,7 @@
   on:drag on:dragend on:dragenter on:dragstart on:dragleave on:dragover on:drop
   on:touchcancel on:touchend on:touchmove on:touchstart
   on:pointerover on:pointerenter on:pointerdown on:pointermove on:pointerup on:pointercancel on:pointerout on:pointerleave on:gotpointercapture on:lostpointercapture
-  {...exclude($$props, ['className', 'label', 'mini', 'exited', 'extended', 'ripple'])}
+  {...exclude($$props, ['className', 'label', 'ripple', 'mini', 'exited', 'extended'])}
 ><slot></slot></button>
 
 <script context="module">

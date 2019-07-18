@@ -27,7 +27,7 @@
 
 <script>
   import {MDCIconButtonToggle} from '@material/icon-button';
-  import {onMount} from 'svelte';
+  import {onDestroy} from 'svelte';
   import {Ripple} from '../Ripple.js';
   import {exclude} from '../exclude.js';
 
@@ -53,6 +53,12 @@
     }
     oldToggleable = toggleable;
   }
+
+  onDestroy(() => {
+    if (toggleButton) {
+      toggleButton.destroy();
+    }
+  });
 
   function handleChange(e) {
     pressed = e.detail.isOn;
