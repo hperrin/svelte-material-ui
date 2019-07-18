@@ -1,0 +1,93 @@
+<section>
+  <h2>Chips</h2>
+
+  <p>
+    <Set chips={['one', 'two', 'three', 'four', 'five']} let:chip>
+      <Chip shouldRemoveOnTrailingIconClick={false}>
+        {#if chip === 'four'}
+          <Icon leading>book</Icon>
+        {/if}
+        <Text>{chip}</Text>
+        {#if chip === 'five'}
+          <Icon trailing>commute</Icon>
+        {/if}
+      </Chip>
+    </Set>
+  </p>
+
+  <p>
+    Choice Chips
+    <Set chips={['Morning', 'Afternoon', 'Evening', 'Night']} let:chip choice bind:selected={choice}>
+      <Chip tabindex="0">{chip}</Chip>
+    </Set>
+  </p>
+
+  <p>
+    Programmatically select:
+    <Button on:click={() => choice = 'Morning'}><ButtonLabel>Morning</ButtonLabel></Button>
+    <Button on:click={() => choice = 'Afternoon'}><ButtonLabel>Afternoon</ButtonLabel></Button>
+    <Button on:click={() => choice = 'Evening'}><ButtonLabel>Evening</ButtonLabel></Button>
+    <Button on:click={() => choice = 'Night'}><ButtonLabel>Night</ButtonLabel></Button>
+  </p>
+
+  <p class="status">Selected: {choice}</p>
+
+  <p>
+    Filter Chips
+    <Set chips={['Shoes', 'Pants', 'Shirts', 'Hats']} let:chip filter bind:selected={filter}>
+      <Chip tabindex="0"><Checkmark /><Text>{chip}</Text></Chip>
+    </Set>
+  </p>
+
+  <p class="status">Selected: {filter.join(', ')}</p>
+
+  <p>
+    Input Chips
+    <Set chips={input} let:chip input>
+      <Chip><Text>{chip}</Text><Icon trailing tabindex="0">cancel</Icon></Chip>
+    </Set>
+    <Button on:click={addInputChip}><ButtonLabel>Add</ButtonLabel></Button>
+  </p>
+
+  <p>
+    Keyed Chips
+    <Set chips={keyed} let:chip key={chip => chip.k} input>
+      <Chip><Text>{chip.v}</Text><Icon trailing tabindex="0">cancel</Icon></Chip>
+    </Set>
+    <Button on:click={addKeyedChip}><ButtonLabel>Add</ButtonLabel></Button>
+  </p>
+</section>
+
+<script>
+  import Chip, {Set, Icon, Checkmark, Text} from '../components/chips';
+  import Button, {Label as ButtonLabel} from '../components/button';
+
+  let choice = 'Morning';
+  let filter = ['Shoes', 'Shirts'];
+  let input = [1, 2, 3, 4];
+  let keyed = [{k: 1, v: 'Apple'}, {k: 2, v: 'Apple'}, {k: 3, v: 'Apple'}, {k: 4, v: 'Apple'}];
+
+  function addInputChip() {
+    if (input.length) {
+      input.push(input[input.length - 1] + 1);
+      input = input;
+    } else {
+      input.push(1);
+      input = input;
+    }
+  }
+
+  function addKeyedChip() {
+    if (keyed.length) {
+      keyed.push({k: keyed[keyed.length - 1].k + 1, v: 'Apple'});
+      keyed = keyed;
+    } else {
+      keyed.push({k: 1, v: 'Apple'});
+      keyed = keyed;
+    }
+  }
+</script>
+
+<style lang="scss">
+  @import "../components/typography";
+</style>
