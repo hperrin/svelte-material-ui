@@ -14,9 +14,9 @@
   on:drag on:dragend on:dragenter on:dragstart on:dragleave on:dragover on:drop
   on:touchcancel on:touchend on:touchmove on:touchstart
   on:pointerover on:pointerenter on:pointerdown on:pointermove on:pointerup on:pointercancel on:pointerout on:pointerleave on:gotpointercapture on:lostpointercapture
-  {...exclude($$props, ['className', 'chips', 'selected', 'choice', 'filter', 'input'])}
+  {...exclude($$props, ['className', 'chips', 'key', 'selected', 'choice', 'filter', 'input'])}
 >
-  {#each chips as chip, i (chip)}
+  {#each chips as chip, i (key(chip, i))}
     <slot {chip}></slot>
   {/each}
 </div>
@@ -28,6 +28,7 @@
 
   export let className = '';
   export let chips = [];
+  export let key = chip => chip;
   export let selected = null;
   export let choice = false;
   export let filter = false;
@@ -133,12 +134,12 @@
     let i = 0;
     let el = e.detail.root;
     while (el.previousSibling) {
-      i++;
       el = el.previousSibling;
+      if (el.nodeType === 1) {
+        i++;
+      }
     }
     chips.splice(i, 1);
-    const saveChips = chips;
-    chips = [];
-    chips = saveChips;
+    chips = chips;
   }
 </script>

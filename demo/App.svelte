@@ -106,7 +106,15 @@
       <ChipSet chips={chpInput} let:chip input>
         <Chip><ChipText>{chip}</ChipText><ChipIcon trailing tabindex="0">cancel</ChipIcon></Chip>
       </ChipSet>
-      <Button on:click={addChip}><ButtonLabel>Add</ButtonLabel></Button>
+      <Button on:click={addInputChip}><ButtonLabel>Add</ButtonLabel></Button>
+    </p>
+
+    <p>
+      Keyed Chips
+      <ChipSet chips={chpKeyed} let:chip key={chip => chip.k} input>
+        <Chip><ChipText>{chip.v}</ChipText><ChipIcon trailing tabindex="0">cancel</ChipIcon></Chip>
+      </ChipSet>
+      <Button on:click={addKeyedChip}><ButtonLabel>Add</ButtonLabel></Button>
     </p>
   </section>
 </div>
@@ -126,14 +134,25 @@
   let chpChoice = 'Morning';
   let chpFilter = ['Shoes', 'Shirts'];
   let chpInput = [1, 2, 3, 4];
+  let chpKeyed = [{k: 1, v: 'Apple'}, {k: 2, v: 'Apple'}, {k: 3, v: 'Apple'}, {k: 4, v: 'Apple'}];
 
-  function addChip() {
+  function addInputChip() {
     if (chpInput.length) {
       chpInput.push(chpInput[chpInput.length - 1] + 1);
       chpInput = chpInput;
     } else {
       chpInput.push(1);
       chpInput = chpInput;
+    }
+  }
+
+  function addKeyedChip() {
+    if (chpKeyed.length) {
+      chpKeyed.push({k: chpKeyed[chpKeyed.length - 1].k + 1, v: 'Apple'});
+      chpKeyed = chpKeyed;
+    } else {
+      chpKeyed.push({k: 1, v: 'Apple'});
+      chpKeyed = chpKeyed;
     }
   }
 </script>
