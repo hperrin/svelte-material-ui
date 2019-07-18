@@ -28,7 +28,7 @@
 <script>
   import {MDCChip} from '@material/chips';
   import {onMount} from 'svelte';
-  import {exclude} from '../exclude.js';
+  import {exclude} from '../exclude';
 
   export let className = '';
   export let label = '';

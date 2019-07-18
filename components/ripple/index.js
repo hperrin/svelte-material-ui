@@ -1,6 +1,6 @@
 import {MDCRipple} from '@material/ripple/index';
 
-export function Ripple(node, [ripple, unbounded]) {
+export default function Ripple(node, [ripple, unbounded]) {
   let instance;
 
   if (ripple) {

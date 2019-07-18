@@ -5,7 +5,7 @@
 ><slot></slot></i>
 
 <script>
-  import {exclude} from '../exclude.js';
+  import {exclude} from '../exclude';
 
   export let className = '';
   export let on = false;

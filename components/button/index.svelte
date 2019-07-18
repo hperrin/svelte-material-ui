@@ -25,8 +25,8 @@
 </script>
 
 <script>
-  import {Ripple} from '../Ripple.js';
-  import {exclude} from '../exclude.js';
+  import {exclude} from '../exclude';
+  import Ripple from '../ripple';
 
   export let className = '';
   export let label = '';

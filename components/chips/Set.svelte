@@ -24,7 +24,7 @@
 <script>
   import {MDCChipSet} from '@material/chips';
   import {onMount, onDestroy, afterUpdate} from 'svelte';
-  import {exclude} from '../exclude.js';
+  import {exclude} from '../exclude';
 
   export let className = '';
   export let chips = [];
