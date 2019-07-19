@@ -35,7 +35,7 @@ To bundle these in your own code, use the `svelte-preprocess` package.
 
 ## Progress
 
-I'm only going to do things that need to/can be Svelte-ified. For some things, like RTL and DOM, you can just use the MDC packages.
+I'm only going to do things that need to/can be Svelte-ified. For some things, like RTL and elevation, you can just use the MDC packages.
 
 - [x] Buttons
   - [x] Floating Action Buttons
@@ -43,7 +43,6 @@ I'm only going to do things that need to/can be Svelte-ified. For some things, l
 - [x] Cards
 - [x] Chips
 - [x] Dialogs
-- [ ] Elevation
 - [ ] Drawers
 - [ ] Grid Lists
 - [ ] Image Lists
