@@ -33,6 +33,10 @@
     max-width: 960px;
   }
 
+  * :global(section > div) {
+    margin: 1em 0 .6em;
+  }
+
   * :global(.status) {
     font-family: monospace;
     font-size: .9em;

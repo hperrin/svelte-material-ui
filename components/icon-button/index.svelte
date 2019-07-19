@@ -1,6 +1,5 @@
 <button
   bind:this={element}
-  aria-label={label}
   aria-hidden="true"
   aria-pressed={pressed}
   class="mdc-icon-button {className}"
@@ -16,7 +15,7 @@
   on:drag on:dragend on:dragenter on:dragstart on:dragleave on:dragover on:drop
   on:touchcancel on:touchend on:touchmove on:touchstart
   on:pointerover on:pointerenter on:pointerdown on:pointermove on:pointerup on:pointercancel on:pointerout on:pointerleave on:gotpointercapture on:lostpointercapture
-  {...exclude($$props, ['class', 'label', 'ripple', 'toggle', 'pressed'])}
+  {...exclude($$props, ['class', 'ripple', 'toggle', 'pressed'])}
 ><slot></slot></button>
 
 <script context="module">
@@ -33,7 +32,6 @@
 
   let className = '';
   export {className as class};
-  export let label = '';
   export let ripple = true;
   export let toggle = false;
   export let pressed = false;

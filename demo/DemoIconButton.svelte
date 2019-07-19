@@ -1,7 +1,7 @@
 <section>
   <h2>Icon Button</h2>
 
-  <p>
+  <div>
     <IconButton on:click={() => clicked++}>build</IconButton>
     <IconButton on:click={() => clicked++} disabled>search</IconButton> (disabled)
     <IconButton on:click={() => clicked++} ripple={false}>add_shopping_cart</IconButton> (no ripple)
@@ -15,9 +15,9 @@
       <Icon>alarm_off</Icon>
     </IconButton>
     {initialOn ? '(on)' : '(off)'}
-  </p>
+  </div>
 
-  <p class="status">Clicked: {clicked}</p>
+  <div class="status">Clicked: {clicked}</div>
 </section>
 
 <script>

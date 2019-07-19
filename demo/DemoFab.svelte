@@ -1,20 +1,20 @@
 <section>
   <h2>Floating Action Button</h2>
 
-  <p>
+  <div>
     <Fab on:click={() => clicked++}><Icon>favorite</Icon></Fab>
     <Fab on:click={() => clicked++} mini><Icon>favorite</Icon></Fab>
     <Fab on:click={() => clicked++} extended><Icon style="margin-right: 12px;">favorite</Icon><Label>Extended</Label></Fab>
     <Fab on:click={() => clicked++} extended ripple={false}><Icon style="margin-right: 12px;">favorite</Icon><Label>No Ripple</Label></Fab>
     <Fab on:click={() => clicked++} extended><Label>Extended W/o Icon</Label></Fab>
-  </p>
+  </div>
 
-  <p>
+  <div>
     <Fab on:click={() => clicked++} exited={exited}><Icon>favorite</Icon></Fab>
     <label><input type="checkbox" bind:checked={exited}> Exited</label>
-  </p>
+  </div>
 
-  <p class="status">Clicked: {clicked}</p>
+  <div class="status">Clicked: {clicked}</div>
 </section>
 
 <script>

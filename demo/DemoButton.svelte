@@ -1,7 +1,7 @@
 <section>
   <h2>Button</h2>
 
-  <p>
+  <div>
     <Button on:click={() => clicked++}><Label>Click Me</Label></Button>
     <Button on:click={() => clicked++} disabled><Label>Disabled</Label></Button>
     <Button on:click={() => clicked++} ripple={false}><Label>No Ripple</Label></Button>
@@ -10,14 +10,14 @@
     <Button on:click={() => clicked++} outlined><Label>Outlined</Label></Button>
     <Button on:click={() => clicked++} dense><Label>Dense</Label></Button>
     <Button on:click={() => clicked++} class="myClass"><Label>With a Class</Label></Button>
-  </p>
+  </div>
 
-  <p>
+  <div>
     <Button on:click={() => clicked++}><Icon style="margin-right: 12px;">favorite</Icon><Label>Icon</Label></Button>
     <Button on:click={() => clicked++}><Label>Trailing Icon</Label><Icon style="margin-left: 12px;">favorite</Icon></Button>
-  </p>
+  </div>
 
-  <p class="status">Clicked: {clicked}</p>
+  <div class="status">Clicked: {clicked}</div>
 </section>
 
 <script>

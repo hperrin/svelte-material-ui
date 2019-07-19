@@ -1,6 +1,5 @@
 <div
   bind:this={element}
-  aria-label={label}
   class="mdc-chip {className}"
   class:mdc-chip--selected={selected}
   on:MDCChip:selection={handleSelection}
@@ -13,7 +12,7 @@
   on:touchcancel on:touchend on:touchmove on:touchstart
   on:pointerover on:pointerenter on:pointerdown on:pointermove on:pointerup on:pointercancel on:pointerout on:pointerleave on:gotpointercapture on:lostpointercapture
   on:MDCChip:interaction on:MDCChip:selection on:MDCChip:removal on:MDCChip:trailingIconInteraction
-  {...exclude($$props, ['class', 'label', 'ripple', 'selected', 'shouldRemoveOnTrailingIconClick'])}
+  {...exclude($$props, ['class', 'ripple', 'selected', 'shouldRemoveOnTrailingIconClick'])}
 ><slot></slot></div>
 
 <script context="module">
@@ -32,7 +31,6 @@
 
   let className = '';
   export {className as class};
-  export let label = '';
   export let ripple = true;
   export let selected = false;
   export let shouldRemoveOnTrailingIconClick = true;

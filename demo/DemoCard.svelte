@@ -1,7 +1,7 @@
 <section>
   <h2>Cards</h2>
 
-  <p class="float-children">
+  <div class="float-children">
     <Card style="width: 250px;">A simple card.</Card>
 
     <Card style="width: 250px;" padded>A padded card.</Card>
@@ -9,9 +9,9 @@
     <Card style="width: 250px;"><Content>You can also use <code>Content</code>.</Content></Card>
 
     <Card style="width: 250px;" outlined padded>An outlined, padded card.</Card>
-  </p>
+  </div>
 
-  <p class="float-children">
+  <div class="float-children">
     <Card style="width: 320px;">
       <Media class="card-media-16x9" aspectRatio="16x9">
         <MediaContent>
@@ -31,9 +31,9 @@
         </div>
       </Media>
     </Card>
-  </p>
+  </div>
 
-  <p class="float-children">
+  <div class="float-children">
     <Card style="width: 250px;">
       <PrimaryAction on:click={() => clicked++} padded>Primary Action</PrimaryAction>
     </Card>
@@ -50,9 +50,9 @@
         </Content>
       </PrimaryAction>
     </Card>
-  </p>
+  </div>
 
-  <p class="float-children">
+  <div class="float-children">
     <Card style="width: 320px;">
       <Content>A card with actions.</Content>
       <Actions>
@@ -78,7 +78,7 @@
     <Card style="width: 320px;">
       <Content>A card with action icons.</Content>
       <Actions>
-        <CardIconButton on:click={() => clicked++} toggle label="Add to favorites" title="Add to favorites">
+        <CardIconButton on:click={() => clicked++} toggle aria-label="Add to favorites" title="Add to favorites">
           <Icon on>favorite</Icon>
           <Icon>favorite_border</Icon>
         </CardIconButton>
@@ -99,7 +99,7 @@
           </CardButton>
         </ActionButtons>
         <ActionIcons>
-          <CardIconButton on:click={() => clicked++} toggle label="Add to favorites" title="Add to favorites">
+          <CardIconButton on:click={() => clicked++} toggle aria-label="Add to favorites" title="Add to favorites">
             <Icon on>favorite</Icon>
             <Icon>favorite_border</Icon>
           </CardIconButton>
@@ -108,9 +108,9 @@
         </ActionIcons>
       </Actions>
     </Card>
-  </p>
+  </div>
 
-  <p class="float-children">
+  <div class="float-children">
     <Card style="width: 400px;">
       <PrimaryAction on:click={() => clicked++}>
         <Media class="card-media-16x9" aspectRatio="16x9">
@@ -135,7 +135,7 @@
           </CardButton>
         </ActionButtons>
         <ActionIcons>
-          <CardIconButton on:click={() => clicked++} toggle label="Add to favorites" title="Add to favorites">
+          <CardIconButton on:click={() => clicked++} toggle aria-label="Add to favorites" title="Add to favorites">
             <Icon on>favorite</Icon>
             <Icon>favorite_border</Icon>
           </CardIconButton>
@@ -164,7 +164,7 @@
           </CardButton>
         </ActionButtons>
         <ActionIcons>
-          <CardIconButton on:click={() => clicked++} toggle label="Add to favorites" title="Add to favorites">
+          <CardIconButton on:click={() => clicked++} toggle aria-label="Add to favorites" title="Add to favorites">
             <Icon on>favorite</Icon>
             <Icon>favorite_border</Icon>
           </CardIconButton>
@@ -173,9 +173,9 @@
         </ActionIcons>
       </Actions>
     </Card>
-  </p>
+  </div>
 
-  <p class="status">Clicked: {clicked}</p>
+  <div class="status">Clicked: {clicked}</div>
 </section>
 
 <script>

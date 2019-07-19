@@ -1,7 +1,7 @@
 <section>
   <h2>Dialogs</h2>
 
-  <p>
+  <div>
     <Dialog bind:this={myDialog} aria-labelledby="my-dialog-title" aria-describedby="my-dialog-content">
       <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
       <Title id="my-dialog-title">Dialog Title</Title>
@@ -19,11 +19,11 @@
     </Dialog>
 
     <Button on:click={() => myDialog.open()}><Label>Open Dialog</Label></Button>
-  </p>
+  </div>
 
-  <p class="status">Clicked: {clicked}</p>
+  <div class="status">Clicked: {clicked}</div>
 
-  <p>
+  <div>
     Using dialog events, instead of button clicks: <br />
 
     <Dialog bind:this={myDialog2} aria-labelledby="my-dialog-title2" aria-describedby="my-dialog-content2" on:MDCDialog:closed={closeHandler}>
@@ -43,9 +43,9 @@
     </Dialog>
 
     <Button on:click={() => myDialog2.open()}><Label>Open Dialog</Label></Button>
-  </p>
+  </div>
 
-  <p class="status">Response: {response}</p>
+  <div class="status">Response: {response}</div>
 </section>
 
 <script>
@@ -63,7 +63,7 @@
         response = 'Ok, well, you\'re wrong.';
         break;
       case 'yes':
-        response = 'You are correct. All dogs are the best dogs.';
+        response = 'You are correct. All dogs are the best dog.';
         break;
       default:
         response = 'It\'s a simple question. You should be able to answer it.';

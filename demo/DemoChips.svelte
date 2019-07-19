@@ -1,7 +1,7 @@
 <section>
   <h2>Chips</h2>
 
-  <p>
+  <div>
     <Set chips={['one', 'two', 'three', 'four', 'five']} let:chip>
       <Chip shouldRemoveOnTrailingIconClick={false}>
         {#if chip === 'four'}
@@ -13,49 +13,49 @@
         {/if}
       </Chip>
     </Set>
-  </p>
+  </div>
 
-  <p>
+  <div>
     Choice Chips
     <Set chips={['Morning', 'Afternoon', 'Evening', 'Night']} let:chip choice bind:selected={choice}>
       <Chip tabindex="0">{chip}</Chip>
     </Set>
-  </p>
+  </div>
 
-  <p>
+  <div>
     Programmatically select:
     <Button on:click={() => choice = 'Morning'}><ButtonLabel>Morning</ButtonLabel></Button>
     <Button on:click={() => choice = 'Afternoon'}><ButtonLabel>Afternoon</ButtonLabel></Button>
     <Button on:click={() => choice = 'Evening'}><ButtonLabel>Evening</ButtonLabel></Button>
     <Button on:click={() => choice = 'Night'}><ButtonLabel>Night</ButtonLabel></Button>
-  </p>
+  </div>
 
-  <p class="status">Selected: {choice}</p>
+  <div class="status">Selected: {choice}</div>
 
-  <p>
+  <div>
     Filter Chips
     <Set chips={['Shoes', 'Pants', 'Shirts', 'Hats']} let:chip filter bind:selected={filter}>
       <Chip tabindex="0"><Checkmark /><Text>{chip}</Text></Chip>
     </Set>
-  </p>
+  </div>
 
-  <p class="status">Selected: {filter.join(', ')}</p>
+  <div class="status">Selected: {filter.join(', ')}</div>
 
-  <p>
+  <div>
     Input Chips
     <Set chips={input} let:chip input>
       <Chip><Text>{chip}</Text><Icon trailing tabindex="0">cancel</Icon></Chip>
     </Set>
     <Button on:click={addInputChip}><ButtonLabel>Add</ButtonLabel></Button>
-  </p>
+  </div>
 
-  <p>
+  <div>
     Keyed Chips
     <Set chips={keyed} let:chip key={chip => chip.k} input>
       <Chip><Text>{chip.v}</Text><Icon trailing tabindex="0">cancel</Icon></Chip>
     </Set>
     <Button on:click={addKeyedChip}><ButtonLabel>Add</ButtonLabel></Button>
-  </p>
+  </div>
 </section>
 
 <script>
