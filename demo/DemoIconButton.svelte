@@ -27,7 +27,3 @@
   let initialOff = false;
   let initialOn = true;
 </script>
-
-<style lang="scss">
-  @import "../components/typography";
-</style>

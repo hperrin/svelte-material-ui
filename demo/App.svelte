@@ -30,8 +30,40 @@
     max-width: 960px;
   }
 
-  :global(.status) {
+  * :global(.status) {
     font-family: monospace;
     font-size: .9em;
+  }
+
+  :global(h1) {
+    @include mdc-typography('headline1');
+  }
+
+  :global(h2) {
+    @include mdc-typography('headline2');
+  }
+
+  :global(h3) {
+    @include mdc-typography('headline3');
+  }
+
+  :global(h4) {
+    @include mdc-typography('headline4');
+  }
+
+  :global(h5) {
+    @include mdc-typography('headline5');
+  }
+
+  :global(h6) {
+    @include mdc-typography('headline6');
+  }
+
+  :global(html, body, p) {
+    @include mdc-typography('body1');
+  }
+
+  :global(caption) {
+    @include mdc-typography('caption');
   }
 </style>

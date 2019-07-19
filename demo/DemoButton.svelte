@@ -9,7 +9,7 @@
     <Button on:click={() => clicked++} unelevated><Label>Unelevated</Label></Button>
     <Button on:click={() => clicked++} outlined><Label>Outlined</Label></Button>
     <Button on:click={() => clicked++} dense><Label>Dense</Label></Button>
-    <Button on:click={() => clicked++} className="myClass"><Label>With a Class</Label></Button>
+    <Button on:click={() => clicked++} class="myClass"><Label>With a Class</Label></Button>
   </p>
 
   <p>
@@ -27,8 +27,6 @@
 </script>
 
 <style lang="scss">
-  @import "../components/typography";
-
   * :global(.myClass) {
     text-decoration: underline !important;
   }

@@ -23,7 +23,3 @@
   let clicked = 0;
   let exited = false;
 </script>
-
-<style lang="scss">
-  @import "../components/typography";
-</style>

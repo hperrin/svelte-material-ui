@@ -1,7 +1,8 @@
-<i class="material-icons mdc-button__icon {className}" aria-hidden="true" {...exclude($$props, ['className'])}><slot></slot></i>
+<i class="material-icons mdc-button__icon {className}" aria-hidden="true" {...exclude($$props, ['class'])}><slot></slot></i>
 
 <script>
   import {exclude} from '../exclude';
 
-  export let className = '';
+  let className = '';
+  export {className as class};
 </script>

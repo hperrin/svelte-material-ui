@@ -14,7 +14,7 @@
   on:drag on:dragend on:dragenter on:dragstart on:dragleave on:dragover on:drop
   on:touchcancel on:touchend on:touchmove on:touchstart
   on:pointerover on:pointerenter on:pointerdown on:pointermove on:pointerup on:pointercancel on:pointerout on:pointerleave on:gotpointercapture on:lostpointercapture
-  {...exclude($$props, ['className', 'label', 'ripple', 'raised', 'unelevated', 'outlined', 'dense'])}
+  {...exclude($$props, ['class', 'label', 'ripple', 'raised', 'unelevated', 'outlined', 'dense'])}
 ><slot></slot></button>
 
 <script context="module">
@@ -28,7 +28,8 @@
   import {exclude} from '../exclude';
   import Ripple from '../ripple';
 
-  export let className = '';
+  let className = '';
+  export {className as class};
   export let label = '';
   export let ripple = true;
   export let raised = false;

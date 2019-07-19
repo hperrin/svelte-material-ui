@@ -87,7 +87,3 @@
     }
   }
 </script>
-
-<style lang="scss">
-  @import "../components/typography";
-</style>

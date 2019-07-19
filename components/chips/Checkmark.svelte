@@ -1,4 +1,4 @@
-<div class="mdc-chip__checkmark {className}" {...exclude($$props, ['className'])}>
+<div class="mdc-chip__checkmark {className}" {...exclude($$props, ['class'])}>
   <svg class="mdc-chip__checkmark-svg" viewBox="-2 -3 30 30">
     <path class="mdc-chip__checkmark-path" fill="none" stroke="black" d="M1.73,12.91 8.1,19.28 22.79,4.59" />
   </svg>
@@ -7,5 +7,6 @@
 <script>
   import {exclude} from '../exclude';
 
-  export let className = '';
+  let className = '';
+  export {className as class};
 </script>

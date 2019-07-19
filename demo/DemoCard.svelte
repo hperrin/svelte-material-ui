@@ -13,7 +13,7 @@
 
   <p class="float-children">
     <Card style="width: 320px;">
-      <Media className="card-media-16x9" aspectRatio="16x9">
+      <Media class="card-media-16x9" aspectRatio="16x9">
         <MediaContent>
           <h2 class="mdc-typography mdc-typography--headline6" style="color: #fff; position: absolute; bottom: 16px; left: 16px; margin: 0;">A card with 16x9 media.</h2>
         </MediaContent>
@@ -24,7 +24,7 @@
     </Card>
 
     <Card style="width: 320px;">
-      <Media className="card-media-square" aspectRatio="square">
+      <Media class="card-media-square" aspectRatio="square">
         <div style="color: #fff; position: absolute; bottom: 16px; left: 16px;">
           <h2 class="mdc-typography mdc-typography--headline6" style="margin: 0;">A card with square media.</h2>
           <h3 class="mdc-typography mdc-typography--subtitle2" style="margin: 0;">And a subtitle.</h3>
@@ -40,12 +40,12 @@
 
     <Card style="width: 320px;">
       <PrimaryAction on:click={() => clicked++}>
-        <Media className="card-media-16x9" aspectRatio="16x9">
+        <Media class="card-media-16x9" aspectRatio="16x9">
           <MediaContent>
             <h2 class="mdc-typography mdc-typography--headline6" style="color: #fff; position: absolute; bottom: 16px; left: 16px; margin: 0;">A card with media.</h2>
           </MediaContent>
         </Media>
-        <Content className="mdc-typography mdc-typography--body2">
+        <Content class="mdc-typography mdc-typography--body2">
           And some info text. And it's all a primary action for the card.
         </Content>
       </PrimaryAction>
@@ -113,7 +113,7 @@
   <p>
     <Card style="width: 400px;">
       <PrimaryAction on:click={() => clicked++}>
-        <Media className="card-media-16x9" aspectRatio="16x9">
+        <Media class="card-media-16x9" aspectRatio="16x9">
           <MediaContent>
             <div style="color: #fff; position: absolute; bottom: 16px; left: 16px;">
               <h2 class="mdc-typography mdc-typography--headline6" style="margin: 0;">A card with media.</h2>
@@ -121,7 +121,7 @@
             </div>
           </MediaContent>
         </Media>
-        <Content className="mdc-typography mdc-typography--body2">
+        <Content class="mdc-typography mdc-typography--body2">
           It's all in this card. It's a veritable smorgasbord of card features.
         </Content>
       </PrimaryAction>
@@ -149,8 +149,8 @@
   <p>
     <Card style="width: 400px;">
       <PrimaryAction on:click={() => clicked++}>
-        <Media className="card-media-16x9" aspectRatio="16x9"></Media>
-        <Content className="mdc-typography mdc-typography--body2">
+        <Media class="card-media-16x9" aspectRatio="16x9"></Media>
+        <Content class="mdc-typography mdc-typography--body2">
           <h2 class="mdc-typography mdc-typography--headline6" style="margin: 0;">A card with media.</h2>
           <h3 class="mdc-typography mdc-typography--subtitle2" style="margin: 0 0 10px; color: #888;">And a subtitle.</h3>
           It's all in this card. It's a veritable smorgasbord of card features.
@@ -189,8 +189,6 @@
 </script>
 
 <style lang="scss">
-  @import "../components/typography";
-
   .float-children {
     :global(> *) {
       float: left;

@@ -1,7 +1,8 @@
-<span class="mdc-button__label {className}" {...exclude($$props, ['className'])}><slot></slot></span>
+<span class="mdc-button__label {className}" {...exclude($$props, ['class'])}><slot></slot></span>
 
 <script>
   import {exclude} from '../exclude';
 
-  export let className = '';
+  let className = '';
+  export {className as class};
 </script>
