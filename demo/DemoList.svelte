@@ -40,36 +40,20 @@
   </div>
 
   <div>
-    A two-line list with disabled item:
-    <List class="demo-list" twoLine>
-      <Item on:SMUI:action={() => clickedTwoline = 'Bruce Willis'}>
-        <span use:Text>
-          <span use:Text={'primary'}>Bruce Willis</span>
-          <span use:Text={'secondary'}>Actor</span>
-        </span>
-      </Item>
-      <Item disabled>
-        <span use:Text>
-          <span use:Text={'primary'}>Austin Powers</span>
-          <span use:Text={'secondary'}>Fictional Character</span>
-        </span>
-      </Item>
-      <Item on:SMUI:action={() => clickedTwoline = 'Thomas Edison'}>
-        <span use:Text>
-          <span use:Text={'primary'}>Thomas Edison</span>
-          <span use:Text={'secondary'}>Inventor</span>
-        </span>
-      </Item>
-      <Item on:SMUI:action={() => clickedTwoline = 'Stephen Hawking'}>
-        <span use:Text>
-          <span use:Text={'primary'}>Stephen Hawking</span>
-          <span use:Text={'secondary'}>Scientist</span>
-        </span>
-      </Item>
+    A two-line single selection list with disabled item:
+    <List class="demo-list" twoLine singleSelection bind:selectedIndex={selectionIndex}>
+      {#each optionsTwoLine as item}
+        <Item on:SMUI:action={() => !item.disabled && (selectionTwoLine = item.name)} disabled={item.disabled} selectable={!item.disabled} selected={selectionTwoLine === item.name}>
+          <span use:Text>
+            <span use:Text={'primary'}>{item.name}</span>
+            <span use:Text={'secondary'}>{item.description}</span>
+          </span>
+        </Item>
+      {/each}
     </List>
   </div>
 
-  <div class="status">Clicked: {clickedTwoline}</div>
+  <div class="status">Selected: {selectionTwoLine}, value of selectedIndex: {selectionIndex}</div>
 
   <div>
     A list group:
@@ -121,7 +105,32 @@
 
   let clickedSimple = 'nothing yet';
   let clickedDense = 'nothing yet';
-  let clickedTwoline = 'nothing yet';
+  let optionsTwoLine = [
+    {
+      name: 'Bruce Willis',
+      description: 'Actor',
+      disabled: false
+    },
+    {
+      name: 'Austin Powers',
+      description: 'Fictional Character',
+      disabled: true
+    },
+    {
+      name: 'Thomas Edison',
+      description: 'Inventor',
+      disabled: false
+    },
+    {
+      name: 'Stephen Hawking',
+      description: 'Scientist',
+      disabled: false
+    }
+  ];
+  let selectionTwoLine = 'Stephen Hawking';
+  // This value is updated when the component is initialized, based on the
+  // selected Item's `selected` prop.
+  let selectionIndex = null;
   let clickedGroup = 'nothing yet';
 </script>
 

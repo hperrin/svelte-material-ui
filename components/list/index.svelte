@@ -61,7 +61,6 @@
   }
 
   $: if (list && singleSelection && list.selectedIndex !== selectedIndex) {
-    console.log('reactive: list.selectedIndex = ', selectedIndex);
     list.selectedIndex = selectedIndex;
   }
 
@@ -69,7 +68,6 @@
     list = new MDCList(element);
     if (singleSelection) {
       list.initializeListType();
-      console.log('onMount: selectedIndex = ', list.selectedIndex);
       selectedIndex = list.selectedIndex;
     }
   });
@@ -79,7 +77,6 @@
   });
 
   function handleAction(e) {
-    console.log('handleAction: selectedIndex = ', e.detail.index);
     selectedIndex = e.detail.index;
   }
 
