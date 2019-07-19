@@ -33,6 +33,49 @@ Here's some code showing what's possible:
 
 To bundle these in your own code, use the `svelte-preprocess` package.
 
+## Progress
+
+I'm only going to do things that need to/can be Svelte-ified. For some things, like RTL and DOM, you can just use the MDC packages.
+
+- [x] Buttons
+  - [x] Floating Action Buttons
+  - [x] Icon Buttons
+- [x] Cards
+- [x] Chips
+- [x] Dialogs
+- [ ] Elevation
+- [ ] Drawers
+- [ ] Grid Lists
+- [ ] Image Lists
+- [ ] Inputs and Controls
+  - [ ] Checkboxes
+  - [ ] Floating Label
+  - [ ] Form Fields
+  - [ ] Line Ripple
+  - [ ] Notched Outline
+  - [ ] Radio Buttons
+  - [ ] Select Menus
+    - [ ] Select Helper Text
+    - [ ] Select Icon
+  - [ ] Sliders
+  - [ ] Switches
+  - [ ] Text Field
+    - [ ] Text Field Character Counter
+    - [ ] Text Field Helper Text
+    - [ ] Text Field Icon
+- [ ] Layout Grid
+- [ ] Linear Progress
+- [ ] Lists
+- [ ] Menu Surface
+- [ ] Menus
+- [x] Ripples
+- [ ] Snackbars
+- [ ] Tabs
+- [ ] Theme
+- [ ] Toolbars (deprecated)
+- [ ] Top App Bar
+- [x] Typography
+
 ## License
 
 Copyright 2019 Hunter Perrin
