@@ -27,6 +27,8 @@
     "@material/dialog": "^3.0.0",
     "@material/fab": "^3.0.0",
     "@material/icon-button": "^3.0.0",
+    "@material/list": "^3.0.0",
+    "@material/menu-surface": "^3.0.0",
     "@material/ripple": "^3.0.0",
     "@material/typography": "^3.0.0",
     "babel-loader": "^8.0.6",

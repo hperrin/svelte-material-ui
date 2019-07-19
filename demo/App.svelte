@@ -12,6 +12,8 @@
   <DemoCard />
 
   <DemoDialog />
+
+  <DemoList />
 </div>
 
 <script>
@@ -21,6 +23,7 @@
   import DemoChips from './DemoChips';
   import DemoCard from './DemoCard';
   import DemoDialog from './DemoDialog';
+  import DemoList from './DemoList';
 </script>
 
 <style lang="scss">
