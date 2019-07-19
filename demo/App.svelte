@@ -10,6 +10,8 @@
   <DemoChips />
 
   <DemoCard />
+
+  <DemoDialog />
 </div>
 
 <script>
@@ -18,6 +20,7 @@
   import DemoIconButton from './DemoIconButton';
   import DemoChips from './DemoChips';
   import DemoCard from './DemoCard';
+  import DemoDialog from './DemoDialog';
 </script>
 
 <style lang="scss">

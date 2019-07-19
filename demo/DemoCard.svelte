@@ -110,7 +110,7 @@
     </Card>
   </p>
 
-  <p>
+  <p class="float-children">
     <Card style="width: 400px;">
       <PrimaryAction on:click={() => clicked++}>
         <Media class="card-media-16x9" aspectRatio="16x9">
@@ -144,9 +144,7 @@
         </ActionIcons>
       </Actions>
     </Card>
-  </p>
 
-  <p>
     <Card style="width: 400px;">
       <PrimaryAction on:click={() => clicked++}>
         <Media class="card-media-16x9" aspectRatio="16x9"></Media>
