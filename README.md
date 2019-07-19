@@ -70,6 +70,10 @@ I'm only going to do things that need to/can be Svelte-ified. For some things, l
 - [x] Ripples
 - [ ] Snackbars
 - [ ] Tabs
+  - [ ] Tab
+  - [ ] Tab Bar
+  - [ ] Tab Indicator
+  - [ ] Tab Scroller
 - [ ] Theme
 - [ ] Toolbars (deprecated)
 - [ ] Top App Bar
