@@ -93,7 +93,7 @@
   onMount(() => {
     checkbox = new MDCCheckbox(element);
 
-    if (formField()) {
+    if (formField && formField()) {
       formField().input = radio;
     }
   });

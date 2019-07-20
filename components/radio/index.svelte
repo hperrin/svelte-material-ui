@@ -71,7 +71,7 @@
   onMount(() => {
     radio = new MDCRadio(element);
 
-    if (formField()) {
+    if (formField && formField()) {
       formField().input = radio;
     }
   });
