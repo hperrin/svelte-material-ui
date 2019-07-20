@@ -64,7 +64,7 @@ I'm only going to do things that need to/can be Svelte-ified. For some things, l
     - [ ] Text Field Icon
 - [ ] Layout Grid
 - [ ] Linear Progress
-- [ ] Lists
+- [x] Lists *(incomplete)*
 - [ ] Menu Surface
 - [ ] Menus
 - [x] Ripples
