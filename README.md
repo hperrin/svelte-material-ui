@@ -37,7 +37,7 @@ Here are some juicy features:
 * You can also add ripples to things with the Ripple Svelte action.
 * All standard UI events are forwarded, and input events are forwarded on input elements.
 * Things like labels and icons are named exports in each component.
-* I try very hard to keep you from having to write an actual HTML element or CSS class, so most things are done through Svelte components, properties, and actions.
+* I try very hard to keep you from having to write an actual HTML element or CSS class, so most things are done through Svelte components and properties, with actions being the last resort.
 
 To bundle this in your own code, you must use the `svelte-preprocess` package. See the webpack config in this package for an example.
 
