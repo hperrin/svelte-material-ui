@@ -47,7 +47,7 @@ I'm only going to do things that need to/can be Svelte-ified. For some things, l
 - [ ] Grid Lists
 - [ ] Image Lists
 - [ ] Inputs and Controls
-  - [ ] Checkboxes
+  - [x] Checkboxes
   - [ ] Floating Label
   - [x] Form Fields
   - [ ] Line Ripple

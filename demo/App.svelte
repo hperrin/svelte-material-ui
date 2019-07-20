@@ -16,6 +16,8 @@
   <DemoList />
 
   <DemoRadio />
+
+  <DemoCheckbox />
 </div>
 
 <script>
@@ -27,6 +29,7 @@
   import DemoDialog from './DemoDialog';
   import DemoList from './DemoList';
   import DemoRadio from './DemoRadio';
+  import DemoCheckbox from './DemoCheckbox';
 </script>
 
 <style lang="scss">
