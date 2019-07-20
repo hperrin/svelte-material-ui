@@ -1,6 +1,8 @@
-# Svelte Material UI Components
+# Svelte 3 Material UI Components
 
 A work in progress library of Svelte 3 components for Material UI.
+
+Here's the NPM package: https://www.npmjs.com/package/svelte-material-ui
 
 ## Demos
 
@@ -8,7 +10,7 @@ Check them out: https://hperrin.github.io/svelte-material-ui/demo/
 
 ## Usage
 
-Here's some code showing what's possible:
+Here's some code:
 
 ```html
 <Button>Just a Button</Button>
@@ -26,12 +28,18 @@ Here's some code showing what's possible:
 </script>
 ```
 
-* You can add any arbitrary property to elements.
-* Ripples are on by default, and can be turned off with `ripple={false}`.
-* All standard UI events are forwarded.
-* Things like labels and icons are named exports in each component.
+You can check out the demo pages to see usage, since I haven't written the documentation yet.
 
-To bundle these in your own code, use the `svelte-preprocess` package.
+Here are some juicy features:
+
+* You can add any arbitrary property to nearly all of the elements.
+* Ripples are on by default, and can be turned off with `ripple={false}`.
+* You can also add ripples to things with the Ripple Svelte action.
+* All standard UI events are forwarded, and input events are forwarded on input elements.
+* Things like labels and icons are named exports in each component.
+* I try very hard to keep you from having to write an actual HTML element or CSS class, so most things are done through Svelte components, properties, and actions.
+
+To bundle this in your own code, you must use the `svelte-preprocess` package. See the webpack config in this package for an example.
 
 ## Progress
 
