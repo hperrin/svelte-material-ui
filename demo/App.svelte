@@ -14,6 +14,8 @@
   <DemoDialog />
 
   <DemoList />
+
+  <DemoRadio />
 </div>
 
 <script>
@@ -24,6 +26,7 @@
   import DemoCard from './DemoCard';
   import DemoDialog from './DemoDialog';
   import DemoList from './DemoList';
+  import DemoRadio from './DemoRadio';
 </script>
 
 <style lang="scss">
