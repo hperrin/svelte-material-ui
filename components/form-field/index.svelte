@@ -1,6 +1,7 @@
 <div
   bind:this={element}
   class="mdc-form-field {className}"
+  class:mdc-form-field--align-end={alignEnd}
   on:focus on:blur
   on:fullscreenchange on:fullscreenerror on:scroll
   on:cut on:copy on:paste
@@ -9,7 +10,7 @@
   on:drag on:dragend on:dragenter on:dragstart on:dragleave on:dragover on:drop
   on:touchcancel on:touchend on:touchmove on:touchstart
   on:pointerover on:pointerenter on:pointerdown on:pointermove on:pointerup on:pointercancel on:pointerout on:pointerleave on:gotpointercapture on:lostpointercapture
-  {...exclude($$props, ['class'])}
+  {...exclude($$props, ['class', 'alignEnd'])}
 >
   <slot name="input"></slot>
   <label for={id}><slot name="label"></slot></label>
@@ -26,6 +27,7 @@
 
   let className = '';
   export {className as class};
+  export let alignEnd = false;
 
   let element;
   let formField;

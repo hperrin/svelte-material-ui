@@ -13,7 +13,18 @@
   <div class="status">Checked: {simpleSelected}</div>
 
   <div>
-    Group checkbox:
+    <FormField alignEnd>
+      <div slot="input">
+        <Checkbox bind:checked={simpleSelected2} />
+      </div>
+      <span slot="label">Remember me.</span>
+    </FormField>
+  </div>
+
+  <div class="status">Checked: {simpleSelected2}</div>
+
+  <div>
+    Group checkbox:<br />
     {#each options as option}
       <FormField>
         <div slot="input">
@@ -27,7 +38,7 @@
   <div class="status">Selected: {selected.join(', ')}</div>
 
   <div>
-    Indeterminate:
+    Indeterminate:<br />
     <FormField>
       <div slot="input">
         <Checkbox bind:checked={indeterminateChecked} indeterminate={indeterminateChecked === null} />
@@ -44,6 +55,7 @@
   import FormField from '../components/form-field';
 
   let simpleSelected = false;
+  let simpleSelected2 = false;
 
   let options = [
     {
