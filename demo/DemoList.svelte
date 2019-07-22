@@ -15,13 +15,25 @@
   <div class="status">Clicked: {clickedSimple}</div>
 
   <div>
-    A dense list:
+    A dense list with graphics:
     <List class="demo-list" dense>
-      <Item on:SMUI:action={() => clickedDense = 'Cut'}><span use:Text>Cut</span></Item>
-      <Item on:SMUI:action={() => clickedDense = 'Copy'}><span use:Text>Copy</span></Item>
-      <Item on:SMUI:action={() => clickedDense = 'Paste'}><span use:Text>Paste</span></Item>
+      <Item on:SMUI:action={() => clickedDense = 'Cut'}>
+        <span use:Graphic class="material-icons">edit</span>
+        <span use:Text>Edit</span>
+      </Item>
+      <Item on:SMUI:action={() => clickedDense = 'Copy'}>
+        <span use:Graphic class="material-icons">send</span>
+        <span use:Text>Send</span>
+      </Item>
+      <Item on:SMUI:action={() => clickedDense = 'Paste'}>
+        <span use:Graphic class="material-icons">archive</span>
+        <span use:Text>Archive</span>
+      </Item>
       <Separator />
-      <Item on:SMUI:action={() => clickedDense = 'Delete'}><span use:Text>Delete</span></Item>
+      <Item on:SMUI:action={() => clickedDense = 'Delete'}>
+        <span use:Graphic class="material-icons">clear</span>
+        <span use:Text>Delete</span>
+      </Item>
     </List>
   </div>
 
@@ -40,7 +52,7 @@
   </div>
 
   <div>
-    A two-line single selection list with disabled item:
+    A two-line single selection list with disabled item and meta:
     <List class="demo-list" twoLine singleSelection bind:selectedIndex={selectionIndex}>
       {#each optionsTwoLine as item}
         <Item on:SMUI:action={() => !item.disabled && (selectionTwoLine = item.name)} disabled={item.disabled} selectable={!item.disabled} selected={selectionTwoLine === item.name}>
@@ -48,6 +60,7 @@
             <span use:Text={'primary'}>{item.name}</span>
             <span use:Text={'secondary'}>{item.description}</span>
           </span>
+          <span use:Meta class="material-icons">info</span>
         </Item>
       {/each}
     </List>
@@ -98,10 +111,68 @@
   </div>
 
   <div class="status">Clicked: {clickedGroup}</div>
+
+  <div>
+    A radio list:
+    <List class="demo-list" radiolist>
+      <Item radio>
+        <Radio use={Graphic} bind:group={selectedRadio} value="Bruce Willis" />
+        <Label>Bruce Willis</Label>
+      </Item>
+      <Item radio>
+        <Radio use={Graphic} bind:group={selectedRadio} value="Tom Hanks" />
+        <Label>Tom Hanks</Label>
+      </Item>
+      <Item radio>
+        <Radio use={Graphic} bind:group={selectedRadio} value="Jack Nicholson" />
+        <Label>Jack Nicholson</Label>
+      </Item>
+      <Item radio>
+        <Radio use={Graphic} bind:group={selectedRadio} value="Leonardo DiCaprio" />
+        <Label>Leonardo DiCaprio</Label>
+      </Item>
+      <Item radio>
+        <Radio use={Graphic} bind:group={selectedRadio} value="Matt Damon" />
+        <Label>Matt Damon</Label>
+      </Item>
+    </List>
+  </div>
+
+  <div class="status">Selected: {selectedRadio}</div>
+
+  <div>
+    A check list with trailing checkboxes:
+    <List class="demo-list" checklist>
+      <Item checkbox>
+        <Label>Bruce Willis</Label>
+        <Checkbox use={Meta} bind:group={selectedCheckbox} value="Bruce Willis" />
+      </Item>
+      <Item checkbox>
+        <Label>Tom Hanks</Label>
+        <Checkbox use={Meta} bind:group={selectedCheckbox} value="Tom Hanks" />
+      </Item>
+      <Item checkbox>
+        <Label>Jack Nicholson</Label>
+        <Checkbox use={Meta} bind:group={selectedCheckbox} value="Jack Nicholson" />
+      </Item>
+      <Item checkbox>
+        <Label>Leonardo DiCaprio</Label>
+        <Checkbox use={Meta} bind:group={selectedCheckbox} value="Leonardo DiCaprio" />
+      </Item>
+      <Item checkbox>
+        <Label>Matt Damon</Label>
+        <Checkbox use={Meta} bind:group={selectedCheckbox} value="Matt Damon" />
+      </Item>
+    </List>
+  </div>
+
+  <div class="status">Selected: {selectedCheckbox.join(', ')}</div>
 </section>
 
 <script>
-  import List, {Group, Item, Separator, Subheader, Text} from '../components/list';
+  import List, {Group, Item, Graphic, Meta, Label, Separator, Subheader, Text} from '../components/list';
+  import Radio from '../components/radio';
+  import Checkbox from '../components/checkbox';
 
   let clickedSimple = 'nothing yet';
   let clickedDense = 'nothing yet';
@@ -132,6 +203,8 @@
   // selected Item's `selected` prop.
   let selectionIndex = null;
   let clickedGroup = 'nothing yet';
+  let selectedRadio = 'Tom Hanks';
+  let selectedCheckbox = ['Tom Hanks'];
 </script>
 
 <style lang="scss">

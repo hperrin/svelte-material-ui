@@ -1,5 +1,6 @@
 <div
   bind:this={element}
+  use:use
   class="mdc-checkbox {className}"
   class:mdc-checkbox--disabled={disabled}
   on:focus on:blur
@@ -11,7 +12,7 @@
   on:touchcancel on:touchend on:touchmove on:touchstart
   on:pointerover on:pointerenter on:pointerdown on:pointermove on:pointerup on:pointercancel on:pointerout on:pointerleave on:gotpointercapture on:lostpointercapture
   on:SMUI:mountFormField
-  {...exclude($$props, ['class', 'disabled', 'indeterminate', 'group', 'checked', 'value', 'inputProps'])}
+  {...exclude($$props, ['use', 'class', 'disabled', 'indeterminate', 'group', 'checked', 'value', 'inputProps'])}
 >
   <input
     class="mdc-checkbox__native-control {inputProps.class}"
@@ -43,6 +44,7 @@
 
   let uninitializedValue = () => {};
 
+  export let use = () => ({destroy(){}});
   let className = '';
   export {className as class};
   export let disabled = false;
@@ -58,25 +60,33 @@
   let checkbox;
   let formField = getContext('SMUI:formField');
   let id = getContext('SMUI:formField:id');
+  let setChecked = getContext('SMUI:formField:setChecked');
   let nativeChecked = group === uninitializedValue ? (checked === uninitializedValue ? false : checked) : group.indexOf(value) !== -1;
+
+  if (setChecked) {
+    setChecked(nativeChecked);
+  }
 
   $: if (checkbox) {
     if (group !== uninitializedValue) {
-      checkbox.checked = group.indexOf(value) !== -1;
-    } else {
+      const isChecked = group.indexOf(value) !== -1;
+      if (checkbox.checked !== isChecked) {
+        checkbox.checked = isChecked;
+      }
+    } else if (checkbox.checked !== checked) {
       checkbox.checked = checked;
     }
   }
 
-  $: if (checkbox) {
+  $: if (checkbox && checkbox.indeterminate !== indeterminate) {
     checkbox.indeterminate = indeterminate;
   }
 
-  $: if (checkbox) {
+  $: if (checkbox && checkbox.disabled !== disabled) {
     checkbox.disabled = disabled;
   }
 
-  $: if (checkbox) {
+  $: if (checkbox && checkbox.value !== value) {
     checkbox.value = value;
   }
 

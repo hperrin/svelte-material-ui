@@ -1,5 +1,6 @@
 <div
   bind:this={element}
+  use:use
   class="mdc-radio {className}"
   class:mdc-radio--disabled={disabled}
   on:focus on:blur
@@ -11,14 +12,13 @@
   on:touchcancel on:touchend on:touchmove on:touchstart
   on:pointerover on:pointerenter on:pointerdown on:pointermove on:pointerup on:pointercancel on:pointerout on:pointerleave on:gotpointercapture on:lostpointercapture
   on:SMUI:mountFormField
-  {...exclude($$props, ['class', 'disabled', 'group', 'value', 'inputProps'])}
+  {...exclude($$props, ['use', 'class', 'disabled', 'group', 'value', 'inputProps'])}
 >
   <input
     class="mdc-radio__native-control {inputProps.class}"
     type="radio"
     {id}
     {disabled}
-    bind:group
     {value}
     {checked}
     on:change={handleChange}
@@ -40,6 +40,7 @@
   import {onMount, onDestroy, getContext} from 'svelte';
   import {exclude} from '../exclude';
 
+  export let use = () => ({destroy(){}});
   let className = '';
   export {className as class};
   export let disabled = false;
@@ -53,18 +54,23 @@
   let radio;
   let formField = getContext('SMUI:formField');
   let id = getContext('SMUI:formField:id');
+  let setChecked = getContext('SMUI:formField:setChecked');
 
   $: checked = group === value;
 
-  $: if (radio) {
+  if (setChecked) {
+    setChecked(group === value);
+  }
+
+  $: if (radio && radio.checked !== checked) {
     radio.checked = checked;
   }
 
-  $: if (radio) {
+  $: if (radio && radio.disabled !== disabled) {
     radio.disabled = disabled;
   }
 
-  $: if (radio) {
+  $: if (radio && radio.value !== value) {
     radio.value = value;
   }
 

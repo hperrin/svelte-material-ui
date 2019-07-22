@@ -1,12 +1,13 @@
 <li
   bind:this={element}
   class="mdc-list-item {className}"
-  class:mdc-list-item--selected={selected}
   class:mdc-list-item--activated={activated}
+  class:mdc-list-item--selected={selected}
   class:mdc-list-item--disabled={disabled}
   use:Ripple={[ripple, false]}
-  role={selectable ? 'option' : false}
-  aria-selected={selectable ? (selected ? 'true' : 'false') : false}
+  role={selectable ? 'option' : (radio ? 'radio' : (checkbox ? 'checkbox' : undefined))}
+  aria-selected={selectable ? (selected ? 'true' : 'false') : undefined}
+  aria-checked={(radio || checkbox) ? (checked ? 'true' : 'false') : undefined}
   {tabindex}
   on:click={action}
   on:keydown={handleKeydown}
@@ -18,28 +19,39 @@
   on:drag on:dragend on:dragenter on:dragstart on:dragleave on:dragover on:drop
   on:touchcancel on:touchend on:touchmove on:touchstart
   on:pointerover on:pointerenter on:pointerdown on:pointermove on:pointerup on:pointercancel on:pointerout on:pointerleave on:gotpointercapture on:lostpointercapture
-  {...exclude($$props, ['class', 'ripple', 'nonInteractive', 'selectable', 'selected', 'activated', 'disabled', 'tabindex'])}
+  {...exclude($$props, ['class', 'ripple', 'nonInteractive', 'activated', 'selectable', 'selected', 'radio', 'checkbox', 'disabled', 'tabindex'])}
 ><slot></slot></li>
 
+<script context="module">
+  let counter = 0;
+</script>
+
 <script>
-  import {onMount, onDestroy, createEventDispatcher} from 'svelte';
+  import {onMount, onDestroy, setContext, createEventDispatcher} from 'svelte';
   import {exclude} from '../exclude';
   import Ripple from '../ripple';
 
   let dispatch = createEventDispatcher();
+  let checked = false;
 
   let className = '';
   export {className as class};
   export let ripple = true;
   export let nonInteractive = false;
+  export let activated = false;
   export let selectable = false;
   export let selected = false;
-  export let activated = false;
+  export let radio = false;
+  export let checkbox = false;
   export let disabled = false;
-  export let tabindex = !nonInteractive && !disabled && selected && '0' || '-1';
+  export let tabindex = !nonInteractive && !disabled && (selected || checked) && '0' || '-1';
 
   let element;
   let addTabindexIfNoItemsSelectedRaf;
+  let id = 'SMUI-form-field-list-'+(counter++);
+
+  setContext('SMUI:formField:id', id);
+  setContext('SMUI:formField:setChecked', setChecked);
 
   onMount(() => {
     // Tabindex needs to be '0' if this is the first non-disabled list item, and
@@ -75,7 +87,7 @@
     let el = element;
     while (el.nextSibling) {
       el = el.nextSibling;
-      if (el.nodeType === 1 && el.classList.contains('mdc-list-item') && el.classList.contains('mdc-list-item--selected')) {
+      if (el.nodeType === 1 && el.classList.contains('mdc-list-item') && el.attributes['tabindex'] && el.attributes['tabindex'].value === '0') {
         noneSelected = false;
         break;
       }
@@ -101,5 +113,8 @@
     }
   }
 
-  // TODO: radiogroup
+  function setChecked(isChecked) {
+    checked = isChecked;
+    tabindex = !nonInteractive && !disabled && (selected || checked) && '0' || '-1';
+  }
 </script>

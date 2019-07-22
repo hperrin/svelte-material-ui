@@ -5,7 +5,7 @@
   class:mdc-list--dense={dense}
   class:mdc-list--avatar-list={avatarList}
   class:mdc-list--two-line={twoLine}
-  role={singleSelection ? 'listbox' : 'list'}
+  role={singleSelection ? 'listbox' : (radiolist ? 'radiogroup' : (checklist ? 'group' : 'list'))}
   on:MDCList:action={handleAction}
   on:focus on:blur
   on:fullscreenchange on:fullscreenerror on:scroll
@@ -16,17 +16,20 @@
   on:touchcancel on:touchend on:touchmove on:touchstart
   on:pointerover on:pointerenter on:pointerdown on:pointermove on:pointerup on:pointercancel on:pointerout on:pointerleave on:gotpointercapture on:lostpointercapture
   on:MDCList:action
-  {...exclude($$props, ['class', 'nonInteractive', 'dense', 'avatarList', 'twoLine', 'vertical', 'wrapFocus', 'singleSelection', 'selectedIndex'])}
+  {...exclude($$props, ['class', 'nonInteractive', 'dense', 'avatarList', 'twoLine', 'vertical', 'wrapFocus', 'singleSelection', 'selectedIndex', 'radiolist', 'checklist'])}
 ><slot></slot></ul>
 
 <script context="module">
   import Item from './Item';
   import Text from './Text';
+  import Graphic from './Graphic';
+  import Meta from './Meta';
+  import Label from './Label';
   import Group from './Group';
   import Subheader from './Subheader';
   import Separator from './Separator';
 
-  export {Item, Text, Group, Subheader, Separator};
+  export {Item, Text, Graphic, Meta, Label, Group, Subheader, Separator};
 </script>
 
 <script>
@@ -44,6 +47,8 @@
   export let wrapFocus = false;
   export let singleSelection = false;
   export let selectedIndex = null;
+  export let radiolist = false;
+  export let checklist = false;
 
   let element;
   let list;
