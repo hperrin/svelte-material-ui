@@ -1,39 +1,41 @@
 <div
   bind:this={element}
+  use:useActions={use}
+  use:forwardEvents
   class="mdc-chip {className}"
   class:mdc-chip--selected={selected}
   on:MDCChip:selection={handleSelection}
-  on:focus on:blur
-  on:fullscreenchange on:fullscreenerror on:scroll
-  on:cut on:copy on:paste
-  on:keydown on:keypress on:keyup
-  on:auxclick on:click on:contextmenu on:dblclick on:mousedown on:mouseenter on:mouseleave on:mousemove on:mouseover on:mouseout on:mouseup on:pointerlockchange on:pointerlockerror on:select on:wheel
-  on:drag on:dragend on:dragenter on:dragstart on:dragleave on:dragover on:drop
-  on:touchcancel on:touchend on:touchmove on:touchstart
-  on:pointerover on:pointerenter on:pointerdown on:pointermove on:pointerup on:pointercancel on:pointerout on:pointerleave on:gotpointercapture on:lostpointercapture
-  on:MDCChip:interaction on:MDCChip:selection on:MDCChip:removal on:MDCChip:trailingIconInteraction
-  {...exclude($$props, ['class', 'ripple', 'selected', 'shouldRemoveOnTrailingIconClick'])}
+  {...exclude($$props, ['use', 'class', 'ripple', 'selected', 'shouldRemoveOnTrailingIconClick'])}
 ><slot></slot></div>
 
 <script context="module">
   import Set from './Set';
-  import Icon from './Icon';
   import Checkmark from './Checkmark';
-  import Text from './Text';
+  import Icon from '../common/Icon';
+  import Text from '../common/Label';
 
   export {Set, Icon, Checkmark, Text};
 </script>
 
 <script>
   import {MDCChip} from '@material/chips';
-  import {onMount} from 'svelte';
+  import {onMount, setContext} from 'svelte';
+  import {current_component} from 'svelte/internal';
+  import {forwardEventsBuilder} from '../forwardEvents';
   import {exclude} from '../exclude';
+  import {useActions} from '../useActions';
 
+  const forwardEvents = forwardEventsBuilder(current_component, ['MDCChip:interaction', 'MDCChip:selection', 'MDCChip:removal', 'MDCChip:trailingIconInteraction']);
+
+  export let use = [];
   let className = '';
   export {className as class};
   export let ripple = true;
   export let selected = false;
   export let shouldRemoveOnTrailingIconClick = true;
+
+  setContext('SMUI:labelContext', 'chips');
+  setContext('SMUI:iconContext', 'chips');
 
   let element;
   let chip;

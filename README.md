@@ -14,17 +14,18 @@ Here's some code:
 
 ```html
 <Button>Just a Button</Button>
-<Button raised><ButtonLabel>Raised Button, Using a Label</ButtonLabel></Button>
+<Button raised><Label>Raised Button, Using a Label</Label></Button>
 <Button some-arbitrary-prop="placed on the actual button">Button</Button>
 
 <Fab on:click="{() => alert('Clicked!')}" extended>
-  <FabIcon style="margin-right: 12px;">favorite</FabIcon>
-  <FabLabel>Extended FAB</FabLabel>
+  <Icon style="margin-right: 12px;">favorite</Icon>
+  <Label>Extended FAB</Label>
 </Fab>
 
 <script>
-  import Button, {Label as ButtonLabel} from 'svelte-material-ui/components/button';
-  import Fab, {Label as FabLabel, Icon as FabIcon} from 'svelte-material-ui/components/fab';
+  import Button from 'svelte-material-ui/components/button';
+  import Fab from 'svelte-material-ui/components/fab';
+  import {Label, Icon} from 'svelte-material-ui/components/common';
 </script>
 ```
 
@@ -32,11 +33,12 @@ You can check out the demo pages to see usage, since I haven't written the docum
 
 Here are some juicy features:
 
-* You can add any arbitrary property to nearly all of the elements.
-* Ripples are on by default, and can be turned off with `ripple={false}`.
+* You can add any arbitrary property to nearly all of the components.
+* You can add actions to the components with `use={[Action1, [Action2, action2Props]]}`.
+* Ripples are on by default on interactive components, and can be turned off with `ripple={false}`.
 * You can also add ripples to things with the Ripple Svelte action.
-* All standard UI events are forwarded, and input events are forwarded on input elements.
-* Things like labels and icons are named exports in each component.
+* All standard UI events are forwarded on most components, and input events are forwarded on input components.
+* Things like labels and icons are named exports in each component, or you can use 'common/Label' and 'common/Icon'.
 * I try very hard to keep you from having to write an actual HTML element or CSS class, so most things are done through Svelte components and properties, with actions being the last resort.
 
 To bundle this in your own code, you must use the `svelte-preprocess` package. See the webpack config in this package for an example.

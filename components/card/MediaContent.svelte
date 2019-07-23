@@ -1,4 +1,7 @@
-<div class="mdc-card__media-content {className}" {...exclude($$props, ['class'])}><slot></slot></div>
+<div
+  class="mdc-card__media-content {className}"
+  {...exclude($$props, ['class'])}
+><slot></slot></div>
 
 <script>
   import {exclude} from '../exclude';

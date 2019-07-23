@@ -1,40 +1,42 @@
 <button
   bind:this={element}
-  aria-hidden="true"
-  aria-pressed={pressed}
+  use:useActions={use}
+  use:forwardEvents
   class="mdc-icon-button {className}"
   class:material-icons={!toggle}
   class:mdc-icon-button--on={pressed}
   use:Ripple={[ripple && !toggle, true]}
+  aria-hidden="true"
+  aria-pressed={pressed}
   on:MDCIconButtonToggle:change={handleChange}
-  on:focus on:blur
-  on:fullscreenchange on:fullscreenerror on:scroll
-  on:cut on:copy on:paste
-  on:keydown on:keypress on:keyup
-  on:auxclick on:click on:contextmenu on:dblclick on:mousedown on:mouseenter on:mouseleave on:mousemove on:mouseover on:mouseout on:mouseup on:pointerlockchange on:pointerlockerror on:select on:wheel
-  on:drag on:dragend on:dragenter on:dragstart on:dragleave on:dragover on:drop
-  on:touchcancel on:touchend on:touchmove on:touchstart
-  on:pointerover on:pointerenter on:pointerdown on:pointermove on:pointerup on:pointercancel on:pointerout on:pointerleave on:gotpointercapture on:lostpointercapture
-  {...exclude($$props, ['class', 'ripple', 'toggle', 'pressed'])}
+  {...exclude($$props, ['use', 'class', 'ripple', 'toggle', 'pressed'])}
 ><slot></slot></button>
 
 <script context="module">
-  import Icon from './Icon';
+  import Icon from '../common/Icon';
 
   export {Icon};
 </script>
 
 <script>
   import {MDCIconButtonToggle} from '@material/icon-button';
-  import {onDestroy} from 'svelte';
+  import {onDestroy, setContext} from 'svelte';
+  import {current_component} from 'svelte/internal';
+  import {forwardEventsBuilder} from '../forwardEvents';
   import {exclude} from '../exclude';
+  import {useActions} from '../useActions';
   import Ripple from '../ripple';
 
+  const forwardEvents = forwardEventsBuilder(current_component, 'MDCIconButtonToggle:change');
+
+  export let use = [];
   let className = '';
   export {className as class};
   export let ripple = true;
   export let toggle = false;
   export let pressed = false;
+
+  setContext('SMUI:iconContext', 'iconButton');
 
   let element;
   let toggleButton;

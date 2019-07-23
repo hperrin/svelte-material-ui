@@ -1,5 +1,7 @@
 <ul
   bind:this={element}
+  use:useActions={use}
+  use:forwardEvents
   class="mdc-list {className}"
   class:mdc-list--non-interactive={nonInteractive}
   class:mdc-list--dense={dense}
@@ -7,16 +9,7 @@
   class:mdc-list--two-line={twoLine}
   role={singleSelection ? 'listbox' : (radiolist ? 'radiogroup' : (checklist ? 'group' : 'list'))}
   on:MDCList:action={handleAction}
-  on:focus on:blur
-  on:fullscreenchange on:fullscreenerror on:scroll
-  on:cut on:copy on:paste
-  on:keydown on:keypress on:keyup
-  on:auxclick on:click on:contextmenu on:dblclick on:mousedown on:mouseenter on:mouseleave on:mousemove on:mouseover on:mouseout on:mouseup on:pointerlockchange on:pointerlockerror on:select on:wheel
-  on:drag on:dragend on:dragenter on:dragstart on:dragleave on:dragover on:drop
-  on:touchcancel on:touchend on:touchmove on:touchstart
-  on:pointerover on:pointerenter on:pointerdown on:pointermove on:pointerup on:pointercancel on:pointerout on:pointerleave on:gotpointercapture on:lostpointercapture
-  on:MDCList:action
-  {...exclude($$props, ['class', 'nonInteractive', 'dense', 'avatarList', 'twoLine', 'vertical', 'wrapFocus', 'singleSelection', 'selectedIndex', 'radiolist', 'checklist'])}
+  {...exclude($$props, ['use', 'class', 'nonInteractive', 'dense', 'avatarList', 'twoLine', 'vertical', 'wrapFocus', 'singleSelection', 'selectedIndex', 'radiolist', 'checklist'])}
 ><slot></slot></ul>
 
 <script context="module">
@@ -35,8 +28,14 @@
 <script>
   import {MDCList} from '@material/list';
   import {onMount, onDestroy} from 'svelte';
+  import {current_component} from 'svelte/internal';
+  import {forwardEventsBuilder} from '../forwardEvents';
   import {exclude} from '../exclude';
+  import {useActions} from '../useActions';
 
+  const forwardEvents = forwardEventsBuilder(current_component, 'MDCList:action');
+
+  export let use = [];
   let className = '';
   export {className as class};
   export let nonInteractive = false;

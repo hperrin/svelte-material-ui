@@ -24,10 +24,10 @@
 
   <div>
     Programmatically select:
-    <Button on:click={() => choice = 'Morning'}><ButtonLabel>Morning</ButtonLabel></Button>
-    <Button on:click={() => choice = 'Afternoon'}><ButtonLabel>Afternoon</ButtonLabel></Button>
-    <Button on:click={() => choice = 'Evening'}><ButtonLabel>Evening</ButtonLabel></Button>
-    <Button on:click={() => choice = 'Night'}><ButtonLabel>Night</ButtonLabel></Button>
+    <Button on:click={() => choice = 'Morning'}><Label>Morning</Label></Button>
+    <Button on:click={() => choice = 'Afternoon'}><Label>Afternoon</Label></Button>
+    <Button on:click={() => choice = 'Evening'}><Label>Evening</Label></Button>
+    <Button on:click={() => choice = 'Night'}><Label>Night</Label></Button>
   </div>
 
   <div class="status">Selected: {choice}</div>
@@ -46,7 +46,7 @@
     <Set chips={input} let:chip input>
       <Chip><Text>{chip}</Text><Icon trailing tabindex="0">cancel</Icon></Chip>
     </Set>
-    <Button on:click={addInputChip}><ButtonLabel>Add</ButtonLabel></Button>
+    <Button on:click={addInputChip}><Label>Add</Label></Button>
   </div>
 
   <div>
@@ -54,13 +54,13 @@
     <Set chips={keyed} let:chip key={chip => chip.k} input>
       <Chip><Text>{chip.v}</Text><Icon trailing tabindex="0">cancel</Icon></Chip>
     </Set>
-    <Button on:click={addKeyedChip}><ButtonLabel>Add</ButtonLabel></Button>
+    <Button on:click={addKeyedChip}><Label>Add</Label></Button>
   </div>
 </section>
 
 <script>
   import Chip, {Set, Icon, Checkmark, Text} from '../components/chips';
-  import Button, {Label as ButtonLabel} from '../components/button';
+  import Button, {Label} from '../components/button';
 
   let choice = 'Morning';
   let filter = ['Shoes', 'Shirts'];

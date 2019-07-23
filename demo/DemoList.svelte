@@ -17,15 +17,15 @@
   <div>
     A dense list with graphics:
     <List class="demo-list" dense>
-      <Item on:SMUI:action={() => clickedDense = 'Cut'}>
+      <Item on:SMUI:action={() => clickedDense = 'Edit'}>
         <span use:Graphic class="material-icons">edit</span>
         <span use:Text>Edit</span>
       </Item>
-      <Item on:SMUI:action={() => clickedDense = 'Copy'}>
+      <Item on:SMUI:action={() => clickedDense = 'Send'}>
         <span use:Graphic class="material-icons">send</span>
         <span use:Text>Send</span>
       </Item>
-      <Item on:SMUI:action={() => clickedDense = 'Paste'}>
+      <Item on:SMUI:action={() => clickedDense = 'Archive'}>
         <span use:Graphic class="material-icons">archive</span>
         <span use:Text>Archive</span>
       </Item>
@@ -116,23 +116,23 @@
     A radio list:
     <List class="demo-list" radiolist>
       <Item radio>
-        <Radio use={Graphic} bind:group={selectedRadio} value="Bruce Willis" />
+        <Radio use={[Graphic]} bind:group={selectedRadio} value="Bruce Willis" />
         <Label>Bruce Willis</Label>
       </Item>
       <Item radio>
-        <Radio use={Graphic} bind:group={selectedRadio} value="Tom Hanks" />
+        <Radio use={[Graphic]} bind:group={selectedRadio} value="Tom Hanks" />
         <Label>Tom Hanks</Label>
       </Item>
       <Item radio>
-        <Radio use={Graphic} bind:group={selectedRadio} value="Jack Nicholson" />
+        <Radio use={[Graphic]} bind:group={selectedRadio} value="Jack Nicholson" />
         <Label>Jack Nicholson</Label>
       </Item>
       <Item radio>
-        <Radio use={Graphic} bind:group={selectedRadio} value="Leonardo DiCaprio" />
+        <Radio use={[Graphic]} bind:group={selectedRadio} value="Leonardo DiCaprio" />
         <Label>Leonardo DiCaprio</Label>
       </Item>
       <Item radio>
-        <Radio use={Graphic} bind:group={selectedRadio} value="Matt Damon" />
+        <Radio use={[Graphic]} bind:group={selectedRadio} value="Matt Damon" />
         <Label>Matt Damon</Label>
       </Item>
     </List>
@@ -145,23 +145,23 @@
     <List class="demo-list" checklist>
       <Item checkbox>
         <Label>Bruce Willis</Label>
-        <Checkbox use={Meta} bind:group={selectedCheckbox} value="Bruce Willis" />
+        <Checkbox use={[Meta]} bind:group={selectedCheckbox} value="Bruce Willis" />
       </Item>
       <Item checkbox>
         <Label>Tom Hanks</Label>
-        <Checkbox use={Meta} bind:group={selectedCheckbox} value="Tom Hanks" />
+        <Checkbox use={[Meta]} bind:group={selectedCheckbox} value="Tom Hanks" />
       </Item>
       <Item checkbox>
         <Label>Jack Nicholson</Label>
-        <Checkbox use={Meta} bind:group={selectedCheckbox} value="Jack Nicholson" />
+        <Checkbox use={[Meta]} bind:group={selectedCheckbox} value="Jack Nicholson" />
       </Item>
       <Item checkbox>
         <Label>Leonardo DiCaprio</Label>
-        <Checkbox use={Meta} bind:group={selectedCheckbox} value="Leonardo DiCaprio" />
+        <Checkbox use={[Meta]} bind:group={selectedCheckbox} value="Leonardo DiCaprio" />
       </Item>
       <Item checkbox>
         <Label>Matt Damon</Label>
-        <Checkbox use={Meta} bind:group={selectedCheckbox} value="Matt Damon" />
+        <Checkbox use={[Meta]} bind:group={selectedCheckbox} value="Matt Damon" />
       </Item>
     </List>
   </div>

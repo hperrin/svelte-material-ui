@@ -1,5 +1,7 @@
 <li
   bind:this={element}
+  use:useActions={use}
+  use:forwardEvents
   class="mdc-list-item {className}"
   class:mdc-list-item--activated={activated}
   class:mdc-list-item--selected={selected}
@@ -11,15 +13,7 @@
   {tabindex}
   on:click={action}
   on:keydown={handleKeydown}
-  on:focus on:blur
-  on:fullscreenchange on:fullscreenerror on:scroll
-  on:cut on:copy on:paste
-  on:keydown on:keypress on:keyup
-  on:auxclick on:click on:contextmenu on:dblclick on:mousedown on:mouseenter on:mouseleave on:mousemove on:mouseover on:mouseout on:mouseup on:pointerlockchange on:pointerlockerror on:select on:wheel
-  on:drag on:dragend on:dragenter on:dragstart on:dragleave on:dragover on:drop
-  on:touchcancel on:touchend on:touchmove on:touchstart
-  on:pointerover on:pointerenter on:pointerdown on:pointermove on:pointerup on:pointercancel on:pointerout on:pointerleave on:gotpointercapture on:lostpointercapture
-  {...exclude($$props, ['class', 'ripple', 'nonInteractive', 'activated', 'selectable', 'selected', 'radio', 'checkbox', 'disabled', 'tabindex'])}
+  {...exclude($$props, ['use', 'class', 'ripple', 'nonInteractive', 'activated', 'selectable', 'selected', 'radio', 'checkbox', 'disabled', 'tabindex'])}
 ><slot></slot></li>
 
 <script context="module">
@@ -28,12 +22,17 @@
 
 <script>
   import {onMount, onDestroy, setContext, createEventDispatcher} from 'svelte';
+  import {current_component} from 'svelte/internal';
+  import {forwardEventsBuilder} from '../forwardEvents';
   import {exclude} from '../exclude';
+  import {useActions} from '../useActions';
   import Ripple from '../ripple';
 
-  let dispatch = createEventDispatcher();
+  const dispatch = createEventDispatcher();
+  const forwardEvents = forwardEventsBuilder(current_component);
   let checked = false;
 
+  export let use = [];
   let className = '';
   export {className as class};
   export let ripple = true;

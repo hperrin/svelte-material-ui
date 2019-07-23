@@ -1,18 +1,11 @@
 <div
   bind:this={element}
+  use:useActions={use}
+  use:forwardEvents
   class="mdc-dialog {className}"
   role="alertdialog"
   aria-modal="true"
-  on:focus on:blur
-  on:fullscreenchange on:fullscreenerror on:scroll
-  on:cut on:copy on:paste
-  on:keydown on:keypress on:keyup
-  on:auxclick on:click on:contextmenu on:dblclick on:mousedown on:mouseenter on:mouseleave on:mousemove on:mouseover on:mouseout on:mouseup on:pointerlockchange on:pointerlockerror on:select on:wheel
-  on:drag on:dragend on:dragenter on:dragstart on:dragleave on:dragover on:drop
-  on:touchcancel on:touchend on:touchmove on:touchstart
-  on:pointerover on:pointerenter on:pointerdown on:pointermove on:pointerup on:pointercancel on:pointerout on:pointerleave on:gotpointercapture on:lostpointercapture
-  on:MDCDialog:opening on:MDCDialog:opened on:MDCDialog:closing on:MDCDialog:closed
-  {...exclude($$props, ['class'])}
+  {...exclude($$props, ['use', 'class'])}
 >
   <div class="mdc-dialog__container">
     <div class="mdc-dialog__surface">
@@ -34,8 +27,14 @@
 <script>
   import {MDCDialog} from '@material/dialog';
   import {onMount, onDestroy} from 'svelte';
+  import {current_component} from 'svelte/internal';
+  import {forwardEventsBuilder} from '../forwardEvents';
   import {exclude} from '../exclude';
+  import {useActions} from '../useActions';
 
+  const forwardEvents = forwardEventsBuilder(current_component, ['MDCDialog:opening', 'MDCDialog:opened', 'MDCDialog:closing', 'MDCDialog:closed']);
+
+  export let use = [];
   let className = '';
   export {className as class};
   export let escapeKeyAction = 'close';

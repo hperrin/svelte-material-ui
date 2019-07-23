@@ -1,20 +1,13 @@
 <div
   bind:this={element}
-  use:use
+  use:useActions={use}
+  use:forwardEvents
   class="mdc-radio {className}"
   class:mdc-radio--disabled={disabled}
-  on:focus on:blur
-  on:fullscreenchange on:fullscreenerror on:scroll
-  on:cut on:copy on:paste
-  on:keydown on:keypress on:keyup
-  on:auxclick on:click on:contextmenu on:dblclick on:mousedown on:mouseenter on:mouseleave on:mousemove on:mouseover on:mouseout on:mouseup on:pointerlockchange on:pointerlockerror on:select on:wheel
-  on:drag on:dragend on:dragenter on:dragstart on:dragleave on:dragover on:drop
-  on:touchcancel on:touchend on:touchmove on:touchstart
-  on:pointerover on:pointerenter on:pointerdown on:pointermove on:pointerup on:pointercancel on:pointerout on:pointerleave on:gotpointercapture on:lostpointercapture
-  on:SMUI:mountFormField
   {...exclude($$props, ['use', 'class', 'disabled', 'group', 'value', 'inputProps'])}
 >
   <input
+    use:useActions={inputProps.use}
     class="mdc-radio__native-control {inputProps.class}"
     type="radio"
     {id}
@@ -23,7 +16,7 @@
     {checked}
     on:change={handleChange}
     on:change on:input
-    {...exclude(inputProps, ['class'])}
+    {...exclude(inputProps, ['use', 'class'])}
   />
   <div class="mdc-radio__background">
     <div class="mdc-radio__outer-circle"></div>
@@ -38,15 +31,21 @@
 <script>
   import {MDCRadio} from '@material/radio';
   import {onMount, onDestroy, getContext} from 'svelte';
+  import {current_component} from 'svelte/internal';
+  import {forwardEventsBuilder} from '../forwardEvents';
   import {exclude} from '../exclude';
+  import {useActions} from '../useActions';
 
-  export let use = () => ({destroy(){}});
+  const forwardEvents = forwardEventsBuilder(current_component);
+
+  export let use = [];
   let className = '';
   export {className as class};
   export let disabled = false;
   export let group = null;
   export let value = null;
   export let inputProps = {
+    use: [],
     class: ''
   };
 

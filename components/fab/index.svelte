@@ -1,37 +1,41 @@
 <button
+  use:useActions={use}
+  use:forwardEvents
   class="mdc-fab {className}"
   class:mdc-fab--mini={mini}
   class:mdc-fab--exited={exited}
   class:mdc-fab--extended={extended}
   use:Ripple={[ripple, false]}
-  on:focus on:blur
-  on:fullscreenchange on:fullscreenerror on:scroll
-  on:cut on:copy on:paste
-  on:keydown on:keypress on:keyup
-  on:auxclick on:click on:contextmenu on:dblclick on:mousedown on:mouseenter on:mouseleave on:mousemove on:mouseover on:mouseout on:mouseup on:pointerlockchange on:pointerlockerror on:select on:wheel
-  on:drag on:dragend on:dragenter on:dragstart on:dragleave on:dragover on:drop
-  on:touchcancel on:touchend on:touchmove on:touchstart
-  on:pointerover on:pointerenter on:pointerdown on:pointermove on:pointerup on:pointercancel on:pointerout on:pointerleave on:gotpointercapture on:lostpointercapture
-  {...exclude($$props, ['class', 'ripple', 'mini', 'exited', 'extended'])}
+  {...exclude($$props, ['use', 'class', 'ripple', 'mini', 'exited', 'extended'])}
 ><slot></slot></button>
 
 <script context="module">
-  import Label from './Label';
-  import Icon from './Icon';
+  import Label from '../common/Label';
+  import Icon from '../common/Icon';
 
   export {Label, Icon};
 </script>
 
 <script>
+  import {setContext} from 'svelte';
+  import {current_component} from 'svelte/internal';
+  import {forwardEventsBuilder} from '../forwardEvents';
   import {exclude} from '../exclude';
+  import {useActions} from '../useActions';
   import Ripple from '../ripple';
 
+  const forwardEvents = forwardEventsBuilder(current_component);
+
+  export let use = [];
   let className = '';
   export {className as class};
   export let ripple = true;
   export let mini = false;
   export let exited = false;
   export let extended = false;
+
+  setContext('SMUI:labelContext', 'fab');
+  setContext('SMUI:iconContext', 'fab');
 </script>
 
 <style lang="scss" global>

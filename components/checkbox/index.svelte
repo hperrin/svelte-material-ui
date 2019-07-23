@@ -1,20 +1,13 @@
 <div
   bind:this={element}
-  use:use
+  use:useActions={use}
+  use:forwardEvents
   class="mdc-checkbox {className}"
   class:mdc-checkbox--disabled={disabled}
-  on:focus on:blur
-  on:fullscreenchange on:fullscreenerror on:scroll
-  on:cut on:copy on:paste
-  on:keydown on:keypress on:keyup
-  on:auxclick on:click on:contextmenu on:dblclick on:mousedown on:mouseenter on:mouseleave on:mousemove on:mouseover on:mouseout on:mouseup on:pointerlockchange on:pointerlockerror on:select on:wheel
-  on:drag on:dragend on:dragenter on:dragstart on:dragleave on:dragover on:drop
-  on:touchcancel on:touchend on:touchmove on:touchstart
-  on:pointerover on:pointerenter on:pointerdown on:pointermove on:pointerup on:pointercancel on:pointerout on:pointerleave on:gotpointercapture on:lostpointercapture
-  on:SMUI:mountFormField
   {...exclude($$props, ['use', 'class', 'disabled', 'indeterminate', 'group', 'checked', 'value', 'inputProps'])}
 >
   <input
+    use:useActions={inputProps.use}
     class="mdc-checkbox__native-control {inputProps.class}"
     type="checkbox"
     {id}
@@ -23,7 +16,7 @@
     {value}
     on:change={handleChange}
     on:change on:input
-    {...exclude(inputProps, ['class'])}
+    {...exclude(inputProps, ['use', 'class'])}
   />
   <div class="mdc-checkbox__background">
     <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
@@ -40,11 +33,15 @@
 <script>
   import {MDCCheckbox} from '@material/checkbox';
   import {onMount, onDestroy, getContext} from 'svelte';
+  import {current_component} from 'svelte/internal';
+  import {forwardEventsBuilder} from '../forwardEvents';
   import {exclude} from '../exclude';
+  import {useActions} from '../useActions';
 
+  const forwardEvents = forwardEventsBuilder(current_component);
   let uninitializedValue = () => {};
 
-  export let use = () => ({destroy(){}});
+  export let use = [];
   let className = '';
   export {className as class};
   export let disabled = false;
@@ -53,6 +50,7 @@
   export let checked = uninitializedValue;
   export let value = null;
   export let inputProps = {
+    use: [],
     class: ''
   };
 
