@@ -187,18 +187,16 @@
 </script>
 
 <style lang="scss">
-  .float-children {
-    :global(> *) {
-      float: left;
-      margin-right: 16px;
-      margin-bottom: 16px;
-    }
+  .float-children > :global(*) {
+    float: left;
+    margin-right: 16px;
+    margin-bottom: 16px;
+  }
 
-    &::after {
-      content: "";
-      clear: both;
-      display: table;
-    }
+  .float-children::after {
+    content: "";
+    clear: both;
+    display: table;
   }
 
   * :global(.card-media-16x9) {
