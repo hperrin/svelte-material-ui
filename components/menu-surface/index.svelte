@@ -36,9 +36,24 @@
   export let open = isStatic;
   export let quickOpen = false;
   export let anchorElement = null;
+  export let anchorCorner = null;
 
   let element;
   let menuSurface;
+  const BOTTOM = 1;
+  const CENTER = 2;
+  const RIGHT = 4;
+  const FLIP_RTL = 8;
+  const cornerMap = {
+    TOP_LEFT: 0,
+    TOP_RIGHT: RIGHT,
+    BOTTOM_LEFT: BOTTOM,
+    BOTTOM_RIGHT: BOTTOM | RIGHT,
+    TOP_START: FLIP_RTL,
+    TOP_END: FLIP_RTL | RIGHT,
+    BOTTOM_START: BOTTOM | FLIP_RTL,
+    BOTTOM_END: BOTTOM | RIGHT | FLIP_RTL
+  }
 
   setContext('SMUI:list:role', 'menu');
   setContext('SMUI:list:item:role', 'menuitem');
@@ -68,6 +83,10 @@
   $: if (menuSurface && oldFixed !== fixed) {
     menuSurface.setFixedPosition(fixed);
     oldFixed = fixed;
+  }
+
+  $: if (menuSurface && anchorCorner != null) {
+    menuSurface.setAnchorCorner(cornerMap[anchorCorner]);
   }
 
   onMount(() => {

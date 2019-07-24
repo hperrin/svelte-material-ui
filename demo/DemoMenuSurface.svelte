@@ -18,7 +18,7 @@
 
     <div style="min-width: 100px;">
       <Button on:click={() => menu.setOpen(true)}>Open Menu</Button>
-      <MenuSurface bind:this={menu} anchor>
+      <MenuSurface bind:this={menu} anchor anchorCorner="BOTTOM_LEFT">
         <List>
           <Item on:SMUI:action={() => clicked = 'Cut'}><span use:Text>Cut</span></Item>
           <Item on:SMUI:action={() => clicked = 'Copy'}><span use:Text>Copy</span></Item>
@@ -59,9 +59,4 @@
   let menu2;
   let anchor2;
   let clicked = 'nothing yet';
-
-  $: if (menu) {
-    // https://github.com/material-components/material-components-web/blob/master/packages/mdc-menu-surface/constants.ts
-    menu.setAnchorCorner(1);
-  }
 </script>
