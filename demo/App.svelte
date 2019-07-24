@@ -18,6 +18,8 @@
   <DemoRadio />
 
   <DemoCheckbox />
+
+  <DemoMenuSurface />
 </div>
 
 <script>
@@ -30,6 +32,7 @@
   import DemoList from './DemoList';
   import DemoRadio from './DemoRadio';
   import DemoCheckbox from './DemoCheckbox';
+  import DemoMenuSurface from './DemoMenuSurface';
 </script>
 
 <style lang="scss">
