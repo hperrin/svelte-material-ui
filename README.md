@@ -14,7 +14,7 @@ Here's some code:
 
 ```html
 <Button>Just a Button</Button>
-<Button raised><Label>Raised Button, Using a Label</Label></Button>
+<Button variant="raised"><Label>Raised Button, Using a Label</Label></Button>
 <Button some-arbitrary-prop="placed on the actual button">Button</Button>
 
 <Fab on:click="{() => alert('Clicked!')}" extended>
