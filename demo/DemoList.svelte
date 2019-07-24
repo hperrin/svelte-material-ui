@@ -42,12 +42,12 @@
   <div>
     A non-interactive list with activated item:
     <List class="demo-list" nonInteractive>
-      <Item ripple={false} nonInteractive><span use:Text>Thing 1</span></Item>
+      <Item ripple={false}><span use:Text>Thing 1</span></Item>
       <Separator />
-      <Item ripple={false} nonInteractive activated><span use:Text>Thing 2</span></Item>
-      <Item ripple={false} nonInteractive><span use:Text>Thing 3</span></Item>
+      <Item ripple={false} activated><span use:Text>Thing 2</span></Item>
+      <Item ripple={false}><span use:Text>Thing 3</span></Item>
       <Separator />
-      <Item ripple={false} nonInteractive><span use:Text>Thing 4</span></Item>
+      <Item ripple={false}><span use:Text>Thing 4</span></Item>
     </List>
   </div>
 
@@ -55,7 +55,7 @@
     A two-line single selection list with disabled item and meta:
     <List class="demo-list" twoLine singleSelection bind:selectedIndex={selectionIndex}>
       {#each optionsTwoLine as item}
-        <Item on:SMUI:action={() => !item.disabled && (selectionTwoLine = item.name)} disabled={item.disabled} selectable={!item.disabled} selected={selectionTwoLine === item.name}>
+        <Item on:SMUI:action={() => !item.disabled && (selectionTwoLine = item.name)} disabled={item.disabled} selected={selectionTwoLine === item.name}>
           <span use:Text>
             <span use:Text={'primary'}>{item.name}</span>
             <span use:Text={'secondary'}>{item.description}</span>
@@ -115,23 +115,23 @@
   <div>
     A radio list:
     <List class="demo-list" radiolist>
-      <Item radio>
+      <Item>
         <Radio use={[Graphic]} bind:group={selectedRadio} value="Bruce Willis" />
         <Label>Bruce Willis</Label>
       </Item>
-      <Item radio>
+      <Item>
         <Radio use={[Graphic]} bind:group={selectedRadio} value="Tom Hanks" />
         <Label>Tom Hanks</Label>
       </Item>
-      <Item radio>
+      <Item>
         <Radio use={[Graphic]} bind:group={selectedRadio} value="Jack Nicholson" />
         <Label>Jack Nicholson</Label>
       </Item>
-      <Item radio>
+      <Item>
         <Radio use={[Graphic]} bind:group={selectedRadio} value="Leonardo DiCaprio" />
         <Label>Leonardo DiCaprio</Label>
       </Item>
-      <Item radio>
+      <Item>
         <Radio use={[Graphic]} bind:group={selectedRadio} value="Matt Damon" />
         <Label>Matt Damon</Label>
       </Item>
@@ -143,23 +143,23 @@
   <div>
     A check list with trailing checkboxes:
     <List class="demo-list" checklist>
-      <Item checkbox>
+      <Item>
         <Label>Bruce Willis</Label>
         <Checkbox use={[Meta]} bind:group={selectedCheckbox} value="Bruce Willis" />
       </Item>
-      <Item checkbox>
+      <Item>
         <Label>Tom Hanks</Label>
         <Checkbox use={[Meta]} bind:group={selectedCheckbox} value="Tom Hanks" />
       </Item>
-      <Item checkbox>
+      <Item>
         <Label>Jack Nicholson</Label>
         <Checkbox use={[Meta]} bind:group={selectedCheckbox} value="Jack Nicholson" />
       </Item>
-      <Item checkbox>
+      <Item>
         <Label>Leonardo DiCaprio</Label>
         <Checkbox use={[Meta]} bind:group={selectedCheckbox} value="Leonardo DiCaprio" />
       </Item>
-      <Item checkbox>
+      <Item>
         <Label>Matt Damon</Label>
         <Checkbox use={[Meta]} bind:group={selectedCheckbox} value="Matt Damon" />
       </Item>

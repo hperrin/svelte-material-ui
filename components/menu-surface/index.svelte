@@ -18,7 +18,7 @@
 
 <script>
   import {MDCMenuSurface} from '@material/menu-surface';
-  import {onMount, onDestroy} from 'svelte';
+  import {onMount, onDestroy, setContext} from 'svelte';
   import {current_component} from 'svelte/internal';
   import {forwardEventsBuilder} from '../forwardEvents';
   import {exclude} from '../exclude';
@@ -39,6 +39,9 @@
 
   let element;
   let menuSurface;
+
+  setContext('SMUI:list:role', 'menu');
+  setContext('SMUI:list:item:role', 'menuitem');
 
   $: if (element && anchor && !element.parentNode.classList.contains('mdc-menu-surface--anchor')) {
     element.parentNode.classList.add('mdc-menu-surface--anchor');

@@ -7,13 +7,13 @@
   class:mdc-list-item--selected={selected}
   class:mdc-list-item--disabled={disabled}
   use:Ripple={[ripple, false]}
-  role={selectable ? 'option' : (radio ? 'radio' : (checkbox ? 'checkbox' : undefined))}
-  aria-selected={selectable ? (selected ? 'true' : 'false') : undefined}
-  aria-checked={(radio || checkbox) ? (checked ? 'true' : 'false') : undefined}
+  {role}
+  aria-selected={role === 'option' ? (selected ? 'true' : 'false') : undefined}
+  aria-checked={(role === 'radio' || role === 'checkbox') ? (checked ? 'true' : 'false') : undefined}
   {tabindex}
   on:click={action}
   on:keydown={handleKeydown}
-  {...exclude($$props, ['use', 'class', 'ripple', 'nonInteractive', 'activated', 'selectable', 'selected', 'radio', 'checkbox', 'disabled', 'tabindex'])}
+  {...exclude($$props, ['use', 'class', 'ripple', 'nonInteractive', 'activated', 'selected', 'disabled', 'tabindex'])}
 ><slot></slot></li>
 
 <script context="module">
@@ -21,7 +21,7 @@
 </script>
 
 <script>
-  import {onMount, onDestroy, setContext, createEventDispatcher} from 'svelte';
+  import {onMount, onDestroy, getContext, setContext, createEventDispatcher} from 'svelte';
   import {current_component} from 'svelte/internal';
   import {forwardEventsBuilder} from '../forwardEvents';
   import {exclude} from '../exclude';
@@ -36,12 +36,10 @@
   let className = '';
   export {className as class};
   export let ripple = true;
-  export let nonInteractive = false;
+  export let nonInteractive = getContext('SMUI:list:nonInteractive');
   export let activated = false;
-  export let selectable = false;
+  export let role = getContext('SMUI:list:item:role');
   export let selected = false;
-  export let radio = false;
-  export let checkbox = false;
   export let disabled = false;
   export let tabindex = !nonInteractive && !disabled && (selected || checked) && '0' || '-1';
 

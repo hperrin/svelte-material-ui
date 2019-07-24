@@ -7,7 +7,7 @@
   class:mdc-list--dense={dense}
   class:mdc-list--avatar-list={avatarList}
   class:mdc-list--two-line={twoLine}
-  role={singleSelection ? 'listbox' : (radiolist ? 'radiogroup' : (checklist ? 'group' : 'list'))}
+  {role}
   on:MDCList:action={handleAction}
   {...exclude($$props, ['use', 'class', 'nonInteractive', 'dense', 'avatarList', 'twoLine', 'vertical', 'wrapFocus', 'singleSelection', 'selectedIndex', 'radiolist', 'checklist'])}
 ><slot></slot></ul>
@@ -27,7 +27,7 @@
 
 <script>
   import {MDCList} from '@material/list';
-  import {onMount, onDestroy} from 'svelte';
+  import {onMount, onDestroy, getContext, setContext} from 'svelte';
   import {current_component} from 'svelte/internal';
   import {forwardEventsBuilder} from '../forwardEvents';
   import {exclude} from '../exclude';
@@ -51,6 +51,25 @@
 
   let element;
   let list;
+  let role = getContext('SMUI:list:role');
+
+  setContext('SMUI:list:nonInteractive', nonInteractive);
+
+  if (!role) {
+    if (singleSelection) {
+      role = 'listbox';
+      setContext('SMUI:list:item:role', 'option');
+    } else if (radiolist) {
+      role = 'radiogroup';
+      setContext('SMUI:list:item:role', 'radio');
+    } else if (checklist) {
+      role = 'group';
+      setContext('SMUI:list:item:role', 'checkbox');
+    } else {
+      role = 'list';
+      setContext('SMUI:list:item:role', undefined);
+    }
+  }
 
   $: if (list && list.vertical !== vertical) {
     list.vertical = vertical;
@@ -81,7 +100,10 @@
   });
 
   function handleAction(e) {
-    selectedIndex = e.detail.index;
+    // TODO: why is a disabled item selectable?
+    if (list.selectedIndex === e.detail.index) {
+      selectedIndex = e.detail.index;
+    }
   }
 
   export function layout(...args) {
