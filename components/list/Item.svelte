@@ -6,6 +6,7 @@
   class:mdc-list-item--activated={activated}
   class:mdc-list-item--selected={selected}
   class:mdc-list-item--disabled={disabled}
+  class:mdc-menu-item--selected={role === 'menuitem' && selected}
   use:Ripple={[ripple, false]}
   {role}
   aria-selected={role === 'option' ? (selected ? 'true' : 'false') : undefined}

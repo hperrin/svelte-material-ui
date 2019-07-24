@@ -76,7 +76,7 @@ I'm only going to do things that need to/can be Svelte-ified. For some things, l
 - [ ] Linear Progress
 - [x] Lists
 - [x] Menu Surface
-- [ ] Menus
+- [x] Menus
 - [x] Ripples
 - [ ] Snackbars
 - [ ] Tabs

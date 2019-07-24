@@ -30,6 +30,7 @@
     "@material/form-field": "^3.0.0",
     "@material/icon-button": "^3.0.0",
     "@material/list": "^3.0.0",
+    "@material/menu": "^3.1.0",
     "@material/menu-surface": "^3.0.0",
     "@material/radio": "^3.0.0",
     "@material/ripple": "^3.0.0",

@@ -52,6 +52,8 @@
   let element;
   let list;
   let role = getContext('SMUI:list:role');
+  let instantiate = getContext('SMUI:list:instantiate');
+  let getInstance = getContext('SMUI:list:getInstance');
 
   setContext('SMUI:list:nonInteractive', nonInteractive);
 
@@ -87,8 +89,12 @@
     list.selectedIndex = selectedIndex;
   }
 
-  onMount(() => {
-    list = new MDCList(element);
+  onMount(async () => {
+    if (instantiate !== false) {
+      list = new MDCList(element);
+    } else {
+      list = await getInstance();
+    }
     if (singleSelection) {
       list.initializeListType();
       selectedIndex = list.selectedIndex;
@@ -96,12 +102,14 @@
   });
 
   onDestroy(() => {
-    list.destroy();
+    if (instantiate !== false) {
+      list.destroy();
+    }
   });
 
   function handleAction(e) {
     // TODO: why is a disabled item selectable?
-    if (list.selectedIndex === e.detail.index) {
+    if (list && list.selectedIndex === e.detail.index) {
       selectedIndex = e.detail.index;
     }
   }

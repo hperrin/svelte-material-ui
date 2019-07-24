@@ -7,7 +7,7 @@
   class:mdc-menu-surface--open={isStatic}
   class:smui-menu-surface--static={isStatic}
   on:MDCMenuSurface:closed={updateOpen} on:MDCMenuSurface:opened={updateOpen}
-  {...exclude($$props, ['use', 'class', 'static', 'anchor', 'fixed', 'open', 'quickOpen', 'anchorElement'])}
+  {...exclude($$props, ['use', 'class', 'static', 'anchor', 'fixed', 'open', 'quickOpen', 'anchorElement', 'element'])}
 ><slot></slot></div>
 
 <script context="module">
@@ -18,11 +18,12 @@
 
 <script>
   import {MDCMenuSurface} from '@material/menu-surface';
-  import {onMount, onDestroy, setContext} from 'svelte';
+  import {onMount, onDestroy, getContext, setContext} from 'svelte';
   import {current_component} from 'svelte/internal';
   import {forwardEventsBuilder} from '../forwardEvents';
   import {exclude} from '../exclude';
   import {useActions} from '../useActions';
+  import {CornerMap} from './CornerMap';
 
   const forwardEvents = forwardEventsBuilder(current_component, ['MDCMenuSurface:closed', 'MDCMenuSurface:opened']);
 
@@ -38,22 +39,10 @@
   export let anchorElement = null;
   export let anchorCorner = null;
 
-  let element;
+  export let element; // This is exported because Menu needs it.
   let menuSurface;
-  const BOTTOM = 1;
-  const CENTER = 2;
-  const RIGHT = 4;
-  const FLIP_RTL = 8;
-  const cornerMap = {
-    TOP_LEFT: 0,
-    TOP_RIGHT: RIGHT,
-    BOTTOM_LEFT: BOTTOM,
-    BOTTOM_RIGHT: BOTTOM | RIGHT,
-    TOP_START: FLIP_RTL,
-    TOP_END: FLIP_RTL | RIGHT,
-    BOTTOM_START: BOTTOM | FLIP_RTL,
-    BOTTOM_END: BOTTOM | RIGHT | FLIP_RTL
-  }
+  let instantiate = getContext('SMUI:menuSurface:instantiate');
+  let getInstance = getContext('SMUI:menuSurface:getInstance');
 
   setContext('SMUI:list:role', 'menu');
   setContext('SMUI:list:item:role', 'menuitem');
@@ -86,22 +75,34 @@
   }
 
   $: if (menuSurface && anchorCorner != null) {
-    menuSurface.setAnchorCorner(cornerMap[anchorCorner]);
+    menuSurface.setAnchorCorner(CornerMap[anchorCorner]);
   }
 
-  onMount(() => {
-    menuSurface = new MDCMenuSurface(element);
+  onMount(async () => {
+    if (instantiate !== false) {
+      menuSurface = new MDCMenuSurface(element);
+    } else {
+      menuSurface = await getInstance();
+    }
   });
 
   onDestroy(() => {
     if (anchor) {
       element.parentNode.classList.remove('mdc-menu-surface--anchor');
     }
-    menuSurface.destroy();
+    if (instantiate !== false) {
+      menuSurface.destroy();
+    }
   });
 
   function updateOpen() {
-    open = menuSurface.isOpen();
+    if (menuSurface) {
+      if (isStatic) {
+        open = true;
+      } else {
+        open = menuSurface.isOpen();
+      }
+    }
   }
 
   export function setOpen(value) {
@@ -148,5 +149,9 @@
   .smui-menu-surface--static {
     position: static;
     z-index: 0;
+
+    display: inline-block;
+    transform: scale(1);
+    opacity: 1;
   }
 </style>
