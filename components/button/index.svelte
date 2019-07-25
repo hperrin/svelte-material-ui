@@ -2,12 +2,12 @@
   use:useActions={use}
   use:forwardEvents
   class="mdc-button {className}"
-  class:mdc-button--raised={raised}
-  class:mdc-button--unelevated={unelevated}
-  class:mdc-button--outlined={outlined}
+  class:mdc-button--raised={variant === 'raised'}
+  class:mdc-button--unelevated={variant === 'unelevated'}
+  class:mdc-button--outlined={variant === 'outlined'}
   class:mdc-button--dense={dense}
   use:Ripple={[ripple, false]}
-  {...exclude($$props, ['use', 'class', 'ripple', 'raised', 'unelevated', 'outlined', 'dense'])}
+  {...exclude($$props, ['use', 'class', 'ripple', 'variant', 'dense'])}
 ><slot></slot></button>
 
 <script context="module">
@@ -30,10 +30,8 @@
   export let use = [];
   let className = '';
   export {className as class};
+  export let variant = '';
   export let ripple = true;
-  export let raised = false;
-  export let unelevated = false;
-  export let outlined = false;
   export let dense = false;
 
   setContext('SMUI:labelContext', 'button');
