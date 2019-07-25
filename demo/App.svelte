@@ -1,20 +1,28 @@
-<div class="container">
-  <h1>Material Components</h1>
+<Drawer>
+  <div use:Header>
+    <h1 use:Title>Material Components</h1>
+  </div>
+  <div use:Content>
+    <List>
+      {#each sections as section}
+        <Item href={'key' in section ? '#' : undefined} on:click={() => 'key' in section && pickSection(section)} activated={'key' in section && key === section.key} style="margin-left: {section.indent * 15}px;">
+          <span use:Text>{section.name}</span>
+        </Item>
+      {/each}
+    </List>
+  </div>
+</Drawer>
 
-  <DemoButton />
-  <DemoFab />
-  <DemoIconButton />
-  <DemoCard />
-  <DemoChips />
-  <DemoDialog />
-  <DemoCheckbox />
-  <DemoRadio />
-  <DemoList />
-  <DemoMenuSurface />
-  <DemoMenu />
+<div use:AppContent class="app-content">
+  <main class="main-content" bind:this={mainContent}>
+    <svelte:component this={component} />
+  </main>
 </div>
 
 <script>
+  import Drawer, {Header, Title, Content, AppContent} from '../components/drawer';
+  import List, {Item, Text} from '../components/list';
+
   import DemoButton from './DemoButton';
   import DemoFab from './DemoFab';
   import DemoIconButton from './DemoIconButton';
@@ -26,16 +34,112 @@
   import DemoList from './DemoList';
   import DemoMenuSurface from './DemoMenuSurface';
   import DemoMenu from './DemoMenu';
+
+  let key = 'button';
+  let component = DemoButton;
+  let mainContent;
+
+  const sections = [
+    {
+      name: 'Buttons',
+      key: 'button',
+      component: DemoButton,
+      indent: 0
+    },
+    {
+      name: 'Floating Action Button',
+      key: 'fab',
+      component: DemoFab,
+      indent: 1
+    },
+    {
+      name: 'Icon Buttons',
+      key: 'icon-button',
+      component: DemoIconButton,
+      indent: 1
+    },
+    {
+      name: 'Cards',
+      key: 'card',
+      component: DemoCard,
+      indent: 0
+    },
+    {
+      name: 'Chips',
+      key: 'chips',
+      component: DemoChips,
+      indent: 0
+    },
+    {
+      name: 'Dialogs',
+      key: 'dialog',
+      component: DemoDialog,
+      indent: 0
+    },
+    {
+      name: 'Inputs and Controls',
+      indent: 0
+    },
+    {
+      name: 'Checkboxes',
+      key: 'checkbox',
+      component: DemoCheckbox,
+      indent: 1
+    },
+    {
+      name: 'Radio Buttons',
+      key: 'radio',
+      component: DemoRadio,
+      indent: 1
+    },
+    {
+      name: 'Lists',
+      key: 'list',
+      component: DemoList,
+      indent: 0
+    },
+    {
+      name: 'Menu Surface',
+      key: 'menu-surface',
+      component: DemoMenuSurface,
+      indent: 0
+    },
+    {
+      name: 'Menus',
+      key: 'menu',
+      component: DemoMenu,
+      indent: 0
+    }
+  ];
+
+  function pickSection(section) {
+    key = section.key;
+    component = section.component;
+    mainContent.scrollTop = 0;
+  }
 </script>
 
 <style lang="scss">
   @import "../components/typography";
 
-  .container {
-    background: #fff;
-    margin: 2em auto;
+  :global(body), :global(app) {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+  }
+
+  .app-content {
+    flex: auto;
+    overflow: auto;
+    position: relative;
+    flex-grow: 1;
+  }
+
+  .main-content {
+    overflow: auto;
     padding: 2em;
-    max-width: 960px;
+    height: 100%;
+    box-sizing: border-box;
   }
 
   * :global(section > div) {

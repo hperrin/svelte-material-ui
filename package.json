@@ -25,6 +25,7 @@
     "@material/checkbox": "^3.0.0",
     "@material/chips": "^3.0.0",
     "@material/dialog": "^3.0.0",
+    "@material/drawer": "^3.1.0",
     "@material/fab": "^3.0.0",
     "@material/form-field": "^3.0.0",
     "@material/icon-button": "^3.0.0",

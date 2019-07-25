@@ -1,16 +1,31 @@
-<ul
-  bind:this={element}
-  use:useActions={use}
-  use:forwardEvents
-  class="mdc-list {className}"
-  class:mdc-list--non-interactive={nonInteractive}
-  class:mdc-list--dense={dense}
-  class:mdc-list--avatar-list={avatarList}
-  class:mdc-list--two-line={twoLine}
-  {role}
-  on:MDCList:action={handleAction}
-  {...exclude($$props, ['use', 'class', 'nonInteractive', 'dense', 'avatarList', 'twoLine', 'vertical', 'wrapFocus', 'singleSelection', 'selectedIndex', 'radiolist', 'checklist'])}
-><slot></slot></ul>
+{#if nav}
+  <nav
+    bind:this={element}
+    use:useActions={use}
+    use:forwardEvents
+    class="mdc-list {className}"
+    class:mdc-list--non-interactive={nonInteractive}
+    class:mdc-list--dense={dense}
+    class:mdc-list--avatar-list={avatarList}
+    class:mdc-list--two-line={twoLine}
+    on:MDCList:action={handleAction}
+    {...exclude($$props, ['use', 'class', 'nonInteractive', 'dense', 'avatarList', 'twoLine', 'vertical', 'wrapFocus', 'singleSelection', 'selectedIndex', 'radiolist', 'checklist'])}
+  ><slot></slot></nav>
+{:else}
+  <ul
+    bind:this={element}
+    use:useActions={use}
+    use:forwardEvents
+    class="mdc-list {className}"
+    class:mdc-list--non-interactive={nonInteractive}
+    class:mdc-list--dense={dense}
+    class:mdc-list--avatar-list={avatarList}
+    class:mdc-list--two-line={twoLine}
+    {role}
+    on:MDCList:action={handleAction}
+    {...exclude($$props, ['use', 'class', 'nonInteractive', 'dense', 'avatarList', 'twoLine', 'vertical', 'wrapFocus', 'singleSelection', 'selectedIndex', 'radiolist', 'checklist'])}
+  ><slot></slot></ul>
+{/if}
 
 <script context="module">
   import Item from './Item';
@@ -52,6 +67,7 @@
   let element;
   let list;
   let role = getContext('SMUI:list:role');
+  let nav = getContext('SMUI:list:nav');
   let instantiate = getContext('SMUI:list:instantiate');
   let getInstance = getContext('SMUI:list:getInstance');
 

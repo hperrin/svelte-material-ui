@@ -1,21 +1,56 @@
-<li
-  bind:this={element}
-  use:useActions={use}
-  use:forwardEvents
-  class="mdc-list-item {className}"
-  class:mdc-list-item--activated={activated}
-  class:mdc-list-item--selected={selected}
-  class:mdc-list-item--disabled={disabled}
-  class:mdc-menu-item--selected={role === 'menuitem' && selected}
-  use:Ripple={[ripple, false]}
-  {role}
-  aria-selected={role === 'option' ? (selected ? 'true' : 'false') : undefined}
-  aria-checked={(role === 'radio' || role === 'checkbox') ? (checked ? 'true' : 'false') : undefined}
-  {tabindex}
-  on:click={action}
-  on:keydown={handleKeydown}
-  {...exclude($$props, ['use', 'class', 'ripple', 'nonInteractive', 'activated', 'selected', 'disabled', 'tabindex'])}
-><slot></slot></li>
+{#if nav && href}
+  <a
+    bind:this={element}
+    use:useActions={use}
+    use:forwardEvents
+    class="mdc-list-item {className}"
+    class:mdc-list-item--activated={activated}
+    class:mdc-list-item--selected={selected}
+    class:mdc-list-item--disabled={disabled}
+    use:Ripple={[ripple, false]}
+    {href}
+    aria-current={activated ? 'page' : undefined}
+    {tabindex}
+    on:click={action}
+    on:keydown={handleKeydown}
+    {...exclude($$props, ['use', 'class', 'ripple', 'nonInteractive', 'activated', 'selected', 'disabled', 'tabindex', 'href'])}
+  ><slot></slot></a>
+{:else if nav && !href}
+  <span
+    bind:this={element}
+    use:useActions={use}
+    use:forwardEvents
+    class="mdc-list-item {className}"
+    class:mdc-list-item--activated={activated}
+    class:mdc-list-item--selected={selected}
+    class:mdc-list-item--disabled={disabled}
+    use:Ripple={[ripple, false]}
+    aria-current={activated ? 'page' : undefined}
+    {tabindex}
+    on:click={action}
+    on:keydown={handleKeydown}
+    {...exclude($$props, ['use', 'class', 'ripple', 'nonInteractive', 'activated', 'selected', 'disabled', 'tabindex', 'href'])}
+  ><slot></slot></span>
+{:else}
+  <li
+    bind:this={element}
+    use:useActions={use}
+    use:forwardEvents
+    class="mdc-list-item {className}"
+    class:mdc-list-item--activated={activated}
+    class:mdc-list-item--selected={selected}
+    class:mdc-list-item--disabled={disabled}
+    class:mdc-menu-item--selected={role === 'menuitem' && selected}
+    use:Ripple={[ripple, false]}
+    {role}
+    aria-selected={role === 'option' ? (selected ? 'true' : 'false') : undefined}
+    aria-checked={(role === 'radio' || role === 'checkbox') ? (checked ? 'true' : 'false') : undefined}
+    {tabindex}
+    on:click={action}
+    on:keydown={handleKeydown}
+    {...exclude($$props, ['use', 'class', 'ripple', 'nonInteractive', 'activated', 'selected', 'disabled', 'tabindex', 'href'])}
+  ><slot></slot></li>
+{/if}
 
 <script context="module">
   let counter = 0;
@@ -43,10 +78,12 @@
   export let selected = false;
   export let disabled = false;
   export let tabindex = !nonInteractive && !disabled && (selected || checked) && '0' || '-1';
+  export let href = false;
 
   let element;
   let addTabindexIfNoItemsSelectedRaf;
   let id = 'SMUI-form-field-list-'+(counter++);
+  let nav = getContext('SMUI:list:item:nav');
 
   setContext('SMUI:formField:id', id);
   setContext('SMUI:formField:setChecked', setChecked);
