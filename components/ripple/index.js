@@ -1,7 +1,7 @@
 import {MDCRipple} from '@material/ripple/index';
 
 export default function Ripple(node, [ripple, unbounded]) {
-  let instance;
+  let instance = null;
 
   if (ripple) {
     instance = new MDCRipple(node);
@@ -16,6 +16,7 @@ export default function Ripple(node, [ripple, unbounded]) {
         instance = new MDCRipple(node);
       } else if (instance && !ripple) {
         instance.destroy();
+        instance = null;
       }
       if (ripple) {
         instance.unbounded = unbounded;
@@ -23,7 +24,9 @@ export default function Ripple(node, [ripple, unbounded]) {
     },
 
     destroy() {
-      instance.destroy();
+      if (instance) {
+        instance.destroy();
+      }
     }
   }
 }
