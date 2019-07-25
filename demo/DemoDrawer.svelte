@@ -6,10 +6,6 @@
 
     <div class="drawer-container">
       <Drawer>
-        <div use:Header>
-          <h1 use:Title>Super Drawer</h1>
-          <h2 use:Subtitle>It's the best drawer.</h2>
-        </div>
         <div use:Content>
           <List>
             <Item href="#" on:click={() => clicked = 'Gray Kittens'}>
@@ -44,7 +40,7 @@
   <div class="status">Clicked: {clicked}</div>
 
   <div>
-    A dismissible drawer with activated items.
+    A dismissible drawer with a header and activated items.
 
     <div class="drawer-container">
       <Drawer dismissible bind:this={myDrawer} bind:open={myDrawerOpen}>
@@ -86,7 +82,7 @@
   </div>
 
   <div>
-    A modal drawer with activated items, subheading, icons, list groups.
+    A modal drawer with header, activated items, subheading, icons, list groups.
 
     <div class="drawer-container">
       <Drawer modal bind:this={myDrawer2} bind:open={myDrawer2Open}>
