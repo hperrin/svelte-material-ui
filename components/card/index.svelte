@@ -2,9 +2,9 @@
   use:useActions={use}
   use:forwardEvents
   class="mdc-card {className}"
+  class:mdc-card--outlined={variant === 'outlined'}
   class:smui-card--padded={padded}
-  class:mdc-card--outlined={outlined}
-  {...exclude($$props, ['use', 'class', 'padded', 'outlined'])}
+  {...exclude($$props, ['use', 'class', 'variant', 'padded'])}
 ><slot></slot></div>
 
 <script context="module">
@@ -32,8 +32,8 @@
   export let use = [];
   let className = '';
   export {className as class};
+  export let variant = '';
   export let padded = false;
-  export let outlined = false;
 </script>
 
 <style lang="scss" global>

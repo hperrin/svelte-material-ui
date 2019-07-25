@@ -30,8 +30,8 @@
   export let use = [];
   let className = '';
   export {className as class};
-  export let variant = '';
   export let ripple = true;
+  export let variant = '';
   export let dense = false;
 
   setContext('SMUI:labelContext', 'button');

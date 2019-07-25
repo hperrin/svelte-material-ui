@@ -8,7 +8,7 @@
 
     <Card style="width: 250px;"><Content>You can also use <code>Content</code>.</Content></Card>
 
-    <Card style="width: 250px;" outlined padded>An outlined, padded card.</Card>
+    <Card style="width: 250px;" variant="outlined" padded>An outlined, padded card.</Card>
   </div>
 
   <div class="float-children">
