@@ -5,9 +5,9 @@
     <Button on:click={() => clicked++}><Label>Click Me</Label></Button>
     <Button on:click={() => clicked++} disabled><Label>Disabled</Label></Button>
     <Button on:click={() => clicked++} ripple={false}><Label>No Ripple</Label></Button>
-    <Button on:click={() => clicked++} raised><Label>Raised</Label></Button>
-    <Button on:click={() => clicked++} unelevated><Label>Unelevated</Label></Button>
-    <Button on:click={() => clicked++} outlined><Label>Outlined</Label></Button>
+    <Button on:click={() => clicked++} variant="raised"><Label>Raised</Label></Button>
+    <Button on:click={() => clicked++} variant="unelevated"><Label>Unelevated</Label></Button>
+    <Button on:click={() => clicked++} variant="outlined"><Label>Outlined</Label></Button>
     <Button on:click={() => clicked++} dense><Label>Dense</Label></Button>
     <Button on:click={() => clicked++} class="myClass"><Label>With a Class</Label></Button>
   </div>
