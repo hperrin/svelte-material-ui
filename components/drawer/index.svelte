@@ -1,4 +1,5 @@
 <aside
+  bind:this={element}
   use:useActions={use}
   use:forwardEvents
   class="mdc-drawer {className}"
@@ -36,6 +37,7 @@
   export let modal = false;
   export let open = false;
 
+  let element;
   let drawer;
   let listPromiseResolve;
   let listPromise = new Promise(resolve => listPromiseResolve = resolve);
@@ -60,8 +62,14 @@
   });
 
   onDestroy(() => {
-    drawer.destroy();
+    if (drawer) {
+      drawer.destroy();
+    }
   });
+
+  function getListInstancePromise() {
+    return listPromise;
+  }
 
   function updateOpen() {
     open = drawer.open;

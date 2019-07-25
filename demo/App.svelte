@@ -29,6 +29,7 @@
   import DemoCard from './DemoCard';
   import DemoChips from './DemoChips';
   import DemoDialog from './DemoDialog';
+  import DemoDrawer from './DemoDrawer';
   import DemoCheckbox from './DemoCheckbox';
   import DemoRadio from './DemoRadio';
   import DemoList from './DemoList';
@@ -74,6 +75,12 @@
       name: 'Dialogs',
       key: 'dialog',
       component: DemoDialog,
+      indent: 0
+    },
+    {
+      name: 'Drawers',
+      key: 'drawer',
+      component: DemoDrawer,
       indent: 0
     },
     {
@@ -137,7 +144,7 @@
 
   .main-content {
     overflow: auto;
-    padding: 2em;
+    padding: 16px;
     height: 100%;
     box-sizing: border-box;
   }
