@@ -2,25 +2,15 @@
   <h1>Material Components</h1>
 
   <DemoButton />
-
   <DemoFab />
-
   <DemoIconButton />
-
-  <DemoChips />
-
   <DemoCard />
-
+  <DemoChips />
   <DemoDialog />
-
-  <DemoList />
-
-  <DemoRadio />
-
   <DemoCheckbox />
-
+  <DemoRadio />
+  <DemoList />
   <DemoMenuSurface />
-
   <DemoMenu />
 </div>
 
@@ -28,12 +18,12 @@
   import DemoButton from './DemoButton';
   import DemoFab from './DemoFab';
   import DemoIconButton from './DemoIconButton';
-  import DemoChips from './DemoChips';
   import DemoCard from './DemoCard';
+  import DemoChips from './DemoChips';
   import DemoDialog from './DemoDialog';
-  import DemoList from './DemoList';
-  import DemoRadio from './DemoRadio';
   import DemoCheckbox from './DemoCheckbox';
+  import DemoRadio from './DemoRadio';
+  import DemoList from './DemoList';
   import DemoMenuSurface from './DemoMenuSurface';
   import DemoMenu from './DemoMenu';
 </script>
