@@ -2,6 +2,16 @@
   <h2>Menu Surface</h2>
 
   <div>
+    <MenuSurface anchor static style="max-width: 350px;">
+      <p style="margin: 1em;">
+        This is a menu surface. I don't know why this is its own MDC component.
+        It's just an incomplete version of Menu. I guess, since it can have
+        other things in it than just lists. Like, this paragraph.
+      </p>
+    </MenuSurface>
+  </div>
+
+  <div>
     <MenuSurface anchor static>
       <List>
         <Item on:SMUI:action={() => clicked = 'Cut'}><span use:Text>Cut</span></Item>
@@ -17,7 +27,7 @@
     Anchored automatically, corner set to bottom-left:
 
     <div style="min-width: 100px;">
-      <Button on:click={() => menu.setOpen(true)}>Open Menu</Button>
+      <Button on:click={() => menu.setOpen(true)}>Open Menu Surface</Button>
       <MenuSurface bind:this={menu} anchor anchorCorner="BOTTOM_LEFT">
         <List>
           <Item on:SMUI:action={() => clicked = 'Cut'}><span use:Text>Cut</span></Item>
@@ -34,7 +44,7 @@
     Anchored manually:
 
     <div use:Anchor bind:this={anchor2}>
-      <Button on:click={() => menu2.setOpen(true)}>Open Menu</Button>
+      <Button on:click={() => menu2.setOpen(true)}>Open Menu Surface</Button>
       <MenuSurface bind:this={menu2} bind:anchorElement={anchor2}>
         <List>
           <Item on:SMUI:action={() => clicked = 'Cut'}><span use:Text>Cut</span></Item>
