@@ -203,8 +203,24 @@
     @include mdc-typography('headline6');
   }
 
-  :global(html, body, section, p, div, span, label) {
+  :global(*) {
     @include mdc-typography('body1');
+  }
+
+  :global(code, pre) {
+    font-family: 'Courier New', Courier, monospace;
+  }
+
+  :global(small) {
+    font-size: .9em;
+  }
+
+  :global(big) {
+    font-size: 1.1em;
+  }
+
+  :global(b, strong) {
+    font-weight: bold;
   }
 
   :global(caption) {

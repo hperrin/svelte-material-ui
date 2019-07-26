@@ -26,6 +26,15 @@
   <div class="mdc-typography mdc-typography--button">Button</div>
 
   <div class="mdc-typography mdc-typography--overline">Overline</div>
+
+  <div class="mdc-typography mdc-typography--body1">
+    <small>small</small>
+    <big>big</big>
+    <sup>sup</sup>
+    <sub>sub</sub>
+    <strong>strong</strong>
+    <em>em</em>
+  </div>
 </section>
 
 <style lang="scss">
