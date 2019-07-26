@@ -27,10 +27,6 @@
   </div>
 </div>
 
-<script context="module">
-  let counter = 0;
-</script>
-
 <script>
   import {MDCSwitch} from '@material/switch';
   import {onMount, onDestroy, getContext} from 'svelte';

@@ -33,6 +33,7 @@
   import DemoCheckbox from './DemoCheckbox';
   import DemoRadio from './DemoRadio';
   import DemoSwitch from './DemoSwitch';
+  import DemoLinearProgress from './DemoLinearProgress';
   import DemoList from './DemoList';
   import DemoMenuSurface from './DemoMenuSurface';
   import DemoMenu from './DemoMenu';
@@ -105,6 +106,12 @@
       key: 'switch',
       component: DemoSwitch,
       indent: 1
+    },
+    {
+      name: 'Linear Progress',
+      key: 'linear-progress',
+      component: DemoLinearProgress,
+      indent: 0
     },
     {
       name: 'Lists',

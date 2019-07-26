@@ -73,7 +73,7 @@ I'm only going to do things that need to/can be Svelte-ified. For some things, l
     - [ ] Text Field Helper Text
     - [ ] Text Field Icon
 - [ ] Layout Grid
-- [ ] Linear Progress
+- [x] Linear Progress
 - [x] Lists
 - [x] Menu Surface
 - [x] Menus

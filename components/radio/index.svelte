@@ -24,10 +24,6 @@
   </div>
 </div>
 
-<script context="module">
-  let counter = 0;
-</script>
-
 <script>
   import {MDCRadio} from '@material/radio';
   import {onMount, onDestroy, getContext} from 'svelte';

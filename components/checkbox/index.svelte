@@ -26,10 +26,6 @@
   </div>
 </div>
 
-<script context="module">
-  let counter = 0;
-</script>
-
 <script>
   import {MDCCheckbox} from '@material/checkbox';
   import {onMount, onDestroy, getContext} from 'svelte';
