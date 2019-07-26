@@ -124,8 +124,10 @@
   });
 
   function handleAction(e) {
-    // TODO: why is a disabled item selectable?
-    if (list && list.selectedIndex === e.detail.index) {
+    if (list && list.listElements[e.detail.index].classList.contains('mdc-list-item--disabled')) {
+      e.preventDefault();
+      list.selectedIndex = selectedIndex;
+    } else if (list && list.selectedIndex === e.detail.index) {
       selectedIndex = e.detail.index;
     }
   }

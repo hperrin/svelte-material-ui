@@ -135,7 +135,9 @@
   }
 
   function action(e) {
-    if (!disabled) {
+    if (disabled) {
+      e.preventDefault();
+    } else {
       dispatch('SMUI:action', e);
     }
   }

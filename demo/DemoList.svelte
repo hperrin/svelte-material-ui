@@ -55,7 +55,7 @@
     A two-line single selection list with disabled item and meta:
     <List class="demo-list" twoLine singleSelection bind:selectedIndex={selectionIndex}>
       {#each optionsTwoLine as item}
-        <Item on:SMUI:action={() => !item.disabled && (selectionTwoLine = item.name)} disabled={item.disabled} selected={selectionTwoLine === item.name}>
+        <Item on:SMUI:action={() => selectionTwoLine = item.name} disabled={item.disabled} selected={selectionTwoLine === item.name}>
           <span use:Text>
             <span use:Text={'primary'}>{item.name}</span>
             <span use:Text={'secondary'}>{item.description}</span>
