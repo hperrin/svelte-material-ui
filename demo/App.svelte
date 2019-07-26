@@ -37,6 +37,7 @@
   import DemoList from './DemoList';
   import DemoMenuSurface from './DemoMenuSurface';
   import DemoMenu from './DemoMenu';
+  import DemoTypography from './DemoTypography';
 
   let key = 'button';
   let component = DemoButton;
@@ -129,6 +130,12 @@
       name: 'Menus',
       key: 'menu',
       component: DemoMenu,
+      indent: 0
+    },
+    {
+      name: 'Typography',
+      key: 'typography',
+      component: DemoTypography,
       indent: 0
     }
   ];
