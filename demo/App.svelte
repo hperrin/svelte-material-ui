@@ -5,7 +5,7 @@
   <div use:Content>
     <List>
       {#each sections as section}
-        <Item href={'key' in section ? '#' : undefined} on:click={() => 'key' in section && pickSection(section)} activated={'key' in section && key === section.key} style="margin-left: {section.indent * 15}px;">
+        <Item href={'key' in section ? '#' : undefined} on:click={() => 'key' in section && pickSection(section)} activated={'key' in section && key === section.key} style="{section.indent ? 'margin-left: '+(section.indent * 18)+'px;' : ''}">
           <span use:Text>{section.name}</span>
         </Item>
       {/each}
@@ -32,6 +32,7 @@
   import DemoDrawer from './DemoDrawer';
   import DemoCheckbox from './DemoCheckbox';
   import DemoRadio from './DemoRadio';
+  import DemoSwitch from './DemoSwitch';
   import DemoList from './DemoList';
   import DemoMenuSurface from './DemoMenuSurface';
   import DemoMenu from './DemoMenu';
@@ -97,6 +98,12 @@
       name: 'Radio Buttons',
       key: 'radio',
       component: DemoRadio,
+      indent: 1
+    },
+    {
+      name: 'Switches',
+      key: 'switch',
+      component: DemoSwitch,
       indent: 1
     },
     {
@@ -182,7 +189,7 @@
     @include mdc-typography('headline6');
   }
 
-  :global(html, body, p) {
+  :global(html, body, section, p, div, span, label) {
     @include mdc-typography('body1');
   }
 

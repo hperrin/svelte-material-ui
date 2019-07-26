@@ -34,6 +34,7 @@
     "@material/menu-surface": "^3.0.0",
     "@material/radio": "^3.0.0",
     "@material/ripple": "^3.0.0",
+    "@material/switch": "^3.1.0",
     "@material/typography": "^3.0.0"
   },
   "devDependencies": {
