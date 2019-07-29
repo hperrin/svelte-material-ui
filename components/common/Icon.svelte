@@ -9,7 +9,8 @@
   class:mdc-chip__icon--leading={context === 'chips' && leading}
   class:mdc-chip__icon--leading-hidden={context === 'chips' && leadingHidden}
   class:mdc-chip__icon--trailing={context === 'chips' && trailing}
-  aria-hidden="true" {...exclude($$props, ['use', 'class', 'on', 'leading', 'leadingHidden', 'trailing'])}
+  aria-hidden="true"
+  {...exclude($$props, ['use', 'class', 'on', 'leading', 'leadingHidden', 'trailing'])}
 ><slot></slot></i>
 
 <script>

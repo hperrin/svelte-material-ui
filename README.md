@@ -52,10 +52,11 @@ I'm only going to do things that need to/can be Svelte-ified. For some things, l
   - [x] Icon Buttons
 - [x] Cards
 - [x] Chips
+- [ ] Data Tables
 - [x] Dialogs
 - [x] Drawers
 - [ ] Grid Lists
-- [ ] Image Lists
+- [ ] Image List
 - [ ] Inputs and Controls
   - [x] Checkboxes
   - [ ] Floating Label
@@ -85,7 +86,6 @@ I'm only going to do things that need to/can be Svelte-ified. For some things, l
   - [ ] Tab Indicator
   - [ ] Tab Scroller
 - [ ] Theme
-- [ ] Toolbars (deprecated)
 - [ ] Top App Bar
 - [x] Typography
 
