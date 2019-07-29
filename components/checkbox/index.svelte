@@ -10,7 +10,7 @@
     use:useActions={inputProps.use}
     class="mdc-checkbox__native-control {inputProps.class}"
     type="checkbox"
-    {id}
+    {...incoming}
     {disabled}
     bind:checked={nativeChecked}
     {value}
@@ -53,7 +53,7 @@
   let element;
   let checkbox;
   let formField = getContext('SMUI:formField');
-  let id = getContext('SMUI:formField:id');
+  let incoming = getContext('SMUI:formField:props') || {};
   let setChecked = getContext('SMUI:formField:setChecked');
   let nativeChecked = group === uninitializedValue ? (checked === uninitializedValue ? false : checked) : group.indexOf(value) !== -1;
 
@@ -98,7 +98,7 @@
     checkbox = new MDCCheckbox(element);
 
     if (formField && formField()) {
-      formField().input = radio;
+      formField().input = checkbox;
     }
   });
 
@@ -120,7 +120,7 @@
   }
 
   export function getId() {
-    return id;
+    return incoming && incoming.id;
   }
 </script>
 

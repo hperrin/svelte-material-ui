@@ -67,7 +67,7 @@ I'm only going to do things that need to/can be Svelte-ified. For some things, l
   - [ ] Select Menus
     - [ ] Select Helper Text
     - [ ] Select Icon
-  - [ ] Sliders
+  - [x] Sliders
   - [x] Switches
   - [ ] Text Field
     - [ ] Text Field Character Counter

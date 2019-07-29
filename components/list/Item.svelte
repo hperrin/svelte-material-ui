@@ -13,7 +13,7 @@
     {tabindex}
     on:click={action}
     on:keydown={handleKeydown}
-    {...exclude($$props, ['use', 'class', 'ripple', 'nonInteractive', 'activated', 'selected', 'disabled', 'tabindex', 'href'])}
+    {...exclude($$props, ['use', 'class', 'ripple', 'nonInteractive', 'activated', 'selected', 'disabled', 'tabindex', 'href', 'inputId'])}
   ><slot></slot></a>
 {:else if nav && !href}
   <span
@@ -29,7 +29,7 @@
     {tabindex}
     on:click={action}
     on:keydown={handleKeydown}
-    {...exclude($$props, ['use', 'class', 'ripple', 'nonInteractive', 'activated', 'selected', 'disabled', 'tabindex', 'href'])}
+    {...exclude($$props, ['use', 'class', 'ripple', 'nonInteractive', 'activated', 'selected', 'disabled', 'tabindex', 'href', 'inputId'])}
   ><slot></slot></span>
 {:else}
   <li
@@ -48,7 +48,7 @@
     {tabindex}
     on:click={action}
     on:keydown={handleKeydown}
-    {...exclude($$props, ['use', 'class', 'ripple', 'nonInteractive', 'activated', 'selected', 'disabled', 'tabindex', 'href'])}
+    {...exclude($$props, ['use', 'class', 'ripple', 'nonInteractive', 'activated', 'selected', 'disabled', 'tabindex', 'href', 'inputId'])}
   ><slot></slot></li>
 {/if}
 
@@ -79,13 +79,13 @@
   export let disabled = false;
   export let tabindex = !nonInteractive && !disabled && (selected || checked) && '0' || '-1';
   export let href = false;
+  export let inputId = 'SMUI-form-field-list-'+(counter++);
 
   let element;
   let addTabindexIfNoItemsSelectedRaf;
-  let id = 'SMUI-form-field-list-'+(counter++);
   let nav = getContext('SMUI:list:item:nav');
 
-  setContext('SMUI:formField:id', id);
+  setContext('SMUI:formField:props', {id: inputId});
   setContext('SMUI:formField:setChecked', setChecked);
 
   onMount(() => {

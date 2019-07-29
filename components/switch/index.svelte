@@ -15,7 +15,7 @@
         class="mdc-switch__native-control {inputProps.class}"
         type="checkbox"
         role="switch"
-        {id}
+        {...incoming}
         {disabled}
         bind:checked={nativeChecked}
         {value}
@@ -53,7 +53,7 @@
   let element;
   let switchControl;
   let formField = getContext('SMUI:formField');
-  let id = getContext('SMUI:formField:id');
+  let incoming = getContext('SMUI:formField:props') || {};
   let setChecked = getContext('SMUI:formField:setChecked');
   let nativeChecked = group === uninitializedValue ? (checked === uninitializedValue ? false : checked) : group.indexOf(value) !== -1;
 
@@ -116,7 +116,7 @@
   }
 
   export function getId() {
-    return id;
+    return incoming && incoming.id;
   }
 </script>
 

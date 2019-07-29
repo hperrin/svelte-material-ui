@@ -4,10 +4,10 @@
   use:forwardEvents
   class="mdc-form-field {className}"
   class:mdc-form-field--align-end={alignEnd}
-  {...exclude($$props, ['use', 'class', 'alignEnd'])}
+  {...exclude($$props, ['use', 'class', 'alignEnd', 'inputId'])}
 >
   <slot name="input"></slot>
-  <label for={id}><slot name="label"></slot></label>
+  <label for={inputId}><slot name="label"></slot></label>
 </div>
 
 <script context="module">
@@ -28,13 +28,13 @@
   let className = '';
   export {className as class};
   export let alignEnd = false;
+  export let inputId = 'SMUI-form-field-'+(counter++);
 
   let element;
   let formField;
-  let id = 'SMUI-form-field-'+(counter++);
 
   setContext('SMUI:formField', () => formField);
-  setContext('SMUI:formField:id', id);
+  setContext('SMUI:formField:props', {id: inputId});
 
   onMount(() => {
     formField = new MDCFormField(element);

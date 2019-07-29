@@ -32,6 +32,7 @@
   import DemoDrawer from './DemoDrawer';
   import DemoCheckbox from './DemoCheckbox';
   import DemoRadio from './DemoRadio';
+  import DemoSlider from './DemoSlider';
   import DemoSwitch from './DemoSwitch';
   import DemoLinearProgress from './DemoLinearProgress';
   import DemoList from './DemoList';
@@ -100,6 +101,12 @@
       name: 'Radio Buttons',
       key: 'radio',
       component: DemoRadio,
+      indent: 1
+    },
+    {
+      name: 'Sliders',
+      key: 'slider',
+      component: DemoSlider,
       indent: 1
     },
     {

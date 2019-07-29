@@ -2,7 +2,7 @@
   use:useActions={use}
   use:forwardEvents
   class="mdc-list-item__text {className}"
-  for={id}
+  for={incoming && incoming.id}
   {...exclude($$props, ['use', 'class'])}
 ><slot></slot></label>
 
@@ -19,5 +19,5 @@
   let className = '';
   export {className as class};
 
-  let id = getContext('SMUI:formField:id');
+  let incoming = getContext('SMUI:formField:props') || {};
 </script>
