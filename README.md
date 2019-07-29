@@ -1,4 +1,6 @@
 # Svelte 3 Material UI Components
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fhperrin%2Fsvelte-material-ui.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fhperrin%2Fsvelte-material-ui?ref=badge_shield)
+
 
 A work in progress library of Svelte 3 components for Material UI.
 
@@ -110,3 +112,5 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fhperrin%2Fsvelte-material-ui.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fhperrin%2Fsvelte-material-ui?ref=badge_large)
