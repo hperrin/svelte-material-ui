@@ -102,12 +102,12 @@
     return slider.layout(...args);
   }
 
-  export function stepUp(...args) {
-    return slider.stepUp(...args);
+  export function stepUp(amount = 1, ...args) {
+    return slider.stepUp(amount, ...args);
   }
 
-  export function stepDown(...args) {
-    return slider.stepDown(...args);
+  export function stepDown(amount = 1, ...args) {
+    return slider.stepDown(amount, ...args);
   }
 
   export function getId() {

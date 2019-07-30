@@ -59,10 +59,10 @@ I'm only going to do things that need to/can be Svelte-ified. For some things, l
 - [ ] Image List
 - [ ] Inputs and Controls
   - [x] Checkboxes
-  - [ ] Floating Label
+  - [x] Floating Label
   - [x] Form Fields
-  - [ ] Line Ripple
-  - [ ] Notched Outline
+  - [x] Line Ripple
+  - [x] Notched Outline
   - [x] Radio Buttons
   - [ ] Select Menus
     - [ ] Select Helper Text
