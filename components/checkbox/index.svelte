@@ -61,6 +61,10 @@
     setChecked(nativeChecked);
   }
 
+  $: if (checkbox && checkbox.indeterminate !== indeterminate) {
+    checkbox.indeterminate = indeterminate;
+  }
+
   $: if (checkbox) {
     if (group !== uninitializedValue) {
       const isChecked = group.indexOf(value) !== -1;
@@ -70,10 +74,6 @@
     } else if (checkbox.checked !== checked) {
       checkbox.checked = checked;
     }
-  }
-
-  $: if (checkbox && checkbox.indeterminate !== indeterminate) {
-    checkbox.indeterminate = indeterminate;
   }
 
   $: if (checkbox && checkbox.disabled !== disabled) {
