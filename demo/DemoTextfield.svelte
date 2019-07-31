@@ -3,7 +3,7 @@
 
   <div>
     <div class="margins">
-      <Textfield type="email" withTrailingIcon={valueClickable !== ''} bind:dirty={dirtyClickable} bind:invalid={invalidClickable} bind:value={valueClickable} label="To" style="min-width: 250px;">
+      <Textfield type="email" withTrailingIcon={valueClickable !== ''} bind:dirty={dirtyClickable} bind:invalid={invalidClickable} bind:value={valueClickable} label="To" style="min-width: 250px;" input$autocomplete="email">
         {#if valueClickable !== '' && dirtyClickable && !invalidClickable}
           <Icon role="button" on:click={clickableHandler}>send</Icon>
         {/if}
