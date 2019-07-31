@@ -31,7 +31,7 @@
   let className = '';
   export {className as class};
   export let ripple = true;
-  export let variant = '';
+  export let variant = null;
   export let dense = false;
 
   setContext('SMUI:labelContext', 'button');

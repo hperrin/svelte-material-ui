@@ -8,7 +8,9 @@
   {...exclude($$props, ['use', 'class', 'notched', 'noLabel'])}
 >
   <div class="mdc-notched-outline__leading"></div>
-  <div class="mdc-notched-outline__notch"><slot></slot></div>
+  {#if !noLabel}
+    <div class="mdc-notched-outline__notch"><slot></slot></div>
+  {/if}
   <div class="mdc-notched-outline__trailing"></div>
 </div>
 

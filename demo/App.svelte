@@ -1,11 +1,12 @@
-<Drawer>
+<svelte:window on:resize={setMiniWindow} />
+<Drawer variant={miniWindow ? 'modal' : null} bind:open={drawerOpen}>
   <div use:Header>
     <h1 use:Title>Material Components</h1>
   </div>
   <div use:Content>
     <List>
       {#each sections as section}
-        <Item href={'key' in section ? '#' : undefined} on:click={() => 'key' in section && pickSection(section)} activated={'key' in section && key === section.key} style="{section.indent ? 'margin-left: '+(section.indent * 18)+'px;' : ''}">
+        <Item href={'key' in section ? '#' : undefined} on:click={() => pickSection(section)} activated={'key' in section && key === section.key} title={section.name} style="{section.indent ? 'margin-left: '+(section.indent * 18)+'px;' : ''}">
           <span use:Text>{section.name}</span>
         </Item>
       {/each}
@@ -13,14 +14,24 @@
   </div>
 </Drawer>
 
+{#if miniWindow}
+  <div use:Scrim />
+{/if}
 <div use:AppContent class="app-content">
   <main class="main-content" bind:this={mainContent}>
+    {#if miniWindow}
+      <div>
+        <IconButton on:click={() => drawerOpen = !drawerOpen}>menu</IconButton>
+      </div>
+    {/if}
     <svelte:component this={component} />
   </main>
 </div>
 
 <script>
-  import Drawer, {Header, Title, Content, AppContent} from '../components/drawer';
+  import {onMount} from 'svelte';
+  import Drawer, {Header, Title, Content, Scrim, AppContent} from '../components/drawer';
+  import IconButton from '../components/icon-button';
   import List, {Item, Text} from '../components/list';
 
   import DemoButton from './DemoButton';
@@ -34,6 +45,7 @@
   import DemoRadio from './DemoRadio';
   import DemoSlider from './DemoSlider';
   import DemoSwitch from './DemoSwitch';
+  import DemoTextfield from './DemoTextfield';
   import DemoLinearProgress from './DemoLinearProgress';
   import DemoList from './DemoList';
   import DemoMenuSurface from './DemoMenuSurface';
@@ -43,6 +55,8 @@
   let key = 'button';
   let component = DemoButton;
   let mainContent;
+  let miniWindow = false;
+  let drawerOpen = false;
 
   const sections = [
     {
@@ -89,12 +103,38 @@
     },
     {
       name: 'Inputs and Controls',
+      shortcut: 'textfield',
+      component: DemoTextfield,
       indent: 0
     },
     {
       name: 'Checkboxes',
       key: 'checkbox',
       component: DemoCheckbox,
+      indent: 1
+    },
+    {
+      name: 'Floating Label',
+      shortcut: 'textfield',
+      component: DemoTextfield,
+      indent: 1
+    },
+    {
+      name: 'Form Fields',
+      shortcut: 'radio',
+      component: DemoRadio,
+      indent: 1
+    },
+    {
+      name: 'Line Ripple',
+      shortcut: 'textfield',
+      component: DemoTextfield,
+      indent: 1
+    },
+    {
+      name: 'Notched Outline',
+      shortcut: 'textfield',
+      component: DemoTextfield,
       indent: 1
     },
     {
@@ -114,6 +154,30 @@
       key: 'switch',
       component: DemoSwitch,
       indent: 1
+    },
+    {
+      name: 'Text Field',
+      key: 'textfield',
+      component: DemoTextfield,
+      indent: 1
+    },
+    {
+      name: 'Text Field Character Count',
+      shortcut: 'textfield',
+      component: DemoTextfield,
+      indent: 2
+    },
+    {
+      name: 'Text Field Helper Text',
+      shortcut: 'textfield',
+      component: DemoTextfield,
+      indent: 2
+    },
+    {
+      name: 'Text Field Icon',
+      shortcut: 'textfield',
+      component: DemoTextfield,
+      indent: 2
     },
     {
       name: 'Linear Progress',
@@ -147,10 +211,21 @@
     }
   ];
 
+  onMount(setMiniWindow);
+
   function pickSection(section) {
-    key = section.key;
+    if ('key' in section) {
+      key = section.key;
+    } else {
+      key = section.shortcut;
+    }
     component = section.component;
+    drawerOpen = false;
     mainContent.scrollTop = 0;
+  }
+
+  function setMiniWindow() {
+    miniWindow = window.innerWidth < 720;
   }
 </script>
 

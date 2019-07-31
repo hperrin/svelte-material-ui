@@ -38,7 +38,7 @@ Here are some juicy features:
 * Ripples are on by default on interactive components, and can be turned off with `ripple={false}`.
 * You can also add ripples to things with the Ripple Svelte action.
 * All standard UI events are forwarded on most components, and input events are forwarded on input components.
-* Things like labels and icons are named exports in each component, or you can use 'common/Label' and 'common/Icon'.
+* Things like labels and icons are named exports in each component, or you can use 'common/Label' and 'common/Icon'. (Except for textfield icon, because it is a special snowflake.)
 * I try very hard to keep you from having to write an actual HTML element or CSS class, so most things are done through Svelte components and properties, with actions being the last resort.
 
 To bundle this in your own code, you must use the `svelte-preprocess` package. See the webpack config in this package for an example.
@@ -69,10 +69,10 @@ I'm only going to do things that need to/can be Svelte-ified. For some things, l
     - [ ] Select Icon
   - [x] Sliders
   - [x] Switches
-  - [ ] Text Field
-    - [ ] Text Field Character Counter
-    - [ ] Text Field Helper Text
-    - [ ] Text Field Icon
+  - [x] Text Field
+    - [x] Text Field Character Counter
+    - [x] Text Field Helper Text
+    - [x] Text Field Icon
 - [ ] Layout Grid
 - [x] Linear Progress
 - [x] Lists

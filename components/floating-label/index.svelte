@@ -1,22 +1,20 @@
-{#if wrapper || !wrapped}
-  <label
-    bind:this={element}
-    use:useActions={use}
-    use:forwardEvents
-    class="{className}"
-    class:mdc-floating-label={!wrapper}
-    class:mdc-text-field={wrapper}
-    for={!wrapped && !wrapper && incoming && incoming.id}
-    {...exclude($$props, ['use', 'class', 'wrapper', 'wrapped'])}
-  ><slot></slot></label>
-{:else}
+{#if wrapped}
   <span
     bind:this={element}
     use:useActions={use}
     use:forwardEvents
     class="mdc-floating-label {className}"
-    {...exclude($$props, ['use', 'class', 'wrapper', 'wrapped'])}
+    {...exclude($$props, ['use', 'class', 'for', 'wrapped'])}
   ><slot></slot></span>
+{:else}
+  <label
+    bind:this={element}
+    use:useActions={use}
+    use:forwardEvents
+    class="mdc-floating-label {className}"
+    for={incoming && incoming.id || forId}
+    {...exclude($$props, ['use', 'class', 'for', 'wrapped'])}
+  ><slot></slot></label>
 {/if}
 
 <script>
@@ -32,7 +30,8 @@
   export let use = [];
   let className = '';
   export {className as class};
-  export let wrapper = false;
+  let forId = '';
+  export {forId as for};
   export let wrapped = false;
 
   let element;

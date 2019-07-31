@@ -43,7 +43,7 @@
     A dismissible drawer with a header and activated items.
 
     <div class="drawer-container">
-      <Drawer dismissible bind:this={myDrawer} bind:open={myDrawerOpen}>
+      <Drawer variant="dismissible" bind:this={myDrawer} bind:open={myDrawerOpen}>
         <div use:Header>
           <h1 use:Title>Super Drawer</h1>
           <h2 use:Subtitle>It's the best drawer.</h2>
@@ -85,7 +85,7 @@
     A modal drawer with header, activated items, subheading, icons, list groups.
 
     <div class="drawer-container">
-      <Drawer modal bind:this={myDrawer2} bind:open={myDrawer2Open}>
+      <Drawer variant="modal" bind:this={myDrawer2} bind:open={myDrawer2Open}>
         <div use:Header>
           <h1 use:Title>Super Mail</h1>
           <h2 use:Subtitle>It's the best fake mail app drawer.</h2>
@@ -173,6 +173,7 @@
     max-width: 600px;
     border: 1px solid rgba(0,0,0,.1);
     overflow: hidden;
+    z-index: 0;
   }
 
   * :global(.mdc-drawer--modal, .mdc-drawer-scrim) {
