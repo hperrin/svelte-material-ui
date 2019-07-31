@@ -41,18 +41,20 @@
     Indeterminate:<br />
     <FormField>
       <div slot="input">
-        <Checkbox bind:checked={indeterminateChecked} indeterminate={indeterminateChecked === null} />
+        <Checkbox bind:checked={indeterminateChecked} indeterminate={indeterminateChecked === null} input$required />
       </div>
       <span slot="label">I agree to the terms.</span>
     </FormField>
   </div>
 
-  <div class="status">Checked: {indeterminateChecked} <button on:click={() => indeterminateChecked = null }>reset</button></div>
+  <div class="status">Checked: {indeterminateChecked}</div>
+  <Button on:click={() => indeterminateChecked = null }>reset</Button>
 </section>
 
 <script>
   import Checkbox from '../components/checkbox';
   import FormField from '../components/form-field';
+  import Button from '../components/button';
 
   let simpleSelected = false;
   let simpleSelected2 = false;

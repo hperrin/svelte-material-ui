@@ -25,10 +25,8 @@ Here's some example code:
 <Textfield
   bind:value={superText}
   label="Super Text"
-  inputProps={{
-    'aria-controls': 'helper-text',
-    'aria-describedby': 'helper-text'
-  }}
+  input$aria-controls="helper-text"
+  input$aria-describedby="helper-text"
 />
 <div use:HelperLine>
   <HelperText id="helper-text">What you put in this box will become super!</HelperText>
@@ -50,6 +48,7 @@ Here are some juicy features:
 
 * You can add any arbitrary property to nearly all of the components.
 * You can add actions to the components with `use={[Action1, [Action2, action2Props]]}`.
+* You can add props to lower components and elements with things like `input$maxlength="15"`.
 * Ripples are on by default on interactive components, and can be turned off with `ripple={false}`.
 * You can also add ripples to things with the Ripple Svelte action.
 * All standard UI events are forwarded on most components, and input events are forwarded on input components.

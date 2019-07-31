@@ -4,10 +4,13 @@
   use:forwardEvents
   class="mdc-form-field {className}"
   class:mdc-form-field--align-end={alignEnd}
-  {...exclude($$props, ['use', 'class', 'alignEnd', 'inputId'])}
+  {...exclude($$props, ['use', 'class', 'alignEnd', 'inputId', 'label$'])}
 >
   <slot name="input"></slot>
-  <label for={inputId}><slot name="label"></slot></label>
+  <label
+    for={inputId}
+    {...prefixFilter($$props, 'label$')}
+  ><slot name="label"></slot></label>
 </div>
 
 <script context="module">
@@ -20,6 +23,7 @@
   import {current_component} from 'svelte/internal';
   import {forwardEventsBuilder} from '../forwardEvents';
   import {exclude} from '../exclude';
+  import {prefixFilter} from '../prefixFilter';
   import {useActions} from '../useActions';
 
   const forwardEvents = forwardEventsBuilder(current_component);

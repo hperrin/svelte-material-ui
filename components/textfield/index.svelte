@@ -12,7 +12,7 @@
     class:mdc-text-field--no-label={noLabel || label == null}
     class:mdc-text-field--with-leading-icon={withLeadingIcon}
     class:mdc-text-field--with-trailing-icon={withTrailingIcon}
-    {...exclude($$props, ['use', 'class', 'ripple', 'disabled', 'fullwidth', 'textarea', 'outlined', 'dense', 'noLabel', 'withLeadingIcon', 'withTrailingIcon', 'lineRipple', 'label', 'type', 'value', 'inputProps'])}
+    {...exclude($$props, ['use', 'class', 'ripple', 'disabled', 'fullwidth', 'textarea', 'outlined', 'dense', 'noLabel', 'withLeadingIcon', 'withTrailingIcon', 'lineRipple', 'label', 'type', 'value', 'input$', 'label$', 'ripple$', 'outline$'])}
   >
     <slot></slot>
     {#if textarea}
@@ -23,7 +23,7 @@
         bind:invalid
         on:change
         on:input
-        {...exclude(inputProps, ['type', 'value'])}
+        {...prefixFilter($$props, 'input$')}
       />
     {:else}
       <Input
@@ -35,21 +35,21 @@
         on:change
         on:input
         {...placeholderProp}
-        {...exclude(inputProps, ['type', 'value'])}
+        {...prefixFilter($$props, 'input$')}
       />
     {/if}
     {#if !textarea && !outlined}
       {#if !noLabel && label != null && !fullwidth}
-        <FloatingLabel wrapped>{label}<slot name="label"></slot></FloatingLabel>
+        <FloatingLabel wrapped {...prefixFilter($$props, 'label$')}>{label}<slot name="label"></slot></FloatingLabel>
       {/if}
       {#if lineRipple}
-        <LineRipple />
+        <LineRipple {...prefixFilter($$props, 'ripple$')} />
       {/if}
     {/if}
     {#if textarea || (outlined && !fullwidth)}
-      <NotchedOutline noLabel={noLabel || label == null}>
+      <NotchedOutline noLabel={noLabel || label == null} {...prefixFilter($$props, 'outline$')}>
         {#if !noLabel && label != null}
-          <FloatingLabel wrapped>{label}<slot name="label"></slot></FloatingLabel>
+          <FloatingLabel wrapped {...prefixFilter($$props, 'label$')}>{label}<slot name="label"></slot></FloatingLabel>
         {/if}
       </NotchedOutline>
     {/if}
@@ -68,7 +68,7 @@
     class:mdc-text-field--no-label={noLabel}
     class:mdc-text-field--with-leading-icon={withLeadingIcon}
     class:mdc-text-field--with-trailing-icon={withTrailingIcon}
-    {...exclude($$props, ['use', 'class', 'ripple', 'disabled', 'fullwidth', 'textarea', 'outlined', 'dense', 'noLabel', 'withLeadingIcon', 'withTrailingIcon', 'lineRipple', 'label', 'type', 'value', 'inputProps'])}
+    {...exclude($$props, ['use', 'class', 'ripple', 'disabled', 'fullwidth', 'textarea', 'outlined', 'dense', 'noLabel', 'withLeadingIcon', 'withTrailingIcon', 'lineRipple', 'label', 'type', 'value', 'input$', 'label$', 'ripple$', 'outline$'])}
   >
     <slot></slot>
   </div>
@@ -94,6 +94,7 @@
   import NotchedOutline from '../notched-outline';
   import {forwardEventsBuilder} from '../forwardEvents';
   import {exclude} from '../exclude';
+  import {prefixFilter} from '../prefixFilter';
   import {useActions} from '../useActions';
 
   const forwardEvents = forwardEventsBuilder(current_component);
@@ -117,10 +118,6 @@
   export let value = uninitializedValue;
   export let dirty = false;
   export let invalid = false;
-  export let inputProps = {
-    use: [],
-    class: ''
-  };
 
   let element;
   let textField;

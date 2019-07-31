@@ -4,11 +4,11 @@
   use:forwardEvents
   class="mdc-radio {className}"
   class:mdc-radio--disabled={disabled}
-  {...exclude($$props, ['use', 'class', 'disabled', 'group', 'value', 'inputProps'])}
+  {...exclude($$props, ['use', 'class', 'disabled', 'group', 'value', 'input$'])}
 >
   <input
-    use:useActions={inputProps.use}
-    class="mdc-radio__native-control {inputProps.class}"
+    use:useActions={input$use}
+    class="mdc-radio__native-control {input$class}"
     type="radio"
     {...incoming}
     {disabled}
@@ -16,7 +16,7 @@
     {checked}
     on:change={handleChange}
     on:change on:input
-    {...exclude(inputProps, ['use', 'class'])}
+    {...exclude(prefixFilter($$props, 'input$'), ['use', 'class'])}
   />
   <div class="mdc-radio__background">
     <div class="mdc-radio__outer-circle"></div>
@@ -30,6 +30,7 @@
   import {current_component} from 'svelte/internal';
   import {forwardEventsBuilder} from '../forwardEvents';
   import {exclude} from '../exclude';
+  import {prefixFilter} from '../prefixFilter';
   import {useActions} from '../useActions';
 
   const forwardEvents = forwardEventsBuilder(current_component);
@@ -40,10 +41,8 @@
   export let disabled = false;
   export let group = null;
   export let value = null;
-  export let inputProps = {
-    use: [],
-    class: ''
-  };
+  export let input$use = [];
+  export let input$class = '';
 
   let element;
   let radio;

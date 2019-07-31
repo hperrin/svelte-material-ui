@@ -4,11 +4,11 @@
   use:forwardEvents
   class="mdc-checkbox {className}"
   class:mdc-checkbox--disabled={disabled}
-  {...exclude($$props, ['use', 'class', 'disabled', 'indeterminate', 'group', 'checked', 'value', 'inputProps'])}
+  {...exclude($$props, ['use', 'class', 'disabled', 'indeterminate', 'group', 'checked', 'value', 'input$'])}
 >
   <input
-    use:useActions={inputProps.use}
-    class="mdc-checkbox__native-control {inputProps.class}"
+    use:useActions={input$use}
+    class="mdc-checkbox__native-control {input$class}"
     type="checkbox"
     {...incoming}
     {disabled}
@@ -16,7 +16,7 @@
     {value}
     on:change={handleChange}
     on:change on:input
-    {...exclude(inputProps, ['use', 'class'])}
+    {...exclude(prefixFilter($$props, 'input$'), ['use', 'class'])}
   />
   <div class="mdc-checkbox__background">
     <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
@@ -32,6 +32,7 @@
   import {current_component} from 'svelte/internal';
   import {forwardEventsBuilder} from '../forwardEvents';
   import {exclude} from '../exclude';
+  import {prefixFilter} from '../prefixFilter';
   import {useActions} from '../useActions';
 
   const forwardEvents = forwardEventsBuilder(current_component);
@@ -45,10 +46,8 @@
   export let group = uninitializedValue;
   export let checked = uninitializedValue;
   export let value = null;
-  export let inputProps = {
-    use: [],
-    class: ''
-  };
+  export let input$use = [];
+  export let input$class = '';
 
   let element;
   let checkbox;

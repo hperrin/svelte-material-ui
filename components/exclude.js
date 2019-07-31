@@ -1,10 +1,17 @@
 export function exclude(obj, keys) {
-  let newObj = obj;
+  let names = Object.getOwnPropertyNames(obj);
+  const newObj = {};
 
-  for (let i = 0; i < keys.length; i++) {
-    const key =  keys[i];
-    const {[key]: removed, ...everythingElse} = newObj;
-    newObj = everythingElse;
+  for (let i = 0; i < names.length; i++) {
+    const name = names[i];
+    const cashIndex = name.indexOf('$');
+    if (cashIndex !== -1 && keys.indexOf(name.substring(0, cashIndex + 1)) !== -1) {
+      continue;
+    }
+    if (keys.indexOf(name) !== -1) {
+      continue;
+    }
+    newObj[name] = obj[name];
   }
 
   return newObj;

@@ -5,14 +5,14 @@
   class="mdc-switch {className}"
   class:mdc-switch--disabled={disabled}
   class:mdc-switch--checked={nativeChecked}
-  {...exclude($$props, ['use', 'class', 'disabled', 'group', 'checked', 'value', 'inputProps'])}
+  {...exclude($$props, ['use', 'class', 'disabled', 'group', 'checked', 'value', 'input$'])}
 >
   <div class="mdc-switch__track"></div>
   <div class="mdc-switch__thumb-underlay">
     <div class="mdc-switch__thumb">
       <input
-        use:useActions={inputProps.use}
-        class="mdc-switch__native-control {inputProps.class}"
+        use:useActions={input$use}
+        class="mdc-switch__native-control {input$class}"
         type="checkbox"
         role="switch"
         {...incoming}
@@ -21,7 +21,7 @@
         {value}
         on:change={handleChange}
         on:change on:input
-        {...exclude(inputProps, ['use', 'class'])}
+        {...exclude(prefixFilter($$props, 'input$'), ['use', 'class'])}
       />
     </div>
   </div>
@@ -33,6 +33,7 @@
   import {current_component} from 'svelte/internal';
   import {forwardEventsBuilder} from '../forwardEvents';
   import {exclude} from '../exclude';
+  import {prefixFilter} from '../prefixFilter';
   import {useActions} from '../useActions';
 
   const forwardEvents = forwardEventsBuilder(current_component);
@@ -45,10 +46,8 @@
   export let group = uninitializedValue;
   export let checked = uninitializedValue;
   export let value = null;
-  export let inputProps = {
-    use: [],
-    class: ''
-  };
+  export let input$use = [];
+  export let input$class = '';
 
   let element;
   let switchControl;
