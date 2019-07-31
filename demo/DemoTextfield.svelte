@@ -2,6 +2,21 @@
   <h2>Text Field</h2>
 
   <div>
+    <div class="margins">
+      <Textfield type="email" withTrailingIcon={valueClickable !== ''} bind:dirty={dirtyClickable} bind:invalid={invalidClickable} bind:value={valueClickable} label="To" style="min-width: 250px;">
+        {#if valueClickable !== '' && dirtyClickable && !invalidClickable}
+          <Icon role="button" on:click={clickableHandler}>send</Icon>
+        {/if}
+      </Textfield>
+      <div use:HelperLine>
+        <HelperText validationMsg>That's not a valid email address.</HelperText>
+      </div>
+    </div>
+
+    <div class="status">Dirty: {dirtyClickable}, Invalid: {invalidClickable}</div>
+  </div>
+
+  <div>
     Filled:
 
     <div class="columns margins">
@@ -285,21 +300,6 @@
   </div>
 
   <div>
-    Typed, with validation message and clickable trailing icon:
-
-    <div class="margins">
-      <Textfield type="email" withTrailingIcon={valueClickable !== ''} bind:value={valueClickable} label="To" style="min-width: 250px;">
-        {#if valueClickable !== ''}
-          <Icon role="button" on:click={() => alert(`Sending to ${valueClickable}!`)}>send</Icon>
-        {/if}
-      </Textfield>
-      <div use:HelperLine>
-        <HelperText validationMsg>That's not a valid email address.</HelperText>
-      </div>
-    </div>
-  </div>
-
-  <div>
     Both icons:
 
     <div class="margins">
@@ -417,6 +417,9 @@
   import LineRipple from '../components/line-ripple';
   import NotchedOutline from '../components/notched-outline';
 
+  let valueClickable = '';
+  let dirtyClickable = false;
+  let invalidClickable = false;
   let valueFilledA = '';
   let valueFilledB = '';
   let valueFilledC = '';
@@ -441,7 +444,6 @@
   let valueCharCountA = '';
   let valueCharCountB = '';
   let valueCharCountC = '';
-  let valueClickable = '';
   let valueIcons = '';
   let valueTextarea = '';
   let valueTextareaCharCount = '';
@@ -451,6 +453,12 @@
   let valueManualA = '';
   let valueManualB = '';
   let valueManualC = '';
+
+  function clickableHandler() {
+    alert(`Sending to ${valueClickable}!`);
+    valueClickable = '';
+    dirtyClickable = false;
+  }
 </script>
 
 <style>

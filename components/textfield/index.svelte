@@ -19,6 +19,10 @@
       <Textarea
         {disabled}
         bind:value
+        bind:dirty
+        bind:invalid
+        on:change
+        on:input
         {...exclude(inputProps, ['type', 'value'])}
       />
     {:else}
@@ -26,6 +30,10 @@
         {type}
         {disabled}
         bind:value
+        bind:dirty
+        bind:invalid
+        on:change
+        on:input
         {...placeholderProp}
         {...exclude(inputProps, ['type', 'value'])}
       />
@@ -79,7 +87,7 @@
 
 <script>
   import {MDCTextField} from '@material/textfield';
-  import {onMount, onDestroy, setContext} from 'svelte';
+  import {onMount, onDestroy} from 'svelte';
   import {current_component} from 'svelte/internal';
   import FloatingLabel from '../floating-label';
   import LineRipple from '../line-ripple';
@@ -107,6 +115,8 @@
   export let label = null;
   export let type = 'text';
   export let value = uninitializedValue;
+  export let dirty = false;
+  export let invalid = false;
   export let inputProps = {
     use: [],
     class: ''
@@ -114,8 +124,6 @@
 
   let element;
   let textField;
-
-  setContext('SMUI:iconContext', 'textfield');
 
   $: valued = value !== uninitializedValue;
 
