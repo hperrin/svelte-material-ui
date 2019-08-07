@@ -55,6 +55,8 @@
   import DemoList from './component-demos/List';
   import DemoMenuSurface from './component-demos/MenuSurface';
   import DemoMenu from './component-demos/Menu';
+  import DemoRipple from './component-demos/Ripple';
+  import DemoTheme from './component-demos/Theme';
   import DemoTypography from './component-demos/Typography';
 
   let mainContent;
@@ -215,6 +217,18 @@
       indent: 0
     },
     {
+      name: 'Ripples',
+      key: 'ripple',
+      component: DemoRipple,
+      indent: 0
+    },
+    {
+      name: 'Theme',
+      key: 'theme',
+      component: DemoTheme,
+      indent: 0
+    },
+    {
       name: 'Typography',
       key: 'typography',
       component: DemoTypography,
@@ -258,13 +272,16 @@
     flex: auto;
     overflow: auto;
     position: relative;
-    flex-grow: 1;
   }
 
   .main-content {
     overflow: auto;
-    padding: 16px;
     height: 100%;
+    display: flex;
+  }
+
+  .main-content :global(section) {
+    padding: 16px;
     box-sizing: border-box;
   }
 

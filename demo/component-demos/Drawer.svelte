@@ -8,19 +8,19 @@
       <Drawer>
         <div use:Content>
           <List>
-            <Item href="#" on:click={() => clicked = 'Gray Kittens'}>
+            <Item href="javascript:void(0)" on:click={() => clicked = 'Gray Kittens'}>
               <span use:Text>Gray Kittens</span>
             </Item>
-            <Item href="#" on:click={() => clicked = 'A Space Rocket'}>
+            <Item href="javascript:void(0)" on:click={() => clicked = 'A Space Rocket'}>
               <span use:Text>A Space Rocket</span>
             </Item>
-            <Item href="#" on:click={() => clicked = '100 Pounds of Gravel'}>
+            <Item href="javascript:void(0)" on:click={() => clicked = '100 Pounds of Gravel'}>
               <span use:Text>100 Pounds of Gravel</span>
             </Item>
-            <Item href="#" on:click={() => clicked = 'All of the Shrimp'}>
+            <Item href="javascript:void(0)" on:click={() => clicked = 'All of the Shrimp'}>
               <span use:Text>All of the Shrimp</span>
             </Item>
-            <Item href="#" on:click={() => clicked = 'A Planet with a Mall'}>
+            <Item href="javascript:void(0)" on:click={() => clicked = 'A Planet with a Mall'}>
               <span use:Text>A Planet with a Mall</span>
             </Item>
           </List>
@@ -30,8 +30,6 @@
       <div use:AppContent class="app-content">
         <main class="main-content">
           App content.
-          <div style="height: 700px;">&nbsp;</div>
-          And some stuff at the bottom.
         </main>
       </div>
     </div>
@@ -50,19 +48,19 @@
         </div>
         <div use:Content>
           <List>
-            <Item href="#" on:click={() => setActive('Gray Kittens')} activated={active === 'Gray Kittens'}>
+            <Item href="javascript:void(0)" on:click={() => setActive('Gray Kittens')} activated={active === 'Gray Kittens'}>
               <span use:Text>Gray Kittens</span>
             </Item>
-            <Item href="#" on:click={() => setActive('A Space Rocket')} activated={active === 'A Space Rocket'}>
+            <Item href="javascript:void(0)" on:click={() => setActive('A Space Rocket')} activated={active === 'A Space Rocket'}>
               <span use:Text>A Space Rocket</span>
             </Item>
-            <Item href="#" on:click={() => setActive('100 Pounds of Gravel')} activated={active === '100 Pounds of Gravel'}>
+            <Item href="javascript:void(0)" on:click={() => setActive('100 Pounds of Gravel')} activated={active === '100 Pounds of Gravel'}>
               <span use:Text>100 Pounds of Gravel</span>
             </Item>
-            <Item href="#" on:click={() => setActive('All of the Shrimp')} activated={active === 'All of the Shrimp'}>
+            <Item href="javascript:void(0)" on:click={() => setActive('All of the Shrimp')} activated={active === 'All of the Shrimp'}>
               <span use:Text>All of the Shrimp</span>
             </Item>
-            <Item href="#" on:click={() => setActive('A Planet with a Mall')} activated={active === 'A Planet with a Mall'}>
+            <Item href="javascript:void(0)" on:click={() => setActive('A Planet with a Mall')} activated={active === 'A Planet with a Mall'}>
               <span use:Text>A Planet with a Mall</span>
             </Item>
           </List>
@@ -74,8 +72,6 @@
           <Button on:click={() => myDrawerOpen = !myDrawerOpen}><Label>Toggle Drawer</Label></Button>
           <br />
           <div class="status">Active: {active}</div>
-          <div style="height: 700px;">&nbsp;</div>
-          And some stuff at the bottom.
         </main>
       </div>
     </div>
@@ -92,34 +88,34 @@
         </div>
         <div use:Content>
           <List>
-            <Item href="#" on:click={() => setActive2('Inbox')} activated={active2 === 'Inbox'}>
+            <Item href="javascript:void(0)" on:click={() => setActive2('Inbox')} activated={active2 === 'Inbox'}>
               <i use:Graphic class="material-icons" aria-hidden="true">inbox</i>
               <span use:Text>Inbox</span>
             </Item>
-            <Item href="#" on:click={() => setActive2('Star')} activated={active2 === 'Star'}>
+            <Item href="javascript:void(0)" on:click={() => setActive2('Star')} activated={active2 === 'Star'}>
               <i use:Graphic class="material-icons" aria-hidden="true">star</i>
               <span use:Text>Star</span>
             </Item>
-            <Item href="#" on:click={() => setActive2('Sent Mail')} activated={active2 === 'Sent Mail'}>
+            <Item href="javascript:void(0)" on:click={() => setActive2('Sent Mail')} activated={active2 === 'Sent Mail'}>
               <i use:Graphic class="material-icons" aria-hidden="true">send</i>
               <span use:Text>Sent Mail</span>
             </Item>
-            <Item href="#" on:click={() => setActive2('Drafts')} activated={active2 === 'Drafts'}>
+            <Item href="javascript:void(0)" on:click={() => setActive2('Drafts')} activated={active2 === 'Drafts'}>
               <i use:Graphic class="material-icons" aria-hidden="true">drafts</i>
               <span use:Text>Drafts</span>
             </Item>
 
             <Separator nav />
             <h6 use:Subheader>Labels</h6>
-            <Item href="#" on:click={() => setActive2('Family')} activated={active2 === 'Family'}>
+            <Item href="javascript:void(0)" on:click={() => setActive2('Family')} activated={active2 === 'Family'}>
               <i use:Graphic class="material-icons" aria-hidden="true">bookmark</i>
               <span use:Text>Family</span>
             </Item>
-            <Item href="#" on:click={() => setActive2('Friends')} activated={active2 === 'Friends'}>
+            <Item href="javascript:void(0)" on:click={() => setActive2('Friends')} activated={active2 === 'Friends'}>
               <i use:Graphic class="material-icons" aria-hidden="true">bookmark</i>
               <span use:Text>Friends</span>
             </Item>
-            <Item href="#" on:click={() => setActive2('Work')} activated={active2 === 'Work'}>
+            <Item href="javascript:void(0)" on:click={() => setActive2('Work')} activated={active2 === 'Work'}>
               <i use:Graphic class="material-icons" aria-hidden="true">bookmark</i>
               <span use:Text>Work</span>
             </Item>

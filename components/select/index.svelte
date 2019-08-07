@@ -185,6 +185,7 @@
 </script>
 
 <style lang="scss" global>
+  @import "smui-theme";
   @import "@material/select/mdc-select";
 
   select {

@@ -151,5 +151,6 @@
 </script>
 
 <style lang="scss" global>
+  @import "smui-theme";
   @import "@material/menu/mdc-menu";
 </style>

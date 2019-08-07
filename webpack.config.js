@@ -1,6 +1,20 @@
 const path = require('path');
 const preprocess = require('svelte-preprocess');
 
+const sassOptions = {
+  includePaths: [
+    './node_modules',
+    './theme'
+  ],
+  importer: url => {
+    // This is so the demo can @import from 'svelte-material-ui'.
+    if (url.startsWith('svelte-material-ui/')) {
+      return {file: url.replace(/^svelte-material-ui/, path.resolve(__dirname))};
+    }
+    return null;
+  }
+};
+
 module.exports = {
   mode: 'development',
   entry: [path.resolve(__dirname, 'demo', 'index.js')],
@@ -23,16 +37,7 @@ module.exports = {
           loader: 'svelte-loader',
           options: {
             preprocess: preprocess({
-              scss: {
-                includePaths: ['./node_modules'],
-                importer: url => {
-                  // This is so the demo can @import from 'svelte-material-ui'.
-                  if (url.startsWith('svelte-material-ui/')) {
-                    return {file: url.replace(/^svelte-material-ui/, path.resolve(__dirname))};
-                  }
-                  return null;
-                }
-              }
+              scss: sassOptions
             })
           }
         },
@@ -41,7 +46,11 @@ module.exports = {
         test: /\.s?css$/,
         use: [
           {loader: 'style-loader'},
-          {loader: 'css-loader'}
+          {loader: 'css-loader'},
+          {
+            loader: 'sass-loader',
+            options: sassOptions
+          }
         ],
       },
       {

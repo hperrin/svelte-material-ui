@@ -52,7 +52,7 @@ Here are some juicy features:
 * All standard UI events are forwarded on most components, and input events are forwarded on input components.
 * Things like labels and icons are named exports in each component, or you can use 'common/Label' and 'common/Icon'. (Except for textfield/select icons, because they are special snowflakes.)
 
-To bundle this in your own code, you must use the `svelte-preprocess` package. See the webpack config in this package for an example.
+To bundle this in your own code, you must use the `svelte-preprocess` package, and you must have a `_smui-theme.scss` file in one of the Sass include paths. See the webpack config in this package for an example.
 
 ## Progress
 
@@ -96,7 +96,7 @@ I'm only going to do things that need to/can be Svelte-ified. For some things, l
   - [ ] Tab Bar
   - [ ] Tab Indicator
   - [ ] Tab Scroller
-- [ ] Theme
+- [x] Theme
 - [ ] Top App Bar
 - [x] Typography
 

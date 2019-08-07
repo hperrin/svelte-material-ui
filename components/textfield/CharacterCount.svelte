@@ -33,5 +33,6 @@
 </script>
 
 <style lang="scss" global>
+  @import "smui-theme";
   @import "@material/textfield/character-counter/mdc-text-field-character-counter";
 </style>

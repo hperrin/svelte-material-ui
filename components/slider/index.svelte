@@ -116,5 +116,6 @@
 </script>
 
 <style lang="scss" global>
+  @import "smui-theme";
   @import "@material/slider/mdc-slider";
 </style>

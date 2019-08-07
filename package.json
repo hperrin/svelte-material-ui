@@ -42,6 +42,7 @@
     "@material/slider": "^3.1.0",
     "@material/switch": "^3.1.0",
     "@material/textfield": "^3.1.0",
+    "@material/theme": "^3.1.0",
     "@material/typography": "^3.1.0"
   },
   "devDependencies": {

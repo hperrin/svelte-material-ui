@@ -52,5 +52,6 @@
 </script>
 
 <style lang="scss" global>
+  @import "smui-theme";
   @import "@material/form-field/mdc-form-field";
 </style>

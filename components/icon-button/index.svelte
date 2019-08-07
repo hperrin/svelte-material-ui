@@ -68,5 +68,6 @@
 </script>
 
 <style lang="scss" global>
+  @import "smui-theme";
   @import "@material/icon-button/mdc-icon-button";
 </style>

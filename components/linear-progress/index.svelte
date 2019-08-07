@@ -75,5 +75,6 @@
 </script>
 
 <style lang="scss" global>
+  @import "smui-theme";
   @import "@material/linear-progress/mdc-linear-progress";
 </style>

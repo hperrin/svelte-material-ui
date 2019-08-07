@@ -1,4 +1,5 @@
 import {MDCRipple} from '@material/ripple/index';
+import '@material/ripple/mdc-ripple.scss';
 
 export default function Ripple(node, [ripple, props = {unbounded: false, color: null}]) {
   let instance = null;
@@ -6,9 +7,11 @@ export default function Ripple(node, [ripple, props = {unbounded: false, color: 
   function handleProps(ripple, props) {
     if (ripple && !instance) {
       instance = new MDCRipple(node);
+      node.classList.add('mdc-ripple-surface');
     } else if (instance && !ripple) {
       instance.destroy();
       instance = null;
+      node.classList.remove('mdc-ripple-surface');
     }
     if (ripple) {
       instance.unbounded = !!props.unbounded;
@@ -38,6 +41,8 @@ export default function Ripple(node, [ripple, props = {unbounded: false, color: 
     destroy() {
       if (instance) {
         instance.destroy();
+        instance = null;
+        node.classList.remove('mdc-ripple-surface');
       }
     }
   }

@@ -52,5 +52,6 @@
 </script>
 
 <style lang="scss" global>
+  @import "smui-theme";
   @import "@material/textfield/helper-text/mdc-text-field-helper-text";
 </style>

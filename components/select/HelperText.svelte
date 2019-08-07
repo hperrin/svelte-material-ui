@@ -38,5 +38,6 @@
 </script>
 
 <style lang="scss" global>
+  @import "smui-theme";
   @import "@material/select/helper-text/mdc-select-helper-text";
 </style>

@@ -37,5 +37,6 @@
 </script>
 
 <style lang="scss" global>
+  @import "smui-theme";
   @import "@material/select/icon/mdc-select-icon";
 </style>

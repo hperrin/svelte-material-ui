@@ -74,5 +74,6 @@
 </script>
 
 <style lang="scss" global>
+  @import "smui-theme";
   @import "@material/dialog/mdc-dialog";
 </style>

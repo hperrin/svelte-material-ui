@@ -144,6 +144,7 @@
 </script>
 
 <style lang="scss" global>
+  @import "smui-theme";
   @import "@material/menu-surface/mdc-menu-surface";
 
   .smui-menu-surface--static {
