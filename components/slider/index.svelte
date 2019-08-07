@@ -43,7 +43,7 @@
   import {exclude} from '../exclude';
   import {useActions} from '../useActions';
 
-  const forwardEvents = forwardEventsBuilder(current_component, 'MDCSlider:input', 'MDCSlider:change');
+  const forwardEvents = forwardEventsBuilder(current_component, ['MDCSlider:input', 'MDCSlider:change']);
 
   export let use = [];
   let className = '';

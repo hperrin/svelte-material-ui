@@ -12,7 +12,7 @@
     use:useActions={use}
     use:forwardEvents
     class="mdc-floating-label {className}"
-    for={incoming && incoming.id || forId}
+    {...forProp}
     {...exclude($$props, ['use', 'class', 'for', 'wrapped'])}
   ><slot></slot></label>
 {/if}
@@ -37,6 +37,8 @@
   let element;
   let floatingLabel;
   let incoming = getContext('SMUI:formField:props') || {};
+
+  $: forProp = (incoming && incoming.id || forId) ? {for: incoming && incoming.id || forId} : {};
 
   onMount(() => {
     floatingLabel = new MDCFloatingLabel(element);

@@ -2,7 +2,7 @@
   <h2>Menu Surface</h2>
 
   <div>
-    <MenuSurface anchor static style="max-width: 350px;">
+    <MenuSurface static style="max-width: 350px;">
       <p style="margin: 1em;">
         This is a menu surface. I don't know why this is its own MDC component.
         It's just an incomplete version of Menu. I guess, since it can have
@@ -12,7 +12,7 @@
   </div>
 
   <div>
-    <MenuSurface anchor static>
+    <MenuSurface static>
       <List>
         <Item on:SMUI:action={() => clicked = 'Cut'}><span use:Text>Cut</span></Item>
         <Item on:SMUI:action={() => clicked = 'Copy'}><span use:Text>Copy</span></Item>
@@ -28,7 +28,7 @@
 
     <div style="min-width: 100px;">
       <Button on:click={() => menu.setOpen(true)}>Open Menu Surface</Button>
-      <MenuSurface bind:this={menu} anchor anchorCorner="BOTTOM_LEFT">
+      <MenuSurface bind:this={menu} anchorCorner="BOTTOM_LEFT">
         <List>
           <Item on:SMUI:action={() => clicked = 'Cut'}><span use:Text>Cut</span></Item>
           <Item on:SMUI:action={() => clicked = 'Copy'}><span use:Text>Copy</span></Item>
@@ -45,7 +45,7 @@
 
     <div use:Anchor bind:this={anchor2}>
       <Button on:click={() => menu2.setOpen(true)}>Open Menu Surface</Button>
-      <MenuSurface bind:this={menu2} bind:anchorElement={anchor2}>
+      <MenuSurface bind:this={menu2} anchor={false} bind:anchorElement={anchor2}>
         <List>
           <Item on:SMUI:action={() => clicked = 'Cut'}><span use:Text>Cut</span></Item>
           <Item on:SMUI:action={() => clicked = 'Copy'}><span use:Text>Copy</span></Item>

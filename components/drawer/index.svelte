@@ -28,7 +28,7 @@
   import {exclude} from '../exclude';
   import {useActions} from '../useActions';
 
-  const forwardEvents = forwardEventsBuilder(current_component, 'MDCDrawer:opened', 'MDCDrawer:closed');
+  const forwardEvents = forwardEventsBuilder(current_component, ['MDCDrawer:opened', 'MDCDrawer:closed']);
 
   export let use = [];
   let className = '';

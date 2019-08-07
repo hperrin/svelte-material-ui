@@ -14,7 +14,7 @@
   import {exclude} from '../exclude';
   import {useActions} from '../useActions';
 
-  const forwardEvents = forwardEventsBuilder(current_component, 'change', 'input');
+  const forwardEvents = forwardEventsBuilder(current_component, ['change', 'input']);
 
   export let use = [];
   let className = '';

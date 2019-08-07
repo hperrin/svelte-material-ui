@@ -27,7 +27,7 @@
   import {useActions} from '../useActions';
   import Ripple from '../ripple';
 
-  const forwardEvents = forwardEventsBuilder(current_component, 'MDCIconButtonToggle:change');
+  const forwardEvents = forwardEventsBuilder(current_component, ['MDCIconButtonToggle:change']);
 
   export let use = [];
   let className = '';

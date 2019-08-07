@@ -91,7 +91,7 @@
 
     <div class="columns margins">
       <div>
-        <Textfield outlined bind:value={valueOutlinedA} label="Standard" input$aria-controls="helper-text-outlined-a" input$aria-describedby="helper-text-outlined-a" />
+        <Textfield variant="outlined" bind:value={valueOutlinedA} label="Standard" input$aria-controls="helper-text-outlined-a" input$aria-describedby="helper-text-outlined-a" />
         <div use:HelperLine>
           <HelperText id="helper-text-outlined-a">Helper Text</HelperText>
         </div>
@@ -99,7 +99,7 @@
         <div class="status">Value: {valueOutlinedA}</div>
       </div>
       <div>
-        <Textfield outlined withLeadingIcon bind:value={valueOutlinedB} label="Standard" input$aria-controls="helper-text-outlined-b" input$aria-describedby="helper-text-outlined-b">
+        <Textfield variant="outlined" withLeadingIcon bind:value={valueOutlinedB} label="Standard" input$aria-controls="helper-text-outlined-b" input$aria-describedby="helper-text-outlined-b">
           <Icon>event</Icon>
         </Textfield>
         <div use:HelperLine>
@@ -109,7 +109,7 @@
         <div class="status">Value: {valueOutlinedB}</div>
       </div>
       <div>
-        <Textfield outlined withTrailingIcon bind:value={valueOutlinedC} label="Standard" input$aria-controls="helper-text-outlined-c" input$aria-describedby="helper-text-outlined-c">
+        <Textfield variant="outlined" withTrailingIcon bind:value={valueOutlinedC} label="Standard" input$aria-controls="helper-text-outlined-c" input$aria-describedby="helper-text-outlined-c">
           <Icon>delete</Icon>
         </Textfield>
         <div use:HelperLine>
@@ -126,7 +126,7 @@
 
     <div class="columns margins">
       <div>
-        <Textfield class="shaped-outlined" outlined bind:value={valueShapedOutlinedA} label="Standard" input$aria-controls="helper-text-shaped-outlined-a" input$aria-describedby="helper-text-shaped-outlined-a" />
+        <Textfield class="shaped-outlined" variant="outlined" bind:value={valueShapedOutlinedA} label="Standard" input$aria-controls="helper-text-shaped-outlined-a" input$aria-describedby="helper-text-shaped-outlined-a" />
         <div use:HelperLine>
           <HelperText id="helper-text-shaped-outlined-a">Helper Text</HelperText>
         </div>
@@ -134,7 +134,7 @@
         <div class="status">Value: {valueShapedOutlinedA}</div>
       </div>
       <div>
-        <Textfield class="shaped-outlined" outlined withLeadingIcon bind:value={valueShapedOutlinedB} label="Standard" input$aria-controls="helper-text-shaped-outlined-b" input$aria-describedby="helper-text-shaped-outlined-b">
+        <Textfield class="shaped-outlined" variant="outlined" withLeadingIcon bind:value={valueShapedOutlinedB} label="Standard" input$aria-controls="helper-text-shaped-outlined-b" input$aria-describedby="helper-text-shaped-outlined-b">
           <Icon>event</Icon>
         </Textfield>
         <div use:HelperLine>
@@ -144,7 +144,7 @@
         <div class="status">Value: {valueShapedOutlinedB}</div>
       </div>
       <div>
-        <Textfield class="shaped-outlined" outlined withTrailingIcon bind:value={valueShapedOutlinedC} label="Standard" input$aria-controls="helper-text-shaped-outlined-c" input$aria-describedby="helper-text-shaped-outlined-c">
+        <Textfield class="shaped-outlined" variant="outlined" withTrailingIcon bind:value={valueShapedOutlinedC} label="Standard" input$aria-controls="helper-text-shaped-outlined-c" input$aria-describedby="helper-text-shaped-outlined-c">
           <Icon>delete</Icon>
         </Textfield>
         <div use:HelperLine>
@@ -167,13 +167,13 @@
         </div>
       </div>
       <div>
-        <Textfield outlined disabled value="" label="Standard" input$aria-controls="helper-text-disabled-b" input$aria-describedby="helper-text-disabled-b" />
+        <Textfield variant="outlined" disabled value="" label="Standard" input$aria-controls="helper-text-disabled-b" input$aria-describedby="helper-text-disabled-b" />
         <div use:HelperLine>
           <HelperText id="helper-text-disabled-b">Helper Text</HelperText>
         </div>
       </div>
       <div>
-        <Textfield class="shaped-outlined" outlined disabled value="" label="Standard" input$aria-controls="helper-text-disabled-c" input$aria-describedby="helper-text-disabled-c" />
+        <Textfield class="shaped-outlined" variant="outlined" disabled value="" label="Standard" input$aria-controls="helper-text-disabled-c" input$aria-describedby="helper-text-disabled-c" />
         <div use:HelperLine>
           <HelperText id="helper-text-disabled-c">Helper Text</HelperText>
         </div>
@@ -194,7 +194,7 @@
         <div class="status">Value: {valueDenseA}</div>
       </div>
       <div>
-        <Textfield outlined dense bind:value={valueDenseB} label="Standard" input$aria-controls="helper-text-dense-b" input$aria-describedby="helper-text-dense-b" />
+        <Textfield variant="outlined" dense bind:value={valueDenseB} label="Standard" input$aria-controls="helper-text-dense-b" input$aria-describedby="helper-text-dense-b" />
         <div use:HelperLine>
           <HelperText id="helper-text-dense-b">Helper Text</HelperText>
         </div>
@@ -202,7 +202,7 @@
         <div class="status">Value: {valueDenseB}</div>
       </div>
       <div>
-        <Textfield class="shaped-outlined" outlined dense bind:value={valueDenseC} label="Standard" input$aria-controls="helper-text-dense-c" input$aria-describedby="helper-text-dense-c" />
+        <Textfield class="shaped-outlined" variant="outlined" dense bind:value={valueDenseC} label="Standard" input$aria-controls="helper-text-dense-c" input$aria-describedby="helper-text-dense-c" />
         <div use:HelperLine>
           <HelperText id="helper-text-dense-c">Helper Text</HelperText>
         </div>
@@ -222,12 +222,12 @@
         <div class="status">Value: {valueNoLabelA}</div>
       </div>
       <div>
-        <Textfield outlined bind:value={valueNoLabelB} />
+        <Textfield variant="outlined" bind:value={valueNoLabelB} />
 
         <div class="status">Value: {valueNoLabelB}</div>
       </div>
       <div>
-        <Textfield class="shaped-outlined" outlined bind:value={valueNoLabelC} />
+        <Textfield class="shaped-outlined" variant="outlined" bind:value={valueNoLabelC} />
 
         <div class="status">Value: {valueNoLabelC}</div>
       </div>
@@ -247,7 +247,7 @@
         <div class="status">Value: {valuePersistentA}</div>
       </div>
       <div>
-        <Textfield outlined bind:value={valuePersistentB} label="Standard" input$aria-controls="helper-text-persistent-b" input$aria-describedby="helper-text-persistent-b" />
+        <Textfield variant="outlined" bind:value={valuePersistentB} label="Standard" input$aria-controls="helper-text-persistent-b" input$aria-describedby="helper-text-persistent-b" />
         <div use:HelperLine>
           <HelperText id="helper-text-persistent-b" persistent>Helper Text</HelperText>
         </div>
@@ -255,7 +255,7 @@
         <div class="status">Value: {valuePersistentB}</div>
       </div>
       <div>
-        <Textfield class="shaped-outlined" outlined bind:value={valuePersistentC} label="Standard" input$aria-controls="helper-text-persistent-c" input$aria-describedby="helper-text-persistent-c" />
+        <Textfield class="shaped-outlined" variant="outlined" bind:value={valuePersistentC} label="Standard" input$aria-controls="helper-text-persistent-c" input$aria-describedby="helper-text-persistent-c" />
         <div use:HelperLine>
           <HelperText id="helper-text-persistent-c" persistent>Helper Text</HelperText>
         </div>
@@ -279,7 +279,7 @@
         <div class="status">Value: {valueCharCountA}</div>
       </div>
       <div>
-        <Textfield outlined bind:value={valueCharCountB} label="Standard" input$maxlength="18" input$aria-controls="helper-text-char-count-b" input$aria-describedby="helper-text-char-count-b" />
+        <Textfield variant="outlined" bind:value={valueCharCountB} label="Standard" input$maxlength="18" input$aria-controls="helper-text-char-count-b" input$aria-describedby="helper-text-char-count-b" />
         <div use:HelperLine>
           <HelperText id="helper-text-char-count-b">Helper Text</HelperText>
           <CharacterCount>0 / 18</CharacterCount>
@@ -288,7 +288,7 @@
         <div class="status">Value: {valueCharCountB}</div>
       </div>
       <div>
-        <Textfield class="shaped-outlined" outlined bind:value={valueCharCountC} label="Standard" input$maxlength="18" input$aria-controls="helper-text-char-count-c" input$aria-describedby="helper-text-char-count-c" />
+        <Textfield class="shaped-outlined" variant="outlined" bind:value={valueCharCountC} label="Standard" input$maxlength="18" input$aria-controls="helper-text-char-count-c" input$aria-describedby="helper-text-char-count-c" />
         <div use:HelperLine>
           <HelperText id="helper-text-char-count-c">Helper Text</HelperText>
           <CharacterCount>0 / 18</CharacterCount>
@@ -380,7 +380,7 @@
         <div class="status">Value: {valueManualA}</div>
       </div>
       <div>
-        <Textfield outlined withLeadingIcon>
+        <Textfield variant="outlined" withLeadingIcon>
           <Icon>event</Icon>
           <Input bind:value={valueManualB} id="input-manual-b" aria-controls="helper-text-manual-b" aria-describedby="helper-text-manual-b" />
           <NotchedOutline>

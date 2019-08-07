@@ -32,7 +32,7 @@
   export {className as class};
   let isStatic = false;
   export {isStatic as static};
-  export let anchor = false;
+  export let anchor = true;
   export let fixed = false;
   export let open = isStatic;
   export let quickOpen = false;

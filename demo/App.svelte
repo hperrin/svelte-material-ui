@@ -6,7 +6,7 @@
   <div use:Content>
     <List>
       {#each sections as section}
-        <Item href={'key' in section ? '#' : undefined} on:click={() => pickSection(section)} activated={'key' in section && key === section.key} title={section.name} style="{section.indent ? 'margin-left: '+(section.indent * 18)+'px;' : ''}">
+        <Item href={'key' in section ? '#' : undefined} on:click={() => pickSection(section)} activated={'key' in section && key === section.key} title={section.name} style="{section.indent ? 'margin-left: '+(section.indent * 25)+'px;' : ''}">
           <span use:Text>{section.name}</span>
         </Item>
       {/each}
@@ -43,6 +43,7 @@
   import DemoDrawer from './DemoDrawer';
   import DemoCheckbox from './DemoCheckbox';
   import DemoRadio from './DemoRadio';
+  import DemoSelect from './DemoSelect';
   import DemoSlider from './DemoSlider';
   import DemoSwitch from './DemoSwitch';
   import DemoTextfield from './DemoTextfield';
@@ -142,6 +143,24 @@
       key: 'radio',
       component: DemoRadio,
       indent: 1
+    },
+    {
+      name: 'Select Menus',
+      key: 'select',
+      component: DemoSelect,
+      indent: 1
+    },
+    {
+      name: 'Select Helper Text',
+      shortcut: 'select',
+      component: DemoSelect,
+      indent: 2
+    },
+    {
+      name: 'Select Icon',
+      shortcut: 'select',
+      component: DemoSelect,
+      indent: 2
     },
     {
       name: 'Sliders',

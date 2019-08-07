@@ -48,7 +48,7 @@
   import {exclude} from '../exclude';
   import {useActions} from '../useActions';
 
-  const forwardEvents = forwardEventsBuilder(current_component, 'MDCList:action');
+  const forwardEvents = forwardEventsBuilder(current_component, ['MDCList:action']);
 
   export let use = [];
   let className = '';

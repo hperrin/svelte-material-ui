@@ -2,7 +2,7 @@
   <h2>Menu</h2>
 
   <div>
-    <Menu anchor static>
+    <Menu static>
       <List>
         <Item on:SMUI:action={() => clicked = 'Cut'}><span use:Text>Cut</span></Item>
         <Item on:SMUI:action={() => clicked = 'Copy'}><span use:Text>Copy</span></Item>
@@ -18,7 +18,7 @@
 
     <div style="min-width: 100px;">
       <Button on:click={() => menu.setOpen(true)}>Open Menu</Button>
-      <Menu bind:this={menu} anchor anchorCorner="BOTTOM_LEFT">
+      <Menu bind:this={menu} anchorCorner="BOTTOM_LEFT">
         <List>
           <Item on:SMUI:action={() => clicked = 'Cut'}><span use:Text>Cut</span></Item>
           <Item on:SMUI:action={() => clicked = 'Copy'}><span use:Text>Copy</span></Item>
@@ -35,7 +35,7 @@
 
     <div use:Anchor bind:this={anchor2}>
       <Button on:click={() => menu2.setOpen(true)}>Open Menu</Button>
-      <Menu bind:this={menu2} bind:anchorElement={anchor2}>
+      <Menu bind:this={menu2} anchor={false} bind:anchorElement={anchor2}>
         <List twoLine>
           <Item on:SMUI:action={() => clicked = 'Cut'}>
             <span use:Text>
@@ -74,7 +74,7 @@
 
     <div style="min-width: 100px;">
       <Button on:click={() => menu3.setOpen(true)}>Open Menu</Button>
-      <Menu bind:this={menu3} anchor>
+      <Menu bind:this={menu3}>
         <List>
           <SelectionGroup>
             {#each ['Red', 'Green', 'Blue'] as item}

@@ -16,7 +16,7 @@
 
 <script>
   import {MDCMenu} from '@material/menu';
-  import {onMount, onDestroy, setContext} from 'svelte';
+  import {onMount, onDestroy, getContext, setContext} from 'svelte';
   import {current_component} from 'svelte/internal';
   import {forwardEventsBuilder} from '../forwardEvents';
   import {exclude} from '../exclude';
@@ -38,6 +38,8 @@
 
   let element;
   let menu;
+  let instantiate = getContext('SMUI:menu:instantiate');
+  let getInstance = getContext('SMUI:menu:getInstance');
   let menuSurfacePromiseResolve;
   let menuSurfacePromise = new Promise(resolve => menuSurfacePromiseResolve = resolve);
   let listPromiseResolve;
@@ -67,14 +69,20 @@
     menu.setAnchorCorner(CornerMap[anchorCorner]);
   }
 
-  onMount(() => {
-    menu = new MDCMenu(element);
+  onMount(async () => {
+    if (instantiate !== false) {
+      menu = new MDCMenu(element);
+    } else {
+      menu = await getInstance();
+    }
     menuSurfacePromiseResolve(menu.menuSurface_);
     listPromiseResolve(menu.list_);
   });
 
   onDestroy(() => {
-    menu.destroy();
+    if (instantiate !== false) {
+      menu.destroy();
+    }
   });
 
   function getMenuSurfaceInstancePromise() {
