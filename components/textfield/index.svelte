@@ -78,11 +78,10 @@
   import Input from './Input';
   import Textarea from './Textarea';
   import Icon from './Icon';
-  import HelperLine from './HelperLine';
   import HelperText from './HelperText';
   import CharacterCount from './CharacterCount';
 
-  export {Input, Textarea, Icon, HelperLine, HelperText, CharacterCount};
+  export {Input, Textarea, Icon, HelperText, CharacterCount};
 </script>
 
 <script>

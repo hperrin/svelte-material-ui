@@ -28,14 +28,12 @@ Here's some example code:
   input$aria-controls="helper-text"
   input$aria-describedby="helper-text"
 />
-<div use:HelperLine>
-  <HelperText id="helper-text">What you put in this box will become super!</HelperText>
-</div>
+<HelperText id="helper-text">What you put in this box will become super!</HelperText>
 
 <script>
   import Button from 'svelte-material-ui/components/button';
   import Fab from 'svelte-material-ui/components/fab';
-  import Textfield, {HelperLine, HelperText} from '../components/textfield';
+  import Textfield, {HelperText} from '../components/textfield';
   import {Label, Icon} from 'svelte-material-ui/components/common';
 
   let superText = '';
