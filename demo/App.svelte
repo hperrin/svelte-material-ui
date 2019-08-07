@@ -282,6 +282,7 @@
 
   .main-content :global(section) {
     padding: 16px;
+    width: 100%;
     box-sizing: border-box;
   }
 
