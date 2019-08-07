@@ -227,7 +227,7 @@
 </section>
 
 <script>
-  import Select, {Option, Icon, HelperText} from '../components/select';
+  import Select, {Option, Icon, HelperText} from 'svelte-material-ui/components/select';
 
   let fruits = ['Apple', 'Orange', 'Banana'];
 

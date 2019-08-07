@@ -5,11 +5,11 @@
   class="mdc-icon-button {className}"
   class:material-icons={!toggle}
   class:mdc-icon-button--on={pressed}
-  use:Ripple={[ripple && !toggle, true]}
+  use:Ripple={[ripple && !toggle, {unbounded: true, color}]}
   aria-hidden="true"
   aria-pressed={pressed}
   on:MDCIconButtonToggle:change={handleChange}
-  {...exclude($$props, ['use', 'class', 'ripple', 'toggle', 'pressed'])}
+  {...exclude($$props, ['use', 'class', 'ripple', 'color', 'toggle', 'pressed'])}
 ><slot></slot></button>
 
 <script context="module">
@@ -33,6 +33,7 @@
   let className = '';
   export {className as class};
   export let ripple = true;
+  export let color = null;
   export let toggle = false;
   export let pressed = false;
 

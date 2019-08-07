@@ -5,8 +5,8 @@
   class:mdc-fab--mini={mini}
   class:mdc-fab--exited={exited}
   class:mdc-fab--extended={extended}
-  use:Ripple={[ripple, false]}
-  {...exclude($$props, ['use', 'class', 'ripple', 'mini', 'exited', 'extended'])}
+  use:Ripple={[ripple, {unbounded: false, color}]}
+  {...exclude($$props, ['use', 'class', 'ripple', 'color', 'mini', 'exited', 'extended'])}
 ><slot></slot></button>
 
 <script context="module">
@@ -30,6 +30,7 @@
   let className = '';
   export {className as class};
   export let ripple = true;
+  export let color = null;
   export let mini = false;
   export let exited = false;
   export let extended = false;

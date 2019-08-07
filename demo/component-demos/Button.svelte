@@ -2,7 +2,9 @@
   <h2>Button</h2>
 
   <div>
-    <Button on:click={() => clicked++}><Label>Click Me</Label></Button>
+    <Button on:click={() => clicked++}><Label>Default</Label></Button>
+    <!-- <Button on:click={() => clicked++} color="primary"><Label>Primary</Label></Button>
+    <Button on:click={() => clicked++} color="secondary"><Label>Secondary</Label></Button> -->
     <Button on:click={() => clicked++} disabled><Label>Disabled</Label></Button>
     <Button on:click={() => clicked++} ripple={false}><Label>No Ripple</Label></Button>
     <Button on:click={() => clicked++} variant="raised"><Label>Raised</Label></Button>
@@ -21,7 +23,7 @@
 </section>
 
 <script>
-  import Button, {Label, Icon} from '../components/button';
+  import Button, {Label, Icon} from 'svelte-material-ui/components/button';
 
   let clicked = 0;
 </script>

@@ -26,8 +26,8 @@
 </section>
 
 <script>
-  import Slider from '../components/slider';
-  import FormField from '../components/form-field';
+  import Slider from 'svelte-material-ui/components/slider';
+  import FormField from 'svelte-material-ui/components/form-field';
 
   let value = 50;
   let value2 = 0;

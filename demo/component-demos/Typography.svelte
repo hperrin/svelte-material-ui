@@ -38,5 +38,5 @@
 </section>
 
 <style lang="scss">
-  @import "../components/typography";
+  @import "svelte-material-ui/components/typography";
 </style>

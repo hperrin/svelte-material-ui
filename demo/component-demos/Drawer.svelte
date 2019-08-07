@@ -142,9 +142,9 @@
 </section>
 
 <script>
-  import Drawer, {AppContent, Content, Header, Title, Subtitle, Scrim} from '../components/drawer';
-  import Button, {Label} from '../components/button';
-  import List, {Item, Text, Graphic, Separator, Subheader} from '../components/list';
+  import Drawer, {AppContent, Content, Header, Title, Subtitle, Scrim} from 'svelte-material-ui/components/drawer';
+  import Button, {Label} from 'svelte-material-ui/components/button';
+  import List, {Item, Text, Graphic, Separator, Subheader} from 'svelte-material-ui/components/list';
 
   let clicked = 'nothing yet';
   let myDrawer;

@@ -52,9 +52,9 @@
 </section>
 
 <script>
-  import Checkbox from '../components/checkbox';
-  import FormField from '../components/form-field';
-  import Button from '../components/button';
+  import Checkbox from 'svelte-material-ui/components/checkbox';
+  import FormField from 'svelte-material-ui/components/form-field';
+  import Button from 'svelte-material-ui/components/button';
 
   let simpleSelected = false;
   let simpleSelected2 = false;

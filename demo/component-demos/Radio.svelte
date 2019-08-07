@@ -16,8 +16,8 @@
 </section>
 
 <script>
-  import Radio from '../components/radio';
-  import FormField from '../components/form-field';
+  import Radio from 'svelte-material-ui/components/radio';
+  import FormField from 'svelte-material-ui/components/form-field';
 
   let options = [
     {

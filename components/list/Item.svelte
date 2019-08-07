@@ -7,13 +7,13 @@
     class:mdc-list-item--activated={activated}
     class:mdc-list-item--selected={selected}
     class:mdc-list-item--disabled={disabled}
-    use:Ripple={[ripple, false]}
+    use:Ripple={[ripple, {unbounded: false, color}]}
     {href}
     aria-current={activated ? 'page' : undefined}
     {tabindex}
     on:click={action}
     on:keydown={handleKeydown}
-    {...exclude($$props, ['use', 'class', 'ripple', 'nonInteractive', 'activated', 'selected', 'disabled', 'tabindex', 'href', 'inputId'])}
+    {...exclude($$props, ['use', 'class', 'ripple', 'color', 'nonInteractive', 'activated', 'selected', 'disabled', 'tabindex', 'href', 'inputId'])}
   ><slot></slot></a>
 {:else if nav && !href}
   <span
@@ -24,12 +24,12 @@
     class:mdc-list-item--activated={activated}
     class:mdc-list-item--selected={selected}
     class:mdc-list-item--disabled={disabled}
-    use:Ripple={[ripple, false]}
+    use:Ripple={[ripple, {unbounded: false, color}]}
     aria-current={activated ? 'page' : undefined}
     {tabindex}
     on:click={action}
     on:keydown={handleKeydown}
-    {...exclude($$props, ['use', 'class', 'ripple', 'nonInteractive', 'activated', 'selected', 'disabled', 'tabindex', 'href', 'inputId'])}
+    {...exclude($$props, ['use', 'class', 'ripple', 'color', 'nonInteractive', 'activated', 'selected', 'disabled', 'tabindex', 'href', 'inputId'])}
   ><slot></slot></span>
 {:else}
   <li
@@ -41,14 +41,14 @@
     class:mdc-list-item--selected={selected}
     class:mdc-list-item--disabled={disabled}
     class:mdc-menu-item--selected={role === 'menuitem' && selected}
-    use:Ripple={[ripple, false]}
+    use:Ripple={[ripple, {unbounded: false, color}]}
     {role}
     aria-selected={role === 'option' ? (selected ? 'true' : 'false') : undefined}
     aria-checked={(role === 'radio' || role === 'checkbox') ? (checked ? 'true' : 'false') : undefined}
     {tabindex}
     on:click={action}
     on:keydown={handleKeydown}
-    {...exclude($$props, ['use', 'class', 'ripple', 'nonInteractive', 'activated', 'selected', 'disabled', 'tabindex', 'href', 'inputId'])}
+    {...exclude($$props, ['use', 'class', 'ripple', 'color', 'nonInteractive', 'activated', 'selected', 'disabled', 'tabindex', 'href', 'inputId'])}
   ><slot></slot></li>
 {/if}
 
@@ -72,6 +72,7 @@
   let className = '';
   export {className as class};
   export let ripple = true;
+  export let color = null;
   export let nonInteractive = getContext('SMUI:list:nonInteractive');
   export let activated = false;
   export let role = getContext('SMUI:list:item:role');

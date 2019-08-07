@@ -10,18 +10,28 @@ module.exports = {
   },
   resolve: {
     extensions: ['.mjs', '.js', '.json', '.html', '.svelte', '.css', '.scss'],
+    alias: {
+      // This is so the demo can import from 'svelte-material-ui'.
+      'svelte-material-ui': path.resolve(__dirname)
+    }
   },
   module: {
     rules: [
       {
         test: /\.(html|svelte)$/,
-        exclude: /node_modules/,
         use: {
           loader: 'svelte-loader',
           options: {
             preprocess: preprocess({
               scss: {
                 includePaths: ['./node_modules'],
+                importer: url => {
+                  // This is so the demo can @import from 'svelte-material-ui'.
+                  if (url.startsWith('svelte-material-ui/')) {
+                    return {file: url.replace(/^svelte-material-ui/, path.resolve(__dirname))};
+                  }
+                  return null;
+                }
               }
             })
           }
@@ -29,7 +39,6 @@ module.exports = {
       },
       {
         test: /\.s?css$/,
-        exclude: /node_modules/,
         use: [
           {loader: 'style-loader'},
           {loader: 'css-loader'}

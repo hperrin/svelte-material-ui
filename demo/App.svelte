@@ -1,12 +1,14 @@
 <svelte:window on:resize={setMiniWindow} />
 <Drawer variant={miniWindow ? 'modal' : null} bind:open={drawerOpen}>
   <div use:Header>
-    <h1 use:Title>Material Components</h1>
+    <a use:link href="/">
+      <h1 use:Title>Material Components</h1>
+    </a>
   </div>
   <div use:Content>
     <List>
       {#each sections as section}
-        <Item href={'key' in section ? '#' : undefined} on:click={() => pickSection(section)} activated={'key' in section && key === section.key} title={section.name} style="{section.indent ? 'margin-left: '+(section.indent * 25)+'px;' : ''}">
+        <Item use={[link]} href={'key' in section ? '/'+section.key : ('shortcut' in section ? '/'+section.shortcut : undefined)} on:click={() => pickSection(section)} activated={'key' in section && $location === '/'+section.key} title={section.name} style="{section.indent ? 'margin-left: '+(section.indent * 25)+'px;' : ''}">
           <span use:Text>{section.name}</span>
         </Item>
       {/each}
@@ -24,37 +26,37 @@
         <IconButton on:click={() => drawerOpen = !drawerOpen}>menu</IconButton>
       </div>
     {/if}
-    <svelte:component this={component} />
+    <Router {routes} />
   </main>
 </div>
 
 <script>
   import {onMount} from 'svelte';
-  import Drawer, {Header, Title, Content, Scrim, AppContent} from '../components/drawer';
-  import IconButton from '../components/icon-button';
-  import List, {Item, Text} from '../components/list';
+  import Router, {link, location} from 'svelte-spa-router';
+  import Drawer, {Header, Title, Content, Scrim, AppContent} from 'svelte-material-ui/components/drawer';
+  import IconButton from 'svelte-material-ui/components/icon-button';
+  import List, {Item, Text} from 'svelte-material-ui/components/list';
 
-  import DemoButton from './DemoButton';
-  import DemoFab from './DemoFab';
-  import DemoIconButton from './DemoIconButton';
-  import DemoCard from './DemoCard';
-  import DemoChips from './DemoChips';
-  import DemoDialog from './DemoDialog';
-  import DemoDrawer from './DemoDrawer';
-  import DemoCheckbox from './DemoCheckbox';
-  import DemoRadio from './DemoRadio';
-  import DemoSelect from './DemoSelect';
-  import DemoSlider from './DemoSlider';
-  import DemoSwitch from './DemoSwitch';
-  import DemoTextfield from './DemoTextfield';
-  import DemoLinearProgress from './DemoLinearProgress';
-  import DemoList from './DemoList';
-  import DemoMenuSurface from './DemoMenuSurface';
-  import DemoMenu from './DemoMenu';
-  import DemoTypography from './DemoTypography';
+  import Home from './Home';
+  import DemoButton from './component-demos/Button';
+  import DemoFab from './component-demos/Fab';
+  import DemoIconButton from './component-demos/IconButton';
+  import DemoCard from './component-demos/Card';
+  import DemoChips from './component-demos/Chips';
+  import DemoDialog from './component-demos/Dialog';
+  import DemoDrawer from './component-demos/Drawer';
+  import DemoCheckbox from './component-demos/Checkbox';
+  import DemoRadio from './component-demos/Radio';
+  import DemoSelect from './component-demos/Select';
+  import DemoSlider from './component-demos/Slider';
+  import DemoSwitch from './component-demos/Switch';
+  import DemoTextfield from './component-demos/Textfield';
+  import DemoLinearProgress from './component-demos/LinearProgress';
+  import DemoList from './component-demos/List';
+  import DemoMenuSurface from './component-demos/MenuSurface';
+  import DemoMenu from './component-demos/Menu';
+  import DemoTypography from './component-demos/Typography';
 
-  let key = 'button';
-  let component = DemoButton;
   let mainContent;
   let miniWindow = false;
   let drawerOpen = false;
@@ -105,7 +107,6 @@
     {
       name: 'Inputs and Controls',
       shortcut: 'textfield',
-      component: DemoTextfield,
       indent: 0
     },
     {
@@ -117,25 +118,21 @@
     {
       name: 'Floating Label',
       shortcut: 'textfield',
-      component: DemoTextfield,
       indent: 1
     },
     {
       name: 'Form Fields',
       shortcut: 'radio',
-      component: DemoRadio,
       indent: 1
     },
     {
       name: 'Line Ripple',
       shortcut: 'textfield',
-      component: DemoTextfield,
       indent: 1
     },
     {
       name: 'Notched Outline',
       shortcut: 'textfield',
-      component: DemoTextfield,
       indent: 1
     },
     {
@@ -153,13 +150,11 @@
     {
       name: 'Select Helper Text',
       shortcut: 'select',
-      component: DemoSelect,
       indent: 2
     },
     {
       name: 'Select Icon',
       shortcut: 'select',
-      component: DemoSelect,
       indent: 2
     },
     {
@@ -183,19 +178,16 @@
     {
       name: 'Text Field Character Count',
       shortcut: 'textfield',
-      component: DemoTextfield,
       indent: 2
     },
     {
       name: 'Text Field Helper Text',
       shortcut: 'textfield',
-      component: DemoTextfield,
       indent: 2
     },
     {
       name: 'Text Field Icon',
       shortcut: 'textfield',
-      component: DemoTextfield,
       indent: 2
     },
     {
@@ -230,15 +222,20 @@
     }
   ];
 
+  const routes = {
+    '/': Home
+  };
+
+  for (let i = 0; i < sections.length; i++) {
+    const section = sections[i];
+    if ('key' in section) {
+      routes['/'+section.key] = section.component;
+    }
+  }
+
   onMount(setMiniWindow);
 
   function pickSection(section) {
-    if ('key' in section) {
-      key = section.key;
-    } else {
-      key = section.shortcut;
-    }
-    component = section.component;
     drawerOpen = false;
     mainContent.scrollTop = 0;
   }
@@ -249,7 +246,7 @@
 </script>
 
 <style lang="scss">
-  @import "../components/typography";
+  @import "svelte-material-ui/components/typography";
 
   :global(body), :global(app) {
     display: flex;

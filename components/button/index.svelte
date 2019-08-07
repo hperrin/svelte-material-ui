@@ -6,8 +6,8 @@
   class:mdc-button--unelevated={variant === 'unelevated'}
   class:mdc-button--outlined={variant === 'outlined'}
   class:mdc-button--dense={dense}
-  use:Ripple={[ripple, false]}
-  {...exclude($$props, ['use', 'class', 'ripple', 'variant', 'dense'])}
+  use:Ripple={[ripple, {unbounded: false, color}]}
+  {...exclude($$props, ['use', 'class', 'ripple', 'color', 'variant', 'dense'])}
 ><slot></slot></button>
 
 <script context="module">
@@ -31,6 +31,7 @@
   let className = '';
   export {className as class};
   export let ripple = true;
+  export let color = null;
   export let variant = null;
   export let dense = false;
 
