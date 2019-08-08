@@ -1,9 +1,10 @@
-import ClassAdder from '../common/ClassAdder.svelte';
+import ClassAdder, {internals} from '../common/ClassAdder.svelte';
+import Div from '../common/Div.svelte';
 
 function Content(...args) {
-  const classAdder = new ClassAdder(...args);
-  classAdder.$set({addClass: 'smui-card__content'});
-  return classAdder;
+  internals.smuiClass = 'smui-card__content';
+  internals.component = Div;
+  return new ClassAdder(...args);
 }
 
 Content.prototype = ClassAdder;

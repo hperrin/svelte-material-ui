@@ -4,11 +4,11 @@
   <div>
     A simple list:
     <List class="demo-list">
-      <Item on:SMUI:action={() => clickedSimple = 'Cut'}><span use:Text>Cut</span></Item>
-      <Item on:SMUI:action={() => clickedSimple = 'Copy'}><span use:Text>Copy</span></Item>
-      <Item on:SMUI:action={() => clickedSimple = 'Paste'}><span use:Text>Paste</span></Item>
+      <Item on:SMUI:action={() => clickedSimple = 'Cut'}><Text>Cut</Text></Item>
+      <Item on:SMUI:action={() => clickedSimple = 'Copy'}><Text>Copy</Text></Item>
+      <Item on:SMUI:action={() => clickedSimple = 'Paste'}><Text>Paste</Text></Item>
       <Separator />
-      <Item on:SMUI:action={() => clickedSimple = 'Delete'}><span use:Text>Delete</span></Item>
+      <Item on:SMUI:action={() => clickedSimple = 'Delete'}><Text>Delete</Text></Item>
     </List>
   </div>
 
@@ -18,21 +18,21 @@
     A dense list with graphics:
     <List class="demo-list" dense>
       <Item on:SMUI:action={() => clickedDense = 'Edit'}>
-        <span use:Graphic class="material-icons">edit</span>
-        <span use:Text>Edit</span>
+        <Graphic class="material-icons">edit</Graphic>
+        <Text>Edit</Text>
       </Item>
       <Item on:SMUI:action={() => clickedDense = 'Send'}>
-        <span use:Graphic class="material-icons">send</span>
-        <span use:Text>Send</span>
+        <Graphic class="material-icons">send</Graphic>
+        <Text>Send</Text>
       </Item>
       <Item on:SMUI:action={() => clickedDense = 'Archive'}>
-        <span use:Graphic class="material-icons">archive</span>
-        <span use:Text>Archive</span>
+        <Graphic class="material-icons">archive</Graphic>
+        <Text>Archive</Text>
       </Item>
       <Separator />
       <Item on:SMUI:action={() => clickedDense = 'Delete'}>
-        <span use:Graphic class="material-icons">clear</span>
-        <span use:Text>Delete</span>
+        <Graphic class="material-icons">clear</Graphic>
+        <Text>Delete</Text>
       </Item>
     </List>
   </div>
@@ -42,12 +42,12 @@
   <div>
     A non-interactive list with activated item:
     <List class="demo-list" nonInteractive>
-      <Item ripple={false}><span use:Text>Thing 1</span></Item>
+      <Item ripple={false}><Text>Thing 1</Text></Item>
       <Separator />
-      <Item ripple={false} activated><span use:Text>Thing 2</span></Item>
-      <Item ripple={false}><span use:Text>Thing 3</span></Item>
+      <Item ripple={false} activated><Text>Thing 2</Text></Item>
+      <Item ripple={false}><Text>Thing 3</Text></Item>
       <Separator />
-      <Item ripple={false}><span use:Text>Thing 4</span></Item>
+      <Item ripple={false}><Text>Thing 4</Text></Item>
     </List>
   </div>
 
@@ -56,11 +56,11 @@
     <List class="demo-list" twoLine singleSelection bind:selectedIndex={selectionIndex}>
       {#each optionsTwoLine as item}
         <Item on:SMUI:action={() => selectionTwoLine = item.name} disabled={item.disabled} selected={selectionTwoLine === item.name}>
-          <span use:Text>
-            <span use:Text={'primary'}>{item.name}</span>
-            <span use:Text={'secondary'}>{item.description}</span>
-          </span>
-          <span use:Meta class="material-icons">info</span>
+          <Text>
+            <PrimaryText>{item.name}</PrimaryText>
+            <SecondaryText>{item.description}</SecondaryText>
+          </Text>
+          <Meta class="material-icons">info</Meta>
         </Item>
       {/each}
     </List>
@@ -71,40 +71,40 @@
   <div>
     A list group:
     <Group>
-      <h3 use:Subheader>Actors</h3>
+      <Subheader>Actors</Subheader>
       <List class="demo-list">
         <Item on:SMUI:action={() => clickedGroup = 'Bruce Willis'}>
-          <span use:Text>Bruce Willis</span>
+          <Text>Bruce Willis</Text>
         </Item>
         <Item on:SMUI:action={() => clickedGroup = 'Tom Hanks'}>
-          <span use:Text>Tom Hanks</span>
+          <Text>Tom Hanks</Text>
         </Item>
         <Item on:SMUI:action={() => clickedGroup = 'Jack Nicholson'}>
-          <span use:Text>Jack Nicholson</span>
+          <Text>Jack Nicholson</Text>
         </Item>
         <Item on:SMUI:action={() => clickedGroup = 'Leonardo DiCaprio'}>
-          <span use:Text>Leonardo DiCaprio</span>
+          <Text>Leonardo DiCaprio</Text>
         </Item>
         <Item on:SMUI:action={() => clickedGroup = 'Matt Damon'}>
-          <span use:Text>Matt Damon</span>
+          <Text>Matt Damon</Text>
         </Item>
       </List>
-      <h3 use:Subheader>Books</h3>
+      <Subheader>Books</Subheader>
       <List class="demo-list">
         <Item on:SMUI:action={() => clickedGroup = 'To Kill a Mockingbird'}>
-          <span use:Text>To Kill a Mockingbird</span>
+          <Text>To Kill a Mockingbird</Text>
         </Item>
         <Item on:SMUI:action={() => clickedGroup = 'The Great Gatsby'}>
-          <span use:Text>The Great Gatsby</span>
+          <Text>The Great Gatsby</Text>
         </Item>
         <Item on:SMUI:action={() => clickedGroup = '1984'}>
-          <span use:Text>1984</span>
+          <Text>1984</Text>
         </Item>
         <Item on:SMUI:action={() => clickedGroup = 'Catch-22'}>
-          <span use:Text>Catch-22</span>
+          <Text>Catch-22</Text>
         </Item>
         <Item on:SMUI:action={() => clickedGroup = 'Alice\'s Adventures in Wonderland'}>
-          <span use:Text>Alice's Adventures in Wonderland</span>
+          <Text>Alice's Adventures in Wonderland</Text>
         </Item>
       </List>
     </Group>
@@ -116,23 +116,33 @@
     A radio list:
     <List class="demo-list" radiolist>
       <Item>
-        <Radio use={[Graphic]} bind:group={selectedRadio} value="Bruce Willis" />
+        <Graphic>
+          <Radio bind:group={selectedRadio} value="Bruce Willis" />
+        </Graphic>
         <Label>Bruce Willis</Label>
       </Item>
       <Item>
-        <Radio use={[Graphic]} bind:group={selectedRadio} value="Tom Hanks" />
+        <Graphic>
+          <Radio bind:group={selectedRadio} value="Tom Hanks" />
+        </Graphic>
         <Label>Tom Hanks</Label>
       </Item>
       <Item>
-        <Radio use={[Graphic]} bind:group={selectedRadio} value="Jack Nicholson" />
+        <Graphic>
+          <Radio bind:group={selectedRadio} value="Jack Nicholson" />
+        </Graphic>
         <Label>Jack Nicholson</Label>
       </Item>
       <Item>
-        <Radio use={[Graphic]} bind:group={selectedRadio} value="Leonardo DiCaprio" />
+        <Graphic>
+          <Radio bind:group={selectedRadio} value="Leonardo DiCaprio" />
+        </Graphic>
         <Label>Leonardo DiCaprio</Label>
       </Item>
       <Item>
-        <Radio use={[Graphic]} bind:group={selectedRadio} value="Matt Damon" />
+        <Graphic>
+          <Radio bind:group={selectedRadio} value="Matt Damon" />
+        </Graphic>
         <Label>Matt Damon</Label>
       </Item>
     </List>
@@ -145,23 +155,33 @@
     <List class="demo-list" checklist>
       <Item>
         <Label>Bruce Willis</Label>
-        <Checkbox use={[Meta]} bind:group={selectedCheckbox} value="Bruce Willis" />
+        <Meta>
+          <Checkbox bind:group={selectedCheckbox} value="Bruce Willis" />
+        </Meta>
       </Item>
       <Item>
         <Label>Tom Hanks</Label>
-        <Checkbox use={[Meta]} bind:group={selectedCheckbox} value="Tom Hanks" />
+        <Meta>
+          <Checkbox bind:group={selectedCheckbox} value="Tom Hanks" />
+        </Meta>
       </Item>
       <Item>
         <Label>Jack Nicholson</Label>
-        <Checkbox use={[Meta]} bind:group={selectedCheckbox} value="Jack Nicholson" />
+        <Meta>
+          <Checkbox bind:group={selectedCheckbox} value="Jack Nicholson" />
+        </Meta>
       </Item>
       <Item>
         <Label>Leonardo DiCaprio</Label>
-        <Checkbox use={[Meta]} bind:group={selectedCheckbox} value="Leonardo DiCaprio" />
+        <Meta>
+          <Checkbox bind:group={selectedCheckbox} value="Leonardo DiCaprio" />
+        </Meta>
       </Item>
       <Item>
         <Label>Matt Damon</Label>
-        <Checkbox use={[Meta]} bind:group={selectedCheckbox} value="Matt Damon" />
+        <Meta>
+          <Checkbox bind:group={selectedCheckbox} value="Matt Damon" />
+        </Meta>
       </Item>
     </List>
   </div>
@@ -170,7 +190,7 @@
 </section>
 
 <script>
-  import List, {Group, Item, Graphic, Meta, Label, Separator, Subheader, Text} from 'svelte-material-ui/components/list';
+  import List, {Group, Item, Graphic, Meta, Label, Separator, Subheader, Text, PrimaryText, SecondaryText} from 'svelte-material-ui/components/list';
   import Radio from 'svelte-material-ui/components/radio';
   import Checkbox from 'svelte-material-ui/components/checkbox';
 

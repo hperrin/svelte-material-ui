@@ -1,9 +1,12 @@
-export default function Header(node) {
-  node.classList.add('mdc-drawer__header');
+import ClassAdder, {internals} from '../common/ClassAdder.svelte';
+import Div from '../common/Div.svelte';
 
-  return {
-    destroy() {
-      node.classList.remove('mdc-drawer__header');
-    }
-  }
+function Header(...args) {
+  internals.smuiClass = 'mdc-drawer__header';
+  internals.component = Div;
+  return new ClassAdder(...args);
 }
+
+Header.prototype = ClassAdder;
+
+export default Header;

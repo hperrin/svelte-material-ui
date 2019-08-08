@@ -14,11 +14,11 @@
   <div>
     <MenuSurface static>
       <List>
-        <Item on:SMUI:action={() => clicked = 'Cut'}><span use:Text>Cut</span></Item>
-        <Item on:SMUI:action={() => clicked = 'Copy'}><span use:Text>Copy</span></Item>
-        <Item on:SMUI:action={() => clicked = 'Paste'}><span use:Text>Paste</span></Item>
+        <Item on:SMUI:action={() => clicked = 'Cut'}><Text>Cut</Text></Item>
+        <Item on:SMUI:action={() => clicked = 'Copy'}><Text>Copy</Text></Item>
+        <Item on:SMUI:action={() => clicked = 'Paste'}><Text>Paste</Text></Item>
         <Separator />
-        <Item on:SMUI:action={() => clicked = 'Delete'}><span use:Text>Delete</span></Item>
+        <Item on:SMUI:action={() => clicked = 'Delete'}><Text>Delete</Text></Item>
       </List>
     </MenuSurface>
   </div>
@@ -30,11 +30,11 @@
       <Button on:click={() => menu.setOpen(true)}>Open Menu Surface</Button>
       <MenuSurface bind:this={menu} anchorCorner="BOTTOM_LEFT">
         <List>
-          <Item on:SMUI:action={() => clicked = 'Cut'}><span use:Text>Cut</span></Item>
-          <Item on:SMUI:action={() => clicked = 'Copy'}><span use:Text>Copy</span></Item>
-          <Item on:SMUI:action={() => clicked = 'Paste'}><span use:Text>Paste</span></Item>
+          <Item on:SMUI:action={() => clicked = 'Cut'}><Text>Cut</Text></Item>
+          <Item on:SMUI:action={() => clicked = 'Copy'}><Text>Copy</Text></Item>
+          <Item on:SMUI:action={() => clicked = 'Paste'}><Text>Paste</Text></Item>
           <Separator />
-          <Item on:SMUI:action={() => clicked = 'Delete'}><span use:Text>Delete</span></Item>
+          <Item on:SMUI:action={() => clicked = 'Delete'}><Text>Delete</Text></Item>
         </List>
       </MenuSurface>
     </div>
@@ -47,11 +47,11 @@
       <Button on:click={() => menu2.setOpen(true)}>Open Menu Surface</Button>
       <MenuSurface bind:this={menu2} anchor={false} bind:anchorElement={anchor2}>
         <List>
-          <Item on:SMUI:action={() => clicked = 'Cut'}><span use:Text>Cut</span></Item>
-          <Item on:SMUI:action={() => clicked = 'Copy'}><span use:Text>Copy</span></Item>
-          <Item on:SMUI:action={() => clicked = 'Paste'}><span use:Text>Paste</span></Item>
+          <Item on:SMUI:action={() => clicked = 'Cut'}><Text>Cut</Text></Item>
+          <Item on:SMUI:action={() => clicked = 'Copy'}><Text>Copy</Text></Item>
+          <Item on:SMUI:action={() => clicked = 'Paste'}><Text>Paste</Text></Item>
           <Separator />
-          <Item on:SMUI:action={() => clicked = 'Delete'}><span use:Text>Delete</span></Item>
+          <Item on:SMUI:action={() => clicked = 'Delete'}><Text>Delete</Text></Item>
         </List>
       </MenuSurface>
     </div>

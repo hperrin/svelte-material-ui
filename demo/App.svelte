@@ -1,26 +1,26 @@
 <svelte:window on:resize={setMiniWindow} />
 <Drawer variant={miniWindow ? 'modal' : null} bind:open={drawerOpen}>
-  <div use:Header>
+  <Header>
     <a use:link href="/">
-      <h1 use:Title>Material Components</h1>
+      <Title>Material Components</Title>
     </a>
-  </div>
-  <div use:Content>
+  </Header>
+  <Content>
     <List>
       {#each sections as section}
         <Item use={[link]} href={'key' in section ? '/'+section.key : ('shortcut' in section ? '/'+section.shortcut : undefined)} on:click={() => pickSection(section)} activated={'key' in section && $location === '/'+section.key} title={section.name} style="{section.indent ? 'margin-left: '+(section.indent * 25)+'px;' : ''}">
-          <span use:Text>{section.name}</span>
+          <Text>{section.name}</Text>
         </Item>
       {/each}
     </List>
-  </div>
+  </Content>
 </Drawer>
 
 {#if miniWindow}
-  <div use:Scrim />
+  <Scrim />
 {/if}
-<div use:AppContent class="app-content">
-  <main class="main-content" bind:this={mainContent}>
+<AppContent class="demo-app-content">
+  <main class="demo-main-content" bind:this={mainContent}>
     {#if miniWindow}
       <div>
         <IconButton on:click={() => drawerOpen = !drawerOpen}>menu</IconButton>
@@ -28,7 +28,7 @@
     {/if}
     <Router {routes} />
   </main>
-</div>
+</AppContent>
 
 <script>
   import {onMount} from 'svelte';

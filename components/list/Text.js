@@ -1,38 +1,12 @@
-export default function Text(node, type) {
-  let className;
+import ClassAdder, {internals} from '../common/ClassAdder.svelte';
+import Span from '../common/Span.svelte';
 
-  function setClassName(type) {
-    switch (type) {
-      case 'primary':
-        className = 'mdc-list-item__primary-text';
-        break;
-      case 'secondary':
-        className = 'mdc-list-item__secondary-text';
-        break;
-      default:
-        className = 'mdc-list-item__text';
-        break;
-    }
-  }
-
-  function removeClasses() {
-    node.classList.remove('mdc-list-item__primary-text');
-    node.classList.remove('mdc-list-item__secondary-text');
-    node.classList.remove('mdc-list-item__text');
-  }
-
-  setClassName(type);
-  node.classList.add(className);
-
-  return {
-    update(type) {
-      removeClasses();
-      setClassName(type);
-      node.classList.add(className);
-    },
-
-    destroy() {
-      removeClasses();
-    }
-  }
+function Text(...args) {
+  internals.smuiClass = 'mdc-list-item__text';
+  internals.component = Span;
+  return new ClassAdder(...args);
 }
+
+Text.prototype = ClassAdder;
+
+export default Text;

@@ -117,7 +117,7 @@
       <Content component={List}>
         {#each [...Array(8)].map((v, i) => i + 1) as item}
           <Item on:click={() => clicked++}>
-            <span use:Text>Item #{item}</span>
+            <Text>Item #{item}</Text>
           </Item>
         {/each}
       </Content>

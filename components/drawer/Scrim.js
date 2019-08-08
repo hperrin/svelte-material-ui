@@ -1,9 +1,12 @@
-export default function Scrim(node) {
-  node.classList.add('mdc-drawer-scrim');
+import ClassAdder, {internals} from '../common/ClassAdder.svelte';
+import Div from '../common/Div.svelte';
 
-  return {
-    destroy() {
-      node.classList.remove('mdc-drawer-scrim');
-    }
-  }
+function Scrim(...args) {
+  internals.smuiClass = 'mdc-drawer-scrim';
+  internals.component = Div;
+  return new ClassAdder(...args);
 }
+
+Scrim.prototype = ClassAdder;
+
+export default Scrim;

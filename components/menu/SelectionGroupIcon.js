@@ -1,9 +1,12 @@
-export default function Graphic(node) {
-  node.classList.add('mdc-menu__selection-group-icon');
+import ClassAdder, {internals} from '../common/ClassAdder.svelte';
+import Graphic from '../list/Graphic.js';
 
-  return {
-    destroy() {
-      node.classList.remove('mdc-menu__selection-group-icon');
-    }
-  }
+function SelectionGroupIcon(...args) {
+  internals.smuiClass = 'mdc-menu__selection-group-icon';
+  internals.component = Graphic;
+  return new ClassAdder(...args);
 }
+
+SelectionGroupIcon.prototype = ClassAdder;
+
+export default SelectionGroupIcon;

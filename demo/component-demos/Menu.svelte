@@ -4,11 +4,11 @@
   <div>
     <Menu static>
       <List>
-        <Item on:SMUI:action={() => clicked = 'Cut'}><span use:Text>Cut</span></Item>
-        <Item on:SMUI:action={() => clicked = 'Copy'}><span use:Text>Copy</span></Item>
-        <Item on:SMUI:action={() => clicked = 'Paste'}><span use:Text>Paste</span></Item>
+        <Item on:SMUI:action={() => clicked = 'Cut'}><Text>Cut</Text></Item>
+        <Item on:SMUI:action={() => clicked = 'Copy'}><Text>Copy</Text></Item>
+        <Item on:SMUI:action={() => clicked = 'Paste'}><Text>Paste</Text></Item>
         <Separator />
-        <Item on:SMUI:action={() => clicked = 'Delete'}><span use:Text>Delete</span></Item>
+        <Item on:SMUI:action={() => clicked = 'Delete'}><Text>Delete</Text></Item>
       </List>
     </Menu>
   </div>
@@ -20,11 +20,11 @@
       <Button on:click={() => menu.setOpen(true)}>Open Menu</Button>
       <Menu bind:this={menu} anchorCorner="BOTTOM_LEFT">
         <List>
-          <Item on:SMUI:action={() => clicked = 'Cut'}><span use:Text>Cut</span></Item>
-          <Item on:SMUI:action={() => clicked = 'Copy'}><span use:Text>Copy</span></Item>
-          <Item on:SMUI:action={() => clicked = 'Paste'}><span use:Text>Paste</span></Item>
+          <Item on:SMUI:action={() => clicked = 'Cut'}><Text>Cut</Text></Item>
+          <Item on:SMUI:action={() => clicked = 'Copy'}><Text>Copy</Text></Item>
+          <Item on:SMUI:action={() => clicked = 'Paste'}><Text>Paste</Text></Item>
           <Separator />
-          <Item on:SMUI:action={() => clicked = 'Delete'}><span use:Text>Delete</span></Item>
+          <Item on:SMUI:action={() => clicked = 'Delete'}><Text>Delete</Text></Item>
         </List>
       </Menu>
     </div>
@@ -38,29 +38,29 @@
       <Menu bind:this={menu2} anchor={false} bind:anchorElement={anchor2}>
         <List twoLine>
           <Item on:SMUI:action={() => clicked = 'Cut'}>
-            <span use:Text>
-              <span use:Text={'primary'}>Cut</span>
-              <span use:Text={'secondary'}>Copy to clipboard and remove.</span>
-            </span>
+            <Text>
+              <PrimaryText>Cut</PrimaryText>
+              <SecondaryText>Copy to clipboard and remove.</SecondaryText>
+            </Text>
           </Item>
           <Item on:SMUI:action={() => clicked = 'Copy'}>
-            <span use:Text>
-              <span use:Text={'primary'}>Copy</span>
-              <span use:Text={'secondary'}>Copy to clipboard.</span>
-            </span>
+            <Text>
+              <PrimaryText>Copy</PrimaryText>
+              <SecondaryText>Copy to clipboard.</SecondaryText>
+            </Text>
           </Item>
           <Item on:SMUI:action={() => clicked = 'Paste'}>
-            <span use:Text>
-              <span use:Text={'primary'}>Paste</span>
-              <span use:Text={'secondary'}>Paste from clipboard.</span>
-            </span>
+            <Text>
+              <PrimaryText>Paste</PrimaryText>
+              <SecondaryText>Paste from clipboard.</SecondaryText>
+            </Text>
           </Item>
           <Separator />
           <Item on:SMUI:action={() => clicked = 'Delete'}>
-            <span use:Text>
-              <span use:Text={'primary'}>Delete</span>
-              <span use:Text={'secondary'}>Remove item.</span>
-            </span>
+            <Text>
+              <PrimaryText>Delete</PrimaryText>
+              <SecondaryText>Remove item.</SecondaryText>
+            </Text>
           </Item>
         </List>
       </Menu>
@@ -79,10 +79,10 @@
           <SelectionGroup>
             {#each ['Red', 'Green', 'Blue'] as item}
               <Item on:SMUI:action={() => selected1 = item} selected={selected1 === item}>
-                <span use:Graphic use:SelectionGroupIcon>
+                <SelectionGroupIcon>
                   <i class="material-icons">check</i>
-                </span>
-                <span use:Text>{item}</span>
+                </SelectionGroupIcon>
+                <Text>{item}</Text>
               </Item>
             {/each}
           </SelectionGroup>
@@ -90,16 +90,16 @@
           <SelectionGroup>
             {#each ['Small', 'Medium', 'Large'] as item}
               <Item on:SMUI:action={() => selected2 = item} selected={selected2 === item}>
-                <span use:Graphic use:SelectionGroupIcon>
+                <SelectionGroupIcon>
                   <i class="material-icons">check</i>
-                </span>
-                <span use:Text>{item}</span>
+                </SelectionGroupIcon>
+                <Text>{item}</Text>
               </Item>
             {/each}
           </SelectionGroup>
           <Separator />
           <Item on:SMUI:action={() => clicked2 = 'Save for Later'}>
-            <span use:Text>Save for Later</span>
+            <Text>Save for Later</Text>
           </Item>
         </List>
       </Menu>
@@ -116,7 +116,7 @@
 <script>
   import Menu, {SelectionGroup, SelectionGroupIcon} from 'svelte-material-ui/components/menu';
   import {Anchor} from 'svelte-material-ui/components/menu-surface';
-  import List, {Item, Separator, Text, Graphic} from 'svelte-material-ui/components/list';
+  import List, {Item, Separator, Text, PrimaryText, SecondaryText, Graphic} from 'svelte-material-ui/components/list';
   import Button from 'svelte-material-ui/components/button';
 
   let menu;

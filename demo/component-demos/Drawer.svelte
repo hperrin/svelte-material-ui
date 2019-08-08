@@ -6,74 +6,74 @@
 
     <div class="drawer-container">
       <Drawer>
-        <div use:Content>
+        <Content>
           <List>
             <Item href="javascript:void(0)" on:click={() => clicked = 'Gray Kittens'}>
-              <span use:Text>Gray Kittens</span>
+              <Text>Gray Kittens</Text>
             </Item>
             <Item href="javascript:void(0)" on:click={() => clicked = 'A Space Rocket'}>
-              <span use:Text>A Space Rocket</span>
+              <Text>A Space Rocket</Text>
             </Item>
             <Item href="javascript:void(0)" on:click={() => clicked = '100 Pounds of Gravel'}>
-              <span use:Text>100 Pounds of Gravel</span>
+              <Text>100 Pounds of Gravel</Text>
             </Item>
             <Item href="javascript:void(0)" on:click={() => clicked = 'All of the Shrimp'}>
-              <span use:Text>All of the Shrimp</span>
+              <Text>All of the Shrimp</Text>
             </Item>
             <Item href="javascript:void(0)" on:click={() => clicked = 'A Planet with a Mall'}>
-              <span use:Text>A Planet with a Mall</span>
+              <Text>A Planet with a Mall</Text>
             </Item>
           </List>
-        </div>
+        </Content>
       </Drawer>
 
-      <div use:AppContent class="app-content">
+      <AppContent class="app-content">
         <main class="main-content">
           App content.
+          <br />
+          <div class="status">Clicked: {clicked}</div>
         </main>
-      </div>
+      </AppContent>
     </div>
   </div>
-
-  <div class="status">Clicked: {clicked}</div>
 
   <div>
     A dismissible drawer with a header and activated items.
 
     <div class="drawer-container">
       <Drawer variant="dismissible" bind:this={myDrawer} bind:open={myDrawerOpen}>
-        <div use:Header>
-          <h1 use:Title>Super Drawer</h1>
-          <h2 use:Subtitle>It's the best drawer.</h2>
-        </div>
-        <div use:Content>
+        <Header>
+          <Title>Super Drawer</Title>
+          <Subtitle>It's the best drawer.</Subtitle>
+        </Header>
+        <Content>
           <List>
             <Item href="javascript:void(0)" on:click={() => setActive('Gray Kittens')} activated={active === 'Gray Kittens'}>
-              <span use:Text>Gray Kittens</span>
+              <Text>Gray Kittens</Text>
             </Item>
             <Item href="javascript:void(0)" on:click={() => setActive('A Space Rocket')} activated={active === 'A Space Rocket'}>
-              <span use:Text>A Space Rocket</span>
+              <Text>A Space Rocket</Text>
             </Item>
             <Item href="javascript:void(0)" on:click={() => setActive('100 Pounds of Gravel')} activated={active === '100 Pounds of Gravel'}>
-              <span use:Text>100 Pounds of Gravel</span>
+              <Text>100 Pounds of Gravel</Text>
             </Item>
             <Item href="javascript:void(0)" on:click={() => setActive('All of the Shrimp')} activated={active === 'All of the Shrimp'}>
-              <span use:Text>All of the Shrimp</span>
+              <Text>All of the Shrimp</Text>
             </Item>
             <Item href="javascript:void(0)" on:click={() => setActive('A Planet with a Mall')} activated={active === 'A Planet with a Mall'}>
-              <span use:Text>A Planet with a Mall</span>
+              <Text>A Planet with a Mall</Text>
             </Item>
           </List>
-        </div>
+        </Content>
       </Drawer>
 
-      <div use:AppContent class="app-content">
+      <AppContent class="app-content">
         <main class="main-content">
           <Button on:click={() => myDrawerOpen = !myDrawerOpen}><Label>Toggle Drawer</Label></Button>
           <br />
           <div class="status">Active: {active}</div>
         </main>
-      </div>
+      </AppContent>
     </div>
   </div>
 
@@ -82,49 +82,49 @@
 
     <div class="drawer-container">
       <Drawer variant="modal" bind:this={myDrawer2} bind:open={myDrawer2Open}>
-        <div use:Header>
-          <h1 use:Title>Super Mail</h1>
-          <h2 use:Subtitle>It's the best fake mail app drawer.</h2>
-        </div>
-        <div use:Content>
+        <Header>
+          <Title>Super Mail</Title>
+          <Subtitle>It's the best fake mail app drawer.</Subtitle>
+        </Header>
+        <Content>
           <List>
             <Item href="javascript:void(0)" on:click={() => setActive2('Inbox')} activated={active2 === 'Inbox'}>
               <i use:Graphic class="material-icons" aria-hidden="true">inbox</i>
-              <span use:Text>Inbox</span>
+              <Text>Inbox</Text>
             </Item>
             <Item href="javascript:void(0)" on:click={() => setActive2('Star')} activated={active2 === 'Star'}>
               <i use:Graphic class="material-icons" aria-hidden="true">star</i>
-              <span use:Text>Star</span>
+              <Text>Star</Text>
             </Item>
             <Item href="javascript:void(0)" on:click={() => setActive2('Sent Mail')} activated={active2 === 'Sent Mail'}>
               <i use:Graphic class="material-icons" aria-hidden="true">send</i>
-              <span use:Text>Sent Mail</span>
+              <Text>Sent Mail</Text>
             </Item>
             <Item href="javascript:void(0)" on:click={() => setActive2('Drafts')} activated={active2 === 'Drafts'}>
               <i use:Graphic class="material-icons" aria-hidden="true">drafts</i>
-              <span use:Text>Drafts</span>
+              <Text>Drafts</Text>
             </Item>
 
             <Separator nav />
-            <h6 use:Subheader>Labels</h6>
+            <Subheader component={H6}>Labels</Subheader>
             <Item href="javascript:void(0)" on:click={() => setActive2('Family')} activated={active2 === 'Family'}>
               <i use:Graphic class="material-icons" aria-hidden="true">bookmark</i>
-              <span use:Text>Family</span>
+              <Text>Family</Text>
             </Item>
             <Item href="javascript:void(0)" on:click={() => setActive2('Friends')} activated={active2 === 'Friends'}>
               <i use:Graphic class="material-icons" aria-hidden="true">bookmark</i>
-              <span use:Text>Friends</span>
+              <Text>Friends</Text>
             </Item>
             <Item href="javascript:void(0)" on:click={() => setActive2('Work')} activated={active2 === 'Work'}>
               <i use:Graphic class="material-icons" aria-hidden="true">bookmark</i>
-              <span use:Text>Work</span>
+              <Text>Work</Text>
             </Item>
           </List>
-        </div>
+        </Content>
       </Drawer>
 
-      <div use:Scrim />
-      <div use:AppContent class="app-content">
+      <Scrim />
+      <AppContent class="app-content">
         <main class="main-content">
           <Button on:click={() => myDrawer2Open = !myDrawer2Open}><Label>Toggle Drawer</Label></Button>
           <br />
@@ -132,7 +132,7 @@
           <div style="height: 700px;">&nbsp;</div>
           And some stuff at the bottom.
         </main>
-      </div>
+      </AppContent>
     </div>
   </div>
 </section>
@@ -141,6 +141,7 @@
   import Drawer, {AppContent, Content, Header, Title, Subtitle, Scrim} from 'svelte-material-ui/components/drawer';
   import Button, {Label} from 'svelte-material-ui/components/button';
   import List, {Item, Text, Graphic, Separator, Subheader} from 'svelte-material-ui/components/list';
+  import H6 from 'svelte-material-ui/components/common/H6.svelte';
 
   let clicked = 'nothing yet';
   let myDrawer;
@@ -177,7 +178,7 @@
     position: absolute;
   }
 
-  .app-content {
+  * :global(.app-content) {
     flex: auto;
     overflow: auto;
     position: relative;

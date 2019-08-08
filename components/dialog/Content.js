@@ -1,9 +1,12 @@
-export default function Content(node) {
-  node.classList.add('mdc-dialog__content');
+import ClassAdder, {internals} from '../common/ClassAdder.svelte';
+import Div from '../common/Div.svelte';
 
-  return {
-    destroy() {
-      node.classList.remove('mdc-dialog__content');
-    }
-  }
+function Content(...args) {
+  internals.smuiClass = 'mdc-dialog__content';
+  internals.component = Div;
+  return new ClassAdder(...args);
 }
+
+Content.prototype = ClassAdder;
+
+export default Content;

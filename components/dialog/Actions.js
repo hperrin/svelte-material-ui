@@ -1,9 +1,12 @@
-export default function Actions(node) {
-  node.classList.add('mdc-dialog__actions');
+import ClassAdder, {internals} from '../common/ClassAdder.svelte';
+import Footer from '../common/Footer.svelte';
 
-  return {
-    destroy() {
-      node.classList.remove('mdc-dialog__actions');
-    }
-  }
+function Actions(...args) {
+  internals.smuiClass = 'mdc-dialog__actions';
+  internals.component = Footer;
+  return new ClassAdder(...args);
 }
+
+Actions.prototype = ClassAdder;
+
+export default Actions;

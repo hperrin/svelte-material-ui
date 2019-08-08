@@ -1,9 +1,12 @@
-export default function Graphic(node) {
-  node.classList.add('mdc-list-item__graphic');
+import ClassAdder, {internals} from '../common/ClassAdder.svelte';
+import Span from '../common/Span.svelte';
 
-  return {
-    destroy() {
-      node.classList.remove('mdc-list-item__graphic');
-    }
-  }
+function Graphic(...args) {
+  internals.smuiClass = 'mdc-list-item__graphic';
+  internals.component = Span;
+  return new ClassAdder(...args);
 }
+
+Graphic.prototype = ClassAdder;
+
+export default Graphic;
