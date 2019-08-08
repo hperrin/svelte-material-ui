@@ -58,8 +58,3 @@
     selected = e.detail.selected;
   }
 </script>
-
-<style lang="scss" global>
-  @import "smui-theme";
-  @import "@material/chips/mdc-chips";
-</style>

@@ -28,7 +28,7 @@
   let clicked = 0;
 </script>
 
-<style lang="scss">
+<style>
   * :global(.myClass) {
     text-decoration: underline !important;
   }

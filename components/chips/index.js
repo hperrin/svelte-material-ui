@@ -1,4 +1,5 @@
 import Chip from './Chip.svelte';
+import './_index.scss';
 
 import Set from './Set.svelte';
 import Checkmark from './Checkmark.svelte';

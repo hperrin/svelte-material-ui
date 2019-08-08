@@ -1,4 +1,5 @@
 import Dialog from './Dialog.svelte';
+import './_index.scss';
 
 import Title from './Title.js';
 import Content from './Content.js';

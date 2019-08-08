@@ -118,8 +118,3 @@
     return incoming && incoming.id;
   }
 </script>
-
-<style lang="scss" global>
-  @import "smui-theme";
-  @import "@material/switch/mdc-switch";
-</style>

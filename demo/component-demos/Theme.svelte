@@ -31,29 +31,10 @@
 </section>
 
 <script>
-  import Button from 'svelte-material-ui/components/button';
-  import Fab from 'svelte-material-ui/components/fab';
+  import Button from 'svelte-material-ui/components/button/Button.svelte';
+  import Fab from 'svelte-material-ui/components/fab/Fab.svelte';
   import {Label, Icon} from 'svelte-material-ui/components/common';
+  import './Theme.scss';
 
   let clicked = 0;
 </script>
-
-<style lang="scss" global>
-  .themed {
-    min-height: 100%;
-    min-width: 100%;
-    background-color: #000;
-    color: #fff;
-
-    @import "@material/theme/color-palette";
-
-    $mdc-theme-primary: $material-color-purple-50;
-    $mdc-theme-secondary: $material-color-cyan-50;
-    $mdc-theme-background: #000;
-    $mdc-theme-surface: #000;
-    $mdc-theme-error: $material-color-orange-50;
-
-    @import "@material/button/mdc-button";
-    @import "@material/fab/mdc-fab";
-  }
-</style>

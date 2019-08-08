@@ -1,6 +1,7 @@
 import Card from './Card.svelte';
+import './_index.scss';
 
-import Content from './Content.svelte';
+import Content from './Content.js';
 import PrimaryAction from './PrimaryAction.svelte';
 import Media from './Media.svelte';
 import MediaContent from './MediaContent.svelte';

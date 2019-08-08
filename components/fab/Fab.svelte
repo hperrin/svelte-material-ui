@@ -31,8 +31,3 @@
   setContext('SMUI:labelContext', 'fab');
   setContext('SMUI:iconContext', 'fab');
 </script>
-
-<style lang="scss" global>
-  @import "smui-theme";
-  @import "@material/fab/mdc-fab";
-</style>

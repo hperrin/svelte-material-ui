@@ -207,7 +207,7 @@
   let selectedCheckbox = ['Tom Hanks'];
 </script>
 
-<style lang="scss">
+<style>
   * :global(.demo-list) {
     max-width: 600px;
     border: 1px solid rgba(0,0,0,.1);

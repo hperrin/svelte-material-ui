@@ -49,8 +49,3 @@
     return notchedOutline.closeNotch(...args);
   }
 </script>
-
-<style lang="scss" global>
-  @import "smui-theme";
-  @import "@material/notched-outline/mdc-notched-outline";
-</style>

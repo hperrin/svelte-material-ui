@@ -110,6 +110,20 @@
     </Card>
   </div>
 
+  A card with a list as content:
+
+  <div class="float-children">
+    <Card style="width: 400px;">
+      <Content component={List}>
+        {#each [...Array(8)].map((v, i) => i + 1) as item}
+          <Item on:click={() => clicked++}>
+            <span use:Text>Item #{item}</span>
+          </Item>
+        {/each}
+      </Content>
+    </Card>
+  </div>
+
   <div class="float-children">
     <Card style="width: 400px;">
       <PrimaryAction on:click={() => clicked++}>
@@ -182,11 +196,12 @@
   import Card, {Content, PrimaryAction, Media, MediaContent, Actions, ActionButtons, ActionIcons, Button as CardButton, IconButton as CardIconButton} from 'svelte-material-ui/components/card';
   import {Label} from 'svelte-material-ui/components/button';
   import {Icon} from 'svelte-material-ui/components/icon-button';
+  import List, {Item, Text} from 'svelte-material-ui/components/list';
 
   let clicked = 0;
 </script>
 
-<style lang="scss">
+<style>
   .float-children > :global(*) {
     float: left;
     margin-right: 16px;

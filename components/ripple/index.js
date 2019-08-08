@@ -1,4 +1,4 @@
-import '@material/ripple/mdc-ripple.scss';
 import Ripple from './Ripple.js';
+import './_index.scss';
 
 export default Ripple;

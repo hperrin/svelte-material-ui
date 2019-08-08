@@ -33,6 +33,7 @@
 <script>
   import {onMount} from 'svelte';
   import Router, {link, location} from 'svelte-spa-router';
+  import './App.scss';
   import Drawer, {Header, Title, Content, Scrim, AppContent} from 'svelte-material-ui/components/drawer';
   import IconButton from 'svelte-material-ui/components/icon-button';
   import List, {Item, Text} from 'svelte-material-ui/components/list';
@@ -258,88 +259,3 @@
     miniWindow = window.innerWidth < 720;
   }
 </script>
-
-<style lang="scss">
-  @import "svelte-material-ui/components/typography";
-
-  :global(body), :global(app) {
-    display: flex;
-    height: 100vh;
-    width: 100vw;
-  }
-
-  .app-content {
-    flex: auto;
-    overflow: auto;
-    position: relative;
-  }
-
-  .main-content {
-    overflow: auto;
-    height: 100%;
-    display: flex;
-  }
-
-  .main-content :global(section) {
-    padding: 16px;
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  * :global(section > div) {
-    margin: 1em 0 .6em;
-  }
-
-  * :global(.status) {
-    font-family: monospace;
-    font-size: .9em;
-  }
-
-  :global(h1) {
-    @include mdc-typography('headline1');
-  }
-
-  :global(h2) {
-    @include mdc-typography('headline2');
-  }
-
-  :global(h3) {
-    @include mdc-typography('headline3');
-  }
-
-  :global(h4) {
-    @include mdc-typography('headline4');
-  }
-
-  :global(h5) {
-    @include mdc-typography('headline5');
-  }
-
-  :global(h6) {
-    @include mdc-typography('headline6');
-  }
-
-  :global(*) {
-    @include mdc-typography('body1');
-  }
-
-  :global(code, pre) {
-    font-family: 'Courier New', Courier, monospace;
-  }
-
-  :global(small) {
-    font-size: .9em;
-  }
-
-  :global(big) {
-    font-size: 1.1em;
-  }
-
-  :global(b, strong) {
-    font-weight: bold;
-  }
-
-  :global(caption) {
-    @include mdc-typography('caption');
-  }
-</style>

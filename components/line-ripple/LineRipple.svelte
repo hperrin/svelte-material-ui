@@ -45,8 +45,3 @@
     return lineRipple.setRippleCenter(xCoordinate, ...args);
   }
 </script>
-
-<style lang="scss" global>
-  @import "smui-theme";
-  @import "@material/line-ripple/mdc-line-ripple";
-</style>

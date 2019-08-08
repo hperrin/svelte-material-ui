@@ -21,12 +21,3 @@
   export let variant = '';
   export let padded = false;
 </script>
-
-<style lang="scss" global>
-  @import "smui-theme";
-  @import "@material/card/mdc-card";
-
-  .smui-card--padded {
-    padding: 16px;
-  }
-</style>

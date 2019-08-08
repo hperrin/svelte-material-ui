@@ -226,21 +226,20 @@
 
     <div class="columns margins">
       <div>
-        <!-- You can set the initial character count to avoid FOUC -->
         <Textfield bind:value={valueCharCountA} label="Standard" input$maxlength="18" input$aria-controls="helper-text-char-count-a" input$aria-describedby="helper-text-char-count-a" />
-        <HelperText id="helper-text-char-count-a" characterCount>Helper Text<span slot="characterCount">0 / 18</span></HelperText>
+        <HelperText id="helper-text-char-count-a">Helper Text<span slot="character-counter"><CharacterCounter>0 / 18</CharacterCounter></span></HelperText>
 
         <div class="status">Value: {valueCharCountA}</div>
       </div>
       <div>
         <Textfield variant="outlined" bind:value={valueCharCountB} label="Standard" input$maxlength="18" input$aria-controls="helper-text-char-count-b" input$aria-describedby="helper-text-char-count-b" />
-        <HelperText id="helper-text-char-count-b" characterCount>Helper Text</HelperText>
+        <HelperText id="helper-text-char-count-b">Helper Text<span slot="character-counter"><CharacterCounter>0 / 18</CharacterCounter></span></HelperText>
 
         <div class="status">Value: {valueCharCountB}</div>
       </div>
       <div>
         <Textfield class="shaped-outlined" variant="outlined" bind:value={valueCharCountC} label="Standard" input$maxlength="18" input$aria-controls="helper-text-char-count-c" input$aria-describedby="helper-text-char-count-c" />
-        <HelperText id="helper-text-char-count-c" characterCount>Helper Text</HelperText>
+        <HelperText id="helper-text-char-count-c">Helper Text<span slot="character-counter"><CharacterCounter>0 / 18</CharacterCounter></span></HelperText>
 
         <div class="status">Value: {valueCharCountC}</div>
       </div>
@@ -272,7 +271,7 @@
 
     <div class="margins">
       <Textfield textarea input$maxlength="100" bind:value={valueTextareaCharCount} label="Standard">
-        <CharacterCount>0 / 100</CharacterCount>
+        <CharacterCounter>0 / 100</CharacterCounter>
       </Textfield>
     </div>
   </div>
@@ -347,7 +346,10 @@
 </section>
 
 <script>
-  import Textfield, {Input, Textarea, Icon, HelperText, CharacterCount} from 'svelte-material-ui/components/textfield';
+  import Textfield, {Input, Textarea} from 'svelte-material-ui/components/textfield';
+  import Icon from 'svelte-material-ui/components/textfield/icon';
+  import HelperText from 'svelte-material-ui/components/textfield/helper-text';
+  import CharacterCounter from 'svelte-material-ui/components/textfield/character-counter';
   import {Icon as CommonIcon} from 'svelte-material-ui/components/common';
   import FloatingLabel from 'svelte-material-ui/components/floating-label';
   import LineRipple from 'svelte-material-ui/components/line-ripple';

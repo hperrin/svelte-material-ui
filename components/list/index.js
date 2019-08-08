@@ -1,4 +1,5 @@
 import List from './List.svelte';
+import './_index.scss';
 
 import Item from './Item.svelte';
 import Text from './Text.js';

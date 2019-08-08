@@ -1,0 +1,10 @@
+@import "@material/menu-surface/mdc-menu-surface";
+
+.smui-menu-surface--static {
+  position: static;
+  z-index: 0;
+
+  display: inline-block;
+  transform: scale(1);
+  opacity: 1;
+}

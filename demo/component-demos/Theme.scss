@@ -1,0 +1,17 @@
+.themed {
+  min-height: 100%;
+  min-width: 100%;
+  background-color: #000;
+  color: #fff;
+
+  @import "@material/theme/color-palette";
+
+  $mdc-theme-primary: $material-color-purple-50;
+  $mdc-theme-secondary: $material-color-cyan-50;
+  $mdc-theme-background: #000;
+  $mdc-theme-surface: #000;
+  $mdc-theme-error: $material-color-orange-50;
+
+  @import "svelte-material-ui/components/button/style";
+  @import "svelte-material-ui/components/fab/style";
+}

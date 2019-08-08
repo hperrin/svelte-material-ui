@@ -1,4 +1,5 @@
 import Drawer from './Drawer.svelte';
+import './_index.scss';
 
 import AppContent from './AppContent.js';
 import Content from './Content.js';

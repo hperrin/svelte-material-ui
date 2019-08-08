@@ -4,7 +4,7 @@
   <div>
     <Dialog bind:this={myDialog} aria-labelledby="my-dialog-title" aria-describedby="my-dialog-content">
       <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
-      <h2 use:Title id="my-dialog-title">Dialog Title</h2>
+      <Title id="my-dialog-title">Dialog Title</Title>
       <div use:Content id="my-dialog-content">
         Super awesome dialog body text?
       </div>
@@ -28,7 +28,7 @@
 
     <Dialog bind:this={myDialog2} aria-labelledby="my-dialog-title2" aria-describedby="my-dialog-content2" on:MDCDialog:closed={closeHandler}>
       <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
-      <h2 use:Title id="my-dialog-title2">The Best Dog</h2>
+      <Title id="my-dialog-title2">The Best Dog</Title>
       <div use:Content id="my-dialog-content2">
         Who is the best dog?
       </div>
@@ -52,7 +52,7 @@
 
     <Dialog bind:this={myDialog3} aria-labelledby="my-dialog-title3" aria-describedby="my-dialog-content3">
       <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
-      <h2 use:Title id="my-dialog-title3">Dialog Title</h2>
+      <Title id="my-dialog-title3">Dialog Title</Title>
       <List use={[Content]} id="my-dialog-content3">
         {#each [...Array(100)].map((v, i) => i + 1) as item}
           <Item on:click={() => {clicked3 = item; myDialog3.close()} }>

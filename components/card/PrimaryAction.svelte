@@ -25,9 +25,3 @@
   export let padded = false;
   export let tabindex = '0';
 </script>
-
-<style>
-  .smui-card__primary-action--padded {
-    padding: 16px;
-  }
-</style>

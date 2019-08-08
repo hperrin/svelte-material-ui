@@ -13,9 +13,9 @@
   import {MDCSelectHelperText} from '@material/select/helper-text';
   import {onMount, onDestroy} from 'svelte';
   import {current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from '../forwardEvents.js';
-  import {exclude} from '../exclude.js';
-  import {useActions} from '../useActions.js';
+  import {forwardEventsBuilder} from '../../forwardEvents.js';
+  import {exclude} from '../../exclude.js';
+  import {useActions} from '../../useActions.js';
 
   const forwardEvents = forwardEventsBuilder(current_component);
 
@@ -36,8 +36,3 @@
     helperText.destroy();
   });
 </script>
-
-<style lang="scss" global>
-  @import "smui-theme";
-  @import "@material/select/helper-text/mdc-select-helper-text";
-</style>

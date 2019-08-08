@@ -1,6 +1,11 @@
 <section>
   <h2>Typography</h2>
 
+  <!--
+    You need to import `@material/typography/mdc-typography` in SCSS for
+    these to work. See the App.scss file.
+  -->
+
   <div class="mdc-typography mdc-typography--headline1">Headline 1</div>
 
   <div class="mdc-typography mdc-typography--headline2">Headline 2</div>
@@ -36,7 +41,3 @@
     <em>em</em>
   </div>
 </section>
-
-<style lang="scss">
-  @import "svelte-material-ui/components/typography";
-</style>

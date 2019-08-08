@@ -136,8 +136,3 @@
     textField.destroy();
   });
 </script>
-
-<style lang="scss" global>
-  @import "smui-theme";
-  @import "@material/textfield/mdc-text-field";
-</style>

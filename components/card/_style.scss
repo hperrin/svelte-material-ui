@@ -1,0 +1,7 @@
+@import "@material/card/mdc-card";
+@import 'svelte-material-ui/components/button/style';
+@import 'svelte-material-ui/components/icon-button/style';
+
+.smui-card--padded, .smui-card__content, .smui-card__primary-action--padded {
+  padding: 16px;
+}

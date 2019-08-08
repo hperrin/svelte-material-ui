@@ -42,7 +42,7 @@
   {:else}
     <select
       use:useActions={input$use}
-      class="mdc-select__native-control {input$class}"
+      class="mdc-select__native-control smui-select__native-control {input$class}"
       {disabled}
       {required}
       id={inputId}
@@ -177,14 +177,3 @@
     return select.layout(...args);
   }
 </script>
-
-<style lang="scss" global>
-  @import "smui-theme";
-  @import "@material/select/mdc-select";
-
-  select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-  }
-</style>

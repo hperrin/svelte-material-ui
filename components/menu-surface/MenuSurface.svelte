@@ -136,17 +136,3 @@
     return menuSurface.getDefaultFoundation(...args);
   }
 </script>
-
-<style lang="scss" global>
-  @import "smui-theme";
-  @import "@material/menu-surface/mdc-menu-surface";
-
-  .smui-menu-surface--static {
-    position: static;
-    z-index: 0;
-
-    display: inline-block;
-    transform: scale(1);
-    opacity: 1;
-  }
-</style>

@@ -13,20 +13,17 @@
     aria-hidden="true"
     {...exclude($$props, ['use', 'class', 'persistent', 'validationMsg'])}
   ><slot></slot></div>
-  {#if characterCount}
-    <CharacterCount><slot name="characterCount"></slot></CharacterCount>
-  {/if}
+  <slot name="character-counter"></slot>
 </div>
 
 <script>
   import {MDCTextFieldHelperText} from '@material/textfield/helper-text';
   import {onMount, onDestroy} from 'svelte';
   import {current_component} from 'svelte/internal';
-  import CharacterCount from './CharacterCount.svelte';
-  import {forwardEventsBuilder} from '../forwardEvents.js';
-  import {exclude} from '../exclude.js';
-  import {prefixFilter} from '../prefixFilter.js';
-  import {useActions} from '../useActions.js';
+  import {forwardEventsBuilder} from '../../forwardEvents.js';
+  import {exclude} from '../../exclude.js';
+  import {prefixFilter} from '../../prefixFilter.js';
+  import {useActions} from '../../useActions.js';
 
   const forwardEvents = forwardEventsBuilder(current_component);
 
@@ -35,7 +32,6 @@
   export {className as class};
   export let persistent = false;
   export let validationMsg = false;
-  export let characterCount = false;
   export let line$use = [];
   export let line$class = '';
 
@@ -50,8 +46,3 @@
     helperText.destroy();
   });
 </script>
-
-<style lang="scss" global>
-  @import "smui-theme";
-  @import "@material/textfield/helper-text/mdc-text-field-helper-text";
-</style>
