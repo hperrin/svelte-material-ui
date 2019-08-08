@@ -21,7 +21,7 @@
 </section>
 
 <script>
-  import IconButton, {Icon} from 'svelte-material-ui/components/icon-button';
+  import IconButton, {Icon} from 'svelte-material-ui/components/icon-button/index.svelte';
 
   let clicked = 0;
   let initialOff = false;

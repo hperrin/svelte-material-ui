@@ -41,8 +41,8 @@
 </section>
 
 <script>
-  import Switch from 'svelte-material-ui/components/switch';
-  import FormField from 'svelte-material-ui/components/form-field';
+  import Switch from 'svelte-material-ui/components/switch/index.svelte';
+  import FormField from 'svelte-material-ui/components/form-field/index.svelte';
 
   let simpleSelected = false;
   let simpleSelected2 = false;

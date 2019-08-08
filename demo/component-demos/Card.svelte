@@ -179,9 +179,9 @@
 </section>
 
 <script>
-  import Card, {Content, PrimaryAction, Media, MediaContent, Actions, ActionButtons, ActionIcons, Button as CardButton, IconButton as CardIconButton} from 'svelte-material-ui/components/card';
-  import {Label} from 'svelte-material-ui/components/button';
-  import {Icon} from 'svelte-material-ui/components/icon-button';
+  import Card, {Content, PrimaryAction, Media, MediaContent, Actions, ActionButtons, ActionIcons, Button as CardButton, IconButton as CardIconButton} from 'svelte-material-ui/components/card/index.svelte';
+  import {Label} from 'svelte-material-ui/components/button/index.svelte';
+  import {Icon} from 'svelte-material-ui/components/icon-button/index.svelte';
 
   let clicked = 0;
 </script>

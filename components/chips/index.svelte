@@ -9,10 +9,10 @@
 ><slot></slot></div>
 
 <script context="module">
-  import Set from './Set';
-  import Checkmark from './Checkmark';
-  import Icon from '../common/Icon';
-  import Text from '../common/Label';
+  import Set from './Set.svelte';
+  import Checkmark from './Checkmark.svelte';
+  import Icon from '../common/Icon.svelte';
+  import Text from '../common/Label.svelte';
 
   export {Set, Icon, Checkmark, Text};
 </script>
@@ -21,9 +21,9 @@
   import {MDCChip} from '@material/chips';
   import {onMount, setContext} from 'svelte';
   import {current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from '../forwardEvents';
-  import {exclude} from '../exclude';
-  import {useActions} from '../useActions';
+  import {forwardEventsBuilder} from '../forwardEvents.js';
+  import {exclude} from '../exclude.js';
+  import {useActions} from '../useActions.js';
 
   const forwardEvents = forwardEventsBuilder(current_component, ['MDCChip:interaction', 'MDCChip:selection', 'MDCChip:removal', 'MDCChip:trailingIconInteraction']);
 

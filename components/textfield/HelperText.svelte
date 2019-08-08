@@ -22,11 +22,11 @@
   import {MDCTextFieldHelperText} from '@material/textfield/helper-text';
   import {onMount, onDestroy} from 'svelte';
   import {current_component} from 'svelte/internal';
-  import CharacterCount from './CharacterCount';
-  import {forwardEventsBuilder} from '../forwardEvents';
-  import {exclude} from '../exclude';
-  import {prefixFilter} from '../prefixFilter';
-  import {useActions} from '../useActions';
+  import CharacterCount from './CharacterCount.svelte';
+  import {forwardEventsBuilder} from '../forwardEvents.js';
+  import {exclude} from '../exclude.js';
+  import {prefixFilter} from '../prefixFilter.js';
+  import {useActions} from '../useActions.js';
 
   const forwardEvents = forwardEventsBuilder(current_component);
 

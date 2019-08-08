@@ -10,12 +10,12 @@
 ><slot></slot></aside>
 
 <script context="module">
-  import AppContent from './AppContent';
-  import Content from './Content';
-  import Header from './Header';
-  import Title from './Title';
-  import Subtitle from './Subtitle';
-  import Scrim from './Scrim';
+  import AppContent from './AppContent.js';
+  import Content from './Content.js';
+  import Header from './Header.js';
+  import Title from './Title.js';
+  import Subtitle from './Subtitle.js';
+  import Scrim from './Scrim.js';
 
   export {AppContent, Content, Header, Title, Subtitle, Scrim};
 </script>
@@ -24,9 +24,9 @@
   import {MDCDrawer} from "@material/drawer";
   import {onMount, onDestroy, afterUpdate, setContext} from 'svelte';
   import {current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from '../forwardEvents';
-  import {exclude} from '../exclude';
-  import {useActions} from '../useActions';
+  import {forwardEventsBuilder} from '../forwardEvents.js';
+  import {exclude} from '../exclude.js';
+  import {useActions} from '../useActions.js';
 
   const forwardEvents = forwardEventsBuilder(current_component, ['MDCDrawer:opened', 'MDCDrawer:closed']);
 

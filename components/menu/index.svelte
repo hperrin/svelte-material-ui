@@ -8,8 +8,8 @@
 ><slot></slot></MenuSurface>
 
 <script context="module">
-  import SelectionGroup from './SelectionGroup';
-  import SelectionGroupIcon from './SelectionGroupIcon';
+  import SelectionGroup from './SelectionGroup.svelte';
+  import SelectionGroupIcon from './SelectionGroupIcon.js';
 
   export {SelectionGroup, SelectionGroupIcon};
 </script>
@@ -18,11 +18,11 @@
   import {MDCMenu} from '@material/menu';
   import {onMount, onDestroy, getContext, setContext} from 'svelte';
   import {current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from '../forwardEvents';
-  import {exclude} from '../exclude';
-  import {useActions} from '../useActions';
-  import {CornerMap} from '../menu-surface/CornerMap';
-  import MenuSurface from '../menu-surface';
+  import {forwardEventsBuilder} from '../forwardEvents.js';
+  import {exclude} from '../exclude.js';
+  import {useActions} from '../useActions.js';
+  import {CornerMap} from '../menu-surface/CornerMap.js';
+  import MenuSurface from '../menu-surface/index.svelte';
 
   const forwardEvents = forwardEventsBuilder(current_component, ['MDCMenu:selected', 'MDCMenuSurface:closed', 'MDCMenuSurface:opened']);
 

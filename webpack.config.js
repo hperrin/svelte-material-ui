@@ -23,7 +23,6 @@ module.exports = {
     filename: 'bundle.js',
   },
   resolve: {
-    extensions: ['.mjs', '.js', '.json', '.html', '.svelte', '.css', '.scss'],
     alias: {
       // This is so the demo can import from 'svelte-material-ui'.
       'svelte-material-ui': path.resolve(__dirname)

@@ -13,7 +13,7 @@
 ><slot></slot></button>
 
 <script context="module">
-  import Icon from '../common/Icon';
+  import Icon from '../common/Icon.svelte';
 
   export {Icon};
 </script>
@@ -22,10 +22,10 @@
   import {MDCIconButtonToggle} from '@material/icon-button';
   import {onDestroy, setContext} from 'svelte';
   import {current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from '../forwardEvents';
-  import {exclude} from '../exclude';
-  import {useActions} from '../useActions';
-  import Ripple from '../ripple';
+  import {forwardEventsBuilder} from '../forwardEvents.js';
+  import {exclude} from '../exclude.js';
+  import {useActions} from '../useActions.js';
+  import Ripple from '../ripple/index.js';
 
   const forwardEvents = forwardEventsBuilder(current_component, ['MDCIconButtonToggle:change']);
 

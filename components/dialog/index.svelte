@@ -16,10 +16,10 @@
 </div>
 
 <script context="module">
-  import Title from './Title';
-  import Content from './Content';
-  import Actions from './Actions';
-  import Button from './Button';
+  import Title from './Title.js';
+  import Content from './Content.js';
+  import Actions from './Actions.js';
+  import Button from './Button.svelte';
 
   export {Title, Content, Actions, Button};
 </script>
@@ -28,9 +28,9 @@
   import {MDCDialog} from '@material/dialog';
   import {onMount, onDestroy} from 'svelte';
   import {current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from '../forwardEvents';
-  import {exclude} from '../exclude';
-  import {useActions} from '../useActions';
+  import {forwardEventsBuilder} from '../forwardEvents.js';
+  import {exclude} from '../exclude.js';
+  import {useActions} from '../useActions.js';
 
   const forwardEvents = forwardEventsBuilder(current_component, ['MDCDialog:opening', 'MDCDialog:opened', 'MDCDialog:closing', 'MDCDialog:closed']);
 

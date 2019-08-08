@@ -28,14 +28,14 @@
 {/if}
 
 <script context="module">
-  import Item from './Item';
-  import Text from './Text';
-  import Graphic from './Graphic';
-  import Meta from './Meta';
-  import Label from './Label';
-  import Group from './Group';
-  import Subheader from './Subheader';
-  import Separator from './Separator';
+  import Item from './Item.svelte';
+  import Text from './Text.js';
+  import Graphic from './Graphic.js';
+  import Meta from './Meta.js';
+  import Label from './Label.svelte';
+  import Group from './Group.svelte';
+  import Subheader from './Subheader.js';
+  import Separator from './Separator.svelte';
 
   export {Item, Text, Graphic, Meta, Label, Group, Subheader, Separator};
 </script>
@@ -44,9 +44,9 @@
   import {MDCList} from '@material/list';
   import {onMount, onDestroy, getContext, setContext} from 'svelte';
   import {current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from '../forwardEvents';
-  import {exclude} from '../exclude';
-  import {useActions} from '../useActions';
+  import {forwardEventsBuilder} from '../forwardEvents.js';
+  import {exclude} from '../exclude.js';
+  import {useActions} from '../useActions.js';
 
   const forwardEvents = forwardEventsBuilder(current_component, ['MDCList:action']);
 

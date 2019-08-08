@@ -69,9 +69,9 @@
 </section>
 
 <script>
-  import Dialog, {Title, Content, Actions, Button as DialogButton} from 'svelte-material-ui/components/dialog';
-  import Button, {Label} from 'svelte-material-ui/components/button';
-  import List, {Item, Text} from 'svelte-material-ui/components/list';
+  import Dialog, {Title, Content, Actions, Button as DialogButton} from 'svelte-material-ui/components/dialog/index.svelte';
+  import Button, {Label} from 'svelte-material-ui/components/button/index.svelte';
+  import List, {Item, Text} from 'svelte-material-ui/components/list/index.svelte';
 
   let myDialog;
   let myDialog2;

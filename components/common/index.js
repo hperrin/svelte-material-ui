@@ -1,4 +1,4 @@
-import Label from './Label';
-import Icon from './Icon';
+import Label from './Label.svelte';
+import Icon from './Icon.svelte';
 
 export {Label, Icon};

@@ -78,9 +78,9 @@
 </div>
 
 <script context="module">
-  import Option from './Option';
-  import Icon from './Icon';
-  import HelperText from './HelperText';
+  import Option from './Option.svelte';
+  import Icon from './Icon.svelte';
+  import HelperText from './HelperText.svelte';
 
   export {Option, Icon, HelperText};
 
@@ -91,15 +91,15 @@
   import {MDCSelect} from '@material/select';
   import {onMount, onDestroy, getContext, setContext} from 'svelte';
   import {current_component} from 'svelte/internal';
-  import Menu from '../menu';
-  import List from '../list';
-  import FloatingLabel from '../floating-label';
-  import LineRipple from '../line-ripple';
-  import NotchedOutline from '../notched-outline';
-  import {forwardEventsBuilder} from '../forwardEvents';
-  import {exclude} from '../exclude';
-  import {prefixFilter} from '../prefixFilter';
-  import {useActions} from '../useActions';
+  import Menu from '../menu/index.svelte';
+  import List from '../list/index.svelte';
+  import FloatingLabel from '../floating-label/index.svelte';
+  import LineRipple from '../line-ripple/index.svelte';
+  import NotchedOutline from '../notched-outline/index.svelte';
+  import {forwardEventsBuilder} from '../forwardEvents.js';
+  import {exclude} from '../exclude.js';
+  import {prefixFilter} from '../prefixFilter.js';
+  import {useActions} from '../useActions.js';
 
   const forwardEvents = forwardEventsBuilder(current_component, 'MDCSelect:change');
 

@@ -9,8 +9,8 @@
 </div>
 
 <script>
-  import {exclude} from '../exclude';
-  import {useActions} from '../useActions';
+  import {exclude} from '../exclude.js';
+  import {useActions} from '../useActions.js';
 
   export let use = [];
   let className = '';

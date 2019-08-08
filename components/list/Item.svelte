@@ -59,10 +59,10 @@
 <script>
   import {onMount, onDestroy, getContext, setContext, createEventDispatcher} from 'svelte';
   import {current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from '../forwardEvents';
-  import {exclude} from '../exclude';
-  import {useActions} from '../useActions';
-  import Ripple from '../ripple';
+  import {forwardEventsBuilder} from '../forwardEvents.js';
+  import {exclude} from '../exclude.js';
+  import {useActions} from '../useActions.js';
+  import Ripple from '../ripple/index.js';
 
   const dispatch = createEventDispatcher();
   const forwardEvents = forwardEventsBuilder(current_component);

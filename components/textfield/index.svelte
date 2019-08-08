@@ -75,11 +75,11 @@
 {/if}
 
 <script context="module">
-  import Input from './Input';
-  import Textarea from './Textarea';
-  import Icon from './Icon';
-  import HelperText from './HelperText';
-  import CharacterCount from './CharacterCount';
+  import Input from './Input.svelte';
+  import Textarea from './Textarea.svelte';
+  import Icon from './Icon.svelte';
+  import HelperText from './HelperText.svelte';
+  import CharacterCount from './CharacterCount.svelte';
 
   export {Input, Textarea, Icon, HelperText, CharacterCount};
 </script>
@@ -88,13 +88,13 @@
   import {MDCTextField} from '@material/textfield';
   import {onMount, onDestroy} from 'svelte';
   import {current_component} from 'svelte/internal';
-  import FloatingLabel from '../floating-label';
-  import LineRipple from '../line-ripple';
-  import NotchedOutline from '../notched-outline';
-  import {forwardEventsBuilder} from '../forwardEvents';
-  import {exclude} from '../exclude';
-  import {prefixFilter} from '../prefixFilter';
-  import {useActions} from '../useActions';
+  import FloatingLabel from '../floating-label/index.svelte';
+  import LineRipple from '../line-ripple/index.svelte';
+  import NotchedOutline from '../notched-outline/index.svelte';
+  import {forwardEventsBuilder} from '../forwardEvents.js';
+  import {exclude} from '../exclude.js';
+  import {prefixFilter} from '../prefixFilter.js';
+  import {useActions} from '../useActions.js';
 
   const forwardEvents = forwardEventsBuilder(current_component);
   let uninitializedValue = () => {};

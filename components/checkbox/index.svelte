@@ -30,10 +30,10 @@
   import {MDCCheckbox} from '@material/checkbox';
   import {onMount, onDestroy, getContext} from 'svelte';
   import {current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from '../forwardEvents';
-  import {exclude} from '../exclude';
-  import {prefixFilter} from '../prefixFilter';
-  import {useActions} from '../useActions';
+  import {forwardEventsBuilder} from '../forwardEvents.js';
+  import {exclude} from '../exclude.js';
+  import {prefixFilter} from '../prefixFilter.js';
+  import {useActions} from '../useActions.js';
 
   const forwardEvents = forwardEventsBuilder(current_component);
   let uninitializedValue = () => {};

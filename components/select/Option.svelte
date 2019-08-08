@@ -18,10 +18,10 @@
 <script>
   import {getContext, setContext} from 'svelte';
   import {current_component} from 'svelte/internal';
-  import {Item} from '../list';
-  import {forwardEventsBuilder} from '../forwardEvents';
-  import {exclude} from '../exclude';
-  import {useActions} from '../useActions';
+  import {Item} from '../list/index.svelte';
+  import {forwardEventsBuilder} from '../forwardEvents.js';
+  import {exclude} from '../exclude.js';
+  import {useActions} from '../useActions.js';
 
   const forwardEvents = forwardEventsBuilder(current_component);
 

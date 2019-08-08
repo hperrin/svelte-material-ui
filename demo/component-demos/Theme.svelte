@@ -31,9 +31,9 @@
 </section>
 
 <script>
-  import Button from 'svelte-material-ui/components/button';
-  import Fab from 'svelte-material-ui/components/fab';
-  import {Label, Icon} from 'svelte-material-ui/components/common';
+  import Button from 'svelte-material-ui/components/button/index.svelte';
+  import Fab from 'svelte-material-ui/components/fab/index.svelte';
+  import {Label, Icon} from 'svelte-material-ui/components/common/index.js';
 
   let clicked = 0;
 </script>

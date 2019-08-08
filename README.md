@@ -31,8 +31,10 @@ Here's some example code:
 <HelperText id="helper-text">What you put in this box will become super!</HelperText>
 
 <script>
+  // If you have your bundler set up to look for '*.svelte' files.
   import Button from 'svelte-material-ui/components/button';
-  import Fab from 'svelte-material-ui/components/fab';
+  // And if you don't.
+  import Fab from 'svelte-material-ui/components/fab/index.svelte';
   import Textfield, {HelperText} from '../components/textfield';
   import {Label, Icon} from 'svelte-material-ui/components/common';
 

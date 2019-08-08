@@ -59,8 +59,8 @@
 </section>
 
 <script>
-  import Chip, {Set, Icon, Checkmark, Text} from 'svelte-material-ui/components/chips';
-  import Button, {Label} from 'svelte-material-ui/components/button';
+  import Chip, {Set, Icon, Checkmark, Text} from 'svelte-material-ui/components/chips/index.svelte';
+  import Button, {Label} from 'svelte-material-ui/components/button/index.svelte';
 
   let choice = 'Morning';
   let filter = ['Shoes', 'Shirts'];

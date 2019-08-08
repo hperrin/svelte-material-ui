@@ -11,7 +11,7 @@
 ><slot></slot></div>
 
 <script context="module">
-  import Anchor from './Anchor';
+  import Anchor from './Anchor.js';
 
   export {Anchor};
 </script>
@@ -20,10 +20,10 @@
   import {MDCMenuSurface} from '@material/menu-surface';
   import {onMount, onDestroy, getContext, setContext} from 'svelte';
   import {current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from '../forwardEvents';
-  import {exclude} from '../exclude';
-  import {useActions} from '../useActions';
-  import {CornerMap} from './CornerMap';
+  import {forwardEventsBuilder} from '../forwardEvents.js';
+  import {exclude} from '../exclude.js';
+  import {useActions} from '../useActions.js';
+  import {CornerMap} from './CornerMap.js';
 
   const forwardEvents = forwardEventsBuilder(current_component, ['MDCMenuSurface:closed', 'MDCMenuSurface:opened']);
 

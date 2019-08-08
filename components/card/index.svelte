@@ -8,24 +8,24 @@
 ><slot></slot></div>
 
 <script context="module">
-  import Content from './Content';
-  import PrimaryAction from './PrimaryAction';
-  import Media from './Media';
-  import MediaContent from './MediaContent';
-  import Actions from './Actions';
-  import ActionButtons from './ActionButtons';
-  import ActionIcons from './ActionIcons';
-  import Button from './Button';
-  import IconButton from './IconButton';
+  import Content from './Content.svelte';
+  import PrimaryAction from './PrimaryAction.svelte';
+  import Media from './Media.svelte';
+  import MediaContent from './MediaContent.svelte';
+  import Actions from './Actions.svelte';
+  import ActionButtons from './ActionButtons.svelte';
+  import ActionIcons from './ActionIcons.svelte';
+  import Button from './Button.svelte';
+  import IconButton from './IconButton.svelte';
 
   export {Content, PrimaryAction, Media, MediaContent, Actions, ActionButtons, ActionIcons, Button, IconButton};
 </script>
 
 <script>
   import {current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from '../forwardEvents';
-  import {exclude} from '../exclude';
-  import {useActions} from '../useActions';
+  import {forwardEventsBuilder} from '../forwardEvents.js';
+  import {exclude} from '../exclude.js';
+  import {useActions} from '../useActions.js';
 
   const forwardEvents = forwardEventsBuilder(current_component);
 

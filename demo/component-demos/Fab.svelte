@@ -18,7 +18,7 @@
 </section>
 
 <script>
-  import Fab, {Label, Icon} from 'svelte-material-ui/components/fab';
+  import Fab, {Label, Icon} from 'svelte-material-ui/components/fab/index.svelte';
 
   let clicked = 0;
   let exited = false;
