@@ -33,9 +33,9 @@
 <script>
   import {onMount} from 'svelte';
   import Router, {link, location} from 'svelte-spa-router';
-  import Drawer, {Header, Title, Content, Scrim, AppContent} from 'svelte-material-ui/components/drawer/index.svelte';
-  import IconButton from 'svelte-material-ui/components/icon-button/index.svelte';
-  import List, {Item, Text} from 'svelte-material-ui/components/list/index.svelte';
+  import Drawer, {Header, Title, Content, Scrim, AppContent} from 'svelte-material-ui/components/drawer';
+  import IconButton from 'svelte-material-ui/components/icon-button';
+  import List, {Item, Text} from 'svelte-material-ui/components/list';
 
   import Home from './Home.svelte';
   import DemoButton from './component-demos/Button.svelte';

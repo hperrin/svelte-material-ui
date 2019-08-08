@@ -347,11 +347,11 @@
 </section>
 
 <script>
-  import Textfield, {Input, Textarea, Icon, HelperText, CharacterCount} from 'svelte-material-ui/components/textfield/index.svelte';
-  import {Icon as CommonIcon} from 'svelte-material-ui/components/common/index.js';
-  import FloatingLabel from 'svelte-material-ui/components/floating-label/index.svelte';
-  import LineRipple from 'svelte-material-ui/components/line-ripple/index.svelte';
-  import NotchedOutline from 'svelte-material-ui/components/notched-outline/index.svelte';
+  import Textfield, {Input, Textarea, Icon, HelperText, CharacterCount} from 'svelte-material-ui/components/textfield';
+  import {Icon as CommonIcon} from 'svelte-material-ui/components/common';
+  import FloatingLabel from 'svelte-material-ui/components/floating-label';
+  import LineRipple from 'svelte-material-ui/components/line-ripple';
+  import NotchedOutline from 'svelte-material-ui/components/notched-outline';
 
   let valueClickable = '';
   let dirtyClickable = false;

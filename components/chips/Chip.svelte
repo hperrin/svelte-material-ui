@@ -8,15 +8,6 @@
   {...exclude($$props, ['use', 'class', 'ripple', 'selected', 'shouldRemoveOnTrailingIconClick'])}
 ><slot></slot></div>
 
-<script context="module">
-  import Set from './Set.svelte';
-  import Checkmark from './Checkmark.svelte';
-  import Icon from '../common/Icon.svelte';
-  import Text from '../common/Label.svelte';
-
-  export {Set, Icon, Checkmark, Text};
-</script>
-
 <script>
   import {MDCChip} from '@material/chips';
   import {onMount, setContext} from 'svelte';

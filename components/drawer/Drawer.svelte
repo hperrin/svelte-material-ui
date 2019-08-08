@@ -9,17 +9,6 @@
   {...exclude($$props, ['use', 'class', 'variant', 'open'])}
 ><slot></slot></aside>
 
-<script context="module">
-  import AppContent from './AppContent.js';
-  import Content from './Content.js';
-  import Header from './Header.js';
-  import Title from './Title.js';
-  import Subtitle from './Subtitle.js';
-  import Scrim from './Scrim.js';
-
-  export {AppContent, Content, Header, Title, Subtitle, Scrim};
-</script>
-
 <script>
   import {MDCDrawer} from "@material/drawer";
   import {onMount, onDestroy, afterUpdate, setContext} from 'svelte';

@@ -12,12 +12,6 @@
   {...exclude($$props, ['use', 'class', 'ripple', 'color', 'toggle', 'pressed'])}
 ><slot></slot></button>
 
-<script context="module">
-  import Icon from '../common/Icon.svelte';
-
-  export {Icon};
-</script>
-
 <script>
   import {MDCIconButtonToggle} from '@material/icon-button';
   import {onDestroy, setContext} from 'svelte';

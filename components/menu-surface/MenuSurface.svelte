@@ -10,12 +10,6 @@
   {...exclude($$props, ['use', 'class', 'static', 'anchor', 'fixed', 'open', 'quickOpen', 'anchorElement', 'element'])}
 ><slot></slot></div>
 
-<script context="module">
-  import Anchor from './Anchor.js';
-
-  export {Anchor};
-</script>
-
 <script>
   import {MDCMenuSurface} from '@material/menu-surface';
   import {onMount, onDestroy, getContext, setContext} from 'svelte';

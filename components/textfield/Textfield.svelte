@@ -74,27 +74,19 @@
   </div>
 {/if}
 
-<script context="module">
-  import Input from './Input.svelte';
-  import Textarea from './Textarea.svelte';
-  import Icon from './Icon.svelte';
-  import HelperText from './HelperText.svelte';
-  import CharacterCount from './CharacterCount.svelte';
-
-  export {Input, Textarea, Icon, HelperText, CharacterCount};
-</script>
-
 <script>
   import {MDCTextField} from '@material/textfield';
   import {onMount, onDestroy} from 'svelte';
   import {current_component} from 'svelte/internal';
-  import FloatingLabel from '../floating-label/index.svelte';
-  import LineRipple from '../line-ripple/index.svelte';
-  import NotchedOutline from '../notched-outline/index.svelte';
+  import FloatingLabel from '../floating-label/FloatingLabel.svelte';
+  import LineRipple from '../line-ripple/LineRipple.svelte';
+  import NotchedOutline from '../notched-outline/NotchedOutline.svelte';
   import {forwardEventsBuilder} from '../forwardEvents.js';
   import {exclude} from '../exclude.js';
   import {prefixFilter} from '../prefixFilter.js';
   import {useActions} from '../useActions.js';
+  import Input from './Input.svelte';
+  import Textarea from './Textarea.svelte';
 
   const forwardEvents = forwardEventsBuilder(current_component);
   let uninitializedValue = () => {};

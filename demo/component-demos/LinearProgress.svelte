@@ -43,10 +43,10 @@
 
 <script>
   import {onMount, onDestroy} from 'svelte';
-  import LinearProgress from 'svelte-material-ui/components/linear-progress/index.svelte';
-  import Checkbox from 'svelte-material-ui/components/checkbox/index.svelte';
-  import FormField from 'svelte-material-ui/components/form-field/index.svelte';
-  import Button from 'svelte-material-ui/components/button/index.svelte';
+  import LinearProgress from 'svelte-material-ui/components/linear-progress';
+  import Checkbox from 'svelte-material-ui/components/checkbox';
+  import FormField from 'svelte-material-ui/components/form-field';
+  import Button from 'svelte-material-ui/components/button';
 
   let progress = 0;
   let closed = false;

@@ -9,7 +9,7 @@
   import {current_component} from 'svelte/internal';
   import {forwardEventsBuilder} from '../forwardEvents.js';
   import {exclude} from '../exclude.js';
-  import Button from '../button/index.svelte';
+  import Button from '../button/Button.svelte';
 
   const forwardEvents = forwardEventsBuilder(current_component);
 

@@ -23,7 +23,7 @@
 </section>
 
 <script>
-  import Button, {Label, Icon} from 'svelte-material-ui/components/button/index.svelte';
+  import Button, {Label, Icon} from 'svelte-material-ui/components/button';
 
   let clicked = 0;
 </script>

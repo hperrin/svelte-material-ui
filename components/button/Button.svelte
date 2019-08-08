@@ -1,20 +1,14 @@
 <button
   use:useActions={use}
   use:forwardEvents
-  class="mdc-fab {className}"
-  class:mdc-fab--mini={mini}
-  class:mdc-fab--exited={exited}
-  class:mdc-fab--extended={extended}
+  class="mdc-button {className}"
+  class:mdc-button--raised={variant === 'raised'}
+  class:mdc-button--unelevated={variant === 'unelevated'}
+  class:mdc-button--outlined={variant === 'outlined'}
+  class:mdc-button--dense={dense}
   use:Ripple={[ripple, {unbounded: false, color}]}
-  {...exclude($$props, ['use', 'class', 'ripple', 'color', 'mini', 'exited', 'extended'])}
+  {...exclude($$props, ['use', 'class', 'ripple', 'color', 'variant', 'dense'])}
 ><slot></slot></button>
-
-<script context="module">
-  import Label from '../common/Label.svelte';
-  import Icon from '../common/Icon.svelte';
-
-  export {Label, Icon};
-</script>
 
 <script>
   import {setContext} from 'svelte';
@@ -31,15 +25,14 @@
   export {className as class};
   export let ripple = true;
   export let color = null;
-  export let mini = false;
-  export let exited = false;
-  export let extended = false;
+  export let variant = null;
+  export let dense = false;
 
-  setContext('SMUI:labelContext', 'fab');
-  setContext('SMUI:iconContext', 'fab');
+  setContext('SMUI:labelContext', 'button');
+  setContext('SMUI:iconContext', 'button');
 </script>
 
 <style lang="scss" global>
   @import "smui-theme";
-  @import "@material/fab/mdc-fab";
+  @import "@material/button/mdc-button";
 </style>

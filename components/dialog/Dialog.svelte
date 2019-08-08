@@ -15,15 +15,6 @@
   <div class="mdc-dialog__scrim"></div>
 </div>
 
-<script context="module">
-  import Title from './Title.js';
-  import Content from './Content.js';
-  import Actions from './Actions.js';
-  import Button from './Button.svelte';
-
-  export {Title, Content, Actions, Button};
-</script>
-
 <script>
   import {MDCDialog} from '@material/dialog';
   import {onMount, onDestroy} from 'svelte';

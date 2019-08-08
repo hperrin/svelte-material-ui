@@ -8,7 +8,7 @@
   import {current_component} from 'svelte/internal';
   import {forwardEventsBuilder} from '../forwardEvents.js';
   import {exclude} from '../exclude.js';
-  import IconButton from '../icon-button/index.svelte';
+  import IconButton from '../icon-button/IconButton.svelte';
 
   const forwardEvents = forwardEventsBuilder(current_component);
 

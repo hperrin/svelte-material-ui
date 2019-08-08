@@ -78,12 +78,6 @@
 </div>
 
 <script context="module">
-  import Option from './Option.svelte';
-  import Icon from './Icon.svelte';
-  import HelperText from './HelperText.svelte';
-
-  export {Option, Icon, HelperText};
-
   let counter = 0;
 </script>
 
@@ -91,11 +85,11 @@
   import {MDCSelect} from '@material/select';
   import {onMount, onDestroy, getContext, setContext} from 'svelte';
   import {current_component} from 'svelte/internal';
-  import Menu from '../menu/index.svelte';
-  import List from '../list/index.svelte';
-  import FloatingLabel from '../floating-label/index.svelte';
-  import LineRipple from '../line-ripple/index.svelte';
-  import NotchedOutline from '../notched-outline/index.svelte';
+  import Menu from '../menu/Menu.svelte';
+  import List from '../list/List.svelte';
+  import FloatingLabel from '../floating-label/FloatingLabel.svelte';
+  import LineRipple from '../line-ripple/LineRipple.svelte';
+  import NotchedOutline from '../notched-outline/NotchedOutline.svelte';
   import {forwardEventsBuilder} from '../forwardEvents.js';
   import {exclude} from '../exclude.js';
   import {prefixFilter} from '../prefixFilter.js';

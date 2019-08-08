@@ -114,10 +114,10 @@
 </section>
 
 <script>
-  import Menu, {SelectionGroup, SelectionGroupIcon} from 'svelte-material-ui/components/menu/index.svelte';
-  import {Anchor} from 'svelte-material-ui/components/menu-surface/index.svelte';
-  import List, {Item, Separator, Text, Graphic} from 'svelte-material-ui/components/list/index.svelte';
-  import Button from 'svelte-material-ui/components/button/index.svelte';
+  import Menu, {SelectionGroup, SelectionGroupIcon} from 'svelte-material-ui/components/menu';
+  import {Anchor} from 'svelte-material-ui/components/menu-surface';
+  import List, {Item, Separator, Text, Graphic} from 'svelte-material-ui/components/list';
+  import Button from 'svelte-material-ui/components/button';
 
   let menu;
   let menu2;

@@ -34,7 +34,7 @@ Here's some example code:
   // If you have your bundler set up to look for '*.svelte' files.
   import Button from 'svelte-material-ui/components/button';
   // And if you don't.
-  import Fab from 'svelte-material-ui/components/fab/index.svelte';
+  import Fab from 'svelte-material-ui/components/fab';
   import Textfield, {HelperText} from '../components/textfield';
   import {Label, Icon} from 'svelte-material-ui/components/common';
 

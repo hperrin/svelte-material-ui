@@ -170,9 +170,9 @@
 </section>
 
 <script>
-  import List, {Group, Item, Graphic, Meta, Label, Separator, Subheader, Text} from 'svelte-material-ui/components/list/index.svelte';
-  import Radio from 'svelte-material-ui/components/radio/index.svelte';
-  import Checkbox from 'svelte-material-ui/components/checkbox/index.svelte';
+  import List, {Group, Item, Graphic, Meta, Label, Separator, Subheader, Text} from 'svelte-material-ui/components/list';
+  import Radio from 'svelte-material-ui/components/radio';
+  import Checkbox from 'svelte-material-ui/components/checkbox';
 
   let clickedSimple = 'nothing yet';
   let clickedDense = 'nothing yet';

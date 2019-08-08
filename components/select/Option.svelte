@@ -18,7 +18,7 @@
 <script>
   import {getContext, setContext} from 'svelte';
   import {current_component} from 'svelte/internal';
-  import {Item} from '../list/index.svelte';
+  import Item from '../list/Item.svelte';
   import {forwardEventsBuilder} from '../forwardEvents.js';
   import {exclude} from '../exclude.js';
   import {useActions} from '../useActions.js';
