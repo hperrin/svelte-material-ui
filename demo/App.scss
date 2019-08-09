@@ -55,11 +55,15 @@ b, strong {
 //
 // Demo App Styles
 //
+
+html {
+  height: 100vh;
+}
+
 body, app {
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
 }
 
 .drawer-container {
