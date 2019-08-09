@@ -18,13 +18,13 @@
     <Button on:click={() => clicked++} variant="unelevated"><Label>Unelevated</Label></Button>
     <Button on:click={() => clicked++} variant="outlined"><Label>Outlined</Label></Button>
     <Button on:click={() => clicked++} dense><Label>Dense</Label></Button>
-    <Button on:click={() => clicked++}><Icon style="margin-right: 12px;">favorite</Icon><Label>Icon</Label></Button>
+    <Button on:click={() => clicked++}><Icon class="material-icons" style="margin-right: 12px;">favorite</Icon><Label>Icon</Label></Button>
   </div>
 
   <div>
-    <Fab on:click={() => clicked++}><Icon>favorite</Icon></Fab>
-    <Fab on:click={() => clicked++} mini><Icon>favorite</Icon></Fab>
-    <Fab on:click={() => clicked++} extended><Icon style="margin-right: 12px;">favorite</Icon><Label>Extended</Label></Fab>
+    <Fab on:click={() => clicked++}><Icon class="material-icons">favorite</Icon></Fab>
+    <Fab on:click={() => clicked++} mini><Icon class="material-icons">favorite</Icon></Fab>
+    <Fab on:click={() => clicked++} extended><Icon class="material-icons" style="margin-right: 12px;">favorite</Icon><Label>Extended</Label></Fab>
   </div>
 
   <div class="status">Clicked: {clicked}</div>

@@ -46,7 +46,7 @@
       Filled Leading Icon:<br />
 
       <Select withLeadingIcon bind:value={valueFilledLeadingIcon} label="Fruit" class="demo-select-width" menu$class="demo-select-width">
-        <span slot="icon"><Icon>event</Icon></span>
+        <span slot="icon"><Icon class="material-icons">event</Icon></span>
         <Option value=""></Option>
         {#each fruits as fruit}
           <Option value={fruit} selected={valueFilledLeadingIcon === fruit}>{fruit}</Option>
@@ -102,7 +102,7 @@
       Outlined Leading Icon:<br />
 
       <Select variant="outlined" withLeadingIcon bind:value={valueOutlinedLeadingIcon} label="Fruit" class="demo-select-width" menu$class="demo-select-width">
-        <span slot="icon"><Icon>event</Icon></span>
+        <span slot="icon"><Icon class="material-icons">event</Icon></span>
         <Option value=""></Option>
         {#each fruits as fruit}
           <Option value={fruit} selected={valueOutlinedLeadingIcon === fruit}>{fruit}</Option>
@@ -158,7 +158,7 @@
       Shaped Filled Leading Icon:<br />
 
       <Select class="shaped demo-select-width" withLeadingIcon bind:value={valueShapedFilledLeadingIcon} label="Fruit" menu$class="demo-select-width">
-        <span slot="icon"><Icon>event</Icon></span>
+        <span slot="icon"><Icon class="material-icons">event</Icon></span>
         <Option value=""></Option>
         {#each fruits as fruit}
           <Option value={fruit} selected={valueShapedFilledLeadingIcon === fruit}>{fruit}</Option>
@@ -214,7 +214,7 @@
       Shaped Outlined Leading Icon:<br />
 
       <Select class="shaped-outlined demo-select-width" variant="outlined" withLeadingIcon bind:value={valueShapedOutlinedLeadingIcon} label="Fruit" menu$class="demo-select-width">
-        <span slot="icon"><Icon>event</Icon></span>
+        <span slot="icon"><Icon class="material-icons">event</Icon></span>
         <Option value=""></Option>
         {#each fruits as fruit}
           <Option value={fruit} selected={valueShapedOutlinedLeadingIcon === fruit}>{fruit}</Option>

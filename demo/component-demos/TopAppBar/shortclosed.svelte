@@ -16,5 +16,5 @@
 <script>
   import TopAppBar, {Row, Section, Title, ShortFixedAdjust} from 'svelte-material-ui/components/top-app-bar';
   import IconButton from 'svelte-material-ui/components/icon-button';
-  import LoremIpsum from '../LoremIpsum.svelte';
+  import LoremIpsum from '../../LoremIpsum.svelte';
 </script>

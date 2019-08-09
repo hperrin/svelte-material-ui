@@ -18,5 +18,5 @@
 <script>
   import TopAppBar, {Row, Section, Title, ProminentFixedAdjust} from 'svelte-material-ui/components/top-app-bar';
   import IconButton from 'svelte-material-ui/components/icon-button';
-  import LoremIpsum from '../LoremIpsum.svelte';
+  import LoremIpsum from '../../LoremIpsum.svelte';
 </script>

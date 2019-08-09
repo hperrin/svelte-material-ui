@@ -6,13 +6,13 @@
     <IconButton class="material-icons" on:click={() => clicked++} disabled>search</IconButton> (disabled)
     <IconButton class="material-icons" on:click={() => clicked++} ripple={false}>add_shopping_cart</IconButton> (no ripple)
     <IconButton on:click={() => clicked++} toggle bind:pressed={initialOff}>
-      <Icon on>star</Icon>
-      <Icon>star_border</Icon>
+      <Icon class="material-icons" on>star</Icon>
+      <Icon class="material-icons">star_border</Icon>
     </IconButton>
     {initialOff ? '(on)' : '(off)'}
     <IconButton on:click={() => clicked++} toggle bind:pressed={initialOn}>
-      <Icon on>alarm_on</Icon>
-      <Icon>alarm_off</Icon>
+      <Icon class="material-icons" on>alarm_on</Icon>
+      <Icon class="material-icons">alarm_off</Icon>
     </IconButton>
     {initialOn ? '(on)' : '(off)'}
   </div>

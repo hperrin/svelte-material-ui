@@ -74,7 +74,7 @@
   import IconButton from 'svelte-material-ui/components/icon-button';
   import Checkbox from 'svelte-material-ui/components/checkbox';
   import FormField from 'svelte-material-ui/components/form-field';
-  import LoremIpsum from './LoremIpsum.svelte';
+  import LoremIpsum from '../LoremIpsum.svelte';
 
   let prominent = false;
   let dense = false;

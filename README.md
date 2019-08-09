@@ -91,11 +91,11 @@ I'm only going to do things that need to/can be Svelte-ified. For some things, l
 - [x] Menus
 - [x] Ripples
 - [ ] Snackbars
-- [ ] Tabs
-  - [ ] Tab
-  - [ ] Tab Bar
-  - [ ] Tab Indicator
-  - [ ] Tab Scroller
+- [x] Tabs
+  - [x] Tab
+  - [x] Tab Bar
+  - [x] Tab Indicator
+  - [x] Tab Scroller
 - [x] Theme
 - [x] Top App Bar
 - [x] Typography

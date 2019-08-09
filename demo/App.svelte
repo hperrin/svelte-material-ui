@@ -66,6 +66,7 @@
   import DemoMenuSurface from './component-demos/MenuSurface.svelte';
   import DemoMenu from './component-demos/Menu.svelte';
   import DemoRipple from './component-demos/Ripple.svelte';
+  import DemoTabs from './component-demos/Tabs.svelte';
   import DemoTheme from './component-demos/Theme.svelte';
   import DemoTopAppBar from './component-demos/TopAppBar.svelte';
   import DemoTypography from './component-demos/Typography.svelte';
@@ -232,6 +233,32 @@
       key: 'ripple',
       component: DemoRipple,
       indent: 0
+    },
+    {
+      name: 'Tabs',
+      key: 'tabs',
+      component: DemoTabs,
+      indent: 0
+    },
+    {
+      name: 'Tab',
+      shortcut: 'tabs',
+      indent: 1
+    },
+    {
+      name: 'Tab Bar',
+      shortcut: 'tabs',
+      indent: 1
+    },
+    {
+      name: 'Tab Indicator',
+      shortcut: 'tabs',
+      indent: 1
+    },
+    {
+      name: 'Tab Scroller',
+      shortcut: 'tabs',
+      indent: 1
     },
     {
       name: 'Theme',

@@ -25,8 +25,8 @@
   export let selected = false;
   export let shouldRemoveOnTrailingIconClick = true;
 
-  setContext('SMUI:label:context', 'chips');
-  setContext('SMUI:icon:context', 'chips');
+  setContext('SMUI:label:context', 'chip');
+  setContext('SMUI:icon:context', 'chip');
 
   let element;
   let chip;

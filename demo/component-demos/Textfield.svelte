@@ -5,7 +5,7 @@
     <div class="margins">
       <Textfield type="email" withTrailingIcon={valueClickable !== ''} bind:dirty={dirtyClickable} bind:invalid={invalidClickable} bind:value={valueClickable} label="To" style="min-width: 250px;" input$autocomplete="email">
         {#if valueClickable !== '' && dirtyClickable && !invalidClickable}
-          <Icon role="button" on:click={clickableHandler}>send</Icon>
+          <Icon class="material-icons" role="button" on:click={clickableHandler}>send</Icon>
         {/if}
       </Textfield>
       <HelperText validationMsg>That's not a valid email address.</HelperText>
@@ -26,7 +26,7 @@
       </div>
       <div>
         <Textfield withLeadingIcon bind:value={valueFilledB} label="Standard" input$aria-controls="helper-text-filled-b" input$aria-describedby="helper-text-filled-b">
-          <Icon>event</Icon>
+          <Icon class="material-icons">event</Icon>
         </Textfield>
         <HelperText id="helper-text-filled-b">Helper Text</HelperText>
 
@@ -34,7 +34,7 @@
       </div>
       <div>
         <Textfield withTrailingIcon bind:value={valueFilledC} label="Standard" input$aria-controls="helper-text-filled-c" input$aria-describedby="helper-text-filled-c">
-          <Icon>delete</Icon>
+          <Icon class="material-icons">delete</Icon>
         </Textfield>
         <HelperText id="helper-text-filled-c">Helper Text</HelperText>
 
@@ -55,7 +55,7 @@
       </div>
       <div>
         <Textfield class="shaped" withLeadingIcon bind:value={valueShapedFilledB} label="Standard" input$aria-controls="helper-text-shaped-filled-b" input$aria-describedby="helper-text-shaped-filled-b">
-          <Icon>event</Icon>
+          <Icon class="material-icons">event</Icon>
         </Textfield>
         <HelperText id="helper-text-shaped-filled-b">Helper Text</HelperText>
 
@@ -63,7 +63,7 @@
       </div>
       <div>
         <Textfield class="shaped" withTrailingIcon bind:value={valueShapedFilledC} label="Standard" input$aria-controls="helper-text-shaped-filled-c" input$aria-describedby="helper-text-shaped-filled-c">
-          <Icon>delete</Icon>
+          <Icon class="material-icons">delete</Icon>
         </Textfield>
         <HelperText id="helper-text-shaped-filled-c">Helper Text</HelperText>
 
@@ -84,7 +84,7 @@
       </div>
       <div>
         <Textfield variant="outlined" withLeadingIcon bind:value={valueOutlinedB} label="Standard" input$aria-controls="helper-text-outlined-b" input$aria-describedby="helper-text-outlined-b">
-          <Icon>event</Icon>
+          <Icon class="material-icons">event</Icon>
         </Textfield>
         <HelperText id="helper-text-outlined-b">Helper Text</HelperText>
 
@@ -92,7 +92,7 @@
       </div>
       <div>
         <Textfield variant="outlined" withTrailingIcon bind:value={valueOutlinedC} label="Standard" input$aria-controls="helper-text-outlined-c" input$aria-describedby="helper-text-outlined-c">
-          <Icon>delete</Icon>
+          <Icon class="material-icons">delete</Icon>
         </Textfield>
         <HelperText id="helper-text-outlined-c">Helper Text</HelperText>
 
@@ -113,7 +113,7 @@
       </div>
       <div>
         <Textfield class="shaped-outlined" variant="outlined" withLeadingIcon bind:value={valueShapedOutlinedB} label="Standard" input$aria-controls="helper-text-shaped-outlined-b" input$aria-describedby="helper-text-shaped-outlined-b">
-          <Icon>event</Icon>
+          <Icon class="material-icons">event</Icon>
         </Textfield>
         <HelperText id="helper-text-shaped-outlined-b">Helper Text</HelperText>
 
@@ -121,7 +121,7 @@
       </div>
       <div>
         <Textfield class="shaped-outlined" variant="outlined" withTrailingIcon bind:value={valueShapedOutlinedC} label="Standard" input$aria-controls="helper-text-shaped-outlined-c" input$aria-describedby="helper-text-shaped-outlined-c">
-          <Icon>delete</Icon>
+          <Icon class="material-icons">delete</Icon>
         </Textfield>
         <HelperText id="helper-text-shaped-outlined-c">Helper Text</HelperText>
 
@@ -251,8 +251,8 @@
 
     <div class="margins">
       <Textfield withLeadingIcon withTrailingIcon bind:value={valueIcons} label="Standard">
-        <Icon>event</Icon>
-        <Icon>delete</Icon>
+        <Icon class="material-icons">event</Icon>
+        <Icon class="material-icons">delete</Icon>
       </Textfield>
     </div>
   </div>
@@ -320,7 +320,7 @@
       </div>
       <div>
         <Textfield variant="outlined" withLeadingIcon>
-          <Icon>event</Icon>
+          <Icon class="material-icons">event</Icon>
           <Input bind:value={valueManualB} id="input-manual-b" aria-controls="helper-text-manual-b" aria-describedby="helper-text-manual-b" />
           <NotchedOutline>
             <FloatingLabel for="input-manual-b">Standard</FloatingLabel>

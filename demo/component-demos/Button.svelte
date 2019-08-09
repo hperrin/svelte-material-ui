@@ -15,8 +15,8 @@
   </div>
 
   <div>
-    <Button on:click={() => clicked++}><Icon style="margin-right: 12px;">favorite</Icon><Label>Icon</Label></Button>
-    <Button on:click={() => clicked++}><Label>Trailing Icon</Label><Icon style="margin-left: 12px;">favorite</Icon></Button>
+    <Button on:click={() => clicked++}><Icon class="material-icons" style="margin-right: 12px;">favorite</Icon><Label>Icon</Label></Button>
+    <Button on:click={() => clicked++}><Label>Trailing Icon</Label><Icon class="material-icons" style="margin-left: 12px;">favorite</Icon></Button>
   </div>
 
   <div class="status">Clicked: {clicked}</div>

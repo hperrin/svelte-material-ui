@@ -79,8 +79,8 @@
       <Content>A card with action icons.</Content>
       <Actions>
         <IconButton on:click={() => clicked++} toggle aria-label="Add to favorites" title="Add to favorites">
-          <Icon on>favorite</Icon>
-          <Icon>favorite_border</Icon>
+          <Icon class="material-icons" on>favorite</Icon>
+          <Icon class="material-icons">favorite_border</Icon>
         </IconButton>
         <IconButton class="material-icons" on:click={() => clicked++} title="Share">share</IconButton>
         <IconButton class="material-icons" on:click={() => clicked++} title="More options">more_vert</IconButton>
@@ -100,8 +100,8 @@
         </ActionButtons>
         <ActionIcons>
           <IconButton on:click={() => clicked++} toggle aria-label="Add to favorites" title="Add to favorites">
-            <Icon on>favorite</Icon>
-            <Icon>favorite_border</Icon>
+            <Icon class="material-icons" on>favorite</Icon>
+            <Icon class="material-icons">favorite_border</Icon>
           </IconButton>
           <IconButton class="material-icons" on:click={() => clicked++} title="Share">share</IconButton>
           <IconButton class="material-icons" on:click={() => clicked++} title="More options">more_vert</IconButton>
@@ -150,8 +150,8 @@
         </ActionButtons>
         <ActionIcons>
           <IconButton on:click={() => clicked++} toggle aria-label="Add to favorites" title="Add to favorites">
-            <Icon on>favorite</Icon>
-            <Icon>favorite_border</Icon>
+            <Icon class="material-icons" on>favorite</Icon>
+            <Icon class="material-icons">favorite_border</Icon>
           </IconButton>
           <IconButton class="material-icons" on:click={() => clicked++} title="Share">share</IconButton>
           <IconButton class="material-icons" on:click={() => clicked++} title="More options">more_vert</IconButton>
@@ -179,8 +179,8 @@
         </ActionButtons>
         <ActionIcons>
           <IconButton on:click={() => clicked++} toggle aria-label="Add to favorites" title="Add to favorites">
-            <Icon on>favorite</Icon>
-            <Icon>favorite_border</Icon>
+            <Icon class="material-icons" on>favorite</Icon>
+            <Icon class="material-icons">favorite_border</Icon>
           </IconButton>
           <IconButton class="material-icons" on:click={() => clicked++} title="Share">share</IconButton>
           <IconButton class="material-icons" on:click={() => clicked++} title="More options">more_vert</IconButton>

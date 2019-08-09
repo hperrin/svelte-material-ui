@@ -6,13 +6,14 @@
   class:mdc-select--disabled={disabled}
   class:mdc-select--outlined={variant === 'outlined'}
   class:mdc-select--with-leading-icon={withLeadingIcon}
-  on:MDCSelect:change={handleChange}
+  on:MDCSelect:change={changeHandler}
   {...exclude($$props, ['use', 'class', 'ripple', 'disabled', 'enhanced', 'variant', 'noLabel', 'withLeadingIcon', 'label', 'value', 'selectedIndex', 'selectedText', 'dirty', 'invalid', 'required', 'input$', 'label$', 'ripple$', 'outline$', 'menu$', 'list$'])}
 >
   <slot name="icon"></slot>
   <i class="mdc-select__dropdown-icon"></i>
   {#if enhanced}
     <input
+      bind:this={inputElement}
       use:useActions={input$use}
       type="hidden"
       {disabled}
@@ -41,6 +42,7 @@
     </Menu>
   {:else}
     <select
+      bind:this={inputElement}
       use:useActions={input$use}
       class="mdc-select__native-control smui-select__native-control {input$class}"
       {disabled}
@@ -85,15 +87,15 @@
   import {MDCSelect} from '@material/select';
   import {onMount, onDestroy, getContext, setContext} from 'svelte';
   import {current_component} from 'svelte/internal';
+  import {forwardEventsBuilder} from '../forwardEvents.js';
+  import {exclude} from '../exclude.js';
+  import {prefixFilter} from '../prefixFilter.js';
+  import {useActions} from '../useActions.js';
   import Menu from '../menu/Menu.svelte';
   import List from '../list/List.svelte';
   import FloatingLabel from '../floating-label/FloatingLabel.svelte';
   import LineRipple from '../line-ripple/LineRipple.svelte';
   import NotchedOutline from '../notched-outline/NotchedOutline.svelte';
-  import {forwardEventsBuilder} from '../forwardEvents.js';
-  import {exclude} from '../exclude.js';
-  import {prefixFilter} from '../prefixFilter.js';
-  import {useActions} from '../useActions.js';
 
   const forwardEvents = forwardEventsBuilder(current_component, 'MDCSelect:change');
 
@@ -122,6 +124,7 @@
 
   let element;
   let select;
+  let inputElement;
   let menuPromiseResolve;
   let menuPromise = new Promise(resolve => menuPromiseResolve = resolve);
 
@@ -168,9 +171,11 @@
     return menuPromise;
   }
 
-  function handleChange(e) {
+  function changeHandler(e) {
     value = e.detail.value;
     selectedIndex = e.detail.index;
+    dirty = true;
+    invalid = inputElement.matches(':invalid');
   }
 
   export function layout(...args) {

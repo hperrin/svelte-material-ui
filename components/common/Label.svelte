@@ -1,9 +1,10 @@
 <span
   use:useActions={use}
-  class="{className}"
+  class={className}
   class:mdc-button__label={context === 'button'}
   class:mdc-fab__label={context === 'fab'}
-  class:mdc-chip__text={context === 'chips'}
+  class:mdc-chip__text={context === 'chip'}
+  class:mdc-tab__text-label={context === 'tab'}
   {...exclude($$props, ['use', 'class'])}
 ><slot></slot></span>
 

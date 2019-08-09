@@ -5,11 +5,11 @@
     <Set chips={['one', 'two', 'three', 'four', 'five']} let:chip>
       <Chip shouldRemoveOnTrailingIconClick={false}>
         {#if chip === 'four'}
-          <Icon leading>book</Icon>
+          <Icon class="material-icons" leading>book</Icon>
         {/if}
         <Text>{chip}</Text>
         {#if chip === 'five'}
-          <Icon trailing>commute</Icon>
+          <Icon class="material-icons" trailing>commute</Icon>
         {/if}
       </Chip>
     </Set>
@@ -44,7 +44,7 @@
   <div>
     Input Chips
     <Set chips={input} let:chip input>
-      <Chip><Text>{chip}</Text><Icon trailing tabindex="0">cancel</Icon></Chip>
+      <Chip><Text>{chip}</Text><Icon class="material-icons" trailing tabindex="0">cancel</Icon></Chip>
     </Set>
     <Button on:click={addInputChip}><Label>Add</Label></Button>
   </div>
@@ -52,7 +52,7 @@
   <div>
     Keyed Chips
     <Set chips={keyed} let:chip key={chip => chip.k} input>
-      <Chip><Text>{chip.v}</Text><Icon trailing tabindex="0">cancel</Icon></Chip>
+      <Chip><Text>{chip.v}</Text><Icon class="material-icons" trailing tabindex="0">cancel</Icon></Chip>
     </Set>
     <Button on:click={addKeyedChip}><Label>Add</Label></Button>
   </div>

@@ -2,7 +2,7 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="material-icons mdc-text-field__icon {className}"
+  class="mdc-text-field__icon {className}"
   {tabindex}
   aria-hidden={tabindex === '-1' ? 'true' : 'false'}
   {...exclude($$props, ['use', 'class', 'tabindex'])}
