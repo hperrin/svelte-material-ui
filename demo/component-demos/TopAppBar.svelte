@@ -3,15 +3,11 @@
 
   <div>
     <FormField>
-      <div slot="input">
-        <Checkbox bind:checked={prominent} />
-      </div>
+      <Checkbox bind:checked={prominent} />
       <span slot="label">Prominent</span>
     </FormField>
     <FormField>
-      <div slot="input">
-        <Checkbox bind:checked={dense} />
-      </div>
+      <Checkbox bind:checked={dense} />
       <span slot="label">Dense</span>
     </FormField>
   </div>

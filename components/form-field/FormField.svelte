@@ -6,7 +6,7 @@
   class:mdc-form-field--align-end={align === 'end'}
   {...exclude($$props, ['use', 'class', 'alignEnd', 'inputId', 'label$'])}
 >
-  <slot name="input"></slot>
+  <slot></slot>
   <label
     for={inputId}
     {...prefixFilter($$props, 'label$')}

@@ -4,9 +4,7 @@
   <div>
     {#each options as option}
       <FormField>
-        <div slot="input">
-          <Radio bind:group={selected} value={option.name} disabled={option.disabled} />
-        </div>
+        <Radio bind:group={selected} value={option.name} disabled={option.disabled} />
         <span slot="label">{option.name}{option.disabled ? ' (disabled)' : ''}</span>
       </FormField>
     {/each}

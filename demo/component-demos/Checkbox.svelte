@@ -3,9 +3,7 @@
 
   <div>
     <FormField>
-      <div slot="input">
-        <Checkbox bind:checked={simpleSelected} />
-      </div>
+      <Checkbox bind:checked={simpleSelected} />
       <span slot="label">Remember me.</span>
     </FormField>
   </div>
@@ -14,9 +12,7 @@
 
   <div>
     <FormField align="end">
-      <div slot="input">
-        <Checkbox bind:checked={simpleSelected2} />
-      </div>
+      <Checkbox bind:checked={simpleSelected2} />
       <span slot="label">Remember me.</span>
     </FormField>
   </div>
@@ -27,9 +23,7 @@
     Group checkbox:<br />
     {#each options as option}
       <FormField>
-        <div slot="input">
-          <Checkbox bind:group={selected} value={option.name} disabled={option.disabled} />
-        </div>
+        <Checkbox bind:group={selected} value={option.name} disabled={option.disabled} />
         <span slot="label">{option.name}{option.disabled ? ' (disabled)' : ''}</span>
       </FormField>
     {/each}
@@ -40,9 +34,7 @@
   <div>
     Indeterminate:<br />
     <FormField>
-      <div slot="input">
-        <Checkbox bind:checked={indeterminateChecked} indeterminate={indeterminateChecked === null} input$required />
-      </div>
+      <Checkbox bind:checked={indeterminateChecked} indeterminate={indeterminateChecked === null} input$required />
       <span slot="label">I agree to the terms.</span>
     </FormField>
   </div>

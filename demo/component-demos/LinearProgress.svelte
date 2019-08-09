@@ -9,9 +9,7 @@
     <Button on:click={reset}>Reset</Button>
 
     <FormField>
-      <div slot="input">
-        <Checkbox bind:checked={closed} />
-      </div>
+      <Checkbox bind:checked={closed} />
       <span slot="label">Closed</span>
     </FormField>
   </div>

@@ -3,9 +3,7 @@
 
   <div>
     <FormField>
-      <div slot="input">
-        <Switch bind:checked={simpleSelected} />
-      </div>
+      <Switch bind:checked={simpleSelected} />
       <span slot="label" style="margin-left: 10px;">Fields of grain.</span>
     </FormField>
   </div>
@@ -14,9 +12,7 @@
 
   <div>
     <FormField align="end">
-      <div slot="input">
-        <Switch bind:checked={simpleSelected2} />
-      </div>
+      <Switch bind:checked={simpleSelected2} />
       <span slot="label" style="margin-right: 10px;">Fields of grain.</span>
     </FormField>
   </div>
@@ -28,9 +24,7 @@
     {#each options as option}
       <div style="margin: 18px 0;">
         <FormField>
-          <div slot="input">
-            <Switch bind:group={selected} value={option.name} disabled={option.disabled} />
-          </div>
+          <Switch bind:group={selected} value={option.name} disabled={option.disabled} />
           <span slot="label" style="margin-left: 10px;">{option.name}{option.disabled ? ' (disabled)' : ''}</span>
         </FormField>
       </div>

@@ -3,9 +3,7 @@
 
   <div>
     <FormField align="end" style="display: flex;">
-      <div slot="input" style="flex-grow: 1;">
-        <Slider bind:value />
-      </div>
+      <Slider bind:value />
       <span slot="label" style="margin-right: 18px;">Amount of Wonder</span>
     </FormField>
   </div>
