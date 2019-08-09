@@ -16,5 +16,5 @@
   let className = '';
   export {className as class};
 
-  const context = getContext('SMUI:labelContext');
+  const context = getContext('SMUI:label:context');
 </script>

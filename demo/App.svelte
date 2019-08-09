@@ -1,40 +1,49 @@
 <svelte:window on:resize={setMiniWindow} />
-<Drawer variant={miniWindow ? 'modal' : null} bind:open={drawerOpen}>
-  <Header>
-    <a use:link href="/">
-      <Title>Material Components</Title>
-    </a>
-  </Header>
-  <Content>
-    <List>
-      {#each sections as section}
-        <Item use={[link]} href={'key' in section ? '/'+section.key : ('shortcut' in section ? '/'+section.shortcut : undefined)} on:click={() => pickSection(section)} activated={'key' in section && $location === '/'+section.key} title={section.name} style="{section.indent ? 'margin-left: '+(section.indent * 25)+'px;' : ''}">
-          <Text>{section.name}</Text>
-        </Item>
-      {/each}
-    </List>
-  </Content>
-</Drawer>
+<TopAppBar variant="static">
+  <Row>
+    <Section>
+      {#if miniWindow}
+        <IconButton class="material-icons" on:click={() => drawerOpen = !drawerOpen}>menu</IconButton>
+      {/if}
+      <a use:link href="/" style="color: inherit;">
+        <Title>Material Components</Title>
+      </a>
+    </Section>
+    <Section align="end" toolbar>
+      <Button href="https://github.com/hperrin/svelte-material-ui" style="color: white;">GitHub</Button>
+    </Section>
+  </Row>
+</TopAppBar>
+<div class="drawer-container">
+  <Drawer variant={miniWindow ? 'modal' : null} bind:open={drawerOpen}>
+    <Content>
+      <List>
+        {#each sections as section}
+          <Item use={[link]} href={'key' in section ? '/'+section.key : ('shortcut' in section ? '/'+section.shortcut : undefined)} on:click={() => pickSection(section)} activated={'key' in section && $location === '/'+section.key} title={section.name} style="{section.indent ? 'margin-left: '+(section.indent * 25)+'px;' : ''}">
+            <Text>{section.name}</Text>
+          </Item>
+        {/each}
+      </List>
+    </Content>
+  </Drawer>
 
-{#if miniWindow}
-  <Scrim />
-{/if}
-<AppContent class="demo-app-content">
-  <main class="demo-main-content" bind:this={mainContent}>
-    {#if miniWindow}
-      <div>
-        <IconButton on:click={() => drawerOpen = !drawerOpen}>menu</IconButton>
-      </div>
-    {/if}
-    <Router {routes} />
-  </main>
-</AppContent>
+  {#if miniWindow}
+    <Scrim />
+  {/if}
+  <AppContent class="demo-app-content">
+    <main bind:this={mainContent}>
+      <Router {routes} />
+    </main>
+  </AppContent>
+</div>
 
 <script>
   import {onMount} from 'svelte';
   import Router, {link, location} from 'svelte-spa-router';
   import './App.scss';
-  import Drawer, {Header, Title, Content, Scrim, AppContent} from 'svelte-material-ui/components/drawer';
+  import TopAppBar, {Row, Section, Title} from 'svelte-material-ui/components/top-app-bar';
+  import Drawer, {Content, Scrim, AppContent} from 'svelte-material-ui/components/drawer';
+  import Button from 'svelte-material-ui/components/button';
   import IconButton from 'svelte-material-ui/components/icon-button';
   import List, {Item, Text} from 'svelte-material-ui/components/list';
 
@@ -58,6 +67,7 @@
   import DemoMenu from './component-demos/Menu.svelte';
   import DemoRipple from './component-demos/Ripple.svelte';
   import DemoTheme from './component-demos/Theme.svelte';
+  import DemoTopAppBar from './component-demos/TopAppBar.svelte';
   import DemoTypography from './component-demos/Typography.svelte';
 
   let mainContent;
@@ -227,6 +237,12 @@
       name: 'Theme',
       key: 'theme',
       component: DemoTheme,
+      indent: 0
+    },
+    {
+      name: 'Top App Bar',
+      key: 'top-app-bar',
+      component: DemoTopAppBar,
       indent: 0
     },
     {

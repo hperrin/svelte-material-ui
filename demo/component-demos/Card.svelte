@@ -56,34 +56,34 @@
     <Card style="width: 320px;">
       <Content>A card with actions.</Content>
       <Actions>
-        <CardButton on:click={() => clicked++}>
+        <Button on:click={() => clicked++}>
           <Label>Action</Label>
-        </CardButton>
-        <CardButton on:click={() => clicked++}>
+        </Button>
+        <Button on:click={() => clicked++}>
           <Label>Another</Label>
-        </CardButton>
+        </Button>
       </Actions>
     </Card>
 
     <Card style="width: 320px;">
       <Content>A card with a full-bleed action.</Content>
       <Actions fullBleed>
-        <CardButton on:click={() => clicked++}>
+        <Button on:click={() => clicked++}>
           <Label>Action</Label>
           <i class="material-icons" aria-hidden="true">arrow_forward</i>
-        </CardButton>
+        </Button>
       </Actions>
     </Card>
 
     <Card style="width: 320px;">
       <Content>A card with action icons.</Content>
       <Actions>
-        <CardIconButton on:click={() => clicked++} toggle aria-label="Add to favorites" title="Add to favorites">
+        <IconButton on:click={() => clicked++} toggle aria-label="Add to favorites" title="Add to favorites">
           <Icon on>favorite</Icon>
           <Icon>favorite_border</Icon>
-        </CardIconButton>
-        <CardIconButton on:click={() => clicked++} title="Share">share</CardIconButton>
-        <CardIconButton on:click={() => clicked++} title="More options">more_vert</CardIconButton>
+        </IconButton>
+        <IconButton on:click={() => clicked++} title="Share">share</IconButton>
+        <IconButton on:click={() => clicked++} title="More options">more_vert</IconButton>
       </Actions>
     </Card>
 
@@ -91,20 +91,20 @@
       <Content>A card with Both.</Content>
       <Actions>
         <ActionButtons>
-          <CardButton on:click={() => clicked++}>
+          <Button on:click={() => clicked++}>
             <Label>Action</Label>
-          </CardButton>
-          <CardButton on:click={() => clicked++}>
+          </Button>
+          <Button on:click={() => clicked++}>
             <Label>Another</Label>
-          </CardButton>
+          </Button>
         </ActionButtons>
         <ActionIcons>
-          <CardIconButton on:click={() => clicked++} toggle aria-label="Add to favorites" title="Add to favorites">
+          <IconButton on:click={() => clicked++} toggle aria-label="Add to favorites" title="Add to favorites">
             <Icon on>favorite</Icon>
             <Icon>favorite_border</Icon>
-          </CardIconButton>
-          <CardIconButton on:click={() => clicked++} title="Share">share</CardIconButton>
-          <CardIconButton on:click={() => clicked++} title="More options">more_vert</CardIconButton>
+          </IconButton>
+          <IconButton on:click={() => clicked++} title="Share">share</IconButton>
+          <IconButton on:click={() => clicked++} title="More options">more_vert</IconButton>
         </ActionIcons>
       </Actions>
     </Card>
@@ -141,20 +141,20 @@
       </PrimaryAction>
       <Actions>
         <ActionButtons>
-          <CardButton on:click={() => clicked++}>
+          <Button on:click={() => clicked++}>
             <Label>Action</Label>
-          </CardButton>
-          <CardButton on:click={() => clicked++}>
+          </Button>
+          <Button on:click={() => clicked++}>
             <Label>Another</Label>
-          </CardButton>
+          </Button>
         </ActionButtons>
         <ActionIcons>
-          <CardIconButton on:click={() => clicked++} toggle aria-label="Add to favorites" title="Add to favorites">
+          <IconButton on:click={() => clicked++} toggle aria-label="Add to favorites" title="Add to favorites">
             <Icon on>favorite</Icon>
             <Icon>favorite_border</Icon>
-          </CardIconButton>
-          <CardIconButton on:click={() => clicked++} title="Share">share</CardIconButton>
-          <CardIconButton on:click={() => clicked++} title="More options">more_vert</CardIconButton>
+          </IconButton>
+          <IconButton on:click={() => clicked++} title="Share">share</IconButton>
+          <IconButton on:click={() => clicked++} title="More options">more_vert</IconButton>
         </ActionIcons>
       </Actions>
     </Card>
@@ -170,20 +170,20 @@
       </PrimaryAction>
       <Actions>
         <ActionButtons>
-          <CardButton on:click={() => clicked++}>
+          <Button on:click={() => clicked++}>
             <Label>Action</Label>
-          </CardButton>
-          <CardButton on:click={() => clicked++}>
+          </Button>
+          <Button on:click={() => clicked++}>
             <Label>Another</Label>
-          </CardButton>
+          </Button>
         </ActionButtons>
         <ActionIcons>
-          <CardIconButton on:click={() => clicked++} toggle aria-label="Add to favorites" title="Add to favorites">
+          <IconButton on:click={() => clicked++} toggle aria-label="Add to favorites" title="Add to favorites">
             <Icon on>favorite</Icon>
             <Icon>favorite_border</Icon>
-          </CardIconButton>
-          <CardIconButton on:click={() => clicked++} title="Share">share</CardIconButton>
-          <CardIconButton on:click={() => clicked++} title="More options">more_vert</CardIconButton>
+          </IconButton>
+          <IconButton on:click={() => clicked++} title="Share">share</IconButton>
+          <IconButton on:click={() => clicked++} title="More options">more_vert</IconButton>
         </ActionIcons>
       </Actions>
     </Card>
@@ -193,9 +193,9 @@
 </section>
 
 <script>
-  import Card, {Content, PrimaryAction, Media, MediaContent, Actions, ActionButtons, ActionIcons, Button as CardButton, IconButton as CardIconButton} from 'svelte-material-ui/components/card';
-  import {Label} from 'svelte-material-ui/components/button';
-  import {Icon} from 'svelte-material-ui/components/icon-button';
+  import Card, {Content, PrimaryAction, Media, MediaContent, Actions, ActionButtons, ActionIcons} from 'svelte-material-ui/components/card';
+  import Button, {Label} from 'svelte-material-ui/components/button';
+  import IconButton, {Icon} from 'svelte-material-ui/components/icon-button';
   import List, {Item, Text} from 'svelte-material-ui/components/list';
 
   let clicked = 0;

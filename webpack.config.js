@@ -17,10 +17,18 @@ const sassOptions = {
 
 module.exports = {
   mode: 'development',
-  entry: [path.resolve(__dirname, 'demo', 'index.js')],
+  entry: {
+    bundle: path.resolve(__dirname, 'demo', 'index.js'),
+    'TopAppBar-Standard': path.resolve(__dirname, 'demo', 'component-demos', 'TopAppBar', 'standard.js'),
+    'TopAppBar-Fixed': path.resolve(__dirname, 'demo', 'component-demos', 'TopAppBar', 'fixed.js'),
+    'TopAppBar-Dense': path.resolve(__dirname, 'demo', 'component-demos', 'TopAppBar', 'dense.js'),
+    'TopAppBar-Prominent': path.resolve(__dirname, 'demo', 'component-demos', 'TopAppBar', 'prominent.js'),
+    'TopAppBar-Short': path.resolve(__dirname, 'demo', 'component-demos', 'TopAppBar', 'short.js'),
+    'TopAppBar-ShortClosed': path.resolve(__dirname, 'demo', 'component-demos', 'TopAppBar', 'shortclosed.js'),
+  },
   output: {
     path: path.resolve(__dirname, 'demo', 'dist'),
-    filename: 'bundle.js',
+    filename: '[name].js',
   },
   resolve: {
     alias: {
@@ -30,8 +38,8 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'bundle.css',
-      chunkFilename: 'bundle.[id].css',
+      filename: '[name].css',
+      chunkFilename: '[name].[id].css',
     }),
   ],
   module: {

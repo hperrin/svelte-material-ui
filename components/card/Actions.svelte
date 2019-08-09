@@ -6,6 +6,7 @@
 ><slot></slot></div>
 
 <script>
+  import {setContext} from 'svelte';
   import {exclude} from '../exclude.js';
   import {useActions} from '../useActions.js';
 
@@ -13,4 +14,7 @@
   let className = '';
   export {className as class};
   export let fullBleed = false;
+
+  setContext('SMUI:button:context', 'card:action');
+  setContext('SMUI:icon-button:context', 'card:action');
 </script>

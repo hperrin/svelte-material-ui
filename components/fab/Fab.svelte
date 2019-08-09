@@ -28,6 +28,6 @@
   export let exited = false;
   export let extended = false;
 
-  setContext('SMUI:labelContext', 'fab');
-  setContext('SMUI:iconContext', 'fab');
+  setContext('SMUI:label:context', 'fab');
+  setContext('SMUI:icon:context', 'fab');
 </script>

@@ -51,9 +51,9 @@
 
   let element;
   let switchControl;
-  let formField = getContext('SMUI:formField');
-  let incoming = getContext('SMUI:formField:props') || {};
-  let setChecked = getContext('SMUI:formField:setChecked');
+  let formField = getContext('SMUI:form-field');
+  let incoming = getContext('SMUI:form-field:props') || {};
+  let setChecked = getContext('SMUI:form-field:setChecked');
   let nativeChecked = group === uninitializedValue ? (checked === uninitializedValue ? false : checked) : group.indexOf(value) !== -1;
 
   if (setChecked) {

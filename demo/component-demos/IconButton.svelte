@@ -2,9 +2,9 @@
   <h2>Icon Button</h2>
 
   <div>
-    <IconButton on:click={() => clicked++}>build</IconButton>
-    <IconButton on:click={() => clicked++} disabled>search</IconButton> (disabled)
-    <IconButton on:click={() => clicked++} ripple={false}>add_shopping_cart</IconButton> (no ripple)
+    <IconButton class="material-icons" on:click={() => clicked++}>build</IconButton>
+    <IconButton class="material-icons" on:click={() => clicked++} disabled>search</IconButton> (disabled)
+    <IconButton class="material-icons" on:click={() => clicked++} ripple={false}>add_shopping_cart</IconButton> (no ripple)
     <IconButton on:click={() => clicked++} toggle bind:pressed={initialOff}>
       <Icon on>star</Icon>
       <Icon>star_border</Icon>

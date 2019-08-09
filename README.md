@@ -97,7 +97,7 @@ I'm only going to do things that need to/can be Svelte-ified. For some things, l
   - [ ] Tab Indicator
   - [ ] Tab Scroller
 - [x] Theme
-- [ ] Top App Bar
+- [x] Top App Bar
 - [x] Typography
 
 ## Other Svelte UI Projects

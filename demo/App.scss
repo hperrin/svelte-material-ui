@@ -57,8 +57,16 @@ b, strong {
 //
 body, app {
   display: flex;
+  flex-direction: column;
   height: 100vh;
   width: 100vw;
+}
+
+.drawer-container {
+  flex-grow: 1;
+  flex-basis: 0;
+  height: 0;
+  display: flex;
 }
 
 .demo-app-content {
@@ -67,13 +75,13 @@ body, app {
   position: relative;
 }
 
-.demo-main-content {
+main {
   overflow: auto;
   height: 100%;
   display: flex;
 }
 
-.demo-main-content section {
+main section {
   padding: 16px;
   width: 100%;
   box-sizing: border-box;

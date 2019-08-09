@@ -38,8 +38,8 @@
   let listPromiseResolve;
   let listPromise = new Promise(resolve => listPromiseResolve = resolve);
 
-  setContext('SMUI:menuSurface:instantiate', false);
-  setContext('SMUI:menuSurface:getInstance', getMenuSurfaceInstancePromise);
+  setContext('SMUI:menu-surface:instantiate', false);
+  setContext('SMUI:menu-surface:getInstance', getMenuSurfaceInstancePromise);
   setContext('SMUI:list:instantiate', false);
   setContext('SMUI:list:getInstance', getListInstancePromise);
 

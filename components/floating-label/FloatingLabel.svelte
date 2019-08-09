@@ -36,7 +36,7 @@
 
   let element;
   let floatingLabel;
-  let incoming = getContext('SMUI:formField:props') || {};
+  let incoming = getContext('SMUI:form-field:props') || {};
 
   $: forProp = (incoming && incoming.id || forId) ? {for: incoming && incoming.id || forId} : {};
 

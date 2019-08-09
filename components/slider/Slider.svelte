@@ -59,8 +59,8 @@
 
   let element;
   let slider;
-  let formField = getContext('SMUI:formField');
-  let incoming = getContext('SMUI:formField:props') || {};
+  let formField = getContext('SMUI:form-field');
+  let incoming = getContext('SMUI:form-field:props') || {};
 
   $: if (slider && slider.disabled !== disabled) {
     slider.disabled = disabled;

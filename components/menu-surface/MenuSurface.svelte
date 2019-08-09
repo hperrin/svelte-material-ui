@@ -35,8 +35,8 @@
 
   export let element; // This is exported because Menu needs it.
   let menuSurface;
-  let instantiate = getContext('SMUI:menuSurface:instantiate');
-  let getInstance = getContext('SMUI:menuSurface:getInstance');
+  let instantiate = getContext('SMUI:menu-surface:instantiate');
+  let getInstance = getContext('SMUI:menu-surface:getInstance');
 
   setContext('SMUI:list:role', 'menu');
   setContext('SMUI:list:item:role', 'menuitem');

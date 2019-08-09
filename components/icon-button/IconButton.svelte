@@ -3,8 +3,11 @@
   use:useActions={use}
   use:forwardEvents
   class="mdc-icon-button {className}"
-  class:material-icons={!toggle}
   class:mdc-icon-button--on={pressed}
+  class:mdc-card__action={context === 'card:action'}
+  class:mdc-card__action--icon={context === 'card:action'}
+  class:mdc-top-app-bar__navigation-icon={context === 'top-app-bar:navigation'}
+  class:mdc-top-app-bar__action-item={context === 'top-app-bar:action'}
   use:Ripple={[ripple && !toggle, {unbounded: true, color}]}
   aria-hidden="true"
   aria-pressed={pressed}
@@ -14,7 +17,7 @@
 
 <script>
   import {MDCIconButtonToggle} from '@material/icon-button';
-  import {onDestroy, setContext} from 'svelte';
+  import {onDestroy, getContext, setContext} from 'svelte';
   import {current_component} from 'svelte/internal';
   import {forwardEventsBuilder} from '../forwardEvents.js';
   import {exclude} from '../exclude.js';
@@ -31,10 +34,11 @@
   export let toggle = false;
   export let pressed = false;
 
-  setContext('SMUI:iconContext', 'iconButton');
-
   let element;
   let toggleButton;
+  let context = getContext('SMUI:icon-button:context');
+
+  setContext('SMUI:icon:context', 'icon-button');
 
   let oldToggle = null;
   $: if (element && toggle !== oldToggle) {
