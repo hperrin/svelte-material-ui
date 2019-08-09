@@ -31,7 +31,7 @@
     <Scrim />
   {/if}
   <AppContent class="demo-app-content">
-    <main bind:this={mainContent}>
+    <main class="demo-main-content" bind:this={mainContent}>
       <Router {routes} />
     </main>
   </AppContent>

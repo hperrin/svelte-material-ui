@@ -75,13 +75,13 @@ body, app {
   position: relative;
 }
 
-main {
+.demo-main-content {
   overflow: auto;
   height: 100%;
   display: flex;
 }
 
-main section {
+.demo-main-content section {
   padding: 16px;
   width: 100%;
   box-sizing: border-box;
