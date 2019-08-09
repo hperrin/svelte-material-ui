@@ -40,7 +40,7 @@ Here's some example code:
 </script>
 ```
 
-You can check out the [demo pages' source](https://github.com/hperrin/svelte-material-ui/tree/master/demo) to see usage, since I haven't written the documentation yet.
+You can check out the [demo pages' source](https://github.com/hperrin/svelte-material-ui/tree/master/demo/component-demos) to see usage, since I haven't written the documentation yet.
 
 Here are some juicy features:
 
