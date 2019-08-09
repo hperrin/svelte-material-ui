@@ -62,8 +62,9 @@
   <div class="icon-indicators">
     Icon indicators:
     <TabBar tabs={['Home', 'Merchandise', 'About Us']} let:tab>
-      <Tab {tab} tabIndicator$type="icon" tabIndicator$content$class="material-icons" tabIndicatorText="star">
+      <Tab {tab} tabIndicator$type="icon" tabIndicator$content$class="material-icons">
         <Label>{tab}</Label>
+        <span slot="tab-indicator">star</span>
       </Tab>
     </TabBar>
   </div>

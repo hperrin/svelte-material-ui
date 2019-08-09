@@ -3,6 +3,10 @@
 //
 @import "@material/typography/mdc-typography";
 
+html {
+  @include mdc-typography('body1');
+}
+
 h1 {
   @include mdc-typography('headline1');
 }
@@ -29,10 +33,6 @@ h6 {
 
 caption {
   @include mdc-typography('caption');
-}
-
-* {
-  @include mdc-typography('body1');
 }
 
 code, pre {

@@ -5,7 +5,7 @@
       {#if miniWindow}
         <IconButton class="material-icons" on:click={() => drawerOpen = !drawerOpen}>menu</IconButton>
       {/if}
-      <a use:link href="/" style="color: inherit;">
+      <a use:link href="/" style="color: inherit; text-decoration: none;">
         <Title>Material Components</Title>
       </a>
     </Section>

@@ -10,7 +10,7 @@
   aria-selected={active}
   tabindex="{active ? '0' : '-1'}"
   on:MDCTab:interacted={interactedHandler}
-  {...exclude($$props, ['use', 'class', 'ripple', 'active', 'stacked', 'minWidth', 'indicatorSpanOnlyContent', 'focusOnActivate', 'tabIndicatorText', 'content$', 'tabIndicator$'])}
+  {...exclude($$props, ['use', 'class', 'ripple', 'active', 'stacked', 'minWidth', 'indicatorSpanOnlyContent', 'focusOnActivate', 'content$', 'tabIndicator$'])}
 >
   <span
     use:useActions={content$use}
@@ -22,14 +22,14 @@
       <TabIndicator
         {active}
         {...prefixFilter($$props, 'tabIndicator$')}
-      >{tabIndicatorText}<slot name="tab-indicator"></slot></TabIndicator>
+      ><slot name="tab-indicator"></slot></TabIndicator>
     {/if}
   </span>
   {#if !indicatorSpanOnlyContent}
     <TabIndicator
       {active}
       {...prefixFilter($$props, 'tabIndicator$')}
-    >{tabIndicatorText}<slot name="tab-indicator"></slot></TabIndicator>
+    ><slot name="tab-indicator"></slot></TabIndicator>
   {/if}
   {#if ripple}
     <span class="mdc-tab__ripple"></span>
@@ -60,7 +60,6 @@
   export let minWidth = false;
   export let indicatorSpanOnlyContent = false;
   export let focusOnActivate = true;
-  export let tabIndicatorText = '';
   export let content$use = [];
   export let content$class = '';
 
