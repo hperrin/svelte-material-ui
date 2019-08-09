@@ -82,8 +82,8 @@
           <Icon on>favorite</Icon>
           <Icon>favorite_border</Icon>
         </IconButton>
-        <IconButton on:click={() => clicked++} title="Share">share</IconButton>
-        <IconButton on:click={() => clicked++} title="More options">more_vert</IconButton>
+        <IconButton class="material-icons" on:click={() => clicked++} title="Share">share</IconButton>
+        <IconButton class="material-icons" on:click={() => clicked++} title="More options">more_vert</IconButton>
       </Actions>
     </Card>
 
@@ -103,8 +103,8 @@
             <Icon on>favorite</Icon>
             <Icon>favorite_border</Icon>
           </IconButton>
-          <IconButton on:click={() => clicked++} title="Share">share</IconButton>
-          <IconButton on:click={() => clicked++} title="More options">more_vert</IconButton>
+          <IconButton class="material-icons" on:click={() => clicked++} title="Share">share</IconButton>
+          <IconButton class="material-icons" on:click={() => clicked++} title="More options">more_vert</IconButton>
         </ActionIcons>
       </Actions>
     </Card>
@@ -153,8 +153,8 @@
             <Icon on>favorite</Icon>
             <Icon>favorite_border</Icon>
           </IconButton>
-          <IconButton on:click={() => clicked++} title="Share">share</IconButton>
-          <IconButton on:click={() => clicked++} title="More options">more_vert</IconButton>
+          <IconButton class="material-icons" on:click={() => clicked++} title="Share">share</IconButton>
+          <IconButton class="material-icons" on:click={() => clicked++} title="More options">more_vert</IconButton>
         </ActionIcons>
       </Actions>
     </Card>
@@ -182,8 +182,8 @@
             <Icon on>favorite</Icon>
             <Icon>favorite_border</Icon>
           </IconButton>
-          <IconButton on:click={() => clicked++} title="Share">share</IconButton>
-          <IconButton on:click={() => clicked++} title="More options">more_vert</IconButton>
+          <IconButton class="material-icons" on:click={() => clicked++} title="Share">share</IconButton>
+          <IconButton class="material-icons" on:click={() => clicked++} title="More options">more_vert</IconButton>
         </ActionIcons>
       </Actions>
     </Card>
