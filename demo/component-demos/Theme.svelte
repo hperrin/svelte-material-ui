@@ -3,10 +3,10 @@
 
   <p>
     SMUI themes are usually provided by a <code>_smui-theme.scss</code> file in
-    a directory that is included in the <code>scss.includePaths</code> property
-    passed to <code>svelte-preprocess</code>. That file is mandatory, but it can
-    contain nothing, if you want the default theme. This demo shows how to theme
-    a portion of the app differently.
+    a directory that is included in the <code>includePaths</code> of your Sass
+    config. That file is mandatory, but it can contain nothing, if you want the
+    default theme. This demo shows how to theme a portion of the app
+    differently.
   </p>
 
   <div>
