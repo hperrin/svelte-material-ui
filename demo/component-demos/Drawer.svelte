@@ -89,34 +89,34 @@
         <Content>
           <List>
             <Item href="javascript:void(0)" on:click={() => setActive2('Inbox')} activated={active2 === 'Inbox'}>
-              <i use:Graphic class="material-icons" aria-hidden="true">inbox</i>
+              <Graphic class="material-icons" aria-hidden="true">inbox</Graphic>
               <Text>Inbox</Text>
             </Item>
             <Item href="javascript:void(0)" on:click={() => setActive2('Star')} activated={active2 === 'Star'}>
-              <i use:Graphic class="material-icons" aria-hidden="true">star</i>
+              <Graphic class="material-icons" aria-hidden="true">star</Graphic>
               <Text>Star</Text>
             </Item>
             <Item href="javascript:void(0)" on:click={() => setActive2('Sent Mail')} activated={active2 === 'Sent Mail'}>
-              <i use:Graphic class="material-icons" aria-hidden="true">send</i>
+              <Graphic class="material-icons" aria-hidden="true">send</Graphic>
               <Text>Sent Mail</Text>
             </Item>
             <Item href="javascript:void(0)" on:click={() => setActive2('Drafts')} activated={active2 === 'Drafts'}>
-              <i use:Graphic class="material-icons" aria-hidden="true">drafts</i>
+              <Graphic class="material-icons" aria-hidden="true">drafts</Graphic>
               <Text>Drafts</Text>
             </Item>
 
             <Separator nav />
             <Subheader component={H6}>Labels</Subheader>
             <Item href="javascript:void(0)" on:click={() => setActive2('Family')} activated={active2 === 'Family'}>
-              <i use:Graphic class="material-icons" aria-hidden="true">bookmark</i>
+              <Graphic class="material-icons" aria-hidden="true">bookmark</Graphic>
               <Text>Family</Text>
             </Item>
             <Item href="javascript:void(0)" on:click={() => setActive2('Friends')} activated={active2 === 'Friends'}>
-              <i use:Graphic class="material-icons" aria-hidden="true">bookmark</i>
+              <Graphic class="material-icons" aria-hidden="true">bookmark</Graphic>
               <Text>Friends</Text>
             </Item>
             <Item href="javascript:void(0)" on:click={() => setActive2('Work')} activated={active2 === 'Work'}>
-              <i use:Graphic class="material-icons" aria-hidden="true">bookmark</i>
+              <Graphic class="material-icons" aria-hidden="true">bookmark</Graphic>
               <Text>Work</Text>
             </Item>
           </List>
