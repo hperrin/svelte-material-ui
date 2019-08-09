@@ -3,7 +3,7 @@
   use:useActions={use}
   use:forwardEvents
   class="mdc-form-field {className}"
-  class:mdc-form-field--align-end={alignEnd}
+  class:mdc-form-field--align-end={align === 'end'}
   {...exclude($$props, ['use', 'class', 'alignEnd', 'inputId', 'label$'])}
 >
   <slot name="input"></slot>
@@ -31,7 +31,7 @@
   export let use = [];
   let className = '';
   export {className as class};
-  export let alignEnd = false;
+  export let align = 'start';
   export let inputId = 'SMUI-form-field-'+(counter++);
 
   let element;

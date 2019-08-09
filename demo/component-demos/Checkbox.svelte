@@ -13,7 +13,7 @@
   <div class="status">Checked: {simpleSelected}</div>
 
   <div>
-    <FormField alignEnd>
+    <FormField align="end">
       <div slot="input">
         <Checkbox bind:checked={simpleSelected2} />
       </div>

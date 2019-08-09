@@ -2,7 +2,7 @@
   <h2>Slider</h2>
 
   <div>
-    <FormField alignEnd style="display: flex;">
+    <FormField align="end" style="display: flex;">
       <div slot="input" style="flex-grow: 1;">
         <Slider bind:value />
       </div>
