@@ -8,7 +8,7 @@
   class:mdc-tab--min-width={minWidth}
   role="tab"
   aria-selected={active}
-  tabindex="-1"
+  tabindex="{active ? '0' : '-1'}"
   on:MDCTab:interacted={interactedHandler}
   {...exclude($$props, ['use', 'class', 'ripple', 'active', 'stacked', 'minWidth', 'indicatorSpanOnlyContent', 'focusOnActivate', 'tabIndicatorText', 'content$', 'tabIndicator$'])}
 >

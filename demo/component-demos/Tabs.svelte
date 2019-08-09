@@ -2,32 +2,32 @@
   <h2>Tabs</h2>
 
   <div>
-    <TabBar tabs={['Home', 'Merchandise', 'About Us']} let:tab>
+    <TabBar tabs={['Home', 'Merchandise', 'About Us']} let:tab bind:active>
       <!-- Notice that the `tab` property is required! -->
       <Tab {tab}>
         <Label>{tab}</Label>
       </Tab>
     </TabBar>
+
+    <div style="margin-top: 15px;">
+      Programmatically select:
+      {#each ['Home', 'Merchandise', 'About Us'] as tab}
+        <Button on:click={() => active = tab}><Label>{tab}</Label></Button>
+      {/each}
+    </div>
+
+    <div class="status">Selected: {active}</div>
   </div>
 
   <div>
     Tabs with icons next to labels:
-    <TabBar tabs={iconTabs} let:tab bind:active={iconTabsActive}>
+    <TabBar tabs={iconTabs} let:tab>
       <Tab {tab}>
         <Icon class="material-icons">{tab.icon}</Icon>
         <Label>{tab.label}</Label>
       </Tab>
     </TabBar>
   </div>
-
-  <div>
-    Programmatically select:
-    {#each iconTabs as tab}
-      <Button on:click={() => iconTabsActive = tab}><Label>{tab.label}</Label></Button>
-    {/each}
-  </div>
-
-  <div class="status">Selected: {iconTabsActive.label}</div>
 
   <div>
     Keyed tabs with icons above labels, preselected tab, indicators restricted to content, and fade transition:
@@ -37,9 +37,9 @@
         <Label>{tab.label}</Label>
       </Tab>
     </TabBar>
-  </div>
 
-  <div class="status">Selected: {keyedTabsActive.k}</div>
+    <div class="status">Selected: {keyedTabsActive.k}</div>
+  </div>
 
   <div>
     Scrolling tabs:
@@ -74,7 +74,7 @@
   import TabBar from 'svelte-material-ui/components/tab-bar';
   import Button from 'svelte-material-ui/components/button';
 
-  let tab = 'Home';
+  let active = 'Home';
   let iconTabs = [
     {
       icon: 'access_time',
@@ -89,7 +89,6 @@
       label: 'Favorites'
     }
   ];
-  let iconTabsActive = iconTabs[0];
   let keyedTabs = [
     {
       k: 1,
@@ -116,6 +115,10 @@
 </script>
 
 <style>
+  section > div {
+    margin-bottom: 40px;
+  }
+
   .icon-indicators :global(.mdc-tab-indicator--active .mdc-tab-indicator__content) {
     opacity: .2;
   }
