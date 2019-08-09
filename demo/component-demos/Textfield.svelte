@@ -299,7 +299,7 @@
 
     <div class="margins">
       <Textfield bind:value={valueElementsLabel} label="" type="email">
-        <span slot="label"><CommonIcon style="font-size: 1em; line-height: normal; vertical-align: middle;">email</CommonIcon> Email</span>
+        <span slot="label"><CommonIcon class="material-icons" style="font-size: 1em; line-height: normal; vertical-align: middle;">email</CommonIcon> Email</span>
       </Textfield>
     </div>
   </div>
