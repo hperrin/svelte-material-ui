@@ -2,7 +2,7 @@
   this={instComponent || component}
   use={[forwardEvents, ...use]}
   class="{smuiClass} {className}"
-  {...exclude($$props, ['use', 'class'])}
+  {...exclude($$props, ['use', 'class', 'component', 'smuiForwardEvents'])}
 ><slot></slot></svelte:component>
 
 <script context="module">
@@ -18,12 +18,14 @@
   import {exclude} from '../exclude.js';
   import {useActions} from '../useActions.js';
 
-  const forwardEvents = forwardEventsBuilder(current_component);
-
   export let use = [];
   let className = '';
   export {className as class};
   let instComponent;
   export {instComponent as component};
+  export let smuiForwardEvents = [];
+
   const {component, smuiClass} = internals;
+
+  const forwardEvents = forwardEventsBuilder(current_component, smuiForwardEvents);
 </script>
