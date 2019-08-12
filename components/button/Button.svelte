@@ -7,11 +7,12 @@
     class:mdc-button--unelevated={variant === 'unelevated'}
     class:mdc-button--outlined={variant === 'outlined'}
     class:mdc-button--dense={dense}
+    class:smui-button--color-secondary={color === 'secondary'}
     class:mdc-card__action={context === 'card:action'}
     class:mdc-card__action--button={context === 'card:action'}
     class:mdc-top-app-bar__navigation-icon={context === 'top-app-bar:navigation'}
     class:mdc-top-app-bar__action-item={context === 'top-app-bar:action'}
-    use:Ripple={[ripple, {unbounded: false, color}]}
+    use:Ripple={[ripple, {unbounded: false}]}
     {href}
     {...exclude($$props, ['use', 'class', 'ripple', 'color', 'variant', 'dense', 'href'])}
   ><slot></slot></a>
@@ -24,11 +25,12 @@
     class:mdc-button--unelevated={variant === 'unelevated'}
     class:mdc-button--outlined={variant === 'outlined'}
     class:mdc-button--dense={dense}
+    class:smui-button--color-secondary={color === 'secondary'}
     class:mdc-card__action={context === 'card:action'}
     class:mdc-card__action--button={context === 'card:action'}
     class:mdc-top-app-bar__navigation-icon={context === 'top-app-bar:navigation'}
     class:mdc-top-app-bar__action-item={context === 'top-app-bar:action'}
-    use:Ripple={[ripple, {unbounded: false, color}]}
+    use:Ripple={[ripple, {unbounded: false}]}
     {...exclude($$props, ['use', 'class', 'ripple', 'color', 'variant', 'dense', 'href'])}
   ><slot></slot></button>
 {/if}
@@ -47,8 +49,8 @@
   let className = '';
   export {className as class};
   export let ripple = true;
-  export let color = null;
-  export let variant = null;
+  export let color = 'primary';
+  export let variant = 'text';
   export let dense = false;
   export let href = null;
 

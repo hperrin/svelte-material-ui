@@ -5,7 +5,8 @@
   class:mdc-fab--mini={mini}
   class:mdc-fab--exited={exited}
   class:mdc-fab--extended={extended}
-  use:Ripple={[ripple, {unbounded: false, color}]}
+  class:smui-fab--color-primary={color === 'primary'}
+  use:Ripple={[ripple, {unbounded: false}]}
   {...exclude($$props, ['use', 'class', 'ripple', 'color', 'mini', 'exited', 'extended'])}
 ><slot></slot></button>
 
@@ -23,7 +24,7 @@
   let className = '';
   export {className as class};
   export let ripple = true;
-  export let color = null;
+  export let color = 'secondary';
   export let mini = false;
   export let exited = false;
   export let extended = false;

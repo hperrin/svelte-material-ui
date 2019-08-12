@@ -1,0 +1,83 @@
+@import "@material/elevation/mixins";
+@import "@material/feature-targeting/functions";
+
+@mixin smui-button-core-styles($query: mdc-feature-all()) {
+  @include smui-button-without-ripple($query);
+  @include smui-button-ripple($query);
+}
+
+@mixin smui-button-without-ripple($query: mdc-feature-all()) {
+  .smui-button--color-secondary {
+    @include mdc-button-ink-color(secondary, $query);
+
+    &.mdc-button--raised,
+    &.mdc-button--unelevated {
+      @include mdc-button-container-fill-color(secondary, $query);
+      @include mdc-button-ink-color(on-secondary, $query);
+    }
+
+    &.mdc-button--outlined {
+      @include mdc-button-outline-color(secondary, $query);
+    }
+  }
+}
+
+@mixin smui-button-ripple($query: mdc-feature-all()) {
+  .smui-button--color-secondary {
+    @include mdc-states(secondary, false, $query);
+
+    &.mdc-button--raised,
+    &.mdc-button--unelevated {
+      @include mdc-states(on-secondary, false, $query);
+    }
+  }
+}
+
+@mixin smui-button__group-core-styles($query: mdc-feature-all()) {
+  .smui-button__group {
+    display: inline-flex;
+
+    & > .mdc-button:not(:last-child),
+    & > .smui-button__group-item:not(:last-child) > .mdc-button {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    & > .mdc-button:not(:first-child),
+    & > .smui-button__group-item:not(:first-child) > .mdc-button {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    &.smui-button__group--raised {
+      @include mdc-elevation(2, $query: $query);
+    }
+
+    & > .mdc-button--raised,
+    & > .smui-button__group-item > .mdc-button--raised {
+      @include smui-button__group-mdc-button--raised_($query);
+    }
+
+    & > .mdc-button--outlined:not(:last-child),
+    & > .smui-button__group-item:not(:last-child) > .mdc-button--outlined {
+      border-right-width: 0;
+    }
+  }
+}
+
+@mixin smui-button__group-mdc-button--raised_($query) {
+  @include mdc-elevation(0, $query: $query);
+
+  &:hover,
+  &:focus {
+    @include mdc-elevation(0, $query: $query);
+  }
+
+  &:active {
+    @include mdc-elevation(0, $query: $query);
+  }
+
+  &:disabled {
+    @include mdc-elevation(0, $query: $query);
+  }
+}

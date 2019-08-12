@@ -1,0 +1,19 @@
+@import "@material/feature-targeting/functions";
+
+@mixin smui-fab-core-styles($query: mdc-feature-all()) {
+  @include smui-fab-without-ripple($query);
+  @include smui-fab-ripple($query);
+}
+
+@mixin smui-fab-without-ripple($query: mdc-feature-all()) {
+  .smui-fab--color-primary {
+    @include mdc-fab-container-color(primary, $query: $query);
+    @include mdc-fab-ink-color(on-primary, $query: $query);
+  }
+}
+
+@mixin smui-fab-ripple($query: mdc-feature-all()) {
+  .smui-fab--color-primary {
+    @include mdc-states(on-primary, $query: $query);
+  }
+}

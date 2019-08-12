@@ -1,1 +1,4 @@
 @import "@material/button/mdc-button";
+@import "./mixins";
+@include smui-button-core-styles;
+@include smui-button__group-core-styles;
