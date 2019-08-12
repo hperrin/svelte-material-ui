@@ -15,7 +15,7 @@
   </Row>
 </TopAppBar>
 <div class="drawer-container">
-  <Drawer variant={miniWindow ? 'modal' : null} bind:open={drawerOpen}>
+  <Drawer variant={miniWindow ? 'modal' : null} bind:open={drawerOpen} class="demo-drawer-content">
     <Content>
       <List>
         {#each sections as section}

@@ -58,6 +58,8 @@ b, strong {
 
 html {
   height: 100vh;
+  width: 100vw;
+  position: fixed;
 }
 
 body, app {
@@ -68,20 +70,22 @@ body, app {
 
 .drawer-container {
   flex-grow: 1;
-  flex-basis: 0;
   height: 0;
   display: flex;
 }
 
+.demo-drawer-content, .demo-main-content {
+  overflow: auto;
+  height: 100%;
+}
+
 .demo-app-content {
   flex: auto;
-  overflow: auto;
   position: relative;
 }
 
 .demo-main-content {
   overflow: auto;
-  height: 100%;
   display: flex;
 }
 
