@@ -7,9 +7,10 @@
   class:mdc-top-app-bar--short-collapsed={collapsed}
   class:mdc-top-app-bar--fixed={variant === 'fixed'}
   class:smui-top-app-bar--static={variant === 'static'}
+  class:smui-top-app-bar--color-secondary={color === 'secondary'}
   class:mdc-top-app-bar--prominent={prominent}
   class:mdc-top-app-bar--dense={dense}
-  {...exclude($$props, ['use', 'class', 'variant', 'collapsed', 'prominent', 'dense'])}
+  {...exclude($$props, ['use', 'class', 'variant', 'color', 'collapsed', 'prominent', 'dense'])}
 ><slot></slot></header>
 
 <script>
@@ -26,6 +27,7 @@
   let className = '';
   export {className as class};
   export let variant = 'standard';
+  export let color = 'primary';
   export let collapsed = false;
   export let prominent = false;
   export let dense = false;

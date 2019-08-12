@@ -1,0 +1,12 @@
+@import "@material/feature-targeting/functions";
+
+@mixin smui-top-app-bar-core-styles($query: mdc-feature-all()) {
+  .smui-top-app-bar--static {
+    position: static;
+  }
+
+  .smui-top-app-bar--color-secondary {
+    @include mdc-top-app-bar-fill-color-accessible(secondary);
+    @include mdc-top-app-bar-icon-ink-color(on-secondary);
+  }
+}

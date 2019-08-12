@@ -10,11 +10,15 @@
       <Checkbox bind:checked={dense} />
       <span slot="label">Dense</span>
     </FormField>
+    <FormField>
+      <Checkbox bind:checked={secondaryColor} />
+      <span slot="label">Secondary</span>
+    </FormField>
   </div>
 
   <div class="flexy">
     <div class="top-app-bar-container">
-      <TopAppBar variant="static" {prominent} {dense}>
+      <TopAppBar variant="static" {prominent} {dense} color={secondaryColor ? 'secondary' : 'primary'}>
         <Row>
           <Section>
             <IconButton class="material-icons">menu</IconButton>
@@ -33,7 +37,7 @@
     </div>
 
     <div class="top-app-bar-container flexor">
-      <TopAppBar variant="static" {prominent} {dense}>
+      <TopAppBar variant="static" {prominent} {dense} color={secondaryColor ? 'secondary' : 'primary'}>
         <Row>
           <Section>
             <IconButton class="material-icons">menu</IconButton>
@@ -74,6 +78,7 @@
 
   let prominent = false;
   let dense = false;
+  let secondaryColor = false;
 </script>
 
 <style>
