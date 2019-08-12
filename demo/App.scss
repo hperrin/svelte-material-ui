@@ -82,6 +82,8 @@ body, app {
 .demo-app-content {
   flex: auto;
   position: relative;
+  width: 0;
+  flex-grow: 1;
 }
 
 .demo-main-content {
