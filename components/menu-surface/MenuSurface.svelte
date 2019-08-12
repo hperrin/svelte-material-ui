@@ -7,8 +7,14 @@
   class:mdc-menu-surface--open={isStatic}
   class:smui-menu-surface--static={isStatic}
   on:MDCMenuSurface:closed={updateOpen} on:MDCMenuSurface:opened={updateOpen}
-  {...exclude($$props, ['use', 'class', 'static', 'anchor', 'fixed', 'open', 'quickOpen', 'anchorElement', 'element'])}
+  {...exclude($$props, ['use', 'class', 'static', 'anchor', 'fixed', 'open', 'quickOpen', 'anchorElement', 'anchorCorner', 'element'])}
 ><slot></slot></div>
+
+<script context="module">
+  import {Corner, CornerBit} from '@material/menu-surface';
+
+  export {Corner, CornerBit};
+</script>
 
 <script>
   import {MDCMenuSurface} from '@material/menu-surface';
@@ -17,7 +23,6 @@
   import {forwardEventsBuilder} from '../forwardEvents.js';
   import {exclude} from '../exclude.js';
   import {useActions} from '../useActions.js';
-  import {CornerMap} from './CornerMap.js';
 
   const forwardEvents = forwardEventsBuilder(current_component, ['MDCMenuSurface:closed', 'MDCMenuSurface:opened']);
 
@@ -69,7 +74,13 @@
   }
 
   $: if (menuSurface && anchorCorner != null) {
-    menuSurface.setAnchorCorner(CornerMap[anchorCorner]);
+    if (Corner.hasOwnProperty(anchorCorner)) {
+      menuSurface.setAnchorCorner(Corner[anchorCorner]);
+    } else if (CornerBit.hasOwnProperty(anchorCorner)) {
+      menuSurface.setAnchorCorner(Corner[anchorCorner]);
+    } else {
+      menuSurface.setAnchorCorner(anchorCorner);
+    }
   }
 
   onMount(async () => {

@@ -14,8 +14,7 @@
   import {forwardEventsBuilder} from '../forwardEvents.js';
   import {exclude} from '../exclude.js';
   import {useActions} from '../useActions.js';
-  import {CornerMap} from '../menu-surface/CornerMap.js';
-  import MenuSurface from '../menu-surface/MenuSurface.svelte';
+  import MenuSurface, {Corner, CornerBit} from '../menu-surface/MenuSurface.svelte';
 
   const forwardEvents = forwardEventsBuilder(current_component, ['MDCMenu:selected', 'MDCMenuSurface:closed', 'MDCMenuSurface:opened']);
 
@@ -59,7 +58,13 @@
   }
 
   $: if (menu && anchorCorner != null) {
-    menu.setAnchorCorner(CornerMap[anchorCorner]);
+    if (Corner.hasOwnProperty(anchorCorner)) {
+      menu.setAnchorCorner(Corner[anchorCorner]);
+    } else if (CornerBit.hasOwnProperty(anchorCorner)) {
+      menu.setAnchorCorner(Corner[anchorCorner]);
+    } else {
+      menu.setAnchorCorner(anchorCorner);
+    }
   }
 
   onMount(async () => {
