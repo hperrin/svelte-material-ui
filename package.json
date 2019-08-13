@@ -32,6 +32,7 @@
     "@material/floating-label": "^3.1.0",
     "@material/form-field": "^3.1.0",
     "@material/icon-button": "^3.1.0",
+    "@material/image-list": "^3.1.0",
     "@material/line-ripple": "^3.1.0",
     "@material/linear-progress": "^3.1.0",
     "@material/list": "^3.1.0",

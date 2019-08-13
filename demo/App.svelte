@@ -55,6 +55,7 @@
   import DemoChips from './component-demos/Chips.svelte';
   import DemoDialog from './component-demos/Dialog.svelte';
   import DemoDrawer from './component-demos/Drawer.svelte';
+  import DemoImageList from './component-demos/ImageList.svelte';
   import DemoCheckbox from './component-demos/Checkbox.svelte';
   import DemoRadio from './component-demos/Radio.svelte';
   import DemoSelect from './component-demos/Select.svelte';
@@ -116,6 +117,12 @@
       name: 'Drawers',
       key: 'drawer',
       component: DemoDrawer,
+      indent: 0
+    },
+    {
+      name: 'Image List',
+      key: 'image-list',
+      component: DemoImageList,
       indent: 0
     },
     {

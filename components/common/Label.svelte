@@ -5,6 +5,7 @@
   class:mdc-fab__label={context === 'fab'}
   class:mdc-chip__text={context === 'chip'}
   class:mdc-tab__text-label={context === 'tab'}
+  class:mdc-image-list__label={context === 'image-list'}
   {...exclude($$props, ['use', 'class'])}
 ><slot></slot></span>
 

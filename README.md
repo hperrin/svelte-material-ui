@@ -66,7 +66,7 @@ I'm only going to do things that need to/can be Svelte-ified. For some things, l
 - [ ] Data Tables
 - [x] Dialogs
 - [x] Drawers
-- [ ] Image List
+- [x] Image List
 - [x] Inputs and Controls
   - [x] Checkboxes
   - [x] Floating Label
