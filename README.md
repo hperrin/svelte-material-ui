@@ -56,7 +56,7 @@ To bundle this in your own code, you must have a `_smui-theme.scss` file in one 
 
 ## Progress
 
-I'm only going to do things that need to/can be Svelte-ified. For some things, like RTL and elevation, you can just use the MDC packages.
+I'm only going to do things that need to/can be Svelte-ified. For some things, like RTL and layout grid, you can just use the MDC packages.
 
 - [x] Buttons
   - [x] Floating Action Buttons
@@ -66,6 +66,7 @@ I'm only going to do things that need to/can be Svelte-ified. For some things, l
 - [ ] Data Tables
 - [x] Dialogs
 - [x] Drawers
+- [x] Elevation†
 - [x] Image List
 - [x] Inputs and Controls
   - [x] Checkboxes
@@ -87,6 +88,7 @@ I'm only going to do things that need to/can be Svelte-ified. For some things, l
 - [x] Lists
 - [x] Menu Surface
 - [x] Menus
+- [x] Paper‡
 - [x] Ripples
 - [ ] Snackbars
 - [x] Tabs
@@ -96,7 +98,10 @@ I'm only going to do things that need to/can be Svelte-ified. For some things, l
   - [x] Tab Scroller
 - [x] Theme
 - [x] Top App Bar
-- [x] Typography
+- [x] Typography†
+
+<small>† This is Sass based, and therefore doesn't require Svelte components. I've included a demo showing how you can use it.</small>
+<small>‡ This is not an MDC Web component. It is an addition that SMUI provides.</small>
 
 ## Other Svelte UI Projects
 

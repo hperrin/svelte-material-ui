@@ -1,0 +1,91 @@
+@import "@material/feature-targeting/functions";
+@import "@material/elevation/mixins";
+@import "@material/shape/mixins";
+@import "@material/shape/functions";
+@import "@material/theme/mixins";
+@import "@material/typography/mixins";
+
+@mixin smui-paper-core-styles($query: mdc-feature-all()) {
+  $feat-color: mdc-feature-create-target($query, color);
+  $feat-structure: mdc-feature-create-target($query, structure);
+
+  .smui-paper {
+    @include smui-paper-fill-color(surface, $query);
+    @include smui-paper-ink-color(on-surface, $query);
+
+    padding: $smui-paper-padding;
+
+    &.smui-paper--rounded {
+      @include smui-paper-shape-radius(small, $query: $query);
+    }
+
+    &.smui-paper--color-primary {
+      @include smui-paper-elevation(primary, $query: $query);
+
+      @include smui-paper-fill-color(primary, $query);
+      @include smui-paper-ink-color(on-primary, $query);
+    }
+    &.smui-paper--color-secondary {
+      @include smui-paper-elevation(secondary, $query: $query);
+
+      @include smui-paper-fill-color(secondary, $query);
+      @include smui-paper-ink-color(on-secondary, $query);
+    }
+
+    .smui-paper__title {
+      @include mdc-typography(headline5, $query);
+      margin-top: 0;
+      margin-bottom: .4rem;
+    }
+
+    .smui-paper__subtitle {
+      @include mdc-typography(subtitle1, $query);
+      margin-top: -.2rem;
+      margin-bottom: .4rem;
+    }
+
+    .smui-paper__content {
+      @include mdc-typography(body1, $query);
+    }
+  }
+}
+
+@mixin smui-paper-shape-radius($radius, $rtl-reflexive: false, $query: mdc-feature-all()) {
+  @include mdc-shape-radius(
+    $radius,
+    $rtl-reflexive,
+    $query: $query
+  );
+
+  // &.smui-paper--dense {
+  //   @include mdc-shape-radius(
+  //     $radius,
+  //     $rtl-reflexive,
+  //     $query: $query
+  //   );
+  // }
+}
+
+@mixin smui-paper-ink-color($color, $query: mdc-feature-all()) {
+  $feat-color: mdc-feature-create-target($query, color);
+
+  @include mdc-feature-targets($feat-color) {
+    @include mdc-theme-prop(color, $color);
+  }
+}
+
+@mixin smui-paper-fill-color($color, $query: mdc-feature-all()) {
+  $feat-color: mdc-feature-create-target($query, color);
+
+  @include mdc-feature-targets($feat-color) {
+    @include mdc-theme-prop(background-color, $color, $edgeOptOut: true);
+  }
+}
+
+@mixin smui-paper-elevation($color: $mdc-elevation-baseline-color, $query: mdc-feature-all()) {
+  @for $i from 0 through 24 {
+    &.mdc-elevation--z#{$i} {
+      @include mdc-elevation($i, $color, $query: $query);
+    }
+  }
+}

@@ -55,6 +55,7 @@
   import DemoChips from './component-demos/Chips.svelte';
   import DemoDialog from './component-demos/Dialog.svelte';
   import DemoDrawer from './component-demos/Drawer.svelte';
+  import DemoElevation from './component-demos/Elevation.svelte';
   import DemoImageList from './component-demos/ImageList.svelte';
   import DemoCheckbox from './component-demos/Checkbox.svelte';
   import DemoRadio from './component-demos/Radio.svelte';
@@ -66,6 +67,7 @@
   import DemoList from './component-demos/List.svelte';
   import DemoMenuSurface from './component-demos/MenuSurface.svelte';
   import DemoMenu from './component-demos/Menu.svelte';
+  import DemoPaper from './component-demos/Paper.svelte';
   import DemoRipple from './component-demos/Ripple.svelte';
   import DemoTabs from './component-demos/Tabs.svelte';
   import DemoTheme from './component-demos/Theme.svelte';
@@ -117,6 +119,12 @@
       name: 'Drawers',
       key: 'drawer',
       component: DemoDrawer,
+      indent: 0
+    },
+    {
+      name: 'Elevation',
+      key: 'elevation',
+      component: DemoElevation,
       indent: 0
     },
     {
@@ -233,6 +241,12 @@
       name: 'Menus',
       key: 'menu',
       component: DemoMenu,
+      indent: 0
+    },
+    {
+      name: 'Paper',
+      key: 'paper',
+      component: DemoPaper,
       indent: 0
     },
     {

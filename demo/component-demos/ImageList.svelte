@@ -71,13 +71,3 @@
   import Div from 'svelte-material-ui/components/common/Div.svelte';
   import './ImageList.scss';
 </script>
-
-<style>
-  * :global(.card-media-16x9) {
-    background-image: url(https://via.placeholder.com/320x180.png?text=16x9);
-  }
-
-  * :global(.card-media-square) {
-    background-image: url(https://via.placeholder.com/320x320.png?text=square);
-  }
-</style>
