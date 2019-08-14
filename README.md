@@ -63,7 +63,7 @@ I'm only going to do things that need to/can be Svelte-ified. For some things, l
   - [x] Icon Buttons
 - [x] Cards
 - [x] Chips
-- [ ] Data Tables
+- [x] Data Tables (Incomplete)
 - [x] Dialogs
 - [x] Drawers
 - [x] Elevation†
