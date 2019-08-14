@@ -1,19 +1,39 @@
-<button
-  bind:this={element}
-  use:useActions={use}
-  use:forwardEvents
-  class="mdc-icon-button {className}"
-  class:mdc-icon-button--on={pressed}
-  class:mdc-card__action={context === 'card:action'}
-  class:mdc-card__action--icon={context === 'card:action'}
-  class:mdc-top-app-bar__navigation-icon={context === 'top-app-bar:navigation'}
-  class:mdc-top-app-bar__action-item={context === 'top-app-bar:action'}
-  use:Ripple={[ripple && !toggle, {unbounded: true, color}]}
-  aria-hidden="true"
-  aria-pressed={pressed}
-  on:MDCIconButtonToggle:change={handleChange}
-  {...exclude($$props, ['use', 'class', 'ripple', 'color', 'toggle', 'pressed'])}
-><slot></slot></button>
+{#if href}
+  <a
+    bind:this={element}
+    use:useActions={use}
+    use:forwardEvents
+    class="mdc-icon-button {className}"
+    class:mdc-icon-button--on={pressed}
+    class:mdc-card__action={context === 'card:action'}
+    class:mdc-card__action--icon={context === 'card:action'}
+    class:mdc-top-app-bar__navigation-icon={context === 'top-app-bar:navigation'}
+    class:mdc-top-app-bar__action-item={context === 'top-app-bar:action'}
+    use:Ripple={[ripple && !toggle, {unbounded: true, color}]}
+    aria-hidden="true"
+    aria-pressed={pressed}
+    {href}
+    on:MDCIconButtonToggle:change={handleChange}
+    {...exclude($$props, ['use', 'class', 'ripple', 'color', 'toggle', 'pressed', 'href'])}
+  ><slot></slot></a>
+{:else}
+  <button
+    bind:this={element}
+    use:useActions={use}
+    use:forwardEvents
+    class="mdc-icon-button {className}"
+    class:mdc-icon-button--on={pressed}
+    class:mdc-card__action={context === 'card:action'}
+    class:mdc-card__action--icon={context === 'card:action'}
+    class:mdc-top-app-bar__navigation-icon={context === 'top-app-bar:navigation'}
+    class:mdc-top-app-bar__action-item={context === 'top-app-bar:action'}
+    use:Ripple={[ripple && !toggle, {unbounded: true, color}]}
+    aria-hidden="true"
+    aria-pressed={pressed}
+    on:MDCIconButtonToggle:change={handleChange}
+    {...exclude($$props, ['use', 'class', 'ripple', 'color', 'toggle', 'pressed', 'href'])}
+  ><slot></slot></button>
+{/if}
 
 <script>
   import {MDCIconButtonToggle} from '@material/icon-button';
@@ -33,6 +53,7 @@
   export let color = null;
   export let toggle = false;
   export let pressed = false;
+  export let href = null;
 
   let element;
   let toggleButton;

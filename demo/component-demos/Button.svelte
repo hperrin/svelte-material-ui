@@ -119,4 +119,12 @@
   * :global(.myClass) {
     text-decoration: underline !important;
   }
+
+  * :global(.mdc-button, .smui-button__group) {
+    margin-bottom: .4em;
+  }
+
+  * :global(.smui-button__group .mdc-button) {
+    margin-bottom: 0;
+  }
 </style>

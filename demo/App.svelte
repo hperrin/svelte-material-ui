@@ -5,12 +5,12 @@
       {#if miniWindow}
         <IconButton class="material-icons" on:click={() => drawerOpen = !drawerOpen}>menu</IconButton>
       {/if}
-      <a use:link href="/" style="color: inherit; text-decoration: none;">
-        <Title>Material Components</Title>
-      </a>
+      <Title component={A} use={[link]} href="/" style="color: inherit; {miniWindow ? 'padding-left: 0;' : ''}">
+        Material Components
+      </Title>
     </Section>
     <Section align="end" toolbar>
-      <Button href="https://github.com/hperrin/svelte-material-ui" style="color: white;">GitHub</Button>
+      <IconButton class="material-icons" href="https://github.com/hperrin/svelte-material-ui" aria-label="GitHub">code</IconButton>
     </Section>
   </Row>
 </TopAppBar>
@@ -46,6 +46,7 @@
   import Button from 'svelte-material-ui/components/button';
   import IconButton from 'svelte-material-ui/components/icon-button';
   import List, {Item, Text} from 'svelte-material-ui/components/list';
+  import A from 'svelte-material-ui/components/common/A.svelte';
 
   import Home from './Home.svelte';
   import DemoButton from './component-demos/Button.svelte';

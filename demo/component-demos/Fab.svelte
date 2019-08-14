@@ -38,3 +38,9 @@
   let exited = false;
   let exited2 = false;
 </script>
+
+<style>
+  * :global(.mdc-fab) {
+    margin-bottom: .4em;
+  }
+</style>
