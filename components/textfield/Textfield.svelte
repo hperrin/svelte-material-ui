@@ -115,7 +115,7 @@
   export let dirty = false;
   export let invalid = uninitializedValue;
   export let updateInvalid = invalid === uninitializedValue;
-  export let useNativeValidation = invalid === uninitializedValue;
+  export let useNativeValidation = updateInvalid;
 
   let element;
   let textField;

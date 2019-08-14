@@ -3,7 +3,12 @@
 
   <div>
     <div class="margins">
-      <Textfield type="email" withTrailingIcon={valueClickable !== ''} bind:dirty={dirtyClickable} bind:invalid={invalidClickable} bind:value={valueClickable} label="To" style="min-width: 250px;" input$autocomplete="email">
+      <!--
+        Notice that when you bind to `invalid`, but you only want to monitor it
+        instead of updating it yourself, you also should include
+        `updateInvalid`.
+      -->
+      <Textfield type="email" withTrailingIcon={valueClickable !== ''} bind:dirty={dirtyClickable} bind:invalid={invalidClickable} updateInvalid bind:value={valueClickable} label="To" style="min-width: 250px;" input$autocomplete="email">
         {#if valueClickable !== '' && dirtyClickable && !invalidClickable}
           <Icon class="material-icons" role="button" on:click={clickableHandler}>send</Icon>
         {/if}
