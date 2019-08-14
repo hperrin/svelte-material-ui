@@ -4,7 +4,7 @@
   <div>
     <FormField align="end" style="display: flex;">
       <Slider bind:value />
-      <span slot="label" style="margin-right: 18px;">Amount of Wonder</span>
+      <span slot="label" style="padding-right: 12px; width: max-content; display: block;">Amount of Wonder</span>
     </FormField>
   </div>
 

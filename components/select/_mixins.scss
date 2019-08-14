@@ -1,0 +1,51 @@
+@import "@material/select/mixins";
+@import "@material/ripple/mixins";
+@import "@material/rtl/mixins";
+@import "@material/feature-targeting/functions";
+
+@mixin smui-select-core-styles($query: mdc-feature-all()) {
+  .mdc-select__native-control {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+
+  .smui-select--standard {
+    @include mdc-states-base-color(transparent);
+    @include mdc-select-container-fill-color(transparent);
+
+    &.mdc-select--disabled {
+      @include mdc-select-container-fill-color_(transparent);
+    }
+
+    .mdc-select__native-control, .mdc-select__selected-text {
+      @include mdc-rtl-reflexive-property(padding, 0, 36px);
+    }
+
+    &.mdc-select--with-leading-icon .mdc-select__native-control,
+    &.mdc-select--with-leading-icon .mdc-select__selected-text {
+      @include mdc-rtl-reflexive-property(padding, 32px, 36px);
+    }
+
+    .mdc-select__dropdown-icon {
+      @include mdc-rtl-reflexive-position(right, 0);
+    }
+
+    .mdc-floating-label {
+      @include mdc-rtl-reflexive-position(left, 0);
+    }
+
+    &.mdc-select--with-leading-icon .mdc-floating-label {
+      @include mdc-rtl-reflexive-position(left, 32px);
+    }
+
+    &.mdc-select--with-leading-icon .mdc-select__icon {
+      @include mdc-rtl-reflexive-position(left, 0);
+    }
+
+    & + .mdc-select-helper-line {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}

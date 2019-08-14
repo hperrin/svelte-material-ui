@@ -8,11 +8,13 @@
     class:mdc-text-field--fullwidth={fullwidth}
     class:mdc-text-field--textarea={textarea}
     class:mdc-text-field--outlined={variant === 'outlined' && !fullwidth}
+    class:smui-text-field--standard={variant === 'standard' && !fullwidth}
     class:mdc-text-field--dense={dense}
     class:mdc-text-field--no-label={noLabel || label == null}
     class:mdc-text-field--with-leading-icon={withLeadingIcon}
     class:mdc-text-field--with-trailing-icon={withTrailingIcon}
-    {...exclude($$props, ['use', 'class', 'ripple', 'disabled', 'fullwidth', 'textarea', 'variant', 'dense', 'withLeadingIcon', 'withTrailingIcon', 'noLabel', 'label', 'type', 'value', 'input$', 'label$', 'ripple$', 'outline$'])}
+    class:mdc-text-field--invalid={invalid}
+    {...exclude($$props, ['use', 'class', 'ripple', 'disabled', 'fullwidth', 'textarea', 'variant', 'dense', 'withLeadingIcon', 'withTrailingIcon', 'noLabel', 'label', 'type', 'value', 'dirty', 'invalid', 'updateInvalid', 'useNativeValidation', 'input$', 'label$', 'ripple$', 'outline$'])}
   >
     <slot></slot>
     {#if textarea}
@@ -21,6 +23,7 @@
         bind:value
         bind:dirty
         bind:invalid
+        {updateInvalid}
         on:change
         on:input
         {...prefixFilter($$props, 'input$')}
@@ -32,6 +35,7 @@
         bind:value
         bind:dirty
         bind:invalid
+        {updateInvalid}
         on:change
         on:input
         {...placeholderProp}
@@ -64,11 +68,13 @@
     class:mdc-text-field--fullwidth={fullwidth}
     class:mdc-text-field--textarea={textarea}
     class:mdc-text-field--outlined={variant === 'outlined' && !fullwidth}
+    class:smui-text-field--standard={variant === 'standard' && !fullwidth}
     class:mdc-text-field--dense={dense}
     class:mdc-text-field--no-label={noLabel}
     class:mdc-text-field--with-leading-icon={withLeadingIcon}
     class:mdc-text-field--with-trailing-icon={withTrailingIcon}
-    {...exclude($$props, ['use', 'class', 'ripple', 'disabled', 'fullwidth', 'textarea', 'variant', 'dense', 'withLeadingIcon', 'withTrailingIcon', 'noLabel', 'label', 'type', 'value', 'input$', 'label$', 'ripple$', 'outline$'])}
+    class:mdc-text-field--invalid={invalid}
+    {...exclude($$props, ['use', 'class', 'ripple', 'disabled', 'fullwidth', 'textarea', 'variant', 'dense', 'withLeadingIcon', 'withTrailingIcon', 'noLabel', 'label', 'type', 'value', 'dirty', 'invalid', 'updateInvalid', 'useNativeValidation', 'input$', 'label$', 'ripple$', 'outline$'])}
   >
     <slot></slot>
   </div>
@@ -98,7 +104,7 @@
   export let disabled = false;
   export let fullwidth = false;
   export let textarea = false;
-  export let variant = 'filled';
+  export let variant = 'standard';
   export let dense = false;
   export let withLeadingIcon = false;
   export let withTrailingIcon = false;
@@ -107,7 +113,9 @@
   export let type = 'text';
   export let value = uninitializedValue;
   export let dirty = false;
-  export let invalid = false;
+  export let invalid = uninitializedValue;
+  export let updateInvalid = invalid === uninitializedValue;
+  export let useNativeValidation = invalid === uninitializedValue;
 
   let element;
   let textField;
@@ -116,12 +124,24 @@
 
   $: placeholderProp = (fullwidth && label) ? {placeholder: label} : {};
 
+  $: if (textField && valued && textField.value !== value) {
+    textField.value = value;
+  }
+
   $: if (textField && textField.disabled !== disabled) {
     textField.disabled = disabled;
   }
 
-  $: if (textField && valued && textField.value !== value) {
-    textField.value = value;
+  $: if (textField && textField.valid !== !invalid) {
+    if (updateInvalid) {
+      invalid = !textField.valid;
+    } else {
+      textField.valid = !invalid;
+    }
+  }
+
+  $: if (textField && textField.useNativeValidation !== useNativeValidation) {
+    textField.useNativeValidation = useNativeValidation;
   }
 
   onMount(() => {
@@ -135,4 +155,12 @@
   onDestroy(() => {
     textField.destroy();
   });
+
+  export function focus(...args) {
+    return textField.focus(...args);
+  }
+
+  export function layout(...args) {
+    return textField.layout(...args);
+  }
 </script>

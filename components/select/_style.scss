@@ -4,9 +4,5 @@
 @import 'svelte-material-ui/components/notched-outline/style';
 @import 'svelte-material-ui/components/list/style';
 @import 'svelte-material-ui/components/menu/style';
-
-.smui-select__native-control {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
+@import "./mixins";
+@include smui-select-core-styles;

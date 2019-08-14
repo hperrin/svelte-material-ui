@@ -8,10 +8,11 @@
   on:change={e => (type === 'file' || type === 'range') && valueUpdater(e)}
   on:input={e => type !== 'file' && valueUpdater(e)}
   on:change={changeHandler}
-  {...exclude($$props, ['use', 'class', 'type', 'value'])}
+  {...exclude($$props, ['use', 'class', 'type', 'value', 'files', 'dirty', 'invalid', 'updateInvalid'])}
 />
 
 <script>
+  import {onMount} from 'svelte';
   import {current_component} from 'svelte/internal';
   import {forwardEventsBuilder} from '../forwardEvents.js';
   import {exclude} from '../exclude.js';
@@ -27,6 +28,7 @@
   export let files = undefined;
   export let dirty = false;
   export let invalid = false;
+  export let updateInvalid = true;
 
   let element;
   let valueProp = {};
@@ -36,6 +38,12 @@
   } else {
     valueProp.value = value;
   }
+
+  onMount(() => {
+    if (updateInvalid) {
+      invalid = element.matches(':invalid');
+    }
+  });
 
   function toNumber(value) {
     return value === '' ? undefined : +value;
@@ -58,6 +66,8 @@
 
   function changeHandler(e) {
     dirty = true;
-    invalid = element.matches(':invalid');
+    if (updateInvalid) {
+      invalid = element.matches(':invalid');
+    }
   }
 </script>

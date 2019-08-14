@@ -2,3 +2,5 @@
 @import 'svelte-material-ui/components/floating-label/style';
 @import 'svelte-material-ui/components/line-ripple/style';
 @import 'svelte-material-ui/components/notched-outline/style';
+@import "./mixins";
+@include smui-text-field-core-styles;

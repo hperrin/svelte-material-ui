@@ -3,9 +3,78 @@
 
   <div class="columns margins">
     <div>
+      Standard:<br />
+
+      <Select bind:value={valueStandard} label="Fruit">
+        <Option value=""></Option>
+        {#each fruits as fruit}
+          <Option value={fruit} selected={valueStandard === fruit}>{fruit}</Option>
+        {/each}
+      </Select>
+
+      <div class="status">Selected: {valueStandard}</div>
+    </div>
+
+    <div>
+      Standard with Helper Text:<br />
+
+      <Select bind:value={valueStandardHelperText} label="Fruit">
+        <Option value=""></Option>
+        {#each fruits as fruit}
+          <Option value={fruit} selected={valueStandardHelperText === fruit}>{fruit}</Option>
+        {/each}
+      </Select>
+      <HelperText>Helper text.</HelperText>
+
+      <div class="status">Selected: {valueStandardHelperText}</div>
+    </div>
+
+    <div>
+      Standard Enhanced:<br />
+
+      <Select enhanced bind:value={valueStandardEnhanced} label="Fruit" class="demo-select-width" menu$class="demo-select-width">
+        <Option value=""></Option>
+        {#each fruits as fruit}
+          <Option value={fruit} selected={valueStandardEnhanced === fruit}>{fruit}</Option>
+        {/each}
+      </Select>
+
+      <div class="status">Selected: {valueStandardEnhanced}</div>
+    </div>
+
+    <div>
+      Standard Leading Icon:<br />
+
+      <Select withLeadingIcon bind:value={valueStandardLeadingIcon} label="Fruit" class="demo-select-width" menu$class="demo-select-width">
+        <span slot="icon"><Icon class="material-icons">event</Icon></span>
+        <Option value=""></Option>
+        {#each fruits as fruit}
+          <Option value={fruit} selected={valueStandardLeadingIcon === fruit}>{fruit}</Option>
+        {/each}
+      </Select>
+
+      <div class="status">Selected: {valueStandardLeadingIcon}</div>
+    </div>
+
+    <div>
+      Standard Invalid:<br />
+
+      <Select invalid bind:value={valueStandardInvalid} label="Fruit">
+        <Option value=""></Option>
+        {#each fruits as fruit}
+          <Option value={fruit} selected={valueStandardInvalid === fruit}>{fruit}</Option>
+        {/each}
+      </Select>
+
+      <div class="status">Selected: {valueStandardInvalid}</div>
+    </div>
+  </div>
+
+  <div class="columns margins">
+    <div>
       Filled:<br />
 
-      <Select bind:value={valueFilled} label="Fruit">
+      <Select variant="filled" bind:value={valueFilled} label="Fruit">
         <Option value=""></Option>
         {#each fruits as fruit}
           <Option value={fruit} selected={valueFilled === fruit}>{fruit}</Option>
@@ -18,7 +87,7 @@
     <div>
       Filled with Helper Text:<br />
 
-      <Select bind:value={valueFilledHelperText} label="Fruit">
+      <Select variant="filled" bind:value={valueFilledHelperText} label="Fruit">
         <Option value=""></Option>
         {#each fruits as fruit}
           <Option value={fruit} selected={valueFilledHelperText === fruit}>{fruit}</Option>
@@ -32,7 +101,7 @@
     <div>
       Filled Enhanced:<br />
 
-      <Select enhanced bind:value={valueFilledEnhanced} label="Fruit" class="demo-select-width" menu$class="demo-select-width">
+      <Select variant="filled" enhanced bind:value={valueFilledEnhanced} label="Fruit" class="demo-select-width" menu$class="demo-select-width">
         <Option value=""></Option>
         {#each fruits as fruit}
           <Option value={fruit} selected={valueFilledEnhanced === fruit}>{fruit}</Option>
@@ -45,7 +114,7 @@
     <div>
       Filled Leading Icon:<br />
 
-      <Select withLeadingIcon bind:value={valueFilledLeadingIcon} label="Fruit" class="demo-select-width" menu$class="demo-select-width">
+      <Select variant="filled" withLeadingIcon bind:value={valueFilledLeadingIcon} label="Fruit" class="demo-select-width" menu$class="demo-select-width">
         <span slot="icon"><Icon class="material-icons">event</Icon></span>
         <Option value=""></Option>
         {#each fruits as fruit}
@@ -54,6 +123,19 @@
       </Select>
 
       <div class="status">Selected: {valueFilledLeadingIcon}</div>
+    </div>
+
+    <div>
+      Filled Invalid:<br />
+
+      <Select variant="filled" invalid bind:value={valueFilledInvalid} label="Fruit">
+        <Option value=""></Option>
+        {#each fruits as fruit}
+          <Option value={fruit} selected={valueFilledInvalid === fruit}>{fruit}</Option>
+        {/each}
+      </Select>
+
+      <div class="status">Selected: {valueFilledInvalid}</div>
     </div>
   </div>
 
@@ -111,13 +193,26 @@
 
       <div class="status">Selected: {valueOutlinedLeadingIcon}</div>
     </div>
+
+    <div>
+      Outlined Invalid:<br />
+
+      <Select variant="outlined" invalid bind:value={valueOutlinedInvalid} label="Fruit">
+        <Option value=""></Option>
+        {#each fruits as fruit}
+          <Option value={fruit} selected={valueOutlinedInvalid === fruit}>{fruit}</Option>
+        {/each}
+      </Select>
+
+      <div class="status">Selected: {valueOutlinedInvalid}</div>
+    </div>
   </div>
 
   <div class="columns margins">
     <div>
       Shaped Filled:<br />
 
-      <Select class="shaped" bind:value={valueShapedFilled} label="Fruit">
+      <Select class="shaped" variant="filled" bind:value={valueShapedFilled} label="Fruit">
         <Option value=""></Option>
         {#each fruits as fruit}
           <Option value={fruit} selected={valueShapedFilled === fruit}>{fruit}</Option>
@@ -130,7 +225,7 @@
     <div>
       Shaped Filled with Helper Text:<br />
 
-      <Select class="shaped" bind:value={valueShapedFilledHelperText} label="Fruit">
+      <Select class="shaped" variant="filled" bind:value={valueShapedFilledHelperText} label="Fruit">
         <Option value=""></Option>
         {#each fruits as fruit}
           <Option value={fruit} selected={valueShapedFilledHelperText === fruit}>{fruit}</Option>
@@ -144,7 +239,7 @@
     <div>
       Shaped Filled Enhanced:<br />
 
-      <Select class="shaped demo-select-width" enhanced bind:value={valueShapedFilledEnhanced} label="Fruit" menu$class="demo-select-width">
+      <Select class="shaped demo-select-width" variant="filled" enhanced bind:value={valueShapedFilledEnhanced} label="Fruit" menu$class="demo-select-width">
         <Option value=""></Option>
         {#each fruits as fruit}
           <Option value={fruit} selected={valueShapedFilledEnhanced === fruit}>{fruit}</Option>
@@ -157,7 +252,7 @@
     <div>
       Shaped Filled Leading Icon:<br />
 
-      <Select class="shaped demo-select-width" withLeadingIcon bind:value={valueShapedFilledLeadingIcon} label="Fruit" menu$class="demo-select-width">
+      <Select class="shaped demo-select-width" variant="filled" withLeadingIcon bind:value={valueShapedFilledLeadingIcon} label="Fruit" menu$class="demo-select-width">
         <span slot="icon"><Icon class="material-icons">event</Icon></span>
         <Option value=""></Option>
         {#each fruits as fruit}
@@ -166,6 +261,19 @@
       </Select>
 
       <div class="status">Selected: {valueShapedFilledLeadingIcon}</div>
+    </div>
+
+    <div>
+      Shaped Filled Invalid:<br />
+
+      <Select class="shaped" variant="filled" invalid bind:value={valueShapedFilledInvalid} label="Fruit">
+        <Option value=""></Option>
+        {#each fruits as fruit}
+          <Option value={fruit} selected={valueShapedFilledInvalid === fruit}>{fruit}</Option>
+        {/each}
+      </Select>
+
+      <div class="status">Selected: {valueShapedFilledInvalid}</div>
     </div>
   </div>
 
@@ -223,6 +331,19 @@
 
       <div class="status">Selected: {valueShapedOutlinedLeadingIcon}</div>
     </div>
+
+    <div>
+      Shaped Outlined Invalid:<br />
+
+      <Select class="shaped-outlined" variant="outlined" invalid bind:value={valueShapedOutlinedInvalid} label="Fruit">
+        <Option value=""></Option>
+        {#each fruits as fruit}
+          <Option value={fruit} selected={valueShapedOutlinedInvalid === fruit}>{fruit}</Option>
+        {/each}
+      </Select>
+
+      <div class="status">Selected: {valueShapedOutlinedInvalid}</div>
+    </div>
   </div>
 </section>
 
@@ -231,24 +352,33 @@
   import Icon from 'svelte-material-ui/components/select/icon';
   import HelperText from 'svelte-material-ui/components/select/helper-text';
 
-  let fruits = ['Apple', 'Orange', 'Banana'];
+  let fruits = ['Apple', 'Orange', 'Banana', 'Mango'];
 
+  let valueStandard = '';
+  let valueStandardHelperText = '';
+  let valueStandardEnhanced = '';
+  let valueStandardLeadingIcon = '';
+  let valueStandardInvalid = '';
   let valueFilled = '';
   let valueFilledHelperText = '';
   let valueFilledEnhanced = '';
   let valueFilledLeadingIcon = '';
+  let valueFilledInvalid = '';
   let valueOutlined = '';
   let valueOutlinedHelperText = '';
   let valueOutlinedEnhanced = '';
   let valueOutlinedLeadingIcon = '';
+  let valueOutlinedInvalid = '';
   let valueShapedFilled = '';
   let valueShapedFilledHelperText = '';
   let valueShapedFilledEnhanced = '';
   let valueShapedFilledLeadingIcon = '';
+  let valueShapedFilledInvalid = '';
   let valueShapedOutlined = '';
   let valueShapedOutlinedHelperText = '';
   let valueShapedOutlinedEnhanced = '';
   let valueShapedOutlinedLeadingIcon = '';
+  let valueShapedOutlinedInvalid = '';
 </script>
 
 <style>

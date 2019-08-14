@@ -5,10 +5,11 @@
   class="mdc-text-field__input {className}"
   bind:value
   on:change={changeHandler}
-  {...exclude($$props, ['use', 'class', 'value'])}
+  {...exclude($$props, ['use', 'class', 'value', 'dirty', 'invalid', 'updateInvalid'])}
 />
 
 <script>
+  import {onMount} from 'svelte';
   import {current_component} from 'svelte/internal';
   import {forwardEventsBuilder} from '../forwardEvents.js';
   import {exclude} from '../exclude.js';
@@ -22,11 +23,20 @@
   export let value = '';
   export let dirty = false;
   export let invalid = false;
+  export let updateInvalid = true;
 
   let element;
 
+  onMount(() => {
+    if (updateInvalid) {
+      invalid = element.matches(':invalid');
+    }
+  });
+
   function changeHandler() {
     dirty = true;
-    invalid = element.matches(':invalid');
+    if (updateInvalid) {
+      invalid = element.matches(':invalid');
+    }
   }
 </script>

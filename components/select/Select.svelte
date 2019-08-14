@@ -5,9 +5,11 @@
   class="mdc-select {className}"
   class:mdc-select--disabled={disabled}
   class:mdc-select--outlined={variant === 'outlined'}
+  class:smui-select--standard={variant === 'standard'}
   class:mdc-select--with-leading-icon={withLeadingIcon}
+  class:mdc-select--invalid={invalid}
   on:MDCSelect:change={changeHandler}
-  {...exclude($$props, ['use', 'class', 'ripple', 'disabled', 'enhanced', 'variant', 'noLabel', 'withLeadingIcon', 'label', 'value', 'selectedIndex', 'selectedText', 'dirty', 'invalid', 'required', 'input$', 'label$', 'ripple$', 'outline$', 'menu$', 'list$'])}
+  {...exclude($$props, ['use', 'class', 'ripple', 'disabled', 'enhanced', 'variant', 'noLabel', 'withLeadingIcon', 'label', 'value', 'selectedIndex', 'selectedText', 'dirty', 'invalid', 'updateInvalid', 'required', 'input$', 'label$', 'ripple$', 'outline$', 'menu$', 'list$'])}
 >
   <slot name="icon"></slot>
   <i class="mdc-select__dropdown-icon"></i>
@@ -44,7 +46,7 @@
     <select
       bind:this={inputElement}
       use:useActions={input$use}
-      class="mdc-select__native-control smui-select__native-control {input$class}"
+      class="mdc-select__native-control {input$class}"
       {disabled}
       {required}
       id={inputId}
@@ -98,6 +100,7 @@
   import NotchedOutline from '../notched-outline/NotchedOutline.svelte';
 
   const forwardEvents = forwardEventsBuilder(current_component, 'MDCSelect:change');
+  const uninitializedValue = () => {};
 
   export let use = [];
   let className = '';
@@ -105,16 +108,17 @@
   export let ripple = true;
   export let disabled = false;
   export let enhanced = false;
-  export let variant = 'filled';
+  export let variant = 'standard';
   export let withLeadingIcon = false;
   export let noLabel = false;
   export let label = null;
   export let value = '';
   export let selectedIndex = null;
   // Only needed for enhanced select and only needed on initialization.
-  export const selectedText = '';
+  export let selectedText = '';
   export let dirty = false;
-  export let invalid = false;
+  export let invalid = uninitializedValue;
+  export let updateInvalid = invalid === uninitializedValue;
   export let required = false;
   export let inputId = 'SMUI-select-'+(counter++);
   export let input$use = [];
@@ -145,8 +149,12 @@
     select.disabled = disabled;
   }
 
-  $: if (select && select.valid === invalid) {
-    invalid = !select.valid;
+  $: if (select && select.valid !== !invalid) {
+    if (updateInvalid) {
+      invalid = !select.valid;
+    } else {
+      select.valid = !invalid;
+    }
   }
 
   $: if (select && select.required !== required) {
@@ -160,6 +168,10 @@
 
     if (!ripple && select.ripple) {
       select.ripple.destroy();
+    }
+
+    if (updateInvalid) {
+      invalid = inputElement.matches(':invalid');
     }
   });
 
@@ -175,7 +187,13 @@
     value = e.detail.value;
     selectedIndex = e.detail.index;
     dirty = true;
-    invalid = inputElement.matches(':invalid');
+    if (updateInvalid) {
+      invalid = inputElement.matches(':invalid');
+    }
+  }
+
+  export function focus(...args) {
+    return inputElement.focus(...args);
   }
 
   export function layout(...args) {

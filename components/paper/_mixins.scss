@@ -16,7 +16,7 @@
     padding: $smui-paper-padding;
 
     &.smui-paper--rounded {
-      @include smui-paper-shape-radius(small, $query: $query);
+      @include smui-paper-shape-radius(medium, $query: $query);
     }
 
     &.smui-paper--color-primary {

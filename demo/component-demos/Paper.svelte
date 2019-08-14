@@ -55,7 +55,7 @@
             <div>
               <FormField align="end" style="display: flex;">
                 <Slider bind:value={elevation} min={0} max={24} discrete />
-                <span slot="label" style="margin-right: 18px;">Elevation</span>
+                <span slot="label" style="padding-right: 12px; width: max-content; display: block;">Elevation</span>
               </FormField>
             </div>
 
