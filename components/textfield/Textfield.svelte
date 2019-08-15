@@ -8,7 +8,7 @@
     class:mdc-text-field--fullwidth={fullwidth}
     class:mdc-text-field--textarea={textarea}
     class:mdc-text-field--outlined={variant === 'outlined' && !fullwidth}
-    class:smui-text-field--standard={variant === 'standard' && !fullwidth}
+    class:smui-text-field--standard={variant === 'standard' && !fullwidth && !textarea}
     class:mdc-text-field--dense={dense}
     class:mdc-text-field--no-label={noLabel || label == null}
     class:mdc-text-field--with-leading-icon={withLeadingIcon}
@@ -68,7 +68,7 @@
     class:mdc-text-field--fullwidth={fullwidth}
     class:mdc-text-field--textarea={textarea}
     class:mdc-text-field--outlined={variant === 'outlined' && !fullwidth}
-    class:smui-text-field--standard={variant === 'standard' && !fullwidth}
+    class:smui-text-field--standard={variant === 'standard' && !fullwidth && !textarea}
     class:mdc-text-field--dense={dense}
     class:mdc-text-field--no-label={noLabel}
     class:mdc-text-field--with-leading-icon={withLeadingIcon}
