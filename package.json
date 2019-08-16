@@ -7,7 +7,7 @@
     "build": "webpack",
     "serve": "serve demo",
     "watch": "webpack --watch",
-    "pages": "git checkout gh-pages && git pull && git merge master && npm run build && git add . && git commit -m 'Update build files.' && git push origin gh-pages && git checkout master",
+    "pages": "git checkout gh-pages && git pull && git reset --hard HEAD^ && git rebase master && npm run build && git add . && git commit -m 'Update build files.' && git push --force origin gh-pages && git checkout master",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
