@@ -96,7 +96,7 @@ I'm only going to do things that need to/can be Svelte-ified. For some things, l
 - [x] Lists
 - [x] Menu Surface
 - [x] Menus
-- [x] [Paper‡](https://github.com/hperrin/svelte-material-ui/blob/master/components/paper/README.md)
+- [x] [Paper](https://github.com/hperrin/svelte-material-ui/blob/master/components/paper/README.md)‡
 - [x] Ripples
 - [ ] Snackbars
 - [x] Tabs
