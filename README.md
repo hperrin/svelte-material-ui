@@ -66,7 +66,7 @@ To bundle this in your own code, you must have a `_smui-theme.scss` file in one 
 
 I'm only going to do things that need to/can be Svelte-ified. For some things, like RTL and layout grid, you can just use the MDC packages.
 
-- [x] Buttons
+- [x] [Buttons](https://github.com/hperrin/svelte-material-ui/blob/master/components/button/README.md)
   - [x] Floating Action Buttons
   - [x] Icon Buttons
 - [x] Cards
@@ -77,7 +77,7 @@ I'm only going to do things that need to/can be Svelte-ified. For some things, l
 - [x] Elevation†
 - [x] Image List
 - [x] Inputs and Controls
-  - [x] Checkboxes
+  - [x] [Checkboxes](https://github.com/hperrin/svelte-material-ui/blob/master/components/checkbox/README.md)
   - [x] Floating Label
   - [x] Form Fields
   - [x] Line Ripple
@@ -96,7 +96,7 @@ I'm only going to do things that need to/can be Svelte-ified. For some things, l
 - [x] Lists
 - [x] Menu Surface
 - [x] Menus
-- [x] Paper‡
+- [x] [Paper‡](https://github.com/hperrin/svelte-material-ui/blob/master/components/paper/README.md)
 - [x] Ripples
 - [ ] Snackbars
 - [x] Tabs
