@@ -2,23 +2,20 @@
 
 Paper is used to build an elevated surface.
 
-Click [here](https://material.io/develop/web/components/elevation/) for more information on MDC elevation.
+See [MDC Elevation](https://material.io/develop/web/components/elevation/) for more information on API and Sass styling.
 
 ## Basic Usage
 
 ```html
 <script>
-  import Paper {Title, Subtitle, Content} from 'svelte-material-ui/components/paper'
+  import Paper, {Title, Subtitle, Content} from 'svelte-material-ui/components/paper';
 </script>
 
-<div>
-  <Paper class="paper">
-    <Title>Paper</Title>
-    <Subtitle>This is a sheet of paper.</Subtitle>
-    <Content>Paper is used to build an elevated surface.</Content>
-  </Paper>
-</div>
-
+<Paper>
+  <Title>Paper</Title>
+  <Subtitle>This is a sheet of paper.</Subtitle>
+  <Content>Paper is used to build an elevated surface.</Content>
+</Paper>
 ```
 
 ## Demo
@@ -44,16 +41,14 @@ Click [here](https://material.io/develop/web/components/elevation/) for more inf
 
 All standard UI events are forwarded.
 
-#### Subcomponents
-
-##### Title: A fragment used as a title on the Paper.
+### Title: A fragment used as a title on the Paper.
 
 An area denoting the title of the Paper, equivalent to the `H5` common component.
 
-##### Subtitle: A fragment used as a subtitle on the Paper.
+### Subtitle: A fragment used as a subtitle on the Paper.
 
 An area denoting the subtitle of the Paper, equivalent to the `H6` common component.
 
-##### Content: A fragment used as a body of the Paper.
+### Content: A fragment used as a body of the Paper.
 
 An area denoting the content/body of the Paper, equivalent to the `Div` common component.

@@ -1,8 +1,8 @@
 # Svelte Material UI - Checkbox
 
-Checkbox is used to provide the same functionality  `<input type="checkbox">`
+Checkbox is used to provide the same functionality as `<input type="checkbox">`.
 
-Click [here](https://material.io/design/components/selection-controls.html#checkboxes) for more information on MDC check boxes.
+See [MDC Checkboxes](https://material.io/develop/web/components/input-controls/checkboxes/) for more information on API and Sass styling.
 
 ## Basic Usage
 
@@ -13,15 +13,10 @@ Click [here](https://material.io/design/components/selection-controls.html#check
   let simpleSelected = false;
 </script>
 
-<div>
-  <div>
-    <FormField>
-      <Checkbox bind:checked={simpleSelected} />
-      <span slot="label">Check me.</span>
-    </FormField>
-  </div>
-</div>
-
+<FormField>
+  <Checkbox bind:checked={simpleSelected} />
+  <span slot="label">Check me.</span>
+</FormField>
 ```
 ## Demo
 
@@ -38,11 +33,23 @@ Click [here](https://material.io/design/components/selection-controls.html#check
 * `use`: `[]` - An array of actions and/or action/property arrays.
 * `class`: `''` - A CSS class string.
 * `disabled`: `false` - Component appears as disabled.
-* `indeterminate`: `false` - Component is rendered in an indeterminate state
-* `group`: `uninitialised` - The selected values of a group of check boxes as an array. NB: `uninitialised` is an empty function.
-* `checked`: `true` || `false` - The rendered state of the component.
-* `value` : `uninitialised` - The rendered state of a individual check box within a group of check boxes(?)
+* `indeterminate`: `uninitialised` - Component is rendered in an indeterminate state
+* `group`: `uninitialised` - The selected values of a group of check boxes as an array.
+* `checked`: `uninitialised` - A boolean, whether the checkbox is checked. This is used instead of `group` for a single checkbox.
+* `value` : `null` - The value of a checkbox in a group of checkboxes.
+* `valueKey` : `uninitialised` - If `value` is not a string, this should be supplied as well, and should be a unique key.
+
+#### Forwarded Props
+
+* `input$` - Props forwarded to the input element.
 
 #### Events
 
 All standard UI events are forwarded.
+
+* `change`
+* `input`
+
+#### Functions
+
+* `getId` - Get the HTML ID of the element.
