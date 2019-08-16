@@ -1,4 +1,4 @@
-# Svelte Material UI - Button
+# Svelte Material UI - Paper
 
 Paper is used to build an elevated surface.
 
