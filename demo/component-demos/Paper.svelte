@@ -3,7 +3,7 @@
 
   <div>
     <div class="paper-container">
-      <Paper class="paper">
+      <Paper class="paper-demo">
         <Title>Paper</Title>
         <Subtitle>This is a sheet of paper.</Subtitle>
         <Content>Paper is used to build an elevated surface.</Content>
@@ -15,7 +15,7 @@
     Square paper: <br />
 
     <div class="paper-container">
-      <Paper square class="paper">
+      <Paper square class="paper-demo">
         <Title>Square Paper</Title>
         <Content>By adding the <code>square</code> property, the paper gains sharper corners and can be used to intimidate foes.</Content>
       </Paper>
@@ -26,14 +26,14 @@
     Paper color: <br />
 
     <div class="paper-container">
-      <Paper color="primary" class="paper">
+      <Paper color="primary" class="paper-demo">
         <Title>Primary Paper</Title>
         <Content>Paper can have a color, allowing you to construct fancy school projects with the colored paper and glue sticks.</Content>
       </Paper>
     </div>
 
     <div class="paper-container">
-      <Paper color="secondary" class="paper">
+      <Paper color="secondary" class="paper-demo">
         <Title>Secondary Paper</Title>
         <Content>Paper can have a color, allowing you to construct fancy school projects with the colored paper and glue sticks.</Content>
       </Paper>
@@ -44,7 +44,7 @@
     Elevation and transition: <br />
 
     <div class="paper-container">
-      <Paper transition {elevation} {color} class="paper">
+      <Paper transition {elevation} {color} class="paper-demo">
         <Title>Elevated Paper</Title>
         <Content>
           If you add the <code>transition</code> property, elevation changes will animate.
@@ -96,7 +96,7 @@
     padding: 36px 18px;
   }
 
-  * :global(.paper) {
+  * :global(.paper-demo) {
     margin: 0 auto;
     max-width: 600px;
   }

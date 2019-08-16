@@ -1,8 +1,28 @@
 # Svelte Material UI - Button
 
+An interactive button or link.
+
+See [MDC Buttons](https://material.io/develop/web/components/buttons/) for more information on API and Sass styling.
+
+## Basic Usage
+
+```html
+<script>
+  import Paper, {Title, Subtitle, Content} from 'svelte-material-ui/components/paper';
+</script>
+
+<Paper>
+  <Title>Paper</Title>
+  <Subtitle>This is a sheet of paper.</Subtitle>
+  <Content>Paper is used to build an elevated surface.</Content>
+</Paper>
+```
+
 ## Demo
 
-https://hperrin.github.io/svelte-material-ui/demo/#/button
+*in action:* https://hperrin.github.io/svelte-material-ui/demo/#/button
+
+*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/demo/component-demos/Button.svelte
 
 ## Exports
 
@@ -34,7 +54,7 @@ All standard UI events are forwarded.
 
 All standard UI events are forwarded.
 
-### GroupItem: A group item action.
+### GroupItem: A group item Svelte action.
 
 Used for containing a button in a group. This can be useful for containing menus along with the button.
 
