@@ -28,7 +28,7 @@
     <label><input type="checkbox" bind:checked={exited2}> Exited</label>
   </div>
 
-  <div class="status">Clicked: {clicked}</div>
+  <pre class="status">Clicked: {clicked}</pre>
 </section>
 
 <script>

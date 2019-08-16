@@ -10,6 +10,14 @@ Check them out: https://hperrin.github.io/svelte-material-ui/demo/
 
 ## Usage
 
+If you want the Material Icon, Roboto, and Roboto Mono fonts, be sure to include these:
+
+```html
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+```
+
 Here's some example code:
 
 ```html
@@ -63,7 +71,7 @@ I'm only going to do things that need to/can be Svelte-ified. For some things, l
   - [x] Icon Buttons
 - [x] Cards
 - [x] Chips
-- [x] Data Tables (Incomplete)
+- [x] Data Tables
 - [x] Dialogs
 - [x] Drawers
 - [x] Elevation†

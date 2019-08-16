@@ -12,7 +12,7 @@
         {/each}
       </Select>
 
-      <div class="status">Selected: {valueStandard}</div>
+      <pre class="status">Selected: {valueStandard}</pre>
     </div>
 
     <div>
@@ -26,7 +26,7 @@
       </Select>
       <HelperText>Helper text.</HelperText>
 
-      <div class="status">Selected: {valueStandardHelperText}</div>
+      <pre class="status">Selected: {valueStandardHelperText}</pre>
     </div>
 
     <div>
@@ -39,7 +39,7 @@
         {/each}
       </Select>
 
-      <div class="status">Selected: {valueStandardEnhanced}</div>
+      <pre class="status">Selected: {valueStandardEnhanced}</pre>
     </div>
 
     <div>
@@ -53,7 +53,7 @@
         {/each}
       </Select>
 
-      <div class="status">Selected: {valueStandardLeadingIcon}</div>
+      <pre class="status">Selected: {valueStandardLeadingIcon}</pre>
     </div>
 
     <div>
@@ -66,7 +66,7 @@
         {/each}
       </Select>
 
-      <div class="status">Selected: {valueStandardInvalid}</div>
+      <pre class="status">Selected: {valueStandardInvalid}</pre>
     </div>
   </div>
 
@@ -81,7 +81,7 @@
         {/each}
       </Select>
 
-      <div class="status">Selected: {valueFilled}</div>
+      <pre class="status">Selected: {valueFilled}</pre>
     </div>
 
     <div>
@@ -95,7 +95,7 @@
       </Select>
       <HelperText>Helper text.</HelperText>
 
-      <div class="status">Selected: {valueFilledHelperText}</div>
+      <pre class="status">Selected: {valueFilledHelperText}</pre>
     </div>
 
     <div>
@@ -108,7 +108,7 @@
         {/each}
       </Select>
 
-      <div class="status">Selected: {valueFilledEnhanced}</div>
+      <pre class="status">Selected: {valueFilledEnhanced}</pre>
     </div>
 
     <div>
@@ -122,7 +122,7 @@
         {/each}
       </Select>
 
-      <div class="status">Selected: {valueFilledLeadingIcon}</div>
+      <pre class="status">Selected: {valueFilledLeadingIcon}</pre>
     </div>
 
     <div>
@@ -135,7 +135,7 @@
         {/each}
       </Select>
 
-      <div class="status">Selected: {valueFilledInvalid}</div>
+      <pre class="status">Selected: {valueFilledInvalid}</pre>
     </div>
   </div>
 
@@ -150,7 +150,7 @@
         {/each}
       </Select>
 
-      <div class="status">Selected: {valueOutlined}</div>
+      <pre class="status">Selected: {valueOutlined}</pre>
     </div>
 
     <div>
@@ -164,7 +164,7 @@
       </Select>
       <HelperText>Helper text.</HelperText>
 
-      <div class="status">Selected: {valueOutlinedHelperText}</div>
+      <pre class="status">Selected: {valueOutlinedHelperText}</pre>
     </div>
 
     <div>
@@ -177,7 +177,7 @@
         {/each}
       </Select>
 
-      <div class="status">Selected: {valueOutlinedEnhanced}</div>
+      <pre class="status">Selected: {valueOutlinedEnhanced}</pre>
     </div>
 
     <div>
@@ -191,7 +191,7 @@
         {/each}
       </Select>
 
-      <div class="status">Selected: {valueOutlinedLeadingIcon}</div>
+      <pre class="status">Selected: {valueOutlinedLeadingIcon}</pre>
     </div>
 
     <div>
@@ -204,7 +204,7 @@
         {/each}
       </Select>
 
-      <div class="status">Selected: {valueOutlinedInvalid}</div>
+      <pre class="status">Selected: {valueOutlinedInvalid}</pre>
     </div>
   </div>
 
@@ -219,7 +219,7 @@
         {/each}
       </Select>
 
-      <div class="status">Selected: {valueShapedFilled}</div>
+      <pre class="status">Selected: {valueShapedFilled}</pre>
     </div>
 
     <div>
@@ -233,7 +233,7 @@
       </Select>
       <HelperText>Helper text.</HelperText>
 
-      <div class="status">Selected: {valueShapedFilledHelperText}</div>
+      <pre class="status">Selected: {valueShapedFilledHelperText}</pre>
     </div>
 
     <div>
@@ -246,7 +246,7 @@
         {/each}
       </Select>
 
-      <div class="status">Selected: {valueShapedFilledEnhanced}</div>
+      <pre class="status">Selected: {valueShapedFilledEnhanced}</pre>
     </div>
 
     <div>
@@ -260,7 +260,7 @@
         {/each}
       </Select>
 
-      <div class="status">Selected: {valueShapedFilledLeadingIcon}</div>
+      <pre class="status">Selected: {valueShapedFilledLeadingIcon}</pre>
     </div>
 
     <div>
@@ -273,7 +273,7 @@
         {/each}
       </Select>
 
-      <div class="status">Selected: {valueShapedFilledInvalid}</div>
+      <pre class="status">Selected: {valueShapedFilledInvalid}</pre>
     </div>
   </div>
 
@@ -288,7 +288,7 @@
         {/each}
       </Select>
 
-      <div class="status">Selected: {valueShapedOutlined}</div>
+      <pre class="status">Selected: {valueShapedOutlined}</pre>
     </div>
 
     <div>
@@ -302,7 +302,7 @@
       </Select>
       <HelperText>Helper text.</HelperText>
 
-      <div class="status">Selected: {valueShapedOutlinedHelperText}</div>
+      <pre class="status">Selected: {valueShapedOutlinedHelperText}</pre>
     </div>
 
     <div>
@@ -315,7 +315,7 @@
         {/each}
       </Select>
 
-      <div class="status">Selected: {valueShapedOutlinedEnhanced}</div>
+      <pre class="status">Selected: {valueShapedOutlinedEnhanced}</pre>
     </div>
 
     <div>
@@ -329,7 +329,7 @@
         {/each}
       </Select>
 
-      <div class="status">Selected: {valueShapedOutlinedLeadingIcon}</div>
+      <pre class="status">Selected: {valueShapedOutlinedLeadingIcon}</pre>
     </div>
 
     <div>
@@ -342,7 +342,7 @@
         {/each}
       </Select>
 
-      <div class="status">Selected: {valueShapedOutlinedInvalid}</div>
+      <pre class="status">Selected: {valueShapedOutlinedInvalid}</pre>
     </div>
   </div>
 </section>

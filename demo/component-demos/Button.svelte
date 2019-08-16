@@ -102,7 +102,7 @@
     </Group>
   </div>
 
-  <div class="status">Clicked: {clicked}</div>
+  <pre class="status">Clicked: {clicked}</pre>
 </section>
 
 <script>

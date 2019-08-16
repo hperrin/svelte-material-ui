@@ -21,7 +21,7 @@
     <Button on:click={() => myDialog.open()}><Label>Open Dialog</Label></Button>
   </div>
 
-  <div class="status">Clicked: {clicked}</div>
+  <pre class="status">Clicked: {clicked}</pre>
 
   <div>
     Using dialog events, instead of button clicks: <br />
@@ -45,7 +45,7 @@
     <Button on:click={() => myDialog2.open()}><Label>Open Dialog</Label></Button>
   </div>
 
-  <div class="status">Response: {response}</div>
+  <pre class="status">Response: {response}</pre>
 
   <div>
     No actions, and a very long list dialog: <br />
@@ -65,7 +65,7 @@
     <Button on:click={() => myDialog3.open()}><Label>Open Dialog</Label></Button>
   </div>
 
-  <div class="status">Clicked: {clicked3}</div>
+  <pre class="status">Clicked: {clicked3}</pre>
 </section>
 
 <script>

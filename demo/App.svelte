@@ -111,12 +111,12 @@
       component: DemoChips,
       indent: 0
     },
-    // {
-    //   name: 'Data Tables',
-    //   key: 'data-table',
-    //   component: DemoDataTable,
-    //   indent: 0
-    // },
+    {
+      name: 'Data Tables',
+      key: 'data-table',
+      component: DemoDataTable,
+      indent: 0
+    },
     {
       name: 'Dialogs',
       key: 'dialog',

@@ -8,7 +8,7 @@
     </FormField>
   </div>
 
-  <div class="status">Value: {value}</div>
+  <pre class="status">Value: {value}</pre>
 
   <div>
     Discrete with min/max/step:

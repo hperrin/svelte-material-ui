@@ -86,8 +86,8 @@
   let addTabindexIfNoItemsSelectedRaf;
   let nav = getContext('SMUI:list:item:nav');
 
-  setContext('SMUI:form-field:props', {id: inputId});
-  setContext('SMUI:form-field:setChecked', setChecked);
+  setContext('SMUI:generic:input:props', {id: inputId});
+  setContext('SMUI:generic:input:setChecked', setChecked);
 
   onMount(() => {
     // Tabindex needs to be '0' if this is the first non-disabled list item, and

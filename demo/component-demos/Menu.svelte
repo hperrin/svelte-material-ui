@@ -67,7 +67,7 @@
     </div>
   </div>
 
-  <div class="status">Clicked: {clicked}</div>
+  <pre class="status">Clicked: {clicked}</pre>
 
   <div>
     Selection groups:
@@ -106,11 +106,9 @@
     </div>
   </div>
 
-  <div class="status">Selection 1: {selected1}</div>
-
-  <div class="status">Selection 2: {selected2}</div>
-
-  <div class="status">Clicked: {clicked2}</div>
+  <pre class="status">Selection 1: {selected1}</pre>
+  <pre class="status">Selection 2: {selected2}</pre>
+  <pre class="status">Clicked: {clicked2}</pre>
 </section>
 
 <script>

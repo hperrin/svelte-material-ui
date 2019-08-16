@@ -10,7 +10,7 @@
     {/each}
   </div>
 
-  <div class="status">Selected: {selected}</div>
+  <pre class="status">Selected: {selected}</pre>
 </section>
 
 <script>

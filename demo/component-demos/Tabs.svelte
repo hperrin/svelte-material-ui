@@ -16,7 +16,7 @@
       {/each}
     </div>
 
-    <div class="status">Selected: {active}</div>
+    <pre class="status">Selected: {active}</pre>
   </div>
 
   <div>
@@ -38,7 +38,7 @@
       </Tab>
     </TabBar>
 
-    <div class="status">Selected: {keyedTabsActive.k}</div>
+    <pre class="status">Selected: {keyedTabsActive.k}</pre>
   </div>
 
   <div>

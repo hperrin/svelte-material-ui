@@ -10,7 +10,7 @@
     use:useActions={input$use}
     class="mdc-radio__native-control {input$class}"
     type="radio"
-    {...incoming}
+    {...inputProps}
     {disabled}
     {value}
     {checked}
@@ -47,13 +47,13 @@
   let element;
   let radio;
   let formField = getContext('SMUI:form-field');
-  let incoming = getContext('SMUI:form-field:props') || {};
-  let setChecked = getContext('SMUI:form-field:setChecked');
+  let inputProps = getContext('SMUI:generic:input:props') || {};
+  let setChecked = getContext('SMUI:generic:input:setChecked');
 
   $: checked = group === value;
 
-  if (setChecked) {
-    setChecked(group === value);
+  $: if (setChecked) {
+    setChecked(checked);
   }
 
   $: if (radio && radio.checked !== checked) {
@@ -87,6 +87,6 @@
   }
 
   export function getId() {
-    return incoming && incoming.id;
+    return inputProps && inputProps.id;
   }
 </script>

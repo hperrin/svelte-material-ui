@@ -12,7 +12,7 @@
   aria-valuenow={value}
   data-step={step === 0 ? undefined : step}
   {tabindex}
-  {...incoming}
+  {...inputProps}
   on:MDCSlider:change={handleChange}
   {...exclude($$props, ['use', 'class', 'disabled', 'discrete', 'displayMarkers', 'min', 'max', 'step', 'value', 'tabindex'])}
 >
@@ -60,7 +60,7 @@
   let element;
   let slider;
   let formField = getContext('SMUI:form-field');
-  let incoming = getContext('SMUI:form-field:props') || {};
+  let inputProps = getContext('SMUI:generic:input:props') || {};
 
   $: if (slider && slider.disabled !== disabled) {
     slider.disabled = disabled;
@@ -111,6 +111,6 @@
   }
 
   export function getId() {
-    return incoming && incoming.id;
+    return inputProps && inputProps.id;
   }
 </script>

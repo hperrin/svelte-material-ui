@@ -30,7 +30,7 @@
     <Button on:click={() => choice = 'Night'}><Label>Night</Label></Button>
   </div>
 
-  <div class="status">Selected: {choice}</div>
+  <pre class="status">Selected: {choice}</pre>
 
   <div>
     Filter Chips
@@ -39,7 +39,7 @@
     </Set>
   </div>
 
-  <div class="status">Selected: {filter.join(', ')}</div>
+  <pre class="status">Selected: {filter.join(', ')}</pre>
 
   <div>
     Input Chips

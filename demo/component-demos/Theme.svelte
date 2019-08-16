@@ -27,7 +27,7 @@
     <Fab on:click={() => clicked++} extended><Icon class="material-icons" style="margin-right: 12px;">favorite</Icon><Label>Extended</Label></Fab>
   </div>
 
-  <div class="status">Clicked: {clicked}</div>
+  <pre class="status">Clicked: {clicked}</pre>
 </section>
 
 <script>

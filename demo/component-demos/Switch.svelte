@@ -8,7 +8,7 @@
     </FormField>
   </div>
 
-  <div class="status">Checked: {simpleSelected}</div>
+  <pre class="status">Checked: {simpleSelected}</pre>
 
   <div>
     <FormField align="end">
@@ -17,7 +17,7 @@
     </FormField>
   </div>
 
-  <div class="status">Checked: {simpleSelected2}</div>
+  <pre class="status">Checked: {simpleSelected2}</pre>
 
   <div>
     Group switch:<br />
@@ -31,7 +31,7 @@
     {/each}
   </div>
 
-  <div class="status">Selected: {selected.join(', ')}</div>
+  <pre class="status">Selected: {selected.join(', ')}</pre>
 </section>
 
 <script>

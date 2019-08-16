@@ -38,7 +38,7 @@
   let formField;
 
   setContext('SMUI:form-field', () => formField);
-  setContext('SMUI:form-field:props', {id: inputId});
+  setContext('SMUI:generic:input:props', {id: inputId});
 
   onMount(() => {
     formField = new MDCFormField(element);

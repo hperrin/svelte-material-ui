@@ -31,7 +31,7 @@
         <main class="main-content">
           App content.
           <br />
-          <div class="status">Clicked: {clicked}</div>
+          <pre class="status">Clicked: {clicked}</pre>
         </main>
       </AppContent>
     </div>
@@ -71,7 +71,7 @@
         <main class="main-content">
           <Button on:click={() => myDrawerOpen = !myDrawerOpen}><Label>Toggle Drawer</Label></Button>
           <br />
-          <div class="status">Active: {active}</div>
+          <pre class="status">Active: {active}</pre>
         </main>
       </AppContent>
     </div>
@@ -128,7 +128,7 @@
         <main class="main-content">
           <Button on:click={() => myDrawer2Open = !myDrawer2Open}><Label>Toggle Drawer</Label></Button>
           <br />
-          <div class="status">Active: {active2}</div>
+          <pre class="status">Active: {active2}</pre>
           <div style="height: 700px;">&nbsp;</div>
           And some stuff at the bottom.
         </main>

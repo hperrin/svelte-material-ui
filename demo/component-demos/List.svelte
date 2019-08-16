@@ -12,7 +12,7 @@
     </List>
   </div>
 
-  <div class="status">Clicked: {clickedSimple}</div>
+  <pre class="status">Clicked: {clickedSimple}</pre>
 
   <div>
     A dense list with graphics:
@@ -37,7 +37,7 @@
     </List>
   </div>
 
-  <div class="status">Clicked: {clickedDense}</div>
+  <pre class="status">Clicked: {clickedDense}</pre>
 
   <div>
     A non-interactive list with activated item:
@@ -66,7 +66,7 @@
     </List>
   </div>
 
-  <div class="status">Selected: {selectionTwoLine}, value of selectedIndex: {selectionIndex}</div>
+  <pre class="status">Selected: {selectionTwoLine}, value of selectedIndex: {selectionIndex}</pre>
 
   <div>
     A list group:
@@ -110,7 +110,7 @@
     </Group>
   </div>
 
-  <div class="status">Clicked: {clickedGroup}</div>
+  <pre class="status">Clicked: {clickedGroup}</pre>
 
   <div>
     A radio list:
@@ -148,7 +148,7 @@
     </List>
   </div>
 
-  <div class="status">Selected: {selectedRadio}</div>
+  <pre class="status">Selected: {selectedRadio}</pre>
 
   <div>
     A check list with trailing checkboxes:
@@ -186,7 +186,7 @@
     </List>
   </div>
 
-  <div class="status">Selected: {selectedCheckbox.join(', ')}</div>
+  <pre class="status">Selected: {selectedCheckbox.join(', ')}</pre>
 </section>
 
 <script>
