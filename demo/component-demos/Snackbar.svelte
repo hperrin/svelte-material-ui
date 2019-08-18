@@ -60,7 +60,6 @@
   let mySnackbarB;
   let mySnackbar2;
   let mySnackbar3;
-  let reason = 'nothing yet';
   let reason2 = 'nothing yet';
   let reason3 = 'nothing yet';
   let action3 = 'nothing yet';
