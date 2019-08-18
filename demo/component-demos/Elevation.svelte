@@ -47,8 +47,8 @@
 
 <script>
   import './Elevation.scss';
-  import Checkbox from 'svelte-material-ui/components/checkbox';
-  import FormField from 'svelte-material-ui/components/form-field';
+  import Checkbox from 'svelte-material-ui/checkbox';
+  import FormField from 'svelte-material-ui/form-field';
 
   let liftMeUp = false;
 </script>

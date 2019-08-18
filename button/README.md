@@ -10,14 +10,16 @@ See [the Sass variable file](https://github.com/material-components/material-com
 
 ```html
 <script>
-  import Paper, {Title, Subtitle, Content} from 'svelte-material-ui/components/paper';
+  import Button, {Label} from 'svelte-material-ui/button';
+
+  function doSomething() {
+    alert('something');
+  }
 </script>
 
-<Paper>
-  <Title>Paper</Title>
-  <Subtitle>This is a sheet of paper.</Subtitle>
-  <Content>Paper is used to build an elevated surface.</Content>
-</Paper>
+<Button on:click={doSomething}>
+  <Label>Do Something</Label>
+</Button>
 ```
 
 ## Demo

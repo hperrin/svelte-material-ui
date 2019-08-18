@@ -49,10 +49,10 @@ Here's some example code:
 <HelperText id="helper-text">What you put in this box will become super!</HelperText>
 
 <script>
-  import Button from 'svelte-material-ui/components/button';
-  import Fab from 'svelte-material-ui/components/fab';
-  import Textfield, {HelperText} from '../components/textfield';
-  import {Label, Icon} from 'svelte-material-ui/components/common';
+  import Button from 'svelte-material-ui/button';
+  import Fab from 'svelte-material-ui/fab';
+  import Textfield, {HelperText} from 'svelte-material-ui/textfield';
+  import {Label, Icon} from 'svelte-material-ui/common';
 
   let superText = '';
 </script>
@@ -74,7 +74,7 @@ Here are some juicy features:
 
 I've only done components that need to/can be Svelte-ified. For some things, like RTL and layout grid, you can just use the MDC packages.
 
-- [Buttons](https://github.com/hperrin/svelte-material-ui/blob/master/components/button/README.md)
+- [Buttons](https://github.com/hperrin/svelte-material-ui/blob/master/button/README.md)
   - Floating Action Buttons
   - Icon Buttons
 - Cards
@@ -85,7 +85,7 @@ I've only done components that need to/can be Svelte-ified. For some things, lik
 - Elevation†
 - Image List
 - Inputs and Controls
-  - [Checkboxes](https://github.com/hperrin/svelte-material-ui/blob/master/components/checkbox/README.md)
+  - [Checkboxes](https://github.com/hperrin/svelte-material-ui/blob/master/checkbox/README.md)
   - Floating Label
   - Form Fields
   - Line Ripple
@@ -104,7 +104,7 @@ I've only done components that need to/can be Svelte-ified. For some things, lik
 - Lists
 - Menu Surface
 - Menus
-- [Paper](https://github.com/hperrin/svelte-material-ui/blob/master/components/paper/README.md)‡
+- [Paper](https://github.com/hperrin/svelte-material-ui/blob/master/paper/README.md)‡
 - Ripples
 - Snackbars
 - Tabs

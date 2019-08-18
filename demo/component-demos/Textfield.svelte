@@ -475,14 +475,14 @@
 </section>
 
 <script>
-  import Textfield, {Input, Textarea} from 'svelte-material-ui/components/textfield';
-  import Icon from 'svelte-material-ui/components/textfield/icon';
-  import HelperText from 'svelte-material-ui/components/textfield/helper-text';
-  import CharacterCounter from 'svelte-material-ui/components/textfield/character-counter';
-  import {Icon as CommonIcon} from 'svelte-material-ui/components/common';
-  import FloatingLabel from 'svelte-material-ui/components/floating-label';
-  import LineRipple from 'svelte-material-ui/components/line-ripple';
-  import NotchedOutline from 'svelte-material-ui/components/notched-outline';
+  import Textfield, {Input, Textarea} from 'svelte-material-ui/textfield';
+  import Icon from 'svelte-material-ui/textfield/icon';
+  import HelperText from 'svelte-material-ui/textfield/helper-text';
+  import CharacterCounter from 'svelte-material-ui/textfield/character-counter';
+  import {Icon as CommonIcon} from 'svelte-material-ui/common';
+  import FloatingLabel from 'svelte-material-ui/floating-label';
+  import LineRipple from 'svelte-material-ui/line-ripple';
+  import NotchedOutline from 'svelte-material-ui/notched-outline';
 
   let valueClickable = '';
   let dirtyClickable = false;

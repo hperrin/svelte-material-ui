@@ -10,9 +10,9 @@ See [the Sass variable file](https://github.com/material-components/material-com
 
 ```html
 <script>
-  import Textfield, {Input} from 'svelte-material-ui/components/textfield';
-  import FloatingLabel from 'svelte-material-ui/components/floating-label';
-  import LineRipple from 'svelte-material-ui/components/line-ripple';
+  import Textfield, {Input} from 'svelte-material-ui/textfield';
+  import FloatingLabel from 'svelte-material-ui/floating-label';
+  import LineRipple from 'svelte-material-ui/line-ripple';
   let sameValue = '';
 </script>
 

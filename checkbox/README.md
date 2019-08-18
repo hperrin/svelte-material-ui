@@ -10,8 +10,8 @@ See [the Sass variable file](https://github.com/material-components/material-com
 
 ```html
 <script>
-  import Checkbox from 'svelte-material-ui/components/checkbox';
-  import FormField from 'svelte-material-ui/components/form-field';
+  import Checkbox from 'svelte-material-ui/checkbox';
+  import FormField from 'svelte-material-ui/form-field';
   let simpleSelected = false;
 </script>
 

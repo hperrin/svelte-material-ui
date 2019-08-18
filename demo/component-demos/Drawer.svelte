@@ -138,10 +138,10 @@
 </section>
 
 <script>
-  import Drawer, {AppContent, Content, Header, Title, Subtitle, Scrim} from 'svelte-material-ui/components/drawer';
-  import Button, {Label} from 'svelte-material-ui/components/button';
-  import List, {Item, Text, Graphic, Separator, Subheader} from 'svelte-material-ui/components/list';
-  import H6 from 'svelte-material-ui/components/common/H6.svelte';
+  import Drawer, {AppContent, Content, Header, Title, Subtitle, Scrim} from 'svelte-material-ui/drawer';
+  import Button, {Label} from 'svelte-material-ui/button';
+  import List, {Item, Text, Graphic, Separator, Subheader} from 'svelte-material-ui/list';
+  import H6 from 'svelte-material-ui/common/H6.svelte';
 
   let clicked = 'nothing yet';
   let myDrawer;

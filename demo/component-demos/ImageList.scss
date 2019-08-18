@@ -1,4 +1,4 @@
-@import "svelte-material-ui/components/image-list/mixins";
+@import "svelte-material-ui/image-list/mixins";
 
 .my-image-list-standard {
   @include mdc-image-list-standard-columns(5);

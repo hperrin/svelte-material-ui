@@ -12,6 +12,6 @@
   $mdc-theme-surface: #000;
   $mdc-theme-error: $material-color-orange-50;
 
-  @import "svelte-material-ui/components/button/style";
-  @import "svelte-material-ui/components/fab/style";
+  @import "svelte-material-ui/button/style";
+  @import "svelte-material-ui/fab/style";
 }

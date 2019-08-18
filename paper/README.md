@@ -6,13 +6,13 @@ See [MDC Elevation](https://material.io/develop/web/components/elevation/) for m
 
 See [the Sass variable file](https://github.com/material-components/material-components-web/blob/master/packages/mdc-elevation/_variables.scss) for styling variables.
 
-See [the SMUI specific Sass variable file](https://github.com/hperrin/svelte-material-ui/blob/master/components/paper/_variables.scss) for additional styling variables.
+See [the SMUI specific Sass variable file](https://github.com/hperrin/svelte-material-ui/blob/master/paper/_variables.scss) for additional styling variables.
 
 ## Basic Usage
 
 ```html
 <script>
-  import Paper, {Title, Subtitle, Content} from 'svelte-material-ui/components/paper';
+  import Paper, {Title, Subtitle, Content} from 'svelte-material-ui/paper';
 </script>
 
 <Paper>

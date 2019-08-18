@@ -32,7 +32,7 @@
 </section>
 
 <script>
-  import Fab, {Label, Icon} from 'svelte-material-ui/components/fab';
+  import Fab, {Label, Icon} from 'svelte-material-ui/fab';
 
   let clicked = 0;
   let exited = false;

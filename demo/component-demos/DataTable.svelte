@@ -71,8 +71,8 @@
 </section>
 
 <script>
-  import DataTable, {Head, Body, Row, Cell} from 'svelte-material-ui/components/data-table';
-  import Checkbox from 'svelte-material-ui/components/checkbox';
+  import DataTable, {Head, Body, Row, Cell} from 'svelte-material-ui/data-table';
+  import Checkbox from 'svelte-material-ui/checkbox';
 
   $: selectedPrice = selected.reduce((total, option) => option.price + total, 0);
 

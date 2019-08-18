@@ -29,7 +29,7 @@
 </section>
 
 <script>
-  import IconButton, {Icon} from 'svelte-material-ui/components/icon-button';
+  import IconButton, {Icon} from 'svelte-material-ui/icon-button';
 
   let clicked = 0;
   let initialOff = false;
