@@ -47,19 +47,19 @@
     dialog.destroy();
   });
 
-  export function open() {
-    return dialog.open();
+  export function open(...args) {
+    return dialog.open(...args);
   }
 
-  export function close(action) {
-    return dialog.close(action);
+  export function close(...args) {
+    return dialog.close(...args);
   }
 
-  export function isOpen() {
-    return dialog.isOpen();
+  export function isOpen(...args) {
+    return dialog.isOpen(...args);
   }
 
-  export function layout() {
-    return dialog.layout();
+  export function layout(...args) {
+    return dialog.layout(...args);
   }
 </script>

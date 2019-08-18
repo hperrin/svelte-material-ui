@@ -46,6 +46,7 @@
     "@material/select": "^3.1.0",
     "@material/shape": "^3.1.0",
     "@material/slider": "^3.1.0",
+    "@material/snackbar": "^3.1.0",
     "@material/switch": "^3.1.0",
     "@material/tab": "^3.1.0",
     "@material/tab-bar": "^3.1.0",

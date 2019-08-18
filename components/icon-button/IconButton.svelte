@@ -9,6 +9,7 @@
     class:mdc-card__action--icon={context === 'card:action'}
     class:mdc-top-app-bar__navigation-icon={context === 'top-app-bar:navigation'}
     class:mdc-top-app-bar__action-item={context === 'top-app-bar:action'}
+    class:mdc-snackbar__dismiss={context === 'snackbar'}
     use:Ripple={[ripple && !toggle, {unbounded: true, color}]}
     aria-hidden="true"
     aria-pressed={pressed}
@@ -27,6 +28,7 @@
     class:mdc-card__action--icon={context === 'card:action'}
     class:mdc-top-app-bar__navigation-icon={context === 'top-app-bar:navigation'}
     class:mdc-top-app-bar__action-item={context === 'top-app-bar:action'}
+    class:mdc-snackbar__dismiss={context === 'snackbar'}
     use:Ripple={[ripple && !toggle, {unbounded: true, color}]}
     aria-hidden="true"
     aria-pressed={pressed}

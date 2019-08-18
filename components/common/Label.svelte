@@ -6,6 +6,8 @@
   class:mdc-chip__text={context === 'chip'}
   class:mdc-tab__text-label={context === 'tab'}
   class:mdc-image-list__label={context === 'image-list'}
+  class:mdc-snackbar__label={context === 'snackbar'}
+  {...snackbarProps}
   {...exclude($$props, ['use', 'class'])}
 ><slot></slot></span>
 
@@ -19,4 +21,6 @@
   export {className as class};
 
   const context = getContext('SMUI:label:context');
+
+  $: snackbarProps = context === 'snackbar' ? {role: 'status', 'aria-live': 'polite'} : {};
 </script>

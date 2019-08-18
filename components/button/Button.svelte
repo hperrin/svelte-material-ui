@@ -12,6 +12,7 @@
     class:mdc-card__action--button={context === 'card:action'}
     class:mdc-top-app-bar__navigation-icon={context === 'top-app-bar:navigation'}
     class:mdc-top-app-bar__action-item={context === 'top-app-bar:action'}
+    class:mdc-snackbar__action={context === 'snackbar'}
     use:Ripple={[ripple, {unbounded: false}]}
     {href}
     {...exclude($$props, ['use', 'class', 'ripple', 'color', 'variant', 'dense', 'href'])}
@@ -30,6 +31,7 @@
     class:mdc-card__action--button={context === 'card:action'}
     class:mdc-top-app-bar__navigation-icon={context === 'top-app-bar:navigation'}
     class:mdc-top-app-bar__action-item={context === 'top-app-bar:action'}
+    class:mdc-snackbar__action={context === 'snackbar'}
     use:Ripple={[ripple, {unbounded: false}]}
     {...exclude($$props, ['use', 'class', 'ripple', 'color', 'variant', 'dense', 'href'])}
   ><slot></slot></button>

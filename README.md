@@ -1,6 +1,6 @@
-# Svelte 3 Material UI Components
+# Svelte Material UI
 
-A work in progress library of Svelte 3 components for Material UI.
+A library of Svelte 3 Material UI components, based on the [Material Design Web Components](https://material.io/develop/web/).
 
 Here's the NPM package: https://www.npmjs.com/package/svelte-material-ui
 
@@ -8,7 +8,17 @@ Here's the NPM package: https://www.npmjs.com/package/svelte-material-ui
 
 Check them out: https://hperrin.github.io/svelte-material-ui/demo/
 
+## Installation
+
+```sh
+npm install --save svelte-material-ui
+```
+
 ## Usage
+
+To bundle this in your own code, use a Sass processor. This package includes Sass files in its JS.
+
+You must also have a `_smui-theme.scss` file in one of the Sass include paths. That is where you set the MDC theme variables. If it's empty, it will use the default theme values. See the [webpack config](https://github.com/hperrin/svelte-material-ui/blob/master/webpack.config.js) in this package for an example.
 
 If you want the Material Icon, Roboto, and Roboto Mono fonts, be sure to include these:
 
@@ -48,7 +58,7 @@ Here's some example code:
 </script>
 ```
 
-You can check out the [demo pages' source](https://github.com/hperrin/svelte-material-ui/tree/master/demo/component-demos) to see usage, since I haven't written the documentation yet.
+You can check out the [demo pages' source](https://github.com/hperrin/svelte-material-ui/tree/master/demo/component-demos) to see usage, since most of the components aren't documented yet.
 
 Here are some juicy features:
 
@@ -57,14 +67,12 @@ Here are some juicy features:
 * You can add props to lower components and elements with things like `input$maxlength="15"`.
 * Ripples are on by default on interactive components, and can be turned off with `ripple={false}`.
 * You can also add ripples to things with the Ripple Svelte action.
-* All standard UI events are forwarded on most components, and input events are forwarded on input components.
+* All standard UI events are forwarded on most components, input events are forwarded on input components, and all MDC events are forwarded.
 * Things like labels and icons are named exports in each component, or you can use 'common/Label' and 'common/Icon'. (Except for textfield/select icons, because they are special snowflakes.)
 
-To bundle this in your own code, you must have a `_smui-theme.scss` file in one of the Sass include paths. That is where you define the MDC theme variables. See the webpack config in this package for an example.
+## Components
 
-## Progress
-
-I'm only going to do things that need to/can be Svelte-ified. For some things, like RTL and layout grid, you can just use the MDC packages.
+I've only done components that need to/can be Svelte-ified. For some things, like RTL and layout grid, you can just use the MDC packages.
 
 - [x] [Buttons](https://github.com/hperrin/svelte-material-ui/blob/master/components/button/README.md)
   - [x] Floating Action Buttons
@@ -98,7 +106,7 @@ I'm only going to do things that need to/can be Svelte-ified. For some things, l
 - [x] Menus
 - [x] [Paper](https://github.com/hperrin/svelte-material-ui/blob/master/components/paper/README.md)‡
 - [x] Ripples
-- [ ] Snackbars
+- [x] Snackbars
 - [x] Tabs
   - [x] Tab
   - [x] Tab Bar
@@ -109,6 +117,7 @@ I'm only going to do things that need to/can be Svelte-ified. For some things, l
 - [x] Typography†
 
 <small>† This is Sass based, and therefore doesn't require Svelte components. I've included a demo showing how you can use it.</small>
+
 <small>‡ This is not an MDC Web component. It is an addition that SMUI provides.</small>
 
 ## Other Svelte UI Projects

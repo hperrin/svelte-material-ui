@@ -71,6 +71,7 @@
   import DemoMenu from './component-demos/Menu.svelte';
   import DemoPaper from './component-demos/Paper.svelte';
   import DemoRipple from './component-demos/Ripple.svelte';
+  import DemoSnackbar from './component-demos/Snackbar.svelte';
   import DemoTabs from './component-demos/Tabs.svelte';
   import DemoTheme from './component-demos/Theme.svelte';
   import DemoTopAppBar from './component-demos/TopAppBar.svelte';
@@ -261,6 +262,12 @@
       name: 'Ripples',
       key: 'ripple',
       component: DemoRipple,
+      indent: 0
+    },
+    {
+      name: 'Snackbars',
+      key: 'snackbars',
+      component: DemoSnackbar,
       indent: 0
     },
     {
