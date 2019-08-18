@@ -86,8 +86,8 @@ I've only done components that need to/can be Svelte-ified. For some things, lik
 - Image List
 - Inputs and Controls
   - [Checkboxes](https://github.com/hperrin/svelte-material-ui/blob/master/checkbox/README.md)
-  - Floating Label
-  - Form Fields
+  - [Floating Label](https://github.com/hperrin/svelte-material-ui/blob/master/floating-label/README.md)
+  - [Form Fields](https://github.com/hperrin/svelte-material-ui/blob/master/form-field/README.md)
   - Line Ripple
   - Notched Outline
   - Radio Buttons
