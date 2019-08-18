@@ -1,6 +1,6 @@
 {
   "name": "svelte-material-ui",
-  "version": "1.0.0-alpha.11",
+  "version": "1.0.0-alpha.12",
   "description": "Svelte Material UI Components",
   "main": "index.js",
   "scripts": {
