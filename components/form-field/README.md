@@ -1,6 +1,6 @@
 # Svelte Material UI - Form Field
 
-FormField is used as a wrapper to align a Web form fields (ie: a checkbox, text input etc) and their label.
+FormField is used as a wrapper to align an input and its label.
 
 MDC Form Fields make the Input/Label RTL-aware and also activates a ripple effect.
 
@@ -13,25 +13,25 @@ See [the Sass variable file](https://github.com/material-components/material-com
 ```html
 <script>
   import FormField from 'svelte-material-ui/components/form-field';
-  import Slider from 'svelte-material-ui/components/slider';
-  
-  let sliderValue = 0;
+  import Checkbox from 'svelte-material-ui/components/checkbox';
+
+  let amIChecked = false;
 </script>
 
-<FormField align="end" style="display: flex;">
-  <Slider bind:value={sliderValue} min={0} max={24} discrete />
-  <span slot="label" >Slider Value</span>
+<FormField>
+  <Checkbox bind:checked={amIChecked} />
+  <span slot="label">Am I Checked</span>
 </FormField>
 ```
 ## Exports
 
-### (default): A FormField component.
+### (default): A Form Field component.
 
 #### Props / Defaults
 
 * `use`: `[]` - An array of actions and/or action/property arrays.
 * `class`: `''` - A CSS class string.
-* `align`: `start` - Used aligh label text and input.
+* `align`: `start` - Where to align the input. ("start" or "end")
 * `inputId`: `{programatically assigned}` - The Id of the FormField the label is to be associated with.
 
 #### Events

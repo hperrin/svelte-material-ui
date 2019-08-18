@@ -1,6 +1,6 @@
 # Svelte Material UI - Floating Label
 
-Checkbox is used to provide the same functionality as `<input type="checkbox">`.
+A floating label in an input field. This is usually provided by the input component, but you can set it up manually.
 
 See [MDC Floating Label](https://material.io/develop/web/components/input-controls/floating-label/) for more information on API and Sass styling.
 
@@ -10,14 +10,16 @@ See [the Sass variable file](https://github.com/material-components/material-com
 
 ```html
 <script>
-  import Textfield, {Input, Textarea} from 'svelte-material-ui/components/textfield';
+  import Textfield, {Input} from 'svelte-material-ui/components/textfield';
   import FloatingLabel from 'svelte-material-ui/components/floating-label';
+  import LineRipple from 'svelte-material-ui/components/line-ripple';
   let sameValue = '';
 </script>
 
 <Textfield>
   <Input bind:value={someValue} id="input-manual-a" />
   <FloatingLabel for="input-manual-a">Label</FloatingLabel>
+  <LineRipple />
 </Textfield>
 ```
 ## Demo
@@ -35,7 +37,7 @@ See [the Sass variable file](https://github.com/material-components/material-com
 * `use`: `[]` - An array of actions and/or action/property arrays.
 * `class`: `''` - A CSS class string.
 * `for`: `{programatically assigned}` - The Id of the FormField the label is to be associated with.
-* `wrapped`: `false` - Wraps the label
+* `wrapped`: `false` - If the label is wrapped, a `span` element is used with no `for` attribute, otherwise, a `label` element is used for a `for` attribute.
 
 #### Events
 
@@ -43,6 +45,6 @@ All standard UI events are forwarded.
 
 #### Functions
 
-* `getWidth()` - Get the width of the label element.
-* `float(boolean)` - Floats the label element.
 * `shake(boolean)` - Shakes the label element.
+* `float(boolean)` - Floats the label element.
+* `getWidth()` - Get the width of the label element.
