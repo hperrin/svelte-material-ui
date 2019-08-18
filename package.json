@@ -1,8 +1,16 @@
 {
   "name": "svelte-material-ui",
-  "version": "1.0.0-alpha.12",
+  "version": "1.0.0-alpha.13",
   "description": "Svelte Material UI Components",
-  "keywords": ["svelte", "svelte3", "material-ui", "material-design", "material", "svelte-components", "sveltejs"],
+  "keywords": [
+    "svelte",
+    "svelte3",
+    "material-ui",
+    "material-design",
+    "material",
+    "svelte-components",
+    "sveltejs"
+  ],
   "scripts": {
     "build": "webpack",
     "serve": "serve demo",
