@@ -74,47 +74,47 @@ Here are some juicy features:
 
 I've only done components that need to/can be Svelte-ified. For some things, like RTL and layout grid, you can just use the MDC packages.
 
-- [x] [Buttons](https://github.com/hperrin/svelte-material-ui/blob/master/components/button/README.md)
-  - [x] Floating Action Buttons
-  - [x] Icon Buttons
-- [x] Cards
-- [x] Chips
-- [x] Data Tables
-- [x] Dialogs
-- [x] Drawers
-- [x] Elevation†
-- [x] Image List
-- [x] Inputs and Controls
-  - [x] [Checkboxes](https://github.com/hperrin/svelte-material-ui/blob/master/components/checkbox/README.md)
-  - [x] Floating Label
-  - [x] Form Fields
-  - [x] Line Ripple
-  - [x] Notched Outline
-  - [x] Radio Buttons
-  - [x] Select Menus
-    - [x] Select Helper Text
-    - [x] Select Icon
-  - [x] Sliders
-  - [x] Switches
-  - [x] Text Field
-    - [x] Text Field Character Counter
-    - [x] Text Field Helper Text
-    - [x] Text Field Icon
-- [x] Linear Progress
-- [x] Lists
-- [x] Menu Surface
-- [x] Menus
-- [x] [Paper](https://github.com/hperrin/svelte-material-ui/blob/master/components/paper/README.md)‡
-- [x] Ripples
-- [x] Snackbars
-- [x] Tabs
-  - [x] Tab
-  - [x] Tab Bar
-  - [x] Tab Indicator
-  - [x] Tab Scroller
-- [x] Theme
-- [x] Top App Bar
-- [x] Typography†
+- [Buttons](https://github.com/hperrin/svelte-material-ui/blob/master/components/button/README.md)
+  - Floating Action Buttons
+  - Icon Buttons
+- Cards
+- Chips
+- Data Tables
+- Dialogs
+- Drawers
+- Elevation†
+- Image List
+- Inputs and Controls
+  - [Checkboxes](https://github.com/hperrin/svelte-material-ui/blob/master/components/checkbox/README.md)
+  - Floating Label
+  - Form Fields
+  - Line Ripple
+  - Notched Outline
+  - Radio Buttons
+  - Select Menus
+    - Select Helper Text
+    - Select Icon
+  - Sliders
+  - Switches
+  - Text Field
+    - Text Field Character Counter
+    - Text Field Helper Text
+    - Text Field Icon
+- Linear Progress
+- Lists
+- Menu Surface
+- Menus
+- [Paper](https://github.com/hperrin/svelte-material-ui/blob/master/components/paper/README.md)‡
+- Ripples
+- Snackbars
+- Tabs
+  - Tab
+  - Tab Bar
+  - Tab Indicator
+  - Tab Scroller
+- Theme
+- Top App Bar
+- Typography†
 
 <small>† This is Sass based, and therefore doesn't require Svelte components. I've included a demo showing how you can use it.</small>
 
