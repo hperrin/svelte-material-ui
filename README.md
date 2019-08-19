@@ -6,7 +6,7 @@ Here's the NPM package: https://www.npmjs.com/package/svelte-material-ui
 
 ## Demos
 
-Check them out: https://hperrin.github.io/svelte-material-ui/demo/
+Check them out: https://hperrin.github.io/svelte-material-ui-demo/
 
 ## Installation
 
@@ -18,7 +18,7 @@ npm install --save svelte-material-ui
 
 To bundle this in your own code, use a Sass processor. This package includes Sass files in its JS.
 
-You must also have a `_smui-theme.scss` file in one of the Sass include paths. That is where you set the MDC theme variables. If it's empty, it will use the default theme values. See the [webpack config](https://github.com/hperrin/svelte-material-ui/blob/master/webpack.config.js) in this package for an example.
+You must also have a `_smui-theme.scss` file in one of the Sass include paths. That is where you set the MDC theme variables. If it's empty, it will use the default theme values. See the [webpack config](https://github.com/hperrin/svelte-material-ui-demo/blob/master/webpack.config.js) in the demo package for an example.
 
 If you want the Material Icon, Roboto, and Roboto Mono fonts, be sure to include these:
 
@@ -31,7 +31,7 @@ If you want the Material Icon, Roboto, and Roboto Mono fonts, be sure to include
 Here's some example code:
 
 ```html
-<Button>Just a Button</Button>
+<Button on:click="{() => alert('Clicked!')}">Just a Button</Button>
 <Button variant="raised"><Label>Raised Button, Using a Label</Label></Button>
 <Button some-arbitrary-prop="placed on the actual button">Button</Button>
 
@@ -58,7 +58,7 @@ Here's some example code:
 </script>
 ```
 
-You can check out the [demo pages' source](https://github.com/hperrin/svelte-material-ui/tree/master/demo/component-demos) to see usage, since most of the components aren't documented yet.
+You can check out the [demo pages' source](https://github.com/hperrin/svelte-material-ui-demo/tree/master/component-demos) to see usage, since most of the components aren't documented yet.
 
 Here are some juicy features:
 

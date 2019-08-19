@@ -24,9 +24,9 @@ See [the Sass variable file](https://github.com/material-components/material-com
 
 ## Demo
 
-*in action:* https://hperrin.github.io/svelte-material-ui/demo/#/button
+*in action:* https://hperrin.github.io/svelte-material-ui-demo/#/button
 
-*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/demo/component-demos/Button.svelte
+*demo code:* https://github.com/hperrin/svelte-material-ui-demo/blob/master/component-demos/Button.svelte
 
 ## Exports
 

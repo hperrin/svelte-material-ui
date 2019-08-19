@@ -21,11 +21,12 @@ See [the Sass variable file](https://github.com/material-components/material-com
   <span slot="label">Check me.</span>
 </FormField>
 ```
+
 ## Demo
 
-*in action:* https://hperrin.github.io/svelte-material-ui/demo/#/checkbox
+*in action:* https://hperrin.github.io/svelte-material-ui-demo/#/checkbox
 
-*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/demo/component-demos/Checkbox.svelte
+*demo code:* https://github.com/hperrin/svelte-material-ui-demo/blob/master/component-demos/Checkbox.svelte
 
 ## Exports
 
