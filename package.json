@@ -12,10 +12,6 @@
     "sveltejs"
   ],
   "scripts": {
-    "build": "webpack",
-    "serve": "serve demo",
-    "watch": "webpack --watch",
-    "pages": "git checkout gh-pages && git pull && git reset --hard HEAD^ && git rebase master && npm run build && git add . && git commit -m 'Update build files.' && git push --force origin gh-pages && git checkout master",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -64,21 +60,5 @@
     "@material/theme": "^3.1.0",
     "@material/top-app-bar": "^3.1.0",
     "@material/typography": "^3.1.0"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.5.5",
-    "@babel/preset-env": "^7.5.5",
-    "babel-loader": "^8.0.6",
-    "css-loader": "^3.2.0",
-    "mini-css-extract-plugin": "^0.8.0",
-    "node-sass": "^4.12.0",
-    "sass-loader": "^7.2.0",
-    "serve": "^11.1.0",
-    "style-loader": "^1.0.0",
-    "svelte": "^3.8.1",
-    "svelte-loader": "^2.13.6",
-    "svelte-spa-router": "^1.2.0",
-    "webpack": "^4.39.2",
-    "webpack-cli": "^3.3.7"
   }
 }
