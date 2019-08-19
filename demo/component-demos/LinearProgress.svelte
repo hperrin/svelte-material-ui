@@ -37,6 +37,12 @@
 
     <LinearProgress progress={.5} buffer={.75} reversed />
   </div>
+
+  <div>
+    Colored (using Sass mixins):
+
+    <LinearProgress class="my-colored-bar" progress={.5} buffer={.75} />
+  </div>
 </section>
 
 <script>
@@ -45,6 +51,7 @@
   import Checkbox from 'svelte-material-ui/checkbox';
   import FormField from 'svelte-material-ui/form-field';
   import Button from 'svelte-material-ui/button';
+  import './LinearProgress.scss';
 
   let progress = 0;
   let closed = false;

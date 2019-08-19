@@ -2,7 +2,7 @@
 
 Checkbox is used to provide the same functionality as `<input type="checkbox">`.
 
-See [MDC Checkboxes](https://material.io/develop/web/components/input-controls/checkboxes/) for more information on API and Sass styling.
+See [MDC Checkboxes](https://material.io/develop/web/components/input-controls/checkboxes/) for more information on API and Sass mixins.
 
 See [the Sass variable file](https://github.com/material-components/material-components-web/blob/master/packages/mdc-checkbox/_variables.scss) for styling variables.
 
@@ -12,6 +12,7 @@ See [the Sass variable file](https://github.com/material-components/material-com
 <script>
   import Checkbox from 'svelte-material-ui/checkbox';
   import FormField from 'svelte-material-ui/form-field';
+
   let simpleSelected = false;
 </script>
 
@@ -35,11 +36,11 @@ See [the Sass variable file](https://github.com/material-components/material-com
 * `use`: `[]` - An array of actions and/or action/property arrays.
 * `class`: `''` - A CSS class string.
 * `disabled`: `false` - Component appears as disabled.
-* `indeterminate`: `uninitialised` - Component is rendered in an indeterminate state
-* `group`: `uninitialised` - The selected values of a group of check boxes as an array.
-* `checked`: `uninitialised` - A boolean, whether the checkbox is checked. This is used instead of `group` for a single checkbox.
+* `indeterminate`: `(uninitialised)` - Component is rendered in an indeterminate state
+* `group`: `(uninitialised)` - The selected values of a group of check boxes as an array.
+* `checked`: `(uninitialised)` - A boolean, whether the checkbox is checked. This is used instead of `group` for a single checkbox.
 * `value` : `null` - The value of a checkbox in a group of checkboxes.
-* `valueKey` : `uninitialised` - If `value` is not a string, this should be supplied as well, and should be a unique key.
+* `valueKey` : `(uninitialised)` - If `value` is not a string, this should be supplied as well, and should be a unique key.
 
 #### Forwarded Props
 

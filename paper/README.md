@@ -1,12 +1,12 @@
 # Svelte Material UI - Paper
 
-Paper is used to build an elevated surface.
+An elevated and/or colored surface.
 
-See [MDC Elevation](https://material.io/develop/web/components/elevation/) for more information on API and Sass styling.
+See [MDC Elevation](https://material.io/develop/web/components/elevation/) for more information on API and Sass mixins.
 
 See [the Sass variable file](https://github.com/material-components/material-components-web/blob/master/packages/mdc-elevation/_variables.scss) for styling variables.
 
-See [the SMUI specific Sass variable file](https://github.com/hperrin/svelte-material-ui/blob/master/paper/_variables.scss) for additional styling variables.
+See [the SMUI Sass variable file](https://github.com/hperrin/svelte-material-ui/blob/master/paper/_variables.scss) for additional styling variables.
 
 ## Basic Usage
 
@@ -36,10 +36,10 @@ See [the SMUI specific Sass variable file](https://github.com/hperrin/svelte-mat
 
 * `use`: `[]` - An array of actions and/or action/property arrays.
 * `class`: `''` - A CSS class string.
-* `square`: `false` - The square property determines of the component has square (`true`) or rounded (`false`) corners.
+* `square`: `false` - Whether the component has square or rounded corners.
 * `color`: `'default'` - The component's color. ('primary', 'secondary' or 'default')
-* `elevation`: `1` - The component's elevation.
-* `transition`: `false` - Trigger a transition animation when component changes elevation.
+* `elevation`: `1` - The component's elevation. (integer between 0 and 24, inclusive)
+* `transition`: `false` - Trigger a transition animation when elevation is changed.
 
 #### Events
 
@@ -47,12 +47,12 @@ All standard UI events are forwarded.
 
 ### Title: A fragment used as a title on the Paper.
 
-An area denoting the title of the Paper, equivalent to the `H5` common component.
+An area denoting the title of the Paper, equivalent to the `ClassAdder` with `H5` common component.
 
 ### Subtitle: A fragment used as a subtitle on the Paper.
 
-An area denoting the subtitle of the Paper, equivalent to the `H6` common component.
+An area denoting the subtitle of the Paper, equivalent to the `ClassAdder` with `H6` common component.
 
 ### Content: A fragment used as a body of the Paper.
 
-An area denoting the content/body of the Paper, equivalent to the `Div` common component.
+An area denoting the content/body of the Paper, equivalent to the `ClassAdder` with `Div` common component.

@@ -2,7 +2,7 @@
 
 A floating label in an input field. This is usually provided by the input component, but you can set it up manually.
 
-See [MDC Floating Label](https://material.io/develop/web/components/input-controls/floating-label/) for more information on API and Sass styling.
+See [MDC Floating Label](https://material.io/develop/web/components/input-controls/floating-label/) for more information on API and Sass mixins.
 
 See [the Sass variable file](https://github.com/material-components/material-components-web/blob/master/packages/mdc-floating-label/_variables.scss) for styling variables.
 
@@ -17,6 +17,10 @@ See [the Sass variable file](https://github.com/material-components/material-com
 </script>
 
 <Textfield>
+  <!--
+    This is how to manually set up the components in a Textfield. Usually, you
+    wouldn't do this. See the Textfield docs for more info.
+  -->
   <Input bind:value={someValue} id="input-manual-a" />
   <FloatingLabel for="input-manual-a">Label</FloatingLabel>
   <LineRipple />
@@ -36,8 +40,8 @@ See [the Sass variable file](https://github.com/material-components/material-com
 
 * `use`: `[]` - An array of actions and/or action/property arrays.
 * `class`: `''` - A CSS class string.
-* `for`: `{programatically assigned}` - The Id of the FormField the label is to be associated with.
-* `wrapped`: `false` - If the label is wrapped, a `span` element is used with no `for` attribute, otherwise, a `label` element is used for a `for` attribute.
+* `for`: `''` - The ID of the input the label is to be associated with.
+* `wrapped`: `false` - If the label is wrapped, a `span` element is used with no `for` attribute, otherwise, a `label` element is used with a `for` attribute.
 
 #### Events
 

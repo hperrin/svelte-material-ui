@@ -8,8 +8,9 @@
 >
   <slot></slot>
   <label
+    use:useActions={label$use}
     for={inputId}
-    {...prefixFilter($$props, 'label$')}
+    {...exclude(prefixFilter($$props, 'label$'), ['use'])}
   ><slot name="label"></slot></label>
 </div>
 
@@ -33,6 +34,7 @@
   export {className as class};
   export let align = 'start';
   export let inputId = 'SMUI-form-field-'+(counter++);
+  export let label$use = [];
 
   let element;
   let formField;

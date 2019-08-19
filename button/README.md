@@ -2,7 +2,7 @@
 
 An interactive button or link.
 
-See [MDC Buttons](https://material.io/develop/web/components/buttons/) for more information on API and Sass styling.
+See [MDC Buttons](https://material.io/develop/web/components/buttons/) for more information on API and Sass mixins.
 
 See [the Sass variable file](https://github.com/material-components/material-components-web/blob/master/packages/mdc-button/_variables.scss) for styling variables.
 

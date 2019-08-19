@@ -11,8 +11,7 @@
 
   <div>
     <Button on:click={() => clicked++}><Label>Default</Label></Button>
-    <!-- <Button on:click={() => clicked++} color="primary"><Label>Primary</Label></Button>
-    <Button on:click={() => clicked++} color="secondary"><Label>Secondary</Label></Button> -->
+    <Button on:click={() => clicked++} color="secondary"><Label>Secondary</Label></Button>
     <Button on:click={() => clicked++} disabled><Label>Disabled</Label></Button>
     <Button on:click={() => clicked++} variant="raised"><Label>Raised</Label></Button>
     <Button on:click={() => clicked++} variant="unelevated"><Label>Unelevated</Label></Button>
@@ -38,3 +37,9 @@
 
   let clicked = 0;
 </script>
+
+<style>
+  * :global(.mdc-button, .mdc-fab) {
+    margin-bottom: .4em;
+  }
+</style>

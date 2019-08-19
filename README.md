@@ -82,7 +82,7 @@ I've only done components that need to/can be Svelte-ified. For some things, lik
 - Data Tables
 - Dialogs
 - Drawers
-- Elevation†
+- [Elevation](https://material.io/develop/web/components/elevation/)†
 - Image List
 - Inputs and Controls
   - [Checkboxes](https://github.com/hperrin/svelte-material-ui/blob/master/checkbox/README.md)
@@ -100,7 +100,7 @@ I've only done components that need to/can be Svelte-ified. For some things, lik
     - Text Field Character Counter
     - Text Field Helper Text
     - Text Field Icon
-- Linear Progress
+- [Linear Progress](https://github.com/hperrin/svelte-material-ui/blob/master/linear-progress/README.md)
 - Lists
 - Menu Surface
 - Menus
@@ -114,7 +114,7 @@ I've only done components that need to/can be Svelte-ified. For some things, lik
   - Tab Scroller
 - Theme
 - Top App Bar
-- Typography†
+- [Typography](https://material.io/develop/web/components/typography/)†
 
 <small>† This is Sass based, and therefore doesn't require Svelte components. I've included a demo showing how you can use it.</small>
 
