@@ -1,0 +1,25 @@
+//
+// MDC Elevation
+//
+@import "@material/elevation/mdc-elevation";
+
+//
+// Demos
+//
+@import "@material/theme/mixins";
+
+.my-primary {
+  @include mdc-theme-prop(color, primary);
+
+  &.elevated {
+    @include mdc-elevation(4, primary);
+  }
+}
+
+.my-secondary {
+  @include mdc-theme-prop(color, secondary);
+
+  &.elevated {
+    @include mdc-elevation(4, secondary);
+  }
+}

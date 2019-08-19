@@ -1,0 +1,47 @@
+@import "@material/image-list/mixins";
+
+.my-image-list-standard {
+  @include mdc-image-list-standard-columns(5);
+  max-width: 680px;
+}
+
+@media (max-width: 599px) {
+  .my-image-list-standard {
+    @include mdc-image-list-standard-columns(3);
+  }
+}
+
+.my-image-list-4x5 {
+  @include mdc-image-list-standard-columns(5);
+  @include mdc-image-list-aspect(4/5);
+  max-width: 680px;
+}
+
+@media (max-width: 599px) {
+  .my-image-list-4x5 {
+    @include mdc-image-list-standard-columns(3);
+  }
+}
+
+.my-image-list-masonry {
+  @include mdc-image-list-masonry-columns(5);
+  @include mdc-image-list-shape-radius(10px);
+  max-width: 680px;
+}
+
+@media (max-width: 599px) {
+  .my-image-list-masonry {
+    @include mdc-image-list-masonry-columns(3);
+  }
+}
+
+.my-image-list-enforce-ratio {
+  @include mdc-image-list-standard-columns(5);
+  max-width: 680px;
+}
+
+@media (max-width: 599px) {
+  .my-image-list-enforce-ratio {
+    @include mdc-image-list-standard-columns(3);
+  }
+}

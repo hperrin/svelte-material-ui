@@ -1,0 +1,7 @@
+@import "@material/linear-progress/mixins";
+@import "@material/theme/color-palette";
+
+.my-colored-bar {
+  @include mdc-linear-progress-bar-color($material-color-green-500);
+  @include mdc-linear-progress-buffer-color($material-color-green-100);
+}

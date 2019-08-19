@@ -1,0 +1,38 @@
+{
+  "name": "svelte-material-ui-demo",
+  "version": "0.0.0",
+  "description": "SMUI Demo",
+  "scripts": {
+    "build": "webpack",
+    "serve": "serve .",
+    "watch": "webpack --watch",
+    "pages": "git checkout gh-pages && git pull && git reset --hard HEAD^ && git rebase master && npm run build && git add . && git commit -m 'Update build files.' && git push --force origin gh-pages && git checkout master",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hperrin/svelte-material-ui-demo.git"
+  },
+  "author": "Hunter Perrin <hperrin@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/hperrin/svelte-material-ui-demo/issues"
+  },
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.2.0",
+    "mini-css-extract-plugin": "^0.8.0",
+    "node-sass": "^4.12.0",
+    "sass-loader": "^7.2.0",
+    "serve": "^11.1.0",
+    "style-loader": "^1.0.0",
+    "svelte": "^3.8.1",
+    "svelte-loader": "^2.13.6",
+    "svelte-material-ui": "^1.0.0-alpha.13",
+    "svelte-spa-router": "^1.2.0",
+    "webpack": "^4.39.2",
+    "webpack-cli": "^3.3.7"
+  }
+}
