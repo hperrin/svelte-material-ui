@@ -34,7 +34,7 @@
     "@material/chips": "^3.1.0",
     "@material/data-table": "^3.1.1",
     "@material/dialog": "^3.1.0",
-    "@material/drawer": "^3.1.0",
+    "@material/drawer": "^3.1.1",
     "@material/elevation": "^3.1.0",
     "@material/fab": "^3.1.0",
     "@material/feature-targeting": "^3.1.0",
@@ -75,10 +75,10 @@
     "sass-loader": "^7.2.0",
     "serve": "^11.1.0",
     "style-loader": "^1.0.0",
-    "svelte": "^3.8.0",
+    "svelte": "^3.8.1",
     "svelte-loader": "^2.13.6",
     "svelte-spa-router": "^1.2.0",
-    "webpack": "^4.39.1",
-    "webpack-cli": "^3.3.6"
+    "webpack": "^4.39.2",
+    "webpack-cli": "^3.3.7"
   }
 }
