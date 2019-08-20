@@ -1,4 +1,7 @@
-# Svelte Material UI
+<div style="display: flex; flex-direction: column-reverse; align-items: center;">
+  <h1>Svelte Material UI</h1>
+  <img src="logo.svg" alt="logo" />
+</div>
 
 A library of Svelte 3 Material UI components, based on the [Material Design Web Components](https://material.io/develop/web/).
 
@@ -31,11 +34,11 @@ If you want the Material Icon, Roboto, and Roboto Mono fonts, be sure to include
 Here's some example code:
 
 ```html
-<Button on:click="{() => alert('Clicked!')}">Just a Button</Button>
+<Button on:click={() => alert('Clicked!')}>Just a Button</Button>
 <Button variant="raised"><Label>Raised Button, Using a Label</Label></Button>
 <Button some-arbitrary-prop="placed on the actual button">Button</Button>
 
-<Fab on:click="{() => alert('Clicked!')}" extended>
+<Fab on:click={() => alert('Clicked!')} extended>
   <Icon class="material-icons" style="margin-right: 12px;">favorite</Icon>
   <Label>Extended FAB</Label>
 </Fab>
@@ -43,10 +46,10 @@ Here's some example code:
 <Textfield
   bind:value={superText}
   label="Super Text"
-  input$aria-controls="helper-text"
-  input$aria-describedby="helper-text"
+  input$aria-controls="super-helper"
+  input$aria-describedby="super-helper"
 />
-<HelperText id="helper-text">What you put in this box will become super!</HelperText>
+<HelperText id="super-helper">What you put in this box will become super!</HelperText>
 
 <script>
   import Button from 'svelte-material-ui/button';
@@ -62,13 +65,11 @@ You can check out the [demo pages' source](https://github.com/hperrin/svelte-mat
 
 Here are some juicy features:
 
-* You can add any arbitrary property to nearly all of the components.
-* You can add actions to the components with `use={[Action1, [Action2, action2Props]]}`.
+* You can add any arbitrary property to nearly all of the components and the elements within them.
+* You can add actions to the components with `use={[Action1, [Action2, action2Props], Action3]}`.
 * You can add props to lower components and elements with things like `input$maxlength="15"`.
-* Ripples are on by default on interactive components, and can be turned off with `ripple={false}`.
-* You can also add ripples to things with the Ripple Svelte action.
-* All standard UI events are forwarded on most components, input events are forwarded on input components, and all MDC events are forwarded.
-* Things like labels and icons are named exports in each component, or you can use 'common/Label' and 'common/Icon'. (Except for textfield/select icons, because they are special snowflakes.)
+* All standard UI events are forwarded on components, input events ("input" and "change") are forwarded on input components, and all MDC events are forwarded.
+* Labels and icons are named exports in the components that use them, or you can use 'common/Label' and 'common/Icon'. (Except for textfield and select icons, because they are special snowflakes.)
 
 ## Components
 
@@ -77,7 +78,7 @@ I've only done components that need to/can be Svelte-ified. For some things, lik
 - [Buttons](https://github.com/hperrin/svelte-material-ui/blob/master/button/README.md)
   - Floating Action Buttons
   - Icon Buttons
-- Cards
+- [Cards](https://github.com/hperrin/svelte-material-ui/blob/master/card/README.md)
 - Chips
 - Data Tables
 - Dialogs

@@ -47,12 +47,12 @@ All standard UI events are forwarded.
 
 ### Title: A fragment used as a title on the Paper.
 
-An area denoting the title of the Paper, equivalent to the `ClassAdder` with `H5` common component.
+Equivalent to the `ClassAdder` with `H5` common component.
 
 ### Subtitle: A fragment used as a subtitle on the Paper.
 
-An area denoting the subtitle of the Paper, equivalent to the `ClassAdder` with `H6` common component.
+Equivalent to the `ClassAdder` with `H6` common component.
 
 ### Content: A fragment used as a body of the Paper.
 
-An area denoting the content/body of the Paper, equivalent to the `ClassAdder` with `Div` common component.
+Equivalent to the `ClassAdder` with `Div` common component.

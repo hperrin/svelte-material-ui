@@ -1,5 +1,6 @@
 <div
   use:useActions={use}
+  use:forwardEvents
   class="mdc-card__actions {className}"
   class:mdc-card__actions--full-bleed={fullBleed}
   {...exclude($$props, ['use', 'class', 'fullBleed'])}
@@ -7,8 +8,12 @@
 
 <script>
   import {setContext} from 'svelte';
+  import {current_component} from 'svelte/internal';
+  import {forwardEventsBuilder} from '../forwardEvents.js';
   import {exclude} from '../exclude.js';
   import {useActions} from '../useActions.js';
+
+  const forwardEvents = forwardEventsBuilder(current_component);
 
   export let use = [];
   let className = '';
