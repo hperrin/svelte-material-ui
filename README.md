@@ -1,7 +1,8 @@
-<center>
+<div align="center">
   <img src="logo.svg" alt="logo" />
-  <h1>Svelte Material UI</h1>
-</center>
+</div>
+
+<h1>Svelte Material UI</h1>
 
 A library of Svelte 3 Material UI components, based on the [Material Design Web Components](https://material.io/develop/web/).
 
