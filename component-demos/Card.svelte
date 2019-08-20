@@ -3,11 +3,7 @@
 
   <div style="display: flex; flex-wrap: wrap;">
     <div class="card-container short">
-      <Card style="width: 250px;">A simple card.</Card>
-    </div>
-
-    <div class="card-container short">
-      <Card style="width: 250px;" padded>A padded card.</Card>
+      <Card style="width: 250px;" padded>A simple padded card.</Card>
     </div>
 
     <div class="card-container short">
