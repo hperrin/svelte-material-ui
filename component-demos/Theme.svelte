@@ -1,4 +1,4 @@
-<section class="themed">
+<section class="demo-special-theme">
   <h2>Theme</h2>
 
   <p>
@@ -17,23 +17,24 @@
     <Button on:click={() => clicked++} variant="unelevated"><Label>Unelevated</Label></Button>
     <Button on:click={() => clicked++} variant="outlined"><Label>Outlined</Label></Button>
     <Button on:click={() => clicked++} dense><Label>Dense</Label></Button>
-    <Button on:click={() => clicked++}><Icon class="material-icons" style="margin-right: 12px;">favorite</Icon><Label>Icon</Label></Button>
+    <Button on:click={() => clicked++}><Icon class="material-icons">favorite</Icon><Label>Icon</Label></Button>
   </div>
 
   <div>
     <Fab on:click={() => clicked++}><Icon class="material-icons">favorite</Icon></Fab>
+    <Fab on:click={() => clicked++} color="primary"><Icon class="material-icons">favorite</Icon></Fab>
     <Fab on:click={() => clicked++} mini><Icon class="material-icons">favorite</Icon></Fab>
-    <Fab on:click={() => clicked++} extended><Icon class="material-icons" style="margin-right: 12px;">favorite</Icon><Label>Extended</Label></Fab>
+    <Fab on:click={() => clicked++} extended><Icon class="material-icons">favorite</Icon><Label>Extended</Label></Fab>
   </div>
 
   <pre class="status">Clicked: {clicked}</pre>
 </section>
 
 <script>
+  import './Theme.scss';
   import Button from 'svelte-material-ui/button/Button.svelte';
   import Fab from 'svelte-material-ui/fab/Fab.svelte';
   import {Label, Icon} from 'svelte-material-ui/common';
-  import './Theme.scss';
 
   let clicked = 0;
 </script>
