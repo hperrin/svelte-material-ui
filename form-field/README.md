@@ -43,6 +43,8 @@ A Form Field component.
 * `align`: `'start'` - Where to align the input. ('start' or 'end')
 * `inputId`: `(programatically assigned)` - The ID of the input the label is to be associated with.
 
+The ID is generated using a module context counter, so you don't need to provide one yourself. The format is `SMUI-form-field-{counter}`, and the counter starts at 0.
+
 #### Events
 
 All standard UI events are forwarded.
@@ -50,7 +52,3 @@ All standard UI events are forwarded.
 #### Forwarded Props
 
 * `label$` - Props forwarded to the label element.
-
-#### Notes
-
-The ID is generated using a module context counter, so you don't need to provide one yourself. The format is `SMUI-form-field-{counter}`, and the counter starts at 0.

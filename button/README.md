@@ -68,8 +68,12 @@ A group item Svelte action. Used for containing a button in a group. This can be
 
 ### Label
 
-A text label. See the common label readme.
+A text label.
+
+See the [common label readme](https://github.com/hperrin/svelte-material-ui/blob/master/common/README.md#label).
 
 ### Icon
 
-A graphic icon. See the common icon readme.
+A graphic icon.
+
+See the [common icon readme](https://github.com/hperrin/svelte-material-ui/blob/master/common/README.md#icon).

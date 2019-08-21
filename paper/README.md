@@ -49,12 +49,18 @@ All standard UI events are forwarded.
 
 ### Title
 
-A fragment used as a title on the Paper. Equivalent to the `ClassAdder` with `H5` common component.
+A fragment used as a title on the Paper.
+
+Equivalent to the [`ClassAdder` with `H5` common component](https://github.com/hperrin/svelte-material-ui/blob/master/common/README.md#classaddersvelte).
 
 ### Subtitle
 
-A fragment used as a subtitle on the Paper. Equivalent to the `ClassAdder` with `H6` common component.
+A fragment used as a subtitle on the Paper.
+
+Equivalent to the [`ClassAdder` with `H6` common component](https://github.com/hperrin/svelte-material-ui/blob/master/common/README.md#classaddersvelte).
 
 ### Content
 
-A fragment used as a body of the Paper. Equivalent to the `ClassAdder` with `Div` common component.
+A fragment used as a body of the Paper.
+
+Equivalent to the [`ClassAdder` with `Div` common component](https://github.com/hperrin/svelte-material-ui/blob/master/common/README.md#classaddersvelte).

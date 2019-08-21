@@ -19,7 +19,9 @@ All standard UI events are forwarded.
 
 ### Icon
 
-A common icon. The common icon is used everywhere except for the `textfield` and `select` components.
+A common icon.
+
+The common icon is used everywhere except for the `textfield` and `select` components.
 
 #### Props / Defaults
 
