@@ -4,7 +4,7 @@ An elevated and/or colored surface.
 
 See [MDC Elevation](https://material.io/develop/web/components/elevation/) for more information on API and Sass mixins.
 
-See [the Sass variable file](https://github.com/material-components/material-components-web/blob/master/packages/mdc-elevation/_variables.scss) for styling variables.
+See [the Sass variable file](https://github.com/material-components/material-components-web/blob/v3.1.1/packages/mdc-elevation/_variables.scss) for styling variables.
 
 See [the SMUI Sass variable file](https://github.com/hperrin/svelte-material-ui/blob/master/paper/_variables.scss) for additional styling variables.
 

@@ -4,7 +4,7 @@ Switches are toggles. They're like checkboxes, but cooler.
 
 See [MDC Switch](https://material.io/develop/web/components/input-controls/switches/) for more information on API and Sass mixins.
 
-See [the Sass variable file](https://github.com/material-components/material-components-web/blob/master/packages/mdc-switch/_variables.scss) for styling variables.
+See [the Sass variable file](https://github.com/material-components/material-components-web/blob/v3.1.1/packages/mdc-switch/_variables.scss) for styling variables.
 
 ## Basic Usage
 

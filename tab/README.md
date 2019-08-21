@@ -4,7 +4,7 @@ Tabs are navigation elements used to organize areas of an app.
 
 See [MDC Tab](https://material.io/develop/web/components/tabs/tab/) for more information on API and Sass mixins.
 
-See [the Sass variable file](https://github.com/material-components/material-components-web/blob/master/packages/mdc-tab/_variables.scss) for styling variables.
+See [the Sass variable file](https://github.com/material-components/material-components-web/blob/v3.1.1/packages/mdc-tab/_variables.scss) for styling variables.
 
 ## Basic Usage
 

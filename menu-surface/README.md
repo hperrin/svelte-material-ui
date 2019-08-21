@@ -4,7 +4,7 @@ Menu surfaces are an area where a list of actions or choices can be supplied to 
 
 See [MDC Menu Surface](https://material.io/develop/web/components/menu-surface/) for more information on API and Sass mixins.
 
-See [the Sass variable file](https://github.com/material-components/material-components-web/blob/master/packages/mdc-menu-surface/_variables.scss) for styling variables.
+See [the Sass variable file](https://github.com/material-components/material-components-web/blob/v3.1.1/packages/mdc-menu-surface/_variables.scss) for styling variables.
 
 ## Basic Usage
 

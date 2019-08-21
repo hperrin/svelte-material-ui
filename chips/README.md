@@ -4,7 +4,7 @@ Chips are used to show discrete information, filter options, input tags, or acti
 
 See [MDC Chips](https://material.io/develop/web/components/chips/) for more information on API and Sass mixins.
 
-See [the Sass variable file](https://github.com/material-components/material-components-web/blob/master/packages/mdc-chips/_variables.scss) for styling variables.
+See [the Sass variable file](https://github.com/material-components/material-components-web/blob/v3.1.1/packages/mdc-chips/_variables.scss) for styling variables.
 
 ## Basic Usage
 

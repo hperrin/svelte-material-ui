@@ -6,7 +6,7 @@ MDC Form Fields make the Input/Label RTL-aware and also activates a ripple effec
 
 See [MDC Form Fields](https://material.io/develop/web/components/input-controls/form-fields/) for more information on API and Sass mixins.
 
-See [the Sass variable file](https://github.com/material-components/material-components-web/blob/master/packages/mdc-form-field/_variables.scss) for styling variables.
+See [the Sass variable file](https://github.com/material-components/material-components-web/blob/v3.1.1/packages/mdc-form-field/_variables.scss) for styling variables.
 
 ## Basic Usage
 

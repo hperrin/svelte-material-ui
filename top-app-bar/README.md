@@ -4,7 +4,7 @@ Top app bars are navigation and information areas that appear above content.
 
 See [MDC Top App Bar](https://material.io/develop/web/components/top-app-bar/) for more information on API and Sass mixins.
 
-See [the Sass variable file](https://github.com/material-components/material-components-web/blob/master/packages/mdc-top-app-bar/_variables.scss) for styling variables.
+See [the Sass variable file](https://github.com/material-components/material-components-web/blob/v3.1.1/packages/mdc-top-app-bar/_variables.scss) for styling variables.
 
 ## Basic Usage
 

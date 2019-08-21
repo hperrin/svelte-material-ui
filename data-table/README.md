@@ -4,7 +4,7 @@ A data table shows tabular information, and optionally allows the user to select
 
 See [MDC Data Table](https://material.io/develop/web/components/data-tables/) for more information on API and Sass mixins.
 
-See [the Sass variable file](https://github.com/material-components/material-components-web/blob/master/packages/mdc-data-table/_variables.scss) for styling variables.
+See [the Sass variable file](https://github.com/material-components/material-components-web/blob/v3.1.1/packages/mdc-data-table/_variables.scss) for styling variables.
 
 ## Basic Usage
 

@@ -4,7 +4,7 @@ Select menus provide the user with a choice between multiple items.
 
 See [MDC Select](https://material.io/develop/web/components/input-controls/select-menus/) for more information on API and Sass mixins.
 
-See [the Sass variable file](https://github.com/material-components/material-components-web/blob/master/packages/mdc-select/_variables.scss) for styling variables.
+See [the Sass variable file](https://github.com/material-components/material-components-web/blob/v3.1.1/packages/mdc-select/_variables.scss) for styling variables.
 
 ## Basic Usage
 

@@ -4,7 +4,7 @@ Radios, or radio buttons, are input elements that give the user a choice between
 
 See [MDC Radio](https://material.io/develop/web/components/input-controls/radio-buttons/) for more information on API and Sass mixins.
 
-See [the Sass variable file](https://github.com/material-components/material-components-web/blob/master/packages/mdc-radio/_variables.scss) for styling variables.
+See [the Sass variable file](https://github.com/material-components/material-components-web/blob/v3.1.1/packages/mdc-radio/_variables.scss) for styling variables.
 
 ## Basic Usage
 
