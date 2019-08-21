@@ -17,33 +17,70 @@
       padding-right: 0;
     }
 
-    &.mdc-text-field--with-leading-icon .mdc-text-field__input {
-      @include mdc-rtl-reflexive-property(padding, 32px, 0);
-    }
-
-    &.mdc-text-field--with-trailing-icon .mdc-text-field__input {
-      @include mdc-rtl-reflexive-property(padding, 0, 32px);
-    }
-
-    &.mdc-text-field--with-leading-icon.mdc-text-field--with-trailing-icon .mdc-text-field__input {
-      padding-left: 32px;
-      padding-right: 32px;
-    }
-
     .mdc-floating-label {
       @include mdc-rtl-reflexive-position(left, 0);
     }
 
-    &.mdc-text-field--with-leading-icon .mdc-floating-label {
-      @include mdc-rtl-reflexive-position(left, 32px);
+    &.mdc-text-field--with-leading-icon {
+      @include mdc-text-field-icon-horizontal-position_(
+        left,
+        0,
+        $mdc-text-field-icon-padding - $mdc-text-field-icon-position,
+        0
+      );
+
+      .mdc-floating-label {
+        @include mdc-rtl-reflexive-position(left, $mdc-text-field-icon-padding - $mdc-text-field-icon-position);
+      }
+
+      &.mdc-text-field--dense {
+        @include mdc-text-field-icon-horizontal-position_(
+          left,
+          0,
+          $mdc-text-field-dense-icon-padding - $mdc-text-field-dense-icon-position,
+          0
+        );
+
+        .mdc-floating-label {
+          @include mdc-rtl-reflexive-position(left, $mdc-text-field-dense-icon-padding - $mdc-text-field-dense-icon-position);
+        }
+      }
     }
 
-    &.mdc-text-field--with-trailing-icon .mdc-text-field__icon {
-      @include mdc-rtl-reflexive-position(right, 0);
+    &.mdc-text-field--with-trailing-icon {
+      @include mdc-text-field-icon-horizontal-position_(
+        right,
+        0,
+        $mdc-text-field-icon-padding - $mdc-text-field-trailing-icon-position,
+        0
+      );
+
+      &.mdc-text-field--dense {
+        @include mdc-text-field-icon-horizontal-position_(
+          right,
+          0,
+          $mdc-text-field-dense-icon-padding - $mdc-text-field-dense-icon-position,
+          0
+        );
+      }
     }
 
-    &.mdc-text-field--with-leading-icon .mdc-text-field__icon {
-      @include mdc-rtl-reflexive-position(left, 0);
+    &.mdc-text-field--with-leading-icon.mdc-text-field--with-trailing-icon {
+      @include mdc-text-field-icon-horizontal-position-two-icons_(
+        0,
+        $mdc-text-field-icon-padding - $mdc-text-field-icon-position,
+        0,
+        $mdc-text-field-icon-padding - $mdc-text-field-trailing-icon-position
+      );
+
+      &.mdc-text-field--dense {
+        @include mdc-text-field-icon-horizontal-position-two-icons_(
+          0,
+          $mdc-text-field-dense-icon-padding - $mdc-text-field-dense-icon-position,
+          0,
+          $mdc-text-field-dense-icon-padding - $mdc-text-field-dense-icon-position
+        );
+      }
     }
 
     &.mdc-text-field--with-leading-icon.mdc-text-field--with-trailing-icon .mdc-text-field__icon ~ .mdc-text-field__icon {
