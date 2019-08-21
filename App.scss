@@ -46,10 +46,19 @@ body, app {
   box-sizing: border-box;
 }
 
+.demo-main-content section:after {
+  height: 32px;
+  display: block;
+  content: " ";
+}
+
 section > div {
   margin: 1em 0 .6em;
 }
 
 .status {
+  max-width: 100%;
   font-size: .9em;
+  word-break: break-word;
+  white-space: normal;
 }

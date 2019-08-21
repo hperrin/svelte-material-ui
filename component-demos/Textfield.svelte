@@ -249,6 +249,45 @@
   </div>
 
   <div>
+    Dense, with Icon:
+
+    <div class="columns margins">
+      <div>
+        <Textfield dense withLeadingIcon bind:value={valueDenseIconA} label="Label" input$aria-controls="helper-text-dense-icon-a" input$aria-describedby="helper-text-dense-icon-a">
+          <Icon class="material-icons">event</Icon>
+        </Textfield>
+        <HelperText id="helper-text-dense-icon-a">Helper Text</HelperText>
+
+        <pre class="status">Value: {valueDenseIconA}</pre>
+      </div>
+      <div>
+        <Textfield variant="filled" dense withLeadingIcon bind:value={valueDenseIconB} label="Label" input$aria-controls="helper-text-dense-icon-b" input$aria-describedby="helper-text-dense-icon-b">
+          <Icon class="material-icons">event</Icon>
+        </Textfield>
+        <HelperText id="helper-text-dense-icon-b">Helper Text</HelperText>
+
+        <pre class="status">Value: {valueDenseIconB}</pre>
+      </div>
+      <div>
+        <Textfield variant="outlined" dense withLeadingIcon bind:value={valueDenseIconC} label="Label" input$aria-controls="helper-text-dense-icon-c" input$aria-describedby="helper-text-dense-icon-c">
+          <Icon class="material-icons">event</Icon>
+        </Textfield>
+        <HelperText id="helper-text-dense-icon-c">Helper Text</HelperText>
+
+        <pre class="status">Value: {valueDenseIconC}</pre>
+      </div>
+      <div>
+        <Textfield class="shaped-outlined" variant="outlined" dense withLeadingIcon bind:value={valueDenseIconD} label="Label" input$aria-controls="helper-text-dense-icon-d" input$aria-describedby="helper-text-dense-icon-d">
+          <Icon class="material-icons">event</Icon>
+        </Textfield>
+        <HelperText id="helper-text-dense-icon-d">Helper Text</HelperText>
+
+        <pre class="status">Value: {valueDenseIconD}</pre>
+      </div>
+    </div>
+  </div>
+
+  <div>
     Without label or helper text:
 
     <div class="columns margins">
@@ -511,6 +550,10 @@
   let valueDenseB = '';
   let valueDenseC = '';
   let valueDenseD = '';
+  let valueDenseIconA = '';
+  let valueDenseIconB = '';
+  let valueDenseIconC = '';
+  let valueDenseIconD = '';
   let valueNoLabelA = '';
   let valueNoLabelB = '';
   let valueNoLabelC = '';

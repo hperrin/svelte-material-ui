@@ -4,8 +4,11 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const sassOptions = {
   includePaths: [
+    './theme',
     './node_modules',
-    './theme'
+    // This is only needed because we're using a local module. :-/
+    // Normally, you would not need this line.
+    path.resolve(__dirname, '..', 'svelte-material-ui', 'node_modules')
   ]
 };
 
@@ -19,12 +22,13 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js',
   },
-  // resolve: {
-  //   alias: {
-  //     // This is so the demo can import from 'svelte-material-ui'.
-  //     'svelte-material-ui': path.resolve(__dirname, '..', 'svelte-material-ui'),
-  //   },
-  // },
+  resolve: {
+    alias: {
+      // Since we're using a local module, we want to always require the same
+      // Svelte package.
+      'svelte': path.resolve(__dirname, 'node_modules', 'svelte'),
+    },
+  },
   plugins: [
     new MiniCssExtractPlugin({
       filename: '[name].css',
@@ -54,13 +58,6 @@ module.exports = {
           {
             loader: 'sass-loader',
             options: {
-              // importer: url => {
-              //   // This is so the demo can @import from 'svelte-material-ui'.
-              //   if (url.startsWith('svelte-material-ui/')) {
-              //     return {file: url.replace(/^svelte-material-ui/, path.resolve(__dirname, '..', 'svelte-material-ui'))};
-              //   }
-              //   return null;
-              // },
               ...sassOptions
             },
           },
