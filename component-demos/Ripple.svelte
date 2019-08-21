@@ -23,7 +23,7 @@
 </section>
 
 <script>
-  import Ripple from 'svelte-material-ui/ripple/index.js';
+  import Ripple from 'svelte-material-ui/ripple';
 </script>
 
 <style>
