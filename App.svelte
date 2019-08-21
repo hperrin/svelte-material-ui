@@ -49,7 +49,6 @@
 <script>
   import {onMount} from 'svelte';
   import Router, {link, location} from 'svelte-spa-router';
-  import './App.scss';
   import TopAppBar, {Row, Section, Title} from 'svelte-material-ui/top-app-bar';
   import Drawer, {Content, Scrim, AppContent} from 'svelte-material-ui/drawer';
   import Button, {Label, Icon} from 'svelte-material-ui/button';
