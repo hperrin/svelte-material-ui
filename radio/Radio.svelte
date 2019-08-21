@@ -4,7 +4,7 @@
   use:forwardEvents
   class="mdc-radio {className}"
   class:mdc-radio--disabled={disabled}
-  {...exclude($$props, ['use', 'class', 'disabled', 'group', 'value', 'input$'])}
+  {...exclude($$props, ['use', 'class', 'disabled', 'group', 'value', 'valueKey', 'input$'])}
 >
   <input
     use:useActions={input$use}
