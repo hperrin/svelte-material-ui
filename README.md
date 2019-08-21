@@ -1,6 +1,6 @@
 # Svelte Material UI Demo
 
-A demo of [Svelte Material UI](https://github.com/hperrin/svelte-material-ui/).
+A demo of [Svelte Material UI](https://github.com/hperrin/svelte-material-ui/), in super Svelte-y colors!
 
 ## License
 
