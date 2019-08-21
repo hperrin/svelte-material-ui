@@ -30,7 +30,9 @@ See [the Sass variable file](https://github.com/material-components/material-com
 
 ## Exports
 
-### (default): A button.
+### (default)
+
+A button.
 
 #### Options / Defaults
 
@@ -46,7 +48,9 @@ See [the Sass variable file](https://github.com/material-components/material-com
 
 All standard UI events are forwarded.
 
-### Group: A button group.
+### Group
+
+A button group.
 
 #### Options / Defaults
 
@@ -58,14 +62,14 @@ All standard UI events are forwarded.
 
 All standard UI events are forwarded.
 
-### GroupItem: A group item Svelte action.
+### GroupItem
 
-Used for containing a button in a group. This can be useful for containing menus along with the button.
+A group item Svelte action. Used for containing a button in a group. This can be useful for containing menus along with the button.
 
-### Label: A text label.
+### Label
 
-See the common label readme.
+A text label. See the common label readme.
 
-### Icon: A graphic icon.
+### Icon
 
-See the common icon readme.
+A graphic icon. See the common icon readme.

@@ -35,7 +35,9 @@ See [the Sass variable file](https://github.com/material-components/material-com
 
 ## Exports
 
-### (default): A Floating Label component.
+### (default)
+
+A Floating Label component.
 
 #### Props / Defaults
 

@@ -30,7 +30,9 @@ See [the Sass variable file](https://github.com/material-components/material-com
 
 ## Exports
 
-### (default): A Checkbox component.
+### (default)
+
+A Checkbox component.
 
 #### Props / Defaults
 

@@ -32,7 +32,9 @@ See [the Sass variable file](https://github.com/material-components/material-com
 
 ## Exports
 
-### (default): A Form Field component.
+### (default)
+
+A Form Field component.
 
 #### Props / Defaults
 

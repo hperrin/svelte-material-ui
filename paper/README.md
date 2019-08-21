@@ -30,7 +30,9 @@ See [the SMUI Sass variable file](https://github.com/hperrin/svelte-material-ui/
 
 ## Exports
 
-### (default): A Paper component.
+### (default)
+
+A Paper component.
 
 #### Props / Defaults
 
@@ -45,14 +47,14 @@ See [the SMUI Sass variable file](https://github.com/hperrin/svelte-material-ui/
 
 All standard UI events are forwarded.
 
-### Title: A fragment used as a title on the Paper.
+### Title
 
-Equivalent to the `ClassAdder` with `H5` common component.
+A fragment used as a title on the Paper. Equivalent to the `ClassAdder` with `H5` common component.
 
-### Subtitle: A fragment used as a subtitle on the Paper.
+### Subtitle
 
-Equivalent to the `ClassAdder` with `H6` common component.
+A fragment used as a subtitle on the Paper. Equivalent to the `ClassAdder` with `H6` common component.
 
-### Content: A fragment used as a body of the Paper.
+### Content
 
-Equivalent to the `ClassAdder` with `Div` common component.
+A fragment used as a body of the Paper. Equivalent to the `ClassAdder` with `Div` common component.

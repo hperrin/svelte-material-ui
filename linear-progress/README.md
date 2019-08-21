@@ -31,7 +31,9 @@ See [the Sass variable file](https://github.com/material-components/material-com
 
 ## Exports
 
-### (default): A Linear Progress component.
+### (default)
+
+A Linear Progress component.
 
 #### Props / Defaults
 

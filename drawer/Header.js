@@ -2,7 +2,7 @@ import ClassAdder, {internals} from '../common/ClassAdder.svelte';
 import Div from '../common/Div.svelte';
 
 function Header(...args) {
-  internals.smuiClass = 'mdc-drawer__header';
+  internals.class = 'mdc-drawer__header';
   internals.component = Div;
   return new ClassAdder(...args);
 }

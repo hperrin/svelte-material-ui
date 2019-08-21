@@ -61,7 +61,9 @@ See [the Sass variable file](https://github.com/material-components/material-com
 
 ## Exports
 
-### (default): A card.
+### (default)
+
+A card.
 
 #### Options / Defaults
 
@@ -74,13 +76,15 @@ See [the Sass variable file](https://github.com/material-components/material-com
 
 All standard UI events are forwarded.
 
-### Content: A fragment used as a content area within a card.
+### Content
 
-Equivalent to the `ClassAdder` with `Div` common component.
+A fragment used as a content area within a card. Equivalent to the `ClassAdder` with `Div` common component.
 
 Note that you can supply your own component to a `ClassAdder` based component. You can use this to create things like list cards.
 
-### PrimaryAction: An interactive portion of the card. Meant to be the primary way to interact with the card.
+### PrimaryAction
+
+An interactive portion of the card. Meant to be the primary way to interact with the card.
 
 #### Options / Defaults
 
@@ -95,7 +99,9 @@ Note that you can supply your own component to a `ClassAdder` based component. Y
 
 All standard UI events are forwarded.
 
-### Media: An area of the card meant to show media content.
+### Media
+
+An area of the card meant to show media content.
 
 #### Options / Defaults
 
@@ -107,11 +113,13 @@ All standard UI events are forwarded.
 
 All standard UI events are forwarded.
 
-### MediaContent: An area of the card within the media meant to show content over top of the media.
+### MediaContent
 
-Equivalent to the `ClassAdder` with `Div` common component.
+An area of the card within the media meant to show content over top of the media. Equivalent to the `ClassAdder` with `Div` common component.
 
-### Actions: An area of the card containing interactive actions.
+### Actions
+
+An area of the card containing interactive actions.
 
 #### Options / Defaults
 
@@ -123,11 +131,11 @@ Equivalent to the `ClassAdder` with `Div` common component.
 
 All standard UI events are forwarded.
 
-### ActionButtons: An area of the card, within Actions, containing buttons.
+### ActionButtons
 
-Equivalent to the `ClassAdder` with `Div` common component.
+An area of the card, within Actions, containing buttons. Equivalent to the `ClassAdder` with `Div` common component.
 
-### ActionIcons: An area of the card, within Actions, containing icon buttons.
+### ActionIcons
 
-Equivalent to the `ClassAdder` with `Div` common component.
+An area of the card, within Actions, containing icon buttons. Equivalent to the `ClassAdder` with `Div` common component.
 

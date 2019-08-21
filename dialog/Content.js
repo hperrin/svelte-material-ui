@@ -2,7 +2,7 @@ import ClassAdder, {internals} from '../common/ClassAdder.svelte';
 import Div from '../common/Div.svelte';
 
 function Content(...args) {
-  internals.smuiClass = 'mdc-dialog__content';
+  internals.class = 'mdc-dialog__content';
   internals.component = Div;
   return new ClassAdder(...args);
 }
