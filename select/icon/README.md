@@ -1,0 +1,21 @@
+# Svelte Material UI - Select Icon
+
+Select icons appear next to a select menu.
+
+See [MDC Select Icon](https://material.io/develop/web/components/input-controls/select-menus/icon/) for more information on API and Sass mixins.
+
+See [the Sass variable file](https://github.com/material-components/material-components-web/blob/master/packages/mdc-select/icon/_variables.scss) for styling variables.
+
+## Basic Usage
+
+todo...
+
+## Demo
+
+*in action:* https://hperrin.github.io/svelte-material-ui-demo/#/select
+
+*demo code:* https://github.com/hperrin/svelte-material-ui-demo/blob/master/component-demos/Select.svelte
+
+## Exports
+
+todo...
