@@ -56,17 +56,17 @@
     </div>
   </div>
 
-  <iframe class="top-app-bar-iframe" src="component-demos/TopAppBar/standard.html" title="standard" width="480" height="320"></iframe>
+  <iframe class="top-app-bar-iframe" src="component-demos/TopAppBar/demo.html" title="standard" width="480" height="320"></iframe>
 
-  <iframe class="top-app-bar-iframe" src="component-demos/TopAppBar/fixed.html" title="fixed" width="480" height="320"></iframe>
+  <iframe class="top-app-bar-iframe" src="component-demos/TopAppBar/demo.html#fixed" title="fixed" width="480" height="320"></iframe>
 
-  <iframe class="top-app-bar-iframe" src="component-demos/TopAppBar/dense.html" title="dense" width="480" height="320"></iframe>
+  <iframe class="top-app-bar-iframe" src="component-demos/TopAppBar/demo.html#dense" title="dense" width="480" height="320"></iframe>
 
-  <iframe class="top-app-bar-iframe" src="component-demos/TopAppBar/prominent.html" title="dense" width="480" height="320"></iframe>
+  <iframe class="top-app-bar-iframe" src="component-demos/TopAppBar/demo.html#prominent" title="dense" width="480" height="320"></iframe>
 
-  <iframe class="top-app-bar-iframe" src="component-demos/TopAppBar/short.html" title="dense" width="480" height="320"></iframe>
+  <iframe class="top-app-bar-iframe" src="component-demos/TopAppBar/demo.html#short" title="dense" width="480" height="320"></iframe>
 
-  <iframe class="top-app-bar-iframe" src="component-demos/TopAppBar/shortclosed.html" title="dense" width="480" height="320"></iframe>
+  <iframe class="top-app-bar-iframe" src="component-demos/TopAppBar/demo.html#short-closed" title="dense" width="480" height="320"></iframe>
 </section>
 
 <script>
@@ -84,6 +84,7 @@
 <style>
   .top-app-bar-container, .top-app-bar-iframe {
     max-width: 480px;
+    min-width: 480px;
     height: 320px;
     border: 1px solid rgba(0,0,0,.1);
     margin: 0 18px 18px 0;
@@ -96,6 +97,7 @@
 
   .flexy {
     display: flex;
+    flex-wrap: wrap;
   }
 
   .flexor {

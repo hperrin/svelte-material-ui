@@ -1,4 +1,4 @@
-import App from './standard.svelte';
+import App from './demo.svelte';
 import '../../App.scss';
 
 window.app = new App({

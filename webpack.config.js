@@ -13,12 +13,7 @@ module.exports = {
   mode: 'development',
   entry: {
     bundle: path.resolve(__dirname, 'index.js'),
-    'TopAppBar-Standard': path.resolve(__dirname, 'component-demos', 'TopAppBar', 'standard.js'),
-    'TopAppBar-Fixed': path.resolve(__dirname, 'component-demos', 'TopAppBar', 'fixed.js'),
-    'TopAppBar-Dense': path.resolve(__dirname, 'component-demos', 'TopAppBar', 'dense.js'),
-    'TopAppBar-Prominent': path.resolve(__dirname, 'component-demos', 'TopAppBar', 'prominent.js'),
-    'TopAppBar-Short': path.resolve(__dirname, 'component-demos', 'TopAppBar', 'short.js'),
-    'TopAppBar-ShortClosed': path.resolve(__dirname, 'component-demos', 'TopAppBar', 'shortclosed.js'),
+    'top-app-bar': path.resolve(__dirname, 'component-demos', 'TopAppBar', 'demo.js')
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
