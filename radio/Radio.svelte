@@ -12,7 +12,7 @@
     type="radio"
     {...inputProps}
     {disabled}
-    {value}
+    value={valueKey === uninitializedValue ? value : valueKey}
     {checked}
     on:change={handleChange}
     on:change on:input
@@ -34,6 +34,7 @@
   import {useActions} from '../useActions.js';
 
   const forwardEvents = forwardEventsBuilder(current_component);
+  let uninitializedValue = () => {};
 
   export let use = [];
   let className = '';
@@ -41,6 +42,7 @@
   export let disabled = false;
   export let group = null;
   export let value = null;
+  export let valueKey = uninitializedValue;
   export let input$use = [];
   export let input$class = '';
 
@@ -64,8 +66,12 @@
     radio.disabled = disabled;
   }
 
-  $: if (radio && radio.value !== value) {
+  $: if (radio && valueKey === uninitializedValue && radio.value !== value) {
     radio.value = value;
+  }
+
+  $: if (radio && valueKey !== uninitializedValue && radio.value !== valueKey) {
+    radio.value = valueKey;
   }
 
   onMount(() => {
@@ -81,7 +87,7 @@
   });
 
   function handleChange(e) {
-    if (e.target.checked) {
+    if (radio.checked) {
       group = value;
     }
   }
