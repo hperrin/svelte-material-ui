@@ -13,8 +13,8 @@
   </div>
 
   <div>
-    <Button on:click={() => clicked++}><Icon class="material-icons" style="margin-right: 12px;">favorite</Icon><Label>Icon</Label></Button>
-    <Button on:click={() => clicked++}><Label>Trailing Icon</Label><Icon class="material-icons" style="margin-left: 12px;">favorite</Icon></Button>
+    <Button on:click={() => clicked++}><Icon class="material-icons">favorite</Icon><Label>Icon</Label></Button>
+    <Button on:click={() => clicked++}><Label>Trailing Icon</Label><Icon class="material-icons">favorite</Icon></Button>
   </div>
 
   <div>
@@ -30,8 +30,8 @@
   </div>
 
   <div>
-    <Button color="secondary" on:click={() => clicked++}><Icon class="material-icons" style="margin-right: 12px;">favorite</Icon><Label>Icon</Label></Button>
-    <Button color="secondary" on:click={() => clicked++}><Label>Trailing Icon</Label><Icon class="material-icons" style="margin-left: 12px;">favorite</Icon></Button>
+    <Button color="secondary" on:click={() => clicked++}><Icon class="material-icons">favorite</Icon><Label>Icon</Label></Button>
+    <Button color="secondary" on:click={() => clicked++}><Label>Trailing Icon</Label><Icon class="material-icons">favorite</Icon></Button>
   </div>
 
   <div>

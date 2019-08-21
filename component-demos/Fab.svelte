@@ -4,8 +4,8 @@
   <div>
     <Fab on:click={() => clicked++}><Icon class="material-icons">favorite</Icon></Fab>
     <Fab on:click={() => clicked++} mini><Icon class="material-icons">favorite</Icon></Fab>
-    <Fab on:click={() => clicked++} extended><Icon class="material-icons" style="margin-right: 12px;">favorite</Icon><Label>Extended</Label></Fab>
-    <Fab on:click={() => clicked++} extended ripple={false}><Icon class="material-icons" style="margin-right: 12px;">favorite</Icon><Label>No Ripple</Label></Fab>
+    <Fab on:click={() => clicked++} extended><Icon class="material-icons">favorite</Icon><Label>Extended</Label></Fab>
+    <Fab on:click={() => clicked++} extended ripple={false}><Icon class="material-icons">favorite</Icon><Label>No Ripple</Label></Fab>
     <Fab on:click={() => clicked++} extended><Label>Extended W/o Icon</Label></Fab>
   </div>
 
@@ -18,8 +18,8 @@
     Primary color: <br />
     <Fab color="primary" on:click={() => clicked++}><Icon class="material-icons">favorite</Icon></Fab>
     <Fab color="primary" on:click={() => clicked++} mini><Icon class="material-icons">favorite</Icon></Fab>
-    <Fab color="primary" on:click={() => clicked++} extended><Icon class="material-icons" style="margin-right: 12px;">favorite</Icon><Label>Extended</Label></Fab>
-    <Fab color="primary" on:click={() => clicked++} extended ripple={false}><Icon class="material-icons" style="margin-right: 12px;">favorite</Icon><Label>No Ripple</Label></Fab>
+    <Fab color="primary" on:click={() => clicked++} extended><Icon class="material-icons">favorite</Icon><Label>Extended</Label></Fab>
+    <Fab color="primary" on:click={() => clicked++} extended ripple={false}><Icon class="material-icons">favorite</Icon><Label>No Ripple</Label></Fab>
     <Fab color="primary" on:click={() => clicked++} extended><Label>Extended W/o Icon</Label></Fab>
   </div>
 
