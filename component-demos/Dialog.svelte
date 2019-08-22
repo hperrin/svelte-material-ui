@@ -2,47 +2,46 @@
   <h2>Dialogs</h2>
 
   <div>
-    <Dialog bind:this={myDialog} aria-labelledby="my-dialog-title" aria-describedby="my-dialog-content">
+    <Dialog bind:this={simpleDialog} aria-labelledby="simple-title" aria-describedby="simple-content">
       <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
-      <Title id="my-dialog-title">Dialog Title</Title>
-      <Content id="my-dialog-content">
+      <Title id="simple-title">Dialog Title</Title>
+      <Content id="simple-content">
         Super awesome dialog body text?
       </Content>
       <Actions>
-        <DialogButton on:click={() => clicked = 'No'}>
+        <Button on:click={() => clicked = 'No'}>
           <Label>No</Label>
-        </DialogButton>
-        <DialogButton on:click={() => clicked = 'Yes'} action="accept">
+        </Button>
+        <Button on:click={() => clicked = 'Yes'}>
           <Label>Yes</Label>
-        </DialogButton>
+        </Button>
       </Actions>
     </Dialog>
 
-    <Button on:click={() => myDialog.open()}><Label>Open Dialog</Label></Button>
+    <Button on:click={() => simpleDialog.open()}><Label>Open Dialog</Label></Button>
   </div>
 
   <pre class="status">Clicked: {clicked}</pre>
 
   <div>
-    Using dialog events, instead of button clicks: <br />
+    Using dialog events instead of button clicks, with a default button that is initially focused: <br />
 
-    <Dialog bind:this={myDialog2} aria-labelledby="my-dialog-title2" aria-describedby="my-dialog-content2" on:MDCDialog:closed={closeHandler}>
-      <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
-      <Title id="my-dialog-title2">The Best Dog</Title>
-      <Content id="my-dialog-content2">
-        Who is the best dog?
+    <Dialog bind:this={eventDialog} aria-labelledby="event-title" aria-describedby="event-content" on:MDCDialog:closed={closeHandler}>
+      <Title id="event-title">The Best Dog</Title>
+      <Content id="event-content">
+        Out of all the dogs, which is the best dog?
       </Content>
       <Actions>
-        <DialogButton action="no">
+        <Button action="none">
           <Label>None of Them</Label>
-        </DialogButton>
-        <DialogButton action="yes" default>
+        </Button>
+        <Button action="all" default use={[InitialFocus]}>
           <Label>All of Them</Label>
-        </DialogButton>
+        </Button>
       </Actions>
     </Dialog>
 
-    <Button on:click={() => myDialog2.open()}><Label>Open Dialog</Label></Button>
+    <Button on:click={() => eventDialog.open()}><Label>Open Dialog</Label></Button>
   </div>
 
   <pre class="status">Response: {response}</pre>
@@ -50,47 +49,97 @@
   <div>
     No actions, and a very long list dialog: <br />
 
-    <Dialog bind:this={myDialog3} aria-labelledby="my-dialog-title3" aria-describedby="my-dialog-content3">
-      <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
-      <Title id="my-dialog-title3">Dialog Title</Title>
-      <Content component={List} id="my-dialog-content3">
+    <Dialog bind:this={listDialog} aria-labelledby="list-title" aria-describedby="list-content">
+      <Title id="list-title">Dialog Title</Title>
+      <Content component={List} id="list-content">
         {#each [...Array(100)].map((v, i) => i + 1) as item}
-          <Item on:click={() => {clicked3 = item; myDialog3.close()} }>
+          <Item on:click={() => {clickedList = item; listDialog.close()} }>
             <Text>Item #{item}</Text>
           </Item>
         {/each}
       </Content>
     </Dialog>
 
-    <Button on:click={() => myDialog3.open()}><Label>Open Dialog</Label></Button>
+    <Button on:click={() => listDialog.open()}><Label>Open Dialog</Label></Button>
   </div>
 
-  <pre class="status">Clicked: {clicked3}</pre>
+  <div>
+    A selection dialog: <br />
+
+    <Dialog bind:this={listSelectionDialog} aria-labelledby="list-selection-title" aria-describedby="list-selection-content" on:MDCDialog:closed={selectionCloseHandler}>
+      <Title id="list-selection-title">Dialog Title</Title>
+      <Content id="list-selection-content">
+        <List radioList>
+          <Item use={[InitialFocus]}>
+            <Graphic>
+              <Radio bind:group={selection} value="Radishes" />
+            </Graphic>
+            <Text>Radishes</Text>
+          </Item>
+          <Item>
+            <Graphic>
+              <Radio bind:group={selection} value="Turnips" />
+            </Graphic>
+            <Text>Turnips</Text>
+          </Item>
+          <Item>
+            <Graphic>
+              <Radio bind:group={selection} value="Broccoli" />
+            </Graphic>
+            <Text>Broccoli</Text>
+          </Item>
+        </List>
+      </Content>
+      <Actions>
+        <Button>
+          <Label>Cancel</Label>
+        </Button>
+        <Button action="accept">
+          <Label>Accept</Label>
+        </Button>
+      </Actions>
+    </Dialog>
+
+    <Button on:click={() => listSelectionDialog.open()}><Label>Open Dialog</Label></Button>
+  </div>
+
+  <pre class="status">Selected: {selected}</pre>
 </section>
 
 <script>
-  import Dialog, {Title, Content, Actions, Button as DialogButton} from 'svelte-material-ui/dialog';
+  import Dialog, {Title, Content, Actions, InitialFocus} from 'svelte-material-ui/dialog';
   import Button, {Label} from 'svelte-material-ui/button';
-  import List, {Item, Text} from 'svelte-material-ui/list';
+  import List, {Item, Graphic, Text} from 'svelte-material-ui/list';
+  import Radio from 'svelte-material-ui/radio';
 
-  let myDialog;
-  let myDialog2;
-  let myDialog3;
+  let simpleDialog;
+  let eventDialog;
+  let listDialog;
+  let listSelectionDialog;
   let clicked = 'nothing yet';
   let response = 'nothing yet';
-  let clicked3 = 'nothing yet';
+  let clickedList = 'nothing yet';
+  let selection = 'Radishes';
+  let selected = 'Nothing yet.';
 
   function closeHandler(e) {
     switch (e.detail.action) {
-      case 'no':
+      case 'none':
         response = 'Ok, well, you\'re wrong.';
         break;
-      case 'yes':
+      case 'all':
         response = 'You are correct. All dogs are the best dog.';
         break;
       default:
         response = 'It\'s a simple question. You should be able to answer it.';
         break;
     }
+  }
+
+  function selectionCloseHandler(e) {
+    if (e.detail.action === 'accept') {
+      selected = selection;
+    }
+    selection = 'Radishes';
   }
 </script>

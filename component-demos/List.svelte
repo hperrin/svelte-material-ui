@@ -52,10 +52,11 @@
   </div>
 
   <div>
-    A two-line single selection list with disabled item and meta:
-    <List class="demo-list" twoLine singleSelection bind:selectedIndex={selectionIndex}>
+    A two-line single selection list with avatars, disabled item, and meta:
+    <List class="demo-list" twoLine avatarList singleSelection bind:selectedIndex={selectionIndex}>
       {#each optionsTwoLine as item}
         <Item on:SMUI:action={() => selectionTwoLine = item.name} disabled={item.disabled} selected={selectionTwoLine === item.name}>
+          <Graphic style="background-image: url(https://via.placeholder.com/40x40.png?text={item.name.split(' ').map(val => val.substring(0, 1)).join('')});" />
           <Text>
             <PrimaryText>{item.name}</PrimaryText>
             <SecondaryText>{item.description}</SecondaryText>
