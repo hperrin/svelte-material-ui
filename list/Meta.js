@@ -4,6 +4,7 @@ import Span from '../common/Span.svelte';
 function Meta(...args) {
   internals.class = 'mdc-list-item__meta';
   internals.component = Span;
+  internals.contexts = {};
   return new ClassAdder(...args);
 }
 

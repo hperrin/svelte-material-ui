@@ -8,6 +8,8 @@ The common components are used in other components.
 
 A common label.
 
+The common label is used everywhere except for the `list` components.
+
 #### Props / Defaults
 
 * `use`: `[]` - An array of actions and/or action/property arrays.

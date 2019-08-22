@@ -4,6 +4,7 @@ import Div from '../common/Div.svelte';
 function AppContent(...args) {
   internals.class = 'mdc-drawer-app-content';
   internals.component = Div;
+  internals.contexts = {};
   return new ClassAdder(...args);
 }
 

@@ -4,6 +4,7 @@ import H5 from '../common/H5.svelte';
 function Title(...args) {
   internals.class = 'smui-paper__title';
   internals.component = H5;
+  internals.contexts = {};
   return new ClassAdder(...args);
 }
 

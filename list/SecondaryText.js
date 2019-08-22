@@ -4,6 +4,7 @@ import Span from '../common/Span.svelte';
 function SecondaryText(...args) {
   internals.class = 'mdc-list-item__secondary-text';
   internals.component = Span;
+  internals.contexts = {};
   return new ClassAdder(...args);
 }
 

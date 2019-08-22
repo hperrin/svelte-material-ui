@@ -4,6 +4,7 @@ import H2 from '../common/H2.svelte';
 function Subtitle(...args) {
   internals.class = 'mdc-drawer__subtitle';
   internals.component = H2;
+  internals.contexts = {};
   return new ClassAdder(...args);
 }
 

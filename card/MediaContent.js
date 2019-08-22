@@ -4,6 +4,7 @@ import Div from '../common/Div.svelte';
 function MediaContent(...args) {
   internals.class = 'mdc-card__media-content';
   internals.component = Div;
+  internals.contexts = {};
   return new ClassAdder(...args);
 }
 

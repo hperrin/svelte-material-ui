@@ -4,6 +4,7 @@ import Div from '../common/Div.svelte';
 function Actions(...args) {
   internals.class = 'mdc-snackbar__actions';
   internals.component = Div;
+  internals.contexts = {};
   return new ClassAdder(...args);
 }
 

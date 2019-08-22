@@ -4,6 +4,7 @@ import H6 from '../common/H6.svelte';
 function Subtitle(...args) {
   internals.class = 'smui-paper__subtitle';
   internals.component = H6;
+  internals.contexts = {};
   return new ClassAdder(...args);
 }
 

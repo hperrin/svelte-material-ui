@@ -4,6 +4,7 @@ import Div from '../common/Div.svelte';
 function ActionButtons(...args) {
   internals.class = 'mdc-card__action-buttons';
   internals.component = Div;
+  internals.contexts = {};
   return new ClassAdder(...args);
 }
 

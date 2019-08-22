@@ -43,6 +43,8 @@ A button.
 * `variant`: `'text'` - The button's style variant. ('text', 'raised', 'unelevated', or 'outlined')
 * `dense`: `false` - Whether to style the button as dense.
 * `href`: `null` - If the `href` property is set, the button will use an anchor element, instead of a button element.
+* `action`: `'close'` - Used in the context of a dialog. This sets the button's action.
+* `default`: `false` - Used in the context of a dialog. This makes the button the default for the dialog.
 
 #### Events
 

@@ -1,13 +1,13 @@
 import ClassAdder, {internals} from '../common/ClassAdder.svelte';
 import Div from '../common/Div.svelte';
 
-function ImageAspectContainer(...args) {
-  internals.class = 'mdc-image-list__image-aspect-container';
+function Group(...args) {
+  internals.class = 'mdc-list-group';
   internals.component = Div;
   internals.contexts = {};
   return new ClassAdder(...args);
 }
 
-ImageAspectContainer.prototype = ClassAdder;
+Group.prototype = ClassAdder;
 
-export default ImageAspectContainer;
+export default Group;

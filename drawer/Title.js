@@ -4,6 +4,7 @@ import H1 from '../common/H1.svelte';
 function Title(...args) {
   internals.class = 'mdc-drawer__title';
   internals.component = H1;
+  internals.contexts = {};
   return new ClassAdder(...args);
 }
 

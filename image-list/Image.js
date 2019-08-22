@@ -4,6 +4,7 @@ import Img from '../common/Img.svelte';
 function Image(...args) {
   internals.class = 'mdc-image-list__image';
   internals.component = Img;
+  internals.contexts = {};
   return new ClassAdder(...args);
 }
 

@@ -8,7 +8,7 @@ import SecondaryText from './SecondaryText.js';
 import Graphic from './Graphic.js';
 import Meta from './Meta.js';
 import Label from './Label.svelte';
-import Group from './Group.svelte';
+import Group from './Group.js';
 import Subheader from './Subheader.js';
 import Separator from './Separator.svelte';
 

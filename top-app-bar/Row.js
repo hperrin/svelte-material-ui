@@ -4,6 +4,7 @@ import Div from '../common/Div.svelte';
 function Row(...args) {
   internals.class = 'mdc-top-app-bar__row';
   internals.component = Div;
+  internals.contexts = {};
   return new ClassAdder(...args);
 }
 

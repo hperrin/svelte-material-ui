@@ -4,6 +4,7 @@ import H2 from '../common/H2.svelte';
 function Title(...args) {
   internals.class = 'mdc-dialog__title';
   internals.component = H2;
+  internals.contexts = {};
   return new ClassAdder(...args);
 }
 

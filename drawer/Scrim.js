@@ -4,6 +4,7 @@ import Div from '../common/Div.svelte';
 function Scrim(...args) {
   internals.class = 'mdc-drawer-scrim';
   internals.component = Div;
+  internals.contexts = {};
   return new ClassAdder(...args);
 }
 

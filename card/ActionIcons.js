@@ -4,6 +4,7 @@ import Div from '../common/Div.svelte';
 function ActionIcons(...args) {
   internals.class = 'mdc-card__action-icons';
   internals.component = Div;
+  internals.contexts = {};
   return new ClassAdder(...args);
 }
 

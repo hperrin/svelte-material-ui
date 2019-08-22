@@ -4,6 +4,7 @@ import Div from '../common/Div.svelte';
 function Supporting(...args) {
   internals.class = 'mdc-image-list__supporting';
   internals.component = Div;
+  internals.contexts = {};
   return new ClassAdder(...args);
 }
 
