@@ -8,7 +8,40 @@ See [the Sass variable file](https://github.com/material-components/material-com
 
 ## Basic Usage
 
-todo...
+```html
+<script>
+  import Dialog, {Title, Content, Actions} from 'svelte-material-ui/dialog';
+  import Button, {Label} from 'svelte-material-ui/button';
+
+  let dialog;
+
+  function deleteItem() {
+    // TODO: delete the item.
+  }
+</script>
+
+<Dialog
+  bind:this={dialog}
+  aria-labelledby="dialog-title"
+  aria-describedby="dialog-content"
+  on:MDCDialog:closed={closeHandler}
+>
+  <Title id="dialog-title">Delete Item</Title>
+  <Content id="dialog-content">
+    Are you sure you want to delete the item?
+  </Content>
+  <Actions>
+    <Button>
+      <Label>Cancel</Label>
+    </Button>
+    <Button on:click={deleteItem}>
+      <Label>Delete</Label>
+    </Button>
+  </Actions>
+</Dialog>
+
+<Button on:click={() => dialog.open()}><Label>Delete</Label></Button>
+```
 
 ## Demo
 
