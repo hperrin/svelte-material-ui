@@ -1,0 +1,31 @@
+{
+  "name": "@svelte-material-ui/fab",
+  "version": "1.0.0-beta.2",
+  "description": "Svelte Material UI - Floating Action Button",
+  "keywords": [
+    "svelte",
+    "svelte3",
+    "material-ui",
+    "material-design",
+    "material",
+    "svelte-components",
+    "sveltejs"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hperrin/svelte-material-ui.git"
+  },
+  "author": "Hunter Perrin <hperrin@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/hperrin/svelte-material-ui/issues"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@svelte-material-ui/common": "^1.0.0-beta.2",
+    "@material/fab": "^3.1.0",
+    "@material/feature-targeting": "^3.1.0"
+  }
+}

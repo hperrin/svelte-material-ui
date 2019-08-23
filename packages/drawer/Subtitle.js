@@ -1,5 +1,5 @@
-import ClassAdder, {internals} from '../common/ClassAdder.svelte';
-import H2 from '../common/H2.svelte';
+import ClassAdder, {internals} from '@svelte-material-ui/common/ClassAdder.svelte';
+import H2 from '@svelte-material-ui/common/H2.svelte';
 
 function Subtitle(...args) {
   internals.class = 'mdc-drawer__subtitle';

@@ -10,8 +10,8 @@ See [the Sass variable file](https://github.com/material-components/material-com
 
 ```html
 <script>
-  import Dialog, {Title, Content, Actions} from 'svelte-material-ui/dialog';
-  import Button, {Label} from 'svelte-material-ui/button';
+  import Dialog, {Title, Content, Actions} from '@svelte-material-ui/dialog';
+  import Button, {Label} from '@svelte-material-ui/button';
 
   let dialog;
 

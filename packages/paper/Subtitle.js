@@ -1,5 +1,5 @@
-import ClassAdder, {internals} from '../common/ClassAdder.svelte';
-import H6 from '../common/H6.svelte';
+import ClassAdder, {internals} from '@svelte-material-ui/common/ClassAdder.svelte';
+import H6 from '@svelte-material-ui/common/H6.svelte';
 
 function Subtitle(...args) {
   internals.class = 'smui-paper__subtitle';

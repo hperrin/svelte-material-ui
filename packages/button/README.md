@@ -10,7 +10,7 @@ See [the Sass variable file](https://github.com/material-components/material-com
 
 ```html
 <script>
-  import Button, {Label} from 'svelte-material-ui/button';
+  import Button, {Label} from '@svelte-material-ui/button';
 
   function doSomething() {
     alert('something');

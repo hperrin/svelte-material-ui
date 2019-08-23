@@ -10,9 +10,9 @@ See [the Sass variable file](https://github.com/material-components/material-com
 
 ```html
 <script>
-  import Card, {Content, PrimaryAction, Media, MediaContent, Actions, ActionButtons, ActionIcons} from 'svelte-material-ui/card';
-  import Button, {Label} from 'svelte-material-ui/button';
-  import IconButton, {Icon} from 'svelte-material-ui/icon-button';
+  import Card, {Content, PrimaryAction, Media, MediaContent, Actions, ActionButtons, ActionIcons} from '@svelte-material-ui/card';
+  import Button, {Label} from '@svelte-material-ui/button';
+  import IconButton, {Icon} from '@svelte-material-ui/icon-button';
 
   function doAction(action) {
     alert('You did an action: '+action);

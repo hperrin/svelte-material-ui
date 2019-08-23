@@ -21,7 +21,7 @@
   import {forwardEventsBuilder} from '@svelte-material-ui/common/forwardEvents.js';
   import {exclude} from '@svelte-material-ui/common/exclude.js';
   import {useActions} from '@svelte-material-ui/common/useActions.js';
-  import Item from '../list/Item.svelte';
+  import Item from '@svelte-material-ui/list/Item.svelte';
 
   const forwardEvents = forwardEventsBuilder(current_component);
 

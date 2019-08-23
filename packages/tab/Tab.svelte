@@ -42,9 +42,9 @@
   import {current_component} from 'svelte/internal';
   import {forwardEventsBuilder} from '@svelte-material-ui/common/forwardEvents.js';
   import {exclude} from '@svelte-material-ui/common/exclude.js';
-  import {prefixFilter} from '../prefixFilter.js';
+  import {prefixFilter} from '@svelte-material-ui/common/prefixFilter.js';
   import {useActions} from '@svelte-material-ui/common/useActions.js';
-  import TabIndicator from '../tab-indicator/TabIndicator.svelte';
+  import TabIndicator from '@svelte-material-ui/tab-indicator/TabIndicator.svelte';
 
   const forwardEvents = forwardEventsBuilder(current_component, ['MDCTab:interacted']);
   let activeEntry = getContext('SMUI:tab:active');

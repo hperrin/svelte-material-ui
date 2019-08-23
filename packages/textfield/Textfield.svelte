@@ -86,11 +86,11 @@
   import {current_component} from 'svelte/internal';
   import {forwardEventsBuilder} from '@svelte-material-ui/common/forwardEvents.js';
   import {exclude} from '@svelte-material-ui/common/exclude.js';
-  import {prefixFilter} from '../prefixFilter.js';
+  import {prefixFilter} from '@svelte-material-ui/common/prefixFilter.js';
   import {useActions} from '@svelte-material-ui/common/useActions.js';
-  import FloatingLabel from '../floating-label/FloatingLabel.svelte';
-  import LineRipple from '../line-ripple/LineRipple.svelte';
-  import NotchedOutline from '../notched-outline/NotchedOutline.svelte';
+  import FloatingLabel from '@svelte-material-ui/floating-label/FloatingLabel.svelte';
+  import LineRipple from '@svelte-material-ui/line-ripple/LineRipple.svelte';
+  import NotchedOutline from '@svelte-material-ui/notched-outline/NotchedOutline.svelte';
   import Input from './Input.svelte';
   import Textarea from './Textarea.svelte';
 

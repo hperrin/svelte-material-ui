@@ -14,7 +14,7 @@
   import {forwardEventsBuilder} from '@svelte-material-ui/common/forwardEvents.js';
   import {exclude} from '@svelte-material-ui/common/exclude.js';
   import {useActions} from '@svelte-material-ui/common/useActions.js';
-  import MenuSurface, {Corner, CornerBit} from '../menu-surface/MenuSurface.svelte';
+  import MenuSurface, {Corner, CornerBit} from '@svelte-material-ui/menu-surface/MenuSurface.svelte';
 
   const forwardEvents = forwardEventsBuilder(current_component, ['MDCMenu:selected', 'MDCMenuSurface:closed', 'MDCMenuSurface:opened']);
 

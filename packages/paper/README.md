@@ -12,7 +12,7 @@ See [the SMUI Sass variable file](https://github.com/hperrin/svelte-material-ui/
 
 ```html
 <script>
-  import Paper, {Title, Subtitle, Content} from 'svelte-material-ui/paper';
+  import Paper, {Title, Subtitle, Content} from '@svelte-material-ui/paper';
 </script>
 
 <Paper>

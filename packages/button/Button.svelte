@@ -46,7 +46,7 @@
   import {forwardEventsBuilder} from '@svelte-material-ui/common/forwardEvents.js';
   import {exclude} from '@svelte-material-ui/common/exclude.js';
   import {useActions} from '@svelte-material-ui/common/useActions.js';
-  import Ripple from '../ripple/index.js';
+  import Ripple from '@svelte-material-ui/ripple/index.js';
 
   const forwardEvents = forwardEventsBuilder(current_component);
 

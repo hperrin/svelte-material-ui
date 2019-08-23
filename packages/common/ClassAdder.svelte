@@ -16,9 +16,9 @@
 <script>
   import {setContext} from 'svelte';
   import {current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from '@svelte-material-ui/common/forwardEvents.js';
-  import {exclude} from '@svelte-material-ui/common/exclude.js';
-  import {useActions} from '@svelte-material-ui/common/useActions.js';
+  import {forwardEventsBuilder} from './forwardEvents.js';
+  import {exclude} from './exclude.js';
+  import {useActions} from './useActions.js';
 
   export let use = [];
   let className = '';

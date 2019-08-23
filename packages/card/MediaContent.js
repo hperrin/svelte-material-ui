@@ -1,5 +1,5 @@
-import ClassAdder, {internals} from '../common/ClassAdder.svelte';
-import Div from '../common/Div.svelte';
+import ClassAdder, {internals} from '@svelte-material-ui/common/ClassAdder.svelte';
+import Div from '@svelte-material-ui/common/Div.svelte';
 
 function MediaContent(...args) {
   internals.class = 'mdc-card__media-content';

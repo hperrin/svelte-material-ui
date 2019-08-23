@@ -10,7 +10,7 @@ See [the Sass variable file](https://github.com/material-components/material-com
 
 ```html
 <script>
-  import LinearProgress from 'svelte-material-ui/linear-progress';
+  import LinearProgress from '@svelte-material-ui/linear-progress';
   import someAsyncAction from './someAsyncAction.js';
 
   let closed = false;

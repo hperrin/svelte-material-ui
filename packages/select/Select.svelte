@@ -91,13 +91,13 @@
   import {current_component} from 'svelte/internal';
   import {forwardEventsBuilder} from '@svelte-material-ui/common/forwardEvents.js';
   import {exclude} from '@svelte-material-ui/common/exclude.js';
-  import {prefixFilter} from '../prefixFilter.js';
+  import {prefixFilter} from '@svelte-material-ui/common/prefixFilter.js';
   import {useActions} from '@svelte-material-ui/common/useActions.js';
-  import Menu from '../menu/Menu.svelte';
-  import List from '../list/List.svelte';
-  import FloatingLabel from '../floating-label/FloatingLabel.svelte';
-  import LineRipple from '../line-ripple/LineRipple.svelte';
-  import NotchedOutline from '../notched-outline/NotchedOutline.svelte';
+  import Menu from '@svelte-material-ui/menu/Menu.svelte';
+  import List from '@svelte-material-ui/list/List.svelte';
+  import FloatingLabel from '@svelte-material-ui/floating-label/FloatingLabel.svelte';
+  import LineRipple from '@svelte-material-ui/line-ripple/LineRipple.svelte';
+  import NotchedOutline from '@svelte-material-ui/notched-outline/NotchedOutline.svelte';
 
   const forwardEvents = forwardEventsBuilder(current_component, 'MDCSelect:change');
   const uninitializedValue = () => {};

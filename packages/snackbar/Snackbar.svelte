@@ -25,7 +25,7 @@
   import {current_component} from 'svelte/internal';
   import {forwardEventsBuilder} from '@svelte-material-ui/common/forwardEvents.js';
   import {exclude} from '@svelte-material-ui/common/exclude.js';
-  import {prefixFilter} from '../prefixFilter.js';
+  import {prefixFilter} from '@svelte-material-ui/common/prefixFilter.js';
   import {useActions} from '@svelte-material-ui/common/useActions.js';
 
   const forwardEvents = forwardEventsBuilder(current_component, ['MDCSnackbar:opening', 'MDCSnackbar:opened', 'MDCSnackbar:closing', 'MDCSnackbar:closed']);
