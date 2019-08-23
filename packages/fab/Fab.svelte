@@ -1,0 +1,34 @@
+<button
+  use:useActions={use}
+  use:forwardEvents
+  class="mdc-fab {className}"
+  class:mdc-fab--mini={mini}
+  class:mdc-fab--exited={exited}
+  class:mdc-fab--extended={extended}
+  class:smui-fab--color-primary={color === 'primary'}
+  use:Ripple={[ripple, {unbounded: false}]}
+  {...exclude($$props, ['use', 'class', 'ripple', 'color', 'mini', 'exited', 'extended'])}
+><slot></slot></button>
+
+<script>
+  import {setContext} from 'svelte';
+  import {current_component} from 'svelte/internal';
+  import {forwardEventsBuilder} from '@svelte-material-ui/common/forwardEvents.js';
+  import {exclude} from '@svelte-material-ui/common/exclude.js';
+  import {useActions} from '@svelte-material-ui/common/useActions.js';
+  import Ripple from '../ripple/index.js';
+
+  const forwardEvents = forwardEventsBuilder(current_component);
+
+  export let use = [];
+  let className = '';
+  export {className as class};
+  export let ripple = true;
+  export let color = 'secondary';
+  export let mini = false;
+  export let exited = false;
+  export let extended = false;
+
+  setContext('SMUI:label:context', 'fab');
+  setContext('SMUI:icon:context', 'fab');
+</script>

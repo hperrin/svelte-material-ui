@@ -62,5 +62,7 @@
     "@material/typography": "^3.1.0",
     "svelte": "^3.9.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "lerna": "^3.16.4"
+  }
 }
