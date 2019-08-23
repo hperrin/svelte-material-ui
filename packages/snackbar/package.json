@@ -1,6 +1,6 @@
 {
   "name": "@svelte-material-ui/snackbar",
-  "version": "1.0.0-beta.3",
+  "version": "1.0.0-beta.5",
   "description": "Svelte Material UI - Snackbar",
   "keywords": [
     "svelte",
@@ -27,7 +27,7 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@svelte-material-ui/common": "^1.0.0-beta.3",
-    "@material/snackbar": "^3.1.0"
+    "@material/snackbar": "^3.1.0",
+    "@svelte-material-ui/common": "^1.0.0-beta.5"
   }
 }

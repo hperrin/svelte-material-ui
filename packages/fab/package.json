@@ -1,6 +1,6 @@
 {
   "name": "@svelte-material-ui/fab",
-  "version": "1.0.0-beta.3",
+  "version": "1.0.0-beta.5",
   "description": "Svelte Material UI - Floating Action Button",
   "keywords": [
     "svelte",
@@ -27,8 +27,8 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@svelte-material-ui/common": "^1.0.0-beta.3",
     "@material/fab": "^3.1.0",
-    "@material/feature-targeting": "^3.1.0"
+    "@material/feature-targeting": "^3.1.0",
+    "@svelte-material-ui/common": "^1.0.0-beta.5"
   }
 }
