@@ -63,6 +63,8 @@
     <Button on:click={() => listDialog.open()}><Label>Open Dialog</Label></Button>
   </div>
 
+  <pre class="status">Clicked: {clickedList}</pre>
+
   <div>
     A selection dialog: <br />
 
@@ -116,9 +118,9 @@
   let eventDialog;
   let listDialog;
   let listSelectionDialog;
-  let clicked = 'nothing yet';
-  let response = 'nothing yet';
-  let clickedList = 'nothing yet';
+  let clicked = 'Nothing yet.';
+  let response = 'Nothing yet.';
+  let clickedList = 'Nothing yet.';
   let selection = 'Radishes';
   let selected = 'Nothing yet.';
 
