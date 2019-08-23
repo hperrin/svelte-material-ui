@@ -1,6 +1,6 @@
 {
   "name": "@svelte-material-ui/radio",
-  "version": "1.0.0-beta.2",
+  "version": "1.0.0-beta.3",
   "description": "Svelte Material UI - Radio",
   "keywords": [
     "svelte",
@@ -24,7 +24,7 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@svelte-material-ui/common": "^1.0.0-beta.2",
+    "@svelte-material-ui/common": "^1.0.0-beta.3",
     "@material/radio": "^3.1.0"
   }
 }
