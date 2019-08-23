@@ -6,15 +6,21 @@
 
 A library of Svelte 3 Material UI components, based on the [Material Design Web Components](https://material.io/develop/web/).
 
-Here's the NPM package: https://www.npmjs.com/package/svelte-material-ui
-
 ## Demos
 
 Check them out: https://hperrin.github.io/svelte-material-ui-demo/
 
 ## Installation
 
+You should install the packages individually. This package will install all of them, but why do that, when you can install them individually and better manage them?
+
 ```sh
+# Install the packages individually.
+npm install --save @svelte-material-ui/button
+npm install --save @svelte-material-ui/card
+# ...
+
+# Or, you can install this to get them all.
 npm install --save svelte-material-ui
 ```
 
@@ -53,10 +59,10 @@ Here's some example code:
 <HelperText id="super-helper">What you put in this box will become super!</HelperText>
 
 <script>
-  import Button from 'svelte-material-ui/button';
-  import Fab from 'svelte-material-ui/fab';
-  import Textfield, {HelperText} from 'svelte-material-ui/textfield';
-  import {Label, Icon} from 'svelte-material-ui/common';
+  import Button from '@svelte-material-ui/button';
+  import Fab from '@svelte-material-ui/fab';
+  import Textfield, {HelperText} from '@svelte-material-ui/textfield';
+  import {Label, Icon} from '@svelte-material-ui/common';
 
   let superText = '';
 </script>
@@ -76,46 +82,46 @@ I've only done components that need to/can be Svelte-ified. For some things, lik
 
 Click a component below to go to its documentation.
 
-- [Buttons](https://github.com/hperrin/svelte-material-ui/blob/master/button/README.md)
-  - [Floating Action Buttons](https://github.com/hperrin/svelte-material-ui/blob/master/fab/README.md)
-  - [Icon Buttons](https://github.com/hperrin/svelte-material-ui/blob/master/icon-button/README.md)
-- [Cards](https://github.com/hperrin/svelte-material-ui/blob/master/card/README.md)
-- [Chips](https://github.com/hperrin/svelte-material-ui/blob/master/chips/README.md)
-- [Data Tables](https://github.com/hperrin/svelte-material-ui/blob/master/data-table/README.md)
-- [Dialogs](https://github.com/hperrin/svelte-material-ui/blob/master/dialog/README.md)
-- [Drawers](https://github.com/hperrin/svelte-material-ui/blob/master/drawer/README.md)
+- [Buttons](https://github.com/hperrin/svelte-material-ui/blob/master/packages/button/README.md)
+  - [Floating Action Buttons](https://github.com/hperrin/svelte-material-ui/blob/master/packages/fab/README.md)
+  - [Icon Buttons](https://github.com/hperrin/svelte-material-ui/blob/master/packages/icon-button/README.md)
+- [Cards](https://github.com/hperrin/svelte-material-ui/blob/master/packages/card/README.md)
+- [Chips](https://github.com/hperrin/svelte-material-ui/blob/master/packages/chips/README.md)
+- [Data Tables](https://github.com/hperrin/svelte-material-ui/blob/master/packages/data-table/README.md)
+- [Dialogs](https://github.com/hperrin/svelte-material-ui/blob/master/packages/dialog/README.md)
+- [Drawers](https://github.com/hperrin/svelte-material-ui/blob/master/packages/drawer/README.md)
 - [Elevation](https://material.io/develop/web/components/elevation/)†
-- [Image List](https://github.com/hperrin/svelte-material-ui/blob/master/image-list/README.md)
+- [Image List](https://github.com/hperrin/svelte-material-ui/blob/master/packages/image-list/README.md)
 - Inputs and Controls
-  - [Checkboxes](https://github.com/hperrin/svelte-material-ui/blob/master/checkbox/README.md)
-  - [Floating Label](https://github.com/hperrin/svelte-material-ui/blob/master/floating-label/README.md)
-  - [Form Fields](https://github.com/hperrin/svelte-material-ui/blob/master/form-field/README.md)
-  - [Line Ripple](https://github.com/hperrin/svelte-material-ui/blob/master/line-ripple/README.md)
-  - [Notched Outline](https://github.com/hperrin/svelte-material-ui/blob/master/notched-outline/README.md)
-  - [Radio Buttons](https://github.com/hperrin/svelte-material-ui/blob/master/radio/README.md)
-  - [Select Menus](https://github.com/hperrin/svelte-material-ui/blob/master/select/README.md)
-    - [Select Helper Text](https://github.com/hperrin/svelte-material-ui/blob/master/select/helper-text/README.md)
-    - [Select Icon](https://github.com/hperrin/svelte-material-ui/blob/master/select/icon/README.md)
-  - [Sliders](https://github.com/hperrin/svelte-material-ui/blob/master/slider/README.md)
-  - [Switches](https://github.com/hperrin/svelte-material-ui/blob/master/switch/README.md)
-  - [Text Field](https://github.com/hperrin/svelte-material-ui/blob/master/textfield/README.md)
-    - [Text Field Character Counter](https://github.com/hperrin/svelte-material-ui/blob/master/textfield/character-counter/README.md)
-    - [Text Field Helper Text](https://github.com/hperrin/svelte-material-ui/blob/master/textfield/helper-text/README.md)
-    - [Text Field Icon](https://github.com/hperrin/svelte-material-ui/blob/master/textfield/icon/README.md)
-- [Linear Progress](https://github.com/hperrin/svelte-material-ui/blob/master/linear-progress/README.md)
-- [Lists](https://github.com/hperrin/svelte-material-ui/blob/master/list/README.md)
-- [Menu Surface](https://github.com/hperrin/svelte-material-ui/blob/master/menu-surface/README.md)
-- [Menus](https://github.com/hperrin/svelte-material-ui/blob/master/menu/README.md)
-- [Paper](https://github.com/hperrin/svelte-material-ui/blob/master/paper/README.md)‡
-- [Ripples](https://github.com/hperrin/svelte-material-ui/blob/master/ripple/README.md)
-- [Snackbars](https://github.com/hperrin/svelte-material-ui/blob/master/snackbar/README.md)
+  - [Checkboxes](https://github.com/hperrin/svelte-material-ui/blob/master/packages/checkbox/README.md)
+  - [Floating Label](https://github.com/hperrin/svelte-material-ui/blob/master/packages/floating-label/README.md)
+  - [Form Fields](https://github.com/hperrin/svelte-material-ui/blob/master/packages/form-field/README.md)
+  - [Line Ripple](https://github.com/hperrin/svelte-material-ui/blob/master/packages/line-ripple/README.md)
+  - [Notched Outline](https://github.com/hperrin/svelte-material-ui/blob/master/packages/notched-outline/README.md)
+  - [Radio Buttons](https://github.com/hperrin/svelte-material-ui/blob/master/packages/radio/README.md)
+  - [Select Menus](https://github.com/hperrin/svelte-material-ui/blob/master/packages/select/README.md)
+    - [Select Helper Text](https://github.com/hperrin/svelte-material-ui/blob/master/packages/select/helper-text/README.md)
+    - [Select Icon](https://github.com/hperrin/svelte-material-ui/blob/master/packages/select/icon/README.md)
+  - [Sliders](https://github.com/hperrin/svelte-material-ui/blob/master/packages/slider/README.md)
+  - [Switches](https://github.com/hperrin/svelte-material-ui/blob/master/packages/switch/README.md)
+  - [Text Field](https://github.com/hperrin/svelte-material-ui/blob/master/packages/textfield/README.md)
+    - [Text Field Character Counter](https://github.com/hperrin/svelte-material-ui/blob/master/packages/textfield/character-counter/README.md)
+    - [Text Field Helper Text](https://github.com/hperrin/svelte-material-ui/blob/master/packages/textfield/helper-text/README.md)
+    - [Text Field Icon](https://github.com/hperrin/svelte-material-ui/blob/master/packages/textfield/icon/README.md)
+- [Linear Progress](https://github.com/hperrin/svelte-material-ui/blob/master/packages/linear-progress/README.md)
+- [Lists](https://github.com/hperrin/svelte-material-ui/blob/master/packages/list/README.md)
+- [Menu Surface](https://github.com/hperrin/svelte-material-ui/blob/master/packages/menu-surface/README.md)
+- [Menus](https://github.com/hperrin/svelte-material-ui/blob/master/packages/menu/README.md)
+- [Paper](https://github.com/hperrin/svelte-material-ui/blob/master/packages/paper/README.md)‡
+- [Ripples](https://github.com/hperrin/svelte-material-ui/blob/master/packages/ripple/README.md)
+- [Snackbars](https://github.com/hperrin/svelte-material-ui/blob/master/packages/snackbar/README.md)
 - Tabs
-  - [Tab](https://github.com/hperrin/svelte-material-ui/blob/master/tab/README.md)
-  - [Tab Bar](https://github.com/hperrin/svelte-material-ui/blob/master/tab-bar/README.md)
-  - [Tab Indicator](https://github.com/hperrin/svelte-material-ui/blob/master/tab-indicator/README.md)
-  - [Tab Scroller](https://github.com/hperrin/svelte-material-ui/blob/master/tab-scroller/README.md)
+  - [Tab](https://github.com/hperrin/svelte-material-ui/blob/master/packages/tab/README.md)
+  - [Tab Bar](https://github.com/hperrin/svelte-material-ui/blob/master/packages/tab-bar/README.md)
+  - [Tab Indicator](https://github.com/hperrin/svelte-material-ui/blob/master/packages/tab-indicator/README.md)
+  - [Tab Scroller](https://github.com/hperrin/svelte-material-ui/blob/master/packages/tab-scroller/README.md)
 - [Theme](https://material.io/develop/web/components/theme/)†
-- [Top App Bar](https://github.com/hperrin/svelte-material-ui/blob/master/top-app-bar/README.md)
+- [Top App Bar](https://github.com/hperrin/svelte-material-ui/blob/master/packages/top-app-bar/README.md)
 - [Typography](https://material.io/develop/web/components/typography/)†
 
 <small>† This is Sass based, and therefore doesn't require Svelte components. I've included a demo showing how you can use it.</small>
