@@ -81,10 +81,10 @@
 </section>
 
 <script>
-  import Paper, {Title, Subtitle, Content} from 'svelte-material-ui/paper';
-  import Slider from 'svelte-material-ui/slider';
-  import Radio from 'svelte-material-ui/radio';
-  import FormField from 'svelte-material-ui/form-field';
+  import Paper, {Title, Subtitle, Content} from '@svelte-material-ui/paper';
+  import Slider from '@svelte-material-ui/slider';
+  import Radio from '@svelte-material-ui/radio';
+  import FormField from '@svelte-material-ui/form-field';
 
   let elevation = 1;
   let color = 'default';

@@ -47,10 +47,10 @@
 
 <script>
   import {onMount, onDestroy} from 'svelte';
-  import LinearProgress from 'svelte-material-ui/linear-progress';
-  import Checkbox from 'svelte-material-ui/checkbox';
-  import FormField from 'svelte-material-ui/form-field';
-  import Button from 'svelte-material-ui/button';
+  import LinearProgress from '@svelte-material-ui/linear-progress';
+  import Checkbox from '@svelte-material-ui/checkbox';
+  import FormField from '@svelte-material-ui/form-field';
+  import Button from '@svelte-material-ui/button';
   import './LinearProgress.scss';
 
   let progress = 0;

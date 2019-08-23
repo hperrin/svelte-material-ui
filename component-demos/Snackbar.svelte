@@ -52,9 +52,9 @@
 </section>
 
 <script>
-  import Snackbar, {Title, Actions, Label} from 'svelte-material-ui/snackbar';
-  import Button from 'svelte-material-ui/button';
-  import IconButton from 'svelte-material-ui/icon-button';
+  import Snackbar, {Title, Actions, Label} from '@svelte-material-ui/snackbar';
+  import Button from '@svelte-material-ui/button';
+  import IconButton from '@svelte-material-ui/icon-button';
 
   let mySnackbar;
   let mySnackbarB;

@@ -61,9 +61,9 @@
 </section>
 
 <script>
-  import MenuSurface, {Anchor} from 'svelte-material-ui/menu-surface';
-  import List, {Item, Separator, Text} from 'svelte-material-ui/list';
-  import Button from 'svelte-material-ui/button';
+  import MenuSurface, {Anchor} from '@svelte-material-ui/menu-surface';
+  import List, {Item, Separator, Text} from '@svelte-material-ui/list';
+  import Button from '@svelte-material-ui/button';
 
   let menu;
   let menu2;

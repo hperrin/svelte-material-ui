@@ -18,8 +18,8 @@
 </div>
 
 <script>
-  import TopAppBar, {Row, Section, Title, FixedAdjust, DenseFixedAdjust, ProminentFixedAdjust, ShortFixedAdjust} from 'svelte-material-ui/top-app-bar';
-  import IconButton from 'svelte-material-ui/icon-button';
+  import TopAppBar, {Row, Section, Title, FixedAdjust, DenseFixedAdjust, ProminentFixedAdjust, ShortFixedAdjust} from '@svelte-material-ui/top-app-bar';
+  import IconButton from '@svelte-material-ui/icon-button';
   import LoremIpsum from '../../LoremIpsum.svelte';
 
   let dense = false;

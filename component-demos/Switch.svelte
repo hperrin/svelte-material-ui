@@ -35,8 +35,8 @@
 </section>
 
 <script>
-  import Switch from 'svelte-material-ui/switch';
-  import FormField from 'svelte-material-ui/form-field';
+  import Switch from '@svelte-material-ui/switch';
+  import FormField from '@svelte-material-ui/form-field';
 
   let simpleSelected = false;
   let simpleSelected2 = false;

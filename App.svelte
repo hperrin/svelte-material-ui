@@ -49,12 +49,12 @@
 <script>
   import {onMount} from 'svelte';
   import Router, {link, location} from 'svelte-spa-router';
-  import TopAppBar, {Row, Section, Title} from 'svelte-material-ui/top-app-bar';
-  import Drawer, {Content, Scrim, AppContent} from 'svelte-material-ui/drawer';
-  import Button, {Label, Icon} from 'svelte-material-ui/button';
-  import IconButton from 'svelte-material-ui/icon-button';
-  import List, {Item, Text} from 'svelte-material-ui/list';
-  import A from 'svelte-material-ui/common/A.svelte';
+  import TopAppBar, {Row, Section, Title} from '@svelte-material-ui/top-app-bar';
+  import Drawer, {Content, Scrim, AppContent} from '@svelte-material-ui/drawer';
+  import Button, {Label, Icon} from '@svelte-material-ui/button';
+  import IconButton from '@svelte-material-ui/icon-button';
+  import List, {Item, Text} from '@svelte-material-ui/list';
+  import A from '@svelte-material-ui/common/A.svelte';
 
   import Home from './Home.svelte';
   import DemoButton from './component-demos/Button.svelte';

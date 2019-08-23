@@ -32,9 +32,9 @@
 
 <script>
   import './Theme.scss';
-  import Button from 'svelte-material-ui/button/Button.svelte';
-  import Fab from 'svelte-material-ui/fab/Fab.svelte';
-  import {Label, Icon} from 'svelte-material-ui/common';
+  import Button from '@svelte-material-ui/button/Button.svelte';
+  import Fab from '@svelte-material-ui/fab/Fab.svelte';
+  import {Label, Icon} from '@svelte-material-ui/common';
 
   let clicked = 0;
 </script>

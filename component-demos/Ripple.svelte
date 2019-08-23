@@ -1,14 +1,14 @@
 <section>
   <h2>Ripple</h2>
 
-  <p use:Ripple={[true]} tabindex="0">
+  <p use:Ripple={[true, {color: 'surface'}]} tabindex="0">
     SMUI ripples can be added to arbitrary elements, like this <code>p</code>
     element. Try clicking it to see the ripple.
   </p>
 
   <p>
     Unbounded:
-    <span use:Ripple={[true, {unbounded: true}]} tabindex="0" class="unbounded">
+    <span use:Ripple={[true, {unbounded: true, color: 'surface'}]} tabindex="0" class="unbounded">
       &copy;
     </span>
   </p>
@@ -23,7 +23,7 @@
 </section>
 
 <script>
-  import Ripple from 'svelte-material-ui/ripple';
+  import Ripple from '@svelte-material-ui/ripple';
 </script>
 
 <style>

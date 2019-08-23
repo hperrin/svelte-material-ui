@@ -109,10 +109,10 @@
 </section>
 
 <script>
-  import Dialog, {Title, Content, Actions, InitialFocus} from 'svelte-material-ui/dialog';
-  import Button, {Label} from 'svelte-material-ui/button';
-  import List, {Item, Graphic, Text} from 'svelte-material-ui/list';
-  import Radio from 'svelte-material-ui/radio';
+  import Dialog, {Title, Content, Actions, InitialFocus} from '@svelte-material-ui/dialog';
+  import Button, {Label} from '@svelte-material-ui/button';
+  import List, {Item, Graphic, Text} from '@svelte-material-ui/list';
+  import Radio from '@svelte-material-ui/radio';
 
   let simpleDialog;
   let eventDialog;

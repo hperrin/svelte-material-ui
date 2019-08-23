@@ -213,10 +213,10 @@
 </section>
 
 <script>
-  import Card, {Content, PrimaryAction, Media, MediaContent, Actions, ActionButtons, ActionIcons} from 'svelte-material-ui/card';
-  import Button, {Label} from 'svelte-material-ui/button';
-  import IconButton, {Icon} from 'svelte-material-ui/icon-button';
-  import List, {Item, Text} from 'svelte-material-ui/list';
+  import Card, {Content, PrimaryAction, Media, MediaContent, Actions, ActionButtons, ActionIcons} from '@svelte-material-ui/card';
+  import Button, {Label} from '@svelte-material-ui/button';
+  import IconButton, {Icon} from '@svelte-material-ui/icon-button';
+  import List, {Item, Text} from '@svelte-material-ui/list';
 
   let clicked = 0;
 </script>

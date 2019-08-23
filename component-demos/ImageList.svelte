@@ -67,7 +67,7 @@
 </section>
 
 <script>
-  import ImageList, {Item, ImageAspectContainer, Image, Supporting, Label} from 'svelte-material-ui/image-list';
-  import Div from 'svelte-material-ui/common/Div.svelte';
+  import ImageList, {Item, ImageAspectContainer, Image, Supporting, Label} from '@svelte-material-ui/image-list';
+  import Div from '@svelte-material-ui/common/Div.svelte';
   import './ImageList.scss';
 </script>

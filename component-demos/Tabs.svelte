@@ -71,9 +71,9 @@
 </section>
 
 <script>
-  import Tab, {Icon, Label} from 'svelte-material-ui/tab';
-  import TabBar from 'svelte-material-ui/tab-bar';
-  import Button from 'svelte-material-ui/button';
+  import Tab, {Icon, Label} from '@svelte-material-ui/tab';
+  import TabBar from '@svelte-material-ui/tab-bar';
+  import Button from '@svelte-material-ui/button';
 
   let active = 'Home';
   let iconTabs = [
