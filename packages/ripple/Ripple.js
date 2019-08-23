@@ -6,24 +6,31 @@ export default function Ripple(node, [ripple, props = {unbounded: false, color: 
   function handleProps(ripple, props) {
     if (ripple && !instance) {
       instance = new MDCRipple(node);
-      node.classList.add('mdc-ripple-surface');
     } else if (instance && !ripple) {
       instance.destroy();
       instance = null;
-      node.classList.remove('mdc-ripple-surface');
     }
     if (ripple) {
       instance.unbounded = !!props.unbounded;
-      if (props.color === 'primary') {
-        node.classList.add('mdc-ripple-surface--primary');
-        node.classList.remove('mdc-ripple-surface--accent');
-        return;
-      } else if (props.color === 'secondary') {
-        node.classList.remove('mdc-ripple-surface--primary');
-        node.classList.add('mdc-ripple-surface--accent');
-        return;
+      switch (props.color) {
+        case 'surface':
+          node.classList.add('mdc-ripple-surface');
+          node.classList.remove('mdc-ripple-surface--primary');
+          node.classList.remove('mdc-ripple-surface--accent');
+          return;
+        case 'primary':
+          node.classList.add('mdc-ripple-surface');
+          node.classList.add('mdc-ripple-surface--primary');
+          node.classList.remove('mdc-ripple-surface--accent');
+          return;
+        case 'secondary':
+          node.classList.add('mdc-ripple-surface');
+          node.classList.remove('mdc-ripple-surface--primary');
+          node.classList.add('mdc-ripple-surface--accent');
+          return;
       }
     }
+    node.classList.remove('mdc-ripple-surface');
     node.classList.remove('mdc-ripple-surface--primary');
     node.classList.remove('mdc-ripple-surface--accent');
   }
@@ -42,6 +49,8 @@ export default function Ripple(node, [ripple, props = {unbounded: false, color: 
         instance.destroy();
         instance = null;
         node.classList.remove('mdc-ripple-surface');
+        node.classList.remove('mdc-ripple-surface--primary');
+        node.classList.remove('mdc-ripple-surface--accent');
       }
     }
   }
