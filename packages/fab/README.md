@@ -6,6 +6,12 @@ See [MDC Floating Action Button](https://material.io/develop/web/components/butt
 
 See [the Sass variable file](https://github.com/material-components/material-components-web/blob/v3.1.1/packages/mdc-fab/_variables.scss) for styling variables.
 
+## Installation
+
+```sh
+npm install --save-dev @svelte-material-ui/fab
+```
+
 ## Basic Usage
 
 todo...

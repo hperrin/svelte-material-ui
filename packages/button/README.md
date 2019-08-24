@@ -6,6 +6,12 @@ See [MDC Buttons](https://material.io/develop/web/components/buttons/) for more 
 
 See [the Sass variable file](https://github.com/material-components/material-components-web/blob/v3.1.1/packages/mdc-button/_variables.scss) for styling variables.
 
+## Installation
+
+```sh
+npm install --save-dev @svelte-material-ui/button
+```
+
 ## Basic Usage
 
 ```html

@@ -6,6 +6,12 @@ See [MDC Radio](https://material.io/develop/web/components/input-controls/radio-
 
 See [the Sass variable file](https://github.com/material-components/material-components-web/blob/v3.1.1/packages/mdc-radio/_variables.scss) for styling variables.
 
+## Installation
+
+```sh
+npm install --save-dev @svelte-material-ui/radio
+```
+
 ## Basic Usage
 
 todo...

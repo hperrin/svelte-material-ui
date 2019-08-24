@@ -6,6 +6,12 @@ See [MDC Snackbar](https://material.io/develop/web/components/snackbars/) for mo
 
 See [the Sass variable file](https://github.com/material-components/material-components-web/blob/v3.1.1/packages/mdc-snackbar/_variables.scss) for styling variables.
 
+## Installation
+
+```sh
+npm install --save-dev @svelte-material-ui/snackbar
+```
+
 ## Basic Usage
 
 todo...

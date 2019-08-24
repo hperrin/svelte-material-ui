@@ -6,6 +6,12 @@ See [MDC Tab](https://material.io/develop/web/components/tabs/tab/) for more inf
 
 See [the Sass variable file](https://github.com/material-components/material-components-web/blob/v3.1.1/packages/mdc-tab/_variables.scss) for styling variables.
 
+## Installation
+
+```sh
+npm install --save-dev @svelte-material-ui/tab
+```
+
 ## Basic Usage
 
 todo...

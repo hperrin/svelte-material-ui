@@ -6,6 +6,12 @@ See [MDC Data Table](https://material.io/develop/web/components/data-tables/) fo
 
 See [the Sass variable file](https://github.com/material-components/material-components-web/blob/v3.1.1/packages/mdc-data-table/_variables.scss) for styling variables.
 
+## Installation
+
+```sh
+npm install --save-dev @svelte-material-ui/data-table
+```
+
 ## Basic Usage
 
 todo...

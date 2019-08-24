@@ -4,6 +4,10 @@ Tab scrollers are areas that allow a smooth scroll animation for a set of tabs t
 
 See [MDC Tab Scroller](https://material.io/develop/web/components/tabs/scroller/) for more information on API and Sass mixins.
 
+## Installation
+
+Don't install this package directly. It's a dependency of the Tab Bar package.
+
 ## Basic Usage
 
 todo...

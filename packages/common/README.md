@@ -1,6 +1,12 @@
 # Svelte Material UI - Common Components
 
-The common components are used in other components.
+The common components are used in other components. You can also use the elemental components to switch the element that a ClassAdder based component uses.
+
+## Installation
+
+```sh
+npm install --save-dev @svelte-material-ui/common
+```
 
 ## Exports
 

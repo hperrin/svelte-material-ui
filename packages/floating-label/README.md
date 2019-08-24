@@ -6,6 +6,14 @@ See [MDC Floating Label](https://material.io/develop/web/components/input-contro
 
 See [the Sass variable file](https://github.com/material-components/material-components-web/blob/v3.1.1/packages/mdc-floating-label/_variables.scss) for styling variables.
 
+## Installation
+
+You won't generally need to install this package, unless you're manually creating text fields.
+
+```sh
+npm install --save-dev @svelte-material-ui/floating-label
+```
+
 ## Basic Usage
 
 ```html

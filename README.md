@@ -16,12 +16,12 @@ You should install the packages individually. This package will install all of t
 
 ```sh
 # Install the packages individually.
-npm install --save @svelte-material-ui/button
-npm install --save @svelte-material-ui/card
+npm install --save-dev @svelte-material-ui/button
+npm install --save-dev @svelte-material-ui/card
 # ...
 
 # Or, you can install this to get them all.
-npm install --save svelte-material-ui
+npm install --save-dev svelte-material-ui
 ```
 
 ## Usage

@@ -6,6 +6,12 @@ See [MDC Linear Progress](https://material.io/develop/web/components/linear-prog
 
 See [the Sass variable file](https://github.com/material-components/material-components-web/blob/v3.1.1/packages/mdc-linear-progress/_variables.scss) for styling variables.
 
+## Installation
+
+```sh
+npm install --save-dev @svelte-material-ui/linear-progress
+```
+
 ## Basic Usage
 
 ```html

@@ -6,6 +6,12 @@ See [MDC Icon Button](https://material.io/develop/web/components/buttons/icon-bu
 
 See [the Sass variable file](https://github.com/material-components/material-components-web/blob/v3.1.1/packages/mdc-icon-button/_variables.scss) for styling variables.
 
+## Installation
+
+```sh
+npm install --save-dev @svelte-material-ui/icon-button
+```
+
 ## Basic Usage
 
 todo...

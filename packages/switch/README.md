@@ -6,6 +6,12 @@ See [MDC Switch](https://material.io/develop/web/components/input-controls/switc
 
 See [the Sass variable file](https://github.com/material-components/material-components-web/blob/v3.1.1/packages/mdc-switch/_variables.scss) for styling variables.
 
+## Installation
+
+```sh
+npm install --save-dev @svelte-material-ui/switch
+```
+
 ## Basic Usage
 
 todo...

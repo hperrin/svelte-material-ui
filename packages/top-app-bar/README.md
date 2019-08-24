@@ -6,6 +6,12 @@ See [MDC Top App Bar](https://material.io/develop/web/components/top-app-bar/) f
 
 See [the Sass variable file](https://github.com/material-components/material-components-web/blob/v3.1.1/packages/mdc-top-app-bar/_variables.scss) for styling variables.
 
+## Installation
+
+```sh
+npm install --save-dev @svelte-material-ui/top-app-bar
+```
+
 ## Basic Usage
 
 todo...

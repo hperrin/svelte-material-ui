@@ -6,6 +6,12 @@ See [MDC Text Field](https://material.io/develop/web/components/input-controls/t
 
 See [the Sass variable file](https://github.com/material-components/material-components-web/blob/v3.1.1/packages/mdc-textfield/_variables.scss) for styling variables.
 
+## Installation
+
+```sh
+npm install --save-dev @svelte-material-ui/textfield
+```
+
 ## Basic Usage
 
 todo...
