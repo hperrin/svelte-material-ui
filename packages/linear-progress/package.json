@@ -1,6 +1,6 @@
 {
   "name": "@svelte-material-ui/linear-progress",
-  "version": "1.0.0-beta.5",
+  "version": "1.0.0-beta.6",
   "description": "Svelte Material UI - Linear Progress",
   "keywords": [
     "svelte",
@@ -28,6 +28,6 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@material/linear-progress": "^3.1.0",
-    "@svelte-material-ui/common": "^1.0.0-beta.5"
+    "@svelte-material-ui/common": "^1.0.0-beta.6"
   }
 }

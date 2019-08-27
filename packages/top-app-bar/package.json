@@ -1,6 +1,6 @@
 {
   "name": "@svelte-material-ui/top-app-bar",
-  "version": "1.0.0-beta.5",
+  "version": "1.0.0-beta.6",
   "description": "Svelte Material UI - Top App Bar",
   "keywords": [
     "svelte",
@@ -29,6 +29,6 @@
   "dependencies": {
     "@material/feature-targeting": "^3.1.0",
     "@material/top-app-bar": "^3.1.0",
-    "@svelte-material-ui/common": "^1.0.0-beta.5"
+    "@svelte-material-ui/common": "^1.0.0-beta.6"
   }
 }

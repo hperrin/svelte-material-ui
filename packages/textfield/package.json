@@ -1,6 +1,6 @@
 {
   "name": "@svelte-material-ui/textfield",
-  "version": "1.0.0-beta.5",
+  "version": "1.0.0-beta.6",
   "description": "Svelte Material UI - Text Field",
   "keywords": [
     "svelte",
@@ -31,9 +31,9 @@
     "@material/ripple": "^3.1.0",
     "@material/rtl": "^3.1.0",
     "@material/textfield": "^3.1.0",
-    "@svelte-material-ui/common": "^1.0.0-beta.5",
-    "@svelte-material-ui/floating-label": "^1.0.0-beta.5",
-    "@svelte-material-ui/line-ripple": "^1.0.0-beta.5",
-    "@svelte-material-ui/notched-outline": "^1.0.0-beta.5"
+    "@svelte-material-ui/common": "^1.0.0-beta.6",
+    "@svelte-material-ui/floating-label": "^1.0.0-beta.6",
+    "@svelte-material-ui/line-ripple": "^1.0.0-beta.6",
+    "@svelte-material-ui/notched-outline": "^1.0.0-beta.6"
   }
 }
