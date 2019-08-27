@@ -27,7 +27,10 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
+    "@material/feature-targeting": "^3.1.0",
     "@material/snackbar": "^3.1.0",
-    "@svelte-material-ui/common": "^1.0.0-beta.5"
+    "@svelte-material-ui/button": "^1.0.0-beta.5",
+    "@svelte-material-ui/common": "^1.0.0-beta.5",
+    "@svelte-material-ui/icon-button": "^1.0.0-beta.5"
   }
 }

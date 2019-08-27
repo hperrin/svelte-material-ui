@@ -1,0 +1,8 @@
+@import "@material/feature-targeting/functions";
+
+@mixin smui-snackbar-core-styles($query: mdc-feature-all()) {
+  // Fix icon color.
+  .mdc-snackbar__dismiss.mdc-snackbar__dismiss {
+    @include mdc-icon-button-ink-color($mdc-snackbar-dismiss-ink-color, $query: $query);
+  }
+}
