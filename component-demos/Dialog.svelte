@@ -63,7 +63,7 @@
     <Button on:click={() => listDialog.open()}><Label>Open Dialog</Label></Button>
   </div>
 
-  <pre class="status">Clicked: {clickedList}</pre>
+  <pre class="status">Clicked: {clickedList}{clickedList === 69 ? ', nice' : ''}</pre>
 
   <div>
     A selection dialog: <br />

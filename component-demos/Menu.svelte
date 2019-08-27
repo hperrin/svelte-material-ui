@@ -14,11 +14,11 @@
   </div>
 
   <div>
-    Anchored automatically, corner set to bottom-left:
+    Anchored automatically:
 
     <div style="min-width: 100px;">
       <Button on:click={() => menu.setOpen(true)}>Open Menu</Button>
-      <Menu bind:this={menu} anchorCorner="BOTTOM_LEFT">
+      <Menu bind:this={menu}>
         <List>
           <Item on:SMUI:action={() => clicked = 'Cut'}><Text>Cut</Text></Item>
           <Item on:SMUI:action={() => clicked = 'Copy'}><Text>Copy</Text></Item>
@@ -31,11 +31,11 @@
   </div>
 
   <div>
-    Two line, anchored manually:
+    Two line, anchored manually, corner set to bottom-left:
 
     <div use:Anchor bind:this={anchor2}>
       <Button on:click={() => menu2.setOpen(true)}>Open Menu</Button>
-      <Menu bind:this={menu2} anchor={false} bind:anchorElement={anchor2}>
+      <Menu bind:this={menu2} anchor={false} bind:anchorElement={anchor2} anchorCorner="BOTTOM_LEFT">
         <List twoLine>
           <Item on:SMUI:action={() => clicked = 'Cut'}>
             <Text>
@@ -109,6 +109,10 @@
   <pre class="status">Selection 1: {selected1}</pre>
   <pre class="status">Selection 2: {selected2}</pre>
   <pre class="status">Clicked: {clicked2}</pre>
+
+  <div style="padding-top: 200px;">
+    Long div for scrolling...
+  </div>
 </section>
 
 <script>
