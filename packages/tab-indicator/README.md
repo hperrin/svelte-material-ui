@@ -6,18 +6,10 @@ See [MDC Tab Indicator](https://material.io/develop/web/components/tabs/indicato
 
 # Installation
 
-Don't install this package directly. It's a dependency of the Tab package.
-
-# Basic Usage
-
-todo...
+Don't install or use this package directly. It's a dependency of the Tab package.
 
 # Demo
 
 *in action:* https://hperrin.github.io/svelte-material-ui-demo/#/tabs
 
 *demo code:* https://github.com/hperrin/svelte-material-ui-demo/blob/master/component-demos/Tabs.svelte
-
-# Exports
-
-todo...
