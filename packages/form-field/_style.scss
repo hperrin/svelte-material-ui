@@ -1,1 +1,3 @@
 @import "@material/form-field/mdc-form-field";
+@import "./mixins";
+@include smui-form-field-core-styles;

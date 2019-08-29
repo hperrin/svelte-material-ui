@@ -1,0 +1,16 @@
+@import "@material/rtl/mixins";
+@import "@material/feature-targeting/functions";
+
+@mixin smui-form-field-core-styles($query: mdc-feature-all()) {
+  .mdc-form-field {
+    .mdc-switch + label {
+      @include mdc-rtl-reflexive-box(margin, left, 10px);
+    }
+
+    &.mdc-form-field--align-end {
+      .mdc-switch + label {
+        @include mdc-rtl-reflexive-box(margin, right, 10px);
+      }
+    }
+  }
+}
