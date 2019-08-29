@@ -115,6 +115,7 @@ Click a component below to go to its documentation.
 - [Paper](https://github.com/hperrin/svelte-material-ui/blob/master/packages/paper/README.md)‡
 - [Ripples](https://github.com/hperrin/svelte-material-ui/blob/master/packages/ripple/README.md)
 - [Snackbars](https://github.com/hperrin/svelte-material-ui/blob/master/packages/snackbar/README.md)
+  - [Kitchen](https://github.com/hperrin/svelte-material-ui/blob/master/packages/snackbar/kitchen/README.md)
 - Tabs
   - [Tab](https://github.com/hperrin/svelte-material-ui/blob/master/packages/tab/README.md)
   - [Tab Bar](https://github.com/hperrin/svelte-material-ui/blob/master/packages/tab-bar/README.md)
