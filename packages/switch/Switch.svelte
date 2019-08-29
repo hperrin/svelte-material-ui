@@ -18,7 +18,7 @@
         {...inputProps}
         {disabled}
         bind:checked={nativeChecked}
-        {value}
+        value={valueKey === uninitializedValue ? value : valueKey}
         on:change={handleChange}
         on:change on:input
         {...exclude(prefixFilter($$props, 'input$'), ['use', 'class'])}
@@ -46,6 +46,7 @@
   export let group = uninitializedValue;
   export let checked = uninitializedValue;
   export let value = null;
+  export let valueKey = uninitializedValue;
   export let input$use = [];
   export let input$class = '';
 
@@ -66,7 +67,7 @@
       if (switchControl.checked !== isChecked) {
         switchControl.checked = isChecked;
       }
-    } else if (switchControl.checked !== checked) {
+    } else if (checked !== uninitializedValue && switchControl.checked !== checked) {
       switchControl.checked = checked;
     }
   }
@@ -75,18 +76,22 @@
     switchControl.disabled = disabled;
   }
 
-  $: if (switchControl && switchControl.value !== value) {
+  $: if (switchControl && valueKey === uninitializedValue && switchControl.value !== value) {
     switchControl.value = value;
   }
 
-  let oldChecked = checked;
+  $: if (switchControl && valueKey !== uninitializedValue && switchControl.value !== valueKey) {
+    switchControl.value = valueKey;
+  }
+
+  let previousChecked = checked;
   $: if (checked !== uninitializedValue) {
-    if (checked === oldChecked) {
+    if (checked === previousChecked) {
       checked = nativeChecked;
     } else if (nativeChecked !== checked) {
       nativeChecked = checked;
     }
-    oldChecked = checked;
+    previousChecked = checked;
   }
 
   onMount(() => {
@@ -104,10 +109,10 @@
   function handleChange(e) {
     if (group !== uninitializedValue) {
       const idx = group.indexOf(value);
-      if (e.target.checked && idx === -1) {
+      if (switchControl.checked && idx === -1) {
         group.push(value);
         group = group;
-      } else if (!e.target.checked && idx !== -1) {
+      } else if (!switchControl.checked && idx !== -1) {
         group.splice(idx, 1);
         group = group;
       }
