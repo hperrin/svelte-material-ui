@@ -19,11 +19,11 @@ npm install --save-dev @svelte-material-ui/checkbox
   import Checkbox from '@svelte-material-ui/checkbox';
   import FormField from '@svelte-material-ui/form-field';
 
-  let simpleSelected = false;
+  let selected = false;
 </script>
 
 <FormField>
-  <Checkbox bind:checked={simpleSelected} />
+  <Checkbox bind:checked={selected} />
   <span slot="label">Check me.</span>
 </FormField>
 ```
@@ -38,15 +38,15 @@ npm install --save-dev @svelte-material-ui/checkbox
 
 ## (default)
 
-A Checkbox component.
+A checkbox.
 
 ### Props / Defaults
 
 * `use`: `[]` - An array of actions and/or action/property arrays.
 * `class`: `''` - A CSS class string.
-* `disabled`: `false` - Component appears as disabled.
-* `indeterminate`: `(uninitialised)` - Component is rendered in an indeterminate state
-* `group`: `(uninitialised)` - The selected values of a group of check boxes as an array.
+* `disabled`: `false` - Whether the input is disabled.
+* `indeterminate`: `(uninitialised)` - Whether the state is indeterminate.
+* `group`: `(uninitialised)` - The selected values of a group of checkboxes as an array.
 * `checked`: `(uninitialised)` - A boolean, whether the checkbox is checked. This is used instead of `group` for a single checkbox.
 * `value` : `null` - The value of a checkbox in a group of checkboxes.
 * `valueKey` : `(uninitialised)` - If `value` is not a string, this should be supplied as well, and should be a unique key.

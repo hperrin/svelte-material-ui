@@ -14,7 +14,27 @@ npm install --save-dev @svelte-material-ui/radio
 
 # Basic Usage
 
-todo...
+```html
+<script>
+  import Radio from '@svelte-material-ui/radio';
+  import FormField from '@svelte-material-ui/form-field';
+
+  let selected = 'a';
+</script>
+
+<FormField>
+  <Radio bind:group={selected} value="a" />
+  <span slot="label">A</span>
+</FormField>
+<FormField>
+  <Radio bind:group={selected} value="b" />
+  <span slot="label">B</span>
+</FormField>
+<FormField>
+  <Radio bind:group={selected} value="c" />
+  <span slot="label">C</span>
+</FormField>
+```
 
 # Demo
 
@@ -24,4 +44,30 @@ todo...
 
 # Exports
 
-todo...
+## (default)
+
+A radio.
+
+### Props / Defaults
+
+* `use`: `[]` - An array of actions and/or action/property arrays.
+* `class`: `''` - A CSS class string.
+* `disabled`: `false` - Whether the input is disabled.
+* `group`: `null` - The selected value of a group of radios.
+* `value` : `null` - The value of a radio in a group of radios.
+* `valueKey` : `(uninitialised)` - If `value` is not a string, this should be supplied as well, and should be a unique key.
+
+### Forwarded Props
+
+* `input$` - Props forwarded to the input element.
+
+### Events
+
+All standard UI events are forwarded.
+
+* `change`
+* `input`
+
+### Functions
+
+* `getId` - Get the HTML ID of the element.
