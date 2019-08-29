@@ -12,7 +12,13 @@
     "sveltejs"
   ],
   "scripts": {
+    "commitmsg": "commitlint -e $GIT_PARAMS",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
   },
   "files": [
     "logo.svg"
@@ -60,6 +66,9 @@
     "@svelte-material-ui/top-app-bar": "^1.0.0-beta.6"
   },
   "devDependencies": {
+    "@commitlint/cli": "^8.1.0",
+    "@commitlint/config-conventional": "^8.1.0",
+    "husky": "^3.0.4",
     "lerna": "^3.16.4",
     "svelte": "^3.9.1"
   }

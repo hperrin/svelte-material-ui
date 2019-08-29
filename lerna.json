@@ -1,6 +1,19 @@
 {
+  "version": "1.0.0-beta.6",
+  "command": {
+    "version": {
+      "allowBranch": [
+        "master"
+      ],
+      "conventionalCommits": true
+    },
+    "publish": {
+      "ignoreChanges": [
+        "*.md"
+      ]
+    }
+  },
   "packages": [
     "packages/*"
-  ],
-  "version": "1.0.0-beta.6"
+  ]
 }
