@@ -6,16 +6,16 @@ See [MDC Text Field Icon](https://material.io/develop/web/components/input-contr
 
 See [the Sass variable file](https://github.com/material-components/material-components-web/blob/v3.1.1/packages/mdc-textfield/icon/_variables.scss) for styling variables.
 
-## Basic Usage
+# Basic Usage
 
 todo...
 
-## Demo
+# Demo
 
 *in action:* https://hperrin.github.io/svelte-material-ui-demo/#/textfield
 
 *demo code:* https://github.com/hperrin/svelte-material-ui-demo/blob/master/component-demos/Textfield.svelte
 
-## Exports
+# Exports
 
 todo...

@@ -6,16 +6,16 @@ See [MDC Select Icon](https://material.io/develop/web/components/input-controls/
 
 See [the Sass variable file](https://github.com/material-components/material-components-web/blob/v3.1.1/packages/mdc-select/icon/_variables.scss) for styling variables.
 
-## Basic Usage
+# Basic Usage
 
 todo...
 
-## Demo
+# Demo
 
 *in action:* https://hperrin.github.io/svelte-material-ui-demo/#/select
 
 *demo code:* https://github.com/hperrin/svelte-material-ui-demo/blob/master/component-demos/Select.svelte
 
-## Exports
+# Exports
 
 todo...

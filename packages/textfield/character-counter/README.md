@@ -4,16 +4,16 @@ Text field character counts give the user context to the limit of a text field's
 
 See [MDC Text Field Character Counter](https://material.io/develop/web/components/input-controls/text-field/character-counter/) for more information on API and Sass mixins.
 
-## Basic Usage
+# Basic Usage
 
 todo...
 
-## Demo
+# Demo
 
 *in action:* https://hperrin.github.io/svelte-material-ui-demo/#/textfield
 
 *demo code:* https://github.com/hperrin/svelte-material-ui-demo/blob/master/component-demos/Textfield.svelte
 
-## Exports
+# Exports
 
 todo...
