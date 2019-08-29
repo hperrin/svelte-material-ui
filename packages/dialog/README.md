@@ -6,13 +6,13 @@ See [MDC Dialog](https://material.io/develop/web/components/dialogs/) for more i
 
 See [the Sass variable file](https://github.com/material-components/material-components-web/blob/v3.1.1/packages/mdc-dialog/_variables.scss) for styling variables.
 
-## Installation
+# Installation
 
 ```sh
 npm install --save-dev @svelte-material-ui/dialog
 ```
 
-## Basic Usage
+# Basic Usage
 
 ```html
 <script>
@@ -49,12 +49,12 @@ npm install --save-dev @svelte-material-ui/dialog
 <Button on:click={() => dialog.open()}><Label>Delete</Label></Button>
 ```
 
-## Demo
+# Demo
 
 *in action:* https://hperrin.github.io/svelte-material-ui-demo/#/dialog
 
 *demo code:* https://github.com/hperrin/svelte-material-ui-demo/blob/master/component-demos/Dialog.svelte
 
-## Exports
+# Exports
 
 todo...

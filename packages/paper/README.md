@@ -8,13 +8,13 @@ See [the Sass variable file](https://github.com/material-components/material-com
 
 See [the SMUI Sass variable file](https://github.com/hperrin/svelte-material-ui/blob/master/paper/_variables.scss) for additional styling variables.
 
-## Installation
+# Installation
 
 ```sh
 npm install --save-dev @svelte-material-ui/paper
 ```
 
-## Basic Usage
+# Basic Usage
 
 ```html
 <script>
@@ -28,19 +28,19 @@ npm install --save-dev @svelte-material-ui/paper
 </Paper>
 ```
 
-## Demo
+# Demo
 
 *in action:* https://hperrin.github.io/svelte-material-ui-demo/#/paper
 
 *demo code:* https://github.com/hperrin/svelte-material-ui-demo/blob/master/component-demos/Paper.svelte
 
-## Exports
+# Exports
 
-### (default)
+## (default)
 
 A Paper component.
 
-#### Props / Defaults
+### Props / Defaults
 
 * `use`: `[]` - An array of actions and/or action/property arrays.
 * `class`: `''` - A CSS class string.
@@ -49,23 +49,23 @@ A Paper component.
 * `elevation`: `1` - The component's elevation. (integer between 0 and 24, inclusive)
 * `transition`: `false` - Trigger a transition animation when elevation is changed.
 
-#### Events
+### Events
 
 All standard UI events are forwarded.
 
-### Title
+## Title
 
 A fragment used as a title on the Paper.
 
 Equivalent to the [`ClassAdder` with `H5` common component](https://github.com/hperrin/svelte-material-ui/blob/master/common/README.md#classaddersvelte).
 
-### Subtitle
+## Subtitle
 
 A fragment used as a subtitle on the Paper.
 
 Equivalent to the [`ClassAdder` with `H6` common component](https://github.com/hperrin/svelte-material-ui/blob/master/common/README.md#classaddersvelte).
 
-### Content
+## Content
 
 A fragment used as a body of the Paper.
 

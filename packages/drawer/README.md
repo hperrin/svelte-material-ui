@@ -6,22 +6,22 @@ See [MDC Drawer](https://material.io/develop/web/components/drawers/) for more i
 
 See [the Sass variable file](https://github.com/material-components/material-components-web/blob/v3.1.1/packages/mdc-drawer/_variables.scss) for styling variables.
 
-## Installation
+# Installation
 
 ```sh
 npm install --save-dev @svelte-material-ui/drawer
 ```
 
-## Basic Usage
+# Basic Usage
 
 todo...
 
-## Demo
+# Demo
 
 *in action:* https://hperrin.github.io/svelte-material-ui-demo/#/drawer
 
 *demo code:* https://github.com/hperrin/svelte-material-ui-demo/blob/master/component-demos/Drawer.svelte
 
-## Exports
+# Exports
 
 todo...

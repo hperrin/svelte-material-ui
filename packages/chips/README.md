@@ -6,13 +6,13 @@ See [MDC Chips](https://material.io/develop/web/components/chips/) for more info
 
 See [the Sass variable file](https://github.com/material-components/material-components-web/blob/v3.1.1/packages/mdc-chips/_variables.scss) for styling variables.
 
-## Installation
+# Installation
 
 ```sh
 npm install --save-dev @svelte-material-ui/chips
 ```
 
-## Basic Usage
+# Basic Usage
 
 Input Chips:
 
@@ -40,19 +40,19 @@ Input Chips:
 </Set>
 ```
 
-## Demo
+# Demo
 
 *in action:* https://hperrin.github.io/svelte-material-ui-demo/#/chips
 
 *demo code:* https://github.com/hperrin/svelte-material-ui-demo/blob/master/component-demos/Chips.svelte
 
-## Exports
+# Exports
 
-### (default)
+## (default)
 
 A chip.
 
-#### Props / Defaults
+### Props / Defaults
 
 * `use`: `[]` - An array of actions and/or action/property arrays.
 * `class`: `''` - A CSS class string.
@@ -60,7 +60,7 @@ A chip.
 * `selected`: `false` - Whether the chip is selected.
 * `shouldRemoveOnTrailingIconClick`: `true` - Whether the chip should be removed upon clicking the trailing icon.
 
-#### Events
+### Events
 
 All standard UI events are forwarded.
 
@@ -69,11 +69,11 @@ All standard UI events are forwarded.
 * `MDCChip:removal`
 * `MDCChip:trailingIconInteraction`
 
-### Set
+## Set
 
 A set of chips. Chips should only be added onto the end of the set's chip array.
 
-#### Props / Defaults
+### Props / Defaults
 
 * `use`: `[]` - An array of actions and/or action/property arrays.
 * `class`: `''` - A CSS class string.
@@ -84,19 +84,19 @@ A set of chips. Chips should only be added onto the end of the set's chip array.
 * `filter` `false` - Whether to present the chips as a set of options, allowing any number to be chosen.
 * `input` `false` - Whether to present the chips as a set of values, allowing them to be removed.
 
-#### Events
+### Events
 
 All standard UI events are forwarded.
 
-### Checkmark
+## Checkmark
 
-### Text
+## Text
 
 A text label.
 
 See the [common label readme](https://github.com/hperrin/svelte-material-ui/blob/master/common/README.md#label).
 
-### Icon
+## Icon
 
 A graphic icon.
 

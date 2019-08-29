@@ -6,13 +6,13 @@ See [MDC Cards](https://material.io/develop/web/components/cards/) for more info
 
 See [the Sass variable file](https://github.com/material-components/material-components-web/blob/v3.1.1/packages/mdc-card/_variables.scss) for styling variables.
 
-## Installation
+# Installation
 
 ```sh
 npm install --save-dev @svelte-material-ui/card
 ```
 
-## Basic Usage
+# Basic Usage
 
 ```html
 <script>
@@ -59,30 +59,30 @@ npm install --save-dev @svelte-material-ui/card
 </Card>
 ```
 
-## Demo
+# Demo
 
 *in action:* https://hperrin.github.io/svelte-material-ui-demo/#/card
 
 *demo code:* https://github.com/hperrin/svelte-material-ui-demo/blob/master/component-demos/Card.svelte
 
-## Exports
+# Exports
 
-### (default)
+## (default)
 
 A card.
 
-#### Options / Defaults
+### Options / Defaults
 
 * `use`: `[]` - An array of actions and/or action/property arrays.
 * `class`: `''` - A CSS class string.
 * `variant`: `'raised'` - The card's style variant. ('raised' or 'outlined')
 * `padded`: `false` - Whether to apply padding to the card. You can also use a `Content` component to achieve the same effect.
 
-#### Events
+### Events
 
 All standard UI events are forwarded.
 
-### Content
+## Content
 
 A fragment used as a content area within a card.
 
@@ -90,11 +90,11 @@ Equivalent to the [`ClassAdder` with `Div` common component](https://github.com/
 
 Note that you can supply your own component to a `ClassAdder` based component. You can use this to create things like list cards.
 
-### PrimaryAction
+## PrimaryAction
 
 An interactive portion of the card. Meant to be the primary way to interact with the card.
 
-#### Options / Defaults
+### Options / Defaults
 
 * `use`: `[]` - An array of actions and/or action/property arrays.
 * `class`: `''` - A CSS class string.
@@ -103,51 +103,51 @@ An interactive portion of the card. Meant to be the primary way to interact with
 * `padded`: `false` - Whether to apply padding to the area.
 * `tabindex`: `'0'` - The tabindex of the area.
 
-#### Events
+### Events
 
 All standard UI events are forwarded.
 
-### Media
+## Media
 
 An area of the card meant to show media content.
 
-#### Options / Defaults
+### Options / Defaults
 
 * `use`: `[]` - An array of actions and/or action/property arrays.
 * `class`: `''` - A CSS class string.
 * `aspectRatio`: `null` - Add styling to maintain a given aspect ratio. ('square' or '16x9')
 
-#### Events
+### Events
 
 All standard UI events are forwarded.
 
-### MediaContent
+## MediaContent
 
 An area of the card within the media meant to show content over top of the media.
 
 Equivalent to the [`ClassAdder` with `Div` common component](https://github.com/hperrin/svelte-material-ui/blob/master/common/README.md#classaddersvelte).
 
-### Actions
+## Actions
 
 An area of the card containing interactive actions.
 
-#### Options / Defaults
+### Options / Defaults
 
 * `use`: `[]` - An array of actions and/or action/property arrays.
 * `class`: `''` - A CSS class string.
 * `fullBleed`: `false` - Whether to style the actions as full bleed, meaning they take up the whole width of the card.
 
-#### Events
+### Events
 
 All standard UI events are forwarded.
 
-### ActionButtons
+## ActionButtons
 
 An area of the card, within Actions, containing buttons.
 
 Equivalent to the [`ClassAdder` with `Div` common component](https://github.com/hperrin/svelte-material-ui/blob/master/common/README.md#classaddersvelte).
 
-### ActionIcons
+## ActionIcons
 
 An area of the card, within Actions, containing icon buttons.
 

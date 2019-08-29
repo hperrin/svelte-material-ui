@@ -6,7 +6,7 @@ See [MDC Floating Label](https://material.io/develop/web/components/input-contro
 
 See [the Sass variable file](https://github.com/material-components/material-components-web/blob/v3.1.1/packages/mdc-floating-label/_variables.scss) for styling variables.
 
-## Installation
+# Installation
 
 You won't generally need to install this package, unless you're manually creating text fields.
 
@@ -14,7 +14,7 @@ You won't generally need to install this package, unless you're manually creatin
 npm install --save-dev @svelte-material-ui/floating-label
 ```
 
-## Basic Usage
+# Basic Usage
 
 ```html
 <script>
@@ -35,30 +35,30 @@ npm install --save-dev @svelte-material-ui/floating-label
 </Textfield>
 ```
 
-## Demo
+# Demo
 
 *in action:* https://hperrin.github.io/svelte-material-ui-demo/#/textfield
 
 *demo code:* https://github.com/hperrin/svelte-material-ui-demo/blob/master/component-demos/Textfield.svelte
 
-## Exports
+# Exports
 
-### (default)
+## (default)
 
 A Floating Label component.
 
-#### Props / Defaults
+### Props / Defaults
 
 * `use`: `[]` - An array of actions and/or action/property arrays.
 * `class`: `''` - A CSS class string.
 * `for`: `''` - The ID of the input the label is to be associated with.
 * `wrapped`: `false` - If the label is wrapped, a `span` element is used with no `for` attribute, otherwise, a `label` element is used with a `for` attribute.
 
-#### Events
+### Events
 
 All standard UI events are forwarded.
 
-#### Functions
+### Functions
 
 * `shake(boolean)` - Shakes the label element.
 * `float(boolean)` - Floats the label element.

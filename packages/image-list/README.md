@@ -6,22 +6,22 @@ See [MDC Image List](https://material.io/develop/web/components/image-lists/) fo
 
 See [the Sass variable file](https://github.com/material-components/material-components-web/blob/v3.1.1/packages/mdc-image-list/_variables.scss) for styling variables.
 
-## Installation
+# Installation
 
 ```sh
 npm install --save-dev @svelte-material-ui/image-list
 ```
 
-## Basic Usage
+# Basic Usage
 
 todo...
 
-## Demo
+# Demo
 
 *in action:* https://hperrin.github.io/svelte-material-ui-demo/#/image-list
 
 *demo code:* https://github.com/hperrin/svelte-material-ui-demo/blob/master/component-demos/ImageList.svelte
 
-## Exports
+# Exports
 
 todo...

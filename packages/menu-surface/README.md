@@ -6,7 +6,7 @@ See [MDC Menu Surface](https://material.io/develop/web/components/menu-surface/)
 
 See [the Sass variable file](https://github.com/material-components/material-components-web/blob/v3.1.1/packages/mdc-menu-surface/_variables.scss) for styling variables.
 
-## Installation
+# Installation
 
 You won't generally need to install this package. The Menu package is usually a better choice.
 
@@ -14,16 +14,16 @@ You won't generally need to install this package. The Menu package is usually a 
 npm install --save-dev @svelte-material-ui/menu-surface
 ```
 
-## Basic Usage
+# Basic Usage
 
 todo...
 
-## Demo
+# Demo
 
 *in action:* https://hperrin.github.io/svelte-material-ui-demo/#/menu-surface
 
 *demo code:* https://github.com/hperrin/svelte-material-ui-demo/blob/master/component-demos/MenuSurface.svelte
 
-## Exports
+# Exports
 
 todo...

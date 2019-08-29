@@ -6,13 +6,13 @@ See [MDC Linear Progress](https://material.io/develop/web/components/linear-prog
 
 See [the Sass variable file](https://github.com/material-components/material-components-web/blob/v3.1.1/packages/mdc-linear-progress/_variables.scss) for styling variables.
 
-## Installation
+# Installation
 
 ```sh
 npm install --save-dev @svelte-material-ui/linear-progress
 ```
 
-## Basic Usage
+# Basic Usage
 
 ```html
 <script>
@@ -29,19 +29,19 @@ npm install --save-dev @svelte-material-ui/linear-progress
 <LinearProgress indeterminate {closed} />
 ```
 
-## Demo
+# Demo
 
 *in action:* https://hperrin.github.io/svelte-material-ui-demo/#/linear-progress
 
 *demo code:* https://github.com/hperrin/svelte-material-ui-demo/blob/master/component-demos/LinearProgress.scss
 
-## Exports
+# Exports
 
-### (default)
+## (default)
 
 A Linear Progress component.
 
-#### Props / Defaults
+### Props / Defaults
 
 * `use`: `[]` - An array of actions and/or action/property arrays.
 * `class`: `''` - A CSS class string.
@@ -51,6 +51,6 @@ A Linear Progress component.
 * `progress`: `0` - The progress to indicate. (float between 0 and 1, inclusive)
 * `buffer`: `null` - The buffer progress to indicate. (`null` or float between 0 and 1, inclusive)
 
-#### Events
+### Events
 
 All standard UI events are forwarded.

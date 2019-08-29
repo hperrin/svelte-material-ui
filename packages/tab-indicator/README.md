@@ -4,20 +4,20 @@ Tab indicators are visual indicators showing which tab in a set of tabs is activ
 
 See [MDC Tab Indicator](https://material.io/develop/web/components/tabs/indicator/) for more information on API and Sass mixins.
 
-## Installation
+# Installation
 
 Don't install this package directly. It's a dependency of the Tab package.
 
-## Basic Usage
+# Basic Usage
 
 todo...
 
-## Demo
+# Demo
 
 *in action:* https://hperrin.github.io/svelte-material-ui-demo/#/tabs
 
 *demo code:* https://github.com/hperrin/svelte-material-ui-demo/blob/master/component-demos/Tabs.svelte
 
-## Exports
+# Exports
 
 todo...

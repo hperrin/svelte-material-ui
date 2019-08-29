@@ -6,13 +6,13 @@ See [MDC Checkboxes](https://material.io/develop/web/components/input-controls/c
 
 See [the Sass variable file](https://github.com/material-components/material-components-web/blob/v3.1.1/packages/mdc-checkbox/_variables.scss) for styling variables.
 
-## Installation
+# Installation
 
 ```sh
 npm install --save-dev @svelte-material-ui/checkbox
 ```
 
-## Basic Usage
+# Basic Usage
 
 ```html
 <script>
@@ -28,19 +28,19 @@ npm install --save-dev @svelte-material-ui/checkbox
 </FormField>
 ```
 
-## Demo
+# Demo
 
 *in action:* https://hperrin.github.io/svelte-material-ui-demo/#/checkbox
 
 *demo code:* https://github.com/hperrin/svelte-material-ui-demo/blob/master/component-demos/Checkbox.svelte
 
-## Exports
+# Exports
 
-### (default)
+## (default)
 
 A Checkbox component.
 
-#### Props / Defaults
+### Props / Defaults
 
 * `use`: `[]` - An array of actions and/or action/property arrays.
 * `class`: `''` - A CSS class string.
@@ -51,17 +51,17 @@ A Checkbox component.
 * `value` : `null` - The value of a checkbox in a group of checkboxes.
 * `valueKey` : `(uninitialised)` - If `value` is not a string, this should be supplied as well, and should be a unique key.
 
-#### Forwarded Props
+### Forwarded Props
 
 * `input$` - Props forwarded to the input element.
 
-#### Events
+### Events
 
 All standard UI events are forwarded.
 
 * `change`
 * `input`
 
-#### Functions
+### Functions
 
 * `getId` - Get the HTML ID of the element.

@@ -6,13 +6,13 @@ See [MDC Buttons](https://material.io/develop/web/components/buttons/) for more 
 
 See [the Sass variable file](https://github.com/material-components/material-components-web/blob/v3.1.1/packages/mdc-button/_variables.scss) for styling variables.
 
-## Installation
+# Installation
 
 ```sh
 npm install --save-dev @svelte-material-ui/button
 ```
 
-## Basic Usage
+# Basic Usage
 
 ```html
 <script>
@@ -28,19 +28,19 @@ npm install --save-dev @svelte-material-ui/button
 </Button>
 ```
 
-## Demo
+# Demo
 
 *in action:* https://hperrin.github.io/svelte-material-ui-demo/#/button
 
 *demo code:* https://github.com/hperrin/svelte-material-ui-demo/blob/master/component-demos/Button.svelte
 
-## Exports
+# Exports
 
-### (default)
+## (default)
 
 A button.
 
-#### Options / Defaults
+### Options / Defaults
 
 * `use`: `[]` - An array of actions and/or action/property arrays.
 * `class`: `''` - A CSS class string.
@@ -52,35 +52,35 @@ A button.
 * `action`: `'close'` - Used in the context of a dialog. This sets the button's action.
 * `default`: `false` - Used in the context of a dialog. This makes the button the default for the dialog.
 
-#### Events
+### Events
 
 All standard UI events are forwarded.
 
-### Group
+## Group
 
 A button group.
 
-#### Options / Defaults
+### Options / Defaults
 
 * `use`: `[]` - An array of actions and/or action/property arrays.
 * `class`: `''` - A CSS class string.
 * `variant`: `'text'` - The button group's style variant. ('text', 'raised', 'unelevated', or 'outlined')
 
-#### Events
+### Events
 
 All standard UI events are forwarded.
 
-### GroupItem
+## GroupItem
 
 A group item Svelte action. Used for containing a button in a group. This can be useful for containing menus along with the button.
 
-### Label
+## Label
 
 A text label.
 
 See the [common label readme](https://github.com/hperrin/svelte-material-ui/blob/master/common/README.md#label).
 
-### Icon
+## Icon
 
 A graphic icon.
 

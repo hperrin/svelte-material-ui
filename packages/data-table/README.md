@@ -6,22 +6,22 @@ See [MDC Data Table](https://material.io/develop/web/components/data-tables/) fo
 
 See [the Sass variable file](https://github.com/material-components/material-components-web/blob/v3.1.1/packages/mdc-data-table/_variables.scss) for styling variables.
 
-## Installation
+# Installation
 
 ```sh
 npm install --save-dev @svelte-material-ui/data-table
 ```
 
-## Basic Usage
+# Basic Usage
 
 todo...
 
-## Demo
+# Demo
 
 *in action:* https://hperrin.github.io/svelte-material-ui-demo/#/data-table
 
 *demo code:* https://github.com/hperrin/svelte-material-ui-demo/blob/master/component-demos/DataTable.svelte
 
-## Exports
+# Exports
 
 todo...

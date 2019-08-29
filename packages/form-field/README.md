@@ -8,13 +8,13 @@ See [MDC Form Fields](https://material.io/develop/web/components/input-controls/
 
 See [the Sass variable file](https://github.com/material-components/material-components-web/blob/v3.1.1/packages/mdc-form-field/_variables.scss) for styling variables.
 
-## Installation
+# Installation
 
 ```sh
 npm install --save-dev @svelte-material-ui/form-field
 ```
 
-## Basic Usage
+# Basic Usage
 
 ```html
 <script>
@@ -30,19 +30,19 @@ npm install --save-dev @svelte-material-ui/form-field
 </FormField>
 ```
 
-## Demo
+# Demo
 
 *in action:* https://hperrin.github.io/svelte-material-ui-demo/#/radio
 
 *demo code:* https://github.com/hperrin/svelte-material-ui-demo/blob/master/component-demos/Radio.svelte
 
-## Exports
+# Exports
 
-### (default)
+## (default)
 
 A Form Field component.
 
-#### Props / Defaults
+### Props / Defaults
 
 * `use`: `[]` - An array of actions and/or action/property arrays.
 * `class`: `''` - A CSS class string.
@@ -51,10 +51,10 @@ A Form Field component.
 
 The ID is generated using a module context counter, so you don't need to provide one yourself. The format is `SMUI-form-field-{counter}`, and the counter starts at 0.
 
-#### Events
+### Events
 
 All standard UI events are forwarded.
 
-#### Forwarded Props
+### Forwarded Props
 
 * `label$` - Props forwarded to the label element.

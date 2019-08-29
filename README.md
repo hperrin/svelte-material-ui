@@ -6,11 +6,11 @@
 
 A library of Svelte 3 Material UI components, based on the [Material Design Web Components](https://material.io/develop/web/).
 
-## Demos
+# Demos
 
 Check them out: https://hperrin.github.io/svelte-material-ui-demo/
 
-## Installation
+# Installation
 
 You should install the packages individually. This package will install all of them, but why do that, when you can install them individually and better manage them?
 
@@ -24,7 +24,7 @@ npm install --save-dev @svelte-material-ui/card
 npm install --save-dev svelte-material-ui
 ```
 
-## Usage
+# Usage
 
 To bundle this in your own code, use a Sass processor. This package includes Sass files in its JS.
 
@@ -76,7 +76,7 @@ Here are some juicy features:
 * All standard UI events are forwarded on components, input events ("input" and "change") are forwarded on input components, and all MDC events are forwarded.
 * Labels and icons are named exports in the components that use them, or you can use 'common/Label' and 'common/Icon'. (Except for textfield and select icons, because they are special snowflakes.)
 
-## Components
+# Components
 
 I've only done components that need to/can be Svelte-ified. For some things, like RTL and layout grid, you can just use the MDC packages.
 
@@ -128,13 +128,13 @@ Click a component below to go to its documentation.
 
 <small>‡ This is not an MDC Web component. It is an addition that SMUI provides.</small>
 
-## Other Svelte UI Projects
+# Other Svelte UI Projects
 
 Svelte UI libraries are really starting to make good progress. Check out this Fomantic-UI component library:
 
 https://github.com/titans-inc/sveltemantic
 
-## License
+# License
 
 Copyright 2019 Hunter Perrin
 
