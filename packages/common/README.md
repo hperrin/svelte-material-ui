@@ -35,7 +35,7 @@ The common icon is used everywhere except for the `textfield` and `select` compo
 
 * `use`: `[]` - An array of actions and/or action/property arrays.
 * `class`: `''` - A CSS class string.
-* `on`: `false` - Used in the context of an icon button toggle to denote the icon for when the button in on.
+* `on`: `false` - Used in the context of an icon button toggle to denote the icon for when the button is on.
 * `leading`: `false` - Used in the context of a chip to denote that the icon is a leading icon.
 * `leadingHidden`: `false` - Used in the context of a filter chip to hide the icon when the chip is selected.
 * `trailing`: `false` - Used in the context of a chip to denote that the icon is a trailing icon.

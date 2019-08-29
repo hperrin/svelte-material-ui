@@ -73,8 +73,13 @@
       toggleButton.on = pressed;
     } else if (oldToggle) {
       toggleButton.destroy();
+      toggleButton = null;
     }
     oldToggle = toggle;
+  }
+
+  $: if (toggleButton && toggleButton.on !== pressed) {
+    toggleButton.on = pressed;
   }
 
   onDestroy(() => {
