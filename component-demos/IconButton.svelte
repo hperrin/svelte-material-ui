@@ -23,6 +23,8 @@
       <Icon class="material-icons">alarm_off</Icon>
     </IconButton>
     {initialOn ? '(on)' : '(off)'}
+    &nbsp;
+    <Button on:click={() => initialOn = !initialOn}><Label>Toggle Programmatically</Label></Button>
   </div>
 
   <pre class="status">Clicked: {clicked}</pre>
@@ -30,6 +32,7 @@
 
 <script>
   import IconButton, {Icon} from '@svelte-material-ui/icon-button';
+  import Button, {Label} from '@svelte-material-ui/button';
 
   let clicked = 0;
   let initialOff = false;

@@ -4,7 +4,7 @@ A demo of [Svelte Material UI](https://github.com/hperrin/svelte-material-ui/), 
 
 This repo is set up to expect Svelte Material UI to be available in a sibling directory named 'svelte-material-ui'.
 
-## License
+# License
 
 Copyright 2019 Hunter Perrin
 
