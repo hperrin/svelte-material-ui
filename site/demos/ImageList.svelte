@@ -39,7 +39,7 @@
     <ImageList class="my-image-list-masonry" masonry>
       {#each Array(15) as _unused, i}
         <Item>
-          <Image src="https://via.placeholder.com/190x{107 + Math.floor(Math.abs((i % 2 ? Math.cos : Math.sin)(i) * 200))}.png?text=190x{107 + Math.floor(Math.abs((i % 2 ? Math.cos : Math.sin)(i) * 200))}" alt="Image {i + 1}" />
+          <Image src="https://via.placeholder.com/190x{getUnevenImageSize(i, 107, 200, Math.abs)}.png?text=190x{getUnevenImageSize(i, 107, 200, Math.abs)}" alt="Image {i + 1}" />
           <Supporting>
             <Label>Image {i + 1}</Label>
           </Supporting>
@@ -55,7 +55,7 @@
       {#each Array(15) as _unused, i}
         <Item>
           <ImageAspectContainer>
-            <Image component={Div} style="background-image: url(https://via.placeholder.com/190x{190 + Math.floor((i % 2 ? Math.cos : Math.sin)(i) * 10)}.png?text=190x{190 + Math.floor((i % 2 ? Math.cos : Math.sin)(i) * 10)});" />
+            <Image component={Div} style="background-image: url(https://via.placeholder.com/190x{getUnevenImageSize(i, 190, 10)}.png?text=190x{getUnevenImageSize(i, 190, 10)});" />
           </ImageAspectContainer>
           <Supporting>
             <Label>Image {i + 1}</Label>
@@ -70,4 +70,9 @@
   import ImageList, {Item, ImageAspectContainer, Image, Supporting, Label} from '@svelte-material-ui/image-list';
   import Div from '@svelte-material-ui/common/Div.svelte';
   import './ImageList.scss';
+
+  function getUnevenImageSize(counter, base, variance, preAdd = num => num) {
+    const mid = (counter % 2 ? Math.cos : Math.sin)(counter) * variance;
+    return base + Math.floor(preAdd(mid));
+  }
 </script>

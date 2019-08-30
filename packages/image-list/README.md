@@ -14,7 +14,40 @@ npm install --save-dev @svelte-material-ui/image-list
 
 # Basic Usage
 
-todo...
+```html
+<script>
+  import ImageList, {Item, ImageAspectContainer, Image, Supporting, Label} from '@svelte-material-ui/image-list';
+  import './style.scss';
+  import {images} from './store.js';
+</script>
+
+<ImageList class="my-image-list">
+  {#each $images as image}
+    <Item>
+      <ImageAspectContainer>
+        <Image src={image.src} alt={image.title} />
+      </ImageAspectContainer>
+      <Supporting>
+        <Label>{image.description}</Label>
+      </Supporting>
+    </Item>
+  {/each}
+</ImageList>
+```
+
+```scss
+// style.scss
+.my-image-list {
+  @include mdc-image-list-standard-columns(5);
+  max-width: 680px;
+}
+
+@media (max-width: 599px) {
+  .my-image-list {
+    @include mdc-image-list-standard-columns(3);
+  }
+}
+```
 
 # Demo
 
