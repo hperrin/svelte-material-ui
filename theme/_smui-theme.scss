@@ -1,0 +1,28 @@
+//
+// MDC Theme
+//
+
+@import "@material/theme/color-palette";
+
+// Svelte Colors!
+$mdc-theme-primary: #ff3e00;
+$mdc-theme-secondary: #676778;
+// Other Svelte color: #40b3ff
+
+$mdc-theme-background: #fff;
+$mdc-theme-surface: #fff;
+
+$mdc-theme-error: $material-color-red-900;
+
+// This adds classes like "mdc-theme--primary-bg".
+@import "@material/theme/mdc-theme";
+
+// Some demo styling.
+@import "@svelte-material-ui/top-app-bar/style";
+.demo-top-app-bar {
+  // Color the top bar with "surface" colors.
+  @include mdc-top-app-bar-fill-color-accessible(surface);
+  @include mdc-top-app-bar-icon-ink-color(on-surface);
+  // Position it above the drawer.
+  z-index: 7;
+}
