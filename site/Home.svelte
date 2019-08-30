@@ -1,13 +1,13 @@
 <section style="padding: 36px;">
   <div style="display: flex; align-items: center; flex-wrap: wrap;">
-    <img style="width: 150px; height: 150px;" src="https://github.com/hperrin/svelte-material-ui/raw/master/logo.svg?sanitize=true" alt="logo" />
+    <img style="width: 150px; height: 150px;" src="logo.svg" alt="logo" />
     <h2 style="margin-left: 18px;">Svelte Material UI</h2>
   </div>
 
   <div style="display: flex; align-items: center; flex-wrap: wrap;">
     <div style="width: 150px; height: 1px;"></div>
     <div style="margin-left: 18px;">
-      <p>Material UI Components built in Svelte 3, ready to use in your apps.</p>
+      <p>Material UI Components for Svelte 3, ready to use in your apps.</p>
 
       <p>Use the menu on the left to see the component demos.</p>
 
