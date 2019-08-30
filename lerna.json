@@ -6,11 +6,6 @@
         "master"
       ],
       "conventionalCommits": true
-    },
-    "publish": {
-      "ignoreChanges": [
-        "*.md"
-      ]
     }
   },
   "packages": [
