@@ -1,6 +1,6 @@
 <section style="padding: 36px;">
   <div style="display: flex; align-items: center; flex-wrap: wrap;">
-    <img style="width: 150px; height: 150px;" src="logo.svg" alt="logo" />
+    <img style="width: 150px; height: 150px;" src="site/logo.png" alt="logo" />
     <h2 style="margin-left: 18px;">Svelte Material UI</h2>
   </div>
 
