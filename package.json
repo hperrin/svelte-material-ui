@@ -13,6 +13,7 @@
   ],
   "scripts": {
     "commitmsg": "commitlint -e $GIT_PARAMS",
+    "pages": "git checkout site && git pull && git reset --hard HEAD^ && git rebase master && cd site && npm run build && cd .. && git add . && git commit -m 'chore: update built files' && git subtree push --prefix site origin gh-pages && git checkout master",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "commitlint": {

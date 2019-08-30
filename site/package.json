@@ -1,12 +1,11 @@
 {
   "name": "svelte-material-ui-site",
   "version": "0.0.0",
-  "description": "SMUI Demo",
+  "description": "SMUI Website",
   "scripts": {
     "build": "webpack",
-    "serve": "serve ..",
+    "serve": "serve .",
     "watch": "webpack --watch",
-    "pages": "git checkout gh-pages && git pull && git reset --hard HEAD^ && git rebase master && npm run build && git add . && git commit -m 'chore: update built files' && git push --force origin gh-pages && git checkout master",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
