@@ -38,9 +38,9 @@ npm install --save-dev @svelte-material-ui/radio
 
 # Demo
 
-*in action:* https://hperrin.github.io/svelte-material-ui-demo/#/radio
+*in action:* https://sveltematerialui.com/#/demo/radio
 
-*demo code:* https://github.com/hperrin/svelte-material-ui-demo/blob/master/component-demos/Radio.svelte
+*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/site/demos/Radio.svelte
 
 # Exports
 

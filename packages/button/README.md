@@ -30,9 +30,9 @@ npm install --save-dev @svelte-material-ui/button
 
 # Demo
 
-*in action:* https://hperrin.github.io/svelte-material-ui-demo/#/button
+*in action:* https://sveltematerialui.com/#/demo/button
 
-*demo code:* https://github.com/hperrin/svelte-material-ui-demo/blob/master/component-demos/Button.svelte
+*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/site/demos/Button.svelte
 
 # Exports
 

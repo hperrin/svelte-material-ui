@@ -25,7 +25,7 @@
     <Content>
       <List>
         {#each sections as section}
-          <Item use={[link]} href={'key' in section ? '/'+section.key : ('shortcut' in section ? '/'+section.shortcut : undefined)} on:click={() => pickSection(section)} activated={'key' in section && $location === '/'+section.key} title={section.name} style="{section.indent ? 'margin-left: '+(section.indent * 25)+'px;' : ''}">
+          <Item use={[link]} href={'route' in section ? section.route : ('shortcut' in section ? section.shortcut : undefined)} on:click={() => pickSection(section)} activated={'route' in section && $location === section.route} title={section.name} style="{section.indent ? 'margin-left: '+(section.indent * 25)+'px;' : ''}">
             <Text class="mdc-theme--on-secondary">{section.name}</Text>
           </Item>
         {/each}
@@ -55,33 +55,33 @@
   import A from '@svelte-material-ui/common/A.svelte';
 
   import Home from './Home.svelte';
-  import DemoButton from './component-demos/Button.svelte';
-  import DemoFab from './component-demos/Fab.svelte';
-  import DemoIconButton from './component-demos/IconButton.svelte';
-  import DemoCard from './component-demos/Card.svelte';
-  import DemoChips from './component-demos/Chips.svelte';
-  import DemoDataTable from './component-demos/DataTable.svelte';
-  import DemoDialog from './component-demos/Dialog.svelte';
-  import DemoDrawer from './component-demos/Drawer.svelte';
-  import DemoElevation from './component-demos/Elevation.svelte';
-  import DemoImageList from './component-demos/ImageList.svelte';
-  import DemoCheckbox from './component-demos/Checkbox.svelte';
-  import DemoRadio from './component-demos/Radio.svelte';
-  import DemoSelect from './component-demos/Select.svelte';
-  import DemoSlider from './component-demos/Slider.svelte';
-  import DemoSwitch from './component-demos/Switch.svelte';
-  import DemoTextfield from './component-demos/Textfield.svelte';
-  import DemoLinearProgress from './component-demos/LinearProgress.svelte';
-  import DemoList from './component-demos/List.svelte';
-  import DemoMenuSurface from './component-demos/MenuSurface.svelte';
-  import DemoMenu from './component-demos/Menu.svelte';
-  import DemoPaper from './component-demos/Paper.svelte';
-  import DemoRipple from './component-demos/Ripple.svelte';
-  import DemoSnackbar from './component-demos/Snackbar.svelte';
-  import DemoTabs from './component-demos/Tabs.svelte';
-  import DemoTheme from './component-demos/Theme.svelte';
-  import DemoTopAppBar from './component-demos/TopAppBar.svelte';
-  import DemoTypography from './component-demos/Typography.svelte';
+  import DemoButton from './demos/Button.svelte';
+  import DemoFab from './demos/Fab.svelte';
+  import DemoIconButton from './demos/IconButton.svelte';
+  import DemoCard from './demos/Card.svelte';
+  import DemoChips from './demos/Chips.svelte';
+  import DemoDataTable from './demos/DataTable.svelte';
+  import DemoDialog from './demos/Dialog.svelte';
+  import DemoDrawer from './demos/Drawer.svelte';
+  import DemoElevation from './demos/Elevation.svelte';
+  import DemoImageList from './demos/ImageList.svelte';
+  import DemoCheckbox from './demos/Checkbox.svelte';
+  import DemoRadio from './demos/Radio.svelte';
+  import DemoSelect from './demos/Select.svelte';
+  import DemoSlider from './demos/Slider.svelte';
+  import DemoSwitch from './demos/Switch.svelte';
+  import DemoTextfield from './demos/Textfield.svelte';
+  import DemoLinearProgress from './demos/LinearProgress.svelte';
+  import DemoList from './demos/List.svelte';
+  import DemoMenuSurface from './demos/MenuSurface.svelte';
+  import DemoMenu from './demos/Menu.svelte';
+  import DemoPaper from './demos/Paper.svelte';
+  import DemoRipple from './demos/Ripple.svelte';
+  import DemoSnackbar from './demos/Snackbar.svelte';
+  import DemoTabs from './demos/Tabs.svelte';
+  import DemoTheme from './demos/Theme.svelte';
+  import DemoTopAppBar from './demos/TopAppBar.svelte';
+  import DemoTypography from './demos/Typography.svelte';
 
   let mainContent;
   let miniWindow = false;
@@ -90,233 +90,233 @@
   const sections = [
     {
       name: 'Buttons',
-      key: 'button',
+      route: '/demo/button',
       component: DemoButton,
       indent: 0
     },
     {
       name: 'Floating Action Button',
-      key: 'fab',
+      route: '/demo/fab',
       component: DemoFab,
       indent: 1
     },
     {
       name: 'Icon Buttons',
-      key: 'icon-button',
+      route: '/demo/icon-button',
       component: DemoIconButton,
       indent: 1
     },
     {
       name: 'Cards',
-      key: 'card',
+      route: '/demo/card',
       component: DemoCard,
       indent: 0
     },
     {
       name: 'Chips',
-      key: 'chips',
+      route: '/demo/chips',
       component: DemoChips,
       indent: 0
     },
     {
       name: 'Data Tables',
-      key: 'data-table',
+      route: '/demo/data-table',
       component: DemoDataTable,
       indent: 0
     },
     {
       name: 'Dialogs',
-      key: 'dialog',
+      route: '/demo/dialog',
       component: DemoDialog,
       indent: 0
     },
     {
       name: 'Drawers',
-      key: 'drawer',
+      route: '/demo/drawer',
       component: DemoDrawer,
       indent: 0
     },
     {
       name: 'Elevation',
-      key: 'elevation',
+      route: '/demo/elevation',
       component: DemoElevation,
       indent: 0
     },
     {
       name: 'Image List',
-      key: 'image-list',
+      route: '/demo/image-list',
       component: DemoImageList,
       indent: 0
     },
     {
       name: 'Inputs and Controls',
-      shortcut: 'textfield',
+      shortcut: '/demo/textfield',
       indent: 0
     },
     {
       name: 'Checkboxes',
-      key: 'checkbox',
+      route: '/demo/checkbox',
       component: DemoCheckbox,
       indent: 1
     },
     {
       name: 'Floating Label',
-      shortcut: 'textfield',
+      shortcut: '/demo/textfield',
       indent: 1
     },
     {
       name: 'Form Fields',
-      shortcut: 'radio',
+      shortcut: '/demo/radio',
       indent: 1
     },
     {
       name: 'Line Ripple',
-      shortcut: 'textfield',
+      shortcut: '/demo/textfield',
       indent: 1
     },
     {
       name: 'Notched Outline',
-      shortcut: 'textfield',
+      shortcut: '/demo/textfield',
       indent: 1
     },
     {
       name: 'Radio Buttons',
-      key: 'radio',
+      route: '/demo/radio',
       component: DemoRadio,
       indent: 1
     },
     {
       name: 'Select Menus',
-      key: 'select',
+      route: '/demo/select',
       component: DemoSelect,
       indent: 1
     },
     {
       name: 'Select Helper Text',
-      shortcut: 'select',
+      shortcut: '/demo/select',
       indent: 2
     },
     {
       name: 'Select Icon',
-      shortcut: 'select',
+      shortcut: '/demo/select',
       indent: 2
     },
     {
       name: 'Sliders',
-      key: 'slider',
+      route: '/demo/slider',
       component: DemoSlider,
       indent: 1
     },
     {
       name: 'Switches',
-      key: 'switch',
+      route: '/demo/switch',
       component: DemoSwitch,
       indent: 1
     },
     {
       name: 'Text Field',
-      key: 'textfield',
+      route: '/demo/textfield',
       component: DemoTextfield,
       indent: 1
     },
     {
       name: 'Text Field Character Count',
-      shortcut: 'textfield',
+      shortcut: '/demo/textfield',
       indent: 2
     },
     {
       name: 'Text Field Helper Text',
-      shortcut: 'textfield',
+      shortcut: '/demo/textfield',
       indent: 2
     },
     {
       name: 'Text Field Icon',
-      shortcut: 'textfield',
+      shortcut: '/demo/textfield',
       indent: 2
     },
     {
       name: 'Linear Progress',
-      key: 'linear-progress',
+      route: '/demo/linear-progress',
       component: DemoLinearProgress,
       indent: 0
     },
     {
       name: 'Lists',
-      key: 'list',
+      route: '/demo/list',
       component: DemoList,
       indent: 0
     },
     {
       name: 'Menu Surface',
-      key: 'menu-surface',
+      route: '/demo/menu-surface',
       component: DemoMenuSurface,
       indent: 0
     },
     {
       name: 'Menus',
-      key: 'menu',
+      route: '/demo/menu',
       component: DemoMenu,
       indent: 0
     },
     {
       name: 'Paper',
-      key: 'paper',
+      route: '/demo/paper',
       component: DemoPaper,
       indent: 0
     },
     {
       name: 'Ripples',
-      key: 'ripple',
+      route: '/demo/ripple',
       component: DemoRipple,
       indent: 0
     },
     {
       name: 'Snackbars',
-      key: 'snackbars',
+      route: '/demo/snackbars',
       component: DemoSnackbar,
       indent: 0
     },
     {
       name: 'Tabs',
-      key: 'tabs',
+      route: '/demo/tabs',
       component: DemoTabs,
       indent: 0
     },
     {
       name: 'Tab',
-      shortcut: 'tabs',
+      shortcut: '/demo/tabs',
       indent: 1
     },
     {
       name: 'Tab Bar',
-      shortcut: 'tabs',
+      shortcut: '/demo/tabs',
       indent: 1
     },
     {
       name: 'Tab Indicator',
-      shortcut: 'tabs',
+      shortcut: '/demo/tabs',
       indent: 1
     },
     {
       name: 'Tab Scroller',
-      shortcut: 'tabs',
+      shortcut: '/demo/tabs',
       indent: 1
     },
     {
       name: 'Theme',
-      key: 'theme',
+      route: '/demo/theme',
       component: DemoTheme,
       indent: 0
     },
     {
       name: 'Top App Bar',
-      key: 'top-app-bar',
+      route: '/demo/top-app-bar',
       component: DemoTopAppBar,
       indent: 0
     },
     {
       name: 'Typography',
-      key: 'typography',
+      route: '/demo/typography',
       component: DemoTypography,
       indent: 0
     }
@@ -328,8 +328,8 @@
 
   for (let i = 0; i < sections.length; i++) {
     const section = sections[i];
-    if ('key' in section) {
-      routes['/'+section.key] = section.component;
+    if ('route' in section) {
+      routes[section.route] = section.component;
     }
   }
 

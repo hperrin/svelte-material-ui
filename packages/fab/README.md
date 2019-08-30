@@ -28,9 +28,9 @@ npm install --save-dev @svelte-material-ui/fab
 
 # Demo
 
-*in action:* https://hperrin.github.io/svelte-material-ui-demo/#/fab
+*in action:* https://sveltematerialui.com/#/demo/fab
 
-*demo code:* https://github.com/hperrin/svelte-material-ui-demo/blob/master/component-demos/Fab.svelte
+*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/site/demos/Fab.svelte
 
 # Exports
 

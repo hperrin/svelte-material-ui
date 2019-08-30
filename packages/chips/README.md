@@ -42,9 +42,9 @@ Input Chips:
 
 # Demo
 
-*in action:* https://hperrin.github.io/svelte-material-ui-demo/#/chips
+*in action:* https://sveltematerialui.com/#/demo/chips
 
-*demo code:* https://github.com/hperrin/svelte-material-ui-demo/blob/master/component-demos/Chips.svelte
+*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/site/demos/Chips.svelte
 
 # Exports
 

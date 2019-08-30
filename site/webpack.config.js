@@ -16,7 +16,7 @@ module.exports = {
   mode: 'development',
   entry: {
     bundle: path.resolve(__dirname, 'index.js'),
-    'top-app-bar': path.resolve(__dirname, 'component-demos', 'TopAppBar', 'demo.js')
+    'top-app-bar': path.resolve(__dirname, 'demos', 'TopAppBar', 'demo.js')
   },
   output: {
     path: path.resolve(__dirname, 'dist'),

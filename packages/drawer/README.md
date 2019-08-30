@@ -18,9 +18,9 @@ todo...
 
 # Demo
 
-*in action:* https://hperrin.github.io/svelte-material-ui-demo/#/drawer
+*in action:* https://sveltematerialui.com/#/demo/drawer
 
-*demo code:* https://github.com/hperrin/svelte-material-ui-demo/blob/master/component-demos/Drawer.svelte
+*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/site/demos/Drawer.svelte
 
 # Exports
 

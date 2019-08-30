@@ -56,17 +56,17 @@
     </div>
   </div>
 
-  <iframe class="top-app-bar-iframe" src="component-demos/TopAppBar/demo.html" title="standard" width="480" height="320"></iframe>
+  <iframe class="top-app-bar-iframe" src="demos/TopAppBar/demo.html" title="standard" width="480" height="320"></iframe>
 
-  <iframe class="top-app-bar-iframe" src="component-demos/TopAppBar/demo.html#fixed" title="fixed" width="480" height="320"></iframe>
+  <iframe class="top-app-bar-iframe" src="demos/TopAppBar/demo.html#fixed" title="fixed" width="480" height="320"></iframe>
 
-  <iframe class="top-app-bar-iframe" src="component-demos/TopAppBar/demo.html#dense" title="dense" width="480" height="320"></iframe>
+  <iframe class="top-app-bar-iframe" src="demos/TopAppBar/demo.html#dense" title="dense" width="480" height="320"></iframe>
 
-  <iframe class="top-app-bar-iframe" src="component-demos/TopAppBar/demo.html#prominent" title="dense" width="480" height="320"></iframe>
+  <iframe class="top-app-bar-iframe" src="demos/TopAppBar/demo.html#prominent" title="dense" width="480" height="320"></iframe>
 
-  <iframe class="top-app-bar-iframe" src="component-demos/TopAppBar/demo.html#short" title="dense" width="480" height="320"></iframe>
+  <iframe class="top-app-bar-iframe" src="demos/TopAppBar/demo.html#short" title="dense" width="480" height="320"></iframe>
 
-  <iframe class="top-app-bar-iframe" src="component-demos/TopAppBar/demo.html#short-closed" title="dense" width="480" height="320"></iframe>
+  <iframe class="top-app-bar-iframe" src="demos/TopAppBar/demo.html#short-closed" title="dense" width="480" height="320"></iframe>
 </section>
 
 <script>

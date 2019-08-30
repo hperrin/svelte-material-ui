@@ -16,9 +16,9 @@ todo...
 
 # Demo
 
-*in action:* https://hperrin.github.io/svelte-material-ui-demo/#/tabs
+*in action:* https://sveltematerialui.com/#/demo/tabs
 
-*demo code:* https://github.com/hperrin/svelte-material-ui-demo/blob/master/component-demos/Tabs.svelte
+*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/site/demos/Tabs.svelte
 
 # Exports
 
