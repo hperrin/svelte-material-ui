@@ -1,5 +1,5 @@
-import ClassAdder, {internals} from '@svelte-material-ui/common/ClassAdder.svelte';
-import Graphic from '@svelte-material-ui/list/Graphic.js';
+import ClassAdder, {internals} from '@smui/common/ClassAdder.svelte';
+import Graphic from '@smui/list/Graphic.js';
 
 function SelectionGroupIcon(...args) {
   internals.class = 'mdc-menu__selection-group-icon';

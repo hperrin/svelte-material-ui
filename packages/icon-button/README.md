@@ -9,14 +9,14 @@ See [the Sass variable file](https://github.com/material-components/material-com
 # Installation
 
 ```sh
-npm install --save-dev @svelte-material-ui/icon-button
+npm install --save-dev @smui/icon-button
 ```
 
 # Basic Usage
 
 ```html
 <script>
-  import IconButton, {Icon} from '@svelte-material-ui/icon-button';
+  import IconButton, {Icon} from '@smui/icon-button';
 
   let starred = false;
 

@@ -70,10 +70,10 @@
 </section>
 
 <script>
-  import TopAppBar, {Row, Section, Title} from '@svelte-material-ui/top-app-bar';
-  import IconButton from '@svelte-material-ui/icon-button';
-  import Checkbox from '@svelte-material-ui/checkbox';
-  import FormField from '@svelte-material-ui/form-field';
+  import TopAppBar, {Row, Section, Title} from '@smui/top-app-bar';
+  import IconButton from '@smui/icon-button';
+  import Checkbox from '@smui/checkbox';
+  import FormField from '@smui/form-field';
   import LoremIpsum from '../LoremIpsum.svelte';
 
   let prominent = false;

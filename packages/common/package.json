@@ -1,5 +1,5 @@
 {
-  "name": "@svelte-material-ui/common",
+  "name": "@smui/common",
   "version": "1.0.0-beta.6",
   "description": "Svelte Material UI - Common",
   "keywords": [

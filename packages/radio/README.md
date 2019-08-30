@@ -9,15 +9,15 @@ See [the Sass variable file](https://github.com/material-components/material-com
 # Installation
 
 ```sh
-npm install --save-dev @svelte-material-ui/radio
+npm install --save-dev @smui/radio
 ```
 
 # Basic Usage
 
 ```html
 <script>
-  import Radio from '@svelte-material-ui/radio';
-  import FormField from '@svelte-material-ui/form-field';
+  import Radio from '@smui/radio';
+  import FormField from '@smui/form-field';
 
   let selected = 'a';
 </script>

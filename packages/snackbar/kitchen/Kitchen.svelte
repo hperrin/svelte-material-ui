@@ -33,10 +33,10 @@
 
 <script>
   import {tick} from 'svelte';
-  import Label from '@svelte-material-ui/common/Label.svelte';
-  import Button from '@svelte-material-ui/button/Button.svelte';
-  import IconButton from '@svelte-material-ui/icon-button/IconButton.svelte';
-  import {prefixFilter} from '@svelte-material-ui/common/prefixFilter.js';
+  import Label from '@smui/common/Label.svelte';
+  import Button from '@smui/button/Button.svelte';
+  import IconButton from '@smui/icon-button/IconButton.svelte';
+  import {prefixFilter} from '@smui/common/prefixFilter.js';
   import Snackbar from '../Snackbar.svelte';
   import Actions from '../Actions.js';
 

@@ -19,9 +19,9 @@
   import {MDCDialog} from '@material/dialog';
   import {onMount, onDestroy} from 'svelte';
   import {current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from '@svelte-material-ui/common/forwardEvents.js';
-  import {exclude} from '@svelte-material-ui/common/exclude.js';
-  import {useActions} from '@svelte-material-ui/common/useActions.js';
+  import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
+  import {exclude} from '@smui/common/exclude.js';
+  import {useActions} from '@smui/common/useActions.js';
 
   const forwardEvents = forwardEventsBuilder(current_component, ['MDCDialog:opening', 'MDCDialog:opened', 'MDCDialog:closing', 'MDCDialog:closed']);
 

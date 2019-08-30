@@ -89,15 +89,15 @@
   import {MDCSelect} from '@material/select';
   import {onMount, onDestroy, getContext, setContext} from 'svelte';
   import {current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from '@svelte-material-ui/common/forwardEvents.js';
-  import {exclude} from '@svelte-material-ui/common/exclude.js';
-  import {prefixFilter} from '@svelte-material-ui/common/prefixFilter.js';
-  import {useActions} from '@svelte-material-ui/common/useActions.js';
-  import Menu from '@svelte-material-ui/menu/Menu.svelte';
-  import List from '@svelte-material-ui/list/List.svelte';
-  import FloatingLabel from '@svelte-material-ui/floating-label/FloatingLabel.svelte';
-  import LineRipple from '@svelte-material-ui/line-ripple/LineRipple.svelte';
-  import NotchedOutline from '@svelte-material-ui/notched-outline/NotchedOutline.svelte';
+  import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
+  import {exclude} from '@smui/common/exclude.js';
+  import {prefixFilter} from '@smui/common/prefixFilter.js';
+  import {useActions} from '@smui/common/useActions.js';
+  import Menu from '@smui/menu/Menu.svelte';
+  import List from '@smui/list/List.svelte';
+  import FloatingLabel from '@smui/floating-label/FloatingLabel.svelte';
+  import LineRipple from '@smui/line-ripple/LineRipple.svelte';
+  import NotchedOutline from '@smui/notched-outline/NotchedOutline.svelte';
 
   const forwardEvents = forwardEventsBuilder(current_component, 'MDCSelect:change');
   const uninitializedValue = () => {};

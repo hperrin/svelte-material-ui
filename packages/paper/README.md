@@ -11,14 +11,14 @@ See [the SMUI Sass variable file](https://github.com/hperrin/svelte-material-ui/
 # Installation
 
 ```sh
-npm install --save-dev @svelte-material-ui/paper
+npm install --save-dev @smui/paper
 ```
 
 # Basic Usage
 
 ```html
 <script>
-  import Paper, {Title, Subtitle, Content} from '@svelte-material-ui/paper';
+  import Paper, {Title, Subtitle, Content} from '@smui/paper';
 </script>
 
 <Paper>

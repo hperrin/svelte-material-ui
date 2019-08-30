@@ -1,5 +1,5 @@
-import ClassAdder, {internals} from '@svelte-material-ui/common/ClassAdder.svelte';
-import Div from '@svelte-material-ui/common/Div.svelte';
+import ClassAdder, {internals} from '@smui/common/ClassAdder.svelte';
+import Div from '@smui/common/Div.svelte';
 
 function Supporting(...args) {
   internals.class = 'mdc-image-list__supporting';

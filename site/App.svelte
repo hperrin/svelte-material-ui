@@ -55,13 +55,13 @@
   import Router, {link, location} from 'svelte-spa-router';
   import { mdiTwitter, mdiGithubCircle } from '@mdi/js';
 
-  import TopAppBar, {Row, Section, Title} from '@svelte-material-ui/top-app-bar';
-  import Drawer, {Content, Scrim, AppContent} from '@svelte-material-ui/drawer';
-  import Button from '@svelte-material-ui/button';
-  import IconButton from '@svelte-material-ui/icon-button';
-  import List, {Item, Text} from '@svelte-material-ui/list';
-  import {Label, Icon} from '@svelte-material-ui/common';
-  import A from '@svelte-material-ui/common/A.svelte';
+  import TopAppBar, {Row, Section, Title} from '@smui/top-app-bar';
+  import Drawer, {Content, Scrim, AppContent} from '@smui/drawer';
+  import Button from '@smui/button';
+  import IconButton from '@smui/icon-button';
+  import List, {Item, Text} from '@smui/list';
+  import {Label, Icon} from '@smui/common';
+  import A from '@smui/common/A.svelte';
 
   import Home from './Home.svelte';
   import DemoButton from './demos/Button.svelte';

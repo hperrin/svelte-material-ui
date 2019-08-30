@@ -9,15 +9,15 @@ See [the Sass variable file](https://github.com/material-components/material-com
 # Installation
 
 ```sh
-npm install --save-dev @svelte-material-ui/switch
+npm install --save-dev @smui/switch
 ```
 
 # Basic Usage
 
 ```html
 <script>
-  import Switch from '@svelte-material-ui/switch';
-  import FormField from '@svelte-material-ui/form-field';
+  import Switch from '@smui/switch';
+  import FormField from '@smui/form-field';
 
   let selected = false;
 </script>

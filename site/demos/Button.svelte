@@ -106,9 +106,9 @@
 </section>
 
 <script>
-  import Button, {Group, GroupItem, Label, Icon} from '@svelte-material-ui/button';
-  import Menu from '@svelte-material-ui/menu';
-  import List, {Item, Separator, Text} from '@svelte-material-ui/list';
+  import Button, {Group, GroupItem, Label, Icon} from '@smui/button';
+  import Menu from '@smui/menu';
+  import List, {Item, Separator, Text} from '@smui/list';
 
   let clicked = 0;
   let menu;

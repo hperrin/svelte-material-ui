@@ -67,9 +67,9 @@
 </section>
 
 <script>
-  import Fab, {Label, Icon} from '@svelte-material-ui/fab';
-  import FormField from '@svelte-material-ui/form-field';
-  import Checkbox from '@svelte-material-ui/checkbox';
+  import Fab, {Label, Icon} from '@smui/fab';
+  import FormField from '@smui/form-field';
+  import Checkbox from '@smui/checkbox';
 
   let clicked = 0;
   let exited = false;

@@ -7,7 +7,7 @@ See [MDC Tab Bar](https://material.io/develop/web/components/tabs/tab-bar/) for 
 # Installation
 
 ```sh
-npm install --save-dev @svelte-material-ui/tab-bar
+npm install --save-dev @smui/tab-bar
 ```
 
 # Basic Usage

@@ -1,5 +1,5 @@
-import ClassAdder, {internals} from '@svelte-material-ui/common/ClassAdder.svelte';
-import Footer from '@svelte-material-ui/common/Footer.svelte';
+import ClassAdder, {internals} from '@smui/common/ClassAdder.svelte';
+import Footer from '@smui/common/Footer.svelte';
 
 function Actions(...args) {
   internals.class = 'mdc-dialog__actions';

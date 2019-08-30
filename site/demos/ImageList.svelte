@@ -67,8 +67,8 @@
 </section>
 
 <script>
-  import ImageList, {Item, ImageAspectContainer, Image, Supporting, Label} from '@svelte-material-ui/image-list';
-  import Div from '@svelte-material-ui/common/Div.svelte';
+  import ImageList, {Item, ImageAspectContainer, Image, Supporting, Label} from '@smui/image-list';
+  import Div from '@smui/common/Div.svelte';
   import './ImageList.scss';
 
   function getUnevenImageSize(counter, base, variance, preAdd = num => num) {

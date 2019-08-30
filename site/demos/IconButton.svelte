@@ -31,8 +31,8 @@
 </section>
 
 <script>
-  import IconButton, {Icon} from '@svelte-material-ui/icon-button';
-  import Button, {Label} from '@svelte-material-ui/button';
+  import IconButton, {Icon} from '@smui/icon-button';
+  import Button, {Label} from '@smui/button';
 
   let clicked = 0;
   let initialOff = false;

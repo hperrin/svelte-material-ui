@@ -9,16 +9,16 @@ See [the Sass variable file](https://github.com/material-components/material-com
 # Installation
 
 ```sh
-npm install --save-dev @svelte-material-ui/drawer
+npm install --save-dev @smui/drawer
 ```
 
 # Basic Usage
 
 ```html
 <script>
-  import Drawer, {AppContent, Content, Header, Title, Subtitle, Scrim} from '@svelte-material-ui/drawer';
-  import List, {Item, Text, Separator, Subheader} from '@svelte-material-ui/list';
-  import H6 from '@svelte-material-ui/common/H6.svelte';
+  import Drawer, {AppContent, Content, Header, Title, Subtitle, Scrim} from '@smui/drawer';
+  import List, {Item, Text, Separator, Subheader} from '@smui/list';
+  import H6 from '@smui/common/H6.svelte';
   import {starred} from './store.js';
 
   let current = 'main';

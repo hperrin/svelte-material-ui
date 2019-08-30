@@ -16,6 +16,6 @@
     --mdc-theme-#{$style}: #{map-get($mdc-theme-property-values, $style)};
   }
 
-  @import "@svelte-material-ui/button/style";
-  @import "@svelte-material-ui/fab/style";
+  @import "@smui/button/style";
+  @import "@smui/fab/style";
 }

@@ -9,7 +9,7 @@ See [the Sass variable file](https://github.com/material-components/material-com
 # Installation
 
 ```sh
-npm install --save-dev @svelte-material-ui/chips
+npm install --save-dev @smui/chips
 ```
 
 # Basic Usage
@@ -18,9 +18,9 @@ Input Chips:
 
 ```html
 <script>
-  import Chip, {Set, Icon, Text} from '@svelte-material-ui/chips';
-  import Textfield from '@svelte-material-ui/textfield';
-  import Button, {Label} from '@svelte-material-ui/button';
+  import Chip, {Set, Icon, Text} from '@smui/chips';
+  import Textfield from '@smui/textfield';
+  import Button, {Label} from '@smui/button';
 
   let tags = [];
   let newTag = '';

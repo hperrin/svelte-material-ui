@@ -1,8 +1,8 @@
 @import "@material/select/mdc-select";
-@import "@svelte-material-ui/floating-label/style";
-@import "@svelte-material-ui/line-ripple/style";
-@import "@svelte-material-ui/notched-outline/style";
-@import "@svelte-material-ui/list/style";
-@import "@svelte-material-ui/menu/style";
+@import "@smui/floating-label/style";
+@import "@smui/line-ripple/style";
+@import "@smui/notched-outline/style";
+@import "@smui/list/style";
+@import "@smui/menu/style";
 @import "./mixins";
 @include smui-select-core-styles;

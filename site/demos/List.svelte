@@ -191,9 +191,9 @@
 </section>
 
 <script>
-  import List, {Group, Item, Graphic, Meta, Label, Separator, Subheader, Text, PrimaryText, SecondaryText} from '@svelte-material-ui/list';
-  import Radio from '@svelte-material-ui/radio';
-  import Checkbox from '@svelte-material-ui/checkbox';
+  import List, {Group, Item, Graphic, Meta, Label, Separator, Subheader, Text, PrimaryText, SecondaryText} from '@smui/list';
+  import Radio from '@smui/radio';
+  import Checkbox from '@smui/checkbox';
 
   let clickedSimple = 'nothing yet';
   let clickedDense = 'nothing yet';

@@ -9,14 +9,14 @@ See [the Sass variable file](https://github.com/material-components/material-com
 # Installation
 
 ```sh
-npm install --save-dev @svelte-material-ui/image-list
+npm install --save-dev @smui/image-list
 ```
 
 # Basic Usage
 
 ```html
 <script>
-  import ImageList, {Item, ImageAspectContainer, Image, Supporting, Label} from '@svelte-material-ui/image-list';
+  import ImageList, {Item, ImageAspectContainer, Image, Supporting, Label} from '@smui/image-list';
   import './style.scss';
   import {images} from './store.js';
 </script>

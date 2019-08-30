@@ -11,15 +11,15 @@ See [the Sass variable file](https://github.com/material-components/material-com
 # Installation
 
 ```sh
-npm install --save-dev @svelte-material-ui/form-field
+npm install --save-dev @smui/form-field
 ```
 
 # Basic Usage
 
 ```html
 <script>
-  import FormField from '@svelte-material-ui/form-field';
-  import Checkbox from '@svelte-material-ui/checkbox';
+  import FormField from '@smui/form-field';
+  import Checkbox from '@smui/checkbox';
 
   let amIChecked = false;
 </script>

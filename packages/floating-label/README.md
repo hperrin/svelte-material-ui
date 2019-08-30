@@ -11,16 +11,16 @@ See [the Sass variable file](https://github.com/material-components/material-com
 You won't generally need to install this package, unless you're manually creating text fields.
 
 ```sh
-npm install --save-dev @svelte-material-ui/floating-label
+npm install --save-dev @smui/floating-label
 ```
 
 # Basic Usage
 
 ```html
 <script>
-  import Textfield, {Input} from '@svelte-material-ui/textfield';
-  import FloatingLabel from '@svelte-material-ui/floating-label';
-  import LineRipple from '@svelte-material-ui/line-ripple';
+  import Textfield, {Input} from '@smui/textfield';
+  import FloatingLabel from '@smui/floating-label';
+  import LineRipple from '@smui/line-ripple';
   let sameValue = '';
 </script>
 

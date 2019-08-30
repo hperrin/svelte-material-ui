@@ -3,8 +3,8 @@ import './_index.scss';
 
 import Group from './Group.svelte';
 import GroupItem from './GroupItem.js';
-import Label from '@svelte-material-ui/common/Label.svelte';
-import Icon from '@svelte-material-ui/common/Icon.svelte';
+import Label from '@smui/common/Label.svelte';
+import Icon from '@smui/common/Icon.svelte';
 
 export default Button;
 

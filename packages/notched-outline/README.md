@@ -11,7 +11,7 @@ See [the Sass variable file](https://github.com/material-components/material-com
 You won't generally need to install this package, unless you're manually creating text fields.
 
 ```sh
-npm install --save-dev @svelte-material-ui/notched-outline
+npm install --save-dev @smui/notched-outline
 ```
 
 # Basic Usage

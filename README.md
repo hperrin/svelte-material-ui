@@ -14,8 +14,8 @@ You should install the packages individually. This package will install all of t
 
 ```sh
 # Install the packages individually.
-npm install --save-dev @svelte-material-ui/button
-npm install --save-dev @svelte-material-ui/card
+npm install --save-dev @smui/button
+npm install --save-dev @smui/card
 # ...
 
 # Or, you can install this to get them all.
@@ -57,10 +57,10 @@ Here's some example code:
 <HelperText id="super-helper">What you put in this box will become super!</HelperText>
 
 <script>
-  import Button from '@svelte-material-ui/button';
-  import Fab from '@svelte-material-ui/fab';
-  import Textfield, {HelperText} from '@svelte-material-ui/textfield';
-  import {Label, Icon} from '@svelte-material-ui/common';
+  import Button from '@smui/button';
+  import Fab from '@smui/fab';
+  import Textfield, {HelperText} from '@smui/textfield';
+  import {Label, Icon} from '@smui/common';
 
   let superText = '';
 </script>

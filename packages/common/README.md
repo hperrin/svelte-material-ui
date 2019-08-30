@@ -5,7 +5,7 @@ The common components are used in other components. You can also use the element
 # Installation
 
 ```sh
-npm install --save-dev @svelte-material-ui/common
+npm install --save-dev @smui/common
 ```
 
 # Exports

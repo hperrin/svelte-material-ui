@@ -9,14 +9,14 @@ See [the Sass variable file](https://github.com/material-components/material-com
 # Installation
 
 ```sh
-npm install --save-dev @svelte-material-ui/linear-progress
+npm install --save-dev @smui/linear-progress
 ```
 
 # Basic Usage
 
 ```html
 <script>
-  import LinearProgress from '@svelte-material-ui/linear-progress';
+  import LinearProgress from '@smui/linear-progress';
   import someAsyncAction from './someAsyncAction.js';
 
   let closed = false;

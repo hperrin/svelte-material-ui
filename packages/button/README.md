@@ -9,14 +9,14 @@ See [the Sass variable file](https://github.com/material-components/material-com
 # Installation
 
 ```sh
-npm install --save-dev @svelte-material-ui/button
+npm install --save-dev @smui/button
 ```
 
 # Basic Usage
 
 ```html
 <script>
-  import Button, {Label} from '@svelte-material-ui/button';
+  import Button, {Label} from '@smui/button';
 
   function doSomething() {
     alert('something');

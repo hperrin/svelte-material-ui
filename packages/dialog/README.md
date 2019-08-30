@@ -9,15 +9,15 @@ See [the Sass variable file](https://github.com/material-components/material-com
 # Installation
 
 ```sh
-npm install --save-dev @svelte-material-ui/dialog
+npm install --save-dev @smui/dialog
 ```
 
 # Basic Usage
 
 ```html
 <script>
-  import Dialog, {Title, Content, Actions} from '@svelte-material-ui/dialog';
-  import Button, {Label} from '@svelte-material-ui/button';
+  import Dialog, {Title, Content, Actions} from '@smui/dialog';
+  import Button, {Label} from '@smui/button';
 
   let dialog;
 

@@ -9,7 +9,7 @@ See [MDC Line Ripple](https://material.io/develop/web/components/input-controls/
 You won't generally need to install this package, unless you're manually creating text fields.
 
 ```sh
-npm install --save-dev @svelte-material-ui/line-ripple
+npm install --save-dev @smui/line-ripple
 ```
 
 # Basic Usage

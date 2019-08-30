@@ -1,5 +1,5 @@
-import ClassAdder, {internals} from '@svelte-material-ui/common/ClassAdder.svelte';
-import Span from '@svelte-material-ui/common/Span.svelte';
+import ClassAdder, {internals} from '@smui/common/ClassAdder.svelte';
+import Span from '@smui/common/Span.svelte';
 
 function Text(...args) {
   internals.class = 'mdc-list-item__text';

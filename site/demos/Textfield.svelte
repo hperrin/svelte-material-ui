@@ -514,14 +514,14 @@
 </section>
 
 <script>
-  import Textfield, {Input, Textarea} from '@svelte-material-ui/textfield';
-  import Icon from '@svelte-material-ui/textfield/icon';
-  import HelperText from '@svelte-material-ui/textfield/helper-text';
-  import CharacterCounter from '@svelte-material-ui/textfield/character-counter';
-  import {Icon as CommonIcon} from '@svelte-material-ui/common';
-  import FloatingLabel from '@svelte-material-ui/floating-label';
-  import LineRipple from '@svelte-material-ui/line-ripple';
-  import NotchedOutline from '@svelte-material-ui/notched-outline';
+  import Textfield, {Input, Textarea} from '@smui/textfield';
+  import Icon from '@smui/textfield/icon';
+  import HelperText from '@smui/textfield/helper-text';
+  import CharacterCounter from '@smui/textfield/character-counter';
+  import {Icon as CommonIcon} from '@smui/common';
+  import FloatingLabel from '@smui/floating-label';
+  import LineRipple from '@smui/line-ripple';
+  import NotchedOutline from '@smui/notched-outline';
 
   let valueClickable = '';
   let dirtyClickable = false;

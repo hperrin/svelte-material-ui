@@ -44,9 +44,9 @@
 </section>
 
 <script>
-  import Checkbox from '@svelte-material-ui/checkbox';
-  import FormField from '@svelte-material-ui/form-field';
-  import Button from '@svelte-material-ui/button';
+  import Checkbox from '@smui/checkbox';
+  import FormField from '@smui/form-field';
+  import Button from '@smui/button';
 
   let simpleSelected = false;
   let simpleSelected2 = false;

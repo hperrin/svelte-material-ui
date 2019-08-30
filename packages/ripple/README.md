@@ -9,14 +9,14 @@ See [the Sass variable file](https://github.com/material-components/material-com
 # Installation
 
 ```sh
-npm install --save-dev @svelte-material-ui/ripple
+npm install --save-dev @smui/ripple
 ```
 
 # Basic Usage
 
 ```html
 <script>
-  import Ripple from '@svelte-material-ui/ripple';
+  import Ripple from '@smui/ripple';
 </script>
 
 <p use:Ripple={[true, {color: 'surface'}]} tabindex="0">

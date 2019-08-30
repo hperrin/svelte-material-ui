@@ -1,5 +1,5 @@
-import ClassAdder, {internals} from '@svelte-material-ui/common/ClassAdder.svelte';
-import Li from '@svelte-material-ui/common/Li.svelte';
+import ClassAdder, {internals} from '@smui/common/ClassAdder.svelte';
+import Li from '@smui/common/Li.svelte';
 
 function Item(...args) {
   internals.class = 'mdc-image-list__item';

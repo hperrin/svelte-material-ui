@@ -18,7 +18,7 @@ $mdc-theme-error: $material-color-red-900;
 @import "@material/theme/mdc-theme";
 
 // Some demo styling.
-@import "@svelte-material-ui/top-app-bar/style";
+@import "@smui/top-app-bar/style";
 .demo-top-app-bar {
   // Color the top bar with "surface" colors.
   @include mdc-top-app-bar-fill-color-accessible(surface);

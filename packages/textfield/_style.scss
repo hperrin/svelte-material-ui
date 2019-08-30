@@ -1,6 +1,6 @@
 @import "@material/textfield/mdc-text-field";
-@import "@svelte-material-ui/floating-label/style";
-@import "@svelte-material-ui/line-ripple/style";
-@import "@svelte-material-ui/notched-outline/style";
+@import "@smui/floating-label/style";
+@import "@smui/line-ripple/style";
+@import "@smui/notched-outline/style";
 @import "./mixins";
 @include smui-text-field-core-styles;

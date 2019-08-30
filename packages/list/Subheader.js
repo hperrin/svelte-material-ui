@@ -1,5 +1,5 @@
-import ClassAdder, {internals} from '@svelte-material-ui/common/ClassAdder.svelte';
-import H3 from '@svelte-material-ui/common/H3.svelte';
+import ClassAdder, {internals} from '@smui/common/ClassAdder.svelte';
+import H3 from '@smui/common/H3.svelte';
 
 function Subheader(...args) {
   internals.class = 'mdc-list-group__subheader';

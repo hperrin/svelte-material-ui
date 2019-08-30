@@ -75,11 +75,11 @@
 </section>
 
 <script>
-  import Snackbar, {Title, Actions, Label} from '@svelte-material-ui/snackbar';
-  import Kitchen from '@svelte-material-ui/snackbar/kitchen';
-  import Button from '@svelte-material-ui/button';
-  import IconButton from '@svelte-material-ui/icon-button';
-  import Textfield from '@svelte-material-ui/textfield';
+  import Snackbar, {Title, Actions, Label} from '@smui/snackbar';
+  import Kitchen from '@smui/snackbar/kitchen';
+  import Button from '@smui/button';
+  import IconButton from '@smui/icon-button';
+  import Textfield from '@smui/textfield';
 
   let mySnackbar;
   let mySnackbarB;

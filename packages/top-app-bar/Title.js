@@ -1,5 +1,5 @@
-import ClassAdder, {internals} from '@svelte-material-ui/common/ClassAdder.svelte';
-import Span from '@svelte-material-ui/common/Span.svelte';
+import ClassAdder, {internals} from '@smui/common/ClassAdder.svelte';
+import Span from '@smui/common/Span.svelte';
 
 function Title(...args) {
   internals.class = 'mdc-top-app-bar__title';

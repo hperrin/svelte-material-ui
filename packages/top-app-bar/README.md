@@ -9,7 +9,7 @@ See [the Sass variable file](https://github.com/material-components/material-com
 # Installation
 
 ```sh
-npm install --save-dev @svelte-material-ui/top-app-bar
+npm install --save-dev @smui/top-app-bar
 ```
 
 # Basic Usage

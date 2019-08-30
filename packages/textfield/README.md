@@ -9,7 +9,7 @@ See [the Sass variable file](https://github.com/material-components/material-com
 # Installation
 
 ```sh
-npm install --save-dev @svelte-material-ui/textfield
+npm install --save-dev @smui/textfield
 ```
 
 # Basic Usage

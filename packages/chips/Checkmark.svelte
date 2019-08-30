@@ -9,8 +9,8 @@
 </div>
 
 <script>
-  import {exclude} from '@svelte-material-ui/common/exclude.js';
-  import {useActions} from '@svelte-material-ui/common/useActions.js';
+  import {exclude} from '@smui/common/exclude.js';
+  import {useActions} from '@smui/common/useActions.js';
 
   export let use = [];
   let className = '';

@@ -9,14 +9,14 @@ See [the Sass variable file](https://github.com/material-components/material-com
 # Installation
 
 ```sh
-npm install --save-dev @svelte-material-ui/data-table
+npm install --save-dev @smui/data-table
 ```
 
 # Basic Usage
 
 ```html
 <script>
-  import DataTable, {Head, Body, Row, Cell} from '@svelte-material-ui/data-table';
+  import DataTable, {Head, Body, Row, Cell} from '@smui/data-table';
 </script>
 
 <DataTable table$aria-label="Products">
