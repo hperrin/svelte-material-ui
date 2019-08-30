@@ -14,7 +14,15 @@ npm install --save-dev @svelte-material-ui/ripple
 
 # Basic Usage
 
-todo...
+```html
+<script>
+  import Ripple from '@svelte-material-ui/ripple';
+</script>
+
+<p use:Ripple={[true, {color: 'surface'}]} tabindex="0">
+  Here is an element with a ripple.
+</p>
+```
 
 # Demo
 
@@ -24,4 +32,13 @@ todo...
 
 # Exports
 
-todo...
+## (default)
+
+A ripple Svelte action.
+
+### Props / Defaults
+
+The action accepts an array, with two entries. The first is a boolean, whether the ripple is enabled. The second is an object with the props:
+
+* `unbounded` - Whether the ripple is unbounded.
+* `color` - The ripple color. ('surface', 'primary', or 'secondary')

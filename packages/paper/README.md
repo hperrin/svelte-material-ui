@@ -38,7 +38,7 @@ npm install --save-dev @svelte-material-ui/paper
 
 ## (default)
 
-A Paper component.
+A paper surface.
 
 ### Props / Defaults
 
