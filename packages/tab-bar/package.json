@@ -1,6 +1,6 @@
 {
   "name": "@svelte-material-ui/tab-bar",
-  "version": "1.0.0-beta.6",
+  "version": "1.0.0-beta.8",
   "description": "Svelte Material UI - Tab Bar",
   "keywords": [
     "svelte",
@@ -29,6 +29,6 @@
   "dependencies": {
     "@material/tab-bar": "^3.1.0",
     "@svelte-material-ui/common": "^1.0.0-beta.6",
-    "@svelte-material-ui/tab-scroller": "^1.0.0-beta.6"
+    "@svelte-material-ui/tab-scroller": "^1.0.0-beta.8"
   }
 }

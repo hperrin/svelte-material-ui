@@ -1,6 +1,6 @@
 {
   "name": "@svelte-material-ui/menu",
-  "version": "1.0.0-beta.6",
+  "version": "1.0.0-beta.8",
   "description": "Svelte Material UI - Menu",
   "keywords": [
     "svelte",
@@ -29,6 +29,6 @@
   "dependencies": {
     "@material/menu": "^3.1.0",
     "@svelte-material-ui/common": "^1.0.0-beta.6",
-    "@svelte-material-ui/menu-surface": "^1.0.0-beta.6"
+    "@svelte-material-ui/menu-surface": "^1.0.0-beta.8"
   }
 }
