@@ -50,7 +50,9 @@ module.exports = {
           'css-loader',
           {
             loader: 'sass-loader',
-            options: sassOptions,
+            options: {
+              sassOptions
+            },
           },
         ],
       },
