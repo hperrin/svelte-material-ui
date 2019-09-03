@@ -24,9 +24,11 @@ npm install --save-dev svelte-material-ui
 
 # Usage
 
+Check out the [Webpack template](https://github.com/hperrin/smui-example-webpack) and the [Rollup template](https://github.com/hperrin/smui-example-rollup) for examples.
+
 To bundle this in your own code, use a Sass processor (not a Sass Svelte preprocessor, but a Sass processor). This package includes Sass files in its JS.
 
-You must also have a `_smui-theme.scss` file in one of the Sass include paths. That is where you set the MDC theme variables. If it's empty, it will use the default theme values. See the [theme folder](https://github.com/hperrin/svelte-material-ui/blob/master/site/theme) and the [webpack config](https://github.com/hperrin/svelte-material-ui/blob/master/site/webpack.config.js) in the site package for an example.
+You must also have a `_smui-theme.scss` file in one of the Sass include paths. That is where you set the MDC theme variables. If it's empty, it will use the default theme values. See the [theme file](https://github.com/hperrin/svelte-material-ui/blob/master/site/theme/_smui-theme.scss) in the demo site for an example.
 
 If you want the Material Icon, Roboto, and Roboto Mono fonts, be sure to include these (or include them from a package):
 
