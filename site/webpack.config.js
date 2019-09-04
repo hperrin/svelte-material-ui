@@ -2,16 +2,6 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
-const sassOptions = {
-  includePaths: [
-    './theme',
-    './node_modules',
-    // This is only needed because we're using a local module. :-/
-    // Normally, you would not need this line.
-    path.resolve(__dirname, '..', 'node_modules')
-  ]
-};
-
 module.exports = {
   mode: 'development',
   entry: {
@@ -51,7 +41,15 @@ module.exports = {
           {
             loader: 'sass-loader',
             options: {
-              sassOptions
+              sassOptions: {
+                includePaths: [
+                  './theme',
+                  './node_modules',
+                  // This is only needed because we're using a local module. :-/
+                  // Normally, you would not need this line.
+                  path.resolve(__dirname, '..', 'node_modules')
+                ]
+              }
             },
           },
         ],

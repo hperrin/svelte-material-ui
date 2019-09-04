@@ -20,6 +20,10 @@
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
+    "@material/elevation": "^3.1.0",
+    "@material/linear-progress": "^3.1.0",
+    "@material/theme": "^3.1.0",
+    "@material/typography": "^3.1.0",
     "@mdi/js": "^4.2.95",
     "@smui/button": "file:../packages/button",
     "@smui/card": "file:../packages/card",
@@ -58,13 +62,13 @@
     "mini-css-extract-plugin": "^0.8.0",
     "node-sass": "^4.12.0",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
-    "sass-loader": "^7.3.1",
+    "sass-loader": "^8.0.0",
     "serve": "^11.1.0",
     "style-loader": "^1.0.0",
     "svelte": "^3.9.1",
     "svelte-loader": "^2.13.6",
     "svelte-spa-router": "^1.2.0",
-    "webpack": "^4.39.2",
+    "webpack": "^4.39.3",
     "webpack-cli": "^3.3.7"
   }
 }
