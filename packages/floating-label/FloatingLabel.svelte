@@ -4,7 +4,7 @@
     use:useActions={use}
     use:forwardEvents
     class="mdc-floating-label {className}"
-    {...exclude($$props, ['use', 'class', 'for', 'wrapped'])}
+    {...exclude($$props, ['use', 'class', 'wrapped'])}
   ><slot></slot></span>
 {:else}
   <label
