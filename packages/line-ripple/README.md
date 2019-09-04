@@ -14,7 +14,25 @@ npm install --save-dev @smui/line-ripple
 
 # Basic Usage
 
-todo...
+```html
+<script>
+  import Textfield, {Input} from '@smui/textfield';
+  import FloatingLabel from '@smui/floating-label';
+  import LineRipple from '@smui/line-ripple';
+
+  let name = '';
+</script>
+
+<!--
+  Normally you wouldn't provide a line ripple, but you can manually set up a
+  textfield like this:
+-->
+<Textfield>
+  <Input bind:value={name} id="name-input" />
+  <FloatingLabel for="name-input">Name</FloatingLabel>
+  <LineRipple />
+</Textfield>
+```
 
 # Demo
 

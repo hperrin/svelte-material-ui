@@ -16,7 +16,26 @@ npm install --save-dev @smui/notched-outline
 
 # Basic Usage
 
-todo...
+```html
+<script>
+  import Textfield, {Input} from '@smui/textfield';
+  import FloatingLabel from '@smui/floating-label';
+  import NotchedOutline from '@smui/notched-outline';
+
+  let name = '';
+</script>
+
+<!--
+  Normally you wouldn't provide a notched outline, but you can manually set up a
+  textfield like this:
+-->
+<Textfield variant="outlined">
+  <Input bind:value={name} id="name-input" />
+  <NotchedOutline>
+    <FloatingLabel for="name-input">Name</FloatingLabel>
+  </NotchedOutline>
+</Textfield>
+```
 
 # Demo
 

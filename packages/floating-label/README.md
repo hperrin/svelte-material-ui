@@ -21,16 +21,17 @@ npm install --save-dev @smui/floating-label
   import Textfield, {Input} from '@smui/textfield';
   import FloatingLabel from '@smui/floating-label';
   import LineRipple from '@smui/line-ripple';
-  let sameValue = '';
+
+  let name = '';
 </script>
 
+<!--
+  Normally you wouldn't provide a floating label, but you can manually set up a
+  textfield like this:
+-->
 <Textfield>
-  <!--
-    This is how to manually set up the components in a Textfield. Usually, you
-    wouldn't do this. See the Textfield docs for more info.
-  -->
-  <Input bind:value={someValue} id="input-manual-a" />
-  <FloatingLabel for="input-manual-a">Label</FloatingLabel>
+  <Input bind:value={name} id="name-input" />
+  <FloatingLabel for="name-input">Name</FloatingLabel>
   <LineRipple />
 </Textfield>
 ```
