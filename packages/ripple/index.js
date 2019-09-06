@@ -1,4 +1,3 @@
-import Ripple from './Ripple.js';
 import './_index.scss';
-
-export default Ripple;
+export * from './bare.js';
+export {default} from './bare.js';
