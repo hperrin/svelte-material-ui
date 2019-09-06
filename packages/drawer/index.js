@@ -1,13 +1,3 @@
-import Drawer from './Drawer.svelte';
 import './_index.scss';
-
-import AppContent from './AppContent.js';
-import Content from './Content.js';
-import Header from './Header.js';
-import Title from './Title.js';
-import Subtitle from './Subtitle.js';
-import Scrim from './Scrim.js';
-
-export default Drawer;
-
-export {AppContent, Content, Header, Title, Subtitle, Scrim};
+export * from './bare.js';
+export {default} from './bare.js';

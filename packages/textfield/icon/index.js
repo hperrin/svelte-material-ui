@@ -1,4 +1,3 @@
-import Icon from './Icon.svelte';
 import './_index.scss';
-
-export default Icon;
+export * from './bare.js';
+export {default} from './bare.js';

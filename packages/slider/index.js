@@ -1,4 +1,3 @@
-import Slider from './Slider.svelte';
 import './_index.scss';
-
-export default Slider;
+export * from './bare.js';
+export {default} from './bare.js';

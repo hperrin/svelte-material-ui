@@ -1,4 +1,3 @@
-import Radio from './Radio.svelte';
 import './_index.scss';
-
-export default Radio;
+export * from './bare.js';
+export {default} from './bare.js';

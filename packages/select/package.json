@@ -12,6 +12,7 @@
     "sveltejs"
   ],
   "scripts": {
+    "prepublishOnly": "sass -I node_modules --no-source-map _style.scss bare.css && sass -I node_modules --no-source-map helper-text/_style.scss helper-text/bare.css && sass -I node_modules --no-source-map icon/_style.scss icon/bare.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "publishConfig": {
@@ -37,5 +38,8 @@
     "@smui/list": "^1.0.0-beta.12",
     "@smui/menu": "^1.0.0-beta.12",
     "@smui/notched-outline": "^1.0.0-beta.11"
+  },
+  "devDependencies": {
+    "sass": "^1.23.0-module.beta.1"
   }
 }

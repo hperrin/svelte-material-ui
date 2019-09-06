@@ -1,4 +1,3 @@
-import Checkbox from './Checkbox.svelte';
 import './_index.scss';
-
-export default Checkbox;
+export * from './bare.js';
+export {default} from './bare.js';

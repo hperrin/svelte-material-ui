@@ -1,4 +1,3 @@
-import NotchedOutline from './NotchedOutline.svelte';
 import './_index.scss';
-
-export default NotchedOutline;
+export * from './bare.js';
+export {default} from './bare.js';

@@ -1,4 +1,3 @@
-import Kitchen from './Kitchen.svelte';
 import './_index.scss';
-
-export default Kitchen;
+export * from './bare.js';
+export {default} from './bare.js';

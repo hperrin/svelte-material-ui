@@ -1,4 +1,3 @@
-import TabBar from './TabBar.svelte';
 import './_index.scss';
-
-export default TabBar;
+export * from './bare.js';
+export {default} from './bare.js';

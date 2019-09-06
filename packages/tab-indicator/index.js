@@ -1,4 +1,3 @@
-import TabIndicator from './TabIndicator.svelte';
 import './_index.scss';
-
-export default TabIndicator;
+export * from './bare.js';
+export {default} from './bare.js';

@@ -1,4 +1,3 @@
-import Switch from './Switch.svelte';
 import './_index.scss';
-
-export default Switch;
+export * from './bare.js';
+export {default} from './bare.js';

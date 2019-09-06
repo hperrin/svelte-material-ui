@@ -12,6 +12,7 @@
     "sveltejs"
   ],
   "scripts": {
+    "prepublishOnly": "sass -I node_modules --no-source-map _style.scss bare.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "publishConfig": {
@@ -32,5 +33,8 @@
     "@smui/common": "^1.0.0-beta.8",
     "@smui/icon-button": "^1.0.0-beta.12",
     "@smui/ripple": "^1.0.0-beta.12"
+  },
+  "devDependencies": {
+    "sass": "^1.23.0-module.beta.1"
   }
 }

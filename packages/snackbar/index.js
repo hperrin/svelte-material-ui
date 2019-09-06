@@ -1,9 +1,3 @@
-import Snackbar from './Snackbar.svelte';
 import './_index.scss';
-
-import Actions from './Actions.js';
-import Label from '@smui/common/Label.svelte';
-
-export default Snackbar;
-
-export {Actions, Label};
+export * from './bare.js';
+export {default} from './bare.js';

@@ -1,4 +1,3 @@
-import FormField from './FormField.svelte';
 import './_index.scss';
-
-export default FormField;
+export * from './bare.js';
+export {default} from './bare.js';

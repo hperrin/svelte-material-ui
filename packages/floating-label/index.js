@@ -1,4 +1,3 @@
-import FloatingLabel from './FloatingLabel.svelte';
 import './_index.scss';
-
-export default FloatingLabel;
+export * from './bare.js';
+export {default} from './bare.js';
