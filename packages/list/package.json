@@ -1,6 +1,6 @@
 {
   "name": "@smui/list",
-  "version": "1.0.0-beta.11",
+  "version": "1.0.0-beta.12",
   "description": "Svelte Material UI - List",
   "keywords": [
     "svelte",
@@ -29,6 +29,6 @@
   "dependencies": {
     "@material/list": "^3.1.0",
     "@smui/common": "^1.0.0-beta.8",
-    "@smui/ripple": "^1.0.0-beta.11"
+    "@smui/ripple": "^1.0.0-beta.12"
   }
 }
