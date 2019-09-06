@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.11](https://github.com/hperrin/svelte-material-ui/compare/v1.0.0-beta.10...v1.0.0-beta.11) (2019-09-06)
+
+
+### Bug Fixes
+
+* allow for prop on wrapped floating label ([b69049c](https://github.com/hperrin/svelte-material-ui/commit/b69049c))
+* import styles correctly ([37e6fa6](https://github.com/hperrin/svelte-material-ui/commit/37e6fa6))
+
+
+### Features
+
+* provide bare js and css (button only for test) for use in REPL ([1b9a268](https://github.com/hperrin/svelte-material-ui/commit/1b9a268))
+
+
+
+
+
 # [1.0.0-beta.10](https://github.com/hperrin/svelte-material-ui/compare/v1.0.0-beta.9...v1.0.0-beta.10) (2019-09-03)
 
 
