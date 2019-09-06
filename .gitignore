@@ -1,2 +1,3 @@
 node_modules
 /site/dist/
+/packages/*/bare.css
