@@ -12,7 +12,7 @@
     "sveltejs"
   ],
   "scripts": {
-    "prepublishOnly": "sass -I node_modules --no-source-map _style.scss bare.css",
+    "prepare": "echo \"$(glob '**/node_modules' | lam -s '-I ' - | paste -s -d ' ' -) --no-source-map _style.scss bare.css\" | xargs sass",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "publishConfig": {
@@ -32,6 +32,7 @@
     "@smui/common": "^1.0.0-beta.8"
   },
   "devDependencies": {
+    "glob-cmd": "0.0.7",
     "sass": "^1.23.0-module.beta.1"
   }
 }

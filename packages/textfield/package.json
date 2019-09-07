@@ -38,6 +38,7 @@
     "@smui/notched-outline": "^1.0.0-beta.13"
   },
   "devDependencies": {
+    "glob-cmd": "0.0.7",
     "sass": "^1.23.0-module.beta.1"
   }
 }
