@@ -1,6 +1,6 @@
 {
   "name": "@smui/radio",
-  "version": "1.0.0-beta.13",
+  "version": "1.0.0-beta.14",
   "description": "Svelte Material UI - Radio",
   "keywords": [
     "svelte",
@@ -29,7 +29,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@material/radio": "^3.1.0",
-    "@smui/common": "^1.0.0-beta.8"
+    "@smui/common": "^1.0.0-beta.14"
   },
   "devDependencies": {
     "glob-cmd": "0.0.7",

@@ -1,6 +1,6 @@
 {
   "name": "@smui/textfield",
-  "version": "1.0.0-beta.13",
+  "version": "1.0.0-beta.14",
   "description": "Svelte Material UI - Text Field",
   "keywords": [
     "svelte",
@@ -32,10 +32,10 @@
     "@material/ripple": "^3.1.0",
     "@material/rtl": "^3.1.0",
     "@material/textfield": "^3.1.0",
-    "@smui/common": "^1.0.0-beta.8",
-    "@smui/floating-label": "^1.0.0-beta.13",
-    "@smui/line-ripple": "^1.0.0-beta.13",
-    "@smui/notched-outline": "^1.0.0-beta.13"
+    "@smui/common": "^1.0.0-beta.14",
+    "@smui/floating-label": "^1.0.0-beta.14",
+    "@smui/line-ripple": "^1.0.0-beta.14",
+    "@smui/notched-outline": "^1.0.0-beta.14"
   },
   "devDependencies": {
     "glob-cmd": "0.0.7",
