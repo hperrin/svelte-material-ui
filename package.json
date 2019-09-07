@@ -12,7 +12,6 @@
     "sveltejs"
   ],
   "scripts": {
-    "commitmsg": "commitlint -e $GIT_PARAMS",
     "pages": "git checkout site && git rebase master && cd site && npm run build && cd .. && git add . && git commit -m 'chore: update built files' && git push origin $(git subtree split --prefix site site):gh-pages --force && git reset --hard HEAD^ && git push --force origin site && git checkout master",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -70,5 +69,10 @@
     "husky": "^3.0.5",
     "lerna": "^3.16.4",
     "svelte": "^3.9.2"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS"
+    }
   }
 }
