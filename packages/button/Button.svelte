@@ -18,7 +18,7 @@
     {href}
     {...actionProp}
     {...defaultProp}
-    {...exclude($$props, ['use', 'class', 'ripple', 'color', 'variant', 'dense', 'href'])}
+    {...exclude($$props, ['use', 'class', 'ripple', 'color', 'variant', 'dense', 'href', ...dialogExcludes])}
   ><slot></slot></a>
 {:else}
   <button
