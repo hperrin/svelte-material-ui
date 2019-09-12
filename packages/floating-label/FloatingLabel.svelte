@@ -38,7 +38,7 @@
   let floatingLabel;
   let inputProps = getContext('SMUI:generic:input:props') || {};
 
-  $: forProp = (inputProps && inputProps.id || forId) ? {for: inputProps && inputProps.id || forId} : {};
+  $: forProp = (forId || inputProps && inputProps.id) ? {for: forId || inputProps && inputProps.id} : {};
 
   onMount(() => {
     floatingLabel = new MDCFloatingLabel(element);
