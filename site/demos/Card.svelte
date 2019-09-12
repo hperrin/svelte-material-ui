@@ -123,23 +123,22 @@
       </Card>
     </div>
 
-    <div style="width: 100%;">
-      A card with a list as content:
-    </div>
-
     <div class="card-container">
-      <Card style="width: 320px;">
-        <Content component={List}>
-          {#each [...Array(6)].map((v, i) => i + 1) as item}
-            <Item on:click={() => clicked++}>
-              <Text>Item #{item}</Text>
-            </Item>
-          {/each}
-        </Content>
-      </Card>
+      <div>
+        <div style="width: 320px;">
+          A card with a list as content:
+        </div>
+        <Card style="width: 320px;">
+          <Content component={List}>
+            {#each [...Array(6)].map((v, i) => i + 1) as item}
+              <Item on:click={() => clicked++}>
+                <Text>Item #{item}</Text>
+              </Item>
+            {/each}
+          </Content>
+        </Card>
+      </div>
     </div>
-
-    <div style="width: 100%;"></div>
 
     <div class="card-container">
       <Card style="width: 360px;">
