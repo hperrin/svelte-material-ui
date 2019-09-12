@@ -9,7 +9,7 @@
     class:mdc-list--avatar-list={avatarList}
     class:mdc-list--two-line={twoLine}
     on:MDCList:action={handleAction}
-    {...exclude($$props, ['use', 'class', 'nonInteractive', 'dense', 'avatarList', 'twoLine', 'vertical', 'wrapFocus', 'singleSelection', 'selectedIndex', 'radiolist', 'checklist'])}
+    {...props}
   ><slot></slot></nav>
 {:else}
   <ul
@@ -23,7 +23,7 @@
     class:mdc-list--two-line={twoLine}
     {role}
     on:MDCList:action={handleAction}
-    {...exclude($$props, ['use', 'class', 'nonInteractive', 'dense', 'avatarList', 'twoLine', 'vertical', 'wrapFocus', 'singleSelection', 'selectedIndex', 'radiolist', 'checklist'])}
+    {...props}
   ><slot></slot></ul>
 {/if}
 
@@ -50,6 +50,8 @@
   export let selectedIndex = null;
   export let radiolist = false;
   export let checklist = false;
+
+  $: props = exclude($$props, ['use', 'class', 'nonInteractive', 'dense', 'avatarList', 'twoLine', 'vertical', 'wrapFocus', 'singleSelection', 'selectedIndex', 'radiolist', 'checklist']);
 
   let element;
   let list;

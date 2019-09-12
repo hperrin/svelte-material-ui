@@ -15,7 +15,7 @@
     aria-pressed={pressed}
     {href}
     on:MDCIconButtonToggle:change={handleChange}
-    {...exclude($$props, ['use', 'class', 'ripple', 'color', 'toggle', 'pressed', 'href'])}
+    {...props}
   ><slot></slot></a>
 {:else}
   <button
@@ -33,7 +33,7 @@
     aria-hidden="true"
     aria-pressed={pressed}
     on:MDCIconButtonToggle:change={handleChange}
-    {...exclude($$props, ['use', 'class', 'ripple', 'color', 'toggle', 'pressed', 'href'])}
+    {...props}
   ><slot></slot></button>
 {/if}
 
@@ -56,6 +56,8 @@
   export let toggle = false;
   export let pressed = false;
   export let href = null;
+
+  $: props = exclude($$props, ['use', 'class', 'ripple', 'color', 'toggle', 'pressed', 'href']);
 
   let element;
   let toggleButton;

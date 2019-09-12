@@ -13,7 +13,7 @@
     {tabindex}
     on:click={action}
     on:keydown={handleKeydown}
-    {...exclude($$props, ['use', 'class', 'ripple', 'color', 'nonInteractive', 'activated', 'selected', 'disabled', 'tabindex', 'href', 'inputId'])}
+    {...props}
   ><slot></slot></a>
 {:else if nav && !href}
   <span
@@ -29,7 +29,7 @@
     {tabindex}
     on:click={action}
     on:keydown={handleKeydown}
-    {...exclude($$props, ['use', 'class', 'ripple', 'color', 'nonInteractive', 'activated', 'selected', 'disabled', 'tabindex', 'href', 'inputId'])}
+    {...props}
   ><slot></slot></span>
 {:else}
   <li
@@ -48,7 +48,7 @@
     {tabindex}
     on:click={action}
     on:keydown={handleKeydown}
-    {...exclude($$props, ['use', 'class', 'ripple', 'color', 'nonInteractive', 'activated', 'selected', 'disabled', 'tabindex', 'href', 'inputId'])}
+    {...props}
   ><slot></slot></li>
 {/if}
 
@@ -81,6 +81,8 @@
   export let tabindex = !nonInteractive && !disabled && (selected || checked) && '0' || '-1';
   export let href = false;
   export let inputId = 'SMUI-form-field-list-'+(counter++);
+
+  $: props = exclude($$props, ['use', 'class', 'ripple', 'color', 'nonInteractive', 'activated', 'selected', 'disabled', 'tabindex', 'href', 'inputId']);
 
   let element;
   let addTabindexIfNoItemsSelectedRaf;

@@ -6,7 +6,7 @@
     class:mdc-data-table__header-cell--checkbox={checkbox}
     {...roleProp}
     {...scopeProp}
-    {...exclude($$props, ['use', 'class', 'numeric', 'checkbox'])}
+    {...props}
   ><slot></slot></th>
 {:else}
   <td
@@ -17,7 +17,7 @@
     class:mdc-data-table__cell--checkbox={checkbox}
     {...roleProp}
     {...scopeProp}
-    {...exclude($$props, ['use', 'class', 'numeric', 'checkbox'])}
+    {...props}
   ><slot></slot></td>
 {/if}
 
@@ -39,6 +39,8 @@
   export let scope = header ? 'col' : undefined;
   export let numeric = false;
   export let checkbox = false;
+
+  $: props = exclude($$props, ['use', 'class', 'numeric', 'checkbox']);
 
   $: roleProp = role ? {role} : {};
   $: scopeProp = scope ? {scope} : {};

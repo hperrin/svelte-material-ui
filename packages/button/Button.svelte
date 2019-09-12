@@ -18,7 +18,7 @@
     {href}
     {...actionProp}
     {...defaultProp}
-    {...exclude($$props, ['use', 'class', 'ripple', 'color', 'variant', 'dense', 'href', ...dialogExcludes])}
+    {...props}
   ><slot></slot></a>
 {:else}
   <button
@@ -39,7 +39,7 @@
     use:Ripple={[ripple, {unbounded: false}]}
     {...actionProp}
     {...defaultProp}
-    {...exclude($$props, ['use', 'class', 'ripple', 'color', 'variant', 'dense', 'href', ...dialogExcludes])}
+    {...props}
   ><slot></slot></button>
 {/if}
 
@@ -67,10 +67,12 @@
 
   let context = getContext('SMUI:button:context');
 
+  $: dialogExcludes = (context === 'dialog:action') ? ['action', 'default'] : [];
+
+  $: props = exclude($$props, ['use', 'class', 'ripple', 'color', 'variant', 'dense', 'href', ...dialogExcludes]);
+
   $: actionProp = (context === 'dialog:action' && action !== null) ? {'data-mdc-dialog-action': action} : {};
   $: defaultProp = (context === 'dialog:action' && defaultAction) ? {'data-mdc-dialog-button-default': ''} : {};
-
-  $: dialogExcludes = (context === 'dialog:action') ? ['action', 'default'] : [];
 
   setContext('SMUI:label:context', 'button');
   setContext('SMUI:icon:context', 'button');

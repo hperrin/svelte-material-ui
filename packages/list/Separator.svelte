@@ -5,7 +5,7 @@
     class="mdc-list-divider {className}"
     class:mdc-list-divider--padded={padded}
     class:mdc-list-divider--inset={inset}
-    {...exclude($$props, ['use', 'class', 'group', 'nav', 'padded', 'inset'])}
+    {...props}
   />
 {:else}
   <li
@@ -15,7 +15,7 @@
     class:mdc-list-divider--padded={padded}
     class:mdc-list-divider--inset={inset}
     role="separator"
-    {...exclude($$props, ['use', 'class', 'group', 'nav', 'padded', 'inset'])}
+    {...props}
   ></li>
 {/if}
 
@@ -34,4 +34,6 @@
   export let nav = false;
   export let padded = false;
   export let inset = false;
+
+  $: props = exclude($$props, ['use', 'class', 'group', 'nav', 'padded', 'inset']);
 </script>

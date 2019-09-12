@@ -14,7 +14,7 @@
     class:mdc-text-field--with-leading-icon={withLeadingIcon}
     class:mdc-text-field--with-trailing-icon={withTrailingIcon}
     class:mdc-text-field--invalid={invalid}
-    {...exclude($$props, ['use', 'class', 'ripple', 'disabled', 'fullwidth', 'textarea', 'variant', 'dense', 'withLeadingIcon', 'withTrailingIcon', 'noLabel', 'label', 'type', 'value', 'dirty', 'invalid', 'updateInvalid', 'useNativeValidation', 'input$', 'label$', 'ripple$', 'outline$'])}
+    {...props}
   >
     <slot></slot>
     {#if textarea}
@@ -74,7 +74,7 @@
     class:mdc-text-field--with-leading-icon={withLeadingIcon}
     class:mdc-text-field--with-trailing-icon={withTrailingIcon}
     class:mdc-text-field--invalid={invalid}
-    {...exclude($$props, ['use', 'class', 'ripple', 'disabled', 'fullwidth', 'textarea', 'variant', 'dense', 'withLeadingIcon', 'withTrailingIcon', 'noLabel', 'label', 'type', 'value', 'dirty', 'invalid', 'updateInvalid', 'useNativeValidation', 'input$', 'label$', 'ripple$', 'outline$'])}
+    {...props}
   >
     <slot></slot>
   </div>
@@ -116,6 +116,8 @@
   export let invalid = uninitializedValue;
   export let updateInvalid = invalid === uninitializedValue;
   export let useNativeValidation = updateInvalid;
+
+  $: props = exclude($$props, ['use', 'class', 'ripple', 'disabled', 'fullwidth', 'textarea', 'variant', 'dense', 'withLeadingIcon', 'withTrailingIcon', 'noLabel', 'label', 'type', 'value', 'dirty', 'invalid', 'updateInvalid', 'useNativeValidation', 'input$', 'label$', 'ripple$', 'outline$']);
 
   let element;
   let textField;

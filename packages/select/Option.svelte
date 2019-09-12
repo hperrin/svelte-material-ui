@@ -3,7 +3,7 @@
     use={[forwardEvents, ...use]}
     data-value={value}
     {selected}
-    {...exclude($$props, ['use', 'value', 'selected'])}
+    {...props}
   ><slot></slot></Item>
 {:else}
   <option
@@ -11,7 +11,7 @@
     use:forwardEvents
     {value}
     {selected}
-    {...exclude($$props, ['use', 'value', 'selected'])}
+    {...props}
   ><slot></slot></option>
 {/if}
 
@@ -30,6 +30,8 @@
   export {className as class};
   export let value = '';
   export let selected = false;
+
+  $: props = exclude($$props, ['use', 'value', 'selected']);
 
   let element;
   let enhanced = getContext('SMUI:select:option:enhanced');

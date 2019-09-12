@@ -27,5 +27,5 @@
 
   const context = getContext('SMUI:label:context');
 
-  $: snackbarProps = context === 'snackbar' ? {role: 'status', 'aria-live': 'polite'} : {};
+  $: snackbarProps = (context === 'snackbar') ? {role: 'status', 'aria-live': 'polite'} : {};
 </script>
