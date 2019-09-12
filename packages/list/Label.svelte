@@ -21,5 +21,5 @@
 
   let inputProps = getContext('SMUI:generic:input:props') || {};
 
-  $: forProp = (inputProps && inputProps.id || forId) ? {for: inputProps && inputProps.id || forId} : {};
+  $: forProp = (inputProps && inputProps.id) ? {for: inputProps && inputProps.id} : {};
 </script>
