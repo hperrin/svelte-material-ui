@@ -1,13 +1,8 @@
-import ClassAdder, {internals} from '@smui/common/ClassAdder.svelte';
+import {classAdderBuilder} from '@smui/common/classAdderBuilder.js';
 import Div from '@smui/common/Div.svelte';
 
-function Row(...args) {
-  internals.class = 'mdc-top-app-bar__row';
-  internals.component = Div;
-  internals.contexts = {};
-  return new ClassAdder(...args);
-}
-
-Row.prototype = ClassAdder;
-
-export default Row;
+export default classAdderBuilder({
+  class: 'mdc-top-app-bar__row',
+  component: Div,
+  contexts: {}
+});

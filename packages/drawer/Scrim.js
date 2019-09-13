@@ -1,13 +1,8 @@
-import ClassAdder, {internals} from '@smui/common/ClassAdder.svelte';
+import {classAdderBuilder} from '@smui/common/classAdderBuilder.js';
 import Div from '@smui/common/Div.svelte';
 
-function Scrim(...args) {
-  internals.class = 'mdc-drawer-scrim';
-  internals.component = Div;
-  internals.contexts = {};
-  return new ClassAdder(...args);
-}
-
-Scrim.prototype = ClassAdder;
-
-export default Scrim;
+export default classAdderBuilder({
+  class: 'mdc-drawer-scrim',
+  component: Div,
+  contexts: {}
+});

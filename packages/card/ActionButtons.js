@@ -1,13 +1,8 @@
-import ClassAdder, {internals} from '@smui/common/ClassAdder.svelte';
+import {classAdderBuilder} from '@smui/common/classAdderBuilder.js';
 import Div from '@smui/common/Div.svelte';
 
-function ActionButtons(...args) {
-  internals.class = 'mdc-card__action-buttons';
-  internals.component = Div;
-  internals.contexts = {};
-  return new ClassAdder(...args);
-}
-
-ActionButtons.prototype = ClassAdder;
-
-export default ActionButtons;
+export default classAdderBuilder({
+  class: 'mdc-card__action-buttons',
+  component: Div,
+  contexts: {}
+});

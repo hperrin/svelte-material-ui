@@ -1,13 +1,8 @@
-import ClassAdder, {internals} from '@smui/common/ClassAdder.svelte';
+import {classAdderBuilder} from '@smui/common/classAdderBuilder.js';
 import H3 from '@smui/common/H3.svelte';
 
-function Subheader(...args) {
-  internals.class = 'mdc-list-group__subheader';
-  internals.component = H3;
-  internals.contexts = {};
-  return new ClassAdder(...args);
-}
-
-Subheader.prototype = ClassAdder;
-
-export default Subheader;
+export default classAdderBuilder({
+  class: 'mdc-list-group__subheader',
+  component: H3,
+  contexts: {}
+});

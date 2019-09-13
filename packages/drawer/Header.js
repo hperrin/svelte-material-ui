@@ -1,13 +1,8 @@
-import ClassAdder, {internals} from '@smui/common/ClassAdder.svelte';
+import {classAdderBuilder} from '@smui/common/classAdderBuilder.js';
 import Div from '@smui/common/Div.svelte';
 
-function Header(...args) {
-  internals.class = 'mdc-drawer__header';
-  internals.component = Div;
-  internals.contexts = {};
-  return new ClassAdder(...args);
-}
-
-Header.prototype = ClassAdder;
-
-export default Header;
+export default classAdderBuilder({
+  class: 'mdc-drawer__header',
+  component: Div,
+  contexts: {}
+});

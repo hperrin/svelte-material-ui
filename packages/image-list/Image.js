@@ -1,13 +1,8 @@
-import ClassAdder, {internals} from '@smui/common/ClassAdder.svelte';
+import {classAdderBuilder} from '@smui/common/classAdderBuilder.js';
 import Img from '@smui/common/Img.svelte';
 
-function Image(...args) {
-  internals.class = 'mdc-image-list__image';
-  internals.component = Img;
-  internals.contexts = {};
-  return new ClassAdder(...args);
-}
-
-Image.prototype = ClassAdder;
-
-export default Image;
+export default classAdderBuilder({
+  class: 'mdc-image-list__image',
+  component: Img,
+  contexts: {}
+});

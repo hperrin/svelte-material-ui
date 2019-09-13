@@ -1,13 +1,8 @@
-import ClassAdder, {internals} from '@smui/common/ClassAdder.svelte';
+import {classAdderBuilder} from '@smui/common/classAdderBuilder.js';
 import H6 from '@smui/common/H6.svelte';
 
-function Subtitle(...args) {
-  internals.class = 'smui-paper__subtitle';
-  internals.component = H6;
-  internals.contexts = {};
-  return new ClassAdder(...args);
-}
-
-Subtitle.prototype = ClassAdder;
-
-export default Subtitle;
+export default classAdderBuilder({
+  class: 'smui-paper__subtitle',
+  component: H6,
+  contexts: {}
+});

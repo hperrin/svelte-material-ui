@@ -1,15 +1,10 @@
-import ClassAdder, {internals} from '@smui/common/ClassAdder.svelte';
+import {classAdderBuilder} from '@smui/common/classAdderBuilder.js';
 import Footer from '@smui/common/Footer.svelte';
 
-function Actions(...args) {
-  internals.class = 'mdc-dialog__actions';
-  internals.component = Footer;
-  internals.contexts = {
+export default classAdderBuilder({
+  class: 'mdc-dialog__actions',
+  component: Footer,
+  contexts: {
     'SMUI:button:context': 'dialog:action'
-  };
-  return new ClassAdder(...args);
-}
-
-Actions.prototype = ClassAdder;
-
-export default Actions;
+  }
+});

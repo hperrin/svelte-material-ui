@@ -1,13 +1,8 @@
-import ClassAdder, {internals} from '@smui/common/ClassAdder.svelte';
+import {classAdderBuilder} from '@smui/common/classAdderBuilder.js';
 import H2 from '@smui/common/H2.svelte';
 
-function Title(...args) {
-  internals.class = 'mdc-dialog__title';
-  internals.component = H2;
-  internals.contexts = {};
-  return new ClassAdder(...args);
-}
-
-Title.prototype = ClassAdder;
-
-export default Title;
+export default classAdderBuilder({
+  class: 'mdc-dialog__title',
+  component: H2,
+  contexts: {}
+});

@@ -1,13 +1,8 @@
-import ClassAdder, {internals} from '@smui/common/ClassAdder.svelte';
+import {classAdderBuilder} from '@smui/common/classAdderBuilder.js';
 import Div from '@smui/common/Div.svelte';
 
-function Content(...args) {
-  internals.class = 'smui-card__content';
-  internals.component = Div;
-  internals.contexts = {};
-  return new ClassAdder(...args);
-}
-
-Content.prototype = ClassAdder;
-
-export default Content;
+export default classAdderBuilder({
+  class: 'smui-card__content',
+  component: Div,
+  contexts: {}
+});

@@ -1,13 +1,8 @@
-import ClassAdder, {internals} from '@smui/common/ClassAdder.svelte';
+import {classAdderBuilder} from '@smui/common/classAdderBuilder.js';
 import Span from '@smui/common/Span.svelte';
 
-function Title(...args) {
-  internals.class = 'mdc-top-app-bar__title';
-  internals.component = Span;
-  internals.contexts = {};
-  return new ClassAdder(...args);
-}
-
-Title.prototype = ClassAdder;
-
-export default Title;
+export default classAdderBuilder({
+  class: 'mdc-top-app-bar__title',
+  component: Span,
+  contexts: {}
+});
