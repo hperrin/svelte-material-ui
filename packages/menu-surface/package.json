@@ -1,6 +1,6 @@
 {
   "name": "@smui/menu-surface",
-  "version": "1.0.0-beta.14",
+  "version": "1.0.0-beta.15",
   "description": "Svelte Material UI - Menu Surface",
   "keywords": [
     "svelte",
@@ -29,7 +29,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@material/menu-surface": "^3.1.0",
-    "@smui/common": "^1.0.0-beta.14"
+    "@smui/common": "^1.0.0-beta.15"
   },
   "devDependencies": {
     "glob-cmd": "0.0.7",

@@ -1,6 +1,6 @@
 {
   "name": "@smui/paper",
-  "version": "1.0.0-beta.14",
+  "version": "1.0.0-beta.15",
   "description": "Svelte Material UI - Paper",
   "keywords": [
     "svelte",
@@ -33,7 +33,7 @@
     "@material/shape": "^3.1.0",
     "@material/theme": "^3.1.0",
     "@material/typography": "^3.1.0",
-    "@smui/common": "^1.0.0-beta.14"
+    "@smui/common": "^1.0.0-beta.15"
   },
   "devDependencies": {
     "glob-cmd": "0.0.7",
