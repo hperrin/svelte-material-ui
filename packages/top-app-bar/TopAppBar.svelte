@@ -40,6 +40,6 @@
   });
 
   onDestroy(() => {
-    topAppBar.destroy();
+    if(topAppBar) topAppBar.destroy();
   });
 </script>
