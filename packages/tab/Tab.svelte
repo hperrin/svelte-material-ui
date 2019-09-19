@@ -95,7 +95,7 @@
     }
     tabIndicatorPromiseResolve(tab.tabIndicator_);
     if (!ripple) {
-      tab.ripple_.destroy();
+      tab.ripple_ && tab.ripple_.destroy();
     }
   });
 

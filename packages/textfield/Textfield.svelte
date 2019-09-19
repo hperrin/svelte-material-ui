@@ -150,7 +150,7 @@
     textField = new MDCTextField(element);
 
     if (!ripple) {
-      textField.ripple.destroy();
+      textField.ripple && textField.ripple.destroy();
     }
   });
 

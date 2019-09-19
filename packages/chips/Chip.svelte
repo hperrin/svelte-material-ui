@@ -50,7 +50,7 @@
   function setChip(component) {
     chip = component;
     if (!ripple) {
-      chip.ripple.destroy();
+      chip.ripple && chip.ripple.destroy();
     }
   }
 

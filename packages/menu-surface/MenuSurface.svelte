@@ -93,7 +93,7 @@
 
   onDestroy(() => {
     if (anchor) {
-      element.parentNode.classList.remove('mdc-menu-surface--anchor');
+      element && element.parentNode.classList.remove('mdc-menu-surface--anchor');
     }
     if (instantiate !== false) {
       menuSurface && menuSurface.destroy()
