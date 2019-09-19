@@ -44,7 +44,7 @@
   });
 
   onDestroy(() => {
-    dialog.destroy();
+    dialog && dialog.destroy()
   });
 
   export function open(...args) {

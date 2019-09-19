@@ -103,7 +103,7 @@
   });
 
   onDestroy(() => {
-    switchControl.destroy();
+    switchControl && switchControl.destroy()
   });
 
   function handleChange(e) {

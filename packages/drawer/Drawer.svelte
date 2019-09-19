@@ -50,9 +50,7 @@
   });
 
   onDestroy(() => {
-    if (drawer) {
-      drawer.destroy();
-    }
+    drawer && drawer.destroy()
   });
 
   afterUpdate(() => {

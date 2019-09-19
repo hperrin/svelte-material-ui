@@ -43,6 +43,6 @@
   });
 
   onDestroy(() => {
-    helperText.destroy();
+    helperText && helperText.destroy()
   });
 </script>

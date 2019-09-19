@@ -51,7 +51,7 @@
   });
 
   onDestroy(() => {
-    tabIndicator.destroy();
+    tabIndicator && tabIndicator.destroy()
   });
 
   export function activate(...args) {

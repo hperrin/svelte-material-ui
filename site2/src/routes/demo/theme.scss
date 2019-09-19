@@ -1,0 +1,21 @@
+.demo-special-theme {
+  min-height: 100%;
+  min-width: 100%;
+  background-color: #000;
+  color: #fff;
+  @import "@material/theme/color-palette";
+
+  $mdc-theme-primary: $material-color-green-100;
+  $mdc-theme-secondary: $material-color-cyan-100;
+  $mdc-theme-background: #000;
+  $mdc-theme-surface: #000;
+  $mdc-theme-error: $material-color-orange-100;
+
+  @import "@material/theme/variables";
+  @each $style in map-keys($mdc-theme-property-values) {
+    --mdc-theme-#{$style}: #{map-get($mdc-theme-property-values, $style)};
+  }
+
+  @import "@smui/button/style";
+  @import "@smui/fab/style";
+}

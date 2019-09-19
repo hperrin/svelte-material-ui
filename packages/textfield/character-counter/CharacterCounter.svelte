@@ -28,6 +28,6 @@
   });
 
   onDestroy(() => {
-    characterCounter.destroy();
+    characterCounter && characterCounter.destroy()
   });
 </script>

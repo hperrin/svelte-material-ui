@@ -51,7 +51,7 @@
   });
 
   onDestroy(() => {
-    tabScroller.destroy();
+    tabScroller && tabScroller.destroy()
   });
 
   export function scrollTo(...args) {

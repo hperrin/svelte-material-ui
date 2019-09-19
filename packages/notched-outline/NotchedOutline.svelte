@@ -38,7 +38,7 @@
   });
 
   onDestroy(() => {
-    notchedOutline.destroy();
+    notchedOutline && notchedOutline.destroy()
   });
 
   export function notch(notchWidth, ...args) {

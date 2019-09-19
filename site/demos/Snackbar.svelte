@@ -75,7 +75,7 @@
 </section>
 
 <script>
-  import Snackbar, {Title, Actions, Label} from '@smui/snackbar';
+  import Snackbar, {Actions, Label} from '@smui/snackbar';
   import Kitchen from '@smui/snackbar/kitchen';
   import Button from '@smui/button';
   import IconButton from '@smui/icon-button';

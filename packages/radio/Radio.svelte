@@ -83,7 +83,7 @@
   });
 
   onDestroy(() => {
-    radio.destroy();
+    radio && radio.destroy()
   });
 
   function handleChange(e) {

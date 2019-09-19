@@ -38,7 +38,7 @@
   export let anchorElement = null;
   export let anchorCorner = null;
 
-  export let element; // This is exported because Menu needs it.
+  export let element = undefined; // This is exported because Menu needs it.
   let menuSurface;
   let instantiate = getContext('SMUI:menu-surface:instantiate');
   let getInstance = getContext('SMUI:menu-surface:getInstance');
@@ -96,7 +96,7 @@
       element.parentNode.classList.remove('mdc-menu-surface--anchor');
     }
     if (instantiate !== false) {
-      menuSurface.destroy();
+      menuSurface && menuSurface.destroy()
     }
   });
 

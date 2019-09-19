@@ -73,7 +73,7 @@
   });
 
   onDestroy(() => {
-    snackbar.destroy();
+    snackbar && snackbar.destroy()
   });
 
   function handleClosed() {

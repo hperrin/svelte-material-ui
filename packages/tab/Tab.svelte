@@ -100,7 +100,7 @@
   });
 
   onDestroy(() => {
-    tab.destroy();
+    tab && tab.destroy()
   });
 
   function getTabIndicatorInstancePromise() {

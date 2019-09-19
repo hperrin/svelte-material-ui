@@ -79,7 +79,7 @@
   });
 
   onDestroy(() => {
-    chipSet.destroy();
+    chipSet && chipSet.destroy()
   });
 
   let previousChipsLength = chips.length;

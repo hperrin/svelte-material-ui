@@ -108,7 +108,7 @@
 
   onDestroy(() => {
     if (instantiate !== false) {
-      list.destroy();
+      list && list.destroy()
     }
   });
 

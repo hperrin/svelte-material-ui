@@ -72,7 +72,7 @@
   });
 
   onDestroy(() => {
-    dataTable.destroy();
+    dataTable && dataTable.destroy()
   });
 
   function getCheckboxInstancePromise(header) {

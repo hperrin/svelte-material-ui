@@ -133,7 +133,7 @@
 
   onDestroy(() => {
     if (instantiate !== false) {
-      checkbox.destroy();
+      checkbox && checkbox.destroy()
     }
   });
 

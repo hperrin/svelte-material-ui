@@ -91,7 +91,7 @@
   });
 
   onDestroy(() => {
-    slider.destroy();
+    slider && slider.destroy()
   });
 
   function handleChange() {

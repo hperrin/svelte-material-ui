@@ -155,7 +155,7 @@
   });
 
   onDestroy(() => {
-    textField.destroy();
+    textField && textField.destroy()
   });
 
   export function focus(...args) {

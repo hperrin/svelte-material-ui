@@ -92,7 +92,7 @@
   });
 
   onDestroy(() => {
-    tabBar.destroy();
+    tabBar && tabBar.destroy()
   });
 
   function getTabScrollerInstancePromise() {

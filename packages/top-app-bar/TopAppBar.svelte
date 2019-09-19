@@ -35,11 +35,11 @@
   let element;
   let topAppBar;
 
-  onMount(async () => {
+  onMount(() => {
     topAppBar = new MDCTopAppBar(element);
   });
 
   onDestroy(() => {
-    topAppBar.destroy();
+    topAppBar && topAppBar.destroy();
   });
 </script>

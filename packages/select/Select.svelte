@@ -176,7 +176,7 @@
   });
 
   onDestroy(() => {
-    select.destroy();
+    select && select.destroy()
   });
 
   function getMenuInstancePromise() {
