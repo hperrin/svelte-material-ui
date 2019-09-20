@@ -30,7 +30,7 @@ const postcssOptions = extract => ({
   use: [
     ['sass', {
       includePaths: [
-        './theme',
+        './src/theme',
         './node_modules',
         // This is only needed because we're using a local module. :-/
         // Normally, you would not need this line.
