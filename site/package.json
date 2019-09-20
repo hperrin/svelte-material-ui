@@ -3,9 +3,10 @@
   "version": "0.0.0",
   "description": "SMUI Website",
   "scripts": {
-    "build": "webpack",
-    "serve": "serve .",
-    "watch": "webpack --watch",
+    "dev": "sapper dev -p 5000",
+    "build": "sapper build --legacy",
+    "export": "sapper export ./dist --legacy",
+    "start": "node __sapper__/build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,14 +18,22 @@
     "url": "https://github.com/hperrin/svelte-material-ui/issues"
   },
   "license": "Apache-2.0",
+  "dependencies": {
+    "compression": "^1.7.4",
+    "polka": "next",
+    "sirv": "^0.4.2"
+  },
   "devDependencies": {
-    "@babel/core": "^7.5.5",
-    "@babel/preset-env": "^7.5.5",
+    "@babel/core": "^7.6.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/plugin-transform-runtime": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
+    "@babel/runtime": "^7.6.0",
     "@material/elevation": "^3.1.0",
     "@material/linear-progress": "^3.1.0",
     "@material/theme": "^3.1.0",
     "@material/typography": "^3.1.0",
-    "@mdi/js": "^4.2.95",
+    "@mdi/js": "^4.4.95",
     "@smui/button": "file:../packages/button",
     "@smui/card": "file:../packages/card",
     "@smui/checkbox": "file:../packages/checkbox",
@@ -57,18 +66,19 @@
     "@smui/tab-scroller": "file:../packages/tab-scroller",
     "@smui/textfield": "file:../packages/textfield",
     "@smui/top-app-bar": "file:../packages/top-app-bar/",
-    "babel-loader": "^8.0.6",
-    "css-loader": "^3.2.0",
-    "cssnano": "^4.1.10",
-    "mini-css-extract-plugin": "^0.8.0",
     "node-sass": "^4.12.0",
-    "optimize-css-assets-webpack-plugin": "^5.0.3",
-    "sass-loader": "^8.0.0",
-    "serve": "^11.1.0",
-    "svelte": "^3.9.1",
-    "svelte-loader": "^2.13.6",
-    "svelte-spa-router": "^1.2.0",
-    "webpack": "^4.39.3",
-    "webpack-cli": "^3.3.7"
+    "npm-run-all": "^4.1.5",
+    "postcss-scss": "^2.0.0",
+    "rollup": "^1.21.2",
+    "rollup-plugin-alias": "^2.0.0",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-postcss": "^2.0.3",
+    "rollup-plugin-replace": "^2.2.0",
+    "rollup-plugin-svelte": "^5.1.0",
+    "rollup-plugin-terser": "^5.1.2",
+    "sapper": "^0.27.8",
+    "svelte": "^3.12.1"
   }
 }

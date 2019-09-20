@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="site/header.png" alt="Svelte Material UI" />
+  <img src="site/static/header.png" alt="Svelte Material UI" />
 </div>
 
 A library of Svelte 3 Material UI components, based on the [Material Design Web Components](https://material.io/develop/web/).
