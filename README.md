@@ -6,11 +6,11 @@ A library of Svelte 3 Material UI components, based on the [Material Design Web 
 
 # Demos
 
-Check them out: https://sveltematerialui.com
+https://sveltematerialui.com
 
 # Installation
 
-You should install the packages individually. This package will install all of them, but why do that, when you can install them individually and better manage them?
+You *should* install the packages individually. Alternatively, you can install all of them at once with the `svelte-material-ui` package.
 
 ```sh
 # Install the packages individually.
@@ -26,54 +26,50 @@ npm install --save-dev svelte-material-ui
 
 Check out the [Webpack template](https://github.com/hperrin/smui-example-webpack) and the [Rollup template](https://github.com/hperrin/smui-example-rollup) for examples.
 
-To bundle this in your own code, use a Sass processor (not a Sass Svelte preprocessor, but a Sass processor). This package includes Sass files in its JS.
+1. To bundle this in your own code, use a Sass processor (not a Sass Svelte preprocessor, but a Sass processor). SMUI `index.js` files import Sass files, and they need to be compiled by a processor. The `*.svelte` files don't include any Sass or CSS, so a Svelte preprocessor is not necessary.
+   * Alternatively, you can import from the `bare.js` files, which doesn't include any styling. Then you can either import the Sass yourself, or use the `bare.css` files which are precompiled and packaged with the default theme.
+2. You must have a `_smui-theme.scss` file in one of your Sass include paths to compile the Sass. That is where you set the MDC theme variables. If it's empty, it will use the default theme values from MDC. See the [theme file](https://github.com/hperrin/svelte-material-ui/blob/master/site/src/theme/_smui-theme.scss) in the demo site for an example that uses Svelte colors.
+3. If you want the Material Icon, Roboto, and Roboto Mono fonts, be sure to include these (or include them from a package):
+    ```html
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+    ```
+4. You're now ready to use SMUI. Here's some example code:
+    ```html
+    <Button on:click={() => alert('Clicked!')}>Just a Button</Button>
+    <Button variant="raised"><Label>Raised Button, Using a Label</Label></Button>
+    <Button some-arbitrary-prop="placed on the actual button">Button</Button>
 
-You must also have a `_smui-theme.scss` file in one of the Sass include paths. That is where you set the MDC theme variables. If it's empty, it will use the default theme values. See the [theme file](https://github.com/hperrin/svelte-material-ui/blob/master/site/theme/_smui-theme.scss) in the demo site for an example.
+    <Fab on:click={() => alert('Clicked!')} extended>
+      <Icon class="material-icons" style="margin-right: 12px;">favorite</Icon>
+      <Label>Extended FAB</Label>
+    </Fab>
 
-If you want the Material Icon, Roboto, and Roboto Mono fonts, be sure to include these (or include them from a package):
+    <Textfield
+      bind:value={superText}
+      label="Super Text"
+      input$aria-controls="super-helper"
+      input$aria-describedby="super-helper"
+    />
+    <HelperText id="super-helper">What you put in this box will become super!</HelperText>
 
-```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
-```
+    <script>
+      import Button from '@smui/button';
+      import Fab from '@smui/fab';
+      import Textfield, {HelperText} from '@smui/textfield';
+      import {Label, Icon} from '@smui/common';
 
-Here's some example code:
+      let superText = '';
+    </script>
+    ```
 
-```html
-<Button on:click={() => alert('Clicked!')}>Just a Button</Button>
-<Button variant="raised"><Label>Raised Button, Using a Label</Label></Button>
-<Button some-arbitrary-prop="placed on the actual button">Button</Button>
+Here are some features you should know about:
 
-<Fab on:click={() => alert('Clicked!')} extended>
-  <Icon class="material-icons" style="margin-right: 12px;">favorite</Icon>
-  <Label>Extended FAB</Label>
-</Fab>
-
-<Textfield
-  bind:value={superText}
-  label="Super Text"
-  input$aria-controls="super-helper"
-  input$aria-describedby="super-helper"
-/>
-<HelperText id="super-helper">What you put in this box will become super!</HelperText>
-
-<script>
-  import Button from '@smui/button';
-  import Fab from '@smui/fab';
-  import Textfield, {HelperText} from '@smui/textfield';
-  import {Label, Icon} from '@smui/common';
-
-  let superText = '';
-</script>
-```
-
-Here are some juicy features:
-
-* You can add any arbitrary property to nearly all of the components and the elements within them.
+* You can add arbitrary properties to all of the components and many of the elements within them.
 * You can add actions to the components with `use={[Action1, [Action2, action2Props], Action3]}`.
 * You can add props to lower components and elements with things like `input$maxlength="15"`.
-* All standard UI events are forwarded on components, input events ("input" and "change") are forwarded on input components, and all MDC events are forwarded.
+* All [standard UI events](https://github.com/hperrin/svelte-material-ui/blob/master/packages/common/forwardEvents.js#L4) are forwarded on components, input events ("input" and "change") are forwarded on input components, and all MDC events are forwarded.
 * Labels and icons are named exports in the components that use them, or you can use 'common/Label' and 'common/Icon'. (Except for textfield and select icons, because they are special snowflakes.)
 
 # Components
@@ -115,7 +111,7 @@ Click a component below to go to its documentation.
 - [Paper](https://github.com/hperrin/svelte-material-ui/blob/master/packages/paper/README.md)‡
 - [Ripples](https://github.com/hperrin/svelte-material-ui/blob/master/packages/ripple/README.md)
 - [Snackbars](https://github.com/hperrin/svelte-material-ui/blob/master/packages/snackbar/README.md)
-  - [Kitchen](https://github.com/hperrin/svelte-material-ui/blob/master/packages/snackbar/kitchen/README.md)
+  - [Kitchen](https://github.com/hperrin/svelte-material-ui/blob/master/packages/snackbar/kitchen/README.md)‡
 - Tabs
   - [Tab](https://github.com/hperrin/svelte-material-ui/blob/master/packages/tab/README.md)
   - [Tab Bar](https://github.com/hperrin/svelte-material-ui/blob/master/packages/tab-bar/README.md)

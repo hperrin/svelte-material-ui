@@ -18,9 +18,9 @@ todo...
 
 # Demo
 
-*in action:* https://sveltematerialui.com/#/demo/textfield
+*in action:* https://sveltematerialui.com/demo/textfield
 
-*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/site/demos/Textfield.svelte
+*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/textfield.svelte
 
 # Exports
 

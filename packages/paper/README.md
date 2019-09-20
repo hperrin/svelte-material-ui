@@ -30,9 +30,9 @@ npm install --save-dev @smui/paper
 
 # Demo
 
-*in action:* https://sveltematerialui.com/#/demo/paper
+*in action:* https://sveltematerialui.com/demo/paper
 
-*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/site/demos/Paper.svelte
+*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/paper.svelte
 
 # Exports
 

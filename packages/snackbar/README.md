@@ -18,9 +18,9 @@ todo...
 
 # Demo
 
-*in action:* https://sveltematerialui.com/#/demo/snackbars
+*in action:* https://sveltematerialui.com/demo/snackbars
 
-*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/site/demos/Snackbar.svelte
+*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/snackbars.svelte
 
 # Exports
 

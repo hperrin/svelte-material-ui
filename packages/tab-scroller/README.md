@@ -10,6 +10,6 @@ Don't install or use this package directly. It's a dependency of the Tab Bar pac
 
 # Demo
 
-*in action:* https://sveltematerialui.com/#/demo/tabs
+*in action:* https://sveltematerialui.com/demo/tabs
 
-*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/site/demos/Tabs.svelte
+*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/tabs.svelte

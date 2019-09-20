@@ -30,9 +30,9 @@ npm install --save-dev @smui/switch
 
 # Demo
 
-*in action:* https://sveltematerialui.com/#/demo/switch
+*in action:* https://sveltematerialui.com/demo/switch
 
-*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/site/demos/Switch.svelte
+*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/switch.svelte
 
 # Exports
 

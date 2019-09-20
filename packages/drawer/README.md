@@ -68,9 +68,9 @@ npm install --save-dev @smui/drawer
 
 # Demo
 
-*in action:* https://sveltematerialui.com/#/demo/drawer
+*in action:* https://sveltematerialui.com/demo/drawer
 
-*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/site/demos/Drawer.svelte
+*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/drawer.svelte
 
 # Exports
 

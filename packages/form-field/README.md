@@ -32,9 +32,9 @@ npm install --save-dev @smui/form-field
 
 # Demo
 
-*in action:* https://sveltematerialui.com/#/demo/radio
+*in action:* https://sveltematerialui.com/demo/radio
 
-*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/site/demos/Radio.svelte
+*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/radio.svelte
 
 # Exports
 

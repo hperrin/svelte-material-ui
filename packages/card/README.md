@@ -61,9 +61,9 @@ npm install --save-dev @smui/card
 
 # Demo
 
-*in action:* https://sveltematerialui.com/#/demo/card
+*in action:* https://sveltematerialui.com/demo/card
 
-*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/site/demos/Card.svelte
+*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/card.svelte
 
 # Exports
 

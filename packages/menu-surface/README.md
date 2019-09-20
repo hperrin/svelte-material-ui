@@ -20,9 +20,9 @@ todo...
 
 # Demo
 
-*in action:* https://sveltematerialui.com/#/demo/menu-surface
+*in action:* https://sveltematerialui.com/demo/menu-surface
 
-*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/site/demos/MenuSurface.svelte
+*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/menu-surface.svelte
 
 # Exports
 

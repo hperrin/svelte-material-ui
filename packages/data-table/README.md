@@ -49,9 +49,9 @@ npm install --save-dev @smui/data-table
 
 # Demo
 
-*in action:* https://sveltematerialui.com/#/demo/data-table
+*in action:* https://sveltematerialui.com/demo/data-table
 
-*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/site/demos/DataTable.svelte
+*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/data-table.svelte
 
 # Exports
 

@@ -51,9 +51,9 @@ npm install --save-dev @smui/image-list
 
 # Demo
 
-*in action:* https://sveltematerialui.com/#/demo/image-list
+*in action:* https://sveltematerialui.com/demo/image-list
 
-*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/site/demos/ImageList.svelte
+*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/image-list.svelte and https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/image-list.scss
 
 # Exports
 

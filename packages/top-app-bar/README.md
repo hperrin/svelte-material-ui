@@ -18,9 +18,9 @@ todo...
 
 # Demo
 
-*in action:* https://sveltematerialui.com/#/demo/top-app-bar
+*in action:* https://sveltematerialui.com/demo/top-app-bar
 
-*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/site/demos/TopAppBar.svelte and https://github.com/hperrin/svelte-material-ui/blob/master/site/demos/TopAppBar/demo.svelte
+*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/top-app-bar.svelte and https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/top-app-bar-iframe.svelte
 
 # Exports
 

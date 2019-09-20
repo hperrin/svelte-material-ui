@@ -31,9 +31,9 @@ npm install --save-dev @smui/linear-progress
 
 # Demo
 
-*in action:* https://sveltematerialui.com/#/demo/linear-progress
+*in action:* https://sveltematerialui.com/demo/linear-progress
 
-*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/site/demos/LinearProgress.scss
+*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/linear-progress.svelte and https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/linear-progress.scss
 
 # Exports
 

@@ -30,9 +30,9 @@ npm install --save-dev @smui/checkbox
 
 # Demo
 
-*in action:* https://sveltematerialui.com/#/demo/checkbox
+*in action:* https://sveltematerialui.com/demo/checkbox
 
-*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/site/demos/Checkbox.svelte
+*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/checkbox.svelte
 
 # Exports
 

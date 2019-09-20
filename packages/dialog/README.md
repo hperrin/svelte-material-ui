@@ -51,9 +51,9 @@ npm install --save-dev @smui/dialog
 
 # Demo
 
-*in action:* https://sveltematerialui.com/#/demo/dialog
+*in action:* https://sveltematerialui.com/demo/dialog
 
-*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/site/demos/Dialog.svelte
+*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/dialog.svelte
 
 # Exports
 

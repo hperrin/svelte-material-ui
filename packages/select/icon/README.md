@@ -12,9 +12,9 @@ todo...
 
 # Demo
 
-*in action:* https://sveltematerialui.com/#/demo/select
+*in action:* https://sveltematerialui.com/demo/select
 
-*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/site/demos/Select.svelte
+*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/select.svelte
 
 # Exports
 
