@@ -602,6 +602,21 @@
     justify-content: space-between;
   }
 
+  .columns > * {
+    flex-basis: 0;
+    min-width: 218px;
+  }
+
+  .columns :global(.mdc-text-field) {
+    width: 218px;
+  }
+
+  .columns .status {
+    width: auto;
+    word-break: break-all;
+    overflow-wrap: break-word;
+  }
+
   * :global(.shaped) {
     border-radius: 16px 16px 0 0;
   }
