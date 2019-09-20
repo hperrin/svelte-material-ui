@@ -12,7 +12,7 @@
     "sveltejs"
   ],
   "scripts": {
-    "pages": "git checkout site && git rebase master && cd site && npm run install && npm run export && cd .. && git add . && git commit -m 'chore: update built files' && git push origin $(git subtree split --prefix site/dist site):gh-pages --force && git reset --hard HEAD^ && git push --force origin site && git checkout master",
+    "pages": "git checkout site && git rebase master && cd site && npm install && npm run export && cd .. && git add . && git commit -m 'chore: update built files' && git push origin $(git subtree split --prefix site/dist site):gh-pages --force && git reset --hard HEAD^ && git push --force origin site && git checkout master",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "commitlint": {
