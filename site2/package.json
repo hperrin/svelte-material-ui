@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "description": "SMUI Website",
   "scripts": {
-    "dev": "sapper dev -p 3001",
-    "build": "sapper build --legacy",
-    "export": "sapper export --legacy",
+    "dev": "sapper dev -p 5000",
+    "build": "sapper build",
+    "export": "sapper export ./dist",
     "start": "node __sapper__/build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
