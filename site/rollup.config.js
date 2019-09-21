@@ -5,7 +5,6 @@ import replace from 'rollup-plugin-replace';
 import commonjs from 'rollup-plugin-commonjs';
 import svelte from 'rollup-plugin-svelte';
 import postcss from 'rollup-plugin-postcss';
-// import sass from 'rollup-plugin-scss';
 import babel from 'rollup-plugin-babel';
 import { terser } from 'rollup-plugin-terser';
 import config from 'sapper/config/rollup.js';
@@ -24,53 +23,21 @@ const aliases = () => ({
     {find:/^@smui\/([^\/]+)\/(.*)$/, replacement: path.resolve(__dirname, '..', 'packages', '$1', '$2')}
   ]
 });
-const postcssOptions = () => ({
+const postcssOptions = extract => ({
   extensions: ['.scss', '.sass'],
-  extract: true,
-  inject: false,
+  extract,
   minimize: true,
-  // preprocessor: (content, id) => new Promise((resolve, reject) => {
-  //   console.log({id});
-  //   const result = sass.renderSync({
-  //     fide: id,
-  //     includePaths: [
-  //       path.resolve(__dirname, 'src', 'theme'),
-  //       path.resolve(__dirname, 'node_modules'),
-  //       // This is only needed because we're using a local module. :-/
-  //       // Normally, you would not need this line.
-  //       path.resolve(__dirname, '..', 'node_modules')
-  //     ]
-  //   });
-  //   resolve({code: result.css.toString()});
-  // })
   use: [
     ['sass', {
       includePaths: [
-        path.resolve(__dirname, 'src', 'theme'),
-        path.resolve(__dirname, 'node_modules'),
+        './src/theme',
+        './node_modules',
         // This is only needed because we're using a local module. :-/
         // Normally, you would not need this line.
         path.resolve(__dirname, '..', 'node_modules')
       ]
     }]
   ]
-});
-const sassOptions = () => ({
-  output: true, //(...args) => {
-  //   console.log(args);
-  // },
-  includePaths: [
-    './src/theme',
-    './node_modules',
-    // This is only needed because we're using a local module. :-/
-    // Normally, you would not need this line.
-    path.resolve(__dirname, '..', 'node_modules')
-  ],
-  importer(path, prev,) {
-    console.log({path, prev});
-    return { file: path[0] !== '~' ? path : path.slice(1) };
-  },
-  failOnError: true,
 });
 
 export default {
@@ -83,20 +50,19 @@ export default {
         'process.browser': true,
         'process.env.NODE_ENV': JSON.stringify(mode)
       }),
-      // sass(sassOptions()),
-      postcss(postcssOptions()),
-      // postcss(postcssExtractOptions()),
       svelte({
         dev,
         hydratable: true,
-        emitCss: true,
-        // css: true
+        emitCss: false,
+        css: true
       }),
       resolve({
         browser: true,
         dedupe
       }),
       commonjs(),
+
+      postcss(postcssOptions(false)),
 
       legacy && babel({
         extensions: ['.js', '.mjs', '.html', '.svelte'],
@@ -132,9 +98,6 @@ export default {
         'process.browser': false,
         'process.env.NODE_ENV': JSON.stringify(mode)
       }),
-      // sass(sassOptions()),
-      postcss(postcssOptions()),
-      // postcss(postcssExtractOptions()),
       svelte({
         generate: 'ssr',
         dev
@@ -143,6 +106,8 @@ export default {
         dedupe
       }),
       commonjs(),
+
+      postcss(postcssOptions(true))
     ],
     external: Object.keys(pkg.dependencies).concat(
       require('module').builtinModules || Object.keys(process.binding('natives'))
