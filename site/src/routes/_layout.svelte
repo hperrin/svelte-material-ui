@@ -1,5 +1,5 @@
 <svelte:window on:resize={setMiniWindow} />
-{#if $page.path === '/demo/top-app-bar-iframe'}
+{#if $page.path.startsWith('/demo/top-app-bar-iframe')}
   <slot></slot>
 {:else}
   <TopAppBar variant="static" class="demo-top-app-bar">
@@ -65,6 +65,8 @@
   import {onMount} from 'svelte';
   import {stores} from '@sapper/app';
   import {mdiTwitter, mdiGithubCircle} from '@mdi/js';
+
+  import './_app.scss';
 
   import TopAppBar, {Row, Section, Title} from '@smui/top-app-bar';
   import Drawer, {Content, Scrim, AppContent} from '@smui/drawer';

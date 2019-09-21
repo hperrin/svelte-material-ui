@@ -1,4 +1,3 @@
-import './app.scss';
 import * as sapper from '@sapper/app';
 
 sapper.start({

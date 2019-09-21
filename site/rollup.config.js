@@ -23,9 +23,9 @@ const aliases = () => ({
     {find:/^@smui\/([^\/]+)\/(.*)$/, replacement: path.resolve(__dirname, '..', 'packages', '$1', '$2')}
   ]
 });
-const postcssOptions = extract => ({
+const postcssOptions = () => ({
   extensions: ['.scss', '.sass'],
-  extract,
+  extract: false,
   minimize: true,
   use: [
     ['sass', {
@@ -62,7 +62,7 @@ export default {
       }),
       commonjs(),
 
-      postcss(postcssOptions(false)),
+      postcss(postcssOptions()),
 
       legacy && babel({
         extensions: ['.js', '.mjs', '.html', '.svelte'],
@@ -107,7 +107,7 @@ export default {
       }),
       commonjs(),
 
-      postcss(postcssOptions(true))
+      postcss(postcssOptions())
     ],
     external: Object.keys(pkg.dependencies).concat(
       require('module').builtinModules || Object.keys(process.binding('natives'))
