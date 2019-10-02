@@ -57,7 +57,8 @@ Check out the [Webpack template](https://github.com/hperrin/smui-example-webpack
     <script>
       import Button from '@smui/button';
       import Fab from '@smui/fab';
-      import Textfield, {HelperText} from '@smui/textfield';
+      import Textfield from '@smui/textfield';
+      import HelperText from '@smui/textfield/helper-text';
       import {Label, Icon} from '@smui/common';
 
       let superText = '';
