@@ -163,6 +163,7 @@
 
   onMount(async () => {
     select = new MDCSelect(element);
+    select.value = value;
 
     menuPromiseResolve(select.menu_);
 
