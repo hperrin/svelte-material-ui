@@ -14,7 +14,21 @@ npm install --save-dev @smui/select
 
 # Basic Usage
 
-todo...
+```html
+<script>
+	import Select, {Option} from '@smui/select';
+	
+	let fruits = ['Apple', 'Orange', 'Banana', 'Mango'];
+	let selectedFruit;
+</script>
+
+<Select bind:value={selectedFruit} label="Fruits">
+  <Option value=""></Option>
+  {#each fruits as fruit}
+    <Option value={fruit} selected={valueStandard === fruit}>{fruit}</Option>
+  {/each}
+</Select>
+```
 
 # Demo
 
