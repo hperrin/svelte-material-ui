@@ -14,7 +14,21 @@ npm install --save-dev @smui/list
 
 # Basic Usage
 
-todo...
+```html
+<script>
+	import List, {Item, Label} from '@smui/list'
+	
+	let fruits = ['Apple', 'Orange', 'Banana', 'Mango'];
+</script>
+
+<List>
+	{#each fruits as fruit}
+		<Item>
+			<Label>{fruit}</Label
+		</Item>
+	{/each}
+</List>
+```
 
 # Demo
 
