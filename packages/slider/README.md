@@ -14,7 +14,15 @@ npm install --save-dev @smui/slider
 
 # Basic Usage
 
-todo...
+```html
+<script>
+	import Slider from '@smui/slider'
+
+	let value;
+</script>
+
+<Slider bind:value />
+```
 
 # Demo
 
