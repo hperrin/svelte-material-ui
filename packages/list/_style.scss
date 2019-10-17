@@ -1,2 +1,20 @@
 @import "@material/list/mdc-list";
 @import "@smui/ripple/style";
+
+
+/* 
+ Temporary addition until support for three-line added to @material 
+https://github.com/material-components/material-components-web/issues/31 
+*/
+.mdc-list--three-line .mdc-list-item__text {
+	align-self: flex-start;
+}
+
+.mdc-list--three-line .mdc-list-item {
+	height: 88px;
+}
+
+.mdc-list--three-line.mdc-list--dense .mdc-list-item,
+.mdc-list--avatar-list.mdc-list--dense .mdc-list-item {
+	height: 80px;
+}
