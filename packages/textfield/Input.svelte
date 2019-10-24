@@ -32,14 +32,11 @@
 
   let element;
   let valueProp = {};
-  let rawValue = '' + value;
-  // Keep separate rawValue because MDCTextField expects to work with strings,
-  // but we parse numbers and ranges for ease of use.
 
   $: if (type === 'file') {
     delete valueProp.value;
   } else {
-    valueProp.value = rawValue;
+    valueProp.value = value || '';
   }
 
   onMount(() => {
@@ -53,17 +50,16 @@
   }
 
   function valueUpdater(e) {
-    rawValue = e.target.value;
     switch (type) {
       case 'number':
       case 'range':
-        value = toNumber(rawValue);
+        value = toNumber(e.target.value);
         break;
       case 'file':
         files = e.target.files;
         // Fall through.
       default:
-        value = rawValue;
+        value = e.target.value;
         break;
     }
   }
