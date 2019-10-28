@@ -46,7 +46,12 @@
   });
 
   function toNumber(value) {
-    return value === '' ? undefined : +value;
+    if (value === '') {
+      const nan = new Number(Number.NaN);
+      nan.length = 0;
+      return nan;
+    }
+    return +value;
   }
 
   function valueUpdater(e) {

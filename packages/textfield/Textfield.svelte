@@ -33,6 +33,7 @@
         {type}
         {disabled}
         bind:value
+        bind:files
         bind:dirty
         bind:invalid
         {updateInvalid}
@@ -112,6 +113,7 @@
   export let label = null;
   export let type = 'text';
   export let value = uninitializedValue;
+  export let files = uninitializedValue;
   export let dirty = false;
   export let invalid = uninitializedValue;
   export let updateInvalid = invalid === uninitializedValue;
@@ -122,11 +124,11 @@
   let element;
   let textField;
 
-  $: valued = value !== uninitializedValue;
+  $: valued = value !== uninitializedValue || files !== uninitializedValue;
 
   $: placeholderProp = (fullwidth && label) ? {placeholder: label} : {};
 
-  $: if (textField && valued && textField.value !== value) {
+  $: if (textField && value !== uninitializedValue && textField.value !== value) {
     textField.value = value;
   }
 
