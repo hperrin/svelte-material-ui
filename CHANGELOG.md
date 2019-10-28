@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.17](https://github.com/hperrin/svelte-material-ui/compare/v1.0.0-beta.16...v1.0.0-beta.17) (2019-10-28)
+
+
+### Bug Fixes
+
+* fixed initial value state of Select component ([4afdfc2](https://github.com/hperrin/svelte-material-ui/commit/4afdfc2fcb760c7acf9a486882078f2698944ec7))
+* handle blank number input as NaN ([939543f](https://github.com/hperrin/svelte-material-ui/commit/939543f2a824deac29e77a912cb26cbe0dd0f2fb))
+
+
+### Features
+
+* add three line lists (modifying MintyMods code) ([5894c23](https://github.com/hperrin/svelte-material-ui/commit/5894c23f0ac18286e54ce5e80a33da2c8d1480fc))
+* update MDC package versions to 3.2.0 ([605753d](https://github.com/hperrin/svelte-material-ui/commit/605753dd3fe121eba2654498f62f8ddd57a9e3b9))
+
+
+
+
+
 # [1.0.0-beta.16](https://github.com/hperrin/svelte-material-ui/compare/v1.0.0-beta.15...v1.0.0-beta.16) (2019-09-24)
 
 **Note:** Version bump only for package svelte-material-ui
