@@ -10,7 +10,7 @@
     use:useActions={use}
     use:forwardEvents
     {value}
-    {selected}
+    {...selectedProp}
     {...props}
   ><slot></slot></option>
 {/if}
@@ -37,4 +37,6 @@
   let enhanced = getContext('SMUI:select:option:enhanced');
 
   setContext('SMUI:list:item:role', 'option');
+
+  $: selectedProp = !enhanced && selected ? {selected: true} : {};
 </script>
