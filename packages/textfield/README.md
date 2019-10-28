@@ -16,12 +16,18 @@ npm install --save-dev @smui/textfield
 
 ```html
 <script>
-    import Textfield from '@smui/textfield'
+  import Textfield from '@smui/textfield'
 
-    export let fruit;
+  export let name = '';
+  export let email = '';
+  export let comment = '';
 </script>
 
-<Textfield bind:value={fruit} label="Fruit name" />
+<Textfield bind:value={name} label="Name" />
+<br />
+<Textfield type="email" bind:value={email} label="Email" input$autocomplete="email">
+<br />
+<Textfield textarea bind:value={comment} label="Comment" />
 ```
 
 # Demo
