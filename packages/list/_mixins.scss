@@ -1,0 +1,28 @@
+/*
+ Temporary addition until support for three-line added to @material
+https://github.com/material-components/material-components-web/issues/31
+*/
+@import "@material/feature-targeting/functions";
+@import "@material/feature-targeting/mixins";
+
+@mixin smui-list-core-styles($query: mdc-feature-all()) {
+  $feat-structure: mdc-feature-create-target($query, structure);
+
+  .smui-list--three-line .mdc-list-item__text {
+    @include mdc-feature-targets($feat-structure) {
+      align-self: flex-start;
+    }
+  }
+
+  .smui-list--three-line .mdc-list-item {
+    @include mdc-feature-targets($feat-structure) {
+      height: 88px;
+    }
+  }
+
+  .smui-list--three-line.mdc-list--dense .mdc-list-item {
+    @include mdc-feature-targets($feat-structure) {
+      height: 76px;
+    }
+  }
+}

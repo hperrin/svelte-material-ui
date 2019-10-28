@@ -8,7 +8,7 @@
     class:mdc-list--dense={dense}
     class:mdc-list--avatar-list={avatarList}
     class:mdc-list--two-line={twoLine}
-	class:mdc-list--three-line={threeLine}
+    class:smui-list--three-line={threeLine && !twoLine}
     on:MDCList:action={handleAction}
     {...props}
   ><slot></slot></nav>
@@ -22,7 +22,7 @@
     class:mdc-list--dense={dense}
     class:mdc-list--avatar-list={avatarList}
     class:mdc-list--two-line={twoLine}
-	class:mdc-list--three-line={threeLine}
+    class:smui-list--three-line={threeLine && !twoLine}
     {role}
     on:MDCList:action={handleAction}
     {...props}
