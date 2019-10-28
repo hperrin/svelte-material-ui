@@ -21,6 +21,7 @@
       {disabled}
       {required}
       id={inputId}
+      value={value}
       on:change
       on:input
       {...exclude(prefixFilter($$props, 'input$'), ['use'])}
@@ -113,7 +114,7 @@
   export let noLabel = false;
   export let label = null;
   export let value = '';
-  export let selectedIndex = null;
+  export let selectedIndex = uninitializedValue;
   // Only needed for enhanced select and only needed on initialization.
   export let selectedText = '';
   export let dirty = false;
@@ -142,7 +143,11 @@
   }
 
   $: if (select && select.selectedIndex !== selectedIndex) {
-    select.selectedIndex = selectedIndex;
+    if (selectedIndex === uninitializedValue) {
+      selectedIndex = select.selectedIndex;
+    } else {
+      select.selectedIndex = selectedIndex;
+    }
   }
 
   $: if (select && select.disabled !== disabled) {
