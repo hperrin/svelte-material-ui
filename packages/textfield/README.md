@@ -14,7 +14,15 @@ npm install --save-dev @smui/textfield
 
 # Basic Usage
 
-todo...
+```html
+<script>
+    import Textfield from '@smui/textfield'
+
+    export let fruit;
+</script>
+
+<Textfield bind:value={fruit} label="Fruit name" />
+```
 
 # Demo
 
