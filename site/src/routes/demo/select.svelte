@@ -5,6 +5,17 @@
 <section>
   <h2>Select</h2>
 
+  <div class="margins">
+    <Select bind:value={value} label="Fruit">
+      <Option value=""></Option>
+      {#each fruits as fruit}
+        <Option value={fruit} selected={value === fruit}>{fruit}</Option>
+      {/each}
+    </Select>
+
+    <pre class="status">Selected: {value}</pre>
+  </div>
+
   <div class="columns margins">
     <div>
       Standard:<br />
@@ -357,6 +368,8 @@
   import HelperText from '@smui/select/helper-text/index';
 
   let fruits = ['Apple', 'Orange', 'Banana', 'Mango'];
+
+  let value = 'Orange';
 
   let valueStandard = '';
   let valueStandardHelperText = '';
