@@ -37,6 +37,6 @@
   },
   "devDependencies": {
     "glob-cmd": "0.0.7",
-    "sass": "^1.23.0-module.beta.1"
+    "sass": "^1.23.1"
   }
 }

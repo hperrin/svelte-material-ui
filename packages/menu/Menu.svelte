@@ -119,6 +119,10 @@
     return menu.setSelectedIndex(...args);
   }
 
+  export function setEnabled(...args) {
+    return menu.setEnabled(...args);
+  }
+
   export function getOptionByIndex(...args) {
     return menu.getOptionByIndex(...args);
   }

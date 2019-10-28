@@ -64,10 +64,10 @@
     "@smui/top-app-bar": "^1.0.0-beta.15"
   },
   "devDependencies": {
-    "@commitlint/cli": "^8.1.0",
-    "@commitlint/config-conventional": "^8.1.0",
-    "husky": "^3.0.5",
-    "lerna": "^3.16.4",
+    "@commitlint/cli": "^8.2.0",
+    "@commitlint/config-conventional": "^8.2.0",
+    "husky": "^3.0.9",
+    "lerna": "^3.18.3",
     "svelte": "^3.12.1"
   },
   "husky": {

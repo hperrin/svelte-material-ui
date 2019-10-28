@@ -127,4 +127,12 @@
   export function layout(...args) {
     return list.layout(...args);
   }
+
+  export function setEnabled(...args) {
+    return list.setEnabled(...args);
+  }
+
+  export function getDefaultFoundation(...args) {
+    return list.getDefaultFoundation(...args);
+  }
 </script>

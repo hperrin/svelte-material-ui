@@ -28,12 +28,12 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@material/data-table": "^3.1.1",
+    "@material/data-table": "^3.2.0",
     "@smui/checkbox": "^1.0.0-beta.16",
     "@smui/common": "^1.0.0-beta.15"
   },
   "devDependencies": {
     "glob-cmd": "0.0.7",
-    "sass": "^1.23.0-module.beta.1"
+    "sass": "^1.23.1"
   }
 }
