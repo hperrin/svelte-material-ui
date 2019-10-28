@@ -16,9 +16,9 @@ npm install --save-dev @smui/slider
 
 ```html
 <script>
-	import Slider from '@smui/slider'
+  import Slider from '@smui/slider'
 
-	let value;
+  let value = 0;
 </script>
 
 <Slider bind:value />
