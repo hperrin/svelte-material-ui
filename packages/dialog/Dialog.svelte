@@ -55,7 +55,7 @@
     return dialog.close(...args);
   }
 
-  export function isOpen(...args) {
+  export function isOpen() {
     return dialog.isOpen;
   }
 
