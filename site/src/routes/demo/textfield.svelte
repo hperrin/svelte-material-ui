@@ -424,6 +424,24 @@
   </div>
 
   <div>
+    Different Types:
+
+    <div class="columns margins">
+      <div>
+        <Textfield bind:value={valueTypeNumber} label="Number" type="number" />
+      </div>
+
+      <div>
+        <Textfield bind:value={valueTypeDate} label="DateTime-Local" type="datetime-local" />
+      </div>
+
+      <div>
+        <Textfield bind:files={valueTypeFiles} label="File" type="file" on:change={handleFiles} />
+      </div>
+    </div>
+  </div>
+
+  <div>
     Manual Setup:
 
     <div class="columns margins">
@@ -530,6 +548,9 @@
   let valueFullwidth = '';
   let valueFullwidthTextarea = '';
   let valueElementsLabel = '';
+  let valueTypeNumber = 0;
+  let valueTypeDate = '';
+  let valueTypeFiles = [];
   let valueManualA = '';
   let valueManualB = '';
   let valueManualC = '';
@@ -539,6 +560,10 @@
     alert(`Sending to ${valueClickable}!`);
     valueClickable = '';
     dirtyClickable = false;
+  }
+
+  function handleFiles() {
+    alert('Selected '+valueTypeFiles.length+' file(s).');
   }
 </script>
 
