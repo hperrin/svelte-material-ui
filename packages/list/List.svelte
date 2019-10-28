@@ -8,6 +8,7 @@
     class:mdc-list--dense={dense}
     class:mdc-list--avatar-list={avatarList}
     class:mdc-list--two-line={twoLine}
+    class:smui-list--three-line={threeLine && !twoLine}
     on:MDCList:action={handleAction}
     {...props}
   ><slot></slot></nav>
@@ -21,6 +22,7 @@
     class:mdc-list--dense={dense}
     class:mdc-list--avatar-list={avatarList}
     class:mdc-list--two-line={twoLine}
+    class:smui-list--three-line={threeLine && !twoLine}
     {role}
     on:MDCList:action={handleAction}
     {...props}
@@ -44,6 +46,7 @@
   export let dense = false;
   export let avatarList = false;
   export let twoLine = false;
+  export let threeLine = false;
   export let vertical = true;
   export let wrapFocus = false;
   export let singleSelection = false;
@@ -51,7 +54,7 @@
   export let radiolist = false;
   export let checklist = false;
 
-  $: props = exclude($$props, ['use', 'class', 'nonInteractive', 'dense', 'avatarList', 'twoLine', 'vertical', 'wrapFocus', 'singleSelection', 'selectedIndex', 'radiolist', 'checklist']);
+  $: props = exclude($$props, ['use', 'class', 'nonInteractive', 'dense', 'avatarList', 'twoLine', 'threeLine', 'vertical', 'wrapFocus', 'singleSelection', 'selectedIndex', 'radiolist', 'checklist']);
 
   let element;
   let list;
