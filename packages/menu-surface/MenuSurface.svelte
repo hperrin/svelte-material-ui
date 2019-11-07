@@ -95,8 +95,15 @@
     if (anchor) {
       element && element.parentNode.classList.remove('mdc-menu-surface--anchor');
     }
+    let isHoisted = false;
+    if (menuSurface) {
+      isHoisted = menuSurface.foundation_.isHoistedElement_;
+    }
     if (instantiate !== false) {
-      menuSurface && menuSurface.destroy()
+      menuSurface.destroy();
+    }
+    if (isHoisted) {
+      element.parentNode.removeChild(element);
     }
   });
 
