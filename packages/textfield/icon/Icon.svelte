@@ -32,6 +32,6 @@
   });
 
   onDestroy(() => {
-    icon && icon.destroy()
+    icon && icon.destroy();
   });
 </script>

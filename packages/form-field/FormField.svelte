@@ -47,8 +47,6 @@
   });
 
   onDestroy(() => {
-    if (formField) {
-      formField && formField.destroy()
-    }
+    formField && formField.destroy();
   });
 </script>

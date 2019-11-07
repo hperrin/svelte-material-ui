@@ -45,7 +45,7 @@
   });
 
   onDestroy(() => {
-    floatingLabel && floatingLabel.destroy()
+    floatingLabel && floatingLabel.destroy();
   });
 
   export function shake(shouldShake, ...args) {

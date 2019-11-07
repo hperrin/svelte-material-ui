@@ -79,7 +79,7 @@
 
   onDestroy(() => {
     if (instantiate !== false) {
-      menu && menu.destroy()
+      menu && menu.destroy();
     }
   });
 

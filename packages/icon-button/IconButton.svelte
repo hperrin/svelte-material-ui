@@ -74,7 +74,7 @@
       }
       toggleButton.on = pressed;
     } else if (oldToggle) {
-      toggleButton && toggleButton.destroy()
+      toggleButton && toggleButton.destroy();
       toggleButton = null;
     }
     oldToggle = toggle;
@@ -85,7 +85,7 @@
   }
 
   onDestroy(() => {
-    toggleButton && toggleButton.destroy()
+    toggleButton && toggleButton.destroy();
   });
 
   function handleChange(e) {

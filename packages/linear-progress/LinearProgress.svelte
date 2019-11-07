@@ -70,6 +70,6 @@
   });
 
   onDestroy(() => {
-    linearProgress && linearProgress.destroy()
+    linearProgress && linearProgress.destroy();
   });
 </script>

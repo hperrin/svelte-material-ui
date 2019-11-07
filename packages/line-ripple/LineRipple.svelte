@@ -30,7 +30,7 @@
   });
 
   onDestroy(() => {
-    lineRipple && lineRipple.destroy()
+    lineRipple && lineRipple.destroy();
   });
 
   export function activate(...args) {
