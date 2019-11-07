@@ -110,6 +110,41 @@
   </div>
 
   <pre class="status">Selected: {selected}</pre>
+
+  <div>
+    A dialog with sliders: <br />
+
+    <Dialog bind:this={sliderDialog} aria-labelledby="slider-title" aria-describedby="slider-content">
+      <Title id="slider-title">Volumes</Title>
+      <Content id="slider-content">
+        <div>
+          <FormField align="end" style="display: flex; flex-direction: column;">
+            <Slider bind:value={volumeMedia} use={[InitialFocus]} />
+            <span slot="label">Media Volume</span>
+          </FormField>
+        </div>
+        <div>
+          <FormField align="end" style="display: flex; flex-direction: column;">
+            <Slider bind:value={volumeRingtone} />
+            <span slot="label">Ringtone Volume</span>
+          </FormField>
+        </div>
+        <div>
+          <FormField align="end" style="display: flex; flex-direction: column;">
+            <Slider bind:value={volumeAlarm} />
+            <span slot="label">Alarm Volume</span>
+          </FormField>
+        </div>
+      </Content>
+      <Actions>
+        <Button action="accept">
+          <Label>Done</Label>
+        </Button>
+      </Actions>
+    </Dialog>
+
+    <Button on:click={() => sliderDialog.open()}><Label>Open Dialog</Label></Button>
+  </div>
 </section>
 
 <script>
@@ -117,16 +152,22 @@
   import Button, {Label} from '@smui/button';
   import List, {Item, Graphic, Text} from '@smui/list';
   import Radio from '@smui/radio';
+  import Slider from '@smui/slider';
+  import FormField from '@smui/form-field';
 
   let simpleDialog;
   let eventDialog;
   let listDialog;
   let listSelectionDialog;
+  let sliderDialog;
   let clicked = 'Nothing yet.';
   let response = 'Nothing yet.';
   let clickedList = 'Nothing yet.';
   let selection = 'Radishes';
   let selected = 'Nothing yet.';
+  let volumeMedia = 100;
+  let volumeRingtone = 80;
+  let volumeAlarm = 80;
 
   function closeHandler(e) {
     switch (e.detail.action) {

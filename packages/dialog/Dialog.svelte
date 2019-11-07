@@ -5,6 +5,7 @@
   class="mdc-dialog {className}"
   role="alertdialog"
   aria-modal="true"
+  on:MDCDialog:opened={handleDialogOpened}
   {...exclude($$props, ['use', 'class'])}
 >
   <div class="mdc-dialog__container">
@@ -17,7 +18,7 @@
 
 <script>
   import {MDCDialog} from '@material/dialog';
-  import {onMount, onDestroy} from 'svelte';
+  import {onMount, onDestroy, setContext} from 'svelte';
   import {current_component} from 'svelte/internal';
   import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
   import {exclude} from '@smui/common/exclude.js';
@@ -34,6 +35,10 @@
 
   let element;
   let dialog;
+  let layoutListeners = [];
+  let addLayoutListener = listener => layoutListeners.push(listener);
+
+  setContext('SMUI:addLayoutListener', addLayoutListener);
 
   $: dialog && (dialog.escapeKeyAction = escapeKeyAction);
   $: dialog && (dialog.scrimClickAction = scrimClickAction);
@@ -46,6 +51,10 @@
   onDestroy(() => {
     dialog && dialog.destroy()
   });
+
+  function handleDialogOpened() {
+    layoutListeners.forEach(listener => listener());
+  }
 
   export function open(...args) {
     return dialog.open(...args);

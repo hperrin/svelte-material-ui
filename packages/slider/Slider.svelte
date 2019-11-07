@@ -61,6 +61,7 @@
   let slider;
   let formField = getContext('SMUI:form-field');
   let inputProps = getContext('SMUI:generic:input:props') || {};
+  let addLayoutListener = getContext('SMUI:addLayoutListener');
 
   $: if (slider && slider.disabled !== disabled) {
     slider.disabled = disabled;
@@ -80,6 +81,10 @@
 
   $: if (slider && slider.value !== value) {
     slider.value = value;
+  }
+
+  if (addLayoutListener) {
+    addLayoutListener(layout);
   }
 
   onMount(() => {
