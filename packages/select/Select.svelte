@@ -132,6 +132,8 @@
   let inputElement;
   let menuPromiseResolve;
   let menuPromise = new Promise(resolve => menuPromiseResolve = resolve);
+  let addLayoutListener = getContext('SMUI:addLayoutListener');
+  let removeLayoutListener;
 
   setContext('SMUI:menu:instantiate', false);
   setContext('SMUI:menu:getInstance', getMenuInstancePromise);
@@ -166,6 +168,10 @@
     select.required = required;
   }
 
+  if (addLayoutListener) {
+    removeLayoutListener = addLayoutListener(layout);
+  }
+
   onMount(async () => {
     select = new MDCSelect(element);
 
@@ -181,7 +187,11 @@
   });
 
   onDestroy(() => {
-    select && select.destroy()
+    select && select.destroy();
+
+    if (removeLayoutListener) {
+      removeLayoutListener();
+    }
   });
 
   function getMenuInstancePromise() {

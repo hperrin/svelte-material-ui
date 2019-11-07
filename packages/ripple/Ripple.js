@@ -1,7 +1,10 @@
 import {MDCRipple} from '@material/ripple';
+import {getContext} from 'svelte';
 
 export default function Ripple(node, [ripple, props = {unbounded: false, color: null}]) {
   let instance = null;
+  let addLayoutListener = getContext('SMUI:addLayoutListener');
+  let removeLayoutListener;
 
   function handleProps(ripple, props) {
     if (ripple && !instance) {
@@ -39,6 +42,16 @@ export default function Ripple(node, [ripple, props = {unbounded: false, color: 
     handleProps(ripple, props);
   }
 
+  if (addLayoutListener) {
+    removeLayoutListener = addLayoutListener(layout);
+  }
+
+  function layout() {
+    if (instance) {
+      instance.layout();
+    }
+  }
+
   return {
     update([ripple, props = {unbounded: false, color: null}]) {
       handleProps(ripple, props);
@@ -51,6 +64,10 @@ export default function Ripple(node, [ripple, props = {unbounded: false, color: 
         node.classList.remove('mdc-ripple-surface');
         node.classList.remove('mdc-ripple-surface--primary');
         node.classList.remove('mdc-ripple-surface--accent');
+      }
+
+      if (removeLayoutListener) {
+        removeLayoutListener();
       }
     }
   }

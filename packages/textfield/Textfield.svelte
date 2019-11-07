@@ -83,7 +83,7 @@
 
 <script>
   import {MDCTextField} from '@material/textfield';
-  import {onMount, onDestroy} from 'svelte';
+  import {onMount, onDestroy, getContext} from 'svelte';
   import {current_component} from 'svelte/internal';
   import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
   import {exclude} from '@smui/common/exclude.js';
@@ -123,6 +123,8 @@
 
   let element;
   let textField;
+  let addLayoutListener = getContext('SMUI:addLayoutListener');
+  let removeLayoutListener;
 
   $: valued = value !== uninitializedValue || files !== uninitializedValue;
 
@@ -148,6 +150,10 @@
     textField.useNativeValidation = useNativeValidation;
   }
 
+  if (addLayoutListener) {
+    removeLayoutListener = addLayoutListener(layout);
+  }
+
   onMount(() => {
     textField = new MDCTextField(element);
 
@@ -157,7 +163,11 @@
   });
 
   onDestroy(() => {
-    textField && textField.destroy()
+    textField && textField.destroy();
+
+    if (removeLayoutListener) {
+      removeLayoutListener();
+    }
   });
 
   export function focus(...args) {

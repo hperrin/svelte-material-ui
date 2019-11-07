@@ -62,6 +62,7 @@
   let formField = getContext('SMUI:form-field');
   let inputProps = getContext('SMUI:generic:input:props') || {};
   let addLayoutListener = getContext('SMUI:addLayoutListener');
+  let removeLayoutListener;
 
   $: if (slider && slider.disabled !== disabled) {
     slider.disabled = disabled;
@@ -84,7 +85,7 @@
   }
 
   if (addLayoutListener) {
-    addLayoutListener(layout);
+    removeLayoutListener = addLayoutListener(layout);
   }
 
   onMount(() => {
@@ -96,7 +97,11 @@
   });
 
   onDestroy(() => {
-    slider && slider.destroy()
+    slider && slider.destroy();
+
+    if (removeLayoutListener) {
+      removeLayoutListener();
+    }
   });
 
   function handleChange() {

@@ -62,6 +62,8 @@
   let nav = getContext('SMUI:list:nav');
   let instantiate = getContext('SMUI:list:instantiate');
   let getInstance = getContext('SMUI:list:getInstance');
+  let addLayoutListener = getContext('SMUI:addLayoutListener');
+  let removeLayoutListener;
 
   setContext('SMUI:list:nonInteractive', nonInteractive);
 
@@ -97,6 +99,10 @@
     list.selectedIndex = selectedIndex;
   }
 
+  if (addLayoutListener) {
+    removeLayoutListener = addLayoutListener(layout);
+  }
+
   onMount(async () => {
     if (instantiate !== false) {
       list = new MDCList(element);
@@ -111,7 +117,11 @@
 
   onDestroy(() => {
     if (instantiate !== false) {
-      list && list.destroy()
+      list && list.destroy();
+    }
+
+    if (removeLayoutListener) {
+      removeLayoutListener();
     }
   });
 

@@ -20,7 +20,7 @@
 <script>
   import {MDCDataTable} from '@material/data-table';
   import {events} from '@material/data-table/constants';
-  import {onMount, onDestroy, setContext} from 'svelte';
+  import {onMount, onDestroy, getContext, setContext} from 'svelte';
   import {current_component} from 'svelte/internal';
   import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
   import {exclude} from '@smui/common/exclude.js';
@@ -50,11 +50,17 @@
   let checkBoxHeaderPromise = new Promise(resolve => checkBoxHeaderPromiseResolve = resolve);
   let checkBoxListPromiseResolve;
   let checkBoxListPromise = new Promise(resolve => checkBoxListPromiseResolve = resolve);
+  let addLayoutListener = getContext('SMUI:addLayoutListener');
+  let removeLayoutListener;
 
   setContext('SMUI:generic:input:addChangeHandler', addChangeHandler);
   setContext('SMUI:checkbox:context', 'data-table');
   setContext('SMUI:checkbox:instantiate', false);
   setContext('SMUI:checkbox:getInstance', getCheckboxInstancePromise);
+
+  if (addLayoutListener) {
+    removeLayoutListener = addLayoutListener(layout);
+  }
 
   onMount(async () => {
     dataTable = new MDCDataTable(element);
@@ -72,7 +78,11 @@
   });
 
   onDestroy(() => {
-    dataTable && dataTable.destroy()
+    dataTable && dataTable.destroy();
+
+    if (removeLayoutListener) {
+      removeLayoutListener();
+    }
   });
 
   function getCheckboxInstancePromise(header) {

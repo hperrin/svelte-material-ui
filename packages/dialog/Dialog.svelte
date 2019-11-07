@@ -18,7 +18,7 @@
 
 <script>
   import {MDCDialog} from '@material/dialog';
-  import {onMount, onDestroy, setContext} from 'svelte';
+  import {onMount, onDestroy, getContext, setContext} from 'svelte';
   import {current_component} from 'svelte/internal';
   import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
   import {exclude} from '@smui/common/exclude.js';
@@ -35,21 +35,40 @@
 
   let element;
   let dialog;
+  let addLayoutListener = getContext('SMUI:addLayoutListener');
+  let removeLayoutListener;
   let layoutListeners = [];
-  let addLayoutListener = listener => layoutListeners.push(listener);
+  let addLayoutListenerFn = listener => {
+    layoutListeners.push(listener);
 
-  setContext('SMUI:addLayoutListener', addLayoutListener);
+    return () => {
+      const idx = layoutListeners.indexOf(listener);
+      if (idx >= 0) {
+        layoutListeners.splice(idx, 1);
+      }
+    };
+  };
+
+  setContext('SMUI:addLayoutListener', addLayoutListenerFn);
 
   $: dialog && (dialog.escapeKeyAction = escapeKeyAction);
   $: dialog && (dialog.scrimClickAction = scrimClickAction);
   $: dialog && (dialog.autoStackButtons = autoStackButtons);
+
+  if (addLayoutListener) {
+    removeLayoutListener = addLayoutListener(layout);
+  }
 
   onMount(() => {
     dialog = new MDCDialog(element);
   });
 
   onDestroy(() => {
-    dialog && dialog.destroy()
+    dialog && dialog.destroy();
+
+    if (removeLayoutListener) {
+      removeLayoutListener();
+    }
   });
 
   function handleDialogOpened() {
