@@ -1,6 +1,6 @@
 {
   "name": "@smui/snackbar",
-  "version": "1.0.0-beta.17",
+  "version": "1.0.0-beta.18",
   "description": "Svelte Material UI - Snackbar",
   "keywords": [
     "svelte",
@@ -30,9 +30,9 @@
   "dependencies": {
     "@material/feature-targeting": "^3.1.0",
     "@material/snackbar": "^3.2.0",
-    "@smui/button": "^1.0.0-beta.17",
+    "@smui/button": "^1.0.0-beta.18",
     "@smui/common": "^1.0.0-beta.15",
-    "@smui/icon-button": "^1.0.0-beta.17"
+    "@smui/icon-button": "^1.0.0-beta.18"
   },
   "devDependencies": {
     "glob-cmd": "0.0.7",
