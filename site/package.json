@@ -19,6 +19,7 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
+    "@material/rtl": "^4.0.0",
     "compression": "^1.7.4",
     "polka": "next",
     "sirv": "^0.4.2"
