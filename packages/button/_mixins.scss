@@ -32,7 +32,6 @@
 @mixin smui-button-ripple($query: mdc-feature-all()) {
   .smui-button--color-secondary {
     @include mdc-states(secondary, false, $query);
-    // @include mdc-button-shape-radius(999px);
 
     &.mdc-button--raised,
     &.mdc-button--unelevated {
