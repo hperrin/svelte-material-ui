@@ -13,7 +13,7 @@
   data-step={step === 0 ? undefined : step}
   {tabindex}
   {...inputProps}
-  on:MDCSlider:change={handleChange}
+  on:MDCSlider:input={handleChange}
   {...exclude($$props, ['use', 'class', 'disabled', 'discrete', 'displayMarkers', 'min', 'max', 'step', 'value', 'tabindex'])}
 >
   <div class="mdc-slider__track-container">
