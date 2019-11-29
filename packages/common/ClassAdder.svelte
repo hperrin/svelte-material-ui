@@ -6,7 +6,7 @@
 ><slot></slot></svelte:component>
 
 <script context="module">
-  export let internals = {
+  export const internals = {
     component: null,
     smuiClass: null,
     contexts: {}
