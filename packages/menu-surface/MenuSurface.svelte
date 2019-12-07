@@ -4,7 +4,7 @@
   use:forwardEvents
   class="mdc-menu-surface {className}"
   class:mdc-menu-surface--fixed={fixed}
-  class:mdc-menu-surface--open={isStatic}
+  class:mdc-menu-surface--open={open}
   class:smui-menu-surface--static={isStatic}
   on:MDCMenuSurface:closed={updateOpen} on:MDCMenuSurface:opened={updateOpen}
   {...exclude($$props, ['use', 'class', 'static', 'anchor', 'fixed', 'open', 'quickOpen', 'anchorElement', 'anchorCorner', 'element'])}
