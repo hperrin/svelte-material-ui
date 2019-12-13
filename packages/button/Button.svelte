@@ -8,7 +8,6 @@
       {variant === 'raised' ? 'mdc-button--raised' : ''}
       {variant === 'unelevated' ? 'mdc-button--unelevated' : ''}
       {variant === 'outlined' ? 'mdc-button--outlined' : ''}
-      {shape === 'rounded' ? 'smui-button-rounded' : ''}
       {dense ? 'mdc-button--dense' : ''}
       {color === 'secondary' ? 'smui-button--color-secondary' : ''}
       {context === 'card:action' ? 'mdc-card__action' : ''}
@@ -34,7 +33,6 @@
       {variant === 'raised' ? 'mdc-button--raised' : ''}
       {variant === 'unelevated' ? 'mdc-button--unelevated' : ''}
       {variant === 'outlined' ? 'mdc-button--outlined' : ''}
-      {shape === 'rounded' ? 'smui-button-rounded' : ''}
       {dense ? 'mdc-button--dense' : ''}
       {color === 'secondary' ? 'smui-button--color-secondary' : ''}
       {context === 'card:action' ? 'mdc-card__action' : ''}
@@ -67,7 +65,6 @@
   export let ripple = true;
   export let color = 'primary';
   export let variant = 'text';
-  export let shape;
   export let dense = false;
   export let href = null;
   export let action = 'close';
@@ -78,7 +75,7 @@
 
   $: dialogExcludes = (context === 'dialog:action') ? ['action', 'default'] : [];
 
-  $: props = exclude($$props, ['use', 'class', 'ripple', 'color', 'variant', 'shape', 'dense', 'href', ...dialogExcludes]);
+  $: props = exclude($$props, ['use', 'class', 'ripple', 'color', 'variant', 'dense', 'href', ...dialogExcludes]);
 
   $: actionProp = (context === 'dialog:action' && action !== null) ? {'data-mdc-dialog-action': action} : {};
   $: defaultProp = (context === 'dialog:action' && defaultAction) ? {'data-mdc-dialog-button-default': ''} : {};

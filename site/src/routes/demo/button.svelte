@@ -38,14 +38,6 @@
     <Button color="secondary" on:click={() => clicked++}><Label>Trailing Icon</Label><Icon class="material-icons">favorite</Icon></Button>
   </div>
 
-  <div>  
-    Shaped button: <br />
-    <Button on:click={() => clicked++} variant="unelevated" shape="rounded"><Label>Unelevated</Label></Button>
-    <Button on:click={() => clicked++} variant="outlined" shape="rounded"><Label>Outlined</Label></Button>
-    <Button on:click={() => clicked++} variant="unelevated" shape="rounded"><Icon class="material-icons">favorite</Icon><Label>Icon</Label></Button>
-    <Button on:click={() => clicked++} variant="unelevated" shape="rounded"><Label>Trailing Icon</Label><Icon class="material-icons">favorite</Icon></Button>
-  </div>
-
   <div>
     Button groups: <br />
     <Group>
@@ -114,10 +106,28 @@
     </Group>
   </div>
 
+  <div>
+    Creating rounded buttons with Sass mixins: <br />
+    <Button on:click={() => clicked++} variant="raised" class="button-shaped-round"><Label>Raised</Label></Button>
+    <Button on:click={() => clicked++} variant="unelevated" class="button-shaped-round"><Label>Unelevated</Label></Button>
+    <Button on:click={() => clicked++} variant="outlined" class="button-shaped-round"><Label>Outlined</Label></Button>
+    <Button on:click={() => clicked++} variant="unelevated" class="button-shaped-round"><Icon class="material-icons">favorite</Icon><Label>Icon</Label></Button>
+    <Button on:click={() => clicked++} variant="outlined" class="button-shaped-round"><Label>Trailing Icon</Label><Icon class="material-icons">favorite</Icon></Button>
+  </div>
+
+  <div>
+    Creating notched buttons with vanilla Sass: <br />
+    <Button on:click={() => clicked++} variant="raised" class="button-shaped-notch"><Label>Raised</Label></Button>
+    <Button on:click={() => clicked++} variant="unelevated" class="button-shaped-notch"><Label>Unelevated</Label></Button>
+    <Button on:click={() => clicked++} variant="unelevated" class="button-shaped-notch"><Icon class="material-icons">favorite</Icon><Label>Icon</Label></Button>
+    <Button on:click={() => clicked++} variant="unelevated" class="button-shaped-notch"><Label>Trailing Icon</Label><Icon class="material-icons">favorite</Icon></Button>
+  </div>
+
   <pre class="status">Clicked: {clicked}</pre>
 </section>
 
 <script>
+  import './button.scss';
   import Button, {Group, GroupItem, Label, Icon} from '@smui/button';
   import Menu from '@smui/menu';
   import List, {Item, Separator, Text} from '@smui/list';

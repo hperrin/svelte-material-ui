@@ -4,13 +4,6 @@
 @mixin smui-button-core-styles($query: mdc-feature-all()) {
   @include smui-button-without-ripple($query);
   @include smui-button-ripple($query);
-  @include smui-button-rounded($query);
-}
-
-@mixin smui-button-rounded($query: mdc-feature-all()) {
-  .smui-button-rounded {
-    @include mdc-button-shape-radius(999px);
-  }
 }
 
 @mixin smui-button-without-ripple($query: mdc-feature-all()) {
