@@ -38,6 +38,14 @@
     <Button color="secondary" on:click={() => clicked++}><Label>Trailing Icon</Label><Icon class="material-icons">favorite</Icon></Button>
   </div>
 
+  <div>  
+    Shaped button: <br />
+    <Button on:click={() => clicked++} variant="unelevated" shape="rounded"><Label>Unelevated</Label></Button>
+    <Button on:click={() => clicked++} variant="outlined" shape="rounded"><Label>Outlined</Label></Button>
+    <Button on:click={() => clicked++} variant="unelevated" shape="rounded"><Icon class="material-icons">favorite</Icon><Label>Icon</Label></Button>
+    <Button on:click={() => clicked++} variant="unelevated" shape="rounded"><Label>Trailing Icon</Label><Icon class="material-icons">favorite</Icon></Button>
+  </div>
+
   <div>
     Button groups: <br />
     <Group>
