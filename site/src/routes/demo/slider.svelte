@@ -20,11 +20,15 @@
     <Slider bind:value={value2} min={-10} max={10} step={2} discrete />
   </div>
 
+  <pre class="status">Value: {value2}</pre>
+
   <div>
     Discrete with min/max/step and tick marks:
 
     <Slider bind:value={value3} min={-10} max={10} step={2} discrete displayMarkers />
   </div>
+
+  <pre class="status">Value: {value3}</pre>
 </section>
 
 <script>
