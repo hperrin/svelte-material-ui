@@ -1,13 +1,15 @@
 <span
   use:useActions={use}
   use:forwardEvents
-  class={className}
-  class:mdc-button__label={context === 'button'}
-  class:mdc-fab__label={context === 'fab'}
-  class:mdc-chip__text={context === 'chip'}
-  class:mdc-tab__text-label={context === 'tab'}
-  class:mdc-image-list__label={context === 'image-list'}
-  class:mdc-snackbar__label={context === 'snackbar'}
+  class="
+    {className}
+    {context === 'button' ? 'mdc-button__label' : ''}
+    {context === 'fab' ? 'mdc-fab__label' : ''}
+    {context === 'chip' ? 'mdc-chip__text' : ''}
+    {context === 'tab' ? 'mdc-tab__text-label' : ''}
+    {context === 'image-list' ? 'mdc-image-list__label' : ''}
+    {context === 'snackbar' ? 'mdc-snackbar__label' : ''}
+  "
   {...snackbarProps}
   {...exclude($$props, ['use', 'class'])}
 ><slot></slot></span>

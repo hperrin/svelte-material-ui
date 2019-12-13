@@ -2,8 +2,11 @@
   <th
     use:useActions={use}
     use:forwardEvents
-    class="mdc-data-table__header-cell {className}"
-    class:mdc-data-table__header-cell--checkbox={checkbox}
+    class="
+      mdc-data-table__header-cell
+      {className}
+      {checkbox ? 'mdc-data-table__header-cell--checkbox' : ''}
+    "
     {...roleProp}
     {...scopeProp}
     {...props}
@@ -12,9 +15,12 @@
   <td
     use:useActions={use}
     use:forwardEvents
-    class="mdc-data-table__cell {className}"
-    class:mdc-data-table__cell--numeric={numeric}
-    class:mdc-data-table__cell--checkbox={checkbox}
+    class="
+      mdc-data-table__cell
+      {className}
+      {numeric ? 'mdc-data-table__cell--numeric' : ''}
+      {checkbox ? 'mdc-data-table__cell--checkbox' : ''}
+    "
     {...roleProp}
     {...scopeProp}
     {...props}

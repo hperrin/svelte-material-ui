@@ -2,17 +2,23 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="mdc-tab-indicator {className}"
-  class:mdc-tab-indicator--active={active}
-  class:mdc-tab-indicator--fade={transition === 'fade'}
+  class="
+    mdc-tab-indicator
+    {className}
+    {active ? 'mdc-tab-indicator--active' : ''}
+    {transition === 'fade' ? 'mdc-tab-indicator--fade' : ''}
+  "
   {...exclude($$props, ['use', 'class', 'active', 'type', 'transition', 'content$'])}
 >
   <span
     use:useActions={content$use}
-    class="mdc-tab-indicator__content {content$class}"
-    class:mdc-tab-indicator__content--underline={type === 'underline'}
-    class:mdc-tab-indicator__content--icon={type === 'icon'}
-    aria-hidden={type === 'icon'}
+    class="
+      mdc-tab-indicator__content
+      {content$class}
+      {type === 'underline' ? 'mdc-tab-indicator__content--underline' : ''}
+      {type === 'icon' ? 'mdc-tab-indicator__content--icon' : ''}
+    "
+    aria-hidden={type === 'icon' ? 'true' : 'false'}
     {...exclude(prefixFilter($$props, 'content$'), ['use', 'class'])}
   ><slot></slot></span>
 </span>

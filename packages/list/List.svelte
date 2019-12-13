@@ -3,12 +3,15 @@
     bind:this={element}
     use:useActions={use}
     use:forwardEvents
-    class="mdc-list {className}"
-    class:mdc-list--non-interactive={nonInteractive}
-    class:mdc-list--dense={dense}
-    class:mdc-list--avatar-list={avatarList}
-    class:mdc-list--two-line={twoLine}
-    class:smui-list--three-line={threeLine && !twoLine}
+    class="
+      mdc-list
+      {className}
+      {nonInteractive ? 'mdc-list--non-interactive' : ''}
+      {dense ? 'mdc-list--dense' : ''}
+      {avatarList ? 'mdc-list--avatar-list' : ''}
+      {twoLine ? 'mdc-list--two-line' : ''}
+      {(threeLine && !twoLine) ? 'smui-list--three-line' : ''}
+    "
     on:MDCList:action={handleAction}
     {...props}
   ><slot></slot></nav>
@@ -17,12 +20,15 @@
     bind:this={element}
     use:useActions={use}
     use:forwardEvents
-    class="mdc-list {className}"
-    class:mdc-list--non-interactive={nonInteractive}
-    class:mdc-list--dense={dense}
-    class:mdc-list--avatar-list={avatarList}
-    class:mdc-list--two-line={twoLine}
-    class:smui-list--three-line={threeLine && !twoLine}
+    class="
+      mdc-list
+      {className}
+      {nonInteractive ? 'mdc-list--non-interactive' : ''}
+      {dense ? 'mdc-list--dense' : ''}
+      {avatarList ? 'mdc-list--avatar-list' : ''}
+      {twoLine ? 'mdc-list--two-line' : ''}
+      {(threeLine && !twoLine) ? 'smui-list--three-line' : ''}
+    "
     {role}
     on:MDCList:action={handleAction}
     {...props}

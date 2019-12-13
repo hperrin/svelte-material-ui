@@ -1,11 +1,15 @@
 <div
   use:useActions={use}
   use:forwardEvents
-  class="smui-paper {elevation !== 0 ? 'mdc-elevation--z' + elevation : ''} {className}"
-  class:smui-paper--rounded={!square}
-  class:smui-paper--color-primary={color === 'primary'}
-  class:smui-paper--color-secondary={color === 'secondary'}
-  class:mdc-elevation-transition={transition}
+  class="
+    smui-paper
+    {className}
+    {elevation !== 0 ? 'mdc-elevation--z' + elevation : ''}
+    {!square ? 'smui-paper--rounded' : ''}
+    {color === 'primary' ? 'smui-paper--color-primary' : ''}
+    {color === 'secondary' ? 'smui-paper--color-secondary' : ''}
+    {transition ? 'mdc-elevation-transition' : ''}
+  "
   {...exclude($$props, ['use', 'class', 'square', 'color', 'transition'])}
 ><slot></slot></div>
 

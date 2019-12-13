@@ -2,18 +2,21 @@
   <a
     use:useActions={use}
     use:forwardEvents
-    class="mdc-button {className}"
-    class:mdc-button--raised={variant === 'raised'}
-    class:mdc-button--unelevated={variant === 'unelevated'}
-    class:mdc-button--outlined={variant === 'outlined'}
-    class:mdc-button--dense={dense}
-    class:smui-button--color-secondary={color === 'secondary'}
-    class:mdc-card__action={context === 'card:action'}
-    class:mdc-card__action--button={context === 'card:action'}
-    class:mdc-dialog__button={context === 'dialog:action'}
-    class:mdc-top-app-bar__navigation-icon={context === 'top-app-bar:navigation'}
-    class:mdc-top-app-bar__action-item={context === 'top-app-bar:action'}
-    class:mdc-snackbar__action={context === 'snackbar'}
+    class="
+      mdc-button
+      {className}
+      {variant === 'raised' ? 'mdc-button--raised' : ''}
+      {variant === 'unelevated' ? 'mdc-button--unelevated' : ''}
+      {variant === 'outlined' ? 'mdc-button--outlined' : ''}
+      {dense ? 'mdc-button--dense' : ''}
+      {color === 'secondary' ? 'smui-button--color-secondary' : ''}
+      {context === 'card:action' ? 'mdc-card__action' : ''}
+      {context === 'card:action' ? 'mdc-card__action--button' : ''}
+      {context === 'dialog:action' ? 'mdc-dialog__button' : ''}
+      {context === 'top-app-bar:navigation' ? 'mdc-top-app-bar__navigation-icon' : ''}
+      {context === 'top-app-bar:action' ? 'mdc-top-app-bar__action-item' : ''}
+      {context === 'snackbar' ? 'mdc-snackbar__action' : ''}
+    "
     use:Ripple={[ripple, {unbounded: false}]}
     {href}
     {...actionProp}
@@ -24,18 +27,21 @@
   <button
     use:useActions={use}
     use:forwardEvents
-    class="mdc-button {className}"
-    class:mdc-button--raised={variant === 'raised'}
-    class:mdc-button--unelevated={variant === 'unelevated'}
-    class:mdc-button--outlined={variant === 'outlined'}
-    class:mdc-button--dense={dense}
-    class:smui-button--color-secondary={color === 'secondary'}
-    class:mdc-card__action={context === 'card:action'}
-    class:mdc-card__action--button={context === 'card:action'}
-    class:mdc-dialog__button={context === 'dialog:action'}
-    class:mdc-top-app-bar__navigation-icon={context === 'top-app-bar:navigation'}
-    class:mdc-top-app-bar__action-item={context === 'top-app-bar:action'}
-    class:mdc-snackbar__action={context === 'snackbar'}
+    class="
+      mdc-button
+      {className}
+      {variant === 'raised' ? 'mdc-button--raised' : ''}
+      {variant === 'unelevated' ? 'mdc-button--unelevated' : ''}
+      {variant === 'outlined' ? 'mdc-button--outlined' : ''}
+      {dense ? 'mdc-button--dense' : ''}
+      {color === 'secondary' ? 'smui-button--color-secondary' : ''}
+      {context === 'card:action' ? 'mdc-card__action' : ''}
+      {context === 'card:action' ? 'mdc-card__action--button' : ''}
+      {context === 'dialog:action' ? 'mdc-dialog__button' : ''}
+      {context === 'top-app-bar:navigation' ? 'mdc-top-app-bar__navigation-icon' : ''}
+      {context === 'top-app-bar:action' ? 'mdc-top-app-bar__action-item' : ''}
+      {context === 'snackbar' ? 'mdc-snackbar__action' : ''}
+    "
     use:Ripple={[ripple, {unbounded: false}]}
     {...actionProp}
     {...defaultProp}

@@ -2,10 +2,13 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="mdc-checkbox {className}"
-  class:mdc-checkbox--disabled={disabled}
-  class:mdc-data-table__header-row-checkbox={context === 'data-table' && dataTableHeader}
-  class:mdc-data-table__row-checkbox={context === 'data-table' && !dataTableHeader}
+  class="
+    mdc-checkbox
+    {className}
+    {disabled ? 'mdc-checkbox--disabled' : ''}
+    {(context === 'data-table' && dataTableHeader) ? 'mdc-data-table__header-row-checkbox' : ''}
+    {(context === 'data-table' && !dataTableHeader) ? 'mdc-data-table__row-checkbox' : ''}
+  "
   {...exclude($$props, ['use', 'class', 'disabled', 'indeterminate', 'group', 'checked', 'value', 'valueKey', 'input$'])}
 >
   <input

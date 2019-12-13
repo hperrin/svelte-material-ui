@@ -2,10 +2,13 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="mdc-tab {className}"
-  class:mdc-tab--active={active}
-  class:mdc-tab--stacked={stacked}
-  class:mdc-tab--min-width={minWidth}
+  class="
+    mdc-tab
+    {className}
+    {active ? 'mdc-tab--active' : ''}
+    {stacked ? 'mdc-tab--stacked' : ''}
+    {minWidth ? 'mdc-tab--min-width' : ''}
+  "
   role="tab"
   aria-selected={active}
   tabindex="{active ? '0' : '-1'}"

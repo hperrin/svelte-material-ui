@@ -1,9 +1,12 @@
 <div
   use:useActions={use}
   use:forwardEvents
-  class="mdc-card {className}"
-  class:mdc-card--outlined={variant === 'outlined'}
-  class:smui-card--padded={padded}
+  class="
+    mdc-card
+    {className}
+    {variant === 'outlined' ? 'mdc-card--outlined' : ''}
+    {padded ? 'smui-card--padded' : ''}
+  "
   {...exclude($$props, ['use', 'class', 'variant', 'padded'])}
 ><slot></slot></div>
 

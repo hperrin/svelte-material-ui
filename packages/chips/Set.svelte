@@ -2,10 +2,13 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="mdc-chip-set {className}"
-  class:mdc-chip-set--choice={choice}
-  class:mdc-chip-set--filter={filter}
-  class:mdc-chip-set--input={input}
+  class="
+    mdc-chip-set
+    {className}
+    {choice ? 'mdc-chip-set--choice' : ''}
+    {filter ? 'mdc-chip-set--filter' : ''}
+    {input ? 'mdc-chip-set--input' : ''}
+  "
   on:MDCChip:removal={handleRemoval}
   on:MDCChip:selection={handleSelection}
   {...exclude($$props, ['use', 'class', 'chips', 'key', 'selected', 'choice', 'filter', 'input'])}

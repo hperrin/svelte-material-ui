@@ -3,17 +3,20 @@
     bind:this={element}
     use:useActions={use}
     use:forwardEvents
-    class="mdc-text-field {className}"
-    class:mdc-text-field--disabled={disabled}
-    class:mdc-text-field--fullwidth={fullwidth}
-    class:mdc-text-field--textarea={textarea}
-    class:mdc-text-field--outlined={variant === 'outlined' && !fullwidth}
-    class:smui-text-field--standard={variant === 'standard' && !fullwidth && !textarea}
-    class:mdc-text-field--dense={dense}
-    class:mdc-text-field--no-label={noLabel || label == null}
-    class:mdc-text-field--with-leading-icon={withLeadingIcon}
-    class:mdc-text-field--with-trailing-icon={withTrailingIcon}
-    class:mdc-text-field--invalid={invalid}
+    class="
+      mdc-text-field
+      {className}
+      {disabled ? 'mdc-text-field--disabled' : ''}
+      {fullwidth ? 'mdc-text-field--fullwidth' : ''}
+      {textarea ? 'mdc-text-field--textarea' : ''}
+      {(variant === 'outlined' && !fullwidth) ? 'mdc-text-field--outlined' : ''}
+      {(variant === 'standard' && !fullwidth && !textarea) ? 'smui-text-field--standard' : ''}
+      {dense ? 'mdc-text-field--dense' : ''}
+      {noLabel || label == null ? 'mdc-text-field--no-label' : ''}
+      {withLeadingIcon ? 'mdc-text-field--with-leading-icon' : ''}
+      {withTrailingIcon ? 'mdc-text-field--with-trailing-icon' : ''}
+      {invalid ? 'mdc-text-field--invalid' : ''}
+    "
     {...props}
   >
     <slot></slot>
@@ -64,17 +67,20 @@
     bind:this={element}
     use:useActions={use}
     use:forwardEvents
-    class="mdc-text-field {className}"
-    class:mdc-text-field--disabled={disabled}
-    class:mdc-text-field--fullwidth={fullwidth}
-    class:mdc-text-field--textarea={textarea}
-    class:mdc-text-field--outlined={variant === 'outlined' && !fullwidth}
-    class:smui-text-field--standard={variant === 'standard' && !fullwidth && !textarea}
-    class:mdc-text-field--dense={dense}
-    class:mdc-text-field--no-label={noLabel}
-    class:mdc-text-field--with-leading-icon={withLeadingIcon}
-    class:mdc-text-field--with-trailing-icon={withTrailingIcon}
-    class:mdc-text-field--invalid={invalid}
+    class="
+      mdc-text-field
+      {className}
+      {disabled ? 'mdc-text-field--disabled' : ''}
+      {fullwidth ? 'mdc-text-field--fullwidth' : ''}
+      {textarea ? 'mdc-text-field--textarea' : ''}
+      {(variant === 'outlined' && !fullwidth) ? 'mdc-text-field--outlined' : ''}
+      {(variant === 'standard' && !fullwidth && !textarea) ? 'smui-text-field--standard' : ''}
+      {dense ? 'mdc-text-field--dense' : ''}
+      {noLabel ? 'mdc-text-field--no-label' : ''}
+      {withLeadingIcon ? 'mdc-text-field--with-leading-icon' : ''}
+      {withTrailingIcon ? 'mdc-text-field--with-trailing-icon' : ''}
+      {invalid ? 'mdc-text-field--invalid' : ''}
+    "
     {...props}
   >
     <slot></slot>

@@ -7,9 +7,12 @@
     bind:this={element}
     use:useActions={use}
     use:forwardEvents
-    class="mdc-text-field-helper-text {className}"
-    class:mdc-text-field-helper-text--persistent={persistent}
-    class:mdc-text-field-helper-text--validation-msg={validationMsg}
+    class="
+      mdc-text-field-helper-text
+      {className}
+      {persistent ? 'mdc-text-field-helper-text--persistent' : ''}
+      {validationMsg ? 'mdc-text-field-helper-text--validation-msg' : ''}
+    "
     aria-hidden="true"
     {...exclude($$props, ['use', 'class', 'persistent', 'validationMsg'])}
   ><slot></slot></div>

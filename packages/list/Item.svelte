@@ -3,10 +3,13 @@
     bind:this={element}
     use:useActions={use}
     use:forwardEvents
-    class="mdc-list-item {className}"
-    class:mdc-list-item--activated={activated}
-    class:mdc-list-item--selected={selected}
-    class:mdc-list-item--disabled={disabled}
+    class="
+      mdc-list-item
+      {className}
+      {activated ? 'mdc-list-item--activated' : ''}
+      {selected ? 'mdc-list-item--selected' : ''}
+      {disabled ? 'mdc-list-item--disabled' : ''}
+    "
     use:Ripple={[ripple, {unbounded: false, color}]}
     {href}
     {...(activated ? {'aria-current': 'page'} : {})}
@@ -20,10 +23,13 @@
     bind:this={element}
     use:useActions={use}
     use:forwardEvents
-    class="mdc-list-item {className}"
-    class:mdc-list-item--activated={activated}
-    class:mdc-list-item--selected={selected}
-    class:mdc-list-item--disabled={disabled}
+    class="
+      mdc-list-item
+      {className}
+      {activated ? 'mdc-list-item--activated' : ''}
+      {selected ? 'mdc-list-item--selected' : ''}
+      {disabled ? 'mdc-list-item--disabled' : ''}
+    "
     use:Ripple={[ripple, {unbounded: false, color}]}
     {...(activated ? {'aria-current': 'page'} : {})}
     {tabindex}
@@ -36,11 +42,14 @@
     bind:this={element}
     use:useActions={use}
     use:forwardEvents
-    class="mdc-list-item {className}"
-    class:mdc-list-item--activated={activated}
-    class:mdc-list-item--selected={selected}
-    class:mdc-list-item--disabled={disabled}
-    class:mdc-menu-item--selected={role === 'menuitem' && selected}
+    class="
+      mdc-list-item
+      {className}
+      {activated ? 'mdc-list-item--activated' : ''}
+      {selected ? 'mdc-list-item--selected' : ''}
+      {disabled ? 'mdc-list-item--disabled' : ''}
+      {(role === 'menuitem' && selected) ? 'mdc-menu-item--selected' : ''}
+    "
     use:Ripple={[ripple, {unbounded: false, color}]}
     {role}
     {...(role === 'option' ? {'aria-selected': (selected ? 'true' : 'false')} : {})}

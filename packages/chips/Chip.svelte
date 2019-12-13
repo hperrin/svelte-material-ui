@@ -2,8 +2,11 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="mdc-chip {className}"
-  class:mdc-chip--selected={selected}
+  class="
+    mdc-chip
+    {className}
+    {selected ? 'mdc-chip--selected' : ''}
+  "
   on:MDCChip:selection={handleSelection}
   {...exclude($$props, ['use', 'class', 'ripple', 'selected', 'shouldRemoveOnTrailingIconClick'])}
 ><slot></slot></div>

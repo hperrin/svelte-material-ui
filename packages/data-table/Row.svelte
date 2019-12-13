@@ -2,11 +2,14 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class:mdc-data-table__header-row={header}
-  class:mdc-data-table__row={!header}
-  class:mdc-data-table__row--selected={!header && selected}
+  class="
+    {className}
+    {header ? 'mdc-data-table__header-row' : ''}
+    {!header ? 'mdc-data-table__row' : ''}
+    {(!header && selected) ? 'mdc-data-table__row--selected' : ''}
+  "
   {...ariaSelectedProp}
-  {...exclude($$props, ['use'])}
+  {...exclude($$props, ['use', 'class'])}
 ><slot></slot></tr>
 
 <script>
@@ -19,6 +22,8 @@
   const forwardEvents = forwardEventsBuilder(current_component);
 
   export let use = [];
+  let className = '';
+  export {className as class};
 
   let element;
   let header = getContext('SMUI:data-table:row:header');

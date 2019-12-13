@@ -2,9 +2,12 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="mdc-snackbar {className}"
-  class:mdc-snackbar--stacked={variant === 'stacked'}
-  class:mdc-snackbar--leading={leading}
+  class="
+    mdc-snackbar
+    {className}
+    {variant === 'stacked' ? 'mdc-snackbar--stacked' : ''}
+    {leading ? 'mdc-snackbar--leading' : ''}
+  "
   on:MDCSnackbar:closed={handleClosed}
   {...exclude($$props, ['use', 'class', 'variant', 'leading', 'surface$'])}
 >

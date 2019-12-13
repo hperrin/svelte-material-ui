@@ -2,9 +2,12 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="mdc-drawer {className}"
-  class:mdc-drawer--dismissible={variant === 'dismissible'}
-  class:mdc-drawer--modal={variant === 'modal'}
+  class="
+    mdc-drawer
+    {className}
+    {variant === 'dismissible' ? 'mdc-drawer--dismissible' : ''}
+    {variant === 'modal' ? 'mdc-drawer--modal' : ''}
+  "
   on:MDCDrawer:opened={updateOpen} on:MDCDrawer:closed={updateOpen}
   {...exclude($$props, ['use', 'class', 'variant', 'open'])}
 ><slot></slot></aside>

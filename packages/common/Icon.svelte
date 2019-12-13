@@ -1,16 +1,18 @@
 <i
   use:useActions={use}
   use:forwardEvents
-  class={className}
-  class:mdc-button__icon={context === 'button'}
-  class:mdc-fab__icon={context === 'fab'}
-  class:mdc-icon-button__icon={context === 'icon-button'}
-  class:mdc-icon-button__icon--on={context === 'icon-button' && on}
-  class:mdc-chip__icon={context === 'chip'}
-  class:mdc-chip__icon--leading={context === 'chip' && leading}
-  class:mdc-chip__icon--leading-hidden={context === 'chip' && leadingHidden}
-  class:mdc-chip__icon--trailing={context === 'chip' && trailing}
-  class:mdc-tab__icon={context === 'tab'}
+  class="
+    {className}
+    {context === 'button' ? 'mdc-button__icon' : ''}
+    {context === 'fab' ? 'mdc-fab__icon' : ''}
+    {context === 'icon-button' ? 'mdc-icon-button__icon' : ''}
+    {(context === 'icon-button' && on) ? 'mdc-icon-button__icon--on' : ''}
+    {context === 'chip' ? 'mdc-chip__icon' : ''}
+    {(context === 'chip' && leading) ? 'mdc-chip__icon--leading' : ''}
+    {(context === 'chip' && leadingHidden) ? 'mdc-chip__icon--leading-hidden' : ''}
+    {(context === 'chip' && trailing) ? 'mdc-chip__icon--trailing' : ''}
+    {context === 'tab' ? 'mdc-tab__icon' : ''}
+  "
   aria-hidden="true"
   {...exclude($$props, ['use', 'class', 'on', 'leading', 'leadingHidden', 'trailing'])}
 ><slot></slot></i>

@@ -1,11 +1,14 @@
 <button
   use:useActions={use}
   use:forwardEvents
-  class="mdc-fab {className}"
-  class:mdc-fab--mini={mini}
-  class:mdc-fab--exited={exited}
-  class:mdc-fab--extended={extended}
-  class:smui-fab--color-primary={color === 'primary'}
+  class="
+    mdc-fab
+    {className}
+    {mini ? 'mdc-fab--mini' : ''}
+    {exited ? 'mdc-fab--exited' : ''}
+    {extended ? 'mdc-fab--extended' : ''}
+    {color === 'primary' ? 'smui-fab--color-primary' : ''}
+  "
   use:Ripple={[ripple, {unbounded: false}]}
   {...exclude($$props, ['use', 'class', 'ripple', 'color', 'mini', 'exited', 'extended'])}
 ><slot></slot></button>

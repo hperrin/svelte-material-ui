@@ -3,13 +3,16 @@
     bind:this={element}
     use:useActions={use}
     use:forwardEvents
-    class="mdc-icon-button {className}"
-    class:mdc-icon-button--on={pressed}
-    class:mdc-card__action={context === 'card:action'}
-    class:mdc-card__action--icon={context === 'card:action'}
-    class:mdc-top-app-bar__navigation-icon={context === 'top-app-bar:navigation'}
-    class:mdc-top-app-bar__action-item={context === 'top-app-bar:action'}
-    class:mdc-snackbar__dismiss={context === 'snackbar'}
+    class="
+      mdc-icon-button
+      {className}
+      {pressed ? 'mdc-icon-button--on' : ''}
+      {context === 'card:action' ? 'mdc-card__action' : ''}
+      {context === 'card:action' ? 'mdc-card__action--icon' : ''}
+      {context === 'top-app-bar:navigation' ? 'mdc-top-app-bar__navigation-icon' : ''}
+      {context === 'top-app-bar:action' ? 'mdc-top-app-bar__action-item' : ''}
+      {context === 'snackbar' ? 'mdc-snackbar__dismiss' : ''}
+    "
     use:Ripple={[ripple && !toggle, {unbounded: true, color}]}
     aria-hidden="true"
     aria-pressed={pressed}
@@ -22,13 +25,16 @@
     bind:this={element}
     use:useActions={use}
     use:forwardEvents
-    class="mdc-icon-button {className}"
-    class:mdc-icon-button--on={pressed}
-    class:mdc-card__action={context === 'card:action'}
-    class:mdc-card__action--icon={context === 'card:action'}
-    class:mdc-top-app-bar__navigation-icon={context === 'top-app-bar:navigation'}
-    class:mdc-top-app-bar__action-item={context === 'top-app-bar:action'}
-    class:mdc-snackbar__dismiss={context === 'snackbar'}
+    class="
+      mdc-icon-button
+      {className}
+      {pressed ? 'mdc-icon-button--on' : ''}
+      {context === 'card:action' ? 'mdc-card__action' : ''}
+      {context === 'card:action' ? 'mdc-card__action--icon' : ''}
+      {context === 'top-app-bar:navigation' ? 'mdc-top-app-bar__navigation-icon' : ''}
+      {context === 'top-app-bar:action' ? 'mdc-top-app-bar__action-item' : ''}
+      {context === 'snackbar' ? 'mdc-snackbar__dismiss' : ''}
+    "
     use:Ripple={[ripple && !toggle, {unbounded: true, color}]}
     aria-hidden="true"
     aria-pressed={pressed}

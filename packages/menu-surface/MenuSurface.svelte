@@ -2,10 +2,13 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="mdc-menu-surface {className}"
-  class:mdc-menu-surface--fixed={fixed}
-  class:mdc-menu-surface--open={isStatic}
-  class:smui-menu-surface--static={isStatic}
+  class="
+    mdc-menu-surface
+    {className}
+    {fixed ? 'mdc-menu-surface--fixed' : ''}
+    {isStatic ? 'mdc-menu-surface--open' : ''}
+    {isStatic ? 'smui-menu-surface--static' : ''}
+  "
   on:MDCMenuSurface:closed={updateOpen} on:MDCMenuSurface:opened={updateOpen}
   {...exclude($$props, ['use', 'class', 'static', 'anchor', 'fixed', 'open', 'quickOpen', 'anchorElement', 'anchorCorner', 'element'])}
 ><slot></slot></div>

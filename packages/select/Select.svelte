@@ -2,12 +2,15 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="mdc-select {className}"
-  class:mdc-select--disabled={disabled}
-  class:mdc-select--outlined={variant === 'outlined'}
-  class:smui-select--standard={variant === 'standard'}
-  class:mdc-select--with-leading-icon={withLeadingIcon}
-  class:mdc-select--invalid={invalid}
+  class="
+    mdc-select
+    {className}
+    {disabled ? 'mdc-select--disabled' : ''}
+    {variant === 'outlined' ? 'mdc-select--outlined' : ''}
+    {variant === 'standard' ? 'smui-select--standard' : ''}
+    {withLeadingIcon ? 'mdc-select--with-leading-icon' : ''}
+    {invalid ? 'mdc-select--invalid' : ''}
+  "
   on:MDCSelect:change={changeHandler}
   {...exclude($$props, ['use', 'class', 'ripple', 'disabled', 'enhanced', 'variant', 'noLabel', 'withLeadingIcon', 'label', 'value', 'selectedIndex', 'selectedText', 'dirty', 'invalid', 'updateInvalid', 'required', 'input$', 'label$', 'ripple$', 'outline$', 'menu$', 'list$'])}
 >

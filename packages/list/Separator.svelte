@@ -2,18 +2,24 @@
   <hr
     use:useActions={use}
     use:forwardEvents
-    class="mdc-list-divider {className}"
-    class:mdc-list-divider--padded={padded}
-    class:mdc-list-divider--inset={inset}
+    class="
+      mdc-list-divider
+      {className}
+      {padded ? 'mdc-list-divider--padded' : ''}
+      {inset ? 'mdc-list-divider--inset' : ''}
+    "
     {...props}
   />
 {:else}
   <li
     use:useActions={use}
     use:forwardEvents
-    class="mdc-list-divider {className}"
-    class:mdc-list-divider--padded={padded}
-    class:mdc-list-divider--inset={inset}
+    class="
+      mdc-list-divider
+      {className}
+      {padded ? 'mdc-list-divider--padded' : ''}
+      {inset ? 'mdc-list-divider--inset' : ''}
+    "
     role="separator"
     {...props}
   ></li>

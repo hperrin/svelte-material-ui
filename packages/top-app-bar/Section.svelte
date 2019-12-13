@@ -1,9 +1,12 @@
 <section
   use:useActions={use}
   use:forwardEvents
-  class="mdc-top-app-bar__section {className}"
-  class:mdc-top-app-bar__section--align-start={align === 'start'}
-  class:mdc-top-app-bar__section--align-end={align === 'end'}
+  class="
+    mdc-top-app-bar__section
+    {className}
+    {align === 'start' ? 'mdc-top-app-bar__section--align-start' : ''}
+    {align === 'end' ? 'mdc-top-app-bar__section--align-end' : ''}
+  "
   {...roleProp}
   {...exclude($$props, ['use', 'class', 'align', 'toolbar'])}
 ><slot></slot></section>

@@ -2,8 +2,11 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="mdc-radio {className}"
-  class:mdc-radio--disabled={disabled}
+  class="
+    mdc-radio
+    {className}
+    {disabled ? 'mdc-radio--disabled' : ''}
+  "
   {...exclude($$props, ['use', 'class', 'disabled', 'group', 'value', 'valueKey', 'input$'])}
 >
   <input

@@ -2,8 +2,11 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="mdc-line-ripple {className}"
-  class:mdc-line-ripple--active={active}
+  class="
+    mdc-line-ripple
+    {className}
+    {active ? 'mdc-line-ripple--active' : ''}
+  "
   {...exclude($$props, ['use', 'class', 'active'])}
 ></div>
 

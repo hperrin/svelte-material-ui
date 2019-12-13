@@ -1,8 +1,11 @@
 <div
   use:useActions={use}
   use:forwardEvents
-  class="smui-button__group {className}"
-  class:smui-button__group--raised={variant === 'raised'}
+  class="
+    smui-button__group
+    {className}
+    {variant === 'raised' ? 'smui-button__group--raised' : ''}
+  "
   {...exclude($$props, ['use', 'class', 'variant'])}
 ><slot></slot></div>
 

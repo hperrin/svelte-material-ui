@@ -1,9 +1,12 @@
 <ul
   use:useActions={use}
   use:forwardEvents
-  class="mdc-image-list {className}"
-  class:mdc-image-list--masonry={masonry}
-  class:mdc-image-list--with-text-protection={withTextProtection}
+  class="
+    mdc-image-list
+    {className}
+    {masonry ? 'mdc-image-list--masonry' : ''}
+    {withTextProtection ? 'mdc-image-list--with-text-protection' : ''}
+  "
   {...exclude($$props, ['use', 'class', 'masonry', 'withTextProtection'])}
 ><slot></slot></ul>
 

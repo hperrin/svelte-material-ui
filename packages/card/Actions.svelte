@@ -1,8 +1,11 @@
 <div
   use:useActions={use}
   use:forwardEvents
-  class="mdc-card__actions {className}"
-  class:mdc-card__actions--full-bleed={fullBleed}
+  class="
+    mdc-card__actions
+    {className}
+    {fullBleed ? 'mdc-card__actions--full-bleed' : ''}
+  "
   {...exclude($$props, ['use', 'class', 'fullBleed'])}
 ><slot></slot></div>
 

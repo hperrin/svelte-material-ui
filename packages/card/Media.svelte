@@ -1,9 +1,12 @@
 <div
   use:useActions={use}
   use:forwardEvents
-  class="mdc-card__media {className}"
-  class:mdc-card__media--square={aspectRatio === 'square'}
-  class:mdc-card__media--16-9={aspectRatio === '16x9'}
+  class="
+    mdc-card__media
+    {className}
+    {aspectRatio === 'square' ? 'mdc-card__media--square' : ''}
+    {aspectRatio === '16x9' ? 'mdc-card__media--16-9' : ''}
+  "
   {...exclude($$props, ['use', 'class', 'aspectRatio'])}
 ><slot></slot></div>
 

@@ -1,8 +1,11 @@
 <div
   use:useActions={use}
   use:forwardEvents
-  class="mdc-card__primary-action {className}"
-  class:smui-card__primary-action--padded={padded}
+  class="
+    mdc-card__primary-action
+    {className}
+    {padded ? 'smui-card__primary-action--padded' : ''}
+  "
   use:Ripple={[ripple, {unbounded: false, color}]}
   {tabindex}
   {...exclude($$props, ['use', 'class', 'ripple', 'color', 'padded', 'tabindex'])}

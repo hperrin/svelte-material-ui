@@ -2,14 +2,17 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="mdc-top-app-bar {className}"
-  class:mdc-top-app-bar--short={variant === 'short'}
-  class:mdc-top-app-bar--short-collapsed={collapsed}
-  class:mdc-top-app-bar--fixed={variant === 'fixed'}
-  class:smui-top-app-bar--static={variant === 'static'}
-  class:smui-top-app-bar--color-secondary={color === 'secondary'}
-  class:mdc-top-app-bar--prominent={prominent}
-  class:mdc-top-app-bar--dense={dense}
+  class="
+    mdc-top-app-bar
+    {className}
+    {variant === 'short' ? 'mdc-top-app-bar--short' : ''}
+    {collapsed ? 'mdc-top-app-bar--short-collapsed' : ''}
+    {variant === 'fixed' ? 'mdc-top-app-bar--fixed' : ''}
+    {variant === 'static' ? 'smui-top-app-bar--static' : ''}
+    {color === 'secondary' ? 'smui-top-app-bar--color-secondary' : ''}
+    {prominent ? 'mdc-top-app-bar--prominent' : ''}
+    {dense ? 'mdc-top-app-bar--dense' : ''}
+  "
   {...exclude($$props, ['use', 'class', 'variant', 'color', 'collapsed', 'prominent', 'dense'])}
 ><slot></slot></header>
 
