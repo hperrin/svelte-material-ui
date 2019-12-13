@@ -12,7 +12,7 @@
     "sveltejs"
   ],
   "scripts": {
-    "prepublishOnly": "echo \"$(glob '**/node_modules' | lam -s '-I ' - | paste -s -d ' ' -) --no-source-map _style.scss bare.css\" | xargs sass && echo \"$(glob '**/node_modules' | lam -s '-I ' - | paste -s -d ' ' -) --no-source-map helper-text/_style.scss helper-text/bare.css\" | xargs sass && echo \"$(glob '**/node_modules' | lam -s '-I ' - | paste -s -d ' ' -) --no-source-map icon/_style.scss icon/bare.css\" | xargs sass",
+    "prepublishOnly": "echo \"$(npx glob '**/*' | sed 's/^/-I /' | paste -s -d ' ' -) --no-source-map _style.scss bare.css\" | xargs sass && echo \"$(npx glob '**/*' | sed 's/^/-I /' | paste -s -d ' ' -) --no-source-map helper-text/_style.scss helper-text/bare.css\" | xargs sass && echo \"$(npx glob '**/*' | sed 's/^/-I /' | paste -s -d ' ' -) --no-source-map icon/_style.scss icon/bare.css\" | xargs sass",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "publishConfig": {
