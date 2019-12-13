@@ -86,7 +86,7 @@ All standard UI events are forwarded.
 
 A fragment used as a content area within a card.
 
-Equivalent to the [`ClassAdder` with `Div` common component](https://github.com/hperrin/svelte-material-ui/blob/master/common/README.md#classaddersvelte).
+Equivalent to the [`ClassAdder` with `Div` common component](https://github.com/hperrin/svelte-material-ui/blob/master/packages/common/README.md#classaddersvelte).
 
 Note that you can supply your own component to a `ClassAdder` based component. You can use this to create things like list cards.
 
@@ -125,7 +125,7 @@ All standard UI events are forwarded.
 
 An area of the card within the media meant to show content over top of the media.
 
-Equivalent to the [`ClassAdder` with `Div` common component](https://github.com/hperrin/svelte-material-ui/blob/master/common/README.md#classaddersvelte).
+Equivalent to the [`ClassAdder` with `Div` common component](https://github.com/hperrin/svelte-material-ui/blob/master/packages/common/README.md#classaddersvelte).
 
 ## Actions
 
@@ -145,11 +145,11 @@ All standard UI events are forwarded.
 
 An area of the card, within Actions, containing buttons.
 
-Equivalent to the [`ClassAdder` with `Div` common component](https://github.com/hperrin/svelte-material-ui/blob/master/common/README.md#classaddersvelte).
+Equivalent to the [`ClassAdder` with `Div` common component](https://github.com/hperrin/svelte-material-ui/blob/master/packages/common/README.md#classaddersvelte).
 
 ## ActionIcons
 
 An area of the card, within Actions, containing icon buttons.
 
-Equivalent to the [`ClassAdder` with `Div` common component](https://github.com/hperrin/svelte-material-ui/blob/master/common/README.md#classaddersvelte).
+Equivalent to the [`ClassAdder` with `Div` common component](https://github.com/hperrin/svelte-material-ui/blob/master/packages/common/README.md#classaddersvelte).
 
