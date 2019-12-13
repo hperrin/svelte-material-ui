@@ -1,5 +1,5 @@
 <svelte:window on:resize={setMiniWindow} />
-{#if $page.path.startsWith('/demo/top-app-bar-iframe')}
+{#if iframe}
   <slot></slot>
 {:else}
   <TopAppBar variant="static" class="demo-top-app-bar">
@@ -77,6 +77,7 @@
   import A from '@smui/common/A.svelte';
 
   const {page} = stores();
+  const iframe = $page.path.startsWith('/demo/top-app-bar-iframe');
 
   let mainContent;
   let miniWindow = false;
