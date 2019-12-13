@@ -1,6 +1,6 @@
 {
   "name": "@smui/menu",
-  "version": "1.0.0-beta.18",
+  "version": "1.0.0-beta.19",
   "description": "Svelte Material UI - Menu",
   "keywords": [
     "svelte",
@@ -29,9 +29,9 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@material/menu": "^3.2.0",
-    "@smui/common": "^1.0.0-beta.15",
-    "@smui/list": "^1.0.0-beta.18",
-    "@smui/menu-surface": "^1.0.0-beta.18"
+    "@smui/common": "^1.0.0-beta.19",
+    "@smui/list": "^1.0.0-beta.19",
+    "@smui/menu-surface": "^1.0.0-beta.19"
   },
   "devDependencies": {
     "glob-cmd": "0.0.7",

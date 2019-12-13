@@ -1,6 +1,6 @@
 {
   "name": "@smui/slider",
-  "version": "1.0.0-beta.18",
+  "version": "1.0.0-beta.19",
   "description": "Svelte Material UI - Slider",
   "keywords": [
     "svelte",
@@ -29,7 +29,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@material/slider": "^3.2.0",
-    "@smui/common": "^1.0.0-beta.15"
+    "@smui/common": "^1.0.0-beta.19"
   },
   "devDependencies": {
     "glob-cmd": "0.0.7",
