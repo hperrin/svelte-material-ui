@@ -9,7 +9,7 @@
     class:mdc-list-item--disabled={disabled}
     use:Ripple={[ripple, {unbounded: false, color}]}
     {href}
-    aria-current={activated ? 'page' : undefined}
+    {...(activated ? {'aria-current': 'page'} : {})}
     {tabindex}
     on:click={action}
     on:keydown={handleKeydown}
@@ -25,7 +25,7 @@
     class:mdc-list-item--selected={selected}
     class:mdc-list-item--disabled={disabled}
     use:Ripple={[ripple, {unbounded: false, color}]}
-    aria-current={activated ? 'page' : undefined}
+    {...(activated ? {'aria-current': 'page'} : {})}
     {tabindex}
     on:click={action}
     on:keydown={handleKeydown}
@@ -43,8 +43,8 @@
     class:mdc-menu-item--selected={role === 'menuitem' && selected}
     use:Ripple={[ripple, {unbounded: false, color}]}
     {role}
-    aria-selected={role === 'option' ? (selected ? 'true' : 'false') : undefined}
-    aria-checked={(role === 'radio' || role === 'checkbox') ? (checked ? 'true' : 'false') : undefined}
+    {...(role === 'option' ? {'aria-selected': (selected ? 'true' : 'false')} : {})}
+    {...((role === 'radio' || role === 'checkbox') ? {'aria-checked': (checked ? 'true' : 'false')} : {})}
     {tabindex}
     on:click={action}
     on:keydown={handleKeydown}

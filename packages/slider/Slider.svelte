@@ -10,7 +10,7 @@
   aria-valuemin={min}
   aria-valuemax={max}
   aria-valuenow={value}
-  data-step={step === 0 ? undefined : step}
+  {...(step === 0 ? {} : {'data-step': step})}
   {tabindex}
   {...inputProps}
   on:MDCSlider:change={handleChange}
