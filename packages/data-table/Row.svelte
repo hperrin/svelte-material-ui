@@ -8,7 +8,7 @@
     {!header ? 'mdc-data-table__row' : ''}
     {(!header && selected) ? 'mdc-data-table__row--selected' : ''}
   "
-  {...ariaSelectedProp}
+  {...(selected !== undefined ? {'aria-selected': selected ? 'true' : 'false'} : {})}
   {...exclude($$props, ['use', 'class'])}
 ><slot></slot></tr>
 
@@ -28,8 +28,6 @@
   let element;
   let header = getContext('SMUI:data-table:row:header');
   let selected = undefined;
-
-  $: ariaSelectedProp = selected !== undefined ? {'aria-selected': selected ? 'true' : 'false'} : {};
 
   setContext('SMUI:data-table:row:getIndex', getIndex);
 

@@ -20,8 +20,6 @@
   const forwardEvents = forwardEventsBuilder(current_component);
 
   export let use = [];
-  let className = '';
-  export {className as class};
   export let list$use = [];
   export let list$class = '';
 </script>

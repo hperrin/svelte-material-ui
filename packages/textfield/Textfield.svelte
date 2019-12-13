@@ -42,7 +42,7 @@
         {updateInvalid}
         on:change
         on:input
-        {...placeholderProp}
+        {...((fullwidth && label) ? {placeholder: label} : {})}
         {...prefixFilter($$props, 'input$')}
       />
     {/if}
@@ -133,8 +133,6 @@
   let removeLayoutListener;
 
   $: valued = value !== uninitializedValue || files !== uninitializedValue;
-
-  $: placeholderProp = (fullwidth && label) ? {placeholder: label} : {};
 
   $: if (textField && value !== uninitializedValue && textField.value !== value) {
     textField.value = value;

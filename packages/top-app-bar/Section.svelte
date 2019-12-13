@@ -7,7 +7,7 @@
     {align === 'start' ? 'mdc-top-app-bar__section--align-start' : ''}
     {align === 'end' ? 'mdc-top-app-bar__section--align-end' : ''}
   "
-  {...roleProp}
+  {...(toolbar ? {role: 'toolbar'} : {})}
   {...exclude($$props, ['use', 'class', 'align', 'toolbar'])}
 ><slot></slot></section>
 
@@ -25,8 +25,6 @@
   export {className as class};
   export let align = 'start';
   export let toolbar = false;
-
-  $: roleProp = toolbar ? {role: 'toolbar'} : {};
 
   setContext('SMUI:icon-button:context', toolbar ? 'top-app-bar:action' : 'top-app-bar:navigation');
   setContext('SMUI:button:context', toolbar ? 'top-app-bar:action' : 'top-app-bar:navigation');

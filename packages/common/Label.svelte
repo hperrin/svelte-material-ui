@@ -10,7 +10,7 @@
     {context === 'image-list' ? 'mdc-image-list__label' : ''}
     {context === 'snackbar' ? 'mdc-snackbar__label' : ''}
   "
-  {...snackbarProps}
+  {...((context === 'snackbar') ? {role: 'status', 'aria-live': 'polite'} : {})}
   {...exclude($$props, ['use', 'class'])}
 ><slot></slot></span>
 
@@ -28,6 +28,4 @@
   export {className as class};
 
   const context = getContext('SMUI:label:context');
-
-  $: snackbarProps = (context === 'snackbar') ? {role: 'status', 'aria-live': 'polite'} : {};
 </script>

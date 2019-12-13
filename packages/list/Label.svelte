@@ -2,7 +2,7 @@
   use:useActions={use}
   use:forwardEvents
   class="mdc-list-item__text {className}"
-  {...forProp}
+  {...((inputProps && inputProps.id) ? {'for': inputProps && inputProps.id} : {})}
   {...exclude($$props, ['use', 'class'])}
 ><slot></slot></label>
 
@@ -20,6 +20,4 @@
   export {className as class};
 
   let inputProps = getContext('SMUI:generic:input:props') || {};
-
-  $: forProp = (inputProps && inputProps.id) ? {for: inputProps && inputProps.id} : {};
 </script>
