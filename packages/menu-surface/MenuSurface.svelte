@@ -101,9 +101,9 @@
     let isHoisted = false;
     if (menuSurface) {
       isHoisted = menuSurface.foundation_.isHoistedElement_;
-    }
-    if (instantiate !== false) {
-      menuSurface.destroy();
+      if (instantiate !== false) {
+        menuSurface.destroy();
+      }
     }
     if (isHoisted) {
       element.parentNode.removeChild(element);
