@@ -37,6 +37,12 @@
   .smui-button__group {
     display: inline-flex;
 
+    & > .mdc-button,
+    & > .smui-button__group-item > .mdc-button {
+      margin-left: 0;
+      margin-right: 0;
+    }
+
     & > .mdc-button:not(:last-child),
     & > .smui-button__group-item:not(:last-child) > .mdc-button {
       border-top-right-radius: 0;
@@ -66,6 +72,7 @@
 }
 
 @mixin smui-button__group-mdc-button--raised_($query) {
+  @include mdc-button-shape-radius(small, $query: $query);
   @include mdc-elevation(0, $query: $query);
 
   &:hover,
