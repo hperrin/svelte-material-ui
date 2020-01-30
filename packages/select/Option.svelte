@@ -26,7 +26,7 @@
   const forwardEvents = forwardEventsBuilder(current_component);
 
   export let use = [];
-  let className = '';
+  const className = '';
   export {className as class};
   export let value = '';
   export let selected = false;
