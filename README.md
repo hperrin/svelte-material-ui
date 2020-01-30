@@ -132,6 +132,10 @@ Svelte UI libraries are really starting to make good progress. Check out this Fo
 
 https://github.com/titans-inc/sveltemantic
 
+# Support
+
+You can support my work on this project through my other project, [Tunnelgram](https://tunnelgram.com). I have a [Patreon](https://www.patreon.com/tunnelgram) set up for it. I started this project in order to Materialize Tunnelgram.
+
 # License
 
 Copyright 2019 Hunter Perrin
