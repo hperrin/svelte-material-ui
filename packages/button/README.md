@@ -42,6 +42,7 @@ A button.
 
 ### Options / Defaults
 
+* `component`: `href == null ? Button : A` - A component to use as the root element.
 * `use`: `[]` - An array of actions and/or action/property arrays.
 * `class`: `''` - A CSS class string.
 * `ripple`: `true` - Whether to implement a ripple for when the component is interacted with.

@@ -14,6 +14,7 @@
     <Button on:click={() => clicked++} variant="outlined"><Label>Outlined</Label></Button>
     <Button on:click={() => clicked++} dense><Label>Dense</Label></Button>
     <Button on:click={() => clicked++} class="myClass"><Label>With a Class</Label></Button>
+    <Button on:click={() => clicked++} href="http://example.com" target="_blank"><Label>Link Button</Label></Button>
   </div>
 
   <div>
@@ -31,6 +32,7 @@
     <Button color="secondary" on:click={() => clicked++} variant="outlined"><Label>Outlined</Label></Button>
     <Button color="secondary" on:click={() => clicked++} dense><Label>Dense</Label></Button>
     <Button color="secondary" on:click={() => clicked++} class="myClass"><Label>With a Class</Label></Button>
+    <Button color="secondary" on:click={() => clicked++} href="http://example.com" target="_blank"><Label>Link Button</Label></Button>
   </div>
 
   <div>
