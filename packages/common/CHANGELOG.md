@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.20](https://github.com/hperrin/svelte-material-ui/compare/v1.0.0-beta.19...v1.0.0-beta.20) (2020-01-31)
+
+
+### Features
+
+* add component option to Button to allow other elements/components ([95d4d49](https://github.com/hperrin/svelte-material-ui/commit/95d4d49026f30579a888d9e2baa59785fcbe65f5))
+
+
+
+
+
 # [1.0.0-beta.19](https://github.com/hperrin/svelte-material-ui/compare/v1.0.0-beta.18...v1.0.0-beta.19) (2019-12-13)
 
 

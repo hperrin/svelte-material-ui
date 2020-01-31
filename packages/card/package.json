@@ -1,6 +1,6 @@
 {
   "name": "@smui/card",
-  "version": "1.0.0-beta.19",
+  "version": "1.0.0-beta.20",
   "description": "Svelte Material UI - Card",
   "keywords": [
     "svelte",
@@ -29,10 +29,10 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@material/card": "^3.2.0",
-    "@smui/button": "^1.0.0-beta.19",
-    "@smui/common": "^1.0.0-beta.19",
-    "@smui/icon-button": "^1.0.0-beta.19",
-    "@smui/ripple": "^1.0.0-beta.19"
+    "@smui/button": "^1.0.0-beta.20",
+    "@smui/common": "^1.0.0-beta.20",
+    "@smui/icon-button": "^1.0.0-beta.20",
+    "@smui/ripple": "^1.0.0-beta.20"
   },
   "devDependencies": {
     "glob-cmd": "0.0.7",

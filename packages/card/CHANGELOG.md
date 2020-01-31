@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.20](https://github.com/hperrin/svelte-material-ui/compare/v1.0.0-beta.19...v1.0.0-beta.20) (2020-01-31)
+
+
+### Features
+
+* reduce Ripple arguments and add class forwarding option ([550ac93](https://github.com/hperrin/svelte-material-ui/commit/550ac93cc6d4dfa18eee70f6c1db55f1971cd8fc))
+
+
+
+
+
 # [1.0.0-beta.19](https://github.com/hperrin/svelte-material-ui/compare/v1.0.0-beta.18...v1.0.0-beta.19) (2019-12-13)
 
 
