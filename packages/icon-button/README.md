@@ -65,4 +65,4 @@ All standard UI events are forwarded.
 
 A graphic icon.
 
-See the [common icon readme](https://github.com/hperrin/svelte-material-ui/blob/master/common/README.md#icon).
+See the [common icon readme](https://github.com/hperrin/svelte-material-ui/blob/master/packages/common/README.md#icon).
