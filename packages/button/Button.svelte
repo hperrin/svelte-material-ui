@@ -1,9 +1,10 @@
 <svelte:component
   this={component}
-  use={[forwardEvents, [Ripple, [ripple, {unbounded: false}]], ...use]}
+  use={[[Ripple, {ripple, unbounded: false, classForward: classes => rippleClasses = classes}], forwardEvents, ...use]}
   class="
     mdc-button
     {className}
+    {rippleClasses.join(' ')}
     {variant === 'raised' ? 'mdc-button--raised' : ''}
     {variant === 'unelevated' ? 'mdc-button--unelevated' : ''}
     {variant === 'outlined' ? 'mdc-button--outlined' : ''}
@@ -48,6 +49,7 @@
   export let component = href == null ? Button : A;
 
   let context = getContext('SMUI:button:context');
+  let rippleClasses = [];
 
   $: dialogExcludes = (context === 'dialog:action') ? ['action', 'default'] : [];
 

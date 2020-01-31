@@ -19,7 +19,7 @@ npm install --save-dev @smui/ripple
   import Ripple from '@smui/ripple';
 </script>
 
-<p use:Ripple={[true, {color: 'surface'}]} tabindex="0">
+<p use:Ripple={{ripple: true, color: 'surface'}} tabindex="0">
   Here is an element with a ripple.
 </p>
 ```
@@ -40,5 +40,7 @@ A ripple Svelte action.
 
 The action accepts an array, with two entries. The first is a boolean, whether the ripple is enabled. The second is an object with the props:
 
+* `ripple` - Whether to enable the ripple.
 * `unbounded` - Whether the ripple is unbounded.
 * `color` - The ripple color. ('surface', 'primary', or 'secondary')
+* `classForward` - A function that receives an array of classes. This is used to work around Svelte removing ripple classes in certain scenarios.

@@ -6,7 +6,7 @@
     {className}
     {padded ? 'smui-card__primary-action--padded' : ''}
   "
-  use:Ripple={[ripple, {unbounded: false, color}]}
+  use:Ripple={{ripple, unbounded: false, color}}
   {tabindex}
   {...exclude($$props, ['use', 'class', 'ripple', 'color', 'padded', 'tabindex'])}
 ><slot></slot></div>

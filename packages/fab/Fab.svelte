@@ -9,7 +9,7 @@
     {extended ? 'mdc-fab--extended' : ''}
     {color === 'primary' ? 'smui-fab--color-primary' : ''}
   "
-  use:Ripple={[ripple, {unbounded: false}]}
+  use:Ripple={{ripple, unbounded: false}}
   {...exclude($$props, ['use', 'class', 'ripple', 'color', 'mini', 'exited', 'extended'])}
 ><slot></slot></button>
 

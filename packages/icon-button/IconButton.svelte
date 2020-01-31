@@ -13,7 +13,7 @@
       {context === 'top-app-bar:action' ? 'mdc-top-app-bar__action-item' : ''}
       {context === 'snackbar' ? 'mdc-snackbar__dismiss' : ''}
     "
-    use:Ripple={[ripple && !toggle, {unbounded: true, color}]}
+    use:Ripple={{ripple: ripple && !toggle, unbounded: true, color}}
     aria-hidden="true"
     aria-pressed={pressed}
     {href}
@@ -35,7 +35,7 @@
       {context === 'top-app-bar:action' ? 'mdc-top-app-bar__action-item' : ''}
       {context === 'snackbar' ? 'mdc-snackbar__dismiss' : ''}
     "
-    use:Ripple={[ripple && !toggle, {unbounded: true, color}]}
+    use:Ripple={{ripple: ripple && !toggle, unbounded: true, color}}
     aria-hidden="true"
     aria-pressed={pressed}
     on:MDCIconButtonToggle:change={handleChange}

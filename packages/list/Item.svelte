@@ -10,7 +10,7 @@
       {selected ? 'mdc-list-item--selected' : ''}
       {disabled ? 'mdc-list-item--disabled' : ''}
     "
-    use:Ripple={[ripple, {unbounded: false, color}]}
+    use:Ripple={{ripple, unbounded: false, color}}
     {href}
     {...(activated ? {'aria-current': 'page'} : {})}
     {tabindex}
@@ -30,7 +30,7 @@
       {selected ? 'mdc-list-item--selected' : ''}
       {disabled ? 'mdc-list-item--disabled' : ''}
     "
-    use:Ripple={[ripple, {unbounded: false, color}]}
+    use:Ripple={{ripple, unbounded: false, color}}
     {...(activated ? {'aria-current': 'page'} : {})}
     {tabindex}
     on:click={action}
@@ -50,7 +50,7 @@
       {disabled ? 'mdc-list-item--disabled' : ''}
       {(role === 'menuitem' && selected) ? 'mdc-menu-item--selected' : ''}
     "
-    use:Ripple={[ripple, {unbounded: false, color}]}
+    use:Ripple={{ripple, unbounded: false, color}}
     {role}
     {...(role === 'option' ? {'aria-selected': (selected ? 'true' : 'false')} : {})}
     {...((role === 'radio' || role === 'checkbox') ? {'aria-checked': (checked ? 'true' : 'false')} : {})}
