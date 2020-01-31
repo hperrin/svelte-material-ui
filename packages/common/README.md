@@ -67,6 +67,10 @@ An elemental component for the `a` tag.
 
 An elemental component for the `aside` tag.
 
+## Button.svelte
+
+An elemental component for the `button` tag.
+
 ## Div.svelte
 
 An elemental component for the `div` tag.
