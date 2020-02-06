@@ -14,7 +14,6 @@ export default function Ripple(node, props = {ripple: false, unbounded: false, c
       classList.push(className);
       if (props.classForward) {
         props.classForward(classList);
-        console.log('addClass', className, classList);
       }
     }
   }
@@ -26,7 +25,6 @@ export default function Ripple(node, props = {ripple: false, unbounded: false, c
       classList.splice(idx, 1);
       if (props.classForward) {
         props.classForward(classList);
-        console.log('removeClass', className, classList);
       }
     }
   }
