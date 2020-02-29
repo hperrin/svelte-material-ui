@@ -10,13 +10,13 @@
 <script>
   import {MDCMenu} from '@material/menu';
   import {onMount, onDestroy, getContext, setContext} from 'svelte';
-  import {current_component} from 'svelte/internal';
+  import {get_current_component} from 'svelte/internal';
   import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
   import {exclude} from '@smui/common/exclude.js';
   import {useActions} from '@smui/common/useActions.js';
   import MenuSurface, {Corner, CornerBit} from '@smui/menu-surface/MenuSurface.svelte';
 
-  const forwardEvents = forwardEventsBuilder(current_component, ['MDCMenu:selected', 'MDCMenuSurface:closed', 'MDCMenuSurface:opened']);
+  const forwardEvents = forwardEventsBuilder(get_current_component(), ['MDCMenu:selected', 'MDCMenuSurface:closed', 'MDCMenuSurface:opened']);
 
   export let use = [];
   let className = '';

@@ -90,7 +90,7 @@
 <script>
   import {MDCTextField} from '@material/textfield';
   import {onMount, onDestroy, getContext} from 'svelte';
-  import {current_component} from 'svelte/internal';
+  import {get_current_component} from 'svelte/internal';
   import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
   import {exclude} from '@smui/common/exclude.js';
   import {prefixFilter} from '@smui/common/prefixFilter.js';
@@ -101,7 +101,7 @@
   import Input from './Input.svelte';
   import Textarea from './Textarea.svelte';
 
-  const forwardEvents = forwardEventsBuilder(current_component);
+  const forwardEvents = forwardEventsBuilder(get_current_component());
   let uninitializedValue = () => {};
 
   export let use = [];

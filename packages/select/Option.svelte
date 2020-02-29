@@ -17,13 +17,13 @@
 
 <script>
   import {getContext, setContext} from 'svelte';
-  import {current_component} from 'svelte/internal';
+  import {get_current_component} from 'svelte/internal';
   import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
   import {exclude} from '@smui/common/exclude.js';
   import {useActions} from '@smui/common/useActions.js';
   import Item from '@smui/list/Item.svelte';
 
-  const forwardEvents = forwardEventsBuilder(current_component);
+  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   export let use = [];
   const className = '';

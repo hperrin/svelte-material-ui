@@ -92,7 +92,7 @@
 <script>
   import {MDCSelect} from '@material/select';
   import {onMount, onDestroy, getContext, setContext} from 'svelte';
-  import {current_component} from 'svelte/internal';
+  import {get_current_component} from 'svelte/internal';
   import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
   import {exclude} from '@smui/common/exclude.js';
   import {prefixFilter} from '@smui/common/prefixFilter.js';
@@ -103,7 +103,7 @@
   import LineRipple from '@smui/line-ripple/LineRipple.svelte';
   import NotchedOutline from '@smui/notched-outline/NotchedOutline.svelte';
 
-  const forwardEvents = forwardEventsBuilder(current_component, 'MDCSelect:change');
+  const forwardEvents = forwardEventsBuilder(get_current_component(), 'MDCSelect:change');
   const uninitializedValue = () => {};
 
   export let use = [];

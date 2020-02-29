@@ -19,12 +19,12 @@
 <script>
   import {MDCTopAppBar} from '@material/top-app-bar';
   import {onMount, onDestroy} from 'svelte';
-  import {current_component} from 'svelte/internal';
+  import {get_current_component} from 'svelte/internal';
   import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
   import {exclude} from '@smui/common/exclude.js';
   import {useActions} from '@smui/common/useActions.js';
 
-  const forwardEvents = forwardEventsBuilder(current_component, ['MDCList:action']);
+  const forwardEvents = forwardEventsBuilder(get_current_component(), ['MDCList:action']);
 
   export let use = [];
   let className = '';

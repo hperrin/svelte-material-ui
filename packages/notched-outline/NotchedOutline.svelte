@@ -20,12 +20,12 @@
 <script>
   import {MDCNotchedOutline} from '@material/notched-outline';
   import {onMount, onDestroy} from 'svelte';
-  import {current_component} from 'svelte/internal';
+  import {get_current_component} from 'svelte/internal';
   import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
   import {exclude} from '@smui/common/exclude.js';
   import {useActions} from '@smui/common/useActions.js';
 
-  const forwardEvents = forwardEventsBuilder(current_component);
+  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   export let use = [];
   let className = '';
