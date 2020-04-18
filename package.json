@@ -66,9 +66,9 @@
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
-    "husky": "^3.1.0",
+    "husky": "^4.2.5",
     "lerna": "^3.20.2",
-    "svelte": "^3.18.1"
+    "svelte": "^3.20.1"
   },
   "husky": {
     "hooks": {
