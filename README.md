@@ -138,7 +138,7 @@ You can support my work on this project through my other project, [Tunnelgram](h
 
 # License
 
-Copyright 2019 Hunter Perrin
+Copyright 2020 Hunter Perrin
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
