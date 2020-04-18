@@ -21,7 +21,7 @@
   import {MDCDataTable} from '@material/data-table';
   import {events} from '@material/data-table/constants';
   import {onMount, onDestroy, getContext, setContext} from 'svelte';
-  import {current_component} from 'svelte/internal';
+  import {get_current_component} from 'svelte/internal';
   import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
   import {exclude} from '@smui/common/exclude.js';
   import {prefixFilter} from '@smui/common/prefixFilter.js';
@@ -35,7 +35,7 @@
     throw new Error('MDC API has changed!');
   }
 
-  const forwardEvents = forwardEventsBuilder(current_component, ['MDCDataTable:rowSelectionChanged', 'MDCDataTable:selectedAll', 'MDCDataTable:unselectedAll']);
+  const forwardEvents = forwardEventsBuilder(get_current_component(), ['MDCDataTable:rowSelectionChanged', 'MDCDataTable:selectedAll', 'MDCDataTable:unselectedAll']);
 
   export let use = [];
   let className = '';

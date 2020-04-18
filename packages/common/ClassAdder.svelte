@@ -15,7 +15,7 @@
 
 <script>
   import {setContext} from 'svelte';
-  import {current_component} from 'svelte/internal';
+  import {get_current_component} from 'svelte/internal';
   import {forwardEventsBuilder} from './forwardEvents.js';
   import {exclude} from './exclude.js';
   import {useActions} from './useActions.js';
@@ -30,7 +30,7 @@
   const smuiClass = internals.class;
   const contexts = internals.contexts;
 
-  const forwardEvents = forwardEventsBuilder(current_component, smuiForwardEvents);
+  const forwardEvents = forwardEventsBuilder(get_current_component(), smuiForwardEvents);
 
   for (let context in contexts) {
     if (contexts.hasOwnProperty(context)) {

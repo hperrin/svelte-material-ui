@@ -13,12 +13,12 @@
 
 <script>
   import {onMount} from 'svelte';
-  import {current_component} from 'svelte/internal';
+  import {get_current_component} from 'svelte/internal';
   import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
   import {exclude} from '@smui/common/exclude.js';
   import {useActions} from '@smui/common/useActions.js';
 
-  const forwardEvents = forwardEventsBuilder(current_component, ['change', 'input']);
+  const forwardEvents = forwardEventsBuilder(get_current_component(), ['change', 'input']);
 
   export let use = [];
   let className = '';

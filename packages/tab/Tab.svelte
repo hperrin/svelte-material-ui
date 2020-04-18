@@ -42,14 +42,14 @@
 <script>
   import {MDCTab} from '@material/tab';
   import {onMount, onDestroy, setContext, getContext} from 'svelte';
-  import {current_component} from 'svelte/internal';
+  import {get_current_component} from 'svelte/internal';
   import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
   import {exclude} from '@smui/common/exclude.js';
   import {prefixFilter} from '@smui/common/prefixFilter.js';
   import {useActions} from '@smui/common/useActions.js';
   import TabIndicator from '@smui/tab-indicator/TabIndicator.svelte';
 
-  const forwardEvents = forwardEventsBuilder(current_component, ['MDCTab:interacted']);
+  const forwardEvents = forwardEventsBuilder(get_current_component(), ['MDCTab:interacted']);
   let activeEntry = getContext('SMUI:tab:active');
 
   export let use = [];

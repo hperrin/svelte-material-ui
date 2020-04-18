@@ -15,12 +15,12 @@
 <script>
   import {MDCDrawer} from "@material/drawer";
   import {onMount, onDestroy, afterUpdate, setContext} from 'svelte';
-  import {current_component} from 'svelte/internal';
+  import {get_current_component} from 'svelte/internal';
   import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
   import {exclude} from '@smui/common/exclude.js';
   import {useActions} from '@smui/common/useActions.js';
 
-  const forwardEvents = forwardEventsBuilder(current_component, ['MDCDrawer:opened', 'MDCDrawer:closed']);
+  const forwardEvents = forwardEventsBuilder(get_current_component(), ['MDCDrawer:opened', 'MDCDrawer:closed']);
 
   export let use = [];
   let className = '';
