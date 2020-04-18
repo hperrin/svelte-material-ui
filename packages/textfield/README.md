@@ -25,7 +25,7 @@ npm install --save-dev @smui/textfield
 
 <Textfield bind:value={name} label="Name" />
 <br />
-<Textfield type="email" bind:value={email} label="Email" input$autocomplete="email">
+<Textfield type="email" bind:value={email} label="Email" input$autocomplete="email" />
 <br />
 <Textfield textarea bind:value={comment} label="Comment" />
 ```
