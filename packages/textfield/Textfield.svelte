@@ -35,9 +35,6 @@
       <Input
         {type}
         {disabled}
-        {step}
-        {min}
-        {max}
         bind:value
         bind:files
         bind:dirty
@@ -127,11 +124,8 @@
   export let invalid = uninitializedValue;
   export let updateInvalid = invalid === uninitializedValue;
   export let useNativeValidation = updateInvalid;
-  export let step = null;
-  export let min = null;
-  export let max = null;
 
-  $: props = exclude($$props, ['use', 'class', 'ripple', 'disabled', 'fullwidth', 'textarea', 'variant', 'dense', 'withLeadingIcon', 'withTrailingIcon', 'noLabel', 'label', 'type', 'value', 'dirty', 'invalid', 'updateInvalid', 'useNativeValidation', 'input$', 'label$', 'ripple$', 'outline$', 'step', 'min', 'max']);
+  $: props = exclude($$props, ['use', 'class', 'ripple', 'disabled', 'fullwidth', 'textarea', 'variant', 'dense', 'withLeadingIcon', 'withTrailingIcon', 'noLabel', 'label', 'type', 'value', 'dirty', 'invalid', 'updateInvalid', 'useNativeValidation', 'input$', 'label$', 'ripple$', 'outline$']);
 
   let element;
   let textField;

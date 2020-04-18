@@ -432,6 +432,10 @@
       </div>
 
       <div>
+        <Textfield bind:value={valueTypeNumberStep} label="Number with Step" type="number" input$step="2" />
+      </div>
+
+      <div>
         <Textfield bind:value={valueTypeDate} label="DateTime-Local" type="datetime-local" />
       </div>
 
@@ -549,6 +553,7 @@
   let valueFullwidthTextarea = '';
   let valueElementsLabel = '';
   let valueTypeNumber = 0;
+  let valueTypeNumberStep = 0;
   let valueTypeDate = '';
   let valueTypeFiles = [];
   let valueManualA = '';
