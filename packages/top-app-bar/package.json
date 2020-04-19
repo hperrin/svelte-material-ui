@@ -1,6 +1,6 @@
 {
   "name": "@smui/top-app-bar",
-  "version": "1.0.0-beta.20",
+  "version": "1.0.0-beta.21",
   "description": "Svelte Material UI - Top App Bar",
   "keywords": [
     "svelte",
@@ -30,7 +30,7 @@
   "dependencies": {
     "@material/feature-targeting": "^3.1.0",
     "@material/top-app-bar": "^3.2.0",
-    "@smui/common": "^1.0.0-beta.20"
+    "@smui/common": "^1.0.0-beta.21"
   },
   "devDependencies": {
     "glob-cmd": "0.0.7",
