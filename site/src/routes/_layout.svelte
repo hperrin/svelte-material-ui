@@ -41,7 +41,7 @@
         <IconButton href="https://github.com/hperrin/svelte-material-ui">
           <Icon>
             <svg style="width:24px;height:24px" viewBox="0 0 24 24">
-              <path fill="#000000" d="{mdiGithubCircle}" />
+              <path fill="#000000" d="{mdiGithub}" />
             </svg>
           </Icon>
         </IconButton>
@@ -82,7 +82,7 @@
 <script>
   import {onMount} from 'svelte';
   import {stores} from '@sapper/app';
-  import {mdiFileDocument, mdiCodeTags, mdiTwitter, mdiGithubCircle} from '@mdi/js';
+  import {mdiFileDocument, mdiCodeTags, mdiTwitter, mdiGithub} from '@mdi/js';
 
   import './_app.scss';
 
@@ -179,8 +179,9 @@
     },
     {
       name: 'Form Fields',
-      shortcut: '/demo/radio',
-      indent: 1
+      route: '/demo/form-field',
+      indent: 1,
+      repos: ['https://github.com/hperrin/svelte-material-ui/tree/master/packages/form-field']
     },
     {
       name: 'Line Ripple',
