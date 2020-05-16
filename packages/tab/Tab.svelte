@@ -1,4 +1,5 @@
-<button
+<a
+  {href}
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
@@ -10,7 +11,7 @@
   aria-selected={active}
   tabindex="{active ? '0' : '-1'}"
   on:MDCTab:interacted={interactedHandler}
-  {...exclude($$props, ['use', 'class', 'ripple', 'active', 'stacked', 'minWidth', 'indicatorSpanOnlyContent', 'focusOnActivate', 'content$', 'tabIndicator$'])}
+  {...exclude($$props, ['href', 'use', 'class', 'ripple', 'active', 'stacked', 'minWidth', 'indicatorSpanOnlyContent', 'focusOnActivate', 'content$', 'tabIndicator$'])}
 >
   <span
     use:useActions={content$use}
@@ -34,7 +35,7 @@
   {#if ripple}
     <span class="mdc-tab__ripple"></span>
   {/if}
-</button>
+</a>
 
 <script>
   import {MDCTab} from '@material/tab';
@@ -49,6 +50,7 @@
   const forwardEvents = forwardEventsBuilder(current_component, ['MDCTab:interacted']);
   let activeEntry = getContext('SMUI:tab:active');
 
+  export let href = '';
   export let use = [];
   let className = '';
   export {className as class};
