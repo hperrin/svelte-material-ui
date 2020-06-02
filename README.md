@@ -249,7 +249,7 @@ export default {
 };
 ```
 
-You might need to modify your imports on `rollup.config.js` dependeding on what packages are installed, for example if your `package.json` has the following devDependencies:
+You might need to modify your imports on `rollup.config.js` depending on what packages are installed, for example if your `package.json` has the following devDependencies:
 
 ```
 "devDependencies": {
