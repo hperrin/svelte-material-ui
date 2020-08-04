@@ -73,6 +73,53 @@ Here are some features you should know about:
 * All [standard UI events](https://github.com/hperrin/svelte-material-ui/blob/master/packages/common/forwardEvents.js#L4) are forwarded on components, input events ("input" and "change") are forwarded on input components, and all MDC events are forwarded.
 * Labels and icons are named exports in the components that use them, or you can use 'common/Label' and 'common/Icon'. (Except for textfield and select icons, because they are special snowflakes.)
 
+## Integration for Sapper
+
+1. Install the following packages as dev dependencies
+  With yarn
+  ```sh
+  yarn add rollup-plugin-postcss node-sass --dev
+  ```
+  With npm
+  ```sh
+  npm i -D rollup-plugin-postcss node-sass
+  ```
+2. Create the `src/theme/_smui-theme.scss file`
+  ```sh
+  mkdir src/theme && touch src/theme/_smui-theme.scss
+  ```
+
+3. Update `rollup.config.js` with the following configuration
+  ```
+  // ...
+  // Put this along with the other imports.
+  import postcss from "rollup-plugin-postcss";
+
+  // ...
+
+  // Find this line, under "plugins:"
+  commonjs(),
+
+  // Then paste the following after it.
+  // Once in the "client:" section, and again in the "server:" section.
+  postcss({
+    extract: true,
+    minimize: true,
+    use: [
+      ['sass', {
+        includePaths: [
+          './src/theme',
+          './node_modules'
+        ]
+      }]
+    ]
+  }),
+  // NOT in the "serviceworker:" section.
+  // ...
+  ```
+
+4. Install a SMUI package.
+
 # Components
 
 I've only done components that need to/can be Svelte-ified. For some things, like RTL and layout grid, you can just use the MDC packages.
