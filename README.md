@@ -73,6 +73,204 @@ Here are some features you should know about:
 * All [standard UI events](https://github.com/hperrin/svelte-material-ui/blob/master/packages/common/forwardEvents.js#L4) are forwarded on components, input events ("input" and "change") are forwarded on input components, and all MDC events are forwarded.
 * Labels and icons are named exports in the components that use them, or you can use 'common/Label' and 'common/Icon'. (Except for textfield and select icons, because they are special snowflakes.)
 
+## Integration for Sapper
+
+1. Install the following packages as dev dependencies
+
+With yarn
+`yarn add rollup-plugin-postcss node-sass @rollup/plugin-alias --dev`
+
+With npm
+`npm i -D rollup-plugin-postcss node-sass @rollup/plugin-alias`
+
+2. Create the `src/theme/_smui-theme.scss file`
+`mkdir src/theme && touch src/theme/_smui-theme.scss`
+
+3. Update `rollup.config.js` with the following configuration
+
+```
+import path from "path";
+import alias from "rollup-plugin-alias";
+import resolve from "rollup-plugin-node-resolve";
+import replace from "rollup-plugin-replace";
+import commonjs from "rollup-plugin-commonjs";
+import svelte from "rollup-plugin-svelte";
+import babel from "rollup-plugin-babel";
+import { terser } from "rollup-plugin-terser";
+import config from "sapper/config/rollup.js";
+import pkg from "./package.json";
+import postcss from "rollup-plugin-postcss";
+
+const mode = process.env.NODE_ENV;
+const dev = mode === "development";
+const legacy = !!process.env.SAPPER_LEGACY_BUILD;
+
+const onwarn = (warning, onwarn) =>
+  (warning.code === "CIRCULAR_DEPENDENCY" &&
+    /[/\\]@sapper[/\\]/.test(warning.message)) ||
+  onwarn(warning);
+const dedupe = importee =>
+  importee === "svelte" || importee.startsWith("svelte/");
+const aliases = () => ({
+  resolve: [".svelte", ".js", ".scss", ".css"],
+  entries: [
+    {
+      find: /^@smui\/([^\/]+)$/,
+      replacement: path.resolve(
+        __dirname,
+        "node_modules",
+        "@smui",
+        "$1",
+        "index.js"
+      )
+    },
+    {
+      find: /^@smui\/([^\/]+)\/(.*)$/,
+
+      replacement: path.resolve(__dirname, "node_modules", "@smui", "$1", "$2")
+    }
+  ]
+});
+const postcssOptions = () => ({
+  extensions: [".scss", ".sass"],
+  extract: false,
+  minimize: true,
+  use: [
+    [
+      "sass",
+      {
+        includePaths: [
+          "./src/theme",
+          "./node_modules",
+          // This is only needed because we're using a local module. :-/
+          // Normally, you would not need this line.
+          path.resolve(__dirname, "..", "node_modules")
+        ]
+      }
+    ]
+  ]
+});
+export default {
+  client: {
+    input: config.client.input(),
+    output: config.client.output(),
+    plugins: [
+      alias(aliases()),
+      replace({
+        "process.browser": true,
+        "process.env.NODE_ENV": JSON.stringify(mode)
+      }),
+      svelte({
+        dev,
+        hydratable: true,
+        emitCss: true
+      }),
+      resolve({
+        browser: true,
+        dedupe
+      }),
+      commonjs(),
+      postcss(postcssOptions()),
+      legacy &&
+        babel({
+          extensions: [".js", ".mjs", ".html", ".svelte"],
+          runtimeHelpers: true,
+          exclude: ["node_modules/@babel/**"],
+          presets: [
+            [
+              "@babel/preset-env",
+              {
+                targets: "> 0.25%, not dead"
+              }
+            ]
+          ],
+          plugins: [
+            "@babel/plugin-syntax-dynamic-import",
+            [
+              "@babel/plugin-transform-runtime",
+              {
+                useESModules: true
+              }
+            ]
+          ]
+        }),
+
+      !dev &&
+        terser({
+          module: true
+        })
+    ],
+
+    onwarn
+  },
+
+  server: {
+    input: config.server.input(),
+    output: config.server.output(),
+    plugins: [
+      alias(aliases()),
+      replace({
+        "process.browser": false,
+        "process.env.NODE_ENV": JSON.stringify(mode)
+      }),
+      svelte({
+        generate: "ssr",
+        dev
+      }),
+      resolve({
+        dedupe
+      }),
+      commonjs(),
+      postcss(postcssOptions())
+    ],
+    external: Object.keys(pkg.dependencies).concat(
+      require("module").builtinModules ||
+        Object.keys(process.binding("natives"))
+    ),
+
+    onwarn
+  },
+
+  serviceworker: {
+    input: config.serviceworker.input(),
+    output: config.serviceworker.output(),
+    plugins: [
+      resolve(),
+      replace({
+        "process.browser": true,
+        "process.env.NODE_ENV": JSON.stringify(mode)
+      }),
+      commonjs(),
+      !dev && terser()
+    ],
+
+    onwarn
+  }
+};
+```
+
+You might need to modify your imports on `rollup.config.js` depending on what packages are installed, for example if your `package.json` has the following devDependencies:
+
+```
+"devDependencies": {
+  "@rollup/plugin-alias": "^3.1.0",
+  "@rollup/plugin-commonjs": "11.0.2",
+  "@rollup/plugin-node-resolve": "^7.0.0",
+  "@rollup/plugin-replace": "^2.2.0",
+}
+```
+
+Then update imports on `rollup.config.js` to
+
+```
+import alias from "@rollup/plugin-alias";
+import resolve from "@rollup/plugin-node-resolve";
+import replace from "@rollup/plugin-replace";
+import commonjs from "@rollup/plugin-commonjs";
+```
+
+4. Install a SMUI package.
+
 # Components
 
 I've only done components that need to/can be Svelte-ified. For some things, like RTL and layout grid, you can just use the MDC packages.
