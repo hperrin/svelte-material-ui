@@ -76,47 +76,47 @@ Here are some features you should know about:
 ## Integration for Sapper
 
 1. Install the following packages as dev dependencies
-  With yarn
-  ```sh
-  yarn add rollup-plugin-postcss node-sass --dev
-  ```
-  With npm
-  ```sh
-  npm i -D rollup-plugin-postcss node-sass
-  ```
+   * With yarn
+      ```sh
+      yarn add rollup-plugin-postcss node-sass --dev
+      ```
+   * With npm
+      ```sh
+      npm i -D rollup-plugin-postcss node-sass
+      ```
 2. Create the `src/theme/_smui-theme.scss file`
-  ```sh
-  mkdir src/theme && touch src/theme/_smui-theme.scss
-  ```
+    ```sh
+    mkdir src/theme && touch src/theme/_smui-theme.scss
+    ```
 
 3. Update `rollup.config.js` with the following configuration
-  ```
-  // ...
-  // Put this along with the other imports.
-  import postcss from "rollup-plugin-postcss";
+    ```
+    // ...
+    // Put this along with the other imports.
+    import postcss from "rollup-plugin-postcss";
 
-  // ...
+    // ...
 
-  // Find this line, under "plugins:"
-  commonjs(),
+    // Find this line, under "plugins:"
+    commonjs(),
 
-  // Then paste the following after it.
-  // Once in the "client:" section, and again in the "server:" section.
-  postcss({
-    extract: true,
-    minimize: true,
-    use: [
-      ['sass', {
-        includePaths: [
-          './src/theme',
-          './node_modules'
-        ]
-      }]
-    ]
-  }),
-  // NOT in the "serviceworker:" section.
-  // ...
-  ```
+    // Then paste the following after it.
+    // Once in the "client:" section, and again in the "server:" section.
+    postcss({
+      extract: true,
+      minimize: true,
+      use: [
+        ['sass', {
+          includePaths: [
+            './src/theme',
+            './node_modules'
+          ]
+        }]
+      ]
+    }),
+    // NOT in the "serviceworker:" section.
+    // ...
+    ```
 
 4. Install a SMUI package.
 
