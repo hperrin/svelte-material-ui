@@ -25,6 +25,7 @@
       {required}
       id={inputId}
       value={value}
+      on:blur
       on:change
       on:input
       {...exclude(prefixFilter($$props, 'input$'), ['use'])}
@@ -54,6 +55,7 @@
       {disabled}
       {required}
       id={inputId}
+      on:blur
       on:change
       on:input
       {...exclude(prefixFilter($$props, 'input$'), ['use', 'class'])}
