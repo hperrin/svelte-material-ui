@@ -28,11 +28,11 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@material/checkbox": "^3.2.0",
+    "@material/checkbox": "^7.0.0",
     "@smui/common": "^1.0.0"
   },
   "devDependencies": {
     "glob-cmd": "0.0.7",
-    "sass": "^1.25.0"
+    "sass": "^1.26.0"
   }
 }

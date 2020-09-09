@@ -28,10 +28,10 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@material/feature-targeting": "^3.1.0",
-    "@material/ripple": "^3.2.0",
-    "@material/rtl": "^3.2.0",
-    "@material/select": "^3.2.0",
+    "@material/feature-targeting": "^7.0.0",
+    "@material/ripple": "^7.0.0",
+    "@material/rtl": "^7.0.0",
+    "@material/select": "^7.0.0",
     "@smui/common": "^1.0.0",
     "@smui/floating-label": "^1.0.0",
     "@smui/line-ripple": "^1.0.0",
@@ -41,6 +41,6 @@
   },
   "devDependencies": {
     "glob-cmd": "0.0.7",
-    "sass": "^1.25.0"
+    "sass": "^1.26.0"
   }
 }
