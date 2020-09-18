@@ -103,7 +103,7 @@ Here are some features you should know about:
     // Then paste the following after it.
     // Once in the "client:" section, and again in the "server:" section.
     postcss({
-      extract: true,
+      extract: false,
       minimize: true,
       use: [
         ['sass', {
