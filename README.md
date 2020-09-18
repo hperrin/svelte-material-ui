@@ -97,6 +97,14 @@ Here are some features you should know about:
 
     // ...
 
+    // At the client svelte options change emitCss to false and css to true
+    svelte({
+      dev,
+      hydratable: true,
+      emitCss: false,
+      css: true
+    }),
+
     // Find this line, under "plugins:"
     commonjs(),
 
