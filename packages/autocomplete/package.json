@@ -1,0 +1,42 @@
+{
+  "name": "@smui/autocomplete",
+  "version": "1.0.0",
+  "description": "Svelte Material UI - Autocomplete",
+  "keywords": [
+    "svelte",
+    "svelte3",
+    "material-ui",
+    "material-design",
+    "material",
+    "svelte-components",
+    "sveltejs"
+  ],
+  "scripts": {
+    "prepublishOnly": "echo \"$(npx glob '**/*' | sed 's/^/-I /' | paste -s -d ' ' -) --no-source-map _style.scss bare.css\" | xargs sass && echo \"$(npx glob '**/*' | sed 's/^/-I /' | paste -s -d ' ' -) --no-source-map helper-text/_style.scss helper-text/bare.css\" | xargs sass && echo \"$(npx glob '**/*' | sed 's/^/-I /' | paste -s -d ' ' -) --no-source-map icon/_style.scss icon/bare.css\" | xargs sass",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hperrin/svelte-material-ui.git"
+  },
+  "author": "Hunter Perrin <hperrin@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/hperrin/svelte-material-ui/issues"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@smui/common": "^1.0.0",
+    "@smui/list": "^1.0.0",
+    "@smui/menu": "^1.0.0",
+    "@smui/menu-surface": "^1.0.0",
+    "@smui/notched-outline": "^1.0.0",
+    "@smui/textfield": "^1.0.0"
+  },
+  "devDependencies": {
+    "glob-cmd": "0.0.7",
+    "sass": "^1.25.0"
+  }
+}
