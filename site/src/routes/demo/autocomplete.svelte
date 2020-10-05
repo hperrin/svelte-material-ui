@@ -1,8 +1,37 @@
 <script>
   import Autocomplete from "@smui/autocomplete";
 
-  let options = ["Apple", "Orange", "Banana", "Mango"];
-  let value;
+  let fruits = ["Apple", "Orange", "Banana", "Mango"];
+
+  let objects = [
+    {
+      id: 0,
+      label: "One",
+    },
+    {
+      id: 1,
+      label: "Two",
+    },
+    {
+      id: 1,
+      label: "Three",
+    },
+    {
+      id: 3,
+      label: "Four",
+    },
+    {
+      id: 5,
+      label: "Five",
+    },
+  ];
+
+  let valueSimple;
+  let valuePrefilled = "Orange";
+  let valueStandard;
+  let valueFilled;
+  let valueOutlined;
+  let valueObjects;
 </script>
 
 <style>
@@ -23,7 +52,7 @@
     margin-left: 0;
   }
 
-  * :global(select, .demo-select-width) {
+  * :global(.demo-autocomplete-width) {
     min-width: 200px;
   }
 
@@ -64,11 +93,77 @@
 <section>
   <h2>Autocomplete</h2>
 
-  <div class="columns margins" style="justify-content: flex-start;">
+  <div class="columns margins">
     <div>
-      <Autocomplete {options} bind:value label="Default" />
+      Simple:<br />
+      <Autocomplete
+        options={fruits}
+        bind:value={valueSimple}
+        label="Fruit"
+        class="demo-autocomplete-width" />
+      <pre class="status">Selected: {valueSimple || ''}</pre>
+    </div>
 
-      <pre class="status">Selected: {value}</pre>
+    <div>
+      Prefilled:<br />
+      <Autocomplete
+        options={fruits}
+        bind:value={valuePrefilled}
+        label="Fruit"
+        class="demo-autocomplete-width" />
+      <pre class="status">Selected: {valuePrefilled || ''}</pre>
+    </div>
+
+    <div>
+      Objects:<br />
+      <Autocomplete
+        options={objects}
+        getOptionLabel={(option) => `${option.label} (${option.id})`}
+        bind:value={valueObjects}
+        label="Objects"
+        class="demo-autocomplete-width" />
+
+      <pre
+        class="status">Selected: {valueObjects ? JSON.stringify(valueObjects) : ''}</pre>
+    </div>
+  </div>
+
+  <div>
+    <div class="columns margins">
+      <div>
+        Standard:<br />
+        <Autocomplete
+          options={fruits}
+          bind:value={valueStandard}
+          label="Fruit"
+          class="demo-autocomplete-width" />
+
+        <pre class="status">Selected: {valueStandard || ''}</pre>
+      </div>
+
+      <div>
+        Filled:<br />
+        <Autocomplete
+          options={fruits}
+          variant="filled"
+          bind:value={valueFilled}
+          label="Fruit"
+          class="demo-autocomplete-width" />
+
+        <pre class="status">Selected: {valueFilled || ''}</pre>
+      </div>
+
+      <div>
+        Outlined:<br />
+        <Autocomplete
+          options={fruits}
+          variant="outlined"
+          bind:value={valueOutlined}
+          label="Fruit"
+          class="demo-autocomplete-width" />
+
+        <pre class="status">Selected: {valueOutlined || ''}</pre>
+      </div>
     </div>
   </div>
 </section>
