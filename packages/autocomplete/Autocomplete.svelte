@@ -12,11 +12,12 @@
   export let getOptionDisabled = undefined;
   export let getOptionLabel = (option) => option || "";
   export let blurOnSelect = true;
-  export let clearOnBlur = true;
+  export let clearOnBlur = undefined;
   export let clearOnEscape = true;
   export let toggle = false;
   export let dirty = undefined;
   export let invalid = undefined;
+  export let freeSolo = false;
 
   export let menu$class = "";
   export let menu$anchor = false;
@@ -46,10 +47,9 @@
     "toggle",
     "dirty",
     "invalid",
+    "freeSolo",
     "search",
     "getOptionSelected",
-    "withLeadingIcon",
-    "withTrailingIcon",
   ]);
 
   $: (async () => {
@@ -68,7 +68,13 @@
   export let getOptionSelected = (option, currentValue) =>
     option == currentValue;
 
-  $: formattedValue = value ? getOptionLabel(value) : formattedValue;
+  $: if (freeSolo) {
+    value = formattedValue;
+  } else {
+    formattedValue = value ? getOptionLabel(value) : formattedValue;
+  }
+
+  $: clearOnBlur = clearOnBlur == undefined ? !freeSolo : clearOnBlur;
 
   $: (async () => {
     loading = true;

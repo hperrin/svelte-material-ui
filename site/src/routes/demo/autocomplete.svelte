@@ -27,6 +27,7 @@
   ];
 
   let valueSimple;
+  let valueFreesolo;
   let valuePrefilled = "Orange";
   let valueStandard;
   let valueFilled;
@@ -96,13 +97,24 @@
   <div>
     <div class="columns margins">
       <div>
-        Simple:<br />
+        Default:<br />
         <Autocomplete
           options={fruits}
           bind:value={valueSimple}
           label="Fruit"
           class="demo-autocomplete-width" />
         <pre class="status">Selected: {valueSimple || ''}</pre>
+      </div>
+
+      <div>
+        Freesolo:<br />
+        <Autocomplete
+          freeSolo={true}
+          options={fruits}
+          bind:value={valueFreesolo}
+          label="Fruit"
+          class="demo-autocomplete-width" />
+        <pre class="status">Selected: {valueFreesolo || ''}</pre>
       </div>
 
       <div>
