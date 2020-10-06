@@ -185,6 +185,12 @@
   }
 </script>
 
+<style>
+  * :global(.smui-autocomplete-menu) {
+    width: 100%;
+  }
+</style>
+
 <div on:blur|capture={blurClear} use:Anchor bind:this={anchorElement}>
   <div
     on:focus|capture={() => {
@@ -207,7 +213,7 @@
       }} />
   </div>
   <Menu
-    class={menu$class}
+    class="smui-autocomplete-menu {menu$class}"
     bind:this={menu}
     bind:open={menuIsOpen}
     anchor={menu$anchor}
@@ -223,8 +229,7 @@
     }}
     on:mouseleave={() => {
       shouldClearOnBlur = true;
-    }}
-    style="width:100%;">
+    }}>
     <List {...prefixFilter($$props, 'list$')} on:keydown={handleListKeydown}>
       {#if loading}
         <slot name="loading">

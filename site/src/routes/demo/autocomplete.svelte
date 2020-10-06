@@ -13,7 +13,7 @@
       label: "Two",
     },
     {
-      id: 1,
+      id: 2,
       label: "Three",
     },
     {
@@ -21,7 +21,7 @@
       label: "Four",
     },
     {
-      id: 5,
+      id: 4,
       label: "Five",
     },
   ];
@@ -93,38 +93,40 @@
 <section>
   <h2>Autocomplete</h2>
 
-  <div class="columns margins">
-    <div>
-      Simple:<br />
-      <Autocomplete
-        options={fruits}
-        bind:value={valueSimple}
-        label="Fruit"
-        class="demo-autocomplete-width" />
-      <pre class="status">Selected: {valueSimple || ''}</pre>
-    </div>
+  <div>
+    <div class="columns margins">
+      <div>
+        Simple:<br />
+        <Autocomplete
+          options={fruits}
+          bind:value={valueSimple}
+          label="Fruit"
+          class="demo-autocomplete-width" />
+        <pre class="status">Selected: {valueSimple || ''}</pre>
+      </div>
 
-    <div>
-      Prefilled:<br />
-      <Autocomplete
-        options={fruits}
-        bind:value={valuePrefilled}
-        label="Fruit"
-        class="demo-autocomplete-width" />
-      <pre class="status">Selected: {valuePrefilled || ''}</pre>
-    </div>
+      <div>
+        Prefilled:<br />
+        <Autocomplete
+          options={fruits}
+          bind:value={valuePrefilled}
+          label="Fruit"
+          class="demo-autocomplete-width" />
+        <pre class="status">Selected: {valuePrefilled || ''}</pre>
+      </div>
 
-    <div>
-      Objects:<br />
-      <Autocomplete
-        options={objects}
-        getOptionLabel={(option) => `${option.label} (${option.id})`}
-        bind:value={valueObjects}
-        label="Objects"
-        class="demo-autocomplete-width" />
+      <div>
+        Objects:<br />
+        <Autocomplete
+          options={objects}
+          getOptionLabel={(option) => `${option.label} (${option.id})`}
+          bind:value={valueObjects}
+          label="Objects"
+          class="demo-autocomplete-width" />
 
-      <pre
-        class="status">Selected: {valueObjects ? JSON.stringify(valueObjects) : ''}</pre>
+        <pre
+          class="status">Selected: {valueObjects ? JSON.stringify(valueObjects) : ''}</pre>
+      </div>
     </div>
   </div>
 
