@@ -5,7 +5,7 @@
   import Menu from "@smui/menu";
   import List, { Item, Text } from "@smui/list";
   import { Anchor } from "@smui/menu-surface";
-  import { onMount, createEventDispatcher, tick } from "svelte";
+  import { createEventDispatcher } from "svelte";
 
   export let options = [];
   export let value = undefined;
@@ -27,12 +27,16 @@
 
   let items = [];
   let loading = false;
+  let error = false;
   let menu;
   let menuIsOpen;
   let anchorElement;
   let formattedValue = "";
   let matches = [];
-  let shouldClearOnBlur = true;
+  let focusedIndex = -1;
+  let activeItems;
+  let focusedItem;
+  let activeOptions = [];
 
   $: textfieldProps = exclude($$props, [
     "menu$",
@@ -77,28 +81,49 @@
   $: clearOnBlur = clearOnBlur == undefined ? !freeSolo : clearOnBlur;
 
   $: (async () => {
-    loading = true;
-    shouldClearOnBlur = true;
-    matches = await search(items, formattedValue || "");
-    menu && menu.setDefaultFocusState(1);
-    loading = false;
+    try {
+      loading = true;
+      matches = await search(items, formattedValue || "");
+      loading = false;
+      error = false;
+    } catch (err) {
+      loading = false;
+      error = true;
+      throw err;
+    }
   })();
 
-  onMount(() => {
-    menu && menu.setOpen(false);
-  });
+  $: if (menu) {
+    activeItems = getActiveMenuItems();
+
+    if (focusedIndex != -1) {
+      focusedItem = activeItems.splice(focusedIndex, 1)[0];
+
+      if (focusedItem) {
+        addClass(focusedItem, "mdc-ripple-upgraded--background-focused");
+        focusedItem.scrollIntoView();
+      }
+    }
+
+    activeItems.forEach((item) => {
+      removeClass(item, "mdc-ripple-upgraded--background-focused");
+    });
+
+    menu.getItems().forEach((item) => {
+      item.setAttribute("tabindex", -1);
+    });
+  }
+
+  $: activeOptions = activeOptions.filter((el) => el);
 
   export function blur() {
     if (anchorElement) {
       const inputEl = anchorElement.querySelector(
         "input.mdc-text-field__input"
       );
-      inputEl &&
-        addEventListenerOnce(inputEl, "focus", () => {
-          menu && menu.setOpen(false);
-          inputEl.blur();
-        });
+
       menu && menu.setOpen(false);
+      inputEl && inputEl.blur();
     }
   }
 
@@ -124,48 +149,56 @@
     }
   }
 
-  function getFirstActiveMenuItem() {
+  function getActiveMenuItems() {
     const menuItems = menu ? menu.getItems() : undefined;
     if (menuItems) {
-      const firstActiveItem = menuItems.find(
-        (el) => !hasClass(el, "mdc-list-item--disabled")
-      );
-      return firstActiveItem;
+      return menuItems.filter((el) => !hasClass(el, "mdc-list-item--disabled"));
     }
   }
 
-  async function handleTextfieldKeydown(e) {
+  function handleTextfieldKeydown(e) {
     if (e.keyCode == 40) {
-      // When the textfield has focus and arrowDown is pressed, open the menu and focus the first item (skip disabled items)
-      shouldClearOnBlur = false;
-      !menuIsOpen && menu.setDefaultFocusState(2);
-      const firstActiveItem = getFirstActiveMenuItem();
-      if (firstActiveItem) {
-        menu.setOpen(true);
-        firstActiveItem.focus();
+      e.preventDefault();
+
+      menu.setOpen(true);
+      if (focusedIndex == -1 || focusedIndex == activeItems.length) {
+        focusedIndex = 0;
+      } else {
+        focusedIndex++;
       }
-      await tick();
-      shouldClearOnBlur = true;
+    } else if (e.keyCode == 38) {
+      e.preventDefault();
+
+      menu.setOpen(true);
+      if (focusedIndex == -1 || focusedIndex == 0) {
+        focusedIndex = activeItems.length;
+      } else {
+        focusedIndex--;
+      }
     } else if (e.keyCode == 27 && clearOnEscape) {
+      e.preventDefault();
+
       // Clear on escape
       value = undefined;
       formattedValue = "";
+      focusedIndex = -1;
+    } else if (e.keyCode == 13) {
+      e.preventDefault();
+
+      if (focusedItem) {
+        activeOptions[focusedIndex].action(e);
+        focusedItem = undefined;
+        focusedIndex = -1;
+      }
     }
   }
 
-  async function handleListKeydown(e) {
-    if (e.keyCode == 38) {
-      // When the list has focus and arrowUp is pressed, if we are at the top (skipping disabled items), focus the textfield
-      shouldClearOnBlur = false;
-      const firstActiveItem = getFirstActiveMenuItem();
-      if (firstActiveItem && document.activeElement == firstActiveItem) {
-        const inputEl = anchorElement.querySelector(
-          "input.mdc-text-field__input"
-        );
-        inputEl && inputEl.focus();
-      }
-      await tick();
-      shouldClearOnBlur = true;
+  function handleTextfieldBlur(e) {
+    focusedIndex = -1;
+    menu && menu.setOpen(false);
+
+    if (clearOnBlur && !value) {
+      formattedValue = "";
     }
   }
 
@@ -173,21 +206,15 @@
     return ` ${element.className} `.indexOf(` ${className} `) > -1;
   }
 
-  function addEventListenerOnce(target, type, listener) {
-    target.addEventListener(type, function fn() {
-      target.removeEventListener(type, fn);
-      listener.apply(this, arguments);
-    });
+  function addClass(element, className) {
+    const arr = element.className.split(" ");
+    if (arr.indexOf(className) == -1) {
+      element.className += " " + className;
+    }
   }
 
-  function blurClear(e) {
-    const menuItems = menu.getItems();
-    // Avoid clearing the input when navigating options with the keyboard
-    if (menuItems.includes(e.relatedTarget)) return;
-
-    if (clearOnBlur && !value && shouldClearOnBlur) {
-      formattedValue = "";
-    }
+  function removeClass(element, className) {
+    element.className = element.className.replace(className, "");
   }
 </script>
 
@@ -197,17 +224,19 @@
   }
 </style>
 
-<div on:blur|capture={blurClear} use:Anchor bind:this={anchorElement}>
+<div use:Anchor bind:this={anchorElement}>
   <div
     on:focus|capture={() => {
       if (!value && menu) {
-        menu.setDefaultFocusState(1);
         menu.setOpen(true);
       }
-    }}>
+    }}
+    on:blur|capture={handleTextfieldBlur}>
     <Textfield
       on:input={() => {
         value = undefined;
+        focusedIndex = -1;
+        menu && menu.setOpen(true);
       }}
       on:keydown={handleTextfieldKeydown}
       bind:dirty
@@ -229,14 +258,8 @@
       'class',
       'anchor',
       'anchorCorner',
-    ])}
-    on:mouseenter={() => {
-      shouldClearOnBlur = false;
-    }}
-    on:mouseleave={() => {
-      shouldClearOnBlur = true;
-    }}>
-    <List {...prefixFilter($$props, 'list$')} on:keydown={handleListKeydown}>
+    ])}>
+    <List {...prefixFilter($$props, 'list$')}>
       {#if loading}
         <slot name="loading">
           <Item disabled>
@@ -244,15 +267,25 @@
           </Item>
         </slot>
       {:else if matches && matches.length > 0}
-        <slot name="matches" {matches}>
-          {#each matches as match}
-            <Item
-              disabled={getOptionDisabled && getOptionDisabled(match)}
-              selected={getOptionSelected(match, value)}
-              on:SMUI:action={() => (toggle ? toggleOption(match, blurOnSelect) : selectOption(match, blurOnSelect))}>
+        {#each matches as match, i}
+          <Item
+            bind:this={activeOptions[i]}
+            disabled={getOptionDisabled && getOptionDisabled(match)}
+            selected={getOptionSelected(match, value)}
+            on:mouseenter={() => {
+              focusedIndex = i;
+            }}
+            on:SMUI:action={(e) => (toggle ? toggleOption(match, blurOnSelect) : selectOption(match, blurOnSelect))}>
+            <slot name="match" {match}>
               <Text>{getOptionLabel(match)}</Text>
-            </Item>
-          {/each}
+            </slot>
+          </Item>
+        {/each}
+      {:else if error}
+        <slot name="error">
+          <Item disabled>
+            <Text>Error while fetching suggestions.</Text>
+          </Item>
         </slot>
       {:else}
         <slot name="no-matches">
