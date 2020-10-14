@@ -37,6 +37,7 @@
   let activeItems;
   let focusedItem;
   let activeOptions = [];
+  let shouldClearOnBlur = true;
 
   $: textfieldProps = exclude($$props, [
     "menu$",
@@ -197,7 +198,7 @@
     focusedIndex = -1;
     menu && menu.setOpen(false);
 
-    if (clearOnBlur && !value) {
+    if (clearOnBlur && !value && shouldClearOnBlur) {
       formattedValue = "";
     }
   }
@@ -261,11 +262,11 @@
     ])}>
     <List {...prefixFilter($$props, 'list$')}>
       {#if loading}
-        <slot name="loading">
-          <Item disabled>
+        <Item disabled>
+          <slot name="loading">
             <Text>Loading...</Text>
-          </Item>
-        </slot>
+          </slot>
+        </Item>
       {:else if matches && matches.length > 0}
         {#each matches as match, i}
           <Item
@@ -282,17 +283,26 @@
           </Item>
         {/each}
       {:else if error}
-        <slot name="error">
-          <Item disabled>
+        <Item disabled>
+          <slot name="error">
             <Text>Error while fetching suggestions.</Text>
-          </Item>
-        </slot>
+          </slot>
+        </Item>
       {:else}
-        <slot name="no-matches">
-          <Item disabled>
+        <Item
+          bind:this={activeOptions[0]}
+          on:mouseenter={() => {
+            shouldClearOnBlur = false;
+            focusedIndex = 0;
+          }}
+          on:mouseleave={() => {
+            shouldClearOnBlur = true;
+          }}
+          on:SMUI:action={async (e) => dispatch('no-matches-action', e)}>
+          <slot name="no-matches">
             <Text>No matches found.</Text>
-          </Item>
-        </slot>
+          </slot>
+        </Item>
       {/if}
     </List>
   </Menu>
