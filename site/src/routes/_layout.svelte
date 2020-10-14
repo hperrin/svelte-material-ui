@@ -108,8 +108,8 @@
       route: "/demo/autocomplete",
       indent: 1,
       repos: [
-        "https://github.com/hperrin/svelte-material-ui/tree/master/packages/checkbox",
-      ], // TODO: update repo URL
+        "https://github.com/hperrin/svelte-material-ui/tree/master/packages/autocomplete",
+      ],
     },
     {
       name: "Checkboxes",

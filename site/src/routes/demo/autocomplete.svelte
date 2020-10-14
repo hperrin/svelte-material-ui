@@ -1,5 +1,9 @@
 <script>
   import Autocomplete from "@smui/autocomplete";
+  import { Text } from "@smui/list";
+  import Button, { Label } from "@smui/button";
+  import Dialog, { Title, Content, Actions } from "@smui/dialog";
+  import Textfield from "@smui/textfield";
 
   let fruits = ["Apple", "Orange", "Banana", "Mango"];
 
@@ -26,6 +30,31 @@
     },
   ];
 
+  let dialog;
+  let objectsDialog = [
+    {
+      id: 0,
+      label: "One",
+    },
+    {
+      id: 1,
+      label: "Two",
+    },
+    {
+      id: 2,
+      label: "Three",
+    },
+    {
+      id: 3,
+      label: "Four",
+    },
+    {
+      id: 4,
+      label: "Five",
+    },
+  ];
+  let newLabel = "";
+
   let valueSimple;
   let valueFreesolo;
   let valuePrefilled = "Orange";
@@ -33,6 +62,17 @@
   let valueFilled;
   let valueOutlined;
   let valueObjects;
+  let valueDialog;
+
+  function addObject() {
+    const newObject = {
+      id: objectsDialog[objectsDialog.length - 1].id + 1,
+      label: newLabel,
+    };
+    objectsDialog = [...objectsDialog, newObject];
+    newLabel = "";
+    valueDialog = newObject;
+  }
 </script>
 
 <style>
@@ -138,6 +178,45 @@
 
         <pre
           class="status">Selected: {valueObjects ? JSON.stringify(valueObjects) : ''}</pre>
+      </div>
+
+      <div>
+        Dialog:<br />
+        <Autocomplete
+          options={objectsDialog}
+          getOptionLabel={(option) => `${option.label} (${option.id})`}
+          bind:value={valueDialog}
+          on:no-matches-action={() => dialog.open()}
+          label="Dialog"
+          class="demo-autocomplete-width">
+          <div slot="no-matches">
+            <Text>Add object</Text>
+          </div>
+        </Autocomplete>
+
+        <pre
+          class="status">Selected: {valueDialog ? JSON.stringify(valueDialog) : ''}</pre>
+
+        <Dialog
+          bind:this={dialog}
+          aria-labelledby="simple-title"
+          aria-describedby="simple-content">
+          <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
+          <Title id="simple-title">New object</Title>
+          <form on:submit|preventDefault={addObject}>
+            <Content id="simple-content">
+              <Textfield bind:value={newLabel} label="Label" />
+            </Content>
+            <Actions>
+              <Button type="button">
+                <Label>Cancel</Label>
+              </Button>
+              <Button type="submit">
+                <Label>Add</Label>
+              </Button>
+            </Actions>
+          </form>
+        </Dialog>
       </div>
     </div>
   </div>
