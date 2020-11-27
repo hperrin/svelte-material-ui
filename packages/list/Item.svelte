@@ -146,7 +146,7 @@
     }
   }
 
-  function action(e) {
+  export function action(e) {
     if (disabled) {
       e.preventDefault();
     } else {

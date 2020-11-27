@@ -137,6 +137,7 @@ Click a component below to go to its documentation.
 - [Elevation](https://material.io/develop/web/components/elevation/)†
 - [Image List](https://github.com/hperrin/svelte-material-ui/blob/master/packages/image-list/README.md)
 - Inputs and Controls
+  - [Autocomplete](https://github.com/hperrin/svelte-material-ui/blob/master/packages/autocomplete/README.md)‡
   - [Checkboxes](https://github.com/hperrin/svelte-material-ui/blob/master/packages/checkbox/README.md)
   - [Floating Label](https://github.com/hperrin/svelte-material-ui/blob/master/packages/floating-label/README.md)
   - [Form Fields](https://github.com/hperrin/svelte-material-ui/blob/master/packages/form-field/README.md)
