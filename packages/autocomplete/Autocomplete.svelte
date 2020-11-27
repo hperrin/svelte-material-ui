@@ -9,6 +9,7 @@
 
   export let options = [];
   export let value = undefined;
+  export let text = "";
   export let getOptionDisabled = undefined;
   export let getOptionLabel = (option) => option || "";
   export let blurOnSelect = true;
@@ -31,7 +32,6 @@
   let menu;
   let menuIsOpen;
   let anchorElement;
-  let formattedValue = "";
   let matches = [];
   let focusedIndex = -1;
   let activeItems;
@@ -43,6 +43,7 @@
     "menu$",
     "list$",
     "value",
+    "text",
     "options",
     "getOptionDisabled",
     "getOptionLabel",
@@ -74,9 +75,9 @@
     option == currentValue;
 
   $: if (freeSolo) {
-    value = formattedValue;
+    value = text;
   } else {
-    formattedValue = value ? getOptionLabel(value) : formattedValue;
+    text = value ? getOptionLabel(value) : text;
   }
 
   $: clearOnBlur = clearOnBlur == undefined ? !freeSolo : clearOnBlur;
@@ -84,7 +85,7 @@
   $: (async () => {
     try {
       loading = true;
-      matches = await search(items, formattedValue || "");
+      matches = await search(items, text || "");
       loading = false;
       error = false;
     } catch (err) {
@@ -130,14 +131,14 @@
 
   export function selectOption(option, shouldBlur = false) {
     value = option;
-    formattedValue = getOptionLabel(option);
+    text = getOptionLabel(option);
     shouldBlur && blur();
     dispatch("optionselected", option);
   }
 
   export function deselectOption(option, shouldBlur = false) {
     value = undefined;
-    formattedValue = "";
+    text = "";
     shouldBlur && blur();
     dispatch("optiondeselected", option);
   }
@@ -181,7 +182,7 @@
 
       // Clear on escape
       value = undefined;
-      formattedValue = "";
+      text = "";
       focusedIndex = -1;
     } else if (e.keyCode == 13) {
       e.preventDefault();
@@ -199,7 +200,7 @@
     menu && menu.setOpen(false);
 
     if (clearOnBlur && !value && shouldClearOnBlur) {
-      formattedValue = "";
+      text = "";
     }
   }
 
@@ -232,21 +233,23 @@
         menu.setOpen(true);
       }
     }}
-    on:blur|capture={handleTextfieldBlur}>
-    <Textfield
-      on:input={() => {
-        value = undefined;
-        focusedIndex = -1;
-        menu && menu.setOpen(true);
-      }}
-      on:keydown={handleTextfieldKeydown}
-      bind:dirty
-      bind:invalid
-      bind:value={formattedValue}
-      {...textfieldProps}
-      on:click={() => {
-        menu && menu.setOpen(true);
-      }} />
+    on:blur|capture={handleTextfieldBlur}
+    on:input|capture={() => {
+      value = undefined;
+      focusedIndex = -1;
+      menu && menu.setOpen(true);
+    }}
+    on:keydown|capture={handleTextfieldKeydown}
+    on:click|capture={() => {
+      menu && menu.setOpen(true);
+    }}>
+    <slot>
+      <Textfield
+        bind:dirty
+        bind:invalid
+        bind:value={text}
+        {...textfieldProps} />
+    </slot>
   </div>
   <Menu
     class="smui-autocomplete-menu {menu$class}"

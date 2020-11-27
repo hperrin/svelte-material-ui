@@ -3,7 +3,10 @@
   import { Text } from "@smui/list";
   import Button, { Label } from "@smui/button";
   import Dialog, { Title, Content, Actions } from "@smui/dialog";
-  import Textfield from "@smui/textfield";
+  import Textfield, { Input } from "@smui/textfield";
+  import FloatingLabel from "@smui/floating-label";
+  import LineRipple from "@smui/line-ripple";
+  import NotchedOutline from "@smui/notched-outline";
 
   let fruits = ["Apple", "Orange", "Banana", "Mango"];
 
@@ -63,6 +66,12 @@
   let valueOutlined;
   let valueObjects;
   let valueDialog;
+  let valueManualStandard;
+  let textManualStandard;
+  let valueManualFilled;
+  let textManualFilled;
+  let valueManualOutlined;
+  let textManualOutlined;
 
   function addObject() {
     const newObject = {
@@ -256,6 +265,72 @@
           class="demo-autocomplete-width" />
 
         <pre class="status">Selected: {valueOutlined || ''}</pre>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    Manual setup:
+    <div class="columns margins">
+      <div>
+        <Autocomplete
+          options={fruits}
+          bind:value={valueManualStandard}
+          bind:text={textManualStandard}
+          class="demo-autocomplete-width">
+          <Textfield>
+            <Input
+              bind:value={textManualStandard}
+              id="input-manual-a"
+              aria-controls="helper-text-manual-a"
+              aria-describedby="helper-text-manual-a" />
+            <FloatingLabel for="input-manual-a">Standard</FloatingLabel>
+            <LineRipple />
+          </Textfield>
+        </Autocomplete>
+
+        <pre class="status">Selected: {valueManualStandard || ''}</pre>
+      </div>
+
+      <div>
+        <Autocomplete
+          options={fruits}
+          bind:value={valueManualFilled}
+          bind:text={textManualFilled}
+          class="demo-autocomplete-width">
+          <Textfield variant="filled">
+            <Input
+              bind:value={textManualFilled}
+              id="input-manual-b"
+              aria-controls="helper-text-manual-b"
+              aria-describedby="helper-text-manual-b" />
+            <FloatingLabel for="input-manual-b">Filled</FloatingLabel>
+            <LineRipple />
+          </Textfield>
+        </Autocomplete>
+
+        <pre class="status">Selected: {valueManualFilled || ''}</pre>
+      </div>
+
+      <div>
+        <Autocomplete
+          options={fruits}
+          bind:value={valueManualOutlined}
+          bind:text={textManualOutlined}
+          class="demo-autocomplete-width">
+          <Textfield variant="outlined">
+            <Input
+              bind:value={textManualOutlined}
+              id="input-manual-c"
+              aria-controls="helper-text-manual-c"
+              aria-describedby="helper-text-manual-c" />
+            <NotchedOutline>
+              <FloatingLabel for="input-manual-c">Outlined</FloatingLabel>
+            </NotchedOutline>
+          </Textfield>
+        </Autocomplete>
+
+        <pre class="status">Selected: {valueManualOutlined || ''}</pre>
       </div>
     </div>
   </div>
