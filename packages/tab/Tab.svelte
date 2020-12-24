@@ -1,8 +1,7 @@
-<a
-  {href}
+<svelte:component
+  this={component}
   bind:this={element}
-  use:useActions={use}
-  use:forwardEvents
+  use={[forwardEvents, ...use]}
   class="
     mdc-tab
     {className}
@@ -13,8 +12,9 @@
   role="tab"
   aria-selected={active}
   tabindex="{active ? '0' : '-1'}"
+  {...hrefProp}
   on:MDCTab:interacted={interactedHandler}
-  {...exclude($$props, ['href', 'use', 'class', 'ripple', 'active', 'stacked', 'minWidth', 'indicatorSpanOnlyContent', 'focusOnActivate', 'content$', 'tabIndicator$'])}
+  {...exclude($$props, ['use', 'class', 'ripple', 'href', 'active', 'stacked', 'minWidth', 'indicatorSpanOnlyContent', 'focusOnActivate', 'component', 'content$', 'tabIndicator$'])}
 >
   <span
     use:useActions={content$use}
@@ -38,7 +38,7 @@
   {#if ripple}
     <span class="mdc-tab__ripple"></span>
   {/if}
-</a>
+</svelte:component>
 
 <script>
   import {MDCTab} from '@material/tab';
@@ -48,23 +48,26 @@
   import {exclude} from '@smui/common/exclude.js';
   import {prefixFilter} from '@smui/common/prefixFilter.js';
   import {useActions} from '@smui/common/useActions.js';
+  import A from '@smui/common/A.svelte';
+  import Button from '@smui/common/Button.svelte';
   import TabIndicator from '@smui/tab-indicator/TabIndicator.svelte';
 
   const forwardEvents = forwardEventsBuilder(get_current_component(), ['MDCTab:interacted']);
   let activeEntry = getContext('SMUI:tab:active');
 
-  export let href = '';
   export let use = [];
   let className = '';
   export {className as class};
   let tabEntry;
   export {tabEntry as tab};
   export let ripple = true;
+  export let href = null;
   export let active = tabEntry === activeEntry;
   export let stacked = false;
   export let minWidth = false;
   export let indicatorSpanOnlyContent = false;
   export let focusOnActivate = true;
+  export let component = href == null ? Button : A;
   export let content$use = [];
   export let content$class = '';
 
@@ -74,6 +77,7 @@
   let getInstance = getContext('SMUI:tab:getInstance');
   let tabIndicatorPromiseResolve;
   let tabIndicatorPromise = new Promise(resolve => tabIndicatorPromiseResolve = resolve);
+  $: hrefProp = href == null ? {} : {href};
 
   setContext('SMUI:tab-indicator:instantiate', false);
   setContext('SMUI:tab-indicator:getInstance', getTabIndicatorInstancePromise);
