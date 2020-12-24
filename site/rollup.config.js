@@ -1,11 +1,12 @@
 import path  from 'path';
 import alias from 'rollup-plugin-alias';
-import resolve from 'rollup-plugin-node-resolve';
-import replace from 'rollup-plugin-replace';
-import commonjs from 'rollup-plugin-commonjs';
-import svelte from 'rollup-plugin-svelte';
 import postcss from 'rollup-plugin-postcss';
-import babel from 'rollup-plugin-babel';
+import resolve from '@rollup/plugin-node-resolve';
+import replace from '@rollup/plugin-replace';
+import commonjs from '@rollup/plugin-commonjs';
+import url from '@rollup/plugin-url';
+import svelte from 'rollup-plugin-svelte';
+import babel from '@rollup/plugin-babel';
 import { terser } from 'rollup-plugin-terser';
 import config from 'sapper/config/rollup.js';
 import pkg from './package.json';
@@ -14,7 +15,7 @@ const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
 const legacy = !!process.env.SAPPER_LEGACY_BUILD;
 
-const onwarn = (warning, onwarn) => (warning.code === 'CIRCULAR_DEPENDENCY' && /[/\\]@sapper[/\\]/.test(warning.message)) || onwarn(warning);
+const onwarn = (warning, onwarn) => (warning.code === 'MISSING_EXPORT' && /'preload'/.test(warning.message)) || (warning.code === 'CIRCULAR_DEPENDENCY' && /[/\\]@sapper[/\\]/.test(warning.message)) || onwarn(warning);
 const dedupe = importee => importee === 'svelte' || importee.startsWith('svelte/');
 const aliases = () => ({
   resolve: ['.svelte', '.js', '.scss', '.css'],
@@ -51,14 +52,20 @@ export default {
         'process.env.NODE_ENV': JSON.stringify(mode)
       }),
       svelte({
-        dev,
-        hydratable: true,
-        emitCss: false,
-        css: true
+        compilerOptions: {
+          dev,
+          hydratable: true,
+          css: true
+        },
+        emitCss: false
+      }),
+      url({
+        sourceDir: path.resolve(__dirname, 'src/node_modules/images'),
+        publicPath: '/client/'
       }),
       resolve({
         browser: true,
-        dedupe
+        dedupe: ['svelte']
       }),
       commonjs(),
 
@@ -66,7 +73,7 @@ export default {
 
       legacy && babel({
         extensions: ['.js', '.mjs', '.html', '.svelte'],
-        runtimeHelpers: true,
+        babelHelpers: 'runtime',
         exclude: ['node_modules/@babel/**'],
         presets: [
           ['@babel/preset-env', {
@@ -86,6 +93,7 @@ export default {
       })
     ],
 
+    preserveEntrySignatures: false,
     onwarn,
   },
 
@@ -99,20 +107,30 @@ export default {
         'process.env.NODE_ENV': JSON.stringify(mode)
       }),
       svelte({
-        generate: 'ssr',
-        dev
+        compilerOptions: {
+          dev,
+          generate: 'ssr',
+          hydratable: true
+        },
+        emitCss: false
+      }),
+      url({
+        sourceDir: path.resolve(__dirname, 'src/node_modules/images'),
+        publicPath: '/client/',
+        emitFiles: false // already emitted by client build
       }),
       resolve({
-        dedupe
+        dedupe: ['svelte']
       }),
       commonjs(),
 
       postcss(postcssOptions())
     ],
     external: Object.keys(pkg.dependencies).concat(
-      require('module').builtinModules || Object.keys(process.binding('natives'))
+      require('module').builtinModules
     ),
 
+    preserveEntrySignatures: 'strict',
     onwarn,
   },
 
@@ -129,6 +147,7 @@ export default {
       !dev && terser()
     ],
 
+    preserveEntrySignatures: false,
     onwarn,
   }
 };
