@@ -1,47 +1,24 @@
-{#if href}
-  <a
-    bind:this={element}
-    use:useActions={use}
-    use:forwardEvents
-    class="
-      mdc-icon-button
-      {className}
-      {pressed ? 'mdc-icon-button--on' : ''}
-      {context === 'card:action' ? 'mdc-card__action' : ''}
-      {context === 'card:action' ? 'mdc-card__action--icon' : ''}
-      {context === 'top-app-bar:navigation' ? 'mdc-top-app-bar__navigation-icon' : ''}
-      {context === 'top-app-bar:action' ? 'mdc-top-app-bar__action-item' : ''}
-      {context === 'snackbar' ? 'mdc-snackbar__dismiss' : ''}
-    "
-    use:Ripple={{ripple: ripple && !toggle, unbounded: true, color}}
-    aria-hidden="true"
-    aria-pressed={pressed}
-    {href}
-    on:MDCIconButtonToggle:change={handleChange}
-    {...props}
-  ><slot></slot></a>
-{:else}
-  <button
-    bind:this={element}
-    use:useActions={use}
-    use:forwardEvents
-    class="
-      mdc-icon-button
-      {className}
-      {pressed ? 'mdc-icon-button--on' : ''}
-      {context === 'card:action' ? 'mdc-card__action' : ''}
-      {context === 'card:action' ? 'mdc-card__action--icon' : ''}
-      {context === 'top-app-bar:navigation' ? 'mdc-top-app-bar__navigation-icon' : ''}
-      {context === 'top-app-bar:action' ? 'mdc-top-app-bar__action-item' : ''}
-      {context === 'snackbar' ? 'mdc-snackbar__dismiss' : ''}
-    "
-    use:Ripple={{ripple: ripple && !toggle, unbounded: true, color}}
-    aria-hidden="true"
-    aria-pressed={pressed}
-    on:MDCIconButtonToggle:change={handleChange}
-    {...props}
-  ><slot></slot></button>
-{/if}
+<svelte:component
+  this={component}
+  bind:element={element}
+  use={[[Ripple, {ripple: ripple && !toggle, unbounded: true, color, disabled: !!$$props.disabled, classForward: classes => rippleClasses = classes}], forwardEvents, ...use]}
+  forwardEvents={['MDCIconButtonToggle:change']}
+  class="
+    mdc-icon-button
+    {className}
+    {rippleClasses.join(' ')}
+    {pressed ? 'mdc-icon-button--on' : ''}
+    {context === 'card:action' ? 'mdc-card__action' : ''}
+    {context === 'card:action' ? 'mdc-card__action--icon' : ''}
+    {context === 'top-app-bar:navigation' ? 'mdc-top-app-bar__navigation-icon' : ''}
+    {context === 'top-app-bar:action' ? 'mdc-top-app-bar__action-item' : ''}
+    {context === 'snackbar' ? 'mdc-snackbar__dismiss' : ''}
+  "
+  aria-hidden="true"
+  aria-pressed={pressed}
+  on:MDCIconButtonToggle:change={handleChange}
+  {...exclude($$props, ['use', 'class', 'ripple', 'color', 'toggle', 'pressed'])}
+><slot></slot></svelte:component>
 
 <script>
   import {MDCIconButtonToggle} from '@material/icon-button';
@@ -49,7 +26,8 @@
   import {get_current_component} from 'svelte/internal';
   import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
   import {exclude} from '@smui/common/exclude.js';
-  import {useActions} from '@smui/common/useActions.js';
+  import A from '@smui/common/A.svelte';
+  import Button from '@smui/common/Button.svelte';
   import Ripple from '@smui/ripple/bare.js';
 
   const forwardEvents = forwardEventsBuilder(get_current_component(), ['MDCIconButtonToggle:change']);
@@ -61,13 +39,15 @@
   export let color = null;
   export let toggle = false;
   export let pressed = false;
+  // Purposely left out of props exclude.
   export let href = null;
 
-  $: props = exclude($$props, ['use', 'class', 'ripple', 'color', 'toggle', 'pressed', 'href']);
+  export let component = href == null ? Button : A;
 
   let element;
   let toggleButton;
   let context = getContext('SMUI:icon-button:context');
+  let rippleClasses = [];
 
   setContext('SMUI:icon:context', 'icon-button');
 

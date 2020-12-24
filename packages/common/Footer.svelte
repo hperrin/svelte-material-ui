@@ -1,7 +1,8 @@
 <footer
+  bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  {...exclude($$props, ['use'])}
+  {...exclude($$props, ['element', 'use', 'forwardEvents'])}
 ><slot></slot></footer>
 
 <script>
@@ -10,7 +11,10 @@
   import {exclude} from './exclude.js';
   import {useActions} from './useActions.js';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component());
-
+  export let element = null;
   export let use = [];
+  let forwardEventsAdditional = [];
+  export {forwardEventsAdditional as forwardEvents};
+
+  const forwardEvents = forwardEventsBuilder(get_current_component(), forwardEventsAdditional);
 </script>

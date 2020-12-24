@@ -28,6 +28,7 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
+    "@material/button": "^4.0.0",
     "@material/dialog": "^4.0.0",
     "@smui/common": "^1.0.0"
   },

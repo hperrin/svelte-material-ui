@@ -1,8 +1,9 @@
 <a
+  bind:this={element}
   use:useActions={use}
   use:forwardEvents
   {href}
-  {...exclude($$props, ['use', 'href'])}
+  {...exclude($$props, ['element', 'use', 'forwardEvents', 'href'])}
 ><slot></slot></a>
 
 <script>
@@ -11,8 +12,11 @@
   import {exclude} from './exclude.js';
   import {useActions} from './useActions.js';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component());
-
-  export let use = [];
   export let href = 'javascript:void(0);';
+  export let element = null;
+  export let use = [];
+  let forwardEventsAdditional = [];
+  export {forwardEventsAdditional as forwardEvents};
+
+  const forwardEvents = forwardEventsBuilder(get_current_component(), forwardEventsAdditional);
 </script>

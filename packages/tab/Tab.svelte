@@ -12,9 +12,8 @@
   role="tab"
   aria-selected={active}
   tabindex="{active ? '0' : '-1'}"
-  {...hrefProp}
   on:MDCTab:interacted={interactedHandler}
-  {...exclude($$props, ['use', 'class', 'ripple', 'href', 'active', 'stacked', 'minWidth', 'indicatorSpanOnlyContent', 'focusOnActivate', 'component', 'content$', 'tabIndicator$'])}
+  {...exclude($$props, ['use', 'class', 'ripple', 'active', 'stacked', 'minWidth', 'indicatorSpanOnlyContent', 'focusOnActivate', 'component', 'content$', 'tabIndicator$'])}
 >
   <span
     use:useActions={content$use}
@@ -61,12 +60,14 @@
   let tabEntry;
   export {tabEntry as tab};
   export let ripple = true;
-  export let href = null;
   export let active = tabEntry === activeEntry;
   export let stacked = false;
   export let minWidth = false;
   export let indicatorSpanOnlyContent = false;
   export let focusOnActivate = true;
+  // Purposely left out of props exclude.
+  export let href = null;
+
   export let component = href == null ? Button : A;
   export let content$use = [];
   export let content$class = '';

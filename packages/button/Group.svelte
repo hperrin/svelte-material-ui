@@ -10,7 +10,6 @@
 ><slot></slot></div>
 
 <script>
-  import {setContext, getContext} from 'svelte';
   import {get_current_component} from 'svelte/internal';
   import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
   import {exclude} from '@smui/common/exclude.js';

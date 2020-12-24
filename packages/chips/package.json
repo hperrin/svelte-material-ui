@@ -29,6 +29,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@material/chips": "^4.0.0",
+    "@material/rtl": "^4.0.0",
     "@smui/common": "^1.0.0"
   },
   "devDependencies": {

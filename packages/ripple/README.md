@@ -42,5 +42,6 @@ The action accepts an array, with two entries. The first is a boolean, whether t
 
 * `ripple` - Whether to enable the ripple.
 * `unbounded` - Whether the ripple is unbounded.
+* `disabled` - Whether the element is disabled.
 * `color` - The ripple color. ('surface', 'primary', or 'secondary')
 * `classForward` - A function that receives an array of classes. This is used to work around Svelte removing ripple classes in certain scenarios.

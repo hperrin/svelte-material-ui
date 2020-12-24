@@ -65,10 +65,10 @@
 
     <br /> <br/>
 
-    <Group variant="outlined" style="display: flex;">
-      <Button on:click={() => clicked++} variant="unelevated" color="primary" style="flex-grow: 3;"><Label>Primary</Label></Button>
-      <Button on:click={() => clicked++} variant="unelevated" color="secondary" style="flex-grow: 1;"><Label>Secondary</Label></Button>
-      <Button on:click={() => clicked++} variant="unelevated" color="secondary" style="flex-grow: 1;"><Label>Secondary</Label></Button>
+    <Group variant="outlined" style="display: flex; justify-content: stretch;">
+      <Button on:click={() => clicked++} variant="unelevated" color="primary" style="width: 60%;"><Label>Primary</Label></Button>
+      <Button on:click={() => clicked++} variant="unelevated" color="secondary"><Label>Secondary</Label></Button>
+      <Button on:click={() => clicked++} variant="unelevated" color="secondary"><Label>Secondary</Label></Button>
     </Group>
   </div>
 

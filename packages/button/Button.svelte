@@ -1,6 +1,6 @@
 <svelte:component
   this={component}
-  use={[[Ripple, {ripple, unbounded: false, classForward: classes => rippleClasses = classes}], forwardEvents, ...use]}
+  use={[[Ripple, {ripple, unbounded: false, disabled: !!$$props.disabled, classForward: classes => rippleClasses = classes}], forwardEvents, ...use]}
   class="
     mdc-button
     {className}
@@ -19,15 +19,14 @@
   "
   {...actionProp}
   {...defaultProp}
-  {...exclude($$props, ['use', 'class', 'ripple', 'color', 'variant', 'dense', ...dialogExcludes])}
-><slot></slot></svelte:component>
+  {...exclude($$props, ['use', 'class', 'ripple', 'color', 'variant', 'dense', 'component', ...dialogExcludes])}
+>{#if ripple}<div class="mdc-button__ripple"></div>{/if}<slot></slot></svelte:component>
 
 <script>
   import {setContext, getContext} from 'svelte';
   import {get_current_component} from 'svelte/internal';
   import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
   import {exclude} from '@smui/common/exclude.js';
-  import {useActions} from '@smui/common/useActions.js';
   import A from '@smui/common/A.svelte';
   import Button from '@smui/common/Button.svelte';
   import Ripple from '@smui/ripple/bare.js';
@@ -46,6 +45,7 @@
   export let action = 'close';
   let defaultAction = false;
   export {defaultAction as default};
+
   export let component = href == null ? Button : A;
 
   let context = getContext('SMUI:button:context');

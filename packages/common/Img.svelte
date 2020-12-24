@@ -1,9 +1,10 @@
 
 <img
+  bind:this={element}
   use:useActions={use}
   use:forwardEvents
   {alt}
-  {...exclude($$props, ['use', 'alt'])}
+  {...exclude($$props, ['element', 'use', 'forwardEvents', 'alt'])}
 />
 
 <script>
@@ -12,8 +13,11 @@
   import {exclude} from './exclude.js';
   import {useActions} from './useActions.js';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component());
-
-  export let use = [];
   export let alt = '';
+  export let element = null;
+  export let use = [];
+  let forwardEventsAdditional = [];
+  export {forwardEventsAdditional as forwardEvents};
+
+  const forwardEvents = forwardEventsBuilder(get_current_component(), forwardEventsAdditional);
 </script>

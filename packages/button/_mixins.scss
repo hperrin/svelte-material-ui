@@ -8,27 +8,27 @@
 
 @mixin smui-button-without-ripple($query: mdc-feature-all()) {
   .smui-button--color-secondary {
-    @include mdc-button-ink-color(secondary, $query);
+    @include mdc-button-ink-color(secondary, $query: $query);
 
     &.mdc-button--raised,
     &.mdc-button--unelevated {
-      @include mdc-button-container-fill-color(secondary, $query);
-      @include mdc-button-ink-color(on-secondary, $query);
+      @include mdc-button-container-fill-color(secondary, $query: $query);
+      @include mdc-button-ink-color(on-secondary, $query: $query);
     }
 
     &.mdc-button--outlined {
-      @include mdc-button-outline-color(secondary, $query);
+      @include mdc-button-outline-color(secondary, $query: $query);
     }
   }
 }
 
 @mixin smui-button-ripple($query: mdc-feature-all()) {
   .smui-button--color-secondary {
-    @include mdc-states(secondary, false, $query);
+    @include mdc-states($color: secondary, $query: $query);
 
     &.mdc-button--raised,
     &.mdc-button--unelevated {
-      @include mdc-states(on-secondary, false, $query);
+      @include mdc-states($color: on-secondary, $query: $query);
     }
   }
 }
@@ -61,7 +61,7 @@
 
     & > .mdc-button--raised,
     & > .smui-button__group-item > .mdc-button--raised {
-      @include smui-button__group-mdc-button--raised_($query);
+      @include smui-button__group-mdc-button--raised_($query: $query);
     }
 
     & > .mdc-button--outlined:not(:last-child),

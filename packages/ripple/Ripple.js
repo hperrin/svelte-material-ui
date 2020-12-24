@@ -1,11 +1,32 @@
-import {MDCRipple} from '@material/ripple';
+import {MDCRipple, MDCRippleFoundation} from '@material/ripple';
 import {getContext} from 'svelte';
 
-export default function Ripple(node, props = {ripple: false, unbounded: false, color: null, classForward: () => {}}) {
+export default function Ripple(node, props = {ripple: false, unbounded: false, disabled: false, color: null, classForward: () => {}}) {
   let instance = null;
   let addLayoutListener = getContext('SMUI:addLayoutListener');
   let removeLayoutListener;
   let classList = [];
+  let rippleCapableSurface = {
+    get root_() {
+      return node;
+    },
+
+    get unbounded() {
+      return props.unbounded;
+    },
+
+    set unbounded(value) {
+      return props.unbounded = value;
+    },
+
+    get disabled() {
+      return props.disabled;
+    },
+
+    set disabled(value) {
+      return props.disabled = value;
+    }
+  };
 
   function addClass(className) {
     const idx = classList.indexOf(className);
@@ -33,19 +54,12 @@ export default function Ripple(node, props = {ripple: false, unbounded: false, c
     if (props.ripple && !instance) {
       // Override the Ripple component's adapter, so that we can forward classes
       // to Svelte components that overwrite Ripple's classes.
-      const _createAdapter = MDCRipple.createAdapter;
-      MDCRipple.createAdapter = function(...args) {
-        const adapter = _createAdapter.apply(this, args);
-        adapter.addClass = function(className) {
-          return addClass(className);
-        };
-        adapter.removeClass = function(className) {
-          return removeClass(className);
-        };
-        return adapter;
-      };
-      instance = new MDCRipple(node);
-      MDCRipple.createAdapter = _createAdapter;
+      const foundation = new MDCRippleFoundation({
+        ...MDCRipple.createAdapter(rippleCapableSurface),
+        addClass: (className) => addClass(className),
+        removeClass: (className) => removeClass(className)
+      });
+      instance = new MDCRipple(node, foundation);
     } else if (instance && !props.ripple) {
       instance.destroy();
       instance = null;

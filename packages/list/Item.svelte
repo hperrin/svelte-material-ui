@@ -1,65 +1,24 @@
-{#if nav && href}
-  <a
-    bind:this={element}
-    use:useActions={use}
-    use:forwardEvents
-    class="
-      mdc-list-item
-      {className}
-      {activated ? 'mdc-list-item--activated' : ''}
-      {selected ? 'mdc-list-item--selected' : ''}
-      {disabled ? 'mdc-list-item--disabled' : ''}
-    "
-    use:Ripple={{ripple, unbounded: false, color}}
-    {href}
-    {...(activated ? {'aria-current': 'page'} : {})}
-    {tabindex}
-    on:click={action}
-    on:keydown={handleKeydown}
-    {...props}
-  ><slot></slot></a>
-{:else if nav && !href}
-  <span
-    bind:this={element}
-    use:useActions={use}
-    use:forwardEvents
-    class="
-      mdc-list-item
-      {className}
-      {activated ? 'mdc-list-item--activated' : ''}
-      {selected ? 'mdc-list-item--selected' : ''}
-      {disabled ? 'mdc-list-item--disabled' : ''}
-    "
-    use:Ripple={{ripple, unbounded: false, color}}
-    {...(activated ? {'aria-current': 'page'} : {})}
-    {tabindex}
-    on:click={action}
-    on:keydown={handleKeydown}
-    {...props}
-  ><slot></slot></span>
-{:else}
-  <li
-    bind:this={element}
-    use:useActions={use}
-    use:forwardEvents
-    class="
-      mdc-list-item
-      {className}
-      {activated ? 'mdc-list-item--activated' : ''}
-      {selected ? 'mdc-list-item--selected' : ''}
-      {disabled ? 'mdc-list-item--disabled' : ''}
-      {(role === 'menuitem' && selected) ? 'mdc-menu-item--selected' : ''}
-    "
-    use:Ripple={{ripple, unbounded: false, color}}
-    {role}
-    {...(role === 'option' ? {'aria-selected': (selected ? 'true' : 'false')} : {})}
-    {...((role === 'radio' || role === 'checkbox') ? {'aria-checked': (checked ? 'true' : 'false')} : {})}
-    {tabindex}
-    on:click={action}
-    on:keydown={handleKeydown}
-    {...props}
-  ><slot></slot></li>
-{/if}
+<svelte:component
+  this={component}
+  bind:element={element}
+  use={[[Ripple, {ripple, unbounded: false, color}], forwardEvents, ...use]}
+  class="
+    mdc-list-item
+    {className}
+    {activated ? 'mdc-list-item--activated' : ''}
+    {selected ? 'mdc-list-item--selected' : ''}
+    {disabled ? 'mdc-list-item--disabled' : ''}
+    {(!nav && role === 'menuitem' && selected) ? 'mdc-menu-item--selected' : ''}
+  "
+  {...((nav && activated) ? {'aria-current': 'page'} : {})}
+  {...(!nav ? {role} : {})}
+  {...((!nav && role === 'option') ? {'aria-selected': (selected ? 'true' : 'false')} : {})}
+  {...((!nav && (role === 'radio' || role === 'checkbox')) ? {'aria-checked': (checked ? 'true' : 'false')} : {})}
+  {tabindex}
+  on:click={action}
+  on:keydown={handleKeydown}
+  {...exclude($$props, ['use', 'class', 'ripple', 'color', 'nonInteractive', 'activated', 'selected', 'disabled', 'tabindex', 'inputId'])}
+><slot></slot></svelte:component>
 
 <script context="module">
   let counter = 0;
@@ -70,7 +29,9 @@
   import {get_current_component} from 'svelte/internal';
   import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
   import {exclude} from '@smui/common/exclude.js';
-  import {useActions} from '@smui/common/useActions.js';
+  import A from '@smui/common/A.svelte';
+  import Span from '@smui/common/Span.svelte';
+  import Li from '@smui/common/Li.svelte';
   import Ripple from '@smui/ripple/bare.js';
 
   const dispatch = createEventDispatcher();
@@ -88,14 +49,15 @@
   export let selected = false;
   export let disabled = false;
   export let tabindex = !nonInteractive && !disabled && (selected || checked) && '0' || '-1';
-  export let href = false;
   export let inputId = 'SMUI-form-field-list-'+(counter++);
-
-  $: props = exclude($$props, ['use', 'class', 'ripple', 'color', 'nonInteractive', 'activated', 'selected', 'disabled', 'tabindex', 'href', 'inputId']);
+  // Purposely left out of props exclude.
+  export let href = null;
 
   let element;
   let addTabindexIfNoItemsSelectedRaf;
   let nav = getContext('SMUI:list:item:nav');
+
+  export let component = nav ? (href ? A : Span) : Li;
 
   setContext('SMUI:generic:input:props', {id: inputId});
   setContext('SMUI:generic:input:setChecked', setChecked);
