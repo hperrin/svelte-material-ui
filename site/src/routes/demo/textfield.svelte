@@ -12,7 +12,19 @@
         instead of updating it yourself, you also should include
         `updateInvalid`.
       -->
-      <Textfield type="email" withTrailingIcon={valueClickable !== ''} bind:dirty={dirtyClickable} bind:invalid={invalidClickable} updateInvalid bind:value={valueClickable} label="To" style="min-width: 250px;" input$autocomplete="email">
+      <Textfield
+        type="email"
+        withTrailingIcon={valueClickable !== ''}
+        bind:dirty={dirtyClickable}
+        bind:invalid={invalidClickable}
+        updateInvalid
+        bind:value={valueClickable}
+        label="To"
+        style="min-width: 250px;"
+        input$autocomplete="email"
+        on:focus={() => focused = true}
+        on:blur={() => focused = false}
+      >
         {#if valueClickable !== '' && dirtyClickable && !invalidClickable}
           <Icon class="material-icons" role="button" on:click={clickableHandler}>send</Icon>
         {/if}
@@ -20,7 +32,7 @@
       <HelperText validationMsg>That's not a valid email address.</HelperText>
     </div>
 
-    <pre class="status">Dirty: {dirtyClickable}, Invalid: {invalidClickable}</pre>
+    <pre class="status">Focused: {focused}, Dirty: {dirtyClickable}, Invalid: {invalidClickable}</pre>
   </div>
 
   <div>
@@ -506,6 +518,7 @@
   import LineRipple from '@smui/line-ripple';
   import NotchedOutline from '@smui/notched-outline';
 
+  let focused = false;
   let valueClickable = '';
   let dirtyClickable = false;
   let invalidClickable = false;
