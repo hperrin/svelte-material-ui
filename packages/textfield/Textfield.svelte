@@ -29,6 +29,8 @@
         {updateInvalid}
         on:change
         on:input
+        on:blur
+        on:focus
         {...prefixFilter($$props, 'input$')}
       />
     {:else}
@@ -42,6 +44,8 @@
         {updateInvalid}
         on:change
         on:input
+        on:blur
+        on:focus
         {...((fullwidth && label) ? {placeholder: label} : {})}
         {...prefixFilter($$props, 'input$')}
       />
