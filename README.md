@@ -97,13 +97,21 @@ Here are some features you should know about:
 
     // ...
 
+    // At the client svelte options change emitCss to false and css to true
+    svelte({
+      dev,
+      hydratable: true,
+      emitCss: false,
+      css: true
+    }),
+
     // Find this line, under "plugins:"
     commonjs(),
 
     // Then paste the following after it.
     // Once in the "client:" section, and again in the "server:" section.
     postcss({
-      extract: true,
+      extract: false,
       minimize: true,
       use: [
         ['sass', {
