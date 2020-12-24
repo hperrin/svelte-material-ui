@@ -28,7 +28,7 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@material/menu": "^3.2.0",
+    "@material/menu": "^4.0.0",
     "@smui/common": "^1.0.0",
     "@smui/list": "^1.1.0",
     "@smui/menu-surface": "^1.1.0"

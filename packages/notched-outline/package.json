@@ -28,7 +28,7 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@material/notched-outline": "^3.2.0",
+    "@material/notched-outline": "^4.0.0",
     "@smui/common": "^1.0.0"
   },
   "devDependencies": {

@@ -28,7 +28,7 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@material/image-list": "^3.1.0",
+    "@material/image-list": "^4.0.0",
     "@smui/common": "^1.0.0"
   },
   "devDependencies": {

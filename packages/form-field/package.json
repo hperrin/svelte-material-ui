@@ -28,9 +28,9 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@material/feature-targeting": "^3.1.0",
-    "@material/form-field": "^3.2.0",
-    "@material/rtl": "^3.2.0",
+    "@material/feature-targeting": "^4.0.0",
+    "@material/form-field": "^4.0.0",
+    "@material/rtl": "^4.0.0",
     "@smui/common": "^1.0.0"
   },
   "devDependencies": {
