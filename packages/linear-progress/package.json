@@ -1,6 +1,6 @@
 {
   "name": "@smui/linear-progress",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Svelte Material UI - Linear Progress",
   "keywords": [
     "svelte",

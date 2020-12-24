@@ -1,6 +1,6 @@
 {
   "name": "@smui/tab-bar",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Svelte Material UI - Tab Bar",
   "keywords": [
     "svelte",
@@ -30,7 +30,7 @@
   "dependencies": {
     "@material/tab-bar": "^3.2.0",
     "@smui/common": "^1.0.0",
-    "@smui/tab-scroller": "^1.0.0"
+    "@smui/tab-scroller": "^1.1.0"
   },
   "devDependencies": {
     "glob-cmd": "0.0.7",
