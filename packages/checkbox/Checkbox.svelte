@@ -21,7 +21,10 @@
     value={valueKey === uninitializedValue ? value : valueKey}
     on:change={handleChange}
     on:input={handleChange}
-    on:change on:input
+    on:change
+    on:input
+    on:blur
+    on:focus
     {...exclude(prefixFilter($$props, 'input$'), ['use', 'class'])}
   />
   <div class="mdc-checkbox__background">
