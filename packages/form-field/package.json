@@ -1,6 +1,6 @@
 {
   "name": "@smui/form-field",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Svelte Material UI - Form Field",
   "keywords": [
     "svelte",
@@ -35,6 +35,6 @@
   },
   "devDependencies": {
     "glob-cmd": "0.0.7",
-    "sass": "^1.25.0"
+    "sass": "^1.30.0"
   }
 }

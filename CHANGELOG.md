@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/hperrin/svelte-material-ui/compare/v1.0.0...v1.1.0) (2020-12-24)
+
+
+### Features
+
+* make tab an anchor if href prop is present ([d9f800b](https://github.com/hperrin/svelte-material-ui/commit/d9f800b5311cb3d25047bd25305a2b2a6deaecc8))
+
+
+
+
+
 # [1.0.0](https://github.com/hperrin/svelte-material-ui/compare/v1.0.0-beta.21...v1.0.0) (2020-08-04)
 
 **Note:** Version bump only for package svelte-material-ui

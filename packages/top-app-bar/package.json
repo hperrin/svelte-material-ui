@@ -1,6 +1,6 @@
 {
   "name": "@smui/top-app-bar",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Svelte Material UI - Top App Bar",
   "keywords": [
     "svelte",
@@ -34,6 +34,6 @@
   },
   "devDependencies": {
     "glob-cmd": "0.0.7",
-    "sass": "^1.25.0"
+    "sass": "^1.30.0"
   }
 }
