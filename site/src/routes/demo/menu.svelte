@@ -37,7 +37,7 @@
   <div>
     Two line, anchored manually, corner set to bottom-left:
 
-    <div use:Anchor bind:this={anchor2}>
+    <div class="{anchor2Classes.join(' ')}" use:Anchor={{classForward: classes => anchor2Classes = classes}} bind:this={anchor2}>
       <Button on:click={() => menu2.setOpen(true)}>Open Menu</Button>
       <Menu bind:this={menu2} anchor={false} bind:anchorElement={anchor2} anchorCorner="BOTTOM_LEFT">
         <List twoLine>
@@ -129,6 +129,7 @@
   let menu2;
   let menu3;
   let anchor2;
+  let anchor2Classes = [];
   let clicked = 'nothing yet';
   let clicked2 = 'nothing yet';
   let selected1 = 'Red';

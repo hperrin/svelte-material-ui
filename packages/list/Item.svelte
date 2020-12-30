@@ -14,6 +14,7 @@
   {...(!nav ? {role} : {})}
   {...((!nav && role === 'option') ? {'aria-selected': (selected ? 'true' : 'false')} : {})}
   {...((!nav && (role === 'radio' || role === 'checkbox')) ? {'aria-checked': (checked ? 'true' : 'false')} : {})}
+  {...(!nav ? {'aria-disabled': (disabled ? 'true' : 'false')} : {})}
   {tabindex}
   on:click={action}
   on:keydown={handleKeydown}

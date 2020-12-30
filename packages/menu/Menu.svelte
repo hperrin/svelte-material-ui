@@ -131,10 +131,6 @@
     return menu.setFixedPosition(...args);
   }
 
-  export function hoistMenuToBody(...args) {
-    return menu.hoistMenuToBody(...args);
-  }
-
   export function setIsHoisted(...args) {
     return menu.setIsHoisted(...args);
   }

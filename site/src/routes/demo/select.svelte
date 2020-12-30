@@ -7,25 +7,13 @@
 
   <div class="columns margins" style="justify-content: flex-start;">
     <div>
-      <Select bind:value={valuePrefilled} label="Native Input">
-        <Option value=""></Option>
+      <Select bind:value={valuePrefilled} label="Select Menu" anchor$class="demo-select-width" menu$class="demo-select-width">
         {#each fruits as fruit}
-          <Option value={fruit} selected={valuePrefilled === fruit}>{fruit}</Option>
+          <Option value={fruit}>{fruit}</Option>
         {/each}
       </Select>
 
       <pre class="status">Selected: {valuePrefilled}</pre>
-    </div>
-
-    <div>
-      <Select enhanced bind:value={valuePrefilledEnhanced} label="Enhanced Input" class="demo-select-width" menu$class="demo-select-width">
-        <Option value=""></Option>
-        {#each fruits as fruit}
-          <Option value={fruit} selected={valuePrefilledEnhanced === fruit}>{fruit}</Option>
-        {/each}
-      </Select>
-
-      <pre class="status">Selected: {valuePrefilledEnhanced}</pre>
     </div>
   </div>
 
@@ -34,10 +22,10 @@
 
     <div class="columns margins">
       <div>
-        <Select bind:value={valueStandard} label="Fruit">
+        <Select bind:value={valueStandard} label="Fruit" anchor$class="demo-select-width" menu$class="demo-select-width">
           <Option value=""></Option>
           {#each fruits as fruit}
-            <Option value={fruit} selected={valueStandard === fruit}>{fruit}</Option>
+            <Option value={fruit}>{fruit}</Option>
           {/each}
         </Select>
 
@@ -45,10 +33,10 @@
       </div>
 
       <div>
-        <Select bind:value={valueStandardHelperText} label="With Helper Text">
+        <Select bind:value={valueStandardHelperText} label="With Helper Text" anchor$class="demo-select-width" menu$class="demo-select-width">
           <Option value=""></Option>
           {#each fruits as fruit}
-            <Option value={fruit} selected={valueStandardHelperText === fruit}>{fruit}</Option>
+            <Option value={fruit}>{fruit}</Option>
           {/each}
         </Select>
         <HelperText>Helper text.</HelperText>
@@ -57,22 +45,11 @@
       </div>
 
       <div>
-        <Select enhanced bind:value={valueStandardEnhanced} label="Enhanced" class="demo-select-width" menu$class="demo-select-width">
-          <Option value=""></Option>
-          {#each fruits as fruit}
-            <Option value={fruit} selected={valueStandardEnhanced === fruit}>{fruit}</Option>
-          {/each}
-        </Select>
-
-        <pre class="status">Selected: {valueStandardEnhanced}</pre>
-      </div>
-
-      <div>
-        <Select withLeadingIcon bind:value={valueStandardLeadingIcon} label="Leading Icon" class="demo-select-width" menu$class="demo-select-width">
+        <Select withLeadingIcon bind:value={valueStandardLeadingIcon} label="Leading Icon" anchor$class="demo-select-width" menu$class="demo-select-width">
           <span slot="icon"><Icon class="material-icons">event</Icon></span>
           <Option value=""></Option>
           {#each fruits as fruit}
-            <Option value={fruit} selected={valueStandardLeadingIcon === fruit}>{fruit}</Option>
+            <Option value={fruit}>{fruit}</Option>
           {/each}
         </Select>
 
@@ -80,10 +57,10 @@
       </div>
 
       <div>
-        <Select invalid bind:value={valueStandardInvalid} label="Invalid">
+        <Select invalid bind:value={valueStandardInvalid} label="Invalid" anchor$class="demo-select-width" menu$class="demo-select-width">
           <Option value=""></Option>
           {#each fruits as fruit}
-            <Option value={fruit} selected={valueStandardInvalid === fruit}>{fruit}</Option>
+            <Option value={fruit}>{fruit}</Option>
           {/each}
         </Select>
 
@@ -97,10 +74,10 @@
 
     <div class="columns margins">
       <div>
-        <Select variant="filled" bind:value={valueFilled} label="Fruit">
+        <Select variant="filled" bind:value={valueFilled} label="Fruit" anchor$class="demo-select-width" menu$class="demo-select-width">
           <Option value=""></Option>
           {#each fruits as fruit}
-            <Option value={fruit} selected={valueFilled === fruit}>{fruit}</Option>
+            <Option value={fruit}>{fruit}</Option>
           {/each}
         </Select>
 
@@ -108,10 +85,10 @@
       </div>
 
       <div>
-        <Select variant="filled" bind:value={valueFilledHelperText} label="With Helper Text">
+        <Select variant="filled" bind:value={valueFilledHelperText} label="With Helper Text" anchor$class="demo-select-width" menu$class="demo-select-width">
           <Option value=""></Option>
           {#each fruits as fruit}
-            <Option value={fruit} selected={valueFilledHelperText === fruit}>{fruit}</Option>
+            <Option value={fruit}>{fruit}</Option>
           {/each}
         </Select>
         <HelperText>Helper text.</HelperText>
@@ -120,22 +97,11 @@
       </div>
 
       <div>
-        <Select variant="filled" enhanced bind:value={valueFilledEnhanced} label="Enhanced" class="demo-select-width" menu$class="demo-select-width">
-          <Option value=""></Option>
-          {#each fruits as fruit}
-            <Option value={fruit} selected={valueFilledEnhanced === fruit}>{fruit}</Option>
-          {/each}
-        </Select>
-
-        <pre class="status">Selected: {valueFilledEnhanced}</pre>
-      </div>
-
-      <div>
-        <Select variant="filled" withLeadingIcon bind:value={valueFilledLeadingIcon} label="Leading Icon" class="demo-select-width" menu$class="demo-select-width">
+        <Select variant="filled" withLeadingIcon bind:value={valueFilledLeadingIcon} label="Leading Icon" anchor$class="demo-select-width" menu$class="demo-select-width">
           <span slot="icon"><Icon class="material-icons">event</Icon></span>
           <Option value=""></Option>
           {#each fruits as fruit}
-            <Option value={fruit} selected={valueFilledLeadingIcon === fruit}>{fruit}</Option>
+            <Option value={fruit}>{fruit}</Option>
           {/each}
         </Select>
 
@@ -143,10 +109,10 @@
       </div>
 
       <div>
-        <Select variant="filled" invalid bind:value={valueFilledInvalid} label="Invalid">
+        <Select variant="filled" invalid bind:value={valueFilledInvalid} label="Invalid" anchor$class="demo-select-width" menu$class="demo-select-width">
           <Option value=""></Option>
           {#each fruits as fruit}
-            <Option value={fruit} selected={valueFilledInvalid === fruit}>{fruit}</Option>
+            <Option value={fruit}>{fruit}</Option>
           {/each}
         </Select>
 
@@ -160,10 +126,10 @@
 
     <div class="columns margins">
       <div>
-        <Select variant="outlined" bind:value={valueOutlined} label="Fruit">
+        <Select variant="outlined" bind:value={valueOutlined} label="Fruit" anchor$class="demo-select-width" menu$class="demo-select-width">
           <Option value=""></Option>
           {#each fruits as fruit}
-            <Option value={fruit} selected={valueOutlined === fruit}>{fruit}</Option>
+            <Option value={fruit}>{fruit}</Option>
           {/each}
         </Select>
 
@@ -171,10 +137,10 @@
       </div>
 
       <div>
-        <Select variant="outlined" bind:value={valueOutlinedHelperText} label="With Helper Text">
+        <Select variant="outlined" bind:value={valueOutlinedHelperText} label="With Helper Text" anchor$class="demo-select-width" menu$class="demo-select-width">
           <Option value=""></Option>
           {#each fruits as fruit}
-            <Option value={fruit} selected={valueOutlinedHelperText === fruit}>{fruit}</Option>
+            <Option value={fruit}>{fruit}</Option>
           {/each}
         </Select>
         <HelperText>Helper text.</HelperText>
@@ -183,22 +149,11 @@
       </div>
 
       <div>
-        <Select variant="outlined" enhanced bind:value={valueOutlinedEnhanced} label="Enhanced" class="demo-select-width" menu$class="demo-select-width">
-          <Option value=""></Option>
-          {#each fruits as fruit}
-            <Option value={fruit} selected={valueOutlinedEnhanced === fruit}>{fruit}</Option>
-          {/each}
-        </Select>
-
-        <pre class="status">Selected: {valueOutlinedEnhanced}</pre>
-      </div>
-
-      <div>
-        <Select variant="outlined" withLeadingIcon bind:value={valueOutlinedLeadingIcon} label="Leading Icon" class="demo-select-width" menu$class="demo-select-width">
+        <Select variant="outlined" withLeadingIcon bind:value={valueOutlinedLeadingIcon} label="Leading Icon" anchor$class="demo-select-width" menu$class="demo-select-width">
           <span slot="icon"><Icon class="material-icons">event</Icon></span>
           <Option value=""></Option>
           {#each fruits as fruit}
-            <Option value={fruit} selected={valueOutlinedLeadingIcon === fruit}>{fruit}</Option>
+            <Option value={fruit}>{fruit}</Option>
           {/each}
         </Select>
 
@@ -206,10 +161,10 @@
       </div>
 
       <div>
-        <Select variant="outlined" invalid bind:value={valueOutlinedInvalid} label="Invalid">
+        <Select variant="outlined" invalid bind:value={valueOutlinedInvalid} label="Invalid" anchor$class="demo-select-width" menu$class="demo-select-width">
           <Option value=""></Option>
           {#each fruits as fruit}
-            <Option value={fruit} selected={valueOutlinedInvalid === fruit}>{fruit}</Option>
+            <Option value={fruit}>{fruit}</Option>
           {/each}
         </Select>
 
@@ -223,10 +178,10 @@
 
     <div class="columns margins">
       <div>
-        <Select class="shaped" variant="filled" bind:value={valueShapedFilled} label="Fruit">
+        <Select class="shaped" variant="filled" bind:value={valueShapedFilled} label="Fruit" anchor$class="demo-select-width" menu$class="demo-select-width">
           <Option value=""></Option>
           {#each fruits as fruit}
-            <Option value={fruit} selected={valueShapedFilled === fruit}>{fruit}</Option>
+            <Option value={fruit}>{fruit}</Option>
           {/each}
         </Select>
 
@@ -234,10 +189,10 @@
       </div>
 
       <div>
-        <Select class="shaped" variant="filled" bind:value={valueShapedFilledHelperText} label="With Helper Text">
+        <Select class="shaped" variant="filled" bind:value={valueShapedFilledHelperText} label="With Helper Text" anchor$class="demo-select-width" menu$class="demo-select-width">
           <Option value=""></Option>
           {#each fruits as fruit}
-            <Option value={fruit} selected={valueShapedFilledHelperText === fruit}>{fruit}</Option>
+            <Option value={fruit}>{fruit}</Option>
           {/each}
         </Select>
         <HelperText>Helper text.</HelperText>
@@ -246,22 +201,11 @@
       </div>
 
       <div>
-        <Select class="shaped demo-select-width" variant="filled" enhanced bind:value={valueShapedFilledEnhanced} label="Enhanced" menu$class="demo-select-width">
-          <Option value=""></Option>
-          {#each fruits as fruit}
-            <Option value={fruit} selected={valueShapedFilledEnhanced === fruit}>{fruit}</Option>
-          {/each}
-        </Select>
-
-        <pre class="status">Selected: {valueShapedFilledEnhanced}</pre>
-      </div>
-
-      <div>
-        <Select class="shaped demo-select-width" variant="filled" withLeadingIcon bind:value={valueShapedFilledLeadingIcon} label="Leading Icon" menu$class="demo-select-width">
+        <Select class="shaped" variant="filled" withLeadingIcon bind:value={valueShapedFilledLeadingIcon} label="Leading Icon" anchor$class="demo-select-width" menu$class="demo-select-width">
           <span slot="icon"><Icon class="material-icons">event</Icon></span>
           <Option value=""></Option>
           {#each fruits as fruit}
-            <Option value={fruit} selected={valueShapedFilledLeadingIcon === fruit}>{fruit}</Option>
+            <Option value={fruit}>{fruit}</Option>
           {/each}
         </Select>
 
@@ -269,10 +213,10 @@
       </div>
 
       <div>
-        <Select class="shaped" variant="filled" invalid bind:value={valueShapedFilledInvalid} label="Invalid">
+        <Select class="shaped" variant="filled" invalid bind:value={valueShapedFilledInvalid} label="Invalid" anchor$class="demo-select-width" menu$class="demo-select-width">
           <Option value=""></Option>
           {#each fruits as fruit}
-            <Option value={fruit} selected={valueShapedFilledInvalid === fruit}>{fruit}</Option>
+            <Option value={fruit}>{fruit}</Option>
           {/each}
         </Select>
 
@@ -286,10 +230,10 @@
 
     <div class="columns margins">
       <div>
-        <Select class="shaped-outlined" variant="outlined" bind:value={valueShapedOutlined} label="Fruit">
+        <Select class="shaped-outlined" variant="outlined" bind:value={valueShapedOutlined} label="Fruit" anchor$class="demo-select-width" menu$class="demo-select-width">
           <Option value=""></Option>
           {#each fruits as fruit}
-            <Option value={fruit} selected={valueShapedOutlined === fruit}>{fruit}</Option>
+            <Option value={fruit}>{fruit}</Option>
           {/each}
         </Select>
 
@@ -297,10 +241,10 @@
       </div>
 
       <div>
-        <Select class="shaped-outlined" variant="outlined" bind:value={valueShapedOutlinedHelperText} label="With Helper Text">
+        <Select class="shaped-outlined" variant="outlined" bind:value={valueShapedOutlinedHelperText} label="With Helper Text" anchor$class="demo-select-width" menu$class="demo-select-width">
           <Option value=""></Option>
           {#each fruits as fruit}
-            <Option value={fruit} selected={valueShapedOutlinedHelperText === fruit}>{fruit}</Option>
+            <Option value={fruit}>{fruit}</Option>
           {/each}
         </Select>
         <HelperText>Helper text.</HelperText>
@@ -309,22 +253,11 @@
       </div>
 
       <div>
-        <Select class="shaped-outlined demo-select-width" variant="outlined" enhanced bind:value={valueShapedOutlinedEnhanced} label="Enhanced" menu$class="demo-select-width">
-          <Option value=""></Option>
-          {#each fruits as fruit}
-            <Option value={fruit} selected={valueShapedOutlinedEnhanced === fruit}>{fruit}</Option>
-          {/each}
-        </Select>
-
-        <pre class="status">Selected: {valueShapedOutlinedEnhanced}</pre>
-      </div>
-
-      <div>
-        <Select class="shaped-outlined demo-select-width" variant="outlined" withLeadingIcon bind:value={valueShapedOutlinedLeadingIcon} label="Leading Icon" menu$class="demo-select-width">
+        <Select class="shaped-outlined" variant="outlined" withLeadingIcon bind:value={valueShapedOutlinedLeadingIcon} label="Leading Icon" anchor$class="demo-select-width" menu$class="demo-select-width">
           <span slot="icon"><Icon class="material-icons">event</Icon></span>
           <Option value=""></Option>
           {#each fruits as fruit}
-            <Option value={fruit} selected={valueShapedOutlinedLeadingIcon === fruit}>{fruit}</Option>
+            <Option value={fruit}>{fruit}</Option>
           {/each}
         </Select>
 
@@ -332,10 +265,10 @@
       </div>
 
       <div>
-        <Select class="shaped-outlined" variant="outlined" invalid bind:value={valueShapedOutlinedInvalid} label="Invalid">
+        <Select class="shaped-outlined" variant="outlined" invalid bind:value={valueShapedOutlinedInvalid} label="Invalid" anchor$class="demo-select-width" menu$class="demo-select-width">
           <Option value=""></Option>
           {#each fruits as fruit}
-            <Option value={fruit} selected={valueShapedOutlinedInvalid === fruit}>{fruit}</Option>
+            <Option value={fruit}>{fruit}</Option>
           {/each}
         </Select>
 
@@ -353,30 +286,24 @@
   let fruits = ['Apple', 'Orange', 'Banana', 'Mango'];
 
   let valuePrefilled = 'Orange';
-  let valuePrefilledEnhanced = 'Orange';
   let valueStandard = '';
   let valueStandardHelperText = '';
-  let valueStandardEnhanced = '';
   let valueStandardLeadingIcon = '';
   let valueStandardInvalid = '';
   let valueFilled = '';
   let valueFilledHelperText = '';
-  let valueFilledEnhanced = '';
   let valueFilledLeadingIcon = '';
   let valueFilledInvalid = '';
   let valueOutlined = '';
   let valueOutlinedHelperText = '';
-  let valueOutlinedEnhanced = '';
   let valueOutlinedLeadingIcon = '';
   let valueOutlinedInvalid = '';
   let valueShapedFilled = '';
   let valueShapedFilledHelperText = '';
-  let valueShapedFilledEnhanced = '';
   let valueShapedFilledLeadingIcon = '';
   let valueShapedFilledInvalid = '';
   let valueShapedOutlined = '';
   let valueShapedOutlinedHelperText = '';
-  let valueShapedOutlinedEnhanced = '';
   let valueShapedOutlinedLeadingIcon = '';
   let valueShapedOutlinedInvalid = '';
 </script>
@@ -399,7 +326,7 @@
     margin-left: 0;
   }
 
-  * :global(select, .demo-select-width) {
+  * :global(.demo-select-width) {
     min-width: 200px;
   }
 

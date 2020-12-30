@@ -1,90 +1,77 @@
 <div
   bind:this={element}
+  use:Anchor={{classForward: classes => anchorClasses = classes}}
   use:useActions={use}
   use:forwardEvents
   class="
     mdc-select
     {className}
+    {anchorClasses.join(' ')}
+    {required ? 'mdc-select--required' : ''}
     {disabled ? 'mdc-select--disabled' : ''}
     {variant === 'outlined' ? 'mdc-select--outlined' : ''}
     {variant === 'standard' ? 'smui-select--standard' : ''}
     {withLeadingIcon ? 'mdc-select--with-leading-icon' : ''}
+    {(noLabel || label == null) ? 'mdc-select--no-label' : ''}
     {invalid ? 'mdc-select--invalid' : ''}
+    {menuOpen ? 'mdc-select--activated' : ''}
   "
   on:MDCSelect:change={changeHandler}
-  {...exclude($$props, ['use', 'class', 'ripple', 'disabled', 'enhanced', 'variant', 'noLabel', 'withLeadingIcon', 'label', 'value', 'selectedIndex', 'selectedText', 'dirty', 'invalid', 'updateInvalid', 'required', 'input$', 'label$', 'ripple$', 'outline$', 'menu$', 'list$'])}
+  {...exclude($$props, ['use', 'class', 'ripple', 'disabled', 'variant', 'noLabel', 'withLeadingIcon', 'label', 'value', 'selectedIndex', 'selectedText', 'dirty', 'invalid', 'updateInvalid', 'required', 'anchor$', 'selectedText$', 'label$', 'ripple$', 'outline$', 'menu$', 'list$'])}
 >
-  <slot name="icon"></slot>
-  <i class="mdc-select__dropdown-icon"></i>
-  {#if enhanced}
-    <input
-      bind:this={inputElement}
-      use:useActions={input$use}
-      type="hidden"
-      {disabled}
-      {required}
-      id={inputId}
-      value={value}
-      on:blur
-      on:change
-      on:input
-      {...exclude(prefixFilter($$props, 'input$'), ['use'])}
-    />
+  <div
+    use:useActions={anchor$use}
+    class="mdc-select__anchor {anchor$class}"
+    {...exclude(prefixFilter($$props, 'anchor$'), ['use', 'class'])}
+  >
+    {#if variant === 'outlined'}
+      <NotchedOutline noLabel={noLabel || label == null} {...prefixFilter($$props, 'outline$')}>
+        {#if !noLabel && label != null}
+          <FloatingLabel
+            id={inputId+'-smui-label'}
+            floatAbove={value !== ''}
+            class="{label$class}"
+            {...exclude(prefixFilter($$props, 'label$'), ['class'])}
+          >{label}<slot name="label"></slot></FloatingLabel>
+        {/if}
+      </NotchedOutline>
+    {/if}
+    <slot name="icon"></slot>
+    <i class="mdc-select__dropdown-icon"></i>
     <div
+      bind:this={selectText}
+      use:useActions={selectedText$use}
       id={inputId+'-smui-selected-text'}
-      class="mdc-select__selected-text"
+      class="mdc-select__selected-text {selectedText$class}"
       role="button"
       aria-haspopup="listbox"
       aria-labelledby="{inputId+'-smui-label'} {inputId+'-smui-selected-text'}"
+      aria-disabled="{disabled ? 'true' : 'false'}"
       aria-required="{required ? 'true' : 'false'}"
-    >{selectedText}</div>
-    <Menu
-      class="mdc-select__menu {menu$class}"
-      role="listbox"
-      anchor={false}
-      bind:anchorElement={element}
-      {...exclude(prefixFilter($$props, 'menu$'), ['class'])}
-    >
-      <List {...prefixFilter($$props, 'list$')}><slot></slot></List>
-    </Menu>
-  {:else}
-    <select
-      bind:this={inputElement}
-      use:useActions={input$use}
-      class="mdc-select__native-control {input$class}"
-      {disabled}
-      {required}
-      id={inputId}
-      on:blur
-      on:change
-      on:input
-      {...exclude(prefixFilter($$props, 'input$'), ['use', 'class'])}
-    ><slot></slot></select>
-  {/if}
-  {#if variant !== 'outlined'}
-    {#if !noLabel && label != null}
-      <FloatingLabel
-        for={inputId}
-        id={inputId+'-smui-label'}
-        class="{value !== '' ? 'mdc-floating-label--float-above' : ''} {label$class}"
-        {...exclude(prefixFilter($$props, 'label$'), ['class'])}
-      >{label}<slot name="label"></slot></FloatingLabel>
-    {/if}
-    {#if ripple}
-      <LineRipple {...prefixFilter($$props, 'ripple$')} />
-    {/if}
-  {/if}
-  {#if variant === 'outlined'}
-    <NotchedOutline noLabel={noLabel || label == null} {...prefixFilter($$props, 'outline$')}>
+      {...exclude(prefixFilter($$props, 'selectedText$'), ['use', 'class'])}
+    >{$selectedTextStore}</div>
+    {#if variant !== 'outlined'}
       {#if !noLabel && label != null}
         <FloatingLabel
-          for={inputId}
-          class="{value !== '' ? 'mdc-floating-label--float-above' : ''} {label$class}"
+          id={inputId+'-smui-label'}
+          floatAbove={value !== ''}
+          class="{label$class}"
           {...exclude(prefixFilter($$props, 'label$'), ['class'])}
         >{label}<slot name="label"></slot></FloatingLabel>
       {/if}
-    </NotchedOutline>
-  {/if}
+      {#if ripple}
+        <LineRipple {...prefixFilter($$props, 'ripple$')} />
+      {/if}
+    {/if}
+  </div>
+  <Menu
+    class="mdc-select__menu {menu$class}"
+    role="listbox"
+    bind:open={menuOpen}
+    {...exclude(prefixFilter($$props, 'menu$'), ['class'])}
+  >
+    <List {...prefixFilter($$props, 'list$')}><slot></slot></List>
+  </Menu>
 </div>
 
 <script context="module">
@@ -94,11 +81,13 @@
 <script>
   import {MDCSelect} from '@material/select';
   import {onMount, onDestroy, getContext, setContext} from 'svelte';
+  import {writable} from 'svelte/store';
   import {get_current_component} from 'svelte/internal';
   import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
   import {exclude} from '@smui/common/exclude.js';
   import {prefixFilter} from '@smui/common/prefixFilter.js';
   import {useActions} from '@smui/common/useActions.js';
+  import {Anchor} from '@smui/menu-surface';
   import Menu from '@smui/menu/Menu.svelte';
   import List from '@smui/list/List.svelte';
   import FloatingLabel from '@smui/floating-label/FloatingLabel.svelte';
@@ -113,37 +102,46 @@
   export {className as class};
   export let ripple = true;
   export let disabled = false;
-  export let enhanced = false;
   export let variant = 'standard';
   export let withLeadingIcon = false;
   export let noLabel = false;
   export let label = null;
   export let value = '';
   export let selectedIndex = uninitializedValue;
-  // Only needed for enhanced select and only needed on initialization.
-  export let selectedText = '';
   export let dirty = false;
   export let invalid = uninitializedValue;
   export let updateInvalid = invalid === uninitializedValue;
   export let required = false;
   export let inputId = 'SMUI-select-'+(counter++);
-  export let input$use = [];
-  export let input$class = '';
+  export let anchor$use = [];
+  export let anchor$class = '';
+  export let selectedText$use = [];
+  export let selectedText$class = '';
   export let label$class = '';
   export let menu$class = '';
 
   let element;
+  let selectText;
   let select;
-  let inputElement;
+  let anchorClasses = [];
   let menuPromiseResolve;
   let menuPromise = new Promise(resolve => menuPromiseResolve = resolve);
   let addLayoutListener = getContext('SMUI:addLayoutListener');
   let removeLayoutListener;
+  let menuOpen = false;
 
   setContext('SMUI:menu:instantiate', false);
   setContext('SMUI:menu:getInstance', getMenuInstancePromise);
-  setContext('SMUI:list:role', 'listbox');
-  setContext('SMUI:select:option:enhanced', enhanced);
+  setContext('SMUI:list:role', '');
+  setContext('SMUI:list:nav', false);
+
+  // Only needed on initialization.
+  const selectedTextStore = writable('');
+  setContext('SMUI:select:selectedText', selectedTextStore);
+
+  const valueStore = writable(value);
+  $: $valueStore = value;
+  setContext('SMUI:select:value', valueStore);
 
   $: if (select && select.value !== value) {
     select.value = value;
@@ -187,7 +185,7 @@
     }
 
     if (updateInvalid) {
-      invalid = inputElement.matches(':invalid');
+      invalid = !select.valid;
     }
   });
 
@@ -207,13 +205,13 @@
     value = e.detail.value;
     selectedIndex = e.detail.index;
     dirty = true;
-    if (updateInvalid) {
-      invalid = inputElement.matches(':invalid');
+    if (select && updateInvalid) {
+      invalid = !select.valid;
     }
   }
 
   export function focus(...args) {
-    return inputElement.focus(...args);
+    return selectText.focus(...args);
   }
 
   export function layout(...args) {

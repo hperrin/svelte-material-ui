@@ -4,10 +4,8 @@
 @import "@material/feature-targeting/functions";
 
 @mixin smui-select-core-styles($query: mdc-feature-all()) {
-  .mdc-select__native-control {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
+  .mdc-select--activated {
+    z-index: 8;
   }
 
   .smui-select--standard {
@@ -18,11 +16,10 @@
       @include mdc-select-container-fill-color_(transparent);
     }
 
-    .mdc-select__native-control, .mdc-select__selected-text {
+    .mdc-select__selected-text {
       @include mdc-rtl-reflexive-property(padding, 0, 36px);
     }
 
-    &.mdc-select--with-leading-icon .mdc-select__native-control,
     &.mdc-select--with-leading-icon .mdc-select__selected-text {
       @include mdc-rtl-reflexive-property(padding, 32px, 36px);
     }

@@ -3,17 +3,25 @@
     bind:this={element}
     use:useActions={use}
     use:forwardEvents
-    class="mdc-floating-label {className}"
-    {...exclude($$props, ['use', 'class', 'wrapped'])}
+    class="
+      mdc-floating-label
+      {className}
+      {floatAbove ? 'mdc-floating-label--float-above' : ''}
+    "
+    {...exclude($$props, ['use', 'class', 'floatAbove', 'wrapped'])}
   ><slot></slot></span>
 {:else}
   <label
     bind:this={element}
     use:useActions={use}
     use:forwardEvents
-    class="mdc-floating-label {className}"
+    class="
+      mdc-floating-label
+      {className}
+      {floatAbove ? 'mdc-floating-label--float-above' : ''}
+    "
     {...((forId || inputProps && inputProps.id) ? {'for': forId || inputProps && inputProps.id} : {})}
-    {...exclude($$props, ['use', 'class', 'for', 'wrapped'])}
+    {...exclude($$props, ['use', 'class', 'for', 'floatAbove', 'wrapped'])}
   ><slot></slot></label>
 {/if}
 
@@ -32,6 +40,7 @@
   export {className as class};
   let forId = '';
   export {forId as for};
+  export let floatAbove = false;
   export let wrapped = false;
 
   let element;

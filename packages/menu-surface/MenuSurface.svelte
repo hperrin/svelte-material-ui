@@ -145,10 +145,6 @@
     return menuSurface.setMenuSurfaceAnchorElement(...args);
   }
 
-  export function hoistMenuToBody(...args) {
-    return menuSurface.hoistMenuToBody(...args);
-  }
-
   export function setIsHoisted(...args) {
     return menuSurface.setIsHoisted(...args);
   }

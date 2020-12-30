@@ -47,7 +47,7 @@
   <div>
     Anchored manually:
 
-    <div use:Anchor bind:this={imageListAnchor}>
+    <div class="{imageListAnchorClasses.join(' ')}" use:Anchor={{classForward: classes => imageListAnchorClasses = classes}} bind:this={imageListAnchor}>
       <Button on:click={() => imageListSurface.setOpen(true)}>Open Menu Surface</Button>
       <MenuSurface bind:this={imageListSurface} anchor={false} bind:anchorElement={imageListAnchor}>
         <ImageList class="menu-surface-image-list">
@@ -81,5 +81,6 @@
   let email = '';
   let imageListSurface;
   let imageListAnchor;
+  let imageListAnchorClasses = [];
   let clicked = 'nothing yet';
 </script>
