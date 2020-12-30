@@ -6,6 +6,7 @@
       mdc-chip__icon
       mdc-chip__icon--leading
       {className}
+      {$filter && $isSelected ? 'mdc-chip__icon--leading-hidden' : ''}
     "
     {...exclude($$props, ['use', 'class', 'leading', 'leadingHidden'])}
   ><slot></slot></i>
@@ -42,4 +43,6 @@
   export let leading = false;
 
   const shouldRemoveOnTrailingIconClick = getContext('SMUI:chip:shouldRemoveOnTrailingIconClick');
+  const filter = getContext('SMUI:chip:filter');
+  const isSelected = getContext('SMUI:chip:isSelected');
 </script>
