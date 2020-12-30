@@ -24,13 +24,13 @@
   let className = '';
   export {className as class};
   export let component = internals.component;
-  let smuiForwardEvents = [];
-  export {smuiForwardEvents as forwardEvents};
+  let forwardEventsAdditional = [];
+  export {forwardEventsAdditional as forwardEvents};
 
   const smuiClass = internals.class;
   const contexts = internals.contexts;
 
-  const forwardEvents = forwardEventsBuilder(get_current_component(), smuiForwardEvents);
+  const forwardEvents = forwardEventsBuilder(get_current_component(), forwardEventsAdditional);
 
   for (let context in contexts) {
     if (contexts.hasOwnProperty(context)) {
