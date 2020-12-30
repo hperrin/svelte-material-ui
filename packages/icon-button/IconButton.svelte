@@ -2,7 +2,7 @@
   this={component}
   bind:element={element}
   use={[[Ripple, {ripple: ripple && !toggle, unbounded: true, color, disabled: !!$$props.disabled, classForward: classes => rippleClasses = classes}], forwardEvents, ...use]}
-  forwardEvents={['MDCIconButtonToggle:change']}
+  forwardEvents={forwardedEvents}
   class="
     mdc-icon-button
     {className}
@@ -30,7 +30,8 @@
   import Button from '@smui/common/Button.svelte';
   import Ripple from '@smui/ripple/bare.js';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component(), ['MDCIconButtonToggle:change']);
+  const forwardedEvents = ['MDCIconButtonToggle:change'];
+  const forwardEvents = forwardEventsBuilder(get_current_component(), forwardedEvents);
 
   export let use = [];
   let className = '';

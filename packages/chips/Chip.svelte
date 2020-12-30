@@ -2,6 +2,7 @@
   this={component}
   bind:element={element}
   use={[forwardEvents, ...use]}
+  forwardEvents={forwardedEvents}
   class="
     mdc-chip
     {className}
@@ -30,7 +31,8 @@
   import {exclude} from '@smui/common/exclude.js';
   import Div from "@smui/common/Div.svelte";
 
-  const forwardEvents = forwardEventsBuilder(get_current_component(), ['MDCChip:interaction', 'MDCChip:selection', 'MDCChip:removal', 'MDCChip:trailingIconInteraction', 'MDCChip:navigation']);
+  const forwardedEvents = ['MDCChip:interaction', 'MDCChip:selection', 'MDCChip:removal', 'MDCChip:trailingIconInteraction', 'MDCChip:navigation'];
+  const forwardEvents = forwardEventsBuilder(get_current_component(), forwardedEvents);
 
   export let use = [];
   let className = '';

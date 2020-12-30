@@ -2,6 +2,7 @@
   this={component}
   bind:this={element}
   use={[forwardEvents, ...use]}
+  forwardEvents={forwardedEvents}
   class="
     mdc-tab
     {className}
@@ -51,7 +52,8 @@
   import Button from '@smui/common/Button.svelte';
   import TabIndicator from '@smui/tab-indicator/TabIndicator.svelte';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component(), ['MDCTab:interacted']);
+  const forwardedEvents = ['MDCTab:interacted'];
+  const forwardEvents = forwardEventsBuilder(get_current_component(), forwardedEvents);
   let activeEntry = getContext('SMUI:tab:active');
 
   export let use = [];
