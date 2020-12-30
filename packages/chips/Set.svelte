@@ -9,22 +9,27 @@
     {filter ? 'mdc-chip-set--filter' : ''}
     {input ? 'mdc-chip-set--input' : ''}
   "
+  role="grid"
   on:MDCChip:removal={handleRemoval}
   on:MDCChip:selection={handleSelection}
   {...exclude($$props, ['use', 'class', 'chips', 'key', 'selected', 'choice', 'filter', 'input'])}
 >
   {#each chips as chip, i (key(chip))}
-    <slot {chip}></slot>
+    <ContextFragment key="SMUI:chip:tabindex" value={i === 0 ? 0 : -1}>
+      <slot {chip}></slot>
+    </ContextFragment>
   {/each}
 </div>
 
 <script>
   import {MDCChipSet} from '@material/chips';
-  import {onMount, onDestroy, afterUpdate} from 'svelte';
+  import {onMount, onDestroy, afterUpdate, setContext} from 'svelte';
+  import {writable} from 'svelte/store';
   import {get_current_component} from 'svelte/internal';
   import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
   import {exclude} from '@smui/common/exclude.js';
   import {useActions} from '@smui/common/useActions.js';
+  import ContextFragment from '@smui/common/ContextFragment.svelte';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
@@ -40,6 +45,16 @@
 
   let element;
   let chipSet;
+
+  const choiceStore = writable(choice);
+  $: $choiceStore = choice;
+  setContext('SMUI:chip:choice', choiceStore);
+  const filterStore = writable(filter);
+  $: $filterStore = filter;
+  setContext('SMUI:chip:filter', filterStore);
+  const selectedStore = writable(selected);
+  $: $selectedStore = selected;
+  setContext('SMUI:chip:selected', selectedStore);
 
   // Update the MDCChip when the selection changes.
   $: if (chipSet) {
@@ -76,6 +91,16 @@
 
   onMount(() => {
     chipSet = new MDCChipSet(element);
+    // Super shady workaround for MDC removing the element before Svelte can.
+    // https://github.com/material-components/material-components-web/blob/v4.0.0/packages/mdc-chips/chip-set/component.ts#L125
+    chipSet.foundation_.adapter_.removeChipAtIndex = (index) => {
+      if (index >= 0 && index < chipSet.chips_.length) {
+        chipSet.chips_[index].destroy();
+        // This is the part that's causing problems.
+        // chipSet.chips_[index].remove();
+        chipSet.chips_.splice(index, 1);
+      }
+    };
     for (let i = 0; i < element.children.length; i++) {
       element.children[i].setChip(chipSet.chips[i]);
     }
@@ -136,15 +161,8 @@
   }
 
   function handleRemoval(e) {
-    let i = 0;
-    let el = e.detail.root;
-    while (el.previousSibling) {
-      el = el.previousSibling;
-      if (el.nodeType === 1) {
-        i++;
-      }
-    }
-    chips.splice(i, 1);
+    const index = chipSet.foundation_.adapter_.getIndexOfChipById(e.detail.chipId);
+    chips.splice(index, 1);
     chips = chips;
   }
 </script>

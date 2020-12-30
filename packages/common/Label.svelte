@@ -5,12 +5,12 @@
     {className}
     {context === 'button' ? 'mdc-button__label' : ''}
     {context === 'fab' ? 'mdc-fab__label' : ''}
-    {context === 'chip' ? 'mdc-chip__text' : ''}
     {context === 'tab' ? 'mdc-tab__text-label' : ''}
     {context === 'image-list' ? 'mdc-image-list__label' : ''}
     {context === 'snackbar' ? 'mdc-snackbar__label' : ''}
   "
   {...((context === 'snackbar') ? {role: 'status', 'aria-live': 'polite'} : {})}
+  {...(tabindex != null ? {tabindex} : {})}
   {...exclude($$props, ['use', 'class'])}
 ><slot></slot></span>
 
@@ -28,4 +28,5 @@
   export {className as class};
 
   const context = getContext('SMUI:label:context');
+  const tabindex = getContext('SMUI:label:tabindex');
 </script>

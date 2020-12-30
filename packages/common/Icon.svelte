@@ -7,14 +7,10 @@
     {context === 'fab' ? 'mdc-fab__icon' : ''}
     {context === 'icon-button' ? 'mdc-icon-button__icon' : ''}
     {(context === 'icon-button' && on) ? 'mdc-icon-button__icon--on' : ''}
-    {context === 'chip' ? 'mdc-chip__icon' : ''}
-    {(context === 'chip' && leading) ? 'mdc-chip__icon--leading' : ''}
-    {(context === 'chip' && leadingHidden) ? 'mdc-chip__icon--leading-hidden' : ''}
-    {(context === 'chip' && trailing) ? 'mdc-chip__icon--trailing' : ''}
     {context === 'tab' ? 'mdc-tab__icon' : ''}
   "
   aria-hidden="true"
-  {...exclude($$props, ['use', 'class', 'on', 'leading', 'leadingHidden', 'trailing'])}
+  {...exclude($$props, ['use', 'class', 'on'])}
 ><slot></slot></i>
 
 <script>
@@ -30,9 +26,6 @@
   let className = '';
   export {className as class};
   export let on = false;
-  export let leading = false;
-  export let leadingHidden = false;
-  export let trailing = false;
 
   const context = getContext('SMUI:icon:context');
 </script>

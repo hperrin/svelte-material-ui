@@ -36,7 +36,7 @@ Input Chips:
 <Button on:click={addTag} disabled={newTag === '' || tags.indexOf(newTag) !== -1}><Label>Add</Label></Button>
 
 <Set chips={tags} let:chip input>
-  <Chip><Text>{chip}</Text><Icon class="material-icons" trailing tabindex="0">cancel</Icon></Chip>
+  <Chip><Text>{chip}</Text><Icon class="material-icons">cancel</Icon></Chip>
 </Set>
 ```
 
@@ -88,16 +88,14 @@ A set of chips. Chips should only be added onto the end of the set's chip array.
 
 All standard UI events are forwarded.
 
-## Checkmark
-
 ## Text
 
 A text label.
 
-See the [common label readme](https://github.com/hperrin/svelte-material-ui/blob/master/packages/common/README.md#label).
+todo...
 
 ## Icon
 
 A graphic icon.
 
-See the [common icon readme](https://github.com/hperrin/svelte-material-ui/blob/master/packages/common/README.md#icon).
+todo...
