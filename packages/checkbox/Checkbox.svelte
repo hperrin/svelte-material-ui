@@ -69,6 +69,10 @@
   let instantiate = getContext('SMUI:checkbox:instantiate');
   let getInstance = getContext('SMUI:checkbox:getInstance');
 
+  $: if (checkbox && $formField && $formField.input !== checkbox) {
+    $formField.input = checkbox;
+  }
+
   $: if (setChecked) {
     setChecked(nativeChecked);
   }
@@ -127,10 +131,6 @@
       } else {
         checkbox = await getInstance();
       }
-    }
-
-    if (formField && formField()) {
-      formField().input = checkbox;
     }
   });
 

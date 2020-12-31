@@ -60,6 +60,10 @@
   let setChecked = getContext('SMUI:generic:input:setChecked');
   let nativeChecked = group === uninitializedValue ? (checked === uninitializedValue ? false : checked) : group.indexOf(value) !== -1;
 
+  $: if (switchControl && $formField && $formField.input !== switchControl) {
+    $formField.input = switchControl;
+  }
+
   $: if (setChecked) {
     setChecked(nativeChecked);
   }
@@ -99,10 +103,6 @@
 
   onMount(() => {
     switchControl = new MDCSwitch(element);
-
-    if (formField && formField()) {
-      formField().input = switchControl;
-    }
   });
 
   onDestroy(() => {

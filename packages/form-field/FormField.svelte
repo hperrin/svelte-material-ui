@@ -24,6 +24,7 @@
 <script>
   import {MDCFormField} from '@material/form-field';
   import {onMount, onDestroy, setContext} from 'svelte';
+  import {writable} from 'svelte/store';
   import {get_current_component} from 'svelte/internal';
   import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
   import {exclude} from '@smui/common/exclude.js';
@@ -42,7 +43,9 @@
   let element;
   let formField;
 
-  setContext('SMUI:form-field', () => formField);
+  let formFieldStore = writable(formField);
+  $: $formFieldStore = formField;
+  setContext('SMUI:form-field', formFieldStore);
   setContext('SMUI:generic:input:props', {id: inputId});
 
   onMount(() => {

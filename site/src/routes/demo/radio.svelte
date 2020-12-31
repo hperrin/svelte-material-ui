@@ -5,7 +5,7 @@
 <section>
   <h2>Radio</h2>
 
-  <div>
+  <div class="radio-demo">
     {#each options as option}
       <FormField>
         <Radio bind:group={selected} value={option.name} disabled={option.disabled} />
@@ -53,3 +53,9 @@
   ];
   let selected = 'Grumpy';
 </script>
+
+<style>
+  .radio-demo > :global(*) {
+    margin: 0 .2em;
+  }
+</style>

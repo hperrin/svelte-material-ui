@@ -67,6 +67,10 @@
   let addLayoutListener = getContext('SMUI:addLayoutListener');
   let removeLayoutListener;
 
+  $: if (slider && $formField && $formField.input !== slider) {
+    $formField.input = slider;
+  }
+
   $: if (slider && slider.disabled !== disabled) {
     slider.disabled = disabled;
   }
@@ -93,10 +97,6 @@
 
   onMount(() => {
     slider = new MDCSlider(element);
-
-    if (formField && formField()) {
-      formField().input = slider;
-    }
   });
 
   onDestroy(() => {

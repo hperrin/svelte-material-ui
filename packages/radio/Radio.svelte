@@ -25,6 +25,7 @@
     <div class="mdc-radio__outer-circle"></div>
     <div class="mdc-radio__inner-circle"></div>
   </div>
+  <div class="mdc-radio__ripple"></div>
 </div>
 
 <script>
@@ -55,6 +56,10 @@
   let inputProps = getContext('SMUI:generic:input:props') || {};
   let setChecked = getContext('SMUI:generic:input:setChecked');
 
+  $: if (radio && $formField && $formField.input !== radio) {
+    $formField.input = radio;
+  }
+
   $: checked = group === value;
 
   $: if (setChecked) {
@@ -79,10 +84,6 @@
 
   onMount(() => {
     radio = new MDCRadio(element);
-
-    if (formField && formField()) {
-      formField().input = radio;
-    }
   });
 
   onDestroy(() => {
