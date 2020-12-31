@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-alpha.0](https://github.com/hperrin/svelte-material-ui/compare/v1.1.0...v2.0.0-alpha.0) (2020-12-31)
+
+
+### Bug Fixes
+
+* filter chip leading icon wasn't hidden correctly ([b011df9](https://github.com/hperrin/svelte-material-ui/commit/b011df92eac4956caf1ea51bedfaa7316de84ed3))
+* fix buttons, ripples, and list item for new mdc ([9b902b5](https://github.com/hperrin/svelte-material-ui/commit/9b902b5def4bbdc0bbe34733a723ce1de1452bf9))
+* forward events from dynamic components correctly ([5367449](https://github.com/hperrin/svelte-material-ui/commit/536744953b6f935b4ab1de75828308a90c238e83))
+
+
+### Features
+
+* update chips to work with MDC 4 ([2c28796](https://github.com/hperrin/svelte-material-ui/commit/2c2879649b72947ae0ed51fd2c2a62f6a5756dae))
+* update Select to work with MDC 4 ([81a7ee9](https://github.com/hperrin/svelte-material-ui/commit/81a7ee992d968bab7e950b6ff7db2d47c7c17b79))
+* updated form field related features for MDC 4 ([4894cfb](https://github.com/hperrin/svelte-material-ui/commit/4894cfb08da0a703e86a086d0bfdce76ae98d88c))
+
+
+### BREAKING CHANGES
+
+* Select has some breaking changes listed in the migration docs.
+* Chips has several breaking changes listed in the migration docs.
+
+
+
+
+
 # [1.1.0](https://github.com/hperrin/svelte-material-ui/compare/v1.0.0...v1.1.0) (2020-12-24)
 
 

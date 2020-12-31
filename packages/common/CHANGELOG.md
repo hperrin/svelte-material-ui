@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-alpha.0](https://github.com/hperrin/svelte-material-ui/compare/v1.1.0...v2.0.0-alpha.0) (2020-12-31)
+
+
+### Bug Fixes
+
+* fix buttons, ripples, and list item for new mdc ([9b902b5](https://github.com/hperrin/svelte-material-ui/commit/9b902b5def4bbdc0bbe34733a723ce1de1452bf9))
+
+
+### Features
+
+* update chips to work with MDC 4 ([2c28796](https://github.com/hperrin/svelte-material-ui/commit/2c2879649b72947ae0ed51fd2c2a62f6a5756dae))
+
+
+### BREAKING CHANGES
+
+* Chips has several breaking changes listed in the migration docs.
+
+
+
+
+
 # [1.0.0](https://github.com/hperrin/svelte-material-ui/compare/v1.0.0-beta.21...v1.0.0) (2020-08-04)
 
 **Note:** Version bump only for package @smui/common

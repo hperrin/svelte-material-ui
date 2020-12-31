@@ -1,6 +1,6 @@
 {
   "name": "@smui/form-field",
-  "version": "1.1.0",
+  "version": "2.0.0-alpha.0",
   "description": "Svelte Material UI - Form Field",
   "keywords": [
     "svelte",
@@ -31,7 +31,7 @@
     "@material/feature-targeting": "^4.0.0",
     "@material/form-field": "^4.0.0",
     "@material/rtl": "^4.0.0",
-    "@smui/common": "^1.0.0"
+    "@smui/common": "^2.0.0-alpha.0"
   },
   "devDependencies": {
     "glob-cmd": "0.0.7",
