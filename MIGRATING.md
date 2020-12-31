@@ -14,3 +14,5 @@ https://github.com/material-components/material-components-web/blob/master/CHANG
   - `enchanced` prop is removed. All selects are enhanced now.
   - `selected` prop on Option is no longer required and probably should not be used.
   - You now need to pass a class into `anchor$class` and `menu$class` with a width value set.
+- Button
+  - No longer has a `dense` prop. Use the mixin from MDC.

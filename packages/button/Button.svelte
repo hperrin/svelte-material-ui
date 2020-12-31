@@ -8,7 +8,6 @@
     {variant === 'raised' ? 'mdc-button--raised' : ''}
     {variant === 'unelevated' ? 'mdc-button--unelevated' : ''}
     {variant === 'outlined' ? 'mdc-button--outlined' : ''}
-    {dense ? 'mdc-button--dense' : ''}
     {color === 'secondary' ? 'smui-button--color-secondary' : ''}
     {context === 'card:action' ? 'mdc-card__action' : ''}
     {context === 'card:action' ? 'mdc-card__action--button' : ''}
@@ -19,7 +18,7 @@
   "
   {...actionProp}
   {...defaultProp}
-  {...exclude($$props, ['use', 'class', 'ripple', 'color', 'variant', 'dense', 'component', ...dialogExcludes])}
+  {...exclude($$props, ['use', 'class', 'ripple', 'color', 'variant', 'component', ...dialogExcludes])}
 >{#if ripple}<div class="mdc-button__ripple"></div>{/if}<slot></slot></svelte:component>
 
 <script>
@@ -39,7 +38,6 @@
   export let ripple = true;
   export let color = 'primary';
   export let variant = 'text';
-  export let dense = false;
   // Purposely left out of props exclude.
   export let href = null;
   export let action = 'close';

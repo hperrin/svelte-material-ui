@@ -44,13 +44,17 @@
     }
 
     & > .mdc-button:not(:last-child),
-    & > .smui-button__group-item:not(:last-child) > .mdc-button {
+    & > .mdc-button:not(:last-child) > .mdc-button__ripple,
+    & > .smui-button__group-item:not(:last-child) > .mdc-button,
+    & > .smui-button__group-item:not(:last-child) > .mdc-button > .mdc-button__ripple {
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
     }
 
     & > .mdc-button:not(:first-child),
-    & > .smui-button__group-item:not(:first-child) > .mdc-button {
+    & > .mdc-button:not(:first-child) > .mdc-button__ripple,
+    & > .smui-button__group-item:not(:first-child) > .mdc-button,
+    & > .smui-button__group-item:not(:first-child) > .mdc-button > .mdc-button__ripple {
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
     }

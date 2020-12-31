@@ -20,7 +20,6 @@
     <Button on:click={() => clicked++} variant="raised"><Label>Raised</Label></Button>
     <Button on:click={() => clicked++} variant="unelevated"><Label>Unelevated</Label></Button>
     <Button on:click={() => clicked++} variant="outlined"><Label>Outlined</Label></Button>
-    <Button on:click={() => clicked++} dense><Label>Dense</Label></Button>
     <Button on:click={() => clicked++}><Icon class="material-icons">favorite</Icon><Label>Icon</Label></Button>
   </div>
 

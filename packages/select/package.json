@@ -32,6 +32,7 @@
     "@material/ripple": "^4.0.0",
     "@material/rtl": "^4.0.0",
     "@material/select": "^4.0.0",
+    "@material/theme": "^4.0.0",
     "@smui/common": "^2.0.0-alpha.0",
     "@smui/floating-label": "^2.0.0-alpha.0",
     "@smui/line-ripple": "^2.0.0-alpha.0",

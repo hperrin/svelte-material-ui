@@ -1,5 +1,6 @@
 @import "@material/select/mixins";
 @import "@material/ripple/mixins";
+@import "@material/theme/mixins";
 @import "@material/rtl/mixins";
 @import "@material/feature-targeting/functions";
 
@@ -11,6 +12,11 @@
   .smui-select--standard {
     @include mdc-states-base-color(transparent);
     @include mdc-select-container-fill-color(transparent);
+
+    .mdc-select__anchor:after,
+    .mdc-select__anchor:before {
+      @include mdc-theme-prop(background-color, transparent);
+    }
 
     &.mdc-select--disabled {
       @include mdc-select-container-fill-color_(transparent);
