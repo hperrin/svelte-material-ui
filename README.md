@@ -22,6 +22,10 @@ npm install --save-dev @smui/card
 npm install --save-dev svelte-material-ui
 ```
 
+# Migration
+
+If you are upgrading from an older version of SMUI to a newer one, it might be worth checking out the [migration doc](MIGRATING.md).
+
 # Usage
 
 Check out the [Webpack template](https://github.com/hperrin/smui-example-webpack) and the [Rollup template](https://github.com/hperrin/smui-example-rollup) for examples.
@@ -71,7 +75,7 @@ Here are some features you should know about:
 * You can add actions to the components with `use={[Action1, [Action2, action2Props], Action3]}`.
 * You can add props to lower components and elements with things like `input$maxlength="15"`.
 * All [standard UI events](https://github.com/hperrin/svelte-material-ui/blob/master/packages/common/forwardEvents.js#L4) are forwarded on components, input events ("input" and "change") are forwarded on input components, and all MDC events are forwarded.
-* Labels and icons are named exports in the components that use them, or you can use 'common/Label' and 'common/Icon'. (Except for textfield and select icons, because they are special snowflakes.)
+* Labels and icons are named exports in the components that use them, or you can use 'common/Label' and 'common/Icon'. (Except for chips labels and icons, textfield icons, and select icons, because they are special snowflakes.)
 
 ## Integration for Sapper
 
@@ -190,7 +194,7 @@ You can support my work on this project through my other project, [Tunnelgram](h
 
 # License
 
-Copyright 2020 Hunter Perrin
+Copyright 2020-2021 Hunter Perrin
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
