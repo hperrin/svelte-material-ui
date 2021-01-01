@@ -9,6 +9,7 @@
     {variant === 'unelevated' ? 'mdc-button--unelevated' : ''}
     {variant === 'outlined' ? 'mdc-button--outlined' : ''}
     {color === 'secondary' ? 'smui-button--color-secondary' : ''}
+    {touch ? 'mdc-button--touch' : ''}
     {context === 'card:action' ? 'mdc-card__action' : ''}
     {context === 'card:action' ? 'mdc-card__action--button' : ''}
     {context === 'dialog:action' ? 'mdc-dialog__button' : ''}
@@ -18,8 +19,8 @@
   "
   {...actionProp}
   {...defaultProp}
-  {...exclude($$props, ['use', 'class', 'ripple', 'color', 'variant', 'component', ...dialogExcludes])}
->{#if ripple}<div class="mdc-button__ripple"></div>{/if}<slot></slot></svelte:component>
+  {...exclude($$props, ['use', 'class', 'ripple', 'color', 'variant', 'touch', 'component', ...dialogExcludes])}
+>{#if ripple}<div class="mdc-button__ripple"></div>{/if}<slot></slot>{#if touch}<div class="mdc-button__touch"></div>{/if}</svelte:component>
 
 <script>
   import {setContext, getContext} from 'svelte';
@@ -38,6 +39,7 @@
   export let ripple = true;
   export let color = 'primary';
   export let variant = 'text';
+  export let touch = false;
   // Purposely left out of props exclude.
   export let href = null;
   export let action = 'close';

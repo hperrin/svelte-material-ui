@@ -6,8 +6,9 @@
     mdc-radio
     {className}
     {disabled ? 'mdc-radio--disabled' : ''}
+    {touch ? 'mdc-radio--touch' : ''}
   "
-  {...exclude($$props, ['use', 'class', 'disabled', 'group', 'value', 'valueKey', 'input$'])}
+  {...exclude($$props, ['use', 'class', 'disabled', 'touch', 'group', 'value', 'valueKey', 'input$'])}
 >
   <input
     use:useActions={input$use}
@@ -44,6 +45,7 @@
   let className = '';
   export {className as class};
   export let disabled = false;
+  export let touch = false;
   export let group = null;
   export let value = null;
   export let valueKey = uninitializedValue;

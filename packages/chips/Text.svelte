@@ -11,16 +11,17 @@
     class="
       {className}
       mdc-chip__text
+      mdc-chip__primary-action
     "
+    bind:this={text}
     role="{$filter ? 'checkbox' : ($choice ? 'radio' : 'button')}"
     {...(($filter || $choice) ? {'aria-selected': ($isSelected ? 'true' : 'false')} : {})}
-    tabindex={tabindexValue}
     {...exclude($$props, ['use', 'class', 'tabindex'])}
   ><slot></slot></span>
 </span>
 
 <script>
-  import {getContext} from 'svelte';
+  import {onMount, getContext} from 'svelte';
   import {get_current_component} from 'svelte/internal';
   import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
   import {exclude} from '@smui/common/exclude.js';
@@ -34,10 +35,14 @@
   export {className as class};
   export let tabindex = null;
 
-  const tabindexContext = getContext('SMUI:chip:tabindex');
-  $: tabindexValue = tabindex == null ? $tabindexContext : tabindex;
-
+  const initialTabindex = getContext('SMUI:chip:initialTabindex');
   const choice = getContext('SMUI:chip:choice');
   const filter = getContext('SMUI:chip:filter');
   const isSelected = getContext('SMUI:chip:isSelected');
+
+  let text;
+
+  onMount(() => {
+    text.setAttribute('tabindex', tabindex == null ? $initialTabindex : tabindex);
+  });
 </script>

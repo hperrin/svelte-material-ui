@@ -57,8 +57,11 @@
   <div>
     Using dynamic text: <br />
 
-    <Snackbar bind:this={dynSnackbar} labelText={dynText}>
+    <Snackbar bind:this={dynSnackbar} labelText={dynText} timeoutMs={-1}>
       <Label></Label>
+      <Actions>
+        <IconButton class="material-icons" title="Dismiss">close</IconButton>
+      </Actions>
     </Snackbar>
 
     <Textfield bind:value={dynText} label="Dynamic Text" input$required />

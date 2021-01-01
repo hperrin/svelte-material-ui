@@ -6,10 +6,11 @@
     mdc-checkbox
     {className}
     {disabled ? 'mdc-checkbox--disabled' : ''}
+    {touch ? 'mdc-checkbox--touch' : ''}
     {(context === 'data-table' && dataTableHeader) ? 'mdc-data-table__header-row-checkbox' : ''}
     {(context === 'data-table' && !dataTableHeader) ? 'mdc-data-table__row-checkbox' : ''}
   "
-  {...exclude($$props, ['use', 'class', 'disabled', 'indeterminate', 'group', 'checked', 'value', 'valueKey', 'input$'])}
+  {...exclude($$props, ['use', 'class', 'disabled', 'touch', 'indeterminate', 'group', 'checked', 'value', 'valueKey', 'input$'])}
 >
   <input
     use:useActions={input$use}
@@ -30,6 +31,7 @@
     </svg>
     <div class="mdc-checkbox__mixedmark"></div>
   </div>
+  <div class="mdc-checkbox__ripple"></div>
 </div>
 
 <script>
@@ -48,6 +50,7 @@
   let className = '';
   export {className as class};
   export let disabled = false;
+  export let touch = false;
   export let indeterminate = uninitializedValue;
   export let group = uninitializedValue;
   export let checked = uninitializedValue;

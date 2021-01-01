@@ -1,5 +1,6 @@
 {#if leading}
   <i
+    bind:this={icon}
     use:useActions={use}
     use:forwardEvents
     class="
@@ -17,19 +18,21 @@
     role="gridcell"
   >
     <i
+      bind:this={icon}
       class="
         mdc-chip__icon
         mdc-chip__icon--trailing
         {className}
+        {$shouldRemoveOnTrailingIconClick ? 'mdc-chip__trailing-action' : ''}
       "
-      {...($shouldRemoveOnTrailingIconClick ? {tabindex: '-1', role: 'button'} : {})}
+      {...($shouldRemoveOnTrailingIconClick ? {role: 'button'} : {})}
       {...exclude($$props, ['use', 'class', 'leading', 'leadingHidden'])}
     ><slot></slot></i>
   </span>
 {/if}
 
 <script>
-  import {getContext} from 'svelte';
+  import {onMount, getContext} from 'svelte';
   import {get_current_component} from 'svelte/internal';
   import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
   import {exclude} from '@smui/common/exclude.js';
@@ -45,4 +48,12 @@
   const shouldRemoveOnTrailingIconClick = getContext('SMUI:chip:shouldRemoveOnTrailingIconClick');
   const filter = getContext('SMUI:chip:filter');
   const isSelected = getContext('SMUI:chip:isSelected');
+
+  let icon;
+
+  onMount(() => {
+    if (!leading && $shouldRemoveOnTrailingIconClick) {
+      icon.setAttribute('tabindex', '-1');
+    }
+  });
 </script>

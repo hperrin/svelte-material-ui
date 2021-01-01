@@ -22,6 +22,15 @@
   </div>
 
   <div>
+    Increased touch target: <br />
+    <Button on:click={() => clicked++} touch><Label>Default</Label></Button>
+    <Button on:click={() => clicked++} touch variant="raised"><Label>Raised</Label></Button>
+    <Button on:click={() => clicked++} touch variant="unelevated"><Label>Unelevated</Label></Button>
+    <Button on:click={() => clicked++} touch variant="outlined"><Label>Outlined</Label></Button>
+    <Button on:click={() => clicked++} touch href="http://example.com" target="_blank"><Label>Link Button</Label></Button>
+  </div>
+
+  <div>
     Secondary color: <br />
     <Button color="secondary" on:click={() => clicked++}><Label>Default</Label></Button>
     <Button color="secondary" on:click={() => clicked++} disabled><Label>Disabled</Label></Button>

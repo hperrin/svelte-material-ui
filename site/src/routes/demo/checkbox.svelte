@@ -24,6 +24,16 @@
   <pre class="status">Checked: {simpleSelected2}</pre>
 
   <div>
+    Increased touch target:<br />
+    <FormField>
+      <Checkbox bind:checked={simpleSelected3} touch />
+      <span slot="label">Remember me.</span>
+    </FormField>
+  </div>
+
+  <pre class="status">Checked: {simpleSelected3}</pre>
+
+  <div>
     Group checkbox:<br />
     {#each options as option}
       <FormField>
@@ -54,6 +64,7 @@
 
   let simpleSelected = false;
   let simpleSelected2 = false;
+  let simpleSelected3 = false;
 
   let options = [
     {

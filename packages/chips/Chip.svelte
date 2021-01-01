@@ -11,7 +11,7 @@
   "
   role="row"
   on:MDCChip:selection={handleSelection}
-  {...exclude($$props, ['use', 'class', 'component', 'ripple', 'selected', 'tabindex', 'shouldRemoveOnTrailingIconClick', 'touch'])}
+  {...exclude($$props, ['use', 'class', 'component', 'ripple', 'touch', 'selected', 'shouldRemoveOnTrailingIconClick'])}
 >
   {#if ripple}
     <div class="mdc-chip__ripple"></div>
@@ -39,9 +39,9 @@
   export {className as class};
   export let component = Div;
   export let ripple = true;
+  export let touch = false;
   export let selected = false;
   export let shouldRemoveOnTrailingIconClick = true;
-  export let touch = false;
 
   const shouldRemoveOnTrailingIconClickStore = writable(shouldRemoveOnTrailingIconClick);
   $: $shouldRemoveOnTrailingIconClickStore = shouldRemoveOnTrailingIconClick;

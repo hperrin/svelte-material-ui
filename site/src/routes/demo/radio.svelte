@@ -15,6 +15,18 @@
   </div>
 
   <pre class="status">Selected: {selected}</pre>
+
+  <div class="radio-demo">
+    Increased touch target:<br />
+    {#each ['On', 'Off'] as option}
+      <FormField>
+        <Radio bind:group={onoff} value={option} touch />
+        <span slot="label">{option}</span>
+      </FormField>
+    {/each}
+  </div>
+
+  <pre class="status">Selected: {onoff}</pre>
 </section>
 
 <script>
@@ -52,6 +64,7 @@
     }
   ];
   let selected = 'Grumpy';
+  let onoff = 'On';
 </script>
 
 <style>

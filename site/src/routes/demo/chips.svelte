@@ -20,7 +20,7 @@
   </div>
 
   <div>
-    Choice Chips
+    Choice chips:
     <Set chips={['Morning', 'Afternoon', 'Evening', 'Night']} let:chip choice bind:selected={choice}>
       <Chip><Text>{chip}</Text></Chip>
     </Set>
@@ -37,12 +37,19 @@
   <pre class="status">Selected: {choice}</pre>
 
   <div>
-    Filter Chips
+    Filter chips with increased touch target:
     <Set chips={['Shoes', 'Pants', 'Shirts', 'Hats', 'Coats']} let:chip filter bind:selected={filter}>
-      <Chip>
-        {#if chip === 'Coats'}
-          <Icon class="material-icons" leading>checkroom</Icon>
-        {/if}
+      <Chip touch>
+        <Text>{chip}</Text>
+      </Chip>
+    </Set>
+  </div>
+
+  <div>
+    The same, but with leading icons:
+    <Set chips={['Shoes', 'Pants', 'Shirts', 'Hats', 'Coats']} let:chip filter bind:selected={filter}>
+      <Chip touch>
+        <Icon class="material-icons" leading>checkroom</Icon>
         <Text>{chip}</Text>
       </Chip>
     </Set>
@@ -51,7 +58,7 @@
   <pre class="status">Selected: {filter.join(', ')}</pre>
 
   <div>
-    Input Chips
+    Input chips:
     <Set chips={input} let:chip input>
       <Chip>
         <Text>{chip}</Text>
@@ -62,9 +69,9 @@
   </div>
 
   <div>
-    Keyed Chips with Touch Target
+    Keyed chips:
     <Set chips={keyed} let:chip key={chip => chip.k} input>
-      <Chip touch>
+      <Chip>
         <Text>{chip.v}</Text>
         <Icon class="material-icons">cancel</Icon>
       </Chip>

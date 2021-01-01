@@ -48,7 +48,7 @@ A button.
 * `ripple`: `true` - Whether to implement a ripple for when the component is interacted with.
 * `color`: `'primary'` - The button's color. ('primary' or 'secondary')
 * `variant`: `'text'` - The button's style variant. ('text', 'raised', 'unelevated', or 'outlined')
-* `dense`: `false` - Whether to style the button as dense.
+* `touch`: `false` - The button will have a larger touch target.
 * `href`: `null` - If the `href` property is set, the button will use an anchor element, instead of a button element.
 * `action`: `'close'` - Used in the context of a dialog. This sets the button's action.
 * `default`: `false` - Used in the context of a dialog. This makes the button the default for the dialog.

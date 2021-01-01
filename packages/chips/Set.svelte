@@ -15,7 +15,7 @@
   {...exclude($$props, ['use', 'class', 'chips', 'key', 'selected', 'choice', 'filter', 'input'])}
 >
   {#each chips as chip, i (key(chip))}
-    <ContextFragment key="SMUI:chip:tabindex" value={i === 0 ? 0 : -1}>
+    <ContextFragment key="SMUI:chip:initialTabindex" value={i === 0 ? 0 : -1}>
       <slot {chip}></slot>
     </ContextFragment>
   {/each}
