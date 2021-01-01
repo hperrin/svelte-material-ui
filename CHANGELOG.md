@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.0](https://github.com/hperrin/svelte-material-ui/compare/v2.0.0-alpha.0...v2.0.0-beta.0) (2021-01-01)
+
+
+### Bug Fixes
+
+* small fixes for MDC 4 ([6c0585f](https://github.com/hperrin/svelte-material-ui/commit/6c0585ffa7d861b5a632544d92f2769097a439e8))
+
+
+### Features
+
+* updated touch features for MDC 4 ([b06e851](https://github.com/hperrin/svelte-material-ui/commit/b06e851c0f8927670603e9d3f3ce4a2ce7b3e47c))
+
+
+
+
+
 # [2.0.0-alpha.0](https://github.com/hperrin/svelte-material-ui/compare/v1.1.0...v2.0.0-alpha.0) (2020-12-31)
 
 
