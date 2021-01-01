@@ -17,9 +17,27 @@ npm install --save-dev @smui/ripple
 ```html
 <script>
   import Ripple from '@smui/ripple';
+
+  let rippleClasses = [];
 </script>
 
+If you don't have a `class` attribute:
+
 <p use:Ripple={{ripple: true, color: 'surface'}} tabindex="0">
+  Here is an element with a ripple.
+</p>
+
+If you do have a `class` attribute:
+
+<p
+  class="some-class {rippleClasses.join(' ')}"
+  use:Ripple={{
+    ripple: true,
+    color: 'surface',
+    classForward: classes => rippleClasses = classes
+  }}
+  tabindex="0"
+>
   Here is an element with a ripple.
 </p>
 ```

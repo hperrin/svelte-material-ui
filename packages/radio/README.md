@@ -53,6 +53,7 @@ A radio.
 * `use`: `[]` - An array of actions and/or action/property arrays.
 * `class`: `''` - A CSS class string.
 * `disabled`: `false` - Whether the input is disabled.
+* `touch`: `false` - The radio will have a larger touch target.
 * `group`: `null` - The selected value of a group of radios.
 * `value` : `null` - The value of a radio in a group of radios.
 * `valueKey` : `(uninitialised)` - If `value` is not a string, this should be supplied as well, and should be a unique key.

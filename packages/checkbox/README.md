@@ -45,6 +45,7 @@ A checkbox.
 * `use`: `[]` - An array of actions and/or action/property arrays.
 * `class`: `''` - A CSS class string.
 * `disabled`: `false` - Whether the input is disabled.
+* `touch`: `false` - The checkbox will have a larger touch target.
 * `indeterminate`: `(uninitialised)` - Whether the state is indeterminate.
 * `group`: `(uninitialised)` - The selected values of a group of checkboxes as an array.
 * `checked`: `(uninitialised)` - A boolean, whether the checkbox is checked. This is used instead of `group` for a single checkbox.

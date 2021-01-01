@@ -22,12 +22,23 @@ npm install --save-dev @smui/select
   let fruitChoice = '';
 </script>
 
-<Select bind:value={fruitChoice} label="Fruit">
+<Select
+  bind:value={fruitChoice}
+  label="Fruit"
+  anchor$class="select-width"
+  menu$class="select-width"
+>
   <Option value=""></Option>
   {#each fruits as fruit}
-    <Option value={fruit} selected={fruitChoice === fruit}>{fruit}</Option>
+    <Option value={fruit}>{fruit}</Option>
   {/each}
 </Select>
+
+<style>
+  * :global(.select-width) {
+    min-width: 200px;
+  }
+</style>
 ```
 
 # Demo

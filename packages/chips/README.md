@@ -33,7 +33,9 @@ Input Chips:
 </script>
 
 <Textfield bind:value={newTag} label="Tag" />
-<Button on:click={addTag} disabled={newTag === '' || tags.indexOf(newTag) !== -1}><Label>Add</Label></Button>
+<Button on:click={addTag} disabled={newTag === '' || tags.indexOf(newTag) !== -1}>
+  <Label>Add</Label>
+</Button>
 
 <Set chips={tags} let:chip input>
   <Chip><Text>{chip}</Text><Icon class="material-icons">cancel</Icon></Chip>
@@ -57,7 +59,8 @@ A chip.
 * `use`: `[]` - An array of actions and/or action/property arrays.
 * `class`: `''` - A CSS class string.
 * `ripple`: `true` - Whether to implement a ripple for when the component is interacted with.
-* `selected`: `false` - Whether the chip is selected.
+* `touch`: `false` - The chip will have a larger touch target.
+* `selected`: `false` - Whether the chip is selected. (You should only use this if you don't pass `selected` to the chip set.)
 * `shouldRemoveOnTrailingIconClick`: `true` - Whether the chip should be removed upon clicking the trailing icon.
 
 ### Events
@@ -68,6 +71,7 @@ All standard UI events are forwarded.
 * `MDCChip:selection`
 * `MDCChip:removal`
 * `MDCChip:trailingIconInteraction`
+* `MDCChip:navigation`
 
 ## Set
 

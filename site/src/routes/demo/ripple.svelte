@@ -12,7 +12,11 @@
 
   <p>
     Unbounded:
-    <span use:Ripple={{ripple: true, unbounded: true, color: 'surface'}} tabindex="0" class="unbounded">
+    <span
+      use:Ripple={{ripple: true, unbounded: true, color: 'surface', classForward: classes => rippleClasses = classes}}
+      tabindex="0"
+      class="unbounded {rippleClasses.join(' ')}"
+    >
       &copy;
     </span>
   </p>
@@ -28,6 +32,8 @@
 
 <script>
   import Ripple from '@smui/ripple';
+
+  let rippleClasses = [];
 </script>
 
 <style>
