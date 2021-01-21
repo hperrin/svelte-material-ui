@@ -1,13 +1,13 @@
-import {MDCRipple, MDCRippleFoundation} from '@material/ripple';
-import {getContext} from 'svelte';
+import { MDCRipple, MDCRippleFoundation } from '@material/ripple';
+import { getContext } from 'svelte';
 
-export default function Ripple(node, props = {ripple: false, unbounded: false, disabled: false, color: null, classForward: () => {}}) {
+export default function Ripple(node, props = { ripple: false, unbounded: false, disabled: false, color: null, classForward: () => { } }) {
   let instance = null;
   let addLayoutListener = getContext('SMUI:addLayoutListener');
   let removeLayoutListener;
   let classList = [];
   let rippleCapableSurface = {
-    get root_() {
+    get root() {
       return node;
     },
 
@@ -102,7 +102,7 @@ export default function Ripple(node, props = {ripple: false, unbounded: false, d
   }
 
   return {
-    update(newProps = {ripple: false, unbounded: false, color: null, classForward: []}) {
+    update(newProps = { ripple: false, unbounded: false, color: null, classForward: [] }) {
       props = newProps;
       handleProps();
     },
