@@ -94,7 +94,7 @@
   import LineRipple from '@smui/line-ripple/LineRipple.svelte';
   import NotchedOutline from '@smui/notched-outline/NotchedOutline.svelte';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component(), 'MDCSelect:change');
+  const forwardEvents = forwardEventsBuilder(get_current_component(), ['MDCSelect:change']);
   const uninitializedValue = () => {};
 
   export let use = [];
