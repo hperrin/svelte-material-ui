@@ -23,7 +23,10 @@
         bind:checked={nativeChecked}
         value={valueKey === uninitializedValue ? value : valueKey}
         on:change={handleChange}
-        on:change on:input
+        on:change
+        on:input
+        on:blur
+        on:focus
         {...exclude(prefixFilter($$props, 'input$'), ['use', 'class'])}
       />
     </div>
