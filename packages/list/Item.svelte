@@ -1,36 +1,75 @@
 <svelte:component
   this={component}
-  bind:element={element}
-  use={[[Ripple, {ripple, unbounded: false, color, disabled, addClass, removeClass}], forwardEvents, ...use]}
+  bind:element
+  use={[
+    [
+      Ripple,
+      { ripple, unbounded: false, color, disabled, addClass, removeClass },
+    ],
+    forwardEvents,
+    ...use,
+  ]}
   class="
     mdc-list-item
     {className}
-    {internalClasses.join(' ')}
+    {internalClasses.join(
+    ' '
+  )}
     {activated ? 'mdc-list-item--activated' : ''}
-    {selected ? 'mdc-list-item--selected' : ''}
+    {selected
+    ? 'mdc-list-item--selected'
+    : ''}
     {disabled ? 'mdc-list-item--disabled' : ''}
-    {(!nav && role === 'menuitem' && selected) ? 'mdc-menu-item--selected' : ''}
+    {!nav &&
+  role === 'menuitem' &&
+  selected
+    ? 'mdc-menu-item--selected'
+    : ''}
   "
-  {...((nav && activated) ? {'aria-current': 'page'} : {})}
-  {...(!nav ? {role} : {})}
-  {...((!nav && role === 'option') ? {'aria-selected': (selected ? 'true' : 'false')} : {})}
-  {...((!nav && (role === 'radio' || role === 'checkbox')) ? {'aria-checked': (checked ? 'true' : 'false')} : {})}
-  {...(!nav ? {'aria-disabled': (disabled ? 'true' : 'false')} : {})}
+  {...nav && activated ? { 'aria-current': 'page' } : {}}
+  {...!nav ? { role } : {}}
+  {...!nav && role === 'option'
+    ? { 'aria-selected': selected ? 'true' : 'false' }
+    : {}}
+  {...!nav && (role === 'radio' || role === 'checkbox')
+    ? { 'aria-checked': checked ? 'true' : 'false' }
+    : {}}
+  {...!nav ? { 'aria-disabled': disabled ? 'true' : 'false' } : {}}
   {tabindex}
   on:click={action}
   on:keydown={handleKeydown}
-  {...exclude($$props, ['use', 'class', 'ripple', 'color', 'nonInteractive', 'activated', 'selected', 'disabled', 'tabindex', 'inputId'])}
->{#if ripple}<span class="mdc-list-item__ripple"></span>{/if}<slot></slot></svelte:component>
+  {...internalAttrs}
+  {...exclude($$props, [
+    'use',
+    'class',
+    'ripple',
+    'color',
+    'nonInteractive',
+    'activated',
+    'selected',
+    'disabled',
+    'tabindex',
+    'inputId',
+  ])}
+  >{#if ripple}<span class="mdc-list-item__ripple" />{/if}<slot
+  /></svelte:component
+>
 
 <script context="module">
   let counter = 0;
 </script>
 
 <script>
-  import {onMount, onDestroy, getContext, setContext, createEventDispatcher} from 'svelte';
-  import {get_current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
-  import {exclude} from '@smui/common/exclude.js';
+  import {
+    onMount,
+    onDestroy,
+    getContext,
+    setContext,
+    createEventDispatcher,
+  } from 'svelte';
+  import { get_current_component } from 'svelte/internal';
+  import { forwardEventsBuilder } from '@smui/common/forwardEvents.js';
+  import { exclude } from '@smui/common/exclude.js';
   import A from '@smui/common/A.svelte';
   import Span from '@smui/common/Span.svelte';
   import Li from '@smui/common/Li.svelte';
@@ -42,7 +81,7 @@
 
   export let use = [];
   let className = '';
-  export {className as class};
+  export { className as class };
   export let ripple = true;
   export let color = null;
   export let nonInteractive = getContext('SMUI:list:nonInteractive');
@@ -50,19 +89,39 @@
   export let role = getContext('SMUI:list:item:role');
   export let selected = false;
   export let disabled = false;
-  export let tabindex = !nonInteractive && !disabled && (selected || checked) && '0' || '-1';
-  export let inputId = 'SMUI-form-field-list-'+(counter++);
+  export let tabindex =
+    (!nonInteractive && !disabled && (selected || checked) && '0') || '-1';
+  export let inputId = 'SMUI-form-field-list-' + counter++;
   // Purposely left out of props exclude.
   export let href = null;
 
   let element;
   let internalClasses = [];
+  let internalAttrs = {};
   let addTabindexIfNoItemsSelectedRaf;
+  let accessor = {
+    _smui_accessor: true,
+    get element() {
+      return element;
+    },
+    get selected() {
+      return selected;
+    },
+    set selected(value) {
+      selected = value;
+    },
+    addClass,
+    removeClass,
+    addAttr,
+    removeAttr,
+    getPrimaryText,
+  };
   let nav = getContext('SMUI:list:item:nav');
+  let list = getContext('SMUI:list:instance');
 
   export let component = nav ? (href ? A : Span) : Li;
 
-  setContext('SMUI:generic:input:props', {id: inputId});
+  setContext('SMUI:generic:input:props', { id: inputId });
   setContext('SMUI:generic:input:setChecked', setChecked);
 
   onMount(() => {
@@ -74,7 +133,11 @@
       let el = element;
       while (el.previousSibling) {
         el = el.previousSibling;
-        if (el.nodeType === 1 && el.classList.contains('mdc-list-item') && !el.classList.contains('mdc-list-item--disabled')) {
+        if (
+          el.nodeType === 1 &&
+          el.classList.contains('mdc-list-item') &&
+          !el.classList.contains('mdc-list-item--disabled')
+        ) {
           first = false;
           break;
         }
@@ -82,15 +145,21 @@
       if (first) {
         // This is first, so now set up a check that no other items are
         // selected.
-        addTabindexIfNoItemsSelectedRaf = window.requestAnimationFrame(addTabindexIfNoItemsSelected);
+        addTabindexIfNoItemsSelectedRaf = window.requestAnimationFrame(
+          addTabindexIfNoItemsSelected
+        );
       }
     }
+
+    dispatch('SMUI:list:item:mount', accessor);
   });
 
   onDestroy(() => {
     if (addTabindexIfNoItemsSelectedRaf) {
       window.cancelAnimationFrame(addTabindexIfNoItemsSelectedRaf);
     }
+
+    dispatch('SMUI:list:item:unmount', accessor);
   });
 
   function addClass(className) {
@@ -107,13 +176,34 @@
     }
   }
 
+  function addAttr(name, value) {
+    internalAttrs[name] = value;
+  }
+
+  function removeAttr(name) {
+    delete internalAttrs[name];
+  }
+
+  function getPrimaryText() {
+    const primaryText = element.querySelector('.mdc-list-item__primary-text');
+    if (primaryText) {
+      return primaryText.textContent;
+    }
+    return '';
+  }
+
   function addTabindexIfNoItemsSelected() {
     // Look through next siblings to see if none of them are selected.
     let noneSelected = true;
     let el = element;
     while (el.nextSibling) {
       el = el.nextSibling;
-      if (el.nodeType === 1 && el.classList.contains('mdc-list-item') && el.attributes['tabindex'] && el.attributes['tabindex'].value === '0') {
+      if (
+        el.nodeType === 1 &&
+        el.classList.contains('mdc-list-item') &&
+        el.attributes['tabindex'] &&
+        el.attributes['tabindex'].value === '0'
+      ) {
         noneSelected = false;
         break;
       }
@@ -143,6 +233,7 @@
 
   function setChecked(isChecked) {
     checked = isChecked;
-    tabindex = !nonInteractive && !disabled && (selected || checked) && '0' || '-1';
+    tabindex =
+      (!nonInteractive && !disabled && (selected || checked) && '0') || '-1';
   }
 </script>

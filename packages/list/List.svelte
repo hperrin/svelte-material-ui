@@ -28,13 +28,15 @@
     "
   {role}
   on:MDCList:action={handleAction}
+  on:SMUI:list:item:mount={handleItemMount}
+  on:SMUI:list:item:unmount={handleItemUnmount}
   {...props}
 >
   <slot />
 </svelte:component>
 
 <script>
-  import { MDCList } from '@material/list';
+  import { MDCListFoundation, strings } from '@material/list';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import { forwardEventsBuilder } from '@smui/common/forwardEvents.js';
@@ -66,6 +68,7 @@
   export let selectedIndex = null;
   export let radiolist = false;
   export let checklist = false;
+  export let hasTypeahead = false;
 
   $: props = exclude($$props, [
     'use',
@@ -84,18 +87,17 @@
   ]);
 
   let element;
-  let list;
+  let instance;
+  let items = [];
   let role = getContext('SMUI:list:role');
   let nav = getContext('SMUI:list:nav');
-  let instantiate = getContext('SMUI:list:instantiate');
-  let getInstance = getContext('SMUI:list:getInstance');
   let addLayoutListener = getContext('SMUI:addLayoutListener');
   let removeLayoutListener;
 
   export let component = nav ? Nav : Ul;
 
   setContext('SMUI:list:nonInteractive', nonInteractive);
-  setContext('SMUI:list:divider', true);
+  setContext('SMUI:separator:context', 'list');
 
   if (!role) {
     if (singleSelection) {
@@ -113,20 +115,24 @@
     }
   }
 
-  $: if (list && list.vertical !== vertical) {
-    list.vertical = vertical;
+  $: if (instance) {
+    instance.setVerticalOrientation(vertical);
   }
 
-  $: if (list && list.wrapFocus !== wrapFocus) {
-    list.wrapFocus = wrapFocus;
+  $: if (instance) {
+    instance.setWrapFocus(wrapFocus);
   }
 
-  $: if (list && list.singleSelection !== singleSelection) {
-    list.singleSelection = singleSelection;
+  $: if (instance) {
+    instance.setHasTypeahead(hasTypeahead);
   }
 
-  $: if (list && singleSelection && list.selectedIndex !== selectedIndex) {
-    list.selectedIndex = selectedIndex;
+  $: if (instance) {
+    instance.setSingleSelection(singleSelection);
+  }
+
+  $: if (instance && singleSelection && getSelectedIndex() !== selectedIndex) {
+    instance.setSelectedIndex(selectedIndex);
   }
 
   if (addLayoutListener) {
@@ -134,31 +140,120 @@
   }
 
   onMount(async () => {
-    if (instantiate !== false) {
-      list = new MDCList(element);
-    } else {
-      list = await getInstance();
+    instance = new MDCListFoundation(getAdapter());
+    if (singleSelection || radiolist || checklist) {
+      selectedIndex = getSelectedIndex();
     }
-    if (singleSelection) {
-      list.initializeListType();
-      selectedIndex = list.selectedIndex;
-    }
+    dispatch('SMUI:list:instantiate', instance);
+    instance.init();
   });
 
   onDestroy(() => {
-    if (instantiate !== false) {
-      list && list.destroy();
-    }
+    instance.destroy();
 
     if (removeLayoutListener) {
       removeLayoutListener();
     }
   });
 
+  function getAdapter() {
+    return {
+      addClassForElementIndex: (index, className) => {
+        getOrderedList()[index]?.addClass(className);
+      },
+      focusItemAtIndex: (index) => {
+        getOrderedList()[index]?.element.focus();
+      },
+      getAttributeForElementIndex: (index, attr) =>
+        getOrderedList()[index]?.element.getAttribute(attr),
+      getFocusedElementIndex: () => {
+        const list = getOrderedList();
+        for (let i = 0; i < list.length; i++) {
+          if (list[i].element === document.activeElement) {
+            return i;
+          }
+        }
+        return -1;
+      },
+      getListItemCount: () => items.length,
+      getPrimaryTextAtIndex: (index) =>
+        getOrderedList()[index]?.getPrimaryText(),
+      hasCheckboxAtIndex: (index) => {
+        const listItem = getOrderedList()[index];
+        return !!listItem?.element.querySelector(strings.CHECKBOX_SELECTOR);
+      },
+      hasRadioAtIndex: (index) => {
+        const listItem = getOrderedList()[index];
+        return !!listItem?.element.querySelector(strings.RADIO_SELECTOR);
+      },
+      isCheckboxCheckedAtIndex: (index) => {
+        const listItem = getOrderedList()[index];
+        const toggleEl = listItem?.element.querySelector(
+          strings.CHECKBOX_SELECTOR
+        );
+        return toggleEl?.checked ?? false;
+      },
+      isFocusInsideList: () =>
+        element !== document.activeElement &&
+        element.contains(document.activeElement),
+      isRootFocused: () => document.activeElement === element,
+      listItemAtIndexHasClass: (index, className) =>
+        getOrderedList()[index]?.element.classList.contains(className),
+      notifyAction: (index) => {
+        dispatch(strings.ACTION_EVENT, { index });
+      },
+      removeClassForElementIndex: (index, className) => {
+        getOrderedList()[index]?.removeClass(className);
+      },
+      setAttributeForElementIndex: (index, attr, value) => {
+        getOrderedList()[index]?.addAttr(attr, value);
+      },
+      setCheckedCheckboxOrRadioAtIndex: (index, isChecked) => {
+        const listItem = getOrderedList()[index];
+        const toggleEl = listItem?.element.querySelector(
+          strings.CHECKBOX_RADIO_SELECTOR
+        );
+        if (toggleEl) {
+          toggleEl.checked = isChecked;
+
+          const event = document.createEvent('Event');
+          event.initEvent('change', true, true);
+          toggleEl.dispatchEvent(event);
+        }
+      },
+      setTabIndexForListItemChildren: (listItemIndex, tabIndexValue) => {
+        const listItem = this.listElements[listItemIndex];
+        const selector = strings.CHILD_ELEMENTS_TO_TOGGLE_TABINDEX;
+        Array.prototype.forEach.call(
+          listItem?.element.querySelectorAll(selector),
+          (el) => {
+            el.setAttribute('tabindex', tabIndexValue);
+          }
+        );
+      },
+    };
+  }
+
+  function handleItemMount(accessor) {
+    items.push(accessor);
+  }
+
+  function handleItemUnmount(accessor) {
+    const idx = items.indexOf(accessor);
+    if (idx !== -1) {
+      items.splice(idx, 1);
+    }
+  }
+
+  function getOrderedList() {
+    return [...element.children]
+      .map((element) => items.find((accessor) => element === accessor.element))
+      .filter((element) => element && element._smui_accessor);
+  }
+
   function handleAction(e) {
     if (
-      list &&
-      list.listElements[e.detail.index].classList.contains(
+      getOrderedList()[e.detail.index].classList.contains(
         'mdc-list-item--disabled'
       )
     ) {
@@ -170,14 +265,18 @@
   }
 
   export function layout(...args) {
-    return list.layout(...args);
+    return instance.layout(...args);
   }
 
   export function setEnabled(...args) {
-    return list.setEnabled(...args);
+    return instance.setEnabled(...args);
   }
 
-  export function getDefaultFoundation(...args) {
-    return list.getDefaultFoundation(...args);
+  export function getTypeaheadInProgress() {
+    return instance?.isTypeaheadInProgress();
+  }
+
+  export function getSelectedIndex() {
+    return instance?.getSelectedIndex();
   }
 </script>

@@ -40,9 +40,9 @@
   export let insetPadding = false;
 
   let nav = getContext('SMUI:list:item:nav');
-  let divider = getContext('SMUI:list:divider');
+  let context = getContext('SMUI:separator:context');
 
-  export let component = nav || !divider ? Hr : Li;
+  export let component = nav || context !== 'list' ? Hr : Li;
 
   $: props = exclude($$props, ['use', 'class', 'padded', 'inset']);
 </script>
