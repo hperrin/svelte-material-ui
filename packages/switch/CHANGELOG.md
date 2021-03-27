@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.1](https://github.com/hperrin/svelte-material-ui/compare/v2.0.0-beta.0...v2.0.0-beta.1) (2021-03-27)
+
+
+### Features
+
+* forward blur and focus from other inputs ([6059f87](https://github.com/hperrin/svelte-material-ui/commit/6059f87cf6b0377eb1003067412856f041e8613d))
+
+
+
+
+
 # [2.0.0-beta.0](https://github.com/hperrin/svelte-material-ui/compare/v2.0.0-alpha.0...v2.0.0-beta.0) (2021-01-01)
 
 **Note:** Version bump only for package @smui/switch

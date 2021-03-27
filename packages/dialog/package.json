@@ -1,6 +1,6 @@
 {
   "name": "@smui/dialog",
-  "version": "2.0.0-beta.0",
+  "version": "2.0.0-beta.1",
   "description": "Svelte Material UI - Dialog",
   "keywords": [
     "svelte",
@@ -30,7 +30,7 @@
   "dependencies": {
     "@material/button": "^4.0.0",
     "@material/dialog": "^4.0.0",
-    "@smui/common": "^2.0.0-beta.0"
+    "@smui/common": "^2.0.0-beta.1"
   },
   "devDependencies": {
     "glob-cmd": "0.0.7",

@@ -1,6 +1,6 @@
 {
   "name": "@smui/icon-button",
-  "version": "2.0.0-beta.0",
+  "version": "2.0.0-beta.1",
   "description": "Svelte Material UI - Icon Button",
   "keywords": [
     "svelte",
@@ -30,8 +30,8 @@
   "dependencies": {
     "@material/density": "^4.0.0",
     "@material/icon-button": "^4.0.0",
-    "@smui/common": "^2.0.0-beta.0",
-    "@smui/ripple": "^2.0.0-beta.0"
+    "@smui/common": "^2.0.0-beta.1",
+    "@smui/ripple": "^2.0.0-beta.1"
   },
   "devDependencies": {
     "glob-cmd": "0.0.7",
