@@ -10,4 +10,12 @@ import ActionIcons from './ActionIcons.js';
 
 export default Card;
 
-export {Content, PrimaryAction, Media, MediaContent, Actions, ActionButtons, ActionIcons};
+export {
+  Content,
+  PrimaryAction,
+  Media,
+  MediaContent,
+  Actions,
+  ActionButtons,
+  ActionIcons,
+};

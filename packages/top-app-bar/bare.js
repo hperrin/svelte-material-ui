@@ -11,4 +11,13 @@ import ShortFixedAdjust from './ShortFixedAdjust.js';
 
 export default TopAppBar;
 
-export {Row, Section, Title, FixedAdjust, ProminentFixedAdjust, DenseFixedAdjust, DenseProminentFixedAdjust, ShortFixedAdjust};
+export {
+  Row,
+  Section,
+  Title,
+  FixedAdjust,
+  ProminentFixedAdjust,
+  DenseFixedAdjust,
+  DenseProminentFixedAdjust,
+  ShortFixedAdjust,
+};

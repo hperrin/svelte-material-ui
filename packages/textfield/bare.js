@@ -5,4 +5,4 @@ import Textarea from './Textarea.svelte';
 
 export default Textfield;
 
-export {Input, Textarea};
+export { Input, Textarea };

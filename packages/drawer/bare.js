@@ -9,4 +9,4 @@ import Scrim from './Scrim.js';
 
 export default Drawer;
 
-export {AppContent, Content, Header, Title, Subtitle, Scrim};
+export { AppContent, Content, Header, Title, Subtitle, Scrim };

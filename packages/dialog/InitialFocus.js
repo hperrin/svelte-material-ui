@@ -4,6 +4,6 @@ export default function InitialFocus(node) {
   return {
     destroy() {
       node.removeAttribute('data-mdc-dialog-initial-focus');
-    }
-  }
+    },
+  };
 }

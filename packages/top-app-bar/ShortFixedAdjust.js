@@ -4,6 +4,6 @@ export default function ShortFixedAdjust(node) {
   return {
     destroy() {
       node.classList.remove('mdc-top-app-bar--short-fixed-adjust');
-    }
-  }
+    },
+  };
 }

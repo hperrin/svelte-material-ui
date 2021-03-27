@@ -5,4 +5,4 @@ import SelectionGroupIcon from './SelectionGroupIcon.js';
 
 export default Menu;
 
-export {SelectionGroup, SelectionGroupIcon};
+export { SelectionGroup, SelectionGroupIcon };

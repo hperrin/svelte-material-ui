@@ -7,4 +7,4 @@ import Cell from './Cell.svelte';
 
 export default DataTable;
 
-export {Head, Body, Row, Cell};
+export { Head, Body, Row, Cell };

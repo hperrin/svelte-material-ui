@@ -4,6 +4,6 @@ export default function FixedAdjust(node) {
   return {
     destroy() {
       node.classList.remove('mdc-top-app-bar--fixed-adjust');
-    }
-  }
+    },
+  };
 }

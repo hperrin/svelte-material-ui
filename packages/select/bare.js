@@ -4,4 +4,4 @@ import Option from './Option.svelte';
 
 export default Select;
 
-export {Option};
+export { Option };

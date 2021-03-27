@@ -6,4 +6,4 @@ import Icon from './Icon.svelte';
 
 export default Chip;
 
-export {Set, Icon, Text};
+export { Set, Icon, Text };

@@ -5,4 +5,4 @@ import Label from '@smui/common/Label.svelte';
 
 export default Snackbar;
 
-export {Actions, Label};
+export { Actions, Label };

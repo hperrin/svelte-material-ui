@@ -7,4 +7,4 @@ import InitialFocus from './InitialFocus.js';
 
 export default Dialog;
 
-export {Title, Content, Actions, InitialFocus};
+export { Title, Content, Actions, InitialFocus };

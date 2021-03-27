@@ -4,6 +4,6 @@ export default function DenseFixedAdjust(node) {
   return {
     destroy() {
       node.classList.remove('mdc-top-app-bar--dense-fixed-adjust');
-    }
-  }
+    },
+  };
 }

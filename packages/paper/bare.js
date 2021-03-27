@@ -6,4 +6,4 @@ import Subtitle from './Subtitle.js';
 
 export default Paper;
 
-export {Content, Title, Subtitle};
+export { Content, Title, Subtitle };

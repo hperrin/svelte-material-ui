@@ -1,4 +1,4 @@
-export default function Anchor(node, {classForward = () => {}}) {
+export default function Anchor(node, { classForward = () => {} }) {
   let classList = [];
 
   function addClass(className) {
@@ -28,6 +28,6 @@ export default function Anchor(node, {classForward = () => {}}) {
   return {
     destroy() {
       removeClass('mdc-menu-surface--anchor');
-    }
-  }
+    },
+  };
 }

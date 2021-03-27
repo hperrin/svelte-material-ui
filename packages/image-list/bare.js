@@ -8,4 +8,4 @@ import Label from '@smui/common/Label.svelte';
 
 export default ImageList;
 
-export {Item, ImageAspectContainer, Image, Supporting, Label};
+export { Item, ImageAspectContainer, Image, Supporting, Label };

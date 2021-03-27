@@ -5,4 +5,4 @@ import Icon from '@smui/common/Icon.svelte';
 
 export default Tab;
 
-export {Label, Icon};
+export { Label, Icon };
