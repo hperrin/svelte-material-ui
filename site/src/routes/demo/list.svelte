@@ -8,11 +8,19 @@
   <div>
     A simple list:
     <List class="demo-list">
-      <Item on:SMUI:action={() => clickedSimple = 'Cut'}><Text>Cut</Text></Item>
-      <Item on:SMUI:action={() => clickedSimple = 'Copy'}><Text>Copy</Text></Item>
-      <Item on:SMUI:action={() => clickedSimple = 'Paste'}><Text>Paste</Text></Item>
+      <Item on:SMUI:action={() => (clickedSimple = 'Cut')}
+        ><Text>Cut</Text></Item
+      >
+      <Item on:SMUI:action={() => (clickedSimple = 'Copy')}
+        ><Text>Copy</Text></Item
+      >
+      <Item on:SMUI:action={() => (clickedSimple = 'Paste')}
+        ><Text>Paste</Text></Item
+      >
       <Separator />
-      <Item on:SMUI:action={() => clickedSimple = 'Delete'}><Text>Delete</Text></Item>
+      <Item on:SMUI:action={() => (clickedSimple = 'Delete')}
+        ><Text>Delete</Text></Item
+      >
     </List>
   </div>
 
@@ -21,20 +29,20 @@
   <div>
     A dense list with graphics:
     <List class="demo-list" dense>
-      <Item on:SMUI:action={() => clickedDense = 'Edit'}>
+      <Item on:SMUI:action={() => (clickedDense = 'Edit')}>
         <Graphic class="material-icons">edit</Graphic>
         <Text>Edit</Text>
       </Item>
-      <Item on:SMUI:action={() => clickedDense = 'Send'}>
+      <Item on:SMUI:action={() => (clickedDense = 'Send')}>
         <Graphic class="material-icons">send</Graphic>
         <Text>Send</Text>
       </Item>
-      <Item on:SMUI:action={() => clickedDense = 'Archive'}>
+      <Item on:SMUI:action={() => (clickedDense = 'Archive')}>
         <Graphic class="material-icons">archive</Graphic>
         <Text>Archive</Text>
       </Item>
       <Separator />
-      <Item on:SMUI:action={() => clickedDense = 'Delete'}>
+      <Item on:SMUI:action={() => (clickedDense = 'Delete')}>
         <Graphic class="material-icons">clear</Graphic>
         <Text>Delete</Text>
       </Item>
@@ -57,10 +65,25 @@
 
   <div>
     A two-line single selection list with avatars, disabled item, and meta:
-    <List class="demo-list" twoLine avatarList singleSelection bind:selectedIndex={selectionIndex}>
+    <List
+      class="demo-list"
+      twoLine
+      avatarList
+      singleSelection
+      bind:selectedIndex={selectionIndex}
+    >
       {#each optionsTwoLine as item}
-        <Item on:SMUI:action={() => selectionTwoLine = item.name} disabled={item.disabled} selected={selectionTwoLine === item.name}>
-          <Graphic style="background-image: url(https://via.placeholder.com/40x40.png?text={item.name.split(' ').map(val => val.substring(0, 1)).join('')});" />
+        <Item
+          on:SMUI:action={() => (selectionTwoLine = item.name)}
+          disabled={item.disabled}
+          selected={selectionTwoLine === item.name}
+        >
+          <Graphic
+            style="background-image: url(https://via.placeholder.com/40x40.png?text={item.name
+              .split(' ')
+              .map((val) => val.substring(0, 1))
+              .join('')});"
+          />
           <Text>
             <PrimaryText>{item.name}</PrimaryText>
             <SecondaryText>{item.description}</SecondaryText>
@@ -71,7 +94,8 @@
     </List>
   </div>
 
-  <pre class="status">Selected: {selectionTwoLine}, value of selectedIndex: {selectionIndex}</pre>
+  <pre
+    class="status">Selected: {selectionTwoLine}, value of selectedIndex: {selectionIndex}</pre>
 
   <div>
     A three-line list:
@@ -87,7 +111,9 @@
         <Text>
           <PrimaryText>Addition Phone</PrimaryText>
           <SecondaryText>$700</SecondaryText>
-          <SecondaryText>Pretty much the same phone, but a different brand name and OS.</SecondaryText>
+          <SecondaryText
+            >Pretty much the same phone, but a different brand name and OS.</SecondaryText
+          >
         </Text>
       </Item>
     </List>
@@ -98,37 +124,40 @@
     <Group>
       <Subheader>Actors</Subheader>
       <List class="demo-list">
-        <Item on:SMUI:action={() => clickedGroup = 'Bruce Willis'}>
+        <Item on:SMUI:action={() => (clickedGroup = 'Bruce Willis')}>
           <Text>Bruce Willis</Text>
         </Item>
-        <Item on:SMUI:action={() => clickedGroup = 'Tom Hanks'}>
+        <Item on:SMUI:action={() => (clickedGroup = 'Tom Hanks')}>
           <Text>Tom Hanks</Text>
         </Item>
-        <Item on:SMUI:action={() => clickedGroup = 'Jack Nicholson'}>
+        <Item on:SMUI:action={() => (clickedGroup = 'Jack Nicholson')}>
           <Text>Jack Nicholson</Text>
         </Item>
-        <Item on:SMUI:action={() => clickedGroup = 'Leonardo DiCaprio'}>
+        <Item on:SMUI:action={() => (clickedGroup = 'Leonardo DiCaprio')}>
           <Text>Leonardo DiCaprio</Text>
         </Item>
-        <Item on:SMUI:action={() => clickedGroup = 'Matt Damon'}>
+        <Item on:SMUI:action={() => (clickedGroup = 'Matt Damon')}>
           <Text>Matt Damon</Text>
         </Item>
       </List>
       <Subheader>Books</Subheader>
       <List class="demo-list">
-        <Item on:SMUI:action={() => clickedGroup = 'To Kill a Mockingbird'}>
+        <Item on:SMUI:action={() => (clickedGroup = 'To Kill a Mockingbird')}>
           <Text>To Kill a Mockingbird</Text>
         </Item>
-        <Item on:SMUI:action={() => clickedGroup = 'The Great Gatsby'}>
+        <Item on:SMUI:action={() => (clickedGroup = 'The Great Gatsby')}>
           <Text>The Great Gatsby</Text>
         </Item>
-        <Item on:SMUI:action={() => clickedGroup = '1984'}>
+        <Item on:SMUI:action={() => (clickedGroup = '1984')}>
           <Text>1984</Text>
         </Item>
-        <Item on:SMUI:action={() => clickedGroup = 'Catch-22'}>
+        <Item on:SMUI:action={() => (clickedGroup = 'Catch-22')}>
           <Text>Catch-22</Text>
         </Item>
-        <Item on:SMUI:action={() => clickedGroup = 'Alice\'s Adventures in Wonderland'}>
+        <Item
+          on:SMUI:action={() =>
+            (clickedGroup = "Alice's Adventures in Wonderland")}
+        >
           <Text>Alice's Adventures in Wonderland</Text>
         </Item>
       </List>
@@ -215,7 +244,18 @@
 </section>
 
 <script>
-  import List, {Group, Item, Graphic, Meta, Label, Separator, Subheader, Text, PrimaryText, SecondaryText} from '@smui/list';
+  import List, {
+    Group,
+    Item,
+    Graphic,
+    Meta,
+    Label,
+    Separator,
+    Subheader,
+    Text,
+    PrimaryText,
+    SecondaryText,
+  } from '@smui/list';
   import Radio from '@smui/radio';
   import Checkbox from '@smui/checkbox';
 
@@ -225,23 +265,23 @@
     {
       name: 'Bruce Willis',
       description: 'Actor',
-      disabled: false
+      disabled: false,
     },
     {
       name: 'Austin Powers',
       description: 'Fictional Character',
-      disabled: true
+      disabled: true,
     },
     {
       name: 'Thomas Edison',
       description: 'Inventor',
-      disabled: false
+      disabled: false,
     },
     {
       name: 'Stephen Hawking',
       description: 'Scientist',
-      disabled: false
-    }
+      disabled: false,
+    },
   ];
   let selectionTwoLine = 'Stephen Hawking';
   // This value is updated when the component is initialized, based on the
@@ -255,6 +295,6 @@
 <style>
   * :global(.demo-list) {
     max-width: 600px;
-    border: 1px solid rgba(0,0,0,.1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
   }
 </style>

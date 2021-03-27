@@ -45,7 +45,7 @@ npm install --save-dev @smui/drawer
         <Text>Other</Text>
       </Item>
 
-      <Separator nav />
+      <Separator />
       <Subheader component={H6}>Starred</Subheader>
       {#each $starred as star}
         <Item href="javascript:void(0)" on:click={() => go(star.key)} activated={current === star.key}>
@@ -68,9 +68,9 @@ npm install --save-dev @smui/drawer
 
 # Demo
 
-*in action:* https://sveltematerialui.com/demo/drawer
+_in action:_ https://sveltematerialui.com/demo/drawer
 
-*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/drawer.svelte
+_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/drawer.svelte
 
 # Exports
 

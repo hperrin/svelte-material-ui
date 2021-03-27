@@ -13,4 +13,15 @@ import Separator from './Separator.svelte';
 
 export default List;
 
-export {Item, Text, PrimaryText, SecondaryText, Graphic, Meta, Label, Group, Subheader, Separator};
+export {
+  Item,
+  Text,
+  PrimaryText,
+  SecondaryText,
+  Graphic,
+  Meta,
+  Label,
+  Group,
+  Subheader,
+  Separator,
+};

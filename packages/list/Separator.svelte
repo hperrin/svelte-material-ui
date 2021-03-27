@@ -1,45 +1,48 @@
-{#if group || nav}
-  <hr
-    use:useActions={use}
-    use:forwardEvents
-    class="
-      mdc-list-divider
-      {className}
-      {padded ? 'mdc-list-divider--padded' : ''}
-      {inset ? 'mdc-list-divider--inset' : ''}
+<svelte:component
+  this={component}
+  use={[forwardEvents, ...use]}
+  class="
+    mdc-list-divider
+    {className}
+    {padded
+    ? 'mdc-list-divider--padded'
+    : ''}
+    {inset ? 'mdc-list-divider--inset' : ''}
+    {insetLeading
+    ? 'mdc-list-divider--inset-leading'
+    : ''}
+    {insetTrailing
+    ? 'mdc-list-divider--inset-trailing'
+    : ''}
+    {insetPadding ? 'mdc-list-divider--inset-padding' : ''}
     "
-    {...props}
-  />
-{:else}
-  <li
-    use:useActions={use}
-    use:forwardEvents
-    class="
-      mdc-list-divider
-      {className}
-      {padded ? 'mdc-list-divider--padded' : ''}
-      {inset ? 'mdc-list-divider--inset' : ''}
-    "
-    role="separator"
-    {...props}
-  ></li>
-{/if}
+  role="separator"
+  {...props}
+/>
 
 <script>
-  import {get_current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
-  import {exclude} from '@smui/common/exclude.js';
-  import {useActions} from '@smui/common/useActions.js';
+  import { get_current_component } from 'svelte/internal';
+  import { forwardEventsBuilder } from '@smui/common/forwardEvents.js';
+  import { exclude } from '@smui/common/exclude.js';
+  import { useActions } from '@smui/common/useActions.js';
+  import Li from '@smui/common/Li.svelte';
+  import Hr from '@smui/common/Hr.svelte';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
   export let use = [];
   let className = '';
-  export {className as class};
-  export let group = false;
-  export let nav = false;
+  export { className as class };
   export let padded = false;
   export let inset = false;
+  export let insetLeading = false;
+  export let insetTrailing = false;
+  export let insetPadding = false;
 
-  $: props = exclude($$props, ['use', 'class', 'group', 'nav', 'padded', 'inset']);
+  let nav = getContext('SMUI:list:item:nav');
+  let divider = getContext('SMUI:list:divider');
+
+  export let component = nav || !divider ? Hr : Li;
+
+  $: props = exclude($$props, ['use', 'class', 'padded', 'inset']);
 </script>

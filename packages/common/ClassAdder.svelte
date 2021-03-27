@@ -2,6 +2,7 @@
   this={component}
   use={[forwardEvents, ...use]}
   class="{smuiClass} {className}"
+  {...props}
   {...exclude($$props, ['use', 'class', 'component', 'forwardEvents'])}
 ><slot></slot></svelte:component>
 
@@ -9,7 +10,8 @@
   export const internals = {
     component: null,
     smuiClass: null,
-    contexts: {}
+    contexts: {},
+    props: {}
   };
 </script>
 
@@ -29,6 +31,7 @@
 
   const smuiClass = internals.class;
   const contexts = internals.contexts;
+  const props = internals.props;
 
   const forwardEvents = forwardEventsBuilder(get_current_component(), forwardEventsAdditional);
 

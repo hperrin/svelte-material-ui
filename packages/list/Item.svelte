@@ -1,10 +1,11 @@
 <svelte:component
   this={component}
   bind:element={element}
-  use={[[Ripple, {ripple, unbounded: false, color}], forwardEvents, ...use]}
+  use={[[Ripple, {ripple, unbounded: false, color, disabled, addClass, removeClass}], forwardEvents, ...use]}
   class="
     mdc-list-item
     {className}
+    {internalClasses.join(' ')}
     {activated ? 'mdc-list-item--activated' : ''}
     {selected ? 'mdc-list-item--selected' : ''}
     {disabled ? 'mdc-list-item--disabled' : ''}
@@ -19,7 +20,7 @@
   on:click={action}
   on:keydown={handleKeydown}
   {...exclude($$props, ['use', 'class', 'ripple', 'color', 'nonInteractive', 'activated', 'selected', 'disabled', 'tabindex', 'inputId'])}
-><slot></slot></svelte:component>
+>{#if ripple}<span class="mdc-list-item__ripple"></span>{/if}<slot></slot></svelte:component>
 
 <script context="module">
   let counter = 0;
@@ -55,6 +56,7 @@
   export let href = null;
 
   let element;
+  let internalClasses = [];
   let addTabindexIfNoItemsSelectedRaf;
   let nav = getContext('SMUI:list:item:nav');
 
@@ -90,6 +92,20 @@
       window.cancelAnimationFrame(addTabindexIfNoItemsSelectedRaf);
     }
   });
+
+  function addClass(className) {
+    const idx = internalClasses.indexOf(className);
+    if (idx === -1) {
+      internalClasses.push(className);
+    }
+  }
+
+  function removeClass(className) {
+    const idx = internalClasses.indexOf(className);
+    if (idx !== -1) {
+      internalClasses.splice(idx, 1);
+    }
+  }
 
   function addTabindexIfNoItemsSelected() {
     // Look through next siblings to see if none of them are selected.
