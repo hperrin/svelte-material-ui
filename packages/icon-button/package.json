@@ -30,8 +30,8 @@
   "dependencies": {
     "@material/density": "^10.0.0",
     "@material/icon-button": "^10.0.0",
-    "@smui/common": "^2.0.0-beta.1",
-    "@smui/ripple": "^2.0.0-beta.1"
+    "@smui/common": "file:../common",
+    "@smui/ripple": "file:../ripple"
   },
   "devDependencies": {
     "glob-cmd": "0.0.7",

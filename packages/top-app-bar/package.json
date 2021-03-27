@@ -30,7 +30,7 @@
   "dependencies": {
     "@material/feature-targeting": "^10.0.0",
     "@material/top-app-bar": "^10.0.0",
-    "@smui/common": "^2.0.0-beta.1"
+    "@smui/common": "file:../common"
   },
   "devDependencies": {
     "glob-cmd": "0.0.7",
