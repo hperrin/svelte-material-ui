@@ -31,6 +31,7 @@
     "@material/ripple": "^10.0.0"
   },
   "devDependencies": {
+    "@material/dom": "^10.0.0",
     "glob-cmd": "0.0.7",
     "sass": "^1.32.8"
   }

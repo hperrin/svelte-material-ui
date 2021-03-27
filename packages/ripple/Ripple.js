@@ -1,72 +1,75 @@
-import {MDCRipple, MDCRippleFoundation} from '@material/ripple';
-import {getContext} from 'svelte';
+import { MDCRipple, MDCRippleFoundation } from '@material/ripple';
+import * as util from '@material/ripple/util';
+import { applyPassive } from '@material/dom/events';
+import { matches } from '@material/dom/ponyfill';
+import { getContext } from 'svelte';
 
-export default function Ripple(node, props = {ripple: false, unbounded: false, disabled: false, color: null, classForward: () => {}}) {
-  let instance = null;
+export default function Ripple(
+  node,
+  {
+    ripple = false,
+    unbounded = false,
+    disabled = false,
+    color = null,
+    addClass,
+    removeClass,
+  }
+) {
+  let instance;
   let addLayoutListener = getContext('SMUI:addLayoutListener');
   let removeLayoutListener;
-  let classList = [];
-  let rippleCapableSurface = {
-    get root_() {
-      return node;
-    },
 
-    get unbounded() {
-      return props.unbounded;
-    },
-
-    set unbounded(value) {
-      return props.unbounded = value;
-    },
-
-    get disabled() {
-      return props.disabled;
-    },
-
-    set disabled(value) {
-      return props.disabled = value;
-    }
-  };
-
-  function addClass(className) {
-    const idx = classList.indexOf(className);
-    if (idx === -1) {
-      node.classList.add(className);
-      classList.push(className);
-      if (props.classForward) {
-        props.classForward(classList);
-      }
-    }
-  }
-
-  function removeClass(className) {
-    const idx = classList.indexOf(className);
-    if (idx !== -1) {
-      node.classList.remove(className);
-      classList.splice(idx, 1);
-      if (props.classForward) {
-        props.classForward(classList);
-      }
-    }
+  function getAdapter() {
+    return {
+      addClass,
+      browserSupportsCssVars: () => util.supportsCssVariables(window),
+      computeBoundingRect: () => node.getBoundingClientRect(),
+      containsEventTarget: (target) => node.contains(target),
+      deregisterDocumentInteractionHandler: (evtType, handler) =>
+        document.documentElement.removeEventListener(
+          evtType,
+          handler,
+          applyPassive()
+        ),
+      deregisterInteractionHandler: (evtType, handler) =>
+        node.removeEventListener(evtType, handler, applyPassive()),
+      deregisterResizeHandler: (handler) =>
+        window.removeEventListener('resize', handler),
+      getWindowPageOffset: () => ({
+        x: window.pageXOffset,
+        y: window.pageYOffset,
+      }),
+      isSurfaceActive: () => matches(node, ':active'),
+      isSurfaceDisabled: () => !!disabled,
+      isUnbounded: () => !!unbounded,
+      registerDocumentInteractionHandler: (evtType, handler) =>
+        document.documentElement.addEventListener(
+          evtType,
+          handler,
+          applyPassive()
+        ),
+      registerInteractionHandler: (evtType, handler) =>
+        node.addEventListener(evtType, handler, applyPassive()),
+      registerResizeHandler: (handler) =>
+        window.addEventListener('resize', handler),
+      removeClass,
+      updateCssVariable: (varName, value) =>
+        node.style.setProperty(varName, value),
+    };
   }
 
   function handleProps() {
-    if (props.ripple && !instance) {
+    if (ripple && !instance) {
       // Override the Ripple component's adapter, so that we can forward classes
       // to Svelte components that overwrite Ripple's classes.
-      const foundation = new MDCRippleFoundation({
-        ...MDCRipple.createAdapter(rippleCapableSurface),
-        addClass: (className) => addClass(className),
-        removeClass: (className) => removeClass(className)
-      });
-      instance = new MDCRipple(node, foundation);
-    } else if (instance && !props.ripple) {
+      instance = new MDCRippleFoundation(getAdapter());
+      isntance.init();
+    } else if (instance && !ripple) {
       instance.destroy();
       instance = null;
     }
-    if (props.ripple) {
-      instance.unbounded = !!props.unbounded;
-      switch (props.color) {
+    if (ripple) {
+      switch (color) {
         case 'surface':
           addClass('mdc-ripple-surface');
           removeClass('mdc-ripple-surface--primary');
@@ -102,8 +105,25 @@ export default function Ripple(node, props = {ripple: false, unbounded: false, d
   }
 
   return {
-    update(newProps = {ripple: false, unbounded: false, color: null, classForward: []}) {
-      props = newProps;
+    update(props) {
+      if ('ripple' in props) {
+        ripple = props.ripple;
+      }
+      if ('unbounded' in props) {
+        unbounded = props.unbounded;
+      }
+      if ('disabled' in props) {
+        disabled = props.disabled;
+      }
+      if ('color' in props) {
+        color = props.color;
+      }
+      if ('addClass' in props) {
+        addClass = props.addClass;
+      }
+      if ('removeClass' in props) {
+        removeClass = props.removeClass;
+      }
       handleProps();
     },
 
@@ -119,6 +139,6 @@ export default function Ripple(node, props = {ripple: false, unbounded: false, d
       if (removeLayoutListener) {
         removeLayoutListener();
       }
-    }
-  }
+    },
+  };
 }
