@@ -19,7 +19,10 @@
     value={valueKey === uninitializedValue ? value : valueKey}
     {checked}
     on:change={handleChange}
-    on:change on:input
+    on:change
+    on:input
+    on:blur
+    on:focus
     {...exclude(prefixFilter($$props, 'input$'), ['use', 'class'])}
   />
   <div class="mdc-radio__background">
