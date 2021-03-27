@@ -7,4 +7,4 @@ import Icon from '@smui/common/Icon.svelte';
 
 export default Button;
 
-export {Group, GroupItem, Label, Icon};
+export { Group, GroupItem, Label, Icon };

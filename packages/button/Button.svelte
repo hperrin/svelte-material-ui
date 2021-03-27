@@ -1,10 +1,10 @@
 <svelte:component
   this={component}
-  use={[[Ripple, {ripple, unbounded: false, disabled: !!$$props.disabled, classForward: classes => rippleClasses = classes}], forwardEvents, ...use]}
+  use={[[Ripple, {ripple, unbounded: false, disabled: !!$$props.disabled, addClass, removeClass}], forwardEvents, ...use]}
   class="
     mdc-button
     {className}
-    {rippleClasses.join(' ')}
+    {internalClasses.join(' ')}
     {variant === 'raised' ? 'mdc-button--raised' : ''}
     {variant === 'unelevated' ? 'mdc-button--unelevated' : ''}
     {variant === 'outlined' ? 'mdc-button--outlined' : ''}
@@ -48,8 +48,8 @@
 
   export let component = href == null ? Button : A;
 
+  let internalClasses = [];
   let context = getContext('SMUI:button:context');
-  let rippleClasses = [];
 
   $: dialogExcludes = (context === 'dialog:action') ? ['action', 'default'] : [];
 
@@ -58,4 +58,18 @@
 
   setContext('SMUI:label:context', 'button');
   setContext('SMUI:icon:context', 'button');
+
+  function addClass(className) {
+    const idx = internalClasses.indexOf(className);
+    if (idx === -1) {
+      internalClasses.push(className);
+    }
+  }
+
+  function removeClass(className) {
+    const idx = internalClasses.indexOf(className);
+    if (idx !== -1) {
+      internalClasses.splice(idx, 1);
+    }
+  }
 </script>
