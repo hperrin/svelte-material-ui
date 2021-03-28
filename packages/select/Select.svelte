@@ -1,23 +1,60 @@
 <div
   bind:this={element}
-  use:Anchor={{classForward: classes => anchorClasses = classes}}
+  use:Anchor={{ addClass, removeClass }}
   use:useActions={use}
   use:forwardEvents
   class="
     mdc-select
     {className}
-    {anchorClasses.join(' ')}
+    {Object.keys(internalClasses).join(
+    ' '
+  )}
     {required ? 'mdc-select--required' : ''}
-    {disabled ? 'mdc-select--disabled' : ''}
-    {variant === 'outlined' ? 'mdc-select--outlined' : ''}
-    {variant === 'standard' ? 'smui-select--standard' : ''}
-    {withLeadingIcon ? 'mdc-select--with-leading-icon' : ''}
-    {(noLabel || label == null) ? 'mdc-select--no-label' : ''}
+    {disabled
+    ? 'mdc-select--disabled'
+    : ''}
+    {variant === 'outlined'
+    ? 'mdc-select--outlined'
+    : ''}
+    {variant === 'standard'
+    ? 'smui-select--standard'
+    : ''}
+    {withLeadingIcon
+    ? 'mdc-select--with-leading-icon'
+    : ''}
+    {noLabel || label == null
+    ? 'mdc-select--no-label'
+    : ''}
     {invalid ? 'mdc-select--invalid' : ''}
-    {menuOpen ? 'mdc-select--activated' : ''}
+    {menuOpen
+    ? 'mdc-select--activated'
+    : ''}
   "
   on:MDCSelect:change={changeHandler}
-  {...exclude($$props, ['use', 'class', 'ripple', 'disabled', 'variant', 'noLabel', 'withLeadingIcon', 'label', 'value', 'selectedIndex', 'selectedText', 'dirty', 'invalid', 'updateInvalid', 'required', 'anchor$', 'selectedText$', 'label$', 'ripple$', 'outline$', 'menu$', 'list$'])}
+  {...exclude($$props, [
+    'use',
+    'class',
+    'ripple',
+    'disabled',
+    'variant',
+    'noLabel',
+    'withLeadingIcon',
+    'label',
+    'value',
+    'selectedIndex',
+    'selectedText',
+    'dirty',
+    'invalid',
+    'updateInvalid',
+    'required',
+    'anchor$',
+    'selectedText$',
+    'label$',
+    'ripple$',
+    'outline$',
+    'menu$',
+    'list$',
+  ])}
 >
   <div
     use:useActions={anchor$use}
@@ -25,39 +62,47 @@
     {...exclude(prefixFilter($$props, 'anchor$'), ['use', 'class'])}
   >
     {#if variant === 'outlined'}
-      <NotchedOutline noLabel={noLabel || label == null} {...prefixFilter($$props, 'outline$')}>
+      <NotchedOutline
+        noLabel={noLabel || label == null}
+        {...prefixFilter($$props, 'outline$')}
+      >
         {#if !noLabel && label != null}
           <FloatingLabel
-            id={inputId+'-smui-label'}
+            id={inputId + '-smui-label'}
             floatAbove={value !== ''}
-            class="{label$class}"
+            class={label$class}
             {...exclude(prefixFilter($$props, 'label$'), ['class'])}
-          >{label}<slot name="label"></slot></FloatingLabel>
+            >{label}<slot name="label" /></FloatingLabel
+          >
         {/if}
       </NotchedOutline>
     {/if}
-    <slot name="icon"></slot>
-    <i class="mdc-select__dropdown-icon"></i>
+    <slot name="icon" />
+    <i class="mdc-select__dropdown-icon" />
     <div
       bind:this={selectText}
       use:useActions={selectedText$use}
-      id={inputId+'-smui-selected-text'}
+      id={inputId + '-smui-selected-text'}
       class="mdc-select__selected-text {selectedText$class}"
       role="button"
       aria-haspopup="listbox"
-      aria-labelledby="{inputId+'-smui-label'} {inputId+'-smui-selected-text'}"
-      aria-disabled="{disabled ? 'true' : 'false'}"
-      aria-required="{required ? 'true' : 'false'}"
+      aria-labelledby="{inputId + '-smui-label'} {inputId +
+        '-smui-selected-text'}"
+      aria-disabled={disabled ? 'true' : 'false'}
+      aria-required={required ? 'true' : 'false'}
       {...exclude(prefixFilter($$props, 'selectedText$'), ['use', 'class'])}
-    >{$selectedTextStore}</div>
+    >
+      {$selectedTextStore}
+    </div>
     {#if variant !== 'outlined'}
       {#if !noLabel && label != null}
         <FloatingLabel
-          id={inputId+'-smui-label'}
+          id={inputId + '-smui-label'}
           floatAbove={value !== ''}
-          class="{label$class}"
+          class={label$class}
           {...exclude(prefixFilter($$props, 'label$'), ['class'])}
-        >{label}<slot name="label"></slot></FloatingLabel>
+          >{label}<slot name="label" /></FloatingLabel
+        >
       {/if}
       {#if ripple}
         <LineRipple {...prefixFilter($$props, 'ripple$')} />
@@ -70,7 +115,7 @@
     bind:open={menuOpen}
     {...exclude(prefixFilter($$props, 'menu$'), ['class'])}
   >
-    <List {...prefixFilter($$props, 'list$')}><slot></slot></List>
+    <List {...prefixFilter($$props, 'list$')}><slot /></List>
   </Menu>
 </div>
 
@@ -79,27 +124,29 @@
 </script>
 
 <script>
-  import {MDCSelect} from '@material/select';
-  import {onMount, onDestroy, getContext, setContext} from 'svelte';
-  import {writable} from 'svelte/store';
-  import {get_current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
-  import {exclude} from '@smui/common/exclude.js';
-  import {prefixFilter} from '@smui/common/prefixFilter.js';
-  import {useActions} from '@smui/common/useActions.js';
-  import {Anchor} from '@smui/menu-surface';
+  import { MDCSelect } from '@material/select';
+  import { onMount, onDestroy, getContext, setContext } from 'svelte';
+  import { writable } from 'svelte/store';
+  import { get_current_component } from 'svelte/internal';
+  import { forwardEventsBuilder } from '@smui/common/forwardEvents.js';
+  import { exclude } from '@smui/common/exclude.js';
+  import { prefixFilter } from '@smui/common/prefixFilter.js';
+  import { useActions } from '@smui/common/useActions.js';
+  import { Anchor } from '@smui/menu-surface';
   import Menu from '@smui/menu/Menu.svelte';
   import List from '@smui/list/List.svelte';
   import FloatingLabel from '@smui/floating-label/FloatingLabel.svelte';
   import LineRipple from '@smui/line-ripple/LineRipple.svelte';
   import NotchedOutline from '@smui/notched-outline/NotchedOutline.svelte';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component(), ['MDCSelect:change']);
+  const forwardEvents = forwardEventsBuilder(get_current_component(), [
+    'MDCSelect:change',
+  ]);
   const uninitializedValue = () => {};
 
   export let use = [];
   let className = '';
-  export {className as class};
+  export { className as class };
   export let ripple = true;
   export let disabled = false;
   export let variant = 'standard';
@@ -112,7 +159,7 @@
   export let invalid = uninitializedValue;
   export let updateInvalid = invalid === uninitializedValue;
   export let required = false;
-  export let inputId = 'SMUI-select-'+(counter++);
+  export let inputId = 'SMUI-select-' + counter++;
   export let anchor$use = [];
   export let anchor$class = '';
   export let selectedText$use = [];
@@ -121,11 +168,11 @@
   export let menu$class = '';
 
   let element;
+  let internalClasses = {};
   let selectText;
   let select;
-  let anchorClasses = [];
   let menuPromiseResolve;
-  let menuPromise = new Promise(resolve => menuPromiseResolve = resolve);
+  let menuPromise = new Promise((resolve) => (menuPromiseResolve = resolve));
   let addLayoutListener = getContext('SMUI:addLayoutListener');
   let removeLayoutListener;
   let menuOpen = false;
@@ -196,6 +243,14 @@
       removeLayoutListener();
     }
   });
+
+  function addClass(className) {
+    internalClasses[className] = true;
+  }
+
+  function removeClass(className) {
+    delete internalClasses[className];
+  }
 
   function getMenuInstancePromise() {
     return menuPromise;

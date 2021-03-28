@@ -140,24 +140,7 @@
   }
 
   onMount(async () => {
-    instance = new MDCListFoundation(getAdapter());
-    if (singleSelection || radiolist || checklist) {
-      selectedIndex = getSelectedIndex();
-    }
-    dispatch('SMUI:list:instantiate', instance);
-    instance.init();
-  });
-
-  onDestroy(() => {
-    instance.destroy();
-
-    if (removeLayoutListener) {
-      removeLayoutListener();
-    }
-  });
-
-  function getAdapter() {
-    return {
+    instance = new MDCListFoundation({
       addClassForElementIndex: (index, className) => {
         getOrderedList()[index]?.addClass(className);
       },
@@ -231,8 +214,21 @@
           }
         );
       },
-    };
-  }
+    });
+    if (singleSelection || radiolist || checklist) {
+      selectedIndex = getSelectedIndex();
+    }
+    dispatch('SMUI:list:instantiate', instance);
+    instance.init();
+  });
+
+  onDestroy(() => {
+    instance.destroy();
+
+    if (removeLayoutListener) {
+      removeLayoutListener();
+    }
+  });
 
   function handleItemMount(accessor) {
     items.push(accessor);
@@ -258,8 +254,8 @@
       )
     ) {
       e.preventDefault();
-      list.selectedIndex = selectedIndex;
-    } else if (list && list.selectedIndex === e.detail.index) {
+      instance.setSelectedIndex(selectedIndex);
+    } else if (instance && getSelectedIndex() === e.detail.index) {
       selectedIndex = e.detail.index;
     }
   }

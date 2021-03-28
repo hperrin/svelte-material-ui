@@ -5,110 +5,226 @@
   class="
     mdc-menu-surface
     {className}
+    {Object.keys(
+    internalClasses
+  ).join(' ')}
     {fixed ? 'mdc-menu-surface--fixed' : ''}
-    {isStatic ? 'mdc-menu-surface--open' : ''}
+    {isStatic
+    ? 'mdc-menu-surface--open'
+    : ''}
     {isStatic ? 'smui-menu-surface--static' : ''}
+    {fullWidth
+    ? 'mdc-menu-surface--fullwidth'
+    : ''}
   "
-  on:MDCMenuSurface:closed={updateOpen} on:MDCMenuSurface:opened={updateOpen}
-  {...exclude($$props, ['use', 'class', 'static', 'anchor', 'fixed', 'open', 'quickOpen', 'anchorElement', 'anchorCorner', 'element'])}
-><slot></slot></div>
+  style="{style} {Object.entries(internalStyle)
+    .map(([name, value]) => `${name}: ${value};`)
+    .join(' ')}"
+  on:MDCMenuSurface:closed={updateOpen}
+  on:MDCMenuSurface:opened={updateOpen}
+  {...exclude($$props, [
+    'use',
+    'class',
+    'style',
+    'static',
+    'anchor',
+    'fixed',
+    'open',
+    'fullWidth',
+    'quickOpen',
+    'anchorElement',
+    'anchorCorner',
+    'anchorMargin',
+    'element',
+  ])}
+>
+  <slot />
+</div>
 
 <script context="module">
-  import {Corner, CornerBit} from '@material/menu-surface';
+  import { Corner, CornerBit } from '@material/menu-surface';
 
-  export {Corner, CornerBit};
+  export { Corner, CornerBit };
 </script>
 
 <script>
-  import {MDCMenuSurface} from '@material/menu-surface';
-  import {onMount, onDestroy, getContext, setContext} from 'svelte';
-  import {get_current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
-  import {exclude} from '@smui/common/exclude.js';
-  import {useActions} from '@smui/common/useActions.js';
+  import {
+    MDCMenuSurfaceFoundation,
+    Corner,
+    CornerBit,
+    strings,
+  } from '@material/menu-surface';
+  import { getCorrectPropertyName } from '@material/animation/util';
+  import {
+    onMount,
+    onDestroy,
+    getContext,
+    setContext,
+    createEventDispatcher,
+  } from 'svelte';
+  import { get_current_component } from 'svelte/internal';
+  import { forwardEventsBuilder } from '@smui/common/forwardEvents.js';
+  import { exclude } from '@smui/common/exclude.js';
+  import { useActions } from '@smui/common/useActions.js';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component(), ['MDCMenuSurface:closed', 'MDCMenuSurface:opened']);
+  const dispatch = createEventDispatcher();
+  const forwardEvents = forwardEventsBuilder(get_current_component(), [
+    'MDCMenuSurface:closed',
+    'MDCMenuSurface:closing',
+    'MDCMenuSurface:opened',
+  ]);
 
   export let use = [];
   let className = '';
-  export {className as class};
+  export { className as class };
+  export let style = '';
   let isStatic = false;
-  export {isStatic as static};
+  export { isStatic as static };
   export let anchor = true;
   export let fixed = false;
   export let open = isStatic;
+  export let fullWidth = false;
   export let quickOpen = false;
   export let anchorElement = null;
   export let anchorCorner = null;
+  export let anchorMargin = { top: 0, right: 0, bottom: 0, left: 0 };
 
   export let element = undefined; // This is exported because Menu needs it.
-  let menuSurface;
-  let instantiate = getContext('SMUI:menu-surface:instantiate');
-  let getInstance = getContext('SMUI:menu-surface:getInstance');
+  let instance;
+  let internalClasses = {};
+  let internalStyle = {};
+  let previousFocus;
 
   setContext('SMUI:list:role', 'menu');
   setContext('SMUI:list:item:role', 'menuitem');
 
-  $: if (element && anchor && !element.parentNode.classList.contains('mdc-menu-surface--anchor')) {
+  $: if (
+    element &&
+    anchor &&
+    !element.parentNode.classList.contains('mdc-menu-surface--anchor')
+  ) {
     element.parentNode.classList.add('mdc-menu-surface--anchor');
     anchorElement = element.parentNode;
   }
 
-  $: if (menuSurface && menuSurface.isOpen() !== open) {
+  $: if (instance && instance.isOpen() !== open) {
     if (open) {
-      menuSurface.open();
+      instance.open();
     } else {
-      menuSurface.close();
+      instance.close();
     }
   }
 
-  $: if (menuSurface && menuSurface.quickOpen !== quickOpen) {
-    menuSurface.quickOpen = quickOpen;
+  $: if (instance) {
+    instance.setQuickOpen(quickOpen);
   }
 
-  $: if (menuSurface && menuSurface.anchorElement !== anchorElement) {
-    menuSurface.anchorElement = anchorElement;
+  $: if (instance) {
+    instance.setFixedPosition(fixed);
   }
 
-  let oldFixed = null;
-  $: if (menuSurface && oldFixed !== fixed) {
-    menuSurface.setFixedPosition(fixed);
-    oldFixed = fixed;
-  }
-
-  $: if (menuSurface && anchorCorner != null) {
+  $: if (instance && anchorCorner != null) {
     if (Corner.hasOwnProperty(anchorCorner)) {
-      menuSurface.setAnchorCorner(Corner[anchorCorner]);
+      instance.setAnchorCorner(Corner[anchorCorner]);
     } else if (CornerBit.hasOwnProperty(anchorCorner)) {
-      menuSurface.setAnchorCorner(Corner[anchorCorner]);
+      instance.setAnchorCorner(CornerBit[anchorCorner]);
     } else {
-      menuSurface.setAnchorCorner(anchorCorner);
+      instance.setAnchorCorner(anchorCorner);
     }
+  }
+
+  $: if (instance) {
+    instance.setAnchorMargin(anchorMargin);
   }
 
   onMount(async () => {
-    if (instantiate !== false) {
-      menuSurface = new MDCMenuSurface(element);
-    } else {
-      menuSurface = await getInstance();
-    }
+    instance = new MDCMenuSurfaceFoundation({
+      addClass,
+      removeClass,
+      hasClass: (className) => element.classList.contains(className),
+      hasAnchor: () => !!anchorElement,
+      notifyClose: () => dispatch('MDCMenuSurface:closed'),
+      notifyClosing: () => {
+        dispatch('MDCMenuSurface:closing');
+      },
+      notifyOpen: () => dispatch('MDCMenuSurface:opened'),
+      isElementInContainer: (el) => element.contains(el),
+      isRtl: () =>
+        getComputedStyle(element).getPropertyValue('direction') === 'rtl',
+      setTransformOrigin: (origin) => {
+        const propertyName = `${getCorrectPropertyName(
+          window,
+          'transform'
+        )}-origin`;
+        internalStyle[propertyName] = origin;
+      },
+
+      isFocused: () => document.activeElement === element,
+      saveFocus: () => {
+        previousFocus = document.activeElement;
+      },
+      restoreFocus: () => {
+        if (element.contains(document.activeElement)) {
+          if (previousFocus && previousFocus.focus) {
+            previousFocus.focus();
+          }
+        }
+      },
+
+      getInnerDimensions: () => {
+        return {
+          width: element.offsetWidth,
+          height: element.offsetHeight,
+        };
+      },
+      getAnchorDimensions: () =>
+        anchorElement ? anchorElement.getBoundingClientRect() : null,
+      getWindowDimensions: () => {
+        return { width: window.innerWidth, height: window.innerHeight };
+      },
+      getBodyDimensions: () => {
+        return {
+          width: document.body.clientWidth,
+          height: document.body.clientHeight,
+        };
+      },
+      getWindowScroll: () => {
+        return { x: window.pageXOffset, y: window.pageYOffset };
+      },
+      setPosition: (position) => {
+        internalStyle.left = 'left' in position ? `${position.left}px` : '';
+        internalStyle.right = 'right' in position ? `${position.right}px` : '';
+        internalStyle.top = 'top' in position ? `${position.top}px` : '';
+        internalStyle.bottom =
+          'bottom' in position ? `${position.bottom}px` : '';
+      },
+      setMaxHeight: (height) => {
+        internalStyle.maxHeight = height;
+      },
+    });
+    dispatch('SMUI:menu-surface:instantiate', instance);
+    instance.init();
   });
 
   onDestroy(() => {
     if (anchor) {
-      element && element.parentNode.classList.remove('mdc-menu-surface--anchor');
+      element &&
+        element.parentNode.classList.remove('mdc-menu-surface--anchor');
     }
-    let isHoisted = false;
-    if (menuSurface) {
-      isHoisted = menuSurface.foundation_.isHoistedElement_;
-      if (instantiate !== false) {
-        menuSurface.destroy();
-      }
-    }
+    const isHoisted = instance.isHoistedElement_;
+    menuSurface.destroy();
     if (isHoisted) {
       element.parentNode.removeChild(element);
     }
   });
+
+  function addClass(className) {
+    internalClasses[className] = true;
+  }
+
+  function removeClass(className) {
+    delete internalClasses[className];
+  }
 
   function updateOpen() {
     if (menuSurface) {
@@ -124,32 +240,11 @@
     open = value;
   }
 
-  export function setAnchorCorner(...args) {
-    return menuSurface.setAnchorCorner(...args);
-  }
-
-  export function setAnchorMargin(...args) {
-    return menuSurface.setAnchorMargin(...args);
-  }
-
-  export function setFixedPosition(isFixed, ...args) {
-    fixed = isFixed;
-    return menuSurface.setFixedPosition(isFixed, ...args);
-  }
-
   export function setAbsolutePosition(...args) {
-    return menuSurface.setAbsolutePosition(...args);
-  }
-
-  export function setMenuSurfaceAnchorElement(...args) {
-    return menuSurface.setMenuSurfaceAnchorElement(...args);
+    return instance.setAbsolutePosition(...args);
   }
 
   export function setIsHoisted(...args) {
-    return menuSurface.setIsHoisted(...args);
-  }
-
-  export function getDefaultFoundation(...args) {
-    return menuSurface.getDefaultFoundation(...args);
+    return instance.setIsHoisted(...args);
   }
 </script>

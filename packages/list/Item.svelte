@@ -12,7 +12,7 @@
   class="
     mdc-list-item
     {className}
-    {internalClasses.join(
+    {Object.keys(internalClasses).join(
     ' '
   )}
     {activated ? 'mdc-list-item--activated' : ''}
@@ -96,7 +96,7 @@
   export let href = null;
 
   let element;
-  let internalClasses = [];
+  let internalClasses = {};
   let internalAttrs = {};
   let addTabindexIfNoItemsSelectedRaf;
   let accessor = {
@@ -163,17 +163,11 @@
   });
 
   function addClass(className) {
-    const idx = internalClasses.indexOf(className);
-    if (idx === -1) {
-      internalClasses.push(className);
-    }
+    internalClasses[className] = true;
   }
 
   function removeClass(className) {
-    const idx = internalClasses.indexOf(className);
-    if (idx !== -1) {
-      internalClasses.splice(idx, 1);
-    }
+    delete internalClasses[className];
   }
 
   function addAttr(name, value) {

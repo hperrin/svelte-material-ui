@@ -19,51 +19,47 @@ export default function Ripple(
   let addLayoutListener = getContext('SMUI:addLayoutListener');
   let removeLayoutListener;
 
-  function getAdapter() {
-    return {
-      addClass,
-      browserSupportsCssVars: () => util.supportsCssVariables(window),
-      computeBoundingRect: () => node.getBoundingClientRect(),
-      containsEventTarget: (target) => node.contains(target),
-      deregisterDocumentInteractionHandler: (evtType, handler) =>
-        document.documentElement.removeEventListener(
-          evtType,
-          handler,
-          applyPassive()
-        ),
-      deregisterInteractionHandler: (evtType, handler) =>
-        node.removeEventListener(evtType, handler, applyPassive()),
-      deregisterResizeHandler: (handler) =>
-        window.removeEventListener('resize', handler),
-      getWindowPageOffset: () => ({
-        x: window.pageXOffset,
-        y: window.pageYOffset,
-      }),
-      isSurfaceActive: () => matches(node, ':active'),
-      isSurfaceDisabled: () => !!disabled,
-      isUnbounded: () => !!unbounded,
-      registerDocumentInteractionHandler: (evtType, handler) =>
-        document.documentElement.addEventListener(
-          evtType,
-          handler,
-          applyPassive()
-        ),
-      registerInteractionHandler: (evtType, handler) =>
-        node.addEventListener(evtType, handler, applyPassive()),
-      registerResizeHandler: (handler) =>
-        window.addEventListener('resize', handler),
-      removeClass,
-      updateCssVariable: (varName, value) =>
-        node.style.setProperty(varName, value),
-    };
-  }
-
   function handleProps() {
     if (ripple && !instance) {
       // Override the Ripple component's adapter, so that we can forward classes
       // to Svelte components that overwrite Ripple's classes.
-      instance = new MDCRippleFoundation(getAdapter());
-      isntance.init();
+      instance = new MDCRippleFoundation({
+        addClass,
+        browserSupportsCssVars: () => util.supportsCssVariables(window),
+        computeBoundingRect: () => node.getBoundingClientRect(),
+        containsEventTarget: (target) => node.contains(target),
+        deregisterDocumentInteractionHandler: (evtType, handler) =>
+          document.documentElement.removeEventListener(
+            evtType,
+            handler,
+            applyPassive()
+          ),
+        deregisterInteractionHandler: (evtType, handler) =>
+          node.removeEventListener(evtType, handler, applyPassive()),
+        deregisterResizeHandler: (handler) =>
+          window.removeEventListener('resize', handler),
+        getWindowPageOffset: () => ({
+          x: window.pageXOffset,
+          y: window.pageYOffset,
+        }),
+        isSurfaceActive: () => matches(node, ':active'),
+        isSurfaceDisabled: () => !!disabled,
+        isUnbounded: () => !!unbounded,
+        registerDocumentInteractionHandler: (evtType, handler) =>
+          document.documentElement.addEventListener(
+            evtType,
+            handler,
+            applyPassive()
+          ),
+        registerInteractionHandler: (evtType, handler) =>
+          node.addEventListener(evtType, handler, applyPassive()),
+        registerResizeHandler: (handler) =>
+          window.addEventListener('resize', handler),
+        removeClass,
+        updateCssVariable: (varName, value) =>
+          node.style.setProperty(varName, value),
+      });
+      instance.init();
     } else if (instance && !ripple) {
       instance.destroy();
       instance = null;
