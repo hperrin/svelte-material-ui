@@ -249,6 +249,8 @@ Rewrite Progress Checklist:
 
 # Support
 
+I'm a full time software engineer, and I work on this project in my free time. Unfortunately that means when I have to focus more on other things, I have less time to work on this project. I try to focus my time on whichever of my projects gets the most attention and community support. Right now, it's a toss up between PNotify and SMUI, but SMUI is consistently growing. If you want to see me focus on SMUI, star this repo. :)
+
 You can support my work on this project through my other project, [Tunnelgram](https://tunnelgram.com). I have a [Patreon](https://www.patreon.com/tunnelgram) set up for it. I started this project in order to Materialize Tunnelgram.
 
 # License
