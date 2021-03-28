@@ -37,7 +37,13 @@
 
 <script>
   import { MDCListFoundation, strings } from '@material/list';
-  import { onMount, onDestroy, getContext, setContext } from 'svelte';
+  import {
+    onMount,
+    onDestroy,
+    getContext,
+    setContext,
+    createEventDispatcher,
+  } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import { forwardEventsBuilder } from '@smui/common/forwardEvents.js';
   import { exclude } from '@smui/common/exclude.js';
@@ -45,6 +51,7 @@
   import Ul from '@smui/common/Ul.svelte';
   import Nav from '@smui/common/Nav.svelte';
 
+  const dispatch = createEventDispatcher();
   const forwardEvents = forwardEventsBuilder(get_current_component(), [
     'MDCList:action',
   ]);
@@ -141,12 +148,8 @@
 
   onMount(async () => {
     instance = new MDCListFoundation({
-      addClassForElementIndex: (index, className) => {
-        getOrderedList()[index]?.addClass(className);
-      },
-      focusItemAtIndex: (index) => {
-        getOrderedList()[index]?.element.focus();
-      },
+      addClassForElementIndex,
+      focusItemAtIndex,
       getAttributeForElementIndex: (index, attr) =>
         getOrderedList()[index]?.element.getAttribute(attr),
       getFocusedElementIndex: () => {
@@ -185,12 +188,8 @@
       notifyAction: (index) => {
         dispatch(strings.ACTION_EVENT, { index });
       },
-      removeClassForElementIndex: (index, className) => {
-        getOrderedList()[index]?.removeClass(className);
-      },
-      setAttributeForElementIndex: (index, attr, value) => {
-        getOrderedList()[index]?.addAttr(attr, value);
-      },
+      removeClassForElementIndex,
+      setAttributeForElementIndex,
       setCheckedCheckboxOrRadioAtIndex: (index, isChecked) => {
         const listItem = getOrderedList()[index];
         const toggleEl = listItem?.element.querySelector(
@@ -218,7 +217,20 @@
     if (singleSelection || radiolist || checklist) {
       selectedIndex = getSelectedIndex();
     }
-    dispatch('SMUI:list:instantiate', instance);
+    dispatch('SMUI:list:mount', {
+      get element() {
+        return element;
+      },
+      get items() {
+        return items;
+      },
+      getOrderedList,
+      focusItemAtIndex,
+      addClassForElementIndex,
+      removeClassForElementIndex,
+      setAttributeForElementIndex,
+      removeAttributeForElementIndex,
+    });
     instance.init();
   });
 
@@ -230,21 +242,43 @@
     }
   });
 
-  function handleItemMount(accessor) {
-    items.push(accessor);
+  function handleItemMount(event) {
+    items.push(event.detail);
+    event.stopPropagation();
   }
 
-  function handleItemUnmount(accessor) {
-    const idx = items.indexOf(accessor);
+  function handleItemUnmount(event) {
+    const idx = items.indexOf(event.detail);
     if (idx !== -1) {
       items.splice(idx, 1);
     }
+    event.stopPropagation();
   }
 
   function getOrderedList() {
     return [...element.children]
       .map((element) => items.find((accessor) => element === accessor.element))
       .filter((element) => element && element._smui_accessor);
+  }
+
+  function focusItemAtIndex(index) {
+    getOrderedList()[index]?.element.focus();
+  }
+
+  function addClassForElementIndex(index, className) {
+    getOrderedList()[index]?.addClass(className);
+  }
+
+  function removeClassForElementIndex(index, className) {
+    getOrderedList()[index]?.removeClass(className);
+  }
+
+  function setAttributeForElementIndex(index, attr, value) {
+    getOrderedList()[index]?.addAttr(attr, value);
+  }
+
+  function removeAttributeForElementIndex(index, attr) {
+    getOrderedList()[index]?.removeAttr(attr);
   }
 
   function handleAction(e) {

@@ -7,19 +7,24 @@
     use:useActions={list$use}
     class="mdc-menu__selection-group {list$class}"
     {...exclude(prefixFilter($$props, 'list$'), ['use', 'class'])}
-  ><slot></slot></ul>
+  >
+    <slot />
+  </ul>
 </li>
 
 <script>
-  import {get_current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
-  import {exclude} from '@smui/common/exclude.js';
-  import {prefixFilter} from '@smui/common/prefixFilter.js';
-  import {useActions} from '@smui/common/useActions.js';
+  import { setContext } from 'svelte';
+  import { get_current_component } from 'svelte/internal';
+  import { forwardEventsBuilder } from '@smui/common/forwardEvents.js';
+  import { exclude } from '@smui/common/exclude.js';
+  import { prefixFilter } from '@smui/common/prefixFilter.js';
+  import { useActions } from '@smui/common/useActions.js';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
   export let use = [];
   export let list$use = [];
   export let list$class = '';
+
+  setContext('SMUI:list:graphic:menu-selection-group', true);
 </script>

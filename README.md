@@ -234,7 +234,7 @@ Rewrite Progress Checklist:
 - [ ] Linear Progress
 - [x] Lists
 - [x] Menu Surface
-- [ ] Menus
+- [x] Menus
 - [ ] Paper
 - [x] Ripples
 - [ ] Snackbars

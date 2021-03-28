@@ -4,7 +4,7 @@ import Item from './Item.svelte';
 import Text from './Text.js';
 import PrimaryText from './PrimaryText.js';
 import SecondaryText from './SecondaryText.js';
-import Graphic from './Graphic.js';
+import Graphic from './Graphic.svelte';
 import Meta from './Meta.js';
 import Label from './Label.svelte';
 import Group from './Group.js';

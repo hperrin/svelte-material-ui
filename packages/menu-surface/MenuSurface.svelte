@@ -52,13 +52,11 @@
     MDCMenuSurfaceFoundation,
     Corner,
     CornerBit,
-    strings,
   } from '@material/menu-surface';
   import { getCorrectPropertyName } from '@material/animation/util';
   import {
     onMount,
     onDestroy,
-    getContext,
     setContext,
     createEventDispatcher,
   } from 'svelte';
@@ -202,7 +200,15 @@
         internalStyle.maxHeight = height;
       },
     });
-    dispatch('SMUI:menu-surface:instantiate', instance);
+    dispatch('SMUI:menu-surface:mount', {
+      get open() {
+        return open;
+      },
+      set open(value) {
+        open = value;
+      },
+      closeProgrammatic,
+    });
     instance.init();
   });
 
@@ -227,17 +233,22 @@
   }
 
   function updateOpen() {
-    if (menuSurface) {
+    if (instance) {
       if (isStatic) {
         open = true;
       } else {
-        open = menuSurface.isOpen();
+        open = instance.isOpen();
       }
     }
   }
 
   export function setOpen(value) {
     open = value;
+  }
+
+  function closeProgrammatic(skipRestoreFocus) {
+    instance.close(skipRestoreFocus);
+    open = false;
   }
 
   export function setAbsolutePosition(...args) {

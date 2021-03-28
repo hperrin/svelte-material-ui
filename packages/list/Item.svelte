@@ -85,8 +85,10 @@
   export let ripple = true;
   export let color = null;
   export let nonInteractive = getContext('SMUI:list:nonInteractive');
+  setContext('SMUI:list:nonInteractive', undefined);
   export let activated = false;
   export let role = getContext('SMUI:list:item:role');
+  setContext('SMUI:list:item:role', undefined);
   export let selected = false;
   export let disabled = false;
   export let tabindex =
@@ -117,12 +119,13 @@
     getPrimaryText,
   };
   let nav = getContext('SMUI:list:item:nav');
-  let list = getContext('SMUI:list:instance');
 
   export let component = nav ? (href ? A : Span) : Li;
 
   setContext('SMUI:generic:input:props', { id: inputId });
   setContext('SMUI:generic:input:setChecked', setChecked);
+  // Reset separator context, because we aren't directly under a list anymore.
+  setContext('SMUI:separator:context', undefined);
 
   onMount(() => {
     // Tabindex needs to be '0' if this is the first non-disabled list item, and
