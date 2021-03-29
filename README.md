@@ -208,7 +208,7 @@ Rewrite Progress Checklist:
 
 - [x] Buttons
   - [ ] Floating Action Buttons
-  - [ ] Icon Buttons
+  - [x] Icon Buttons
 - [ ] Cards
 - [ ] Chips
 - [ ] Data Tables
