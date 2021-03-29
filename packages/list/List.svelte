@@ -54,20 +54,14 @@
 <script>
   import { MDCListFoundation, strings } from '@material/list';
   import { closest, matches } from '@material/dom/ponyfill';
-  import {
-    onMount,
-    onDestroy,
-    getContext,
-    setContext,
-    createEventDispatcher,
-  } from 'svelte';
+  import { onMount, onDestroy, getContext, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import { forwardEventsBuilder } from '@smui/common/forwardEvents.js';
   import { exclude } from '@smui/common/exclude.js';
+  import { dispatch } from '@smui/common/dispatch.js';
   import Ul from '@smui/common/Ul.svelte';
   import Nav from '@smui/common/Nav.svelte';
 
-  const dispatch = createEventDispatcher();
   const forwardEvents = forwardEventsBuilder(get_current_component(), [
     'MDCList:action',
   ]);
@@ -203,7 +197,7 @@
         getOrderedList()[index]?.element.classList.contains(className),
       notifyAction: (index) => {
         selectedIndex = index;
-        dispatch('on:MDCList:action', { index });
+        dispatch(element, 'MDCList:action', { index });
       },
       removeClassForElementIndex,
       setAttributeForElementIndex,
@@ -234,7 +228,7 @@
     if (singleSelection || radiolist || checklist) {
       selectedIndex = getSelectedIndex();
     }
-    dispatch('SMUI:list:mount', {
+    dispatch(element, 'SMUI:list:mount', {
       get element() {
         return element;
       },

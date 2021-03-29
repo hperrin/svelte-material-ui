@@ -17,13 +17,14 @@
 <script>
   import { MDCMenuFoundation, cssClasses } from '@material/menu';
   import { closest } from '@material/dom/ponyfill';
-  import { onMount, onDestroy, createEventDispatcher } from 'svelte';
+  import { onMount, onDestroy } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import { forwardEventsBuilder } from '@smui/common/forwardEvents.js';
   import { exclude } from '@smui/common/exclude.js';
+  import { dispatch } from '@smui/common/dispatch.js';
   import MenuSurface from '@smui/menu-surface/MenuSurface.svelte';
+  import { element } from 'svelte/types/runtime/internal/dom';
 
-  const dispatch = createEventDispatcher();
   const forwardEvents = forwardEventsBuilder(get_current_component(), [
     'MDCMenu:selected',
     'MDCMenuSurface:closed',
@@ -62,7 +63,7 @@
           .map((accessor) => accessor.element)
           .indexOf(element),
       notifySelected: (evtData) =>
-        dispatch('MDCMenu:selected', {
+        dispatch(element, 'MDCMenu:selected', {
           index: evtData.index,
           item: listAccessor.getOrderedList()[evtData.index].element,
         }),
@@ -88,7 +89,7 @@
           : -1;
       },
     });
-    dispatch('SMUI:menu:mount', instance);
+    dispatch(element, 'SMUI:menu:mount', instance);
     instance.init();
   });
 

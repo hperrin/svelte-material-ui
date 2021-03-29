@@ -57,20 +57,15 @@
 
 <script>
   import { MDCIconButtonToggleFoundation } from '@material/icon-button';
-  import {
-    onDestroy,
-    getContext,
-    setContext,
-    createEventDispatcher,
-  } from 'svelte';
+  import { onDestroy, getContext, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import { forwardEventsBuilder } from '@smui/common/forwardEvents.js';
   import { exclude } from '@smui/common/exclude.js';
+  import { dispatch } from '@smui/common/dispatch.js';
   import A from '@smui/common/A.svelte';
   import Button from '@smui/common/Button.svelte';
   import Ripple from '@smui/ripple/bare.js';
 
-  const dispatch = createEventDispatcher();
   const forwardedEvents = ['MDCIconButtonToggle:change'];
   const forwardEvents = forwardEventsBuilder(
     get_current_component(),
@@ -118,7 +113,7 @@
         hasClass: (className) => element.classList.contains(className),
         notifyChange: (evtData) => {
           handleChange(evtData);
-          dispatch('MDCIconButtonToggle:change', evtData);
+          dispatch(element, 'MDCIconButtonToggle:change', evtData);
         },
         removeClass,
         getAttr: (attrName) => element.getAttribute(attrName),

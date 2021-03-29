@@ -57,18 +57,13 @@
     CornerBit,
   } from '@material/menu-surface';
   import { getCorrectPropertyName } from '@material/animation/util';
-  import {
-    onMount,
-    onDestroy,
-    setContext,
-    createEventDispatcher,
-  } from 'svelte';
+  import { onMount, onDestroy, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import { forwardEventsBuilder } from '@smui/common/forwardEvents.js';
   import { exclude } from '@smui/common/exclude.js';
   import { useActions } from '@smui/common/useActions.js';
+  import { dispatch } from '@smui/common/dispatch.js';
 
-  const dispatch = createEventDispatcher();
   const forwardEvents = forwardEventsBuilder(get_current_component(), [
     'MDCMenuSurface:closed',
     'MDCMenuSurface:closing',
@@ -148,18 +143,18 @@
       notifyClose: () => {
         open = isStatic;
         if (!open) {
-          dispatch('MDCMenuSurface:closed');
+          dispatch(element, 'MDCMenuSurface:closed');
         }
       },
       notifyClosing: () => {
         open = isStatic;
         if (!open) {
-          dispatch('MDCMenuSurface:closing');
+          dispatch(element, 'MDCMenuSurface:closing');
         }
       },
       notifyOpen: () => {
         open = true;
-        dispatch('MDCMenuSurface:opened');
+        dispatch(element, 'MDCMenuSurface:opened');
       },
       isElementInContainer: (el) => element.contains(el),
       isRtl: () =>
@@ -215,7 +210,7 @@
         internalStyle.maxHeight = height;
       },
     });
-    dispatch('SMUI:menu-surface:mount', {
+    dispatch(element, 'SMUI:menu-surface:mount', {
       get open() {
         return open;
       },

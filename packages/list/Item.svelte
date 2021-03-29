@@ -70,12 +70,12 @@
   import { get_current_component } from 'svelte/internal';
   import { forwardEventsBuilder } from '@smui/common/forwardEvents.js';
   import { exclude } from '@smui/common/exclude.js';
+  import { dispatch } from '@smui/common/dispatch.js';
   import A from '@smui/common/A.svelte';
   import Span from '@smui/common/Span.svelte';
   import Li from '@smui/common/Li.svelte';
   import Ripple from '@smui/ripple/bare.js';
 
-  const dispatch = createEventDispatcher();
   const forwardEvents = forwardEventsBuilder(get_current_component());
   let checked = false;
 
@@ -154,7 +154,7 @@
       }
     }
 
-    dispatch('SMUI:list:item:mount', accessor);
+    dispatch(element, 'SMUI:list:item:mount', accessor);
   });
 
   onDestroy(() => {
@@ -162,7 +162,7 @@
       window.cancelAnimationFrame(addTabindexIfNoItemsSelectedRaf);
     }
 
-    dispatch('SMUI:list:item:unmount', accessor);
+    dispatch(element, 'SMUI:list:item:unmount', accessor);
   });
 
   function addClass(className) {
@@ -213,10 +213,8 @@
   }
 
   function action(e) {
-    if (disabled) {
-      e.preventDefault();
-    } else {
-      dispatch('SMUI:action', e);
+    if (!disabled) {
+      dispatch(element, 'SMUI:action', e);
     }
   }
 
