@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html prefix="og: http://ogp.me/ns#">
+<html prefix="og: http://ogp.me/ns#" lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="description" content="Material UI Components for Svelte 3, ready to use in your apps.">
@@ -51,6 +51,11 @@
 
   %sapper.base%
 
+  <!-- Sapper creates a <script> tag containing `src/client.js`
+       and anything else it needs to hydrate the app and
+       initialise the router -->
+  %sapper.scripts%
+
   <!-- Sapper generates a <style> tag containing critical CSS
        for the current page. CSS for the rest of the app is
        lazily loaded when it precaches secondary pages -->
@@ -63,11 +68,6 @@
 <body>
   <!-- The application will be rendered inside this element,
        because `src/client.js` references it -->
-  <app>%sapper.html%</app>
-
-  <!-- Sapper creates a <script> tag containing `src/client.js`
-       and anything else it needs to hydrate the app and
-       initialise the router -->
-  %sapper.scripts%
+  <div id="sapper">%sapper.html%</div>
 </body>
 </html>
