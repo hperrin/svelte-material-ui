@@ -1,31 +1,40 @@
-<i
-  use:useActions={use}
-  use:forwardEvents
+<svelte:component
+  this={component}
+  use={[forwardEvents, ...use]}
   class="
     {className}
-    {context === 'button' ? 'mdc-button__icon' : ''}
+    {context === 'button'
+    ? 'mdc-button__icon'
+    : ''}
     {context === 'fab' ? 'mdc-fab__icon' : ''}
-    {context === 'icon-button' ? 'mdc-icon-button__icon' : ''}
-    {(context === 'icon-button' && on) ? 'mdc-icon-button__icon--on' : ''}
+    {context ===
+  'icon-button'
+    ? 'mdc-icon-button__icon'
+    : ''}
+    {context === 'icon-button' && on
+    ? 'mdc-icon-button__icon--on'
+    : ''}
     {context === 'tab' ? 'mdc-tab__icon' : ''}
   "
   aria-hidden="true"
-  {...exclude($$props, ['use', 'class', 'on'])}
-><slot></slot></i>
+  {...exclude($$props, ['use', 'class', 'on'])}><slot /></svelte:component
+>
 
 <script>
-  import {getContext} from 'svelte';
-  import {get_current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from './forwardEvents.js';
-  import {exclude} from './exclude.js';
-  import {useActions} from './useActions.js';
+  import { getContext } from 'svelte';
+  import { get_current_component } from 'svelte/internal';
+  import { forwardEventsBuilder } from './forwardEvents.js';
+  import { exclude } from './exclude.js';
+  import I from './I.svelte';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
   export let use = [];
   let className = '';
-  export {className as class};
+  export { className as class };
   export let on = false;
+
+  export let component = I;
 
   const context = getContext('SMUI:icon:context');
 </script>

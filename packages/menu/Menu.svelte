@@ -1,9 +1,16 @@
 <MenuSurface
-  bind:element
   use={[forwardEvents, ...use]}
   class="mdc-menu {className}"
   on:SMUI:menu-surface:mount={handleMenuSurfaceAccessor}
   on:SMUI:list:mount={handleListAccessor}
+  on:MDCMenuSurface:opened={() =>
+    instance && instance.handleMenuSurfaceOpened()}
+  on:keydown={(event) => instance && instance.handleKeydown(event)}
+  on:MDCList:action={(event) =>
+    instance &&
+    instance.handleItemAction(
+      listAccessor.getOrderedList()[event.detail.index].element
+    )}
   {...exclude($$props, ['use', 'class', 'wrapFocus'])}><slot /></MenuSurface
 >
 
@@ -27,7 +34,6 @@
   let className = '';
   export { className as class };
 
-  let element;
   let instance;
   let menuSurfaceAccessor;
   let listAccessor;
@@ -100,5 +106,17 @@
     if (!listAccessor) {
       listAccessor = event.detail;
     }
+  }
+
+  export function isOpen() {
+    return menuSurfaceAccessor.open;
+  }
+
+  export function setOpen(value) {
+    menuSurfaceAccessor.open = value;
+  }
+
+  export function setDefaultFocusState(focusState) {
+    instance.setDefaultFocusState(focusState);
   }
 </script>

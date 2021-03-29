@@ -1,3 +1,7 @@
+<svelte:body
+  on:click|capture={(event) =>
+    instance && open && instance.handleBodyClick(event)} />
+
 <div
   bind:this={element}
   use:useActions={use}
@@ -20,8 +24,7 @@
   style="{style} {Object.entries(internalStyle)
     .map(([name, value]) => `${name}: ${value};`)
     .join(' ')}"
-  on:MDCMenuSurface:closed={updateOpen}
-  on:MDCMenuSurface:opened={updateOpen}
+  on:keydown={(event) => instance && instance.handleKeydown(event)}
   {...exclude($$props, [
     'use',
     'class',
@@ -70,6 +73,7 @@
     'MDCMenuSurface:closed',
     'MDCMenuSurface:closing',
     'MDCMenuSurface:opened',
+    'SMUI:list:mount',
   ]);
 
   export let use = [];
@@ -87,7 +91,7 @@
   export let anchorCorner = null;
   export let anchorMargin = { top: 0, right: 0, bottom: 0, left: 0 };
 
-  export let element = undefined; // This is exported because Menu needs it.
+  let element;
   let instance;
   let internalClasses = {};
   let internalStyle = {};
@@ -141,11 +145,22 @@
       removeClass,
       hasClass: (className) => element.classList.contains(className),
       hasAnchor: () => !!anchorElement,
-      notifyClose: () => dispatch('MDCMenuSurface:closed'),
-      notifyClosing: () => {
-        dispatch('MDCMenuSurface:closing');
+      notifyClose: () => {
+        open = isStatic;
+        if (!open) {
+          dispatch('MDCMenuSurface:closed');
+        }
       },
-      notifyOpen: () => dispatch('MDCMenuSurface:opened'),
+      notifyClosing: () => {
+        open = isStatic;
+        if (!open) {
+          dispatch('MDCMenuSurface:closing');
+        }
+      },
+      notifyOpen: () => {
+        open = true;
+        dispatch('MDCMenuSurface:opened');
+      },
       isElementInContainer: (el) => element.contains(el),
       isRtl: () =>
         getComputedStyle(element).getPropertyValue('direction') === 'rtl',
@@ -232,14 +247,8 @@
     delete internalClasses[className];
   }
 
-  function updateOpen() {
-    if (instance) {
-      if (isStatic) {
-        open = true;
-      } else {
-        open = instance.isOpen();
-      }
-    }
+  export function isOpen() {
+    return open;
   }
 
   export function setOpen(value) {

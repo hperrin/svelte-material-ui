@@ -27,7 +27,23 @@
       {threeLine && !twoLine ? 'smui-list--three-line' : ''}
     "
   {role}
-  on:MDCList:action={handleAction}
+  on:keydown={(event) =>
+    instance &&
+    instance.handleKeydown(
+      event,
+      event.target.classList.contains('mdc-list-item'),
+      getListItemIndex(event.target)
+    )}
+  on:focusin={(event) =>
+    instance && instance.handleFocusIn(event, getListItemIndex(event.target))}
+  on:focusout={(event) =>
+    instance && instance.handleFocusOut(event, getListItemIndex(event.target))}
+  on:click={(event) =>
+    instance &&
+    instance.handleClick(
+      getListItemIndex(event.target),
+      !matches(event.target, strings.CHECKBOX_RADIO_SELECTOR)
+    )}
   on:SMUI:list:item:mount={handleItemMount}
   on:SMUI:list:item:unmount={handleItemUnmount}
   {...props}
@@ -37,6 +53,7 @@
 
 <script>
   import { MDCListFoundation, strings } from '@material/list';
+  import { closest, matches } from '@material/dom/ponyfill';
   import {
     onMount,
     onDestroy,
@@ -47,7 +64,6 @@
   import { get_current_component } from 'svelte/internal';
   import { forwardEventsBuilder } from '@smui/common/forwardEvents.js';
   import { exclude } from '@smui/common/exclude.js';
-  import { useActions } from '@smui/common/useActions.js';
   import Ul from '@smui/common/Ul.svelte';
   import Nav from '@smui/common/Nav.svelte';
 
@@ -186,7 +202,8 @@
       listItemAtIndexHasClass: (index, className) =>
         getOrderedList()[index]?.element.classList.contains(className),
       notifyAction: (index) => {
-        dispatch(strings.ACTION_EVENT, { index });
+        selectedIndex = index;
+        dispatch('on:MDCList:action', { index });
       },
       removeClassForElementIndex,
       setAttributeForElementIndex,
@@ -281,17 +298,16 @@
     getOrderedList()[index]?.removeAttr(attr);
   }
 
-  function handleAction(e) {
-    if (
-      getOrderedList()[e.detail.index].classList.contains(
-        'mdc-list-item--disabled'
-      )
-    ) {
-      e.preventDefault();
-      instance.setSelectedIndex(selectedIndex);
-    } else if (instance && getSelectedIndex() === e.detail.index) {
-      selectedIndex = e.detail.index;
+  function getListItemIndex(element) {
+    const nearestParent = closest(el, '.mdc-list-item, .mdc-list');
+
+    // Get the index of the element if it is a list item.
+    if (nearestParent && matches(nearestParent, '.mdc-list-item')) {
+      return getOrderedList()
+        .map((item) => item.element)
+        .indexOf(nearestParent);
     }
+    return -1;
   }
 
   export function layout(...args) {
@@ -303,10 +319,10 @@
   }
 
   export function getTypeaheadInProgress() {
-    return instance?.isTypeaheadInProgress();
+    return instance.isTypeaheadInProgress();
   }
 
   export function getSelectedIndex() {
-    return instance?.getSelectedIndex();
+    return instance.getSelectedIndex();
   }
 </script>
