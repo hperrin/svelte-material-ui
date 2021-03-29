@@ -1,6 +1,6 @@
 import path from 'path';
 import alias from 'rollup-plugin-alias';
-import postcss from 'rollup-plugin-postcss';
+import scss from 'rollup-plugin-scss';
 import resolve from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
 import commonjs from '@rollup/plugin-commonjs';
@@ -35,23 +35,15 @@ const aliases = () => ({
     },
   ],
 });
-const postcssOptions = () => ({
-  extensions: ['.scss', '.sass'],
-  extract: false,
-  minimize: true,
-  use: [
-    [
-      'sass',
-      {
-        includePaths: [
-          './src/theme',
-          './node_modules',
-          // This is only needed because we're using a local module. :-/
-          // Normally, you would not need this line.
-          path.resolve(__dirname, '..', 'node_modules'),
-        ],
-      },
-    ],
+const scssOptions = () => ({
+  output: false,
+  sass: require('sass'),
+  includePaths: [
+    './src/theme',
+    './node_modules',
+    // This is only needed because we're using a local module. :-/
+    // Normally, you would not need this line.
+    path.resolve(__dirname, '..', 'node_modules'),
   ],
 });
 
@@ -68,12 +60,16 @@ export default {
           'process.env.NODE_ENV': JSON.stringify(mode),
         },
       }),
+
       svelte({
         compilerOptions: {
           dev,
           hydratable: true,
+          css: false,
         },
+        emitCss: true,
       }),
+      scss(scssOptions()),
       url({
         sourceDir: path.resolve(__dirname, 'src/node_modules/images'),
         publicPath: '/client/',
@@ -81,10 +77,9 @@ export default {
       resolve({
         browser: true,
         dedupe: ['svelte'],
+        extensions: ['.mjs', '.js', '.json', '.node', '.scss', '.sass'],
       }),
       commonjs(),
-
-      postcss(postcssOptions()),
 
       legacy &&
         babel({
@@ -132,14 +127,17 @@ export default {
           'process.env.NODE_ENV': JSON.stringify(mode),
         },
       }),
+
       svelte({
         compilerOptions: {
           dev,
           generate: 'ssr',
           hydratable: true,
+          css: false,
         },
         emitCss: false,
       }),
+      scss(scssOptions()),
       url({
         sourceDir: path.resolve(__dirname, 'src/node_modules/images'),
         publicPath: '/client/',
@@ -147,10 +145,9 @@ export default {
       }),
       resolve({
         dedupe: ['svelte'],
+        extensions: ['.mjs', '.js', '.json', '.node', '.scss', '.sass'],
       }),
       commonjs(),
-
-      postcss(postcssOptions()),
     ],
     external: Object.keys(pkg.dependencies).concat(
       require('module').builtinModules

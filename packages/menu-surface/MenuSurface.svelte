@@ -51,11 +51,7 @@
 </script>
 
 <script>
-  import {
-    MDCMenuSurfaceFoundation,
-    Corner,
-    CornerBit,
-  } from '@material/menu-surface';
+  import { MDCMenuSurfaceFoundation } from '@material/menu-surface';
   import { getCorrectPropertyName } from '@material/animation/util';
   import { onMount, onDestroy, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
@@ -122,11 +118,13 @@
     instance.setFixedPosition(fixed);
   }
 
+  const iCorner = Corner;
+  const iCornerBit = CornerBit;
   $: if (instance && anchorCorner != null) {
-    if (Corner.hasOwnProperty(anchorCorner)) {
-      instance.setAnchorCorner(Corner[anchorCorner]);
-    } else if (CornerBit.hasOwnProperty(anchorCorner)) {
-      instance.setAnchorCorner(CornerBit[anchorCorner]);
+    if (iCorner.hasOwnProperty(anchorCorner)) {
+      instance.setAnchorCorner(iCorner[anchorCorner]);
+    } else if (iCornerBit.hasOwnProperty(anchorCorner)) {
+      instance.setAnchorCorner(iCornerBit[anchorCorner]);
     } else {
       instance.setAnchorCorner(anchorCorner);
     }

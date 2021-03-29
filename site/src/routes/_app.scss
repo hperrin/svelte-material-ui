@@ -3,15 +3,15 @@
 //
 
 // Import the typography styles.
-@import "demo/typography.scss";
+@import 'demo/typography.scss';
 
 // We need the theming variables for the following styles.
-@import "smui-theme";
+@import 'smui-theme';
 // This adds classes like "mdc-theme--primary-bg".
-@import "@material/theme/mdc-theme";
-@import "@material/elevation/mixins";
+@import '@material/theme/mdc-theme';
+@import '@material/elevation/mixins';
 // Main Top App Bar styling.
-@import "@smui/top-app-bar/style";
+@import '@smui/top-app-bar/style';
 .mdc-top-app-bar.demo-top-app-bar {
   // Color the top bar with "surface" colors.
   @include mdc-top-app-bar-fill-color-accessible(surface);
@@ -30,7 +30,8 @@ html {
   position: fixed;
 }
 
-body, app {
+body,
+app {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -42,12 +43,13 @@ body, app {
   display: flex;
 }
 
-.demo-drawer, .demo-main-content {
+.demo-drawer,
+.demo-main-content {
   overflow: auto;
   height: 100%;
 }
 
-@import "@material/top-app-bar/variables";
+@import '@material/top-app-bar/variables';
 .demo-drawer.demo-drawer-adjust {
   padding-bottom: $mdc-top-app-bar-row-height;
 }
@@ -73,16 +75,16 @@ body, app {
 .demo-main-content section:after {
   height: 32px;
   display: block;
-  content: " ";
+  content: ' ';
 }
 
 section > div {
-  margin: 1em 0 .6em;
+  margin: 1em 0 0.6em;
 }
 
 .status {
   max-width: 100%;
-  font-size: .9em;
+  font-size: 0.9em;
   word-break: break-word;
   white-space: normal;
 }

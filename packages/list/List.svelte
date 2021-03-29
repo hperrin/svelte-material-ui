@@ -82,7 +82,7 @@
   export let twoLine = false;
   export let threeLine = false;
   export let vertical = true;
-  export let wrapFocus = getContext('SMUI:list:wrapFocus') ?? false;
+  export let wrapFocus = getContext('SMUI:list:wrapFocus') || false;
   export let singleSelection = false;
   export let selectedIndex = null;
   export let radiolist = false;
@@ -163,7 +163,7 @@
       addClassForElementIndex,
       focusItemAtIndex,
       getAttributeForElementIndex: (index, attr) =>
-        getOrderedList()[index]?.element.getAttribute(attr),
+        getOrderedList()[index].element.getAttribute(attr),
       getFocusedElementIndex: () => {
         const list = getOrderedList();
         for (let i = 0; i < list.length; i++) {
@@ -175,28 +175,28 @@
       },
       getListItemCount: () => items.length,
       getPrimaryTextAtIndex: (index) =>
-        getOrderedList()[index]?.getPrimaryText(),
+        getOrderedList()[index].getPrimaryText(),
       hasCheckboxAtIndex: (index) => {
         const listItem = getOrderedList()[index];
-        return !!listItem?.element.querySelector(strings.CHECKBOX_SELECTOR);
+        return !!listItem.element.querySelector(strings.CHECKBOX_SELECTOR);
       },
       hasRadioAtIndex: (index) => {
         const listItem = getOrderedList()[index];
-        return !!listItem?.element.querySelector(strings.RADIO_SELECTOR);
+        return !!listItem.element.querySelector(strings.RADIO_SELECTOR);
       },
       isCheckboxCheckedAtIndex: (index) => {
         const listItem = getOrderedList()[index];
-        const toggleEl = listItem?.element.querySelector(
+        const toggleEl = listItem.element.querySelector(
           strings.CHECKBOX_SELECTOR
         );
-        return toggleEl?.checked ?? false;
+        return toggleEl.checked || false;
       },
       isFocusInsideList: () =>
         element !== document.activeElement &&
         element.contains(document.activeElement),
       isRootFocused: () => document.activeElement === element,
       listItemAtIndexHasClass: (index, className) =>
-        getOrderedList()[index]?.element.classList.contains(className),
+        getOrderedList()[index].element.classList.contains(className),
       notifyAction: (index) => {
         selectedIndex = index;
         dispatch(element, 'MDCList:action', { index });
@@ -205,7 +205,7 @@
       setAttributeForElementIndex,
       setCheckedCheckboxOrRadioAtIndex: (index, isChecked) => {
         const listItem = getOrderedList()[index];
-        const toggleEl = listItem?.element.querySelector(
+        const toggleEl = listItem.element.querySelector(
           strings.CHECKBOX_RADIO_SELECTOR
         );
         if (toggleEl) {
@@ -217,10 +217,10 @@
         }
       },
       setTabIndexForListItemChildren: (listItemIndex, tabIndexValue) => {
-        const listItem = this.listElements[listItemIndex];
+        const listItem = getOrderedList()[listItemIndex];
         const selector = strings.CHILD_ELEMENTS_TO_TOGGLE_TABINDEX;
         Array.prototype.forEach.call(
-          listItem?.element.querySelectorAll(selector),
+          listItem.element.querySelectorAll(selector),
           (el) => {
             el.setAttribute('tabindex', tabIndexValue);
           }
@@ -277,23 +277,28 @@
   }
 
   function focusItemAtIndex(index) {
-    getOrderedList()[index]?.element.focus();
+    const accessor = getOrderedList()[index];
+    accessor && accessor.element.focus();
   }
 
   function addClassForElementIndex(index, className) {
-    getOrderedList()[index]?.addClass(className);
+    const accessor = getOrderedList()[index];
+    accessor && accessor.addClass(className);
   }
 
   function removeClassForElementIndex(index, className) {
-    getOrderedList()[index]?.removeClass(className);
+    const accessor = getOrderedList()[index];
+    accessor && accessor.removeClass(className);
   }
 
   function setAttributeForElementIndex(index, attr, value) {
-    getOrderedList()[index]?.addAttr(attr, value);
+    const accessor = getOrderedList()[index];
+    accessor && accessor.addAttr(attr, value);
   }
 
   function removeAttributeForElementIndex(index, attr) {
-    getOrderedList()[index]?.removeAttr(attr);
+    const accessor = getOrderedList()[index];
+    accessor && accessor.removeAttr(attr);
   }
 
   function getListItemIndex(element) {
