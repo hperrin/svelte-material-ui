@@ -214,7 +214,6 @@ Update Progress Checklist:
 - [ ] Data Tables
 - [ ] Dialogs
 - [ ] Drawers
-- [ ] Elevation
 - [ ] Image List
 - [ ] Checkboxes
 - [ ] Floating Label
@@ -243,9 +242,7 @@ Update Progress Checklist:
 - [ ] Tab Bar
 - [ ] Tab Indicator
 - [ ] Tab Scroller
-- [ ] Theme
 - [x] Top App Bar
-- [ ] Typography
 
 # Support
 
