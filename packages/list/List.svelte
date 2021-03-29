@@ -307,7 +307,7 @@
   }
 
   function getListItemIndex(element) {
-    const nearestParent = closest(el, '.mdc-list-item, .mdc-list');
+    const nearestParent = closest(element, '.mdc-list-item, .mdc-list');
 
     // Get the index of the element if it is a list item.
     if (nearestParent && matches(nearestParent, '.mdc-list-item')) {

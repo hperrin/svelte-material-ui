@@ -21,7 +21,7 @@
 />
 
 <script>
-  import { createEventDispatcher } from 'svelte';
+  import { getContext, createEventDispatcher } from 'svelte';
   import { forwardEventsBuilder, exclude } from '@smui/common/internal.js';
   import Li from '@smui/common/Li.svelte';
   import Hr from '@smui/common/Hr.svelte';

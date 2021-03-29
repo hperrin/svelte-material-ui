@@ -1,4 +1,5 @@
 <MenuSurface
+  bind:this={element}
   use={[forwardEvents, ...use]}
   class="mdc-menu {className}"
   on:SMUI:menu-surface:mount={handleMenuSurfaceAccessor}
@@ -35,6 +36,7 @@
   let className = '';
   export { className as class };
 
+  let element;
   let instance;
   let menuSurfaceAccessor;
   let listAccessor;
@@ -98,6 +100,7 @@
   });
 
   function handleMenuSurfaceAccessor(event) {
+    console.log('menu surface mount: ', event);
     if (!menuSurfaceAccessor) {
       menuSurfaceAccessor = event.detail;
     }
