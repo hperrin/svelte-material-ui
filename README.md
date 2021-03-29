@@ -92,11 +92,11 @@ Here are some features you should know about:
 1. Install the following packages as dev dependencies
    - With yarn
      ```sh
-     yarn add rollup-plugin-postcss node-sass --dev
+     yarn add rollup-plugin-postcss sass --dev
      ```
    - With npm
      ```sh
-     npm i -D rollup-plugin-postcss node-sass
+     npm i -D rollup-plugin-postcss sass
      ```
 2. Create the `src/theme/_smui-theme.scss file`
 

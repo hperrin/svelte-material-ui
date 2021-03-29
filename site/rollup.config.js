@@ -1,6 +1,6 @@
 import path from 'path';
-import alias from 'rollup-plugin-alias';
-import scss from 'rollup-plugin-scss';
+// import alias from 'rollup-plugin-alias';
+import postcss from 'rollup-plugin-postcss';
 import resolve from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
 import commonjs from '@rollup/plugin-commonjs';
@@ -20,30 +20,37 @@ const onwarn = (warning, onwarn) =>
   (warning.code === 'CIRCULAR_DEPENDENCY' &&
     /[/\\]@sapper[/\\]/.test(warning.message)) ||
   onwarn(warning);
-const dedupe = (importee) =>
-  importee === 'svelte' || importee.startsWith('svelte/');
-const aliases = () => ({
-  resolve: ['.svelte', '.js', '.scss', '.css'],
-  entries: [
-    {
-      find: /^@smui\/([^\/]+)$/,
-      replacement: path.resolve(__dirname, '..', 'packages', '$1', 'index.js'),
-    },
-    {
-      find: /^@smui\/([^\/]+)\/(.*)$/,
-      replacement: path.resolve(__dirname, '..', 'packages', '$1', '$2'),
-    },
-  ],
-});
-const scssOptions = () => ({
-  output: false,
-  sass: require('sass'),
-  includePaths: [
-    './src/theme',
-    './node_modules',
-    // This is only needed because we're using a local module. :-/
-    // Normally, you would not need this line.
-    path.resolve(__dirname, '..', 'node_modules'),
+
+// const aliases = () => ({
+//   resolve: ['.svelte', '.js', '.scss', '.css'],
+//   entries: [
+//     {
+//       find: /^@smui\/([^\/]+)$/,
+//       replacement: path.resolve(__dirname, '..', 'packages', '$1', 'index.js'),
+//     },
+//     {
+//       find: /^@smui\/([^\/]+)\/(.*)$/,
+//       replacement: path.resolve(__dirname, '..', 'packages', '$1', '$2'),
+//     },
+//   ],
+// });
+const postcssOptions = () => ({
+  extensions: ['.scss', '.sass'],
+  extract: false,
+  minimize: true,
+  use: [
+    [
+      'sass',
+      {
+        includePaths: [
+          './src/theme',
+          './node_modules',
+          // This is only needed because we're using a local module. :-/
+          // Normally, you would not need this line.
+          // path.resolve(__dirname, '..', 'node_modules'),
+        ],
+      },
+    ],
   ],
 });
 
@@ -52,7 +59,7 @@ export default {
     input: config.client.input(),
     output: config.client.output(),
     plugins: [
-      alias(aliases()),
+      // alias(aliases()),
       replace({
         preventAssignment: true,
         values: {
@@ -69,7 +76,7 @@ export default {
         },
         emitCss: true,
       }),
-      scss(scssOptions()),
+      postcss(postcssOptions()),
       url({
         sourceDir: path.resolve(__dirname, 'src/node_modules/images'),
         publicPath: '/client/',
@@ -77,7 +84,7 @@ export default {
       resolve({
         browser: true,
         dedupe: ['svelte'],
-        extensions: ['.mjs', '.js', '.json', '.node', '.scss', '.sass'],
+        // extensions: ['.mjs', '.js', '.json', '.node', '.scss', '.sass'],
       }),
       commonjs(),
 
@@ -119,7 +126,7 @@ export default {
     input: config.server.input(),
     output: config.server.output(),
     plugins: [
-      alias(aliases()),
+      // alias(aliases()),
       replace({
         preventAssignment: true,
         values: {
@@ -137,7 +144,7 @@ export default {
         },
         emitCss: false,
       }),
-      scss(scssOptions()),
+      postcss(postcssOptions()),
       url({
         sourceDir: path.resolve(__dirname, 'src/node_modules/images'),
         publicPath: '/client/',
@@ -145,7 +152,7 @@ export default {
       }),
       resolve({
         dedupe: ['svelte'],
-        extensions: ['.mjs', '.js', '.json', '.node', '.scss', '.sass'],
+        // extensions: ['.mjs', '.js', '.json', '.node', '.scss', '.sass'],
       }),
       commonjs(),
     ],

@@ -32,10 +32,10 @@
     "@material/ripple": "^10.0.0",
     "@material/rtl": "^10.0.0",
     "@material/textfield": "^10.0.0",
-    "@smui/common": "file:../common",
-    "@smui/floating-label": "file:../floating-label",
-    "@smui/line-ripple": "file:../line-ripple",
-    "@smui/notched-outline": "file:../notched-outline"
+    "@smui/common": "^2.0.0-beta.1",
+    "@smui/floating-label": "^2.0.0-beta.1",
+    "@smui/line-ripple": "^2.0.0-beta.1",
+    "@smui/notched-outline": "^2.0.0-beta.1"
   },
   "devDependencies": {
     "glob-cmd": "0.0.7",

@@ -29,8 +29,8 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@material/tab": "^10.0.0",
-    "@smui/common": "file:../common",
-    "@smui/tab-indicator": "file:../tab-indicator"
+    "@smui/common": "^2.0.0-beta.1",
+    "@smui/tab-indicator": "^2.0.0-beta.1"
   },
   "devDependencies": {
     "glob-cmd": "0.0.7",

@@ -31,8 +31,8 @@
     "@material/dom": "^10.0.0",
     "@material/feature-targeting": "^10.0.0",
     "@material/list": "^10.0.0",
-    "@smui/common": "file:../common",
-    "@smui/ripple": "file:../ripple"
+    "@smui/common": "^2.0.0-beta.1",
+    "@smui/ripple": "^2.0.0-beta.1"
   },
   "devDependencies": {
     "glob-cmd": "0.0.7",

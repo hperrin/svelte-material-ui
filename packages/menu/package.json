@@ -30,9 +30,9 @@
   "dependencies": {
     "@material/dom": "^10.0.0",
     "@material/menu": "^10.0.0",
-    "@smui/common": "file:../common",
-    "@smui/list": "file:../list",
-    "@smui/menu-surface": "file:../menu-surface"
+    "@smui/common": "^2.0.0-beta.1",
+    "@smui/list": "^2.0.0-beta.1",
+    "@smui/menu-surface": "^2.0.0-beta.1"
   },
   "devDependencies": {
     "glob-cmd": "0.0.7",
