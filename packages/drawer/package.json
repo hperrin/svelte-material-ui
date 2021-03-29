@@ -28,6 +28,7 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
+    "@material/dom": "^10.0.0",
     "@material/drawer": "^10.0.0",
     "@smui/common": "file:../common"
   },

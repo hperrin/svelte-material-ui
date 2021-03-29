@@ -82,7 +82,7 @@
   export let twoLine = false;
   export let threeLine = false;
   export let vertical = true;
-  export let wrapFocus = false;
+  export let wrapFocus = getContext('SMUI:list:wrapFocus') ?? false;
   export let singleSelection = false;
   export let selectedIndex = null;
   export let radiolist = false;

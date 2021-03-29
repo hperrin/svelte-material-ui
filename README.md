@@ -213,7 +213,7 @@ Update Progress Checklist:
 - [ ] Chips
 - [ ] Data Tables
 - [ ] Dialogs
-- [ ] Drawers
+- [x] Drawers
 - [ ] Image List
 - [ ] Checkboxes
 - [ ] Floating Label

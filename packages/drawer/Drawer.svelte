@@ -5,26 +5,34 @@
   class="
     mdc-drawer
     {className}
+    {Object.keys(internalClasses).join(
+    ' '
+  )}
     {variant === 'dismissible'
     ? 'mdc-drawer--dismissible'
     : ''}
     {variant === 'modal' ? 'mdc-drawer--modal' : ''}
   "
-  on:MDCDrawer:opened={updateOpen}
-  on:MDCDrawer:closed={updateOpen}
+  on:keydown={(event) => instance && instance.handleKeydown(event)}
+  on:transitionend={(event) => instance && instance.handleTransitionEnd(event)}
   {...exclude($$props, ['use', 'class', 'variant', 'open'])}
 >
   <slot />
 </aside>
 
 <script>
-  import { MDCDrawer } from '@material/drawer';
-  import { onMount, onDestroy, afterUpdate, setContext } from 'svelte';
+  import {
+    MDCDismissibleDrawerFoundation,
+    MDCModalDrawerFoundation,
+  } from '@material/drawer';
+  import { FocusTrap } from '@material/dom/focus-trap';
+  import { onMount, onDestroy, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
     exclude,
     useActions,
+    dispatch,
   } from '@smui/common/internal.js';
 
   const forwardEvents = forwardEventsBuilder(get_current_component(), [
@@ -39,52 +47,122 @@
   export let open = false;
 
   let element;
-  let drawer;
-  let listPromiseResolve;
-  let listPromise = new Promise((resolve) => (listPromiseResolve = resolve));
+  let instance;
+  let internalClasses = {};
+  let previousFocus;
+  let focusTrap;
+  let scrim = false;
 
   setContext('SMUI:list:nav', true);
   setContext('SMUI:list:item:nav', true);
+  setContext('SMUI:list:wrapFocus', true);
 
-  if (variant === 'dismissible' || variant === 'modal') {
-    setContext('SMUI:list:instantiate', false);
-    setContext('SMUI:list:getInstance', getListInstancePromise);
+  $: if (instance && instance.isOpen() !== open) {
+    if (open) {
+      instance.open();
+    } else {
+      instance.close();
+    }
   }
 
-  $: if (drawer && drawer.open !== open) {
-    drawer.open = open;
+  let oldVariant = variant;
+  $: if (oldVariant !== variant) {
+    oldVariant = variant;
+    instance && instance.destroy();
+    internalClasses = {};
+    instance = getInstance();
+    instance && instance.init();
   }
 
   onMount(() => {
-    if (variant === 'dismissible' || variant === 'modal') {
-      drawer = new MDCDrawer(element);
-      listPromiseResolve(drawer.list_);
-    }
+    focusTrap = new FocusTrap(element, {
+      // Component handles focusing on active nav item.
+      skipInitialFocus: true,
+    });
+
+    instance = getInstance();
+    instance && instance.init();
   });
 
   onDestroy(() => {
-    drawer && drawer.destroy();
+    instance && instance.destroy();
+    scrim &&
+      scrim.removeEventListener('SMUI:drawer:scrim:click', handleScrimClick);
   });
 
-  afterUpdate(() => {
-    if (drawer && !(variant === 'dismissible' || variant === 'modal')) {
-      drawer.destroy();
-      drawer = undefined;
-    } else if (!drawer && (variant === 'dismissible' || variant === 'modal')) {
-      drawer = new MDCDrawer(element);
-      listPromiseResolve(drawer.list_);
+  function getInstance() {
+    if (scrim) {
+      scrim.removeEventListener('SMUI:drawer:scrim:click', handleScrimClick);
     }
-  });
 
-  function getListInstancePromise() {
-    return listPromise;
+    if (variant === 'modal') {
+      scrim = element.parentNode.querySelector('.mdc-drawer-scrim');
+      if (scrim) {
+        scrim.addEventListener('SMUI:drawer:scrim:click', handleScrimClick);
+      }
+    }
+
+    const Foundation = {
+      dismissible: MDCDismissibleDrawerFoundation,
+      modal: MDCModalDrawerFoundation,
+    }[variant];
+
+    return Foundation
+      ? new Foundation({
+          addClass,
+          removeClass,
+          hasClass: (className) => element.classList.contains(className),
+          elementHasClass: (element, className) =>
+            element.classList.contains(className),
+          saveFocus: () => (previousFocus = document.activeElement),
+          restoreFocus: () => {
+            if (
+              previousFocus &&
+              previousFocus.focus &&
+              element.contains(document.activeElement)
+            ) {
+              previousFocus.focus();
+            }
+          },
+          focusActiveNavigationItem: () => {
+            const activeNavItemEl = element.querySelector(
+              '.mdc-list-item--activated,.mdc-deprecated-list-item--activated'
+            );
+            if (activeNavItemEl) {
+              activeNavItemEl.focus();
+            }
+          },
+          notifyClose: () => {
+            open = false;
+            dispatch(element, 'MDCDrawer:closed');
+          },
+          notifyOpen: () => {
+            open = true;
+            dispatch(element, 'MDCDrawer:opened');
+          },
+          trapFocus: () => focusTrap.trapFocus(),
+          releaseFocus: () => focusTrap.releaseFocus(),
+        })
+      : undefined;
   }
 
-  function updateOpen() {
-    open = drawer.open;
+  function addClass(className) {
+    internalClasses[className] = true;
+  }
+
+  function removeClass(className) {
+    delete internalClasses[className];
+  }
+
+  function handleScrimClick() {
+    instance && instance.handleScrimClick();
   }
 
   export function setOpen(value) {
     open = value;
+  }
+
+  export function isOpen() {
+    return open;
   }
 </script>

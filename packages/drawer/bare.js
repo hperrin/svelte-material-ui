@@ -5,7 +5,7 @@ import Content from './Content.js';
 import Header from './Header.js';
 import Title from './Title.js';
 import Subtitle from './Subtitle.js';
-import Scrim from './Scrim.js';
+import Scrim from './Scrim.svelte';
 
 export default Drawer;
 
