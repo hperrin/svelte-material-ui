@@ -1,5 +1,6 @@
 <svelte:component
   this={component}
+  bind:this={element}
   use={[forwardEvents, ...use]}
   class="
     {className}
@@ -34,5 +35,11 @@
 
   export let component = I;
 
+  let element;
+
   const context = getContext('SMUI:icon:context');
+
+  export function dispatchEvent(event) {
+    element.dispatchEvent(event);
+  }
 </script>

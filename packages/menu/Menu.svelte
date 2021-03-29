@@ -24,7 +24,6 @@
     dispatch,
   } from '@smui/common/internal.js';
   import MenuSurface from '@smui/menu-surface/MenuSurface.svelte';
-  import { element } from 'svelte/types/runtime/internal/dom';
 
   const forwardEvents = forwardEventsBuilder(createEventDispatcher(), [
     'MDCMenu:selected',

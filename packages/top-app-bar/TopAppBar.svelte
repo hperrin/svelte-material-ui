@@ -101,7 +101,7 @@
   let propStore = readable({ variant, prominent, dense }, (set) => {
     propStoreSet = set;
   });
-  $: {
+  $: if (propStoreSet) {
     propStoreSet({
       variant,
       prominent,

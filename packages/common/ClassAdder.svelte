@@ -1,5 +1,6 @@
 <svelte:component
   this={component}
+  bind:this={element}
   use={[forwardEvents, ...use]}
   class="{smuiClass} {className}"
   {...props}
@@ -29,6 +30,7 @@
   let forwardEventsAdditional = [];
   export { forwardEventsAdditional as forwardEvents };
 
+  let element;
   const smuiClass = internals.class;
   const contexts = internals.contexts;
   const props = internals.props;
@@ -42,5 +44,9 @@
     if (contexts.hasOwnProperty(context)) {
       setContext(context, contexts[context]);
     }
+  }
+
+  export function dispatchEvent(event) {
+    element.dispatchEvent(event);
   }
 </script>

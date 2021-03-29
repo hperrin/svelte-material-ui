@@ -1,4 +1,5 @@
 <span
+  bind:this={element}
   use:useActions={use}
   use:forwardEvents
   class="
@@ -30,6 +31,12 @@
   let className = '';
   export { className as class };
 
+  let element;
+
   const context = getContext('SMUI:label:context');
   const tabindex = getContext('SMUI:label:tabindex');
+
+  export function dispatchEvent(event) {
+    element.dispatchEvent(event);
+  }
 </script>

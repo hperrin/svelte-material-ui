@@ -20,4 +20,8 @@
     createEventDispatcher(),
     forwardEventsAdditional
   );
+
+  export function dispatchEvent(event) {
+    element.dispatchEvent(event);
+  }
 </script>
