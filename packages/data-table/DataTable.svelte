@@ -13,19 +13,21 @@
     class="mdc-data-table__table {table$class}"
     {...prefixFilter($$props, 'table$')}
   >
-    <slot></slot>
+    <slot />
   </table>
 </div>
 
 <script>
-  import {MDCDataTable} from '@material/data-table';
-  import {events} from '@material/data-table/constants';
-  import {onMount, onDestroy, getContext, setContext} from 'svelte';
-  import {get_current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
-  import {exclude} from '@smui/common/exclude.js';
-  import {prefixFilter} from '@smui/common/prefixFilter.js';
-  import {useActions} from '@smui/common/useActions.js';
+  import { MDCDataTable } from '@material/data-table';
+  import { events } from '@material/data-table/constants';
+  import { onMount, onDestroy, getContext, setContext } from 'svelte';
+  import { get_current_component } from 'svelte/internal';
+  import {
+    forwardEventsBuilder,
+    exclude,
+    prefixFilter,
+    useActions,
+  } from '@smui/common/internal.js';
 
   if (
     events.ROW_SELECTION_CHANGED !== 'MDCDataTable:rowSelectionChanged' ||
@@ -35,11 +37,15 @@
     throw new Error('MDC API has changed!');
   }
 
-  const forwardEvents = forwardEventsBuilder(get_current_component(), ['MDCDataTable:rowSelectionChanged', 'MDCDataTable:selectedAll', 'MDCDataTable:unselectedAll']);
+  const forwardEvents = forwardEventsBuilder(get_current_component(), [
+    'MDCDataTable:rowSelectionChanged',
+    'MDCDataTable:selectedAll',
+    'MDCDataTable:unselectedAll',
+  ]);
 
   export let use = [];
   let className = '';
-  export {className as class};
+  export { className as class };
   export let table$use = [];
   export let table$class = '';
 
@@ -47,9 +53,13 @@
   let dataTable;
   let changeHandlers = [];
   let checkBoxHeaderPromiseResolve;
-  let checkBoxHeaderPromise = new Promise(resolve => checkBoxHeaderPromiseResolve = resolve);
+  let checkBoxHeaderPromise = new Promise(
+    (resolve) => (checkBoxHeaderPromiseResolve = resolve)
+  );
   let checkBoxListPromiseResolve;
-  let checkBoxListPromise = new Promise(resolve => checkBoxListPromiseResolve = resolve);
+  let checkBoxListPromise = new Promise(
+    (resolve) => (checkBoxListPromiseResolve = resolve)
+  );
   let addLayoutListener = getContext('SMUI:addLayoutListener');
   let removeLayoutListener;
 
@@ -70,7 +80,7 @@
     // Workaround for a bug in MDC DataTable where a table with no checkboxes
     // calls destroy on them anyway.
     if (!dataTable.headerRowCheckbox_) {
-      dataTable.headerRowCheckbox_ = {destroy() {}};
+      dataTable.headerRowCheckbox_ = { destroy() {} };
     }
     if (!dataTable.rowCheckboxList_) {
       dataTable.rowCheckboxList_ = [];

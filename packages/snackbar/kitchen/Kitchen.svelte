@@ -3,28 +3,27 @@
     bind:this={component}
     on:MDCSnackbar:closed={handleClosed}
     labelText={config.label}
-    {...(config && config.props || {})}
+    {...(config && config.props) || {}}
     {...prefixFilter($$props, 'snackbar$')}
   >
-    <Label
-      {...prefixFilter($$props, 'label$')}
-    ></Label>
+    <Label {...prefixFilter($$props, 'label$')} />
     {#if config.actions || config.dismissButton}
       <Actions>
         {#if config.actions}
           {#each config.actions as action}
             <Button
-              on:click={e => action.onClick && action.onClick(e)}
-              {...prefixFilter($$props, 'action$')}
-            >{action.text}</Button>
+              on:click={(e) => action.onClick && action.onClick(e)}
+              {...prefixFilter($$props, 'action$')}>{action.text}</Button
+            >
           {/each}
         {/if}
         {#if config.dismissButton}
           <IconButton
-            on:click={e => config.onDismiss && config.onDismiss(e)}
-            title="{config.dismissTitle || 'Dismiss'}"
+            on:click={(e) => config.onDismiss && config.onDismiss(e)}
+            title={config.dismissTitle || 'Dismiss'}
             {...prefixFilter($$props, 'dismiss$')}
-          >{config.dismissText || 'close'}</IconButton>
+            >{config.dismissText || 'close'}</IconButton
+          >
         {/if}
       </Actions>
     {/if}
@@ -32,11 +31,10 @@
 {/if}
 
 <script>
-  import {tick} from 'svelte';
   import Label from '@smui/common/Label.svelte';
   import Button from '@smui/button/Button.svelte';
   import IconButton from '@smui/icon-button/IconButton.svelte';
-  import {prefixFilter} from '@smui/common/prefixFilter.js';
+  import { prefixFilter } from '@smui/common/internal.js';
   import Snackbar from '../Snackbar.svelte';
   import Actions from '../Actions.js';
 

@@ -5,16 +5,19 @@
   class="
     mdc-form-field
     {className}
-    {align === 'end' ? 'mdc-form-field--align-end' : ''}
+    {align === 'end'
+    ? 'mdc-form-field--align-end'
+    : ''}
   "
   {...exclude($$props, ['use', 'class', 'alignEnd', 'inputId', 'label$'])}
 >
-  <slot></slot>
+  <slot />
   <label
     use:useActions={label$use}
     for={inputId}
     {...exclude(prefixFilter($$props, 'label$'), ['use'])}
-  ><slot name="label"></slot></label>
+    ><slot name="label" /></label
+  >
 </div>
 
 <script context="module">
@@ -22,22 +25,24 @@
 </script>
 
 <script>
-  import {MDCFormField} from '@material/form-field';
-  import {onMount, onDestroy, setContext} from 'svelte';
-  import {writable} from 'svelte/store';
-  import {get_current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
-  import {exclude} from '@smui/common/exclude.js';
-  import {prefixFilter} from '@smui/common/prefixFilter.js';
-  import {useActions} from '@smui/common/useActions.js';
+  import { MDCFormField } from '@material/form-field';
+  import { onMount, onDestroy, setContext } from 'svelte';
+  import { writable } from 'svelte/store';
+  import { get_current_component } from 'svelte/internal';
+  import {
+    forwardEventsBuilder,
+    exclude,
+    prefixFilter,
+    useActions,
+  } from '@smui/common/internal.js';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
   export let use = [];
   let className = '';
-  export {className as class};
+  export { className as class };
   export let align = 'start';
-  export let inputId = 'SMUI-form-field-'+(counter++);
+  export let inputId = 'SMUI-form-field-' + counter++;
   export let label$use = [];
 
   let element;
@@ -46,7 +51,7 @@
   let formFieldStore = writable(formField);
   $: $formFieldStore = formField;
   setContext('SMUI:form-field', formFieldStore);
-  setContext('SMUI:generic:input:props', {id: inputId});
+  setContext('SMUI:generic:input:props', { id: inputId });
 
   onMount(() => {
     formField = new MDCFormField(element);

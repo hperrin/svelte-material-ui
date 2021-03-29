@@ -1,21 +1,23 @@
-
 <aside
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
   {...exclude($$props, ['element', 'use', 'forwardEvents'])}
-><slot></slot></aside>
+>
+  <slot />
+</aside>
 
 <script>
-  import {get_current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from './forwardEvents.js';
-  import {exclude} from './exclude.js';
-  import {useActions} from './useActions.js';
+  import { get_current_component } from 'svelte/internal';
+  import { forwardEventsBuilder, exclude, useActions } from './internal.js';
 
   export let element = null;
   export let use = [];
   let forwardEventsAdditional = [];
-  export {forwardEventsAdditional as forwardEvents};
+  export { forwardEventsAdditional as forwardEvents };
 
-  const forwardEvents = forwardEventsBuilder(get_current_component(), forwardEventsAdditional);
+  const forwardEvents = forwardEventsBuilder(
+    get_current_component(),
+    forwardEventsAdditional
+  );
 </script>

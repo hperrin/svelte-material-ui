@@ -22,9 +22,7 @@
 
 <script>
   import { get_current_component } from 'svelte/internal';
-  import { forwardEventsBuilder } from '@smui/common/forwardEvents.js';
-  import { exclude } from '@smui/common/exclude.js';
-  import { useActions } from '@smui/common/useActions.js';
+  import { forwardEventsBuilder, exclude } from '@smui/common/internal.js';
   import Li from '@smui/common/Li.svelte';
   import Hr from '@smui/common/Hr.svelte';
 

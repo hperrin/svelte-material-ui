@@ -1,4 +1,4 @@
-import { classAdderBuilder } from '@smui/common/classAdderBuilder.js';
+import { classAdderBuilder } from '@smui/common/internal.js';
 import Graphic from '@smui/list/Graphic.js';
 
 export default classAdderBuilder({

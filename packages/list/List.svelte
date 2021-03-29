@@ -56,9 +56,11 @@
   import { closest, matches } from '@material/dom/ponyfill';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
-  import { forwardEventsBuilder } from '@smui/common/forwardEvents.js';
-  import { exclude } from '@smui/common/exclude.js';
-  import { dispatch } from '@smui/common/dispatch.js';
+  import {
+    forwardEventsBuilder,
+    exclude,
+    dispatch,
+  } from '@smui/common/internal.js';
   import Ul from '@smui/common/Ul.svelte';
   import Nav from '@smui/common/Nav.svelte';
 

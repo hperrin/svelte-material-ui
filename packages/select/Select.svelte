@@ -128,10 +128,12 @@
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
   import { writable } from 'svelte/store';
   import { get_current_component } from 'svelte/internal';
-  import { forwardEventsBuilder } from '@smui/common/forwardEvents.js';
-  import { exclude } from '@smui/common/exclude.js';
-  import { prefixFilter } from '@smui/common/prefixFilter.js';
-  import { useActions } from '@smui/common/useActions.js';
+  import {
+    forwardEventsBuilder,
+    exclude,
+    prefixFilter,
+    useActions,
+  } from '@smui/common/internal.js';
   import { Anchor } from '@smui/menu-surface';
   import Menu from '@smui/menu/Menu.svelte';
   import List from '@smui/list/List.svelte';

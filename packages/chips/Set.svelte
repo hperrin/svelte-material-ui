@@ -5,39 +5,54 @@
   class="
     mdc-chip-set
     {className}
-    {choice ? 'mdc-chip-set--choice' : ''}
+    {choice
+    ? 'mdc-chip-set--choice'
+    : ''}
     {filter ? 'mdc-chip-set--filter' : ''}
-    {input ? 'mdc-chip-set--input' : ''}
+    {input
+    ? 'mdc-chip-set--input'
+    : ''}
   "
   role="grid"
   on:MDCChip:removal={handleRemoval}
   on:MDCChip:selection={handleSelection}
-  {...exclude($$props, ['use', 'class', 'chips', 'key', 'selected', 'choice', 'filter', 'input'])}
+  {...exclude($$props, [
+    'use',
+    'class',
+    'chips',
+    'key',
+    'selected',
+    'choice',
+    'filter',
+    'input',
+  ])}
 >
   {#each chips as chip, i (key(chip))}
     <ContextFragment key="SMUI:chip:initialTabindex" value={i === 0 ? 0 : -1}>
-      <slot {chip}></slot>
+      <slot {chip} />
     </ContextFragment>
   {/each}
 </div>
 
 <script>
-  import {MDCChipSet} from '@material/chips';
-  import {onMount, onDestroy, afterUpdate, setContext} from 'svelte';
-  import {writable} from 'svelte/store';
-  import {get_current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
-  import {exclude} from '@smui/common/exclude.js';
-  import {useActions} from '@smui/common/useActions.js';
+  import { MDCChipSet } from '@material/chips';
+  import { onMount, onDestroy, afterUpdate, setContext } from 'svelte';
+  import { writable } from 'svelte/store';
+  import { get_current_component } from 'svelte/internal';
+  import {
+    forwardEventsBuilder,
+    exclude,
+    useActions,
+  } from '@smui/common/internal.js';
   import ContextFragment from '@smui/common/ContextFragment.svelte';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
   export let use = [];
   let className = '';
-  export {className as class};
+  export { className as class };
   export let chips = [];
-  export let key = chip => chip;
+  export let key = (chip) => chip;
   export let selected = null;
   export let choice = false;
   export let filter = false;
@@ -115,7 +130,9 @@
     if (previousChipsLength !== chips.length) {
       while (previousChipsLength < chips.length) {
         chipSet.addChip(element.children[previousChipsLength]);
-        element.children[previousChipsLength].setChip(chipSet.chips[previousChipsLength]);
+        element.children[previousChipsLength].setChip(
+          chipSet.chips[previousChipsLength]
+        );
         previousChipsLength++;
       }
       previousChipsLength = chips.length;
@@ -161,7 +178,9 @@
   }
 
   function handleRemoval(e) {
-    const index = chipSet.foundation_.adapter_.getIndexOfChipById(e.detail.chipId);
+    const index = chipSet.foundation_.adapter_.getIndexOfChipById(
+      e.detail.chipId
+    );
     chips.splice(index, 1);
     chips = chips;
   }

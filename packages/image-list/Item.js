@@ -1,4 +1,4 @@
-import { classAdderBuilder } from '@smui/common/classAdderBuilder.js';
+import { classAdderBuilder } from '@smui/common/internal.js';
 import Li from '@smui/common/Li.svelte';
 
 export default classAdderBuilder({

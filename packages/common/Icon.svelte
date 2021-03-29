@@ -23,8 +23,7 @@
 <script>
   import { getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
-  import { forwardEventsBuilder } from './forwardEvents.js';
-  import { exclude } from './exclude.js';
+  import { forwardEventsBuilder, exclude } from './internal.js';
   import I from './I.svelte';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());

@@ -6,20 +6,35 @@
     class="
       mdc-text-field
       {className}
-      {disabled ? 'mdc-text-field--disabled' : ''}
+      {disabled
+      ? 'mdc-text-field--disabled'
+      : ''}
       {fullwidth ? 'mdc-text-field--fullwidth' : ''}
-      {textarea ? 'mdc-text-field--textarea' : ''}
-      {(variant === 'outlined' && !fullwidth) ? 'mdc-text-field--outlined' : ''}
-      {(variant === 'standard' && !fullwidth && !textarea) ? 'smui-text-field--standard' : ''}
+      {textarea
+      ? 'mdc-text-field--textarea'
+      : ''}
+      {variant === 'outlined' && !fullwidth
+      ? 'mdc-text-field--outlined'
+      : ''}
+      {variant === 'standard' && !fullwidth && !textarea
+      ? 'smui-text-field--standard'
+      : ''}
       {dense ? 'mdc-text-field--dense' : ''}
-      {noLabel || label == null ? 'mdc-text-field--no-label' : ''}
-      {withLeadingIcon ? 'mdc-text-field--with-leading-icon' : ''}
-      {withTrailingIcon ? 'mdc-text-field--with-trailing-icon' : ''}
+      {noLabel ||
+    label == null
+      ? 'mdc-text-field--no-label'
+      : ''}
+      {withLeadingIcon
+      ? 'mdc-text-field--with-leading-icon'
+      : ''}
+      {withTrailingIcon
+      ? 'mdc-text-field--with-trailing-icon'
+      : ''}
       {invalid ? 'mdc-text-field--invalid' : ''}
     "
     {...props}
   >
-    <slot></slot>
+    <slot />
     {#if textarea}
       <Textarea
         {disabled}
@@ -46,22 +61,29 @@
         on:input
         on:blur
         on:focus
-        {...((fullwidth && label) ? {placeholder: label} : {})}
+        {...fullwidth && label ? { placeholder: label } : {}}
         {...prefixFilter($$props, 'input$')}
       />
     {/if}
     {#if !textarea && variant !== 'outlined'}
       {#if !noLabel && label != null && !fullwidth}
-        <FloatingLabel wrapped {...prefixFilter($$props, 'label$')}>{label}<slot name="label"></slot></FloatingLabel>
+        <FloatingLabel wrapped {...prefixFilter($$props, 'label$')}
+          >{label}<slot name="label" /></FloatingLabel
+        >
       {/if}
       {#if ripple}
         <LineRipple {...prefixFilter($$props, 'ripple$')} />
       {/if}
     {/if}
     {#if textarea || (variant === 'outlined' && !fullwidth)}
-      <NotchedOutline noLabel={noLabel || label == null} {...prefixFilter($$props, 'outline$')}>
+      <NotchedOutline
+        noLabel={noLabel || label == null}
+        {...prefixFilter($$props, 'outline$')}
+      >
         {#if !noLabel && label != null}
-          <FloatingLabel wrapped {...prefixFilter($$props, 'label$')}>{label}<slot name="label"></slot></FloatingLabel>
+          <FloatingLabel wrapped {...prefixFilter($$props, 'label$')}
+            >{label}<slot name="label" /></FloatingLabel
+          >
         {/if}
       </NotchedOutline>
     {/if}
@@ -74,31 +96,47 @@
     class="
       mdc-text-field
       {className}
-      {disabled ? 'mdc-text-field--disabled' : ''}
+      {disabled
+      ? 'mdc-text-field--disabled'
+      : ''}
       {fullwidth ? 'mdc-text-field--fullwidth' : ''}
-      {textarea ? 'mdc-text-field--textarea' : ''}
-      {(variant === 'outlined' && !fullwidth) ? 'mdc-text-field--outlined' : ''}
-      {(variant === 'standard' && !fullwidth && !textarea) ? 'smui-text-field--standard' : ''}
+      {textarea
+      ? 'mdc-text-field--textarea'
+      : ''}
+      {variant === 'outlined' && !fullwidth
+      ? 'mdc-text-field--outlined'
+      : ''}
+      {variant === 'standard' && !fullwidth && !textarea
+      ? 'smui-text-field--standard'
+      : ''}
       {dense ? 'mdc-text-field--dense' : ''}
-      {noLabel ? 'mdc-text-field--no-label' : ''}
-      {withLeadingIcon ? 'mdc-text-field--with-leading-icon' : ''}
-      {withTrailingIcon ? 'mdc-text-field--with-trailing-icon' : ''}
+      {noLabel
+      ? 'mdc-text-field--no-label'
+      : ''}
+      {withLeadingIcon
+      ? 'mdc-text-field--with-leading-icon'
+      : ''}
+      {withTrailingIcon
+      ? 'mdc-text-field--with-trailing-icon'
+      : ''}
       {invalid ? 'mdc-text-field--invalid' : ''}
     "
     {...props}
   >
-    <slot></slot>
+    <slot />
   </div>
 {/if}
 
 <script>
-  import {MDCTextField} from '@material/textfield';
-  import {onMount, onDestroy, getContext} from 'svelte';
-  import {get_current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
-  import {exclude} from '@smui/common/exclude.js';
-  import {prefixFilter} from '@smui/common/prefixFilter.js';
-  import {useActions} from '@smui/common/useActions.js';
+  import { MDCTextField } from '@material/textfield';
+  import { onMount, onDestroy, getContext } from 'svelte';
+  import { get_current_component } from 'svelte/internal';
+  import {
+    forwardEventsBuilder,
+    exclude,
+    prefixFilter,
+    useActions,
+  } from '@smui/common/internal.js';
   import FloatingLabel from '@smui/floating-label/FloatingLabel.svelte';
   import LineRipple from '@smui/line-ripple/LineRipple.svelte';
   import NotchedOutline from '@smui/notched-outline/NotchedOutline.svelte';
@@ -110,7 +148,7 @@
 
   export let use = [];
   let className = '';
-  export {className as class};
+  export { className as class };
   export let ripple = true;
   export let disabled = false;
   export let fullwidth = false;
@@ -129,7 +167,30 @@
   export let updateInvalid = invalid === uninitializedValue;
   export let useNativeValidation = updateInvalid;
 
-  $: props = exclude($$props, ['use', 'class', 'ripple', 'disabled', 'fullwidth', 'textarea', 'variant', 'dense', 'withLeadingIcon', 'withTrailingIcon', 'noLabel', 'label', 'type', 'value', 'dirty', 'invalid', 'updateInvalid', 'useNativeValidation', 'input$', 'label$', 'ripple$', 'outline$']);
+  $: props = exclude($$props, [
+    'use',
+    'class',
+    'ripple',
+    'disabled',
+    'fullwidth',
+    'textarea',
+    'variant',
+    'dense',
+    'withLeadingIcon',
+    'withTrailingIcon',
+    'noLabel',
+    'label',
+    'type',
+    'value',
+    'dirty',
+    'invalid',
+    'updateInvalid',
+    'useNativeValidation',
+    'input$',
+    'label$',
+    'ripple$',
+    'outline$',
+  ]);
 
   let element;
   let textField;
@@ -138,7 +199,11 @@
 
   $: valued = value !== uninitializedValue || files !== uninitializedValue;
 
-  $: if (textField && value !== uninitializedValue && textField.value !== value) {
+  $: if (
+    textField &&
+    value !== uninitializedValue &&
+    textField.value !== value
+  ) {
     textField.value = value;
   }
 

@@ -1,23 +1,48 @@
 <svelte:component
   this={component}
-  use={[[Ripple, {ripple, unbounded: false, disabled: !!$$props.disabled, classForward: classes => rippleClasses = classes}], forwardEvents, ...use]}
+  use={[
+    [
+      Ripple,
+      {
+        ripple,
+        unbounded: false,
+        disabled: !!$$props.disabled,
+        classForward: (classes) => (rippleClasses = classes),
+      },
+    ],
+    forwardEvents,
+    ...use,
+  ]}
   class="
     mdc-fab
     {className}
     {rippleClasses.join(' ')}
-    {mini ? 'mdc-fab--mini' : ''}
+    {mini
+    ? 'mdc-fab--mini'
+    : ''}
     {exited ? 'mdc-fab--exited' : ''}
-    {extended ? 'mdc-fab--extended' : ''}
+    {extended
+    ? 'mdc-fab--extended'
+    : ''}
     {color === 'primary' ? 'smui-fab--color-primary' : ''}
   "
-  {...exclude($$props, ['use', 'class', 'ripple', 'color', 'mini', 'exited', 'extended', 'component'])}
->{#if ripple}<div class="mdc-fab__ripple"></div>{/if}<slot></slot></svelte:component>
+  {...exclude($$props, [
+    'use',
+    'class',
+    'ripple',
+    'color',
+    'mini',
+    'exited',
+    'extended',
+    'component',
+  ])}
+  >{#if ripple}<div class="mdc-fab__ripple" />{/if}<slot /></svelte:component
+>
 
 <script>
-  import {setContext} from 'svelte';
-  import {get_current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
-  import {exclude} from '@smui/common/exclude.js';
+  import { setContext } from 'svelte';
+  import { get_current_component } from 'svelte/internal';
+  import { forwardEventsBuilder, exclude } from '@smui/common/internal.js';
   import A from '@smui/common/A.svelte';
   import Button from '@smui/common/Button.svelte';
   import Ripple from '@smui/ripple/bare.js';
@@ -26,7 +51,7 @@
 
   export let use = [];
   let className = '';
-  export {className as class};
+  export { className as class };
   export let ripple = true;
   export let color = 'secondary';
   export let mini = false;

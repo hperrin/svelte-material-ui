@@ -5,52 +5,72 @@
   class="
     mdc-slider
     {className}
-    {discrete ? 'mdc-slider--discrete' : ''}
-    {(discrete && displayMarkers) ? 'mdc-slider--display-markers' : ''}
+    {discrete
+    ? 'mdc-slider--discrete'
+    : ''}
+    {discrete && displayMarkers
+    ? 'mdc-slider--display-markers'
+    : ''}
   "
   role="slider"
   aria-disabled={disabled ? 'true' : 'false'}
   aria-valuemin={min}
   aria-valuemax={max}
   aria-valuenow={value}
-  {...(step === 0 ? {} : {'data-step': step})}
+  {...step === 0 ? {} : { 'data-step': step }}
   {tabindex}
   {...inputProps}
   on:MDCSlider:input={handleChange}
-  {...exclude($$props, ['use', 'class', 'disabled', 'discrete', 'displayMarkers', 'min', 'max', 'step', 'value', 'tabindex'])}
+  {...exclude($$props, [
+    'use',
+    'class',
+    'disabled',
+    'discrete',
+    'displayMarkers',
+    'min',
+    'max',
+    'step',
+    'value',
+    'tabindex',
+  ])}
 >
   <div class="mdc-slider__track-container">
-    <div class="mdc-slider__track"></div>
+    <div class="mdc-slider__track" />
     {#if discrete && displayMarkers}
-      <div class="mdc-slider__track-marker-container"></div>
+      <div class="mdc-slider__track-marker-container" />
     {/if}
   </div>
   <div class="mdc-slider__thumb-container">
     {#if discrete}
       <div class="mdc-slider__pin">
-        <span class="mdc-slider__pin-value-marker"></span>
+        <span class="mdc-slider__pin-value-marker" />
       </div>
     {/if}
     <svg class="mdc-slider__thumb" width="21" height="21">
-      <circle cx="10.5" cy="10.5" r="7.875"></circle>
+      <circle cx="10.5" cy="10.5" r="7.875" />
     </svg>
-    <div class="mdc-slider__focus-ring"></div>
+    <div class="mdc-slider__focus-ring" />
   </div>
 </div>
 
 <script>
-  import {MDCSlider} from '@material/slider';
-  import {onMount, onDestroy, getContext} from 'svelte';
-  import {get_current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
-  import {exclude} from '@smui/common/exclude.js';
-  import {useActions} from '@smui/common/useActions.js';
+  import { MDCSlider } from '@material/slider';
+  import { onMount, onDestroy, getContext } from 'svelte';
+  import { get_current_component } from 'svelte/internal';
+  import {
+    forwardEventsBuilder,
+    exclude,
+    useActions,
+  } from '@smui/common/internal.js';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component(), ['MDCSlider:input', 'MDCSlider:change']);
+  const forwardEvents = forwardEventsBuilder(get_current_component(), [
+    'MDCSlider:input',
+    'MDCSlider:change',
+  ]);
 
   export let use = [];
   let className = '';
-  export {className as class};
+  export { className as class };
   export let disabled = false;
   export let discrete = false;
   export let displayMarkers = false;

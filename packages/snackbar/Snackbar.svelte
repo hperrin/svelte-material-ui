@@ -5,7 +5,9 @@
   class="
     mdc-snackbar
     {className}
-    {variant === 'stacked' ? 'mdc-snackbar--stacked' : ''}
+    {variant === 'stacked'
+    ? 'mdc-snackbar--stacked'
+    : ''}
     {leading ? 'mdc-snackbar--leading' : ''}
   "
   on:MDCSnackbar:closed={handleClosed}
@@ -15,7 +17,9 @@
     use:useActions={surface$use}
     class="mdc-snackbar__surface {surface$class}"
     {...prefixFilter($$props, 'surface$')}
-  ><slot></slot></div>
+  >
+    <slot />
+  </div>
 </div>
 
 <script context="module">
@@ -23,20 +27,27 @@
 </script>
 
 <script>
-  import {MDCSnackbar} from '@material/snackbar';
-  import {onMount, onDestroy, setContext} from 'svelte';
-  import {get_current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
-  import {exclude} from '@smui/common/exclude.js';
-  import {prefixFilter} from '@smui/common/prefixFilter.js';
-  import {useActions} from '@smui/common/useActions.js';
+  import { MDCSnackbar } from '@material/snackbar';
+  import { onMount, onDestroy, setContext } from 'svelte';
+  import { get_current_component } from 'svelte/internal';
+  import {
+    forwardEventsBuilder,
+    exclude,
+    prefixFilter,
+    useActions,
+  } from '@smui/common/internal.js';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component(), ['MDCSnackbar:opening', 'MDCSnackbar:opened', 'MDCSnackbar:closing', 'MDCSnackbar:closed']);
+  const forwardEvents = forwardEventsBuilder(get_current_component(), [
+    'MDCSnackbar:opening',
+    'MDCSnackbar:opened',
+    'MDCSnackbar:closing',
+    'MDCSnackbar:closed',
+  ]);
   const uninitializedValue = () => {};
 
   export let use = [];
   let className = '';
-  export {className as class};
+  export { className as class };
   export let variant = '';
   export let leading = false;
   export let timeoutMs = 5000;
@@ -49,7 +60,7 @@
   let element;
   let snackbar;
   let closeResolve;
-  let closePromise = new Promise(resolve => closeResolve = resolve);
+  let closePromise = new Promise((resolve) => (closeResolve = resolve));
 
   setContext('SMUI:button:context', 'snackbar');
   setContext('SMUI:icon-button:context', 'snackbar');
@@ -63,11 +74,19 @@
     snackbar.closeOnEscape = closeOnEscape;
   }
 
-  $: if (snackbar && labelText !== uninitializedValue && snackbar.labelText !== labelText) {
+  $: if (
+    snackbar &&
+    labelText !== uninitializedValue &&
+    snackbar.labelText !== labelText
+  ) {
     snackbar.labelText = labelText;
   }
 
-  $: if (snackbar && actionButtonText !== uninitializedValue && snackbar.actionButtonText !== actionButtonText) {
+  $: if (
+    snackbar &&
+    actionButtonText !== uninitializedValue &&
+    snackbar.actionButtonText !== actionButtonText
+  ) {
     snackbar.actionButtonText = actionButtonText;
   }
 
@@ -81,7 +100,7 @@
 
   function handleClosed() {
     closeResolve();
-    closePromise = new Promise(resolve => closeResolve = resolve);
+    closePromise = new Promise((resolve) => (closeResolve = resolve));
   }
 
   export function open(...args) {

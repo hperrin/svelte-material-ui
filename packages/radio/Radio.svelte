@@ -5,10 +5,21 @@
   class="
     mdc-radio
     {className}
-    {disabled ? 'mdc-radio--disabled' : ''}
+    {disabled
+    ? 'mdc-radio--disabled'
+    : ''}
     {touch ? 'mdc-radio--touch' : ''}
   "
-  {...exclude($$props, ['use', 'class', 'disabled', 'touch', 'group', 'value', 'valueKey', 'input$'])}
+  {...exclude($$props, [
+    'use',
+    'class',
+    'disabled',
+    'touch',
+    'group',
+    'value',
+    'valueKey',
+    'input$',
+  ])}
 >
   <input
     use:useActions={input$use}
@@ -26,27 +37,29 @@
     {...exclude(prefixFilter($$props, 'input$'), ['use', 'class'])}
   />
   <div class="mdc-radio__background">
-    <div class="mdc-radio__outer-circle"></div>
-    <div class="mdc-radio__inner-circle"></div>
+    <div class="mdc-radio__outer-circle" />
+    <div class="mdc-radio__inner-circle" />
   </div>
-  <div class="mdc-radio__ripple"></div>
+  <div class="mdc-radio__ripple" />
 </div>
 
 <script>
-  import {MDCRadio} from '@material/radio';
-  import {onMount, onDestroy, getContext} from 'svelte';
-  import {get_current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
-  import {exclude} from '@smui/common/exclude.js';
-  import {prefixFilter} from '@smui/common/prefixFilter.js';
-  import {useActions} from '@smui/common/useActions.js';
+  import { MDCRadio } from '@material/radio';
+  import { onMount, onDestroy, getContext } from 'svelte';
+  import { get_current_component } from 'svelte/internal';
+  import {
+    forwardEventsBuilder,
+    exclude,
+    prefixFilter,
+    useActions,
+  } from '@smui/common/internal.js';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
   let uninitializedValue = () => {};
 
   export let use = [];
   let className = '';
-  export {className as class};
+  export { className as class };
   export let disabled = false;
   export let touch = false;
   export let group = null;

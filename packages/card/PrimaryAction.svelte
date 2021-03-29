@@ -4,25 +4,38 @@
   class="
     mdc-card__primary-action
     {className}
-    {padded ? 'smui-card__primary-action--padded' : ''}
+    {padded
+    ? 'smui-card__primary-action--padded'
+    : ''}
   "
-  use:Ripple={{ripple, unbounded: false, color}}
+  use:Ripple={{ ripple, unbounded: false, color }}
   {tabindex}
-  {...exclude($$props, ['use', 'class', 'ripple', 'color', 'padded', 'tabindex'])}
-><slot></slot></div>
+  {...exclude($$props, [
+    'use',
+    'class',
+    'ripple',
+    'color',
+    'padded',
+    'tabindex',
+  ])}
+>
+  <slot />
+</div>
 
 <script>
-  import {get_current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
-  import {exclude} from '@smui/common/exclude.js';
-  import {useActions} from '@smui/common/useActions.js';
+  import { get_current_component } from 'svelte/internal';
+  import {
+    forwardEventsBuilder,
+    exclude,
+    useActions,
+  } from '@smui/common/internal.js';
   import Ripple from '@smui/ripple/bare.js';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
   export let use = [];
   let className = '';
-  export {className as class};
+  export { className as class };
   export let ripple = true;
   export let color = null;
   export let padded = false;

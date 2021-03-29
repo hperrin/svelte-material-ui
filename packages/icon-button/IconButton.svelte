@@ -59,9 +59,11 @@
   import { MDCIconButtonToggleFoundation } from '@material/icon-button';
   import { onDestroy, getContext, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
-  import { forwardEventsBuilder } from '@smui/common/forwardEvents.js';
-  import { exclude } from '@smui/common/exclude.js';
-  import { dispatch } from '@smui/common/dispatch.js';
+  import {
+    forwardEventsBuilder,
+    exclude,
+    dispatch,
+  } from '@smui/common/internal.js';
   import A from '@smui/common/A.svelte';
   import Button from '@smui/common/Button.svelte';
   import Ripple from '@smui/ripple/bare.js';

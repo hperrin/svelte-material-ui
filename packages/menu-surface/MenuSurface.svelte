@@ -59,10 +59,12 @@
   import { getCorrectPropertyName } from '@material/animation/util';
   import { onMount, onDestroy, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
-  import { forwardEventsBuilder } from '@smui/common/forwardEvents.js';
-  import { exclude } from '@smui/common/exclude.js';
-  import { useActions } from '@smui/common/useActions.js';
-  import { dispatch } from '@smui/common/dispatch.js';
+  import {
+    forwardEventsBuilder,
+    exclude,
+    useActions,
+    dispatch,
+  } from '@smui/common/internal.js';
 
   const forwardEvents = forwardEventsBuilder(get_current_component(), [
     'MDCMenuSurface:closed',

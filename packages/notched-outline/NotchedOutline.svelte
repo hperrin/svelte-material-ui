@@ -5,31 +5,35 @@
   class="
     mdc-notched-outline
     {className}
-    {notched ? 'mdc-notched-outline--notched' : ''}
+    {notched
+    ? 'mdc-notched-outline--notched'
+    : ''}
     {noLabel ? 'mdc-notched-outline--no-label' : ''}
   "
   {...exclude($$props, ['use', 'class', 'notched', 'noLabel'])}
 >
-  <div class="mdc-notched-outline__leading"></div>
+  <div class="mdc-notched-outline__leading" />
   {#if !noLabel}
-    <div class="mdc-notched-outline__notch"><slot></slot></div>
+    <div class="mdc-notched-outline__notch"><slot /></div>
   {/if}
-  <div class="mdc-notched-outline__trailing"></div>
+  <div class="mdc-notched-outline__trailing" />
 </div>
 
 <script>
-  import {MDCNotchedOutline} from '@material/notched-outline';
-  import {onMount, onDestroy} from 'svelte';
-  import {get_current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
-  import {exclude} from '@smui/common/exclude.js';
-  import {useActions} from '@smui/common/useActions.js';
+  import { MDCNotchedOutline } from '@material/notched-outline';
+  import { onMount, onDestroy } from 'svelte';
+  import { get_current_component } from 'svelte/internal';
+  import {
+    forwardEventsBuilder,
+    exclude,
+    useActions,
+  } from '@smui/common/internal.js';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
   export let use = [];
   let className = '';
-  export {className as class};
+  export { className as class };
   export let notched = false;
   export let noLabel = false;
 

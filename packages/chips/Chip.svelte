@@ -1,51 +1,74 @@
 <svelte:component
   this={component}
-  bind:element={element}
+  bind:element
   use={[forwardEvents, ...use]}
   forwardEvents={forwardedEvents}
   class="
     mdc-chip
     {className}
-    {selected ? 'mdc-chip--selected' : ''}
+    {selected
+    ? 'mdc-chip--selected'
+    : ''}
     {touch ? 'mdc-chip--touch' : ''}
   "
   role="row"
   on:MDCChip:selection={handleSelection}
-  {...exclude($$props, ['use', 'class', 'component', 'ripple', 'touch', 'selected', 'shouldRemoveOnTrailingIconClick'])}
+  {...exclude($$props, [
+    'use',
+    'class',
+    'component',
+    'ripple',
+    'touch',
+    'selected',
+    'shouldRemoveOnTrailingIconClick',
+  ])}
 >
   {#if ripple}
-    <div class="mdc-chip__ripple"></div>
+    <div class="mdc-chip__ripple" />
   {/if}
-  <slot></slot>
+  <slot />
   {#if touch}
-    <div class="mdc-chip__touch"></div>
+    <div class="mdc-chip__touch" />
   {/if}
 </svelte:component>
 
 <script>
-  import {MDCChip} from '@material/chips';
-  import {onMount, setContext, getContext} from 'svelte';
-  import {writable} from 'svelte/store';
-  import {get_current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
-  import {exclude} from '@smui/common/exclude.js';
-  import Div from "@smui/common/Div.svelte";
+  import { MDCChip } from '@material/chips';
+  import { onMount, setContext, getContext } from 'svelte';
+  import { writable } from 'svelte/store';
+  import { get_current_component } from 'svelte/internal';
+  import { forwardEventsBuilder, exclude } from '@smui/common/internal.js';
+  import Div from '@smui/common/Div.svelte';
 
-  const forwardedEvents = ['MDCChip:interaction', 'MDCChip:selection', 'MDCChip:removal', 'MDCChip:trailingIconInteraction', 'MDCChip:navigation'];
-  const forwardEvents = forwardEventsBuilder(get_current_component(), forwardedEvents);
+  const forwardedEvents = [
+    'MDCChip:interaction',
+    'MDCChip:selection',
+    'MDCChip:removal',
+    'MDCChip:trailingIconInteraction',
+    'MDCChip:navigation',
+  ];
+  const forwardEvents = forwardEventsBuilder(
+    get_current_component(),
+    forwardedEvents
+  );
 
   export let use = [];
   let className = '';
-  export {className as class};
+  export { className as class };
   export let component = Div;
   export let ripple = true;
   export let touch = false;
   export let selected = false;
   export let shouldRemoveOnTrailingIconClick = true;
 
-  const shouldRemoveOnTrailingIconClickStore = writable(shouldRemoveOnTrailingIconClick);
+  const shouldRemoveOnTrailingIconClickStore = writable(
+    shouldRemoveOnTrailingIconClick
+  );
   $: $shouldRemoveOnTrailingIconClickStore = shouldRemoveOnTrailingIconClick;
-  setContext('SMUI:chip:shouldRemoveOnTrailingIconClick', shouldRemoveOnTrailingIconClickStore);
+  setContext(
+    'SMUI:chip:shouldRemoveOnTrailingIconClick',
+    shouldRemoveOnTrailingIconClickStore
+  );
   const isSelectedStore = writable(selected);
   $: $isSelectedStore = selected;
   setContext('SMUI:chip:isSelected', isSelectedStore);
@@ -68,7 +91,10 @@
     previousSelected = selected;
   }
 
-  $: if (chip && chip.shouldRemoveOnTrailingIconClick !== shouldRemoveOnTrailingIconClick) {
+  $: if (
+    chip &&
+    chip.shouldRemoveOnTrailingIconClick !== shouldRemoveOnTrailingIconClick
+  ) {
     chip.shouldRemoveOnTrailingIconClick = shouldRemoveOnTrailingIconClick;
   }
 

@@ -10,25 +10,32 @@
 >
   <div class="mdc-dialog__container">
     <div class="mdc-dialog__surface">
-      <slot></slot>
+      <slot />
     </div>
   </div>
-  <div class="mdc-dialog__scrim"></div>
+  <div class="mdc-dialog__scrim" />
 </div>
 
 <script>
-  import {MDCDialog} from '@material/dialog';
-  import {onMount, onDestroy, getContext, setContext} from 'svelte';
-  import {get_current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
-  import {exclude} from '@smui/common/exclude.js';
-  import {useActions} from '@smui/common/useActions.js';
+  import { MDCDialog } from '@material/dialog';
+  import { onMount, onDestroy, getContext, setContext } from 'svelte';
+  import { get_current_component } from 'svelte/internal';
+  import {
+    forwardEventsBuilder,
+    exclude,
+    useActions,
+  } from '@smui/common/internal.js';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component(), ['MDCDialog:opening', 'MDCDialog:opened', 'MDCDialog:closing', 'MDCDialog:closed']);
+  const forwardEvents = forwardEventsBuilder(get_current_component(), [
+    'MDCDialog:opening',
+    'MDCDialog:opened',
+    'MDCDialog:closing',
+    'MDCDialog:closed',
+  ]);
 
   export let use = [];
   let className = '';
-  export {className as class};
+  export { className as class };
   export let escapeKeyAction = 'close';
   export let scrimClickAction = 'close';
   export let autoStackButtons = true;
@@ -38,7 +45,7 @@
   let addLayoutListener = getContext('SMUI:addLayoutListener');
   let removeLayoutListener;
   let layoutListeners = [];
-  let addLayoutListenerFn = listener => {
+  let addLayoutListenerFn = (listener) => {
     layoutListeners.push(listener);
 
     return () => {
@@ -72,7 +79,7 @@
   });
 
   function handleDialogOpened() {
-    layoutListeners.forEach(listener => listener());
+    layoutListeners.forEach((listener) => listener());
   }
 
   export function open(...args) {

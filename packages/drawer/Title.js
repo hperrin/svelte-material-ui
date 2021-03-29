@@ -1,4 +1,4 @@
-import { classAdderBuilder } from '@smui/common/classAdderBuilder.js';
+import { classAdderBuilder } from '@smui/common/internal.js';
 import H1 from '@smui/common/H1.svelte';
 
 export default classAdderBuilder({

@@ -5,35 +5,46 @@
   class="mdc-tab-bar {className}"
   role="tablist"
   on:MDCTabBar:activated={activatedHandler}
-  {...exclude($$props, ['use', 'class', 'tabs', 'key', 'focusOnActivate', 'useAutomaticActivation', 'activeIndex', 'tabScroller$'])}
+  {...exclude($$props, [
+    'use',
+    'class',
+    'tabs',
+    'key',
+    'focusOnActivate',
+    'useAutomaticActivation',
+    'activeIndex',
+    'tabScroller$',
+  ])}
 >
-  <TabScroller
-    {...prefixFilter($$props, 'tabScroller$')}
-  >
+  <TabScroller {...prefixFilter($$props, 'tabScroller$')}>
     {#each tabs as tab, i (key(tab))}
-      <slot {tab}></slot>
+      <slot {tab} />
     {/each}
   </TabScroller>
 </div>
 
 <script>
-  import {MDCTabBar} from '@material/tab-bar';
-  import {onMount, onDestroy, setContext} from 'svelte';
-  import {get_current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
-  import {exclude} from '@smui/common/exclude.js';
-  import {prefixFilter} from '@smui/common/prefixFilter.js';
-  import {useActions} from '@smui/common/useActions.js';
+  import { MDCTabBar } from '@material/tab-bar';
+  import { onMount, onDestroy, setContext } from 'svelte';
+  import { get_current_component } from 'svelte/internal';
+  import {
+    forwardEventsBuilder,
+    exclude,
+    prefixFilter,
+    useActions,
+  } from '@smui/common/internal.js';
   import TabScroller from '@smui/tab-scroller/TabScroller.svelte';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component(), ['MDCTabBar:activated']);
+  const forwardEvents = forwardEventsBuilder(get_current_component(), [
+    'MDCTabBar:activated',
+  ]);
   let uninitializedValue = () => {};
 
   export let use = [];
   let className = '';
-  export {className as class};
+  export { className as class };
   export let tabs = [];
-  export let key = tab => tab;
+  export let key = (tab) => tab;
   export let focusOnActivate = true;
   export let useAutomaticActivation = true;
   export let activeIndex = uninitializedValue;
@@ -51,9 +62,13 @@
   let element;
   let tabBar;
   let tabScrollerPromiseResolve;
-  let tabScrollerPromise = new Promise(resolve => tabScrollerPromiseResolve = resolve);
+  let tabScrollerPromise = new Promise(
+    (resolve) => (tabScrollerPromiseResolve = resolve)
+  );
   let tabPromiseResolve = [];
-  let tabPromise = tabs.map((tab, i) => new Promise(resolve => tabPromiseResolve[i] = resolve));
+  let tabPromise = tabs.map(
+    (_tab, i) => new Promise((resolve) => (tabPromiseResolve[i] = resolve))
+  );
 
   setContext('SMUI:tab-scroller:instantiate', false);
   setContext('SMUI:tab-scroller:getInstance', getTabScrollerInstancePromise);

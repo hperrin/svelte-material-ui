@@ -10,29 +10,37 @@
     class="
       mdc-text-field-helper-text
       {className}
-      {persistent ? 'mdc-text-field-helper-text--persistent' : ''}
-      {validationMsg ? 'mdc-text-field-helper-text--validation-msg' : ''}
+      {persistent
+      ? 'mdc-text-field-helper-text--persistent'
+      : ''}
+      {validationMsg
+      ? 'mdc-text-field-helper-text--validation-msg'
+      : ''}
     "
     aria-hidden="true"
     {...exclude($$props, ['use', 'class', 'persistent', 'validationMsg'])}
-  ><slot></slot></div>
-  <slot name="character-counter"></slot>
+  >
+    <slot />
+  </div>
+  <slot name="character-counter" />
 </div>
 
 <script>
-  import {MDCTextFieldHelperText} from '@material/textfield/helper-text';
-  import {onMount, onDestroy} from 'svelte';
-  import {get_current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
-  import {exclude} from '@smui/common/exclude.js';
-  import {prefixFilter} from '@smui/common/prefixFilter.js';
-  import {useActions} from '@smui/common/useActions.js';
+  import { MDCTextFieldHelperText } from '@material/textfield/helper-text';
+  import { onMount, onDestroy } from 'svelte';
+  import { get_current_component } from 'svelte/internal';
+  import {
+    forwardEventsBuilder,
+    exclude,
+    prefixFilter,
+    useActions,
+  } from '@smui/common/internal.js';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
   export let use = [];
   let className = '';
-  export {className as class};
+  export { className as class };
   export let persistent = false;
   export let validationMsg = false;
   export let line$use = [];

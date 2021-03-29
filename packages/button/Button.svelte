@@ -69,8 +69,7 @@
 <script>
   import { setContext, getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
-  import { forwardEventsBuilder } from '@smui/common/forwardEvents.js';
-  import { exclude } from '@smui/common/exclude.js';
+  import { forwardEventsBuilder, exclude } from '@smui/common/internal.js';
   import A from '@smui/common/A.svelte';
   import Button from '@smui/common/Button.svelte';
   import Ripple from '@smui/ripple/bare.js';

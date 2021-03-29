@@ -5,38 +5,55 @@
   class="
     mdc-tab-indicator
     {className}
-    {active ? 'mdc-tab-indicator--active' : ''}
+    {active
+    ? 'mdc-tab-indicator--active'
+    : ''}
     {transition === 'fade' ? 'mdc-tab-indicator--fade' : ''}
   "
-  {...exclude($$props, ['use', 'class', 'active', 'type', 'transition', 'content$'])}
+  {...exclude($$props, [
+    'use',
+    'class',
+    'active',
+    'type',
+    'transition',
+    'content$',
+  ])}
 >
   <span
     use:useActions={content$use}
     class="
       mdc-tab-indicator__content
       {content$class}
-      {type === 'underline' ? 'mdc-tab-indicator__content--underline' : ''}
-      {type === 'icon' ? 'mdc-tab-indicator__content--icon' : ''}
+      {type ===
+    'underline'
+      ? 'mdc-tab-indicator__content--underline'
+      : ''}
+      {type === 'icon'
+      ? 'mdc-tab-indicator__content--icon'
+      : ''}
     "
     aria-hidden={type === 'icon' ? 'true' : 'false'}
     {...exclude(prefixFilter($$props, 'content$'), ['use', 'class'])}
-  ><slot></slot></span>
+    ><slot /></span
+  >
 </span>
 
 <script>
-  import {MDCTabIndicator} from '@material/tab-indicator';
-  import {onMount, onDestroy, getContext} from 'svelte';
-  import {get_current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
-  import {exclude} from '@smui/common/exclude.js';
-  import {prefixFilter} from '@smui/common/prefixFilter.js';
-  import {useActions} from '@smui/common/useActions.js';
+  import { MDCTabIndicator } from '@material/tab-indicator';
+  import { onMount, onDestroy, getContext } from 'svelte';
+  import { get_current_component } from 'svelte/internal';
+  import {
+    forwardEventsBuilder,
+    exclude,
+    prefixFilter,
+    useActions,
+  } from '@smui/common/internal.js';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
   export let use = [];
   let className = '';
-  export {className as class};
+  export { className as class };
   export let active = false;
   export let type = 'underline';
   export let transition = 'slide';

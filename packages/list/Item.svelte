@@ -68,9 +68,11 @@
     createEventDispatcher,
   } from 'svelte';
   import { get_current_component } from 'svelte/internal';
-  import { forwardEventsBuilder } from '@smui/common/forwardEvents.js';
-  import { exclude } from '@smui/common/exclude.js';
-  import { dispatch } from '@smui/common/dispatch.js';
+  import {
+    forwardEventsBuilder,
+    exclude,
+    dispatch,
+  } from '@smui/common/internal.js';
   import A from '@smui/common/A.svelte';
   import Span from '@smui/common/Span.svelte';
   import Li from '@smui/common/Li.svelte';

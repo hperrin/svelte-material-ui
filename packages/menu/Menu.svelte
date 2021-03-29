@@ -19,9 +19,11 @@
   import { closest } from '@material/dom/ponyfill';
   import { onMount, onDestroy } from 'svelte';
   import { get_current_component } from 'svelte/internal';
-  import { forwardEventsBuilder } from '@smui/common/forwardEvents.js';
-  import { exclude } from '@smui/common/exclude.js';
-  import { dispatch } from '@smui/common/dispatch.js';
+  import {
+    forwardEventsBuilder,
+    exclude,
+    dispatch,
+  } from '@smui/common/internal.js';
   import MenuSurface from '@smui/menu-surface/MenuSurface.svelte';
   import { element } from 'svelte/types/runtime/internal/dom';
 

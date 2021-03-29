@@ -9,9 +9,7 @@
 
 <script>
   import { get_current_component } from 'svelte/internal';
-  import { forwardEventsBuilder } from './forwardEvents.js';
-  import { exclude } from './exclude.js';
-  import { useActions } from './useActions.js';
+  import { forwardEventsBuilder, exclude, useActions } from './internal.js';
 
   export let element = null;
   export let use = [];

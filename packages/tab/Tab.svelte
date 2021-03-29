@@ -6,61 +6,80 @@
   class="
     mdc-tab
     {className}
-    {active ? 'mdc-tab--active' : ''}
+    {active
+    ? 'mdc-tab--active'
+    : ''}
     {stacked ? 'mdc-tab--stacked' : ''}
-    {minWidth ? 'mdc-tab--min-width' : ''}
+    {minWidth
+    ? 'mdc-tab--min-width'
+    : ''}
   "
   role="tab"
   aria-selected={active}
-  tabindex="{active ? '0' : '-1'}"
+  tabindex={active ? '0' : '-1'}
   on:MDCTab:interacted={interactedHandler}
-  {...exclude($$props, ['use', 'class', 'ripple', 'active', 'stacked', 'minWidth', 'indicatorSpanOnlyContent', 'focusOnActivate', 'component', 'content$', 'tabIndicator$'])}
+  {...exclude($$props, [
+    'use',
+    'class',
+    'ripple',
+    'active',
+    'stacked',
+    'minWidth',
+    'indicatorSpanOnlyContent',
+    'focusOnActivate',
+    'component',
+    'content$',
+    'tabIndicator$',
+  ])}
 >
   <span
     use:useActions={content$use}
     class="mdc-tab__content {content$class}"
     {...exclude(prefixFilter($$props, 'content$'), ['use', 'class'])}
   >
-    <slot></slot>
+    <slot />
     {#if indicatorSpanOnlyContent}
-      <TabIndicator
-        {active}
-        {...prefixFilter($$props, 'tabIndicator$')}
-      ><slot name="tab-indicator"></slot></TabIndicator>
+      <TabIndicator {active} {...prefixFilter($$props, 'tabIndicator$')}
+        ><slot name="tab-indicator" /></TabIndicator
+      >
     {/if}
   </span>
   {#if !indicatorSpanOnlyContent}
-    <TabIndicator
-      {active}
-      {...prefixFilter($$props, 'tabIndicator$')}
-    ><slot name="tab-indicator"></slot></TabIndicator>
+    <TabIndicator {active} {...prefixFilter($$props, 'tabIndicator$')}
+      ><slot name="tab-indicator" /></TabIndicator
+    >
   {/if}
   {#if ripple}
-    <span class="mdc-tab__ripple"></span>
+    <span class="mdc-tab__ripple" />
   {/if}
 </svelte:component>
 
 <script>
-  import {MDCTab} from '@material/tab';
-  import {onMount, onDestroy, setContext, getContext} from 'svelte';
-  import {get_current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
-  import {exclude} from '@smui/common/exclude.js';
-  import {prefixFilter} from '@smui/common/prefixFilter.js';
-  import {useActions} from '@smui/common/useActions.js';
+  import { MDCTab } from '@material/tab';
+  import { onMount, onDestroy, setContext, getContext } from 'svelte';
+  import { get_current_component } from 'svelte/internal';
+  import {
+    forwardEventsBuilder,
+    exclude,
+    prefixFilter,
+    useActions,
+  } from '@smui/common/internal.js';
   import A from '@smui/common/A.svelte';
   import Button from '@smui/common/Button.svelte';
   import TabIndicator from '@smui/tab-indicator/TabIndicator.svelte';
 
   const forwardedEvents = ['MDCTab:interacted'];
-  const forwardEvents = forwardEventsBuilder(get_current_component(), forwardedEvents);
+  const forwardEvents = forwardEventsBuilder(
+    get_current_component(),
+    forwardedEvents
+  );
   let activeEntry = getContext('SMUI:tab:active');
 
   export let use = [];
   let className = '';
-  export {className as class};
+  export { className as class };
   let tabEntry;
-  export {tabEntry as tab};
+  export { tabEntry as tab };
   export let ripple = true;
   export let active = tabEntry === activeEntry;
   export let stacked = false;
@@ -79,8 +98,10 @@
   let instantiate = getContext('SMUI:tab:instantiate');
   let getInstance = getContext('SMUI:tab:getInstance');
   let tabIndicatorPromiseResolve;
-  let tabIndicatorPromise = new Promise(resolve => tabIndicatorPromiseResolve = resolve);
-  $: hrefProp = href == null ? {} : {href};
+  let tabIndicatorPromise = new Promise(
+    (resolve) => (tabIndicatorPromiseResolve = resolve)
+  );
+  $: hrefProp = href == null ? {} : { href };
 
   setContext('SMUI:tab-indicator:instantiate', false);
   setContext('SMUI:tab-indicator:getInstance', getTabIndicatorInstancePromise);
@@ -88,7 +109,9 @@
   setContext('SMUI:icon:context', 'tab');
 
   if (!tabEntry) {
-    throw new Error('The tab property is required! It should be passed down from the TabBar to the Tab.');
+    throw new Error(
+      'The tab property is required! It should be passed down from the TabBar to the Tab.'
+    );
   }
 
   $: if (tab && tab.active !== active) {

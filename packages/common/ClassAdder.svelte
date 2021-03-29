@@ -4,36 +4,39 @@
   class="{smuiClass} {className}"
   {...props}
   {...exclude($$props, ['use', 'class', 'component', 'forwardEvents'])}
-><slot></slot></svelte:component>
+  ><slot /></svelte:component
+>
 
 <script context="module">
   export const internals = {
     component: null,
     smuiClass: null,
     contexts: {},
-    props: {}
+    props: {},
   };
 </script>
 
 <script>
-  import {setContext} from 'svelte';
-  import {get_current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from './forwardEvents.js';
-  import {exclude} from './exclude.js';
-  import {useActions} from './useActions.js';
+  import { setContext } from 'svelte';
+  import { get_current_component } from 'svelte/internal';
+  import { forwardEventsBuilder } from './forwardEvents.js';
+  import { exclude } from './exclude.js';
 
   export let use = [];
   let className = '';
-  export {className as class};
+  export { className as class };
   export let component = internals.component;
   let forwardEventsAdditional = [];
-  export {forwardEventsAdditional as forwardEvents};
+  export { forwardEventsAdditional as forwardEvents };
 
   const smuiClass = internals.class;
   const contexts = internals.contexts;
   const props = internals.props;
 
-  const forwardEvents = forwardEventsBuilder(get_current_component(), forwardEventsAdditional);
+  const forwardEvents = forwardEventsBuilder(
+    get_current_component(),
+    forwardEventsAdditional
+  );
 
   for (let context in contexts) {
     if (contexts.hasOwnProperty(context)) {

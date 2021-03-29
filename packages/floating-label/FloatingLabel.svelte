@@ -6,10 +6,13 @@
     class="
       mdc-floating-label
       {className}
-      {floatAbove ? 'mdc-floating-label--float-above' : ''}
+      {floatAbove
+      ? 'mdc-floating-label--float-above'
+      : ''}
     "
     {...exclude($$props, ['use', 'class', 'floatAbove', 'wrapped'])}
-  ><slot></slot></span>
+    ><slot /></span
+  >
 {:else}
   <label
     bind:this={element}
@@ -18,28 +21,35 @@
     class="
       mdc-floating-label
       {className}
-      {floatAbove ? 'mdc-floating-label--float-above' : ''}
+      {floatAbove
+      ? 'mdc-floating-label--float-above'
+      : ''}
     "
-    {...((forId || inputProps && inputProps.id) ? {'for': forId || inputProps && inputProps.id} : {})}
+    {...forId || (inputProps && inputProps.id)
+      ? { for: forId || (inputProps && inputProps.id) }
+      : {}}
     {...exclude($$props, ['use', 'class', 'for', 'floatAbove', 'wrapped'])}
-  ><slot></slot></label>
+    ><slot /></label
+  >
 {/if}
 
 <script>
-  import {MDCFloatingLabel} from '@material/floating-label';
-  import {onMount, onDestroy, getContext} from 'svelte';
-  import {get_current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
-  import {exclude} from '@smui/common/exclude.js';
-  import {useActions} from '@smui/common/useActions.js';
+  import { MDCFloatingLabel } from '@material/floating-label';
+  import { onMount, onDestroy, getContext } from 'svelte';
+  import { get_current_component } from 'svelte/internal';
+  import {
+    forwardEventsBuilder,
+    exclude,
+    useActions,
+  } from '@smui/common/internal.js';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
   export let use = [];
   let className = '';
-  export {className as class};
+  export { className as class };
   let forId = '';
-  export {forId as for};
+  export { forId as for };
   export let floatAbove = false;
   export let wrapped = false;
 

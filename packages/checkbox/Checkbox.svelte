@@ -5,12 +5,30 @@
   class="
     mdc-checkbox
     {className}
-    {disabled ? 'mdc-checkbox--disabled' : ''}
+    {disabled
+    ? 'mdc-checkbox--disabled'
+    : ''}
     {touch ? 'mdc-checkbox--touch' : ''}
-    {(context === 'data-table' && dataTableHeader) ? 'mdc-data-table__header-row-checkbox' : ''}
-    {(context === 'data-table' && !dataTableHeader) ? 'mdc-data-table__row-checkbox' : ''}
+    {context ===
+    'data-table' && dataTableHeader
+    ? 'mdc-data-table__header-row-checkbox'
+    : ''}
+    {context === 'data-table' && !dataTableHeader
+    ? 'mdc-data-table__row-checkbox'
+    : ''}
   "
-  {...exclude($$props, ['use', 'class', 'disabled', 'touch', 'indeterminate', 'group', 'checked', 'value', 'valueKey', 'input$'])}
+  {...exclude($$props, [
+    'use',
+    'class',
+    'disabled',
+    'touch',
+    'indeterminate',
+    'group',
+    'checked',
+    'value',
+    'valueKey',
+    'input$',
+  ])}
 >
   <input
     use:useActions={input$use}
@@ -30,28 +48,34 @@
   />
   <div class="mdc-checkbox__background">
     <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
-      <path class="mdc-checkbox__checkmark-path" fill="none" d="M1.73,12.91 8.1,19.28 22.79,4.59" />
+      <path
+        class="mdc-checkbox__checkmark-path"
+        fill="none"
+        d="M1.73,12.91 8.1,19.28 22.79,4.59"
+      />
     </svg>
-    <div class="mdc-checkbox__mixedmark"></div>
+    <div class="mdc-checkbox__mixedmark" />
   </div>
-  <div class="mdc-checkbox__ripple"></div>
+  <div class="mdc-checkbox__ripple" />
 </div>
 
 <script>
-  import {MDCCheckbox} from '@material/checkbox';
-  import {onMount, onDestroy, getContext} from 'svelte';
-  import {get_current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
-  import {exclude} from '@smui/common/exclude.js';
-  import {prefixFilter} from '@smui/common/prefixFilter.js';
-  import {useActions} from '@smui/common/useActions.js';
+  import { MDCCheckbox } from '@material/checkbox';
+  import { onMount, onDestroy, getContext } from 'svelte';
+  import { get_current_component } from 'svelte/internal';
+  import {
+    forwardEventsBuilder,
+    exclude,
+    prefixFilter,
+    useActions,
+  } from '@smui/common/internal.js';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
   let uninitializedValue = () => {};
 
   export let use = [];
   let className = '';
-  export {className as class};
+  export { className as class };
   export let disabled = false;
   export let touch = false;
   export let indeterminate = uninitializedValue;
@@ -68,7 +92,12 @@
   let inputProps = getContext('SMUI:generic:input:props') || {};
   let setChecked = getContext('SMUI:generic:input:setChecked');
   let addChangeHandler = getContext('SMUI:generic:input:addChangeHandler');
-  let nativeChecked = group === uninitializedValue ? (checked === uninitializedValue ? false : checked) : group.indexOf(value) !== -1;
+  let nativeChecked =
+    group === uninitializedValue
+      ? checked === uninitializedValue
+        ? false
+        : checked
+      : group.indexOf(value) !== -1;
   let context = getContext('SMUI:checkbox:context');
   let dataTableHeader = getContext('SMUI:data-table:row:header');
   let getDataTableRowIndex = getContext('SMUI:data-table:row:getIndex');
@@ -83,7 +112,11 @@
     setChecked(nativeChecked);
   }
 
-  $: if (checkbox && indeterminate !== uninitializedValue && checkbox.indeterminate !== indeterminate) {
+  $: if (
+    checkbox &&
+    indeterminate !== uninitializedValue &&
+    checkbox.indeterminate !== indeterminate
+  ) {
     checkbox.indeterminate = indeterminate;
   }
 
@@ -102,11 +135,19 @@
     checkbox.disabled = disabled;
   }
 
-  $: if (checkbox && valueKey === uninitializedValue && checkbox.value !== value) {
+  $: if (
+    checkbox &&
+    valueKey === uninitializedValue &&
+    checkbox.value !== value
+  ) {
     checkbox.value = value;
   }
 
-  $: if (checkbox && valueKey !== uninitializedValue && checkbox.value !== valueKey) {
+  $: if (
+    checkbox &&
+    valueKey !== uninitializedValue &&
+    checkbox.value !== valueKey
+  ) {
     checkbox.value = valueKey;
   }
 
