@@ -35,15 +35,14 @@
 {/if}
 
 <script>
-  import { onMount, getContext } from 'svelte';
-  import { get_current_component } from 'svelte/internal';
+  import { onMount, getContext, createEventDispatcher } from 'svelte';
   import {
     forwardEventsBuilder,
     exclude,
     useActions,
   } from '@smui/common/internal.js';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component());
+  const forwardEvents = forwardEventsBuilder(createEventDispatcher());
 
   export let use = [];
   let className = '';

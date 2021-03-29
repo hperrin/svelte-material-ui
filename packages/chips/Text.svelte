@@ -18,8 +18,7 @@
 </span>
 
 <script>
-  import { onMount, getContext } from 'svelte';
-  import { get_current_component } from 'svelte/internal';
+  import { onMount, getContext, createEventDispatcher } from 'svelte';
   import {
     forwardEventsBuilder,
     exclude,
@@ -27,7 +26,7 @@
   } from '@smui/common/internal.js';
   import Checkmark from './Checkmark.svelte';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component());
+  const forwardEvents = forwardEventsBuilder(createEventDispatcher());
 
   export let use = [];
   let className = '';

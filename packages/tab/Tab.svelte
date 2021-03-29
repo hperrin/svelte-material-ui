@@ -56,8 +56,13 @@
 
 <script>
   import { MDCTab } from '@material/tab';
-  import { onMount, onDestroy, setContext, getContext } from 'svelte';
-  import { get_current_component } from 'svelte/internal';
+  import {
+    onMount,
+    onDestroy,
+    setContext,
+    getContext,
+    createEventDispatcher,
+  } from 'svelte';
   import {
     forwardEventsBuilder,
     exclude,
@@ -70,7 +75,7 @@
 
   const forwardedEvents = ['MDCTab:interacted'];
   const forwardEvents = forwardEventsBuilder(
-    get_current_component(),
+    createEventDispatcher(),
     forwardedEvents
   );
   let activeEntry = getContext('SMUI:tab:active');

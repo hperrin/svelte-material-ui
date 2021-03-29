@@ -36,9 +36,14 @@
 
 <script>
   import { MDCChipSet } from '@material/chips';
-  import { onMount, onDestroy, afterUpdate, setContext } from 'svelte';
+  import {
+    onMount,
+    onDestroy,
+    afterUpdate,
+    setContext,
+    createEventDispatcher,
+  } from 'svelte';
   import { writable } from 'svelte/store';
-  import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
     exclude,
@@ -46,7 +51,7 @@
   } from '@smui/common/internal.js';
   import ContextFragment from '@smui/common/ContextFragment.svelte';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component());
+  const forwardEvents = forwardEventsBuilder(createEventDispatcher());
 
   export let use = [];
   let className = '';

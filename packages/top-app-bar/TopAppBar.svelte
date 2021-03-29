@@ -63,8 +63,7 @@
     MDCFixedTopAppBarFoundation,
     MDCShortTopAppBarFoundation,
   } from '@material/top-app-bar';
-  import { onMount } from 'svelte';
-  import { get_current_component } from 'svelte/internal';
+  import { onMount, createEventDispatcher } from 'svelte';
   import { readable } from 'svelte/store';
   import {
     forwardEventsBuilder,
@@ -73,7 +72,7 @@
     dispatch,
   } from '@smui/common/internal.js';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component(), [
+  const forwardEvents = forwardEventsBuilder(createEventDispatcher(), [
     'MDCList:action',
   ]);
   let uninitializedValue = () => {};

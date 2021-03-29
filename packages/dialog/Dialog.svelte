@@ -18,15 +18,20 @@
 
 <script>
   import { MDCDialog } from '@material/dialog';
-  import { onMount, onDestroy, getContext, setContext } from 'svelte';
-  import { get_current_component } from 'svelte/internal';
+  import {
+    onMount,
+    onDestroy,
+    getContext,
+    setContext,
+    createEventDispatcher,
+  } from 'svelte';
   import {
     forwardEventsBuilder,
     exclude,
     useActions,
   } from '@smui/common/internal.js';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component(), [
+  const forwardEvents = forwardEventsBuilder(createEventDispatcher(), [
     'MDCDialog:opening',
     'MDCDialog:opened',
     'MDCDialog:closing',

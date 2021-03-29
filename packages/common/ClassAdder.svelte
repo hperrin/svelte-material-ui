@@ -18,8 +18,7 @@
 </script>
 
 <script>
-  import { setContext } from 'svelte';
-  import { get_current_component } from 'svelte/internal';
+  import { setContext, createEventDispatcher } from 'svelte';
   import { forwardEventsBuilder } from './forwardEvents.js';
   import { exclude } from './exclude.js';
 
@@ -34,7 +33,7 @@
   const contexts = internals.contexts;
   const props = internals.props;
 
-  const forwardEvents = forwardEventsBuilder(get_current_component(), [
+  const forwardEvents = forwardEventsBuilder(createEventDispatcher(), [
     ...internals.forwardEvents,
     ...forwardEventsAdditional,
   ]);

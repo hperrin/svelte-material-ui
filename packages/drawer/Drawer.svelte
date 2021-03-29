@@ -26,8 +26,12 @@
     MDCModalDrawerFoundation,
   } from '@material/drawer';
   import { FocusTrap } from '@material/dom/focus-trap';
-  import { onMount, onDestroy, setContext } from 'svelte';
-  import { get_current_component } from 'svelte/internal';
+  import {
+    onMount,
+    onDestroy,
+    setContext,
+    createEventDispatcher,
+  } from 'svelte';
   import {
     forwardEventsBuilder,
     exclude,
@@ -35,7 +39,7 @@
     dispatch,
   } from '@smui/common/internal.js';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component(), [
+  const forwardEvents = forwardEventsBuilder(createEventDispatcher(), [
     'MDCDrawer:opened',
     'MDCDrawer:closed',
   ]);

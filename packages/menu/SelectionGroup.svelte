@@ -13,8 +13,7 @@
 </li>
 
 <script>
-  import { setContext } from 'svelte';
-  import { get_current_component } from 'svelte/internal';
+  import { setContext, createEventDispatcher } from 'svelte';
   import {
     forwardEventsBuilder,
     exclude,
@@ -22,7 +21,7 @@
     useActions,
   } from '@smui/common/internal.js';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component());
+  const forwardEvents = forwardEventsBuilder(createEventDispatcher());
 
   export let use = [];
   export let list$use = [];

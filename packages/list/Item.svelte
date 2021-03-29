@@ -67,7 +67,6 @@
     setContext,
     createEventDispatcher,
   } from 'svelte';
-  import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
     exclude,
@@ -78,7 +77,7 @@
   import Li from '@smui/common/Li.svelte';
   import Ripple from '@smui/ripple/bare.js';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component());
+  const forwardEvents = forwardEventsBuilder(createEventDispatcher());
   let checked = false;
 
   export let use = [];

@@ -21,12 +21,12 @@
 />
 
 <script>
-  import { get_current_component } from 'svelte/internal';
+  import { createEventDispatcher } from 'svelte';
   import { forwardEventsBuilder, exclude } from '@smui/common/internal.js';
   import Li from '@smui/common/Li.svelte';
   import Hr from '@smui/common/Hr.svelte';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component());
+  const forwardEvents = forwardEventsBuilder(createEventDispatcher());
 
   export let use = [];
   let className = '';

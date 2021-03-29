@@ -21,15 +21,14 @@
 />
 
 <script>
-  import { onMount } from 'svelte';
-  import { get_current_component } from 'svelte/internal';
+  import { onMount, createEventDispatcher } from 'svelte';
   import {
     forwardEventsBuilder,
     exclude,
     useActions,
   } from '@smui/common/internal.js';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component(), [
+  const forwardEvents = forwardEventsBuilder(createEventDispatcher(), [
     'change',
     'input',
   ]);

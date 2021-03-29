@@ -22,8 +22,12 @@
 
 <script>
   import { MDCTabScroller } from '@material/tab-scroller';
-  import { onMount, onDestroy, getContext } from 'svelte';
-  import { get_current_component } from 'svelte/internal';
+  import {
+    onMount,
+    onDestroy,
+    getContext,
+    createEventDispatcher,
+  } from 'svelte';
   import {
     forwardEventsBuilder,
     exclude,
@@ -31,7 +35,7 @@
     useActions,
   } from '@smui/common/internal.js';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component());
+  const forwardEvents = forwardEventsBuilder(createEventDispatcher());
 
   export let use = [];
   let className = '';

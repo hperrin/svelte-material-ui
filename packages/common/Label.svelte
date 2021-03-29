@@ -21,11 +21,10 @@
 >
 
 <script>
-  import { getContext } from 'svelte';
-  import { get_current_component } from 'svelte/internal';
+  import { getContext, createEventDispatcher } from 'svelte';
   import { forwardEventsBuilder, exclude, useActions } from './internal.js';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component());
+  const forwardEvents = forwardEventsBuilder(createEventDispatcher());
 
   export let use = [];
   let className = '';
