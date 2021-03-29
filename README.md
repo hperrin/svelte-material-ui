@@ -202,9 +202,9 @@ Click a component below to go to its documentation.
 
 # MDC 10 Update!
 
-I've started working on migrating SMUI to use the latest upstream version of Material Components Web (MDC), version 10. I'll be doing a lot more than upgrading the version, though! I'm rewriting SMUI to use the "Advanced Method" of integrating with the library, which should make updating to later upstream versions much easier. No longer will I have to wrangle Svelte to stop undoing the updates that MDC makes to the DOM, because _Svelte_ will be in charge of updating the DOM.
+I've started working on migrating SMUI to use the latest upstream version of [Material Components Web (MDC)](https://github.com/material-components/material-components-web), version 10. I'll be doing a lot more than upgrading the version, though! I'm rewriting SMUI to use the ["Advanced Approach"](https://github.com/material-components/material-components-web/blob/master/docs/integrating-into-frameworks.md#the-advanced-approach-using-foundations-and-adapters) of integrating with the library, which should make updating to later upstream versions much easier. No longer will I have to wrangle Svelte to stop undoing the updates that MDC makes to the DOM, because _Svelte_ will be in charge of updating the DOM.
 
-Rewrite Progress Checklist:
+Update Progress Checklist:
 
 - [x] Buttons
   - [ ] Floating Action Buttons
@@ -244,7 +244,7 @@ Rewrite Progress Checklist:
 - [ ] Tab Indicator
 - [ ] Tab Scroller
 - [ ] Theme
-- [ ] Top App Bar
+- [x] Top App Bar
 - [ ] Typography
 
 # Support

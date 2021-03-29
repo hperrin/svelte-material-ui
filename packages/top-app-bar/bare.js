@@ -8,6 +8,7 @@ import ProminentFixedAdjust from './ProminentFixedAdjust.js';
 import DenseFixedAdjust from './DenseFixedAdjust.js';
 import DenseProminentFixedAdjust from './DenseProminentFixedAdjust.js';
 import ShortFixedAdjust from './ShortFixedAdjust.js';
+import AutoAdjust from './AutoAdjust.svelte';
 
 export default TopAppBar;
 
@@ -20,4 +21,5 @@ export {
   DenseFixedAdjust,
   DenseProminentFixedAdjust,
   ShortFixedAdjust,
+  AutoAdjust,
 };

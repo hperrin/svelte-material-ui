@@ -245,11 +245,13 @@
       removeAttributeForElementIndex,
     });
     instance.init();
+
+    return () => {
+      instance.destroy();
+    };
   });
 
   onDestroy(() => {
-    instance.destroy();
-
     if (removeLayoutListener) {
       removeLayoutListener();
     }

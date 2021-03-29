@@ -17,7 +17,7 @@
 <script>
   import { MDCMenuFoundation, cssClasses } from '@material/menu';
   import { closest } from '@material/dom/ponyfill';
-  import { onMount, onDestroy } from 'svelte';
+  import { onMount } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
@@ -93,10 +93,10 @@
     });
     dispatch(element, 'SMUI:menu:mount', instance);
     instance.init();
-  });
 
-  onDestroy(() => {
-    instance.destroy();
+    return () => {
+      instance.destroy();
+    };
   });
 
   function handleMenuSurfaceAccessor(event) {

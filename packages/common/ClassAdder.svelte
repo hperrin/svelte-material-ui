@@ -13,6 +13,7 @@
     smuiClass: null,
     contexts: {},
     props: {},
+    forwardEvents: [],
   };
 </script>
 
@@ -33,10 +34,10 @@
   const contexts = internals.contexts;
   const props = internals.props;
 
-  const forwardEvents = forwardEventsBuilder(
-    get_current_component(),
-    forwardEventsAdditional
-  );
+  const forwardEvents = forwardEventsBuilder(get_current_component(), [
+    ...internals.forwardEvents,
+    ...forwardEventsAdditional,
+  ]);
 
   for (let context in contexts) {
     if (contexts.hasOwnProperty(context)) {

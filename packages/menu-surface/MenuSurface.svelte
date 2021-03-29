@@ -21,7 +21,7 @@
     ? 'mdc-menu-surface--fullwidth'
     : ''}
   "
-  style="{style} {Object.entries(internalStyle)
+  style="{style} {Object.entries(internalStyles)
     .map(([name, value]) => `${name}: ${value};`)
     .join(' ')}"
   on:keydown={(event) => instance && instance.handleKeydown(event)}
@@ -91,7 +91,7 @@
   let element;
   let instance;
   let internalClasses = {};
-  let internalStyle = {};
+  let internalStyles = {};
   let previousFocus;
 
   setContext('SMUI:list:role', 'menu');
@@ -166,7 +166,7 @@
           window,
           'transform'
         )}-origin`;
-        internalStyle[propertyName] = origin;
+        internalStyles[propertyName] = origin;
       },
 
       isFocused: () => document.activeElement === element,
@@ -202,14 +202,14 @@
         return { x: window.pageXOffset, y: window.pageYOffset };
       },
       setPosition: (position) => {
-        internalStyle.left = 'left' in position ? `${position.left}px` : '';
-        internalStyle.right = 'right' in position ? `${position.right}px` : '';
-        internalStyle.top = 'top' in position ? `${position.top}px` : '';
-        internalStyle.bottom =
+        internalStyles.left = 'left' in position ? `${position.left}px` : '';
+        internalStyles.right = 'right' in position ? `${position.right}px` : '';
+        internalStyles.top = 'top' in position ? `${position.top}px` : '';
+        internalStyles.bottom =
           'bottom' in position ? `${position.bottom}px` : '';
       },
       setMaxHeight: (height) => {
-        internalStyle.maxHeight = height;
+        internalStyles.maxHeight = height;
       },
     });
     dispatch(element, 'SMUI:menu-surface:mount', {
@@ -222,17 +222,20 @@
       closeProgrammatic,
     });
     instance.init();
+
+    return () => {
+      const isHoisted = instance.isHoistedElement;
+      menuSurface.destroy();
+      if (isHoisted) {
+        element.parentNode.removeChild(element);
+      }
+    };
   });
 
   onDestroy(() => {
     if (anchor) {
       element &&
         element.parentNode.classList.remove('mdc-menu-surface--anchor');
-    }
-    const isHoisted = instance.isHoistedElement_;
-    menuSurface.destroy();
-    if (isHoisted) {
-      element.parentNode.removeChild(element);
     }
   });
 

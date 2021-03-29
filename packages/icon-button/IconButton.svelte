@@ -41,6 +41,9 @@
   "
   aria-hidden="true"
   on:click={() => instance && instance.handleClick()}
+  on:click={() =>
+    context === 'top-app-bar:navigation' &&
+    dispatch(element, 'MDCTopAppBar:nav')}
   {...ariaAttributes}
   {...internalAttrs}
   {...exclude($$props, [
