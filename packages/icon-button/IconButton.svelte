@@ -119,13 +119,13 @@
     if (toggle) {
       instance = new MDCIconButtonToggleFoundation({
         addClass,
-        hasClass: (className) => element.classList.contains(className),
+        hasClass: (className) => getElement().classList.contains(className),
         notifyChange: (evtData) => {
           handleChange(evtData);
           dispatch(element, 'MDCIconButtonToggle:change', evtData);
         },
         removeClass,
-        getAttr: (attrName) => element.getAttribute(attrName),
+        getAttr: (attrName) => getElement().getAttribute(attrName),
         setAttr: addAttr,
       });
       instance.init();
@@ -160,5 +160,9 @@
 
   function handleChange(evtData) {
     pressed = evtData.isOn;
+  }
+
+  export function getElement() {
+    return element.getElement();
   }
 </script>

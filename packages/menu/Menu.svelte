@@ -30,6 +30,7 @@
     'MDCMenu:selected',
     'MDCMenuSurface:closed',
     'MDCMenuSurface:opened',
+    'SMUI:menu:mount',
   ]);
 
   export let use = [];
@@ -100,7 +101,6 @@
   });
 
   function handleMenuSurfaceAccessor(event) {
-    console.log('menu surface mount: ', event);
     if (!menuSurfaceAccessor) {
       menuSurfaceAccessor = event.detail;
     }

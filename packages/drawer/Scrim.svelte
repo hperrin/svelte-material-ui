@@ -18,7 +18,9 @@
   } from '@smui/common/internal.js';
   import Div from '@smui/common/Div.svelte';
 
-  const forwardEvents = forwardEventsBuilder(createEventDispatcher());
+  const forwardEvents = forwardEventsBuilder(createEventDispatcher(), [
+    'SMUI:drawer:scrim:click',
+  ]);
 
   export let use = [];
   let className = '';

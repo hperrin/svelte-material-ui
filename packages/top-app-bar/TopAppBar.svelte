@@ -74,6 +74,7 @@
 
   const forwardEvents = forwardEventsBuilder(createEventDispatcher(), [
     'MDCList:action',
+    'MDCTopAppBar:nav',
   ]);
   let uninitializedValue = () => {};
 

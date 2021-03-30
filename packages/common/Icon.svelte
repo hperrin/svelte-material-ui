@@ -39,7 +39,7 @@
 
   const context = getContext('SMUI:icon:context');
 
-  export function dispatchEvent(event) {
-    element.dispatchEvent(event);
+  export function getElement() {
+    return element.getElement();
   }
 </script>

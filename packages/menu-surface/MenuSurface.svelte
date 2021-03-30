@@ -71,6 +71,7 @@
     'MDCMenuSurface:closing',
     'MDCMenuSurface:opened',
     'SMUI:list:mount',
+    'SMUI:menu-surface:mount',
   ]);
 
   export let use = [];
@@ -268,5 +269,9 @@
 
   export function setIsHoisted(...args) {
     return instance.setIsHoisted(...args);
+  }
+
+  export function getElement() {
+    return element;
   }
 </script>

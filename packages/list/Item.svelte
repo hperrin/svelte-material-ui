@@ -77,7 +77,10 @@
   import Li from '@smui/common/Li.svelte';
   import Ripple from '@smui/ripple/bare.js';
 
-  const forwardEvents = forwardEventsBuilder(createEventDispatcher());
+  const forwardEvents = forwardEventsBuilder(createEventDispatcher(), [
+    'SMUI:list:item:mount',
+    'SMUI:list:item:unmount',
+  ]);
   let checked = false;
 
   export let use = [];
@@ -103,9 +106,9 @@
   let internalAttrs = {};
   let addTabindexIfNoItemsSelectedRaf;
   let accessor = {
-    _smui_accessor: true,
+    _smui_list_item_accessor: true,
     get element() {
-      return element;
+      return getELement();
     },
     get selected() {
       return selected;
@@ -183,7 +186,9 @@
   }
 
   function getPrimaryText() {
-    const primaryText = element.querySelector('.mdc-list-item__primary-text');
+    const primaryText = getElement().querySelector(
+      '.mdc-list-item__primary-text'
+    );
     if (primaryText) {
       return primaryText.textContent;
     }
@@ -231,5 +236,9 @@
     checked = isChecked;
     tabindex =
       (!nonInteractive && !disabled && (selected || checked) && '0') || '-1';
+  }
+
+  export function getElement() {
+    return element.getELement();
   }
 </script>

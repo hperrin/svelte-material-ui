@@ -19,7 +19,7 @@
     forwardEventsAdditional
   );
 
-  export function dispatchEvent(event) {
-    element.dispatchEvent(event);
+  export function getElement() {
+    return element;
   }
 </script>

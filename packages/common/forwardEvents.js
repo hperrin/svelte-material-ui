@@ -59,7 +59,7 @@ export function forwardEventsBuilder(dispatch, additionalEvents = []) {
   }
 
   function forward(event) {
-    dispatch(event.type, event.isTrusted ? event : event.detail);
+    dispatch(event.type, 'detail' in event ? event.detail : event);
   }
 
   return (node) => {

@@ -36,7 +36,7 @@
   const context = getContext('SMUI:label:context');
   const tabindex = getContext('SMUI:label:tabindex');
 
-  export function dispatchEvent(event) {
-    element.dispatchEvent(event);
+  export function getElement() {
+    return element;
   }
 </script>

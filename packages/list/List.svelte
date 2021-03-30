@@ -71,6 +71,7 @@
 
   const forwardEvents = forwardEventsBuilder(createEventDispatcher(), [
     'MDCList:action',
+    'SMUI:list:mount',
   ]);
 
   export let use = [];
@@ -197,9 +198,9 @@
         return toggleEl.checked || false;
       },
       isFocusInsideList: () =>
-        element !== document.activeElement &&
-        element.contains(document.activeElement),
-      isRootFocused: () => document.activeElement === element,
+        getElement() !== document.activeElement &&
+        getElement().contains(document.activeElement),
+      isRootFocused: () => document.activeElement === getElement(),
       listItemAtIndexHasClass: (index, className) =>
         getOrderedList()[index].element.classList.contains(className),
       notifyAction: (index) => {
@@ -237,7 +238,7 @@
     }
     dispatch(element, 'SMUI:list:mount', {
       get element() {
-        return element;
+        return getElement();
       },
       get items() {
         return items;
@@ -276,9 +277,13 @@
   }
 
   function getOrderedList() {
-    return [...element.children]
-      .map((element) => items.find((accessor) => element === accessor.element))
-      .filter((element) => element && element._smui_accessor);
+    const accessorWeakMap = new WeakMap();
+    for (const accessor of items) {
+      accessorWeakMap.set(accessor.element, accessor);
+    }
+    return [...getElement().children]
+      .map((element) => accessorWeakMap.get(element))
+      .filter((accessor) => accessor && accessor._smui_list_item_accessor);
   }
 
   function focusItemAtIndex(index) {
@@ -332,5 +337,9 @@
 
   export function getSelectedIndex() {
     return instance.getSelectedIndex();
+  }
+
+  export function getElement() {
+    return element.getElement();
   }
 </script>
