@@ -2,11 +2,12 @@
 // Demo App Styles
 //
 
+// Import the theme first.
+@import 'smui-theme';
+
 // Import the typography styles.
 @import 'demo/typography.scss';
 
-// We need the theming variables for the following styles.
-@import 'smui-theme';
 // This adds classes like "mdc-theme--primary-bg".
 @import '@material/theme/mdc-theme';
 @import '@material/elevation/mixins';
