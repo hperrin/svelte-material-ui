@@ -114,5 +114,6 @@
 
   function removeClass(className) {
     delete internalClasses[className];
+    internalClasses = internalClasses;
   }
 </script>

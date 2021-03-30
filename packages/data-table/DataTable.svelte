@@ -72,7 +72,7 @@
     removeLayoutListener = addLayoutListener(layout);
   }
 
-  onMount(async () => {
+  onMount(() => {
     dataTable = new MDCDataTable(element);
     checkBoxHeaderPromiseResolve(dataTable.headerRowCheckbox_);
     checkBoxListPromiseResolve(dataTable.rowCheckboxList_);

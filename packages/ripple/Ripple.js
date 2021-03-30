@@ -20,9 +20,30 @@ export default function Ripple(
   let removeLayoutListener;
 
   function handleProps() {
+    if (ripple) {
+      switch (color) {
+        case 'surface':
+          addClass('mdc-ripple-surface');
+          removeClass('mdc-ripple-surface--primary');
+          removeClass('mdc-ripple-surface--accent');
+          return;
+        case 'primary':
+          addClass('mdc-ripple-surface');
+          addClass('mdc-ripple-surface--primary');
+          removeClass('mdc-ripple-surface--accent');
+          return;
+        case 'secondary':
+          addClass('mdc-ripple-surface');
+          removeClass('mdc-ripple-surface--primary');
+          addClass('mdc-ripple-surface--accent');
+          return;
+      }
+    }
+    removeClass('mdc-ripple-surface');
+    removeClass('mdc-ripple-surface--primary');
+    removeClass('mdc-ripple-surface--accent');
+
     if (ripple && !instance) {
-      // Override the Ripple component's adapter, so that we can forward classes
-      // to Svelte components that overwrite Ripple's classes.
       instance = new MDCRippleFoundation({
         addClass,
         browserSupportsCssVars: () => util.supportsCssVariables(window),
@@ -64,28 +85,6 @@ export default function Ripple(
       instance.destroy();
       instance = null;
     }
-    if (ripple) {
-      switch (color) {
-        case 'surface':
-          addClass('mdc-ripple-surface');
-          removeClass('mdc-ripple-surface--primary');
-          removeClass('mdc-ripple-surface--accent');
-          return;
-        case 'primary':
-          addClass('mdc-ripple-surface');
-          addClass('mdc-ripple-surface--primary');
-          removeClass('mdc-ripple-surface--accent');
-          return;
-        case 'secondary':
-          addClass('mdc-ripple-surface');
-          removeClass('mdc-ripple-surface--primary');
-          addClass('mdc-ripple-surface--accent');
-          return;
-      }
-    }
-    removeClass('mdc-ripple-surface');
-    removeClass('mdc-ripple-surface--primary');
-    removeClass('mdc-ripple-surface--accent');
   }
 
   handleProps();

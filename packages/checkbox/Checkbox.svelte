@@ -165,7 +165,7 @@
     addChangeHandler(handleChange);
   }
 
-  onMount(async () => {
+  onMount(() => {
     if (instantiate !== false) {
       checkbox = new MDCCheckbox(element);
     } else {

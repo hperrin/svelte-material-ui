@@ -46,7 +46,7 @@
   let instantiate = getContext('SMUI:tab-scroller:instantiate');
   let getInstance = getContext('SMUI:tab-scroller:getInstance');
 
-  onMount(async () => {
+  onMount(() => {
     if (instantiate !== false) {
       tabScroller = new MDCTabScroller(element);
     } else {

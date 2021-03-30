@@ -135,7 +135,7 @@
     instance.setAnchorMargin(anchorMargin);
   }
 
-  onMount(async () => {
+  onMount(() => {
     instance = new MDCMenuSurfaceFoundation({
       addClass,
       removeClass,
@@ -173,10 +173,12 @@
         previousFocus = document.activeElement;
       },
       restoreFocus: () => {
-        if (element.contains(document.activeElement)) {
-          if (previousFocus && previousFocus.focus) {
-            previousFocus.focus();
-          }
+        if (
+          element.contains(document.activeElement) &&
+          previousFocus &&
+          previousFocus.focus
+        ) {
+          previousFocus.focus();
         }
       },
 
@@ -211,6 +213,7 @@
         internalStyles.maxHeight = height;
       },
     });
+
     dispatch(element, 'SMUI:menu-surface:mount', {
       get open() {
         return open;
@@ -220,11 +223,12 @@
       },
       closeProgrammatic,
     });
+
     instance.init();
 
     return () => {
       const isHoisted = instance.isHoistedElement;
-      menuSurface.destroy();
+      instance.destroy();
       if (isHoisted) {
         element.parentNode.removeChild(element);
       }
@@ -244,6 +248,7 @@
 
   function removeClass(className) {
     delete internalClasses[className];
+    internalClasses = internalClasses;
   }
 
   export function isOpen() {

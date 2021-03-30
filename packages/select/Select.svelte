@@ -224,7 +224,7 @@
     removeLayoutListener = addLayoutListener(layout);
   }
 
-  onMount(async () => {
+  onMount(() => {
     select = new MDCSelect(element);
 
     menuPromiseResolve(select.menu_);
@@ -252,6 +252,7 @@
 
   function removeClass(className) {
     delete internalClasses[className];
+    internalClasses = internalClasses;
   }
 
   function getMenuInstancePromise() {

@@ -176,6 +176,7 @@
 
   function removeClass(className) {
     delete internalClasses[className];
+    internalClasses = internalClasses;
   }
 
   function addAttr(name, value) {
@@ -184,6 +185,7 @@
 
   function removeAttr(name) {
     delete internalAttrs[name];
+    internalAttrs = internalAttrs;
   }
 
   function getPrimaryText() {

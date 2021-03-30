@@ -43,7 +43,7 @@
   let menuSurfaceAccessor;
   let listAccessor;
 
-  onMount(async () => {
+  onMount(() => {
     instance = new MDCMenuFoundation({
       addClassToElementAtIndex: (index, className) => {
         listAccessor.addClassForElementIndex(index, className);

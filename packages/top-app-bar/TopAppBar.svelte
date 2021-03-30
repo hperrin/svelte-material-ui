@@ -173,6 +173,7 @@
 
   function removeClass(className) {
     delete internalClasses[className];
+    internalClasses = internalClasses;
   }
 
   function addStyle(name, value) {

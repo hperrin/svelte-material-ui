@@ -148,6 +148,7 @@
 
   function removeClass(className) {
     delete internalClasses[className];
+    internalClasses = internalClasses;
   }
 
   function addAttr(name, value) {

@@ -166,7 +166,7 @@
     removeLayoutListener = addLayoutListener(layout);
   }
 
-  onMount(async () => {
+  onMount(() => {
     instance = new MDCListFoundation({
       addClassForElementIndex,
       focusItemAtIndex,
@@ -235,9 +235,11 @@
         );
       },
     });
+
     if (singleSelection || radiolist || checklist) {
       selectedIndex = getSelectedIndex();
     }
+
     dispatch(element, 'SMUI:list:mount', {
       get element() {
         return getElement();
@@ -252,6 +254,7 @@
       setAttributeForElementIndex,
       removeAttributeForElementIndex,
     });
+
     instance.init();
 
     return () => {

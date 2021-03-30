@@ -122,7 +122,7 @@
     tab.focusOnActivate = focusOnActivate;
   }
 
-  onMount(async () => {
+  onMount(() => {
     if (instantiate !== false) {
       tab = new MDCTab(element);
     } else {

@@ -65,7 +65,7 @@
   let instantiate = getContext('SMUI:tab-indicator:instantiate');
   let getInstance = getContext('SMUI:tab-indicator:getInstance');
 
-  onMount(async () => {
+  onMount(() => {
     if (instantiate !== false) {
       tabIndicator = new MDCTabIndicator(element);
     } else {
