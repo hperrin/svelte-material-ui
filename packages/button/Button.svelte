@@ -6,6 +6,7 @@
       {
         ripple,
         unbounded: false,
+        color,
         disabled: !!$$props.disabled,
         addClass,
         removeClass,

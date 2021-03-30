@@ -17,10 +17,22 @@
         ripple: true,
         unbounded: true,
         color: 'surface',
-        classForward: (classes) => (rippleClasses = classes),
+        // addClass and removeClass need to be provided, since we have
+        // a "class" attribute on this element.
+        addClass: (className) => {
+          if (!(className in unboundedRippleClasses)) {
+            unboundedRippleClasses[className] = true;
+          }
+        },
+        removeClass: (className) => {
+          if (className in unboundedRippleClasses) {
+            delete unboundedRippleClasses[className];
+            unboundedRippleClasses = unboundedRippleClasses;
+          }
+        },
       }}
       tabindex="0"
-      class="unbounded {rippleClasses.join(' ')}"
+      class="unbounded {Object.keys(unboundedRippleClasses).join(' ')}"
     >
       &copy;
     </span>
@@ -33,12 +45,20 @@
   <p use:Ripple={{ ripple: true, color: 'secondary' }} tabindex="0">
     Secondary color.
   </p>
+
+  <p use:Ripple={{ ripple: false, color: 'primary' }} tabindex="0">
+    Primary color.
+  </p>
+
+  <p use:Ripple={{ ripple: false, color: 'secondary' }} tabindex="0">
+    Secondary color.
+  </p>
 </section>
 
 <script>
   import Ripple from '@smui/ripple';
 
-  let rippleClasses = [];
+  let unboundedRippleClasses = {};
 </script>
 
 <style>

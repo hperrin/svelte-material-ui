@@ -11,8 +11,8 @@ export default function Ripple(
     unbounded = false,
     disabled = false,
     color = null,
-    addClass,
-    removeClass,
+    addClass = (className) => node.classList.add(className),
+    removeClass = (className) => node.classList.remove(className),
   }
 ) {
   let instance;
@@ -21,27 +21,28 @@ export default function Ripple(
 
   function handleProps() {
     if (ripple) {
-      switch (color) {
-        case 'surface':
-          addClass('mdc-ripple-surface');
-          removeClass('mdc-ripple-surface--primary');
-          removeClass('mdc-ripple-surface--accent');
-          return;
-        case 'primary':
-          addClass('mdc-ripple-surface');
-          addClass('mdc-ripple-surface--primary');
-          removeClass('mdc-ripple-surface--accent');
-          return;
-        case 'secondary':
-          addClass('mdc-ripple-surface');
-          removeClass('mdc-ripple-surface--primary');
-          addClass('mdc-ripple-surface--accent');
-          return;
-      }
+      removeClass('mdc-ripple-surface');
+    } else {
+      addClass('mdc-ripple-surface');
     }
-    removeClass('mdc-ripple-surface');
-    removeClass('mdc-ripple-surface--primary');
-    removeClass('mdc-ripple-surface--accent');
+    switch (color) {
+      case 'surface':
+        removeClass('mdc-ripple-surface--primary');
+        removeClass('mdc-ripple-surface--accent');
+        break;
+      case 'primary':
+        addClass('mdc-ripple-surface--primary');
+        removeClass('mdc-ripple-surface--accent');
+        break;
+      case 'secondary':
+        removeClass('mdc-ripple-surface--primary');
+        addClass('mdc-ripple-surface--accent');
+        break;
+      default:
+        removeClass('mdc-ripple-surface--primary');
+        removeClass('mdc-ripple-surface--accent');
+        break;
+    }
 
     if (ripple && !instance) {
       instance = new MDCRippleFoundation({
