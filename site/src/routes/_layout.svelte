@@ -151,14 +151,14 @@
     //     'https://github.com/hperrin/svelte-material-ui/tree/master/packages/fab',
     //   ],
     // },
-    // {
-    //   name: 'Icon Buttons',
-    //   route: '/demo/icon-button',
-    //   indent: 1,
-    //   repos: [
-    //     'https://github.com/hperrin/svelte-material-ui/tree/master/packages/icon-button',
-    //   ],
-    // },
+    {
+      name: 'Icon Buttons',
+      route: '/demo/icon-button',
+      indent: 1,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/icon-button',
+      ],
+    },
     // {
     //   name: 'Cards',
     //   route: '/demo/card',
@@ -191,14 +191,14 @@
     //     'https://github.com/hperrin/svelte-material-ui/tree/master/packages/dialog',
     //   ],
     // },
-    // {
-    //   name: 'Drawers',
-    //   route: '/demo/drawer',
-    //   indent: 0,
-    //   repos: [
-    //     'https://github.com/hperrin/svelte-material-ui/tree/master/packages/drawer',
-    //   ],
-    // },
+    {
+      name: 'Drawers',
+      route: '/demo/drawer',
+      indent: 0,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/drawer',
+      ],
+    },
     // {
     //   name: 'Elevation',
     //   route: '/demo/elevation',
@@ -321,14 +321,14 @@
     //     'https://github.com/hperrin/svelte-material-ui/tree/master/packages/linear-progress',
     //   ],
     // },
-    // {
-    //   name: 'Lists',
-    //   route: '/demo/list',
-    //   indent: 0,
-    //   repos: [
-    //     'https://github.com/hperrin/svelte-material-ui/tree/master/packages/list',
-    //   ],
-    // },
+    {
+      name: 'Lists',
+      route: '/demo/list',
+      indent: 0,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/list',
+      ],
+    },
     {
       name: 'Menu Surface',
       route: '/demo/menu-surface',
@@ -337,14 +337,14 @@
         'https://github.com/hperrin/svelte-material-ui/tree/master/packages/menu-surface',
       ],
     },
-    // {
-    //   name: 'Menus',
-    //   route: '/demo/menu',
-    //   indent: 0,
-    //   repos: [
-    //     'https://github.com/hperrin/svelte-material-ui/tree/master/packages/menu',
-    //   ],
-    // },
+    {
+      name: 'Menus',
+      route: '/demo/menu',
+      indent: 0,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/menu',
+      ],
+    },
     // {
     //   name: 'Paper',
     //   route: '/demo/paper',
@@ -353,14 +353,14 @@
     //     'https://github.com/hperrin/svelte-material-ui/tree/master/packages/paper',
     //   ],
     // },
-    // {
-    //   name: 'Ripples',
-    //   route: '/demo/ripple',
-    //   indent: 0,
-    //   repos: [
-    //     'https://github.com/hperrin/svelte-material-ui/tree/master/packages/ripple',
-    //   ],
-    // },
+    {
+      name: 'Ripples',
+      route: '/demo/ripple',
+      indent: 0,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/ripple',
+      ],
+    },
     // {
     //   name: 'Snackbars',
     //   route: '/demo/snackbars',
@@ -406,14 +406,14 @@
     //   route: '/demo/theme',
     //   indent: 0,
     // },
-    // {
-    //   name: 'Top App Bar',
-    //   route: '/demo/top-app-bar',
-    //   indent: 0,
-    //   repos: [
-    //     'https://github.com/hperrin/svelte-material-ui/tree/master/packages/top-app-bar',
-    //   ],
-    // },
+    {
+      name: 'Top App Bar',
+      route: '/demo/top-app-bar',
+      indent: 0,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/top-app-bar',
+      ],
+    },
     // {
     //   name: 'Typography',
     //   route: '/demo/typography',
