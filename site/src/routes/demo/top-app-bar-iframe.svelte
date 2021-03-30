@@ -1,36 +1,50 @@
-<TopAppBar {dense} {prominent} {variant} bind:collapsed>
+<TopAppBar bind:this={topAppBar} {dense} {prominent} {variant} bind:collapsed>
   <Row>
     <Section>
       <IconButton class="material-icons">menu</IconButton>
       <Title>{title}</Title>
     </Section>
     <Section align="end" toolbar>
-      <IconButton class="material-icons" aria-label="Download">file_download</IconButton>
+      <IconButton class="material-icons" aria-label="Download"
+        >file_download</IconButton
+      >
       {#if variant !== 'short'}
-        <IconButton class="material-icons" aria-label="Print this page">print</IconButton>
-        <IconButton class="material-icons" aria-label="Bookmark this page">bookmark</IconButton>
+        <IconButton class="material-icons" aria-label="Print this page"
+          >print</IconButton
+        >
+        <IconButton class="material-icons" aria-label="Bookmark this page"
+          >bookmark</IconButton
+        >
       {/if}
     </Section>
   </Row>
 </TopAppBar>
-<div use:Adjust>
+<AutoAdjust {topAppBar}>
+  {#if variant === 'short' && collapsed}
+    <h5>Short, Always Collapsed</h5>
+  {/if}
   <LoremIpsum />
-</div>
+</AutoAdjust>
 
 <script>
-  import {stores} from '@sapper/app';
-  import TopAppBar, {Row, Section, Title, FixedAdjust, DenseFixedAdjust, ProminentFixedAdjust, ShortFixedAdjust} from '@smui/top-app-bar';
+  import { stores } from '@sapper/app';
+  import TopAppBar, {
+    Row,
+    Section,
+    Title,
+    AutoAdjust,
+  } from '@smui/top-app-bar';
   import IconButton from '@smui/icon-button';
   import LoremIpsum from '../../components/LoremIpsum.svelte';
 
-  const {page} = stores();
+  const { page } = stores();
 
   let dense = false;
   let prominent = false;
   let variant = 'standard';
   let collapsed = false;
   let title = 'Standard';
-  let Adjust = FixedAdjust;
+  let topAppBar;
 
   switch ($page.query.style) {
     case 'fixed':
@@ -40,23 +54,19 @@
     case 'dense':
       dense = true;
       title = 'Dense';
-      Adjust = DenseFixedAdjust;
       break;
     case 'prominent':
       prominent = true;
       title = 'Prominent';
-      Adjust = ProminentFixedAdjust;
       break;
     case 'short':
       variant = 'short';
       title = 'Short';
-      Adjust = ShortFixedAdjust;
       break;
     case 'short-closed':
       variant = 'short';
       collapsed = true;
       title = 'Short';
-      Adjust = ShortFixedAdjust;
       break;
   }
 </script>
