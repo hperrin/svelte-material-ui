@@ -9,7 +9,7 @@
   </div>
 
   <div style="display: flex; align-items: center; flex-wrap: wrap;">
-    <div style="width: 150px; height: 1px;"></div>
+    <div style="width: 150px; height: 1px;" />
     <div style="margin-left: 18px;">
       <p>Material UI Components for Svelte 3, ready to use in your apps.</p>
 
@@ -17,12 +17,15 @@
 
       <p>
         [
-        <a href="https://github.com/hperrin/svelte-material-ui" target="_blank">GitHub</a>
+        <a href="https://github.com/hperrin/svelte-material-ui" target="_blank"
+          >GitHub</a
+        >
         |
-        <a href="https://github.com/hperrin/svelte-material-ui/issues" target="_blank">Issue Tracker</a>
-        |
-        &copy; 2020 Hunter Perrin
-        ]
+        <a
+          href="https://github.com/hperrin/svelte-material-ui/issues"
+          target="_blank">Issue Tracker</a
+        >
+        | &copy; 2020-2021 Hunter Perrin ]
       </p>
     </div>
   </div>

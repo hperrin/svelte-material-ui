@@ -149,7 +149,7 @@ Here are some features you should know about:
 
 # Components
 
-I've only done components that need to/can be Svelte-ified. For some things, like RTL and layout grid, you can just use the MDC packages.
+I've only done components that need to/can be Svelte-ified. For some things, like RTL, you can just use the MDC packages.
 
 Click a component below to go to its documentation.
 
@@ -243,6 +243,19 @@ Update Progress Checklist:
 - [ ] Tab Indicator
 - [ ] Tab Scroller
 - [x] Top App Bar
+
+Once these are all done, I'll release a beta version, then work on implementing the new components from upstream:
+
+- [ ] Banners
+- [ ] Circular Progress
+- [ ] Layout Grids (Not new to MDC, but I haven't made a component for it.)
+- [ ] Segmented Buttons (This is different than SMUI's button groups.)
+- [ ] Tooltips
+- [ ] Touch Target Wrappers
+
+Once these are done, SMUI v3 will be released.
+
+Then SMUI v4 will be all about migrating to TypeScript!
 
 # Support
 
