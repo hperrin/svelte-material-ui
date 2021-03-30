@@ -18,7 +18,8 @@
 <script>
   import { MDCMenuFoundation, cssClasses } from '@material/menu';
   import { closest } from '@material/dom/ponyfill';
-  import { onMount, createEventDispatcher } from 'svelte';
+  import { onMount } from 'svelte';
+  import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
     exclude,
@@ -26,7 +27,7 @@
   } from '@smui/common/internal.js';
   import MenuSurface from '@smui/menu-surface/MenuSurface.svelte';
 
-  const forwardEvents = forwardEventsBuilder(createEventDispatcher(), [
+  const forwardEvents = forwardEventsBuilder(get_current_component(), [
     'MDCMenu:selected',
     'MDCMenuSurface:closed',
     'MDCMenuSurface:opened',

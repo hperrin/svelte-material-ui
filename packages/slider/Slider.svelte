@@ -55,19 +55,15 @@
 
 <script>
   import { MDCSlider } from '@material/slider';
-  import {
-    onMount,
-    onDestroy,
-    getContext,
-    createEventDispatcher,
-  } from 'svelte';
+  import { onMount, onDestroy, getContext } from 'svelte';
+  import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
     exclude,
     useActions,
   } from '@smui/common/internal.js';
 
-  const forwardEvents = forwardEventsBuilder(createEventDispatcher(), [
+  const forwardEvents = forwardEventsBuilder(get_current_component(), [
     'MDCSlider:input',
     'MDCSlider:change',
   ]);

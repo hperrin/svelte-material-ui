@@ -20,13 +20,8 @@
 <script>
   import { MDCDataTable } from '@material/data-table';
   import { events } from '@material/data-table/constants';
-  import {
-    onMount,
-    onDestroy,
-    getContext,
-    setContext,
-    createEventDispatcher,
-  } from 'svelte';
+  import { onMount, onDestroy, getContext, setContext } from 'svelte';
+  import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
     exclude,
@@ -42,7 +37,7 @@
     throw new Error('MDC API has changed!');
   }
 
-  const forwardEvents = forwardEventsBuilder(createEventDispatcher(), [
+  const forwardEvents = forwardEventsBuilder(get_current_component(), [
     'MDCDataTable:rowSelectionChanged',
     'MDCDataTable:selectedAll',
     'MDCDataTable:unselectedAll',

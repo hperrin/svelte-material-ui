@@ -129,12 +129,8 @@
 
 <script>
   import { MDCTextField } from '@material/textfield';
-  import {
-    onMount,
-    onDestroy,
-    getContext,
-    createEventDispatcher,
-  } from 'svelte';
+  import { onMount, onDestroy, getContext } from 'svelte';
+  import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
     exclude,
@@ -147,7 +143,7 @@
   import Input from './Input.svelte';
   import Textarea from './Textarea.svelte';
 
-  const forwardEvents = forwardEventsBuilder(createEventDispatcher());
+  const forwardEvents = forwardEventsBuilder(get_current_component());
   let uninitializedValue = () => {};
 
   export let use = [];

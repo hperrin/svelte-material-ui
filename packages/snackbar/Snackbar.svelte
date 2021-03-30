@@ -28,12 +28,8 @@
 
 <script>
   import { MDCSnackbar } from '@material/snackbar';
-  import {
-    onMount,
-    onDestroy,
-    setContext,
-    createEventDispatcher,
-  } from 'svelte';
+  import { onMount, onDestroy, setContext } from 'svelte';
+  import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
     exclude,
@@ -41,7 +37,7 @@
     useActions,
   } from '@smui/common/internal.js';
 
-  const forwardEvents = forwardEventsBuilder(createEventDispatcher(), [
+  const forwardEvents = forwardEventsBuilder(get_current_component(), [
     'MDCSnackbar:opening',
     'MDCSnackbar:opened',
     'MDCSnackbar:closing',

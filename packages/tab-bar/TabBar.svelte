@@ -25,12 +25,8 @@
 
 <script>
   import { MDCTabBar } from '@material/tab-bar';
-  import {
-    onMount,
-    onDestroy,
-    setContext,
-    createEventDispatcher,
-  } from 'svelte';
+  import { onMount, onDestroy, setContext } from 'svelte';
+  import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
     exclude,
@@ -39,7 +35,7 @@
   } from '@smui/common/internal.js';
   import TabScroller from '@smui/tab-scroller/TabScroller.svelte';
 
-  const forwardEvents = forwardEventsBuilder(createEventDispatcher(), [
+  const forwardEvents = forwardEventsBuilder(get_current_component(), [
     'MDCTabBar:activated',
   ]);
   let uninitializedValue = () => {};

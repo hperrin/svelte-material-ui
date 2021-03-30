@@ -1,4 +1,6 @@
-export function forwardEventsBuilder(dispatch, additionalEvents = []) {
+import { bubble, listen } from 'svelte/internal';
+
+export function forwardEventsBuilder(component, additionalEvents = []) {
   const events = [
     'focus',
     'blur',
@@ -50,16 +52,8 @@ export function forwardEventsBuilder(dispatch, additionalEvents = []) {
     ...additionalEvents,
   ];
 
-  function listen(node, event, callback) {
-    node.addEventListener(event, callback);
-
-    return () => {
-      node.removeEventListener(event, callback);
-    };
-  }
-
-  function forward(event) {
-    dispatch(event.type, event.isTrusted ? event : event.detail);
+  function forward(e) {
+    bubble(component, e);
   }
 
   return (node) => {
