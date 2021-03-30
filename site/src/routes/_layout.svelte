@@ -329,14 +329,14 @@
     //     'https://github.com/hperrin/svelte-material-ui/tree/master/packages/list',
     //   ],
     // },
-    // {
-    //   name: 'Menu Surface',
-    //   route: '/demo/menu-surface',
-    //   indent: 0,
-    //   repos: [
-    //     'https://github.com/hperrin/svelte-material-ui/tree/master/packages/menu-surface',
-    //   ],
-    // },
+    {
+      name: 'Menu Surface',
+      route: '/demo/menu-surface',
+      indent: 0,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/menu-surface',
+      ],
+    },
     // {
     //   name: 'Menus',
     //   route: '/demo/menu',

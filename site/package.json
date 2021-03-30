@@ -33,6 +33,7 @@
     "@material/drawer": "^10.0.0",
     "@material/elevation": "^10.0.0",
     "@material/icon-button": "^10.0.0",
+    "@material/image-list": "^10.0.0",
     "@material/linear-progress": "^10.0.0",
     "@material/menu": "^10.0.0",
     "@material/shape": "^10.0.0",

@@ -1,6 +1,6 @@
 <svelte:component
   this={component}
-  bind:element
+  bind:this={element}
   use={[
     [
       Ripple,

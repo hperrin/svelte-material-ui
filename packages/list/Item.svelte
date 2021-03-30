@@ -1,6 +1,6 @@
 <svelte:component
   this={component}
-  bind:element
+  bind:this={element}
   use={[
     [
       Ripple,
@@ -9,6 +9,7 @@
     forwardEvents,
     ...use,
   ]}
+  forwardEvents={forwardedEvents}
   class="
     mdc-list-item
     {className}
@@ -72,10 +73,15 @@
   import Li from '@smui/common/Li.svelte';
   import Ripple from '@smui/ripple/bare.js';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component(), [
+  const forwardedEvents = [
+    'SMUI:action',
     'SMUI:list:item:mount',
     'SMUI:list:item:unmount',
-  ]);
+  ];
+  const forwardEvents = forwardEventsBuilder(
+    get_current_component(),
+    forwardedEvents
+  );
   let checked = false;
 
   export let use = [];
@@ -103,7 +109,7 @@
   let accessor = {
     _smui_list_item_accessor: true,
     get element() {
-      return getELement();
+      return getElement();
     },
     get selected() {
       return selected;
@@ -234,6 +240,6 @@
   }
 
   export function getElement() {
-    return element.getELement();
+    return element.getElement();
   }
 </script>

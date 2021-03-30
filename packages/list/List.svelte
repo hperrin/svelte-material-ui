@@ -2,6 +2,7 @@
   this={component}
   bind:this={element}
   use={[forwardEvents, ...use]}
+  forwardEvents={forwardedEvents}
   class="
       mdc-list
       {className}
@@ -64,10 +65,16 @@
   import Ul from '@smui/common/Ul.svelte';
   import Nav from '@smui/common/Nav.svelte';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component(), [
+  const forwardedEvents = [
     'MDCList:action',
     'SMUI:list:mount',
-  ]);
+    'SMUI:list:item:mount',
+    'SMUI:list:item:unmount',
+  ];
+  const forwardEvents = forwardEventsBuilder(
+    get_current_component(),
+    forwardedEvents
+  );
 
   export let use = [];
   let className = '';
@@ -311,9 +318,9 @@
 
     // Get the index of the element if it is a list item.
     if (nearestParent && matches(nearestParent, '.mdc-list-item')) {
-      return getOrderedList()
-        .map((item) => item.element)
-        .indexOf(nearestParent);
+      const map = getOrderedList().map((item) => item.element);
+      const ret = map.indexOf(nearestParent);
+      return ret;
     }
     return -1;
   }
