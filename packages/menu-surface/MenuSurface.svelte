@@ -53,12 +53,8 @@
 <script>
   import { MDCMenuSurfaceFoundation } from '@material/menu-surface';
   import { getCorrectPropertyName } from '@material/animation/util';
-  import {
-    onMount,
-    onDestroy,
-    setContext,
-    createEventDispatcher,
-  } from 'svelte';
+  import { onMount, onDestroy, setContext } from 'svelte';
+  import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
     exclude,
@@ -66,7 +62,7 @@
     dispatch,
   } from '@smui/common/internal.js';
 
-  const forwardEvents = forwardEventsBuilder(createEventDispatcher(), [
+  const forwardEvents = forwardEventsBuilder(get_current_component(), [
     'MDCMenuSurface:closed',
     'MDCMenuSurface:closing',
     'MDCMenuSurface:opened',

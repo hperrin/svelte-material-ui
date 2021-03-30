@@ -8,11 +8,11 @@
 </svelte:component>
 
 <script>
-  import { createEventDispatcher } from 'svelte';
+  import { get_current_component } from 'svelte/internal';
   import { forwardEventsBuilder, exclude } from '@smui/common/internal.js';
   import Main from '@smui/common/Main.svelte';
 
-  const forwardEvents = forwardEventsBuilder(createEventDispatcher());
+  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   export let use = [];
   let className = '';

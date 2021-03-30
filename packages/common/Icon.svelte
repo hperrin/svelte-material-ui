@@ -22,11 +22,12 @@
 >
 
 <script>
-  import { getContext, createEventDispatcher } from 'svelte';
+  import { getContext } from 'svelte';
+  import { get_current_component } from 'svelte/internal';
   import { forwardEventsBuilder, exclude } from './internal.js';
   import I from './I.svelte';
 
-  const forwardEvents = forwardEventsBuilder(createEventDispatcher());
+  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   export let use = [];
   let className = '';

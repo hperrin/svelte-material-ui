@@ -7,11 +7,12 @@
 >
 
 <script>
-  import { getContext, setContext, createEventDispatcher } from 'svelte';
+  import { getContext, setContext } from 'svelte';
+  import { get_current_component } from 'svelte/internal';
   import { forwardEventsBuilder, exclude } from '@smui/common/internal.js';
   import Item from '@smui/list/Item.svelte';
 
-  const forwardEvents = forwardEventsBuilder(createEventDispatcher());
+  const forwardEvents = forwardEventsBuilder(get_current_component());
   const uninitializedValue = () => {};
 
   const valueStore = getContext('SMUI:select:value');

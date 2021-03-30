@@ -6,7 +6,7 @@
 >
 
 <script>
-  import { createEventDispatcher } from 'svelte';
+  import { get_current_component } from 'svelte/internal';
   import { forwardEventsBuilder, exclude, useActions } from './internal.js';
 
   export let element = null;
@@ -15,7 +15,7 @@
   export { forwardEventsAdditional as forwardEvents };
 
   const forwardEvents = forwardEventsBuilder(
-    createEventDispatcher(),
+    get_current_component(),
     forwardEventsAdditional
   );
 

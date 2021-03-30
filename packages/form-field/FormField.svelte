@@ -26,13 +26,9 @@
 
 <script>
   import { MDCFormField } from '@material/form-field';
-  import {
-    onMount,
-    onDestroy,
-    setContext,
-    createEventDispatcher,
-  } from 'svelte';
+  import { onMount, onDestroy, setContext } from 'svelte';
   import { writable } from 'svelte/store';
+  import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
     exclude,
@@ -40,7 +36,7 @@
     useActions,
   } from '@smui/common/internal.js';
 
-  const forwardEvents = forwardEventsBuilder(createEventDispatcher());
+  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   export let use = [];
   let className = '';

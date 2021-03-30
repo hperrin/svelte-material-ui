@@ -60,12 +60,8 @@
 
 <script>
   import { MDCIconButtonToggleFoundation } from '@material/icon-button';
-  import {
-    onDestroy,
-    getContext,
-    setContext,
-    createEventDispatcher,
-  } from 'svelte';
+  import { onDestroy, getContext, setContext } from 'svelte';
+  import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
     exclude,
@@ -77,7 +73,7 @@
 
   const forwardedEvents = ['MDCIconButtonToggle:change'];
   const forwardEvents = forwardEventsBuilder(
-    createEventDispatcher(),
+    get_current_component(),
     forwardedEvents
   );
 

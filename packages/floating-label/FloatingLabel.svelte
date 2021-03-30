@@ -35,19 +35,15 @@
 
 <script>
   import { MDCFloatingLabel } from '@material/floating-label';
-  import {
-    onMount,
-    onDestroy,
-    getContext,
-    createEventDispatcher,
-  } from 'svelte';
+  import { onMount, onDestroy, getContext } from 'svelte';
+  import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
     exclude,
     useActions,
   } from '@smui/common/internal.js';
 
-  const forwardEvents = forwardEventsBuilder(createEventDispatcher());
+  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   export let use = [];
   let className = '';

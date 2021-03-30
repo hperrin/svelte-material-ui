@@ -60,13 +60,8 @@
 </script>
 
 <script>
-  import {
-    onMount,
-    onDestroy,
-    getContext,
-    setContext,
-    createEventDispatcher,
-  } from 'svelte';
+  import { onMount, onDestroy, getContext, setContext } from 'svelte';
+  import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
     exclude,
@@ -77,7 +72,7 @@
   import Li from '@smui/common/Li.svelte';
   import Ripple from '@smui/ripple/bare.js';
 
-  const forwardEvents = forwardEventsBuilder(createEventDispatcher(), [
+  const forwardEvents = forwardEventsBuilder(get_current_component(), [
     'SMUI:list:item:mount',
     'SMUI:list:item:unmount',
   ]);

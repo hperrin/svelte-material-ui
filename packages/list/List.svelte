@@ -54,13 +54,8 @@
 <script>
   import { MDCListFoundation, strings } from '@material/list';
   import { closest, matches } from '@material/dom/ponyfill';
-  import {
-    onMount,
-    onDestroy,
-    getContext,
-    setContext,
-    createEventDispatcher,
-  } from 'svelte';
+  import { onMount, onDestroy, getContext, setContext } from 'svelte';
+  import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
     exclude,
@@ -69,7 +64,7 @@
   import Ul from '@smui/common/Ul.svelte';
   import Nav from '@smui/common/Nav.svelte';
 
-  const forwardEvents = forwardEventsBuilder(createEventDispatcher(), [
+  const forwardEvents = forwardEventsBuilder(get_current_component(), [
     'MDCList:action',
     'SMUI:list:mount',
   ]);

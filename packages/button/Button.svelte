@@ -67,13 +67,14 @@
 >
 
 <script>
-  import { setContext, getContext, createEventDispatcher } from 'svelte';
+  import { setContext, getContext } from 'svelte';
+  import { get_current_component } from 'svelte/internal';
   import { forwardEventsBuilder, exclude } from '@smui/common/internal.js';
   import A from '@smui/common/A.svelte';
   import Button from '@smui/common/Button.svelte';
   import Ripple from '@smui/ripple/bare.js';
 
-  const forwardEvents = forwardEventsBuilder(createEventDispatcher());
+  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   export let use = [];
   let className = '';

@@ -34,13 +34,9 @@
 
 <script>
   import { MDCChip } from '@material/chips';
-  import {
-    onMount,
-    setContext,
-    getContext,
-    createEventDispatcher,
-  } from 'svelte';
+  import { onMount, setContext, getContext } from 'svelte';
   import { writable } from 'svelte/store';
+  import { get_current_component } from 'svelte/internal';
   import { forwardEventsBuilder, exclude } from '@smui/common/internal.js';
   import Div from '@smui/common/Div.svelte';
 
@@ -52,7 +48,7 @@
     'MDCChip:navigation',
   ];
   const forwardEvents = forwardEventsBuilder(
-    createEventDispatcher(),
+    get_current_component(),
     forwardedEvents
   );
 
