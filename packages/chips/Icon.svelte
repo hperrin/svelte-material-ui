@@ -1,6 +1,6 @@
 {#if leading}
   <i
-    bind:this={icon}
+    bind:this={element}
     use:useActions={use}
     use:forwardEvents
     class="
@@ -12,11 +12,15 @@
       ? 'mdc-chip__icon--leading-hidden'
       : ''}
     "
-    {...exclude($$props, ['use', 'class', 'leading', 'leadingHidden'])}
-    ><slot /></i
+    {...exclude($$props, ['use', 'class', 'leading'])}><slot /></i
   >
 {:else}
-  <span use:useActions={use} use:forwardEvents role="gridcell">
+  <span
+    bind:this={element}
+    use:useActions={use}
+    use:forwardEvents
+    role="gridcell"
+  >
     <i
       bind:this={icon}
       class="
@@ -28,8 +32,7 @@
         : ''}
       "
       {...$shouldRemoveOnTrailingIconClick ? { role: 'button' } : {}}
-      {...exclude($$props, ['use', 'class', 'leading', 'leadingHidden'])}
-      ><slot /></i
+      {...exclude($$props, ['use', 'class', 'leading'])}><slot /></i
     >
   </span>
 {/if}
@@ -56,11 +59,16 @@
   const filter = getContext('SMUI:chip:filter');
   const isSelected = getContext('SMUI:chip:isSelected');
 
+  let element;
   let icon;
 
   onMount(() => {
     if (!leading && $shouldRemoveOnTrailingIconClick) {
-      icon.setAttribute('tabindex', '-1');
+      (icon || element).setAttribute('tabindex', '-1');
     }
   });
+
+  export function getElement() {
+    return element;
+  }
 </script>

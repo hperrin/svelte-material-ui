@@ -1,4 +1,5 @@
 <tbody
+  bind:this={element}
   use:useActions={use}
   use:forwardEvents
   class="mdc-data-table__content {className}"
@@ -20,5 +21,11 @@
   let className = '';
   export { className as class };
 
+  let element;
+
   setContext('SMUI:data-table:row:header', false);
+
+  export function getElement() {
+    return element;
+  }
 </script>

@@ -1,4 +1,5 @@
 <span
+  bind:this={element}
   use:useActions={use}
   class="mdc-chip__checkmark {className}"
   {...exclude($$props, ['use', 'class'])}
@@ -19,4 +20,10 @@
   export let use = [];
   let className = '';
   export { className as class };
+
+  let element;
+
+  export function getElement() {
+    return element;
+  }
 </script>

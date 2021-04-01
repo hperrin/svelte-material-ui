@@ -1,4 +1,5 @@
 <div
+  bind:this={element}
   use:useActions={use}
   use:forwardEvents
   class="
@@ -29,6 +30,12 @@
   export { className as class };
   export let fullBleed = false;
 
+  let element;
+
   setContext('SMUI:button:context', 'card:action');
   setContext('SMUI:icon-button:context', 'card:action');
+
+  export function getElement() {
+    return element;
+  }
 </script>

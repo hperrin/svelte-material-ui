@@ -36,4 +36,8 @@
   onDestroy(() => {
     icon && icon.destroy();
   });
+
+  export function getElement() {
+    return element;
+  }
 </script>

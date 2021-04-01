@@ -1,4 +1,5 @@
 <section
+  bind:this={element}
   use:useActions={use}
   use:forwardEvents
   class="
@@ -35,6 +36,8 @@
   export let align = 'start';
   export let toolbar = false;
 
+  let element;
+
   setContext(
     'SMUI:icon-button:context',
     toolbar ? 'top-app-bar:action' : 'top-app-bar:navigation'
@@ -43,4 +46,8 @@
     'SMUI:button:context',
     toolbar ? 'top-app-bar:action' : 'top-app-bar:navigation'
   );
+
+  export function getElement() {
+    return element;
+  }
 </script>

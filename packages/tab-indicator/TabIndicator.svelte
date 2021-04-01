@@ -69,7 +69,7 @@
     if (instantiate !== false) {
       tabIndicator = new MDCTabIndicator(element);
     } else {
-      tabIndicator = await getInstance();
+      // tabIndicator = await getInstance();
     }
   });
 
@@ -87,5 +87,9 @@
 
   export function computeContentClientRect(...args) {
     return tabIndicator.computeContentClientRect(...args);
+  }
+
+  export function getElement() {
+    return element;
   }
 </script>

@@ -88,4 +88,8 @@
   onDestroy(() => {
     linearProgress && linearProgress.destroy();
   });
+
+  export function getElement() {
+    return element;
+  }
 </script>

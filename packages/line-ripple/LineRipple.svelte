@@ -51,4 +51,8 @@
   export function setRippleCenter(xCoordinate, ...args) {
     return lineRipple.setRippleCenter(xCoordinate, ...args);
   }
+
+  export function getElement() {
+    return element;
+  }
 </script>

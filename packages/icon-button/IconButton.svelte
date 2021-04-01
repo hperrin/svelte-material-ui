@@ -90,13 +90,13 @@
   // Purposely left out of props exclude.
   export let href = null;
 
-  export let component = href == null ? Button : A;
-
   let element;
   let instance;
   let internalClasses = {};
   let internalAttrs = {};
   let context = getContext('SMUI:icon-button:context');
+
+  export let component = href == null ? Button : A;
 
   $: ariaAttributes = toggle
     ? ariaLabelOff == null || ariaLabelOn == null

@@ -60,4 +60,8 @@
   onDestroy(() => {
     formField && formField.destroy();
   });
+
+  export function getElement() {
+    return element;
+  }
 </script>

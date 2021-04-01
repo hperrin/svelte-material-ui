@@ -192,4 +192,8 @@
   export function getPropStore() {
     return propStore;
   }
+
+  export function getElement() {
+    return element;
+  }
 </script>

@@ -106,6 +106,7 @@
   let internalClasses = {};
   let internalAttrs = {};
   let addTabindexIfNoItemsSelectedRaf;
+  let nav = getContext('SMUI:list:item:nav');
   let accessor = {
     _smui_list_item_accessor: true,
     get element() {
@@ -123,7 +124,6 @@
     removeAttr,
     getPrimaryText,
   };
-  let nav = getContext('SMUI:list:item:nav');
 
   export let component = nav ? (href ? A : Span) : Li;
 

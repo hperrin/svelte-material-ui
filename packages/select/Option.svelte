@@ -37,4 +37,8 @@
   $: if (selected && element) {
     $selectedText = element.textContent || '';
   }
+
+  export function getElement() {
+    return element.getElement();
+  }
 </script>

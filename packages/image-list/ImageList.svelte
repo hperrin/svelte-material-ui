@@ -1,4 +1,5 @@
 <ul
+  bind:this={element}
   use:useActions={use}
   use:forwardEvents
   class="
@@ -33,5 +34,11 @@
   export let masonry = false;
   export let withTextProtection = false;
 
+  let element;
+
   setContext('SMUI:label:context', 'image-list');
+
+  export function getElement() {
+    return element;
+  }
 </script>

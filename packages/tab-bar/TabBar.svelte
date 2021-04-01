@@ -137,4 +137,8 @@
   export function scrollIntoView(...args) {
     return tabBar.scrollIntoView(...args);
   }
+
+  export function getElement() {
+    return element;
+  }
 </script>

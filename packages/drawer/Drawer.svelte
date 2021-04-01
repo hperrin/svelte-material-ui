@@ -166,4 +166,8 @@
   export function isOpen() {
     return open;
   }
+
+  export function getElement() {
+    return element;
+  }
 </script>

@@ -1,5 +1,6 @@
 <svelte:component
   this={component}
+  bind:this={element}
   use={[
     [
       Ripple,
@@ -60,10 +61,15 @@
   // Purposely left out of props exclude.
   export let href = null;
 
-  export let component = href == null ? Button : A;
-
+  let element;
   let rippleClasses = [];
+
+  export let component = href == null ? Button : A;
 
   setContext('SMUI:label:context', 'fab');
   setContext('SMUI:icon:context', 'fab');
+
+  export function getElement() {
+    return element.getElement();
+  }
 </script>

@@ -1,5 +1,6 @@
 {#if header}
   <th
+    bind:this={element}
     use:useActions={use}
     use:forwardEvents
     class="
@@ -15,6 +16,7 @@
   >
 {:else}
   <td
+    bind:this={element}
     use:useActions={use}
     use:forwardEvents
     class="
@@ -52,8 +54,14 @@
   export let numeric = false;
   export let checkbox = false;
 
+  let element;
+
   $: props = exclude($$props, ['use', 'class', 'numeric', 'checkbox']);
 
   $: roleProp = role ? { role } : {};
   $: scopeProp = scope ? { scope } : {};
+
+  export function getElement() {
+    return element;
+  }
 </script>

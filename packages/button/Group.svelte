@@ -1,4 +1,5 @@
 <div
+  bind:this={element}
   use:useActions={use}
   use:forwardEvents
   class="
@@ -27,4 +28,10 @@
   let className = '';
   export { className as class };
   export let variant = 'text';
+
+  let element;
+
+  export function getElement() {
+    return element;
+  }
 </script>

@@ -55,4 +55,8 @@
   export function closeNotch(...args) {
     return notchedOutline.closeNotch(...args);
   }
+
+  export function getElement() {
+    return element;
+  }
 </script>

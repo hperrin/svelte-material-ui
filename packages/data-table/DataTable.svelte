@@ -124,4 +124,8 @@
   export function setSelectedRowIds(...args) {
     return dataTable.setSelectedRowIds(...args);
   }
+
+  export function getElement() {
+    return element;
+  }
 </script>

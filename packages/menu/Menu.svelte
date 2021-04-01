@@ -124,4 +124,8 @@
   export function setDefaultFocusState(focusState) {
     instance.setDefaultFocusState(focusState);
   }
+
+  export function getElement() {
+    return element.getElement();
+  }
 </script>

@@ -26,7 +26,11 @@
   let className = '';
   export { className as class };
 
+  let element;
+
   export let component = Div;
 
-  let element;
+  export function getElement() {
+    return element.getElement();
+  }
 </script>

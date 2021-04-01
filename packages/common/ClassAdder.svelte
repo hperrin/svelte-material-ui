@@ -27,7 +27,6 @@
   export let use = [];
   let className = '';
   export { className as class };
-  export let component = internals.component;
   let forwardEventsAdditional = [];
   export { forwardEventsAdditional as forwardEvents };
 
@@ -35,6 +34,8 @@
   const smuiClass = internals.class;
   const contexts = internals.contexts;
   const props = internals.props;
+
+  export let component = internals.component;
 
   const forwardEvents = forwardEventsBuilder(get_current_component(), [
     ...internals.forwardEvents,

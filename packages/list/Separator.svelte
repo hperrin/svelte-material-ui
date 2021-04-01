@@ -1,5 +1,6 @@
 <svelte:component
   this={component}
+  bind:this={element}
   use={[forwardEvents, ...use]}
   class="
     mdc-list-divider
@@ -38,10 +39,15 @@
   export let insetTrailing = false;
   export let insetPadding = false;
 
+  let element;
   let nav = getContext('SMUI:list:item:nav');
   let context = getContext('SMUI:separator:context');
 
   export let component = nav || context !== 'list' ? Hr : Li;
 
   $: props = exclude($$props, ['use', 'class', 'padded', 'inset']);
+
+  export function getElement() {
+    return element.getElement();
+  }
 </script>

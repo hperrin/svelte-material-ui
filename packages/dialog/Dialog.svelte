@@ -97,4 +97,8 @@
   export function layout(...args) {
     return dialog.layout(...args);
   }
+
+  export function getElement() {
+    return element;
+  }
 </script>

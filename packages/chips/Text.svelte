@@ -1,7 +1,12 @@
 {#if $filter}
-  <Checkmark />
+  <Checkmark bind:this={input} />
 {/if}
-<span use:useActions={use} use:forwardEvents role="gridcell">
+<span
+  bind:this={element}
+  use:useActions={use}
+  use:forwardEvents
+  role="gridcell"
+>
   <span
     class="
       {className}
@@ -34,12 +39,14 @@
   export { className as class };
   export let tabindex = null;
 
+  let element;
+  let input;
+  let text;
+
   const initialTabindex = getContext('SMUI:chip:initialTabindex');
   const choice = getContext('SMUI:chip:choice');
   const filter = getContext('SMUI:chip:filter');
   const isSelected = getContext('SMUI:chip:isSelected');
-
-  let text;
 
   onMount(() => {
     text.setAttribute(
@@ -47,4 +54,12 @@
       tabindex == null ? $initialTabindex : tabindex
     );
   });
+
+  export function getInput() {
+    return input && input.getElement();
+  }
+
+  export function getElement() {
+    return element;
+  }
 </script>

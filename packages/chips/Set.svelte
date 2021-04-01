@@ -184,4 +184,8 @@
     chips.splice(index, 1);
     chips = chips;
   }
+
+  export function getElement() {
+    return element;
+  }
 </script>

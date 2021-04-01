@@ -1,4 +1,5 @@
 <div
+  bind:this={element}
   use:useActions={use}
   use:forwardEvents
   class="
@@ -38,4 +39,10 @@
   export let color = 'default';
   export let elevation = 1;
   export let transition = false;
+
+  let element;
+
+  export function getElement() {
+    return element;
+  }
 </script>

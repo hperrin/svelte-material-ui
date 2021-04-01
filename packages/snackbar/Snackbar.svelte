@@ -121,4 +121,8 @@
   export function isOpen() {
     return snackbar.isOpen;
   }
+
+  export function getElement() {
+    return element;
+  }
 </script>

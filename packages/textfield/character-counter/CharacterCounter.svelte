@@ -34,4 +34,8 @@
   onDestroy(() => {
     characterCounter && characterCounter.destroy();
   });
+
+  export function getElement() {
+    return element;
+  }
 </script>

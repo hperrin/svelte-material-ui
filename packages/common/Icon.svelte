@@ -34,9 +34,9 @@
   export { className as class };
   export let on = false;
 
-  export let component = I;
-
   let element;
+
+  export let component = I;
 
   const context = getContext('SMUI:icon:context');
 

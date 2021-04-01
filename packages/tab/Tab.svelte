@@ -89,7 +89,6 @@
   // Purposely left out of props exclude.
   export let href = null;
 
-  export let component = href == null ? Button : A;
   export let content$use = [];
   export let content$class = '';
 
@@ -101,6 +100,9 @@
   let tabIndicatorPromise = new Promise(
     (resolve) => (tabIndicatorPromiseResolve = resolve)
   );
+
+  export let component = href == null ? Button : A;
+
   $: hrefProp = href == null ? {} : { href };
 
   setContext('SMUI:tab-indicator:instantiate', false);
@@ -126,7 +128,7 @@
     if (instantiate !== false) {
       tab = new MDCTab(element);
     } else {
-      tab = await getInstance(tabEntry);
+      // tab = await getInstance(tabEntry);
     }
     tabIndicatorPromiseResolve(tab.tabIndicator_);
     if (!ripple) {
@@ -166,5 +168,9 @@
 
   export function computeDimensions(...args) {
     return tab.computeDimensions(...args);
+  }
+
+  export function getElement() {
+    return element.getElement();
   }
 </script>

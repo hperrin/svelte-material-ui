@@ -146,4 +146,8 @@
   export function getId() {
     return inputProps && inputProps.id;
   }
+
+  export function getElement() {
+    return element;
+  }
 </script>

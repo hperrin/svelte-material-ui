@@ -169,15 +169,15 @@
     if (instantiate !== false) {
       checkbox = new MDCCheckbox(element);
     } else {
-      if (context === 'data-table') {
-        if (dataTableHeader) {
-          checkbox = await getInstance(true);
-        } else {
-          checkbox = (await getInstance(false))[getDataTableRowIndex()];
-        }
-      } else {
-        checkbox = await getInstance();
-      }
+      // if (context === 'data-table') {
+      //   if (dataTableHeader) {
+      //     checkbox = await getInstance(true);
+      //   } else {
+      //     checkbox = (await getInstance(false))[getDataTableRowIndex()];
+      //   }
+      // } else {
+      //   checkbox = await getInstance();
+      // }
     }
   });
 
@@ -202,5 +202,9 @@
 
   export function getId() {
     return inputProps && inputProps.id;
+  }
+
+  export function getElement() {
+    return element;
   }
 </script>

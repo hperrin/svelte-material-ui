@@ -1,4 +1,5 @@
 <li
+  bind:this={element}
   use:useActions={use}
   use:forwardEvents
   {...exclude($$props, ['use', 'list$'])}
@@ -28,5 +29,11 @@
   export let list$use = [];
   export let list$class = '';
 
+  let element;
+
   setContext('SMUI:list:graphic:menu-selection-group', true);
+
+  export function getElement() {
+    return element;
+  }
 </script>

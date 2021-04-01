@@ -1,4 +1,5 @@
 <div
+  bind:this={element}
   use:useActions={use}
   use:forwardEvents
   class="
@@ -29,4 +30,10 @@
   export { className as class };
   export let variant = 'raised';
   export let padded = false;
+
+  let element;
+
+  export function getElement() {
+    return element;
+  }
 </script>

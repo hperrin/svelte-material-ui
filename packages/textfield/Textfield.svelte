@@ -250,4 +250,8 @@
   export function layout(...args) {
     return textField.layout(...args);
   }
+
+  export function getElement() {
+    return element;
+  }
 </script>

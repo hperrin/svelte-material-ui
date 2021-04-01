@@ -275,4 +275,8 @@
   export function layout(...args) {
     return select.layout(...args);
   }
+
+  export function getElement() {
+    return element;
+  }
 </script>

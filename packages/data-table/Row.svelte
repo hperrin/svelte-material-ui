@@ -60,4 +60,8 @@
 
     return i;
   }
+
+  export function getElement() {
+    return element;
+  }
 </script>

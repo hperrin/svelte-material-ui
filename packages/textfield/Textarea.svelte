@@ -51,4 +51,8 @@
       invalid = element.matches(':invalid');
     }
   }
+
+  export function getElement() {
+    return element;
+  }
 </script>

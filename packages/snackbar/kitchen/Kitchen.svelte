@@ -1,6 +1,6 @@
 {#if config}
   <Snackbar
-    bind:this={component}
+    bind:this={element}
     on:MDCSnackbar:closed={handleClosed}
     labelText={config.label}
     {...(config && config.props) || {}}
@@ -38,8 +38,8 @@
   import Snackbar from '../Snackbar.svelte';
   import Actions from '../Actions.js';
 
+  let element;
   let snackbars = [];
-  let component;
   let config = null;
   let waiting = false;
 
@@ -48,8 +48,8 @@
     waiting = true;
   }
 
-  $: if (component && waiting && !component.isOpen()) {
-    component.open();
+  $: if (element && waiting && !element.isOpen()) {
+    element.open();
     waiting = false;
   }
 
@@ -65,5 +65,9 @@
   export function push(config) {
     snackbars.push(config);
     snackbars = snackbars;
+  }
+
+  export function getElement() {
+    return element.getElement();
   }
 </script>

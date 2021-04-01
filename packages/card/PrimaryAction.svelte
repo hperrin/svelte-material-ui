@@ -1,4 +1,5 @@
 <div
+  bind:this={element}
   use:useActions={use}
   use:forwardEvents
   class="
@@ -40,4 +41,10 @@
   export let color = null;
   export let padded = false;
   export let tabindex = '0';
+
+  let element;
+
+  export function getElement() {
+    return element;
+  }
 </script>

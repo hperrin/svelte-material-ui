@@ -1,5 +1,8 @@
-<thead use:useActions={use} use:forwardEvents {...exclude($$props, ['use'])}
-  ><slot /></thead
+<thead
+  bind:this={element}
+  use:useActions={use}
+  use:forwardEvents
+  {...exclude($$props, ['use'])}><slot /></thead
 >
 
 <script>
@@ -15,5 +18,11 @@
 
   export let use = [];
 
+  let element;
+
   setContext('SMUI:data-table:row:header', true);
+
+  export function getElement() {
+    return element;
+  }
 </script>

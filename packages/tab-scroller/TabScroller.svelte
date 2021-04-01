@@ -50,7 +50,7 @@
     if (instantiate !== false) {
       tabScroller = new MDCTabScroller(element);
     } else {
-      tabScroller = await getInstance();
+      // tabScroller = await getInstance();
     }
   });
 
@@ -72,5 +72,9 @@
 
   export function getScrollContentWidth(...args) {
     return tabScroller.getScrollContentWidth(...args);
+  }
+
+  export function getElement() {
+    return element;
   }
 </script>

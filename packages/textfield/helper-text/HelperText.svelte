@@ -1,12 +1,13 @@
 <div
+  bind:this={container}
   use:useActions={line$use}
+  use:forwardEvents
   class="mdc-text-field-helper-line {line$class}"
   {...exclude(prefixFilter($$props, 'line$'), ['use', 'class'])}
 >
   <div
     bind:this={element}
     use:useActions={use}
-    use:forwardEvents
     class="
       mdc-text-field-helper-text
       {className}
@@ -46,6 +47,7 @@
   export let line$use = [];
   export let line$class = '';
 
+  let container;
   let element;
   let helperText;
 
@@ -56,4 +58,8 @@
   onDestroy(() => {
     helperText && helperText.destroy();
   });
+
+  export function getElement() {
+    return container;
+  }
 </script>

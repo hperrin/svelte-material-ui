@@ -1,4 +1,5 @@
 <label
+  bind:this={element}
   use:useActions={use}
   use:forwardEvents
   class="mdc-list-item__text {className}"
@@ -21,5 +22,10 @@
   let className = '';
   export { className as class };
 
+  let element;
   let inputProps = getContext('SMUI:generic:input:props') || {};
+
+  export function getElement() {
+    return element;
+  }
 </script>

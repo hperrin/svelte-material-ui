@@ -1,4 +1,5 @@
 <span
+  bind:this={element}
   use:useActions={use}
   use:forwardEvents
   class="
@@ -26,5 +27,10 @@
   let className = '';
   export { className as class };
 
+  let element;
   let menuSelectionGroup = getContext('SMUI:list:graphic:menu-selection-group');
+
+  export function getElement() {
+    return element;
+  }
 </script>

@@ -55,11 +55,15 @@
   export let use = [];
   let className = '';
   export { className as class };
-  export let component = Div;
   export let ripple = true;
   export let touch = false;
   export let selected = false;
   export let shouldRemoveOnTrailingIconClick = true;
+
+  let element;
+  let chip;
+
+  export let component = Div;
 
   const shouldRemoveOnTrailingIconClickStore = writable(
     shouldRemoveOnTrailingIconClick
@@ -72,9 +76,6 @@
   const isSelectedStore = writable(selected);
   $: $isSelectedStore = selected;
   setContext('SMUI:chip:isSelected', isSelectedStore);
-
-  let element;
-  let chip;
 
   const selectedStore = getContext('SMUI:chip:selected');
   let previousSelected = selected;
@@ -112,5 +113,9 @@
 
   function handleSelection(e) {
     selected = e.detail.selected;
+  }
+
+  export function getElement() {
+    return element.getElement();
   }
 </script>

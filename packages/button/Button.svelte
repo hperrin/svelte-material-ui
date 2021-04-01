@@ -1,5 +1,6 @@
 <svelte:component
   this={component}
+  bind:this={element}
   use={[
     [
       Ripple,
@@ -90,10 +91,11 @@
   let defaultAction = false;
   export { defaultAction as default };
 
-  export let component = href == null ? Button : A;
-
+  let element;
   let internalClasses = {};
   let context = getContext('SMUI:button:context');
+
+  export let component = href == null ? Button : A;
 
   $: dialogExcludes = context === 'dialog:action' ? ['action', 'default'] : [];
 
@@ -116,5 +118,9 @@
   function removeClass(className) {
     delete internalClasses[className];
     internalClasses = internalClasses;
+  }
+
+  export function getElement() {
+    return element.getElement();
   }
 </script>

@@ -76,4 +76,8 @@
   export function getWidth(...args) {
     return floatingLabel.getWidth(...args);
   }
+
+  export function getElement() {
+    return element;
+  }
 </script>

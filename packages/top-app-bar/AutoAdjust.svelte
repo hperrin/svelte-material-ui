@@ -1,5 +1,6 @@
 <svelte:component
   this={component}
+  bind:this={element}
   use={[forwardEvents, ...use]}
   class="{adjustClass} {className}"
   {...exclude($$props, ['use', 'class', 'topAppBar', 'component'])}
@@ -18,6 +19,8 @@
   let className = '';
   export { className as class };
   export let topAppBar;
+
+  let element;
 
   export let component = Main;
 
@@ -43,4 +46,8 @@
 
     return 'mdc-top-app-bar--fixed-adjust';
   })();
+
+  export function getElement() {
+    return element.getElement();
+  }
 </script>

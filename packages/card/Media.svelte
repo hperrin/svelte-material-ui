@@ -1,4 +1,5 @@
 <div
+  bind:this={element}
   use:useActions={use}
   use:forwardEvents
   class="
@@ -28,4 +29,10 @@
   let className = '';
   export { className as class };
   export let aspectRatio = null;
+
+  let element;
+
+  export function getElement() {
+    return element;
+  }
 </script>
