@@ -171,21 +171,29 @@
   });
 
   function addClass(className) {
-    internalClasses[className] = true;
+    if (!internalClasses[className]) {
+      internalClasses[className] = true;
+    }
   }
 
   function removeClass(className) {
-    delete internalClasses[className];
-    internalClasses = internalClasses;
+    if (internalClasses[className]) {
+      delete internalClasses[className];
+      internalClasses = internalClasses;
+    }
   }
 
   function addAttr(name, value) {
-    internalAttrs[name] = value;
+    if (internalAttrs[name] !== value) {
+      internalAttrs[name] = value;
+    }
   }
 
   function removeAttr(name) {
-    delete internalAttrs[name];
-    internalAttrs = internalAttrs;
+    if (name in internalAttrs) {
+      delete internalAttrs[name];
+      internalAttrs = internalAttrs;
+    }
   }
 
   function getPrimaryText() {

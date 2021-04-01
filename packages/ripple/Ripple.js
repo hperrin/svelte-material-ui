@@ -1,4 +1,4 @@
-import { MDCRipple, MDCRippleFoundation } from '@material/ripple';
+import { MDCRippleFoundation } from '@material/ripple';
 import * as util from '@material/ripple/util';
 import { applyPassive } from '@material/dom/events';
 import { matches } from '@material/dom/ponyfill';
@@ -7,41 +7,30 @@ import { getContext } from 'svelte';
 export default function Ripple(
   node,
   {
-    ripple = false,
+    ripple = true,
     unbounded = false,
     disabled = false,
     color = null,
     addClass = (className) => node.classList.add(className),
     removeClass = (className) => node.classList.remove(className),
-  }
+    active = null,
+  } = {}
 ) {
   let instance;
   let addLayoutListener = getContext('SMUI:addLayoutListener');
   let removeLayoutListener;
 
   function handleProps() {
-    if (ripple) {
-      removeClass('mdc-ripple-surface');
+    addClass('mdc-ripple-surface');
+    if (color === 'primary') {
+      addClass('smui-ripple-surface--primary');
+      removeClass('smui-ripple-surface--secondary');
+    } else if (color === 'secondary') {
+      removeClass('smui-ripple-surface--primary');
+      addClass('smui-ripple-surface--secondary');
     } else {
-      addClass('mdc-ripple-surface');
-    }
-    switch (color) {
-      case 'surface':
-        removeClass('mdc-ripple-surface--primary');
-        removeClass('mdc-ripple-surface--accent');
-        break;
-      case 'primary':
-        addClass('mdc-ripple-surface--primary');
-        removeClass('mdc-ripple-surface--accent');
-        break;
-      case 'secondary':
-        removeClass('mdc-ripple-surface--primary');
-        addClass('mdc-ripple-surface--accent');
-        break;
-      default:
-        removeClass('mdc-ripple-surface--primary');
-        removeClass('mdc-ripple-surface--accent');
-        break;
+      removeClass('smui-ripple-surface--primary');
+      removeClass('smui-ripple-surface--secondary');
     }
 
     if (ripple && !instance) {
@@ -64,7 +53,8 @@ export default function Ripple(
           x: window.pageXOffset,
           y: window.pageYOffset,
         }),
-        isSurfaceActive: () => matches(node, ':active'),
+        isSurfaceActive: () =>
+          active == null ? matches(node, ':active') : active,
         isSurfaceDisabled: () => !!disabled,
         isUnbounded: () => !!unbounded,
         registerDocumentInteractionHandler: (evtType, handler) =>
@@ -82,9 +72,14 @@ export default function Ripple(
           node.style.setProperty(varName, value),
       });
       instance.init();
+      instance.setUnbounded(unbounded);
     } else if (instance && !ripple) {
       instance.destroy();
       instance = null;
+    }
+
+    if (!ripple && unbounded) {
+      addClass('mdc-ripple-upgraded--unbounded');
     }
   }
 
@@ -120,6 +115,9 @@ export default function Ripple(
       if ('removeClass' in props) {
         removeClass = props.removeClass;
       }
+      if ('active' in props) {
+        active = props.active;
+      }
       handleProps();
     },
 
@@ -128,8 +126,8 @@ export default function Ripple(
         instance.destroy();
         instance = null;
         removeClass('mdc-ripple-surface');
-        removeClass('mdc-ripple-surface--primary');
-        removeClass('mdc-ripple-surface--accent');
+        removeClass('smui-ripple-surface--primary');
+        removeClass('smui-ripple-surface--secondary');
       }
 
       if (removeLayoutListener) {

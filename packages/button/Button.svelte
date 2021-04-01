@@ -112,12 +112,16 @@
   setContext('SMUI:icon:context', 'button');
 
   function addClass(className) {
-    internalClasses[className] = true;
+    if (!internalClasses[className]) {
+      internalClasses[className] = true;
+    }
   }
 
   function removeClass(className) {
-    delete internalClasses[className];
-    internalClasses = internalClasses;
+    if (internalClasses[className]) {
+      delete internalClasses[className];
+      internalClasses = internalClasses;
+    }
   }
 
   export function getElement() {
