@@ -1,5 +1,6 @@
+@use "@material/button/styles";
+@use '@smui/ripple/style';
 @use "./mixins";
-@import '@material/button/mdc-button';
-@import '@smui/ripple/style';
+
 @include mixins.core-styles;
 @include mixins.group-core-styles;
