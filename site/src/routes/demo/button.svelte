@@ -174,25 +174,10 @@
         </Button>
         <Menu bind:this={menu} anchorCorner="TOP_LEFT">
           <List>
-            <Item
-              on:SMUI:action={() => {
-                clicked++;
-                menu.setOpen(false);
-              }}><Text>Thing 1</Text></Item
-            >
-            <Item
-              on:SMUI:action={() => {
-                clicked++;
-                menu.setOpen(false);
-              }}><Text>Thing 2</Text></Item
-            >
+            <Item on:SMUI:action={() => clicked++}><Text>Thing 1</Text></Item>
+            <Item on:SMUI:action={() => clicked++}><Text>Thing 2</Text></Item>
             <Separator />
-            <Item
-              on:SMUI:action={() => {
-                clicked++;
-                menu.setOpen(false);
-              }}><Text>Thing 3</Text></Item
-            >
+            <Item on:SMUI:action={() => clicked++}><Text>Thing 3</Text></Item>
           </List>
         </Menu>
       </div>
@@ -211,25 +196,10 @@
         </Button>
         <Menu bind:this={menu2} anchorCorner="TOP_LEFT">
           <List>
-            <Item
-              on:SMUI:action={() => {
-                clicked++;
-                menu2.setOpen(false);
-              }}><Text>Thing 1</Text></Item
-            >
-            <Item
-              on:SMUI:action={() => {
-                clicked++;
-                menu2.setOpen(false);
-              }}><Text>Thing 2</Text></Item
-            >
+            <Item on:SMUI:action={() => clicked++}><Text>Thing 1</Text></Item>
+            <Item on:SMUI:action={() => clicked++}><Text>Thing 2</Text></Item>
             <Separator />
-            <Item
-              on:SMUI:action={() => {
-                clicked++;
-                menu2.setOpen(false);
-              }}><Text>Thing 3</Text></Item
-            >
+            <Item on:SMUI:action={() => clicked++}><Text>Thing 3</Text></Item>
           </List>
         </Menu>
       </div>

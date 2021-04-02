@@ -43,7 +43,7 @@
   on:click={() => instance && instance.handleClick()}
   on:click={() =>
     context === 'top-app-bar:navigation' &&
-    dispatch(element, 'MDCTopAppBar:nav')}
+    dispatch(element, 'SMUI:top-app-bar:icon-button:nav')}
   {...ariaAttributes}
   {...internalAttrs}
   {...exclude($$props, [

@@ -12,7 +12,7 @@
     instance.handleItemAction(
       listAccessor.getOrderedList()[event.detail.index].element
     )}
-  {...exclude($$props, ['use', 'class', 'wrapFocus'])}><slot /></MenuSurface
+  {...exclude($$props, ['use', 'class'])}><slot /></MenuSurface
 >
 
 <script>

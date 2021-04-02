@@ -26,7 +26,7 @@
   } from '@smui/common/internal.js';
 
   const forwardEvents = forwardEventsBuilder(get_current_component(), [
-    'MDCTopAppBar:nav',
+    'SMUI:top-app-bar:icon-button:nav',
     'MDCList:action',
   ]);
 

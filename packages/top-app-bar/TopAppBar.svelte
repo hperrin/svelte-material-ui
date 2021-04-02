@@ -40,7 +40,7 @@
   style="{style} {Object.entries(internalStyles)
     .map(([name, value]) => `${name}: ${value};`)
     .join(' ')}"
-  on:MDCTopAppBar:nav|stopPropagation={() =>
+  on:SMUI:top-app-bar:icon-button:nav={() =>
     instance && instance.handleNavigationClick()}
   {...exclude($$props, [
     'use',

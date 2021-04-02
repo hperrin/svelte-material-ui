@@ -66,8 +66,9 @@
     'MDCMenuSurface:closed',
     'MDCMenuSurface:closing',
     'MDCMenuSurface:opened',
-    'SMUI:list:mount',
     'SMUI:menu-surface:mount',
+    'MDCList:action',
+    'SMUI:list:mount',
   ]);
 
   export let use = [];

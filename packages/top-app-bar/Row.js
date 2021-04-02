@@ -4,5 +4,5 @@ import Div from '@smui/common/Div.svelte';
 export default classAdderBuilder({
   class: 'mdc-top-app-bar__row',
   component: Div,
-  forwardEvents: ['MDCTopAppBar:nav'],
+  forwardEvents: ['SMUI:top-app-bar:icon-button:nav'],
 });
