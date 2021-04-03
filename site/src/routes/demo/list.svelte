@@ -79,7 +79,7 @@
           selected={selectionTwoLine === item.name}
         >
           <Graphic
-            style="background-image: url(https://via.placeholder.com/40x40.png?text={item.name
+            style="background-image: url(https://place-hold.it/40x40&text={item.name
               .split(' ')
               .map((val) => val.substring(0, 1))
               .join('')});"
