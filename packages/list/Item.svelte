@@ -8,7 +8,7 @@
           [
             Ripple,
             {
-              ripple,
+              ripple: !inputAccessor,
               unbounded: false,
               color:
                 (activated || selected) && color == null ? 'primary' : color,

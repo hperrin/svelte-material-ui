@@ -37,8 +37,14 @@
     Group checkbox:<br />
     {#each options as option}
       <FormField>
-        <Checkbox bind:group={selected} value={option.name} disabled={option.disabled} />
-        <span slot="label">{option.name}{option.disabled ? ' (disabled)' : ''}</span>
+        <Checkbox
+          bind:group={selected}
+          value={option.name}
+          disabled={option.disabled}
+        />
+        <span slot="label"
+          >{option.name}{option.disabled ? ' (disabled)' : ''}</span
+        >
       </FormField>
     {/each}
   </div>
@@ -48,13 +54,17 @@
   <div>
     Indeterminate:<br />
     <FormField>
-      <Checkbox bind:checked={indeterminateChecked} indeterminate={indeterminateChecked === null} input$required />
+      <Checkbox
+        bind:checked={indeterminateChecked}
+        indeterminate={indeterminateChecked === null}
+        input$required
+      />
       <span slot="label">I agree to the terms.</span>
     </FormField>
   </div>
 
   <pre class="status">Checked: {indeterminateChecked}</pre>
-  <Button on:click={() => indeterminateChecked = null }>reset</Button>
+  <Button on:click={() => (indeterminateChecked = null)}>reset</Button>
 </section>
 
 <script>
@@ -69,32 +79,32 @@
   let options = [
     {
       name: 'Bashful',
-      disabled: false
+      disabled: false,
     },
     {
       name: 'Doc',
-      disabled: true
+      disabled: true,
     },
     {
       name: 'Dopey',
-      disabled: false
+      disabled: false,
     },
     {
       name: 'Happy',
-      disabled: false
+      disabled: false,
     },
     {
       name: 'Sleepy',
-      disabled: false
+      disabled: false,
     },
     {
       name: 'Sneezy',
-      disabled: false
+      disabled: false,
     },
     {
       name: 'Grumpy',
-      disabled: false
-    }
+      disabled: false,
+    },
   ];
   let selected = ['Happy', 'Grumpy'];
 

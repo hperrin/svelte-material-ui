@@ -1,15 +1,23 @@
 <div
   bind:this={element}
+  use:Ripple={{
+    unbounded: true,
+    addClass,
+    removeClass,
+    active: rippleActive,
+  }}
   use:useActions={use}
   use:forwardEvents
-  class="mdc-checkbox {className} {disabled
-    ? 'mdc-checkbox--disabled'
-    : ''} {touch ? 'mdc-checkbox--touch' : ''} {context === 'data-table' &&
-  dataTableHeader
+  class="mdc-checkbox {className} {Object.keys(internalClasses).join(
+    ' '
+  )} {disabled ? 'mdc-checkbox--disabled' : ''} {touch
+    ? 'mdc-checkbox--touch'
+    : ''} {context === 'data-table' && dataTableHeader
     ? 'mdc-data-table__header-row-checkbox'
     : ''} {context === 'data-table' && !dataTableHeader
     ? 'mdc-data-table__row-checkbox'
     : ''}"
+  on:animationend={() => instance && instance.handleAnimationEnd()}
   {...exclude($$props, [
     'use',
     'class',
@@ -24,19 +32,25 @@
   ])}
 >
   <input
+    bind:this={checkbox}
     use:useActions={input$use}
     class="mdc-checkbox__native-control {input$class}"
     type="checkbox"
     {...inputProps}
     {disabled}
-    bind:checked={nativeChecked}
     value={valueKey === uninitializedValue ? value : valueKey}
+    bind:checked={nativeChecked}
+    data-indeterminate={indeterminate !== uninitializedValue && indeterminate
+      ? 'true'
+      : null}
     on:change={handleChange}
+    on:change={() => instance && instance.handleChange()}
     on:input={handleChange}
     on:change
     on:input
     on:blur
     on:focus
+    {...internalAttrs}
     {...exclude(prefixFilter($$props, 'input$'), ['use', 'class'])}
   />
   <div class="mdc-checkbox__background">
@@ -53,17 +67,21 @@
 </div>
 
 <script>
-  import { MDCCheckbox } from '@material/checkbox';
-  import { onMount, onDestroy, getContext } from 'svelte';
+  import { MDCCheckboxFoundation } from '@material/checkbox';
+  import { onMount, getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
     exclude,
     prefixFilter,
     useActions,
+    dispatch,
   } from '@smui/common/internal.js';
+  import Ripple from '@smui/ripple/bare.js';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component());
+  const forwardEvents = forwardEventsBuilder(get_current_component(), [
+    'SMUI:generic:input:mount',
+  ]);
   let uninitializedValue = () => {};
 
   export let use = [];
@@ -80,8 +98,12 @@
   export let input$class = '';
 
   let element;
+  let instance;
   let checkbox;
-  let formField = getContext('SMUI:form-field');
+  let internalClasses = {};
+  // These are added to the native control, not `element`.
+  let internalAttrs = {};
+  let rippleActive = false;
   let inputProps = getContext('SMUI:generic:input:props') || {};
   let setChecked = getContext('SMUI:generic:input:setChecked');
   let addChangeHandler = getContext('SMUI:generic:input:addChangeHandler');
@@ -97,51 +119,8 @@
   let instantiate = getContext('SMUI:checkbox:instantiate');
   let getInstance = getContext('SMUI:checkbox:getInstance');
 
-  $: if (checkbox && $formField && $formField.input !== checkbox) {
-    $formField.input = checkbox;
-  }
-
   $: if (setChecked) {
     setChecked(nativeChecked);
-  }
-
-  $: if (
-    checkbox &&
-    indeterminate !== uninitializedValue &&
-    checkbox.indeterminate !== indeterminate
-  ) {
-    checkbox.indeterminate = indeterminate;
-  }
-
-  $: if (checkbox) {
-    if (group !== uninitializedValue) {
-      const isChecked = group.indexOf(value) !== -1;
-      if (checkbox.checked !== isChecked) {
-        checkbox.checked = isChecked;
-      }
-    } else if (checked !== uninitializedValue && checkbox.checked !== checked) {
-      checkbox.checked = checked;
-    }
-  }
-
-  $: if (checkbox && checkbox.disabled !== disabled) {
-    checkbox.disabled = disabled;
-  }
-
-  $: if (
-    checkbox &&
-    valueKey === uninitializedValue &&
-    checkbox.value !== value
-  ) {
-    checkbox.value = value;
-  }
-
-  $: if (
-    checkbox &&
-    valueKey !== uninitializedValue &&
-    checkbox.value !== valueKey
-  ) {
-    checkbox.value = valueKey;
   }
 
   let previousChecked = checked;
@@ -150,8 +129,22 @@
       checked = nativeChecked;
     } else if (nativeChecked !== checked) {
       nativeChecked = checked;
+      instance && instance.handleChange();
     }
     previousChecked = checked;
+  }
+
+  $: if (checkbox) {
+    if (
+      indeterminate === uninitializedValue ||
+      (!indeterminate && checkbox.indeterminate)
+    ) {
+      checkbox.indeterminate = false;
+      instance && instance.handleChange();
+    } else if (indeterminate && !checkbox.indeterminate) {
+      checkbox.indeterminate = true;
+      instance && instance.handleChange();
+    }
   }
 
   if (addChangeHandler) {
@@ -159,34 +152,85 @@
   }
 
   onMount(() => {
-    if (instantiate !== false) {
-      checkbox = new MDCCheckbox(element);
-    } else {
-      // if (context === 'data-table') {
-      //   if (dataTableHeader) {
-      //     checkbox = await getInstance(true);
-      //   } else {
-      //     checkbox = (await getInstance(false))[getDataTableRowIndex()];
-      //   }
-      // } else {
-      //   checkbox = await getInstance();
-      // }
-    }
+    instance = new MDCCheckboxFoundation({
+      addClass,
+      forceLayout: () => element.offsetWidth,
+      hasNativeControl: () => true,
+      isAttachedToDOM: () => Boolean(element.parentNode),
+      isChecked: () => nativeChecked,
+      isIndeterminate: () =>
+        indeterminate === uninitializedValue ? false : indeterminate,
+      removeClass,
+      removeNativeControlAttr: removeAttr,
+      setNativeControlAttr: addAttr,
+      setNativeControlDisabled: (value) => (disabled = value),
+    });
+
+    dispatch(element, 'SMUI:generic:input:mount', {
+      get element() {
+        return getElement();
+      },
+      get checked() {
+        return nativeChecked;
+      },
+      set checked(checked) {
+        if (nativeChecked !== checked) {
+          nativeChecked = checked;
+          handleChange();
+          instance && instance.handleChange();
+        }
+      },
+      activateRipple() {
+        if (!disabled) {
+          rippleActive = true;
+        }
+      },
+      deactivateRipple() {
+        rippleActive = false;
+      },
+    });
+
+    instance.init();
+
+    return () => {
+      instance.destroy();
+    };
   });
 
-  onDestroy(() => {
-    if (instantiate !== false) {
-      checkbox && checkbox.destroy();
+  function addClass(className) {
+    // Doesn't need hasClass.
+    if (!internalClasses[className]) {
+      internalClasses[className] = true;
     }
-  });
+  }
+
+  function removeClass(className) {
+    // Doesn't need hasClass.
+    if (internalClasses[className]) {
+      delete internalClasses[className];
+      internalClasses = internalClasses;
+    }
+  }
+
+  function addAttr(name, value) {
+    if (internalAttrs[name] !== value) {
+      internalAttrs[name] = value;
+    }
+  }
+
+  function removeAttr(name) {
+    if (name in internalAttrs) {
+      internalAttrs[name] = undefined;
+    }
+  }
 
   function handleChange() {
     if (group !== uninitializedValue) {
       const idx = group.indexOf(value);
-      if (checkbox.checked && idx === -1) {
+      if (nativeChecked && idx === -1) {
         group.push(value);
         group = group;
-      } else if (!checkbox.checked && idx !== -1) {
+      } else if (!nativeChecked && idx !== -1) {
         group.splice(idx, 1);
         group = group;
       }

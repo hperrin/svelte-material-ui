@@ -222,14 +222,14 @@
       // shortcut: '/demo/textfield',
       indent: 0,
     },
-    // {
-    //   name: 'Checkboxes',
-    //   route: '/demo/checkbox',
-    //   indent: 1,
-    //   repos: [
-    //     'https://github.com/hperrin/svelte-material-ui/tree/master/packages/checkbox',
-    //   ],
-    // },
+    {
+      name: 'Checkboxes',
+      route: '/demo/checkbox',
+      indent: 1,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/checkbox',
+      ],
+    },
     // {
     //   name: 'Floating Label',
     //   shortcut: '/demo/textfield',

@@ -1,1 +1,4 @@
-@import "@material/checkbox/mdc-checkbox";
+@use "@material/checkbox";
+@use '@smui/ripple/style';
+
+@include checkbox.core-styles;

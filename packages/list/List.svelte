@@ -224,7 +224,7 @@
       },
     });
 
-    if (singleSelection || radiolist || checklist) {
+    if (singleSelection) {
       selectedIndex = getSelectedIndex();
     }
 
@@ -270,31 +270,17 @@
   }
 
   function handleAction(event) {
-    if (radiolist) {
+    if (radiolist || checklist) {
       const index = getListItemIndex(event.target);
       if (index !== -1) {
-        selectedIndex = index;
         const item = getOrderedList()[index];
-        if (!item.checked) {
-          item.checked = true;
+        if ((radiolist && !item.checked) || checklist) {
+          item.checked = !item.checked;
           item.activateRipple();
           window.requestAnimationFrame(() => {
             item.deactivateRipple();
           });
         }
-      }
-    } else if (checklist) {
-      const index = getListItemIndex(event.target);
-      if (index !== -1) {
-        selectedIndex = index;
-        // todo: fix to allow multiple
-        getOrderedList().forEach((accessor, index) => {
-          console.log({ checked: accessor.checked });
-          if (accessor.checked !== (selectedIndex === index)) {
-            console.log({ setChecked: selectedIndex === index });
-            accessor.checked = selectedIndex === index;
-          }
-        });
       }
     }
   }

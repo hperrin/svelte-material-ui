@@ -105,7 +105,9 @@
         }
       },
       activateRipple() {
-        rippleActive = true;
+        if (!disabled) {
+          rippleActive = true;
+        }
       },
       deactivateRipple() {
         rippleActive = false;

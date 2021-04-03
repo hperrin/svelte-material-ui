@@ -204,7 +204,7 @@
 
   <pre class="status">Selected: {selectedRadio}</pre>
 
-  <!-- <div>
+  <div>
     A check list with trailing checkboxes:
     <List class="demo-list" checklist>
       <Item>
@@ -240,7 +240,7 @@
     </List>
   </div>
 
-  <pre class="status">Selected: {selectedCheckbox.join(', ')}</pre> -->
+  <pre class="status">Selected: {selectedCheckbox.join(', ')}</pre>
 </section>
 
 <script>
@@ -257,7 +257,7 @@
     SecondaryText,
   } from '@smui/list';
   import Radio from '@smui/radio';
-  // import Checkbox from '@smui/checkbox';
+  import Checkbox from '@smui/checkbox';
 
   let clickedSimple = 'nothing yet';
   let clickedDense = 'nothing yet';
@@ -289,7 +289,7 @@
   let selectionIndex = null;
   let clickedGroup = 'nothing yet';
   let selectedRadio = 'Tom Hanks';
-  // let selectedCheckbox = ['Tom Hanks'];
+  let selectedCheckbox = ['Tom Hanks'];
 </script>
 
 <style>
