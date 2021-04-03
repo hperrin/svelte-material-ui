@@ -16,41 +16,24 @@
     forwardEvents,
     ...use,
   ]}
-  class="
-    mdc-button
-    {className}
-    {Object.keys(internalClasses).join(
+  class="mdc-button {className} {Object.keys(internalClasses).join(
     ' '
-  )}
-    {variant === 'raised' ? 'mdc-button--raised' : ''}
-    {variant ===
+  )} {variant === 'raised' ? 'mdc-button--raised' : ''} {variant ===
   'unelevated'
     ? 'mdc-button--unelevated'
-    : ''}
-    {variant === 'outlined'
-    ? 'mdc-button--outlined'
-    : ''}
-    {color === 'secondary'
+    : ''} {variant === 'outlined' ? 'mdc-button--outlined' : ''} {color ===
+  'secondary'
     ? 'smui-button--color-secondary'
-    : ''}
-    {touch ? 'mdc-button--touch' : ''}
-    {context === 'card:action'
+    : ''} {touch ? 'mdc-button--touch' : ''} {context === 'card:action'
     ? 'mdc-card__action'
-    : ''}
-    {context === 'card:action'
+    : ''} {context === 'card:action'
     ? 'mdc-card__action--button'
-    : ''}
-    {context === 'dialog:action'
-    ? 'mdc-dialog__button'
-    : ''}
-    {context === 'top-app-bar:navigation'
+    : ''} {context === 'dialog:action' ? 'mdc-dialog__button' : ''} {context ===
+  'top-app-bar:navigation'
     ? 'mdc-top-app-bar__navigation-icon'
-    : ''}
-    {context === 'top-app-bar:action'
+    : ''} {context === 'top-app-bar:action'
     ? 'mdc-top-app-bar__action-item'
-    : ''}
-    {context === 'snackbar' ? 'mdc-snackbar__action' : ''}
-  "
+    : ''} {context === 'snackbar' ? 'mdc-snackbar__action' : ''}"
   {...actionProp}
   {...defaultProp}
   {...exclude($$props, [

@@ -17,26 +17,17 @@
     ...use,
   ]}
   forwardEvents={forwardedEvents}
-  class="
-    mdc-icon-button
-    {className}
-    {Object.keys(internalClasses)
+  class="mdc-icon-button {className} {Object.keys(internalClasses)
     .filter((className) => internalClasses[className])
-    .join(' ')}
-    {context === 'card:action'
+    .join(' ')} {context === 'card:action'
     ? 'mdc-card__action'
-    : ''}
-    {context === 'card:action'
+    : ''} {context === 'card:action'
     ? 'mdc-card__action--icon'
-    : ''}
-    {context === 'top-app-bar:navigation'
+    : ''} {context === 'top-app-bar:navigation'
     ? 'mdc-top-app-bar__navigation-icon'
-    : ''}
-    {context === 'top-app-bar:action'
+    : ''} {context === 'top-app-bar:action'
     ? 'mdc-top-app-bar__action-item'
-    : ''}
-    {context === 'snackbar' ? 'mdc-snackbar__dismiss' : ''}
-  "
+    : ''} {context === 'snackbar' ? 'mdc-snackbar__dismiss' : ''}"
   aria-hidden="true"
   aria-pressed={toggle ? (pressed ? 'true' : 'false') : null}
   aria-label={pressed ? ariaLabelOn : ariaLabelOff}

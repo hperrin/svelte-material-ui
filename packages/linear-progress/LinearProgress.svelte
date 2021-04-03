@@ -2,17 +2,11 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="
-    mdc-linear-progress
-    {className}
-    {indeterminate
+  class="mdc-linear-progress {className} {indeterminate
     ? 'mdc-linear-progress--indeterminate'
-    : ''}
-    {reversed ? 'mdc-linear-progress--reversed' : ''}
-    {closed
+    : ''} {reversed ? 'mdc-linear-progress--reversed' : ''} {closed
     ? 'mdc-linear-progress--closed'
-    : ''}
-  "
+    : ''}"
   role="progressbar"
   {...exclude($$props, [
     'use',

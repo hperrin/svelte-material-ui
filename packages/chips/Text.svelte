@@ -8,11 +8,7 @@
   role="gridcell"
 >
   <span
-    class="
-      {className}
-      mdc-chip__text
-      mdc-chip__primary-action
-    "
+    class="mdc-chip__text mdc-chip__primary-action {className}"
     bind:this={text}
     role={$filter ? 'checkbox' : $choice ? 'radio' : 'button'}
     {...$filter || $choice

@@ -2,13 +2,9 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="
-    mdc-list-item__graphic
-    {className}
-    {menuSelectionGroup
+  class="mdc-list-item__graphic {className} {menuSelectionGroup
     ? 'mdc-menu__selection-group-icon'
-    : ''}
-    "
+    : ''}"
   {...exclude($$props, ['use', 'class'])}><slot /></span
 >
 

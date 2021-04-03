@@ -17,23 +17,15 @@
     ...use,
   ]}
   forwardEvents={forwardedEvents}
-  class="
-    mdc-list-item
-    {className}
-    {Object.keys(internalClasses)
+  class="mdc-list-item {className} {Object.keys(internalClasses)
     .filter((className) => internalClasses[className])
-    .join(' ')}
-    {activated ? 'mdc-list-item--activated' : ''}
-    {selected
+    .join(' ')} {activated ? 'mdc-list-item--activated' : ''} {selected
     ? 'mdc-list-item--selected'
-    : ''}
-    {disabled ? 'mdc-list-item--disabled' : ''}
-    {!nav &&
+    : ''} {disabled ? 'mdc-list-item--disabled' : ''} {!nav &&
   role === 'menuitem' &&
   selected
     ? 'mdc-menu-item--selected'
-    : ''}
-  "
+    : ''}"
   {...nav && activated ? { 'aria-current': 'page' } : {}}
   {...!nav ? { role } : {}}
   {...!nav && role === 'option'

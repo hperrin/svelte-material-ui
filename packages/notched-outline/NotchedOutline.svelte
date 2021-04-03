@@ -2,14 +2,9 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="
-    mdc-notched-outline
-    {className}
-    {notched
+  class="mdc-notched-outline {className} {notched
     ? 'mdc-notched-outline--notched'
-    : ''}
-    {noLabel ? 'mdc-notched-outline--no-label' : ''}
-  "
+    : ''} {noLabel ? 'mdc-notched-outline--no-label' : ''}"
   {...exclude($$props, ['use', 'class', 'notched', 'noLabel'])}
 >
   <div class="mdc-notched-outline__leading" />

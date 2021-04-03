@@ -2,17 +2,9 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="
-    mdc-chip-set
-    {className}
-    {choice
-    ? 'mdc-chip-set--choice'
-    : ''}
-    {filter ? 'mdc-chip-set--filter' : ''}
-    {input
-    ? 'mdc-chip-set--input'
-    : ''}
-  "
+  class="mdc-chip-set {className} {choice ? 'mdc-chip-set--choice' : ''} {filter
+    ? 'mdc-chip-set--filter'
+    : ''} {input ? 'mdc-chip-set--input' : ''}"
   role="grid"
   on:MDCChip:removal={handleRemoval}
   on:MDCChip:selection={handleSelection}

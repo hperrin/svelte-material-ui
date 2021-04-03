@@ -2,13 +2,9 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="
-    mdc-card__primary-action
-    {className}
-    {padded
+  class="mdc-card__primary-action {className} {padded
     ? 'smui-card__primary-action--padded'
-    : ''}
-  "
+    : ''}"
   use:Ripple={{ ripple, unbounded: false, color }}
   {tabindex}
   {...exclude($$props, [

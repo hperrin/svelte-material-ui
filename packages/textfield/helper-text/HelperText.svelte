@@ -8,16 +8,9 @@
   <div
     bind:this={element}
     use:useActions={use}
-    class="
-      mdc-text-field-helper-text
-      {className}
-      {persistent
+    class="mdc-text-field-helper-text {className} {persistent
       ? 'mdc-text-field-helper-text--persistent'
-      : ''}
-      {validationMsg
-      ? 'mdc-text-field-helper-text--validation-msg'
-      : ''}
-    "
+      : ''} {validationMsg ? 'mdc-text-field-helper-text--validation-msg' : ''}"
     aria-hidden="true"
     {...exclude($$props, ['use', 'class', 'persistent', 'validationMsg'])}
   >

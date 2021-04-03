@@ -2,16 +2,9 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="
-    {className}
-    {header
-    ? 'mdc-data-table__header-row'
-    : ''}
-    {!header ? 'mdc-data-table__row' : ''}
-    {!header && selected
-    ? 'mdc-data-table__row--selected'
-    : ''}
-  "
+  class="{className} {header ? 'mdc-data-table__header-row' : ''} {!header
+    ? 'mdc-data-table__row'
+    : ''} {!header && selected ? 'mdc-data-table__row--selected' : ''}"
   {...selected !== undefined
     ? { 'aria-selected': selected ? 'true' : 'false' }
     : {}}

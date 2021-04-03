@@ -3,35 +3,21 @@
     bind:this={element}
     use:useActions={use}
     use:forwardEvents
-    class="
-      mdc-text-field
-      {className}
-      {disabled
+    class="mdc-text-field {className} {disabled
       ? 'mdc-text-field--disabled'
-      : ''}
-      {fullwidth ? 'mdc-text-field--fullwidth' : ''}
-      {textarea
+      : ''} {fullwidth ? 'mdc-text-field--fullwidth' : ''} {textarea
       ? 'mdc-text-field--textarea'
-      : ''}
-      {variant === 'outlined' && !fullwidth
+      : ''} {variant === 'outlined' && !fullwidth
       ? 'mdc-text-field--outlined'
-      : ''}
-      {variant === 'standard' && !fullwidth && !textarea
+      : ''} {variant === 'standard' && !fullwidth && !textarea
       ? 'smui-text-field--standard'
-      : ''}
-      {dense ? 'mdc-text-field--dense' : ''}
-      {noLabel ||
-    label == null
+      : ''} {dense ? 'mdc-text-field--dense' : ''} {noLabel || label == null
       ? 'mdc-text-field--no-label'
-      : ''}
-      {withLeadingIcon
+      : ''} {withLeadingIcon
       ? 'mdc-text-field--with-leading-icon'
-      : ''}
-      {withTrailingIcon
+      : ''} {withTrailingIcon
       ? 'mdc-text-field--with-trailing-icon'
-      : ''}
-      {invalid ? 'mdc-text-field--invalid' : ''}
-    "
+      : ''} {invalid ? 'mdc-text-field--invalid' : ''}"
     {...props}
   >
     <slot />
@@ -93,34 +79,21 @@
     bind:this={element}
     use:useActions={use}
     use:forwardEvents
-    class="
-      mdc-text-field
-      {className}
-      {disabled
+    class="mdc-text-field {className} {disabled
       ? 'mdc-text-field--disabled'
-      : ''}
-      {fullwidth ? 'mdc-text-field--fullwidth' : ''}
-      {textarea
+      : ''} {fullwidth ? 'mdc-text-field--fullwidth' : ''} {textarea
       ? 'mdc-text-field--textarea'
-      : ''}
-      {variant === 'outlined' && !fullwidth
+      : ''} {variant === 'outlined' && !fullwidth
       ? 'mdc-text-field--outlined'
-      : ''}
-      {variant === 'standard' && !fullwidth && !textarea
+      : ''} {variant === 'standard' && !fullwidth && !textarea
       ? 'smui-text-field--standard'
-      : ''}
-      {dense ? 'mdc-text-field--dense' : ''}
-      {noLabel
+      : ''} {dense ? 'mdc-text-field--dense' : ''} {noLabel
       ? 'mdc-text-field--no-label'
-      : ''}
-      {withLeadingIcon
+      : ''} {withLeadingIcon
       ? 'mdc-text-field--with-leading-icon'
-      : ''}
-      {withTrailingIcon
+      : ''} {withTrailingIcon
       ? 'mdc-text-field--with-trailing-icon'
-      : ''}
-      {invalid ? 'mdc-text-field--invalid' : ''}
-    "
+      : ''} {invalid ? 'mdc-text-field--invalid' : ''}"
     {...props}
   >
     <slot />

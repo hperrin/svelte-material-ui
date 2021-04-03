@@ -2,21 +2,13 @@
   this={component}
   bind:this={element}
   use={[forwardEvents, ...use]}
-  class="
-    mdc-list-divider
-    {className}
-    {padded
+  class="mdc-list-divider {className} {padded
     ? 'mdc-list-divider--padded'
-    : ''}
-    {inset ? 'mdc-list-divider--inset' : ''}
-    {insetLeading
+    : ''} {inset ? 'mdc-list-divider--inset' : ''} {insetLeading
     ? 'mdc-list-divider--inset-leading'
-    : ''}
-    {insetTrailing
+    : ''} {insetTrailing
     ? 'mdc-list-divider--inset-trailing'
-    : ''}
-    {insetPadding ? 'mdc-list-divider--inset-padding' : ''}
-    "
+    : ''} {insetPadding ? 'mdc-list-divider--inset-padding' : ''}"
   role="separator"
   {...props}
 />

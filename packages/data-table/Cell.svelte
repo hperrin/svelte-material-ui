@@ -3,13 +3,10 @@
     bind:this={element}
     use:useActions={use}
     use:forwardEvents
-    class="
-      mdc-data-table__header-cell
-      {className}
-      {checkbox
+    class="mdc-data-table__header-cell
+      {className} {checkbox
       ? 'mdc-data-table__header-cell--checkbox'
-      : ''}
-    "
+      : ''}"
     {...roleProp}
     {...scopeProp}
     {...props}><slot /></th
@@ -19,14 +16,10 @@
     bind:this={element}
     use:useActions={use}
     use:forwardEvents
-    class="
-      mdc-data-table__cell
-      {className}
-      {numeric
+    class="mdc-data-table__cell
+      {className} {numeric
       ? 'mdc-data-table__cell--numeric'
-      : ''}
-      {checkbox ? 'mdc-data-table__cell--checkbox' : ''}
-    "
+      : ''} {checkbox ? 'mdc-data-table__cell--checkbox' : ''}"
     {...roleProp}
     {...scopeProp}
     {...props}><slot /></td

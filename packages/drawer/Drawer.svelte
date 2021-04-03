@@ -2,17 +2,11 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="
-    mdc-drawer
-    {className}
-    {Object.keys(internalClasses)
+  class="mdc-drawer {className} {Object.keys(internalClasses)
     .filter((className) => internalClasses[className])
-    .join(' ')}
-    {variant === 'dismissible'
+    .join(' ')} {variant === 'dismissible'
     ? 'mdc-drawer--dismissible'
-    : ''}
-    {variant === 'modal' ? 'mdc-drawer--modal' : ''}
-  "
+    : ''} {variant === 'modal' ? 'mdc-drawer--modal' : ''}"
   on:keydown={(event) => instance && instance.handleKeydown(event)}
   on:transitionend={(event) => instance && instance.handleTransitionEnd(event)}
   {...exclude($$props, ['use', 'class', 'variant', 'open'])}

@@ -3,33 +3,19 @@
   use:Anchor={{ addClass, removeClass }}
   use:useActions={use}
   use:forwardEvents
-  class="
-    mdc-select
-    {className}
-    {Object.keys(internalClasses).join(
+  class="mdc-select {className} {Object.keys(internalClasses).join(
     ' '
-  )}
-    {required ? 'mdc-select--required' : ''}
-    {disabled
+  )} {required ? 'mdc-select--required' : ''} {disabled
     ? 'mdc-select--disabled'
-    : ''}
-    {variant === 'outlined'
-    ? 'mdc-select--outlined'
-    : ''}
-    {variant === 'standard'
+    : ''} {variant === 'outlined' ? 'mdc-select--outlined' : ''} {variant ===
+  'standard'
     ? 'smui-select--standard'
-    : ''}
-    {withLeadingIcon
-    ? 'mdc-select--with-leading-icon'
-    : ''}
-    {noLabel || label == null
+    : ''} {withLeadingIcon ? 'mdc-select--with-leading-icon' : ''} {noLabel ||
+  label == null
     ? 'mdc-select--no-label'
-    : ''}
-    {invalid ? 'mdc-select--invalid' : ''}
-    {menuOpen
+    : ''} {invalid ? 'mdc-select--invalid' : ''} {menuOpen
     ? 'mdc-select--activated'
-    : ''}
-  "
+    : ''}"
   on:MDCSelect:change={changeHandler}
   {...exclude($$props, [
     'use',

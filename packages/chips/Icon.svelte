@@ -3,15 +3,10 @@
     bind:this={element}
     use:useActions={use}
     use:forwardEvents
-    class="
-      mdc-chip__icon
-      mdc-chip__icon--leading
-      {className}
-      {$filter &&
+    class="mdc-chip__icon mdc-chip__icon--leading {className} {$filter &&
     $isSelected
       ? 'mdc-chip__icon--leading-hidden'
-      : ''}
-    "
+      : ''}"
     {...exclude($$props, ['use', 'class', 'leading'])}><slot /></i
   >
 {:else}
@@ -23,14 +18,9 @@
   >
     <i
       bind:this={icon}
-      class="
-        mdc-chip__icon
-        mdc-chip__icon--trailing
-        {className}
-        {$shouldRemoveOnTrailingIconClick
+      class="mdc-chip__icon mdc-chip__icon--trailing {className} {$shouldRemoveOnTrailingIconClick
         ? 'mdc-chip__trailing-action'
-        : ''}
-      "
+        : ''}"
       {...$shouldRemoveOnTrailingIconClick ? { role: 'button' } : {}}
       {...exclude($$props, ['use', 'class', 'leading'])}><slot /></i
     >

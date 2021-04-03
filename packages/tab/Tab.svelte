@@ -3,17 +3,9 @@
   bind:this={element}
   use={[forwardEvents, ...use]}
   forwardEvents={forwardedEvents}
-  class="
-    mdc-tab
-    {className}
-    {active
-    ? 'mdc-tab--active'
-    : ''}
-    {stacked ? 'mdc-tab--stacked' : ''}
-    {minWidth
-    ? 'mdc-tab--min-width'
-    : ''}
-  "
+  class="mdc-tab {className} {active ? 'mdc-tab--active' : ''} {stacked
+    ? 'mdc-tab--stacked'
+    : ''} {minWidth ? 'mdc-tab--min-width' : ''}"
   role="tab"
   aria-selected={active}
   tabindex={active ? '0' : '-1'}

@@ -2,16 +2,10 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="
-    mdc-slider
-    {className}
-    {discrete
+  class="mdc-slider
+    {className} {discrete
     ? 'mdc-slider--discrete'
-    : ''}
-    {discrete && displayMarkers
-    ? 'mdc-slider--display-markers'
-    : ''}
-  "
+    : ''} {discrete && displayMarkers ? 'mdc-slider--display-markers' : ''}"
   role="slider"
   aria-disabled={disabled ? 'true' : 'false'}
   aria-valuemin={min}

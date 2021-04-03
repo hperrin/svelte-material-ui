@@ -3,13 +3,10 @@
     bind:this={element}
     use:useActions={use}
     use:forwardEvents
-    class="
-      mdc-floating-label
-      {className}
-      {floatAbove
+    class="mdc-floating-label
+      {className} {floatAbove
       ? 'mdc-floating-label--float-above'
-      : ''}
-    "
+      : ''}"
     {...exclude($$props, ['use', 'class', 'floatAbove', 'wrapped'])}
     ><slot /></span
   >
@@ -18,13 +15,9 @@
     bind:this={element}
     use:useActions={use}
     use:forwardEvents
-    class="
-      mdc-floating-label
-      {className}
-      {floatAbove
+    class="mdc-floating-label {className} {floatAbove
       ? 'mdc-floating-label--float-above'
-      : ''}
-    "
+      : ''}"
     {...forId || (inputProps && inputProps.id)
       ? { for: forId || (inputProps && inputProps.id) }
       : {}}

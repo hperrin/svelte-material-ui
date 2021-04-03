@@ -11,32 +11,18 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="
-    mdc-top-app-bar
-    {className}
-    {Object.keys(internalClasses)
+  class="mdc-top-app-bar {className} {Object.keys(internalClasses)
     .filter((className) => internalClasses[className])
-    .join(' ')}
-    {variant === 'short'
-    ? 'mdc-top-app-bar--short'
-    : ''}
-    {collapsed
+    .join(' ')} {variant === 'short' ? 'mdc-top-app-bar--short' : ''} {collapsed
     ? 'mdc-top-app-bar--short-collapsed'
-    : ''}
-    {variant === 'fixed'
-    ? 'mdc-top-app-bar--fixed'
-    : ''}
-    {variant === 'static'
+    : ''} {variant === 'fixed' ? 'mdc-top-app-bar--fixed' : ''} {variant ===
+  'static'
     ? 'smui-top-app-bar--static'
-    : ''}
-    {color === 'secondary'
+    : ''} {color === 'secondary'
     ? 'smui-top-app-bar--color-secondary'
-    : ''}
-    {prominent ? 'mdc-top-app-bar--prominent' : ''}
-    {dense
+    : ''} {prominent ? 'mdc-top-app-bar--prominent' : ''} {dense
     ? 'mdc-top-app-bar--dense'
-    : ''}
-  "
+    : ''}"
   style="{style} {Object.entries(internalStyles)
     .map(([name, value]) => `${name}: ${value};`)
     .join(' ')}"

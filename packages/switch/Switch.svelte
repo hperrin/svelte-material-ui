@@ -2,14 +2,9 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="
-    mdc-switch
-    {className}
-    {disabled
+  class="mdc-switch {className} {disabled
     ? 'mdc-switch--disabled'
-    : ''}
-    {nativeChecked ? 'mdc-switch--checked' : ''}
-  "
+    : ''} {nativeChecked ? 'mdc-switch--checked' : ''}"
   {...exclude($$props, [
     'use',
     'class',

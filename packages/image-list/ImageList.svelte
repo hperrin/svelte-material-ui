@@ -2,16 +2,9 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="
-    mdc-image-list
-    {className}
-    {masonry
+  class="mdc-image-list{className} {masonry
     ? 'mdc-image-list--masonry'
-    : ''}
-    {withTextProtection
-    ? 'mdc-image-list--with-text-protection'
-    : ''}
-  "
+    : ''} {withTextProtection ? 'mdc-image-list--with-text-protection' : ''}"
   {...exclude($$props, ['use', 'class', 'masonry', 'withTextProtection'])}
 >
   <slot />

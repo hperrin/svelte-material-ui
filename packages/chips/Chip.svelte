@@ -3,14 +3,9 @@
   bind:this={element}
   use={[forwardEvents, ...use]}
   forwardEvents={forwardedEvents}
-  class="
-    mdc-chip
-    {className}
-    {selected
-    ? 'mdc-chip--selected'
-    : ''}
-    {touch ? 'mdc-chip--touch' : ''}
-  "
+  class="mdc-chip {className} {selected ? 'mdc-chip--selected' : ''} {touch
+    ? 'mdc-chip--touch'
+    : ''}"
   role="row"
   on:MDCChip:selection={handleSelection}
   {...exclude($$props, [

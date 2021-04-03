@@ -2,21 +2,13 @@
   this={component}
   bind:this={element}
   use={[forwardEvents, ...use]}
-  class="
-    {className}
-    {context === 'button'
+  class="{className} {context === 'button'
     ? 'mdc-button__icon'
-    : ''}
-    {context === 'fab' ? 'mdc-fab__icon' : ''}
-    {context ===
-  'icon-button'
+    : ''} {context === 'fab' ? 'mdc-fab__icon' : ''} {context === 'icon-button'
     ? 'mdc-icon-button__icon'
-    : ''}
-    {context === 'icon-button' && on
+    : ''} {context === 'icon-button' && on
     ? 'mdc-icon-button__icon--on'
-    : ''}
-    {context === 'tab' ? 'mdc-tab__icon' : ''}
-  "
+    : ''} {context === 'tab' ? 'mdc-tab__icon' : ''}"
   aria-hidden="true"
   {...exclude($$props, ['use', 'class', 'on'])}><slot /></svelte:component
 >

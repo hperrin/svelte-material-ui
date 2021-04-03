@@ -3,30 +3,17 @@
   bind:this={element}
   use={[forwardEvents, ...use]}
   forwardEvents={forwardedEvents}
-  class="
-      mdc-list
-      {className}
-      {nonInteractive
+  class="mdc-list {className} {nonInteractive
     ? 'mdc-list--non-interactive'
-    : ''}
-      {dense ? 'mdc-list--dense' : ''}
-      {textualList
+    : ''} {dense ? 'mdc-list--dense' : ''} {textualList
     ? 'mdc-list--textual-list'
-    : ''}
-      {avatarList ? 'mdc-list--avatar-list' : ''}
-      {iconList
+    : ''} {avatarList ? 'mdc-list--avatar-list' : ''} {iconList
     ? 'mdc-list--icon-list'
-    : ''}
-      {imageList ? 'mdc-list--image-list' : ''}
-      {thumbnailList
+    : ''} {imageList ? 'mdc-list--image-list' : ''} {thumbnailList
     ? 'mdc-list--thumbnail-list'
-    : ''}
-      {videoList ? 'mdc-list--video-list' : ''}
-      {twoLine
+    : ''} {videoList ? 'mdc-list--video-list' : ''} {twoLine
     ? 'mdc-list--two-line'
-    : ''}
-      {threeLine && !twoLine ? 'smui-list--three-line' : ''}
-    "
+    : ''} {threeLine && !twoLine ? 'smui-list--three-line' : ''}"
   {role}
   on:keydown={(event) =>
     instance &&

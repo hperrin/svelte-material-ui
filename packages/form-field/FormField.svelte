@@ -2,13 +2,9 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="
-    mdc-form-field
-    {className}
-    {align === 'end'
+  class="mdc-form-field {className} {align === 'end'
     ? 'mdc-form-field--align-end'
-    : ''}
-  "
+    : ''}"
   {...exclude($$props, ['use', 'class', 'alignEnd', 'inputId', 'label$'])}
 >
   <slot />

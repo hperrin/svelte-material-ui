@@ -2,20 +2,14 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="
-    {className}
-    {context === 'button'
+  class="{className} {context === 'button'
     ? 'mdc-button__label'
-    : ''}
-    {context === 'fab' ? 'mdc-fab__label' : ''}
-    {context === 'tab'
+    : ''} {context === 'fab' ? 'mdc-fab__label' : ''} {context === 'tab'
     ? 'mdc-tab__text-label'
-    : ''}
-    {context === 'image-list'
-    ? 'mdc-image-list__label'
-    : ''}
-    {context === 'snackbar' ? 'mdc-snackbar__label' : ''}
-  "
+    : ''} {context === 'image-list' ? 'mdc-image-list__label' : ''} {context ===
+  'snackbar'
+    ? 'mdc-snackbar__label'
+    : ''}"
   {...context === 'snackbar' ? { role: 'status', 'aria-live': 'polite' } : {}}
   {...tabindex != null ? { tabindex } : {}}
   {...exclude($$props, ['use', 'class'])}><slot /></span

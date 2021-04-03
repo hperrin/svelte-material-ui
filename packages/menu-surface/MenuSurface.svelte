@@ -6,21 +6,13 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="
-    mdc-menu-surface
-    {className}
-    {Object.keys(internalClasses)
+  class="mdc-menu-surface {className} {Object.keys(internalClasses)
     .filter((className) => internalClasses[className])
-    .join(' ')}
-    {fixed ? 'mdc-menu-surface--fixed' : ''}
-    {isStatic
+    .join(' ')} {fixed ? 'mdc-menu-surface--fixed' : ''} {isStatic
     ? 'mdc-menu-surface--open'
-    : ''}
-    {isStatic ? 'smui-menu-surface--static' : ''}
-    {fullWidth
+    : ''} {isStatic ? 'smui-menu-surface--static' : ''} {fullWidth
     ? 'mdc-menu-surface--fullwidth'
-    : ''}
-  "
+    : ''}"
   style="{style} {Object.entries(internalStyles)
     .map(([name, value]) => `${name}: ${value};`)
     .join(' ')}"

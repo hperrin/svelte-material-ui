@@ -14,19 +14,11 @@
     forwardEvents,
     ...use,
   ]}
-  class="
-    mdc-fab
-    {className}
-    {rippleClasses.join(' ')}
-    {mini
+  class="mdc-fab {className} {rippleClasses.join(' ')} {mini
     ? 'mdc-fab--mini'
-    : ''}
-    {exited ? 'mdc-fab--exited' : ''}
-    {extended
+    : ''} {exited ? 'mdc-fab--exited' : ''} {extended
     ? 'mdc-fab--extended'
-    : ''}
-    {color === 'primary' ? 'smui-fab--color-primary' : ''}
-  "
+    : ''} {color === 'primary' ? 'smui-fab--color-primary' : ''}"
   {...exclude($$props, [
     'use',
     'class',
