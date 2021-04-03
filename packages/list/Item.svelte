@@ -4,7 +4,14 @@
   use={[
     [
       Ripple,
-      { ripple, unbounded: false, color, disabled, addClass, removeClass },
+      {
+        ripple,
+        unbounded: false,
+        color: activated && color == null ? 'primary' : color,
+        disabled,
+        addClass,
+        removeClass,
+      },
     ],
     forwardEvents,
     ...use,
