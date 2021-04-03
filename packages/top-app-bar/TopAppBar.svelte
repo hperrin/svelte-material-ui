@@ -14,9 +14,9 @@
   class="
     mdc-top-app-bar
     {className}
-    {Object.keys(
-    internalClasses
-  ).join(' ')}
+    {Object.keys(internalClasses)
+    .filter((className) => internalClasses[className])
+    .join(' ')}
     {variant === 'short'
     ? 'mdc-top-app-bar--short'
     : ''}
@@ -154,7 +154,7 @@
       }[variant] || MDCTopAppBarFoundation;
 
     return new Foundation({
-      hasClass: (className) => element.classList.contains(className),
+      hasClass,
       addClass,
       removeClass,
       setStyle: addStyle,
@@ -167,6 +167,12 @@
     });
   }
 
+  function hasClass(className) {
+    return className in internalClasses
+      ? internalClasses[className]
+      : getElement().classList.contains(className);
+  }
+
   function addClass(className) {
     if (!internalClasses[className]) {
       internalClasses[className] = true;
@@ -175,8 +181,7 @@
 
   function removeClass(className) {
     if (internalClasses[className]) {
-      delete internalClasses[className];
-      internalClasses = internalClasses;
+      internalClasses[className] = false;
     }
   }
 

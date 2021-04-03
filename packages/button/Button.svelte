@@ -112,12 +112,14 @@
   setContext('SMUI:icon:context', 'button');
 
   function addClass(className) {
+    // Doesn't need hasClass.
     if (!internalClasses[className]) {
       internalClasses[className] = true;
     }
   }
 
   function removeClass(className) {
+    // Doesn't need hasClass.
     if (internalClasses[className]) {
       delete internalClasses[className];
       internalClasses = internalClasses;

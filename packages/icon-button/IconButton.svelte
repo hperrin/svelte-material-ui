@@ -170,12 +170,6 @@
     }
   }
 
-  function removeAttr(name) {
-    if (name in internalAttrs) {
-      internalAttrs[name] = undefined;
-    }
-  }
-
   function handleChange(evtData) {
     console.log('event called: ', evtData);
     pressed = evtData.isOn;

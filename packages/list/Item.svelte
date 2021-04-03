@@ -13,9 +13,9 @@
   class="
     mdc-list-item
     {className}
-    {Object.keys(internalClasses).join(
-    ' '
-  )}
+    {Object.keys(internalClasses)
+    .filter((className) => internalClasses[className])
+    .join(' ')}
     {activated ? 'mdc-list-item--activated' : ''}
     {selected
     ? 'mdc-list-item--selected'
@@ -118,6 +118,7 @@
     set selected(value) {
       selected = value;
     },
+    hasClass,
     addClass,
     removeClass,
     addAttr,
@@ -170,6 +171,12 @@
     dispatch(element, 'SMUI:list:item:unmount', accessor);
   });
 
+  function hasClass(className) {
+    return className in internalClasses
+      ? internalClasses[className]
+      : getElement().classList.contains(className);
+  }
+
   function addClass(className) {
     if (!internalClasses[className]) {
       internalClasses[className] = true;
@@ -178,8 +185,7 @@
 
   function removeClass(className) {
     if (internalClasses[className]) {
-      delete internalClasses[className];
-      internalClasses = internalClasses;
+      internalClasses[className] = false;
     }
   }
 
@@ -191,8 +197,7 @@
 
   function removeAttr(name) {
     if (name in internalAttrs) {
-      delete internalAttrs[name];
-      internalAttrs = internalAttrs;
+      internalAttrs[name] = undefined;
     }
   }
 

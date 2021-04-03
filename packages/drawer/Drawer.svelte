@@ -5,9 +5,9 @@
   class="
     mdc-drawer
     {className}
-    {Object.keys(internalClasses).join(
-    ' '
-  )}
+    {Object.keys(internalClasses)
+    .filter((className) => internalClasses[className])
+    .join(' ')}
     {variant === 'dismissible'
     ? 'mdc-drawer--dismissible'
     : ''}
@@ -111,7 +111,7 @@
       ? new Foundation({
           addClass,
           removeClass,
-          hasClass: (className) => element.classList.contains(className),
+          hasClass,
           elementHasClass: (element, className) =>
             element.classList.contains(className),
           saveFocus: () => (previousFocus = document.activeElement),
@@ -146,6 +146,12 @@
       : undefined;
   }
 
+  function hasClass(className) {
+    return className in internalClasses
+      ? internalClasses[className]
+      : getElement().classList.contains(className);
+  }
+
   function addClass(className) {
     if (!internalClasses[className]) {
       internalClasses[className] = true;
@@ -154,8 +160,7 @@
 
   function removeClass(className) {
     if (internalClasses[className]) {
-      delete internalClasses[className];
-      internalClasses = internalClasses;
+      internalClasses[className] = false;
     }
   }
 

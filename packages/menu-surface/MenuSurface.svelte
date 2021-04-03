@@ -9,9 +9,9 @@
   class="
     mdc-menu-surface
     {className}
-    {Object.keys(
-    internalClasses
-  ).join(' ')}
+    {Object.keys(internalClasses)
+    .filter((className) => internalClasses[className])
+    .join(' ')}
     {fixed ? 'mdc-menu-surface--fixed' : ''}
     {isStatic
     ? 'mdc-menu-surface--open'
@@ -140,7 +140,7 @@
     instance = new MDCMenuSurfaceFoundation({
       addClass,
       removeClass,
-      hasClass: (className) => element.classList.contains(className),
+      hasClass,
       hasAnchor: () => !!anchorElement,
       notifyClose: () => {
         open = isStatic;
@@ -243,6 +243,12 @@
     }
   });
 
+  function hasClass(className) {
+    return className in internalClasses
+      ? internalClasses[className]
+      : getElement().classList.contains(className);
+  }
+
   function addClass(className) {
     if (!internalClasses[className]) {
       internalClasses[className] = true;
@@ -251,8 +257,7 @@
 
   function removeClass(className) {
     if (internalClasses[className]) {
-      delete internalClasses[className];
-      internalClasses = internalClasses;
+      internalClasses[className] = false;
     }
   }
 

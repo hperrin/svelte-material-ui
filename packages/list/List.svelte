@@ -203,8 +203,7 @@
         getElement() !== document.activeElement &&
         getElement().contains(document.activeElement),
       isRootFocused: () => document.activeElement === getElement(),
-      listItemAtIndexHasClass: (index, className) =>
-        getOrderedList()[index].element.classList.contains(className),
+      listItemAtIndexHasClass,
       notifyAction: (index) => {
         selectedIndex = index;
         dispatch(element, 'MDCList:action', { index });
@@ -294,6 +293,11 @@
   function focusItemAtIndex(index) {
     const accessor = getOrderedList()[index];
     accessor && accessor.element.focus();
+  }
+
+  function listItemAtIndexHasClass(index, className) {
+    const accessor = getOrderedList()[index];
+    return accessor && accessor.hasClass(className);
   }
 
   function addClassForElementIndex(index, className) {
