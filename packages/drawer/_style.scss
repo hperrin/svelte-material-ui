@@ -1,1 +1,5 @@
-@import "@material/drawer/mdc-drawer";
+@import '@material/drawer/mdc-drawer';
+
+.mdc-drawer-scrim.smui-drawer-scrim__absolute {
+  position: absolute;
+}

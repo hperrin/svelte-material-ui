@@ -203,7 +203,9 @@
         </Content>
       </Drawer>
 
-      <Scrim />
+      <!-- Don't include fixed={false} if this is a page wide drawer.
+        It adds a style for absolute positioning. -->
+      <Scrim fixed={false} />
       <AppContent class="app-content">
         <main class="main-content">
           <Button on:click={() => (myDrawer2Open = !myDrawer2Open)}

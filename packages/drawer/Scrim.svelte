@@ -2,7 +2,9 @@
   this={component}
   bind:this={element}
   use={[forwardEvents, ...use]}
-  class="mdc-drawer-scrim {className}"
+  class="mdc-drawer-scrim {className} {fixed
+    ? ''
+    : 'smui-drawer-scrim__absolute'}"
   on:click={(event) => dispatch(element, 'SMUI:drawer:scrim:click', event)}
   {...exclude($$props, ['use', 'class', 'component'])}
 >
@@ -25,6 +27,7 @@
   export let use = [];
   let className = '';
   export { className as class };
+  export let fixed = true;
 
   let element;
 
