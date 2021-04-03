@@ -162,7 +162,6 @@
   }
 
   function handleChange(evtData) {
-    console.log('event called: ', evtData);
     pressed = evtData.isOn;
   }
 
