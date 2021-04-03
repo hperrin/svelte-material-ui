@@ -86,7 +86,12 @@
           {#each sections as section (section.name)}
             <Item
               bind:this={section.component}
-              href={'route' in section ? section.route : section.shortcut}
+              nonInteractive={!('route' in section || 'shortcut' in section)}
+              href={'route' in section
+                ? section.route
+                : 'shortcut' in section
+                ? section.shortcut
+                : null}
               on:click={() => pickSection(section)}
               activated={'route' in section && section.route === $page.path}
               title={section.name}
@@ -212,11 +217,11 @@
     //     'https://github.com/hperrin/svelte-material-ui/tree/master/packages/image-list',
     //   ],
     // },
-    // {
-    //   name: 'Inputs and Controls',
-    //   shortcut: '/demo/textfield',
-    //   indent: 0,
-    // },
+    {
+      name: 'Inputs and Controls',
+      // shortcut: '/demo/textfield',
+      indent: 0,
+    },
     // {
     //   name: 'Checkboxes',
     //   route: '/demo/checkbox',
@@ -230,14 +235,14 @@
     //   shortcut: '/demo/textfield',
     //   indent: 1,
     // },
-    // {
-    //   name: 'Form Fields',
-    //   route: '/demo/form-field',
-    //   indent: 1,
-    //   repos: [
-    //     'https://github.com/hperrin/svelte-material-ui/tree/master/packages/form-field',
-    //   ],
-    // },
+    {
+      name: 'Form Fields',
+      route: '/demo/form-field',
+      indent: 1,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/form-field',
+      ],
+    },
     // {
     //   name: 'Line Ripple',
     //   shortcut: '/demo/textfield',
@@ -248,14 +253,14 @@
     //   shortcut: '/demo/textfield',
     //   indent: 1,
     // },
-    // {
-    //   name: 'Radio Buttons',
-    //   route: '/demo/radio',
-    //   indent: 1,
-    //   repos: [
-    //     'https://github.com/hperrin/svelte-material-ui/tree/master/packages/radio',
-    //   ],
-    // },
+    {
+      name: 'Radio Buttons',
+      route: '/demo/radio',
+      indent: 1,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/radio',
+      ],
+    },
     // {
     //   name: 'Select Menus',
     //   route: '/demo/select',
@@ -430,6 +435,10 @@
   onMount(setMiniWindow);
 
   function pickSection(section) {
+    if (!('shortcut' in section) && !('route' in section)) {
+      return;
+    }
+
     drawerOpen = false;
     mainContent.scrollTop = 0;
 

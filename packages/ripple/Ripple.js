@@ -19,6 +19,7 @@ export default function Ripple(
   let instance;
   let addLayoutListener = getContext('SMUI:addLayoutListener');
   let removeLayoutListener;
+  let oldActive = active;
 
   function handleProps() {
     addClass('mdc-ripple-surface');
@@ -31,6 +32,15 @@ export default function Ripple(
     } else {
       removeClass('smui-ripple-surface--primary');
       removeClass('smui-ripple-surface--secondary');
+    }
+
+    if (instance && oldActive !== active) {
+      if (active) {
+        instance.activate();
+      } else {
+        instance.deactivate();
+      }
+      oldActive = active;
     }
 
     if (ripple && !instance) {

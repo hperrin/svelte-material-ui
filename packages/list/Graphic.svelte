@@ -17,7 +17,9 @@
     useActions,
   } from '@smui/common/internal.js';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component());
+  const forwardEvents = forwardEventsBuilder(get_current_component(), [
+    'SMUI:generic:input:mount',
+  ]);
 
   export let use = [];
   let className = '';

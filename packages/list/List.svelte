@@ -34,6 +34,7 @@
     )}
   on:SMUI:list:item:mount={handleItemMount}
   on:SMUI:list:item:unmount={handleItemUnmount}
+  on:SMUI:action={handleAction}
   {...props}
 >
   <slot />
@@ -54,6 +55,7 @@
 
   const forwardedEvents = [
     'MDCList:action',
+    'SMUI:action',
     'SMUI:list:mount',
     'SMUI:list:item:mount',
     'SMUI:list:item:unmount',
@@ -265,6 +267,36 @@
       items.splice(idx, 1);
     }
     event.stopPropagation();
+  }
+
+  function handleAction(event) {
+    if (radiolist) {
+      const index = getListItemIndex(event.target);
+      if (index !== -1) {
+        selectedIndex = index;
+        const item = getOrderedList()[index];
+        if (!item.checked) {
+          item.checked = true;
+          item.activateRipple();
+          window.requestAnimationFrame(() => {
+            item.deactivateRipple();
+          });
+        }
+      }
+    } else if (checklist) {
+      const index = getListItemIndex(event.target);
+      if (index !== -1) {
+        selectedIndex = index;
+        // todo: fix to allow multiple
+        getOrderedList().forEach((accessor, index) => {
+          console.log({ checked: accessor.checked });
+          if (accessor.checked !== (selectedIndex === index)) {
+            console.log({ setChecked: selectedIndex === index });
+            accessor.checked = selectedIndex === index;
+          }
+        });
+      }
+    }
   }
 
   function getOrderedList() {

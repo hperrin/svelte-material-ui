@@ -4,11 +4,20 @@
   use:forwardEvents
   class="mdc-form-field {className} {align === 'end'
     ? 'mdc-form-field--align-end'
-    : ''}"
-  {...exclude($$props, ['use', 'class', 'alignEnd', 'inputId', 'label$'])}
+    : ''} {noWrap ? 'mdc-form-field--nowrap' : ''}"
+  on:SMUI:generic:input:mount={(event) => (inputAccessor = event.detail)}
+  {...exclude($$props, [
+    'use',
+    'class',
+    'align',
+    'noWrap',
+    'inputId',
+    'label$',
+  ])}
 >
   <slot />
   <label
+    bind:this={label}
     use:useActions={label$use}
     for={inputId}
     {...exclude(prefixFilter($$props, 'label$'), ['use'])}
@@ -21,8 +30,8 @@
 </script>
 
 <script>
-  import { MDCFormField } from '@material/form-field';
-  import { onMount, onDestroy, setContext } from 'svelte';
+  import { MDCFormFieldFoundation } from '@material/form-field';
+  import { onMount, setContext } from 'svelte';
   import { writable } from 'svelte/store';
   import { get_current_component } from 'svelte/internal';
   import {
@@ -38,23 +47,42 @@
   let className = '';
   export { className as class };
   export let align = 'start';
+  export let noWrap = false;
   export let inputId = 'SMUI-form-field-' + counter++;
   export let label$use = [];
 
   let element;
-  let formField;
+  let instance;
+  let label;
+  let inputAccessor;
 
-  let formFieldStore = writable(formField);
-  $: $formFieldStore = formField;
-  setContext('SMUI:form-field', formFieldStore);
   setContext('SMUI:generic:input:props', { id: inputId });
 
   onMount(() => {
-    formField = new MDCFormField(element);
-  });
+    instance = new MDCFormFieldFoundation({
+      activateInputRipple: () => {
+        if (inputAccessor) {
+          inputAccessor.activateRipple();
+        }
+      },
+      deactivateInputRipple: () => {
+        if (inputAccessor) {
+          inputAccessor.deactivateRipple();
+        }
+      },
+      deregisterInteractionHandler: (evtType, handler) => {
+        label.removeEventListener(evtType, handler);
+      },
+      registerInteractionHandler: (evtType, handler) => {
+        label.addEventListener(evtType, handler);
+      },
+    });
 
-  onDestroy(() => {
-    formField && formField.destroy();
+    instance.init();
+
+    return () => {
+      instance.destroy();
+    };
   });
 
   export function getElement() {

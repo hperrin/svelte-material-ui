@@ -1,10 +1,16 @@
 <div
   bind:this={element}
+  use:Ripple={{
+    unbounded: true,
+    addClass,
+    removeClass,
+    active: rippleActive,
+  }}
   use:useActions={use}
   use:forwardEvents
-  class="mdc-radio {className} {disabled ? 'mdc-radio--disabled' : ''} {touch
-    ? 'mdc-radio--touch'
-    : ''}"
+  class="mdc-radio {className} {Object.keys(internalClasses).join(
+    ' '
+  )} {disabled ? 'mdc-radio--disabled' : ''} {touch ? 'mdc-radio--touch' : ''}"
   {...exclude($$props, [
     'use',
     'class',
@@ -23,8 +29,7 @@
     {...inputProps}
     {disabled}
     value={valueKey === uninitializedValue ? value : valueKey}
-    {checked}
-    on:change={handleChange}
+    bind:group
     on:change
     on:input
     on:blur
@@ -39,17 +44,21 @@
 </div>
 
 <script>
-  import { MDCRadio } from '@material/radio';
-  import { onMount, onDestroy, getContext } from 'svelte';
+  import { MDCRadioFoundation } from '@material/radio';
+  import { onMount, getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
     exclude,
     prefixFilter,
     useActions,
+    dispatch,
   } from '@smui/common/internal.js';
+  import Ripple from '@smui/ripple/bare.js';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component());
+  const forwardEvents = forwardEventsBuilder(get_current_component(), [
+    'SMUI:generic:input:mount',
+  ]);
   let uninitializedValue = () => {};
 
   export let use = [];
@@ -64,48 +73,64 @@
   export let input$class = '';
 
   let element;
-  let radio;
-  let formField = getContext('SMUI:form-field');
+  let instance;
+  let internalClasses = {};
+  let rippleActive = false;
   let inputProps = getContext('SMUI:generic:input:props') || {};
   let setChecked = getContext('SMUI:generic:input:setChecked');
 
-  $: if (radio && $formField && $formField.input !== radio) {
-    $formField.input = radio;
-  }
-
-  $: checked = group === value;
-
   $: if (setChecked) {
-    setChecked(checked);
-  }
-
-  $: if (radio && radio.checked !== checked) {
-    radio.checked = checked;
-  }
-
-  $: if (radio && radio.disabled !== disabled) {
-    radio.disabled = disabled;
-  }
-
-  $: if (radio && valueKey === uninitializedValue && radio.value !== value) {
-    radio.value = value;
-  }
-
-  $: if (radio && valueKey !== uninitializedValue && radio.value !== valueKey) {
-    radio.value = valueKey;
+    setChecked(group === value);
   }
 
   onMount(() => {
-    radio = new MDCRadio(element);
+    instance = new MDCRadioFoundation({
+      addClass,
+      removeClass,
+      setNativeControlDisabled: (value) => (disabled = value),
+    });
+
+    dispatch(element, 'SMUI:generic:input:mount', {
+      get element() {
+        return getElement();
+      },
+      get checked() {
+        return group === value;
+      },
+      set checked(checked) {
+        if (checked && group !== value) {
+          group = value;
+        } else if (!checked && group === value) {
+          group = undefined;
+        }
+      },
+      activateRipple() {
+        rippleActive = true;
+      },
+      deactivateRipple() {
+        rippleActive = false;
+      },
+    });
+
+    instance.init();
+
+    return () => {
+      instance.destroy();
+    };
   });
 
-  onDestroy(() => {
-    radio && radio.destroy();
-  });
+  function addClass(className) {
+    // Doesn't need hasClass.
+    if (!internalClasses[className]) {
+      internalClasses[className] = true;
+    }
+  }
 
-  function handleChange(e) {
-    if (radio.checked) {
-      group = value;
+  function removeClass(className) {
+    // Doesn't need hasClass.
+    if (internalClasses[className]) {
+      delete internalClasses[className];
+      internalClasses = internalClasses;
     }
   }
 

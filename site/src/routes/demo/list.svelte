@@ -166,7 +166,7 @@
 
   <pre class="status">Clicked: {clickedGroup}</pre>
 
-  <!-- <div>
+  <div>
     A radio list:
     <List class="demo-list" radiolist>
       <Item>
@@ -202,7 +202,7 @@
     </List>
   </div>
 
-  <pre class="status">Selected: {selectedRadio}</pre> -->
+  <pre class="status">Selected: {selectedRadio}</pre>
 
   <!-- <div>
     A check list with trailing checkboxes:
@@ -249,14 +249,14 @@
     Item,
     Graphic,
     Meta,
-    // Label,
+    Label,
     Separator,
     Subheader,
     Text,
     PrimaryText,
     SecondaryText,
   } from '@smui/list';
-  // import Radio from '@smui/radio';
+  import Radio from '@smui/radio';
   // import Checkbox from '@smui/checkbox';
 
   let clickedSimple = 'nothing yet';
@@ -288,7 +288,7 @@
   // selected Item's `selected` prop.
   let selectionIndex = null;
   let clickedGroup = 'nothing yet';
-  // let selectedRadio = 'Tom Hanks';
+  let selectedRadio = 'Tom Hanks';
   // let selectedCheckbox = ['Tom Hanks'];
 </script>
 

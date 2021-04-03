@@ -8,8 +8,14 @@
   <div class="radio-demo">
     {#each options as option}
       <FormField>
-        <Radio bind:group={selected} value={option.name} disabled={option.disabled} />
-        <span slot="label">{option.name}{option.disabled ? ' (disabled)' : ''}</span>
+        <Radio
+          bind:group={selected}
+          value={option.name}
+          disabled={option.disabled}
+        />
+        <span slot="label"
+          >{option.name}{option.disabled ? ' (disabled)' : ''}</span
+        >
       </FormField>
     {/each}
   </div>
@@ -36,32 +42,32 @@
   let options = [
     {
       name: 'Bashful',
-      disabled: false
+      disabled: false,
     },
     {
       name: 'Doc',
-      disabled: true
+      disabled: true,
     },
     {
       name: 'Dopey',
-      disabled: false
+      disabled: false,
     },
     {
       name: 'Happy',
-      disabled: false
+      disabled: false,
     },
     {
       name: 'Sleepy',
-      disabled: false
+      disabled: false,
     },
     {
       name: 'Sneezy',
-      disabled: false
+      disabled: false,
     },
     {
       name: 'Grumpy',
-      disabled: false
-    }
+      disabled: false,
+    },
   ];
   let selected = 'Grumpy';
   let onoff = 'On';
@@ -69,6 +75,6 @@
 
 <style>
   .radio-demo > :global(*) {
-    margin: 0 .2em;
+    margin: 0 0.2em;
   }
 </style>

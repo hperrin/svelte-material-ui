@@ -2,8 +2,8 @@
  Temporary addition until support for three-line added to @material
 https://github.com/material-components/material-components-web/issues/31
 */
-@import "@material/feature-targeting/functions";
-@import "@material/feature-targeting/mixins";
+@import '@material/feature-targeting/functions';
+@import '@material/feature-targeting/mixins';
 
 @mixin smui-list-core-styles($query: mdc-feature-all()) {
   $feat-structure: mdc-feature-create-target($query, structure);
@@ -24,5 +24,9 @@ https://github.com/material-components/material-components-web/issues/31
     @include mdc-feature-targets($feat-structure) {
       height: 76px;
     }
+  }
+
+  .mdc-list-item.smui-menu-item--non-interactive {
+    cursor: auto;
   }
 }

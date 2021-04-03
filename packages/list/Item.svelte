@@ -2,17 +2,22 @@
   this={component}
   bind:this={element}
   use={[
-    [
-      Ripple,
-      {
-        ripple,
-        unbounded: false,
-        color: (activated || selected) && color == null ? 'primary' : color,
-        disabled,
-        addClass,
-        removeClass,
-      },
-    ],
+    ...(nonInteractive
+      ? []
+      : [
+          [
+            Ripple,
+            {
+              ripple,
+              unbounded: false,
+              color:
+                (activated || selected) && color == null ? 'primary' : color,
+              disabled,
+              addClass,
+              removeClass,
+            },
+          ],
+        ]),
     forwardEvents,
     ...use,
   ]}
@@ -25,7 +30,7 @@
   role === 'menuitem' &&
   selected
     ? 'mdc-menu-item--selected'
-    : ''}"
+    : ''} {nonInteractive ? 'smui-menu-item--non-interactive' : ''}"
   {...nav && activated ? { 'aria-current': 'page' } : {}}
   {...!nav ? { role } : {}}
   {...!nav && role === 'option'
@@ -38,6 +43,7 @@
   {tabindex}
   on:click={action}
   on:keydown={handleKeydown}
+  on:SMUI:generic:input:mount={(event) => (inputAccessor = event.detail)}
   {...internalAttrs}
   {...exclude($$props, [
     'use',
@@ -73,6 +79,7 @@
   import Ripple from '@smui/ripple/bare.js';
 
   const forwardedEvents = [
+    'SMUI:generic:input:mount',
     'SMUI:action',
     'SMUI:list:item:mount',
     'SMUI:list:item:unmount',
@@ -86,10 +93,10 @@
   export let use = [];
   let className = '';
   export { className as class };
-  export let ripple = true;
   export let color = null;
   export let nonInteractive = getContext('SMUI:list:nonInteractive');
   setContext('SMUI:list:nonInteractive', undefined);
+  export let ripple = !nonInteractive;
   export let activated = false;
   export let role = getContext('SMUI:list:item:role');
   setContext('SMUI:list:item:role', undefined);
@@ -104,6 +111,7 @@
   let element;
   let internalClasses = {};
   let internalAttrs = {};
+  let inputAccessor;
   let addTabindexIfNoItemsSelectedRaf;
   let nav = getContext('SMUI:list:item:nav');
   let accessor = {
@@ -123,6 +131,26 @@
     addAttr,
     removeAttr,
     getPrimaryText,
+
+    // For inputs within item.
+    get checked() {
+      return inputAccessor && inputAccessor.checked;
+    },
+    set checked(value) {
+      if (inputAccessor) {
+        inputAccessor.checked = value;
+      }
+    },
+    activateRipple() {
+      if (inputAccessor) {
+        inputAccessor.activateRipple();
+      }
+    },
+    deactivateRipple() {
+      if (inputAccessor) {
+        inputAccessor.deactivateRipple();
+      }
+    },
   };
 
   export let component = nav ? (href ? A : Span) : Li;
