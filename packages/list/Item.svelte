@@ -7,7 +7,7 @@
       {
         ripple,
         unbounded: false,
-        color: activated && color == null ? 'primary' : color,
+        color: (activated || selected) && color == null ? 'primary' : color,
         disabled,
         addClass,
         removeClass,
