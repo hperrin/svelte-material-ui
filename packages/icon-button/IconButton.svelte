@@ -5,7 +5,7 @@
     [
       Ripple,
       {
-        ripple: ripple && !toggle,
+        ripple,
         unbounded: true,
         color,
         disabled: !!$$props.disabled,
@@ -20,12 +20,10 @@
   class="
     mdc-icon-button
     {className}
-    {Object.keys(
-    internalClasses
-  ).join(' ')}
-    {pressed ? 'mdc-icon-button--on' : ''}
-    {context ===
-  'card:action'
+    {Object.keys(internalClasses)
+    .filter((className) => internalClasses[className])
+    .join(' ')}
+    {context === 'card:action'
     ? 'mdc-card__action'
     : ''}
     {context === 'card:action'
@@ -40,11 +38,14 @@
     {context === 'snackbar' ? 'mdc-snackbar__dismiss' : ''}
   "
   aria-hidden="true"
+  aria-pressed={toggle ? (pressed ? 'true' : 'false') : null}
+  aria-label={pressed ? ariaLabelOn : ariaLabelOff}
+  data-aria-label-on={ariaLabelOn}
+  data-aria-label-off={ariaLabelOff}
   on:click={() => instance && instance.handleClick()}
   on:click={() =>
     context === 'top-app-bar:navigation' &&
     dispatch(element, 'SMUI:top-app-bar:icon-button:nav')}
-  {...ariaAttributes}
   {...internalAttrs}
   {...exclude($$props, [
     'use',
@@ -84,7 +85,6 @@
   export let color = null;
   export let toggle = false;
   export let pressed = false;
-  // If toggle is true and these are null, the aria-pressed attribute it set.
   export let ariaLabelOn = null;
   export let ariaLabelOff = null;
   // Purposely left out of props exclude.
@@ -98,35 +98,33 @@
 
   export let component = href == null ? Button : A;
 
-  $: ariaAttributes = toggle
-    ? ariaLabelOff == null || ariaLabelOn == null
-      ? { 'aria-pressed': pressed ? 'true' : 'false' }
-      : {
-          'aria-label': pressed ? ariaLabelOn : ariaLabelOff,
-          'data-aria-label-on': ariaLabelOn,
-          'data-aria-label-off': ariaLabelOff,
-        }
-    : {};
-
   setContext('SMUI:icon:context', 'icon-button');
+
+  $: if (!instance) {
+    if (pressed) {
+      addClass('mdc-icon-button--on');
+    } else {
+      removeClass('mdc-icon-button--on');
+    }
+  }
 
   let oldToggle = null;
   $: if (element && toggle !== oldToggle) {
     if (toggle) {
       instance = new MDCIconButtonToggleFoundation({
         addClass,
-        hasClass: (className) => getElement().classList.contains(className),
+        hasClass,
         notifyChange: (evtData) => {
           handleChange(evtData);
           dispatch(element, 'MDCIconButtonToggle:change', evtData);
         },
         removeClass,
-        getAttr: (attrName) => getElement().getAttribute(attrName),
+        getAttr,
         setAttr: addAttr,
       });
       instance.init();
-    } else if (oldToggle) {
-      instance && instance.destroy();
+    } else if (instance) {
+      instance.destroy();
       instance = null;
       internalClasses = {};
       internalAttrs = {};
@@ -142,6 +140,12 @@
     instance && instance.destroy();
   });
 
+  function hasClass(className) {
+    return className in internalClasses
+      ? internalClasses[className]
+      : getElement().classList.contains(className);
+  }
+
   function addClass(className) {
     if (!internalClasses[className]) {
       internalClasses[className] = true;
@@ -150,16 +154,30 @@
 
   function removeClass(className) {
     if (internalClasses[className]) {
-      delete internalClasses[className];
-      internalClasses = internalClasses;
+      internalClasses[className] = false;
     }
   }
 
+  function getAttr(name) {
+    return name in internalAttrs
+      ? internalAttrs[name]
+      : getElement().getAttribute(name);
+  }
+
   function addAttr(name, value) {
-    internalAttrs[name] = value;
+    if (internalAttrs[name] !== value) {
+      internalAttrs[name] = value;
+    }
+  }
+
+  function removeAttr(name) {
+    if (name in internalAttrs) {
+      internalAttrs[name] = undefined;
+    }
   }
 
   function handleChange(evtData) {
+    console.log('event called: ', evtData);
     pressed = evtData.isOn;
   }
 

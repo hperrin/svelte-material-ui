@@ -35,7 +35,9 @@
     </IconButton>
     <Button on:click={() => (initialOn = !initialOn)}
       ><Label>Toggle Programmatically</Label></Button
-    >
+    >&nbsp;(Note: this doesn't fire the&nbsp;<code
+      >MDCIconButtonToggle:change</code
+    >&nbsp;event.)
   </div>
   <div style="display: flex; align-items: center;">
     <IconButton
@@ -46,7 +48,7 @@
       <Icon class="material-icons" on>bookmark</Icon>
       <Icon class="material-icons">bookmark_border</Icon>
     </IconButton>
-    (Using events instead of bound variables. Note: don't use&nbsp;<code
+    Using events instead of bound variables. (Note: don't use&nbsp;<code
       >toggle</code
     >&nbsp;prop in this case.)
   </div>
