@@ -1,9 +1,12 @@
-@use '@material/typography';
+// Import all the styles for the classes.
+@use "@material/typography/mdc-typography";
+// Import the mixins.
+@use "@material/typography";
 
 //
 // Some defaults that may be helpful to you.
-// If you just want to use these, and not the classes, you can instead import
-// just "@material/typography", and your CSS file will be smaller.
+// If you just want to use these, and not the classes, you can instead just
+// @use "@material/typography", and your CSS file will be smaller.
 //
 html {
   @include typography.typography('body1');

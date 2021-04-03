@@ -419,11 +419,11 @@
         'https://github.com/hperrin/svelte-material-ui/tree/master/packages/top-app-bar',
       ],
     },
-    // {
-    //   name: 'Typography',
-    //   route: '/demo/typography',
-    //   indent: 0,
-    // },
+    {
+      name: 'Typography',
+      route: '/demo/typography',
+      indent: 0,
+    },
   ];
 
   let activeSection = sections.find(

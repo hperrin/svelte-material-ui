@@ -7,7 +7,7 @@
 
   <!--
     You need to import `@material/typography/mdc-typography` in SCSS for
-    these classes to work. See the Typography.scss file.
+    these classes to work. See the typography.scss file.
   -->
 
   <div class="mdc-typography--headline1">Headline 1</div>
