@@ -55,14 +55,23 @@
     </div>
   </div> -->
 
-  <!-- <div>
+  <div>
     Anchored manually:
 
     <div
       class={Object.keys(imageListAnchorClasses).join(' ')}
       use:Anchor={{
-        addClass: (className) => (imageListAnchorClasses[className] = true),
-        removeClass: (className) => delete imageListAnchorClasses[className],
+        addClass: (className) => {
+          if (!imageListAnchorClasses[className]) {
+            imageListAnchorClasses[className] = true;
+          }
+        },
+        removeClass: (className) => {
+          if (imageListAnchorClasses[className]) {
+            delete imageListAnchorClasses[className];
+            imageListAnchorClasses = imageListAnchorClasses;
+          }
+        },
       }}
       bind:this={imageListAnchor}
     >
@@ -79,8 +88,7 @@
             <ImageListItem>
               <ImageAspectContainer>
                 <Image
-                  src="https://via.placeholder.com/100x100.png?text=Image%20{i +
-                    1}"
+                  src="https://place-hold.it/100x100&text=Image%20{i + 1}"
                   alt="Image {i + 1}"
                 />
               </ImageAspectContainer>
@@ -89,28 +97,28 @@
         </ImageList>
       </MenuSurface>
     </div>
-  </div> -->
+  </div>
 
   <div style="padding-top: 200px;">Long div for scrolling...</div>
 </section>
 
 <script>
-  import MenuSurface /*, { Anchor }*/ from '@smui/menu-surface';
+  import MenuSurface, { Anchor } from '@smui/menu-surface';
   import List, { Item, Separator, Text } from '@smui/list';
   // import Textfield from '@smui/textfield';
-  // import ImageList, {
-  //   Item as ImageListItem,
-  //   ImageAspectContainer,
-  //   Image,
-  // } from '@smui/image-list';
-  // import Button from '@smui/button';
+  import ImageList, {
+    Item as ImageListItem,
+    ImageAspectContainer,
+    Image,
+  } from '@smui/image-list';
+  import Button from '@smui/button';
   import './menu-surface.scss';
 
   // let formSurface;
   // let name = '';
   // let email = '';
-  // let imageListSurface;
-  // let imageListAnchor;
-  // let imageListAnchorClasses = {};
+  let imageListSurface;
+  let imageListAnchor;
+  let imageListAnchorClasses = {};
   let clicked = 'nothing yet';
 </script>

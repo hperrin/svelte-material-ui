@@ -209,14 +209,14 @@
     //   route: '/demo/elevation',
     //   indent: 0,
     // },
-    // {
-    //   name: 'Image List',
-    //   route: '/demo/image-list',
-    //   indent: 0,
-    //   repos: [
-    //     'https://github.com/hperrin/svelte-material-ui/tree/master/packages/image-list',
-    //   ],
-    // },
+    {
+      name: 'Image List',
+      route: '/demo/image-list',
+      indent: 0,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/image-list',
+      ],
+    },
     {
       name: 'Inputs and Controls',
       // shortcut: '/demo/textfield',

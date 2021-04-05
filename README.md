@@ -214,7 +214,7 @@ Update Progress Checklist:
 - [ ] Data Tables
 - [ ] Dialogs
 - [x] Drawers
-- [ ] Image List
+- [x] Image List
 - [x] Checkboxes
 - [ ] Floating Label
 - [x] Form Fields

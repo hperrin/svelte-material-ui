@@ -11,7 +11,7 @@
     ? 'mdc-snackbar__label'
     : ''}"
   {...context === 'snackbar' ? { role: 'status', 'aria-live': 'polite' } : {}}
-  {...tabindex != null ? { tabindex } : {}}
+  {tabindex}
   {...exclude($$props, ['use', 'class'])}><slot /></span
 >
 

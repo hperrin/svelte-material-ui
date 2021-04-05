@@ -1,6 +1,6 @@
-// @import "@material/image-list/mixins";
+@use "@material/image-list";
 
 .menu-surface-image-list {
-  //   @include mdc-image-list-standard-columns(2);
+  @include image-list.standard-columns(2);
   width: 200px;
 }
