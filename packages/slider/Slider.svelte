@@ -9,7 +9,6 @@
     : ''} {discrete && tickMarks ? 'mdc-slider--tick-marks' : ''} {disabled
     ? 'mdc-slider--disabled'
     : ''} "
-  {tabindex}
   {...exclude($$props, [
     'use',
     'class',
@@ -24,7 +23,6 @@
     'start',
     'end',
     'valueToAriaValueTextFn',
-    'tabindex',
     'input$',
   ])}
 >
@@ -89,24 +87,6 @@
               : 'mdc-slider__tick-mark--inactive'}
           />
         {/each}
-        <!-- {#if range}
-          {#each [...Array(start / step)] as i}
-            <div class="mdc-slider__tick-mark--inactive" />
-          {/each}
-          {#each [...Array(max / step - start / step - (max - end) / step + 1)] as i}
-            <div class="mdc-slider__tick-mark--active" />
-          {/each}
-          {#each [...Array((max - end) / step)] as i}
-            <div class="mdc-slider__tick-mark--inactive" />
-          {/each}
-        {:else}
-          {#each [...Array(value / step + 1)] as i}
-            <div class="mdc-slider__tick-mark--active" />
-          {/each}
-          {#each [...Array((max - value) / step)] as i}
-            <div class="mdc-slider__tick-mark--inactive" />
-          {/each}
-        {/if} -->
       </div>
     {/if}
   </div>
@@ -214,7 +194,6 @@
   export let start = null;
   export let end = null;
   export let valueToAriaValueTextFn = (value) => `${value}`;
-  export let tabindex = '0';
   export let input$class = '';
 
   let element;
@@ -292,12 +271,12 @@
       setInputValue: (val, thumb) => {
         if (range) {
           if (thumb === Thumb.START) {
-            start = val;
+            start = Number(val);
           } else {
-            end = val;
+            end = Number(val);
           }
         } else {
-          value = val;
+          value = Number(val);
         }
       },
       getInputAttribute: getInputAttr,

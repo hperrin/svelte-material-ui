@@ -21,25 +21,50 @@
   <div>
     Discrete with min/max/step:
 
-    <Slider bind:value={value2} min={-10} max={10} step={2} discrete />
+    <Slider
+      bind:value={valueDiscrete}
+      min={-10}
+      max={10}
+      step={2}
+      discrete
+      input$aria-label="Discrete slider"
+    />
   </div>
 
-  <pre class="status">Value: {value2}</pre>
+  <pre class="status">Value: {valueDiscrete}</pre>
 
   <div>
     Discrete with min/max/step and tick marks:
 
     <Slider
-      bind:value={value3}
+      bind:value={valueSteps}
       min={-10}
       max={10}
       step={2}
       discrete
       tickMarks
+      input$aria-label="Tick mark slider"
     />
   </div>
 
-  <pre class="status">Value: {value3}</pre>
+  <pre class="status">Value: {valueSteps}</pre>
+
+  <div>
+    Range slider:
+
+    <Slider
+      range
+      bind:start={valueRangeStart}
+      bind:end={valueRangeEnd}
+      min={0}
+      max={10}
+      step={0.1}
+      input$aria-label="Range slider"
+    />
+  </div>
+
+  <pre
+    class="status">Value: {valueRangeStart.toFixed(1)} - {valueRangeEnd.toFixed(1)}</pre>
 </section>
 
 <script>
@@ -47,6 +72,8 @@
   import FormField from '@smui/form-field';
 
   let value = 50;
-  let value2 = 0;
-  let value3 = 0;
+  let valueDiscrete = 0;
+  let valueSteps = 0;
+  let valueRangeStart = 1;
+  let valueRangeEnd = 4;
 </script>
