@@ -1,4 +1,6 @@
-@import "@material/list/mdc-list";
-@import "@smui/ripple/style";
-@import "./mixins";
-@include smui-list-core-styles;
+@use '@material/list';
+@use '@smui/ripple/style';
+@use './mixins';
+
+@include list.core-styles;
+@include mixins.core-styles;

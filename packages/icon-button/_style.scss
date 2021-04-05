@@ -1,2 +1,4 @@
-@import "@material/icon-button/mdc-icon-button";
-@import "@smui/ripple/style";
+@use '@material/icon-button';
+@use '@smui/ripple/style';
+
+@include icon-button.core-styles;

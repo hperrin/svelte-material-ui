@@ -12,7 +12,7 @@
     "sveltejs"
   ],
   "scripts": {
-    "#prepare": "echo \"$(npx glob '**/*' | sed 's/^/-I /' | paste -s -d ' ' -) --no-source-map _style.scss bare.css\" | xargs sass",
+    "prepare": "sass --no-source-map -I node_modules _style.scss bare.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "publishConfig": {
@@ -35,7 +35,6 @@
     "@smui/ripple": "^2.0.0-beta.1"
   },
   "devDependencies": {
-    "glob-cmd": "0.0.7",
     "sass": "^1.32.8"
   }
 }

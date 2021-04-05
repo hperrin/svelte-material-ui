@@ -3,22 +3,26 @@
 //
 
 // Import the theme first.
-@import 'smui-theme';
+@use 'smui-theme';
 
 // Import the typography styles.
-@import 'demo/typography.scss';
+@use 'demo/typography.scss';
 
 // This adds classes like "mdc-theme--primary-bg".
-@import '@material/theme/mdc-theme';
-@import '@material/elevation/mixins';
+@use '@material/theme/styles';
+
+// Elevation mixins.
+@use '@material/elevation';
+
 // Main Top App Bar styling.
-@import '@smui/top-app-bar/style';
+@use '@material/top-app-bar';
 .mdc-top-app-bar.demo-top-app-bar {
   // Color the top bar with "surface" colors.
-  @include mdc-top-app-bar-fill-color-accessible(surface);
-  @include mdc-top-app-bar-icon-ink-color(on-surface);
+  @include top-app-bar.fill-color(surface);
+  @include top-app-bar.ink-color(on-surface);
+  @include top-app-bar.icon-ink-color(on-surface);
   // Give it a shadow.
-  @include mdc-elevation(4);
+  @include elevation.elevation(4);
   // Position it above the drawer.
   z-index: 7;
 }
@@ -50,9 +54,8 @@ body,
   height: 100%;
 }
 
-@import '@material/top-app-bar/variables';
 .demo-drawer.demo-drawer-adjust {
-  padding-bottom: $mdc-top-app-bar-row-height;
+  padding-bottom: top-app-bar.$row-height;
 }
 
 .demo-app-content {

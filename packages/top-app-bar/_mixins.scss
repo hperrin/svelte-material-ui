@@ -1,12 +1,14 @@
-@import "@material/feature-targeting/functions";
+@use '@material/top-app-bar';
+@use '@material/feature-targeting';
 
-@mixin smui-top-app-bar-core-styles($query: mdc-feature-all()) {
+@mixin core-styles($query: feature-targeting.all()) {
   .smui-top-app-bar--static {
     position: static;
   }
 
   .smui-top-app-bar--color-secondary {
-    @include mdc-top-app-bar-fill-color-accessible(secondary);
-    @include mdc-top-app-bar-icon-ink-color(on-secondary);
+    @include top-app-bar.fill-color(secondary);
+    @include top-app-bar.ink-color(on-secondary);
+    @include top-app-bar.icon-ink-color(on-secondary);
   }
 }
