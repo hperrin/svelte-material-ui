@@ -234,7 +234,7 @@ Update Progress Checklist:
 - [x] Lists
 - [x] Menu Surface
 - [x] Menus
-- [ ] Paper
+- [x] Paper
 - [x] Ripples
 - [ ] Snackbars
   - [ ] Kitchen

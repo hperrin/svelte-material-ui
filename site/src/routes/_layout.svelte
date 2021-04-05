@@ -350,14 +350,14 @@
         'https://github.com/hperrin/svelte-material-ui/tree/master/packages/menu',
       ],
     },
-    // {
-    //   name: 'Paper',
-    //   route: '/demo/paper',
-    //   indent: 0,
-    //   repos: [
-    //     'https://github.com/hperrin/svelte-material-ui/tree/master/packages/paper',
-    //   ],
-    // },
+    {
+      name: 'Paper',
+      route: '/demo/paper',
+      indent: 0,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/paper',
+      ],
+    },
     {
       name: 'Ripples',
       route: '/demo/ripple',

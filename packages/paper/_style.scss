@@ -1,4 +1,3 @@
-@import "@material/elevation/mdc-elevation";
-@import "./variables";
-@import "./mixins";
-@include smui-paper-core-styles;
+@use './mixins';
+
+@include mixins.core-styles;

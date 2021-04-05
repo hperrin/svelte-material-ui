@@ -21,7 +21,10 @@
     <div class="paper-container">
       <Paper square class="paper-demo">
         <Title>Square Paper</Title>
-        <Content>By adding the <code>square</code> property, the paper gains sharper corners and can be used to intimidate foes.</Content>
+        <Content
+          >By adding the <code>square</code> property, the paper gains sharper corners
+          and can be used to intimidate foes.</Content
+        >
       </Paper>
     </div>
   </div>
@@ -32,26 +35,44 @@
     <div class="paper-container">
       <Paper color="primary" class="paper-demo">
         <Title>Primary Paper</Title>
-        <Content>Paper can have a color, allowing you to construct fancy school projects with the colored paper and glue sticks.</Content>
+        <Content
+          >Paper can have a color, allowing you to construct fancy school
+          projects with the colored paper and glue sticks.</Content
+        >
       </Paper>
     </div>
 
     <div class="paper-container">
       <Paper color="secondary" class="paper-demo">
         <Title>Secondary Paper</Title>
-        <Content>Paper can have a color, allowing you to construct fancy school projects with the colored paper and glue sticks.</Content>
+        <Content
+          >Paper can have a color, allowing you to construct fancy school
+          projects with the colored paper and glue sticks.</Content
+        >
+      </Paper>
+    </div>
+
+    <div class="paper-container">
+      <!-- See the paper.scss file for how to do this. -->
+      <Paper color="custom-green" class="paper-demo">
+        <Title>Custom Color Paper</Title>
+        <Content
+          >Paper can have a color, allowing you to construct fancy school
+          projects with the colored paper and glue sticks.</Content
+        >
       </Paper>
     </div>
   </div>
 
-  <div>
+  <!-- <div>
     Elevation and transition: <br />
 
     <div class="paper-container">
       <Paper transition {elevation} {color} class="paper-demo">
         <Title>Elevated Paper</Title>
         <Content>
-          If you add the <code>transition</code> property, elevation changes will animate.
+          If you add the <code>transition</code> property, elevation changes
+          will animate.
 
           <br /><br />
 
@@ -59,7 +80,11 @@
             <div>
               <FormField align="end" style="display: flex;">
                 <Slider bind:value={elevation} min={0} max={24} discrete />
-                <span slot="label" style="padding-right: 12px; width: max-content; display: block;">Elevation</span>
+                <span
+                  slot="label"
+                  style="padding-right: 12px; width: max-content; display: block;"
+                  >Elevation</span
+                >
               </FormField>
             </div>
 
@@ -81,17 +106,18 @@
         </Content>
       </Paper>
     </div>
-  </div>
+  </div> -->
 </section>
 
 <script>
-  import Paper, {Title, Subtitle, Content} from '@smui/paper';
-  import Slider from '@smui/slider';
-  import Radio from '@smui/radio';
-  import FormField from '@smui/form-field';
+  import Paper, { Title, Subtitle, Content } from '@smui/paper';
+  // import Slider from '@smui/slider';
+  // import Radio from '@smui/radio';
+  // import FormField from '@smui/form-field';
+  import './paper.scss';
 
-  let elevation = 1;
-  let color = 'default';
+  // let elevation = 1;
+  // let color = 'default';
 </script>
 
 <style>
