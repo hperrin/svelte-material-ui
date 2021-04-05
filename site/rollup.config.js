@@ -1,5 +1,5 @@
 import path from 'path';
-// import alias from 'rollup-plugin-alias';
+import alias from '@rollup/plugin-alias';
 import postcss from 'rollup-plugin-postcss';
 import resolve from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
@@ -21,19 +21,19 @@ const onwarn = (warning, onwarn) =>
     /[/\\]@sapper[/\\]/.test(warning.message)) ||
   onwarn(warning);
 
-// const aliases = () => ({
-//   resolve: ['.svelte', '.js', '.scss', '.css'],
-//   entries: [
-//     {
-//       find: /^@smui\/([^\/]+)$/,
-//       replacement: path.resolve(__dirname, '..', 'packages', '$1', 'index.js'),
-//     },
-//     {
-//       find: /^@smui\/([^\/]+)\/(.*)$/,
-//       replacement: path.resolve(__dirname, '..', 'packages', '$1', '$2'),
-//     },
-//   ],
-// });
+const aliases = () => ({
+  resolve: ['.svelte', '.js', '.scss', '.css'],
+  entries: [
+    {
+      find: /^@smui\/([^\/]+)$/,
+      replacement: path.resolve(__dirname, '..', 'packages', '$1', 'index.js'),
+    },
+    {
+      find: /^@smui\/([^\/]+)\/(.*)$/,
+      replacement: path.resolve(__dirname, '..', 'packages', '$1', '$2'),
+    },
+  ],
+});
 const postcssOptions = () => ({
   extensions: ['.scss', '.sass'],
   extract: false,
@@ -59,7 +59,7 @@ export default {
     input: config.client.input(),
     output: config.client.output(),
     plugins: [
-      // alias(aliases()),
+      alias(aliases()),
       replace({
         preventAssignment: true,
         values: {
