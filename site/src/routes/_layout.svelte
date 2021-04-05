@@ -279,14 +279,14 @@
     //   shortcut: '/demo/select',
     //   indent: 2,
     // },
-    // {
-    //   name: 'Sliders',
-    //   route: '/demo/slider',
-    //   indent: 1,
-    //   repos: [
-    //     'https://github.com/hperrin/svelte-material-ui/tree/master/packages/slider',
-    //   ],
-    // },
+    {
+      name: 'Sliders',
+      route: '/demo/slider',
+      indent: 1,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/slider',
+      ],
+    },
     // {
     //   name: 'Switches',
     //   route: '/demo/switch',

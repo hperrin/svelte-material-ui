@@ -64,7 +64,7 @@
     </div>
   </div>
 
-  <!-- <div>
+  <div>
     Elevation and transition: <br />
 
     <div class="paper-container">
@@ -79,7 +79,13 @@
           <Paper elevation={0}>
             <div>
               <FormField align="end" style="display: flex;">
-                <Slider bind:value={elevation} min={0} max={24} discrete />
+                <Slider
+                  style="flex-grow: 1;"
+                  bind:value={elevation}
+                  min={0}
+                  max={24}
+                  discrete
+                />
                 <span
                   slot="label"
                   style="padding-right: 12px; width: max-content; display: block;"
@@ -106,18 +112,18 @@
         </Content>
       </Paper>
     </div>
-  </div> -->
+  </div>
 </section>
 
 <script>
   import Paper, { Title, Subtitle, Content } from '@smui/paper';
-  // import Slider from '@smui/slider';
-  // import Radio from '@smui/radio';
-  // import FormField from '@smui/form-field';
+  import Slider from '@smui/slider';
+  import Radio from '@smui/radio';
+  import FormField from '@smui/form-field';
   import './paper.scss';
 
-  // let elevation = 1;
-  // let color = 'default';
+  let elevation = 1;
+  let color = 'default';
 </script>
 
 <style>

@@ -116,8 +116,6 @@
   let context = getContext('SMUI:checkbox:context');
   let dataTableHeader = getContext('SMUI:data-table:row:header');
   let getDataTableRowIndex = getContext('SMUI:data-table:row:getIndex');
-  let instantiate = getContext('SMUI:checkbox:instantiate');
-  let getInstance = getContext('SMUI:checkbox:getInstance');
 
   $: if (setChecked) {
     setChecked(nativeChecked);

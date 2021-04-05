@@ -7,8 +7,12 @@
 
   <div>
     <FormField align="end" style="display: flex;">
-      <Slider bind:value />
-      <span slot="label" style="padding-right: 12px; width: max-content; display: block;">Amount of Wonder</span>
+      <Slider style="flex-grow: 1;" bind:value />
+      <span
+        slot="label"
+        style="padding-right: 12px; width: max-content; display: block;"
+        >Amount of Wonder</span
+      >
     </FormField>
   </div>
 
@@ -25,7 +29,14 @@
   <div>
     Discrete with min/max/step and tick marks:
 
-    <Slider bind:value={value3} min={-10} max={10} step={2} discrete displayMarkers />
+    <Slider
+      bind:value={value3}
+      min={-10}
+      max={10}
+      step={2}
+      discrete
+      tickMarks
+    />
   </div>
 
   <pre class="status">Value: {value3}</pre>

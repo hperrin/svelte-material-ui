@@ -6,7 +6,7 @@
     ? 'smui-paper--elevation-z' + elevation
     : ''} {!square ? 'smui-paper--rounded' : ''} {color !== 'default'
     ? 'smui-paper--color-' + color
-    : ''}  {transition ? 'mdc-elevation-transition' : ''}"
+    : ''}  {transition ? 'smui-paper-transition' : ''}"
   {...exclude($$props, ['use', 'class', 'square', 'color', 'transition'])}
 >
   <slot />

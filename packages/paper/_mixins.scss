@@ -8,6 +8,7 @@ $paper-padding: 24px 16px !default;
 
 @mixin core-styles($query: feature-targeting.all()) {
   $feat-color: feature-targeting.create-target($query, color);
+  $feat-animation: feature-targeting.create-target($query, animation);
   $feat-structure: feature-targeting.create-target($query, structure);
 
   .smui-paper {
@@ -19,6 +20,16 @@ $paper-padding: 24px 16px !default;
 
     &.smui-paper--rounded {
       @include shape-radius(medium, $query: $query);
+    }
+
+    &.smui-paper-transition {
+      @include feature-targeting.targets($feat-animation) {
+        transition: elevation.transition-value();
+      }
+
+      @include feature-targeting.targets($feat-structure) {
+        will-change: elevation.$property;
+      }
     }
 
     .smui-paper__title {

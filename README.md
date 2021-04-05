@@ -224,7 +224,7 @@ Update Progress Checklist:
 - [ ] Select Menus
   - [ ] Select Helper Text
   - [ ] Select Icon
-- [ ] Sliders
+- [x] Sliders
 - [ ] Switches
 - [ ] Text Field
   - [ ] Text Field Character Counter
