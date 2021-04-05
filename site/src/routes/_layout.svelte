@@ -204,11 +204,11 @@
         'https://github.com/hperrin/svelte-material-ui/tree/master/packages/drawer',
       ],
     },
-    // {
-    //   name: 'Elevation',
-    //   route: '/demo/elevation',
-    //   indent: 0,
-    // },
+    {
+      name: 'Elevation',
+      route: '/demo/elevation',
+      indent: 0,
+    },
     {
       name: 'Image List',
       route: '/demo/image-list',

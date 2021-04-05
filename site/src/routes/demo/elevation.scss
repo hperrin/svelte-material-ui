@@ -1,0 +1,30 @@
+// Theme Colors (because MDC Elevation uses them)
+@use "smui-theme";
+
+//
+// MDC Elevation
+//
+@use "@material/elevation/mdc-elevation";
+
+//
+// Demo Code
+//
+
+@use "@material/elevation";
+@use "@material/theme";
+
+.my-primary {
+  @include theme.property(color, primary);
+
+  &.elevated {
+    @include elevation.elevation(4, primary);
+  }
+}
+
+.my-secondary {
+  @include theme.property(color, secondary);
+
+  &.elevated {
+    @include elevation.elevation(4, secondary);
+  }
+}
