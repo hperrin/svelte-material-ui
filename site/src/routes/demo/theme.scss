@@ -1,0 +1,30 @@
+// Set up an alternate theme with custom colors.
+@use '@material/theme/color-palette';
+@use '@material/theme' with (
+  $primary: color-palette.$green-100,
+  $secondary: color-palette.$cyan-100,
+  $background: #000,
+  $surface: #000,
+  $error: color-palette.$orange-100
+);
+// We need a variable from this file.
+@use '@material/theme/theme-color';
+
+// This class acts as the border between the normal
+// theme (outside) and the alternate theme (inside).
+.demo-special-theme {
+  min-height: 100%;
+  min-width: 100%;
+  background-color: #000;
+  color: #fff;
+
+  // Set all the CSS variables to this theme's colors.
+  @each $style in map-keys(theme-color.$property-values) {
+    --mdc-theme-#{$style}: #{map-get(theme-color.$property-values, $style)};
+  }
+
+  // Import the '/style' file for each component you
+  // use within this alternate theme's container.
+  @import '@smui/button/style';
+  // @import '@smui/fab/style';
+}

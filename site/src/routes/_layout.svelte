@@ -406,11 +406,11 @@
     //   shortcut: '/demo/tabs',
     //   indent: 1,
     // },
-    // {
-    //   name: 'Theme',
-    //   route: '/demo/theme',
-    //   indent: 0,
-    // },
+    {
+      name: 'Theme',
+      route: '/demo/theme',
+      indent: 0,
+    },
     {
       name: 'Top App Bar',
       route: '/demo/top-app-bar',
