@@ -36,6 +36,8 @@
       {min}
       max={end}
       value={start}
+      on:change
+      on:input
       {...inputStartAttrs}
       {...exclude(prefixFilter($$props, 'input$'), ['class'])}
     />
@@ -48,6 +50,8 @@
       min={start}
       {max}
       value={end}
+      on:change
+      on:input
       {...inputProps}
       {...inputAttrs}
       {...exclude(prefixFilter($$props, 'input$'), ['class'])}
@@ -62,6 +66,8 @@
       {min}
       {max}
       {value}
+      on:change
+      on:input
       {...inputProps}
       {...inputAttrs}
       {...exclude(prefixFilter($$props, 'input$'), ['class'])}

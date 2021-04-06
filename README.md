@@ -73,7 +73,7 @@ Check out the [Webpack template](https://github.com/hperrin/smui-example-webpack
      import Fab from '@smui/fab';
      import Textfield from '@smui/textfield';
      import HelperText from '@smui/textfield/helper-text';
-     import {Label, Icon} from '@smui/common';
+     import { Label, Icon } from '@smui/common';
 
      let superText = '';
    </script>
@@ -113,20 +113,17 @@ Here are some features you should know about:
 
    // ...
 
-   // At the client svelte options change emitCss to false and css to true
+   // At the client svelte options change emitCss to true and css to false
    svelte({
      compilerOptions: {
        dev,
        hydratable: true,
-       css: true
+       css: false
      },
-     emitCss: false
+     emitCss: true
    }),
 
-   // Find this line, under "plugins:"
-   commonjs(),
-
-   // Then paste the following after it.
+   // Right after that plugin, paste the following.
    // Once in the "client:" section, and again in the "server:" section.
    postcss({
      extensions: ['.scss', '.sass'],
@@ -202,7 +199,7 @@ Click a component below to go to its documentation.
 
 # MDC 10 Update!
 
-I've started working on migrating SMUI to use the latest upstream version of [Material Components Web (MDC)](https://github.com/material-components/material-components-web), version 10. I'll be doing a lot more than upgrading the version, though! I'm rewriting SMUI to use the ["Advanced Approach"](https://github.com/material-components/material-components-web/blob/master/docs/integrating-into-frameworks.md#the-advanced-approach-using-foundations-and-adapters) of integrating with the library, which should make updating to later upstream versions much easier. No longer will I have to wrangle Svelte to stop undoing the updates that MDC makes to the DOM, because _Svelte_ will be in charge of updating the DOM.
+I've started working on migrating SMUI to use the latest upstream version of [Material Design Components for Web (MDC)](https://github.com/material-components/material-components-web), version 10. I'll be doing a lot more than upgrading the version, though! I'm rewriting SMUI to use the ["Advanced Approach"](https://github.com/material-components/material-components-web/blob/master/docs/integrating-into-frameworks.md#the-advanced-approach-using-foundations-and-adapters) of integrating with the library, which should make updating to later upstream versions much easier. No longer will I have to wrangle Svelte to stop undoing the updates that MDC makes to the DOM, because _Svelte_ will be in charge of updating the DOM.
 
 Update Progress Checklist:
 
