@@ -16,24 +16,25 @@
     forwardEvents,
     ...use,
   ]}
-  class="mdc-button {className} {Object.keys(internalClasses).join(
-    ' '
-  )} {variant === 'raised' ? 'mdc-button--raised' : ''} {variant ===
-  'unelevated'
-    ? 'mdc-button--unelevated'
-    : ''} {variant === 'outlined' ? 'mdc-button--outlined' : ''} {color ===
-  'secondary'
-    ? 'smui-button--color-secondary'
-    : ''} {touch ? 'mdc-button--touch' : ''} {context === 'card:action'
-    ? 'mdc-card__action'
-    : ''} {context === 'card:action'
-    ? 'mdc-card__action--button'
-    : ''} {context === 'dialog:action' ? 'mdc-dialog__button' : ''} {context ===
-  'top-app-bar:navigation'
-    ? 'mdc-top-app-bar__navigation-icon'
-    : ''} {context === 'top-app-bar:action'
-    ? 'mdc-top-app-bar__action-item'
-    : ''} {context === 'snackbar' ? 'mdc-snackbar__action' : ''}"
+  class={Object.entries({
+    [className]: true,
+    'mdc-button': true,
+    'mdc-button--raised': variant === 'raised',
+    'mdc-button--unelevated': variant === 'unelevated',
+    'mdc-button--outlined': variant === 'outlined',
+    'smui-button--color-secondary': color === 'secondary',
+    'mdc-button--touch': touch,
+    'mdc-card__action': context === 'card:action',
+    'mdc-card__action--button': context === 'card:action',
+    'mdc-dialog__button': context === 'dialog:action',
+    'mdc-top-app-bar__navigation-icon': context === 'top-app-bar:navigation',
+    'mdc-top-app-bar__action-item': context === 'top-app-bar:action',
+    'mdc-snackbar__action': context === 'snackbar',
+    ...internalClasses,
+  })
+    .filter(([name, value]) => name !== '' && value)
+    .map(([name]) => name)
+    .join(' ')}
   {...actionProp}
   {...defaultProp}
   {...exclude($$props, [
@@ -94,17 +95,14 @@
   setContext('SMUI:icon:context', 'button');
 
   function addClass(className) {
-    // Doesn't need hasClass.
     if (!internalClasses[className]) {
       internalClasses[className] = true;
     }
   }
 
   function removeClass(className) {
-    // Doesn't need hasClass.
     if (internalClasses[className]) {
-      delete internalClasses[className];
-      internalClasses = internalClasses;
+      internalClasses[className] = false;
     }
   }
 

@@ -2,13 +2,18 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="mdc-slider {className} {Object.keys(internalClasses)
-    .filter((className) => internalClasses[className])
-    .join(' ')} {range ? 'mdc-slider--range' : ''} {discrete
-    ? 'mdc-slider--discrete'
-    : ''} {discrete && tickMarks ? 'mdc-slider--tick-marks' : ''} {disabled
-    ? 'mdc-slider--disabled'
-    : ''} "
+  class={Object.entries({
+    [className]: true,
+    'mdc-slider': true,
+    'mdc-slider--range': range,
+    'mdc-slider--discrete': discrete,
+    'mdc-slider--tick-marks': discrete && tickMarks,
+    'mdc-slider--disabled': disabled,
+    ...internalClasses,
+  })
+    .filter(([name, value]) => name !== '' && value)
+    .map(([name]) => name)
+    .join(' ')}
   {...exclude($$props, [
     'use',
     'class',
