@@ -21,7 +21,7 @@
   <div>
     Buffered:
 
-    <LinearProgress progress={.5} buffer={.75} />
+    <LinearProgress progress={0.5} buffer={0.75} />
   </div>
 
   <div>
@@ -31,26 +31,14 @@
   </div>
 
   <div>
-    Reversed:
-
-    <LinearProgress progress={.5} reversed />
-  </div>
-
-  <div>
-    Reversed Buffered:
-
-    <LinearProgress progress={.5} buffer={.75} reversed />
-  </div>
-
-  <div>
     Colored (using Sass mixins):
 
-    <LinearProgress class="my-colored-bar" progress={.5} buffer={.75} />
+    <LinearProgress class="my-colored-bar" progress={0.5} buffer={0.75} />
   </div>
 </section>
 
 <script>
-  import {onMount, onDestroy} from 'svelte';
+  import { onMount, onDestroy } from 'svelte';
   import LinearProgress from '@smui/linear-progress';
   import Checkbox from '@smui/checkbox';
   import FormField from '@smui/form-field';
@@ -72,7 +60,7 @@
     closed = false;
     clearInterval(timer);
     timer = setInterval(() => {
-      progress += .01;
+      progress += 0.01;
 
       if (progress >= 1) {
         progress = 1;

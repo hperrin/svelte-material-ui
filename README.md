@@ -230,7 +230,7 @@ Update Progress Checklist:
   - [ ] Text Field Character Counter
   - [ ] Text Field Helper Text
   - [ ] Text Field Icon
-- [ ] Linear Progress
+- [x] Linear Progress
 - [x] Lists
 - [x] Menu Surface
 - [x] Menus

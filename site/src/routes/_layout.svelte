@@ -219,7 +219,6 @@
     },
     {
       name: 'Inputs and Controls',
-      // shortcut: '/demo/textfield',
       indent: 0,
     },
     {
@@ -318,14 +317,14 @@
     //   shortcut: '/demo/textfield',
     //   indent: 2,
     // },
-    // {
-    //   name: 'Linear Progress',
-    //   route: '/demo/linear-progress',
-    //   indent: 0,
-    //   repos: [
-    //     'https://github.com/hperrin/svelte-material-ui/tree/master/packages/linear-progress',
-    //   ],
-    // },
+    {
+      name: 'Linear Progress',
+      route: '/demo/linear-progress',
+      indent: 0,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/linear-progress',
+      ],
+    },
     {
       name: 'Lists',
       route: '/demo/list',
