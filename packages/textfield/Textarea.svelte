@@ -2,7 +2,10 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="mdc-text-field__input {className}"
+  class={classMap({
+    [className]: true,
+    'mdc-text-field__input': true,
+  })}
   bind:value
   on:change={changeHandler}
   {...exclude($$props, [
@@ -20,6 +23,7 @@
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
+    classMap,
     exclude,
     useActions,
   } from '@smui/common/internal.js';

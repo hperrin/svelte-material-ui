@@ -3,10 +3,11 @@
     bind:this={element}
     use:useActions={use}
     use:forwardEvents
-    class="mdc-data-table__header-cell
-      {className} {checkbox
-      ? 'mdc-data-table__header-cell--checkbox'
-      : ''}"
+    class={classMap({
+      [className]: true,
+      'mdc-data-table__header-cell': true,
+      'mdc-data-table__header-cell--checkbox': checkbox,
+    })}
     {...roleProp}
     {...scopeProp}
     {...props}><slot /></th
@@ -16,10 +17,12 @@
     bind:this={element}
     use:useActions={use}
     use:forwardEvents
-    class="mdc-data-table__cell
-      {className} {numeric
-      ? 'mdc-data-table__cell--numeric'
-      : ''} {checkbox ? 'mdc-data-table__cell--checkbox' : ''}"
+    class={classMap({
+      [className]: true,
+      'mdc-data-table__cell': true,
+      'mdc-data-table__cell--numeric': numeric,
+      'mdc-data-table__cell--checkbox': checkbox,
+    })}
     {...roleProp}
     {...scopeProp}
     {...props}><slot /></td
@@ -31,6 +34,7 @@
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
+    classMap,
     exclude,
     useActions,
   } from '@smui/common/internal.js';

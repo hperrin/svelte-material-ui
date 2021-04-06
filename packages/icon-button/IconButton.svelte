@@ -17,17 +17,17 @@
     ...use,
   ]}
   forwardEvents={forwardedEvents}
-  class="mdc-icon-button {className} {Object.keys(internalClasses)
-    .filter((className) => internalClasses[className])
-    .join(' ')} {context === 'card:action'
-    ? 'mdc-card__action'
-    : ''} {context === 'card:action'
-    ? 'mdc-card__action--icon'
-    : ''} {context === 'top-app-bar:navigation'
-    ? 'mdc-top-app-bar__navigation-icon'
-    : ''} {context === 'top-app-bar:action'
-    ? 'mdc-top-app-bar__action-item'
-    : ''} {context === 'snackbar' ? 'mdc-snackbar__dismiss' : ''}"
+  class={classMap({
+    [className]: true,
+    'mdc-icon-button': true,
+    'mdc-icon-button--on': pressed,
+    'mdc-card__action': context === 'card:action',
+    'mdc-card__action--icon': context === 'card:action',
+    'mdc-top-app-bar__navigation-icon': context === 'top-app-bar:navigation',
+    'mdc-top-app-bar__action-item': context === 'top-app-bar:action',
+    'mdc-snackbar__dismiss': context === 'snackbar',
+    ...internalClasses,
+  })}
   aria-hidden="true"
   aria-pressed={toggle ? (pressed ? 'true' : 'false') : null}
   aria-label={pressed ? ariaLabelOn : ariaLabelOff}
@@ -56,6 +56,7 @@
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
+    classMap,
     exclude,
     dispatch,
   } from '@smui/common/internal.js';
@@ -90,14 +91,6 @@
   export let component = href == null ? Button : A;
 
   setContext('SMUI:icon:context', 'icon-button');
-
-  $: if (!instance) {
-    if (pressed) {
-      addClass('mdc-icon-button--on');
-    } else {
-      removeClass('mdc-icon-button--on');
-    }
-  }
 
   let oldToggle = null;
   $: if (element && toggle !== oldToggle) {

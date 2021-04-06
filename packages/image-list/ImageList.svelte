@@ -2,9 +2,12 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="mdc-image-list {className} {masonry
-    ? 'mdc-image-list--masonry'
-    : ''} {withTextProtection ? 'mdc-image-list--with-text-protection' : ''}"
+  class={classMap({
+    [className]: true,
+    'mdc-image-list': true,
+    'mdc-image-list--masonry': masonry,
+    'mdc-image-list--with-text-protection': withTextProtection,
+  })}
   {...exclude($$props, ['use', 'class', 'masonry', 'withTextProtection'])}
 >
   <slot />
@@ -15,6 +18,7 @@
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
+    classMap,
     exclude,
     useActions,
   } from '@smui/common/internal.js';

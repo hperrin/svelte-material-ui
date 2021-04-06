@@ -2,9 +2,12 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="mdc-switch {className} {disabled
-    ? 'mdc-switch--disabled'
-    : ''} {nativeChecked ? 'mdc-switch--checked' : ''}"
+  class={classMap({
+    [className]: true,
+    'mdc-switch': true,
+    'mdc-switch--disabled': disabled,
+    'mdc-switch--checked': nativeChecked,
+  })}
   {...exclude($$props, [
     'use',
     'class',
@@ -20,7 +23,10 @@
     <div class="mdc-switch__thumb">
       <input
         use:useActions={input$use}
-        class="mdc-switch__native-control {input$class}"
+        class={classMap({
+          [input$class]: true,
+          'mdc-switch__native-control': true,
+        })}
         type="checkbox"
         role="switch"
         {...inputProps}
@@ -44,6 +50,7 @@
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
+    classMap,
     exclude,
     prefixFilter,
     useActions,

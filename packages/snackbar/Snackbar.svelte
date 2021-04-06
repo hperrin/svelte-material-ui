@@ -2,15 +2,21 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="mdc-snackbar {className} {variant === 'stacked'
-    ? 'mdc-snackbar--stacked'
-    : ''} {leading ? 'mdc-snackbar--leading' : ''}"
+  class={classMap({
+    [className]: true,
+    'mdc-snackbar': true,
+    'mdc-snackbar--stacked': variant === 'stacked',
+    'mdc-snackbar--leading': leading,
+  })}
   on:MDCSnackbar:closed={handleClosed}
   {...exclude($$props, ['use', 'class', 'variant', 'leading', 'surface$'])}
 >
   <div
     use:useActions={surface$use}
-    class="mdc-snackbar__surface {surface$class}"
+    class={classMap({
+      [surface$class]: true,
+      'mdc-snackbar__surface': true,
+    })}
     {...prefixFilter($$props, 'surface$')}
   >
     <slot />
@@ -27,6 +33,7 @@
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
+    classMap,
     exclude,
     prefixFilter,
     useActions,

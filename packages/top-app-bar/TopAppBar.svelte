@@ -11,18 +11,18 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="mdc-top-app-bar {className} {Object.keys(internalClasses)
-    .filter((className) => internalClasses[className])
-    .join(' ')} {variant === 'short' ? 'mdc-top-app-bar--short' : ''} {collapsed
-    ? 'mdc-top-app-bar--short-collapsed'
-    : ''} {variant === 'fixed' ? 'mdc-top-app-bar--fixed' : ''} {variant ===
-  'static'
-    ? 'smui-top-app-bar--static'
-    : ''} {color === 'secondary'
-    ? 'smui-top-app-bar--color-secondary'
-    : ''} {prominent ? 'mdc-top-app-bar--prominent' : ''} {dense
-    ? 'mdc-top-app-bar--dense'
-    : ''}"
+  class={classMap({
+    [className]: true,
+    'mdc-top-app-bar': true,
+    'mdc-top-app-bar--short': variant === 'short',
+    'mdc-top-app-bar--short-collapsed': collapsed,
+    'mdc-top-app-bar--fixed': variant === 'fixed',
+    'smui-top-app-bar--static': variant === 'static',
+    'smui-top-app-bar--color-secondary': color === 'secondary',
+    'mdc-top-app-bar--prominent': prominent,
+    'mdc-top-app-bar--dense': dense,
+    ...internalClasses,
+  })}
   style="{style} {Object.entries(internalStyles)
     .map(([name, value]) => `${name}: ${value};`)
     .join(' ')}"
@@ -54,6 +54,7 @@
   import { readable } from 'svelte/store';
   import {
     forwardEventsBuilder,
+    classMap,
     exclude,
     useActions,
     dispatch,

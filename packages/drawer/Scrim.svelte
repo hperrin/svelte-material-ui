@@ -2,9 +2,11 @@
   this={component}
   bind:this={element}
   use={[forwardEvents, ...use]}
-  class="mdc-drawer-scrim {className} {fixed
-    ? ''
-    : 'smui-drawer-scrim__absolute'}"
+  class={classMap({
+    [className]: true,
+    'mdc-drawer-scrim': true,
+    'smui-drawer-scrim__absolute': !fixed,
+  })}
   on:click={(event) => dispatch(element, 'SMUI:drawer:scrim:click', event)}
   {...exclude($$props, ['use', 'class', 'component'])}
 >
@@ -15,6 +17,7 @@
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
+    classMap,
     exclude,
     dispatch,
   } from '@smui/common/internal.js';

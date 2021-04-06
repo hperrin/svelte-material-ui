@@ -34,7 +34,10 @@
   {#if range}
     <input
       bind:this={inputStart}
-      class="mdc-slider__input {input$class}"
+      class={classMap({
+        [input$class]: true,
+        'mdc-slider__input': true,
+      })}
       type="range"
       {disabled}
       {step}
@@ -50,7 +53,10 @@
     />
     <input
       bind:this={input}
-      class="mdc-slider__input {input$class}"
+      class={classMap({
+        [input$class]: true,
+        'mdc-slider__input': true,
+      })}
       type="range"
       {disabled}
       {step}
@@ -68,7 +74,10 @@
   {:else}
     <input
       bind:this={input}
-      class="mdc-slider__input {input$class}"
+      class={classMap({
+        [input$class]: true,
+        'mdc-slider__input': true,
+      })}
       type="range"
       {disabled}
       {step}
@@ -116,7 +125,10 @@
         removeClass: (className) => removeThumbClass(className, Thumb.START),
         active: thumbStartRippleActive,
       }}
-      class="mdc-slider__thumb {Object.keys(thumbStartClasses).join(' ')}"
+      class={classMap({
+        'mdc-slider__thumb': true,
+        ...thumbStartClasses,
+      })}
       style={Object.entries(thumbStartStyles)
         .map(([name, value]) => `${name}: ${value};`)
         .join(' ')}
@@ -138,7 +150,10 @@
         removeClass: (className) => removeThumbClass(className, Thumb.END),
         active: thumbRippleActive,
       }}
-      class="mdc-slider__thumb {Object.keys(thumbClasses).join(' ')}"
+      class={classMap({
+        'mdc-slider__thumb': true,
+        ...thumbClasses,
+      })}
       style={Object.entries(thumbStyles)
         .map(([name, value]) => `${name}: ${value};`)
         .join(' ')}
@@ -161,7 +176,10 @@
         removeClass: (className) => removeThumbClass(className),
         active: thumbRippleActive,
       }}
-      class="mdc-slider__thumb {Object.keys(thumbClasses).join(' ')}"
+      class={classMap({
+        'mdc-slider__thumb': true,
+        ...thumbClasses,
+      })}
       style={Object.entries(thumbStyles)
         .map(([name, value]) => `${name}: ${value};`)
         .join(' ')}
@@ -184,6 +202,7 @@
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
+    classMap,
     exclude,
     prefixFilter,
     useActions,
@@ -455,7 +474,6 @@
   }
 
   function addThumbClass(className, thumb) {
-    // Doesn't need hasClass.
     if (range && thumb === Thumb.START) {
       if (!thumbStartClasses[className]) {
         thumbStartClasses[className] = true;
@@ -468,16 +486,13 @@
   }
 
   function removeThumbClass(className, thumb) {
-    // Doesn't need hasClass.
     if (range && thumb === Thumb.START) {
       if (thumbStartClasses[className]) {
-        delete thumbStartClasses[className];
-        thumbStartClasses = thumbStartClasses;
+        thumbStartClasses[className] = false;
       }
     } else {
       if (thumbClasses[className]) {
-        delete thumbClasses[className];
-        thumbClasses = thumbClasses;
+        thumbClasses[className] = false;
       }
     }
   }

@@ -2,13 +2,14 @@
   this={component}
   bind:this={element}
   use={[forwardEvents, ...use]}
-  class="{className} {context === 'button'
-    ? 'mdc-button__icon'
-    : ''} {context === 'fab' ? 'mdc-fab__icon' : ''} {context === 'icon-button'
-    ? 'mdc-icon-button__icon'
-    : ''} {context === 'icon-button' && on
-    ? 'mdc-icon-button__icon--on'
-    : ''} {context === 'tab' ? 'mdc-tab__icon' : ''}"
+  class={classMap({
+    [className]: true,
+    'mdc-button__icon': context === 'button',
+    'mdc-fab__icon': context === 'fab',
+    'mdc-icon-button__icon': context === 'icon-button',
+    'mdc-icon-button__icon--on': context === 'icon-button' && on,
+    'mdc-tab__icon': context === 'tab',
+  })}
   aria-hidden="true"
   {...exclude($$props, ['use', 'class', 'on'])}><slot /></svelte:component
 >
@@ -16,7 +17,7 @@
 <script>
   import { getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
-  import { forwardEventsBuilder, exclude } from './internal.js';
+  import { forwardEventsBuilder, classMap, exclude } from './internal.js';
   import I from './I.svelte';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());

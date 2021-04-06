@@ -2,9 +2,11 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="smui-button__group {className} {variant === 'raised'
-    ? 'smui-button__group--raised'
-    : ''}"
+  class={classMap({
+    [className]: true,
+    'smui-button__group': true,
+    'smui-button__group--raised': variant === 'raised',
+  })}
   {...exclude($$props, ['use', 'class', 'variant'])}
 >
   <slot />
@@ -14,6 +16,7 @@
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
+    classMap,
     exclude,
     useActions,
   } from '@smui/common/internal.js';

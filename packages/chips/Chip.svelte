@@ -3,9 +3,12 @@
   bind:this={element}
   use={[forwardEvents, ...use]}
   forwardEvents={forwardedEvents}
-  class="mdc-chip {className} {selected ? 'mdc-chip--selected' : ''} {touch
-    ? 'mdc-chip--touch'
-    : ''}"
+  class={classMap({
+    [className]: true,
+    'mdc-chip': true,
+    'mdc-chip--selected': selected,
+    'mdc-chip--touch': touch,
+  })}
   role="row"
   on:MDCChip:selection={handleSelection}
   {...exclude($$props, [
@@ -32,7 +35,11 @@
   import { onMount, setContext, getContext } from 'svelte';
   import { writable } from 'svelte/store';
   import { get_current_component } from 'svelte/internal';
-  import { forwardEventsBuilder, exclude } from '@smui/common/internal.js';
+  import {
+    forwardEventsBuilder,
+    classMap,
+    exclude,
+  } from '@smui/common/internal.js';
   import Div from '@smui/common/Div.svelte';
 
   const forwardedEvents = [

@@ -2,9 +2,12 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="mdc-card__media {className} {aspectRatio === 'square'
-    ? 'mdc-card__media--square'
-    : ''} {aspectRatio === '16x9' ? 'mdc-card__media--16-9' : ''}"
+  class={classMap({
+    [className]: true,
+    'mdc-card__media': true,
+    'mdc-card__media--square': aspectRatio === 'square',
+    'mdc-card__media--16-9': aspectRatio === '16x9',
+  })}
   {...exclude($$props, ['use', 'class', 'aspectRatio'])}
 >
   <slot />
@@ -14,6 +17,7 @@
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
+    classMap,
     exclude,
     useActions,
   } from '@smui/common/internal.js';

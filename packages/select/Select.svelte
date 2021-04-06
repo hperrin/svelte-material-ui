@@ -3,19 +3,19 @@
   use:Anchor={{ addClass, removeClass }}
   use:useActions={use}
   use:forwardEvents
-  class="mdc-select {className} {Object.keys(internalClasses).join(
-    ' '
-  )} {required ? 'mdc-select--required' : ''} {disabled
-    ? 'mdc-select--disabled'
-    : ''} {variant === 'outlined' ? 'mdc-select--outlined' : ''} {variant ===
-  'standard'
-    ? 'smui-select--standard'
-    : ''} {withLeadingIcon ? 'mdc-select--with-leading-icon' : ''} {noLabel ||
-  label == null
-    ? 'mdc-select--no-label'
-    : ''} {invalid ? 'mdc-select--invalid' : ''} {menuOpen
-    ? 'mdc-select--activated'
-    : ''}"
+  class={classMap({
+    [className]: true,
+    'mdc-select': true,
+    'mdc-select--required': required,
+    'mdc-select--disabled': disabled,
+    'mdc-select--outlined': variant === 'outlined',
+    'smui-select--standard': variant === 'standard',
+    'mdc-select--with-leading-icon': withLeadingIcon,
+    'mdc-select--no-label': noLabel || label == null,
+    'mdc-select--invalid': invalid,
+    'mdc-select--activated': menuOpen,
+    ...internalClasses,
+  })}
   on:MDCSelect:change={changeHandler}
   {...exclude($$props, [
     'use',
@@ -44,7 +44,10 @@
 >
   <div
     use:useActions={anchor$use}
-    class="mdc-select__anchor {anchor$class}"
+    class={classMap({
+      [anchor$class]: true,
+      'mdc-select__anchor': true,
+    })}
     {...exclude(prefixFilter($$props, 'anchor$'), ['use', 'class'])}
   >
     {#if variant === 'outlined'}
@@ -69,7 +72,10 @@
       bind:this={selectText}
       use:useActions={selectedText$use}
       id={inputId + '-smui-selected-text'}
-      class="mdc-select__selected-text {selectedText$class}"
+      class={classMap({
+        [selectedText$class]: true,
+        'mdc-select__selected-text': true,
+      })}
       role="button"
       aria-haspopup="listbox"
       aria-labelledby="{inputId + '-smui-label'} {inputId +
@@ -96,7 +102,10 @@
     {/if}
   </div>
   <Menu
-    class="mdc-select__menu {menu$class}"
+    class={classMap({
+      [menu$class]: true,
+      'mdc-select__menu': true,
+    })}
     role="listbox"
     bind:open={menuOpen}
     {...exclude(prefixFilter($$props, 'menu$'), ['class'])}
@@ -116,6 +125,7 @@
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
+    classMap,
     exclude,
     prefixFilter,
     useActions,
@@ -240,8 +250,7 @@
 
   function removeClass(className) {
     if (internalClasses[className]) {
-      delete internalClasses[className];
-      internalClasses = internalClasses;
+      internalClasses[className] = false;
     }
   }
 

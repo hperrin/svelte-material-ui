@@ -2,13 +2,15 @@
   this={component}
   bind:this={element}
   use={[forwardEvents, ...use]}
-  class="mdc-list-divider {className} {padded
-    ? 'mdc-list-divider--padded'
-    : ''} {inset ? 'mdc-list-divider--inset' : ''} {insetLeading
-    ? 'mdc-list-divider--inset-leading'
-    : ''} {insetTrailing
-    ? 'mdc-list-divider--inset-trailing'
-    : ''} {insetPadding ? 'mdc-list-divider--inset-padding' : ''}"
+  class={classMap({
+    [className]: true,
+    'mdc-list-divider': true,
+    'mdc-list-divider--padded': padded,
+    'mdc-list-divider--inset': inset,
+    'mdc-list-divider--inset-leading': insetLeading,
+    'mdc-list-divider--inset-trailing': insetTrailing,
+    'mdc-list-divider--inset-padding': insetPadding,
+  })}
   role="separator"
   {...props}
 />
@@ -16,7 +18,11 @@
 <script>
   import { getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
-  import { forwardEventsBuilder, exclude } from '@smui/common/internal.js';
+  import {
+    forwardEventsBuilder,
+    classMap,
+    exclude,
+  } from '@smui/common/internal.js';
   import Li from '@smui/common/Li.svelte';
   import Hr from '@smui/common/Hr.svelte';
 

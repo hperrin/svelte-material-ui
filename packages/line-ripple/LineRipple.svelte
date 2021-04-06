@@ -2,10 +2,11 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="mdc-line-ripple
-    {className} {active
-    ? 'mdc-line-ripple--active'
-    : ''}"
+  class={classMap({
+    [className]: true,
+    'mdc-line-ripple': true,
+    'mdc-line-ripple--active': active,
+  })}
   {...exclude($$props, ['use', 'class', 'active'])}
 />
 
@@ -15,6 +16,7 @@
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
+    classMap,
     exclude,
     useActions,
   } from '@smui/common/internal.js';

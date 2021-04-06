@@ -84,7 +84,7 @@ Here are some features you should know about:
 - You can add arbitrary properties to all of the components and many of the elements within them.
 - You can add actions to the components with `use={[Action1, [Action2, action2Props], Action3]}`.
 - You can add props to lower components and elements with things like `input$maxlength="15"`.
-- All [standard UI events](https://github.com/hperrin/svelte-material-ui/blob/master/packages/common/forwardEvents.js#L4) are forwarded on components, input events ("input" and "change") are forwarded on input components, and all MDC events are forwarded.
+- All [standard UI events](https://github.com/hperrin/svelte-material-ui/blob/master/packages/common/forwardEventsBuilder.js#L4) are forwarded on components, input events ("input" and "change") are forwarded on input components, and all MDC events are forwarded.
 - Labels and icons are named exports in the components that use them, or you can use 'common/Label' and 'common/Icon'. (Except for chips labels and icons, textfield icons, and select icons, because they are special snowflakes.)
 
 ## Integration for Sapper

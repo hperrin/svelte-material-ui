@@ -22,15 +22,16 @@
     ...use,
   ]}
   forwardEvents={forwardedEvents}
-  class="mdc-list-item {className} {Object.keys(internalClasses)
-    .filter((className) => internalClasses[className])
-    .join(' ')} {activated ? 'mdc-list-item--activated' : ''} {selected
-    ? 'mdc-list-item--selected'
-    : ''} {disabled ? 'mdc-list-item--disabled' : ''} {!nav &&
-  role === 'menuitem' &&
-  selected
-    ? 'mdc-menu-item--selected'
-    : ''} {nonInteractive ? 'smui-menu-item--non-interactive' : ''}"
+  class={classMap({
+    [className]: true,
+    'mdc-list-item': true,
+    'mdc-list-item--activated': activated,
+    'mdc-list-item--selected': selected,
+    'mdc-list-item--disabled': disabled,
+    'mdc-menu-item--selected': !nav && role === 'menuitem' && selected,
+    'smui-menu-item--non-interactive': nonInteractive,
+    ...internalClasses,
+  })}
   {...nav && activated ? { 'aria-current': 'page' } : {}}
   {...!nav ? { role } : {}}
   {...!nav && role === 'option'
@@ -70,6 +71,7 @@
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
+    classMap,
     exclude,
     dispatch,
   } from '@smui/common/internal.js';

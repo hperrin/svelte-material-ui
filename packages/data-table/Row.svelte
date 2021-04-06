@@ -2,9 +2,12 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="{className} {header ? 'mdc-data-table__header-row' : ''} {!header
-    ? 'mdc-data-table__row'
-    : ''} {!header && selected ? 'mdc-data-table__row--selected' : ''}"
+  class={classMap({
+    [className]: true,
+    'mdc-data-table__header-row': header,
+    'mdc-data-table__row': !header,
+    'mdc-data-table__row--selected': !header && selected,
+  })}
   {...selected !== undefined
     ? { 'aria-selected': selected ? 'true' : 'false' }
     : {}}
@@ -16,6 +19,7 @@
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
+    classMap,
     exclude,
     useActions,
   } from '@smui/common/internal.js';

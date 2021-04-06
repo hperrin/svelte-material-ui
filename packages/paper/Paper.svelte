@@ -2,11 +2,14 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="smui-paper {className} {elevation !== 0
-    ? 'smui-paper--elevation-z' + elevation
-    : ''} {!square ? 'smui-paper--rounded' : ''} {color !== 'default'
-    ? 'smui-paper--color-' + color
-    : ''}  {transition ? 'smui-paper-transition' : ''}"
+  class={classMap({
+    [className]: true,
+    'smui-paper': true,
+    ['smui-paper--elevation-z' + elevation]: elevation !== 0,
+    'smui-paper--rounded': !square,
+    ['smui-paper--color-' + color]: color !== 'default',
+    'smui-paper-transition': transition,
+  })}
   {...exclude($$props, ['use', 'class', 'square', 'color', 'transition'])}
 >
   <slot />
@@ -16,6 +19,7 @@
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
+    classMap,
     exclude,
     useActions,
   } from '@smui/common/internal.js';

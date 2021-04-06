@@ -2,7 +2,11 @@
   this={component}
   bind:this={element}
   use={[forwardEvents, ...use]}
-  class="{smuiClass} {className}"
+  class={classMap({
+    [className]: true,
+    [smuiClass]: true,
+    ...smuiClassMap,
+  })}
   {...props}
   {...exclude($$props, ['use', 'class', 'component', 'forwardEvents'])}
   ><slot /></svelte:component
@@ -11,7 +15,8 @@
 <script context="module">
   export const internals = {
     component: null,
-    smuiClass: null,
+    class: '',
+    classMap: {},
     contexts: {},
     props: {},
     forwardEvents: [],
@@ -21,7 +26,8 @@
 <script>
   import { setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
-  import { forwardEventsBuilder } from './forwardEvents.js';
+  import { forwardEventsBuilder } from './forwardEventsBuilder.js';
+  import { classMap } from './classMap.js';
   import { exclude } from './exclude.js';
 
   export let use = [];
@@ -32,6 +38,7 @@
 
   let element;
   const smuiClass = internals.class;
+  const smuiClassMap = internals.classMap;
   const contexts = internals.contexts;
   const props = internals.props;
 

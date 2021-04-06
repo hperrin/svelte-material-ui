@@ -2,9 +2,12 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="mdc-notched-outline {className} {notched
-    ? 'mdc-notched-outline--notched'
-    : ''} {noLabel ? 'mdc-notched-outline--no-label' : ''}"
+  class={classMap({
+    [className]: true,
+    'mdc-notched-outline': true,
+    'mdc-notched-outline--notched': notched,
+    'mdc-notched-outline--no-label': noLabel,
+  })}
   {...exclude($$props, ['use', 'class', 'notched', 'noLabel'])}
 >
   <div class="mdc-notched-outline__leading" />
@@ -20,6 +23,7 @@
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
+    classMap,
     exclude,
     useActions,
   } from '@smui/common/internal.js';

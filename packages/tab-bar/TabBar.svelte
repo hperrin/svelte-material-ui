@@ -2,7 +2,10 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="mdc-tab-bar {className}"
+  class={classMap({
+    [className]: true,
+    'mdc-tab-bar': true,
+  })}
   role="tablist"
   on:MDCTabBar:activated={activatedHandler}
   {...exclude($$props, [
@@ -29,6 +32,7 @@
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
+    classMap,
     exclude,
     prefixFilter,
     useActions,

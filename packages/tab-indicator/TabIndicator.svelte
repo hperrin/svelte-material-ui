@@ -2,9 +2,12 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="mdc-tab-indicator {className} {active
-    ? 'mdc-tab-indicator--active'
-    : ''} {transition === 'fade' ? 'mdc-tab-indicator--fade' : ''}"
+  class={classMap({
+    [className]: true,
+    'mdc-tab-indicator': true,
+    'mdc-tab-indicator--active': active,
+    'mdc-tab-indicator--fade': transition === 'fade',
+  })}
   {...exclude($$props, [
     'use',
     'class',
@@ -16,9 +19,12 @@
 >
   <span
     use:useActions={content$use}
-    class="mdc-tab-indicator__content {content$class} {type === 'underline'
-      ? 'mdc-tab-indicator__content--underline'
-      : ''} {type === 'icon' ? 'mdc-tab-indicator__content--icon' : ''}"
+    class={classMap({
+      [content$class]: true,
+      'mdc-tab-indicator__content': true,
+      'mdc-tab-indicator__content--underline': type === 'underline',
+      'mdc-tab-indicator__content--icon': type === 'icon',
+    })}
     aria-hidden={type === 'icon' ? 'true' : 'false'}
     {...exclude(prefixFilter($$props, 'content$'), ['use', 'class'])}
     ><slot /></span
@@ -31,6 +37,7 @@
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
+    classMap,
     exclude,
     prefixFilter,
     useActions,

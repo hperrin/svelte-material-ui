@@ -3,10 +3,11 @@
     bind:this={element}
     use:useActions={use}
     use:forwardEvents
-    class="mdc-floating-label
-      {className} {floatAbove
-      ? 'mdc-floating-label--float-above'
-      : ''}"
+    class={classMap({
+      [className]: true,
+      'mdc-floating-label': true,
+      'mdc-floating-label--float-above': floatAbove,
+    })}
     {...exclude($$props, ['use', 'class', 'floatAbove', 'wrapped'])}
     ><slot /></span
   >
@@ -15,9 +16,11 @@
     bind:this={element}
     use:useActions={use}
     use:forwardEvents
-    class="mdc-floating-label {className} {floatAbove
-      ? 'mdc-floating-label--float-above'
-      : ''}"
+    class={classMap({
+      [className]: true,
+      'mdc-floating-label': true,
+      'mdc-floating-label--float-above': floatAbove,
+    })}
     {...forId || (inputProps && inputProps.id)
       ? { for: forId || (inputProps && inputProps.id) }
       : {}}
@@ -32,6 +35,7 @@
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
+    classMap,
     exclude,
     useActions,
   } from '@smui/common/internal.js';

@@ -2,9 +2,12 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="mdc-top-app-bar__section {className} {align === 'start'
-    ? 'mdc-top-app-bar__section--align-start'
-    : ''} {align === 'end' ? 'mdc-top-app-bar__section--align-end' : ''}"
+  class={classMap({
+    [className]: true,
+    'mdc-top-app-bar__section': true,
+    'mdc-top-app-bar__section--align-start': align === 'start',
+    'mdc-top-app-bar__section--align-end': align === 'end',
+  })}
   {...toolbar ? { role: 'toolbar' } : {}}
   {...exclude($$props, ['use', 'class', 'align', 'toolbar'])}
 >
@@ -16,6 +19,7 @@
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
+    classMap,
     exclude,
     useActions,
   } from '@smui/common/internal.js';

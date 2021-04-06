@@ -2,17 +2,26 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="mdc-tab-scroller {className}"
+  class={classMap({
+    [className]: true,
+    'mdc-tab-scroller': true,
+  })}
   {...exclude($$props, ['use', 'class', 'scrollArea$', 'scrollContent$'])}
 >
   <div
     use:useActions={scrollArea$use}
-    class="mdc-tab-scroller__scroll-area {scrollArea$class}"
+    class={classMap({
+      [scrollArea$class]: true,
+      'mdc-tab-scroller__scroll-area': true,
+    })}
     {...exclude(prefixFilter($$props, 'scrollArea$'), ['use', 'class'])}
   >
     <div
       use:useActions={scrollContent$use}
-      class="mdc-tab-scroller__scroll-content {scrollContent$class}"
+      class={classMap({
+        [scrollContent$class]: true,
+        'mdc-tab-scroller__scroll-content': true,
+      })}
       {...exclude(prefixFilter($$props, 'scrollContent$'), ['use', 'class'])}
     >
       <slot />
@@ -26,6 +35,7 @@
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
+    classMap,
     exclude,
     prefixFilter,
     useActions,

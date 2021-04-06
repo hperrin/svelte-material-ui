@@ -2,10 +2,12 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="mdc-card__primary-action {className} {padded
-    ? 'smui-card__primary-action--padded'
-    : ''}"
   use:Ripple={{ ripple, unbounded: false, color }}
+  class={classMap({
+    [className]: true,
+    'mdc-card__primary-action': true,
+    'smui-card__primary-action--padded': padded,
+  })}
   {tabindex}
   {...exclude($$props, [
     'use',
@@ -23,6 +25,7 @@
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
+    classMap,
     exclude,
     useActions,
   } from '@smui/common/internal.js';

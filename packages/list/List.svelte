@@ -3,17 +3,20 @@
   bind:this={element}
   use={[forwardEvents, ...use]}
   forwardEvents={forwardedEvents}
-  class="mdc-list {className} {nonInteractive
-    ? 'mdc-list--non-interactive'
-    : ''} {dense ? 'mdc-list--dense' : ''} {textualList
-    ? 'mdc-list--textual-list'
-    : ''} {avatarList ? 'mdc-list--avatar-list' : ''} {iconList
-    ? 'mdc-list--icon-list'
-    : ''} {imageList ? 'mdc-list--image-list' : ''} {thumbnailList
-    ? 'mdc-list--thumbnail-list'
-    : ''} {videoList ? 'mdc-list--video-list' : ''} {twoLine
-    ? 'mdc-list--two-line'
-    : ''} {threeLine && !twoLine ? 'smui-list--three-line' : ''}"
+  class={classMap({
+    [className]: true,
+    'mdc-list': true,
+    'mdc-list--non-interactive': nonInteractive,
+    'mdc-list--dense': dense,
+    'mdc-list--textual-list': textualList,
+    'mdc-list--avatar-list': avatarList,
+    'mdc-list--icon-list': iconList,
+    'mdc-list--image-list': imageList,
+    'mdc-list--thumbnail-list': thumbnailList,
+    'mdc-list--video-list': videoList,
+    'mdc-list--two-line': twoLine,
+    'smui-list--three-line': threeLine && !twoLine,
+  })}
   {role}
   on:keydown={(event) =>
     instance &&
@@ -47,6 +50,7 @@
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
+    classMap,
     exclude,
     dispatch,
   } from '@smui/common/internal.js';

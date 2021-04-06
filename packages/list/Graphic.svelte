@@ -2,9 +2,11 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="mdc-list-item__graphic {className} {menuSelectionGroup
-    ? 'mdc-menu__selection-group-icon'
-    : ''}"
+  class={classMap({
+    [className]: true,
+    'mdc-list-item__graphic': true,
+    'mdc-menu__selection-group-icon': menuSelectionGroup,
+  })}
   {...exclude($$props, ['use', 'class'])}><slot /></span
 >
 
@@ -13,6 +15,7 @@
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
+    classMap,
     exclude,
     useActions,
   } from '@smui/common/internal.js';

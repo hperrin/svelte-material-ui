@@ -1,7 +1,10 @@
 <MenuSurface
   bind:this={element}
   use={[forwardEvents, ...use]}
-  class="mdc-menu {className}"
+  class={classMap({
+    [className]: true,
+    'mdc-menu': true,
+  })}
   on:SMUI:menu-surface:mount={handleMenuSurfaceAccessor}
   on:SMUI:list:mount={handleListAccessor}
   on:MDCMenuSurface:opened={() =>
@@ -22,6 +25,7 @@
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
+    classMap,
     exclude,
     dispatch,
   } from '@smui/common/internal.js';

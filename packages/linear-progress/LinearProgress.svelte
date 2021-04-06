@@ -2,11 +2,13 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="mdc-linear-progress {className} {Object.keys(internalClasses)
-    .filter((className) => internalClasses[className])
-    .join(' ')} {indeterminate
-    ? 'mdc-linear-progress--indeterminate'
-    : ''} {closed ? 'mdc-linear-progress--closed' : ''}"
+  class={classMap({
+    [className]: true,
+    'mdc-linear-progress': true,
+    'mdc-linear-progress--indeterminate': indeterminate,
+    'mdc-linear-progress--closed': closed,
+    ...internalClasses,
+  })}
   style={Object.entries(internalStyles)
     .map(([name, value]) => `${name}: ${value};`)
     .join(' ')}
@@ -53,6 +55,7 @@
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
+    classMap,
     exclude,
     useActions,
   } from '@smui/common/internal.js';

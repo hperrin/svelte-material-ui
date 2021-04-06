@@ -2,7 +2,10 @@
   this={component}
   bind:this={element}
   use={[forwardEvents, ...use]}
-  class="{adjustClass} {className}"
+  class={classMap({
+    [className]: true,
+    [adjustClass]: true,
+  })}
   {...exclude($$props, ['use', 'class', 'topAppBar', 'component'])}
 >
   <slot />
@@ -10,7 +13,11 @@
 
 <script>
   import { get_current_component } from 'svelte/internal';
-  import { forwardEventsBuilder, exclude } from '@smui/common/internal.js';
+  import {
+    forwardEventsBuilder,
+    classMap,
+    exclude,
+  } from '@smui/common/internal.js';
   import Main from '@smui/common/Main.svelte';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());

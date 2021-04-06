@@ -50,8 +50,17 @@
     <div
       class={Object.keys(anchor2Classes).join(' ')}
       use:Anchor={{
-        addClass: (className) => (anchor2Classes[className] = true),
-        removeClass: (className) => delete anchor2Classes[className],
+        addClass: (className) => {
+          if (!anchor2Classes[className]) {
+            anchor2Classes[className] = true;
+          }
+        },
+        removeClass: (className) => {
+          if (anchor2Classes[className]) {
+            delete anchor2Classes[className];
+            anchor2Classes = anchor2Classes;
+          }
+        },
       }}
       bind:this={anchor2}
     >

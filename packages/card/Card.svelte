@@ -2,9 +2,12 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="mdc-card {className} {variant === 'outlined'
-    ? 'mdc-card--outlined'
-    : ''} {padded ? 'smui-card--padded' : ''}"
+  class={classMap({
+    [className]: true,
+    'mdc-card': true,
+    'mdc-card--outlined': variant === 'outlined',
+    'smui-card--padded': padded,
+  })}
   {...exclude($$props, ['use', 'class', 'variant', 'padded'])}
 >
   <slot />
@@ -14,6 +17,7 @@
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
+    classMap,
     exclude,
     useActions,
   } from '@smui/common/internal.js';

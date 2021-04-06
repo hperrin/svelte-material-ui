@@ -2,7 +2,10 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="mdc-list-item__text {className}"
+  class={classMap({
+    [className]: true,
+    'mdc-list-item__text': true,
+  })}
   {...inputProps && inputProps.id ? { for: inputProps && inputProps.id } : {}}
   {...exclude($$props, ['use', 'class'])}><slot /></label
 >
@@ -12,6 +15,7 @@
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
+    classMap,
     exclude,
     useActions,
   } from '@smui/common/internal.js';

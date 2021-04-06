@@ -16,13 +16,16 @@
     forwardEvents,
     ...use,
   ]}
-  class="mdc-fab {className} {Object.keys(internalClasses).join(' ')} {mini
-    ? 'mdc-fab--mini'
-    : ''} {exited ? 'mdc-fab--exited' : ''} {extended
-    ? 'mdc-fab--extended'
-    : ''} {color === 'primary' ? 'smui-fab--color-primary' : ''} {touch
-    ? 'mdc-fab--touch'
-    : ''}"
+  class={classMap({
+    [className]: true,
+    'mdc-fab': true,
+    'mdc-fab--mini': mini,
+    'mdc-fab--exited': exited,
+    'mdc-fab--extended': extended,
+    'smui-fab--color-primary': color === 'primary',
+    'mdc-fab--touch': touch,
+    ...internalClasses,
+  })}
   {...exclude($$props, [
     'use',
     'class',
@@ -41,7 +44,11 @@
 <script>
   import { setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
-  import { forwardEventsBuilder, exclude } from '@smui/common/internal.js';
+  import {
+    forwardEventsBuilder,
+    classMap,
+    exclude,
+  } from '@smui/common/internal.js';
   import A from '@smui/common/A.svelte';
   import Button from '@smui/common/Button.svelte';
   import Ripple from '@smui/ripple/bare.js';
@@ -69,17 +76,14 @@
   setContext('SMUI:icon:context', 'fab');
 
   function addClass(className) {
-    // Doesn't need hasClass.
     if (!internalClasses[className]) {
       internalClasses[className] = true;
     }
   }
 
   function removeClass(className) {
-    // Doesn't need hasClass.
     if (internalClasses[className]) {
-      delete internalClasses[className];
-      internalClasses = internalClasses;
+      internalClasses[className] = false;
     }
   }
 

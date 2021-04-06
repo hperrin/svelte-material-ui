@@ -2,7 +2,10 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="mdc-data-table__content {className}"
+  class={classMap({
+    [className]: true,
+    'mdc-data-table__content': true,
+  })}
   {...exclude($$props, ['use', 'class'])}><slot /></tbody
 >
 
@@ -11,6 +14,7 @@
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
+    classMap,
     exclude,
     useActions,
   } from '@smui/common/internal.js';

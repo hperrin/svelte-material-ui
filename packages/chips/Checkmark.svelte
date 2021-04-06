@@ -1,7 +1,10 @@
 <span
   bind:this={element}
   use:useActions={use}
-  class="mdc-chip__checkmark {className}"
+  class={classMap({
+    [className]: true,
+    'mdc-chip__checkmark': true,
+  })}
   {...exclude($$props, ['use', 'class'])}
 >
   <svg class="mdc-chip__checkmark-svg" viewBox="-2 -3 30 30">
@@ -15,7 +18,7 @@
 </span>
 
 <script>
-  import { exclude, useActions } from '@smui/common/internal.js';
+  import { classMap, exclude, useActions } from '@smui/common/internal.js';
 
   export let use = [];
   let className = '';

@@ -6,7 +6,10 @@
 >
   <ul
     use:useActions={list$use}
-    class="mdc-menu__selection-group {list$class}"
+    class={classMap({
+      [list$class]: true,
+      'mdc-menu__selection-group': true,
+    })}
     {...exclude(prefixFilter($$props, 'list$'), ['use', 'class'])}
   >
     <slot />
@@ -18,6 +21,7 @@
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
+    classMap,
     exclude,
     prefixFilter,
     useActions,

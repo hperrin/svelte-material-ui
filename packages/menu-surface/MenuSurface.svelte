@@ -6,13 +6,15 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="mdc-menu-surface {className} {Object.keys(internalClasses)
-    .filter((className) => internalClasses[className])
-    .join(' ')} {fixed ? 'mdc-menu-surface--fixed' : ''} {isStatic
-    ? 'mdc-menu-surface--open'
-    : ''} {isStatic ? 'smui-menu-surface--static' : ''} {fullWidth
-    ? 'mdc-menu-surface--fullwidth'
-    : ''}"
+  class={classMap({
+    [className]: true,
+    'mdc-menu-surface': true,
+    'mdc-menu-surface--fixed': fixed,
+    'mdc-menu-surface--open': isStatic,
+    'smui-menu-surface--static': isStatic,
+    'mdc-menu-surface--fullwidth': fullWidth,
+    ...internalClasses,
+  })}
   style="{style} {Object.entries(internalStyles)
     .map(([name, value]) => `${name}: ${value};`)
     .join(' ')}"
@@ -49,6 +51,7 @@
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
+    classMap,
     exclude,
     useActions,
     dispatch,

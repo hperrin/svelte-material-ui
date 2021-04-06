@@ -2,7 +2,10 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="mdc-dialog {className}"
+  class={classMap({
+    [className]: true,
+    'mdc-dialog': true,
+  })}
   role="alertdialog"
   aria-modal="true"
   on:MDCDialog:opened={handleDialogOpened}
@@ -22,6 +25,7 @@
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
+    classMap,
     exclude,
     useActions,
   } from '@smui/common/internal.js';

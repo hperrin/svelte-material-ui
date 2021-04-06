@@ -3,9 +3,13 @@
   bind:this={element}
   use={[forwardEvents, ...use]}
   forwardEvents={forwardedEvents}
-  class="mdc-tab {className} {active ? 'mdc-tab--active' : ''} {stacked
-    ? 'mdc-tab--stacked'
-    : ''} {minWidth ? 'mdc-tab--min-width' : ''}"
+  class={classMap({
+    [className]: true,
+    'mdc-tab': true,
+    'mdc-tab--active': active,
+    'mdc-tab--stacked': stacked,
+    'mdc-tab--min-width': minWidth,
+  })}
   role="tab"
   aria-selected={active}
   tabindex={active ? '0' : '-1'}
@@ -26,7 +30,10 @@
 >
   <span
     use:useActions={content$use}
-    class="mdc-tab__content {content$class}"
+    class={classMap({
+      [content$class]: true,
+      'mdc-tab__content': true,
+    })}
     {...exclude(prefixFilter($$props, 'content$'), ['use', 'class'])}
   >
     <slot />
@@ -52,6 +59,7 @@
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
+    classMap,
     exclude,
     prefixFilter,
     useActions,

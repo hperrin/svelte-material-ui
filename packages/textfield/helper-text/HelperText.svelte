@@ -2,15 +2,21 @@
   bind:this={container}
   use:useActions={line$use}
   use:forwardEvents
-  class="mdc-text-field-helper-line {line$class}"
+  class={classMap({
+    [line$class]: true,
+    'mdc-text-field-helper-line': true,
+  })}
   {...exclude(prefixFilter($$props, 'line$'), ['use', 'class'])}
 >
   <div
     bind:this={element}
     use:useActions={use}
-    class="mdc-text-field-helper-text {className} {persistent
-      ? 'mdc-text-field-helper-text--persistent'
-      : ''} {validationMsg ? 'mdc-text-field-helper-text--validation-msg' : ''}"
+    class={classMap({
+      [className]: true,
+      'mdc-text-field-helper-text': true,
+      'mdc-text-field-helper-text--persistent': persistent,
+      'mdc-text-field-helper-text--validation-msg': validationMsg,
+    })}
     aria-hidden="true"
     {...exclude($$props, ['use', 'class', 'persistent', 'validationMsg'])}
   >
@@ -25,6 +31,7 @@
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
+    classMap,
     exclude,
     prefixFilter,
     useActions,

@@ -2,9 +2,12 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="mdc-form-field {className} {align === 'end'
-    ? 'mdc-form-field--align-end'
-    : ''} {noWrap ? 'mdc-form-field--nowrap' : ''}"
+  class={classMap({
+    [className]: true,
+    'mdc-form-field': true,
+    'mdc-form-field--align-end': align === 'end',
+    'mdc-form-field--nowrap': noWrap,
+  })}
   on:SMUI:generic:input:mount={(event) => (inputAccessor = event.detail)}
   {...exclude($$props, [
     'use',
@@ -32,10 +35,10 @@
 <script>
   import { MDCFormFieldFoundation } from '@material/form-field';
   import { onMount, setContext } from 'svelte';
-  import { writable } from 'svelte/store';
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
+    classMap,
     exclude,
     prefixFilter,
     useActions,

@@ -16,7 +16,7 @@
     forwardEvents,
     ...use,
   ]}
-  class={Object.entries({
+  class={classMap({
     [className]: true,
     'mdc-button': true,
     'mdc-button--raised': variant === 'raised',
@@ -31,10 +31,7 @@
     'mdc-top-app-bar__action-item': context === 'top-app-bar:action',
     'mdc-snackbar__action': context === 'snackbar',
     ...internalClasses,
-  })
-    .filter(([name, value]) => name !== '' && value)
-    .map(([name]) => name)
-    .join(' ')}
+  })}
   {...actionProp}
   {...defaultProp}
   {...exclude($$props, [
@@ -54,7 +51,11 @@
 <script>
   import { setContext, getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
-  import { forwardEventsBuilder, exclude } from '@smui/common/internal.js';
+  import {
+    forwardEventsBuilder,
+    classMap,
+    exclude,
+  } from '@smui/common/internal.js';
   import A from '@smui/common/A.svelte';
   import Button from '@smui/common/Button.svelte';
   import Ripple from '@smui/ripple/bare.js';

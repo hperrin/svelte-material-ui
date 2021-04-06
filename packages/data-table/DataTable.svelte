@@ -2,7 +2,10 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="mdc-data-table {className}"
+  class={classMap({
+    [className]: true,
+    'mdc-data-table': true,
+  })}
   on:MDCDataTable:rowSelectionChanged={handleChange}
   on:MDCDataTable:selectedAll={handleChange}
   on:MDCDataTable:unselectedAll={handleChange}
@@ -10,7 +13,10 @@
 >
   <table
     use:useActions={table$use}
-    class="mdc-data-table__table {table$class}"
+    class={classMap({
+      [table$class]: true,
+      'mdc-data-table__table': true,
+    })}
     {...prefixFilter($$props, 'table$')}
   >
     <slot />
@@ -24,6 +30,7 @@
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
+    classMap,
     exclude,
     prefixFilter,
     useActions,

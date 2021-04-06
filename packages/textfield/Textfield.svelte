@@ -3,21 +3,21 @@
     bind:this={element}
     use:useActions={use}
     use:forwardEvents
-    class="mdc-text-field {className} {disabled
-      ? 'mdc-text-field--disabled'
-      : ''} {fullwidth ? 'mdc-text-field--fullwidth' : ''} {textarea
-      ? 'mdc-text-field--textarea'
-      : ''} {variant === 'outlined' && !fullwidth
-      ? 'mdc-text-field--outlined'
-      : ''} {variant === 'standard' && !fullwidth && !textarea
-      ? 'smui-text-field--standard'
-      : ''} {dense ? 'mdc-text-field--dense' : ''} {noLabel || label == null
-      ? 'mdc-text-field--no-label'
-      : ''} {withLeadingIcon
-      ? 'mdc-text-field--with-leading-icon'
-      : ''} {withTrailingIcon
-      ? 'mdc-text-field--with-trailing-icon'
-      : ''} {invalid ? 'mdc-text-field--invalid' : ''}"
+    class={classMap({
+      [className]: true,
+      'mdc-text-field': true,
+      'mdc-text-field--disabled': disabled,
+      'mdc-text-field--fullwidth': fullwidth,
+      'mdc-text-field--textarea': textarea,
+      'mdc-text-field--outlined': variant === 'outlined' && !fullwidth,
+      'smui-text-field--standard':
+        variant === 'standard' && !fullwidth && !textarea,
+      'mdc-text-field--dense': dense,
+      'mdc-text-field--no-label': noLabel || label == null,
+      'mdc-text-field--with-leading-icon': withLeadingIcon,
+      'mdc-text-field--with-trailing-icon': withTrailingIcon,
+      'mdc-text-field--invalid': invalid,
+    })}
     {...props}
   >
     <slot />
@@ -79,21 +79,21 @@
     bind:this={element}
     use:useActions={use}
     use:forwardEvents
-    class="mdc-text-field {className} {disabled
-      ? 'mdc-text-field--disabled'
-      : ''} {fullwidth ? 'mdc-text-field--fullwidth' : ''} {textarea
-      ? 'mdc-text-field--textarea'
-      : ''} {variant === 'outlined' && !fullwidth
-      ? 'mdc-text-field--outlined'
-      : ''} {variant === 'standard' && !fullwidth && !textarea
-      ? 'smui-text-field--standard'
-      : ''} {dense ? 'mdc-text-field--dense' : ''} {noLabel
-      ? 'mdc-text-field--no-label'
-      : ''} {withLeadingIcon
-      ? 'mdc-text-field--with-leading-icon'
-      : ''} {withTrailingIcon
-      ? 'mdc-text-field--with-trailing-icon'
-      : ''} {invalid ? 'mdc-text-field--invalid' : ''}"
+    class={classMap({
+      [className]: true,
+      'mdc-text-field': true,
+      'mdc-text-field--disabled': disabled,
+      'mdc-text-field--fullwidth': fullwidth,
+      'mdc-text-field--textarea': textarea,
+      'mdc-text-field--outlined': variant === 'outlined' && !fullwidth,
+      'smui-text-field--standard':
+        variant === 'standard' && !fullwidth && !textarea,
+      'mdc-text-field--dense': dense,
+      'mdc-text-field--no-label': noLabel,
+      'mdc-text-field--with-leading-icon': withLeadingIcon,
+      'mdc-text-field--with-trailing-icon': withTrailingIcon,
+      'mdc-text-field--invalid': invalid,
+    })}
     {...props}
   >
     <slot />
@@ -106,6 +106,7 @@
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
+    classMap,
     exclude,
     prefixFilter,
     useActions,

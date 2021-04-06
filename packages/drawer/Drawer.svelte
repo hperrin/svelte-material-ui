@@ -2,13 +2,14 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="mdc-drawer {className} {Object.keys(internalClasses)
-    .filter((className) => internalClasses[className])
-    .join(' ')} {variant === 'dismissible'
-    ? 'mdc-drawer--dismissible'
-    : ''} {variant === 'modal' ? 'mdc-drawer--modal' : ''} {fixed
-    ? ''
-    : 'smui-drawer__static'}"
+  class={classMap({
+    [className]: true,
+    'mdc-drawer': true,
+    'mdc-drawer--dismissible': variant === 'dismissible',
+    'mdc-drawer--modal': variant === 'modal',
+    'smui-drawer__static': !fixed,
+    ...internalClasses,
+  })}
   on:keydown={(event) => instance && instance.handleKeydown(event)}
   on:transitionend={(event) => instance && instance.handleTransitionEnd(event)}
   {...exclude($$props, ['use', 'class', 'variant', 'open', 'fixed'])}
@@ -26,6 +27,7 @@
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
+    classMap,
     exclude,
     useActions,
     dispatch,

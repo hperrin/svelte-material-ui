@@ -8,9 +8,13 @@
   }}
   use:useActions={use}
   use:forwardEvents
-  class="mdc-radio {className} {Object.keys(internalClasses).join(
-    ' '
-  )} {disabled ? 'mdc-radio--disabled' : ''} {touch ? 'mdc-radio--touch' : ''}"
+  class={classMap({
+    [className]: true,
+    'mdc-radio': true,
+    'mdc-radio--disabled': disabled,
+    'mdc-radio--touch': touch,
+    ...internalClasses,
+  })}
   {...exclude($$props, [
     'use',
     'class',
@@ -24,7 +28,10 @@
 >
   <input
     use:useActions={input$use}
-    class="mdc-radio__native-control {input$class}"
+    class={classMap({
+      [input$class]: true,
+      'mdc-radio__native-control': true,
+    })}
     type="radio"
     {...inputProps}
     {disabled}
@@ -49,6 +56,7 @@
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
+    classMap,
     exclude,
     prefixFilter,
     useActions,
@@ -122,17 +130,14 @@
   });
 
   function addClass(className) {
-    // Doesn't need hasClass.
     if (!internalClasses[className]) {
       internalClasses[className] = true;
     }
   }
 
   function removeClass(className) {
-    // Doesn't need hasClass.
     if (internalClasses[className]) {
-      delete internalClasses[className];
-      internalClasses = internalClasses;
+      internalClasses[className] = false;
     }
   }
 

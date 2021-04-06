@@ -1,22 +1,24 @@
 <div
   bind:this={element}
+  use:useActions={use}
+  use:forwardEvents
   use:Ripple={{
     unbounded: true,
     addClass,
     removeClass,
     active: rippleActive,
   }}
-  use:useActions={use}
-  use:forwardEvents
-  class="mdc-checkbox {className} {Object.keys(internalClasses).join(
-    ' '
-  )} {disabled ? 'mdc-checkbox--disabled' : ''} {touch
-    ? 'mdc-checkbox--touch'
-    : ''} {context === 'data-table' && dataTableHeader
-    ? 'mdc-data-table__header-row-checkbox'
-    : ''} {context === 'data-table' && !dataTableHeader
-    ? 'mdc-data-table__row-checkbox'
-    : ''}"
+  class={classMap({
+    [className]: true,
+    'mdc-checkbox': true,
+    'mdc-checkbox--disabled': disabled,
+    'mdc-checkbox--touch': touch,
+    'mdc-data-table__header-row-checkbox':
+      context === 'data-table' && dataTableHeader,
+    'mdc-data-table__row-checkbox':
+      context === 'data-table' && !dataTableHeader,
+    ...internalClasses,
+  })}
   on:animationend={() => instance && instance.handleAnimationEnd()}
   {...exclude($$props, [
     'use',
@@ -34,7 +36,10 @@
   <input
     bind:this={checkbox}
     use:useActions={input$use}
-    class="mdc-checkbox__native-control {input$class}"
+    class={classMap({
+      [input$class]: true,
+      'mdc-checkbox__native-control': true,
+    })}
     type="checkbox"
     {...inputProps}
     {disabled}
@@ -72,6 +77,7 @@
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
+    classMap,
     exclude,
     prefixFilter,
     useActions,
@@ -196,17 +202,14 @@
   });
 
   function addClass(className) {
-    // Doesn't need hasClass.
     if (!internalClasses[className]) {
       internalClasses[className] = true;
     }
   }
 
   function removeClass(className) {
-    // Doesn't need hasClass.
     if (internalClasses[className]) {
-      delete internalClasses[className];
-      internalClasses = internalClasses;
+      internalClasses[className] = false;
     }
   }
 

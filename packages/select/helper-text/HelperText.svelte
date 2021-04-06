@@ -2,9 +2,12 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="mdc-select-helper-text {className} {persistent
-    ? 'mdc-select-helper-text--persistent'
-    : ''} {validationMsg ? 'mdc-select-helper-text--validation-msg' : ''}"
+  class={classMap({
+    [className]: true,
+    'mdc-select-helper-text': true,
+    'mdc-select-helper-text--persistent': persistent,
+    'mdc-select-helper-text--validation-msg': validationMsg,
+  })}
   aria-hidden="true"
   {...exclude($$props, ['use', 'class', 'persistent', 'validationMsg'])}
 >
@@ -17,6 +20,7 @@
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
+    classMap,
     exclude,
     useActions,
   } from '@smui/common/internal.js';

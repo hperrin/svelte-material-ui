@@ -3,10 +3,12 @@
     bind:this={element}
     use:useActions={use}
     use:forwardEvents
-    class="mdc-chip__icon mdc-chip__icon--leading {className} {$filter &&
-    $isSelected
-      ? 'mdc-chip__icon--leading-hidden'
-      : ''}"
+    class={classMap({
+      [className]: true,
+      'mdc-chip__icon': true,
+      'mdc-chip__icon--leading': true,
+      'mdc-chip__icon--leading-hidden': $filter && $isSelected,
+    })}
     {...exclude($$props, ['use', 'class', 'leading'])}><slot /></i
   >
 {:else}
@@ -18,9 +20,12 @@
   >
     <i
       bind:this={icon}
-      class="mdc-chip__icon mdc-chip__icon--trailing {className} {$shouldRemoveOnTrailingIconClick
-        ? 'mdc-chip__trailing-action'
-        : ''}"
+      class={classMap({
+        [className]: true,
+        'mdc-chip__icon': true,
+        'mdc-chip__icon--trailing': true,
+        'mdc-chip__trailing-action': $shouldRemoveOnTrailingIconClick,
+      })}
       {...$shouldRemoveOnTrailingIconClick ? { role: 'button' } : {}}
       {...exclude($$props, ['use', 'class', 'leading'])}><slot /></i
     >
@@ -32,6 +37,7 @@
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
+    classMap,
     exclude,
     useActions,
   } from '@smui/common/internal.js';

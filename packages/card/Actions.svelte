@@ -2,9 +2,11 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="mdc-card__actions {className} {fullBleed
-    ? 'mdc-card__actions--full-bleed'
-    : ''}"
+  class={classMap({
+    [className]: true,
+    'mdc-card__actions': true,
+    'mdc-card__actions--full-bleed': fullBleed,
+  })}
   {...exclude($$props, ['use', 'class', 'fullBleed'])}
 >
   <slot />
@@ -15,6 +17,7 @@
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
+    classMap,
     exclude,
     useActions,
   } from '@smui/common/internal.js';

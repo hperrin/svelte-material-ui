@@ -2,7 +2,10 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="mdc-text-field__icon {className}"
+  class={classMap({
+    [className]: true,
+    'mdc-text-field__icon': true,
+  })}
   {tabindex}
   aria-hidden={tabindex === '-1' ? 'true' : 'false'}
   {...exclude($$props, ['use', 'class', 'tabindex'])}><slot /></i
@@ -14,6 +17,7 @@
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
+    classMap,
     exclude,
     useActions,
   } from '@smui/common/internal.js';

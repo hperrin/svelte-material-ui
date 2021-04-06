@@ -2,9 +2,13 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="mdc-chip-set {className} {choice ? 'mdc-chip-set--choice' : ''} {filter
-    ? 'mdc-chip-set--filter'
-    : ''} {input ? 'mdc-chip-set--input' : ''}"
+  class={classMap({
+    [className]: true,
+    'mdc-chip-set': true,
+    'mdc-chip-set--choice': choice,
+    'mdc-chip-set--filter': filter,
+    'mdc-chip-set--input': input,
+  })}
   role="grid"
   on:MDCChip:removal={handleRemoval}
   on:MDCChip:selection={handleSelection}
@@ -33,6 +37,7 @@
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
+    classMap,
     exclude,
     useActions,
   } from '@smui/common/internal.js';

@@ -8,7 +8,11 @@
   role="gridcell"
 >
   <span
-    class="mdc-chip__text mdc-chip__primary-action {className}"
+    class={classMap({
+      [className]: true,
+      'mdc-chip__text': true,
+      'mdc-chip__primary-action': true,
+    })}
     bind:this={text}
     role={$filter ? 'checkbox' : $choice ? 'radio' : 'button'}
     {...$filter || $choice
@@ -23,6 +27,7 @@
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
+    classMap,
     exclude,
     useActions,
   } from '@smui/common/internal.js';
