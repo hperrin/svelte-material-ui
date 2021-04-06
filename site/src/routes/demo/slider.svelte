@@ -7,7 +7,7 @@
 
   <div>
     <FormField align="end" style="display: flex;">
-      <Slider style="flex-grow: 1;" bind:value />
+      <Slider style="flex-grow: 1;" bind:value step={0.01} />
       <span
         slot="label"
         style="padding-right: 12px; width: max-content; display: block;"
@@ -16,7 +16,7 @@
     </FormField>
   </div>
 
-  <pre class="status">Value: {value}</pre>
+  <pre class="status">Value: {value.toFixed(2)}</pre>
 
   <div>
     Discrete with min/max/step:
@@ -38,9 +38,9 @@
 
     <Slider
       bind:value={valueSteps}
-      min={-10}
-      max={10}
-      step={2}
+      min={-100}
+      max={100}
+      step={5}
       discrete
       tickMarks
       input$aria-label="Tick mark slider"

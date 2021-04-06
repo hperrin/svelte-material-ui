@@ -35,7 +35,9 @@
       {step}
       {min}
       max={end}
-      value={start}
+      bind:value={start}
+      on:focusin={() => (thumbStartRippleActive = true)}
+      on:focusout={() => (thumbStartRippleActive = false)}
       on:change
       on:input
       {...inputStartAttrs}
@@ -49,7 +51,9 @@
       {step}
       min={start}
       {max}
-      value={end}
+      bind:value={end}
+      on:focusin={() => (thumbRippleActive = true)}
+      on:focusout={() => (thumbRippleActive = false)}
       on:change
       on:input
       {...inputProps}
@@ -65,7 +69,9 @@
       {step}
       {min}
       {max}
-      {value}
+      bind:value
+      on:focusin={() => (thumbRippleActive = true)}
+      on:focusout={() => (thumbRippleActive = false)}
       on:change
       on:input
       {...inputProps}
@@ -344,9 +350,13 @@
         // https://github.com/material-components/material-components-web/issues/6448
 
         if (range && thumb === Thumb.START) {
-          thumbStartRippleActive = false;
+          if (inputStart !== document.activeElement) {
+            thumbStartRippleActive = false;
+          }
         } else {
-          thumbRippleActive = false;
+          if (input !== document.activeElement) {
+            thumbRippleActive = false;
+          }
         }
       },
       registerEventHandler: (evtType, handler) => {
