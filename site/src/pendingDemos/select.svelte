@@ -7,7 +7,12 @@
 
   <div class="columns margins" style="justify-content: flex-start;">
     <div>
-      <Select bind:value={valuePrefilled} label="Select Menu" anchor$class="demo-select-width" menu$class="demo-select-width">
+      <Select
+        bind:value={valuePrefilled}
+        label="Select Menu"
+        anchor$class="demo-select-width"
+        menu$class="demo-select-width"
+      >
         {#each fruits as fruit}
           <Option value={fruit}>{fruit}</Option>
         {/each}
@@ -18,12 +23,17 @@
   </div>
 
   <div>
-    Standard:<br />
+    <h6 class="demo-title">Standard</h6>
 
     <div class="columns margins">
       <div>
-        <Select bind:value={valueStandard} label="Fruit" anchor$class="demo-select-width" menu$class="demo-select-width">
-          <Option value=""></Option>
+        <Select
+          bind:value={valueStandard}
+          label="Fruit"
+          anchor$class="demo-select-width"
+          menu$class="demo-select-width"
+        >
+          <Option value="" />
           {#each fruits as fruit}
             <Option value={fruit}>{fruit}</Option>
           {/each}
@@ -33,8 +43,13 @@
       </div>
 
       <div>
-        <Select bind:value={valueStandardHelperText} label="With Helper Text" anchor$class="demo-select-width" menu$class="demo-select-width">
-          <Option value=""></Option>
+        <Select
+          bind:value={valueStandardHelperText}
+          label="With Helper Text"
+          anchor$class="demo-select-width"
+          menu$class="demo-select-width"
+        >
+          <Option value="" />
           {#each fruits as fruit}
             <Option value={fruit}>{fruit}</Option>
           {/each}
@@ -45,9 +60,15 @@
       </div>
 
       <div>
-        <Select withLeadingIcon bind:value={valueStandardLeadingIcon} label="Leading Icon" anchor$class="demo-select-width" menu$class="demo-select-width">
+        <Select
+          withLeadingIcon
+          bind:value={valueStandardLeadingIcon}
+          label="Leading Icon"
+          anchor$class="demo-select-width"
+          menu$class="demo-select-width"
+        >
           <span slot="icon"><Icon class="material-icons">event</Icon></span>
-          <Option value=""></Option>
+          <Option value="" />
           {#each fruits as fruit}
             <Option value={fruit}>{fruit}</Option>
           {/each}
@@ -57,8 +78,14 @@
       </div>
 
       <div>
-        <Select invalid bind:value={valueStandardInvalid} label="Invalid" anchor$class="demo-select-width" menu$class="demo-select-width">
-          <Option value=""></Option>
+        <Select
+          invalid
+          bind:value={valueStandardInvalid}
+          label="Invalid"
+          anchor$class="demo-select-width"
+          menu$class="demo-select-width"
+        >
+          <Option value="" />
           {#each fruits as fruit}
             <Option value={fruit}>{fruit}</Option>
           {/each}
@@ -70,12 +97,18 @@
   </div>
 
   <div>
-    Filled:<br />
+    <h6 class="demo-title">Filled</h6>
 
     <div class="columns margins">
       <div>
-        <Select variant="filled" bind:value={valueFilled} label="Fruit" anchor$class="demo-select-width" menu$class="demo-select-width">
-          <Option value=""></Option>
+        <Select
+          variant="filled"
+          bind:value={valueFilled}
+          label="Fruit"
+          anchor$class="demo-select-width"
+          menu$class="demo-select-width"
+        >
+          <Option value="" />
           {#each fruits as fruit}
             <Option value={fruit}>{fruit}</Option>
           {/each}
@@ -85,8 +118,14 @@
       </div>
 
       <div>
-        <Select variant="filled" bind:value={valueFilledHelperText} label="With Helper Text" anchor$class="demo-select-width" menu$class="demo-select-width">
-          <Option value=""></Option>
+        <Select
+          variant="filled"
+          bind:value={valueFilledHelperText}
+          label="With Helper Text"
+          anchor$class="demo-select-width"
+          menu$class="demo-select-width"
+        >
+          <Option value="" />
           {#each fruits as fruit}
             <Option value={fruit}>{fruit}</Option>
           {/each}
@@ -97,9 +136,16 @@
       </div>
 
       <div>
-        <Select variant="filled" withLeadingIcon bind:value={valueFilledLeadingIcon} label="Leading Icon" anchor$class="demo-select-width" menu$class="demo-select-width">
+        <Select
+          variant="filled"
+          withLeadingIcon
+          bind:value={valueFilledLeadingIcon}
+          label="Leading Icon"
+          anchor$class="demo-select-width"
+          menu$class="demo-select-width"
+        >
           <span slot="icon"><Icon class="material-icons">event</Icon></span>
-          <Option value=""></Option>
+          <Option value="" />
           {#each fruits as fruit}
             <Option value={fruit}>{fruit}</Option>
           {/each}
@@ -109,8 +155,15 @@
       </div>
 
       <div>
-        <Select variant="filled" invalid bind:value={valueFilledInvalid} label="Invalid" anchor$class="demo-select-width" menu$class="demo-select-width">
-          <Option value=""></Option>
+        <Select
+          variant="filled"
+          invalid
+          bind:value={valueFilledInvalid}
+          label="Invalid"
+          anchor$class="demo-select-width"
+          menu$class="demo-select-width"
+        >
+          <Option value="" />
           {#each fruits as fruit}
             <Option value={fruit}>{fruit}</Option>
           {/each}
@@ -122,12 +175,18 @@
   </div>
 
   <div>
-    Outlined:<br />
+    <h6 class="demo-title">Outlined</h6>
 
     <div class="columns margins">
       <div>
-        <Select variant="outlined" bind:value={valueOutlined} label="Fruit" anchor$class="demo-select-width" menu$class="demo-select-width">
-          <Option value=""></Option>
+        <Select
+          variant="outlined"
+          bind:value={valueOutlined}
+          label="Fruit"
+          anchor$class="demo-select-width"
+          menu$class="demo-select-width"
+        >
+          <Option value="" />
           {#each fruits as fruit}
             <Option value={fruit}>{fruit}</Option>
           {/each}
@@ -137,8 +196,14 @@
       </div>
 
       <div>
-        <Select variant="outlined" bind:value={valueOutlinedHelperText} label="With Helper Text" anchor$class="demo-select-width" menu$class="demo-select-width">
-          <Option value=""></Option>
+        <Select
+          variant="outlined"
+          bind:value={valueOutlinedHelperText}
+          label="With Helper Text"
+          anchor$class="demo-select-width"
+          menu$class="demo-select-width"
+        >
+          <Option value="" />
           {#each fruits as fruit}
             <Option value={fruit}>{fruit}</Option>
           {/each}
@@ -149,9 +214,16 @@
       </div>
 
       <div>
-        <Select variant="outlined" withLeadingIcon bind:value={valueOutlinedLeadingIcon} label="Leading Icon" anchor$class="demo-select-width" menu$class="demo-select-width">
+        <Select
+          variant="outlined"
+          withLeadingIcon
+          bind:value={valueOutlinedLeadingIcon}
+          label="Leading Icon"
+          anchor$class="demo-select-width"
+          menu$class="demo-select-width"
+        >
           <span slot="icon"><Icon class="material-icons">event</Icon></span>
-          <Option value=""></Option>
+          <Option value="" />
           {#each fruits as fruit}
             <Option value={fruit}>{fruit}</Option>
           {/each}
@@ -161,8 +233,15 @@
       </div>
 
       <div>
-        <Select variant="outlined" invalid bind:value={valueOutlinedInvalid} label="Invalid" anchor$class="demo-select-width" menu$class="demo-select-width">
-          <Option value=""></Option>
+        <Select
+          variant="outlined"
+          invalid
+          bind:value={valueOutlinedInvalid}
+          label="Invalid"
+          anchor$class="demo-select-width"
+          menu$class="demo-select-width"
+        >
+          <Option value="" />
           {#each fruits as fruit}
             <Option value={fruit}>{fruit}</Option>
           {/each}
@@ -174,12 +253,19 @@
   </div>
 
   <div>
-    Shaped Filled:<br />
+    <h6 class="demo-title">Shaped Filled</h6>
 
     <div class="columns margins">
       <div>
-        <Select class="shaped" variant="filled" bind:value={valueShapedFilled} label="Fruit" anchor$class="demo-select-width" menu$class="demo-select-width">
-          <Option value=""></Option>
+        <Select
+          class="shaped"
+          variant="filled"
+          bind:value={valueShapedFilled}
+          label="Fruit"
+          anchor$class="demo-select-width"
+          menu$class="demo-select-width"
+        >
+          <Option value="" />
           {#each fruits as fruit}
             <Option value={fruit}>{fruit}</Option>
           {/each}
@@ -189,8 +275,15 @@
       </div>
 
       <div>
-        <Select class="shaped" variant="filled" bind:value={valueShapedFilledHelperText} label="With Helper Text" anchor$class="demo-select-width" menu$class="demo-select-width">
-          <Option value=""></Option>
+        <Select
+          class="shaped"
+          variant="filled"
+          bind:value={valueShapedFilledHelperText}
+          label="With Helper Text"
+          anchor$class="demo-select-width"
+          menu$class="demo-select-width"
+        >
+          <Option value="" />
           {#each fruits as fruit}
             <Option value={fruit}>{fruit}</Option>
           {/each}
@@ -201,9 +294,17 @@
       </div>
 
       <div>
-        <Select class="shaped" variant="filled" withLeadingIcon bind:value={valueShapedFilledLeadingIcon} label="Leading Icon" anchor$class="demo-select-width" menu$class="demo-select-width">
+        <Select
+          class="shaped"
+          variant="filled"
+          withLeadingIcon
+          bind:value={valueShapedFilledLeadingIcon}
+          label="Leading Icon"
+          anchor$class="demo-select-width"
+          menu$class="demo-select-width"
+        >
           <span slot="icon"><Icon class="material-icons">event</Icon></span>
-          <Option value=""></Option>
+          <Option value="" />
           {#each fruits as fruit}
             <Option value={fruit}>{fruit}</Option>
           {/each}
@@ -213,8 +314,16 @@
       </div>
 
       <div>
-        <Select class="shaped" variant="filled" invalid bind:value={valueShapedFilledInvalid} label="Invalid" anchor$class="demo-select-width" menu$class="demo-select-width">
-          <Option value=""></Option>
+        <Select
+          class="shaped"
+          variant="filled"
+          invalid
+          bind:value={valueShapedFilledInvalid}
+          label="Invalid"
+          anchor$class="demo-select-width"
+          menu$class="demo-select-width"
+        >
+          <Option value="" />
           {#each fruits as fruit}
             <Option value={fruit}>{fruit}</Option>
           {/each}
@@ -226,12 +335,19 @@
   </div>
 
   <div>
-    Shaped Outlined:<br />
+    <h6 class="demo-title">Shaped Outlined</h6>
 
     <div class="columns margins">
       <div>
-        <Select class="shaped-outlined" variant="outlined" bind:value={valueShapedOutlined} label="Fruit" anchor$class="demo-select-width" menu$class="demo-select-width">
-          <Option value=""></Option>
+        <Select
+          class="shaped-outlined"
+          variant="outlined"
+          bind:value={valueShapedOutlined}
+          label="Fruit"
+          anchor$class="demo-select-width"
+          menu$class="demo-select-width"
+        >
+          <Option value="" />
           {#each fruits as fruit}
             <Option value={fruit}>{fruit}</Option>
           {/each}
@@ -241,8 +357,15 @@
       </div>
 
       <div>
-        <Select class="shaped-outlined" variant="outlined" bind:value={valueShapedOutlinedHelperText} label="With Helper Text" anchor$class="demo-select-width" menu$class="demo-select-width">
-          <Option value=""></Option>
+        <Select
+          class="shaped-outlined"
+          variant="outlined"
+          bind:value={valueShapedOutlinedHelperText}
+          label="With Helper Text"
+          anchor$class="demo-select-width"
+          menu$class="demo-select-width"
+        >
+          <Option value="" />
           {#each fruits as fruit}
             <Option value={fruit}>{fruit}</Option>
           {/each}
@@ -253,9 +376,17 @@
       </div>
 
       <div>
-        <Select class="shaped-outlined" variant="outlined" withLeadingIcon bind:value={valueShapedOutlinedLeadingIcon} label="Leading Icon" anchor$class="demo-select-width" menu$class="demo-select-width">
+        <Select
+          class="shaped-outlined"
+          variant="outlined"
+          withLeadingIcon
+          bind:value={valueShapedOutlinedLeadingIcon}
+          label="Leading Icon"
+          anchor$class="demo-select-width"
+          menu$class="demo-select-width"
+        >
           <span slot="icon"><Icon class="material-icons">event</Icon></span>
-          <Option value=""></Option>
+          <Option value="" />
           {#each fruits as fruit}
             <Option value={fruit}>{fruit}</Option>
           {/each}
@@ -265,8 +396,16 @@
       </div>
 
       <div>
-        <Select class="shaped-outlined" variant="outlined" invalid bind:value={valueShapedOutlinedInvalid} label="Invalid" anchor$class="demo-select-width" menu$class="demo-select-width">
-          <Option value=""></Option>
+        <Select
+          class="shaped-outlined"
+          variant="outlined"
+          invalid
+          bind:value={valueShapedOutlinedInvalid}
+          label="Invalid"
+          anchor$class="demo-select-width"
+          menu$class="demo-select-width"
+        >
+          <Option value="" />
           {#each fruits as fruit}
             <Option value={fruit}>{fruit}</Option>
           {/each}
@@ -279,7 +418,7 @@
 </section>
 
 <script>
-  import Select, {Option} from '@smui/select';
+  import Select, { Option } from '@smui/select';
   import Icon from '@smui/select/icon/index';
   import HelperText from '@smui/select/helper-text/index';
 
@@ -338,11 +477,17 @@
     padding-left: 32px;
     padding-right: 0;
   }
-  * :global(.shaped-outlined .mdc-notched-outline .mdc-notched-outline__leading) {
+  *
+    :global(.shaped-outlined
+      .mdc-notched-outline
+      .mdc-notched-outline__leading) {
     border-radius: 28px 0 0 28px;
     width: 28px;
   }
-  * :global(.shaped-outlined .mdc-notched-outline .mdc-notched-outline__trailing) {
+  *
+    :global(.shaped-outlined
+      .mdc-notched-outline
+      .mdc-notched-outline__trailing) {
     border-radius: 0 28px 28px 0;
   }
   * :global(.shaped-outlined .mdc-notched-outline .mdc-notched-outline__notch) {

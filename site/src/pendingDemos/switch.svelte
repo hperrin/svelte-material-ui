@@ -24,12 +24,18 @@
   <pre class="status">Checked: {simpleSelected2}</pre>
 
   <div>
-    Group switch:<br />
+    <h6 class="demo-title">Group switch</h6>
     {#each options as option}
       <div style="margin: 18px 0;">
         <FormField>
-          <Switch bind:group={selected} value={option.name} disabled={option.disabled} />
-          <span slot="label">{option.name}{option.disabled ? ' (disabled)' : ''}</span>
+          <Switch
+            bind:group={selected}
+            value={option.name}
+            disabled={option.disabled}
+          />
+          <span slot="label"
+            >{option.name}{option.disabled ? ' (disabled)' : ''}</span
+          >
         </FormField>
       </div>
     {/each}
@@ -48,32 +54,32 @@
   let options = [
     {
       name: 'Bashful',
-      disabled: false
+      disabled: false,
     },
     {
       name: 'Doc',
-      disabled: true
+      disabled: true,
     },
     {
       name: 'Dopey',
-      disabled: false
+      disabled: false,
     },
     {
       name: 'Happy',
-      disabled: false
+      disabled: false,
     },
     {
       name: 'Sleepy',
-      disabled: false
+      disabled: false,
     },
     {
       name: 'Sneezy',
-      disabled: false
+      disabled: false,
     },
     {
       name: 'Grumpy',
-      disabled: false
-    }
+      disabled: false,
+    },
   ];
   let selected = ['Happy', 'Grumpy'];
 </script>

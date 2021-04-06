@@ -40,7 +40,7 @@
   </div>
 
   <div>
-    With Row Selection:
+    <h6 class="demo-title">With Row Selection</h6>
 
     <div>
       <DataTable>
@@ -58,7 +58,11 @@
           {#each options as option (option.name)}
             <Row>
               <Cell checkbox>
-                <Checkbox bind:group={selected} value={option} valueKey={option.name} />
+                <Checkbox
+                  bind:group={selected}
+                  value={option}
+                  valueKey={option.name}
+                />
               </Cell>
               <Cell>{option.name}</Cell>
               <Cell>{option.description}</Cell>
@@ -70,37 +74,41 @@
     </div>
   </div>
 
-  <pre class="status">Selected: {selected.map(option => option.name).join(', ')}</pre>
+  <pre
+    class="status">Selected: {selected.map(option => option.name).join(', ')}</pre>
   <pre class="status">Total: {selectedPrice}</pre>
 </section>
 
 <script>
-  import DataTable, {Head, Body, Row, Cell} from '@smui/data-table';
+  import DataTable, { Head, Body, Row, Cell } from '@smui/data-table';
   import Checkbox from '@smui/checkbox';
 
-  $: selectedPrice = selected.reduce((total, option) => option.price + total, 0);
+  $: selectedPrice = selected.reduce(
+    (total, option) => option.price + total,
+    0
+  );
 
   let options = [
     {
       name: 'Broom',
       description: 'A wooden handled broom.',
-      price: 15
+      price: 15,
     },
     {
       name: 'Dust Pan',
       description: 'A plastic dust pan.',
-      price: 8
+      price: 8,
     },
     {
       name: 'Mop',
       description: 'A strong, durable mop.',
-      price: 18
+      price: 18,
     },
     {
       name: 'Bucket',
       description: 'A metal bucket.',
-      price: 13
-    }
+      price: 13,
+    },
   ];
   let selected = [options[2]];
 </script>

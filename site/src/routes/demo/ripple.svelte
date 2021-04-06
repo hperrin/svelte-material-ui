@@ -18,8 +18,8 @@
     Secondary color.
   </p>
 
+  <h6 class="demo-title">Unbounded</h6>
   <p>
-    Unbounded:
     <span
       use:Ripple={{
         surface: true,

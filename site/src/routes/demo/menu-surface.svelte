@@ -34,7 +34,7 @@
   <pre class="status">Clicked: {clicked}</pre>
 
   <!-- <div>
-    Anchored automatically, corner set to bottom-left:
+<h6 class="demo-title">Anchored automatically, corner set to bottom-left</h6>
 
     <div style="min-width: 100px;">
       <Button on:click={() => formSurface.setOpen(true)}
@@ -56,7 +56,7 @@
   </div> -->
 
   <div>
-    Anchored manually:
+    <h6 class="demo-title">Anchored manually</h6>
 
     <div
       class={Object.keys(imageListAnchorClasses).join(' ')}

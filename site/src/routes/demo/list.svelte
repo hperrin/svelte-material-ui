@@ -6,7 +6,7 @@
   <h2>Lists</h2>
 
   <div>
-    A simple list:
+    <h6 class="demo-title">A simple list</h6>
     <List class="demo-list">
       <Item on:SMUI:action={() => (clickedSimple = 'Cut')}
         ><Text>Cut</Text></Item
@@ -27,7 +27,7 @@
   <pre class="status">Clicked: {clickedSimple}</pre>
 
   <div>
-    A dense list with graphics:
+    <h6 class="demo-title">A dense list with graphics</h6>
     <List class="demo-list" dense>
       <Item on:SMUI:action={() => (clickedDense = 'Edit')}>
         <Graphic class="material-icons">edit</Graphic>
@@ -52,7 +52,7 @@
   <pre class="status">Clicked: {clickedDense}</pre>
 
   <div>
-    A non-interactive list with activated item:
+    <h6 class="demo-title">A non-interactive list with activated item</h6>
     <List class="demo-list" nonInteractive>
       <Item ripple={false}><Text>Thing 1</Text></Item>
       <Separator />
@@ -64,7 +64,9 @@
   </div>
 
   <div>
-    A two-line single selection list with avatars, disabled item, and meta:
+    <h6 class="demo-title">
+      A two-line single selection list with avatars, disabled item, and meta
+    </h6>
     <List
       class="demo-list"
       twoLine
@@ -98,7 +100,7 @@
     class="status">Selected: {selectionTwoLine}, value of selectedIndex: {selectionIndex}</pre>
 
   <div>
-    A three-line list:
+    <h6 class="demo-title">A three-line list</h6>
     <List class="demo-list" threeLine nonInteractive>
       <Item>
         <Text>
@@ -120,7 +122,7 @@
   </div>
 
   <div>
-    A list group:
+    <h6 class="demo-title">A list group</h6>
     <Group>
       <Subheader>Actors</Subheader>
       <List class="demo-list">
@@ -167,7 +169,7 @@
   <pre class="status">Clicked: {clickedGroup}</pre>
 
   <div>
-    A radio list:
+    <h6 class="demo-title">A radio list</h6>
     <List class="demo-list" radiolist>
       <Item>
         <Graphic>
@@ -205,7 +207,7 @@
   <pre class="status">Selected: {selectedRadio}</pre>
 
   <div>
-    A check list with trailing checkboxes:
+    <h6 class="demo-title">A check list with trailing checkboxes</h6>
     <List class="demo-list" checklist>
       <Item>
         <Label>Bruce Willis</Label>

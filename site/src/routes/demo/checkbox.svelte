@@ -24,7 +24,8 @@
   <pre class="status">Checked: {simpleSelected2}</pre>
 
   <div>
-    Increased touch target:<br />
+    <h6 class="demo-title">Increased touch target</h6>
+
     <FormField>
       <Checkbox bind:checked={simpleSelected3} touch />
       <span slot="label">Remember me.</span>
@@ -34,7 +35,7 @@
   <pre class="status">Checked: {simpleSelected3}</pre>
 
   <div>
-    Group checkbox:<br />
+    <h6 class="demo-title">Group checkbox</h6>
     {#each options as option}
       <FormField>
         <Checkbox
@@ -52,7 +53,7 @@
   <pre class="status">Selected: {selected.join(', ')}</pre>
 
   <div>
-    Indeterminate:<br />
+    <h6 class="demo-title">Indeterminate</h6>
     <FormField>
       <Checkbox
         bind:checked={indeterminateChecked}
@@ -61,10 +62,12 @@
       />
       <span slot="label">I agree to the terms.</span>
     </FormField>
+
+    <br />
+    <Button on:click={() => (indeterminateChecked = null)}>reset</Button>
   </div>
 
   <pre class="status">Checked: {indeterminateChecked}</pre>
-  <Button on:click={() => (indeterminateChecked = null)}>reset</Button>
 </section>
 
 <script>

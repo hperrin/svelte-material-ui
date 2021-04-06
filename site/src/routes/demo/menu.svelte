@@ -22,7 +22,7 @@
   </div>
 
   <div>
-    Anchored automatically:
+    <h6 class="demo-title">Anchored automatically</h6>
 
     <div style="min-width: 100px;">
       <Button on:click={() => menu.setOpen(true)}>Open Menu</Button>
@@ -45,7 +45,9 @@
   </div>
 
   <div>
-    Two line, anchored manually, corner set to bottom-left:
+    <h6 class="demo-title">
+      Two line, anchored manually, corner set to bottom-left
+    </h6>
 
     <div
       class={Object.keys(anchor2Classes).join(' ')}
@@ -105,7 +107,7 @@
   <pre class="status">Clicked: {clicked}</pre>
 
   <div>
-    Selection groups:
+    <h6 class="demo-title">Selection groups</h6>
 
     <div style="min-width: 100px;">
       <Button on:click={() => menu3.setOpen(true)}>Open Menu</Button>

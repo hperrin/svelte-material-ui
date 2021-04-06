@@ -39,7 +39,7 @@
   </div>
 
   <div>
-    Increased touch target: <br />
+    <h6 class="demo-title">Increased touch target</h6>
     <Button on:click={() => clicked++} touch><Label>Default</Label></Button>
     <Button on:click={() => clicked++} touch variant="raised"
       ><Label>Raised</Label></Button
@@ -59,7 +59,7 @@
   </div>
 
   <div>
-    Secondary color: <br />
+    <h6 class="demo-title">Secondary color</h6>
     <Button color="secondary" on:click={() => clicked++}
       ><Label>Default</Label></Button
     >
@@ -100,7 +100,7 @@
   </div>
 
   <div>
-    Button groups: <br />
+    <h6 class="demo-title">Button groups</h6>
     <Group>
       <Button on:click={() => clicked++}><Label>One</Label></Button>
       <Button on:click={() => clicked++}><Label>Two</Label></Button>
@@ -159,7 +159,7 @@
   </div>
 
   <div>
-    Split buttons using a button group: <br />
+    <h6 class="demo-title">Split buttons using a button group</h6>
     <Group variant="raised">
       <Button on:click={() => clicked++} variant="raised"
         ><Label>Do the thing</Label></Button
@@ -207,7 +207,7 @@
   </div>
 
   <div>
-    Creating rounded buttons with Sass mixins: <br />
+    <h6 class="demo-title">Creating rounded buttons with Sass mixins</h6>
     <Button
       on:click={() => clicked++}
       variant="raised"
@@ -239,7 +239,7 @@
   </div>
 
   <div>
-    Creating notched buttons with vanilla Sass: <br />
+    <h6 class="demo-title">Creating notched buttons with vanilla Sass</h6>
     <Button
       on:click={() => clicked++}
       variant="raised"

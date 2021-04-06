@@ -6,10 +6,10 @@
   <h2>Top App Bar</h2>
 
   <div>
-    Top app bars in a container. (Only the "static" variant works inside
-    containers.)
-
-    <br /><br />
+    <h6 class="demo-title">Top app bars in a container</h6>
+    <p class="demo-subtitle mdc-typography--subtitle1">
+      (Only the "static" variant works inside containers.)
+    </p>
 
     <div>
       <FormField>
@@ -90,9 +90,10 @@
   </div>
 
   <div>
-    Page level top app bars. (These are displayed in iframes.)
-
-    <br /><br />
+    <h6 class="demo-title">Page level top app bars</h6>
+    <p class="demo-subtitle mdc-typography--subtitle1">
+      (These are displayed in iframes.)
+    </p>
 
     <iframe
       class="top-app-bar-iframe"

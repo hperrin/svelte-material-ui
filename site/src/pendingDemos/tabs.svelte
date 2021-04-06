@@ -14,9 +14,9 @@
     </TabBar>
 
     <div style="margin-top: 15px;">
-      Programmatically select:
+      <h6 class="demo-title">Programmatically select</h6>
       {#each ['Home', 'Merchandise', 'About Us'] as tab}
-        <Button on:click={() => active = tab}><Label>{tab}</Label></Button>
+        <Button on:click={() => (active = tab)}><Label>{tab}</Label></Button>
       {/each}
     </div>
 
@@ -24,7 +24,7 @@
   </div>
 
   <div>
-    Tabs with icons next to labels:
+    <h6 class="demo-title">Tabs with icons next to labels</h6>
     <TabBar tabs={iconTabs} let:tab>
       <Tab {tab}>
         <Icon class="material-icons">{tab.icon}</Icon>
@@ -34,9 +34,22 @@
   </div>
 
   <div>
-    Keyed tabs with icons above labels, preselected tab, indicators restricted to content, and fade transition:
-    <TabBar tabs={keyedTabs} let:tab key={tab => tab.k} bind:active={keyedTabsActive}>
-      <Tab {tab} stacked={true} indicatorSpanOnlyContent={true} tabIndicator$transition="fade">
+    <h6 class="demo-title">
+      Keyed tabs with icons above labels, preselected tab, indicators restricted
+      to content, and fade transition
+    </h6>
+    <TabBar
+      tabs={keyedTabs}
+      let:tab
+      key={(tab) => tab.k}
+      bind:active={keyedTabsActive}
+    >
+      <Tab
+        {tab}
+        stacked={true}
+        indicatorSpanOnlyContent={true}
+        tabIndicator$transition="fade"
+      >
         <Icon class="material-icons">{tab.icon}</Icon>
         <Label>{tab.label}</Label>
       </Tab>
@@ -46,7 +59,7 @@
   </div>
 
   <div>
-    Scrolling tabs:
+    <h6 class="demo-title">Scrolling tabs</h6>
     <TabBar tabs={[...Array(20)].map((v, i) => i + 1)} let:tab>
       <Tab {tab}>
         <Label>Tab {tab}</Label>
@@ -55,7 +68,7 @@
   </div>
 
   <div>
-    Min width tabs:
+    <h6 class="demo-title">Min width tabs</h6>
     <TabBar tabs={['Home', 'Merchandise', 'About Us']} let:tab>
       <Tab {tab} minWidth>
         <Label>{tab}</Label>
@@ -64,9 +77,13 @@
   </div>
 
   <div class="icon-indicators">
-    Icon indicators:
+    <h6 class="demo-title">Icon indicators</h6>
     <TabBar tabs={['Home', 'Merchandise', 'About Us']} let:tab>
-      <Tab {tab} tabIndicator$type="icon" tabIndicator$content$class="material-icons">
+      <Tab
+        {tab}
+        tabIndicator$type="icon"
+        tabIndicator$content$class="material-icons"
+      >
         <Label>{tab}</Label>
         <span slot="tab-indicator">star</span>
       </Tab>
@@ -74,19 +91,30 @@
   </div>
 
   <div>
-    Tabs with href attributes render as anchor elements:
+    <h6 class="demo-title">
+      Tabs with href attributes render as anchor elements
+    </h6>
     <TabBar tabs={['Home', 'Merchandise', 'About Us']} let:tab>
-      <Tab {tab} href="https://en.wikipedia.org/wiki/{tab.replace(/ /g, '_')}" target="href-tabs-frame">
+      <Tab
+        {tab}
+        href="https://en.wikipedia.org/wiki/{tab.replace(/ /g, '_')}"
+        target="href-tabs-frame"
+      >
         <Label>{tab}</Label>
       </Tab>
     </TabBar>
 
-    <iframe src="https://en.wikipedia.org/wiki/Home" title="Selected Tab" name="href-tabs-frame" style="width: 100%; height: 400px; border: 0;" />
+    <iframe
+      src="https://en.wikipedia.org/wiki/Home"
+      title="Selected Tab"
+      name="href-tabs-frame"
+      style="width: 100%; height: 400px; border: 0;"
+    />
   </div>
 </section>
 
 <script>
-  import Tab, {Icon, Label} from '@smui/tab';
+  import Tab, { Icon, Label } from '@smui/tab';
   import TabBar from '@smui/tab-bar';
   import Button from '@smui/button';
 
@@ -94,38 +122,38 @@
   let iconTabs = [
     {
       icon: 'access_time',
-      label: 'Recents'
+      label: 'Recents',
     },
     {
       icon: 'near_me',
-      label: 'Nearby'
+      label: 'Nearby',
     },
     {
       icon: 'favorite',
-      label: 'Favorites'
-    }
+      label: 'Favorites',
+    },
   ];
   let keyedTabs = [
     {
       k: 1,
       icon: 'code',
-      label: 'Code'
+      label: 'Code',
     },
     {
       k: 2,
       icon: 'code',
-      label: 'Code'
+      label: 'Code',
     },
     {
       k: 3,
       icon: 'code',
-      label: 'Code'
+      label: 'Code',
     },
     {
       k: 4,
       icon: 'code',
-      label: 'Code'
-    }
+      label: 'Code',
+    },
   ];
   let keyedTabsActive = keyedTabs[2];
 </script>
@@ -135,7 +163,8 @@
     margin-bottom: 40px;
   }
 
-  .icon-indicators :global(.mdc-tab-indicator--active .mdc-tab-indicator__content) {
-    opacity: .2;
+  .icon-indicators
+    :global(.mdc-tab-indicator--active .mdc-tab-indicator__content) {
+    opacity: 0.2;
   }
 </style>

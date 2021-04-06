@@ -16,7 +16,7 @@
   </div>
 
   <div>
-    Square paper: <br />
+    <h6 class="demo-title">Square paper</h6>
 
     <div class="paper-container">
       <Paper square class="paper-demo">
@@ -30,7 +30,7 @@
   </div>
 
   <div>
-    Paper color: <br />
+    <h6 class="demo-title">Paper color</h6>
 
     <div class="paper-container">
       <Paper color="primary" class="paper-demo">
@@ -65,7 +65,7 @@
   </div>
 
   <div>
-    Elevation and transition: <br />
+    <h6 class="demo-title">Elevation and transition</h6>
 
     <div class="paper-container">
       <Paper transition {elevation} {color} class="paper-demo">

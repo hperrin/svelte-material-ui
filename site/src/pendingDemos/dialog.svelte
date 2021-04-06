@@ -6,31 +6,43 @@
   <h2>Dialogs</h2>
 
   <div>
-    <Dialog bind:this={simpleDialog} aria-labelledby="simple-title" aria-describedby="simple-content">
+    <Dialog
+      bind:this={simpleDialog}
+      aria-labelledby="simple-title"
+      aria-describedby="simple-content"
+    >
       <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
       <Title id="simple-title">Dialog Title</Title>
-      <Content id="simple-content">
-        Super awesome dialog body text?
-      </Content>
+      <Content id="simple-content">Super awesome dialog body text?</Content>
       <Actions>
-        <Button on:click={() => clicked = 'No'}>
+        <Button on:click={() => (clicked = 'No')}>
           <Label>No</Label>
         </Button>
-        <Button on:click={() => clicked = 'Yes'}>
+        <Button on:click={() => (clicked = 'Yes')}>
           <Label>Yes</Label>
         </Button>
       </Actions>
     </Dialog>
 
-    <Button on:click={() => simpleDialog.open()}><Label>Open Dialog</Label></Button>
+    <Button on:click={() => simpleDialog.open()}
+      ><Label>Open Dialog</Label></Button
+    >
   </div>
 
   <pre class="status">Clicked: {clicked}</pre>
 
   <div>
-    Using dialog events instead of button clicks, with a default button that is initially focused: <br />
+    <h6 class="demo-title">
+      Using dialog events instead of button clicks, with a default button that
+      is initially focused
+    </h6>
 
-    <Dialog bind:this={eventDialog} aria-labelledby="event-title" aria-describedby="event-content" on:MDCDialog:closed={closeHandler}>
+    <Dialog
+      bind:this={eventDialog}
+      aria-labelledby="event-title"
+      aria-describedby="event-content"
+      on:MDCDialog:closed={closeHandler}
+    >
       <Title id="event-title">The Best Dog</Title>
       <Content id="event-content">
         Out of all the dogs, which is the best dog?
@@ -45,34 +57,53 @@
       </Actions>
     </Dialog>
 
-    <Button on:click={() => eventDialog.open()}><Label>Open Dialog</Label></Button>
+    <Button on:click={() => eventDialog.open()}
+      ><Label>Open Dialog</Label></Button
+    >
   </div>
 
   <pre class="status">Response: {response}</pre>
 
   <div>
-    No actions, and a very long list dialog: <br />
+    <h6 class="demo-title">No actions, and a very long list dialog</h6>
 
-    <Dialog bind:this={listDialog} aria-labelledby="list-title" aria-describedby="list-content">
+    <Dialog
+      bind:this={listDialog}
+      aria-labelledby="list-title"
+      aria-describedby="list-content"
+    >
       <Title id="list-title">Dialog Title</Title>
       <Content component={List} id="list-content">
         {#each [...Array(100)].map((v, i) => i + 1) as item}
-          <Item on:click={() => {clickedList = item; listDialog.close()} }>
+          <Item
+            on:click={() => {
+              clickedList = item;
+              listDialog.close();
+            }}
+          >
             <Text>Item #{item}</Text>
           </Item>
         {/each}
       </Content>
     </Dialog>
 
-    <Button on:click={() => listDialog.open()}><Label>Open Dialog</Label></Button>
+    <Button on:click={() => listDialog.open()}
+      ><Label>Open Dialog</Label></Button
+    >
   </div>
 
-  <pre class="status">Clicked: {clickedList}{clickedList === 69 ? ', nice' : ''}</pre>
+  <pre
+    class="status">Clicked: {clickedList}{clickedList === 69 ? ', nice' : ''}</pre>
 
   <div>
-    A selection dialog: <br />
+    <h6 class="demo-title">A selection dialog</h6>
 
-    <Dialog bind:this={listSelectionDialog} aria-labelledby="list-selection-title" aria-describedby="list-selection-content" on:MDCDialog:closed={selectionCloseHandler}>
+    <Dialog
+      bind:this={listSelectionDialog}
+      aria-labelledby="list-selection-title"
+      aria-describedby="list-selection-content"
+      on:MDCDialog:closed={selectionCloseHandler}
+    >
       <Title id="list-selection-title">Dialog Title</Title>
       <Content id="list-selection-content">
         <List radioList>
@@ -106,15 +137,21 @@
       </Actions>
     </Dialog>
 
-    <Button on:click={() => listSelectionDialog.open()}><Label>Open Dialog</Label></Button>
+    <Button on:click={() => listSelectionDialog.open()}
+      ><Label>Open Dialog</Label></Button
+    >
   </div>
 
   <pre class="status">Selected: {selected}</pre>
 
   <div>
-    A dialog with sliders: <br />
+    <h6 class="demo-title">A dialog with sliders</h6>
 
-    <Dialog bind:this={sliderDialog} aria-labelledby="slider-title" aria-describedby="slider-content">
+    <Dialog
+      bind:this={sliderDialog}
+      aria-labelledby="slider-title"
+      aria-describedby="slider-content"
+    >
       <Title id="slider-title">Volumes</Title>
       <Content id="slider-content">
         <div>
@@ -143,14 +180,16 @@
       </Actions>
     </Dialog>
 
-    <Button on:click={() => sliderDialog.open()}><Label>Open Dialog</Label></Button>
+    <Button on:click={() => sliderDialog.open()}
+      ><Label>Open Dialog</Label></Button
+    >
   </div>
 </section>
 
 <script>
-  import Dialog, {Title, Content, Actions, InitialFocus} from '@smui/dialog';
-  import Button, {Label} from '@smui/button';
-  import List, {Item, Graphic, Text} from '@smui/list';
+  import Dialog, { Title, Content, Actions, InitialFocus } from '@smui/dialog';
+  import Button, { Label } from '@smui/button';
+  import List, { Item, Graphic, Text } from '@smui/list';
   import Radio from '@smui/radio';
   import Slider from '@smui/slider';
   import FormField from '@smui/form-field';
@@ -172,13 +211,13 @@
   function closeHandler(e) {
     switch (e.detail.action) {
       case 'none':
-        response = 'Ok, well, you\'re wrong.';
+        response = "Ok, well, you're wrong.";
         break;
       case 'all':
         response = 'You are correct. All dogs are the best dog.';
         break;
       default:
-        response = 'It\'s a simple question. You should be able to answer it.';
+        response = "It's a simple question. You should be able to answer it.";
         break;
     }
   }

@@ -23,7 +23,7 @@
   <pre class="status">Selected: {selected}</pre>
 
   <div class="radio-demo">
-    Increased touch target:<br />
+    <h6 class="demo-title">Increased touch target</h6>
     {#each ['On', 'Off'] as option}
       <FormField>
         <Radio bind:group={onoff} value={option} touch />

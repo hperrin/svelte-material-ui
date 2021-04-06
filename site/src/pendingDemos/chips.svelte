@@ -20,25 +20,39 @@
   </div>
 
   <div>
-    Choice chips:
-    <Set chips={['Morning', 'Afternoon', 'Evening', 'Night']} let:chip choice bind:selected={choice}>
+    <h6 class="demo-title">Choice chips</h6>
+    <Set
+      chips={['Morning', 'Afternoon', 'Evening', 'Night']}
+      let:chip
+      choice
+      bind:selected={choice}
+    >
       <Chip><Text>{chip}</Text></Chip>
     </Set>
   </div>
 
   <div>
-    Programmatically select:
-    <Button on:click={() => choice = 'Morning'}><Label>Morning</Label></Button>
-    <Button on:click={() => choice = 'Afternoon'}><Label>Afternoon</Label></Button>
-    <Button on:click={() => choice = 'Evening'}><Label>Evening</Label></Button>
-    <Button on:click={() => choice = 'Night'}><Label>Night</Label></Button>
+    <h6 class="demo-title">Programmatically select</h6>
+    <Button on:click={() => (choice = 'Morning')}><Label>Morning</Label></Button
+    >
+    <Button on:click={() => (choice = 'Afternoon')}
+      ><Label>Afternoon</Label></Button
+    >
+    <Button on:click={() => (choice = 'Evening')}><Label>Evening</Label></Button
+    >
+    <Button on:click={() => (choice = 'Night')}><Label>Night</Label></Button>
   </div>
 
   <pre class="status">Selected: {choice}</pre>
 
   <div>
-    Filter chips with increased touch target:
-    <Set chips={['Shoes', 'Pants', 'Shirts', 'Hats', 'Coats']} let:chip filter bind:selected={filter}>
+    <h6 class="demo-title">Filter chips with increased touch target</h6>
+    <Set
+      chips={['Shoes', 'Pants', 'Shirts', 'Hats', 'Coats']}
+      let:chip
+      filter
+      bind:selected={filter}
+    >
       <Chip touch>
         <Text>{chip}</Text>
       </Chip>
@@ -46,8 +60,13 @@
   </div>
 
   <div>
-    The same, but with leading icons:
-    <Set chips={['Shoes', 'Pants', 'Shirts', 'Hats', 'Coats']} let:chip filter bind:selected={filter}>
+    <h6 class="demo-title">The same, but with leading icons</h6>
+    <Set
+      chips={['Shoes', 'Pants', 'Shirts', 'Hats', 'Coats']}
+      let:chip
+      filter
+      bind:selected={filter}
+    >
       <Chip touch>
         <Icon class="material-icons" leading>checkroom</Icon>
         <Text>{chip}</Text>
@@ -58,7 +77,7 @@
   <pre class="status">Selected: {filter.join(', ')}</pre>
 
   <div>
-    Input chips:
+    <h6 class="demo-title">Input chips</h6>
     <Set chips={input} let:chip input>
       <Chip>
         <Text>{chip}</Text>
@@ -69,8 +88,8 @@
   </div>
 
   <div>
-    Keyed chips:
-    <Set chips={keyed} let:chip key={chip => chip.k} input>
+    <h6 class="demo-title">Keyed chips</h6>
+    <Set chips={keyed} let:chip key={(chip) => chip.k} input>
       <Chip>
         <Text>{chip.v}</Text>
         <Icon class="material-icons">cancel</Icon>
@@ -81,13 +100,18 @@
 </section>
 
 <script>
-  import Chip, {Set, Icon, Text} from '@smui/chips';
-  import Button, {Label} from '@smui/button';
+  import Chip, { Set, Icon, Text } from '@smui/chips';
+  import Button, { Label } from '@smui/button';
 
   let choice = 'Morning';
   let filter = ['Shoes', 'Shirts', 'Coats'];
   let input = [1, 2, 3, 4];
-  let keyed = [{k: 1, v: 'Apple'}, {k: 2, v: 'Apple'}, {k: 3, v: 'Apple'}, {k: 4, v: 'Apple'}];
+  let keyed = [
+    { k: 1, v: 'Apple' },
+    { k: 2, v: 'Apple' },
+    { k: 3, v: 'Apple' },
+    { k: 4, v: 'Apple' },
+  ];
 
   function addInputChip() {
     if (input.length) {
@@ -101,10 +125,10 @@
 
   function addKeyedChip() {
     if (keyed.length) {
-      keyed.push({k: keyed[keyed.length - 1].k + 1, v: 'Apple'});
+      keyed.push({ k: keyed[keyed.length - 1].k + 1, v: 'Apple' });
       keyed = keyed;
     } else {
-      keyed.push({k: 1, v: 'Apple'});
+      keyed.push({ k: 1, v: 'Apple' });
       keyed = keyed;
     }
   }

@@ -57,7 +57,7 @@
     </div>
   </div>
 
-  Primary color:<br />
+  <h6 class="demo-title">Primary color</h6>
 
   <div class="flexy">
     <div class="margins">

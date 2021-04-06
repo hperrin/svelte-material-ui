@@ -19,7 +19,7 @@
   <pre class="status">Value: {value.toFixed(2)}</pre>
 
   <div>
-    Discrete with min/max/step:
+    <h6 class="demo-title">Discrete with min/max/step</h6>
 
     <Slider
       bind:value={valueDiscrete}
@@ -34,7 +34,7 @@
   <pre class="status">Value: {valueDiscrete}</pre>
 
   <div>
-    Discrete with min/max/step and tick marks:
+    <h6 class="demo-title">Discrete with min/max/step and tick marks</h6>
 
     <Slider
       bind:value={valueSteps}
@@ -50,7 +50,7 @@
   <pre class="status">Value: {valueSteps}</pre>
 
   <div>
-    Range slider:
+    <h6 class="demo-title">Range slider</h6>
 
     <Slider
       range

@@ -19,19 +19,19 @@
   </div>
 
   <div>
-    Buffered:
+    <h6 class="demo-title">Buffered</h6>
 
     <LinearProgress progress={0.5} buffer={0.75} />
   </div>
 
   <div>
-    Indeterminate:
+    <h6 class="demo-title">Indeterminate</h6>
 
     <LinearProgress indeterminate />
   </div>
 
   <div>
-    Colored (using Sass mixins):
+    <h6 class="demo-title">Colored (using Sass mixins)</h6>
 
     <LinearProgress class="my-colored-bar" progress={0.5} buffer={0.75} />
   </div>

@@ -24,7 +24,7 @@
   </div>
 
   <div>
-    4x5 aspect ratio, with text protection:
+    <h6 class="demo-title">4x5 aspect ratio, with text protection</h6>
 
     <ImageList class="my-image-list-4x5" withTextProtection>
       {#each Array(15) as _unused, i}
@@ -44,7 +44,7 @@
   </div>
 
   <div>
-    Masonry, with rounded shapes:
+    <h6 class="demo-title">Masonry, with rounded shapes</h6>
 
     <ImageList class="my-image-list-masonry" masonry>
       {#each Array(15) as _unused, i}
@@ -67,8 +67,9 @@
   </div>
 
   <div>
-    Using a <code>div</code> instead of an <code>img</code> to enforce aspect
-    ratio:
+    <h6 class="demo-title">
+      Using a <code>div</code> instead of an <code>img</code> to enforce aspect ratio
+    </h6>
 
     <ImageList class="my-image-list-enforce-ratio">
       {#each Array(15) as _unused, i}

@@ -11,16 +11,22 @@
     </div>
 
     <div class="card-container short">
-      <Card style="width: 250px;"><Content>You can also use <code>Content</code>.</Content></Card>
+      <Card style="width: 250px;"
+        ><Content>You can also use <code>Content</code>.</Content></Card
+      >
     </div>
 
     <div class="card-container short">
-      <Card style="width: 250px;" variant="outlined" padded>An outlined, padded card.</Card>
+      <Card style="width: 250px;" variant="outlined" padded
+        >An outlined, padded card.</Card
+      >
     </div>
 
     <div class="card-container short">
       <Card style="width: 250px;">
-        <PrimaryAction on:click={() => clicked++} padded>Primary Action</PrimaryAction>
+        <PrimaryAction on:click={() => clicked++} padded
+          >Primary Action</PrimaryAction
+        >
       </Card>
     </div>
 
@@ -54,12 +60,25 @@
       <Card style="width: 320px;">
         <Content>A card with action icons.</Content>
         <Actions>
-          <IconButton on:click={() => clicked++} toggle aria-label="Add to favorites" title="Add to favorites">
+          <IconButton
+            on:click={() => clicked++}
+            toggle
+            aria-label="Add to favorites"
+            title="Add to favorites"
+          >
             <Icon class="material-icons" on>favorite</Icon>
             <Icon class="material-icons">favorite_border</Icon>
           </IconButton>
-          <IconButton class="material-icons" on:click={() => clicked++} title="Share">share</IconButton>
-          <IconButton class="material-icons" on:click={() => clicked++} title="More options">more_vert</IconButton>
+          <IconButton
+            class="material-icons"
+            on:click={() => clicked++}
+            title="Share">share</IconButton
+          >
+          <IconButton
+            class="material-icons"
+            on:click={() => clicked++}
+            title="More options">more_vert</IconButton
+          >
         </Actions>
       </Card>
     </div>
@@ -77,12 +96,25 @@
             </Button>
           </ActionButtons>
           <ActionIcons>
-            <IconButton on:click={() => clicked++} toggle aria-label="Add to favorites" title="Add to favorites">
+            <IconButton
+              on:click={() => clicked++}
+              toggle
+              aria-label="Add to favorites"
+              title="Add to favorites"
+            >
               <Icon class="material-icons" on>favorite</Icon>
               <Icon class="material-icons">favorite_border</Icon>
             </IconButton>
-            <IconButton class="material-icons" on:click={() => clicked++} title="Share">share</IconButton>
-            <IconButton class="material-icons" on:click={() => clicked++} title="More options">more_vert</IconButton>
+            <IconButton
+              class="material-icons"
+              on:click={() => clicked++}
+              title="Share">share</IconButton
+            >
+            <IconButton
+              class="material-icons"
+              on:click={() => clicked++}
+              title="More options">more_vert</IconButton
+            >
           </ActionIcons>
         </Actions>
       </Card>
@@ -92,21 +124,30 @@
       <Card style="width: 320px;">
         <Media class="card-media-16x9" aspectRatio="16x9">
           <MediaContent>
-            <h2 class="mdc-typography--headline6" style="color: #fff; position: absolute; bottom: 16px; left: 16px; margin: 0;">A card with 16x9 media.</h2>
+            <h2
+              class="mdc-typography--headline6"
+              style="color: #fff; position: absolute; bottom: 16px; left: 16px; margin: 0;"
+            >
+              A card with 16x9 media.
+            </h2>
           </MediaContent>
         </Media>
-        <Content style="color: #888;">
-          Here's some gray text down here.
-        </Content>
+        <Content style="color: #888;">Here's some gray text down here.</Content>
       </Card>
     </div>
 
     <div class="card-container">
       <Card style="width: 320px;">
         <Media class="card-media-square" aspectRatio="square">
-          <div style="color: #fff; position: absolute; bottom: 16px; left: 16px;">
-            <h2 class="mdc-typography--headline6" style="margin: 0;">A card with square media.</h2>
-            <h3 class="mdc-typography--subtitle2" style="margin: 0;">And a subtitle.</h3>
+          <div
+            style="color: #fff; position: absolute; bottom: 16px; left: 16px;"
+          >
+            <h2 class="mdc-typography--headline6" style="margin: 0;">
+              A card with square media.
+            </h2>
+            <h3 class="mdc-typography--subtitle2" style="margin: 0;">
+              And a subtitle.
+            </h3>
           </div>
         </Media>
       </Card>
@@ -115,11 +156,15 @@
     <div class="card-container">
       <Card style="width: 320px;">
         <div style="padding: 1rem;">
-          <h2 class="mdc-typography--headline6" style="margin: 0;">A card with media.</h2>
-          <h3 class="mdc-typography--subtitle2" style="margin: 0; color: #888;">And a subtitle.</h3>
+          <h2 class="mdc-typography--headline6" style="margin: 0;">
+            A card with media.
+          </h2>
+          <h3 class="mdc-typography--subtitle2" style="margin: 0; color: #888;">
+            And a subtitle.
+          </h3>
         </div>
         <PrimaryAction on:click={() => clicked++}>
-          <Media class="card-media-16x9" aspectRatio="16x9"></Media>
+          <Media class="card-media-16x9" aspectRatio="16x9" />
           <Content class="mdc-typography--body2">
             And some info text. And it's a primary action for the card.
           </Content>
@@ -129,9 +174,7 @@
 
     <div class="card-container">
       <div>
-        <div style="width: 320px;">
-          A card with a list as content:
-        </div>
+        <div style="width: 320px;">A card with a list as content:</div>
         <Card style="width: 320px;">
           <Content component={List}>
             {#each [...Array(6)].map((v, i) => i + 1) as item}
@@ -149,14 +192,21 @@
         <PrimaryAction on:click={() => clicked++}>
           <Media class="card-media-16x9" aspectRatio="16x9">
             <MediaContent>
-              <div style="color: #fff; position: absolute; bottom: 16px; left: 16px;">
-                <h2 class="mdc-typography--headline6" style="margin: 0;">A card with media.</h2>
-                <h3 class="mdc-typography--subtitle2" style="margin: 0;">And a subtitle.</h3>
+              <div
+                style="color: #fff; position: absolute; bottom: 16px; left: 16px;"
+              >
+                <h2 class="mdc-typography--headline6" style="margin: 0;">
+                  A card with media.
+                </h2>
+                <h3 class="mdc-typography--subtitle2" style="margin: 0;">
+                  And a subtitle.
+                </h3>
               </div>
             </MediaContent>
           </Media>
           <Content class="mdc-typography--body2">
-            It's all in this card. It's a veritable smorgasbord of card features.
+            It's all in this card. It's a veritable smorgasbord of card
+            features.
           </Content>
         </PrimaryAction>
         <Actions>
@@ -169,12 +219,25 @@
             </Button>
           </ActionButtons>
           <ActionIcons>
-            <IconButton on:click={() => clicked++} toggle aria-label="Add to favorites" title="Add to favorites">
+            <IconButton
+              on:click={() => clicked++}
+              toggle
+              aria-label="Add to favorites"
+              title="Add to favorites"
+            >
               <Icon class="material-icons" on>favorite</Icon>
               <Icon class="material-icons">favorite_border</Icon>
             </IconButton>
-            <IconButton class="material-icons" on:click={() => clicked++} title="Share">share</IconButton>
-            <IconButton class="material-icons" on:click={() => clicked++} title="More options">more_vert</IconButton>
+            <IconButton
+              class="material-icons"
+              on:click={() => clicked++}
+              title="Share">share</IconButton
+            >
+            <IconButton
+              class="material-icons"
+              on:click={() => clicked++}
+              title="More options">more_vert</IconButton
+            >
           </ActionIcons>
         </Actions>
       </Card>
@@ -183,10 +246,17 @@
     <div class="card-container">
       <Card style="width: 360px;">
         <PrimaryAction on:click={() => clicked++}>
-          <Media class="card-media-16x9" aspectRatio="16x9"></Media>
+          <Media class="card-media-16x9" aspectRatio="16x9" />
           <Content class="mdc-typography--body2">
-            <h2 class="mdc-typography--headline6" style="margin: 0;">A card with media.</h2>
-            <h3 class="mdc-typography--subtitle2" style="margin: 0 0 10px; color: #888;">And a subtitle.</h3>
+            <h2 class="mdc-typography--headline6" style="margin: 0;">
+              A card with media.
+            </h2>
+            <h3
+              class="mdc-typography--subtitle2"
+              style="margin: 0 0 10px; color: #888;"
+            >
+              And a subtitle.
+            </h3>
             It's all in this card. It's a veritable smorgasbord of card features.
           </Content>
         </PrimaryAction>
@@ -200,12 +270,25 @@
             </Button>
           </ActionButtons>
           <ActionIcons>
-            <IconButton on:click={() => clicked++} toggle aria-label="Add to favorites" title="Add to favorites">
+            <IconButton
+              on:click={() => clicked++}
+              toggle
+              aria-label="Add to favorites"
+              title="Add to favorites"
+            >
               <Icon class="material-icons" on>favorite</Icon>
               <Icon class="material-icons">favorite_border</Icon>
             </IconButton>
-            <IconButton class="material-icons" on:click={() => clicked++} title="Share">share</IconButton>
-            <IconButton class="material-icons" on:click={() => clicked++} title="More options">more_vert</IconButton>
+            <IconButton
+              class="material-icons"
+              on:click={() => clicked++}
+              title="Share">share</IconButton
+            >
+            <IconButton
+              class="material-icons"
+              on:click={() => clicked++}
+              title="More options">more_vert</IconButton
+            >
           </ActionIcons>
         </Actions>
       </Card>
@@ -216,10 +299,18 @@
 </section>
 
 <script>
-  import Card, {Content, PrimaryAction, Media, MediaContent, Actions, ActionButtons, ActionIcons} from '@smui/card';
-  import Button, {Label} from '@smui/button';
-  import IconButton, {Icon} from '@smui/icon-button';
-  import List, {Item, Text} from '@smui/list';
+  import Card, {
+    Content,
+    PrimaryAction,
+    Media,
+    MediaContent,
+    Actions,
+    ActionButtons,
+    ActionIcons,
+  } from '@smui/card';
+  import Button, { Label } from '@smui/button';
+  import IconButton, { Icon } from '@smui/icon-button';
+  import List, { Item, Text } from '@smui/list';
 
   let clicked = 0;
 </script>

@@ -17,7 +17,7 @@
   </div>
 
   <div>
-    Transitions and color: <br />
+    <h6 class="demo-title">Transitions and color</h6>
 
     <FormField>
       <Checkbox bind:checked={liftMeUp} />

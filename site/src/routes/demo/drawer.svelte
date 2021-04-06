@@ -6,7 +6,7 @@
   <h2>Drawers</h2>
 
   <div>
-    A permanent drawer.
+    <h6 class="demo-title">A permanent drawer</h6>
 
     <div class="drawer-container">
       <Drawer>
@@ -57,7 +57,9 @@
   </div>
 
   <div>
-    A dismissible drawer with a header and activated items.
+    <h6 class="demo-title">
+      A dismissible drawer with a header and activated items
+    </h6>
 
     <div class="drawer-container">
       <Drawer
@@ -123,7 +125,10 @@
   </div>
 
   <div>
-    A modal drawer with header, activated items, subheading, icons, list groups.
+    <h6 class="demo-title">
+      A modal drawer with header, activated items, subheading, icons, list
+      groups
+    </h6>
 
     <div class="drawer-container">
       <!-- Don't include fixed={false} if this is a page wide drawer.

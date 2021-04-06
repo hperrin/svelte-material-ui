@@ -21,7 +21,7 @@
     > (no ripple)
   </div>
 
-  Toggle buttons:
+  <h6 class="demo-title">Toggle buttons</h6>
   <div style="display: flex; align-items: center;">
     <IconButton on:click={() => clicked++} toggle bind:pressed={initialOff}>
       <Icon class="material-icons" on>star</Icon>
