@@ -6,11 +6,12 @@
   <h2>Top App Bar</h2>
 
   <div>
-    Top app bars in a container.
+    Top app bars in a container. (Only the "static" variant works inside
+    containers.)
 
     <br /><br />
 
-    <!-- <div>
+    <div>
       <FormField>
         <Checkbox bind:checked={prominent} />
         <span slot="label">Prominent</span>
@@ -23,21 +24,6 @@
         <Checkbox bind:checked={secondaryColor} />
         <span slot="label">Secondary</span>
       </FormField>
-    </div> -->
-
-    <div>
-      <label>
-        <input type="checkbox" bind:checked={prominent} />
-        Prominent
-      </label>
-      <label>
-        <input type="checkbox" bind:checked={dense} />
-        Dense
-      </label>
-      <label>
-        <input type="checkbox" bind:checked={secondaryColor} />
-        Secondary
-      </label>
     </div>
 
     <div class="flexy">
@@ -164,8 +150,8 @@
 <script>
   import TopAppBar, { Row, Section, Title } from '@smui/top-app-bar';
   import IconButton from '@smui/icon-button';
-  // import Checkbox from '@smui/checkbox';
-  // import FormField from '@smui/form-field';
+  import Checkbox from '@smui/checkbox';
+  import FormField from '@smui/form-field';
   import LoremIpsum from '../../components/LoremIpsum.svelte';
 
   let prominent = false;

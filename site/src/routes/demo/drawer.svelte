@@ -264,11 +264,6 @@
     z-index: 0;
   }
 
-  * :global(.mdc-drawer--modal, .mdc-drawer-scrim) {
-    /* This is not needed for a page-wide modal. */
-    position: absolute;
-  }
-
   * :global(.app-content) {
     flex: auto;
     overflow: auto;

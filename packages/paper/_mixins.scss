@@ -59,7 +59,7 @@ $paper-padding: 24px 16px !default;
   $ink-color,
   $query: feature-targeting.all()
 ) {
-  .smui-paper--color-#{$name} {
+  .smui-paper.smui-paper--color-#{$name} {
     @include paper-elevation($fill-color, $query: $query);
 
     @include fill-color($fill-color, $query);

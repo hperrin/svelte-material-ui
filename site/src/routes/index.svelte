@@ -2,31 +2,78 @@
   <title>Svelte Material UI</title>
 </svelte:head>
 
-<section style="padding: 36px;">
-  <div style="display: flex; align-items: center; flex-wrap: wrap;">
-    <img style="width: 150px; height: 150px;" src="logo.png" alt="logo" />
-    <h2 style="margin-left: 18px;">Svelte Material UI</h2>
+<section style="padding: 36px 56px; position: relative;">
+  <img
+    style="display: block; position: absolute; right: 250px; top: -15px; opacity: .4; transform: scale(1.8); z-index: -1;"
+    src="logo.png"
+    alt="logo"
+  />
+
+  <div style="margin: 3em 0;">
+    <h2 class="mdc-typography--headline2" style="margin-bottom: 0;">
+      Svelte Material UI
+    </h2>
+    <p class="mdc-typography--subtitle1">Material UI Components for Svelte 3</p>
   </div>
 
-  <div style="display: flex; align-items: center; flex-wrap: wrap;">
-    <div style="width: 150px; height: 1px;" />
-    <div style="margin-left: 18px;">
-      <p>Material UI Components for Svelte 3, ready to use in your apps.</p>
-
-      <p>Use the menu on the left to see the component demos.</p>
-
-      <p>
-        [
-        <a href="https://github.com/hperrin/svelte-material-ui" target="_blank"
-          >GitHub</a
-        >
-        |
-        <a
-          href="https://github.com/hperrin/svelte-material-ui/issues"
-          target="_blank">Issue Tracker</a
-        >
-        | &copy; 2020-2021 Hunter Perrin ]
-      </p>
+  <div style="margin: 3em 0;">
+    <div style="display: flex; margin: 0 -1em;">
+      <Paper color="primary" style="margin: 1em; flex-grow: 1; flex-basis: 0;">
+        <Title>Svelte</Title>
+        <Content>
+          SMUI provides Svelte components and actions for a wide variety of
+          interface elements. SMUI also provides helper utilities for building
+          custom UI components.
+        </Content>
+      </Paper>
+      <Paper
+        color="svelte-blue"
+        style="margin: 1em; flex-grow: 1; flex-basis: 0;"
+      >
+        <Title>Material.io</Title>
+        <Content>
+          SMUI is based on the awesome <a
+            style="color: #fff;"
+            href="https://material.io/develop/web"
+            target="_blank">Material Design Component for Web</a
+          >, by Google. It integrates these components using the
+          <a
+            style="color: #fff;"
+            href="https://material.io/develop/web/guides/framework-integration"
+            target="_blank">"Advanced Approach"</a
+          >, where the component Foundation does the business logic, and the
+          SMUI component handles DOM updates.
+        </Content>
+      </Paper>
+      <Paper
+        color="secondary"
+        style="margin: 1em; flex-grow: 1; flex-basis: 0;"
+      >
+        <Title>Sass</Title>
+        <Content>
+          Like MDC, SMUI is styled through Sass. SMUI supports all of the mixins
+          provided by Material Design Components for Web, and provides some
+          additional helpful mixins. You can customize the look of your UI with
+          just a few variables.
+        </Content>
+      </Paper>
     </div>
+
+    <p>
+      [
+      <a href="https://github.com/hperrin/svelte-material-ui" target="_blank"
+        >GitHub</a
+      >
+      |
+      <a
+        href="https://github.com/hperrin/svelte-material-ui/issues"
+        target="_blank">Issue Tracker</a
+      >
+      | &copy; 2020-2021 Hunter Perrin ]
+    </p>
   </div>
 </section>
+
+<script>
+  import Paper, { Title, Subtitle, Content } from '@smui/paper';
+</script>

@@ -14,6 +14,10 @@
 // Elevation mixins.
 @use '@material/elevation';
 
+// Paper mixins.
+@use '@smui/paper';
+@use '@material/theme';
+
 // Main Top App Bar styling.
 @use '@material/top-app-bar';
 .mdc-top-app-bar.demo-top-app-bar {
@@ -92,3 +96,5 @@ section > div {
   word-break: break-word;
   white-space: normal;
 }
+
+@include paper.paper-color(svelte-blue, #40b3ff, #fff);
