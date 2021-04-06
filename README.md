@@ -89,6 +89,8 @@ Here are some features you should know about:
 
 ## Integration for Sapper
 
+<small>\* As of 2021-Apr-06, these instructions will now work without a FOUC!</small>
+
 1. Install the following packages as dev dependencies
    - With yarn
      ```sh
@@ -113,36 +115,47 @@ Here are some features you should know about:
 
    // ...
 
-   // At the client svelte options change emitCss to true and css to false
-   svelte({
-     compilerOptions: {
-       dev,
-       hydratable: true,
-       css: false
-     },
-     emitCss: true
-   }),
+   // Insert the following right before the "export default {" line:
+   const postcssOptions = (extract) => ({
+      extensions: ['.scss'],
+      extract: extract ? 'smui.css' : false,
+      minimize: true,
+      use: [
+        [
+          'sass',
+          {
+            includePaths: ['./src/theme', './node_modules'],
+          },
+        ],
+      ],
+    });
 
-   // Right after that plugin, paste the following.
-   // Once in the "client:" section, and again in the "server:" section.
-   postcss({
-     extensions: ['.scss', '.sass'],
-     extract: false,
-     minimize: true,
-     use: [
-       ['sass', {
-         includePaths: [
-           './src/theme',
-           './node_modules'
-         ]
-       }]
-     ]
-   }),
-   // NOT in the "serviceworker:" section.
+   // Right after the "svelte" plugin in the "client:" section, paste the following plugin.
+   postcss(postcssOptions(true)),
+
+   // Right after the "svelte" plugin in the "server:" section, paste the following plugin.
+   postcss(postcssOptions(false)),
+
+   // Don't touch the "serviceworker:" section.
    // ...
    ```
 
-4. Install a SMUI package.
+4. In the `template.html` file, in the `<head>` section right after `%sapper.base%`, paste the following:
+
+   ```
+   <!-- SMUI Styles -->
+   <link rel="stylesheet" href="client/smui.css">
+   ```
+
+5. Install a SMUI package, and include it from your Svelte files like this:
+
+   ```html
+   <Button on:click={() => alert('Clicked!')}>Click Me!</Button>
+
+   <script>
+     import Button from '@smui/button';
+   </script>
+   ```
 
 # Components
 
