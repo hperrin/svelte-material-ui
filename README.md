@@ -10,7 +10,7 @@ https://sveltematerialui.com
 
 # Installation
 
-You *should* install the packages individually. Alternatively, you can install all of them at once with the `svelte-material-ui` package.
+You _should_ install the packages individually. Alternatively, you can install all of them at once with the `svelte-material-ui` package.
 
 ```sh
 # Install the packages individually.
@@ -31,109 +31,131 @@ If you are upgrading from an older version of SMUI to a newer one, it might be w
 Check out the [Webpack template](https://github.com/hperrin/smui-example-webpack) and the [Rollup template](https://github.com/hperrin/smui-example-rollup) for examples.
 
 1. To bundle this in your own code, use a Sass processor (not a Sass Svelte preprocessor, but a Sass processor). SMUI `index.js` files import Sass files, and they need to be compiled by a processor. The `*.svelte` files don't include any Sass or CSS, so a Svelte preprocessor is not necessary.
-   * Alternatively, you can import from the `bare.js` files, which doesn't include any styling. Then you can either import the Sass yourself, or use the `bare.css` files which are precompiled and packaged with the default theme.
+   - Alternatively, you can import from the `bare.js` files, which doesn't include any styling. Then you can either import the Sass yourself, or use the `bare.css` files which are precompiled and packaged with the default theme.
 2. You must have a `_smui-theme.scss` file in one of your Sass include paths to compile the Sass. That is where you set the MDC theme variables. If it's empty, it will use the default theme values from MDC. See the [theme file](https://github.com/hperrin/svelte-material-ui/blob/master/site/src/theme/_smui-theme.scss) in the demo site for an example that uses Svelte colors.
 3. If you want the Material Icon, Roboto, and Roboto Mono fonts, be sure to include these (or include them from a package):
-    ```html
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
-    ```
+   ```html
+   <link
+     rel="stylesheet"
+     href="https://fonts.googleapis.com/icon?family=Material+Icons"
+   />
+   <link
+     rel="stylesheet"
+     href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700"
+   />
+   <link
+     rel="stylesheet"
+     href="https://fonts.googleapis.com/css?family=Roboto+Mono"
+   />
+   ```
 4. You're now ready to use SMUI. Here's some example code:
-    ```html
-    <Button on:click={() => alert('Clicked!')}>Just a Button</Button>
-    <Button variant="raised"><Label>Raised Button, Using a Label</Label></Button>
-    <Button some-arbitrary-prop="placed on the actual button">Button</Button>
 
-    <Fab on:click={() => alert('Clicked!')} extended>
-      <Icon class="material-icons" style="margin-right: 12px;">favorite</Icon>
-      <Label>Extended FAB</Label>
-    </Fab>
+   ```html
+   <Button on:click={() => alert('Clicked!')}>Just a Button</Button>
+   <Button variant="raised"><Label>Raised Button, Using a Label</Label></Button>
+   <Button some-arbitrary-prop="placed on the actual button">Button</Button>
 
-    <Textfield
-      bind:value={superText}
-      label="Super Text"
-      input$aria-controls="super-helper"
-      input$aria-describedby="super-helper"
-    />
-    <HelperText id="super-helper">What you put in this box will become super!</HelperText>
+   <Fab on:click={() => alert('Clicked!')} extended>
+     <Icon class="material-icons" style="margin-right: 12px;">favorite</Icon>
+     <Label>Extended FAB</Label>
+   </Fab>
 
-    <script>
-      import Button from '@smui/button';
-      import Fab from '@smui/fab';
-      import Textfield from '@smui/textfield';
-      import HelperText from '@smui/textfield/helper-text';
-      import {Label, Icon} from '@smui/common';
+   <Textfield
+     bind:value={superText}
+     label="Super Text"
+     input$aria-controls="super-helper"
+     input$aria-describedby="super-helper"
+   />
+   <HelperText id="super-helper">What you put in this box will become super!</HelperText>
 
-      let superText = '';
-    </script>
-    ```
+   <script>
+     import Button from '@smui/button';
+     import Fab from '@smui/fab';
+     import Textfield from '@smui/textfield';
+     import HelperText from '@smui/textfield/helper-text';
+     import {Label, Icon} from '@smui/common';
+
+     let superText = '';
+   </script>
+   ```
 
 Here are some features you should know about:
 
-* You can add arbitrary properties to all of the components and many of the elements within them.
-* You can add actions to the components with `use={[Action1, [Action2, action2Props], Action3]}`.
-* You can add props to lower components and elements with things like `input$maxlength="15"`.
-* All [standard UI events](https://github.com/hperrin/svelte-material-ui/blob/master/packages/common/forwardEvents.js#L4) are forwarded on components, input events ("input" and "change") are forwarded on input components, and all MDC events are forwarded.
-* Labels and icons are named exports in the components that use them, or you can use 'common/Label' and 'common/Icon'. (Except for chips labels and icons, textfield icons, and select icons, because they are special snowflakes.)
+- You can add arbitrary properties to all of the components and many of the elements within them.
+- You can add actions to the components with `use={[Action1, [Action2, action2Props], Action3]}`.
+- You can add props to lower components and elements with things like `input$maxlength="15"`.
+- All [standard UI events](https://github.com/hperrin/svelte-material-ui/blob/master/packages/common/forwardEvents.js#L4) are forwarded on components, input events ("input" and "change") are forwarded on input components, and all MDC events are forwarded.
+- Labels and icons are named exports in the components that use them, or you can use 'common/Label' and 'common/Icon'. (Except for chips labels and icons, textfield icons, and select icons, because they are special snowflakes.)
 
 ## Integration for Sapper
 
+<small>\* As of 2021-Apr-06, these instructions will now work without a FOUC!</small>
+
 1. Install the following packages as dev dependencies
-   * With yarn
-      ```sh
-      yarn add rollup-plugin-postcss node-sass --dev
-      ```
-   * With npm
-      ```sh
-      npm i -D rollup-plugin-postcss node-sass
-      ```
+   - With yarn
+     ```sh
+     yarn add rollup-plugin-postcss node-sass --dev
+     ```
+   - With npm
+     ```sh
+     npm i -D rollup-plugin-postcss node-sass
+     ```
 2. Create the `src/theme/_smui-theme.scss file`
-    ```sh
-    mkdir src/theme && touch src/theme/_smui-theme.scss
-    ```
+
+   ```sh
+   mkdir src/theme && touch src/theme/_smui-theme.scss
+   ```
 
 3. Update `rollup.config.js` with the following configuration
-    ```
-    // ...
-    // Put this along with the other imports.
-    import postcss from "rollup-plugin-postcss";
 
-    // ...
+   ```
+   // ...
+   // Put this along with the other imports.
+   import postcss from "rollup-plugin-postcss";
 
-    // At the client svelte options change emitCss to false and css to true
-    svelte({
-      compilerOptions: {
-        dev,
-        hydratable: true,
-        css: true
-      },
-      emitCss: false
-    }),
+   // ...
 
-    // Find this line, under "plugins:"
-    commonjs(),
-
-    // Then paste the following after it.
-    // Once in the "client:" section, and again in the "server:" section.
-    postcss({
-      extensions: ['.scss', '.sass'],
-      extract: false,
+   // Insert the following right before the "export default {" line:
+   const postcssOptions = (extract) => ({
+      extensions: ['.scss'],
+      extract: extract ? 'smui.css' : false,
       minimize: true,
       use: [
-        ['sass', {
-          includePaths: [
-            './src/theme',
-            './node_modules'
-          ]
-        }]
-      ]
-    }),
-    // NOT in the "serviceworker:" section.
-    // ...
-    ```
+        [
+          'sass',
+          {
+            includePaths: ['./src/theme', './node_modules'],
+          },
+        ],
+      ],
+    });
 
-4. Install a SMUI package.
+   // Right after the "svelte" plugin in the "client:" section, paste the following plugin.
+   postcss(postcssOptions(true)),
+
+   // Right after the "svelte" plugin in the "server:" section, paste the following plugin.
+   postcss(postcssOptions(false)),
+
+   // Don't touch the "serviceworker:" section.
+   // ...
+   ```
+
+4. In the `template.html` file, in the `<head>` section right after `%sapper.base%`, paste the following:
+
+   ```
+   <!-- SMUI Styles -->
+   <link rel="stylesheet" href="client/smui.css">
+   ```
+
+5. Install a SMUI package, and include it from your Svelte files like this:
+
+   ```html
+   <Button on:click={() => alert('Clicked!')}>Click Me!</Button>
+
+   <script>
+     import Button from '@smui/button';
+   </script>
+   ```
 
 # Components
 
