@@ -148,14 +148,14 @@
         'https://github.com/hperrin/svelte-material-ui/tree/master/packages/button',
       ],
     },
-    // {
-    //   name: 'Floating Action Button',
-    //   route: '/demo/fab',
-    //   indent: 1,
-    //   repos: [
-    //     'https://github.com/hperrin/svelte-material-ui/tree/master/packages/fab',
-    //   ],
-    // },
+    {
+      name: 'Floating Action Button',
+      route: '/demo/fab',
+      indent: 1,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/fab',
+      ],
+    },
     {
       name: 'Icon Buttons',
       route: '/demo/icon-button',

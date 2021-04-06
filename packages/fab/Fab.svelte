@@ -7,18 +7,22 @@
       {
         ripple,
         unbounded: false,
+        color,
         disabled: !!$$props.disabled,
-        classForward: (classes) => (rippleClasses = classes),
+        addClass,
+        removeClass,
       },
     ],
     forwardEvents,
     ...use,
   ]}
-  class="mdc-fab {className} {rippleClasses.join(' ')} {mini
+  class="mdc-fab {className} {Object.keys(internalClasses).join(' ')} {mini
     ? 'mdc-fab--mini'
     : ''} {exited ? 'mdc-fab--exited' : ''} {extended
     ? 'mdc-fab--extended'
-    : ''} {color === 'primary' ? 'smui-fab--color-primary' : ''}"
+    : ''} {color === 'primary' ? 'smui-fab--color-primary' : ''} {touch
+    ? 'mdc-fab--touch'
+    : ''}"
   {...exclude($$props, [
     'use',
     'class',
@@ -27,9 +31,11 @@
     'mini',
     'exited',
     'extended',
+    'touch',
     'component',
   ])}
-  >{#if ripple}<div class="mdc-fab__ripple" />{/if}<slot /></svelte:component
+  ><div class="mdc-fab__ripple" />
+  <slot />{#if touch}<div class="mdc-fab__touch" />{/if}</svelte:component
 >
 
 <script>
@@ -50,16 +56,32 @@
   export let mini = false;
   export let exited = false;
   export let extended = false;
+  export let touch = false;
   // Purposely left out of props exclude.
   export let href = null;
 
   let element;
-  let rippleClasses = [];
+  let internalClasses = {};
 
   export let component = href == null ? Button : A;
 
   setContext('SMUI:label:context', 'fab');
   setContext('SMUI:icon:context', 'fab');
+
+  function addClass(className) {
+    // Doesn't need hasClass.
+    if (!internalClasses[className]) {
+      internalClasses[className] = true;
+    }
+  }
+
+  function removeClass(className) {
+    // Doesn't need hasClass.
+    if (internalClasses[className]) {
+      delete internalClasses[className];
+      internalClasses = internalClasses;
+    }
+  }
 
   export function getElement() {
     return element.getElement();

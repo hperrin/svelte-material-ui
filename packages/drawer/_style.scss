@@ -4,6 +4,10 @@
 @include drawer.dismissible-core-styles;
 @include drawer.modal-core-styles;
 
+.mdc-drawer.smui-drawer__static {
+  position: static;
+}
+
 .mdc-drawer-scrim.smui-drawer-scrim__absolute {
   position: absolute;
 }

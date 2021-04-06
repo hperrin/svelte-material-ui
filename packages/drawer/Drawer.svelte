@@ -6,10 +6,12 @@
     .filter((className) => internalClasses[className])
     .join(' ')} {variant === 'dismissible'
     ? 'mdc-drawer--dismissible'
-    : ''} {variant === 'modal' ? 'mdc-drawer--modal' : ''}"
+    : ''} {variant === 'modal' ? 'mdc-drawer--modal' : ''} {fixed
+    ? ''
+    : 'smui-drawer__static'}"
   on:keydown={(event) => instance && instance.handleKeydown(event)}
   on:transitionend={(event) => instance && instance.handleTransitionEnd(event)}
-  {...exclude($$props, ['use', 'class', 'variant', 'open'])}
+  {...exclude($$props, ['use', 'class', 'variant', 'open', 'fixed'])}
 >
   <slot />
 </aside>
@@ -39,6 +41,7 @@
   export { className as class };
   export let variant = null;
   export let open = false;
+  export let fixed = true;
 
   let element;
   let instance;

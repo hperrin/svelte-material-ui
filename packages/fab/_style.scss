@@ -1,4 +1,6 @@
-@import "@material/fab/mdc-fab";
-@import "@smui/ripple/style";
-@import "./mixins";
-@include smui-fab-core-styles;
+@use '@material/fab';
+@use '@smui/ripple/style';
+@use './mixins';
+
+@include fab.core-styles;
+@include mixins.core-styles;

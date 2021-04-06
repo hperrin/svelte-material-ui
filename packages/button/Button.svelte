@@ -46,9 +46,8 @@
     'component',
     ...dialogExcludes,
   ])}
-  >{#if ripple}<div class="mdc-button__ripple" />{/if}<slot />{#if touch}<div
-      class="mdc-button__touch"
-    />{/if}</svelte:component
+  ><div class="mdc-button__ripple" />
+  <slot />{#if touch}<div class="mdc-button__touch" />{/if}</svelte:component
 >
 
 <script>

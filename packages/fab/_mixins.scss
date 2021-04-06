@@ -1,19 +1,25 @@
-@import "@material/feature-targeting/functions";
+@use '@material/feature-targeting';
+@use '@material/ripple';
+@use '@material/fab';
 
-@mixin smui-fab-core-styles($query: mdc-feature-all()) {
-  @include smui-fab-without-ripple($query);
-  @include smui-fab-ripple($query);
+@mixin core-styles($query: feature-targeting.all()) {
+  @include without-ripple($query);
+  @include ripple($query);
 }
 
-@mixin smui-fab-without-ripple($query: mdc-feature-all()) {
+@mixin without-ripple($query: feature-targeting.all()) {
   .smui-fab--color-primary {
-    @include mdc-fab-container-color(primary, $query: $query);
-    @include mdc-fab-ink-color(on-primary, $query: $query);
+    @include fab.container-color(primary, $query: $query);
+    @include fab.ink-color(on-primary, $query: $query);
   }
 }
 
-@mixin smui-fab-ripple($query: mdc-feature-all()) {
+@mixin ripple($query: feature-targeting.all()) {
   .smui-fab--color-primary {
-    @include mdc-states(on-primary, $query: $query);
+    @include ripple.states(
+      on-primary,
+      $query: $query,
+      $ripple-target: fab.$ripple-target
+    );
   }
 }

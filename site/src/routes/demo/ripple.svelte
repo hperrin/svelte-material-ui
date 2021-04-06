@@ -5,19 +5,24 @@
 <section>
   <h2>Ripple</h2>
 
-  <p use:Ripple tabindex="0">
+  <p use:Ripple={{ surface: true }} tabindex="0">
     SMUI ripples can be added to arbitrary elements, like this <code>p</code>
     element. Try clicking it to see the ripple.
   </p>
 
-  <p use:Ripple={{ color: 'primary' }} tabindex="0">Primary color.</p>
+  <p use:Ripple={{ surface: true, color: 'primary' }} tabindex="0">
+    Primary color.
+  </p>
 
-  <p use:Ripple={{ color: 'secondary' }} tabindex="0">Secondary color.</p>
+  <p use:Ripple={{ surface: true, color: 'secondary' }} tabindex="0">
+    Secondary color.
+  </p>
 
   <p>
     Unbounded:
     <span
       use:Ripple={{
+        surface: true,
         unbounded: true,
         // addClass and removeClass need to be provided, since
         // we have a "class" attribute on this element.
@@ -40,6 +45,7 @@
     </span>
     <span
       use:Ripple={{
+        surface: true,
         unbounded: true,
         color: 'primary',
         // addClass and removeClass need to be provided, since
@@ -63,6 +69,7 @@
     </span>
     <span
       use:Ripple={{
+        surface: true,
         unbounded: true,
         color: 'secondary',
         // addClass and removeClass need to be provided, since
@@ -87,7 +94,7 @@
   </p>
 
   <p
-    use:Ripple={{ active }}
+    use:Ripple={{ surface: true, active }}
     on:mousedown|capture={() => (active = true)}
     on:mouseup|capture={() => (active = false)}
     on:keydown|capture={(e) =>

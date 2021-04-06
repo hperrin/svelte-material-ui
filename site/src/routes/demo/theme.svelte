@@ -33,12 +33,20 @@
     >
   </div>
 
-  <!-- <div>
-    <Fab on:click={() => clicked++}><Icon class="material-icons">favorite</Icon></Fab>
-    <Fab on:click={() => clicked++} color="primary"><Icon class="material-icons">favorite</Icon></Fab>
-    <Fab on:click={() => clicked++} mini><Icon class="material-icons">favorite</Icon></Fab>
-    <Fab on:click={() => clicked++} extended><Icon class="material-icons">favorite</Icon><Label>Extended</Label></Fab>
-  </div> -->
+  <div>
+    <Fab on:click={() => clicked++}
+      ><Icon class="material-icons">favorite</Icon></Fab
+    >
+    <Fab on:click={() => clicked++} color="primary"
+      ><Icon class="material-icons">favorite</Icon></Fab
+    >
+    <Fab on:click={() => clicked++} mini
+      ><Icon class="material-icons">favorite</Icon></Fab
+    >
+    <Fab on:click={() => clicked++} extended
+      ><Icon class="material-icons">favorite</Icon><Label>Extended</Label></Fab
+    >
+  </div>
 
   <pre class="status">Clicked: {clicked}</pre>
 </section>
@@ -46,7 +54,7 @@
 <script>
   import './theme.scss';
   import Button from '@smui/button/Button.svelte';
-  // import Fab from '@smui/fab/Fab.svelte';
+  import Fab from '@smui/fab/Fab.svelte';
   import { Label, Icon } from '@smui/common';
 
   let clicked = 0;

@@ -204,7 +204,7 @@ I've started working on migrating SMUI to use the latest upstream version of [Ma
 Update Progress Checklist:
 
 - [x] Buttons
-  - [ ] Floating Action Buttons
+  - [x] Floating Action Buttons
   - [x] Icon Buttons
 - [ ] Cards
 - [ ] Chips

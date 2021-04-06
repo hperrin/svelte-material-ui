@@ -126,7 +126,14 @@
     A modal drawer with header, activated items, subheading, icons, list groups.
 
     <div class="drawer-container">
-      <Drawer variant="modal" bind:this={myDrawer2} bind:open={myDrawer2Open}>
+      <!-- Don't include fixed={false} if this is a page wide drawer.
+        It adds a style for static positioning. -->
+      <Drawer
+        variant="modal"
+        fixed={false}
+        bind:this={myDrawer2}
+        bind:open={myDrawer2Open}
+      >
         <Header>
           <Title>Super Mail</Title>
           <Subtitle>It's the best fake mail app drawer.</Subtitle>

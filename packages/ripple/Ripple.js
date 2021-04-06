@@ -8,6 +8,7 @@ export default function Ripple(
   node,
   {
     ripple = true,
+    surface = false,
     unbounded = false,
     disabled = false,
     color = null,
@@ -22,16 +23,18 @@ export default function Ripple(
   let oldActive = active;
 
   function handleProps() {
-    addClass('mdc-ripple-surface');
-    if (color === 'primary') {
-      addClass('smui-ripple-surface--primary');
-      removeClass('smui-ripple-surface--secondary');
-    } else if (color === 'secondary') {
-      removeClass('smui-ripple-surface--primary');
-      addClass('smui-ripple-surface--secondary');
-    } else {
-      removeClass('smui-ripple-surface--primary');
-      removeClass('smui-ripple-surface--secondary');
+    if (surface) {
+      addClass('mdc-ripple-surface');
+      if (color === 'primary') {
+        addClass('smui-ripple-surface--primary');
+        removeClass('smui-ripple-surface--secondary');
+      } else if (color === 'secondary') {
+        removeClass('smui-ripple-surface--primary');
+        addClass('smui-ripple-surface--secondary');
+      } else {
+        removeClass('smui-ripple-surface--primary');
+        removeClass('smui-ripple-surface--secondary');
+      }
     }
 
     if (instance && oldActive !== active) {
