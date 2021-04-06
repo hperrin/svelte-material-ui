@@ -208,7 +208,7 @@
   }
 
   function removeClass(className) {
-    if (internalClasses[className]) {
+    if (!(className in internalClasses) || internalClasses[className]) {
       internalClasses[className] = false;
     }
   }
@@ -220,7 +220,7 @@
   }
 
   function removeAttr(name) {
-    if (name in internalAttrs) {
+    if (!(name in internalAttrs) || internalAttrs[name] != null) {
       internalAttrs[name] = undefined;
     }
   }

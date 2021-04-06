@@ -468,7 +468,7 @@
   }
 
   function removeClass(className) {
-    if (internalClasses[className]) {
+    if (!(className in internalClasses) || internalClasses[className]) {
       internalClasses[className] = false;
     }
   }
@@ -487,11 +487,11 @@
 
   function removeThumbClass(className, thumb) {
     if (range && thumb === Thumb.START) {
-      if (thumbStartClasses[className]) {
+      if (!(className in thumbStartClasses) || thumbStartClasses[className]) {
         thumbStartClasses[className] = false;
       }
     } else {
-      if (thumbClasses[className]) {
+      if (!(className in thumbClasses) || thumbClasses[className]) {
         thumbClasses[className] = false;
       }
     }
@@ -529,11 +529,11 @@
 
   function removeInputAttr(name, thumb) {
     if (range && thumb === Thumb.START) {
-      if (inputStartAttrs[name] != null) {
+      if (!(name in inputStartAttrs) || inputStartAttrs[name] != null) {
         inputStartAttrs[name] = undefined;
       }
     } else {
-      if (inputAttrs[name] != null) {
+      if (!(name in inputAttrs) || inputAttrs[name] != null) {
         inputAttrs[name] = undefined;
       }
     }

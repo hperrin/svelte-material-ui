@@ -102,7 +102,7 @@
   }
 
   function removeClass(className) {
-    if (internalClasses[className]) {
+    if (!(className in internalClasses) || internalClasses[className]) {
       internalClasses[className] = false;
     }
   }
