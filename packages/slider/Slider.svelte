@@ -462,11 +462,19 @@
   }
 
   function getInputAttr(name, thumb) {
+    // Some custom logic for "value", since Svelte doesn't seem to actually
+    // set the attribute, just the DOM property.
     if (range && thumb === Thumb.START) {
+      if (name === 'value') {
+        return `${start}`;
+      }
       return name in inputStartAttrs
         ? inputStartAttrs[name]
         : inputStart.getAttribute(name);
     } else {
+      if (name === 'value') {
+        return `${range ? end : value}`;
+      }
       return name in inputAttrs ? inputAttrs[name] : input.getAttribute(name);
     }
   }
