@@ -81,10 +81,10 @@
           selected={selectionTwoLine === item.name}
         >
           <Graphic
-            style="background-image: url(https://place-hold.it/40x40&text={item.name
+            style="background-image: url(https://place-hold.it/40x40?text={item.name
               .split(' ')
               .map((val) => val.substring(0, 1))
-              .join('')});"
+              .join('')}&fontsize=16);"
           />
           <Text>
             <PrimaryText>{item.name}</PrimaryText>

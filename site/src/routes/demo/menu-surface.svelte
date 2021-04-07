@@ -88,7 +88,8 @@
             <ImageListItem>
               <ImageAspectContainer>
                 <Image
-                  src="https://place-hold.it/100x100&text=Image%20{i + 1}"
+                  src="https://place-hold.it/100x100?text=Image%20{i +
+                    1}&fontsize=18"
                   alt="Image {i + 1}"
                 />
               </ImageAspectContainer>

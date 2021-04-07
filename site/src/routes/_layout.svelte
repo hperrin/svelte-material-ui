@@ -164,14 +164,14 @@
         'https://github.com/hperrin/svelte-material-ui/tree/master/packages/icon-button',
       ],
     },
-    // {
-    //   name: 'Cards',
-    //   route: '/demo/card',
-    //   indent: 0,
-    //   repos: [
-    //     'https://github.com/hperrin/svelte-material-ui/tree/master/packages/card',
-    //   ],
-    // },
+    {
+      name: 'Cards',
+      route: '/demo/card',
+      indent: 0,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/card',
+      ],
+    },
     // {
     //   name: 'Chips',
     //   route: '/demo/chips',

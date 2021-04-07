@@ -11,7 +11,7 @@
         <Item>
           <ImageAspectContainer>
             <Image
-              src="https://place-hold.it/190x190&text=square"
+              src="https://place-hold.it/190x190?text=square&fontsize=23"
               alt="Image {i + 1}"
             />
           </ImageAspectContainer>
@@ -31,7 +31,7 @@
         <Item>
           <ImageAspectContainer>
             <Image
-              src="https://place-hold.it/190x238&text=4x5"
+              src="https://place-hold.it/190x238?text=4x5&fontsize=23"
               alt="Image {i + 1}"
             />
           </ImageAspectContainer>
@@ -55,7 +55,7 @@
               107,
               200,
               Math.abs
-            )}&text=190x{getUnevenImageSize(i, 107, 200, Math.abs)}"
+            )}?text=190x{getUnevenImageSize(i, 107, 200, Math.abs)}&fontsize=23"
             alt="Image {i + 1}"
           />
           <Supporting>
@@ -81,7 +81,7 @@
                 i,
                 190,
                 10
-              )}&text=190x{getUnevenImageSize(i, 190, 10)});"
+              )}?text=190x{getUnevenImageSize(i, 190, 10)}&fontsize=23);"
             />
           </ImageAspectContainer>
           <Supporting>

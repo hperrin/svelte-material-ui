@@ -25,7 +25,7 @@
     <div class="card-container short">
       <Card style="width: 250px;">
         <PrimaryAction on:click={() => clicked++} padded
-          >Primary Action</PrimaryAction
+          >Primary Action, a clickable area of the card</PrimaryAction
         >
       </Card>
     </div>
@@ -166,7 +166,8 @@
         <PrimaryAction on:click={() => clicked++}>
           <Media class="card-media-16x9" aspectRatio="16x9" />
           <Content class="mdc-typography--body2">
-            And some info text. And it's a primary action for the card.
+            And some info text. And the media and info text are a primary action
+            for the card.
           </Content>
         </PrimaryAction>
       </Card>
@@ -174,10 +175,12 @@
 
     <div class="card-container">
       <div>
-        <div style="width: 320px;">A card with a list as content:</div>
         <Card style="width: 320px;">
           <Content component={List}>
-            {#each [...Array(6)].map((v, i) => i + 1) as item}
+            <Item on:click={() => clicked++}>
+              <Text>A card with a list as content.</Text>
+            </Item>
+            {#each [...Array(5)].map((v, i) => i + 1) as item}
               <Item on:click={() => clicked++}>
                 <Text>Item #{item}</Text>
               </Item>
@@ -331,10 +334,10 @@
   }
 
   * :global(.card-media-16x9) {
-    background-image: url(https://via.placeholder.com/320x180.png?text=16x9);
+    background-image: url(https://place-hold.it/320x180?text=16x9&fontsize=23);
   }
 
   * :global(.card-media-square) {
-    background-image: url(https://via.placeholder.com/320x320.png?text=square);
+    background-image: url(https://place-hold.it/320x320?text=square&fontsize=23);
   }
 </style>

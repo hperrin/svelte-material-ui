@@ -1,8 +1,12 @@
-@import "@material/card/mdc-card";
-@import "@smui/button/style";
-@import "@smui/icon-button/style";
-@import "@smui/ripple/style";
+@use '@material/card';
+@use '@smui/button/style' as button-style;
+@use '@smui/icon-button/style' as icon-button-style;
+@use '@smui/ripple/style' as ripple-style;
 
-.smui-card--padded, .smui-card__content, .smui-card__primary-action--padded {
+@include card.core-styles;
+
+.smui-card--padded,
+.smui-card__content,
+.smui-card__primary-action--padded {
   padding: 16px;
 }
