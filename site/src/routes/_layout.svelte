@@ -188,14 +188,14 @@
     //     'https://github.com/hperrin/svelte-material-ui/tree/master/packages/data-table',
     //   ],
     // },
-    // {
-    //   name: 'Dialogs',
-    //   route: '/demo/dialog',
-    //   indent: 0,
-    //   repos: [
-    //     'https://github.com/hperrin/svelte-material-ui/tree/master/packages/dialog',
-    //   ],
-    // },
+    {
+      name: 'Dialogs',
+      route: '/demo/dialog',
+      indent: 0,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/dialog',
+      ],
+    },
     {
       name: 'Drawers',
       route: '/demo/drawer',

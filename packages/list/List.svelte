@@ -9,7 +9,8 @@
     'mdc-list--non-interactive': nonInteractive,
     'mdc-list--dense': dense,
     'mdc-list--textual-list': textualList,
-    'mdc-list--avatar-list': avatarList,
+    'mdc-list--avatar-list':
+      avatarList || (selectionDialog && (radioList || checkList)),
     'mdc-list--icon-list': iconList,
     'mdc-list--image-list': imageList,
     'mdc-list--thumbnail-list': thumbnailList,
@@ -86,8 +87,10 @@
   export let wrapFocus = getContext('SMUI:list:wrapFocus') || false;
   export let singleSelection = false;
   export let selectedIndex = null;
-  export let radiolist = false;
-  export let checklist = false;
+  export let radioList = false;
+  export { radioList as radiolist };
+  export let checkList = false;
+  export { checkList as checklist };
   export let hasTypeahead = false;
 
   $: props = exclude($$props, [
@@ -102,7 +105,9 @@
     'wrapFocus',
     'singleSelection',
     'selectedIndex',
+    'radioList',
     'radiolist',
+    'checkList',
     'checklist',
   ]);
 
@@ -111,6 +116,7 @@
   let items = [];
   let role = getContext('SMUI:list:role');
   let nav = getContext('SMUI:list:nav');
+  let selectionDialog = getContext('SMUI:dialog:selection');
   let addLayoutListener = getContext('SMUI:addLayoutListener');
   let removeLayoutListener;
 
@@ -123,10 +129,10 @@
     if (singleSelection) {
       role = 'listbox';
       setContext('SMUI:list:item:role', 'option');
-    } else if (radiolist) {
+    } else if (radioList) {
       role = 'radiogroup';
       setContext('SMUI:list:item:role', 'radio');
-    } else if (checklist) {
+    } else if (checkList) {
       role = 'group';
       setContext('SMUI:list:item:role', 'checkbox');
     } else {
@@ -274,11 +280,11 @@
   }
 
   function handleAction(event) {
-    if (radiolist || checklist) {
+    if (radioList || checkList) {
       const index = getListItemIndex(event.target);
       if (index !== -1) {
         const item = getOrderedList()[index];
-        if ((radiolist && !item.checked) || checklist) {
+        if ((radioList && !item.checked) || checkList) {
           item.checked = !item.checked;
           item.activateRipple();
           window.requestAnimationFrame(() => {
@@ -341,8 +347,8 @@
     return -1;
   }
 
-  export function layout(...args) {
-    return instance.layout(...args);
+  export function layout() {
+    return instance.layout();
   }
 
   export function setEnabled(...args) {

@@ -170,7 +170,7 @@
 
   <div>
     <h6 class="demo-title">A radio list</h6>
-    <List class="demo-list" radiolist>
+    <List class="demo-list" radioList>
       <Item>
         <Graphic>
           <Radio bind:group={selectedRadio} value="Bruce Willis" />
@@ -208,7 +208,7 @@
 
   <div>
     <h6 class="demo-title">A check list with trailing checkboxes</h6>
-    <List class="demo-list" checklist>
+    <List class="demo-list" checkList>
       <Item>
         <Label>Bruce Willis</Label>
         <Meta>

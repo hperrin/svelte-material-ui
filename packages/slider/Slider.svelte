@@ -578,8 +578,8 @@
     }
   }
 
-  export function layout(...args) {
-    return input.layout(...args);
+  export function layout() {
+    return instance.layout();
   }
 
   export function getId() {

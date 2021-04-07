@@ -7,7 +7,7 @@
 
   <div>
     <Dialog
-      bind:this={simpleDialog}
+      bind:open={simpleDialogOpen}
       aria-labelledby="simple-title"
       aria-describedby="simple-content"
     >
@@ -24,7 +24,7 @@
       </Actions>
     </Dialog>
 
-    <Button on:click={() => simpleDialog.open()}
+    <Button on:click={() => (simpleDialogOpen = true)}
       ><Label>Open Dialog</Label></Button
     >
   </div>
@@ -38,7 +38,7 @@
     </h6>
 
     <Dialog
-      bind:this={eventDialog}
+      bind:open={eventDialogOpen}
       aria-labelledby="event-title"
       aria-describedby="event-content"
       on:MDCDialog:closed={closeHandler}
@@ -57,7 +57,7 @@
       </Actions>
     </Dialog>
 
-    <Button on:click={() => eventDialog.open()}
+    <Button on:click={() => (eventDialogOpen = true)}
       ><Label>Open Dialog</Label></Button
     >
   </div>
@@ -65,29 +65,34 @@
   <pre class="status">Response: {response}</pre>
 
   <div>
-    <h6 class="demo-title">No actions, and a very long list dialog</h6>
+    <h6 class="demo-title">
+      No actions, and a very long selection list dialog
+    </h6>
 
     <Dialog
-      bind:this={listDialog}
+      bind:open={listDialogOpen}
+      selection
       aria-labelledby="list-title"
       aria-describedby="list-content"
     >
       <Title id="list-title">Dialog Title</Title>
-      <Content component={List} id="list-content">
-        {#each [...Array(100)].map((v, i) => i + 1) as item}
-          <Item
-            on:click={() => {
-              clickedList = item;
-              listDialog.close();
-            }}
-          >
-            <Text>Item #{item}</Text>
-          </Item>
-        {/each}
+      <Content id="list-content">
+        <List>
+          {#each [...Array(100)].map((v, i) => i + 1) as item}
+            <Item
+              on:click={() => {
+                clickedList = item;
+                listDialogOpen = false;
+              }}
+            >
+              <Text>Item #{item}</Text>
+            </Item>
+          {/each}
+        </List>
       </Content>
     </Dialog>
 
-    <Button on:click={() => listDialog.open()}
+    <Button on:click={() => (listDialogOpen = true)}
       ><Label>Open Dialog</Label></Button
     >
   </div>
@@ -99,7 +104,8 @@
     <h6 class="demo-title">A selection dialog</h6>
 
     <Dialog
-      bind:this={listSelectionDialog}
+      bind:open={listSelectionDialogOpen}
+      selection
       aria-labelledby="list-selection-title"
       aria-describedby="list-selection-content"
       on:MDCDialog:closed={selectionCloseHandler}
@@ -137,7 +143,7 @@
       </Actions>
     </Dialog>
 
-    <Button on:click={() => listSelectionDialog.open()}
+    <Button on:click={() => (listSelectionDialogOpen = true)}
       ><Label>Open Dialog</Label></Button
     >
   </div>
@@ -148,27 +154,31 @@
     <h6 class="demo-title">A dialog with sliders</h6>
 
     <Dialog
-      bind:this={sliderDialog}
+      bind:open={sliderDialogOpen}
       aria-labelledby="slider-title"
       aria-describedby="slider-content"
     >
       <Title id="slider-title">Volumes</Title>
       <Content id="slider-content">
         <div>
-          <FormField align="end" style="display: flex; flex-direction: column;">
-            <Slider bind:value={volumeMedia} use={[InitialFocus]} />
+          <FormField style="display: flex; flex-direction: column-reverse;">
+            <Slider
+              bind:value={volumeMedia}
+              use={[InitialFocus]}
+              style="width: 100%;"
+            />
             <span slot="label">Media Volume</span>
           </FormField>
         </div>
         <div>
-          <FormField align="end" style="display: flex; flex-direction: column;">
-            <Slider bind:value={volumeRingtone} />
+          <FormField style="display: flex; flex-direction: column-reverse;">
+            <Slider bind:value={volumeRingtone} style="width: 100%;" />
             <span slot="label">Ringtone Volume</span>
           </FormField>
         </div>
         <div>
-          <FormField align="end" style="display: flex; flex-direction: column;">
-            <Slider bind:value={volumeAlarm} />
+          <FormField style="display: flex; flex-direction: column-reverse;">
+            <Slider bind:value={volumeAlarm} style="width: 100%;" />
             <span slot="label">Alarm Volume</span>
           </FormField>
         </div>
@@ -180,7 +190,7 @@
       </Actions>
     </Dialog>
 
-    <Button on:click={() => sliderDialog.open()}
+    <Button on:click={() => (sliderDialogOpen = true)}
       ><Label>Open Dialog</Label></Button
     >
   </div>
@@ -194,11 +204,11 @@
   import Slider from '@smui/slider';
   import FormField from '@smui/form-field';
 
-  let simpleDialog;
-  let eventDialog;
-  let listDialog;
-  let listSelectionDialog;
-  let sliderDialog;
+  let simpleDialogOpen;
+  let eventDialogOpen;
+  let listDialogOpen;
+  let listSelectionDialogOpen;
+  let sliderDialogOpen;
   let clicked = 'Nothing yet.';
   let response = 'Nothing yet.';
   let clickedList = 'Nothing yet.';

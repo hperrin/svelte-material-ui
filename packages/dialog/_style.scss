@@ -1,1 +1,7 @@
-@import "@material/dialog/mdc-dialog";
+@use '@material/dialog';
+
+@include dialog.core-styles;
+
+.mdc-dialog.smui-dialog--selection .mdc-dialog__content {
+  padding: 0;
+}

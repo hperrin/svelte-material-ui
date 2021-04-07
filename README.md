@@ -222,7 +222,7 @@ Update Progress Checklist:
 - [ ] Cards
 - [ ] Chips
 - [ ] Data Tables
-- [ ] Dialogs
+- [x] Dialogs
 - [x] Drawers
 - [x] Image List
 - [x] Checkboxes
