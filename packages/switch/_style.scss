@@ -1,1 +1,4 @@
-@import "@material/switch/mdc-switch";
+@use '@material/switch';
+@use '@smui/ripple/style';
+
+@include switch.core-styles;

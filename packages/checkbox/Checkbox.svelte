@@ -50,7 +50,6 @@
       : null}
     on:change={handleChange}
     on:change={() => instance && instance.handleChange()}
-    on:input={handleChange}
     on:change
     on:input
     on:blur

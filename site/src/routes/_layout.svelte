@@ -286,14 +286,14 @@
         'https://github.com/hperrin/svelte-material-ui/tree/master/packages/slider',
       ],
     },
-    // {
-    //   name: 'Switches',
-    //   route: '/demo/switch',
-    //   indent: 1,
-    //   repos: [
-    //     'https://github.com/hperrin/svelte-material-ui/tree/master/packages/switch',
-    //   ],
-    // },
+    {
+      name: 'Switches',
+      route: '/demo/switch',
+      indent: 1,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/switch',
+      ],
+    },
     // {
     //   name: 'Text Field',
     //   route: '/demo/textfield',

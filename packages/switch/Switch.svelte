@@ -7,6 +7,7 @@
     'mdc-switch': true,
     'mdc-switch--disabled': disabled,
     'mdc-switch--checked': nativeChecked,
+    ...internalClasses,
   })}
   {...exclude($$props, [
     'use',
@@ -19,34 +20,47 @@
   ])}
 >
   <div class="mdc-switch__track" />
-  <div class="mdc-switch__thumb-underlay">
-    <div class="mdc-switch__thumb">
-      <input
-        use:useActions={input$use}
-        class={classMap({
-          [input$class]: true,
-          'mdc-switch__native-control': true,
-        })}
-        type="checkbox"
-        role="switch"
-        {...inputProps}
-        {disabled}
-        bind:checked={nativeChecked}
-        value={valueKey === uninitializedValue ? value : valueKey}
-        on:change={handleChange}
-        on:change
-        on:input
-        on:blur
-        on:focus
-        {...exclude(prefixFilter($$props, 'input$'), ['use', 'class'])}
-      />
-    </div>
+  <div
+    class={classMap({
+      'mdc-switch__thumb-underlay': true,
+      ...thumbUnderlayClasses,
+    })}
+    use:Ripple={{
+      unbounded: true,
+      addClass: addThumbUnderlayClass,
+      removeClass: removeThumbUnderlayClass,
+      active: rippleActive,
+    }}
+  >
+    <div class="mdc-switch__thumb" />
+    <input
+      use:useActions={input$use}
+      class={classMap({
+        [input$class]: true,
+        'mdc-switch__native-control': true,
+      })}
+      type="checkbox"
+      role="switch"
+      {...inputProps}
+      {disabled}
+      bind:checked={nativeChecked}
+      aria-checked={nativeChecked ? 'true' : 'false'}
+      value={valueKey === uninitializedValue ? value : valueKey}
+      on:change={handleChange}
+      on:change={(event) => instance && instance.handleChange(event)}
+      on:change
+      on:input
+      on:blur
+      on:focus
+      {...internalAttrs}
+      {...exclude(prefixFilter($$props, 'input$'), ['use', 'class'])}
+    />
   </div>
 </div>
 
 <script>
-  import { MDCSwitch } from '@material/switch';
-  import { onMount, onDestroy, getContext } from 'svelte';
+  import { MDCSwitchFoundation } from '@material/switch';
+  import { onMount, getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
@@ -54,9 +68,13 @@
     exclude,
     prefixFilter,
     useActions,
+    dispatch,
   } from '@smui/common/internal.js';
+  import Ripple from '@smui/ripple/bare.js';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component());
+  const forwardEvents = forwardEventsBuilder(get_current_component(), [
+    'SMUI:generic:input:mount',
+  ]);
   let uninitializedValue = () => {};
 
   export let use = [];
@@ -71,8 +89,12 @@
   export let input$class = '';
 
   let element;
-  let switchControl;
-  let formField = getContext('SMUI:form-field');
+  let instance;
+  let internalClasses = {};
+  let thumbUnderlayClasses = {};
+  // These are added to the native control, not `element`.
+  let internalAttrs = {};
+  let rippleActive = false;
   let inputProps = getContext('SMUI:generic:input:props') || {};
   let setChecked = getContext('SMUI:generic:input:setChecked');
   let nativeChecked =
@@ -82,46 +104,8 @@
         : checked
       : group.indexOf(value) !== -1;
 
-  $: if (switchControl && $formField && $formField.input !== switchControl) {
-    $formField.input = switchControl;
-  }
-
   $: if (setChecked) {
     setChecked(nativeChecked);
-  }
-
-  $: if (switchControl) {
-    if (group !== uninitializedValue) {
-      const isChecked = group.indexOf(value) !== -1;
-      if (switchControl.checked !== isChecked) {
-        switchControl.checked = isChecked;
-      }
-    } else if (
-      checked !== uninitializedValue &&
-      switchControl.checked !== checked
-    ) {
-      switchControl.checked = checked;
-    }
-  }
-
-  $: if (switchControl && switchControl.disabled !== disabled) {
-    switchControl.disabled = disabled;
-  }
-
-  $: if (
-    switchControl &&
-    valueKey === uninitializedValue &&
-    switchControl.value !== value
-  ) {
-    switchControl.value = value;
-  }
-
-  $: if (
-    switchControl &&
-    valueKey !== uninitializedValue &&
-    switchControl.value !== valueKey
-  ) {
-    switchControl.value = valueKey;
   }
 
   let previousChecked = checked;
@@ -130,25 +114,91 @@
       checked = nativeChecked;
     } else if (nativeChecked !== checked) {
       nativeChecked = checked;
+      instance && instance.handleChange();
     }
     previousChecked = checked;
   }
 
   onMount(() => {
-    switchControl = new MDCSwitch(element);
+    instance = new MDCSwitchFoundation({
+      addClass,
+      removeClass,
+      setNativeControlChecked: (checked) => (nativeChecked = checked),
+      setNativeControlDisabled: (disabledValue) => (disabled = disabledValue),
+      setNativeControlAttr: addAttr,
+    });
+
+    dispatch(element, 'SMUI:generic:input:mount', {
+      get element() {
+        return getElement();
+      },
+      get checked() {
+        return nativeChecked;
+      },
+      set checked(checked) {
+        if (nativeChecked !== checked) {
+          nativeChecked = checked;
+          handleChange();
+          instance && instance.handleChange();
+        }
+      },
+      activateRipple() {
+        if (!disabled) {
+          rippleActive = true;
+        }
+      },
+      deactivateRipple() {
+        rippleActive = false;
+      },
+    });
+
+    instance.init();
+
+    return () => {
+      instance.destroy();
+    };
   });
 
-  onDestroy(() => {
-    switchControl && switchControl.destroy();
-  });
+  function addClass(className) {
+    if (!internalClasses[className]) {
+      internalClasses[className] = true;
+    }
+  }
 
-  function handleChange(e) {
+  function removeClass(className) {
+    if (!(className in internalClasses) || internalClasses[className]) {
+      internalClasses[className] = false;
+    }
+  }
+
+  function addThumbUnderlayClass(className) {
+    if (!thumbUnderlayClasses[className]) {
+      thumbUnderlayClasses[className] = true;
+    }
+  }
+
+  function removeThumbUnderlayClass(className) {
+    if (
+      !(className in thumbUnderlayClasses) ||
+      thumbUnderlayClasses[className]
+    ) {
+      thumbUnderlayClasses[className] = false;
+    }
+  }
+
+  function addAttr(name, value) {
+    if (internalAttrs[name] !== value) {
+      internalAttrs[name] = value;
+    }
+  }
+
+  function handleChange() {
     if (group !== uninitializedValue) {
       const idx = group.indexOf(value);
-      if (switchControl.checked && idx === -1) {
+      if (nativeChecked && idx === -1) {
         group.push(value);
         group = group;
-      } else if (!switchControl.checked && idx !== -1) {
+      } else if (!nativeChecked && idx !== -1) {
         group.splice(idx, 1);
         group = group;
       }
