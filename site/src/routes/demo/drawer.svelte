@@ -75,35 +75,35 @@
           <List>
             <Item
               href="javascript:void(0)"
-              on:click={() => setActive('Gray Kittens')}
+              on:click={() => setActiveDismissible('Gray Kittens')}
               activated={active === 'Gray Kittens'}
             >
               <Text>Gray Kittens</Text>
             </Item>
             <Item
               href="javascript:void(0)"
-              on:click={() => setActive('A Space Rocket')}
+              on:click={() => setActiveDismissible('A Space Rocket')}
               activated={active === 'A Space Rocket'}
             >
               <Text>A Space Rocket</Text>
             </Item>
             <Item
               href="javascript:void(0)"
-              on:click={() => setActive('100 Pounds of Gravel')}
+              on:click={() => setActiveDismissible('100 Pounds of Gravel')}
               activated={active === '100 Pounds of Gravel'}
             >
               <Text>100 Pounds of Gravel</Text>
             </Item>
             <Item
               href="javascript:void(0)"
-              on:click={() => setActive('All of the Shrimp')}
+              on:click={() => setActiveDismissible('All of the Shrimp')}
               activated={active === 'All of the Shrimp'}
             >
               <Text>All of the Shrimp</Text>
             </Item>
             <Item
               href="javascript:void(0)"
-              on:click={() => setActive('A Planet with a Mall')}
+              on:click={() => setActiveDismissible('A Planet with a Mall')}
               activated={active === 'A Planet with a Mall'}
             >
               <Text>A Planet with a Mall</Text>
@@ -132,7 +132,7 @@
 
     <div class="drawer-container">
       <!-- Don't include fixed={false} if this is a page wide drawer.
-        It adds a style for static positioning. -->
+        It adds a style for absolute positioning. -->
       <Drawer
         variant="modal"
         fixed={false}
@@ -147,7 +147,7 @@
           <List>
             <Item
               href="javascript:void(0)"
-              on:click={() => setActive2('Inbox')}
+              on:click={() => setActiveModal('Inbox')}
               activated={active2 === 'Inbox'}
             >
               <Graphic class="material-icons" aria-hidden="true">inbox</Graphic>
@@ -155,7 +155,7 @@
             </Item>
             <Item
               href="javascript:void(0)"
-              on:click={() => setActive2('Star')}
+              on:click={() => setActiveModal('Star')}
               activated={active2 === 'Star'}
             >
               <Graphic class="material-icons" aria-hidden="true">star</Graphic>
@@ -163,7 +163,7 @@
             </Item>
             <Item
               href="javascript:void(0)"
-              on:click={() => setActive2('Sent Mail')}
+              on:click={() => setActiveModal('Sent Mail')}
               activated={active2 === 'Sent Mail'}
             >
               <Graphic class="material-icons" aria-hidden="true">send</Graphic>
@@ -171,7 +171,7 @@
             </Item>
             <Item
               href="javascript:void(0)"
-              on:click={() => setActive2('Drafts')}
+              on:click={() => setActiveModal('Drafts')}
               activated={active2 === 'Drafts'}
             >
               <Graphic class="material-icons" aria-hidden="true">drafts</Graphic
@@ -183,7 +183,7 @@
             <Subheader component={H6}>Labels</Subheader>
             <Item
               href="javascript:void(0)"
-              on:click={() => setActive2('Family')}
+              on:click={() => setActiveModal('Family')}
               activated={active2 === 'Family'}
             >
               <Graphic class="material-icons" aria-hidden="true"
@@ -193,7 +193,7 @@
             </Item>
             <Item
               href="javascript:void(0)"
-              on:click={() => setActive2('Friends')}
+              on:click={() => setActiveModal('Friends')}
               activated={active2 === 'Friends'}
             >
               <Graphic class="material-icons" aria-hidden="true"
@@ -203,7 +203,7 @@
             </Item>
             <Item
               href="javascript:void(0)"
-              on:click={() => setActive2('Work')}
+              on:click={() => setActiveModal('Work')}
               activated={active2 === 'Work'}
             >
               <Graphic class="material-icons" aria-hidden="true"
@@ -254,12 +254,11 @@
   let myDrawer2Open = false;
   let active2 = 'Inbox';
 
-  function setActive(value) {
+  function setActiveDismissible(value) {
     active = value;
-    myDrawerOpen = false;
   }
 
-  function setActive2(value) {
+  function setActiveModal(value) {
     active2 = value;
     myDrawer2Open = false;
   }

@@ -7,7 +7,7 @@
     'mdc-drawer': true,
     'mdc-drawer--dismissible': variant === 'dismissible',
     'mdc-drawer--modal': variant === 'modal',
-    'smui-drawer__static': !fixed,
+    'smui-drawer__absolute': variant === 'modal' && !fixed,
     ...internalClasses,
   })}
   on:keydown={(event) => instance && instance.handleKeydown(event)}
