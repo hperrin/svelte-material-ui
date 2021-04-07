@@ -7,12 +7,14 @@
     'mdc-switch': true,
     'mdc-switch--disabled': disabled,
     'mdc-switch--checked': nativeChecked,
+    'smui-switch--color-primary': color === 'primary',
     ...internalClasses,
   })}
   {...exclude($$props, [
     'use',
     'class',
     'disabled',
+    'color',
     'group',
     'checked',
     'value',
@@ -27,6 +29,7 @@
     })}
     use:Ripple={{
       unbounded: true,
+      color,
       addClass: addThumbUnderlayClass,
       removeClass: removeThumbUnderlayClass,
       active: rippleActive,
@@ -81,6 +84,7 @@
   let className = '';
   export { className as class };
   export let disabled = false;
+  export let color = 'secondary';
   export let group = uninitializedValue;
   export let checked = uninitializedValue;
   export let value = null;

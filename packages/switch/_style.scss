@@ -1,4 +1,6 @@
 @use '@material/switch';
 @use '@smui/ripple/style';
+@use './mixins';
 
 @include switch.core-styles;
+@include mixins.core-styles;

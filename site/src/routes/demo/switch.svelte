@@ -23,8 +23,29 @@
 
   <pre class="status">Checked: {simpleSelected2}</pre>
 
+  <h6 class="demo-title">Primary color</h6>
+
+  <div>
+    <FormField>
+      <Switch color="primary" bind:checked={simpleSelected3} />
+      <span slot="label">Fields of grain.</span>
+    </FormField>
+  </div>
+
+  <pre class="status">Checked: {simpleSelected3}</pre>
+
+  <div>
+    <FormField align="end">
+      <Switch color="primary" bind:checked={simpleSelected4} />
+      <span slot="label">Fields of grain.</span>
+    </FormField>
+  </div>
+
+  <pre class="status">Checked: {simpleSelected4}</pre>
+
   <div>
     <h6 class="demo-title">Group switch</h6>
+
     {#each options as option}
       <div style="margin: 18px 0;">
         <FormField>
@@ -50,6 +71,8 @@
 
   let simpleSelected = false;
   let simpleSelected2 = false;
+  let simpleSelected3 = false;
+  let simpleSelected4 = false;
 
   let options = [
     {

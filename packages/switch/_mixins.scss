@@ -1,0 +1,21 @@
+@use '@material/feature-targeting';
+@use '@material/ripple/ripple-theme';
+@use '@material/switch';
+
+@mixin core-styles($query: feature-targeting.all()) {
+  @include without-ripple($query);
+  @include ripple($query);
+}
+
+@mixin without-ripple($query: feature-targeting.all()) {
+  .mdc-switch.smui-switch--color-primary {
+    @include switch.toggled-on-track-color(primary, $query);
+    @include switch.toggled-on-thumb-color(primary, $query);
+  }
+}
+
+@mixin ripple($query: feature-targeting.all()) {
+  .smui-switch--color-primary .mdc-switch__thumb-underlay {
+    @include ripple-theme.states(primary, false, $query);
+  }
+}
