@@ -75,11 +75,11 @@
   </TopAppBar>
   <div class="drawer-container">
     <Drawer
-      variant={miniWindow ? 'modal' : null}
+      variant={miniWindow ? 'modal' : undefined}
       bind:open={drawerOpen}
       class="demo-drawer mdc-theme--secondary-bg {miniWindow
         ? 'demo-drawer-adjust'
-        : ''}"
+        : 'hide-initial-small'}"
     >
       <Content>
         <List>
@@ -452,6 +452,16 @@
   }
 
   function setMiniWindow() {
-    miniWindow = window.innerWidth < 720;
+    if (typeof window !== 'undefined') {
+      miniWindow = window.innerWidth < 720;
+    }
   }
 </script>
+
+<style>
+  @media (max-width: 720px) {
+    :global(* > .hide-initial-small) {
+      display: none;
+    }
+  }
+</style>

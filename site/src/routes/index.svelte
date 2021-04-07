@@ -3,11 +3,7 @@
 </svelte:head>
 
 <section style="padding: 36px 56px; position: relative;">
-  <img
-    style="display: block; position: absolute; right: 250px; top: -15px; opacity: .4; transform: scale(1.8); z-index: -1;"
-    src="logo.png"
-    alt="logo"
-  />
+  <img class="logo" src="logo.png" alt="logo" />
 
   <div style="margin: 3em 0;">
     <h2 class="mdc-typography--headline2" style="margin-bottom: 0;">
@@ -17,8 +13,8 @@
   </div>
 
   <div style="margin: 3em 0;">
-    <div style="display: flex; margin: 0 -1em;">
-      <Paper color="primary" style="margin: 1em; flex-grow: 1; flex-basis: 0;">
+    <div class="boxes">
+      <Paper color="primary" class="box">
         <Title>Svelte</Title>
         <Content>
           SMUI provides Svelte components and actions for a wide variety of
@@ -26,10 +22,7 @@
           custom UI components.
         </Content>
       </Paper>
-      <Paper
-        color="svelte-blue"
-        style="margin: 1em; flex-grow: 1; flex-basis: 0;"
-      >
+      <Paper color="svelte-blue" class="box">
         <Title>Material.io</Title>
         <Content>
           SMUI is based on the awesome <a
@@ -45,10 +38,7 @@
           SMUI component handles DOM updates.
         </Content>
       </Paper>
-      <Paper
-        color="secondary"
-        style="margin: 1em; flex-grow: 1; flex-basis: 0;"
-      >
+      <Paper color="secondary" class="box">
         <Title>Sass</Title>
         <Content>
           Like MDC, SMUI is styled through Sass. SMUI supports all of the mixins
@@ -77,3 +67,39 @@
 <script>
   import Paper, { Title, Subtitle, Content } from '@smui/paper';
 </script>
+
+<style>
+  .logo {
+    display: block;
+    position: absolute;
+    right: 250px;
+    top: -15px;
+    opacity: 0.4;
+    transform: scale(1.8);
+    z-index: -1;
+  }
+
+  .boxes {
+    display: flex;
+    margin: 0 -1em;
+  }
+
+  .boxes :global(.box) {
+    margin: 1em;
+    flex-grow: 1;
+    flex-basis: 0;
+  }
+
+  @media (max-width: 460px) {
+    .logo {
+      opacity: 0.2;
+      right: -50px;
+      top: -35px;
+      transform: scale(1);
+    }
+
+    .boxes {
+      flex-direction: column;
+    }
+  }
+</style>
