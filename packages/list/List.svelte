@@ -87,10 +87,24 @@
   export let singleSelection = false;
   export let selectedIndex = null;
   export let radioList = false;
-  export { radioList as radiolist };
   export let checkList = false;
-  export { checkList as checklist };
   export let hasTypeahead = false;
+
+  /**
+   * @deprecated
+   */
+  export let radiolist = false;
+  if (radiolist) {
+    radioList = true;
+  }
+
+  /**
+   * @deprecated
+   */
+  export let checklist = false;
+  if (checklist) {
+    checkList = true;
+  }
 
   $: props = exclude($$props, [
     'use',
