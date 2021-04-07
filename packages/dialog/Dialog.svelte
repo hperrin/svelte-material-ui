@@ -31,10 +31,26 @@
     'escapeKeyAction',
     'scrimClickAction',
     'autoStackButtons',
+    'container$',
+    'surface$',
   ])}
 >
-  <div class="mdc-dialog__container">
-    <div class="mdc-dialog__surface" role="alertdialog" aria-modal="true">
+  <div
+    class={classMap({
+      [container$class]: true,
+      'mdc-dialog__container': true,
+    })}
+    {...exclude(prefixFilter($$props, 'container$'), ['class'])}
+  >
+    <div
+      class={classMap({
+        [surface$class]: true,
+        'mdc-dialog__surface': true,
+      })}
+      role="alertdialog"
+      aria-modal="true"
+      {...exclude(prefixFilter($$props, 'surface$'), ['class'])}
+    >
       <slot />
     </div>
   </div>
@@ -46,11 +62,13 @@
   import { FocusTrap } from '@material/dom/focus-trap';
   import { closest, matches } from '@material/dom/ponyfill';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
+  import { writable } from 'svelte/store';
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
     classMap,
     exclude,
+    prefixFilter,
     useActions,
     dispatch,
   } from '@smui/common/internal.js';
@@ -70,11 +88,14 @@
   export let escapeKeyAction = 'close';
   export let scrimClickAction = 'close';
   export let autoStackButtons = true;
+  export let container$class = '';
+  export let surface$class = '';
 
   let element;
   let instance;
   let internalClasses = {};
   let focusTrap;
+  let actionButtonsReversed = writable(false);
   let addLayoutListener = getContext('SMUI:addLayoutListener');
   let removeLayoutListener;
   let layoutListeners = [];
@@ -89,6 +110,7 @@
     };
   };
 
+  setContext('SMUI:dialog:actions:reversed', actionButtonsReversed);
   setContext('SMUI:addLayoutListener', addLayoutListenerFn);
   setContext('SMUI:dialog:selection', selection);
 
@@ -155,10 +177,7 @@
       removeBodyClass: (className) => document.body.classList.remove(className),
       removeClass,
       reverseButtons: () => {
-        // this.buttons.reverse();
-        // this.buttons.forEach((button) => {
-        //   button.parentElement!.appendChild(button);
-        // });
+        $actionButtonsReversed = true;
       },
       trapFocus: () => focusTrap.trapFocus(),
       registerContentEventHandler: (evt, handler) => {

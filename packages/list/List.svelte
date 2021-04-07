@@ -9,8 +9,7 @@
     'mdc-list--non-interactive': nonInteractive,
     'mdc-list--dense': dense,
     'mdc-list--textual-list': textualList,
-    'mdc-list--avatar-list':
-      avatarList || (selectionDialog && (radioList || checkList)),
+    'mdc-list--avatar-list': avatarList || selectionDialog,
     'mdc-list--icon-list': iconList,
     'mdc-list--image-list': imageList,
     'mdc-list--thumbnail-list': thumbnailList,

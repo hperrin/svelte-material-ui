@@ -194,6 +194,70 @@
       ><Label>Open Dialog</Label></Button
     >
   </div>
+
+  <div>
+    <h6 class="demo-title">A large, scrollable dialog</h6>
+
+    <Dialog
+      bind:open={largeScrollDialogOpen}
+      aria-labelledby="large-scroll-title"
+      aria-describedby="large-scroll-content"
+      surface$style="width: 850px; max-width: calc(100vw - 32px);"
+    >
+      <Title id="large-scroll-title"
+        >A Brief Selection of Placeholder Text</Title
+      >
+      <Content id="large-scroll-content">
+        <LoremIpsum />
+        <LoremIpsum />
+      </Content>
+      <Actions>
+        <Button action="accept">
+          <Label>Done</Label>
+        </Button>
+      </Actions>
+    </Dialog>
+
+    <Button on:click={() => (largeScrollDialogOpen = true)}
+      ><Label>Open Dialog</Label></Button
+    >
+  </div>
+
+  <div>
+    <h6 class="demo-title">Too many action buttons for one line</h6>
+
+    <Dialog
+      bind:open={buttonsDialogOpen}
+      aria-labelledby="buttons-title"
+      aria-describedby="buttons-content"
+      on:MDCDialog:closed={(e) => (buttoned = e.detail.action)}
+      surface$style="width: 280px; max-width: calc(100vw - 32px);"
+    >
+      <Title id="buttons-title">Use speed bost?</Title>
+      <Content id="buttons-content"
+        >Speed boost opens the extra holes in your device to increase
+        aerodynamics. This allows your device to reach higher maximum speed,
+        increasing your productivity.</Content
+      >
+      <Actions>
+        <Button action="no">
+          <Label>No Thanks</Label>
+        </Button>
+        <Button action="later">
+          <Label>Remind Me Later</Label>
+        </Button>
+        <Button action="speed-bost">
+          <Label>Turn on Speed Boost</Label>
+        </Button>
+      </Actions>
+    </Dialog>
+
+    <Button on:click={() => (buttonsDialogOpen = true)}
+      ><Label>Open Dialog</Label></Button
+    >
+  </div>
+
+  <pre class="status">Action: {buttoned}</pre>
 </section>
 
 <script>
@@ -203,17 +267,21 @@
   import Radio from '@smui/radio';
   import Slider from '@smui/slider';
   import FormField from '@smui/form-field';
+  import LoremIpsum from '../../components/LoremIpsum.svelte';
 
   let simpleDialogOpen;
   let eventDialogOpen;
   let listDialogOpen;
   let listSelectionDialogOpen;
   let sliderDialogOpen;
+  let largeScrollDialogOpen;
+  let buttonsDialogOpen;
   let clicked = 'Nothing yet.';
   let response = 'Nothing yet.';
   let clickedList = 'Nothing yet.';
   let selection = 'Radishes';
   let selected = 'Nothing yet.';
+  let buttoned = 'Nothing yet.';
   let volumeMedia = 100;
   let volumeRingtone = 80;
   let volumeAlarm = 80;
