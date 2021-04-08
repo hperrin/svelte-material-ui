@@ -160,7 +160,7 @@
     if (tabId instanceof Object) {
       tabAccessorWeakMap.remove(tabId);
     } else {
-      delete tabAccessorMap[tabKey];
+      delete tabAccessorMap[tabId];
     }
   }
 
