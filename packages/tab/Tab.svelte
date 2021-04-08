@@ -1,7 +1,19 @@
 <svelte:component
   this={component}
   bind:this={element}
-  use={[forwardEvents, ...use]}
+  use={[
+    [
+      Ripple,
+      {
+        ripple,
+        unbounded: false,
+        addClass,
+        removeClass,
+      },
+    ],
+    forwardEvents,
+    ...use,
+  ]}
   forwardEvents={forwardedEvents}
   class={classMap({
     [className]: true,
@@ -9,26 +21,27 @@
     'mdc-tab--active': active,
     'mdc-tab--stacked': stacked,
     'mdc-tab--min-width': minWidth,
+    ...internalClasses,
   })}
   role="tab"
-  aria-selected={active}
+  aria-selected={active ? 'true' : 'false'}
   tabindex={active ? '0' : '-1'}
-  on:MDCTab:interacted={interactedHandler}
+  on:click={instance && instance.handleClick()}
+  {...internalAttrs}
   {...exclude($$props, [
     'use',
     'class',
     'ripple',
-    'active',
     'stacked',
     'minWidth',
     'indicatorSpanOnlyContent',
-    'focusOnActivate',
     'component',
     'content$',
     'tabIndicator$',
   ])}
 >
   <span
+    bind:this={content}
     use:useActions={content$use}
     class={classMap({
       [content$class]: true,
@@ -38,24 +51,28 @@
   >
     <slot />
     {#if indicatorSpanOnlyContent}
-      <TabIndicator {active} {...prefixFilter($$props, 'tabIndicator$')}
+      <TabIndicator
+        bind:this={tabIndicator}
+        {active}
+        {...prefixFilter($$props, 'tabIndicator$')}
         ><slot name="tab-indicator" /></TabIndicator
       >
     {/if}
   </span>
   {#if !indicatorSpanOnlyContent}
-    <TabIndicator {active} {...prefixFilter($$props, 'tabIndicator$')}
+    <TabIndicator
+      bind:this={tabIndicator}
+      {active}
+      {...prefixFilter($$props, 'tabIndicator$')}
       ><slot name="tab-indicator" /></TabIndicator
     >
   {/if}
-  {#if ripple}
-    <span class="mdc-tab__ripple" />
-  {/if}
+  <span class="mdc-tab__ripple" />
 </svelte:component>
 
 <script>
-  import { MDCTab } from '@material/tab';
-  import { onMount, onDestroy, setContext, getContext } from 'svelte';
+  import { MDCTabFoundation } from '@material/tab';
+  import { onMount, setContext, getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
@@ -63,29 +80,28 @@
     exclude,
     prefixFilter,
     useActions,
+    dispatch,
   } from '@smui/common/internal.js';
   import A from '@smui/common/A.svelte';
   import Button from '@smui/common/Button.svelte';
   import TabIndicator from '@smui/tab-indicator/TabIndicator.svelte';
+  import Ripple from '@smui/ripple/bare.js';
 
-  const forwardedEvents = ['MDCTab:interacted'];
+  const forwardedEvents = ['MDCTab:interacted', 'SMUI:tab:mount'];
   const forwardEvents = forwardEventsBuilder(
     get_current_component(),
     forwardedEvents
   );
-  let activeEntry = getContext('SMUI:tab:active');
 
   export let use = [];
   let className = '';
   export { className as class };
-  let tabEntry;
-  export { tabEntry as tab };
+  let tabId;
+  export { tabId as tab };
   export let ripple = true;
-  export let active = tabEntry === activeEntry;
   export let stacked = false;
   export let minWidth = false;
   export let indicatorSpanOnlyContent = false;
-  export let focusOnActivate = true;
   // Purposely left out of props exclude.
   export let href = null;
 
@@ -93,81 +109,108 @@
   export let content$class = '';
 
   let element;
-  let tab;
-  let instantiate = getContext('SMUI:tab:instantiate');
-  let getInstance = getContext('SMUI:tab:getInstance');
-  let tabIndicatorPromiseResolve;
-  let tabIndicatorPromise = new Promise(
-    (resolve) => (tabIndicatorPromiseResolve = resolve)
-  );
+  let instance;
+  let content;
+  let tabIndicator;
+  let internalClasses = {};
+  let internalAttrs = {};
+  let focusOnActivate = getContext('SMUI:tab:focusOnActivate');
+  let active = tabId === getContext('SMUI:tab:initialActive');
+  let accessor = {
+    tabId,
+    get element() {
+      return getElement();
+    },
+    get active() {
+      return active;
+    },
+    computeIndicatorClientRect: () => tabIndicator.computeContentClientRect(),
+    computeDimensions: () => instance.computeDimensions(),
+    focus,
+    activate,
+    deactivate,
+  };
 
   export let component = href == null ? Button : A;
 
-  $: hrefProp = href == null ? {} : { href };
-
-  setContext('SMUI:tab-indicator:instantiate', false);
-  setContext('SMUI:tab-indicator:getInstance', getTabIndicatorInstancePromise);
   setContext('SMUI:label:context', 'tab');
   setContext('SMUI:icon:context', 'tab');
 
-  if (!tabEntry) {
+  if (!tabId) {
     throw new Error(
       'The tab property is required! It should be passed down from the TabBar to the Tab.'
     );
   }
 
-  $: if (tab && tab.active !== active) {
-    active = tab.active;
-  }
-
-  $: if (tab) {
-    tab.focusOnActivate = focusOnActivate;
+  $: if (instance) {
+    instance.setFocusOnActivate(focusOnActivate);
   }
 
   onMount(() => {
-    if (instantiate !== false) {
-      tab = new MDCTab(element);
-    } else {
-      // tab = await getInstance(tabEntry);
-    }
-    tabIndicatorPromiseResolve(tab.tabIndicator_);
-    if (!ripple) {
-      tab.ripple_ && tab.ripple_.destroy();
-    }
+    instance = new MDCTabFoundation({
+      setAttr: addAttr,
+      addClass,
+      removeClass,
+      hasClass,
+      activateIndicator: (previousIndicatorClientRect) =>
+        tabIndicator.activate(previousIndicatorClientRect),
+      deactivateIndicator: () => tabIndicator.deactivate(),
+      notifyInteracted: () =>
+        dispatch(getElement(), 'MDCTab:interacted', { tabId: tabId }),
+      getOffsetLeft: () => getElement().offsetLeft,
+      getOffsetWidth: () => getElement().offsetWidth,
+      getContentOffsetLeft: () => content.offsetLeft,
+      getContentOffsetWidth: () => content.offsetWidth,
+      focus,
+    });
+
+    dispatch(getElement(), 'SMUI:tab:mount', accessor);
+
+    instance.init();
+
+    return () => {
+      dispatch(getElement(), 'SMUI:tab:unmount', accessor);
+
+      instance.destroy();
+    };
   });
 
-  onDestroy(() => {
-    tab && tab.destroy();
-  });
-
-  function getTabIndicatorInstancePromise() {
-    return tabIndicatorPromise;
+  function hasClass(className) {
+    return className in internalClasses
+      ? internalClasses[className]
+      : getElement().classList.contains(className);
   }
 
-  function interactedHandler() {
-    active = tab.active;
+  function addClass(className) {
+    if (!internalClasses[className]) {
+      internalClasses[className] = true;
+    }
   }
 
-  export function activate(...args) {
+  function removeClass(className) {
+    if (!(className in internalClasses) || internalClasses[className]) {
+      internalClasses[className] = false;
+    }
+  }
+
+  function addAttr(name, value) {
+    if (internalAttrs[name] !== value) {
+      internalAttrs[name] = value;
+    }
+  }
+
+  export function activate(previousIndicatorClientRect) {
     active = true;
-    return tab.activate(...args);
+    instance.activate(previousIndicatorClientRect);
   }
 
-  export function deactivate(...args) {
+  export function deactivate() {
     active = false;
-    return tab.deactivate(...args);
+    instance.deactivate();
   }
 
-  export function focus(...args) {
-    return tab.focus(...args);
-  }
-
-  export function computeIndicatorClientRect(...args) {
-    return tab.computeIndicatorClientRect(...args);
-  }
-
-  export function computeDimensions(...args) {
-    return tab.computeDimensions(...args);
+  export function focus() {
+    getElement().focus();
   }
 
   export function getElement() {

@@ -6,6 +6,7 @@
   <h2>Tabs</h2>
 
   <div>
+    <!-- Note that tabs must be unique. (They cannot === each other.) -->
     <TabBar tabs={['Home', 'Merchandise', 'About Us']} let:tab bind:active>
       <!-- Notice that the `tab` property is required! -->
       <Tab {tab}>
@@ -25,7 +26,7 @@
 
   <div>
     <h6 class="demo-title">Tabs with icons next to labels</h6>
-    <TabBar tabs={iconTabs} let:tab>
+    <TabBar tabs={iconTabs} let:tab bind:active={iconActive}>
       <Tab {tab}>
         <Icon class="material-icons">{tab.icon}</Icon>
         <Label>{tab.label}</Label>
@@ -35,8 +36,8 @@
 
   <div>
     <h6 class="demo-title">
-      Keyed tabs with icons above labels, preselected tab, indicators restricted
-      to content, and fade transition
+      Keyed tabs with icons above labels, indicators restricted to content, and
+      fade transition
     </h6>
     <TabBar
       tabs={keyedTabs}
@@ -59,7 +60,7 @@
   </div>
 
   <div>
-    <h6 class="demo-title">Scrolling tabs</h6>
+    <h6 class="demo-title">Scrolling tabs with no initial active tab</h6>
     <TabBar tabs={[...Array(20)].map((v, i) => i + 1)} let:tab>
       <Tab {tab}>
         <Label>Tab {tab}</Label>
@@ -69,7 +70,11 @@
 
   <div>
     <h6 class="demo-title">Min width tabs</h6>
-    <TabBar tabs={['Home', 'Merchandise', 'About Us']} let:tab>
+    <TabBar
+      tabs={['Home', 'Merchandise', 'About Us']}
+      let:tab
+      bind:active={minWidthActive}
+    >
       <Tab {tab} minWidth>
         <Label>{tab}</Label>
       </Tab>
@@ -78,7 +83,11 @@
 
   <div class="icon-indicators">
     <h6 class="demo-title">Icon indicators</h6>
-    <TabBar tabs={['Home', 'Merchandise', 'About Us']} let:tab>
+    <TabBar
+      tabs={['Home', 'Merchandise', 'About Us']}
+      let:tab
+      bind:active={iconIndicatorActive}
+    >
       <Tab
         {tab}
         tabIndicator$type="icon"
@@ -94,7 +103,11 @@
     <h6 class="demo-title">
       Tabs with href attributes render as anchor elements
     </h6>
-    <TabBar tabs={['Home', 'Merchandise', 'About Us']} let:tab>
+    <TabBar
+      tabs={['Home', 'Merchandise', 'About Us']}
+      let:tab
+      bind:active={hrefActive}
+    >
       <Tab
         {tab}
         href="https://en.wikipedia.org/wiki/{tab.replace(/ /g, '_')}"
@@ -133,6 +146,7 @@
       label: 'Favorites',
     },
   ];
+  let iconActive = iconTabs[0];
   let keyedTabs = [
     {
       k: 1,
@@ -156,6 +170,9 @@
     },
   ];
   let keyedTabsActive = keyedTabs[2];
+  let minWidthActive = 'Home';
+  let iconIndicatorActive = 'Home';
+  let hrefActive = 'Home';
 </script>
 
 <style>

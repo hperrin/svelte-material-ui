@@ -374,37 +374,37 @@
     //     'https://github.com/hperrin/svelte-material-ui/tree/master/packages/snackbar/kitchen',
     //   ],
     // },
-    // {
-    //   name: 'Tabs',
-    //   route: '/demo/tabs',
-    //   indent: 0,
-    //   repos: [
-    //     'https://github.com/hperrin/svelte-material-ui/tree/master/packages/tab',
-    //     'https://github.com/hperrin/svelte-material-ui/tree/master/packages/tab-bar',
-    //     'https://github.com/hperrin/svelte-material-ui/tree/master/packages/tab-indicator',
-    //     'https://github.com/hperrin/svelte-material-ui/tree/master/packages/tab-scroller',
-    //   ],
-    // },
-    // {
-    //   name: 'Tab',
-    //   shortcut: '/demo/tabs',
-    //   indent: 1,
-    // },
-    // {
-    //   name: 'Tab Bar',
-    //   shortcut: '/demo/tabs',
-    //   indent: 1,
-    // },
-    // {
-    //   name: 'Tab Indicator',
-    //   shortcut: '/demo/tabs',
-    //   indent: 1,
-    // },
-    // {
-    //   name: 'Tab Scroller',
-    //   shortcut: '/demo/tabs',
-    //   indent: 1,
-    // },
+    {
+      name: 'Tabs',
+      route: '/demo/tabs',
+      indent: 0,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/tab',
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/tab-bar',
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/tab-indicator',
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/tab-scroller',
+      ],
+    },
+    {
+      name: 'Tab',
+      shortcut: '/demo/tabs',
+      indent: 1,
+    },
+    {
+      name: 'Tab Bar',
+      shortcut: '/demo/tabs',
+      indent: 1,
+    },
+    {
+      name: 'Tab Indicator',
+      shortcut: '/demo/tabs',
+      indent: 1,
+    },
+    {
+      name: 'Tab Scroller',
+      shortcut: '/demo/tabs',
+      indent: 1,
+    },
     {
       name: 'Theme',
       route: '/demo/theme',

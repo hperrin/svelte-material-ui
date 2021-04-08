@@ -54,7 +54,7 @@
     on:input
     on:blur
     on:focus
-    {...internalAttrs}
+    {...nativeControlAttrs}
     {...exclude(prefixFilter($$props, 'input$'), ['use', 'class'])}
   />
   <div class="mdc-checkbox__background">
@@ -106,8 +106,7 @@
   let instance;
   let checkbox;
   let internalClasses = {};
-  // These are added to the native control, not `element`.
-  let internalAttrs = {};
+  let nativeControlAttrs = {};
   let rippleActive = false;
   let inputProps = getContext('SMUI:generic:input:props') || {};
   let setChecked = getContext('SMUI:generic:input:setChecked');
@@ -164,8 +163,8 @@
       isIndeterminate: () =>
         indeterminate === uninitializedValue ? false : indeterminate,
       removeClass,
-      removeNativeControlAttr: removeAttr,
-      setNativeControlAttr: addAttr,
+      removeNativeControlAttr,
+      setNativeControlAttr: addNativeControlAttr,
       setNativeControlDisabled: (value) => (disabled = value),
     });
 
@@ -212,15 +211,15 @@
     }
   }
 
-  function addAttr(name, value) {
-    if (internalAttrs[name] !== value) {
-      internalAttrs[name] = value;
+  function addNativeControlAttr(name, value) {
+    if (nativeControlAttrs[name] !== value) {
+      nativeControlAttrs[name] = value;
     }
   }
 
-  function removeAttr(name) {
-    if (!(name in internalAttrs) || internalAttrs[name] != null) {
-      internalAttrs[name] = undefined;
+  function removeNativeControlAttr(name) {
+    if (!(name in nativeControlAttrs) || nativeControlAttrs[name] != null) {
+      nativeControlAttrs[name] = undefined;
     }
   }
 

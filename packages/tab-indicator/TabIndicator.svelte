@@ -7,6 +7,7 @@
     'mdc-tab-indicator': true,
     'mdc-tab-indicator--active': active,
     'mdc-tab-indicator--fade': transition === 'fade',
+    ...internalClasses,
   })}
   {...exclude($$props, [
     'use',
@@ -18,6 +19,7 @@
   ])}
 >
   <span
+    bind:this={content}
     use:useActions={content$use}
     class={classMap({
       [content$class]: true,
@@ -25,15 +27,21 @@
       'mdc-tab-indicator__content--underline': type === 'underline',
       'mdc-tab-indicator__content--icon': type === 'icon',
     })}
-    aria-hidden={type === 'icon' ? 'true' : 'false'}
+    style={Object.entries(contentStyles)
+      .map(([name, value]) => `${name}: ${value};`)
+      .join(' ')}
+    aria-hidden={type === 'icon' ? 'true' : null}
     {...exclude(prefixFilter($$props, 'content$'), ['use', 'class'])}
     ><slot /></span
   >
 </span>
 
 <script>
-  import { MDCTabIndicator } from '@material/tab-indicator';
-  import { onMount, onDestroy, getContext } from 'svelte';
+  import {
+    MDCFadingTabIndicatorFoundation,
+    MDCSlidingTabIndicatorFoundation,
+  } from '@material/tab-indicator';
+  import { onMount } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
@@ -55,32 +63,101 @@
   export let content$class = '';
 
   let element;
-  let tabIndicator;
-  let instantiate = getContext('SMUI:tab-indicator:instantiate');
-  let getInstance = getContext('SMUI:tab-indicator:getInstance');
+  let instance;
+  let content;
+  let internalClasses = {};
+  let contentStyles = {};
+  let changeSets = [];
+
+  let oldTransition = transition;
+  $: if (oldTransition !== transition) {
+    oldTransition = transition;
+    instance && instance.destroy();
+    internalClasses = {};
+    contentStyles = {};
+    instance = getInstance();
+    instance.init();
+  }
+
+  // Use sets of changes for DOM updates, to facilitate animations.
+  $: if (changeSets.length) {
+    requestAnimationFrame(() => {
+      const changeSet = changeSets.shift();
+      changeSets = changeSets;
+      for (const fn of changeSet) {
+        fn();
+      }
+    });
+  }
 
   onMount(() => {
-    if (instantiate !== false) {
-      tabIndicator = new MDCTabIndicator(element);
+    instance = getInstance();
+
+    instance.init();
+
+    return () => {
+      instance.destroy();
+    };
+  });
+
+  function getInstance() {
+    const Foundation =
+      {
+        fade: MDCFadingTabIndicatorFoundation,
+        slide: MDCSlidingTabIndicatorFoundation,
+      }[transition] || MDCSlidingTabIndicatorFoundation;
+
+    return Foundation
+      ? new Foundation({
+          addClass: (...props) => doChange(() => addClass(...props)),
+          removeClass: (...props) => doChange(() => removeClass(...props)),
+          computeContentClientRect,
+          setContentStyleProperty: (...props) =>
+            doChange(() => addContentStyle(...props)),
+        })
+      : undefined;
+  }
+
+  function doChange(fn) {
+    if (changeSets.length) {
+      changeSets[changeSets.length - 1].push(fn);
     } else {
-      // tabIndicator = await getInstance();
+      fn();
     }
-  });
-
-  onDestroy(() => {
-    tabIndicator && tabIndicator.destroy();
-  });
-
-  export function activate(...args) {
-    return tabIndicator.activate(...args);
   }
 
-  export function deactivate(...args) {
-    return tabIndicator.deactivate(...args);
+  function addClass(className) {
+    if (!internalClasses[className]) {
+      internalClasses[className] = true;
+    }
   }
 
-  export function computeContentClientRect(...args) {
-    return tabIndicator.computeContentClientRect(...args);
+  function removeClass(className) {
+    if (!(className in internalClasses) || internalClasses[className]) {
+      internalClasses[className] = false;
+    }
+  }
+
+  function addContentStyle(name, value) {
+    if (contentStyles[name] !== value) {
+      contentStyles[name] = value;
+    }
+  }
+
+  export function activate(previousIndicatorClientRect) {
+    active = true;
+    instance.activate(previousIndicatorClientRect);
+  }
+
+  export function deactivate() {
+    active = false;
+    instance.deactivate();
+  }
+
+  export function computeContentClientRect() {
+    changeSets.push([]);
+    changeSets = changeSets;
+    return content.getBoundingClientRect();
   }
 
   export function getElement() {

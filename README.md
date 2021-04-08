@@ -248,10 +248,10 @@ Update Progress Checklist:
 - [x] Ripples
 - [ ] Snackbars
   - [ ] Kitchen
-- [ ] Tab
-- [ ] Tab Bar
-- [ ] Tab Indicator
-- [ ] Tab Scroller
+- [x] Tab
+- [x] Tab Bar
+- [x] Tab Indicator
+- [x] Tab Scroller
 - [x] Top App Bar
 
 Once these are all done, I'll release a beta version, then work on implementing the new components from upstream:

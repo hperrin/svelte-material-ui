@@ -55,7 +55,7 @@
       on:input
       on:blur
       on:focus
-      {...internalAttrs}
+      {...nativeControlAttrs}
       {...exclude(prefixFilter($$props, 'input$'), ['use', 'class'])}
     />
   </div>
@@ -96,8 +96,7 @@
   let instance;
   let internalClasses = {};
   let thumbUnderlayClasses = {};
-  // These are added to the native control, not `element`.
-  let internalAttrs = {};
+  let nativeControlAttrs = {};
   let rippleActive = false;
   let inputProps = getContext('SMUI:generic:input:props') || {};
   let setChecked = getContext('SMUI:generic:input:setChecked');
@@ -129,7 +128,7 @@
       removeClass,
       setNativeControlChecked: (checked) => (nativeChecked = checked),
       setNativeControlDisabled: (disabledValue) => (disabled = disabledValue),
-      setNativeControlAttr: addAttr,
+      setNativeControlAttr: addNativeControlAttr,
     });
 
     dispatch(element, 'SMUI:generic:input:mount', {
@@ -190,9 +189,9 @@
     }
   }
 
-  function addAttr(name, value) {
-    if (internalAttrs[name] !== value) {
-      internalAttrs[name] = value;
+  function addNativeControlAttr(name, value) {
+    if (nativeControlAttrs[name] !== value) {
+      nativeControlAttrs[name] = value;
     }
   }
 

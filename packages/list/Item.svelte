@@ -190,14 +190,16 @@
     }
 
     dispatch(element, 'SMUI:list:item:mount', accessor);
+
+    return () => {
+      dispatch(element, 'SMUI:list:item:unmount', accessor);
+    };
   });
 
   onDestroy(() => {
     if (addTabindexIfNoItemsSelectedRaf) {
       window.cancelAnimationFrame(addTabindexIfNoItemsSelectedRaf);
     }
-
-    dispatch(element, 'SMUI:list:item:unmount', accessor);
   });
 
   function hasClass(className) {

@@ -8,12 +8,15 @@ export default function Ripple(
   node,
   {
     ripple = true,
+    sentinel = null,
     surface = false,
     unbounded = false,
     disabled = false,
     color = null,
     addClass = (className) => node.classList.add(className),
     removeClass = (className) => node.classList.remove(className),
+    addStyle = (name, value) =>
+      (sentinel || node).style.setProperty(name, value),
     active = null,
   } = {}
 ) {
@@ -81,8 +84,7 @@ export default function Ripple(
         registerResizeHandler: (handler) =>
           window.addEventListener('resize', handler),
         removeClass,
-        updateCssVariable: (varName, value) =>
-          node.style.setProperty(varName, value),
+        updateCssVariable: addStyle,
       });
       instance.init();
       instance.setUnbounded(unbounded);
@@ -110,27 +112,31 @@ export default function Ripple(
 
   return {
     update(props) {
-      if ('ripple' in props) {
-        ripple = props.ripple;
-      }
-      if ('unbounded' in props) {
-        unbounded = props.unbounded;
-      }
-      if ('disabled' in props) {
-        disabled = props.disabled;
-      }
-      if ('color' in props) {
-        color = props.color;
-      }
-      if ('addClass' in props) {
-        addClass = props.addClass;
-      }
-      if ('removeClass' in props) {
-        removeClass = props.removeClass;
-      }
-      if ('active' in props) {
-        active = props.active;
-      }
+      ({
+        ripple,
+        sentinel,
+        surface,
+        unbounded,
+        disabled,
+        color,
+        addClass,
+        removeClass,
+        addStyle,
+        active,
+      } = {
+        ripple: true,
+        sentinel: null,
+        surface: false,
+        unbounded: false,
+        disabled: false,
+        color: null,
+        addClass: (className) => node.classList.add(className),
+        removeClass: (className) => node.classList.remove(className),
+        addStyle: (name, value) =>
+          (sentinel || node).style.setProperty(name, value),
+        active: null,
+        ...props,
+      });
       handleProps();
     },
 

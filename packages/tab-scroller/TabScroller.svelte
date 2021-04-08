@@ -5,23 +5,49 @@
   class={classMap({
     [className]: true,
     'mdc-tab-scroller': true,
+    'mdc-tab-scroller--align-start': align === 'start',
+    'mdc-tab-scroller--align-end': align === 'end',
+    'mdc-tab-scroller--align-center': align === 'center',
+    ...internalClasses,
   })}
-  {...exclude($$props, ['use', 'class', 'scrollArea$', 'scrollContent$'])}
+  {...exclude($$props, [
+    'use',
+    'class',
+    'align',
+    'scrollArea$',
+    'scrollContent$',
+  ])}
 >
   <div
+    bind:this={scrollArea}
     use:useActions={scrollArea$use}
     class={classMap({
       [scrollArea$class]: true,
       'mdc-tab-scroller__scroll-area': true,
+      ...scrollAreaClasses,
     })}
+    style={Object.entries(scrollAreaStyles)
+      .map(([name, value]) => `${name}: ${value};`)
+      .join(' ')}
+    on:wheel={() => instance && instance.handleInteraction()}
+    on:touchstart={() => instance && instance.handleInteraction()}
+    on:pointerdown={() => instance && instance.handleInteraction()}
+    on:mousedown={() => instance && instance.handleInteraction()}
+    on:keydown={() => instance && instance.handleInteraction()}
     {...exclude(prefixFilter($$props, 'scrollArea$'), ['use', 'class'])}
   >
     <div
+      bind:this={scrollContent}
       use:useActions={scrollContent$use}
       class={classMap({
         [scrollContent$class]: true,
         'mdc-tab-scroller__scroll-content': true,
       })}
+      style={Object.entries(scrollContentStyles)
+        .map(([name, value]) => `${name}: ${value};`)
+        .join(' ')}
+      on:transitionend={(event) =>
+        instance && instance.handleTransitionEnd(event)}
       {...exclude(prefixFilter($$props, 'scrollContent$'), ['use', 'class'])}
     >
       <slot />
@@ -30,8 +56,9 @@
 </div>
 
 <script>
-  import { MDCTabScroller } from '@material/tab-scroller';
-  import { onMount, onDestroy, getContext } from 'svelte';
+  import { MDCTabScrollerFoundation, util } from '@material/tab-scroller';
+  import { matches } from '@material/dom/ponyfill';
+  import { onMount } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
@@ -41,47 +68,107 @@
     useActions,
   } from '@smui/common/internal.js';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component());
+  const forwardEvents = forwardEventsBuilder(get_current_component(), [
+    'MDCTab:interacted',
+    'SMUI:tab:mount',
+  ]);
 
   export let use = [];
   let className = '';
   export { className as class };
+  export let align = null;
   export let scrollArea$use = [];
   export let scrollArea$class = '';
   export let scrollContent$use = [];
   export let scrollContent$class = '';
 
   let element;
-  let tabScroller;
-  let instantiate = getContext('SMUI:tab-scroller:instantiate');
-  let getInstance = getContext('SMUI:tab-scroller:getInstance');
+  let instance;
+  let scrollArea;
+  let scrollContent;
+  let internalClasses = {};
+  let scrollAreaClasses = {};
+  let scrollAreaStyles = {};
+  let scrollContentStyles = {};
 
   onMount(() => {
-    if (instantiate !== false) {
-      tabScroller = new MDCTabScroller(element);
-    } else {
-      // tabScroller = await getInstance();
+    instance = new MDCTabScrollerFoundation({
+      eventTargetMatchesSelector: (evtTarget, selector) =>
+        matches(evtTarget, selector),
+      addClass,
+      removeClass,
+      addScrollAreaClass,
+      setScrollAreaStyleProperty: addScrollAreaStyle,
+      setScrollContentStyleProperty: addScrollContentStyle,
+      getScrollContentStyleValue: getScrollContentStyle,
+      setScrollAreaScrollLeft: (scrollX) => (scrollArea.scrollLeft = scrollX),
+      getScrollAreaScrollLeft: () => scrollArea.scrollLeft,
+      getScrollContentOffsetWidth: () => scrollContent.offsetWidth,
+      getScrollAreaOffsetWidth: () => scrollArea.offsetWidth,
+      computeScrollAreaClientRect: () => scrollArea.getBoundingClientRect(),
+      computeScrollContentClientRect: () =>
+        scrollContent.getBoundingClientRect(),
+      computeHorizontalScrollbarHeight: () =>
+        util.computeHorizontalScrollbarHeight(document),
+    });
+
+    instance.init();
+
+    return () => {
+      instance.destroy();
+    };
+  });
+
+  function addClass(className) {
+    if (!internalClasses[className]) {
+      internalClasses[className] = true;
     }
-  });
-
-  onDestroy(() => {
-    tabScroller && tabScroller.destroy();
-  });
-
-  export function scrollTo(...args) {
-    return tabScroller.scrollTo(...args);
   }
 
-  export function incrementScroll(...args) {
-    return tabScroller.incrementScroll(...args);
+  function removeClass(className) {
+    if (!(className in internalClasses) || internalClasses[className]) {
+      internalClasses[className] = false;
+    }
   }
 
-  export function getScrollPosition(...args) {
-    return tabScroller.getScrollPosition(...args);
+  function addScrollAreaClass(className) {
+    if (!scrollAreaClasses[className]) {
+      scrollAreaClasses[className] = true;
+    }
   }
 
-  export function getScrollContentWidth(...args) {
-    return tabScroller.getScrollContentWidth(...args);
+  function addScrollAreaStyle(name, value) {
+    if (scrollAreaStyles[name] !== value) {
+      scrollAreaStyles[name] = value;
+    }
+  }
+
+  function addScrollContentStyle(name, value) {
+    if (scrollContentStyles[name] !== value) {
+      scrollContentStyles[name] = value;
+    }
+  }
+
+  function getScrollContentStyle(name) {
+    return name in scrollContentStyles
+      ? scrollContentStyles[name]
+      : getComputedStyle(scrollContent).getPropertyValue(name);
+  }
+
+  export function getScrollPosition() {
+    return instance.getScrollPosition();
+  }
+
+  export function getScrollContentWidth() {
+    return scrollContent.offsetWidth;
+  }
+
+  export function incrementScroll(scrollXIncrement) {
+    instance.incrementScroll(scrollXIncrement);
+  }
+
+  export function scrollTo(scrollX) {
+    instance.scrollTo(scrollX);
   }
 
   export function getElement() {
