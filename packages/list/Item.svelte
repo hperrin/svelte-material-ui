@@ -75,10 +75,10 @@
     exclude,
     dispatch,
   } from '@smui/common/internal.js';
+  import Ripple from '@smui/ripple/bare.js';
   import A from '@smui/common/A.svelte';
   import Span from '@smui/common/Span.svelte';
   import Li from '@smui/common/Li.svelte';
-  import Ripple from '@smui/ripple/bare.js';
 
   const forwardedEvents = [
     'SMUI:generic:input:mount',

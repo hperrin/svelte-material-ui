@@ -220,7 +220,7 @@ Update Progress Checklist:
   - [x] Floating Action Buttons
   - [x] Icon Buttons
 - [x] Cards
-- [ ] Chips
+- [x] Chips
 - [ ] Data Tables
 - [x] Dialogs
 - [x] Drawers

@@ -2,6 +2,7 @@ import { bubble, listen } from 'svelte/internal';
 
 export function forwardEventsBuilder(component, additionalEvents = []) {
   const events = [
+    // Interaction Events
     'focus',
     'blur',
     'fullscreenchange',
@@ -49,6 +50,15 @@ export function forwardEventsBuilder(component, additionalEvents = []) {
     'pointerleave',
     'gotpointercapture',
     'lostpointercapture',
+    // Transition Events
+    'transitioncancel',
+    'transitionend',
+    'transitionrun',
+    'transitionstart',
+    // Animation Events
+    'animationstart',
+    'animationiteration',
+    'animationend',
     ...additionalEvents,
   ];
 

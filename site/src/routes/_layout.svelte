@@ -172,14 +172,14 @@
         'https://github.com/hperrin/svelte-material-ui/tree/master/packages/card',
       ],
     },
-    // {
-    //   name: 'Chips',
-    //   route: '/demo/chips',
-    //   indent: 0,
-    //   repos: [
-    //     'https://github.com/hperrin/svelte-material-ui/tree/master/packages/chips',
-    //   ],
-    // },
+    {
+      name: 'Chips',
+      route: '/demo/chips',
+      indent: 0,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/chips',
+      ],
+    },
     // {
     //   name: 'Data Tables',
     //   route: '/demo/data-table',

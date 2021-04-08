@@ -23,14 +23,16 @@
     'mdc-top-app-bar--dense': dense,
     ...internalClasses,
   })}
-  style="{style} {Object.entries(internalStyles)
+  style={Object.entries(internalStyles)
     .map(([name, value]) => `${name}: ${value};`)
-    .join(' ')}"
+    .concat([style])
+    .join(' ')}
   on:SMUI:top-app-bar:icon-button:nav={() =>
     instance && instance.handleNavigationClick()}
   {...exclude($$props, [
     'use',
     'class',
+    'style',
     'variant',
     'color',
     'collapsed',

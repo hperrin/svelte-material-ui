@@ -1,29 +1,70 @@
 <svelte:component
   this={component}
   bind:this={element}
-  use={[forwardEvents, ...use]}
-  forwardEvents={forwardedEvents}
+  use={[
+    [
+      Ripple,
+      {
+        ripple,
+        unbounded: false,
+        addClass,
+        removeClass,
+        addStyle,
+      },
+    ],
+    forwardEvents,
+    ...use,
+  ]}
+  forwardEvents={[
+    'MDCChipTrailingAction:interaction',
+    'MDCChipTrailingAction:navigation',
+    'SMUI:chip:primary-action:mount',
+    'SMUI:chip:primary-action:unmount',
+    'SMUI:chip:trailing-action:mount',
+    ...forwardedEvents,
+  ]}
   class={classMap({
     [className]: true,
     'mdc-chip': true,
     'mdc-chip--selected': selected,
     'mdc-chip--touch': touch,
+    ...internalClasses,
   })}
+  style={Object.entries(internalStyles)
+    .map(([name, value]) => `${name}: ${value};`)
+    .concat([style])
+    .join(' ')}
   role="row"
-  on:MDCChip:selection={handleSelection}
+  on:transitionend={(event) => instance && instance.handleTransitionEnd(event)}
+  on:click={() => instance && instance.handleClick()}
+  on:keydown={(event) => instance && instance.handleKeydown(event)}
+  on:focusin={(event) => instance && instance.handleFocusIn(event)}
+  on:focusout={(event) => instance && instance.handleFocusOut(event)}
+  on:MDCChipTrailingAction:interaction={() =>
+    instance && instance.handleTrailingActionInteraction()}
+  on:MDCChipTrailingAction:navigation={(event) =>
+    instance && instance.handleTrailingActionNavigation(event)}
+  on:SMUI:chip:primary-action:mount={(event) =>
+    (primaryActionAccessor = event.detail)}
+  on:SMUI:chip:primary-action:unmount={() =>
+    (primaryActionAccessor = undefined)}
+  on:SMUI:chip:trailing-action:mount={(event) =>
+    (trailingActionAccessor = event.detail)}
+  on:SMUI:chip:trailing-action:unmount={() =>
+    (trailingActionAccessor = undefined)}
   {...exclude($$props, [
     'use',
     'class',
-    'component',
+    'style',
+    'chip',
     'ripple',
     'touch',
-    'selected',
     'shouldRemoveOnTrailingIconClick',
+    'shouldFocusPrimaryActionOnClick',
+    'component',
   ])}
 >
-  {#if ripple}
-    <div class="mdc-chip__ripple" />
-  {/if}
+  <div class="mdc-chip__ripple" />
   <slot />
   {#if touch}
     <div class="mdc-chip__touch" />
@@ -31,15 +72,17 @@
 </svelte:component>
 
 <script>
-  import { MDCChip } from '@material/chips';
-  import { onMount, setContext, getContext } from 'svelte';
+  import { MDCChipFoundation } from '@material/chips';
+  import { onMount, setContext, getContext, tick } from 'svelte';
   import { writable } from 'svelte/store';
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
     classMap,
     exclude,
+    dispatch,
   } from '@smui/common/internal.js';
+  import Ripple from '@smui/ripple/bare.js';
   import Div from '@smui/common/Div.svelte';
 
   const forwardedEvents = [
@@ -48,6 +91,8 @@
     'MDCChip:removal',
     'MDCChip:trailingIconInteraction',
     'MDCChip:navigation',
+    'SMUI:chip:mount',
+    'SMUI:chip:unmount',
   ];
   const forwardEvents = forwardEventsBuilder(
     get_current_component(),
@@ -57,13 +102,33 @@
   export let use = [];
   let className = '';
   export { className as class };
+  export let style = '';
+  let chipId;
+  export { chipId as chip };
   export let ripple = true;
   export let touch = false;
-  export let selected = false;
   export let shouldRemoveOnTrailingIconClick = true;
+  export let shouldFocusPrimaryActionOnClick = true;
 
   let element;
-  let chip;
+  let instance;
+  let internalClasses = {};
+  let leadingIconClasses = {};
+  let internalStyles = {};
+  const initialSelectedStore = getContext('SMUI:chip:initialSelected');
+  let selected = $initialSelectedStore;
+  let primaryActionAccessor;
+  let trailingActionAccessor;
+  let accessor = {
+    chipId,
+    get selected() {
+      return selected;
+    },
+    focusPrimaryAction,
+    focusTrailingAction,
+    removeFocus,
+    setSelectedFromChipSet,
+  };
 
   export let component = Div;
 
@@ -78,43 +143,178 @@
   const isSelectedStore = writable(selected);
   $: $isSelectedStore = selected;
   setContext('SMUI:chip:isSelected', isSelectedStore);
+  const leadingIconClassesStore = writable(leadingIconClasses);
+  $: $leadingIconClassesStore = leadingIconClasses;
+  setContext('SMUI:chip:leadingIconClasses', leadingIconClassesStore);
 
-  const selectedStore = getContext('SMUI:chip:selected');
-  let previousSelected = selected;
-  $: if (chip && ($selectedStore || previousSelected !== selected)) {
-    if (selected !== chip.selected) {
-      if (previousSelected !== selected) {
-        // Update MDC on Svelte selected change.
-        chip.selected = selected;
-      } else {
-        // Update selected on MDC selection change.
-        selected = chip.selected;
-      }
-    }
-    previousSelected = selected;
+  if (!chipId) {
+    throw new Error(
+      'The chip property is required! It should be passed down from the Set to the Chip.'
+    );
   }
 
   $: if (
-    chip &&
-    chip.shouldRemoveOnTrailingIconClick !== shouldRemoveOnTrailingIconClick
+    instance &&
+    instance.getShouldRemoveOnTrailingIconClick() !==
+      shouldRemoveOnTrailingIconClick
   ) {
-    chip.shouldRemoveOnTrailingIconClick = shouldRemoveOnTrailingIconClick;
+    instance.setShouldRemoveOnTrailingIconClick(
+      shouldRemoveOnTrailingIconClick
+    );
+  }
+
+  $: if (instance) {
+    instance.setShouldFocusPrimaryActionOnClick(
+      shouldFocusPrimaryActionOnClick
+    );
   }
 
   onMount(() => {
-    element.setChip = setChip;
+    instance = new MDCChipFoundation({
+      addClass,
+      addClassToLeadingIcon: addLeadingIconClass,
+      eventTargetHasClass: (target, className) =>
+        target ? target.classList.contains(className) : false,
+      focusPrimaryAction: () => {
+        if (primaryActionAccessor) {
+          primaryActionAccessor.focus();
+        }
+      },
+      focusTrailingAction: () => {
+        if (trailingActionAccessor) {
+          trailingActionAccessor.focus();
+        }
+      },
+      getAttribute: (attr) => getElement().getAttribute(attr),
+      getCheckmarkBoundingClientRect: () => {
+        const target = getElement().querySelector('.mdc-chip__checkmark');
+        if (target) {
+          return target.getBoundingClientRect();
+        }
+        return null;
+      },
+      getComputedStyleValue: getStyle,
+      getRootBoundingClientRect: () => getElement().getBoundingClientRect(),
+      hasClass,
+      hasLeadingIcon: () => {
+        const target = getElement().querySelector('.mdc-chip__icon--leading');
+        return !!target;
+      },
+      isRTL: () =>
+        getComputedStyle(getElement()).getPropertyValue('direction') === 'rtl',
+      isTrailingActionNavigable: () => {
+        if (trailingActionAccessor) {
+          return trailingActionAccessor.isNavigable();
+        }
+        return false;
+      },
+      notifyInteraction: () =>
+        dispatch(getElement(), 'MDCChip:interaction', { chipId }),
+      notifyNavigation: (key, source) =>
+        dispatch(getElement(), 'MDCChip:navigation', { chipId, key, source }),
+      notifyRemoval: (removedAnnouncement) => {
+        dispatch(getElement(), 'MDCChip:removal', {
+          chipId,
+          removedAnnouncement,
+        });
+      },
+      notifySelection: (selected, shouldIgnore) =>
+        dispatch(getElement(), 'MDCChip:selection', {
+          chipId,
+          selected,
+          shouldIgnore,
+        }),
+      notifyTrailingIconInteraction: () =>
+        dispatch(getElement(), 'MDCChip:trailingIconInteraction', { chipId }),
+      notifyEditStart: () => {
+        /* Not Implemented. */
+      },
+      notifyEditFinish: () => {
+        /* Not Implemented. */
+      },
+      removeClass,
+      removeClassFromLeadingIcon: removeLeadingIconClass,
+      removeTrailingActionFocus: () => {
+        if (trailingActionAccessor) {
+          trailingActionAccessor.removeFocus();
+        }
+      },
+      setPrimaryActionAttr: (attr, value) => {
+        if (primaryActionAccessor) {
+          primaryActionAccessor.addAttr(attr, value);
+        }
+      },
+      setStyleProperty: addStyle,
+    });
+
+    dispatch(getElement(), 'SMUI:chip:mount', accessor);
+
+    instance.init();
+
+    return () => {
+      dispatch(getElement(), 'SMUI:chip:unmount', accessor);
+
+      instance.destroy();
+    };
   });
 
-  function setChip(component) {
-    chip = component;
-    if (!ripple) {
-      chip.ripple && chip.ripple.destroy();
-    }
-    selected = chip.selected;
+  function hasClass(className) {
+    return className in internalClasses
+      ? internalClasses[className]
+      : getElement().classList.contains(className);
   }
 
-  function handleSelection(e) {
-    selected = e.detail.selected;
+  function addClass(className) {
+    if (!internalClasses[className]) {
+      internalClasses[className] = true;
+    }
+  }
+
+  function removeClass(className) {
+    if (!(className in internalClasses) || internalClasses[className]) {
+      internalClasses[className] = false;
+    }
+  }
+
+  function addLeadingIconClass(className) {
+    if (!leadingIconClasses[className]) {
+      leadingIconClasses[className] = true;
+    }
+  }
+
+  function removeLeadingIconClass(className) {
+    if (!(className in leadingIconClasses) || leadingIconClasses[className]) {
+      leadingIconClasses[className] = false;
+    }
+  }
+
+  function addStyle(name, value) {
+    if (internalStyles[name] !== value) {
+      internalStyles[name] = value;
+    }
+  }
+
+  function getStyle(name) {
+    return name in internalStyles
+      ? internalStyles[name]
+      : getComputedStyle(getElement()).getPropertyValue(name);
+  }
+
+  function setSelectedFromChipSet(value, shouldNotifyClients) {
+    selected = value;
+    instance.setSelectedFromChipSet(selected, shouldNotifyClients);
+  }
+
+  function focusPrimaryAction() {
+    instance.focusPrimaryAction();
+  }
+
+  function focusTrailingAction() {
+    instance.focusTrailingAction();
+  }
+
+  function removeFocus() {
+    instance.removeFocus();
   }
 
   export function getElement() {

@@ -156,9 +156,9 @@
     }
   }
 
-  function removeAccessor(tabId, accessor) {
+  function removeAccessor(tabId) {
     if (tabId instanceof Object) {
-      tabAccessorWeakMap.remove(tabId);
+      tabAccessorWeakMap.delete(tabId);
     } else {
       delete tabAccessorMap[tabId];
     }

@@ -60,9 +60,9 @@
     exclude,
     dispatch,
   } from '@smui/common/internal.js';
+  import Ripple from '@smui/ripple/bare.js';
   import A from '@smui/common/A.svelte';
   import Button from '@smui/common/Button.svelte';
-  import Ripple from '@smui/ripple/bare.js';
 
   const forwardedEvents = ['MDCIconButtonToggle:change'];
   const forwardEvents = forwardEventsBuilder(

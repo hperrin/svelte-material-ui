@@ -7,13 +7,13 @@
 
   <div>
     <Set chips={['one', 'two', 'three', 'four', 'five']} let:chip>
-      <Chip shouldRemoveOnTrailingIconClick={false}>
+      <Chip {chip} shouldRemoveOnTrailingIconClick={false}>
         {#if chip === 'four'}
-          <Icon class="material-icons" leading>book</Icon>
+          <LeadingIcon class="material-icons">book</LeadingIcon>
         {/if}
         <Text tabindex="-1">{chip}</Text>
         {#if chip === 'five'}
-          <Icon class="material-icons">commute</Icon>
+          <TrailingIcon class="material-icons">commute</TrailingIcon>
         {/if}
       </Chip>
     </Set>
@@ -27,7 +27,7 @@
       choice
       bind:selected={choice}
     >
-      <Chip><Text>{chip}</Text></Chip>
+      <Chip {chip}><Text>{chip}</Text></Chip>
     </Set>
   </div>
 
@@ -53,22 +53,7 @@
       filter
       bind:selected={filter}
     >
-      <Chip touch>
-        <Text>{chip}</Text>
-      </Chip>
-    </Set>
-  </div>
-
-  <div>
-    <h6 class="demo-title">The same, but with leading icons</h6>
-    <Set
-      chips={['Shoes', 'Pants', 'Shirts', 'Hats', 'Coats']}
-      let:chip
-      filter
-      bind:selected={filter}
-    >
-      <Chip touch>
-        <Icon class="material-icons" leading>checkroom</Icon>
+      <Chip {chip} touch>
         <Text>{chip}</Text>
       </Chip>
     </Set>
@@ -77,11 +62,28 @@
   <pre class="status">Selected: {filter.join(', ')}</pre>
 
   <div>
+    <h6 class="demo-title">The same, but with leading icons</h6>
+    <Set
+      chips={['Shoes', 'Pants', 'Shirts', 'Hats', 'Coats']}
+      let:chip
+      filter
+      bind:selected={filterIcons}
+    >
+      <Chip {chip} touch>
+        <LeadingIcon class="material-icons">checkroom</LeadingIcon>
+        <Text>{chip}</Text>
+      </Chip>
+    </Set>
+  </div>
+
+  <pre class="status">Selected: {filterIcons.join(', ')}</pre>
+
+  <div>
     <h6 class="demo-title">Input chips</h6>
     <Set chips={input} let:chip input>
-      <Chip>
+      <Chip {chip}>
         <Text>{chip}</Text>
-        <Icon class="material-icons">cancel</Icon>
+        <TrailingAction icon$class="material-icons">cancel</TrailingAction>
       </Chip>
     </Set>
     <Button on:click={addInputChip}><Label>Add</Label></Button>
@@ -90,9 +92,9 @@
   <div>
     <h6 class="demo-title">Keyed chips</h6>
     <Set chips={keyed} let:chip key={(chip) => chip.k} input>
-      <Chip>
+      <Chip {chip}>
         <Text>{chip.v}</Text>
-        <Icon class="material-icons">cancel</Icon>
+        <TrailingAction icon$class="material-icons">cancel</TrailingAction>
       </Chip>
     </Set>
     <Button on:click={addKeyedChip}><Label>Add</Label></Button>
@@ -100,11 +102,18 @@
 </section>
 
 <script>
-  import Chip, { Set, Icon, Text } from '@smui/chips';
+  import Chip, {
+    Set,
+    LeadingIcon,
+    TrailingIcon,
+    TrailingAction,
+    Text,
+  } from '@smui/chips';
   import Button, { Label } from '@smui/button';
 
   let choice = 'Morning';
   let filter = ['Shoes', 'Shirts', 'Coats'];
+  let filterIcons = ['Shoes', 'Shirts', 'Coats'];
   let input = [1, 2, 3, 4];
   let keyed = [
     { k: 1, v: 'Apple' },

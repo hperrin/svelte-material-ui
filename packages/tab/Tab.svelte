@@ -82,12 +82,16 @@
     useActions,
     dispatch,
   } from '@smui/common/internal.js';
+  import Ripple from '@smui/ripple/bare.js';
   import A from '@smui/common/A.svelte';
   import Button from '@smui/common/Button.svelte';
   import TabIndicator from '@smui/tab-indicator/TabIndicator.svelte';
-  import Ripple from '@smui/ripple/bare.js';
 
-  const forwardedEvents = ['MDCTab:interacted', 'SMUI:tab:mount'];
+  const forwardedEvents = [
+    'MDCTab:interacted',
+    'SMUI:tab:mount',
+    'SMUI:tab:unmount',
+  ];
   const forwardEvents = forwardEventsBuilder(
     get_current_component(),
     forwardedEvents

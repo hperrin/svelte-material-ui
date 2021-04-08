@@ -11,6 +11,7 @@
   })}
   style={Object.entries(internalStyles)
     .map(([name, value]) => `${name}: ${value};`)
+    .concat([style])
     .join(' ')}
   role="progressbar"
   aria-valuemin="0"
@@ -21,6 +22,7 @@
   {...exclude($$props, [
     'use',
     'class',
+    'style',
     'indeterminate',
     'closed',
     'progress',
@@ -65,6 +67,7 @@
   export let use = [];
   let className = '';
   export { className as class };
+  export let style = '';
   export let indeterminate = false;
   export let closed = false;
   export let progress = 0;
