@@ -120,16 +120,16 @@
     }
   }
 
-  function addAttr(name, value) {
-    if (internalAttrs[name] !== value) {
-      internalAttrs[name] = value;
-    }
-  }
-
   function getAttr(name) {
     return name in internalAttrs
       ? internalAttrs[name]
       : getElement().getAttribute(name);
+  }
+
+  function addAttr(name, value) {
+    if (internalAttrs[name] !== value) {
+      internalAttrs[name] = value;
+    }
   }
 
   export function isNavigable() {

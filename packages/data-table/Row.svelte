@@ -6,56 +6,109 @@
     [className]: true,
     'mdc-data-table__header-row': header,
     'mdc-data-table__row': !header,
-    'mdc-data-table__row--selected': !header && selected,
+    'mdc-data-table__row--selected': !header && checkbox && checkbox.checked,
+    ...internalClasses,
   })}
-  {...selected !== undefined
-    ? { 'aria-selected': selected ? 'true' : 'false' }
-    : {}}
-  {...exclude($$props, ['use', 'class'])}><slot /></tr
+  on:click={(event) => header && notifyHeaderClick(event)}
+  on:SMUI:checkbox:mount={(event) => (checkbox = event.detail)}
+  on:SMUI:checkbox:unmount={() => (checkbox = undefined)}
+  aria-selected={checkbox ? (checkbox.checked ? 'true' : 'false') : null}
+  {...internalAttrs}
+  {...exclude($$props, ['use', 'class', 'rowId'])}><slot /></tr
 >
 
+<script context="module">
+  let counter = 0;
+</script>
+
 <script>
-  import { getContext, setContext } from 'svelte';
+  import { onMount, getContext, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
     classMap,
     exclude,
     useActions,
+    dispatch,
   } from '@smui/common/internal.js';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component());
+  const forwardEvents = forwardEventsBuilder(get_current_component(), [
+    'SMUI:checkbox:mount',
+    'SMUI:checkbox:unmount',
+    'SMUI:data-table:cell:mount',
+    'SMUI:data-table:cell:unmount',
+    'SMUI:data-table:row:mount',
+    'SMUI:data-table:row:unmount',
+    'SMUI:data-table:header:checkbox:change',
+    'SMUI:data-table:header:click',
+    'SMUI:data-table:body:checkbox:change',
+  ]);
 
   export let use = [];
   let className = '';
   export { className as class };
+  export let rowId = 'SMUI-data-table-row-' + counter++;
 
   let element;
+  let checkbox;
+  let internalClasses = {};
+  let internalAttrs = {};
   let header = getContext('SMUI:data-table:row:header');
-  let selected = undefined;
 
-  setContext('SMUI:data-table:row:getIndex', getIndex);
+  onMount(() => {
+    const accessor = {
+      _smui_data_table_row_accessor: !header,
+      get element() {
+        return getElement();
+      },
+      get checkbox() {
+        return checkbox;
+      },
+      get rowId() {
+        return rowId;
+      },
+      get selected() {
+        return checkbox && checkbox.checked;
+      },
+      addClass,
+      removeClass,
+      getAttr,
+      addAttr,
+    };
 
-  setContext('SMUI:generic:input:setChecked', setChecked);
+    dispatch(getElement(), 'SMUI:data-table:row:mount', accessor);
 
-  function setChecked(checked) {
-    selected = checked;
+    return () => {
+      dispatch(getElement(), 'SMUI:data-table:row:unmount');
+    };
+  });
+
+  function addClass(className) {
+    if (!internalClasses[className]) {
+      internalClasses[className] = true;
+    }
   }
 
-  function getIndex() {
-    let i = 0;
-
-    if (element) {
-      let el = element;
-      while (el.previousSibling) {
-        el = el.previousSibling;
-        if (el.nodeType === 1) {
-          i++;
-        }
-      }
+  function removeClass(className) {
+    if (!(className in internalClasses) || internalClasses[className]) {
+      internalClasses[className] = false;
     }
+  }
 
-    return i;
+  function getAttr(name) {
+    return name in internalAttrs
+      ? internalAttrs[name]
+      : getElement().getAttribute(name);
+  }
+
+  function addAttr(name, value) {
+    if (internalAttrs[name] !== value) {
+      internalAttrs[name] = value;
+    }
+  }
+
+  function notifyHeaderClick(event) {
+    dispatch(getElement(), 'SMUI:data-table:header:click', event);
   }
 
   export function getElement() {

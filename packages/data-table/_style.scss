@@ -1,2 +1,6 @@
-@import "@material/data-table/mdc-data-table";
-@import "@smui/checkbox/style";
+@use '@material/data-table/data-table';
+@use '@smui/checkbox/style' as checkbox-style;
+@use '@smui/icon-button/style' as icon-button-style;
+
+@include data-table.core-styles;
+@include data-table.theme-baseline;

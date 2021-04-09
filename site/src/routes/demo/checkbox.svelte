@@ -21,6 +21,12 @@
     </FormField>
   </div>
 
+  <div>
+    <Button on:click={() => (simpleSelected2 = !simpleSelected2)}
+      >Toggle Programmatically</Button
+    >
+  </div>
+
   <pre class="status">Checked: {simpleSelected2}</pre>
 
   <div>
@@ -50,11 +56,27 @@
     {/each}
   </div>
 
+  <div>
+    <Button
+      on:click={() => {
+        const idx = selected.indexOf('Doc');
+        if (idx > -1) {
+          selected.splice(idx, 1);
+        } else {
+          selected.push('Doc');
+        }
+        selected = selected;
+      }}>Toggle Doc Programmatically</Button
+    >
+  </div>
+
   <pre class="status">Selected: {selected.join(', ')}</pre>
 
   <div>
     <h6 class="demo-title">Indeterminate</h6>
     <FormField>
+      <!-- Note that binding to `indeterminate` is probably a bad idea.
+        The component will never set `indeterminate` internally. -->
       <Checkbox
         bind:checked={indeterminateChecked}
         indeterminate={indeterminateChecked === null}
@@ -64,7 +86,7 @@
     </FormField>
 
     <br />
-    <Button on:click={() => (indeterminateChecked = null)}>reset</Button>
+    <Button on:click={() => (indeterminateChecked = null)}>Reset</Button>
   </div>
 
   <pre class="status">Checked: {indeterminateChecked}</pre>

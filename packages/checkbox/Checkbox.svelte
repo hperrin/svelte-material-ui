@@ -48,8 +48,6 @@
     data-indeterminate={indeterminate !== uninitializedValue && indeterminate
       ? 'true'
       : null}
-    on:change={handleChange}
-    on:change={() => instance && instance.handleChange()}
     on:change
     on:input
     on:blur
@@ -86,6 +84,9 @@
 
   const forwardEvents = forwardEventsBuilder(get_current_component(), [
     'SMUI:generic:input:mount',
+    'SMUI:generic:input:unmount',
+    'SMUI:checkbox:mount',
+    'SMUI:checkbox:unmount',
   ]);
   let uninitializedValue = () => {};
 
@@ -110,7 +111,6 @@
   let rippleActive = false;
   let inputProps = getContext('SMUI:generic:input:props') || {};
   let setChecked = getContext('SMUI:generic:input:setChecked');
-  let addChangeHandler = getContext('SMUI:generic:input:addChangeHandler');
   let nativeChecked =
     group === uninitializedValue
       ? checked === uninitializedValue
@@ -119,38 +119,96 @@
       : group.indexOf(value) !== -1;
   let context = getContext('SMUI:checkbox:context');
   let dataTableHeader = getContext('SMUI:data-table:row:header');
-  let getDataTableRowIndex = getContext('SMUI:data-table:row:getIndex');
 
   $: if (setChecked) {
     setChecked(nativeChecked);
   }
 
   let previousChecked = checked;
-  $: if (checked !== uninitializedValue) {
-    if (checked === previousChecked) {
-      checked = nativeChecked;
-    } else if (nativeChecked !== checked) {
-      nativeChecked = checked;
-      instance && instance.handleChange();
+  let previousGroup = group === uninitializedValue ? [] : [...group];
+  let previousNativeChecked = nativeChecked;
+  $: {
+    // This is a substitute for an on:change listener that is
+    // smarter about when it calls the instance's handler. I do
+    // this so that a group of changes will only trigger one
+    // handler call, since the handler will reset currently
+    // running animations.
+    let callHandleChange = false;
+
+    // First check for group state.
+    if (group !== uninitializedValue) {
+      if (previousNativeChecked !== nativeChecked) {
+        // The change needs to flow up.
+        const idx = group.indexOf(value);
+        if (nativeChecked && idx === -1) {
+          group.push(value);
+          group = group;
+        } else if (!nativeChecked && idx !== -1) {
+          group.splice(idx, 1);
+          group = group;
+        }
+        callHandleChange = true;
+      } else {
+        // Potential changes need to flow down.
+        const idxPrev = previousGroup.indexOf(value);
+        const idx = group.indexOf(value);
+
+        if (idxPrev > -1 && idx === -1) {
+          // The checkbox was removed from the group.
+          nativeChecked = false;
+          callHandleChange = true;
+        } else if (idx > -1 && idxPrev === -1) {
+          // The checkbox was added to the group.
+          nativeChecked = true;
+          callHandleChange = true;
+        }
+      }
     }
+
+    // Now check individual state.
+    if (checked === uninitializedValue) {
+      if (previousNativeChecked !== nativeChecked) {
+        // The checkbox was clicked by the user.
+        callHandleChange = true;
+      }
+    } else if (checked !== nativeChecked) {
+      if (checked === previousChecked) {
+        // The checkbox was clicked by the user
+        // and the change needs to flow up.
+        checked = nativeChecked;
+      } else {
+        // The checkbox was changed programmatically
+        // and the change needs to flow down.
+        nativeChecked = checked;
+      }
+      callHandleChange = true;
+    }
+
+    if (checkbox) {
+      // Sync indeterminate state with the native input.
+      if (indeterminate === uninitializedValue) {
+        if (checkbox.indeterminate) {
+          // I don't think this can happen, but just in case.
+          checkbox.indeterminate = false;
+          callHandleChange = true;
+        }
+      } else {
+        if (!indeterminate && checkbox.indeterminate) {
+          checkbox.indeterminate = false;
+          callHandleChange = true;
+        } else if (indeterminate && !checkbox.indeterminate) {
+          checkbox.indeterminate = true;
+          callHandleChange = true;
+        }
+      }
+    }
+
     previousChecked = checked;
-  }
-
-  $: if (checkbox) {
-    if (
-      indeterminate === uninitializedValue ||
-      (!indeterminate && checkbox.indeterminate)
-    ) {
-      checkbox.indeterminate = false;
-      instance && instance.handleChange();
-    } else if (indeterminate && !checkbox.indeterminate) {
-      checkbox.indeterminate = true;
-      instance && instance.handleChange();
+    previousGroup = group === uninitializedValue ? [] : [...group];
+    previousNativeChecked = nativeChecked;
+    if (callHandleChange && instance) {
+      instance.handleChange();
     }
-  }
-
-  if (addChangeHandler) {
-    addChangeHandler(handleChange);
   }
 
   onMount(() => {
@@ -168,19 +226,23 @@
       setNativeControlDisabled: (value) => (disabled = value),
     });
 
-    dispatch(element, 'SMUI:generic:input:mount', {
+    const accessor = {
       get element() {
         return getElement();
       },
       get checked() {
         return nativeChecked;
       },
-      set checked(checked) {
-        if (nativeChecked !== checked) {
-          nativeChecked = checked;
-          handleChange();
-          instance && instance.handleChange();
+      set checked(value) {
+        if (nativeChecked !== value) {
+          nativeChecked = value;
         }
+      },
+      get indeterminate() {
+        return indeterminate === uninitializedValue ? false : indeterminate;
+      },
+      set indeterminate(value) {
+        indeterminate = value;
       },
       activateRipple() {
         if (!disabled) {
@@ -190,11 +252,17 @@
       deactivateRipple() {
         rippleActive = false;
       },
-    });
+    };
+
+    dispatch(element, 'SMUI:generic:input:mount', accessor);
+    dispatch(element, 'SMUI:checkbox:mount', accessor);
 
     instance.init();
 
     return () => {
+      dispatch(element, 'SMUI:generic:input:unmount', accessor);
+      dispatch(element, 'SMUI:checkbox:unmount', accessor);
+
       instance.destroy();
     };
   });
@@ -220,19 +288,6 @@
   function removeNativeControlAttr(name) {
     if (!(name in nativeControlAttrs) || nativeControlAttrs[name] != null) {
       nativeControlAttrs[name] = undefined;
-    }
-  }
-
-  function handleChange() {
-    if (group !== uninitializedValue) {
-      const idx = group.indexOf(value);
-      if (nativeChecked && idx === -1) {
-        group.push(value);
-        group = group;
-      } else if (!nativeChecked && idx !== -1) {
-        group.splice(idx, 1);
-        group = group;
-      }
     }
   }
 

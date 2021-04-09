@@ -37,7 +37,7 @@
     instance &&
     instance.handleClick(
       getListItemIndex(event.target),
-      !matches(event.target, strings.CHECKBOX_RADIO_SELECTOR)
+      !matches(event.target, 'input[type="checkbox"], input[type="radio"]')
     )}
   on:SMUI:list:item:mount={handleItemMount}
   on:SMUI:list:item:unmount={handleItemUnmount}
@@ -48,7 +48,7 @@
 </svelte:component>
 
 <script>
-  import { MDCListFoundation, strings } from '@material/list';
+  import { MDCListFoundation } from '@material/list';
   import { closest, matches } from '@material/dom/ponyfill';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
@@ -127,6 +127,7 @@
   let items = [];
   let role = getContext('SMUI:list:role');
   let nav = getContext('SMUI:list:nav');
+  const itemAccessorMap = new WeakMap();
   let selectionDialog = getContext('SMUI:dialog:selection');
   let addLayoutListener = getContext('SMUI:addLayoutListener');
   let removeLayoutListener;
@@ -176,6 +177,7 @@
     removeLayoutListener = addLayoutListener(layout);
   }
 
+  // TODO: switch to checkbox and radio accessors
   onMount(() => {
     instance = new MDCListFoundation({
       addClassForElementIndex,
@@ -196,16 +198,16 @@
         getOrderedList()[index].getPrimaryText(),
       hasCheckboxAtIndex: (index) => {
         const listItem = getOrderedList()[index];
-        return !!listItem.element.querySelector(strings.CHECKBOX_SELECTOR);
+        return !!listItem.element.querySelector('input[type="checkbox"]');
       },
       hasRadioAtIndex: (index) => {
         const listItem = getOrderedList()[index];
-        return !!listItem.element.querySelector(strings.RADIO_SELECTOR);
+        return !!listItem.element.querySelector('input[type="radio"]');
       },
       isCheckboxCheckedAtIndex: (index) => {
         const listItem = getOrderedList()[index];
         const toggleEl = listItem.element.querySelector(
-          strings.CHECKBOX_SELECTOR
+          'input[type="checkbox"]'
         );
         return toggleEl.checked || false;
       },
@@ -223,7 +225,7 @@
       setCheckedCheckboxOrRadioAtIndex: (index, isChecked) => {
         const listItem = getOrderedList()[index];
         const toggleEl = listItem.element.querySelector(
-          strings.CHECKBOX_RADIO_SELECTOR
+          'input[type="checkbox"], input[type="radio"]'
         );
         if (toggleEl) {
           toggleEl.checked = isChecked;
@@ -235,7 +237,7 @@
       },
       setTabIndexForListItemChildren: (listItemIndex, tabIndexValue) => {
         const listItem = getOrderedList()[listItemIndex];
-        const selector = strings.CHILD_ELEMENTS_TO_TOGGLE_TABINDEX;
+        const selector = 'button:not(:disabled), a';
         Array.prototype.forEach.call(
           listItem.element.querySelectorAll(selector),
           (el) => {
@@ -244,10 +246,6 @@
         );
       },
     });
-
-    if (singleSelection) {
-      selectedIndex = getSelectedIndex();
-    }
 
     dispatch(element, 'SMUI:list:mount', {
       get element() {
@@ -279,6 +277,10 @@
 
   function handleItemMount(event) {
     items.push(event.detail);
+    itemAccessorMap.set(event.detail.element, event.detail);
+    if (singleSelection && event.detail.selected) {
+      selectedIndex = getListItemIndex(event.detail.element);
+    }
     event.stopPropagation();
   }
 
@@ -286,7 +288,9 @@
     const idx = items.indexOf(event.detail);
     if (idx !== -1) {
       items.splice(idx, 1);
+      items = items;
     }
+    itemAccessorMap.delete(event.detail.element);
     event.stopPropagation();
   }
 
@@ -307,12 +311,8 @@
   }
 
   function getOrderedList() {
-    const accessorWeakMap = new WeakMap();
-    for (const accessor of items) {
-      accessorWeakMap.set(accessor.element, accessor);
-    }
     return [...getElement().children]
-      .map((element) => accessorWeakMap.get(element))
+      .map((element) => itemAccessorMap.get(element))
       .filter((accessor) => accessor && accessor._smui_list_item_accessor);
   }
 

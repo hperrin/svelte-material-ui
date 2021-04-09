@@ -180,14 +180,14 @@
         'https://github.com/hperrin/svelte-material-ui/tree/master/packages/chips',
       ],
     },
-    // {
-    //   name: 'Data Tables',
-    //   route: '/demo/data-table',
-    //   indent: 0,
-    //   repos: [
-    //     'https://github.com/hperrin/svelte-material-ui/tree/master/packages/data-table',
-    //   ],
-    // },
+    {
+      name: 'Data Tables',
+      route: '/demo/data-table',
+      indent: 0,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/data-table',
+      ],
+    },
     {
       name: 'Dialogs',
       route: '/demo/dialog',

@@ -221,7 +221,7 @@ Update Progress Checklist:
   - [x] Icon Buttons
 - [x] Cards
 - [x] Chips
-- [ ] Data Tables
+- [x] Data Tables
 - [x] Dialogs
 - [x] Drawers
 - [x] Image List
@@ -262,6 +262,9 @@ Once these are all done, I'll release a beta version, then work on implementing 
 - [ ] Segmented Buttons (This is different than SMUI's button groups.)
 - [ ] Tooltips
 - [ ] Touch Target Wrappers
+- [ ] Data Table Pagination
+- [ ] Data Table Progress Indicator
+- [ ] Data Table Column Sort Buttons
 
 Once these are done, SMUI v3 will be released.
 

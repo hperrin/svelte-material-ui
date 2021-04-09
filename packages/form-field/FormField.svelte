@@ -8,7 +8,8 @@
     'mdc-form-field--align-end': align === 'end',
     'mdc-form-field--nowrap': noWrap,
   })}
-  on:SMUI:generic:input:mount={(event) => (inputAccessor = event.detail)}
+  on:SMUI:generic:input:mount={(event) => (input = event.detail)}
+  on:SMUI:generic:input:unmount={() => (input = undefined)}
   {...exclude($$props, [
     'use',
     'class',
@@ -57,20 +58,20 @@
   let element;
   let instance;
   let label;
-  let inputAccessor;
+  let input;
 
   setContext('SMUI:generic:input:props', { id: inputId });
 
   onMount(() => {
     instance = new MDCFormFieldFoundation({
       activateInputRipple: () => {
-        if (inputAccessor) {
-          inputAccessor.activateRipple();
+        if (input) {
+          input.activateRipple();
         }
       },
       deactivateInputRipple: () => {
-        if (inputAccessor) {
-          inputAccessor.deactivateRipple();
+        if (input) {
+          input.deactivateRipple();
         }
       },
       deregisterInteractionHandler: (evtType, handler) => {

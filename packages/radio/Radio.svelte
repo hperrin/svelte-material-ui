@@ -66,6 +66,7 @@
 
   const forwardEvents = forwardEventsBuilder(get_current_component(), [
     'SMUI:generic:input:mount',
+    'SMUI:generic:input:unmount',
   ]);
   let uninitializedValue = () => {};
 
@@ -98,7 +99,7 @@
       setNativeControlDisabled: (value) => (disabled = value),
     });
 
-    dispatch(element, 'SMUI:generic:input:mount', {
+    const accessor = {
       get element() {
         return getElement();
       },
@@ -120,11 +121,15 @@
       deactivateRipple() {
         rippleActive = false;
       },
-    });
+    };
+
+    dispatch(element, 'SMUI:generic:input:mount', accessor);
 
     instance.init();
 
     return () => {
+      dispatch(element, 'SMUI:generic:input:unmount', accessor);
+
       instance.destroy();
     };
   });

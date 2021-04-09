@@ -8,7 +8,7 @@
           [
             Ripple,
             {
-              ripple: !inputAccessor,
+              ripple: !input,
               unbounded: false,
               color:
                 (activated || selected) && color == null ? 'primary' : color,
@@ -44,7 +44,8 @@
   {tabindex}
   on:click={action}
   on:keydown={handleKeydown}
-  on:SMUI:generic:input:mount={(event) => (inputAccessor = event.detail)}
+  on:SMUI:generic:input:mount={(event) => (input = event.detail)}
+  on:SMUI:generic:input:unmount={() => (input = undefined)}
   {...internalAttrs}
   {...exclude($$props, [
     'use',
@@ -82,6 +83,7 @@
 
   const forwardedEvents = [
     'SMUI:generic:input:mount',
+    'SMUI:generic:input:unmount',
     'SMUI:action',
     'SMUI:list:item:mount',
     'SMUI:list:item:unmount',
@@ -113,47 +115,9 @@
   let element;
   let internalClasses = {};
   let internalAttrs = {};
-  let inputAccessor;
+  let input;
   let addTabindexIfNoItemsSelectedRaf;
   let nav = getContext('SMUI:list:item:nav');
-  let accessor = {
-    _smui_list_item_accessor: true,
-    get element() {
-      return getElement();
-    },
-    get selected() {
-      return selected;
-    },
-    set selected(value) {
-      selected = value;
-    },
-    hasClass,
-    addClass,
-    removeClass,
-    addAttr,
-    removeAttr,
-    getPrimaryText,
-
-    // For inputs within item.
-    get checked() {
-      return inputAccessor && inputAccessor.checked;
-    },
-    set checked(value) {
-      if (inputAccessor) {
-        inputAccessor.checked = value;
-      }
-    },
-    activateRipple() {
-      if (inputAccessor) {
-        inputAccessor.activateRipple();
-      }
-    },
-    deactivateRipple() {
-      if (inputAccessor) {
-        inputAccessor.deactivateRipple();
-      }
-    },
-  };
 
   export let component = nav ? (href ? A : Span) : Li;
 
@@ -188,6 +152,45 @@
         );
       }
     }
+
+    const accessor = {
+      _smui_list_item_accessor: true,
+      get element() {
+        return getElement();
+      },
+      get selected() {
+        return selected;
+      },
+      set selected(value) {
+        selected = value;
+      },
+      hasClass,
+      addClass,
+      removeClass,
+      addAttr,
+      removeAttr,
+      getPrimaryText,
+
+      // For inputs within item.
+      get checked() {
+        return input && input.checked;
+      },
+      set checked(value) {
+        if (input) {
+          input.checked = value;
+        }
+      },
+      activateRipple() {
+        if (input) {
+          input.activateRipple();
+        }
+      },
+      deactivateRipple() {
+        if (input) {
+          input.deactivateRipple();
+        }
+      },
+    };
 
     dispatch(element, 'SMUI:list:item:mount', accessor);
 

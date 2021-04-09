@@ -11,7 +11,7 @@
         <Row>
           <Cell>Name</Cell>
           <Cell>Favorite Color</Cell>
-          <Cell>Favorite Number</Cell>
+          <Cell numeric>Favorite Number</Cell>
         </Row>
       </Head>
       <Body>
@@ -51,7 +51,7 @@
             </Cell>
             <Cell>Name</Cell>
             <Cell>Description</Cell>
-            <Cell>Price</Cell>
+            <Cell numeric>Price</Cell>
           </Row>
         </Head>
         <Body>

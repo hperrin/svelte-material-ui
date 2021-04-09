@@ -214,6 +214,7 @@
     'MDCSlider:input',
     'MDCSlider:change',
     'SMUI:generic:input:mount',
+    'SMUI:generic:input:unmount',
   ]);
 
   export let use = [];
@@ -427,7 +428,7 @@
       },
     });
 
-    dispatch(element, 'SMUI:generic:input:mount', {
+    const accessor = {
       get element() {
         return getElement();
       },
@@ -439,12 +440,16 @@
       deactivateRipple() {
         thumbRippleActive = false;
       },
-    });
+    };
+
+    dispatch(element, 'SMUI:generic:input:mount', accessor);
 
     instance.init();
     instance.layout(true);
 
     return () => {
+      dispatch(element, 'SMUI:generic:input:unmount', accessor);
+
       instance.destroy();
     };
   });
