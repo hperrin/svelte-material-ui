@@ -1,4 +1,4 @@
-@import "@material/snackbar/mdc-snackbar";
-@import "./mixins";
+@use '@material/snackbar/mdc-snackbar';
+@use './mixins';
 
-@include smui-snackbar-core-styles;
+@include mixins.core-styles;

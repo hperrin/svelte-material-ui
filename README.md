@@ -246,8 +246,8 @@ Update Progress Checklist:
 - [x] Menus
 - [x] Paper
 - [x] Ripples
-- [ ] Snackbars
-  - [ ] Kitchen
+- [x] Snackbars
+  - [x] Kitchen
 - [x] Tab
 - [x] Tab Bar
 - [x] Tab Indicator

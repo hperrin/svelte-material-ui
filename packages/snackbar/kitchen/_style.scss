@@ -1,3 +1,3 @@
-@import "../_style.scss";
-@import "@smui/button/style";
-@import "@smui/icon-button/style";
+@use '../_style.scss';
+@use '@smui/button/style' as button-style;
+@use '@smui/icon-button/style' as icon-button-style;

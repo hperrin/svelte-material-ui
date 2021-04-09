@@ -7,9 +7,20 @@
     'mdc-snackbar': true,
     'mdc-snackbar--stacked': variant === 'stacked',
     'mdc-snackbar--leading': leading,
+    ...internalClasses,
   })}
   on:MDCSnackbar:closed={handleClosed}
-  {...exclude($$props, ['use', 'class', 'variant', 'leading', 'surface$'])}
+  on:keydown={(event) => instance && instance.handleKeyDown(event)}
+  {...exclude($$props, [
+    'use',
+    'class',
+    'variant',
+    'leading',
+    'timeoutMs',
+    'closeOnEscape',
+    'labelText',
+    'surface$',
+  ])}
 >
   <div
     use:useActions={surface$use}
@@ -17,7 +28,10 @@
       [surface$class]: true,
       'mdc-snackbar__surface': true,
     })}
-    {...prefixFilter($$props, 'surface$')}
+    on:click={handleSurfaceClick}
+    role="status"
+    aria-relevant="additions"
+    {...exclude(prefixFilter($$props, 'surface$'), ['use', 'class'])}
   >
     <slot />
   </div>
@@ -28,8 +42,9 @@
 </script>
 
 <script>
-  import { MDCSnackbar } from '@material/snackbar';
-  import { onMount, onDestroy, setContext } from 'svelte';
+  import { MDCSnackbarFoundation, util } from '@material/snackbar';
+  import { closest } from '@material/dom/ponyfill';
+  import { onMount, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
@@ -37,6 +52,7 @@
     exclude,
     prefixFilter,
     useActions,
+    dispatch,
   } from '@smui/common/internal.js';
 
   const forwardEvents = forwardEventsBuilder(get_current_component(), [
@@ -60,68 +76,110 @@
   export let surface$use = [];
 
   let element;
-  let snackbar;
+  let instance;
+  let internalClasses = {};
   let closeResolve;
   let closePromise = new Promise((resolve) => (closeResolve = resolve));
 
-  setContext('SMUI:button:context', 'snackbar');
-  setContext('SMUI:icon-button:context', 'snackbar');
   setContext('SMUI:label:context', 'snackbar');
 
-  $: if (snackbar && snackbar.timeoutMs !== timeoutMs) {
-    snackbar.timeoutMs = timeoutMs;
+  $: if (instance && instance.getTimeoutMs() !== timeoutMs) {
+    instance.setTimeoutMs(timeoutMs);
   }
 
-  $: if (snackbar && snackbar.closeOnEscape !== closeOnEscape) {
-    snackbar.closeOnEscape = closeOnEscape;
+  $: if (instance && instance.getCloseOnEscape() !== closeOnEscape) {
+    instance.setCloseOnEscape(closeOnEscape);
   }
 
   $: if (
-    snackbar &&
+    instance &&
     labelText !== uninitializedValue &&
-    snackbar.labelText !== labelText
+    getLabelElement().textContent !== labelText
   ) {
-    snackbar.labelText = labelText;
+    getLabelElement().textContent = labelText;
   }
 
   $: if (
-    snackbar &&
+    instance &&
     actionButtonText !== uninitializedValue &&
-    snackbar.actionButtonText !== actionButtonText
+    getActionButtonElement().textContent !== actionButtonText
   ) {
-    snackbar.actionButtonText = actionButtonText;
+    getActionButtonElement().textContent = actionButtonText;
   }
 
   onMount(() => {
-    snackbar = new MDCSnackbar(element);
+    instance = new MDCSnackbarFoundation({
+      addClass,
+      announce: () => util.announce(getLabelElement()),
+      notifyClosed: (reason) =>
+        dispatch(getElement(), 'MDCSnackbar:closed', reason ? { reason } : {}),
+      notifyClosing: (reason) =>
+        dispatch(getElement(), 'MDCSnackbar:closing', reason ? { reason } : {}),
+      notifyOpened: () => dispatch(getElement(), 'MDCSnackbar:opened'),
+      notifyOpening: () => dispatch(getElement(), 'MDCSnackbar:opening'),
+      removeClass,
+    });
+
+    instance.init();
+
+    return () => {
+      instance.destroy();
+    };
   });
 
-  onDestroy(() => {
-    snackbar && snackbar.destroy();
-  });
+  function addClass(className) {
+    if (!internalClasses[className]) {
+      internalClasses[className] = true;
+    }
+  }
+
+  function removeClass(className) {
+    if (!(className in internalClasses) || internalClasses[className]) {
+      internalClasses[className] = false;
+    }
+  }
+
+  function handleSurfaceClick(event) {
+    const target = event.target;
+    if (instance) {
+      if (closest(target, '.mdc-snackbar__action')) {
+        instance.handleActionButtonClick(event);
+      } else if (closest(target, '.mdc-snackbar__dismiss')) {
+        instance.handleActionIconClick(event);
+      }
+    }
+  }
 
   function handleClosed() {
     closeResolve();
     closePromise = new Promise((resolve) => (closeResolve = resolve));
   }
 
-  export function open(...args) {
+  export function open() {
     waiting = waiting.then(() => {
-      snackbar.open(...args);
+      instance.open();
       return closePromise;
     });
   }
 
-  export function forceOpen(...args) {
-    return snackbar.open(...args);
+  export function forceOpen() {
+    return instance.open();
   }
 
-  export function close(...args) {
-    return snackbar.close(...args);
+  export function close(reason = '') {
+    return instance.close(reason);
   }
 
   export function isOpen() {
-    return snackbar.isOpen;
+    return instance.isOpen();
+  }
+
+  export function getLabelElement() {
+    return getElement().querySelector('.mdc-snackbar__label');
+  }
+
+  export function getActionButtonElement() {
+    return getElement().querySelector('.mdc-snackbar__action');
   }
 
   export function getElement() {

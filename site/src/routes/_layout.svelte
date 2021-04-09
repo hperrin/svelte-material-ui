@@ -365,15 +365,15 @@
         'https://github.com/hperrin/svelte-material-ui/tree/master/packages/ripple',
       ],
     },
-    // {
-    //   name: 'Snackbars',
-    //   route: '/demo/snackbars',
-    //   indent: 0,
-    //   repos: [
-    //     'https://github.com/hperrin/svelte-material-ui/tree/master/packages/snackbar',
-    //     'https://github.com/hperrin/svelte-material-ui/tree/master/packages/snackbar/kitchen',
-    //   ],
-    // },
+    {
+      name: 'Snackbars',
+      route: '/demo/snackbars',
+      indent: 0,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/snackbar',
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/snackbar/kitchen',
+      ],
+    },
     {
       name: 'Tabs',
       route: '/demo/tabs',

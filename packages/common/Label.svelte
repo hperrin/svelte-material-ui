@@ -10,7 +10,7 @@
     'mdc-image-list__label': context === 'image-list',
     'mdc-snackbar__label': context === 'snackbar',
   })}
-  {...context === 'snackbar' ? { role: 'status', 'aria-live': 'polite' } : {}}
+  {...context === 'snackbar' ? { 'aria-atomic': 'false' } : {}}
   {tabindex}
   {...exclude($$props, ['use', 'class'])}><slot /></span
 >

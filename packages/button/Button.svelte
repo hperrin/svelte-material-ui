@@ -29,7 +29,7 @@
     'mdc-dialog__button': context === 'dialog:action',
     'mdc-top-app-bar__navigation-icon': context === 'top-app-bar:navigation',
     'mdc-top-app-bar__action-item': context === 'top-app-bar:action',
-    'mdc-snackbar__action': context === 'snackbar',
+    'mdc-snackbar__action': context === 'snackbar:actions',
     ...internalClasses,
   })}
   {...actionProp}

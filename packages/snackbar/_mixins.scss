@@ -1,8 +1,10 @@
-@import "@material/feature-targeting/functions";
+@use '@material/icon-button';
+@use '@material/snackbar';
+@use '@material/feature-targeting';
 
-@mixin smui-snackbar-core-styles($query: mdc-feature-all()) {
-  // Fix icon color.
-  .mdc-snackbar__dismiss.mdc-snackbar__dismiss {
-    @include mdc-icon-button-ink-color($mdc-snackbar-dismiss-ink-color, $query: $query);
+@mixin core-styles($query: feature-targeting.all()) {
+  // Increase specificity.
+  .mdc-icon-button.mdc-snackbar__dismiss {
+    @include icon-button.ink-color(snackbar.$dismiss-ink-color, $query: $query);
   }
 }

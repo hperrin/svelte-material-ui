@@ -25,7 +25,7 @@
     'mdc-card__action--icon': context === 'card:action',
     'mdc-top-app-bar__navigation-icon': context === 'top-app-bar:navigation',
     'mdc-top-app-bar__action-item': context === 'top-app-bar:action',
-    'mdc-snackbar__dismiss': context === 'snackbar',
+    'mdc-snackbar__dismiss': context === 'snackbar:actions',
     ...internalClasses,
   })}
   aria-hidden="true"
