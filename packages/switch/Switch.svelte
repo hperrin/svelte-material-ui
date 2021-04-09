@@ -100,17 +100,12 @@
   let nativeControlAttrs = {};
   let rippleActive = false;
   let inputProps = getContext('SMUI:generic:input:props') || {};
-  let setChecked = getContext('SMUI:generic:input:setChecked');
   let nativeChecked =
     group === uninitializedValue
       ? checked === uninitializedValue
         ? false
         : checked
       : group.indexOf(value) !== -1;
-
-  $: if (setChecked) {
-    setChecked(nativeChecked);
-  }
 
   let previousChecked = checked;
   $: if (checked !== uninitializedValue) {

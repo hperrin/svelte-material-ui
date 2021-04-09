@@ -1,2 +1,12 @@
 @use '@material/menu/mdc-menu';
 @use '@smui/menu-surface/style';
+
+// Increase specificity.
+.mdc-menu__selection-group
+  .mdc-list-item__graphic.mdc-menu__selection-group-icon {
+  display: none;
+}
+.mdc-menu-item--selected
+  .mdc-list-item__graphic.mdc-menu__selection-group-icon {
+  display: inline;
+}

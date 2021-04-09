@@ -177,39 +177,24 @@
     removeLayoutListener = addLayoutListener(layout);
   }
 
-  // TODO: switch to checkbox and radio accessors
   onMount(() => {
     instance = new MDCListFoundation({
       addClassForElementIndex,
       focusItemAtIndex,
-      getAttributeForElementIndex: (index, attr) =>
-        getOrderedList()[index].element.getAttribute(attr),
-      getFocusedElementIndex: () => {
-        const list = getOrderedList();
-        for (let i = 0; i < list.length; i++) {
-          if (list[i].element === document.activeElement) {
-            return i;
-          }
-        }
-        return -1;
-      },
+      getAttributeForElementIndex: (index, name) =>
+        getOrderedList()[index].getAttr(name),
+      getFocusedElementIndex: () =>
+        getOrderedList()
+          .map((accessor) => accessor.element)
+          .indexOf(document.activeElement),
       getListItemCount: () => items.length,
       getPrimaryTextAtIndex: (index) =>
         getOrderedList()[index].getPrimaryText(),
-      hasCheckboxAtIndex: (index) => {
-        const listItem = getOrderedList()[index];
-        return !!listItem.element.querySelector('input[type="checkbox"]');
-      },
-      hasRadioAtIndex: (index) => {
-        const listItem = getOrderedList()[index];
-        return !!listItem.element.querySelector('input[type="radio"]');
-      },
+      hasCheckboxAtIndex: (index) => getOrderedList()[index].hasCheckbox,
+      hasRadioAtIndex: (index) => getOrderedList()[index].hasRadio,
       isCheckboxCheckedAtIndex: (index) => {
         const listItem = getOrderedList()[index];
-        const toggleEl = listItem.element.querySelector(
-          'input[type="checkbox"]'
-        );
-        return toggleEl.checked || false;
+        return listItem.hasCheckbox && listItem.checked;
       },
       isFocusInsideList: () =>
         getElement() !== document.activeElement &&
@@ -223,17 +208,7 @@
       removeClassForElementIndex,
       setAttributeForElementIndex,
       setCheckedCheckboxOrRadioAtIndex: (index, isChecked) => {
-        const listItem = getOrderedList()[index];
-        const toggleEl = listItem.element.querySelector(
-          'input[type="checkbox"], input[type="radio"]'
-        );
-        if (toggleEl) {
-          toggleEl.checked = isChecked;
-
-          const event = document.createEvent('Event');
-          event.initEvent('change', true, true);
-          toggleEl.dispatchEvent(event);
-        }
+        getOrderedList()[index].checked = isChecked;
       },
       setTabIndexForListItemChildren: (listItemIndex, tabIndexValue) => {
         const listItem = getOrderedList()[listItemIndex];
@@ -336,14 +311,14 @@
     accessor && accessor.removeClass(className);
   }
 
-  function setAttributeForElementIndex(index, attr, value) {
+  function setAttributeForElementIndex(index, name, value) {
     const accessor = getOrderedList()[index];
-    accessor && accessor.addAttr(attr, value);
+    accessor && accessor.addAttr(name, value);
   }
 
-  function removeAttributeForElementIndex(index, attr) {
+  function removeAttributeForElementIndex(index, name) {
     const accessor = getOrderedList()[index];
-    accessor && accessor.removeAttr(attr);
+    accessor && accessor.removeAttr(name);
   }
 
   function getListItemIndex(element) {
@@ -351,9 +326,9 @@
 
     // Get the index of the element if it is a list item.
     if (nearestParent && matches(nearestParent, '.mdc-list-item')) {
-      const map = getOrderedList().map((item) => item.element);
-      const ret = map.indexOf(nearestParent);
-      return ret;
+      return getOrderedList()
+        .map((item) => item.element)
+        .indexOf(nearestParent);
     }
     return -1;
   }

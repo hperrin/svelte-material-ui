@@ -86,11 +86,6 @@
   let internalClasses = {};
   let rippleActive = false;
   let inputProps = getContext('SMUI:generic:input:props') || {};
-  let setChecked = getContext('SMUI:generic:input:setChecked');
-
-  $: if (setChecked) {
-    setChecked(group === value);
-  }
 
   onMount(() => {
     instance = new MDCRadioFoundation({
@@ -100,6 +95,7 @@
     });
 
     const accessor = {
+      _smui_radio_accessor: true,
       get element() {
         return getElement();
       },

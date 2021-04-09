@@ -38,7 +38,7 @@
     ? { 'aria-selected': selected ? 'true' : 'false' }
     : {}}
   {...!nav && (role === 'radio' || role === 'checkbox')
-    ? { 'aria-checked': checked ? 'true' : 'false' }
+    ? { 'aria-checked': input && input.checked ? 'true' : 'false' }
     : {}}
   {...!nav ? { 'aria-disabled': disabled ? 'true' : 'false' } : {}}
   {tabindex}
@@ -92,7 +92,7 @@
     get_current_component(),
     forwardedEvents
   );
-  let checked = false;
+  let uninitializedValue = () => {};
 
   export let use = [];
   let className = '';
@@ -106,8 +106,8 @@
   setContext('SMUI:list:item:role', undefined);
   export let selected = false;
   export let disabled = false;
-  export let tabindex =
-    (!nonInteractive && !disabled && (selected || checked) && '0') || '-1';
+  let tabindexProp = uninitializedValue;
+  export { tabindexProp as tabindex };
   export let inputId = 'SMUI-form-field-list-' + counter++;
   // Purposely left out of props exclude.
   export let href = null;
@@ -119,10 +119,18 @@
   let addTabindexIfNoItemsSelectedRaf;
   let nav = getContext('SMUI:list:item:nav');
 
+  $: tabindex =
+    tabindexProp == uninitializedValue
+      ? (!nonInteractive &&
+          !disabled &&
+          (selected || (input && input.checked)) &&
+          '0') ||
+        '-1'
+      : tabindexProp;
+
   export let component = nav ? (href ? A : Span) : Li;
 
   setContext('SMUI:generic:input:props', { id: inputId });
-  setContext('SMUI:generic:input:setChecked', setChecked);
   // Reset separator context, because we aren't directly under a list anymore.
   setContext('SMUI:separator:context', undefined);
 
@@ -167,6 +175,7 @@
       hasClass,
       addClass,
       removeClass,
+      getAttr,
       addAttr,
       removeAttr,
       getPrimaryText,
@@ -179,6 +188,12 @@
         if (input) {
           input.checked = value;
         }
+      },
+      get hasCheckbox() {
+        return !!(input && input._smui_checkbox_accessor);
+      },
+      get hasRadio() {
+        return !!(input && input._smui_radio_accessor);
       },
       activateRipple() {
         if (input) {
@@ -221,6 +236,12 @@
     if (!(className in internalClasses) || internalClasses[className]) {
       internalClasses[className] = false;
     }
+  }
+
+  function getAttr(name) {
+    return name in internalAttrs
+      ? internalAttrs[name]
+      : getElement().getAttribute(name);
   }
 
   function addAttr(name, value) {
@@ -280,12 +301,6 @@
     if (isEnter || isSpace) {
       action(e);
     }
-  }
-
-  function setChecked(isChecked) {
-    checked = isChecked;
-    tabindex =
-      (!nonInteractive && !disabled && (selected || checked) && '0') || '-1';
   }
 
   export function getElement() {

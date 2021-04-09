@@ -110,7 +110,6 @@
   let nativeControlAttrs = {};
   let rippleActive = false;
   let inputProps = getContext('SMUI:generic:input:props') || {};
-  let setChecked = getContext('SMUI:generic:input:setChecked');
   let nativeChecked =
     group === uninitializedValue
       ? checked === uninitializedValue
@@ -119,10 +118,6 @@
       : group.indexOf(value) !== -1;
   let context = getContext('SMUI:checkbox:context');
   let dataTableHeader = getContext('SMUI:data-table:row:header');
-
-  $: if (setChecked) {
-    setChecked(nativeChecked);
-  }
 
   let previousChecked = checked;
   let previousGroup = group === uninitializedValue ? [] : [...group];
@@ -227,6 +222,7 @@
     });
 
     const accessor = {
+      _smui_checkbox_accessor: true,
       get element() {
         return getElement();
       },
