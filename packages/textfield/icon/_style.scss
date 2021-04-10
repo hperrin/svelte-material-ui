@@ -1,1 +1,5 @@
-@import "@material/textfield/icon/mdc-text-field-icon";
+@use '@material/textfield/icon';
+@use './mixins';
+
+@include icon.icon-core-styles;
+@include mixins.core-styles;

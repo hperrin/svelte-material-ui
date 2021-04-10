@@ -226,20 +226,20 @@ Update Progress Checklist:
 - [x] Drawers
 - [x] Image List
 - [x] Checkboxes
-- [ ] Floating Label
+- [x] Floating Label
 - [x] Form Fields
-- [ ] Line Ripple
-- [ ] Notched Outline
+- [x] Line Ripple
+- [x] Notched Outline
 - [x] Radio Buttons
 - [ ] Select Menus
   - [ ] Select Helper Text
   - [ ] Select Icon
 - [x] Sliders
 - [x] Switches
-- [ ] Text Field
-  - [ ] Text Field Character Counter
-  - [ ] Text Field Helper Text
-  - [ ] Text Field Icon
+- [x] Text Field
+  - [x] Text Field Character Counter
+  - [x] Text Field Helper Text
+  - [x] Text Field Icon
 - [x] Linear Progress
 - [x] Lists
 - [x] Menu Surface

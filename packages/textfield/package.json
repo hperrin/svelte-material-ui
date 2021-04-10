@@ -12,7 +12,7 @@
     "sveltejs"
   ],
   "scripts": {
-    "#prepare": "echo \"$(npx glob '**/*' | sed 's/^/-I /' | paste -s -d ' ' -) --no-source-map _style.scss bare.css\" | xargs sass && echo \"$(npx glob '**/*' | sed 's/^/-I /' | paste -s -d ' ' -) --no-source-map character-counter/_style.scss character-counter/bare.css\" | xargs sass && echo \"$(npx glob '**/*' | sed 's/^/-I /' | paste -s -d ' ' -) --no-source-map helper-text/_style.scss helper-text/bare.css\" | xargs sass && echo \"$(npx glob '**/*' | sed 's/^/-I /' | paste -s -d ' ' -) --no-source-map icon/_style.scss icon/bare.css\" | xargs sass",
+    "prepare": "sass --no-source-map -I node_modules _style.scss bare.css && sass --no-source-map -I node_modules character-counter/_style.scss character-counter/bare.css && sass --no-source-map -I node_modules helper-text/_style.scss helper-text/bare.css && sass --no-source-map -I node_modules icon/_style.scss icon/bare.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "publishConfig": {
@@ -28,6 +28,7 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
+    "@material/dom": "^10.0.0",
     "@material/feature-targeting": "^10.0.0",
     "@material/ripple": "^10.0.0",
     "@material/rtl": "^10.0.0",
@@ -38,7 +39,6 @@
     "@smui/notched-outline": "^2.0.0-beta.1"
   },
   "devDependencies": {
-    "glob-cmd": "0.0.7",
     "sass": "^1.32.8"
   }
 }

@@ -6,11 +6,12 @@
     [className]: true,
     'mdc-text-field__input': true,
   })}
-  {type}
-  {...valueProp}
   on:change={(e) => (type === 'file' || type === 'range') && valueUpdater(e)}
   on:input={(e) => type !== 'file' && valueUpdater(e)}
   on:change={changeHandler}
+  {type}
+  {...valueProp}
+  {...internalAttrs}
   {...exclude($$props, [
     'use',
     'class',
@@ -49,6 +50,7 @@
   export let updateInvalid = true;
 
   let element;
+  let internalAttrs = {};
   let valueProp = {};
 
   $: if (type === 'file') {
@@ -93,6 +95,28 @@
     if (updateInvalid) {
       invalid = element.matches(':invalid');
     }
+  }
+
+  export function getAttr(name) {
+    return name in internalAttrs
+      ? internalAttrs[name]
+      : getElement().getAttribute(name);
+  }
+
+  export function addAttr(name, value) {
+    if (internalAttrs[name] !== value) {
+      internalAttrs[name] = value;
+    }
+  }
+
+  export function removeAttr(name) {
+    if (!(name in internalAttrs) || internalAttrs[name] != null) {
+      internalAttrs[name] = undefined;
+    }
+  }
+
+  export function focus() {
+    getElement().focus();
   }
 
   export function getElement() {

@@ -6,8 +6,9 @@
     [className]: true,
     'mdc-text-field__input': true,
   })}
-  bind:value
   on:change={changeHandler}
+  bind:value
+  {...internalAttrs}
   {...exclude($$props, [
     'use',
     'class',
@@ -42,6 +43,7 @@
   export let updateInvalid = true;
 
   let element;
+  let internalAttrs = {};
 
   onMount(() => {
     if (updateInvalid) {
@@ -54,6 +56,28 @@
     if (updateInvalid) {
       invalid = element.matches(':invalid');
     }
+  }
+
+  export function getAttr(name) {
+    return name in internalAttrs
+      ? internalAttrs[name]
+      : getElement().getAttribute(name);
+  }
+
+  export function addAttr(name, value) {
+    if (internalAttrs[name] !== value) {
+      internalAttrs[name] = value;
+    }
+  }
+
+  export function removeAttr(name) {
+    if (!(name in internalAttrs) || internalAttrs[name] != null) {
+      internalAttrs[name] = undefined;
+    }
+  }
+
+  export function focus() {
+    getElement().focus();
   }
 
   export function getElement() {

@@ -229,11 +229,11 @@
         'https://github.com/hperrin/svelte-material-ui/tree/master/packages/checkbox',
       ],
     },
-    // {
-    //   name: 'Floating Label',
-    //   shortcut: '/demo/textfield',
-    //   indent: 1,
-    // },
+    {
+      name: 'Floating Label',
+      shortcut: '/demo/textfield',
+      indent: 1,
+    },
     {
       name: 'Form Fields',
       route: '/demo/form-field',
@@ -242,16 +242,16 @@
         'https://github.com/hperrin/svelte-material-ui/tree/master/packages/form-field',
       ],
     },
-    // {
-    //   name: 'Line Ripple',
-    //   shortcut: '/demo/textfield',
-    //   indent: 1,
-    // },
-    // {
-    //   name: 'Notched Outline',
-    //   shortcut: '/demo/textfield',
-    //   indent: 1,
-    // },
+    {
+      name: 'Line Ripple',
+      shortcut: '/demo/textfield',
+      indent: 1,
+    },
+    {
+      name: 'Notched Outline',
+      shortcut: '/demo/textfield',
+      indent: 1,
+    },
     {
       name: 'Radio Buttons',
       route: '/demo/radio',
@@ -294,29 +294,29 @@
         'https://github.com/hperrin/svelte-material-ui/tree/master/packages/switch',
       ],
     },
-    // {
-    //   name: 'Text Field',
-    //   route: '/demo/textfield',
-    //   indent: 1,
-    //   repos: [
-    //     'https://github.com/hperrin/svelte-material-ui/tree/master/packages/textfield',
-    //   ],
-    // },
-    // {
-    //   name: 'Text Field Character Count',
-    //   shortcut: '/demo/textfield',
-    //   indent: 2,
-    // },
-    // {
-    //   name: 'Text Field Helper Text',
-    //   shortcut: '/demo/textfield',
-    //   indent: 2,
-    // },
-    // {
-    //   name: 'Text Field Icon',
-    //   shortcut: '/demo/textfield',
-    //   indent: 2,
-    // },
+    {
+      name: 'Text Field',
+      route: '/demo/textfield',
+      indent: 1,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/textfield',
+      ],
+    },
+    {
+      name: 'Text Field Character Count',
+      shortcut: '/demo/textfield',
+      indent: 2,
+    },
+    {
+      name: 'Text Field Helper Text',
+      shortcut: '/demo/textfield',
+      indent: 2,
+    },
+    {
+      name: 'Text Field Icon',
+      shortcut: '/demo/textfield',
+      indent: 2,
+    },
     {
       name: 'Linear Progress',
       route: '/demo/linear-progress',

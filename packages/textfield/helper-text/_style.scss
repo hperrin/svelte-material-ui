@@ -1,1 +1,3 @@
-@import "@material/textfield/helper-text/mdc-text-field-helper-text";
+@use '@material/textfield/helper-text';
+
+@include helper-text.helper-text-core-styles;

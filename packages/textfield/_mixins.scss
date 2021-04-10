@@ -1,95 +1,230 @@
-@import "@material/textfield/mixins";
-@import "@material/ripple/mixins";
-@import "@material/rtl/mixins";
-@import "@material/feature-targeting/functions";
+@use '@material/textfield';
+@use '@material/textfield/icon/variables' as icon-variables;
+@use '@material/ripple';
+@use '@material/floating-label/mixins' as floating-label-mixins;
+@use '@material/floating-label/variables' as floating-label-variables;
+@use '@material/rtl/mixins' as rtl-mixins;
+@use '@material/typography/typography';
+@use '@material/feature-targeting';
 
-@mixin smui-text-field-core-styles($query: mdc-feature-all()) {
+@mixin core-styles($query: feature-targeting.all()) {
+  $feat-structure: feature-targeting.create-target($query, structure);
+
   .smui-text-field--standard {
-    @include mdc-states-base-color(transparent);
-    @include mdc-text-field-fill-color(transparent);
+    @include _standard($query);
 
-    &.mdc-text-field--disabled {
-      @include mdc-text-field-fill-color_(transparent);
+    @include feature-targeting.targets($feat-structure) {
+      padding: 0;
     }
 
-    .mdc-text-field__input {
-      padding-left: 0;
-      padding-right: 0;
+    &.mdc-text-field--no-label {
+      @include _standard-no-label($query);
     }
+  }
 
-    .mdc-floating-label {
-      @include mdc-rtl-reflexive-position(left, 0);
+  .mdc-text-field--with-leading-icon {
+    &.smui-text-field--standard {
+      @include with-leading-icon_($query);
     }
+  }
 
-    &.mdc-text-field--with-leading-icon {
-      @include mdc-text-field-icon-horizontal-position_(
-        left,
-        0,
-        $mdc-text-field-icon-padding - $mdc-text-field-icon-position,
-        0
-      );
-
-      .mdc-floating-label {
-        @include mdc-rtl-reflexive-position(left, $mdc-text-field-icon-padding - $mdc-text-field-icon-position);
-      }
-
-      &.mdc-text-field--dense {
-        @include mdc-text-field-icon-horizontal-position_(
-          left,
-          0,
-          $mdc-text-field-dense-icon-padding - $mdc-text-field-dense-icon-position,
-          0
-        );
-
-        .mdc-floating-label {
-          @include mdc-rtl-reflexive-position(left, $mdc-text-field-dense-icon-padding - $mdc-text-field-dense-icon-position);
-        }
-      }
+  .mdc-text-field--with-trailing-icon {
+    &.smui-text-field--standard {
+      @include _with-trailing-icon($query);
     }
+  }
 
-    &.mdc-text-field--with-trailing-icon {
-      @include mdc-text-field-icon-horizontal-position_(
-        right,
-        0,
-        $mdc-text-field-icon-padding - $mdc-text-field-trailing-icon-position,
-        0
-      );
-
-      &.mdc-text-field--dense {
-        @include mdc-text-field-icon-horizontal-position_(
-          right,
-          0,
-          $mdc-text-field-dense-icon-padding - $mdc-text-field-dense-icon-position,
-          0
-        );
-      }
+  .mdc-text-field--with-leading-icon.mdc-text-field--with-trailing-icon {
+    &.smui-text-field--standard {
+      @include _with-leading-and-trailing-icon($query);
     }
+  }
 
-    &.mdc-text-field--with-leading-icon.mdc-text-field--with-trailing-icon {
-      @include mdc-text-field-icon-horizontal-position-two-icons_(
-        0,
-        $mdc-text-field-icon-padding - $mdc-text-field-icon-position,
-        0,
-        $mdc-text-field-icon-padding - $mdc-text-field-trailing-icon-position
-      );
-
-      &.mdc-text-field--dense {
-        @include mdc-text-field-icon-horizontal-position-two-icons_(
-          0,
-          $mdc-text-field-dense-icon-padding - $mdc-text-field-dense-icon-position,
-          0,
-          $mdc-text-field-dense-icon-padding - $mdc-text-field-dense-icon-position
-        );
-      }
-    }
-
-    &.mdc-text-field--with-leading-icon.mdc-text-field--with-trailing-icon .mdc-text-field__icon ~ .mdc-text-field__icon {
-      @include mdc-rtl-reflexive-position(right, 0);
-    }
-
-    & + .mdc-text-field-helper-line {
+  .mdc-text-field-helper-line {
+    .mdc-text-field + & {
       padding-left: 0;
       padding-right: 0;
     }
   }
+}
+
+@mixin _standard($query: feature-targeting.all()) {
+  // Text Field intentionally omits press ripple, so each state needs to be specified individually.
+  @include ripple.states-base-color(
+    transparent,
+    $query: $query,
+    $ripple-target: textfield.$ripple-target
+  );
+  @include ripple.states-hover-opacity(
+    ripple.states-opacity(textfield.$ink-color, hover),
+    $query: $query,
+    $ripple-target: textfield.$ripple-target
+  );
+  @include ripple.states-focus-opacity(
+    ripple.states-opacity(textfield.$ink-color, focus),
+    $query: $query,
+    $ripple-target: textfield.$ripple-target
+  );
+
+  @include textfield.height(textfield.$height, $query: $query);
+  @include typography.baseline-top(
+    textfield.$filled-baseline-top,
+    $query: $query
+  );
+  @include textfield.fill-color(transparent, $query: $query);
+  @include textfield.bottom-line-color(
+    textfield.$bottom-line-idle,
+    $query: $query
+  );
+  @include textfield.hover-bottom-line-color(
+    textfield.$bottom-line-hover,
+    $query: $query
+  );
+  @include textfield.line-ripple-color_(primary, $query: $query);
+  @include _standard-floating-label($query);
+}
+
+@mixin _standard-floating-label($query: feature-targeting.all()) {
+  $feat-structure: feature-targeting.create-target($query, structure);
+
+  .mdc-floating-label {
+    @include feature-targeting.targets($feat-structure) {
+      @include rtl-mixins.reflexive-position(left, 0);
+    }
+  }
+
+  @include floating-label-mixins.float-position(
+    textfield.$label-position-y,
+    $query: $query
+  );
+}
+
+// Standard variant with no label. This variant centers the text elements and
+// hides the label and is used with there is explicitly no label provided or
+// when the height of the text field is too small for a label to be allowed.
+@mixin _standard-no-label($query: feature-targeting.all()) {
+  $feat-structure: feature-targeting.create-target($query, structure);
+
+  @include _baseline-center-aligned($query);
+  @include feature-targeting.targets($feat-structure) {
+    .mdc-floating-label {
+      display: none;
+    }
+
+    &::before {
+      // Remove baseline-top strut
+      display: none;
+    }
+  }
+
+  // Safari only
+  @supports (-webkit-hyphens: none) {
+    .mdc-text-field__affix {
+      @include _centered-affix-safari-support($query: $query);
+    }
+  }
+}
+
+@mixin with-leading-icon_($query: feature-targeting.all()) {
+  $feat-structure: feature-targeting.create-target($query, structure);
+
+  $icon-padding: icon-variables.$icon-size +
+    icon-variables.$leading-icon-padding-right;
+
+  .mdc-floating-label {
+    @include _truncate-floating-label-max-width($icon-padding, $query: $query);
+    @include feature-targeting.targets($feat-structure) {
+      @include rtl-mixins.reflexive-position(left, $icon-padding);
+    }
+  }
+
+  $truncation: $icon-padding + textfield.$padding-horizontal;
+
+  .mdc-floating-label--float-above {
+    @include _truncate-floating-label-floated-max-width(
+      $truncation,
+      $query: $query
+    );
+  }
+}
+
+@mixin _with-trailing-icon($query: feature-targeting.all()) {
+  $truncation: icon-variables.$trailing-icon-padding-left +
+    icon-variables.$icon-size;
+
+  .mdc-floating-label {
+    @include _truncate-floating-label-max-width($truncation, $query: $query);
+  }
+
+  .mdc-floating-label--float-above {
+    @include _truncate-floating-label-floated-max-width(
+      $truncation,
+      $query: $query
+    );
+  }
+}
+
+@mixin _with-leading-and-trailing-icon($query: feature-targeting.all()) {
+  $leading-icon: icon-variables.$icon-size +
+    icon-variables.$leading-icon-padding-right;
+  $trailing-icon: icon-variables.$trailing-icon-padding-left +
+    icon-variables.$icon-size;
+  $truncation: $leading-icon + $trailing-icon;
+
+  .mdc-floating-label {
+    @include _truncate-floating-label-max-width($truncation, $query: $query);
+  }
+
+  .mdc-floating-label--float-above {
+    @include _truncate-floating-label-floated-max-width(
+      $truncation,
+      $query: $query
+    );
+  }
+}
+
+// See: https://github.com/material-components/material-components-web/blob/v10.0.0/packages/mdc-textfield/_mixins.scss#L1369
+@mixin _baseline-center-aligned($query: feature-targeting.all()) {
+  $feat-structure: feature-targeting.create-target($query, structure);
+
+  @include feature-targeting.targets($feat-structure) {
+    .mdc-text-field__input {
+      height: 100%;
+    }
+  }
+}
+
+// See: https://github.com/material-components/material-components-web/blob/v10.0.0/packages/mdc-textfield/_mixins.scss#L2265
+@mixin _centered-affix-safari-support($query: feature-targeting.all()) {
+  $feat-structure: feature-targeting.create-target($query, structure);
+
+  @include feature-targeting.targets($feat-structure) {
+    align-items: center;
+    align-self: center;
+    display: inline-flex;
+    height: 100%;
+  }
+}
+
+// See: https://github.com/material-components/material-components-web/blob/v10.0.0/packages/mdc-textfield/_mixins.scss#L1865
+@mixin _truncate-floating-label-max-width(
+  $truncation,
+  $query: feature-targeting.all()
+) {
+  @include floating-label-mixins.max-width(
+    calc(100% - #{$truncation}),
+    $query: $query
+  );
+}
+
+// See: https://github.com/material-components/material-components-web/blob/v10.0.0/packages/mdc-textfield/_mixins.scss#L1880
+@mixin _truncate-floating-label-floated-max-width(
+  $truncation,
+  $query: feature-targeting.all()
+) {
+  $scale: floating-label-variables.$float-scale;
+  @include floating-label-mixins.max-width(
+    calc(100% / #{$scale} - #{$truncation} / #{$scale}),
+    $query: $query
+  );
 }

@@ -13,11 +13,16 @@ export default function Ripple(
     unbounded = false,
     disabled = false,
     color = null,
+    active = null,
     addClass = (className) => node.classList.add(className),
     removeClass = (className) => node.classList.remove(className),
     addStyle = (name, value) =>
       (sentinel || node).style.setProperty(name, value),
-    active = null,
+    registerInteractionHandler = (evtType, handler) =>
+      node.addEventListener(evtType, handler, applyPassive()),
+    deregisterInteractionHandler = (evtType, handler) =>
+      node.removeEventListener(evtType, handler, applyPassive()),
+    initPromise = Promise.resolve(),
   } = {}
 ) {
   let instance;
@@ -61,8 +66,7 @@ export default function Ripple(
             handler,
             applyPassive()
           ),
-        deregisterInteractionHandler: (evtType, handler) =>
-          node.removeEventListener(evtType, handler, applyPassive()),
+        deregisterInteractionHandler,
         deregisterResizeHandler: (handler) =>
           window.removeEventListener('resize', handler),
         getWindowPageOffset: () => ({
@@ -79,18 +83,22 @@ export default function Ripple(
             handler,
             applyPassive()
           ),
-        registerInteractionHandler: (evtType, handler) =>
-          node.addEventListener(evtType, handler, applyPassive()),
+        registerInteractionHandler,
         registerResizeHandler: (handler) =>
           window.addEventListener('resize', handler),
         removeClass,
         updateCssVariable: addStyle,
       });
-      instance.init();
-      instance.setUnbounded(unbounded);
+
+      initPromise.then(() => {
+        instance.init();
+        instance.setUnbounded(unbounded);
+      });
     } else if (instance && !ripple) {
-      instance.destroy();
-      instance = null;
+      initPromise.then(() => {
+        instance.destroy();
+        instance = null;
+      });
     }
 
     if (!ripple && unbounded) {
@@ -137,6 +145,10 @@ export default function Ripple(
         active: null,
         ...props,
       });
+      // Note that you can't change
+      // registerInteractionHandler,
+      // deregisterInteractionHandler,
+      // and initPromise
       handleProps();
     },
 

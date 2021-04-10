@@ -1,1 +1,3 @@
-@import "@material/textfield/character-counter/mdc-text-field-character-counter";
+@use '@material/textfield/character-counter';
+
+@include character-counter.character-counter-core-styles;

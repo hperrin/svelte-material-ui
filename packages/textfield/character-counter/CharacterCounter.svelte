@@ -8,35 +8,54 @@
   })}
   {...exclude($$props, ['use', 'class'])}
 >
-  <slot />
+  {#if content == null}<slot />{:else}{content}{/if}
 </div>
 
 <script>
-  import { MDCTextFieldCharacterCounter } from '@material/textfield/character-counter';
-  import { onMount, onDestroy } from 'svelte';
+  import { MDCTextFieldCharacterCounterFoundation } from '@material/textfield/character-counter';
+  import { onMount } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
     classMap,
     exclude,
     useActions,
+    dispatch,
   } from '@smui/common/internal.js';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component());
+  const forwardEvents = forwardEventsBuilder(get_current_component(), [
+    'SMUI:textfield:character-counter:mount',
+    'SMUI:textfield:character-counter:unmount',
+  ]);
 
   export let use = [];
   let className = '';
   export { className as class };
 
   let element;
-  let characterCounter;
+  let instance;
+  let content = null;
 
   onMount(() => {
-    characterCounter = new MDCTextFieldCharacterCounter(element);
-  });
+    instance = new MDCTextFieldCharacterCounterFoundation({
+      setContent: (value) => {
+        content = value;
+      },
+    });
 
-  onDestroy(() => {
-    characterCounter && characterCounter.destroy();
+    dispatch(getElement(), 'SMUI:textfield:character-counter:mount', instance);
+
+    instance.init();
+
+    return () => {
+      dispatch(
+        getElement(),
+        'SMUI:textfield:character-counter:unmount',
+        instance
+      );
+
+      instance.destroy();
+    };
   });
 
   export function getElement() {
