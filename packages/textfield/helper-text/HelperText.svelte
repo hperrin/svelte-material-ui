@@ -30,7 +30,6 @@
 <script>
   import { MDCTextFieldHelperTextFoundation } from '@material/textfield/helper-text';
   import { onMount } from 'svelte';
-  import { writable } from 'svelte/store';
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
@@ -58,9 +57,6 @@
   let internalClasses = {};
   let internalAttrs = {};
   let content = null;
-  let idStore = writable(id);
-
-  $: $idStore = id;
 
   onMount(() => {
     instance = new MDCTextFieldHelperTextFoundation({
@@ -76,7 +72,7 @@
     });
 
     if (id.startsWith('SMUI-textfield-helper-text-')) {
-      dispatch(getElement(), 'SMUI:textfield:helper-text:id', idStore);
+      dispatch(getElement(), 'SMUI:textfield:helper-text:id', id);
     }
     dispatch(getElement(), 'SMUI:textfield:helper-text:mount', instance);
 

@@ -239,7 +239,7 @@
   </div>
 
   <div>
-    <h6 class="demo-title">Shaped Outlined</h6>
+    <h6 class="demo-title">Shaped Outlined (Done with CSS)</h6>
 
     <div class="columns margins">
       <div>
@@ -847,10 +847,6 @@
     border-radius: 16px 16px 0 0;
   }
 
-  * :global(.shaped-outlined .mdc-text-field__input) {
-    padding-left: 32px;
-    padding-right: 32px;
-  }
   *
     :global(.shaped-outlined
       .mdc-notched-outline

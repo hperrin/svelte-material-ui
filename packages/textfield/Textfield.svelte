@@ -97,8 +97,8 @@
           on:input
           on:blur
           on:focus
-          aria-controls={helperId ? get(helperId) : null}
-          aria-describedby={helperId ? get(helperId) : null}
+          aria-controls={helperId}
+          aria-describedby={helperId}
           {...prefixFilter($$props, 'input$')}
         />
         <slot name="internalCounter" />
@@ -122,8 +122,8 @@
         on:input
         on:blur
         on:focus
-        aria-controls={helperId ? get(helperId) : null}
-        aria-describedby={helperId ? get(helperId) : null}
+        aria-controls={helperId}
+        aria-describedby={helperId}
         {...noLabel && label != null ? { placeholder: label } : {}}
         {...prefixFilter($$props, 'input$')}
       />
@@ -208,7 +208,6 @@
   import { matches } from '@material/dom/ponyfill';
   import { onMount, onDestroy, getContext, tick } from 'svelte';
   import { get_current_component } from 'svelte/internal';
-  import { get } from 'svelte/store';
   import {
     forwardEventsBuilder,
     classMap,
@@ -293,15 +292,15 @@
   let instance;
   let internalClasses = {};
   let helperId;
+  let addLayoutListener = getContext('SMUI:addLayoutListener');
+  let removeLayoutListener;
+  let initPromiseResolve;
+  let initPromise = new Promise((resolve) => (initPromiseResolve = resolve));
   // These are instances, not accessors.
   let leadingIcon;
   let trailingIcon;
   let helperText;
   let characterCounter;
-  let addLayoutListener = getContext('SMUI:addLayoutListener');
-  let removeLayoutListener;
-  let initPromiseResolve;
-  let initPromise = new Promise((resolve) => (initPromiseResolve = resolve));
 
   $: valued = value !== uninitializedValue || files !== uninitializedValue;
 
