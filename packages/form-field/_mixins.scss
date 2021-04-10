@@ -1,15 +1,15 @@
-@import "@material/rtl/mixins";
-@import "@material/feature-targeting/functions";
+@use '@material/rtl';
+@use '@material/feature-targeting';
 
-@mixin smui-form-field-core-styles($query: mdc-feature-all()) {
+@mixin core-styles($query: feature-targeting.all()) {
   .mdc-form-field {
     .mdc-switch + label {
-      @include mdc-rtl-reflexive-box(margin, left, 10px);
+      @include rtl.reflexive-box(margin, left, 10px);
     }
 
     &.mdc-form-field--align-end {
       .mdc-switch + label {
-        @include mdc-rtl-reflexive-box(margin, right, 10px);
+        @include rtl.reflexive-box(margin, right, 10px);
       }
     }
   }

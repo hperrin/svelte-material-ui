@@ -8,8 +8,10 @@
       removeClass,
       active: input && matches(input.getElement(), ':active'),
       registerInteractionHandler: (evtType, handler) =>
+        input.getElement() &&
         input.getElement().addEventListener(evtType, handler, applyPassive()),
       deregisterInteractionHandler: (evtType, handler) =>
+        input.getElement() &&
         input
           .getElement()
           .removeEventListener(evtType, handler, applyPassive()),
