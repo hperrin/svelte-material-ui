@@ -21,6 +21,12 @@
     </FormField>
   </div>
 
+  <div>
+    <Button on:click={() => (simpleSelected2 = !simpleSelected2)}
+      >Toggle Programmatically</Button
+    >
+  </div>
+
   <pre class="status">Checked: {simpleSelected2}</pre>
 
   <h6 class="demo-title">Primary color</h6>
@@ -62,12 +68,27 @@
     {/each}
   </div>
 
+  <div>
+    <Button
+      on:click={() => {
+        const idx = selected.indexOf('Doc');
+        if (idx > -1) {
+          selected.splice(idx, 1);
+        } else {
+          selected.push('Doc');
+        }
+        selected = selected;
+      }}>Toggle Doc Programmatically</Button
+    >
+  </div>
+
   <pre class="status">Selected: {selected.join(', ')}</pre>
 </section>
 
 <script>
   import Switch from '@smui/switch';
   import FormField from '@smui/form-field';
+  import Button from '@smui/button';
 
   let simpleSelected = false;
   let simpleSelected2 = false;

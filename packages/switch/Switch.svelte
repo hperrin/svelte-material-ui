@@ -49,8 +49,6 @@
       bind:checked={nativeChecked}
       aria-checked={nativeChecked ? 'true' : 'false'}
       value={valueKey === uninitializedValue ? value : valueKey}
-      on:change={handleChange}
-      on:change={(event) => instance && instance.handleChange(event)}
       on:change
       on:input
       on:blur
@@ -108,14 +106,75 @@
       : group.indexOf(value) !== -1;
 
   let previousChecked = checked;
-  $: if (checked !== uninitializedValue) {
-    if (checked === previousChecked) {
-      checked = nativeChecked;
-    } else if (nativeChecked !== checked) {
-      nativeChecked = checked;
-      instance && instance.handleChange();
+  let previousGroup = group === uninitializedValue ? [] : [...group];
+  let previousNativeChecked = nativeChecked;
+  $: {
+    // This is a substitute for an on:change listener that is
+    // smarter about when it calls the instance's handler. I do
+    // this so that a group of changes will only trigger one
+    // handler call, since the handler will reset currently
+    // running animations.
+    let callHandleChange = false;
+
+    // First check for group state.
+    if (group !== uninitializedValue) {
+      if (previousNativeChecked !== nativeChecked) {
+        // The change needs to flow up.
+        const idx = group.indexOf(value);
+        if (nativeChecked && idx === -1) {
+          group.push(value);
+          group = group;
+        } else if (!nativeChecked && idx !== -1) {
+          group.splice(idx, 1);
+          group = group;
+        }
+        callHandleChange = true;
+      } else {
+        // Potential changes need to flow down.
+        const idxPrev = previousGroup.indexOf(value);
+        const idx = group.indexOf(value);
+
+        if (idxPrev > -1 && idx === -1) {
+          // The checkbox was removed from the group.
+          nativeChecked = false;
+          callHandleChange = true;
+        } else if (idx > -1 && idxPrev === -1) {
+          // The checkbox was added to the group.
+          nativeChecked = true;
+          callHandleChange = true;
+        }
+      }
     }
+
+    // Now check individual state.
+    if (checked === uninitializedValue) {
+      if (previousNativeChecked !== nativeChecked) {
+        // The checkbox was clicked by the user.
+        callHandleChange = true;
+      }
+    } else if (checked !== nativeChecked) {
+      if (checked === previousChecked) {
+        // The checkbox was clicked by the user
+        // and the change needs to flow up.
+        checked = nativeChecked;
+      } else {
+        // The checkbox was changed programmatically
+        // and the change needs to flow down.
+        nativeChecked = checked;
+      }
+      callHandleChange = true;
+    }
+
     previousChecked = checked;
+    previousGroup = group === uninitializedValue ? [] : [...group];
+    previousNativeChecked = nativeChecked;
+    if (callHandleChange && instance) {
+      instance.handleChange({
+        target: {
+          checked: nativeChecked,
+        },
+      });
+    }
   }
 
   onMount(() => {
@@ -135,10 +194,8 @@
         return nativeChecked;
       },
       set checked(checked) {
-        if (nativeChecked !== checked) {
-          nativeChecked = checked;
-          handleChange();
-          instance && instance.handleChange();
+        if (nativeChecked !== value) {
+          nativeChecked = value;
         }
       },
       activateRipple() {
@@ -192,19 +249,6 @@
   function addNativeControlAttr(name, value) {
     if (nativeControlAttrs[name] !== value) {
       nativeControlAttrs[name] = value;
-    }
-  }
-
-  function handleChange() {
-    if (group !== uninitializedValue) {
-      const idx = group.indexOf(value);
-      if (nativeChecked && idx === -1) {
-        group.push(value);
-        group = group;
-      } else if (!nativeChecked && idx !== -1) {
-        group.splice(idx, 1);
-        group = group;
-      }
     }
   }
 
