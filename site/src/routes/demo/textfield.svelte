@@ -606,13 +606,22 @@
   <div>
     <h6 class="demo-title">Manual Setup</h6>
 
-    <!-- When you setup the textfield manually, you need to provide each
-      of the components underneath to the Textfield component. It will also
-      not be wrapped inside a label element, so you'll need to provide
-      accessibility attributes yourself. The Textfield's foundation will
-      only be initialized after a Svelte tick() has passed, in order to
-      properly recieve the components. (This may have unforeseen
-      consequences, IDK. Use this feature at your own risk.) -->
+    <!--
+      Using a manual setup gives you more control over the layout and
+      elements inside the Textfield.
+      
+      When you setup the textfield manually, you need to provide each
+      of the components underneath to the Textfield component. It will
+      also not be wrapped inside a label element, so you'll need to
+      provide `id` and `for` attributes yourself. The HelperText does
+      not pass its ID over to the Input either, so you'll need those
+      accessibility attributes too.
+      
+      The Textfield's foundation will only be initialized after a
+      Svelte tick() has passed, in order to properly recieve the
+      components. (This may have unforeseen consequences, IDK.
+      Use this feature at your own risk.)
+    -->
     <div class="columns margins">
       <div>
         <Textfield

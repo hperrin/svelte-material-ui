@@ -75,7 +75,9 @@
       },
     });
 
-    dispatch(getElement(), 'SMUI:textfield:helper-text:id', idStore);
+    if (id.startsWith('SMUI-textfield-helper-text-')) {
+      dispatch(getElement(), 'SMUI:textfield:helper-text:id', idStore);
+    }
     dispatch(getElement(), 'SMUI:textfield:helper-text:mount', instance);
 
     instance.init();

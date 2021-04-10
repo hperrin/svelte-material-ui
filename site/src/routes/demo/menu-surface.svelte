@@ -33,8 +33,10 @@
 
   <pre class="status">Clicked: {clicked}</pre>
 
-  <!-- <div>
-<h6 class="demo-title">Anchored automatically, corner set to bottom-left</h6>
+  <div>
+    <h6 class="demo-title">
+      Anchored automatically, corner set to bottom-left
+    </h6>
 
     <div style="min-width: 100px;">
       <Button on:click={() => formSurface.setOpen(true)}
@@ -53,7 +55,7 @@
         </div>
       </MenuSurface>
     </div>
-  </div> -->
+  </div>
 
   <div>
     <h6 class="demo-title">Anchored manually</h6>
@@ -106,7 +108,7 @@
 <script>
   import MenuSurface, { Anchor } from '@smui/menu-surface';
   import List, { Item, Separator, Text } from '@smui/list';
-  // import Textfield from '@smui/textfield';
+  import Textfield from '@smui/textfield';
   import ImageList, {
     Item as ImageListItem,
     ImageAspectContainer,
@@ -115,9 +117,9 @@
   import Button from '@smui/button';
   import './menu-surface.scss';
 
-  // let formSurface;
-  // let name = '';
-  // let email = '';
+  let formSurface;
+  let name = '';
+  let email = '';
   let imageListSurface;
   let imageListAnchor;
   let imageListAnchorClasses = {};

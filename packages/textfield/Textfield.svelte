@@ -8,10 +8,10 @@
       removeClass,
       active: input && matches(input.getElement(), ':active'),
       registerInteractionHandler: (evtType, handler) =>
-        input.getElement() &&
+        input.getElement &&
         input.getElement().addEventListener(evtType, handler, applyPassive()),
       deregisterInteractionHandler: (evtType, handler) =>
-        input.getElement() &&
+        input.getElement &&
         input
           .getElement()
           .removeEventListener(evtType, handler, applyPassive()),
@@ -97,8 +97,8 @@
           on:input
           on:blur
           on:focus
-          aria-controls={helperId ? $helperId : null}
-          aria-describedby={helperId ? $helperId : null}
+          aria-controls={helperId ? get(helperId) : null}
+          aria-describedby={helperId ? get(helperId) : null}
           {...prefixFilter($$props, 'input$')}
         />
         <slot name="internalCounter" />
@@ -122,8 +122,8 @@
         on:input
         on:blur
         on:focus
-        aria-controls={helperId ? $helperId : null}
-        aria-describedby={helperId ? $helperId : null}
+        aria-controls={helperId ? get(helperId) : null}
+        aria-describedby={helperId ? get(helperId) : null}
         {...noLabel && label != null ? { placeholder: label } : {}}
         {...prefixFilter($$props, 'input$')}
       />
@@ -208,6 +208,7 @@
   import { matches } from '@material/dom/ponyfill';
   import { onMount, onDestroy, getContext, tick } from 'svelte';
   import { get_current_component } from 'svelte/internal';
+  import { get } from 'svelte/store';
   import {
     forwardEventsBuilder,
     classMap,
