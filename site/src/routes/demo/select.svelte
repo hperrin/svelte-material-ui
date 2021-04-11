@@ -200,7 +200,7 @@
   </div>
 
   <div>
-    <h6 class="demo-title">Shaped Filled (Done with CSS)</h6>
+    <h6 class="demo-title">Shaped Filled (Styled with CSS)</h6>
 
     <div class="columns margins">
       <div>
@@ -273,7 +273,7 @@
   </div>
 
   <div>
-    <h6 class="demo-title">Shaped Outlined (Done with CSS)</h6>
+    <h6 class="demo-title">Shaped Outlined (Styled with CSS)</h6>
 
     <div class="columns margins">
       <div>

@@ -57,40 +57,46 @@
     </div>
   </div>
 
+  <pre class="status">Clicked: {clicked}</pre>
+
   <h6 class="demo-title">Primary color</h6>
 
   <div class="flexy">
     <div class="margins">
-      <Fab color="primary" on:click={() => clicked++}
+      <Fab color="primary" on:click={() => primaryClicked++}
         ><Icon class="material-icons">favorite</Icon></Fab
       >
     </div>
     <div class="margins">
-      <Fab color="primary" on:click={() => clicked++} mini
+      <Fab color="primary" on:click={() => primaryClicked++} mini
         ><Icon class="material-icons">favorite</Icon></Fab
       >
     </div>
     <div class="margins">
-      <Fab color="primary" on:click={() => clicked++} extended
+      <Fab color="primary" on:click={() => primaryClicked++} extended
         ><Icon class="material-icons">favorite</Icon><Label>Extended</Label
         ></Fab
       >
     </div>
     <div class="margins">
-      <Fab color="primary" on:click={() => clicked++} extended ripple={false}
+      <Fab
+        color="primary"
+        on:click={() => primaryClicked++}
+        extended
+        ripple={false}
         ><Icon class="material-icons">favorite</Icon><Label>No Ripple</Label
         ></Fab
       >
     </div>
     <div class="margins">
-      <Fab color="primary" on:click={() => clicked++} extended
+      <Fab color="primary" on:click={() => primaryClicked++} extended
         ><Label>Extended W/o Icon</Label></Fab
       >
     </div>
     <div class="margins">
       <Fab
         color="primary"
-        on:click={() => clicked++}
+        on:click={() => primaryClicked++}
         href="http://example.com"
         target="_blank"
         extended><Label>Link</Label></Fab
@@ -100,7 +106,7 @@
 
   <div class="flexy">
     <div class="margins">
-      <Fab color="primary" on:click={() => clicked++} exited={exited2}
+      <Fab color="primary" on:click={() => primaryClicked++} exited={exited2}
         ><Icon class="material-icons">favorite</Icon></Fab
       >
     </div>
@@ -112,7 +118,7 @@
     </div>
   </div>
 
-  <pre class="status">Clicked: {clicked}</pre>
+  <pre class="status">Clicked: {primaryClicked}</pre>
 </section>
 
 <script>
@@ -121,6 +127,7 @@
   import Checkbox from '@smui/checkbox';
 
   let clicked = 0;
+  let primaryClicked = 0;
   let exited = false;
   let exited2 = false;
 </script>

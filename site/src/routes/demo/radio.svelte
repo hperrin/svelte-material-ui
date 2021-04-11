@@ -20,6 +20,14 @@
     {/each}
   </div>
 
+  <div>
+    <Button
+      on:click={() => {
+        selected = 'Doc';
+      }}>Select Doc Programmatically</Button
+    >
+  </div>
+
   <pre class="status">Selected: {selected}</pre>
 
   <div class="radio-demo">
@@ -38,6 +46,7 @@
 <script>
   import Radio from '@smui/radio';
   import FormField from '@smui/form-field';
+  import Button from '@smui/button';
 
   let options = [
     {
