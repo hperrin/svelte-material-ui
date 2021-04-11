@@ -1,6 +1,6 @@
 {
   "name": "@smui/menu",
-  "version": "3.0.0-beta.0",
+  "version": "3.0.0-beta.1",
   "description": "Svelte Material UI - Menu",
   "keywords": [
     "svelte",
@@ -30,9 +30,9 @@
   "dependencies": {
     "@material/dom": "^10.0.0",
     "@material/menu": "^10.0.0",
-    "@smui/common": "^3.0.0-beta.0",
-    "@smui/list": "^3.0.0-beta.0",
-    "@smui/menu-surface": "^3.0.0-beta.0"
+    "@smui/common": "^3.0.0-beta.1",
+    "@smui/list": "^3.0.0-beta.1",
+    "@smui/menu-surface": "^3.0.0-beta.1"
   },
   "devDependencies": {
     "sass": "^1.32.8"

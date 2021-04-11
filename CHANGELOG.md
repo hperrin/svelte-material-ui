@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-beta.1](https://github.com/hperrin/svelte-material-ui/compare/v3.0.0-beta.0...v3.0.0-beta.1) (2021-04-11)
+
+
+### Bug Fixes
+
+* allow keyboard navigation to tabs when none are active ([13c1812](https://github.com/hperrin/svelte-material-ui/commit/13c1812c6488982de3d2261aba72b5b5288545c5))
+* svgs in icon buttons were focusable ([f9d2678](https://github.com/hperrin/svelte-material-ui/commit/f9d2678f9103ca8599e958b294b6e8e3af0126df))
+
+
+
+
+
 # [3.0.0-beta.0](https://github.com/hperrin/svelte-material-ui/compare/v2.0.0-beta.1...v3.0.0-beta.0) (2021-04-11)
 
 
