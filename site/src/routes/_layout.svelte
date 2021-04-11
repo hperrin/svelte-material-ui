@@ -381,8 +381,6 @@
       repos: [
         'https://github.com/hperrin/svelte-material-ui/tree/master/packages/tab',
         'https://github.com/hperrin/svelte-material-ui/tree/master/packages/tab-bar',
-        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/tab-indicator',
-        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/tab-scroller',
       ],
     },
     {
