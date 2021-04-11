@@ -67,11 +67,23 @@ body,
   position: relative;
   width: 0;
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+#demo-source-file {
+  height: 350px;
+  overflow: auto;
+}
+
+#demo-source-file .emgithub-container {
+  margin: 0 !important;
 }
 
 .demo-main-content {
   overflow: auto;
   display: flex;
+  flex-direction: column;
 }
 
 .demo-main-content section {

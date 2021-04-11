@@ -25,6 +25,7 @@
         {#each repos as repo}
           <IconButton
             href={repo}
+            target="_blank"
             title={`View Component: ${repo.split('/').slice(-1)[0]}`}
           >
             <Icon
@@ -38,10 +39,14 @@
         {/each}
         {#if activeSection}
           <IconButton
-            href={`https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes${activeSection.route}.svelte`}
-            title={`View Demo Code: ${
-              activeSection.route.split('/').slice(-1)[0]
-            }`}
+            on:click={() => {
+              if (sourceFile) {
+                sourceFile = null;
+              } else {
+                sourceFile = `https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes${activeSection.route}.svelte`;
+              }
+            }}
+            title={`Toggle Source Code`}
           >
             <Icon
               component={Svg}
@@ -110,6 +115,16 @@
       <Scrim />
     {/if}
     <AppContent class="demo-app-content">
+      {#if sourceHTML}
+        <div id="demo-source-file">
+          {@html sourceHTML}
+        </div>
+      {:else if sourceFile}
+        <script
+          src="https://emgithub.com/embed.js?target={encodeURIComponent(
+            sourceFile
+          )}&style=github&showBorder=on&showLineNumbers=on&showFileMeta=on"></script>
+      {/if}
       <main class="demo-main-content" bind:this={mainContent}>
         <slot />
       </main>
@@ -138,6 +153,14 @@
   let mainContent;
   let miniWindow = false;
   let drawerOpen = false;
+  let sourceFile = null;
+  let sourceHTML = null;
+
+  if (typeof document !== 'undefined') {
+    document.write = (value) => {
+      sourceHTML = value;
+    };
+  }
 
   const sections = [
     {
@@ -382,6 +405,9 @@
     // Svelte/Sapper is not updated the components correctly, so I need this.
     sections.forEach((section) => section.component.$set({ activated: false }));
     section.component.$set({ activated: true });
+
+    sourceFile = null;
+    sourceHTML = null;
 
     activeSection =
       'shortcut' in section
