@@ -26,7 +26,7 @@
           <IconButton
             href={repo}
             target="_blank"
-            title={`View Component: ${repo.split('/').slice(-1)[0]}`}
+            title={`View Docs: ${repo.split('/').slice(-1)[0]}`}
           >
             <Icon
               component={Svg}
@@ -39,22 +39,29 @@
         {/each}
         {#if activeSection}
           <IconButton
-            on:click={() => {
-              if (sourceFile) {
-                sourceFile = null;
-              } else {
+            on:MDCIconButtonToggle:change={() => {
+              if (sourceFile == null) {
                 sourceFile = `https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes${activeSection.route}.svelte`;
+              } else {
+                sourceFile = null;
+                sourceHTML = null;
               }
             }}
-            title={`Toggle Source Code`}
+            toggle
+            pressed={sourceFile != null}
+            title="Toggle Source Code"
           >
             <Icon
               component={Svg}
               style="width:24px;height:24px"
               viewBox="0 0 24 24"
+              on><path fill="#000000" d={mdiCodeTagsCheck} /></Icon
             >
-              <path fill="#000000" d={mdiCodeTags} />
-            </Icon>
+            <Icon
+              component={Svg}
+              style="width:24px;height:24px"
+              viewBox="0 0 24 24"><path fill="#000000" d={mdiCodeTags} /></Icon
+            >
           </IconButton>
         {/if}
         <IconButton href="https://twitter.com/SciActive">
@@ -135,7 +142,13 @@
 <script>
   import { onMount } from 'svelte';
   import { stores } from '@sapper/app';
-  import { mdiFileDocument, mdiCodeTags, mdiTwitter, mdiGithub } from '@mdi/js';
+  import {
+    mdiFileDocument,
+    mdiCodeTags,
+    mdiCodeTagsCheck,
+    mdiTwitter,
+    mdiGithub,
+  } from '@mdi/js';
 
   import './_app.scss';
 

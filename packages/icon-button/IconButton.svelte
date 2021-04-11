@@ -28,7 +28,6 @@
     'mdc-snackbar__dismiss': context === 'snackbar:actions',
     ...internalClasses,
   })}
-  aria-hidden="true"
   aria-pressed={toggle ? (pressed ? 'true' : 'false') : null}
   aria-label={pressed ? ariaLabelOn : ariaLabelOff}
   data-aria-label-on={ariaLabelOn}

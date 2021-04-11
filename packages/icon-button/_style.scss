@@ -2,3 +2,8 @@
 @use '@smui/ripple/style';
 
 @include icon-button.core-styles;
+
+// Prevent pointer giving focus inside.
+.mdc-icon-button svg {
+  pointer-events: none;
+}
