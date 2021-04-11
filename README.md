@@ -26,7 +26,7 @@ npm install --save-dev svelte-material-ui
 
 The latest SMUI, v3 (beta), uses the latest upstream [Material Design Components for Web (MDC)](https://github.com/material-components/material-components-web), v10. I've done a lot more than upgrade the version, though! I rewrote SMUI to use the ["Advanced Approach"](https://github.com/material-components/material-components-web/blob/master/docs/integrating-into-frameworks.md#the-advanced-approach-using-foundations-and-adapters) of integrating with the library, which should make updating to later upstream versions much easier. There should also be fewer bugs, because _Svelte_ is in charge of updating the DOM, instead of MDC.
 
-<small>I literally used a vacation week to do this.</small>
+<sub>I literally used a vacation week to do this.</sub>
 
 ## Migration
 
@@ -93,7 +93,7 @@ Here are some features you should know about:
 
 ## Integration for Sapper
 
-<small>\* As of 2021-Apr-06, these instructions will now work without a FOUC!</small>
+<sub>\* As of 2021-Apr-06, these instructions will now work without a FOUC!</sub>
 
 1. Install the following packages as dev dependencies
    - With yarn
@@ -224,9 +224,9 @@ New components from the upstream library that haven't been built yet:
 - [ ] Data Table Progress Indicator
 - [ ] Data Table Column Sort Buttons
 
-<small>† This is Sass based, and therefore doesn't require Svelte components. I've included a demo showing how you can use it.</small>
+<sub>† This is Sass based, and therefore doesn't require Svelte components. I've included a demo showing how you can use it.</sub>
 
-<small>‡ This is not an MDC Web component. It is an addition that SMUI provides.</small>
+<sub>‡ This is not an MDC Web component. It is an addition that SMUI provides.</sub>
 
 # Support
 
