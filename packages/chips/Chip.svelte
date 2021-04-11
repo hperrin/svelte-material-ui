@@ -52,17 +52,7 @@
     (trailingActionAccessor = event.detail)}
   on:SMUI:chip:trailing-action:unmount={() =>
     (trailingActionAccessor = undefined)}
-  {...exclude($$props, [
-    'use',
-    'class',
-    'style',
-    'chip',
-    'ripple',
-    'touch',
-    'shouldRemoveOnTrailingIconClick',
-    'shouldFocusPrimaryActionOnClick',
-    'component',
-  ])}
+  {...$$restProps}
 >
   <div class="mdc-chip__ripple" />
   <slot />
@@ -79,7 +69,6 @@
   import {
     forwardEventsBuilder,
     classMap,
-    exclude,
     dispatch,
   } from '@smui/common/internal.js';
   import Ripple from '@smui/ripple/bare.js';

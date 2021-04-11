@@ -12,20 +12,11 @@
   on:keydown={(event) => instance && instance.handleKeyDown(event)}
   on:MDCTab:interacted={(event) =>
     instance && instance.handleTabInteraction(event)}
-  {...exclude($$props, [
-    'use',
-    'class',
-    'tabs',
-    'key',
-    'focusOnActivate',
-    'useAutomaticActivation',
-    'activeIndex',
-    'tabScroller$',
-  ])}
+  {...exclude($$restProps, ['tabScroller$'])}
 >
   <TabScroller
     bind:this={tabScroller}
-    {...prefixFilter($$props, 'tabScroller$')}
+    {...prefixFilter($$restProps, 'tabScroller$')}
   >
     {#each tabs as tab, i (key(tab))}
       <slot {tab} />

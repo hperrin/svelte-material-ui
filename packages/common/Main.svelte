@@ -2,16 +2,15 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  {...exclude($$props, ['element', 'use', 'forwardEvents'])}
+  {...$$restProps}
 >
   <slot />
 </main>
 
 <script>
   import { get_current_component } from 'svelte/internal';
-  import { forwardEventsBuilder, exclude, useActions } from './internal.js';
+  import { forwardEventsBuilder, useActions } from './internal.js';
 
-  export let element = null;
   export let use = [];
   let forwardEventsAdditional = [];
   export { forwardEventsAdditional as forwardEvents };
@@ -20,6 +19,8 @@
     get_current_component(),
     forwardEventsAdditional
   );
+
+  let element = null;
 
   export function getElement() {
     return element;

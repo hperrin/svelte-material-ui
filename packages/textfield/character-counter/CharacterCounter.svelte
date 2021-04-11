@@ -6,7 +6,7 @@
     [className]: true,
     'mdc-text-field-character-counter': true,
   })}
-  {...exclude($$props, ['use', 'class'])}
+  {...$$restProps}
 >
   {#if content == null}<slot />{:else}{content}{/if}
 </div>
@@ -18,7 +18,6 @@
   import {
     forwardEventsBuilder,
     classMap,
-    exclude,
     useActions,
     dispatch,
   } from '@smui/common/internal.js';

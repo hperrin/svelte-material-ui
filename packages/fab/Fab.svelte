@@ -8,7 +8,7 @@
         ripple,
         unbounded: false,
         color,
-        disabled: !!$$props.disabled,
+        disabled: !!$$restProps.disabled,
         addClass,
         removeClass,
       },
@@ -26,17 +26,8 @@
     'mdc-fab--touch': touch,
     ...internalClasses,
   })}
-  {...exclude($$props, [
-    'use',
-    'class',
-    'ripple',
-    'color',
-    'mini',
-    'exited',
-    'extended',
-    'touch',
-    'component',
-  ])}
+  {href}
+  {...$$restProps}
   ><div class="mdc-fab__ripple" />
   <slot />{#if touch}<div class="mdc-fab__touch" />{/if}</svelte:component
 >
@@ -44,11 +35,7 @@
 <script>
   import { setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    exclude,
-  } from '@smui/common/internal.js';
+  import { forwardEventsBuilder, classMap } from '@smui/common/internal.js';
   import Ripple from '@smui/ripple/bare.js';
   import A from '@smui/common/A.svelte';
   import Button from '@smui/common/Button.svelte';
@@ -64,7 +51,6 @@
   export let exited = false;
   export let extended = false;
   export let touch = false;
-  // Purposely left out of props exclude.
   export let href = null;
 
   let element;

@@ -10,13 +10,7 @@
     'mdc-tab-scroller--align-center': align === 'center',
     ...internalClasses,
   })}
-  {...exclude($$props, [
-    'use',
-    'class',
-    'align',
-    'scrollArea$',
-    'scrollContent$',
-  ])}
+  {...exclude($$restProps, ['scrollArea$', 'scrollContent$'])}
 >
   <div
     bind:this={scrollArea}
@@ -34,7 +28,7 @@
     on:pointerdown={() => instance && instance.handleInteraction()}
     on:mousedown={() => instance && instance.handleInteraction()}
     on:keydown={() => instance && instance.handleInteraction()}
-    {...exclude(prefixFilter($$props, 'scrollArea$'), ['use', 'class'])}
+    {...prefixFilter($$restProps, 'scrollArea$')}
   >
     <div
       bind:this={scrollContent}
@@ -48,7 +42,7 @@
         .join(' ')}
       on:transitionend={(event) =>
         instance && instance.handleTransitionEnd(event)}
-      {...exclude(prefixFilter($$props, 'scrollContent$'), ['use', 'class'])}
+      {...prefixFilter($$restProps, 'scrollContent$')}
     >
       <slot />
     </div>

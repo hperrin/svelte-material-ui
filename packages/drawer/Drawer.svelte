@@ -12,7 +12,7 @@
   })}
   on:keydown={(event) => instance && instance.handleKeydown(event)}
   on:transitionend={(event) => instance && instance.handleTransitionEnd(event)}
-  {...exclude($$props, ['use', 'class', 'variant', 'open', 'fixed'])}
+  {...$$restProps}
 >
   <slot />
 </aside>
@@ -28,7 +28,6 @@
   import {
     forwardEventsBuilder,
     classMap,
-    exclude,
     useActions,
     dispatch,
   } from '@smui/common/internal.js';

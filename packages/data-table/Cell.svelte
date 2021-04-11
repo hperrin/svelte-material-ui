@@ -14,7 +14,7 @@
     role="columnheader"
     scope="col"
     {...internalAttrs}
-    {...props}><slot /></th
+    {...$$restProps}><slot /></th
   >
 {:else}
   <td
@@ -30,7 +30,7 @@
     })}
     on:change={(event) => checkbox && notifyBodyChange(event)}
     {...internalAttrs}
-    {...props}><slot /></td
+    {...$$restProps}><slot /></td
   >
 {/if}
 
@@ -44,7 +44,6 @@
   import {
     forwardEventsBuilder,
     classMap,
-    exclude,
     useActions,
     dispatch,
   } from '@smui/common/internal.js';
@@ -70,14 +69,6 @@
   let element;
   let internalClasses = {};
   let internalAttrs = {};
-
-  $: props = exclude($$props, [
-    'use',
-    'class',
-    'numeric',
-    'checkbox',
-    'columnId',
-  ]);
 
   onMount(() => {
     const accessor = {

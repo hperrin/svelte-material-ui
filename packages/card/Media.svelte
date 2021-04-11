@@ -8,7 +8,7 @@
     'mdc-card__media--square': aspectRatio === 'square',
     'mdc-card__media--16-9': aspectRatio === '16x9',
   })}
-  {...exclude($$props, ['use', 'class', 'aspectRatio'])}
+  {...$$restProps}
 >
   <slot />
 </div>
@@ -18,7 +18,6 @@
   import {
     forwardEventsBuilder,
     classMap,
-    exclude,
     useActions,
   } from '@smui/common/internal.js';
 

@@ -19,15 +19,7 @@
   aria-valuenow={indeterminate ? null : `${progress.toLocaleString()}`}
   on:transitionend={() => instance && instance.handleTransitionEnd()}
   {...internalAttrs}
-  {...exclude($$props, [
-    'use',
-    'class',
-    'style',
-    'indeterminate',
-    'closed',
-    'progress',
-    'buffer',
-  ])}
+  {...$$restProps}
 >
   <div class="mdc-linear-progress__buffer">
     <div
@@ -58,7 +50,6 @@
   import {
     forwardEventsBuilder,
     classMap,
-    exclude,
     useActions,
   } from '@smui/common/internal.js';
 

@@ -42,7 +42,7 @@
   on:SMUI:list:item:mount={handleItemMount}
   on:SMUI:list:item:unmount={handleItemUnmount}
   on:SMUI:action={handleAction}
-  {...props}
+  {...$$restProps}
 >
   <slot />
 </svelte:component>
@@ -55,7 +55,6 @@
   import {
     forwardEventsBuilder,
     classMap,
-    exclude,
     dispatch,
   } from '@smui/common/internal.js';
   import Ul from '@smui/common/Ul.svelte';
@@ -103,24 +102,6 @@
   if (checklist) {
     checkList = true;
   }
-
-  $: props = exclude($$props, [
-    'use',
-    'class',
-    'nonInteractive',
-    'dense',
-    'avatarList',
-    'twoLine',
-    'threeLine',
-    'vertical',
-    'wrapFocus',
-    'singleSelection',
-    'selectedIndex',
-    'radioList',
-    'radiolist',
-    'checkList',
-    'checklist',
-  ]);
 
   let element;
   let instance;

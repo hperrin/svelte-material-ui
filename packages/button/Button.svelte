@@ -8,7 +8,7 @@
         ripple,
         unbounded: false,
         color,
-        disabled: !!$$props.disabled,
+        disabled: !!$$restProps.disabled,
         addClass,
         removeClass,
       },
@@ -34,16 +34,8 @@
   })}
   {...actionProp}
   {...defaultProp}
-  {...exclude($$props, [
-    'use',
-    'class',
-    'ripple',
-    'color',
-    'variant',
-    'touch',
-    'component',
-    ...dialogExcludes,
-  ])}
+  {href}
+  {...$$restProps}
   ><div class="mdc-button__ripple" />
   <slot />{#if touch}<div class="mdc-button__touch" />{/if}</svelte:component
 >
@@ -51,11 +43,7 @@
 <script>
   import { setContext, getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    exclude,
-  } from '@smui/common/internal.js';
+  import { forwardEventsBuilder, classMap } from '@smui/common/internal.js';
   import Ripple from '@smui/ripple/bare.js';
   import A from '@smui/common/A.svelte';
   import Button from '@smui/common/Button.svelte';
@@ -69,7 +57,6 @@
   export let color = 'primary';
   export let variant = 'text';
   export let touch = false;
-  // Purposely left out of props exclude.
   export let href = null;
   export let action = 'close';
   let defaultAction = false;
@@ -80,8 +67,6 @@
   let context = getContext('SMUI:button:context');
 
   export let component = href == null ? Button : A;
-
-  $: dialogExcludes = context === 'dialog:action' ? ['action', 'default'] : [];
 
   $: actionProp =
     context === 'dialog:action' && action !== null

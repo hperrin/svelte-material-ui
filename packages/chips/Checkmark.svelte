@@ -5,7 +5,7 @@
     [className]: true,
     'mdc-chip__checkmark': true,
   })}
-  {...exclude($$props, ['use', 'class'])}
+  {...$$restProps}
 >
   <svg class="mdc-chip__checkmark-svg" viewBox="-2 -3 30 30">
     <path
@@ -18,7 +18,7 @@
 </span>
 
 <script>
-  import { classMap, exclude, useActions } from '@smui/common/internal.js';
+  import { classMap, useActions } from '@smui/common/internal.js';
 
   export let use = [];
   let className = '';

@@ -18,14 +18,7 @@
   on:click={(event) => instance && instance.handleClick(event)}
   on:keydown={(event) => instance && instance.handleKeydown(event)}
   {...internalAttrs}
-  {...exclude($$props, [
-    'use',
-    'class',
-    'ripple',
-    'touch',
-    'nonNavigable',
-    'icon$',
-  ])}
+  {...exclude($$restProps, ['icon$'])}
 >
   <span class="mdc-chip-trailing-action__ripple" />
   {#if touch}
@@ -37,8 +30,7 @@
       [icon$class]: true,
       'mdc-chip-trailing-action__icon': true,
     })}
-    {...exclude(prefixFilter($$props, 'icon$'), ['use', 'class'])}
-    ><slot /></span
+    {...prefixFilter($$restProps, 'icon$')}><slot /></span
   >
 </button>
 

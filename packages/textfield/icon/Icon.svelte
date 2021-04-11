@@ -11,15 +11,9 @@
   {tabindex}
   aria-hidden={tabindex === '-1' ? 'true' : 'false'}
   aria-disabled={role === 'button' ? (disabled ? 'true' : 'false') : null}
-  on:click={clickHandler}
+  {role}
   {...internalAttrs}
-  {...exclude($$props, [
-    'use',
-    'class',
-    'tabindex',
-    'disabled',
-    'stopClickPropagationWhenDisabled',
-  ])}><slot /></i
+  {...$$restProps}><slot /></i
 >
 
 <script>
@@ -29,7 +23,6 @@
   import {
     forwardEventsBuilder,
     classMap,
-    exclude,
     useActions,
     dispatch,
   } from '@smui/common/internal.js';
@@ -45,10 +38,9 @@
   export let use = [];
   let className = '';
   export { className as class };
-  export let role = undefined; // Intentionally left out of exclude call above.
+  export let role = null;
   export let tabindex = role === 'button' ? '0' : '-1';
   export let disabled = false;
-  export let stopClickPropagationWhenDisabled = true;
 
   let element;
   let instance;
@@ -109,12 +101,6 @@
   function removeAttr(name) {
     if (!(name in internalAttrs) || internalAttrs[name] != null) {
       internalAttrs[name] = undefined;
-    }
-  }
-
-  function clickHandler(event) {
-    if (stopClickPropagationWhenDisabled && role === 'button' && disabled) {
-      event.stopPropagation();
     }
   }
 

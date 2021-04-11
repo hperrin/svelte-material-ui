@@ -46,19 +46,9 @@
   on:keydown={handleKeydown}
   on:SMUI:generic:input:mount={(event) => (input = event.detail)}
   on:SMUI:generic:input:unmount={() => (input = undefined)}
+  {href}
   {...internalAttrs}
-  {...exclude($$props, [
-    'use',
-    'class',
-    'ripple',
-    'color',
-    'nonInteractive',
-    'activated',
-    'selected',
-    'disabled',
-    'tabindex',
-    'inputId',
-  ])}
+  {...$$restProps}
   >{#if ripple}<span class="mdc-list-item__ripple" />{/if}<slot
   /></svelte:component
 >
@@ -73,7 +63,6 @@
   import {
     forwardEventsBuilder,
     classMap,
-    exclude,
     dispatch,
   } from '@smui/common/internal.js';
   import Ripple from '@smui/ripple/bare.js';
@@ -109,7 +98,6 @@
   let tabindexProp = uninitializedValue;
   export { tabindexProp as tabindex };
   export let inputId = 'SMUI-form-field-list-' + counter++;
-  // Purposely left out of props exclude.
   export let href = null;
 
   let element;

@@ -17,8 +17,7 @@
       ? { 'aria-selected': $isSelected ? 'true' : 'false' }
       : {}}
     {...internalAttrs}
-    {...exclude($$props, ['use', 'class'])}
-    ><span class="mdc-chip__text"><slot /></span></span
+    {...$$restProps}><span class="mdc-chip__text"><slot /></span></span
   >
 </span>
 
@@ -28,7 +27,6 @@
   import {
     forwardEventsBuilder,
     classMap,
-    exclude,
     useActions,
     dispatch,
   } from '@smui/common/internal.js';

@@ -9,14 +9,7 @@
   on:change={changeHandler}
   bind:value
   {...internalAttrs}
-  {...exclude($$props, [
-    'use',
-    'class',
-    'value',
-    'dirty',
-    'invalid',
-    'updateInvalid',
-  ])}
+  {...$$restProps}
 />
 
 <script>
@@ -25,7 +18,6 @@
   import {
     forwardEventsBuilder,
     classMap,
-    exclude,
     useActions,
   } from '@smui/common/internal.js';
 

@@ -16,7 +16,7 @@
     instance.handleItemAction(
       listAccessor.getOrderedList()[event.detail.index].element
     )}
-  {...exclude($$props, ['use', 'class'])}><slot /></MenuSurface
+  {...$$restProps}><slot /></MenuSurface
 >
 
 <script>
@@ -27,7 +27,6 @@
   import {
     forwardEventsBuilder,
     classMap,
-    exclude,
     dispatch,
   } from '@smui/common/internal.js';
   import MenuSurface from '@smui/menu-surface/MenuSurface.svelte';

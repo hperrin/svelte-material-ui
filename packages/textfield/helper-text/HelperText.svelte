@@ -12,13 +12,7 @@
   aria-hidden={persistent ? null : 'true'}
   {id}
   {...internalAttrs}
-  {...exclude($$props, [
-    'use',
-    'class',
-    'persistent',
-    'validationMsg',
-    'text$',
-  ])}
+  {...$$restProps}
 >
   {#if content == null}<slot />{:else}{content}{/if}
 </div>
@@ -34,7 +28,6 @@
   import {
     forwardEventsBuilder,
     classMap,
-    exclude,
     useActions,
     dispatch,
   } from '@smui/common/internal.js';

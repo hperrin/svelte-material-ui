@@ -9,14 +9,7 @@
     'smui-card__primary-action--padded': padded,
   })}
   {tabindex}
-  {...exclude($$props, [
-    'use',
-    'class',
-    'ripple',
-    'color',
-    'padded',
-    'tabindex',
-  ])}
+  {...$$restProps}
 >
   <slot />
 </div>
@@ -26,7 +19,6 @@
   import {
     forwardEventsBuilder,
     classMap,
-    exclude,
     useActions,
   } from '@smui/common/internal.js';
   import Ripple from '@smui/ripple/bare.js';

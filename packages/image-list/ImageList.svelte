@@ -8,7 +8,7 @@
     'mdc-image-list--masonry': masonry,
     'mdc-image-list--with-text-protection': withTextProtection,
   })}
-  {...exclude($$props, ['use', 'class', 'masonry', 'withTextProtection'])}
+  {...$$restProps}
 >
   <slot />
 </ul>
@@ -19,7 +19,6 @@
   import {
     forwardEventsBuilder,
     classMap,
-    exclude,
     useActions,
   } from '@smui/common/internal.js';
 

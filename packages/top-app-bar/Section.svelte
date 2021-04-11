@@ -9,7 +9,7 @@
     'mdc-top-app-bar__section--align-end': align === 'end',
   })}
   {...toolbar ? { role: 'toolbar' } : {}}
-  {...exclude($$props, ['use', 'class', 'align', 'toolbar'])}
+  {...$$restProps}
 >
   <slot />
 </section>
@@ -20,7 +20,6 @@
   import {
     forwardEventsBuilder,
     classMap,
-    exclude,
     useActions,
   } from '@smui/common/internal.js';
 

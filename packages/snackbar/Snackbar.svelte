@@ -11,16 +11,7 @@
   })}
   on:MDCSnackbar:closed={handleClosed}
   on:keydown={(event) => instance && instance.handleKeyDown(event)}
-  {...exclude($$props, [
-    'use',
-    'class',
-    'variant',
-    'leading',
-    'timeoutMs',
-    'closeOnEscape',
-    'labelText',
-    'surface$',
-  ])}
+  {...exclude($$restProps, ['surface$'])}
 >
   <div
     use:useActions={surface$use}
@@ -31,7 +22,7 @@
     on:click={handleSurfaceClick}
     role="status"
     aria-relevant="additions"
-    {...exclude(prefixFilter($$props, 'surface$'), ['use', 'class'])}
+    {...prefixFilter($$restProps, 'surface$')}
   >
     <slot />
   </div>

@@ -6,7 +6,7 @@
     [className]: true,
     [adjustClass]: true,
   })}
-  {...exclude($$props, ['use', 'class', 'topAppBar', 'component'])}
+  {...$$restProps}
 >
   <slot />
 </svelte:component>
@@ -16,7 +16,6 @@
   import {
     forwardEventsBuilder,
     classMap,
-    exclude,
   } from '@smui/common/internal.js';
   import Main from '@smui/common/Main.svelte';
 

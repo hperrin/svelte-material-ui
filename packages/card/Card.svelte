@@ -8,7 +8,7 @@
     'mdc-card--outlined': variant === 'outlined',
     'smui-card--padded': padded,
   })}
-  {...exclude($$props, ['use', 'class', 'variant', 'padded'])}
+  {...$$restProps}
 >
   <slot />
 </div>
@@ -18,7 +18,6 @@
   import {
     forwardEventsBuilder,
     classMap,
-    exclude,
     useActions,
   } from '@smui/common/internal.js';
 

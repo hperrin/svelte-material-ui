@@ -12,16 +12,7 @@
   {type}
   {...valueProp}
   {...internalAttrs}
-  {...exclude($$props, [
-    'use',
-    'class',
-    'type',
-    'value',
-    'files',
-    'dirty',
-    'invalid',
-    'updateInvalid',
-  ])}
+  {...$$restProps}
 />
 
 <script>
@@ -30,7 +21,6 @@
   import {
     forwardEventsBuilder,
     classMap,
-    exclude,
     useActions,
   } from '@smui/common/internal.js';
 

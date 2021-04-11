@@ -14,14 +14,7 @@
       .map(([name, value]) => `${name}: ${value};`)
       .concat([style])
       .join(' ')}
-    {...exclude($$props, [
-      'use',
-      'class',
-      'style',
-      'floatAbove',
-      'required',
-      'wrapped',
-    ])}><slot /></span
+    {...$$restProps}><slot /></span
   >
 {:else}
   <label
@@ -39,18 +32,8 @@
       .map(([name, value]) => `${name}: ${value};`)
       .concat([style])
       .join(' ')}
-    {...forId || (inputProps && inputProps.id)
-      ? { for: forId || (inputProps && inputProps.id) }
-      : {}}
-    {...exclude($$props, [
-      'use',
-      'class',
-      'style',
-      'for',
-      'floatAbove',
-      'required',
-      'wrapped',
-    ])}><slot /></label
+    for={forId || (inputProps ? inputProps.id : null)}
+    {...$$restProps}><slot /></label
   >
 {/if}
 
@@ -62,7 +45,6 @@
   import {
     forwardEventsBuilder,
     classMap,
-    exclude,
     useActions,
     dispatch,
   } from '@smui/common/internal.js';
@@ -76,7 +58,7 @@
   let className = '';
   export { className as class };
   export let style = '';
-  let forId = '';
+  let forId = null;
   export { forId as for };
   export let floatAbove = false;
   export let required = false;

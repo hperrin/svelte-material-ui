@@ -7,7 +7,7 @@
     'mdc-list-item__graphic': true,
     'mdc-menu__selection-group-icon': menuSelectionGroup,
   })}
-  {...exclude($$props, ['use', 'class'])}><slot /></span
+  {...$$restProps}><slot /></span
 >
 
 <script>
@@ -16,7 +16,6 @@
   import {
     forwardEventsBuilder,
     classMap,
-    exclude,
     useActions,
   } from '@smui/common/internal.js';
 

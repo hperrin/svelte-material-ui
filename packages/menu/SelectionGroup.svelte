@@ -2,7 +2,7 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  {...exclude($$props, ['use', 'list$'])}
+  {...exclude($$restProps, ['list$'])}
 >
   <ul
     use:useActions={list$use}
@@ -10,7 +10,7 @@
       [list$class]: true,
       'mdc-menu__selection-group': true,
     })}
-    {...exclude(prefixFilter($$props, 'list$'), ['use', 'class'])}
+    {...prefixFilter($$restProps, 'list$')}
   >
     <slot />
   </ul>

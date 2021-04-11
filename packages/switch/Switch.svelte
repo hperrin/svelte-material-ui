@@ -10,16 +10,7 @@
     'smui-switch--color-primary': color === 'primary',
     ...internalClasses,
   })}
-  {...exclude($$props, [
-    'use',
-    'class',
-    'disabled',
-    'color',
-    'group',
-    'checked',
-    'value',
-    'input$',
-  ])}
+  {...exclude($$restProps, ['input$'])}
 >
   <div class="mdc-switch__track" />
   <div
@@ -54,7 +45,7 @@
       on:blur
       on:focus
       {...nativeControlAttrs}
-      {...exclude(prefixFilter($$props, 'input$'), ['use', 'class'])}
+      {...prefixFilter($$restProps, 'input$')}
     />
   </div>
 </div>

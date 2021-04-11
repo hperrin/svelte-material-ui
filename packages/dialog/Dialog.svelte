@@ -23,24 +23,14 @@
   on:MDCDialog:opened={handleDialogOpened}
   on:click={(event) => instance && instance.handleClick(event)}
   on:keydown={(event) => instance && instance.handleKeydown(event)}
-  {...exclude($$props, [
-    'use',
-    'class',
-    'open',
-    'selection',
-    'escapeKeyAction',
-    'scrimClickAction',
-    'autoStackButtons',
-    'container$',
-    'surface$',
-  ])}
+  {...exclude($$restProps, ['container$', 'surface$'])}
 >
   <div
     class={classMap({
       [container$class]: true,
       'mdc-dialog__container': true,
     })}
-    {...exclude(prefixFilter($$props, 'container$'), ['class'])}
+    {...prefixFilter($$restProps, 'container$')}
   >
     <div
       class={classMap({
@@ -49,7 +39,7 @@
       })}
       role="alertdialog"
       aria-modal="true"
-      {...exclude(prefixFilter($$props, 'surface$'), ['class'])}
+      {...prefixFilter($$restProps, 'surface$')}
     >
       <slot />
     </div>

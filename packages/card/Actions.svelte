@@ -7,7 +7,7 @@
     'mdc-card__actions': true,
     'mdc-card__actions--full-bleed': fullBleed,
   })}
-  {...exclude($$props, ['use', 'class', 'fullBleed'])}
+  {...$$restProps}
 >
   <slot />
 </div>
@@ -18,7 +18,6 @@
   import {
     forwardEventsBuilder,
     classMap,
-    exclude,
     useActions,
   } from '@smui/common/internal.js';
 

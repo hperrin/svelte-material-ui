@@ -9,7 +9,7 @@
     'mdc-chip__icon--leading-hidden': $filter && $isSelected,
     ...$leadingIconClasses,
   })}
-  {...exclude($$props, ['use', 'class'])}><slot /></i
+  {...$$restProps}><slot /></i
 >
 
 <script>
@@ -18,7 +18,6 @@
   import {
     forwardEventsBuilder,
     classMap,
-    exclude,
     useActions,
   } from '@smui/common/internal.js';
 

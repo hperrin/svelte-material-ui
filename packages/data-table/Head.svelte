@@ -6,7 +6,7 @@
   on:SMUI:checkbox:unmount={() => (checkbox = undefined)}
   on:SMUI:data-table:cell:mount={handleCellMount}
   on:SMUI:data-table:cell:unmount={handleCellUnmount}
-  {...exclude($$props, ['use'])}><slot /></thead
+  {...$$restProps}><slot /></thead
 >
 
 <script>
@@ -14,7 +14,6 @@
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
-    exclude,
     useActions,
     dispatch,
   } from '@smui/common/internal.js';

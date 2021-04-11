@@ -12,18 +12,13 @@
   })}
   {...context === 'snackbar' ? { 'aria-atomic': 'false' } : {}}
   {tabindex}
-  {...exclude($$props, ['use', 'class'])}><slot /></span
+  {...$$restProps}><slot /></span
 >
 
 <script>
   import { getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    exclude,
-    useActions,
-  } from './internal.js';
+  import { forwardEventsBuilder, classMap, useActions } from './internal.js';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

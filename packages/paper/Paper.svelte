@@ -10,7 +10,7 @@
     ['smui-paper--color-' + color]: color !== 'default',
     'smui-paper-transition': transition,
   })}
-  {...exclude($$props, ['use', 'class', 'square', 'color', 'transition'])}
+  {...$$restProps}
 >
   <slot />
 </div>
@@ -20,7 +20,6 @@
   import {
     forwardEventsBuilder,
     classMap,
-    exclude,
     useActions,
   } from '@smui/common/internal.js';
 

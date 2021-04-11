@@ -19,21 +19,7 @@
     .map(([name, value]) => `${name}: ${value};`)
     .join(' ')}"
   on:keydown={(event) => instance && instance.handleKeydown(event)}
-  {...exclude($$props, [
-    'use',
-    'class',
-    'style',
-    'static',
-    'anchor',
-    'fixed',
-    'open',
-    'fullWidth',
-    'quickOpen',
-    'anchorElement',
-    'anchorCorner',
-    'anchorMargin',
-    'element',
-  ])}
+  {...$$restProps}
 >
   <slot />
 </div>
@@ -52,7 +38,6 @@
   import {
     forwardEventsBuilder,
     classMap,
-    exclude,
     useActions,
     dispatch,
   } from '@smui/common/internal.js';

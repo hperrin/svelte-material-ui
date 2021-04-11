@@ -18,13 +18,7 @@
   on:SMUI:data-table:header:click={handleHeaderRowClick}
   on:SMUI:data-table:body:checkbox:change={(event) =>
     instance && instance.handleRowCheckboxChange(event)}
-  {...exclude($$props, [
-    'use',
-    'class',
-    'stickyHeader',
-    'container$',
-    'table$',
-  ])}
+  {...exclude($$restProps, ['container$', 'table$'])}
 >
   <div
     bind:this={container}
@@ -33,7 +27,7 @@
       [container$class]: true,
       'mdc-data-table__table-container': true,
     })}
-    {...exclude(prefixFilter($$props, 'container$'), ['use', 'class'])}
+    {...prefixFilter($$restProps, 'container$')}
   >
     <table
       use:useActions={table$use}
@@ -41,7 +35,7 @@
         [table$class]: true,
         'mdc-data-table__table': true,
       })}
-      {...exclude(prefixFilter($$props, 'table$'), ['use', 'class'])}
+      {...prefixFilter($$restProps, 'table$')}
     >
       <slot />
     </table>

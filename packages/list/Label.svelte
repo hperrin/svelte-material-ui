@@ -6,8 +6,8 @@
     [className]: true,
     'mdc-list-item__text': true,
   })}
-  {...inputProps && inputProps.id ? { for: inputProps && inputProps.id } : {}}
-  {...exclude($$props, ['use', 'class'])}><slot /></label
+  for={inputProps ? inputProps.id : null}
+  {...$$restProps}><slot /></label
 >
 
 <script>
@@ -16,7 +16,6 @@
   import {
     forwardEventsBuilder,
     classMap,
-    exclude,
     useActions,
   } from '@smui/common/internal.js';
 

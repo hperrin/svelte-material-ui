@@ -8,7 +8,7 @@
   })}
   on:SMUI:data-table:row:mount={handleRowMount}
   on:SMUI:data-table:row:unmount={handleRowUnmount}
-  {...exclude($$props, ['use', 'class'])}><slot /></tbody
+  {...$$restProps}><slot /></tbody
 >
 
 <script>
@@ -17,7 +17,6 @@
   import {
     forwardEventsBuilder,
     classMap,
-    exclude,
     useActions,
     dispatch,
   } from '@smui/common/internal.js';

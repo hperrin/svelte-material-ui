@@ -8,8 +8,7 @@
     ...smuiClassMap,
   })}
   {...props}
-  {...exclude($$props, ['use', 'class', 'component', 'forwardEvents'])}
-  ><slot /></svelte:component
+  {...$$restProps}><slot /></svelte:component
 >
 
 <script context="module">
@@ -31,7 +30,6 @@
   import { get_current_component } from 'svelte/internal';
   import { forwardEventsBuilder } from './forwardEventsBuilder.js';
   import { classMap } from './classMap.js';
-  import { exclude } from './exclude.js';
 
   export let use = [];
   let className = '';

@@ -29,17 +29,7 @@
     .join(' ')}
   on:SMUI:top-app-bar:icon-button:nav={() =>
     instance && instance.handleNavigationClick()}
-  {...exclude($$props, [
-    'use',
-    'class',
-    'style',
-    'variant',
-    'color',
-    'collapsed',
-    'prominent',
-    'dense',
-    'scrollTarget',
-  ])}
+  {...$$restProps}
 >
   <slot />
 </header>
@@ -57,7 +47,6 @@
   import {
     forwardEventsBuilder,
     classMap,
-    exclude,
     useActions,
     dispatch,
   } from '@smui/common/internal.js';

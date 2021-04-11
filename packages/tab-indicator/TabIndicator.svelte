@@ -9,14 +9,7 @@
     'mdc-tab-indicator--fade': transition === 'fade',
     ...internalClasses,
   })}
-  {...exclude($$props, [
-    'use',
-    'class',
-    'active',
-    'type',
-    'transition',
-    'content$',
-  ])}
+  {...exclude($$restProps, ['content$'])}
 >
   <span
     bind:this={content}
@@ -31,8 +24,7 @@
       .map(([name, value]) => `${name}: ${value};`)
       .join(' ')}
     aria-hidden={type === 'icon' ? 'true' : null}
-    {...exclude(prefixFilter($$props, 'content$'), ['use', 'class'])}
-    ><slot /></span
+    {...prefixFilter($$restProps, 'content$')}><slot /></span
   >
 </span>
 

@@ -36,6 +36,7 @@
       'mdc-text-field--invalid': invalid !== uninitializedValue && invalid,
       ...internalClasses,
     })}
+    for={/* suppress a11y warning, since this is wrapped */ null}
     on:SMUI:textfield:leading-icon:mount={(event) =>
       (leadingIcon = event.detail)}
     on:SMUI:textfield:leading-icon:unmount={() => (leadingIcon = undefined)}
@@ -46,7 +47,13 @@
       (characterCounter = event.detail)}
     on:SMUI:textfield:character-counter:unmount={() =>
       (characterCounter = undefined)}
-    {...props}
+    {...exclude($$restProps, [
+      'input$',
+      'label$',
+      'ripple$',
+      'outline$',
+      'helperLine$',
+    ])}
   >
     {#if !textarea && variant !== 'outlined'}
       <span class="mdc-text-field__ripple" />
@@ -56,7 +63,7 @@
           floatAbove={value != null && value !== ''}
           {required}
           wrapped
-          {...prefixFilter($$props, 'label$')}
+          {...prefixFilter($$restProps, 'label$')}
           >{label == null ? '' : label}<slot name="label" /></FloatingLabel
         >
       {/if}
@@ -65,7 +72,7 @@
       <NotchedOutline
         bind:this={notchedOutline}
         noLabel={noLabel || label == null}
-        {...prefixFilter($$props, 'outline$')}
+        {...prefixFilter($$restProps, 'outline$')}
       >
         {#if !noLabel && (label != null || $$slots.label)}
           <FloatingLabel
@@ -73,7 +80,7 @@
             floatAbove={value != null && value !== ''}
             {required}
             wrapped
-            {...prefixFilter($$props, 'label$')}
+            {...prefixFilter($$restProps, 'label$')}
             >{label == null ? '' : label}<slot name="label" /></FloatingLabel
           >
         {/if}
@@ -99,7 +106,7 @@
           on:focus
           aria-controls={helperId}
           aria-describedby={helperId}
-          {...prefixFilter($$props, 'input$')}
+          {...prefixFilter($$restProps, 'input$')}
         />
         <slot name="internalCounter" />
       </span>
@@ -125,7 +132,7 @@
         aria-controls={helperId}
         aria-describedby={helperId}
         {...noLabel && label != null ? { placeholder: label } : {}}
-        {...prefixFilter($$props, 'input$')}
+        {...prefixFilter($$restProps, 'input$')}
       />
       {#if suffix != null}
         <Suffix>{suffix}</Suffix>
@@ -138,7 +145,7 @@
     {#if !textarea && variant !== 'outlined' && ripple}
       <LineRipple
         bind:this={lineRipple}
-        {...prefixFilter($$props, 'ripple$')}
+        {...prefixFilter($$restProps, 'ripple$')}
       />
     {/if}
   </label>
@@ -173,7 +180,13 @@
     on:SMUI:textfield:trailing-icon:mount={(event) =>
       (trailingIcon = event.detail)}
     on:SMUI:textfield:trailing-icon:unmount={() => (trailingIcon = undefined)}
-    {...props}
+    {...exclude($$restProps, [
+      'input$',
+      'label$',
+      'ripple$',
+      'outline$',
+      'helperLine$',
+    ])}
   >
     <slot name="label" />
     <ContextFragment key="SMUI:textfield:icon:leading" value={true}>
@@ -198,7 +211,8 @@
       (characterCounter = event.detail)}
     on:SMUI:textfield:character-counter:unmount={() =>
       (characterCounter = undefined)}
-    {...prefixFilter($$props, 'helperLine$')}><slot name="helper" /></HelperLine
+    {...prefixFilter($$restProps, 'helperLine$')}
+    ><slot name="helper" /></HelperLine
   >
 {/if}
 
@@ -255,38 +269,6 @@
   export let floatingLabel = undefined;
   export let lineRipple = undefined;
   export let notchedOutline = undefined;
-
-  $: props = exclude($$props, [
-    'use',
-    'class',
-    'ripple',
-    'disabled',
-    'required',
-    'textarea',
-    'variant',
-    'noLabel',
-    'label',
-    'type',
-    'value',
-    'dirty',
-    'invalid',
-    'prefix',
-    'suffix',
-    'updateInvalid',
-    'validateOnValueChange',
-    'useNativeValidation',
-    // Components
-    'input',
-    'floatingLabel',
-    'lineRipple',
-    'notchedOutline',
-    // Prefixes
-    'input$',
-    'label$',
-    'ripple$',
-    'outline$',
-    'helperLine$',
-  ]);
 
   let element;
   let instance;

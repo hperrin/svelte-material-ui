@@ -12,13 +12,13 @@
   })}
   aria-hidden="true"
   {...component === Svg ? { focusable: 'false', tabindex: '-1' } : {}}
-  {...exclude($$props, ['use', 'class', 'on'])}><slot /></svelte:component
+  {...$$restProps}><slot /></svelte:component
 >
 
 <script>
   import { getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
-  import { forwardEventsBuilder, classMap, exclude } from './internal.js';
+  import { forwardEventsBuilder, classMap } from './internal.js';
   import I from './I.svelte';
   import Svg from './Svg.svelte';
 

@@ -25,29 +25,15 @@
   })}
   on:SMUI:select:leading-icon:mount={(event) => (leadingIcon = event.detail)}
   on:SMUI:select:leading-icon:unmount={() => (leadingIcon = undefined)}
-  {...exclude($$props, [
-    'use',
-    'class',
-    'ripple',
-    'disabled',
-    'variant',
-    'noLabel',
-    'label',
-    'value',
-    'selectedIndex',
-    'dirty',
-    'invalid',
-    'updateInvalid',
-    'required',
-    'hiddenInput',
+  {...exclude($$restProps, [
     'input$',
     'anchor$',
+    'label$',
+    'outline$',
     'selectedTextContainer$',
     'selectedText$',
     'dropdownIcon$',
-    'label$',
     'ripple$',
-    'outline$',
     'menu$',
     'list$',
     'helperText$',
@@ -59,7 +45,7 @@
       {required}
       {disabled}
       {value}
-      {...prefixFilter($$props, 'input$')}
+      {...prefixFilter($$restProps, 'input$')}
     />
   {/if}
   <div
@@ -85,7 +71,7 @@
     on:focus
     on:blur
     {...selectAnchorAttrs}
-    {...exclude(prefixFilter($$props, 'anchor$'), ['use', 'class'])}
+    {...prefixFilter($$restProps, 'anchor$')}
   >
     <span class="mdc-select__ripple" />
     {#if variant !== 'outlined' && !noLabel && (label != null || $$slots.label)}
@@ -93,7 +79,7 @@
         bind:this={floatingLabel}
         id={inputId + '-smui-label'}
         floatAbove={value !== ''}
-        {...prefixFilter($$props, 'label$')}
+        {...prefixFilter($$restProps, 'label$')}
         >{label == null ? '' : label}<slot name="label" /></FloatingLabel
       >
     {/if}
@@ -101,14 +87,14 @@
       <NotchedOutline
         bind:this={notchedOutline}
         noLabel={noLabel || label != null || $$slots.label}
-        {...prefixFilter($$props, 'outline$')}
+        {...prefixFilter($$restProps, 'outline$')}
       >
         {#if !noLabel && (label != null || $$slots.label)}
           <FloatingLabel
             bind:this={floatingLabel}
             id={inputId + '-smui-label'}
             floatAbove={value !== ''}
-            {...prefixFilter($$props, 'label$')}
+            {...prefixFilter($$restProps, 'label$')}
             >{label == null ? '' : label}<slot name="label" /></FloatingLabel
           >
         {/if}
@@ -121,10 +107,7 @@
         [selectedTextContainer$class]: true,
         'mdc-select__selected-text-container': true,
       })}
-      {...exclude(prefixFilter($$props, 'selectedTextContainer$'), [
-        'use',
-        'class',
-      ])}
+      {...prefixFilter($$restProps, 'selectedTextContainer$')}
     >
       <span
         bind:this={selectText}
@@ -138,7 +121,7 @@
         aria-haspopup="listbox"
         aria-labelledby="{inputId + '-smui-label'} {inputId +
           '-smui-selected-text'}"
-        {...exclude(prefixFilter($$props, 'selectedText$'), ['use', 'class'])}
+        {...prefixFilter($$restProps, 'selectedText$')}
       >
         {$selectedTextStore}
       </span>
@@ -149,7 +132,7 @@
         [dropdownIcon$class]: true,
         'mdc-select__dropdown-icon': true,
       })}
-      {...exclude(prefixFilter($$props, 'dropdownIcon$'), ['use', 'class'])}
+      {...prefixFilter($$restProps, 'dropdownIcon$')}
     >
       <svg
         class="mdc-select__dropdown-icon-graphic"
@@ -173,7 +156,7 @@
     {#if variant !== 'outlined' && ripple}
       <LineRipple
         bind:this={lineRipple}
-        {...prefixFilter($$props, 'ripple$')}
+        {...prefixFilter($$restProps, 'ripple$')}
       />
     {/if}
   </div>
@@ -194,14 +177,14 @@
     on:MDCMenuSurface:closing={() => instance && instance.handleMenuClosing()}
     on:MDCMenuSurface:closed={() => instance && instance.handleMenuClosed()}
     on:MDCMenuSurface:opened={() => instance && instance.handleMenuOpened()}
-    {...exclude(prefixFilter($$props, 'menu$'), ['class'])}
+    {...prefixFilter($$restProps, 'menu$')}
   >
     <List
       role="listbox"
       {wrapFocus}
       bind:selectedIndex
       on:SMUI:list:mount={(event) => (list = event.detail)}
-      {...prefixFilter($$props, 'list$')}><slot /></List
+      {...prefixFilter($$restProps, 'list$')}><slot /></List
     >
   </Menu>
 </div>
@@ -213,7 +196,7 @@
       helperId = undefined;
       helperText = undefined;
     }}
-    {...prefixFilter($$props, 'helperText$')}
+    {...prefixFilter($$restProps, 'helperText$')}
     ><slot name="helperText" /></HelperText
   >
 {/if}

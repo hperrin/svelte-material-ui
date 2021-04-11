@@ -8,7 +8,7 @@
     'smui-drawer-scrim__absolute': !fixed,
   })}
   on:click={(event) => dispatch(element, 'SMUI:drawer:scrim:click', event)}
-  {...exclude($$props, ['use', 'class', 'component'])}
+  {...$$restProps}
 >
   <slot />
 </svelte:component>
@@ -18,7 +18,6 @@
   import {
     forwardEventsBuilder,
     classMap,
-    exclude,
     dispatch,
   } from '@smui/common/internal.js';
   import Div from '@smui/common/Div.svelte';

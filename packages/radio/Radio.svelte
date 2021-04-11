@@ -15,16 +15,7 @@
     'mdc-radio--touch': touch,
     ...internalClasses,
   })}
-  {...exclude($$props, [
-    'use',
-    'class',
-    'disabled',
-    'touch',
-    'group',
-    'value',
-    'valueKey',
-    'input$',
-  ])}
+  {...exclude($$restProps, ['input$'])}
 >
   <input
     use:useActions={input$use}
@@ -41,7 +32,7 @@
     on:input
     on:blur
     on:focus
-    {...exclude(prefixFilter($$props, 'input$'), ['use', 'class'])}
+    {...prefixFilter($$restProps, 'input$')}
   />
   <div class="mdc-radio__background">
     <div class="mdc-radio__outer-circle" />

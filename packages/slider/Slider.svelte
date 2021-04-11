@@ -14,22 +14,7 @@
     .filter(([name, value]) => name !== '' && value)
     .map(([name]) => name)
     .join(' ')}
-  {...exclude($$props, [
-    'use',
-    'class',
-    'disabled',
-    'range',
-    'discrete',
-    'tickMarks',
-    'step',
-    'min',
-    'max',
-    'value',
-    'start',
-    'end',
-    'valueToAriaValueTextFn',
-    'input$',
-  ])}
+  {...exclude($$restProps, ['input$'])}
 >
   {#if range}
     <input
@@ -49,7 +34,7 @@
       on:change
       on:input
       {...inputStartAttrs}
-      {...exclude(prefixFilter($$props, 'input$'), ['class'])}
+      {...prefixFilter($$restProps, 'input$')}
     />
     <input
       bind:this={input}
@@ -69,7 +54,7 @@
       on:input
       {...inputProps}
       {...inputAttrs}
-      {...exclude(prefixFilter($$props, 'input$'), ['class'])}
+      {...prefixFilter($$restProps, 'input$')}
     />
   {:else}
     <input
@@ -90,7 +75,7 @@
       on:input
       {...inputProps}
       {...inputAttrs}
-      {...exclude(prefixFilter($$props, 'input$'), ['class'])}
+      {...prefixFilter($$restProps, 'input$')}
     />
   {/if}
 

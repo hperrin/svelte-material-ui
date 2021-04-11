@@ -12,17 +12,13 @@
     'mdc-list-divider--inset-padding': insetPadding,
   })}
   role="separator"
-  {...props}
+  {...$$restProps}
 />
 
 <script>
   import { getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    exclude,
-  } from '@smui/common/internal.js';
+  import { forwardEventsBuilder, classMap } from '@smui/common/internal.js';
   import Li from '@smui/common/Li.svelte';
   import Hr from '@smui/common/Hr.svelte';
 
@@ -42,8 +38,6 @@
   let context = getContext('SMUI:separator:context');
 
   export let component = nav || context !== 'list' ? Hr : Li;
-
-  $: props = exclude($$props, ['use', 'class', 'padded', 'inset']);
 
   export function getElement() {
     return element.getElement();

@@ -12,7 +12,7 @@
     .map(([name, value]) => `${name}: ${value};`)
     .concat([style])
     .join(' ')}
-  {...exclude($$props, ['use', 'class', 'style', 'active'])}
+  {...$$restProps}
 />
 
 <script>
@@ -22,7 +22,6 @@
   import {
     forwardEventsBuilder,
     classMap,
-    exclude,
     useActions,
   } from '@smui/common/internal.js';
 

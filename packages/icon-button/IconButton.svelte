@@ -8,7 +8,7 @@
         ripple,
         unbounded: true,
         color,
-        disabled: !!$$props.disabled,
+        disabled: !!$$restProps.disabled,
         addClass,
         removeClass,
       },
@@ -36,17 +36,9 @@
   on:click={() =>
     context === 'top-app-bar:navigation' &&
     dispatch(element, 'SMUI:top-app-bar:icon-button:nav')}
+  {href}
   {...internalAttrs}
-  {...exclude($$props, [
-    'use',
-    'class',
-    'ripple',
-    'color',
-    'toggle',
-    'pressed',
-    'ariaLabelOn',
-    'ariaLabelOff',
-  ])}><slot /></svelte:component
+  {...$$restProps}><slot /></svelte:component
 >
 
 <script>
@@ -56,7 +48,6 @@
   import {
     forwardEventsBuilder,
     classMap,
-    exclude,
     dispatch,
   } from '@smui/common/internal.js';
   import Ripple from '@smui/ripple/bare.js';
@@ -78,7 +69,6 @@
   export let pressed = false;
   export let ariaLabelOn = null;
   export let ariaLabelOff = null;
-  // Purposely left out of props exclude.
   export let href = null;
 
   let element;

@@ -11,7 +11,7 @@
   })}
   on:SMUI:floating-label:mount={(event) => (floatingLabel = event.detail)}
   on:SMUI:floating-label:unmount={() => (floatingLabel = undefined)}
-  {...exclude($$props, ['use', 'class', 'notched'])}
+  {...$$restProps}
 >
   <div class="mdc-notched-outline__leading" />
   {#if !noLabel}
@@ -34,7 +34,6 @@
   import {
     forwardEventsBuilder,
     classMap,
-    exclude,
     useActions,
   } from '@smui/common/internal.js';
 

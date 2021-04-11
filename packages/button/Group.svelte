@@ -7,7 +7,7 @@
     'smui-button__group': true,
     'smui-button__group--raised': variant === 'raised',
   })}
-  {...exclude($$props, ['use', 'class', 'variant'])}
+  {...$$restProps}
 >
   <slot />
 </div>
@@ -17,7 +17,6 @@
   import {
     forwardEventsBuilder,
     classMap,
-    exclude,
     useActions,
   } from '@smui/common/internal.js';
 

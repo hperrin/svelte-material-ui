@@ -3,15 +3,14 @@
   use:useActions={use}
   use:forwardEvents
   {alt}
-  {...exclude($$props, ['element', 'use', 'forwardEvents', 'alt'])}
+  {...$$restProps}
 />
 
 <script>
   import { get_current_component } from 'svelte/internal';
-  import { forwardEventsBuilder, exclude, useActions } from './internal.js';
+  import { forwardEventsBuilder, useActions } from './internal.js';
 
   export let alt = '';
-  export let element = null;
   export let use = [];
   let forwardEventsAdditional = [];
   export { forwardEventsAdditional as forwardEvents };
@@ -20,6 +19,8 @@
     get_current_component(),
     forwardEventsAdditional
   );
+
+  let element = null;
 
   export function getElement() {
     return element;

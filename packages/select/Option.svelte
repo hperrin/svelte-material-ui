@@ -3,13 +3,13 @@
   use={[forwardEvents, ...use]}
   data-value={value}
   {selected}
-  {...exclude($$props, ['use', 'value', 'selected'])}><slot /></Item
+  {...$$restProps}><slot /></Item
 >
 
 <script>
   import { getContext, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
-  import { forwardEventsBuilder, exclude } from '@smui/common/internal.js';
+  import { forwardEventsBuilder } from '@smui/common/internal.js';
   import Item from '@smui/list/Item.svelte';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());

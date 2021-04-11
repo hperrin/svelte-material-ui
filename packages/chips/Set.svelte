@@ -20,16 +20,7 @@
     instance && instance.handleChipRemoval(event.detail)}
   on:MDCChip:navigation={(event) =>
     instance && instance.handleChipNavigation(event.detail)}
-  {...exclude($$props, [
-    'use',
-    'class',
-    'chips',
-    'key',
-    'selected',
-    'choice',
-    'filter',
-    'input',
-  ])}
+  {...$$restProps}
 >
   {#each chips as chip, i (key(chip))}
     <ContextFragment key="SMUI:chip:initialSelected" value={initialSelected[i]}>
@@ -47,7 +38,6 @@
   import {
     forwardEventsBuilder,
     classMap,
-    exclude,
     useActions,
   } from '@smui/common/internal.js';
   import ContextFragment from '@smui/common/ContextFragment.svelte';

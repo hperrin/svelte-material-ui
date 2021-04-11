@@ -26,19 +26,10 @@
   role="tab"
   aria-selected={active ? 'true' : 'false'}
   tabindex={active ? '0' : '-1'}
+  {href}
   on:click={instance && instance.handleClick()}
   {...internalAttrs}
-  {...exclude($$props, [
-    'use',
-    'class',
-    'ripple',
-    'stacked',
-    'minWidth',
-    'indicatorSpanOnlyContent',
-    'component',
-    'content$',
-    'tabIndicator$',
-  ])}
+  {...exclude($$restProps, ['content$', 'tabIndicator$'])}
 >
   <span
     bind:this={content}
@@ -47,14 +38,14 @@
       [content$class]: true,
       'mdc-tab__content': true,
     })}
-    {...exclude(prefixFilter($$props, 'content$'), ['use', 'class'])}
+    {...prefixFilter($$restProps, 'content$')}
   >
     <slot />
     {#if indicatorSpanOnlyContent}
       <TabIndicator
         bind:this={tabIndicator}
         {active}
-        {...prefixFilter($$props, 'tabIndicator$')}
+        {...prefixFilter($$restProps, 'tabIndicator$')}
         ><slot name="tab-indicator" /></TabIndicator
       >
     {/if}
@@ -63,7 +54,7 @@
     <TabIndicator
       bind:this={tabIndicator}
       {active}
-      {...prefixFilter($$props, 'tabIndicator$')}
+      {...prefixFilter($$restProps, 'tabIndicator$')}
       ><slot name="tab-indicator" /></TabIndicator
     >
   {/if}
@@ -106,9 +97,7 @@
   export let stacked = false;
   export let minWidth = false;
   export let indicatorSpanOnlyContent = false;
-  // Purposely left out of props exclude.
   export let href = null;
-
   export let content$use = [];
   export let content$class = '';
 

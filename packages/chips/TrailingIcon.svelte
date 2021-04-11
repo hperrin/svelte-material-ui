@@ -10,7 +10,7 @@
       'mdc-chip__icon': true,
       'mdc-chip__icon--trailing': true,
     })}
-    {...exclude($$props, ['use', 'class'])}><slot /></i
+    {...$$restProps}><slot /></i
   >
 </span>
 
@@ -19,7 +19,6 @@
   import {
     forwardEventsBuilder,
     classMap,
-    exclude,
     useActions,
   } from '@smui/common/internal.js';
 

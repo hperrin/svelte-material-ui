@@ -20,18 +20,7 @@
     ...internalClasses,
   })}
   on:animationend={() => instance && instance.handleAnimationEnd()}
-  {...exclude($$props, [
-    'use',
-    'class',
-    'disabled',
-    'touch',
-    'indeterminate',
-    'group',
-    'checked',
-    'value',
-    'valueKey',
-    'input$',
-  ])}
+  {...exclude($$restProps, ['input$'])}
 >
   <input
     bind:this={checkbox}
@@ -53,7 +42,7 @@
     on:blur
     on:focus
     {...nativeControlAttrs}
-    {...exclude(prefixFilter($$props, 'input$'), ['use', 'class'])}
+    {...prefixFilter($$restProps, 'input$')}
   />
   <div class="mdc-checkbox__background">
     <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">

@@ -14,7 +14,7 @@
   on:SMUI:checkbox:unmount={() => (checkbox = undefined)}
   aria-selected={checkbox ? (checkbox.checked ? 'true' : 'false') : null}
   {...internalAttrs}
-  {...exclude($$props, ['use', 'class', 'rowId'])}><slot /></tr
+  {...$$restProps}><slot /></tr
 >
 
 <script context="module">
@@ -22,12 +22,11 @@
 </script>
 
 <script>
-  import { onMount, getContext, setContext } from 'svelte';
+  import { onMount, getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
     classMap,
-    exclude,
     useActions,
     dispatch,
   } from '@smui/common/internal.js';

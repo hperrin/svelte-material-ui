@@ -10,22 +10,14 @@
   })}
   on:SMUI:generic:input:mount={(event) => (input = event.detail)}
   on:SMUI:generic:input:unmount={() => (input = undefined)}
-  {...exclude($$props, [
-    'use',
-    'class',
-    'align',
-    'noWrap',
-    'inputId',
-    'label$',
-  ])}
+  {...exclude($$restProps, ['label$'])}
 >
   <slot />
   <label
     bind:this={label}
     use:useActions={label$use}
     for={inputId}
-    {...exclude(prefixFilter($$props, 'label$'), ['use'])}
-    ><slot name="label" /></label
+    {...prefixFilter($$restProps, 'label$')}><slot name="label" /></label
   >
 </div>
 
