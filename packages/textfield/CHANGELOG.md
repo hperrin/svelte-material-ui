@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-beta.2](https://github.com/hperrin/svelte-material-ui/compare/v3.0.0-beta.1...v3.0.0-beta.2) (2021-04-11)
+
+
+### Bug Fixes
+
+* removed a debugger statement left in the code ([966e3f2](https://github.com/hperrin/svelte-material-ui/commit/966e3f24950586db92df971e7b143fa4bbfa82e0))
+
+
+
+
+
 # [3.0.0-beta.1](https://github.com/hperrin/svelte-material-ui/compare/v3.0.0-beta.0...v3.0.0-beta.1) (2021-04-11)
 
 **Note:** Version bump only for package @smui/textfield
