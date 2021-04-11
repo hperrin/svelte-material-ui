@@ -25,7 +25,7 @@
   })}
   role="tab"
   aria-selected={active ? 'true' : 'false'}
-  tabindex={active ? '0' : '-1'}
+  tabindex={active || forceAccessible ? '0' : '-1'}
   {href}
   on:click={instance && instance.handleClick()}
   {...internalAttrs}
@@ -109,20 +109,7 @@
   let internalAttrs = {};
   let focusOnActivate = getContext('SMUI:tab:focusOnActivate');
   let active = tabId === getContext('SMUI:tab:initialActive');
-  let accessor = {
-    tabId,
-    get element() {
-      return getElement();
-    },
-    get active() {
-      return active;
-    },
-    computeIndicatorClientRect: () => tabIndicator.computeContentClientRect(),
-    computeDimensions: () => instance.computeDimensions(),
-    focus,
-    activate,
-    deactivate,
-  };
+  let forceAccessible = false;
 
   export let component = href == null ? Button : A;
 
@@ -156,6 +143,24 @@
       getContentOffsetWidth: () => content.offsetWidth,
       focus,
     });
+
+    const accessor = {
+      tabId,
+      get element() {
+        return getElement();
+      },
+      get active() {
+        return active;
+      },
+      forceAccessible(accessible) {
+        forceAccessible = accessible;
+      },
+      computeIndicatorClientRect: () => tabIndicator.computeContentClientRect(),
+      computeDimensions: () => instance.computeDimensions(),
+      focus,
+      activate,
+      deactivate,
+    };
 
     dispatch(getElement(), 'SMUI:tab:mount', accessor);
 

@@ -68,6 +68,18 @@
     }
   }
 
+  $: if (tabs.length) {
+    // Manually get the accessor so it is reactive.
+    const accessor =
+      tabs[0] instanceof Object
+        ? tabAccessorWeakMap.get(tabs[0])
+        : tabAccessorMap[tabs[0]];
+
+    if (accessor) {
+      accessor.forceAccessible(activeIndex === -1);
+    }
+  }
+
   $: if (instance) {
     instance.setUseAutomaticActivation(useAutomaticActivation);
   }
@@ -142,16 +154,20 @@
   function addAccessor(tabId, accessor) {
     if (tabId instanceof Object) {
       tabAccessorWeakMap.set(tabId, accessor);
+      tabAccessorWeakMap = tabAccessorWeakMap;
     } else {
       tabAccessorMap[tabId] = accessor;
+      tabAccessorMap = tabAccessorMap;
     }
   }
 
   function removeAccessor(tabId) {
     if (tabId instanceof Object) {
       tabAccessorWeakMap.delete(tabId);
+      tabAccessorWeakMap = tabAccessorWeakMap;
     } else {
       delete tabAccessorMap[tabId];
+      tabAccessorMap = tabAccessorMap;
     }
   }
 
