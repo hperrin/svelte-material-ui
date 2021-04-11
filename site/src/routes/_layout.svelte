@@ -230,27 +230,12 @@
       ],
     },
     {
-      name: 'Floating Label',
-      shortcut: '/demo/textfield',
-      indent: 1,
-    },
-    {
       name: 'Form Fields',
       route: '/demo/form-field',
       indent: 1,
       repos: [
         'https://github.com/hperrin/svelte-material-ui/tree/master/packages/form-field',
       ],
-    },
-    {
-      name: 'Line Ripple',
-      shortcut: '/demo/textfield',
-      indent: 1,
-    },
-    {
-      name: 'Notched Outline',
-      shortcut: '/demo/textfield',
-      indent: 1,
     },
     {
       name: 'Radio Buttons',
@@ -267,16 +252,6 @@
       repos: [
         'https://github.com/hperrin/svelte-material-ui/tree/master/packages/select',
       ],
-    },
-    {
-      name: 'Select Helper Text',
-      shortcut: '/demo/select',
-      indent: 2,
-    },
-    {
-      name: 'Select Icon',
-      shortcut: '/demo/select',
-      indent: 2,
     },
     {
       name: 'Sliders',
@@ -301,21 +276,6 @@
       repos: [
         'https://github.com/hperrin/svelte-material-ui/tree/master/packages/textfield',
       ],
-    },
-    {
-      name: 'Text Field Character Count',
-      shortcut: '/demo/textfield',
-      indent: 2,
-    },
-    {
-      name: 'Text Field Helper Text',
-      shortcut: '/demo/textfield',
-      indent: 2,
-    },
-    {
-      name: 'Text Field Icon',
-      shortcut: '/demo/textfield',
-      indent: 2,
     },
     {
       name: 'Linear Progress',
@@ -382,26 +342,6 @@
         'https://github.com/hperrin/svelte-material-ui/tree/master/packages/tab',
         'https://github.com/hperrin/svelte-material-ui/tree/master/packages/tab-bar',
       ],
-    },
-    {
-      name: 'Tab',
-      shortcut: '/demo/tabs',
-      indent: 1,
-    },
-    {
-      name: 'Tab Bar',
-      shortcut: '/demo/tabs',
-      indent: 1,
-    },
-    {
-      name: 'Tab Indicator',
-      shortcut: '/demo/tabs',
-      indent: 1,
-    },
-    {
-      name: 'Tab Scroller',
-      shortcut: '/demo/tabs',
-      indent: 1,
     },
     {
       name: 'Theme',

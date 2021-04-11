@@ -206,8 +206,6 @@ Click a component below to go to its documentation. (Note that this documentatio
 - Tabs
   - [Tab](https://github.com/hperrin/svelte-material-ui/blob/master/packages/tab/README.md)
   - [Tab Bar](https://github.com/hperrin/svelte-material-ui/blob/master/packages/tab-bar/README.md)
-  - [Tab Indicator](https://github.com/hperrin/svelte-material-ui/blob/master/packages/tab-indicator/README.md)
-  - [Tab Scroller](https://github.com/hperrin/svelte-material-ui/blob/master/packages/tab-scroller/README.md)
 - [Theme](https://material.io/develop/web/components/theme/)†
 - [Top App Bar](https://github.com/hperrin/svelte-material-ui/blob/master/packages/top-app-bar/README.md)
 - [Typography](https://material.io/develop/web/components/typography/)†
