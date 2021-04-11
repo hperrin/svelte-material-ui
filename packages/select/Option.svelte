@@ -34,8 +34,8 @@
       ? value !== '' && $valueStore === value
       : selectedProp;
 
-  $: if (selected && element) {
-    $selectedText = element.textContent || '';
+  if (selected && element) {
+    $selectedText = element.getPrimaryText();
   }
 
   export function getElement() {

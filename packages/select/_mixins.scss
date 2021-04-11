@@ -1,54 +1,198 @@
-@import '@material/select/mixins';
-@import '@material/ripple/mixins';
-@import '@material/theme/mixins';
-@import '@material/rtl/mixins';
-@import '@material/feature-targeting/functions';
+@use '@material/select/select-theme';
+@use '@material/select/select-icon-theme';
+@use '@material/menu-surface/mixins' as menu-surface-mixins;
+@use '@material/floating-label/mixins' as floating-label-mixins;
+@use '@material/floating-label/variables' as floating-label-variables;
+@use '@material/ripple/ripple-theme';
+@use '@material/rtl/mixins' as rtl-mixins;
+@use '@material/feature-targeting';
 
-@mixin smui-select-core-styles($query: mdc-feature-all()) {
+@mixin core-styles($query: feature-targeting.all()) {
+  $feat-structure: feature-targeting.create-target($query, structure);
+
   .mdc-select--activated {
     z-index: 8;
   }
 
   .smui-select--standard {
-    @include mdc-states-base-color(transparent);
-    @include mdc-select-container-fill-color(transparent);
-
-    .mdc-select__anchor:after,
-    .mdc-select__anchor:before {
-      @include mdc-theme-prop(background-color, transparent);
-    }
-
-    &.mdc-select--disabled {
-      @include mdc-select-container-fill-color_(transparent);
-    }
-
-    .mdc-select__selected-text {
-      @include mdc-rtl-reflexive-property(padding, 0, 36px);
-    }
-
-    &.mdc-select--with-leading-icon .mdc-select__selected-text {
-      @include mdc-rtl-reflexive-property(padding, 32px, 36px);
-    }
-
     .mdc-select__dropdown-icon {
-      @include mdc-rtl-reflexive-position(right, 0);
-    }
-
-    .mdc-floating-label {
-      @include mdc-rtl-reflexive-position(left, 0);
-    }
-
-    &.mdc-select--with-leading-icon .mdc-floating-label {
-      @include mdc-rtl-reflexive-position(left, 32px);
+      @include rtl-mixins.reflexive-box(
+        margin,
+        left,
+        select-theme.$arrow-padding / 2
+      );
     }
 
     &.mdc-select--with-leading-icon .mdc-select__icon {
-      @include mdc-rtl-reflexive-position(left, 0);
+      position: relative;
+      margin: 0;
+
+      @include rtl-mixins.reflexive-position(
+        left,
+        (
+            select-icon-theme.$icon-size +
+              select-icon-theme.$icon-horizontal-margin
+          ) * -1
+      );
     }
 
-    & + .mdc-select-helper-line {
-      padding-left: 0;
-      padding-right: 0;
+    // From select
+    @include _padding-horizontal(
+      $left: 0,
+      $left-with-leading-icon: select-icon-theme.$icon-size +
+        select-icon-theme.$icon-horizontal-margin,
+      $right: 0,
+      $query: $query
+    );
+
+    // From select-ripple
+    .mdc-select__anchor {
+      @include ripple-theme.states-base-color(
+        transparent,
+        $ripple-target: select-theme.$ripple-target,
+        $query: $query
+      );
+      @include ripple-theme.states-opacities(
+        (
+          hover: ripple-theme.states-opacity(transparent, hover),
+          focus: ripple-theme.states-opacity(transparent, focus),
+        ),
+        $ripple-target: select-theme.$ripple-target,
+        $query: $query
+      );
+    }
+
+    // From select-filled
+    @include select-theme.filled-height(select-theme.$height, $query: $query);
+
+    @include select-theme.container-fill-color(
+      (
+        default: transparent,
+        disabled: transparent,
+      ),
+      $query: $query
+    );
+
+    @include select-theme.bottom-line-color(
+      (
+        default: select-theme.$bottom-line-idle-color,
+        focus: primary,
+        hover: select-theme.$bottom-line-hover-color,
+        disabled: select-theme.$disabled-bottom-line-color,
+      ),
+      $query: $query
+    );
+
+    @include truncate-floating-label-max-width(
+      $leading-icon-size: 0,
+      $dropdown-icon-size: select-icon-theme.$icon-size,
+      $query: $query
+    );
+
+    @include menu-surface-mixins.flatten-top-when-opened-below($query: $query);
+
+    &.mdc-select--focused.mdc-line-ripple::after {
+      @include feature-targeting.targets($feat-structure) {
+        transform: scale(1, 2);
+        opacity: 1;
+      }
+    }
+
+    .mdc-floating-label {
+      @include feature-targeting.targets($feat-structure) {
+        @include rtl-mixins.reflexive-position(left, 0);
+      }
+    }
+
+    &.mdc-select--with-leading-icon {
+      @include leading-icon-floating-label-position(
+        select-icon-theme.$icon-size,
+        $query: $query
+      );
+
+      @include truncate-floating-label-max-width(
+        $leading-icon-size: select-icon-theme.$icon-size,
+        $dropdown-icon-size: select-icon-theme.$icon-size,
+        $query: $query
+      );
+    }
+
+    & + .mdc-select-helper-text {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+}
+
+// See: https://github.com/material-components/material-components-web/blob/v10.0.0/packages/mdc-select/_select-theme.scss#L909
+@mixin leading-icon-floating-label-position(
+  $icon-size: select-icon-theme.$icon-size,
+  $query: feature-targeting.all()
+) {
+  $feat-structure: feature-targeting.create-target($query, structure);
+  $icon-total-width: $icon-size + select-icon-theme.$icon-horizontal-margin;
+
+  .mdc-floating-label {
+    @include feature-targeting.targets($feat-structure) {
+      @include rtl-mixins.reflexive-position(left, $icon-total-width);
+    }
+  }
+}
+
+// See: https://github.com/material-components/material-components-web/blob/v10.0.0/packages/mdc-select/_select-theme.scss#L993
+@mixin truncate-floating-label-max-width(
+  $leading-icon-size,
+  $dropdown-icon-size,
+  $query: feature-targeting.all()
+) {
+  $truncation: select-icon-theme.$icon-horizontal-margin + $dropdown-icon-size;
+
+  @if $leading-icon-size > 0 {
+    $truncation: $truncation +
+      select-icon-theme.$icon-horizontal-margin +
+      $leading-icon-size;
+  } @else {
+    $truncation: $truncation + select-theme.$outline-label-offset;
+  }
+
+  .mdc-floating-label {
+    @include floating-label-mixins.max-width(
+      calc(100% - #{$truncation}),
+      $query: $query
+    );
+  }
+
+  .mdc-floating-label--float-above {
+    $scale: floating-label-variables.$float-scale;
+    @include floating-label-mixins.max-width(
+      calc(100% / #{$scale} - #{$truncation} / #{$scale}),
+      $query: $query
+    );
+  }
+}
+
+// See: https://github.com/material-components/material-components-web/blob/v10.0.0/packages/mdc-select/_select.scss#L410
+@mixin _padding-horizontal(
+  $left,
+  $left-with-leading-icon,
+  $right,
+  $query: feature-targeting.all()
+) {
+  $feat-structure: feature-targeting.create-target($query, structure);
+
+  .mdc-select__anchor {
+    @include feature-targeting.targets($feat-structure) {
+      @include rtl-mixins.reflexive-property(padding, $left, $right);
+    }
+  }
+
+  &.mdc-select--with-leading-icon .mdc-select__anchor {
+    @include feature-targeting.targets($feat-structure) {
+      @include rtl-mixins.reflexive-property(
+        padding,
+        $left-with-leading-icon,
+        $right
+      );
     }
   }
 }

@@ -53,21 +53,20 @@
           {#each fruits as fruit}
             <Option value={fruit}>{fruit}</Option>
           {/each}
+          <svelte:fragment slot="helperText">Helper text.</svelte:fragment>
         </Select>
-        <HelperText>Helper text.</HelperText>
 
         <pre class="status">Selected: {valueStandardHelperText}</pre>
       </div>
 
       <div>
         <Select
-          withLeadingIcon
           bind:value={valueStandardLeadingIcon}
           label="Leading Icon"
           anchor$class="demo-select-width"
           menu$class="demo-select-width"
         >
-          <span slot="icon"><Icon class="material-icons">event</Icon></span>
+          <Icon class="material-icons" slot="leadingIcon">event</Icon>
           <Option value="" />
           {#each fruits as fruit}
             <Option value={fruit}>{fruit}</Option>
@@ -129,8 +128,8 @@
           {#each fruits as fruit}
             <Option value={fruit}>{fruit}</Option>
           {/each}
+          <svelte:fragment slot="helperText">Helper text.</svelte:fragment>
         </Select>
-        <HelperText>Helper text.</HelperText>
 
         <pre class="status">Selected: {valueFilledHelperText}</pre>
       </div>
@@ -138,13 +137,12 @@
       <div>
         <Select
           variant="filled"
-          withLeadingIcon
           bind:value={valueFilledLeadingIcon}
           label="Leading Icon"
           anchor$class="demo-select-width"
           menu$class="demo-select-width"
         >
-          <span slot="icon"><Icon class="material-icons">event</Icon></span>
+          <Icon class="material-icons" slot="leadingIcon">event</Icon>
           <Option value="" />
           {#each fruits as fruit}
             <Option value={fruit}>{fruit}</Option>
@@ -207,8 +205,8 @@
           {#each fruits as fruit}
             <Option value={fruit}>{fruit}</Option>
           {/each}
+          <svelte:fragment slot="helperText">Helper text.</svelte:fragment>
         </Select>
-        <HelperText>Helper text.</HelperText>
 
         <pre class="status">Selected: {valueOutlinedHelperText}</pre>
       </div>
@@ -216,13 +214,12 @@
       <div>
         <Select
           variant="outlined"
-          withLeadingIcon
           bind:value={valueOutlinedLeadingIcon}
           label="Leading Icon"
           anchor$class="demo-select-width"
           menu$class="demo-select-width"
         >
-          <span slot="icon"><Icon class="material-icons">event</Icon></span>
+          <Icon class="material-icons" slot="leadingIcon">event</Icon>
           <Option value="" />
           {#each fruits as fruit}
             <Option value={fruit}>{fruit}</Option>
@@ -287,8 +284,8 @@
           {#each fruits as fruit}
             <Option value={fruit}>{fruit}</Option>
           {/each}
+          <svelte:fragment slot="helperText">Helper text.</svelte:fragment>
         </Select>
-        <HelperText>Helper text.</HelperText>
 
         <pre class="status">Selected: {valueShapedFilledHelperText}</pre>
       </div>
@@ -297,13 +294,12 @@
         <Select
           class="shaped"
           variant="filled"
-          withLeadingIcon
           bind:value={valueShapedFilledLeadingIcon}
           label="Leading Icon"
           anchor$class="demo-select-width"
           menu$class="demo-select-width"
         >
-          <span slot="icon"><Icon class="material-icons">event</Icon></span>
+          <Icon class="material-icons" slot="leadingIcon">event</Icon>
           <Option value="" />
           {#each fruits as fruit}
             <Option value={fruit}>{fruit}</Option>
@@ -335,7 +331,7 @@
   </div>
 
   <div>
-    <h6 class="demo-title">Shaped Outlined</h6>
+    <h6 class="demo-title">Shaped Outlined (Done with CSS)</h6>
 
     <div class="columns margins">
       <div>
@@ -369,8 +365,8 @@
           {#each fruits as fruit}
             <Option value={fruit}>{fruit}</Option>
           {/each}
+          <svelte:fragment slot="helperText">Helper text.</svelte:fragment>
         </Select>
-        <HelperText>Helper text.</HelperText>
 
         <pre class="status">Selected: {valueShapedOutlinedHelperText}</pre>
       </div>
@@ -379,13 +375,12 @@
         <Select
           class="shaped-outlined"
           variant="outlined"
-          withLeadingIcon
           bind:value={valueShapedOutlinedLeadingIcon}
           label="Leading Icon"
           anchor$class="demo-select-width"
           menu$class="demo-select-width"
         >
-          <span slot="icon"><Icon class="material-icons">event</Icon></span>
+          <Icon class="material-icons" slot="leadingIcon">event</Icon>
           <Option value="" />
           {#each fruits as fruit}
             <Option value={fruit}>{fruit}</Option>
@@ -420,7 +415,6 @@
 <script>
   import Select, { Option } from '@smui/select';
   import Icon from '@smui/select/icon/index';
-  import HelperText from '@smui/select/helper-text/index';
 
   let fruits = ['Apple', 'Orange', 'Banana', 'Mango'];
 
@@ -465,9 +459,9 @@
     margin-left: 0;
   }
 
-  * :global(.demo-select-width) {
+  /* * :global(.demo-select-width) {
     min-width: 200px;
-  }
+  } */
 
   * :global(.shaped) {
     border-radius: 16px 16px 0 0;

@@ -260,24 +260,24 @@
         'https://github.com/hperrin/svelte-material-ui/tree/master/packages/radio',
       ],
     },
-    // {
-    //   name: 'Select Menus',
-    //   route: '/demo/select',
-    //   indent: 1,
-    //   repos: [
-    //     'https://github.com/hperrin/svelte-material-ui/tree/master/packages/select',
-    //   ],
-    // },
-    // {
-    //   name: 'Select Helper Text',
-    //   shortcut: '/demo/select',
-    //   indent: 2,
-    // },
-    // {
-    //   name: 'Select Icon',
-    //   shortcut: '/demo/select',
-    //   indent: 2,
-    // },
+    {
+      name: 'Select Menus',
+      route: '/demo/select',
+      indent: 1,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/select',
+      ],
+    },
+    {
+      name: 'Select Helper Text',
+      shortcut: '/demo/select',
+      indent: 2,
+    },
+    {
+      name: 'Select Icon',
+      shortcut: '/demo/select',
+      indent: 2,
+    },
     {
       name: 'Sliders',
       route: '/demo/slider',

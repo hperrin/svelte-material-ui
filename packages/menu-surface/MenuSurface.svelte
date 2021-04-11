@@ -58,12 +58,12 @@
   } from '@smui/common/internal.js';
 
   const forwardEvents = forwardEventsBuilder(get_current_component(), [
+    'MDCList:action',
+    'SMUI:list:mount',
     'MDCMenuSurface:closed',
     'MDCMenuSurface:closing',
     'MDCMenuSurface:opened',
     'SMUI:menu-surface:mount',
-    'MDCList:action',
-    'SMUI:list:mount',
   ]);
 
   export let use = [];

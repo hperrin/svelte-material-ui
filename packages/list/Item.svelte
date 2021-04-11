@@ -256,16 +256,6 @@
     }
   }
 
-  function getPrimaryText() {
-    const primaryText = getElement().querySelector(
-      '.mdc-list-item__primary-text'
-    );
-    if (primaryText) {
-      return primaryText.textContent;
-    }
-    return '';
-  }
-
   function addTabindexIfNoItemsSelected() {
     // Look through next siblings to see if none of them are selected.
     let noneSelected = true;
@@ -301,6 +291,20 @@
     if (isEnter || isSpace) {
       action(e);
     }
+  }
+
+  export function getPrimaryText() {
+    const primaryText = getElement().querySelector(
+      '.mdc-list-item__primary-text'
+    );
+    if (primaryText) {
+      return primaryText.textContent;
+    }
+    const text = getElement().querySelector('.mdc-list-item__text');
+    if (text) {
+      return text.textContent;
+    }
+    return getElement().textContent;
   }
 
   export function getElement() {

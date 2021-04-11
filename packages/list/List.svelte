@@ -83,7 +83,7 @@
   export let vertical = true;
   export let wrapFocus = getContext('SMUI:list:wrapFocus') || false;
   export let singleSelection = false;
-  export let selectedIndex = null;
+  export let selectedIndex = -1;
   export let radioList = false;
   export let checkList = false;
   export let hasTypeahead = false;
@@ -188,8 +188,7 @@
           .map((accessor) => accessor.element)
           .indexOf(document.activeElement),
       getListItemCount: () => items.length,
-      getPrimaryTextAtIndex: (index) =>
-        getOrderedList()[index].getPrimaryText(),
+      getPrimaryTextAtIndex,
       hasCheckboxAtIndex: (index) => getOrderedList()[index].hasCheckbox,
       hasRadioAtIndex: (index) => getOrderedList()[index].hasRadio,
       isCheckboxCheckedAtIndex: (index) => {
@@ -229,12 +228,24 @@
       get items() {
         return items;
       },
+      get typeaheadInProgress() {
+        return instance.isTypeaheadInProgress();
+      },
+      typeaheadMatchItem(nextChar, startingIndex) {
+        return instance.typeaheadMatchItem(
+          nextChar,
+          startingIndex,
+          /** skipFocus */ true
+        );
+      },
       getOrderedList,
       focusItemAtIndex,
       addClassForElementIndex,
       removeClassForElementIndex,
+      // getAttributeForElementIndex,
       setAttributeForElementIndex,
       removeAttributeForElementIndex,
+      getPrimaryTextAtIndex,
     });
 
     instance.init();
@@ -311,6 +322,11 @@
     accessor && accessor.removeClass(className);
   }
 
+  // function getAttributeForElementIndex(index, name) {
+  //   const accessor = getOrderedList()[index];
+  //   accessor && accessor.getAttr(name, value);
+  // }
+
   function setAttributeForElementIndex(index, name, value) {
     const accessor = getOrderedList()[index];
     accessor && accessor.addAttr(name, value);
@@ -319,6 +335,11 @@
   function removeAttributeForElementIndex(index, name) {
     const accessor = getOrderedList()[index];
     accessor && accessor.removeAttr(name);
+  }
+
+  function getPrimaryTextAtIndex(index) {
+    const accessor = getOrderedList()[index];
+    return accessor && accessor.getPrimaryText();
   }
 
   function getListItemIndex(element) {

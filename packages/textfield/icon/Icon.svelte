@@ -35,6 +35,7 @@
   } from '@smui/common/internal.js';
 
   const forwardEvents = forwardEventsBuilder(get_current_component(), [
+    'MDCTextField:icon',
     'SMUI:textfield:leading-icon:mount',
     'SMUI:textfield:leading-icon:unmount',
     'SMUI:textfield:trailing-icon:mount',

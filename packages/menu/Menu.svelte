@@ -5,6 +5,7 @@
     [className]: true,
     'mdc-menu': true,
   })}
+  bind:open
   on:SMUI:menu-surface:mount={handleMenuSurfaceAccessor}
   on:SMUI:list:mount={handleListAccessor}
   on:MDCMenuSurface:opened={() =>
@@ -32,15 +33,19 @@
   import MenuSurface from '@smui/menu-surface/MenuSurface.svelte';
 
   const forwardEvents = forwardEventsBuilder(get_current_component(), [
-    'MDCMenu:selected',
+    'MDCList:action',
+    'SMUI:list:mount',
+    'MDCMenuSurface:closing',
     'MDCMenuSurface:closed',
     'MDCMenuSurface:opened',
+    'MDCMenu:selected',
     'SMUI:menu:mount',
   ]);
 
   export let use = [];
   let className = '';
   export { className as class };
+  export let open = false;
 
   let element;
   let instance;
@@ -97,7 +102,9 @@
           : -1;
       },
     });
+
     dispatch(element, 'SMUI:menu:mount', instance);
+
     instance.init();
 
     return () => {
@@ -118,11 +125,11 @@
   }
 
   export function isOpen() {
-    return menuSurfaceAccessor.open;
+    return open;
   }
 
   export function setOpen(value) {
-    menuSurfaceAccessor.open = value;
+    open = value;
   }
 
   export function setDefaultFocusState(focusState) {

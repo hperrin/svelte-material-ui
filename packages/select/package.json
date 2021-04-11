@@ -12,7 +12,7 @@
     "sveltejs"
   ],
   "scripts": {
-    "#prepare": "echo \"$(npx glob '**/*' | sed 's/^/-I /' | paste -s -d ' ' -) --no-source-map _style.scss bare.css\" | xargs sass && echo \"$(npx glob '**/*' | sed 's/^/-I /' | paste -s -d ' ' -) --no-source-map helper-text/_style.scss helper-text/bare.css\" | xargs sass && echo \"$(npx glob '**/*' | sed 's/^/-I /' | paste -s -d ' ' -) --no-source-map icon/_style.scss icon/bare.css\" | xargs sass",
+    "prepare": "sass --no-source-map -I node_modules _style.scss bare.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "publishConfig": {
@@ -38,10 +38,11 @@
     "@smui/line-ripple": "^2.0.0-beta.1",
     "@smui/list": "^2.0.0-beta.1",
     "@smui/menu": "^2.0.0-beta.1",
-    "@smui/notched-outline": "^2.0.0-beta.1"
+    "@smui/menu-surface": "^2.0.0-beta.1",
+    "@smui/notched-outline": "^2.0.0-beta.1",
+    "@smui/ripple": "^2.0.0-beta.1"
   },
   "devDependencies": {
-    "glob-cmd": "0.0.7",
     "sass": "^1.32.8"
   }
 }

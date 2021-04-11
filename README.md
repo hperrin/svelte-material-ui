@@ -231,9 +231,9 @@ Update Progress Checklist:
 - [x] Line Ripple
 - [x] Notched Outline
 - [x] Radio Buttons
-- [ ] Select Menus
-  - [ ] Select Helper Text
-  - [ ] Select Icon
+- [x] Select Menus
+  - [x] Select Helper Text
+  - [x] Select Icon
 - [x] Sliders
 - [x] Switches
 - [x] Text Field
