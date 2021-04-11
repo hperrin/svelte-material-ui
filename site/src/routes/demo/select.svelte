@@ -7,12 +7,7 @@
 
   <div class="columns margins" style="justify-content: flex-start;">
     <div>
-      <Select
-        bind:value={valuePrefilled}
-        label="Select Menu"
-        anchor$class="demo-select-width"
-        menu$class="demo-select-width"
-      >
+      <Select bind:value={valuePrefilled} label="Select Menu">
         {#each fruits as fruit}
           <Option value={fruit}>{fruit}</Option>
         {/each}
@@ -27,12 +22,7 @@
 
     <div class="columns margins">
       <div>
-        <Select
-          bind:value={valueStandard}
-          label="Fruit"
-          anchor$class="demo-select-width"
-          menu$class="demo-select-width"
-        >
+        <Select bind:value={valueStandard} label="Fruit">
           <Option value="" />
           {#each fruits as fruit}
             <Option value={fruit}>{fruit}</Option>
@@ -43,12 +33,7 @@
       </div>
 
       <div>
-        <Select
-          bind:value={valueStandardHelperText}
-          label="With Helper Text"
-          anchor$class="demo-select-width"
-          menu$class="demo-select-width"
-        >
+        <Select bind:value={valueStandardHelperText} label="With Helper Text">
           <Option value="" />
           {#each fruits as fruit}
             <Option value={fruit}>{fruit}</Option>
@@ -60,12 +45,7 @@
       </div>
 
       <div>
-        <Select
-          bind:value={valueStandardLeadingIcon}
-          label="Leading Icon"
-          anchor$class="demo-select-width"
-          menu$class="demo-select-width"
-        >
+        <Select bind:value={valueStandardLeadingIcon} label="Leading Icon">
           <Icon class="material-icons" slot="leadingIcon">event</Icon>
           <Option value="" />
           {#each fruits as fruit}
@@ -77,13 +57,7 @@
       </div>
 
       <div>
-        <Select
-          invalid
-          bind:value={valueStandardInvalid}
-          label="Invalid"
-          anchor$class="demo-select-width"
-          menu$class="demo-select-width"
-        >
+        <Select invalid bind:value={valueStandardInvalid} label="Invalid">
           <Option value="" />
           {#each fruits as fruit}
             <Option value={fruit}>{fruit}</Option>
@@ -100,13 +74,7 @@
 
     <div class="columns margins">
       <div>
-        <Select
-          variant="filled"
-          bind:value={valueFilled}
-          label="Fruit"
-          anchor$class="demo-select-width"
-          menu$class="demo-select-width"
-        >
+        <Select variant="filled" bind:value={valueFilled} label="Fruit">
           <Option value="" />
           {#each fruits as fruit}
             <Option value={fruit}>{fruit}</Option>
@@ -121,8 +89,6 @@
           variant="filled"
           bind:value={valueFilledHelperText}
           label="With Helper Text"
-          anchor$class="demo-select-width"
-          menu$class="demo-select-width"
         >
           <Option value="" />
           {#each fruits as fruit}
@@ -139,8 +105,6 @@
           variant="filled"
           bind:value={valueFilledLeadingIcon}
           label="Leading Icon"
-          anchor$class="demo-select-width"
-          menu$class="demo-select-width"
         >
           <Icon class="material-icons" slot="leadingIcon">event</Icon>
           <Option value="" />
@@ -158,8 +122,6 @@
           invalid
           bind:value={valueFilledInvalid}
           label="Invalid"
-          anchor$class="demo-select-width"
-          menu$class="demo-select-width"
         >
           <Option value="" />
           {#each fruits as fruit}
@@ -177,13 +139,7 @@
 
     <div class="columns margins">
       <div>
-        <Select
-          variant="outlined"
-          bind:value={valueOutlined}
-          label="Fruit"
-          anchor$class="demo-select-width"
-          menu$class="demo-select-width"
-        >
+        <Select variant="outlined" bind:value={valueOutlined} label="Fruit">
           <Option value="" />
           {#each fruits as fruit}
             <Option value={fruit}>{fruit}</Option>
@@ -198,8 +154,6 @@
           variant="outlined"
           bind:value={valueOutlinedHelperText}
           label="With Helper Text"
-          anchor$class="demo-select-width"
-          menu$class="demo-select-width"
         >
           <Option value="" />
           {#each fruits as fruit}
@@ -216,8 +170,6 @@
           variant="outlined"
           bind:value={valueOutlinedLeadingIcon}
           label="Leading Icon"
-          anchor$class="demo-select-width"
-          menu$class="demo-select-width"
         >
           <Icon class="material-icons" slot="leadingIcon">event</Icon>
           <Option value="" />
@@ -235,8 +187,6 @@
           invalid
           bind:value={valueOutlinedInvalid}
           label="Invalid"
-          anchor$class="demo-select-width"
-          menu$class="demo-select-width"
         >
           <Option value="" />
           {#each fruits as fruit}
@@ -259,8 +209,6 @@
           variant="filled"
           bind:value={valueShapedFilled}
           label="Fruit"
-          anchor$class="demo-select-width"
-          menu$class="demo-select-width"
         >
           <Option value="" />
           {#each fruits as fruit}
@@ -277,8 +225,6 @@
           variant="filled"
           bind:value={valueShapedFilledHelperText}
           label="With Helper Text"
-          anchor$class="demo-select-width"
-          menu$class="demo-select-width"
         >
           <Option value="" />
           {#each fruits as fruit}
@@ -296,8 +242,6 @@
           variant="filled"
           bind:value={valueShapedFilledLeadingIcon}
           label="Leading Icon"
-          anchor$class="demo-select-width"
-          menu$class="demo-select-width"
         >
           <Icon class="material-icons" slot="leadingIcon">event</Icon>
           <Option value="" />
@@ -316,8 +260,6 @@
           invalid
           bind:value={valueShapedFilledInvalid}
           label="Invalid"
-          anchor$class="demo-select-width"
-          menu$class="demo-select-width"
         >
           <Option value="" />
           {#each fruits as fruit}
@@ -340,8 +282,6 @@
           variant="outlined"
           bind:value={valueShapedOutlined}
           label="Fruit"
-          anchor$class="demo-select-width"
-          menu$class="demo-select-width"
         >
           <Option value="" />
           {#each fruits as fruit}
@@ -358,8 +298,6 @@
           variant="outlined"
           bind:value={valueShapedOutlinedHelperText}
           label="With Helper Text"
-          anchor$class="demo-select-width"
-          menu$class="demo-select-width"
         >
           <Option value="" />
           {#each fruits as fruit}
@@ -377,8 +315,6 @@
           variant="outlined"
           bind:value={valueShapedOutlinedLeadingIcon}
           label="Leading Icon"
-          anchor$class="demo-select-width"
-          menu$class="demo-select-width"
         >
           <Icon class="material-icons" slot="leadingIcon">event</Icon>
           <Option value="" />
@@ -397,8 +333,6 @@
           invalid
           bind:value={valueShapedOutlinedInvalid}
           label="Invalid"
-          anchor$class="demo-select-width"
-          menu$class="demo-select-width"
         >
           <Option value="" />
           {#each fruits as fruit}
@@ -458,10 +392,6 @@
   .columns > *:first-child {
     margin-left: 0;
   }
-
-  /* * :global(.demo-select-width) {
-    min-width: 200px;
-  } */
 
   * :global(.shaped) {
     border-radius: 16px 16px 0 0;
