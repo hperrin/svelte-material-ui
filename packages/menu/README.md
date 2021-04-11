@@ -2,10 +2,6 @@
 
 Menus are lists of actions available to a user on a temporary surface.
 
-See [MDC Menu](https://material.io/develop/web/components/menus/) for more information on API and Sass mixins.
-
-See [the Sass variable file](https://github.com/material-components/material-components-web/blob/v3.1.1/packages/mdc-menu/_variables.scss) for styling variables.
-
 # Installation
 
 ```sh
@@ -18,10 +14,16 @@ todo...
 
 # Demo
 
-*in action:* https://sveltematerialui.com/demo/menu
+_in action:_ https://sveltematerialui.com/demo/menu
 
-*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/menu.svelte
+_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/menu.svelte
 
 # Exports
 
 todo...
+
+# More Information
+
+See [Menus](https://material.io/components/menus) in the Material design spec.
+
+See [Menu](https://github.com/material-components/material-components-web/tree/v10.0.0/packages/mdc-menu) in MDC-Web for information about the upstream library's architecture.

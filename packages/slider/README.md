@@ -2,34 +2,40 @@
 
 Sliders are range selectors, providing the functionality of `<input type="range">`.
 
-See [MDC Slider](https://material.io/develop/web/components/input-controls/sliders/) for more information on API and Sass mixins.
-
-See [the Sass variable file](https://github.com/material-components/material-components-web/blob/v3.1.1/packages/mdc-slider/_variables.scss) for styling variables.
-
 # Installation
 
 ```sh
 npm install --save-dev @smui/slider
 ```
 
+# Whoa There, These Docs are Outdated
+
+The latest SMUI v3 beta had a lot of changes, and these docs haven't been caught up yet. You should check out the demo page's code to see the latest usage.
+
 # Basic Usage
 
-```html
+```svelte
+<Slider bind:value />
+
 <script>
-  import Slider from '@smui/slider'
+  import Slider from '@smui/slider';
 
   let value = 0;
 </script>
-
-<Slider bind:value />
 ```
 
 # Demo
 
-*in action:* https://sveltematerialui.com/demo/slider
+_in action:_ https://sveltematerialui.com/demo/slider
 
-*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/slider.svelte
+_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/slider.svelte
 
 # Exports
 
 todo...
+
+# More Information
+
+See [Sliders](https://material.io/components/sliders) in the Material design spec.
+
+See [Slider](https://github.com/material-components/material-components-web/tree/v10.0.0/packages/mdc-slider) in MDC-Web for information about the upstream library's architecture.

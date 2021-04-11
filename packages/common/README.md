@@ -1,12 +1,18 @@
 # Svelte Material UI - Common Components
 
-The common components are used in other components. You can also use the elemental components to switch the element that a ClassAdder based component uses.
+These common components are used in other components.
+
+You can also use the elemental components to switch the HTML element that an SMUI component with a `component` prop uses.
 
 # Installation
 
 ```sh
 npm install --save-dev @smui/common
 ```
+
+# Whoa There, These Docs are Outdated
+
+The latest SMUI v3 beta had a lot of changes, and these docs haven't been caught up yet. You should check out the demo page's code to see the latest usage.
 
 # Exports
 
@@ -18,8 +24,8 @@ The common label is used everywhere except for the `list` components.
 
 ### Props / Defaults
 
-* `use`: `[]` - An array of actions and/or action/property arrays.
-* `class`: `''` - A CSS class string.
+- `use`: `[]` - An array of actions and/or action/property arrays.
+- `class`: `''` - A CSS class string.
 
 ### Events
 
@@ -33,12 +39,12 @@ The common icon is used everywhere except for the `textfield` and `select` compo
 
 ### Props / Defaults
 
-* `use`: `[]` - An array of actions and/or action/property arrays.
-* `class`: `''` - A CSS class string.
-* `on`: `false` - Used in the context of an icon button toggle to denote the icon for when the button is on.
-* `leading`: `false` - Used in the context of a chip to denote that the icon is a leading icon.
-* `leadingHidden`: `false` - Used in the context of a filter chip to hide the icon when the chip is selected.
-* `trailing`: `false` - Used in the context of a chip to denote that the icon is a trailing icon.
+- `use`: `[]` - An array of actions and/or action/property arrays.
+- `class`: `''` - A CSS class string.
+- `on`: `false` - Used in the context of an icon button toggle to denote the icon for when the button is on.
+- `leading`: `false` - Used in the context of a chip to denote that the icon is a leading icon.
+- `leadingHidden`: `false` - Used in the context of a filter chip to hide the icon when the chip is selected.
+- `trailing`: `false` - Used in the context of a chip to denote that the icon is a trailing icon.
 
 ### Events
 
@@ -54,10 +60,10 @@ A base component that adds a class to an element. The ClassAdder is used to prov
 
 ### Props / Defaults
 
-* `use`: `[]` - An array of actions and/or action/property arrays.
-* `class`: `''` - A CSS class string.
-* `component`: `(depends on context)` - The component to extend. Usually it is set to one of the elemental components below.
-* `forwardEvents`: `[]` - An array of additional events that should be forwarded.
+- `use`: `[]` - An array of actions and/or action/property arrays.
+- `class`: `''` - A CSS class string.
+- `component`: `(depends on context)` - The component to extend. Usually it is set to one of the elemental components below.
+- `forwardEvents`: `[]` - An array of additional events that should be forwarded.
 
 ## A.svelte
 

@@ -2,40 +2,51 @@
 
 Text fields offer users an area to input text, numbers, files, etc.
 
-See [MDC Text Field](https://material.io/develop/web/components/input-controls/text-field/) for more information on API and Sass mixins.
-
-See [the Sass variable file](https://github.com/material-components/material-components-web/blob/v3.1.1/packages/mdc-textfield/_variables.scss) for styling variables.
-
 # Installation
 
 ```sh
 npm install --save-dev @smui/textfield
 ```
 
+# Whoa There, These Docs are Outdated
+
+The latest SMUI v3 beta had a lot of changes, and these docs haven't been caught up yet. You should check out the demo page's code to see the latest usage.
+
 # Basic Usage
 
-```html
+```svelte
+<Textfield bind:value={name} label="Name" />
+<br />
+<Textfield
+  type="email"
+  bind:value={email}
+  label="Email"
+  input$autocomplete="email"
+/>
+<br />
+<Textfield textarea bind:value={comment} label="Comment" />
+
 <script>
-  import Textfield from '@smui/textfield'
+  import Textfield from '@smui/textfield';
 
   export let name = '';
   export let email = '';
   export let comment = '';
 </script>
-
-<Textfield bind:value={name} label="Name" />
-<br />
-<Textfield type="email" bind:value={email} label="Email" input$autocomplete="email" />
-<br />
-<Textfield textarea bind:value={comment} label="Comment" />
 ```
 
 # Demo
 
-*in action:* https://sveltematerialui.com/demo/textfield
+_in action:_ https://sveltematerialui.com/demo/textfield
 
-*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/textfield.svelte
+_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/textfield.svelte
 
 # Exports
 
 todo...
+
+# More Information
+
+See [Text fields](https://material.io/components/text-fields) in the Material design spec.
+
+See [Text Field](https://github.com/material-components/material-components-web/tree/v10.0.0/packages/mdc-textfield) in MDC-Web for information about the upstream library's architecture.

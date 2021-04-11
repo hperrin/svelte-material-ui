@@ -2,10 +2,6 @@
 
 A floating label in an input field. This is usually provided by the input component, but you can set it up manually.
 
-See [MDC Floating Label](https://material.io/develop/web/components/input-controls/floating-label/) for more information on API and Sass mixins.
-
-See [the Sass variable file](https://github.com/material-components/material-components-web/blob/v3.1.1/packages/mdc-floating-label/_variables.scss) for styling variables.
-
 # Installation
 
 You won't generally need to install this package, unless you're manually creating text fields.
@@ -14,17 +10,13 @@ You won't generally need to install this package, unless you're manually creatin
 npm install --save-dev @smui/floating-label
 ```
 
+# Whoa There, These Docs are Outdated
+
+The latest SMUI v3 beta had a lot of changes, and these docs haven't been caught up yet. You should check out the demo page's code to see the latest usage.
+
 # Basic Usage
 
-```html
-<script>
-  import Textfield, {Input} from '@smui/textfield';
-  import FloatingLabel from '@smui/floating-label';
-  import LineRipple from '@smui/line-ripple';
-
-  let name = '';
-</script>
-
+```svelte
 <!--
   Normally you wouldn't provide a floating label, but you can manually set up a
   textfield like this:
@@ -34,13 +26,21 @@ npm install --save-dev @smui/floating-label
   <FloatingLabel for="name-input">Name</FloatingLabel>
   <LineRipple />
 </Textfield>
+
+<script>
+  import Textfield, { Input } from '@smui/textfield';
+  import FloatingLabel from '@smui/floating-label';
+  import LineRipple from '@smui/line-ripple';
+
+  let name = '';
+</script>
 ```
 
 # Demo
 
-*in action:* https://sveltematerialui.com/demo/textfield
+_in action:_ https://sveltematerialui.com/demo/textfield
 
-*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/textfield.svelte
+_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/textfield.svelte
 
 # Exports
 
@@ -50,10 +50,10 @@ A Floating Label component.
 
 ### Props / Defaults
 
-* `use`: `[]` - An array of actions and/or action/property arrays.
-* `class`: `''` - A CSS class string.
-* `for`: `''` - The ID of the input the label is to be associated with.
-* `wrapped`: `false` - If the label is wrapped, a `span` element is used with no `for` attribute, otherwise, a `label` element is used with a `for` attribute.
+- `use`: `[]` - An array of actions and/or action/property arrays.
+- `class`: `''` - A CSS class string.
+- `for`: `''` - The ID of the input the label is to be associated with.
+- `wrapped`: `false` - If the label is wrapped, a `span` element is used with no `for` attribute, otherwise, a `label` element is used with a `for` attribute.
 
 ### Events
 
@@ -61,6 +61,12 @@ All standard UI events are forwarded.
 
 ### Functions
 
-* `shake(boolean)` - Shakes the label element.
-* `float(boolean)` - Floats the label element.
-* `getWidth()` - Get the width of the label element.
+- `shake(boolean)` - Shakes the label element.
+- `float(boolean)` - Floats the label element.
+- `getWidth()` - Get the width of the label element.
+
+# More Information
+
+See [Text fields](https://material.io/components/text-fields) in the Material design spec.
+
+See [Floating Label](https://github.com/material-components/material-components-web/tree/v10.0.0/packages/mdc-floating-label) in MDC-Web for information about the upstream library's architecture.

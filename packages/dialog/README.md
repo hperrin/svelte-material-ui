@@ -2,30 +2,19 @@
 
 Dialogs are modal boxes that inform the user and/or accept a decision.
 
-See [MDC Dialog](https://material.io/develop/web/components/dialogs/) for more information on API and Sass mixins.
-
-See [the Sass variable file](https://github.com/material-components/material-components-web/blob/v3.1.1/packages/mdc-dialog/_variables.scss) for styling variables.
-
 # Installation
 
 ```sh
 npm install --save-dev @smui/dialog
 ```
 
+# Whoa There, These Docs are Outdated
+
+The latest SMUI v3 beta had a lot of changes, and these docs haven't been caught up yet. You should check out the demo page's code to see the latest usage.
+
 # Basic Usage
 
-```html
-<script>
-  import Dialog, {Title, Content, Actions} from '@smui/dialog';
-  import Button, {Label} from '@smui/button';
-
-  let dialog;
-
-  function deleteItem() {
-    // TODO: delete the item.
-  }
-</script>
-
+```svelte
 <Dialog
   bind:this={dialog}
   aria-labelledby="dialog-title"
@@ -47,14 +36,31 @@ npm install --save-dev @smui/dialog
 </Dialog>
 
 <Button on:click={() => dialog.open()}><Label>Delete</Label></Button>
+
+<script>
+  import Dialog, { Title, Content, Actions } from '@smui/dialog';
+  import Button, { Label } from '@smui/button';
+
+  let dialog;
+
+  function deleteItem() {
+    // TODO: delete the item.
+  }
+</script>
 ```
 
 # Demo
 
-*in action:* https://sveltematerialui.com/demo/dialog
+_in action:_ https://sveltematerialui.com/demo/dialog
 
-*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/dialog.svelte
+_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/dialog.svelte
 
 # Exports
 
 todo...
+
+# More Information
+
+See [Dialogs](https://material.io/components/dialogs) in the Material design spec.
+
+See [Dialog](https://github.com/material-components/material-components-web/tree/v10.0.0/packages/mdc-dialog) in MDC-Web for information about the upstream library's architecture.

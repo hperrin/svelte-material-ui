@@ -2,18 +2,22 @@
 
 Text field helper texts are informative messages that give context to a text field.
 
-See [MDC Text Field Helper Text](https://material.io/develop/web/components/input-controls/text-field/helper-text/) for more information on API and Sass mixins.
-
 # Basic Usage
 
 todo...
 
 # Demo
 
-*in action:* https://sveltematerialui.com/demo/textfield
+_in action:_ https://sveltematerialui.com/demo/textfield
 
-*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/textfield.svelte
+_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/textfield.svelte
 
 # Exports
 
 todo...
+
+# More Information
+
+See [Text fields](https://material.io/components/text-fields) in the Material design spec.
+
+See [Text Field Helper Text](https://github.com/material-components/material-components-web/tree/v10.0.0/packages/mdc-textfield/helper-text) in MDC-Web for information about the upstream library's architecture.

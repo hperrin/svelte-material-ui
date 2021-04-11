@@ -22,7 +22,13 @@ npm install --save-dev @smui/card
 npm install --save-dev svelte-material-ui
 ```
 
-# Migration
+# MDC 10 Update!
+
+The latest SMUI, v3 (beta), uses the latest upstream [Material Design Components for Web (MDC)](https://github.com/material-components/material-components-web), v10. I've done a lot more than upgrade the version, though! I rewrote SMUI to use the ["Advanced Approach"](https://github.com/material-components/material-components-web/blob/master/docs/integrating-into-frameworks.md#the-advanced-approach-using-foundations-and-adapters) of integrating with the library, which should make updating to later upstream versions much easier. There should also be fewer bugs, because _Svelte_ is in charge of updating the DOM, instead of MDC.
+
+<small>I literally used a vacation week to do this.</small>
+
+## Migration
 
 If you are upgrading from an older version of SMUI to a newer one, it might be worth checking out the [migration doc](MIGRATING.md).
 
@@ -30,10 +36,10 @@ If you are upgrading from an older version of SMUI to a newer one, it might be w
 
 Check out the [Webpack template](https://github.com/hperrin/smui-example-webpack) and the [Rollup template](https://github.com/hperrin/smui-example-rollup) for examples.
 
-1. To bundle this in your own code, use a Sass processor (not a Sass Svelte preprocessor, but a Sass processor). SMUI `index.js` files import Sass files, and they need to be compiled by a processor. The `*.svelte` files don't include any Sass or CSS, so a Svelte preprocessor is not necessary.
+1. To bundle this in your own code, use a Sass processor (not a Sass Svelte **preprocessor**, but a Sass **processor**). SMUI `index.js` files import _Sass files_, and they need to be compiled by a processor. The `*.svelte` files don't include any Sass or CSS, so a Svelte preprocessor is not necessary.
    - Alternatively, you can import from the `bare.js` files, which doesn't include any styling. Then you can either import the Sass yourself, or use the `bare.css` files which are precompiled and packaged with the default theme.
 2. You must have a `_smui-theme.scss` file in one of your Sass include paths to compile the Sass. That is where you set the MDC theme variables. If it's empty, it will use the default theme values from MDC. See the [theme file](https://github.com/hperrin/svelte-material-ui/blob/master/site/src/theme/_smui-theme.scss) in the demo site for an example that uses Svelte colors.
-3. If you want the Material Icon, Roboto, and Roboto Mono fonts, be sure to include these (or include them from a package):
+3. If you want the Material Icon, Roboto, and Roboto Mono fonts, be sure to include these stylesheets (or include them from a package):
    ```html
    <link
      rel="stylesheet"
@@ -50,7 +56,7 @@ Check out the [Webpack template](https://github.com/hperrin/smui-example-webpack
    ```
 4. You're now ready to use SMUI. Here's some example code:
 
-   ```html
+   ```svelte
    <Button on:click={() => alert('Clicked!')}>Just a Button</Button>
    <Button variant="raised"><Label>Raised Button, Using a Label</Label></Button>
    <Button some-arbitrary-prop="placed on the actual button">Button</Button>
@@ -60,13 +66,11 @@ Check out the [Webpack template](https://github.com/hperrin/smui-example-webpack
      <Label>Extended FAB</Label>
    </Fab>
 
-   <Textfield
-     bind:value={superText}
-     label="Super Text"
-     input$aria-controls="super-helper"
-     input$aria-describedby="super-helper"
-   />
-   <HelperText id="super-helper">What you put in this box will become super!</HelperText>
+   <Textfield bind:value={superText} label="Super Text">
+     <HelperText slot="helper"
+       >What you put in this box will become super!</HelperText
+     >
+   </Textfield>
 
    <script>
      import Button from '@smui/button';
@@ -83,8 +87,8 @@ Here are some features you should know about:
 
 - You can add arbitrary properties to all of the components and many of the elements within them.
 - You can add actions to the components with `use={[Action1, [Action2, action2Props], Action3]}`.
-- You can add props to lower components and elements with things like `input$maxlength="15"`.
-- All [standard UI events](https://github.com/hperrin/svelte-material-ui/blob/master/packages/common/forwardEventsBuilder.js#L4) are forwarded on components, input events ("input" and "change") are forwarded on input components, and all MDC events are forwarded.
+- You can add props to lower components and elements with "$" props, like `input$maxlength="15"`.
+- All [standard UI and transition events](https://github.com/hperrin/svelte-material-ui/blob/master/packages/common/forwardEventsBuilder.js#L4) are forwarded on components, input events ("input" and "change") are forwarded on input components, and all MDC events are forwarded.
 - Labels and icons are named exports in the components that use them, or you can use 'common/Label' and 'common/Icon'. (Except for chips labels and icons, textfield icons, and select icons, because they are special snowflakes.)
 
 ## Integration for Sapper
@@ -100,7 +104,7 @@ Here are some features you should know about:
      ```sh
      npm i -D rollup-plugin-postcss sass
      ```
-2. Create the `src/theme/_smui-theme.scss file`
+2. Create the `src/theme/_smui-theme.scss` file
 
    ```sh
    mkdir src/theme && touch src/theme/_smui-theme.scss
@@ -140,16 +144,16 @@ Here are some features you should know about:
    // ...
    ```
 
-4. In the `template.html` file, in the `<head>` section right after `%sapper.base%`, paste the following:
+4. In the `template.html` file, in the `<head>` section right after `%sapper.base%`, paste the following
 
    ```
    <!-- SMUI Styles -->
    <link rel="stylesheet" href="client/smui.css">
    ```
 
-5. Install a SMUI package, and include it from your Svelte files like this:
+5. Install a SMUI package, and include it from your Svelte files like this
 
-   ```html
+   ```svelte
    <Button on:click={() => alert('Clicked!')}>Click Me!</Button>
 
    <script>
@@ -157,11 +161,13 @@ Here are some features you should know about:
    </script>
    ```
 
+6. Profit!
+
 # Components
 
 I've only done components that need to/can be Svelte-ified. For some things, like RTL, you can just use the MDC packages.
 
-Click a component below to go to its documentation.
+Click a component below to go to its documentation. (Note that this documentation is a work in progress. The demo code should be your main source of truth for how something works.)
 
 - [Buttons](https://github.com/hperrin/svelte-material-ui/blob/master/packages/button/README.md)
   - [Floating Action Buttons](https://github.com/hperrin/svelte-material-ui/blob/master/packages/fab/README.md)
@@ -206,55 +212,7 @@ Click a component below to go to its documentation.
 - [Top App Bar](https://github.com/hperrin/svelte-material-ui/blob/master/packages/top-app-bar/README.md)
 - [Typography](https://material.io/develop/web/components/typography/)†
 
-<small>† This is Sass based, and therefore doesn't require Svelte components. I've included a demo showing how you can use it.</small>
-
-<small>‡ This is not an MDC Web component. It is an addition that SMUI provides.</small>
-
-# MDC 10 Update!
-
-I've started working on migrating SMUI to use the latest upstream version of [Material Design Components for Web (MDC)](https://github.com/material-components/material-components-web), version 10. I'll be doing a lot more than upgrading the version, though! I'm rewriting SMUI to use the ["Advanced Approach"](https://github.com/material-components/material-components-web/blob/master/docs/integrating-into-frameworks.md#the-advanced-approach-using-foundations-and-adapters) of integrating with the library, which should make updating to later upstream versions much easier. No longer will I have to wrangle Svelte to stop undoing the updates that MDC makes to the DOM, because _Svelte_ will be in charge of updating the DOM.
-
-Update Progress Checklist:
-
-- [x] Buttons
-  - [x] Floating Action Buttons
-  - [x] Icon Buttons
-- [x] Cards
-- [x] Chips
-- [x] Data Tables
-- [x] Dialogs
-- [x] Drawers
-- [x] Image List
-- [x] Checkboxes
-- [x] Floating Label
-- [x] Form Fields
-- [x] Line Ripple
-- [x] Notched Outline
-- [x] Radio Buttons
-- [x] Select Menus
-  - [x] Select Helper Text
-  - [x] Select Icon
-- [x] Sliders
-- [x] Switches
-- [x] Text Field
-  - [x] Text Field Character Counter
-  - [x] Text Field Helper Text
-  - [x] Text Field Icon
-- [x] Linear Progress
-- [x] Lists
-- [x] Menu Surface
-- [x] Menus
-- [x] Paper
-- [x] Ripples
-- [x] Snackbars
-  - [x] Kitchen
-- [x] Tab
-- [x] Tab Bar
-- [x] Tab Indicator
-- [x] Tab Scroller
-- [x] Top App Bar
-
-Once these are all done, I'll release a beta version, then work on implementing the new components from upstream:
+New components from the upstream library that haven't been built yet:
 
 - [ ] Banners
 - [ ] Circular Progress
@@ -266,9 +224,9 @@ Once these are all done, I'll release a beta version, then work on implementing 
 - [ ] Data Table Progress Indicator
 - [ ] Data Table Column Sort Buttons
 
-Once these are done, SMUI v3 will be released.
+<small>† This is Sass based, and therefore doesn't require Svelte components. I've included a demo showing how you can use it.</small>
 
-Then SMUI v4 will be all about migrating to TypeScript!
+<small>‡ This is not an MDC Web component. It is an addition that SMUI provides.</small>
 
 # Support
 

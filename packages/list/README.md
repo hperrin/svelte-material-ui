@@ -2,25 +2,19 @@
 
 Lists are vertical content sections.
 
-See [MDC List](https://material.io/develop/web/components/lists/) for more information on API and Sass mixins.
-
-See [the Sass variable file](https://github.com/material-components/material-components-web/blob/v3.1.1/packages/mdc-list/_variables.scss) for styling variables.
-
 # Installation
 
 ```sh
 npm install --save-dev @smui/list
 ```
 
+# Whoa There, These Docs are Outdated
+
+The latest SMUI v3 beta had a lot of changes, and these docs haven't been caught up yet. You should check out the demo page's code to see the latest usage.
+
 # Basic Usage
 
-```html
-<script>
-  import List, {Item, Text} from '@smui/list';
-
-  let fruits = ['Apple', 'Orange', 'Banana', 'Mango'];
-</script>
-
+```svelte
 <List>
   {#each fruits as fruit}
     <Item>
@@ -28,14 +22,26 @@ npm install --save-dev @smui/list
     </Item>
   {/each}
 </List>
+
+<script>
+  import List, { Item, Text } from '@smui/list';
+
+  let fruits = ['Apple', 'Orange', 'Banana', 'Mango'];
+</script>
 ```
 
 # Demo
 
-*in action:* https://sveltematerialui.com/demo/list
+_in action:_ https://sveltematerialui.com/demo/list
 
-*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/list.svelte
+_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/list.svelte
 
 # Exports
 
 todo...
+
+# More Information
+
+See [Lists](https://material.io/components/lists) in the Material design spec.
+
+See [List](https://github.com/material-components/material-components-web/tree/v10.0.0/packages/mdc-list) in MDC-Web for information about the upstream library's architecture.

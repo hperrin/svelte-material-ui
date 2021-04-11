@@ -2,37 +2,37 @@
 
 Select menus provide the user with a choice between multiple items.
 
-See [MDC Select](https://material.io/develop/web/components/input-controls/select-menus/) for more information on API and Sass mixins.
-
-See [the Sass variable file](https://github.com/material-components/material-components-web/blob/v3.1.1/packages/mdc-select/_variables.scss) for styling variables.
-
 # Installation
 
 ```sh
 npm install --save-dev @smui/select
 ```
 
+# Whoa There, These Docs are Outdated
+
+The latest SMUI v3 beta had a lot of changes, and these docs haven't been caught up yet. You should check out the demo page's code to see the latest usage.
+
 # Basic Usage
 
-```html
-<script>
-  import Select, {Option} from '@smui/select';
-
-  let fruits = ['Apple', 'Orange', 'Banana', 'Mango'];
-  let fruitChoice = '';
-</script>
-
+```svelte
 <Select
   bind:value={fruitChoice}
   label="Fruit"
   anchor$class="select-width"
   menu$class="select-width"
 >
-  <Option value=""></Option>
+  <Option value="" />
   {#each fruits as fruit}
     <Option value={fruit}>{fruit}</Option>
   {/each}
 </Select>
+
+<script>
+  import Select, { Option } from '@smui/select';
+
+  let fruits = ['Apple', 'Orange', 'Banana', 'Mango'];
+  let fruitChoice = '';
+</script>
 
 <style>
   * :global(.select-width) {
@@ -43,10 +43,16 @@ npm install --save-dev @smui/select
 
 # Demo
 
-*in action:* https://sveltematerialui.com/demo/select
+_in action:_ https://sveltematerialui.com/demo/select
 
-*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/select.svelte
+_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/select.svelte
 
 # Exports
 
 todo...
+
+# More Information
+
+See [Dropdown menu](https://material.io/components/menus#dropdown-menu) in the Material design spec.
+
+See [Select](https://github.com/material-components/material-components-web/tree/v10.0.0/packages/mdc-select) in MDC-Web for information about the upstream library's architecture.

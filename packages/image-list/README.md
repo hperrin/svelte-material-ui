@@ -2,25 +2,19 @@
 
 Image lists are RTL aware containers for sets of images and optional content.
 
-See [MDC Image List](https://material.io/develop/web/components/image-lists/) for more information on API and Sass mixins.
-
-See [the Sass variable file](https://github.com/material-components/material-components-web/blob/v3.1.1/packages/mdc-image-list/_variables.scss) for styling variables.
-
 # Installation
 
 ```sh
 npm install --save-dev @smui/image-list
 ```
 
+# Whoa There, These Docs are Outdated
+
+The latest SMUI v3 beta had a lot of changes, and these docs haven't been caught up yet. You should check out the demo page's code to see the latest usage.
+
 # Basic Usage
 
-```html
-<script>
-  import ImageList, {Item, ImageAspectContainer, Image, Supporting, Label} from '@smui/image-list';
-  import './style.scss';
-  import {images} from './store.js';
-</script>
-
+```svelte
 <ImageList class="my-image-list">
   {#each $images as image}
     <Item>
@@ -33,6 +27,18 @@ npm install --save-dev @smui/image-list
     </Item>
   {/each}
 </ImageList>
+
+<script>
+  import ImageList, {
+    Item,
+    ImageAspectContainer,
+    Image,
+    Supporting,
+    Label,
+  } from '@smui/image-list';
+  import './style.scss';
+  import { images } from './store.js';
+</script>
 ```
 
 ```scss
@@ -51,10 +57,16 @@ npm install --save-dev @smui/image-list
 
 # Demo
 
-*in action:* https://sveltematerialui.com/demo/image-list
+_in action:_ https://sveltematerialui.com/demo/image-list
 
-*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/image-list.svelte and https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/image-list.scss
+_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/image-list.svelte and https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/image-list.scss
 
 # Exports
 
 todo...
+
+# More Information
+
+See [Image lists](https://material.io/components/image-lists) in the Material design spec.
+
+See [Image List](https://github.com/material-components/material-components-web/tree/v10.0.0/packages/mdc-image-list) in MDC-Web for information about the upstream library's architecture.

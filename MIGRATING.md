@@ -2,6 +2,18 @@
 
 This doc contains information that will help you migrate your code from an older version of SMUI to a newer one. Things that you will need to change in your existing code will be written here. It would also be helpful to check the MDC changelog if the upstream MDC versions has changed between SMUI versions.
 
+## SMUI 2 -> SMUI 3
+
+SMUI 3 migrated to upstream MDC 10.0:
+https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#1000-2021-02-05
+
+- Textbox
+  - This is almost completely rewritten. You will need to migrate a lot of code for it. Check out the demo page.
+- Select
+  - This is almost completely rewritten. You will need to migrate a lot of code for it. Check out the demo page.
+
+(This is not a complete list. A lot was changed. I will expand this section in the future.)
+
 ## SMUI 1 -> SMUI 2
 
 SMUI 2 migrated to upstream MDC 4.0:

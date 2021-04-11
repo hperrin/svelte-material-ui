@@ -2,17 +2,19 @@
 // MDC Theme
 //
 
-// If you've come here looking for how to make a theme
-// file in SMUI v2, check here instead:
-// https://github.com/hperrin/svelte-material-ui/blob/v2/site/src/theme/_smui-theme.scss
+@use '@material/theme/color-palette';
 
-// @use '@material/theme/color-palette';
 // Svelte Colors!
 @use '@material/theme' with (
   $primary: #ff3e00,
-  // $accent: #40b3ff,
   $secondary: #676778,
   $surface: #fff,
   $background: #fff,
-  // $error: color-palette.$red-900,
+  $error: color-palette.$red-900,
 );
+
+// The other Svelte color: #40b3ff,
+
+// If you've come here looking for how to make a theme
+// file in older versions of SMUI, check here instead:
+// https://github.com/hperrin/svelte-material-ui/blob/v2/site/src/theme/_smui-theme.scss
