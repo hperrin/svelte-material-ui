@@ -27,11 +27,9 @@
         <Icon
           class="material-icons"
           role="button"
-          disabled={valueClickable === '' ||
-            !dirtyClickable ||
-            invalidClickable}
-          on:click={clickableHandler}
-          slot="leadingIcon">send</Icon
+          disabled={clickableDisabled}
+          on:click={() => clickableDisabled || clickableHandler()}
+          slot="trailingIcon">send</Icon
         >
         <HelperText validationMsg slot="helper"
           >That's not a valid email address.</HelperText
@@ -131,7 +129,57 @@
   </div>
 
   <div>
-    <h6 class="demo-title">Shaped Filled</h6>
+    <h6 class="demo-title">Outlined</h6>
+
+    <div class="columns margins">
+      <div>
+        <Textfield variant="outlined" bind:value={valueOutlinedA} label="Label">
+          <HelperText slot="helper">Helper Text</HelperText>
+        </Textfield>
+
+        <pre class="status">Value: {valueOutlinedA}</pre>
+      </div>
+      <div>
+        <Textfield
+          variant="outlined"
+          bind:value={valueOutlinedB}
+          label="Leading Icon"
+        >
+          <Icon class="material-icons" slot="leadingIcon">event</Icon>
+          <HelperText slot="helper">Helper Text</HelperText>
+        </Textfield>
+
+        <pre class="status">Value: {valueOutlinedB}</pre>
+      </div>
+      <div>
+        <Textfield
+          variant="outlined"
+          bind:value={valueOutlinedC}
+          label="Trailing Icon"
+        >
+          <Icon class="material-icons" slot="trailingIcon">delete</Icon>
+          <HelperText slot="helper">Helper Text</HelperText>
+        </Textfield>
+
+        <pre class="status">Value: {valueOutlinedC}</pre>
+      </div>
+      <div>
+        <Textfield
+          variant="outlined"
+          invalid
+          bind:value={valueOutlinedD}
+          label="Invalid"
+        >
+          <HelperText slot="helper">Helper Text</HelperText>
+        </Textfield>
+
+        <pre class="status">Value: {valueOutlinedD}</pre>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <h6 class="demo-title">Shaped Filled (Done with CSS)</h6>
 
     <div class="columns margins">
       <div>
@@ -184,56 +232,6 @@
         </Textfield>
 
         <pre class="status">Value: {valueShapedFilledD}</pre>
-      </div>
-    </div>
-  </div>
-
-  <div>
-    <h6 class="demo-title">Outlined</h6>
-
-    <div class="columns margins">
-      <div>
-        <Textfield variant="outlined" bind:value={valueOutlinedA} label="Label">
-          <HelperText slot="helper">Helper Text</HelperText>
-        </Textfield>
-
-        <pre class="status">Value: {valueOutlinedA}</pre>
-      </div>
-      <div>
-        <Textfield
-          variant="outlined"
-          bind:value={valueOutlinedB}
-          label="Leading Icon"
-        >
-          <Icon class="material-icons" slot="leadingIcon">event</Icon>
-          <HelperText slot="helper">Helper Text</HelperText>
-        </Textfield>
-
-        <pre class="status">Value: {valueOutlinedB}</pre>
-      </div>
-      <div>
-        <Textfield
-          variant="outlined"
-          bind:value={valueOutlinedC}
-          label="Trailing Icon"
-        >
-          <Icon class="material-icons" slot="trailingIcon">delete</Icon>
-          <HelperText slot="helper">Helper Text</HelperText>
-        </Textfield>
-
-        <pre class="status">Value: {valueOutlinedC}</pre>
-      </div>
-      <div>
-        <Textfield
-          variant="outlined"
-          invalid
-          bind:value={valueOutlinedD}
-          label="Invalid"
-        >
-          <HelperText slot="helper">Helper Text</HelperText>
-        </Textfield>
-
-        <pre class="status">Value: {valueOutlinedD}</pre>
       </div>
     </div>
   </div>
@@ -741,6 +739,8 @@
   let valueClickable = '';
   let dirtyClickable = false;
   let invalidClickable = false;
+  $: clickableDisabled =
+    valueClickable === '' || !dirtyClickable || invalidClickable;
   let valueStandardA = '';
   let valueStandardB = '';
   let valueStandardC = '';
@@ -749,14 +749,14 @@
   let valueFilledB = '';
   let valueFilledC = '';
   let valueFilledD = '';
-  let valueShapedFilledA = '';
-  let valueShapedFilledB = '';
-  let valueShapedFilledC = '';
-  let valueShapedFilledD = '';
   let valueOutlinedA = '';
   let valueOutlinedB = '';
   let valueOutlinedC = '';
   let valueOutlinedD = '';
+  let valueShapedFilledA = '';
+  let valueShapedFilledB = '';
+  let valueShapedFilledC = '';
+  let valueShapedFilledD = '';
   let valueShapedOutlinedA = '';
   let valueShapedOutlinedB = '';
   let valueShapedOutlinedC = '';

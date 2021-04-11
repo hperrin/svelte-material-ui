@@ -200,7 +200,7 @@
   </div>
 
   <div>
-    <h6 class="demo-title">Shaped Filled</h6>
+    <h6 class="demo-title">Shaped Filled (Done with CSS)</h6>
 
     <div class="columns margins">
       <div>
@@ -393,23 +393,19 @@
     margin-left: 0;
   }
 
-  * :global(.shaped) {
+  * :global(.shaped, .shaped .mdc-select__anchor) {
     border-radius: 16px 16px 0 0;
   }
 
-  * :global(.shaped-outlined) {
+  * :global(.shaped-outlined, .shaped-outlined .mdc-select__anchor) {
     border-radius: 28px;
   }
   * :global(.shaped-outlined .mdc-select__anchor) {
-    border-radius: 28px;
     overflow: hidden;
   }
   * :global(.shaped-outlined .mdc-text-field__input) {
     padding-left: 32px;
     padding-right: 0;
-  }
-  * :global(.shaped-outlined .mdc-select__anchor) {
-    border-radius: 28px;
   }
   *
     :global(.shaped-outlined
