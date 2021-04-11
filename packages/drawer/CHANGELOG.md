@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-beta.0](https://github.com/hperrin/svelte-material-ui/compare/v2.0.0-beta.1...v3.0.0-beta.0) (2021-04-11)
+
+
+### Bug Fixes
+
+* class and attr removal ([b3ca6f1](https://github.com/hperrin/svelte-material-ui/commit/b3ca6f16b2adda7cead2ef2c54ce3c446eeb6179))
+* drawer scrim positioning ([444ebf9](https://github.com/hperrin/svelte-material-ui/commit/444ebf9aab24d2e8ffd350720f80a2486ae82b89))
+* list item ripples and menus ([4010556](https://github.com/hperrin/svelte-material-ui/commit/4010556b84b634177c706f0e6cec20b0c8500743))
+* modal drawer absolute positioning ([d180ee3](https://github.com/hperrin/svelte-material-ui/commit/d180ee3f11211ca0e1faa8d477f31531cf184b2c))
+* more components fixes ([fbdf204](https://github.com/hperrin/svelte-material-ui/commit/fbdf204a320fa0ed9ee5ec593e6bcbf3678fae79))
+* ripple activation and colors ([d584be7](https://github.com/hperrin/svelte-material-ui/commit/d584be7d284562d07e278a2dc21bb039ed6a208b))
+* update all the sass imports ([172a557](https://github.com/hperrin/svelte-material-ui/commit/172a55777a506ac26bbe524ca8cab79904512f24))
+* update new class internals to report hasClass properly ([52a7b2c](https://github.com/hperrin/svelte-material-ui/commit/52a7b2cf5cfbd60ee87d6b27bcb8c796e84d1275))
+
+
+### Features
+
+* add getElement method to all components ([f293cf3](https://github.com/hperrin/svelte-material-ui/commit/f293cf365e30fa8d291b1428f5db683625572402))
+* started updating List for MDC v10 ([8bf2727](https://github.com/hperrin/svelte-material-ui/commit/8bf27271f86f59caee9092a7f4f36d2a81a73e8a))
+* updated Drawer for MDC v10 ([25adc19](https://github.com/hperrin/svelte-material-ui/commit/25adc192538cf4bb1cf7a60383b959dd78ee1cb0))
+* updated Floating Actio Button for MDC v10 ([4a85665](https://github.com/hperrin/svelte-material-ui/commit/4a8566530bd6521ec7f1bf2f5ee11568268b0c87))
+* upgrade upstream MDC components to v10 ([d47c59a](https://github.com/hperrin/svelte-material-ui/commit/d47c59af50bbec2b7de810261b3cb7a2ffe59180))
+
+
+### BREAKING CHANGES
+
+* Upgrading to v10 of upstream components. Their APIs will change. View the component READMEs.
+
+
+
+
+
 # [2.0.0-beta.1](https://github.com/hperrin/svelte-material-ui/compare/v2.0.0-beta.0...v2.0.0-beta.1) (2021-03-27)
 
 **Note:** Version bump only for package @smui/drawer

@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-beta.0](https://github.com/hperrin/svelte-material-ui/compare/v2.0.0-beta.1...v3.0.0-beta.0) (2021-04-11)
+
+
+### Bug Fixes
+
+* class and attr removal ([b3ca6f1](https://github.com/hperrin/svelte-material-ui/commit/b3ca6f16b2adda7cead2ef2c54ce3c446eeb6179))
+* list item ripples and menus ([4010556](https://github.com/hperrin/svelte-material-ui/commit/4010556b84b634177c706f0e6cec20b0c8500743))
+* update all the sass imports ([172a557](https://github.com/hperrin/svelte-material-ui/commit/172a55777a506ac26bbe524ca8cab79904512f24))
+
+
+### Features
+
+* add getElement method to all components ([f293cf3](https://github.com/hperrin/svelte-material-ui/commit/f293cf365e30fa8d291b1428f5db683625572402))
+* updated Checkbox for MDC v10 ([9efc1b4](https://github.com/hperrin/svelte-material-ui/commit/9efc1b442fe6b9331ca33f9762c956c77b445f22))
+* updated Data Tables for MDC v10 ([89cbd52](https://github.com/hperrin/svelte-material-ui/commit/89cbd52c9555a0df5d41f990fb6a985b545927ab))
+* updated Slider for MDC v10 ([be1aab4](https://github.com/hperrin/svelte-material-ui/commit/be1aab401770e44db02549e9b6794cb46517a3f0))
+* updated Switch for MDC v10 ([b1b81d5](https://github.com/hperrin/svelte-material-ui/commit/b1b81d566676960f59f7e92f3760e85f1ac53b83))
+* updated Tab, TabBar, TabIndicator, TabScroller for MDC v10 ([3e4bd27](https://github.com/hperrin/svelte-material-ui/commit/3e4bd271f4cfff11993c0bde6ee4264ea0dc111d))
+* upgrade upstream MDC components to v10 ([d47c59a](https://github.com/hperrin/svelte-material-ui/commit/d47c59af50bbec2b7de810261b3cb7a2ffe59180))
+
+
+### BREAKING CHANGES
+
+* Upgrading to v10 of upstream components. Their APIs will change. View the component READMEs.
+
+
+
+
+
 # [2.0.0-beta.1](https://github.com/hperrin/svelte-material-ui/compare/v2.0.0-beta.0...v2.0.0-beta.1) (2021-03-27)
 
 **Note:** Version bump only for package @smui/checkbox

@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-beta.0](https://github.com/hperrin/svelte-material-ui/compare/v2.0.0-beta.1...v3.0.0-beta.0) (2021-04-11)
+
+
+### Bug Fixes
+
+* dont use a store for HelperText id ([b0c4fbd](https://github.com/hperrin/svelte-material-ui/commit/b0c4fbd3dad2783891fab4d8e2864ef2ef54ea7b))
+* list item ripples and menus ([4010556](https://github.com/hperrin/svelte-material-ui/commit/4010556b84b634177c706f0e6cec20b0c8500743))
+* textfield onDestroy issues ([5d23ed0](https://github.com/hperrin/svelte-material-ui/commit/5d23ed0ee27a6758c6e3cf6238d6bd0c915c4d70))
+
+
+### Features
+
+* add getElement method to all components ([f293cf3](https://github.com/hperrin/svelte-material-ui/commit/f293cf365e30fa8d291b1428f5db683625572402))
+* update more Sass imports to use ([4061e59](https://github.com/hperrin/svelte-material-ui/commit/4061e59d462792574c9355d1e39efc0f6cb0415c))
+* updated Select Menus for MDC v10 ([f066d20](https://github.com/hperrin/svelte-material-ui/commit/f066d20024b4b7385bb87cfb3b7231087c16ac31))
+* updated Text Field for MDC v10 ([60e10c2](https://github.com/hperrin/svelte-material-ui/commit/60e10c2d86628fb09101b90e6f5d11d236742f2f))
+* upgrade upstream MDC components to v10 ([d47c59a](https://github.com/hperrin/svelte-material-ui/commit/d47c59af50bbec2b7de810261b3cb7a2ffe59180))
+
+
+### BREAKING CHANGES
+
+* Upgrading to v10 of upstream components. Their APIs will change. View the component READMEs.
+
+
+
+
+
 # [2.0.0-beta.1](https://github.com/hperrin/svelte-material-ui/compare/v2.0.0-beta.0...v2.0.0-beta.1) (2021-03-27)
 
 **Note:** Version bump only for package @smui/textfield

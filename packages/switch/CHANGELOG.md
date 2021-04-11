@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-beta.0](https://github.com/hperrin/svelte-material-ui/compare/v2.0.0-beta.1...v3.0.0-beta.0) (2021-04-11)
+
+
+### Bug Fixes
+
+* programmatic change on Switch ([8162ff3](https://github.com/hperrin/svelte-material-ui/commit/8162ff352a1a7258a8a1396144d9f5ea160cd4a0))
+
+
+### Features
+
+* add getElement method to all components ([f293cf3](https://github.com/hperrin/svelte-material-ui/commit/f293cf365e30fa8d291b1428f5db683625572402))
+* add primary color option to Switch ([a77bca9](https://github.com/hperrin/svelte-material-ui/commit/a77bca919b5132dbc451664a34691eaa68b88275))
+* updated Card for MDC v10 ([047ee65](https://github.com/hperrin/svelte-material-ui/commit/047ee6522b330e2a7360027cd41aa5046dc44847))
+* updated Data Tables for MDC v10 ([89cbd52](https://github.com/hperrin/svelte-material-ui/commit/89cbd52c9555a0df5d41f990fb6a985b545927ab))
+* updated Switch for MDC v10 ([b1b81d5](https://github.com/hperrin/svelte-material-ui/commit/b1b81d566676960f59f7e92f3760e85f1ac53b83))
+* updated Tab, TabBar, TabIndicator, TabScroller for MDC v10 ([3e4bd27](https://github.com/hperrin/svelte-material-ui/commit/3e4bd271f4cfff11993c0bde6ee4264ea0dc111d))
+* upgrade upstream MDC components to v10 ([d47c59a](https://github.com/hperrin/svelte-material-ui/commit/d47c59af50bbec2b7de810261b3cb7a2ffe59180))
+
+
+### BREAKING CHANGES
+
+* Upgrading to v10 of upstream components. Their APIs will change. View the component READMEs.
+
+
+
+
+
 # [2.0.0-beta.1](https://github.com/hperrin/svelte-material-ui/compare/v2.0.0-beta.0...v2.0.0-beta.1) (2021-03-27)
 
 

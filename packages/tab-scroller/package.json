@@ -1,6 +1,6 @@
 {
   "name": "@smui/tab-scroller",
-  "version": "2.0.0-beta.1",
+  "version": "3.0.0-beta.0",
   "description": "Svelte Material UI - Tab Scroller",
   "keywords": [
     "svelte",
@@ -30,7 +30,7 @@
   "dependencies": {
     "@material/dom": "^10.0.0",
     "@material/tab-scroller": "^10.0.0",
-    "@smui/common": "^2.0.0-beta.1"
+    "@smui/common": "^3.0.0-beta.0"
   },
   "devDependencies": {
     "sass": "^1.32.8"

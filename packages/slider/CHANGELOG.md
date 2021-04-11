@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-beta.0](https://github.com/hperrin/svelte-material-ui/compare/v2.0.0-beta.1...v3.0.0-beta.0) (2021-04-11)
+
+
+### Bug Fixes
+
+* class and attr removal ([b3ca6f1](https://github.com/hperrin/svelte-material-ui/commit/b3ca6f16b2adda7cead2ef2c54ce3c446eeb6179))
+* import ripple styles from slider ([86ed83b](https://github.com/hperrin/svelte-material-ui/commit/86ed83b59b879848bfc130ca0103c3eac9d19cbe))
+* slider input now updates value ([0b16829](https://github.com/hperrin/svelte-material-ui/commit/0b16829007c3c832c5e94569257bf2c8ca604458))
+* slider value attribute getter ([656fbc3](https://github.com/hperrin/svelte-material-ui/commit/656fbc3a7c1ab1d6247f50a33fb30c5cb05dc794))
+* slider value setting and range demo ([4f7869b](https://github.com/hperrin/svelte-material-ui/commit/4f7869b16ccfa1bea5f96349a48f955532af1d92))
+
+
+### Features
+
+* add getElement method to all components ([f293cf3](https://github.com/hperrin/svelte-material-ui/commit/f293cf365e30fa8d291b1428f5db683625572402))
+* updated Data Tables for MDC v10 ([89cbd52](https://github.com/hperrin/svelte-material-ui/commit/89cbd52c9555a0df5d41f990fb6a985b545927ab))
+* updated Dialog for MDC v10 ([2cc5c15](https://github.com/hperrin/svelte-material-ui/commit/2cc5c152dd328daa561aa2d84d96bfd169ad9cac))
+* updated Slider for MDC v10 ([be1aab4](https://github.com/hperrin/svelte-material-ui/commit/be1aab401770e44db02549e9b6794cb46517a3f0))
+* upgrade upstream MDC components to v10 ([d47c59a](https://github.com/hperrin/svelte-material-ui/commit/d47c59af50bbec2b7de810261b3cb7a2ffe59180))
+
+
+### BREAKING CHANGES
+
+* Upgrading to v10 of upstream components. Their APIs will change. View the component READMEs.
+
+
+
+
+
 # [2.0.0-beta.1](https://github.com/hperrin/svelte-material-ui/compare/v2.0.0-beta.0...v2.0.0-beta.1) (2021-03-27)
 
 **Note:** Version bump only for package @smui/slider

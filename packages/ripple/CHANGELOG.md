@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-beta.0](https://github.com/hperrin/svelte-material-ui/compare/v2.0.0-beta.1...v3.0.0-beta.0) (2021-04-11)
+
+
+### Bug Fixes
+
+* list item ripples and menus ([4010556](https://github.com/hperrin/svelte-material-ui/commit/4010556b84b634177c706f0e6cec20b0c8500743))
+* ripple activation and colors ([d584be7](https://github.com/hperrin/svelte-material-ui/commit/d584be7d284562d07e278a2dc21bb039ed6a208b))
+* ripple demo and classes ([b9a2530](https://github.com/hperrin/svelte-material-ui/commit/b9a2530522c01bc1672f3ff8c39fc89d6f52bf66))
+* update all the sass imports ([172a557](https://github.com/hperrin/svelte-material-ui/commit/172a55777a506ac26bbe524ca8cab79904512f24))
+
+
+### Features
+
+* updated Floating Actio Button for MDC v10 ([4a85665](https://github.com/hperrin/svelte-material-ui/commit/4a8566530bd6521ec7f1bf2f5ee11568268b0c87))
+* updated Menu for MDC v10 ([ddd6262](https://github.com/hperrin/svelte-material-ui/commit/ddd6262faa7b833472c6bf8ccca6017e6e06ebbe))
+* updated MenuSurface for MDC v10 ([c032c89](https://github.com/hperrin/svelte-material-ui/commit/c032c895ff6463c9cd904e6244027918cc5292e2))
+* updated Radio and FormField for MDC v10 ([f1f95b7](https://github.com/hperrin/svelte-material-ui/commit/f1f95b7cff81237c3a3402a448d3ca87a5df039d))
+* updated Ripple for MDC v10 ([ae3f23d](https://github.com/hperrin/svelte-material-ui/commit/ae3f23d45e88a1c1ee7d384a5f2829c25b9c2cf6))
+* updated Tab, TabBar, TabIndicator, TabScroller for MDC v10 ([3e4bd27](https://github.com/hperrin/svelte-material-ui/commit/3e4bd271f4cfff11993c0bde6ee4264ea0dc111d))
+* updated Text Field for MDC v10 ([60e10c2](https://github.com/hperrin/svelte-material-ui/commit/60e10c2d86628fb09101b90e6f5d11d236742f2f))
+* upgrade upstream MDC components to v10 ([d47c59a](https://github.com/hperrin/svelte-material-ui/commit/d47c59af50bbec2b7de810261b3cb7a2ffe59180))
+
+
+### BREAKING CHANGES
+
+* Upgrading to v10 of upstream components. Their APIs will change. View the component READMEs.
+
+
+
+
+
 # [2.0.0-beta.1](https://github.com/hperrin/svelte-material-ui/compare/v2.0.0-beta.0...v2.0.0-beta.1) (2021-03-27)
 
 **Note:** Version bump only for package @smui/ripple

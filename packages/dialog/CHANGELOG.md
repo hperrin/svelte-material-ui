@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-beta.0](https://github.com/hperrin/svelte-material-ui/compare/v2.0.0-beta.1...v3.0.0-beta.0) (2021-04-11)
+
+
+### Bug Fixes
+
+* selection dialog and stacked buttons styling ([d0987ca](https://github.com/hperrin/svelte-material-ui/commit/d0987ca45347e95bcf59ba58ab8b41bcc09665b9))
+
+
+### Features
+
+* add getElement method to all components ([f293cf3](https://github.com/hperrin/svelte-material-ui/commit/f293cf365e30fa8d291b1428f5db683625572402))
+* updated Card for MDC v10 ([047ee65](https://github.com/hperrin/svelte-material-ui/commit/047ee6522b330e2a7360027cd41aa5046dc44847))
+* updated Dialog for MDC v10 ([2cc5c15](https://github.com/hperrin/svelte-material-ui/commit/2cc5c152dd328daa561aa2d84d96bfd169ad9cac))
+* upgrade upstream MDC components to v10 ([d47c59a](https://github.com/hperrin/svelte-material-ui/commit/d47c59af50bbec2b7de810261b3cb7a2ffe59180))
+
+
+### BREAKING CHANGES
+
+* Upgrading to v10 of upstream components. Their APIs will change. View the component READMEs.
+
+
+
+
+
 # [2.0.0-beta.1](https://github.com/hperrin/svelte-material-ui/compare/v2.0.0-beta.0...v2.0.0-beta.1) (2021-03-27)
 
 **Note:** Version bump only for package @smui/dialog

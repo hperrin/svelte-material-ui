@@ -3,6 +3,90 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-beta.0](https://github.com/hperrin/svelte-material-ui/compare/v2.0.0-beta.1...v3.0.0-beta.0) (2021-04-11)
+
+
+### Bug Fixes
+
+* button styling, menu events ([53d0282](https://github.com/hperrin/svelte-material-ui/commit/53d02828f9704b50e3dff9213a55815840d11098))
+* checkbox lists ([c6df907](https://github.com/hperrin/svelte-material-ui/commit/c6df907eb8064604207173fa6ba5aed3632732c7))
+* class and attr removal ([b3ca6f1](https://github.com/hperrin/svelte-material-ui/commit/b3ca6f16b2adda7cead2ef2c54ce3c446eeb6179))
+* dont use a store for HelperText id ([b0c4fbd](https://github.com/hperrin/svelte-material-ui/commit/b0c4fbd3dad2783891fab4d8e2864ef2ef54ea7b))
+* drawer item ripple color ([d1de7f9](https://github.com/hperrin/svelte-material-ui/commit/d1de7f9381767f2cc6b703e47c108d396787a7a1))
+* drawer scrim positioning ([444ebf9](https://github.com/hperrin/svelte-material-ui/commit/444ebf9aab24d2e8ffd350720f80a2486ae82b89))
+* fix some demo bugs ([f551776](https://github.com/hperrin/svelte-material-ui/commit/f551776e6121f2feb241ca20dcec691b6582eae4))
+* fixed event bubbling ([8b40fa0](https://github.com/hperrin/svelte-material-ui/commit/8b40fa04b463ee40819eda96785efb69b01e3e3a))
+* get element and pass events correctly ([d405de5](https://github.com/hperrin/svelte-material-ui/commit/d405de5390e713f777f9d09d9480cf6ce3ba0850))
+* import ripple styles from slider ([86ed83b](https://github.com/hperrin/svelte-material-ui/commit/86ed83b59b879848bfc130ca0103c3eac9d19cbe))
+* list item ripples and menus ([4010556](https://github.com/hperrin/svelte-material-ui/commit/4010556b84b634177c706f0e6cec20b0c8500743))
+* list selected ripple color ([76dc500](https://github.com/hperrin/svelte-material-ui/commit/76dc5007c80a7d066b2df442725881eac5385632))
+* modal drawer absolute positioning ([d180ee3](https://github.com/hperrin/svelte-material-ui/commit/d180ee3f11211ca0e1faa8d477f31531cf184b2c))
+* more components fixes ([fbdf204](https://github.com/hperrin/svelte-material-ui/commit/fbdf204a320fa0ed9ee5ec593e6bcbf3678fae79))
+* programmatic change on Switch ([8162ff3](https://github.com/hperrin/svelte-material-ui/commit/8162ff352a1a7258a8a1396144d9f5ea160cd4a0))
+* reference error on tabs unloading ([a970335](https://github.com/hperrin/svelte-material-ui/commit/a9703350c47ec332fd8a1f4d76c5aace85774125))
+* ripple activation and colors ([d584be7](https://github.com/hperrin/svelte-material-ui/commit/d584be7d284562d07e278a2dc21bb039ed6a208b))
+* ripple demo and classes ([b9a2530](https://github.com/hperrin/svelte-material-ui/commit/b9a2530522c01bc1672f3ff8c39fc89d6f52bf66))
+* selection dialog and stacked buttons styling ([d0987ca](https://github.com/hperrin/svelte-material-ui/commit/d0987ca45347e95bcf59ba58ab8b41bcc09665b9))
+* slider input now updates value ([0b16829](https://github.com/hperrin/svelte-material-ui/commit/0b16829007c3c832c5e94569257bf2c8ca604458))
+* slider value attribute getter ([656fbc3](https://github.com/hperrin/svelte-material-ui/commit/656fbc3a7c1ab1d6247f50a33fb30c5cb05dc794))
+* slider value setting and range demo ([4f7869b](https://github.com/hperrin/svelte-material-ui/commit/4f7869b16ccfa1bea5f96349a48f955532af1d92))
+* textfield onDestroy issues ([5d23ed0](https://github.com/hperrin/svelte-material-ui/commit/5d23ed0ee27a6758c6e3cf6238d6bd0c915c4d70))
+* toggle icon buttons ([7eb48c7](https://github.com/hperrin/svelte-material-ui/commit/7eb48c7fd92c6d33cc6bf2a1c596446c19b0eeb8))
+* update all the sass imports ([172a557](https://github.com/hperrin/svelte-material-ui/commit/172a55777a506ac26bbe524ca8cab79904512f24))
+* update new class internals to report hasClass properly ([52a7b2c](https://github.com/hperrin/svelte-material-ui/commit/52a7b2cf5cfbd60ee87d6b27bcb8c796e84d1275))
+* use new service for placeholder images ([095e00f](https://github.com/hperrin/svelte-material-ui/commit/095e00fefa3fd9d0e1f57b20434601f6cfc0264d))
+
+
+### Features
+
+* add getElement method to all components ([f293cf3](https://github.com/hperrin/svelte-material-ui/commit/f293cf365e30fa8d291b1428f5db683625572402))
+* add primary color option to Switch ([a77bca9](https://github.com/hperrin/svelte-material-ui/commit/a77bca919b5132dbc451664a34691eaa68b88275))
+* re-enable Button bare styles ([cf74655](https://github.com/hperrin/svelte-material-ui/commit/cf746557dc3bd132a4b2f87e9555da4d65ff6d63))
+* remove FOUC on Sapper installation instructions ([988c919](https://github.com/hperrin/svelte-material-ui/commit/988c919a65306d42e4941f36189e589a7b8ca9b2))
+* started updating List for MDC v10 ([8bf2727](https://github.com/hperrin/svelte-material-ui/commit/8bf27271f86f59caee9092a7f4f36d2a81a73e8a))
+* update more Sass imports to use ([4061e59](https://github.com/hperrin/svelte-material-ui/commit/4061e59d462792574c9355d1e39efc0f6cb0415c))
+* updated Button for MDC v10 ([ecf16e7](https://github.com/hperrin/svelte-material-ui/commit/ecf16e79b6c6926bd92de49eed9f41d574dc3732))
+* updated Card for MDC v10 ([047ee65](https://github.com/hperrin/svelte-material-ui/commit/047ee6522b330e2a7360027cd41aa5046dc44847))
+* updated Checkbox for MDC v10 ([9efc1b4](https://github.com/hperrin/svelte-material-ui/commit/9efc1b442fe6b9331ca33f9762c956c77b445f22))
+* updated Chips for MDC v10 ([5ca1c05](https://github.com/hperrin/svelte-material-ui/commit/5ca1c05853f3a526450e1f4d3c41fbfeaeab0946))
+* updated Data Tables for MDC v10 ([89cbd52](https://github.com/hperrin/svelte-material-ui/commit/89cbd52c9555a0df5d41f990fb6a985b545927ab))
+* updated Dialog for MDC v10 ([2cc5c15](https://github.com/hperrin/svelte-material-ui/commit/2cc5c152dd328daa561aa2d84d96bfd169ad9cac))
+* updated Drawer for MDC v10 ([25adc19](https://github.com/hperrin/svelte-material-ui/commit/25adc192538cf4bb1cf7a60383b959dd78ee1cb0))
+* updated Elevation demo for MDC v10 ([3430a9f](https://github.com/hperrin/svelte-material-ui/commit/3430a9f082cb2089061760819b0f1d8bdc15aa2f))
+* updated Floating Actio Button for MDC v10 ([4a85665](https://github.com/hperrin/svelte-material-ui/commit/4a8566530bd6521ec7f1bf2f5ee11568268b0c87))
+* updated Floating Label for MDC v10 ([452e95a](https://github.com/hperrin/svelte-material-ui/commit/452e95ab8de2cd93a98d7c10a498437fd6430203))
+* updated IconButton for MDC v10 ([1a6fc5a](https://github.com/hperrin/svelte-material-ui/commit/1a6fc5a019167ff7d4d1f1c35f843e7686069e3a))
+* updated Image List for MDC v10 ([015db52](https://github.com/hperrin/svelte-material-ui/commit/015db527e9614fe4fc96b4541b623352ebe416be))
+* updated Line Ripple for MDC v10 ([66b54ca](https://github.com/hperrin/svelte-material-ui/commit/66b54ca804d828192ba4a01936a706339750f7d4))
+* updated Linear Progress for MDC v10 ([86c7766](https://github.com/hperrin/svelte-material-ui/commit/86c7766e9b3287ff4214a6f890b464ed4dd2c5c0))
+* updated List for MDC v10 ([849e007](https://github.com/hperrin/svelte-material-ui/commit/849e007ea33ddd49f3b5e680fed6d4ffb2715aff))
+* updated Menu for MDC v10 ([ddd6262](https://github.com/hperrin/svelte-material-ui/commit/ddd6262faa7b833472c6bf8ccca6017e6e06ebbe))
+* updated MenuSurface for MDC v10 ([c032c89](https://github.com/hperrin/svelte-material-ui/commit/c032c895ff6463c9cd904e6244027918cc5292e2))
+* updated Notched Outline for MDC v10 ([24b2699](https://github.com/hperrin/svelte-material-ui/commit/24b26997e3e2873e83d50c927e005e348a0df751))
+* updated Paper for MDC v10 ([7ebfb06](https://github.com/hperrin/svelte-material-ui/commit/7ebfb061c7b4ba9f3b49a470160065e735dc5a2a))
+* updated Radio and FormField for MDC v10 ([f1f95b7](https://github.com/hperrin/svelte-material-ui/commit/f1f95b7cff81237c3a3402a448d3ca87a5df039d))
+* updated Ripple for MDC v10 ([ae3f23d](https://github.com/hperrin/svelte-material-ui/commit/ae3f23d45e88a1c1ee7d384a5f2829c25b9c2cf6))
+* updated Select Menus for MDC v10 ([f066d20](https://github.com/hperrin/svelte-material-ui/commit/f066d20024b4b7385bb87cfb3b7231087c16ac31))
+* updated site for SMUI 3 components ([f24c25f](https://github.com/hperrin/svelte-material-ui/commit/f24c25f7cb0b66fbec1417fd8aa7ff8c51c90fde))
+* updated Slider for MDC v10 ([be1aab4](https://github.com/hperrin/svelte-material-ui/commit/be1aab401770e44db02549e9b6794cb46517a3f0))
+* updated Snackbars and Kitchen for MDC v10 ([78974e5](https://github.com/hperrin/svelte-material-ui/commit/78974e5951dbc2c8cbd8edc0b0e77689ed2e2f17))
+* updated Switch for MDC v10 ([b1b81d5](https://github.com/hperrin/svelte-material-ui/commit/b1b81d566676960f59f7e92f3760e85f1ac53b83))
+* updated Tab, TabBar, TabIndicator, TabScroller for MDC v10 ([3e4bd27](https://github.com/hperrin/svelte-material-ui/commit/3e4bd271f4cfff11993c0bde6ee4264ea0dc111d))
+* updated Text Field for MDC v10 ([60e10c2](https://github.com/hperrin/svelte-material-ui/commit/60e10c2d86628fb09101b90e6f5d11d236742f2f))
+* updated Theme demo for MDC v10 ([81091eb](https://github.com/hperrin/svelte-material-ui/commit/81091ebe1d7a9b516eeecdeb6438d8925c584764))
+* updated TopAppBar for MDC v10 ([6cf291d](https://github.com/hperrin/svelte-material-ui/commit/6cf291df3c5833b4938b95ff26138643d3511bcb))
+* updated Typography for MDC v10 ([858751a](https://github.com/hperrin/svelte-material-ui/commit/858751a57d29b89e911adcfa7715e72caebdc98d))
+* upgrade upstream MDC components to v10 ([d47c59a](https://github.com/hperrin/svelte-material-ui/commit/d47c59af50bbec2b7de810261b3cb7a2ffe59180))
+
+
+### BREAKING CHANGES
+
+* Upgrading to v10 of upstream components. Their APIs will change. View the component READMEs.
+
+
+
+
+
 # [2.0.0-beta.1](https://github.com/hperrin/svelte-material-ui/compare/v2.0.0-beta.0...v2.0.0-beta.1) (2021-03-27)
 
 
