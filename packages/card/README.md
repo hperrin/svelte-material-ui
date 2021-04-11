@@ -98,7 +98,7 @@ A card.
 
 ### Options / Defaults
 
-- `use`: `[]` - An array of actions and/or action/property arrays.
+- `use`: `[]` - An array of Svelte actions and/or arrays of an action and its options.
 - `class`: `''` - A CSS class string.
 - `variant`: `'raised'` - The card's style variant. ('raised' or 'outlined')
 - `padded`: `false` - Whether to apply padding to the card. You can also use a `Content` component to achieve the same effect.
@@ -121,7 +121,7 @@ An interactive portion of the card. Meant to be the primary way to interact with
 
 ### Options / Defaults
 
-- `use`: `[]` - An array of actions and/or action/property arrays.
+- `use`: `[]` - An array of Svelte actions and/or arrays of an action and its options.
 - `class`: `''` - A CSS class string.
 - `ripple`: `true` - Whether to implement a ripple for when the component is interacted with.
 - `color`: `null` - A color, passed to the Ripple action. (null, 'primary', or 'secondary')
@@ -138,7 +138,7 @@ An area of the card meant to show media content.
 
 ### Options / Defaults
 
-- `use`: `[]` - An array of actions and/or action/property arrays.
+- `use`: `[]` - An array of Svelte actions and/or arrays of an action and its options.
 - `class`: `''` - A CSS class string.
 - `aspectRatio`: `null` - Add styling to maintain a given aspect ratio. ('square' or '16x9')
 
@@ -158,7 +158,7 @@ An area of the card containing interactive actions.
 
 ### Options / Defaults
 
-- `use`: `[]` - An array of actions and/or action/property arrays.
+- `use`: `[]` - An array of Svelte actions and/or arrays of an action and its options.
 - `class`: `''` - A CSS class string.
 - `fullBleed`: `false` - Whether to style the actions as full bleed, meaning they take up the whole width of the card.
 

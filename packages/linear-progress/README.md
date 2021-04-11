@@ -43,7 +43,7 @@ A Linear Progress component.
 
 ### Props / Defaults
 
-- `use`: `[]` - An array of actions and/or action/property arrays.
+- `use`: `[]` - An array of Svelte actions and/or arrays of an action and its options.
 - `class`: `''` - A CSS class string.
 - `indeterminate`: `false` - Whether the progress value is unknown. This causes the indicator to display a cyclical animation.
 - `reversed`: `false` - Whether to reverse the indicator.

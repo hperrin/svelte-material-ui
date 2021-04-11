@@ -1,9 +1,15 @@
-export default function GroupItem(node) {
-  node.classList.add('smui-button__group-item');
+export default function GroupItem(
+  node,
+  {
+    addClass = (className) => node.classList.add(className),
+    removeClass = (className) => node.classList.remove(className),
+  }
+) {
+  addClass('smui-button__group-item');
 
   return {
     destroy() {
-      node.classList.remove('smui-button__group-item');
+      removeClass('smui-button__group-item');
     },
   };
 }

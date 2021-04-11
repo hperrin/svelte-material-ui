@@ -59,7 +59,7 @@ A chip.
 
 ### Props / Defaults
 
-- `use`: `[]` - An array of actions and/or action/property arrays.
+- `use`: `[]` - An array of Svelte actions and/or arrays of an action and its options.
 - `class`: `''` - A CSS class string.
 - `ripple`: `true` - Whether to implement a ripple for when the component is interacted with.
 - `touch`: `false` - The chip will have a larger touch target.
@@ -82,7 +82,7 @@ A set of chips. Chips should only be added onto the end of the set's chip array.
 
 ### Props / Defaults
 
-- `use`: `[]` - An array of actions and/or action/property arrays.
+- `use`: `[]` - An array of Svelte actions and/or arrays of an action and its options.
 - `class`: `''` - A CSS class string.
 - `chips` `[]` - An array containing the chips. New chips should only be pushed onto the end of this array.
 - `key` `chip => chip` - A function used to get the key of the chip. Chip sets that have removable chips should always provide unique keys.

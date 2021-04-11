@@ -44,7 +44,7 @@ A Form Field component.
 
 ### Props / Defaults
 
-- `use`: `[]` - An array of actions and/or action/property arrays.
+- `use`: `[]` - An array of Svelte actions and/or arrays of an action and its options.
 - `class`: `''` - A CSS class string.
 - `align`: `'start'` - Where to align the input. ('start' or 'end')
 - `inputId`: `(programatically assigned)` - The ID of the input the label is to be associated with.

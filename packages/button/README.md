@@ -8,10 +8,6 @@ An interactive button or link.
 npm install --save-dev @smui/button
 ```
 
-# Whoa There, These Docs are Outdated
-
-The latest SMUI v3 beta had a lot of changes, and these docs haven't been caught up yet. You should check out the demo page's code to see the latest usage.
-
 # Basic Usage
 
 ```svelte
@@ -43,7 +39,7 @@ A button.
 ### Options / Defaults
 
 - `component`: `href == null ? Button : A` - A component to use as the root element.
-- `use`: `[]` - An array of actions and/or action/property arrays.
+- `use`: `[]` - An array of Svelte actions and/or arrays of an action and its options.
 - `class`: `''` - A CSS class string.
 - `ripple`: `true` - Whether to implement a ripple for when the component is interacted with.
 - `color`: `'primary'` - The button's color. ('primary' or 'secondary')
@@ -63,7 +59,7 @@ A button group.
 
 ### Options / Defaults
 
-- `use`: `[]` - An array of actions and/or action/property arrays.
+- `use`: `[]` - An array of Svelte actions and/or arrays of an action and its options.
 - `class`: `''` - A CSS class string.
 - `variant`: `'text'` - The button group's style variant. ('text', 'raised', 'unelevated', or 'outlined')
 
@@ -73,7 +69,12 @@ All standard UI events are forwarded.
 
 ## GroupItem
 
-A group item Svelte action. Used for containing a button in a group. This can be useful for containing menus along with the button.
+A Svelte action for a group item. Used for containing a button in a group. This can be useful for containing menus along with the button. If you are using this on an element that you are also defining classes on (or a component that defines classes internally), you need to provide `addClass` and `removeClass` functions.
+
+### Options / Defaults
+
+- `addClass`: `(className) => node.classList.add(className)` - A function to add a class to the element.
+- `removeClass`: `(className) => node.classList.remove(className)` - A function to remove a class to the element.
 
 ## Label
 

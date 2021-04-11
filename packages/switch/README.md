@@ -42,7 +42,7 @@ A switch.
 
 ### Props / Defaults
 
-- `use`: `[]` - An array of actions and/or action/property arrays.
+- `use`: `[]` - An array of Svelte actions and/or arrays of an action and its options.
 - `class`: `''` - A CSS class string.
 - `disabled`: `false` - Whether the input is disabled.
 - `group`: `(uninitialised)` - The selected values of a group of switches as an array.

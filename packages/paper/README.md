@@ -40,7 +40,7 @@ A paper surface.
 
 ### Props / Defaults
 
-- `use`: `[]` - An array of actions and/or action/property arrays.
+- `use`: `[]` - An array of Svelte actions and/or arrays of an action and its options.
 - `class`: `''` - A CSS class string.
 - `square`: `false` - Whether the component has square or rounded corners.
 - `color`: `'default'` - The component's color. ('primary', 'secondary' or 'default')

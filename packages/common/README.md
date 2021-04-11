@@ -10,21 +10,17 @@ You can also use the elemental components to switch the HTML element that an SMU
 npm install --save-dev @smui/common
 ```
 
-# Whoa There, These Docs are Outdated
-
-The latest SMUI v3 beta had a lot of changes, and these docs haven't been caught up yet. You should check out the demo page's code to see the latest usage.
-
 # Exports
 
 ## Label
 
 A common label.
 
-The common label is used everywhere except for the `list` components.
+The common label is used everywhere that exports a `Label` component.
 
 ### Props / Defaults
 
-- `use`: `[]` - An array of actions and/or action/property arrays.
+- `use`: `[]` - An array of Svelte actions and/or arrays of an action and its options.
 - `class`: `''` - A CSS class string.
 
 ### Events
@@ -35,16 +31,14 @@ All standard UI events are forwarded.
 
 A common icon.
 
-The common icon is used everywhere except for the `textfield` and `select` components.
+The common icon is used everywhere that exports an `Icon` component except for `textfield` and `select`.
 
 ### Props / Defaults
 
-- `use`: `[]` - An array of actions and/or action/property arrays.
+- `component`: `I` - A component to use as the root element.
+- `use`: `[]` - An array of Svelte actions and/or arrays of an action and its options.
 - `class`: `''` - A CSS class string.
 - `on`: `false` - Used in the context of an icon button toggle to denote the icon for when the button is on.
-- `leading`: `false` - Used in the context of a chip to denote that the icon is a leading icon.
-- `leadingHidden`: `false` - Used in the context of a filter chip to hide the icon when the chip is selected.
-- `trailing`: `false` - Used in the context of a chip to denote that the icon is a trailing icon.
 
 ### Events
 
@@ -60,9 +54,27 @@ A base component that adds a class to an element. The ClassAdder is used to prov
 
 ### Props / Defaults
 
-- `use`: `[]` - An array of actions and/or action/property arrays.
-- `class`: `''` - A CSS class string.
 - `component`: `(depends on context)` - The component to extend. Usually it is set to one of the elemental components below.
+- `use`: `[]` - An array of Svelte actions and/or arrays of an action and its options.
+- `class`: `''` - A CSS class string.
+- `forwardEvents`: `[]` - An array of additional events that should be forwarded.
+
+## ContextFragment.svelte
+
+A fragment component (only contains a `<slot />`) used to define a Svelte context with a Svelte store.
+
+### Props / Defaults
+
+- `key`: `undefined` - The key of the Svelte context.
+- `value`: `undefined` - The value of the store contained in the Svelte context. The store will be updated when the value changes.
+
+# Elemental Components
+
+These components are used in SMUI components that take a `component` prop. They determine which HTML element will be used as the root element of the component.
+
+### Props / Defaults (Common to all Elemental Components)
+
+- `use`: `[]` - An array of Svelte actions and/or arrays of an action and its options.
 - `forwardEvents`: `[]` - An array of additional events that should be forwarded.
 
 ## A.svelte
@@ -113,6 +125,14 @@ An elemental component for the `h6` tag.
 
 An elemental component for the `header` tag.
 
+## Hr.svelte
+
+An elemental component for the `hr` tag.
+
+## I.svelte
+
+An elemental component for the `i` tag.
+
 ## Img.svelte
 
 An elemental component for the `img` tag.
@@ -121,6 +141,14 @@ An elemental component for the `img` tag.
 
 An elemental component for the `li` tag.
 
+## Main.svelte
+
+An elemental component for the `main` tag.
+
+## Nav.svelte
+
+An elemental component for the `nav` tag.
+
 ## Section.svelte
 
 An elemental component for the `section` tag.
@@ -128,6 +156,10 @@ An elemental component for the `section` tag.
 ## Span.svelte
 
 An elemental component for the `span` tag.
+
+## Svg.svelte
+
+An elemental component for the `svg` tag.
 
 ## Ul.svelte
 
