@@ -353,10 +353,7 @@
         removeInputAttr: (name) => {
           input.removeAttr(name);
         },
-        isFocused: () => {
-          if (!input) debugger;
-          return document.activeElement === input.getElement();
-        },
+        isFocused: () => document.activeElement === input.getElement(),
         registerInputInteractionHandler: (evtType, handler) => {
           input.getElement().addEventListener(evtType, handler, applyPassive());
         },
