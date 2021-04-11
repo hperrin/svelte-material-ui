@@ -32,7 +32,7 @@
 
 <script>
   import { prefixFilter } from '@smui/common/internal.js';
-  import Label from '@smui/common/Label.svelte';
+  import Label from '@smui/common/CommonLabel.svelte';
   import Button from '@smui/button/Button.svelte';
   import IconButton from '@smui/icon-button/IconButton.svelte';
   import Snackbar from '../Snackbar.svelte';
