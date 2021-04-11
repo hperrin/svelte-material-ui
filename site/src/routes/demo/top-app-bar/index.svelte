@@ -95,20 +95,21 @@
       (These are displayed in iframes.)
     </p>
 
+    <!-- Check out iframe.svelte too see how these work. -->
     <iframe
       class="top-app-bar-iframe"
-      src="/demo/top-app-bar-iframe"
+      src="/demo/top-app-bar/iframe"
       title="standard"
       width="480"
       height="320"
     />
-    <a style="display: none;" href="/demo/top-app-bar-iframe"
+    <a style="display: none;" href="/demo/top-app-bar/iframe"
       >helper needed for sapper export</a
     >
 
     <iframe
       class="top-app-bar-iframe"
-      src="/demo/top-app-bar-iframe?style=fixed"
+      src="/demo/top-app-bar/iframe?style=fixed"
       title="fixed"
       width="480"
       height="320"
@@ -116,7 +117,7 @@
 
     <iframe
       class="top-app-bar-iframe"
-      src="/demo/top-app-bar-iframe?style=dense"
+      src="/demo/top-app-bar/iframe?style=dense"
       title="dense"
       width="480"
       height="320"
@@ -124,7 +125,7 @@
 
     <iframe
       class="top-app-bar-iframe"
-      src="/demo/top-app-bar-iframe?style=prominent"
+      src="/demo/top-app-bar/iframe?style=prominent"
       title="prominent"
       width="480"
       height="320"
@@ -132,7 +133,7 @@
 
     <iframe
       class="top-app-bar-iframe"
-      src="/demo/top-app-bar-iframe?style=short"
+      src="/demo/top-app-bar/iframe?style=short"
       title="short"
       width="480"
       height="320"
@@ -140,7 +141,7 @@
 
     <iframe
       class="top-app-bar-iframe"
-      src="/demo/top-app-bar-iframe?style=short-closed"
+      src="/demo/top-app-bar/iframe?style=short-closed"
       title="short closed"
       width="480"
       height="320"
@@ -153,7 +154,7 @@
   import IconButton from '@smui/icon-button';
   import Checkbox from '@smui/checkbox';
   import FormField from '@smui/form-field';
-  import LoremIpsum from '../../components/LoremIpsum.svelte';
+  import LoremIpsum from '../../../components/LoremIpsum.svelte';
 
   let prominent = false;
   let dense = false;

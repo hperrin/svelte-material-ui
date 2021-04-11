@@ -33,7 +33,7 @@ The latest SMUI v3 beta had a lot of changes, and these docs haven't been caught
 
 _in action:_ https://sveltematerialui.com/demo/linear-progress
 
-_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/linear-progress.svelte and https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/linear-progress.scss
+_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/linear-progress/
 
 # Exports
 

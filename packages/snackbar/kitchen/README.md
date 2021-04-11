@@ -10,7 +10,7 @@ todo...
 
 _in action:_ https://sveltematerialui.com/demo/snackbars
 
-_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/snackbars.svelte
+_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/snackbars/
 
 # Exports
 

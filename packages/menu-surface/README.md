@@ -18,7 +18,7 @@ todo...
 
 _in action:_ https://sveltematerialui.com/demo/menu-surface
 
-_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/menu-surface.svelte
+_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/menu-surface/
 
 # Exports
 

@@ -30,7 +30,7 @@ The latest SMUI v3 beta had a lot of changes, and these docs haven't been caught
 
 _in action:_ https://sveltematerialui.com/demo/paper
 
-_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/paper.svelte
+_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/paper/
 
 # Exports
 

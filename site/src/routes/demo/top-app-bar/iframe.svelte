@@ -35,7 +35,7 @@
     AutoAdjust,
   } from '@smui/top-app-bar';
   import IconButton from '@smui/icon-button';
-  import LoremIpsum from '../../components/LoremIpsum.svelte';
+  import LoremIpsum from '../../../components/LoremIpsum.svelte';
 
   const { page } = stores();
 

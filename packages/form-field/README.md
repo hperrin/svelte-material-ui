@@ -34,7 +34,7 @@ The latest SMUI v3 beta had a lot of changes, and these docs haven't been caught
 
 _in action:_ https://sveltematerialui.com/demo/radio
 
-_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/radio.svelte
+_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/radio/
 
 # Exports
 

@@ -267,7 +267,7 @@
   import Radio from '@smui/radio';
   import Slider from '@smui/slider';
   import FormField from '@smui/form-field';
-  import LoremIpsum from '../../components/LoremIpsum.svelte';
+  import LoremIpsum from '../../../components/LoremIpsum.svelte';
 
   let simpleDialogOpen;
   let eventDialogOpen;

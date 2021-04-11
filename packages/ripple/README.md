@@ -46,7 +46,7 @@ If you do have a `class` attribute:
 
 _in action:_ https://sveltematerialui.com/demo/ripple
 
-_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/ripple.svelte
+_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/ripple/
 
 # Exports
 
