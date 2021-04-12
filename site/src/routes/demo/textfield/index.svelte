@@ -678,10 +678,14 @@
         <Textfield
           bind:input={inputManualInputC}
           bind:notchedOutline={inputManualNotchedOutlineC}
+          bind:floatingLabel={inputManualFloatingLabelC}
           variant="outlined"
         >
           <NotchedOutline bind:this={inputManualNotchedOutlineC} slot="label">
-            <FloatingLabel for="input-manual-c">Outlined</FloatingLabel>
+            <FloatingLabel
+              bind:this={inputManualFloatingLabelC}
+              for="input-manual-c">Outlined</FloatingLabel
+            >
           </NotchedOutline>
           <Icon class="material-icons" slot="leadingIcon">event</Icon>
           <Input
@@ -702,10 +706,14 @@
         <Textfield
           bind:input={inputManualInputD}
           bind:notchedOutline={inputManualNotchedOutlineD}
+          bind:floatingLabel={inputManualFloatingLabelD}
           textarea
         >
           <NotchedOutline bind:this={inputManualNotchedOutlineD} slot="label">
-            <FloatingLabel for="input-manual-d">Textarea</FloatingLabel>
+            <FloatingLabel
+              bind:this={inputManualFloatingLabelD}
+              for="input-manual-d">Textarea</FloatingLabel
+            >
           </NotchedOutline>
           <Textarea
             bind:this={inputManualInputD}
@@ -800,10 +808,12 @@
   let valueManualC = '';
   let inputManualInputC;
   let inputManualNotchedOutlineC;
+  let inputManualFloatingLabelC;
 
   let valueManualD = '';
   let inputManualInputD;
   let inputManualNotchedOutlineD;
+  let inputManualFloatingLabelD;
 
   function clickableHandler() {
     alert(`Sending to ${valueClickable}!`);

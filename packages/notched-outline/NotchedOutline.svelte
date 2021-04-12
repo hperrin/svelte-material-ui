@@ -43,7 +43,7 @@
   let className = '';
   export { className as class };
   export let notched = false;
-  export let noLabel = true;
+  export let noLabel = false;
 
   let element;
   let instance;
