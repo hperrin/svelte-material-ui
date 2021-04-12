@@ -48,6 +48,7 @@
   export let tabs = [];
   export let key = (tab) => tab;
   export let focusOnActivate = true;
+  export let focusOnProgrammatic = false;
   export let useAutomaticActivation = true;
   export let active = null;
 
@@ -57,6 +58,7 @@
   let activeIndex = tabs.indexOf(active);
   let tabAccessorMap = {};
   let tabAccessorWeakMap = new WeakMap();
+  let skipFocus = false;
 
   setContext('SMUI:tab:focusOnActivate', focusOnActivate);
   setContext('SMUI:tab:initialActive', active);
@@ -64,7 +66,9 @@
   $: if (active !== tabs[activeIndex]) {
     activeIndex = tabs.indexOf(active);
     if (instance) {
+      skipFocus = !focusOnProgrammatic;
       instance.activateTab(activeIndex);
+      skipFocus = false;
     }
   }
 
@@ -100,7 +104,7 @@
         instance.activateTab(index);
       },
       activateTabAtIndex: (index, clientRect) =>
-        getAccessor(tabs[index]).activate(clientRect),
+        getAccessor(tabs[index]).activate(clientRect, skipFocus),
       deactivateTabAtIndex: (index) => getAccessor(tabs[index]).deactivate(),
       focusTabAtIndex: (index) => getAccessor(tabs[index]).focus(),
       getTabIndicatorClientRectAtIndex: (index) =>

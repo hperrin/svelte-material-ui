@@ -197,9 +197,15 @@
     }
   }
 
-  export function activate(previousIndicatorClientRect) {
+  export function activate(previousIndicatorClientRect, skipFocus) {
     active = true;
+    if (skipFocus) {
+      instance.setFocusOnActivate(false);
+    }
     instance.activate(previousIndicatorClientRect);
+    if (skipFocus) {
+      instance.setFocusOnActivate(focusOnActivate);
+    }
   }
 
   export function deactivate() {
