@@ -11,6 +11,7 @@
         disabled: !!$$restProps.disabled,
         addClass,
         removeClass,
+        addStyle,
       },
     ],
     forwardEvents,
@@ -32,6 +33,10 @@
     'mdc-snackbar__action': context === 'snackbar:actions',
     ...internalClasses,
   })}
+  style={Object.entries(internalStyles)
+    .map(([name, value]) => `${name}: ${value};`)
+    .concat([style])
+    .join(' ')}
   {...actionProp}
   {...defaultProp}
   {href}
@@ -53,6 +58,7 @@
   export let use = [];
   let className = '';
   export { className as class };
+  export let style = '';
   export let ripple = true;
   export let color = 'primary';
   export let variant = 'text';
@@ -64,6 +70,7 @@
 
   let element;
   let internalClasses = {};
+  let internalStyles = {};
   let context = getContext('SMUI:button:context');
 
   export let component = href == null ? Button : A;
@@ -89,6 +96,12 @@
   function removeClass(className) {
     if (!(className in internalClasses) || internalClasses[className]) {
       internalClasses[className] = false;
+    }
+  }
+
+  function addStyle(name, value) {
+    if (internalStyles[name] !== value) {
+      internalStyles[name] = value;
     }
   }
 
