@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-beta.3](https://github.com/hperrin/svelte-material-ui/compare/v3.0.0-beta.2...v3.0.0-beta.3) (2021-04-12)
+
+
+### Bug Fixes
+
+* add ripple style on buttons when style prop is defined ([aa65603](https://github.com/hperrin/svelte-material-ui/commit/aa65603ee57310006eb2bc3467dc4d6a9c410e31))
+* allow styles on components with ripples ([1c6b28a](https://github.com/hperrin/svelte-material-ui/commit/1c6b28ac1bb7954b4f55a57b6e8c5becfca42cea))
+* don't focus tab when activated programmatically by default ([59c66b1](https://github.com/hperrin/svelte-material-ui/commit/59c66b1fcee6cce84233791d6af1a91799b415f9))
+* floating label noLabel default to false ([cf06c28](https://github.com/hperrin/svelte-material-ui/commit/cf06c286c4dd476d553980930d13ad8719afaebf))
+* outlined textfield labels ([07e7544](https://github.com/hperrin/svelte-material-ui/commit/07e7544a9c92ee691a9b634c71ac003512542eb6))
+* reference error on button GroupItem ([41402f8](https://github.com/hperrin/svelte-material-ui/commit/41402f81a73d90d091d0577c2674e2ba98f1d5da))
+
+
+
+
+
 # [3.0.0-beta.2](https://github.com/hperrin/svelte-material-ui/compare/v3.0.0-beta.1...v3.0.0-beta.2) (2021-04-11)
 
 

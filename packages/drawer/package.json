@@ -1,6 +1,6 @@
 {
   "name": "@smui/drawer",
-  "version": "3.0.0-beta.2",
+  "version": "3.0.0-beta.3",
   "description": "Svelte Material UI - Drawer",
   "keywords": [
     "svelte",
@@ -30,7 +30,7 @@
   "dependencies": {
     "@material/dom": "^10.0.0",
     "@material/drawer": "^10.0.0",
-    "@smui/common": "^3.0.0-beta.2"
+    "@smui/common": "^3.0.0-beta.3"
   },
   "devDependencies": {
     "sass": "^1.32.8"

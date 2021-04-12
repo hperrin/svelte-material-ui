@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-beta.3](https://github.com/hperrin/svelte-material-ui/compare/v3.0.0-beta.2...v3.0.0-beta.3) (2021-04-12)
+
+
+### Bug Fixes
+
+* allow styles on components with ripples ([1c6b28a](https://github.com/hperrin/svelte-material-ui/commit/1c6b28ac1bb7954b4f55a57b6e8c5becfca42cea))
+* floating label noLabel default to false ([cf06c28](https://github.com/hperrin/svelte-material-ui/commit/cf06c286c4dd476d553980930d13ad8719afaebf))
+* outlined textfield labels ([07e7544](https://github.com/hperrin/svelte-material-ui/commit/07e7544a9c92ee691a9b634c71ac003512542eb6))
+
+
+
+
+
 # [3.0.0-beta.2](https://github.com/hperrin/svelte-material-ui/compare/v3.0.0-beta.1...v3.0.0-beta.2) (2021-04-11)
 
 **Note:** Version bump only for package @smui/notched-outline

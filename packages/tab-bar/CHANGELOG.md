@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-beta.3](https://github.com/hperrin/svelte-material-ui/compare/v3.0.0-beta.2...v3.0.0-beta.3) (2021-04-12)
+
+
+### Bug Fixes
+
+* don't focus tab when activated programmatically by default ([59c66b1](https://github.com/hperrin/svelte-material-ui/commit/59c66b1fcee6cce84233791d6af1a91799b415f9))
+
+
+
+
+
 # [3.0.0-beta.2](https://github.com/hperrin/svelte-material-ui/compare/v3.0.0-beta.1...v3.0.0-beta.2) (2021-04-11)
 
 **Note:** Version bump only for package @smui/tab-bar
