@@ -1,6 +1,6 @@
 {
   "name": "@smui/image-list",
-  "version": "3.0.0-beta.3",
+  "version": "3.0.0-beta.4",
   "description": "Svelte Material UI - Image List",
   "keywords": [
     "svelte",
@@ -29,7 +29,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@material/image-list": "^10.0.0",
-    "@smui/common": "^3.0.0-beta.3"
+    "@smui/common": "^3.0.0-beta.4"
   },
   "devDependencies": {
     "sass": "^1.32.8"
