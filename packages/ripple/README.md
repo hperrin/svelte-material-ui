@@ -8,27 +8,23 @@ Ripples are an interaction feedback mechanism.
 npm install --save-dev @smui/ripple
 ```
 
-# Whoa There, These Docs are Outdated
-
-The latest SMUI v3 beta had a lot of changes, and these docs haven't been caught up yet. You should check out the demo page's code to see the latest usage.
-
 # Basic Usage
 
 ```svelte
 If you don't have a `class` attribute:
 
-<p use:Ripple={{ ripple: true, color: 'surface' }} tabindex="0">
-  Here is an element with a ripple.
-</p>
+<p use:Ripple tabindex="0">Here is an element with a ripple.</p>
 
 If you do have a `class` attribute:
 
 <p
-  class="some-class {rippleClasses.join(' ')}"
+  class="some-class {Object.keys(rippleClasses).join(' ')}"
   use:Ripple={{
-    ripple: true,
-    color: 'surface',
-    classForward: (classes) => (rippleClasses = classes),
+    addClass: (className) => (rippleClasses[className] = true),
+    removeClass: (className) => {
+      delete rippleClasses[className];
+      rippleClasses = rippleClasses;
+    },
   }}
   tabindex="0"
 >
@@ -38,7 +34,7 @@ If you do have a `class` attribute:
 <script>
   import Ripple from '@smui/ripple';
 
-  let rippleClasses = [];
+  let rippleClasses = {};
 </script>
 ```
 
@@ -58,11 +54,18 @@ A ripple Svelte action.
 
 The action accepts an array, with two entries. The first is a boolean, whether the ripple is enabled. The second is an object with the props:
 
-- `ripple` - Whether to enable the ripple.
-- `unbounded` - Whether the ripple is unbounded.
-- `disabled` - Whether the element is disabled.
-- `color` - The ripple color. ('surface', 'primary', or 'secondary')
-- `classForward` - A function that receives an array of classes. This is used to work around Svelte removing ripple classes in certain scenarios.
+- `ripple`: `true` - Whether to enable the ripple.
+- `surface`: `false` - Whether the ripple surface classes should be added.
+- `unbounded`: `false` - Whether the ripple is unbounded.
+- `disabled`: `false` - Whether the node is disabled.
+- `color`: `null` - The ripple color. ('surface', 'primary', or 'secondary')
+- `active`: `null` - Used to determine active status of the ripple. If it's null, the ":active" pseudo class will be checked on `activeTarget` or the node.
+- `eventTarget`: `null` - An alternate element where ripple triggering event listeners will be added.
+- `activeTarget`: `null` - An alternate element where active status will be checked.
+- `addClass`: `(className) => node.classList.add(className)` - A function to add a class to the node.
+- `removeClass`: `(className) => node.classList.remove(className)` - A function to remove a class from the node.
+- `addStyle`: `(name, value) => node.style.setProperty(name, value)` - A function to add a style property to the node. If given a value of `''` or `null`, it should remove the property.
+- `initPromise`: `Promise.resolve()` - A promise to wait for before initializing the ripple.
 
 # More Information
 
