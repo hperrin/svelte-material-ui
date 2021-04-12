@@ -9,6 +9,7 @@
         unbounded: false,
         addClass,
         removeClass,
+        addStyle,
       },
     ],
     forwardEvents,
@@ -23,6 +24,10 @@
     'mdc-tab--min-width': minWidth,
     ...internalClasses,
   })}
+  style={Object.entries(internalStyles)
+    .map(([name, value]) => `${name}: ${value};`)
+    .concat([style])
+    .join(' ')}
   role="tab"
   aria-selected={active ? 'true' : 'false'}
   tabindex={active || forceAccessible ? '0' : '-1'}
@@ -91,6 +96,7 @@
   export let use = [];
   let className = '';
   export { className as class };
+  export let style = '';
   let tabId;
   export { tabId as tab };
   export let ripple = true;
@@ -106,6 +112,7 @@
   let content;
   let tabIndicator;
   let internalClasses = {};
+  let internalStyles = {};
   let internalAttrs = {};
   let focusOnActivate = getContext('SMUI:tab:focusOnActivate');
   let active = tabId === getContext('SMUI:tab:initialActive');
@@ -188,6 +195,17 @@
   function removeClass(className) {
     if (!(className in internalClasses) || internalClasses[className]) {
       internalClasses[className] = false;
+    }
+  }
+
+  function addStyle(name, value) {
+    if (internalStyles[name] != value) {
+      if (value === '' || value == null) {
+        delete internalStyles[name];
+        internalStyles = internalStyles;
+      } else {
+        internalStyles[name] = value;
+      }
     }
   }
 

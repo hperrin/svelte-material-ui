@@ -5,6 +5,7 @@
     unbounded: false,
     addClass,
     removeClass,
+    addStyle,
   }}
   use:Anchor={{ addClass, removeClass }}
   use:useActions={use}
@@ -23,6 +24,10 @@
     'mdc-select--activated': menuOpen,
     ...internalClasses,
   })}
+  style={Object.entries(internalStyles)
+    .map(([name, value]) => `${name}: ${value};`)
+    .concat([style])
+    .join(' ')}
   on:SMUI:select:leading-icon:mount={(event) => (leadingIcon = event.detail)}
   on:SMUI:select:leading-icon:unmount={() => (leadingIcon = undefined)}
   {...exclude($$restProps, [
@@ -235,6 +240,7 @@
   export let use = [];
   let className = '';
   export { className as class };
+  export let style = '';
   export let ripple = true;
   export let disabled = false;
   export let variant = 'standard';
@@ -260,6 +266,7 @@
   let element;
   let instance;
   let internalClasses = {};
+  let internalStyles = {};
   let selectAnchor;
   let selectAnchorAttrs = {};
   let selectText;
@@ -456,6 +463,17 @@
   function removeClass(className) {
     if (!(className in internalClasses) || internalClasses[className]) {
       internalClasses[className] = false;
+    }
+  }
+
+  function addStyle(name, value) {
+    if (internalStyles[name] != value) {
+      if (value === '' || value == null) {
+        delete internalStyles[name];
+        internalStyles = internalStyles;
+      } else {
+        internalStyles[name] = value;
+      }
     }
   }
 

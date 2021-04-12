@@ -132,14 +132,24 @@
   }
 
   function addScrollAreaStyle(name, value) {
-    if (scrollAreaStyles[name] !== value) {
-      scrollAreaStyles[name] = value;
+    if (scrollAreaStyles[name] != value) {
+      if (value === '' || value == null) {
+        delete scrollAreaStyles[name];
+        scrollAreaStyles = scrollAreaStyles;
+      } else {
+        scrollAreaStyles[name] = value;
+      }
     }
   }
 
   function addScrollContentStyle(name, value) {
-    if (scrollContentStyles[name] !== value) {
-      scrollContentStyles[name] = value;
+    if (scrollContentStyles[name] != value) {
+      if (value === '' || value == null) {
+        delete scrollContentStyles[name];
+        scrollContentStyles = scrollContentStyles;
+      } else {
+        scrollContentStyles[name] = value;
+      }
     }
   }
 

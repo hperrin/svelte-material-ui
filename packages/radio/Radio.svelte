@@ -2,9 +2,10 @@
   bind:this={element}
   use:Ripple={{
     unbounded: true,
+    active: rippleActive,
     addClass,
     removeClass,
-    active: rippleActive,
+    addStyle,
   }}
   use:useActions={use}
   use:forwardEvents
@@ -15,6 +16,10 @@
     'mdc-radio--touch': touch,
     ...internalClasses,
   })}
+  style={Object.entries(internalStyles)
+    .map(([name, value]) => `${name}: ${value};`)
+    .concat([style])
+    .join(' ')}
   {...exclude($$restProps, ['input$'])}
 >
   <input
@@ -64,6 +69,7 @@
   export let use = [];
   let className = '';
   export { className as class };
+  export let style = '';
   export let disabled = false;
   export let touch = false;
   export let group = null;
@@ -75,6 +81,7 @@
   let element;
   let instance;
   let internalClasses = {};
+  let internalStyles = {};
   let rippleActive = false;
   let inputProps = getContext('SMUI:generic:input:props') || {};
 
@@ -130,6 +137,17 @@
   function removeClass(className) {
     if (!(className in internalClasses) || internalClasses[className]) {
       internalClasses[className] = false;
+    }
+  }
+
+  function addStyle(name, value) {
+    if (internalStyles[name] != value) {
+      if (value === '' || value == null) {
+        delete internalStyles[name];
+        internalStyles = internalStyles;
+      } else {
+        internalStyles[name] = value;
+      }
     }
   }
 

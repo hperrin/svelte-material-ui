@@ -11,6 +11,7 @@
         disabled: !!$$restProps.disabled,
         addClass,
         removeClass,
+        addStyle,
       },
     ],
     forwardEvents,
@@ -28,6 +29,10 @@
     'mdc-snackbar__dismiss': context === 'snackbar:actions',
     ...internalClasses,
   })}
+  style={Object.entries(internalStyles)
+    .map(([name, value]) => `${name}: ${value};`)
+    .concat([style])
+    .join(' ')}
   aria-pressed={toggle ? (pressed ? 'true' : 'false') : null}
   aria-label={pressed ? ariaLabelOn : ariaLabelOff}
   data-aria-label-on={ariaLabelOn}
@@ -63,6 +68,7 @@
   export let use = [];
   let className = '';
   export { className as class };
+  export let style = '';
   export let ripple = true;
   export let color = null;
   export let toggle = false;
@@ -74,6 +80,7 @@
   let element;
   let instance;
   let internalClasses = {};
+  let internalStyles = {};
   let internalAttrs = {};
   let context = getContext('SMUI:icon-button:context');
 
@@ -128,6 +135,17 @@
   function removeClass(className) {
     if (!(className in internalClasses) || internalClasses[className]) {
       internalClasses[className] = false;
+    }
+  }
+
+  function addStyle(name, value) {
+    if (internalStyles[name] != value) {
+      if (value === '' || value == null) {
+        delete internalStyles[name];
+        internalStyles = internalStyles;
+      } else {
+        internalStyles[name] = value;
+      }
     }
   }
 

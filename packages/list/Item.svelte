@@ -15,6 +15,7 @@
               disabled,
               addClass,
               removeClass,
+              addStyle,
             },
           ],
         ]),
@@ -32,6 +33,10 @@
     'smui-menu-item--non-interactive': nonInteractive,
     ...internalClasses,
   })}
+  style={Object.entries(internalStyles)
+    .map(([name, value]) => `${name}: ${value};`)
+    .concat([style])
+    .join(' ')}
   {...nav && activated ? { 'aria-current': 'page' } : {}}
   {...!nav ? { role } : {}}
   {...!nav && role === 'option'
@@ -86,6 +91,7 @@
   export let use = [];
   let className = '';
   export { className as class };
+  export let style = '';
   export let color = null;
   export let nonInteractive = getContext('SMUI:list:nonInteractive');
   setContext('SMUI:list:nonInteractive', undefined);
@@ -102,6 +108,7 @@
 
   let element;
   let internalClasses = {};
+  let internalStyles = {};
   let internalAttrs = {};
   let input;
   let addTabindexIfNoItemsSelectedRaf;
@@ -223,6 +230,17 @@
   function removeClass(className) {
     if (!(className in internalClasses) || internalClasses[className]) {
       internalClasses[className] = false;
+    }
+  }
+
+  function addStyle(name, value) {
+    if (internalStyles[name] != value) {
+      if (value === '' || value == null) {
+        delete internalStyles[name];
+        internalStyles = internalStyles;
+      } else {
+        internalStyles[name] = value;
+      }
     }
   }
 

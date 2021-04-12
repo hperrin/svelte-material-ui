@@ -7,7 +7,7 @@
 
   <div>
     <FormField align="end" style="display: flex;">
-      <Slider style="flex-grow: 1;" bind:value step={0.01} />
+      <Slider style="flex-grow: 1;" bind:value />
       <span
         slot="label"
         style="padding-right: 12px; width: max-content; display: block;"
@@ -16,7 +16,21 @@
     </FormField>
   </div>
 
-  <pre class="status">Value: {value.toFixed(2)}</pre>
+  <pre class="status">Value: {value}</pre>
+
+  <div>
+    <h6 class="demo-title">Continuous</h6>
+
+    <Slider
+      bind:value={valueContinuous}
+      min={-10}
+      max={10}
+      step={0.001}
+      input$aria-label="Continuous slider"
+    />
+  </div>
+
+  <pre class="status">Value: {valueContinuous.toFixed(3)}</pre>
 
   <div>
     <h6 class="demo-title">Discrete with min/max/step</h6>
@@ -65,6 +79,12 @@
 
   <pre
     class="status">Value: {valueRangeStart.toFixed(1)} - {valueRangeEnd.toFixed(1)}</pre>
+
+  <div>
+    <h6 class="demo-title">Disabled</h6>
+
+    <Slider disabled value={5} />
+  </div>
 </section>
 
 <script>
@@ -72,6 +92,7 @@
   import FormField from '@smui/form-field';
 
   let value = 50;
+  let valueContinuous = 0;
   let valueDiscrete = 0;
   let valueSteps = 0;
   let valueRangeStart = 1;

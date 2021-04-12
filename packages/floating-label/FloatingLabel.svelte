@@ -125,8 +125,13 @@
   }
 
   function addStyle(name, value) {
-    if (internalStyles[name] !== value) {
-      internalStyles[name] = value;
+    if (internalStyles[name] != value) {
+      if (value === '' || value == null) {
+        delete internalStyles[name];
+        internalStyles = internalStyles;
+      } else {
+        internalStyles[name] = value;
+      }
     }
   }
 

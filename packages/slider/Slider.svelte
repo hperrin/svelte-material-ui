@@ -29,8 +29,6 @@
       {min}
       max={end}
       bind:value={start}
-      on:focusin={() => (thumbStartRippleActive = true)}
-      on:focusout={() => (thumbStartRippleActive = false)}
       on:change
       on:input
       {...inputStartAttrs}
@@ -48,8 +46,6 @@
       min={start}
       {max}
       bind:value={end}
-      on:focusin={() => (thumbRippleActive = true)}
-      on:focusout={() => (thumbRippleActive = false)}
       on:change
       on:input
       {...inputProps}
@@ -69,8 +65,6 @@
       {min}
       {max}
       bind:value
-      on:focusin={() => (thumbRippleActive = true)}
-      on:focusout={() => (thumbRippleActive = false)}
       on:change
       on:input
       {...inputProps}
@@ -106,9 +100,13 @@
       bind:this={thumbStart}
       use:Ripple={{
         unbounded: true,
+        disabled,
+        active: thumbStartRippleActive,
+        eventTarget: inputStart,
+        activeTarget: inputStart,
         addClass: (className) => addThumbClass(className, Thumb.START),
         removeClass: (className) => removeThumbClass(className, Thumb.START),
-        active: thumbStartRippleActive,
+        addStyle: (name, value) => addThumbStyle(name, value, Thumb.START),
       }}
       class={classMap({
         'mdc-slider__thumb': true,
@@ -131,9 +129,13 @@
       bind:this={thumbEl}
       use:Ripple={{
         unbounded: true,
+        disabled,
+        active: thumbRippleActive,
+        eventTarget: input,
+        activeTarget: input,
         addClass: (className) => addThumbClass(className, Thumb.END),
         removeClass: (className) => removeThumbClass(className, Thumb.END),
-        active: thumbRippleActive,
+        addStyle: (name, value) => addThumbStyle(name, value, Thumb.END),
       }}
       class={classMap({
         'mdc-slider__thumb': true,
@@ -157,9 +159,13 @@
       bind:this={thumbEl}
       use:Ripple={{
         unbounded: true,
+        disabled,
+        active: thumbRippleActive,
+        eventTarget: input,
+        activeTarget: input,
         addClass: (className) => addThumbClass(className),
         removeClass: (className) => removeThumbClass(className),
-        active: thumbRippleActive,
+        addStyle: (name, value) => addThumbStyle(name, value),
       }}
       class={classMap({
         'mdc-slider__thumb': true,
@@ -183,7 +189,7 @@
 
 <script>
   import { MDCSliderFoundation, Thumb, TickMark } from '@material/slider';
-  import { onMount, onDestroy, getContext } from 'svelte';
+  import { onMount, onDestroy, getContext, tick } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
@@ -348,7 +354,6 @@
       emitDragStartEvent: (_, thumb) => {
         // Emitting event is not yet implemented. See issue:
         // https://github.com/material-components/material-components-web/issues/6448
-
         if (range && thumb === Thumb.START) {
           thumbStartRippleActive = true;
         } else {
@@ -358,15 +363,10 @@
       emitDragEndEvent: (_, thumb) => {
         // Emitting event is not yet implemented. See issue:
         // https://github.com/material-components/material-components-web/issues/6448
-
         if (range && thumb === Thumb.START) {
-          if (inputStart !== document.activeElement) {
-            thumbStartRippleActive = false;
-          }
+          thumbStartRippleActive = false;
         } else {
-          if (input !== document.activeElement) {
-            thumbRippleActive = false;
-          }
+          thumbRippleActive = false;
         }
       },
       registerEventHandler: (evtType, handler) => {
@@ -487,6 +487,42 @@
     }
   }
 
+  function addThumbStyle(name, value, thumb) {
+    if (range && thumb === Thumb.START) {
+      if (thumbStartStyles[name] != value) {
+        if (value === '' || value == null) {
+          delete thumbStartStyles[name];
+          thumbStartStyles = thumbStartStyles;
+        } else {
+          thumbStartStyles[name] = value;
+        }
+      }
+    } else {
+      if (thumbStyles[name] != value) {
+        if (value === '' || value == null) {
+          delete thumbStyles[name];
+          thumbStyles = thumbStyles;
+        } else {
+          thumbStyles[name] = value;
+        }
+      }
+    }
+  }
+
+  function removeThumbStyle(name, thumb) {
+    if (range && thumb === Thumb.START) {
+      if (name in thumbStartStyles) {
+        delete thumbStartStyles[name];
+        thumbStartStyles = thumbStartStyles;
+      }
+    } else {
+      if (name in thumbStyles) {
+        delete thumbStyles[name];
+        thumbStyles = thumbStyles;
+      }
+    }
+  }
+
   function getInputAttr(name, thumb) {
     // Some custom logic for "value", since Svelte doesn't seem to actually
     // set the attribute, just the DOM property.
@@ -529,35 +565,14 @@
     }
   }
 
-  function addThumbStyle(name, value, thumb) {
-    if (range && thumb === Thumb.START) {
-      if (thumbStartStyles[name] !== value) {
-        thumbStartStyles[name] = value;
-      }
-    } else {
-      if (thumbStyles[name] !== value) {
-        thumbStyles[name] = value;
-      }
-    }
-  }
-
-  function removeThumbStyle(name, thumb) {
-    if (range && thumb === Thumb.START) {
-      if (name in thumbStartStyles) {
-        delete thumbStartStyles[name];
-        thumbStartStyles = thumbStartStyles;
-      }
-    } else {
-      if (name in thumbStyles) {
-        delete thumbStyles[name];
-        thumbStyles = thumbStyles;
-      }
-    }
-  }
-
   function addTrackActiveStyle(name, value) {
-    if (trackActiveStyles[name] !== value) {
-      trackActiveStyles[name] = value;
+    if (trackActiveStyles[name] != value) {
+      if (value === '' || value == null) {
+        delete trackActiveStyles[name];
+        trackActiveStyles = trackActiveStyles;
+      } else {
+        trackActiveStyles[name] = value;
+      }
     }
   }
 

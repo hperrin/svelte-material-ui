@@ -160,20 +160,35 @@
   }
 
   function addStyle(name, value) {
-    if (internalStyles[name] !== value) {
-      internalStyles[name] = value;
+    if (internalStyles[name] != value) {
+      if (value === '' || value == null) {
+        delete internalStyles[name];
+        internalStyles = internalStyles;
+      } else {
+        internalStyles[name] = value;
+      }
     }
   }
 
   function addBufferBarStyle(name, value) {
-    if (bufferBarStyles[name] !== value) {
-      bufferBarStyles[name] = value;
+    if (bufferBarStyles[name] != value) {
+      if (value === '' || value == null) {
+        delete bufferBarStyles[name];
+        bufferBarStyles = bufferBarStyles;
+      } else {
+        bufferBarStyles[name] = value;
+      }
     }
   }
 
   function addPrimaryBarStyle(name, value) {
-    if (primaryBarStyles[name] !== value) {
-      primaryBarStyles[name] = value;
+    if (primaryBarStyles[name] != value) {
+      if (value === '' || value == null) {
+        delete primaryBarStyles[name];
+        primaryBarStyles = primaryBarStyles;
+      } else {
+        primaryBarStyles[name] = value;
+      }
     }
   }
 

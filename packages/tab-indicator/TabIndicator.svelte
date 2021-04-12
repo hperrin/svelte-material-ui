@@ -131,8 +131,13 @@
   }
 
   function addContentStyle(name, value) {
-    if (contentStyles[name] !== value) {
-      contentStyles[name] = value;
+    if (contentStyles[name] != value) {
+      if (value === '' || value == null) {
+        delete contentStyles[name];
+        contentStyles = contentStyles;
+      } else {
+        contentStyles[name] = value;
+      }
     }
   }
 

@@ -91,8 +91,13 @@
   }
 
   function addNotchStyle(name, value) {
-    if (notchStyles[name] !== value) {
-      notchStyles[name] = value;
+    if (notchStyles[name] != value) {
+      if (value === '' || value == null) {
+        delete notchStyles[name];
+        notchStyles = notchStyles;
+      } else {
+        notchStyles[name] = value;
+      }
     }
   }
 

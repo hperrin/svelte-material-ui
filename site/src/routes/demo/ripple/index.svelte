@@ -49,7 +49,8 @@
         unbounded: true,
         color: 'primary',
         // addClass and removeClass need to be provided, since
-        // we have a "class" attribute on this element.
+        // we have a "class" attribute on this element. If we had
+        // a "style" attribute, we would also need addStyle.
         addClass: (className) => {
           if (!unboundedPrimaryRippleClasses[className]) {
             unboundedPrimaryRippleClasses[className] = true;
@@ -73,7 +74,8 @@
         unbounded: true,
         color: 'secondary',
         // addClass and removeClass need to be provided, since
-        // we have a "class" attribute on this element.
+        // we have a "class" attribute on this element. If we had
+        // a "style" attribute, we would also need addStyle.
         addClass: (className) => {
           if (!unboundedSecondaryRippleClasses[className]) {
             unboundedSecondaryRippleClasses[className] = true;

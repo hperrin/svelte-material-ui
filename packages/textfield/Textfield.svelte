@@ -4,9 +4,10 @@
     use:Ripple={{
       ripple,
       unbounded: false,
+      active: input && matches(input.getElement(), ':active'),
       addClass,
       removeClass,
-      active: input && matches(input.getElement(), ':active'),
+      addStyle,
       registerInteractionHandler: (evtType, handler) =>
         input.getElement &&
         input.getElement().addEventListener(evtType, handler, applyPassive()),
@@ -36,6 +37,10 @@
       'mdc-text-field--invalid': invalid !== uninitializedValue && invalid,
       ...internalClasses,
     })}
+    style={Object.entries(internalStyles)
+      .map(([name, value]) => `${name}: ${value};`)
+      .concat([style])
+      .join(' ')}
     for={/* suppress a11y warning, since this is wrapped */ null}
     on:SMUI:textfield:leading-icon:mount={(event) =>
       (leadingIcon = event.detail)}
@@ -157,6 +162,7 @@
       unbounded: false,
       addClass,
       removeClass,
+      addStyle,
     }}
     use:useActions={use}
     use:forwardEvents
@@ -174,6 +180,10 @@
       'mdc-text-field--invalid': invalid !== uninitializedValue && invalid,
       ...internalClasses,
     })}
+    style={Object.entries(internalStyles)
+      .map(([name, value]) => `${name}: ${value};`)
+      .concat([style])
+      .join(' ')}
     on:SMUI:textfield:leading-icon:mount={(event) =>
       (leadingIcon = event.detail)}
     on:SMUI:textfield:leading-icon:unmount={() => (leadingIcon = undefined)}
@@ -246,6 +256,7 @@
   export let use = [];
   let className = '';
   export { className as class };
+  export let style = '';
   export let ripple = true;
   export let disabled = false;
   export let required = false;
@@ -273,6 +284,7 @@
   let element;
   let instance;
   let internalClasses = {};
+  let internalStyles = {};
   let helperId;
   let addLayoutListener = getContext('SMUI:addLayoutListener');
   let removeLayoutListener;
@@ -439,6 +451,17 @@
   function removeClass(className) {
     if (!(className in internalClasses) || internalClasses[className]) {
       internalClasses[className] = false;
+    }
+  }
+
+  function addStyle(name, value) {
+    if (internalStyles[name] != value) {
+      if (value === '' || value == null) {
+        delete internalStyles[name];
+        internalStyles = internalStyles;
+      } else {
+        internalStyles[name] = value;
+      }
     }
   }
 

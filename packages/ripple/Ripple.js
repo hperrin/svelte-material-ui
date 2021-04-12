@@ -8,20 +8,24 @@ export default function Ripple(
   node,
   {
     ripple = true,
-    sentinel = null,
     surface = false,
     unbounded = false,
     disabled = false,
     color = null,
     active = null,
+    eventTarget = null,
+    activeTarget = null,
     addClass = (className) => node.classList.add(className),
     removeClass = (className) => node.classList.remove(className),
-    addStyle = (name, value) =>
-      (sentinel || node).style.setProperty(name, value),
+    addStyle = (name, value) => node.style.setProperty(name, value),
     registerInteractionHandler = (evtType, handler) =>
-      node.addEventListener(evtType, handler, applyPassive()),
+      (eventTarget || node).addEventListener(evtType, handler, applyPassive()),
     deregisterInteractionHandler = (evtType, handler) =>
-      node.removeEventListener(evtType, handler, applyPassive()),
+      (eventTarget || node).removeEventListener(
+        evtType,
+        handler,
+        applyPassive()
+      ),
     initPromise = Promise.resolve(),
   } = {}
 ) {
@@ -29,6 +33,8 @@ export default function Ripple(
   let addLayoutListener = getContext('SMUI:addLayoutListener');
   let removeLayoutListener;
   let oldActive = active;
+  let oldEventTarget = eventTarget;
+  let oldActiveTarget = activeTarget;
 
   function handleProps() {
     if (surface) {
@@ -45,15 +51,17 @@ export default function Ripple(
       }
     }
 
+    // Handle activation first.
     if (instance && oldActive !== active) {
+      oldActive = active;
       if (active) {
         instance.activate();
-      } else {
+      } else if (active === false) {
         instance.deactivate();
       }
-      oldActive = active;
     }
 
+    // Then create/destroy an instance.
     if (ripple && !instance) {
       instance = new MDCRippleFoundation({
         addClass,
@@ -74,7 +82,7 @@ export default function Ripple(
           y: window.pageYOffset,
         }),
         isSurfaceActive: () =>
-          active == null ? matches(node, ':active') : active,
+          active == null ? matches(activeTarget || node, ':active') : active,
         isSurfaceDisabled: () => !!disabled,
         isUnbounded: () => !!unbounded,
         registerDocumentInteractionHandler: (evtType, handler) =>
@@ -101,6 +109,23 @@ export default function Ripple(
       });
     }
 
+    // Now handle event/active targets
+    if (
+      instance &&
+      (oldEventTarget !== eventTarget || oldActiveTarget !== activeTarget)
+    ) {
+      oldEventTarget = eventTarget;
+      oldActiveTarget = activeTarget;
+
+      instance.destroy();
+      requestAnimationFrame(() => {
+        if (instance) {
+          instance.init();
+          instance.setUnbounded(unbounded);
+        }
+      });
+    }
+
     if (!ripple && unbounded) {
       addClass('mdc-ripple-upgraded--unbounded');
     }
@@ -122,27 +147,28 @@ export default function Ripple(
     update(props) {
       ({
         ripple,
-        sentinel,
         surface,
         unbounded,
         disabled,
         color,
+        active,
+        eventTarget,
+        activeTarget,
         addClass,
         removeClass,
         addStyle,
-        active,
       } = {
         ripple: true,
-        sentinel: null,
         surface: false,
         unbounded: false,
         disabled: false,
         color: null,
+        active: null,
+        eventTarget: null,
+        activeTarget: null,
         addClass: (className) => node.classList.add(className),
         removeClass: (className) => node.classList.remove(className),
-        addStyle: (name, value) =>
-          (sentinel || node).style.setProperty(name, value),
-        active: null,
+        addStyle: (name, value) => node.style.setProperty(name, value),
         ...props,
       });
       // Note that you can't change

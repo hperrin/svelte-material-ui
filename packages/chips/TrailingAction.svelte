@@ -5,6 +5,7 @@
     unbounded: false,
     addClass,
     removeClass,
+    addStyle,
   }}
   use:useActions={use}
   use:forwardEvents
@@ -13,6 +14,10 @@
     'mdc-chip-trailing-action': true,
     ...internalClasses,
   })}
+  style={Object.entries(internalStyles)
+    .map(([name, value]) => `${name}: ${value};`)
+    .concat([style])
+    .join(' ')}
   aria-hidden={nonNavigable ? 'true' : null}
   tabindex="-1"
   on:click={(event) => instance && instance.handleClick(event)}
@@ -58,6 +63,7 @@
   export let use = [];
   let className = '';
   export { className as class };
+  export let style = '';
   export let ripple = true;
   export let touch = false;
   export let nonNavigable = false;
@@ -67,6 +73,7 @@
   let element;
   let instance;
   let internalClasses = {};
+  let internalStyles = {};
   let internalAttrs = {};
 
   onMount(() => {
@@ -109,6 +116,17 @@
   function removeClass(className) {
     if (!(className in internalClasses) || internalClasses[className]) {
       internalClasses[className] = false;
+    }
+  }
+
+  function addStyle(name, value) {
+    if (internalStyles[name] != value) {
+      if (value === '' || value == null) {
+        delete internalStyles[name];
+        internalStyles = internalStyles;
+      } else {
+        internalStyles[name] = value;
+      }
     }
   }
 

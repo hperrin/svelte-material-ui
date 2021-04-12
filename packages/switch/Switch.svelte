@@ -14,17 +14,18 @@
 >
   <div class="mdc-switch__track" />
   <div
+    use:Ripple={{
+      unbounded: true,
+      color,
+      active: rippleActive,
+      addClass: addThumbUnderlayClass,
+      removeClass: removeThumbUnderlayClass,
+      // Don't need addStyle, since we don't set style prop.
+    }}
     class={classMap({
       'mdc-switch__thumb-underlay': true,
       ...thumbUnderlayClasses,
     })}
-    use:Ripple={{
-      unbounded: true,
-      color,
-      addClass: addThumbUnderlayClass,
-      removeClass: removeThumbUnderlayClass,
-      active: rippleActive,
-    }}
   >
     <div class="mdc-switch__thumb" />
     <input

@@ -6,6 +6,7 @@
     unbounded: true,
     addClass,
     removeClass,
+    addStyle,
     active: rippleActive,
   }}
   class={classMap({
@@ -19,6 +20,10 @@
       context === 'data-table' && !dataTableHeader,
     ...internalClasses,
   })}
+  style={Object.entries(internalStyles)
+    .map(([name, value]) => `${name}: ${value};`)
+    .concat([style])
+    .join(' ')}
   on:animationend={() => instance && instance.handleAnimationEnd()}
   {...exclude($$restProps, ['input$'])}
 >
@@ -82,6 +87,7 @@
   export let use = [];
   let className = '';
   export { className as class };
+  export let style = '';
   export let disabled = false;
   export let touch = false;
   export let indeterminate = uninitializedValue;
@@ -96,6 +102,7 @@
   let instance;
   let checkbox;
   let internalClasses = {};
+  let internalStyles = {};
   let nativeControlAttrs = {};
   let rippleActive = false;
   let inputProps = getContext('SMUI:generic:input:props') || {};
@@ -261,6 +268,17 @@
   function removeClass(className) {
     if (!(className in internalClasses) || internalClasses[className]) {
       internalClasses[className] = false;
+    }
+  }
+
+  function addStyle(name, value) {
+    if (internalStyles[name] != value) {
+      if (value === '' || value == null) {
+        delete internalStyles[name];
+        internalStyles = internalStyles;
+      } else {
+        internalStyles[name] = value;
+      }
     }
   }
 
