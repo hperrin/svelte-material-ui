@@ -9,6 +9,7 @@
     'mdc-icon-button__icon': context === 'icon-button',
     'mdc-icon-button__icon--on': context === 'icon-button' && on,
     'mdc-tab__icon': context === 'tab',
+    'mdc-banner__icon': context === 'banner',
   })}
   aria-hidden="true"
   {...component === Svg ? { focusable: 'false', tabindex: '-1' } : {}}

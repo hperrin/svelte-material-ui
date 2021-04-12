@@ -222,6 +222,7 @@ I've only done components that need to/can be Svelte-ified. For some things, lik
 
 Click a component below to go to its documentation. (Note that this documentation is a work in progress. The demo code should be your main source of truth for how something works.)
 
+- [Banner](https://github.com/hperrin/svelte-material-ui/blob/master/packages/banner/README.md)
 - [Buttons](https://github.com/hperrin/svelte-material-ui/blob/master/packages/button/README.md)
   - [Floating Action Buttons](https://github.com/hperrin/svelte-material-ui/blob/master/packages/fab/README.md)
   - [Icon Buttons](https://github.com/hperrin/svelte-material-ui/blob/master/packages/icon-button/README.md)
@@ -263,9 +264,9 @@ Click a component below to go to its documentation. (Note that this documentatio
 - [Top App Bar](https://github.com/hperrin/svelte-material-ui/blob/master/packages/top-app-bar/README.md)
 - [Typography](https://material.io/develop/web/components/typography/)†
 
-New components from the upstream library that haven't been built yet:
+New components from the upstream library to build for SMUI v3:
 
-- [ ] Banners
+- [x] Banners
 - [ ] Circular Progress
 - [ ] Layout Grids (Not new to MDC, but I haven't made a component for it.)
 - [ ] Segmented Buttons (This is different than SMUI's button groups.)

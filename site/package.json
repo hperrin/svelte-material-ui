@@ -81,6 +81,7 @@
     "@rollup/plugin-node-resolve": "^11.2.1",
     "@rollup/plugin-replace": "^2.4.2",
     "@rollup/plugin-url": "^6.0.0",
+    "@smui/banner": "file:../packages/banner",
     "@smui/button": "file:../packages/button",
     "@smui/card": "file:../packages/card",
     "@smui/checkbox": "file:../packages/checkbox",

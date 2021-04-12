@@ -31,6 +31,8 @@
     'mdc-top-app-bar__navigation-icon': context === 'top-app-bar:navigation',
     'mdc-top-app-bar__action-item': context === 'top-app-bar:action',
     'mdc-snackbar__action': context === 'snackbar:actions',
+    'mdc-banner__secondary-action': context === 'banner' && secondary,
+    'mdc-banner__primary-action': context === 'banner' && !secondary,
     ...internalClasses,
   })}
   style={Object.entries(internalStyles)
@@ -39,7 +41,9 @@
     .join(' ')}
   {...actionProp}
   {...defaultProp}
+  {...secondaryProp}
   {href}
+  on:click={handleClick}
   {...$$restProps}
   ><div class="mdc-button__ripple" />
   <slot />{#if touch}<div class="mdc-button__touch" />{/if}</svelte:component
@@ -48,12 +52,19 @@
 <script>
   import { setContext, getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
-  import { forwardEventsBuilder, classMap } from '@smui/common/internal.js';
+  import {
+    forwardEventsBuilder,
+    classMap,
+    dispatch,
+  } from '@smui/common/internal.js';
   import Ripple from '@smui/ripple/bare.js';
   import A from '@smui/common/A.svelte';
   import Button from '@smui/common/Button.svelte';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component());
+  const forwardEvents = forwardEventsBuilder(get_current_component(), [
+    'SMUI:banner:button:primaryActionClick',
+    'SMUI:banner:button:secondaryActionClick',
+  ]);
 
   export let use = [];
   let className = '';
@@ -67,6 +78,7 @@
   export let action = 'close';
   let defaultAction = false;
   export { defaultAction as default };
+  export let secondary = false;
 
   let element;
   let internalClasses = {};
@@ -76,13 +88,15 @@
   export let component = href == null ? Button : A;
 
   $: actionProp =
-    context === 'dialog:action' && action !== null
+    context === 'dialog:action' && action != null
       ? { 'data-mdc-dialog-action': action }
-      : {};
+      : { action: $$props.action };
   $: defaultProp =
     context === 'dialog:action' && defaultAction
       ? { 'data-mdc-dialog-button-default': '' }
-      : {};
+      : { default: $$props.default };
+  $: secondaryProp =
+    context === 'banner' ? {} : { secondary: $$props.secondary };
 
   setContext('SMUI:label:context', 'button');
   setContext('SMUI:icon:context', 'button');
@@ -107,6 +121,17 @@
       } else {
         internalStyles[name] = value;
       }
+    }
+  }
+
+  function handleClick() {
+    if (context === 'banner') {
+      dispatch(
+        getElement(),
+        secondary
+          ? 'SMUI:banner:button:secondaryActionClick'
+          : 'SMUI:banner:button:primaryActionClick'
+      );
     }
   }
 

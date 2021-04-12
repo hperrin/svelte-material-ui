@@ -184,6 +184,14 @@
 
   const sections = [
     {
+      name: 'Banner',
+      route: '/demo/banner/',
+      indent: 0,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/banner',
+      ],
+    },
+    {
       name: 'Buttons',
       route: '/demo/button/',
       indent: 0,

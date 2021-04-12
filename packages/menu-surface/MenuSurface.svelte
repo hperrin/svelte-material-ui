@@ -241,17 +241,17 @@
     }
   }
 
+  function closeProgrammatic(skipRestoreFocus) {
+    instance.close(skipRestoreFocus);
+    open = false;
+  }
+
   export function isOpen() {
     return open;
   }
 
   export function setOpen(value) {
     open = value;
-  }
-
-  function closeProgrammatic(skipRestoreFocus) {
-    instance.close(skipRestoreFocus);
-    open = false;
   }
 
   export function setAbsolutePosition(...args) {

@@ -9,6 +9,7 @@
     'mdc-tab__text-label': context === 'tab',
     'mdc-image-list__label': context === 'image-list',
     'mdc-snackbar__label': context === 'snackbar',
+    'mdc-banner__text': context === 'banner',
   })}
   {...context === 'snackbar' ? { 'aria-atomic': 'false' } : {}}
   {tabindex}

@@ -1,0 +1,15 @@
+@use '@material/banner/styles';
+
+.smui-banner--force-show {
+  display: block !important;
+}
+
+.mdc-banner--closing,
+.mdc-banner--opening {
+  overflow-y: hidden;
+}
+
+.mdc-banner__actions {
+  // Why does MDC have this as flex-end?
+  align-self: center;
+}
