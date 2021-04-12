@@ -2,20 +2,13 @@
   <label
     bind:this={element}
     use:Ripple={{
-      ripple,
+      ripple: !textarea && variant === 'filled',
       unbounded: false,
-      active: input && matches(input.getElement(), ':active'),
       addClass,
       removeClass,
       addStyle,
-      registerInteractionHandler: (evtType, handler) =>
-        input.getElement &&
-        input.getElement().addEventListener(evtType, handler, applyPassive()),
-      deregisterInteractionHandler: (evtType, handler) =>
-        input.getElement &&
-        input
-          .getElement()
-          .removeEventListener(evtType, handler, applyPassive()),
+      eventTarget: inputElement,
+      activeTarget: inputElement,
       initPromise,
     }}
     use:useActions={use}
@@ -61,7 +54,9 @@
     ])}
   >
     {#if !textarea && variant !== 'outlined'}
-      <span class="mdc-text-field__ripple" />
+      {#if variant === 'filled'}
+        <span class="mdc-text-field__ripple" />
+      {/if}
       {#if !noLabel && (label != null || $$slots.label)}
         <FloatingLabel
           bind:this={floatingLabel}
@@ -76,7 +71,7 @@
     {#if textarea || variant === 'outlined'}
       <NotchedOutline
         bind:this={notchedOutline}
-        noLabel={noLabel || label == null}
+        noLabel={noLabel || (label == null && !$$slots.label)}
         {...prefixFilter($$restProps, 'outline$')}
       >
         {#if !noLabel && (label != null || $$slots.label)}
@@ -297,6 +292,7 @@
   let characterCounter;
 
   $: valued = value !== uninitializedValue || files !== uninitializedValue;
+  $: inputElement = input && input.getElement();
 
   $: if (instance && instance.isValid() !== !invalid) {
     if (updateInvalid) {

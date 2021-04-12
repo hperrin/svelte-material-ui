@@ -863,6 +863,11 @@
   * :global(.shaped-outlined .mdc-notched-outline .mdc-notched-outline__notch) {
     max-width: calc(100% - 28px * 2);
   }
+  *
+    :global(.shaped-outlined.mdc-text-field--with-leading-icon:not(.mdc-text-field--label-floating)
+      .mdc-floating-label) {
+    left: 16px;
+  }
   * :global(.shaped-outlined + .mdc-text-field-helper-line) {
     padding-left: 32px;
     padding-right: 28px;

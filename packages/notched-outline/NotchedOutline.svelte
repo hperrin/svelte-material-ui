@@ -43,23 +43,21 @@
   let className = '';
   export { className as class };
   export let notched = false;
+  export let noLabel = true;
 
   let element;
   let instance;
   let floatingLabel;
   let internalClasses = {};
   let notchStyles = {};
-  let noLabel = true;
 
   $: if (floatingLabel) {
-    noLabel = false;
     floatingLabel.addStyle('transition-duration', '0s');
     addClass('mdc-notched-outline--upgraded');
     requestAnimationFrame(() => {
       floatingLabel.removeStyle('transition-duration');
     });
   } else {
-    noLabel = true;
     removeClass('mdc-notched-outline--upgraded');
   }
 

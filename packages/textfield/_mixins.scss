@@ -49,23 +49,6 @@
 }
 
 @mixin _standard($query: feature-targeting.all()) {
-  // Text Field intentionally omits press ripple, so each state needs to be specified individually.
-  @include ripple.states-base-color(
-    transparent,
-    $query: $query,
-    $ripple-target: textfield.$ripple-target
-  );
-  @include ripple.states-hover-opacity(
-    ripple.states-opacity(textfield.$ink-color, hover),
-    $query: $query,
-    $ripple-target: textfield.$ripple-target
-  );
-  @include ripple.states-focus-opacity(
-    ripple.states-opacity(textfield.$ink-color, focus),
-    $query: $query,
-    $ripple-target: textfield.$ripple-target
-  );
-
   @include textfield.height(textfield.$height, $query: $query);
   @include typography.baseline-top(
     textfield.$filled-baseline-top,
