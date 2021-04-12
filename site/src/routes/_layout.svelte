@@ -177,6 +177,11 @@
     };
   }
 
+  $: if (!activeSection) {
+    sourceFile = null;
+    sourceHTML = null;
+  }
+
   const sections = [
     {
       name: 'Buttons',

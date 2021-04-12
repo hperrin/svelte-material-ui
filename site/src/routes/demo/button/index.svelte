@@ -24,7 +24,7 @@
       ><Label>With a Class</Label></Button
     >
     <Button on:click={() => clicked++} href="http://example.com" target="_blank"
-      ><Label>Link Button</Label></Button
+      ><Label>Link</Label></Button
     >
   </div>
 
@@ -57,7 +57,7 @@
       on:click={() => touchClicked++}
       touch
       href="http://example.com"
-      target="_blank"><Label>Link Button</Label></Button
+      target="_blank"><Label>Link</Label></Button
     >
   </div>
 
@@ -98,7 +98,7 @@
       color="secondary"
       on:click={() => secondaryClicked++}
       href="http://example.com"
-      target="_blank"><Label>Link Button</Label></Button
+      target="_blank"><Label>Link</Label></Button
     >
   </div>
 
@@ -324,7 +324,7 @@
 
 <style>
   * :global(.myClass) {
-    text-decoration: underline !important;
+    font-family: 'Roboto Mono', monospace !important;
   }
 
   * :global(.mdc-button, .smui-button__group) {

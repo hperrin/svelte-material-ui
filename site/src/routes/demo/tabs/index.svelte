@@ -103,6 +103,10 @@
     <h6 class="demo-title">
       Tabs with href attributes render as anchor elements
     </h6>
+    <p>
+      (But they don't activate through keyboard arrow keys. They need to be
+      activated with the enter key.)
+    </p>
     <TabBar
       tabs={['Home', 'Merchandise', 'About Us']}
       let:tab
