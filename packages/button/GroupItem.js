@@ -3,7 +3,7 @@ export default function GroupItem(
   {
     addClass = (className) => node.classList.add(className),
     removeClass = (className) => node.classList.remove(className),
-  }
+  } = {}
 ) {
   addClass('smui-button__group-item');
 
