@@ -1,7 +1,7 @@
 <div
   bind:this={element}
   use:Ripple={{
-    ripple,
+    ripple: variant === 'filled',
     unbounded: false,
     addClass,
     removeClass,
@@ -78,7 +78,9 @@
     {...selectAnchorAttrs}
     {...prefixFilter($$restProps, 'anchor$')}
   >
-    <span class="mdc-select__ripple" />
+    {#if variant === 'filled'}
+      <span class="mdc-select__ripple" />
+    {/if}
     {#if variant !== 'outlined' && !noLabel && (label != null || $$slots.label)}
       <FloatingLabel
         bind:this={floatingLabel}
@@ -91,7 +93,7 @@
     {#if variant === 'outlined'}
       <NotchedOutline
         bind:this={notchedOutline}
-        noLabel={noLabel || label != null || $$slots.label}
+        noLabel={noLabel || (label == null && !$$slots.label)}
         {...prefixFilter($$restProps, 'outline$')}
       >
         {#if !noLabel && (label != null || $$slots.label)}
