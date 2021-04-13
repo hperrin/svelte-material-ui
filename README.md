@@ -167,7 +167,7 @@ Here are some features you should know about:
 
 Check out an [example REPL](https://svelte.dev/repl/aa857c3bb5eb478cbe6b1fd6c6da522a?version=3.37.0).
 
-SMUI components provide "bare.css" and "bare.js" files to use in the REPL. In a `<svelte:head>` section, load from a CDN like jsDelivr the CSS files for the fonts, for Material typography, and for each SMUI component you are using:
+SMUI components provide "bare.css" and "bare.js" files to use in the REPL. In a `<svelte:head>` section, load from a CDN like UNPKG the CSS files for the fonts, for Material typography, and for each SMUI component you are using:
 
 ```svelte
 <svelte:head>
@@ -184,22 +184,16 @@ SMUI components provide "bare.css" and "bare.js" files to use in the REPL. In a 
   <!-- Material Typography -->
   <link
     rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/@material/typography@10.0.0/dist/mdc.typography.css"
+    href="https://unpkg.com/@material/typography@10.0.0/dist/mdc.typography.css"
   />
 
   <!-- SMUI -->
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/@smui/button/bare.css"
-  />
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/@smui/card/bare.css"
-  />
+  <link rel="stylesheet" href="https://unpkg.com/@smui/button/bare.css" />
+  <link rel="stylesheet" href="https://unpkg.com/@smui/card/bare.css" />
 </svelte:head>
 ```
 
-Now load the Components from within a `<script>` section, and you can use them:
+Now load the Components, remembering to use the `/bare` script, from within a `<script>` section, and you can use them:
 
 ```svelte
 <Button on:click={() => alert('See, I told you.')}>This is a button!</Button>
@@ -209,12 +203,12 @@ Now load the Components from within a `<script>` section, and you can use them:
 </Card>
 
 <script>
-  import Button from 'https://cdn.jsdelivr.net/npm/@smui/button/bare.js';
-  import Card, {
-    Content,
-  } from 'https://cdn.jsdelivr.net/npm/@smui/card/bare.js';
+  import Button from '@smui/button/bare';
+  import Card, { Content } from '@smui/card/bare';
 </script>
 ```
+
+If you import from `@smui/common`, you don't need the `/bare` portion, since it doesn't have any Sass, so it can use the index file.
 
 # Components
 
