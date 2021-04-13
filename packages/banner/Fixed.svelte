@@ -1,5 +1,10 @@
 {#if fixed}
-  <div bind:this={element} use:forwardEvents class="mdc-banner__fixed">
+  <div
+    bind:this={element}
+    use:forwardEvents
+    class="mdc-banner__fixed"
+    style={width == null ? null : `width: ${width}px;`}
+  >
     <slot />
   </div>
 {:else}
@@ -13,6 +18,7 @@
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
   export let fixed = false;
+  export let width = null;
 
   let element;
 

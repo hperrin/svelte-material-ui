@@ -22,7 +22,7 @@
     instance && instance.handleSecondaryActionClick()}
   {...exclude($$restProps, ['content$', 'textWrapper$', 'graphic$'])}
 >
-  <Fixed bind:fixed>
+  <Fixed bind:fixed {width}>
     <div
       bind:this={content}
       class={classMap({
@@ -106,6 +106,7 @@
   let content;
   let addLayoutListener = getContext('SMUI:addLayoutListener');
   let removeLayoutListener;
+  let width;
 
   setContext('SMUI:label:context', 'banner');
   setContext('SMUI:icon:context', 'banner');
@@ -133,9 +134,12 @@
     instance = new MDCBannerFoundation({
       addClass,
       getContentHeight: () => {
-        element.classList.add('smui-banner--force-show');
-        const offsetHeight = content.offsetHeight;
-        element.classList.remove('smui-banner--force-show');
+        let offsetHeight = content.offsetHeight;
+        if (offsetHeight === 0) {
+          getElement().classList.add('smui-banner--force-show');
+          offsetHeight = content.offsetHeight;
+          getElement().classList.remove('smui-banner--force-show');
+        }
         return offsetHeight;
       },
       notifyClosed: (reason) => {
@@ -157,7 +161,7 @@
     });
 
     instance.init();
-    instance.layout();
+    layout();
 
     return () => {
       instance.destroy();
@@ -202,6 +206,14 @@
   }
 
   export function layout() {
+    if (fixed) {
+      width = element.offsetWidth;
+      if (width === 0) {
+        element.classList.add('smui-banner--force-show');
+        width = element.offsetWidth;
+        element.classList.remove('smui-banner--force-show');
+      }
+    }
     instance.layout();
   }
 

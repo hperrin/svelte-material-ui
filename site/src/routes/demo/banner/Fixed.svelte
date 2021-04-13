@@ -1,10 +1,4 @@
-<Banner
-  open
-  fixed
-  mobileStacked
-  content$style="max-width: 100%;"
-  textWrapper$style="width: max-content;"
->
+<Banner open fixed mobileStacked content$style="max-width: max-content;">
   <Label slot="label">
     This is a fixed banner! It's here to let you know an important thing. Once
     you've successfully known the thing, you can dismiss it.
