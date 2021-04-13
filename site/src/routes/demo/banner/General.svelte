@@ -82,7 +82,7 @@
 
 <style>
   .top-app-bar-container {
-    width: 100%;
+    width: calc(100% - 24px);
     height: 400px;
     border: 1px solid rgba(0, 0, 0, 0.1);
     margin: 0 18px 18px 0;

@@ -19,7 +19,9 @@
         )}&style=github&showBorder=on&showLineNumbers=on&showFileMeta=on"></script>
     {/if}
     <Card variant="outlined" class="demo-source-file">
-      {@html sourceHTML}
+      <div bind:this={sourceContainer}>
+        {@html sourceHTML}
+      </div>
     </Card>
   </div>
 {/if}
@@ -33,6 +35,7 @@
 
   export let file;
 
+  let sourceContainer;
   let show = false;
   let loading = false;
   let sourceHTML = null;
@@ -43,7 +46,12 @@
 
       document.write = (value) => {
         sourceHTML = value;
+        loading = false;
       };
+    }
+
+    if (show) {
+      sourceHTML = sourceContainer.innerHTML;
     }
 
     show = !show;
@@ -55,8 +63,6 @@
     height: 350px;
     overflow: auto;
     margin: 1em;
-    /* border-radius: 4px; */
-    /* border: 1px solid var(--mdc-theme-on-surface, #000); */
   }
 
   * :global(.demo-source-file .emgithub-container) {
