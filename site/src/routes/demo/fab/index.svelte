@@ -6,10 +6,10 @@
   <h2>Floating Action Button</h2>
 
   <Simple />
-  <ShowSource file="card/Simple.svelte" />
+  <ShowSource file="fab/Simple.svelte" />
 
   <PrimaryColor />
-  <ShowSource file="card/PrimaryColor.svelte" />
+  <ShowSource file="fab/PrimaryColor.svelte" />
 </section>
 
 <script>
