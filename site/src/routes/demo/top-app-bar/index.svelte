@@ -6,10 +6,10 @@
   <h2>Top App Bar</h2>
 
   <Static />
-  <ShowSource file="card/Static.svelte" />
+  <ShowSource file="top-app-bar/Static.svelte" />
 
   <Variants />
-  <ShowSource file="card/Variants.svelte" />
+  <ShowSource file="top-app-bar/Variants.svelte" />
 </section>
 
 <script>
