@@ -5,305 +5,35 @@
 <section>
   <h2>Dialogs</h2>
 
-  <div>
-    <Dialog
-      bind:open={simpleDialogOpen}
-      aria-labelledby="simple-title"
-      aria-describedby="simple-content"
-    >
-      <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
-      <Title id="simple-title">Dialog Title</Title>
-      <Content id="simple-content">Super awesome dialog body text?</Content>
-      <Actions>
-        <Button on:click={() => (clicked = 'No')}>
-          <Label>No</Label>
-        </Button>
-        <Button on:click={() => (clicked = 'Yes')}>
-          <Label>Yes</Label>
-        </Button>
-      </Actions>
-    </Dialog>
+  <Simple />
+  <ShowSource file="dialog/Simple.svelte" />
 
-    <Button on:click={() => (simpleDialogOpen = true)}
-      ><Label>Open Dialog</Label></Button
-    >
-  </div>
+  <Event />
+  <ShowSource file="dialog/Event.svelte" />
 
-  <pre class="status">Clicked: {clicked}</pre>
+  <List />
+  <ShowSource file="dialog/List.svelte" />
 
-  <div>
-    <h6 class="demo-title">
-      Using dialog events instead of button clicks, with a default button that
-      is initially focused
-    </h6>
+  <Selection />
+  <ShowSource file="dialog/Selection.svelte" />
 
-    <Dialog
-      bind:open={eventDialogOpen}
-      aria-labelledby="event-title"
-      aria-describedby="event-content"
-      on:MDCDialog:closed={closeHandler}
-    >
-      <Title id="event-title">The Best Dog</Title>
-      <Content id="event-content">
-        Out of all the dogs, which is the best dog?
-      </Content>
-      <Actions>
-        <Button action="none">
-          <Label>None of Them</Label>
-        </Button>
-        <Button action="all" default use={[InitialFocus]}>
-          <Label>All of Them</Label>
-        </Button>
-      </Actions>
-    </Dialog>
+  <Sliders />
+  <ShowSource file="dialog/Sliders.svelte" />
 
-    <Button on:click={() => (eventDialogOpen = true)}
-      ><Label>Open Dialog</Label></Button
-    >
-  </div>
+  <LargeScroll />
+  <ShowSource file="dialog/LargeScroll.svelte" />
 
-  <pre class="status">Response: {response}</pre>
-
-  <div>
-    <h6 class="demo-title">
-      No actions, and a very long selection list dialog
-    </h6>
-
-    <Dialog
-      bind:open={listDialogOpen}
-      selection
-      aria-labelledby="list-title"
-      aria-describedby="list-content"
-    >
-      <Title id="list-title">Dialog Title</Title>
-      <Content id="list-content">
-        <List>
-          {#each [...Array(100)].map((v, i) => i + 1) as item}
-            <Item
-              on:click={() => {
-                clickedList = item;
-                listDialogOpen = false;
-              }}
-            >
-              <Text>Item #{item}</Text>
-            </Item>
-          {/each}
-        </List>
-      </Content>
-    </Dialog>
-
-    <Button on:click={() => (listDialogOpen = true)}
-      ><Label>Open Dialog</Label></Button
-    >
-  </div>
-
-  <pre
-    class="status">Clicked: {clickedList}{clickedList === 69 ? ', nice' : ''}</pre>
-
-  <div>
-    <h6 class="demo-title">A selection dialog</h6>
-
-    <Dialog
-      bind:open={listSelectionDialogOpen}
-      selection
-      aria-labelledby="list-selection-title"
-      aria-describedby="list-selection-content"
-      on:MDCDialog:closed={selectionCloseHandler}
-    >
-      <Title id="list-selection-title">Dialog Title</Title>
-      <Content id="list-selection-content">
-        <List radioList>
-          <Item use={[InitialFocus]}>
-            <Graphic>
-              <Radio bind:group={selection} value="Radishes" />
-            </Graphic>
-            <Text>Radishes</Text>
-          </Item>
-          <Item>
-            <Graphic>
-              <Radio bind:group={selection} value="Turnips" />
-            </Graphic>
-            <Text>Turnips</Text>
-          </Item>
-          <Item>
-            <Graphic>
-              <Radio bind:group={selection} value="Broccoli" />
-            </Graphic>
-            <Text>Broccoli</Text>
-          </Item>
-        </List>
-      </Content>
-      <Actions>
-        <Button>
-          <Label>Cancel</Label>
-        </Button>
-        <Button action="accept">
-          <Label>Accept</Label>
-        </Button>
-      </Actions>
-    </Dialog>
-
-    <Button on:click={() => (listSelectionDialogOpen = true)}
-      ><Label>Open Dialog</Label></Button
-    >
-  </div>
-
-  <pre class="status">Selected: {selected}</pre>
-
-  <div>
-    <h6 class="demo-title">A dialog with sliders</h6>
-
-    <Dialog
-      bind:open={sliderDialogOpen}
-      aria-labelledby="slider-title"
-      aria-describedby="slider-content"
-    >
-      <Title id="slider-title">Volumes</Title>
-      <Content id="slider-content">
-        <div>
-          <FormField style="display: flex; flex-direction: column-reverse;">
-            <Slider
-              bind:value={volumeMedia}
-              use={[InitialFocus]}
-              style="width: 100%;"
-            />
-            <span slot="label">Media Volume</span>
-          </FormField>
-        </div>
-        <div>
-          <FormField style="display: flex; flex-direction: column-reverse;">
-            <Slider bind:value={volumeRingtone} style="width: 100%;" />
-            <span slot="label">Ringtone Volume</span>
-          </FormField>
-        </div>
-        <div>
-          <FormField style="display: flex; flex-direction: column-reverse;">
-            <Slider bind:value={volumeAlarm} style="width: 100%;" />
-            <span slot="label">Alarm Volume</span>
-          </FormField>
-        </div>
-      </Content>
-      <Actions>
-        <Button action="accept">
-          <Label>Done</Label>
-        </Button>
-      </Actions>
-    </Dialog>
-
-    <Button on:click={() => (sliderDialogOpen = true)}
-      ><Label>Open Dialog</Label></Button
-    >
-  </div>
-
-  <div>
-    <h6 class="demo-title">A large, scrollable dialog</h6>
-
-    <Dialog
-      bind:open={largeScrollDialogOpen}
-      aria-labelledby="large-scroll-title"
-      aria-describedby="large-scroll-content"
-      surface$style="width: 850px; max-width: calc(100vw - 32px);"
-    >
-      <Title id="large-scroll-title"
-        >A Brief Selection of Placeholder Text</Title
-      >
-      <Content id="large-scroll-content">
-        <LoremIpsum />
-        <LoremIpsum />
-      </Content>
-      <Actions>
-        <Button action="accept">
-          <Label>Done</Label>
-        </Button>
-      </Actions>
-    </Dialog>
-
-    <Button on:click={() => (largeScrollDialogOpen = true)}
-      ><Label>Open Dialog</Label></Button
-    >
-  </div>
-
-  <div>
-    <h6 class="demo-title">Too many action buttons for one line</h6>
-
-    <Dialog
-      bind:open={buttonsDialogOpen}
-      aria-labelledby="buttons-title"
-      aria-describedby="buttons-content"
-      on:MDCDialog:closed={(e) => (buttoned = e.detail.action)}
-      surface$style="width: 280px; max-width: calc(100vw - 32px);"
-    >
-      <Title id="buttons-title">Use speed bost?</Title>
-      <Content id="buttons-content"
-        >Speed boost opens the extra holes in your device to increase
-        aerodynamics. This allows your device to reach higher maximum speed,
-        increasing your productivity.</Content
-      >
-      <Actions>
-        <Button action="no">
-          <Label>No Thanks</Label>
-        </Button>
-        <Button action="later">
-          <Label>Remind Me Later</Label>
-        </Button>
-        <Button action="speed-bost">
-          <Label>Turn on Speed Boost</Label>
-        </Button>
-      </Actions>
-    </Dialog>
-
-    <Button on:click={() => (buttonsDialogOpen = true)}
-      ><Label>Open Dialog</Label></Button
-    >
-  </div>
-
-  <pre class="status">Action: {buttoned}</pre>
+  <ManyActions />
+  <ShowSource file="dialog/ManyActions.svelte" />
 </section>
 
 <script>
-  import Dialog, { Title, Content, Actions, InitialFocus } from '@smui/dialog';
-  import Button, { Label } from '@smui/button';
-  import List, { Item, Graphic, Text } from '@smui/list';
-  import Radio from '@smui/radio';
-  import Slider from '@smui/slider';
-  import FormField from '@smui/form-field';
-  import LoremIpsum from '../../../components/LoremIpsum.svelte';
-
-  let simpleDialogOpen;
-  let eventDialogOpen;
-  let listDialogOpen;
-  let listSelectionDialogOpen;
-  let sliderDialogOpen;
-  let largeScrollDialogOpen;
-  let buttonsDialogOpen;
-  let clicked = 'Nothing yet.';
-  let response = 'Nothing yet.';
-  let clickedList = 'Nothing yet.';
-  let selection = 'Radishes';
-  let selected = 'Nothing yet.';
-  let buttoned = 'Nothing yet.';
-  let volumeMedia = 100;
-  let volumeRingtone = 80;
-  let volumeAlarm = 80;
-
-  function closeHandler(e) {
-    switch (e.detail.action) {
-      case 'none':
-        response = "Ok, well, you're wrong.";
-        break;
-      case 'all':
-        response = 'You are correct. All dogs are the best dog.';
-        break;
-      default:
-        response = "It's a simple question. You should be able to answer it.";
-        break;
-    }
-  }
-
-  function selectionCloseHandler(e) {
-    if (e.detail.action === 'accept') {
-      selected = selection;
-    }
-    selection = 'Radishes';
-  }
+  import ShowSource from '../../../components/ShowSource.svelte';
+  import Simple from './Simple.svelte';
+  import Event from './Event.svelte';
+  import List from './List.svelte';
+  import Selection from './Selection.svelte';
+  import Sliders from './Sliders.svelte';
+  import LargeScroll from './LargeScroll.svelte';
+  import ManyActions from './ManyActions.svelte';
 </script>
