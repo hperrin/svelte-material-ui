@@ -8,15 +8,15 @@ Snackbars are where software engineers go to load up on chips and guacamole. Jus
 npm install --save-dev @smui/snackbar
 ```
 
-# Basic Usage
-
-todo...
-
 # Demo
 
 _in action:_ https://sveltematerialui.com/demo/snackbars
 
 _demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/snackbars/
+
+# Basic Usage
+
+todo...
 
 # Exports
 

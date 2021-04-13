@@ -8,6 +8,12 @@ A container for media and actions.
 npm install --save-dev @smui/card
 ```
 
+# Demo
+
+_in action:_ https://sveltematerialui.com/demo/card
+
+_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/card/
+
 # Whoa There, These Docs are Outdated
 
 The latest SMUI v3 beta had a lot of changes, and these docs haven't been caught up yet. You should check out the demo page's code to see the latest usage.
@@ -83,12 +89,6 @@ The latest SMUI v3 beta had a lot of changes, and these docs haven't been caught
   }
 </script>
 ```
-
-# Demo
-
-_in action:_ https://sveltematerialui.com/demo/card
-
-_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/card/
 
 # Exports
 

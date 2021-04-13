@@ -8,6 +8,12 @@ Ripples are an interaction feedback mechanism.
 npm install --save-dev @smui/ripple
 ```
 
+# Demo
+
+_in action:_ https://sveltematerialui.com/demo/ripple
+
+_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/ripple/
+
 # Basic Usage
 
 ```svelte
@@ -37,12 +43,6 @@ If you do have a `class` attribute:
   let rippleClasses = {};
 </script>
 ```
-
-# Demo
-
-_in action:_ https://sveltematerialui.com/demo/ripple
-
-_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/ripple/
 
 # Exports
 

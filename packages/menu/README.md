@@ -8,15 +8,15 @@ Menus are lists of actions available to a user on a temporary surface.
 npm install --save-dev @smui/menu
 ```
 
-# Basic Usage
-
-todo...
-
 # Demo
 
 _in action:_ https://sveltematerialui.com/demo/menu
 
 _demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/menu/
+
+# Basic Usage
+
+todo...
 
 # Exports
 

@@ -2,15 +2,15 @@
 
 Text field icons appear next to a text field.
 
-# Basic Usage
-
-todo...
-
 # Demo
 
 _in action:_ https://sveltematerialui.com/demo/textfield
 
 _demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/textfield/
+
+# Basic Usage
+
+todo...
 
 # Exports
 

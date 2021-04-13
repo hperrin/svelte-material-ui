@@ -8,15 +8,15 @@ Top app bars are navigation and information areas that appear above content.
 npm install --save-dev @smui/top-app-bar
 ```
 
-# Basic Usage
-
-todo...
-
 # Demo
 
 _in action:_ https://sveltematerialui.com/demo/top-app-bar
 
 _demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/top-app-bar/
+
+# Basic Usage
+
+todo...
 
 # Exports
 

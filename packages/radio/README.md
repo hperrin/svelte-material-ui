@@ -8,6 +8,12 @@ Radios, or radio buttons, are input elements that give the user a choice between
 npm install --save-dev @smui/radio
 ```
 
+# Demo
+
+_in action:_ https://sveltematerialui.com/demo/radio
+
+_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/radio/
+
 # Whoa There, These Docs are Outdated
 
 The latest SMUI v3 beta had a lot of changes, and these docs haven't been caught up yet. You should check out the demo page's code to see the latest usage.
@@ -35,12 +41,6 @@ The latest SMUI v3 beta had a lot of changes, and these docs haven't been caught
   let selected = 'a';
 </script>
 ```
-
-# Demo
-
-_in action:_ https://sveltematerialui.com/demo/radio
-
-_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/radio/
 
 # Exports
 

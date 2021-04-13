@@ -8,6 +8,12 @@ A data table shows tabular information, and optionally allows the user to select
 npm install --save-dev @smui/data-table
 ```
 
+# Demo
+
+_in action:_ https://sveltematerialui.com/demo/data-table
+
+_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/data-table/
+
 # Whoa There, These Docs are Outdated
 
 The latest SMUI v3 beta had a lot of changes, and these docs haven't been caught up yet. You should check out the demo page's code to see the latest usage.
@@ -46,12 +52,6 @@ The latest SMUI v3 beta had a lot of changes, and these docs haven't been caught
   import DataTable, { Head, Body, Row, Cell } from '@smui/data-table';
 </script>
 ```
-
-# Demo
-
-_in action:_ https://sveltematerialui.com/demo/data-table
-
-_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/data-table/
 
 # Exports
 

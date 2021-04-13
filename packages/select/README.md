@@ -8,6 +8,12 @@ Select menus provide the user with a choice between multiple items.
 npm install --save-dev @smui/select
 ```
 
+# Demo
+
+_in action:_ https://sveltematerialui.com/demo/select
+
+_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/select/
+
 # Whoa There, These Docs are Outdated
 
 The latest SMUI v3 beta had a lot of changes, and these docs haven't been caught up yet. You should check out the demo page's code to see the latest usage.
@@ -40,12 +46,6 @@ The latest SMUI v3 beta had a lot of changes, and these docs haven't been caught
   }
 </style>
 ```
-
-# Demo
-
-_in action:_ https://sveltematerialui.com/demo/select
-
-_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/select/
 
 # Exports
 

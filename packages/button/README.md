@@ -8,6 +8,12 @@ An interactive button or link.
 npm install --save-dev @smui/button
 ```
 
+# Demo
+
+_in action:_ https://sveltematerialui.com/demo/button
+
+_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/button/
+
 # Basic Usage
 
 ```svelte
@@ -23,12 +29,6 @@ npm install --save-dev @smui/button
   }
 </script>
 ```
-
-# Demo
-
-_in action:_ https://sveltematerialui.com/demo/button
-
-_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/button/
 
 # Exports
 

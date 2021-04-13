@@ -8,6 +8,12 @@ Icon buttons are symbolic buttons or toggles.
 npm install --save-dev @smui/icon-button
 ```
 
+# Demo
+
+_in action:_ https://sveltematerialui.com/demo/icon-button
+
+_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/icon-button/
+
 # Whoa There, These Docs are Outdated
 
 The latest SMUI v3 beta had a lot of changes, and these docs haven't been caught up yet. You should check out the demo page's code to see the latest usage.
@@ -32,12 +38,6 @@ The latest SMUI v3 beta had a lot of changes, and these docs haven't been caught
   }
 </script>
 ```
-
-# Demo
-
-_in action:_ https://sveltematerialui.com/demo/icon-button
-
-_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/icon-button/
 
 # Exports
 

@@ -2,15 +2,15 @@
 
 Text field character counts give the user context to the limit of a text field's length.
 
-# Basic Usage
-
-todo...
-
 # Demo
 
 _in action:_ https://sveltematerialui.com/demo/textfield
 
 _demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/textfield/
+
+# Basic Usage
+
+todo...
 
 # Exports
 
