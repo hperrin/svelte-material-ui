@@ -40,12 +40,17 @@
       <IconButton
         href={`https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/${file}`}
         target="_blank"
+        title="View this file on GitHub"
       >
         <Icon component={Svg} style="width:24px;height:24px" viewBox="0 0 24 24"
           ><path fill="currentColor" d={mdiGithub} /></Icon
         >
       </IconButton>
-      <IconButton pressed={show} on:click={toggleSource}>
+      <IconButton
+        pressed={show}
+        on:click={toggleSource}
+        title={`${show ? 'Hide' : 'Show'} the source code`}
+      >
         <Icon
           component={Svg}
           style="width:24px;height:24px"
