@@ -1,0 +1,17 @@
+<h6 class="demo-title">The same, but with leading icons</h6>
+
+<Set chips={choices} let:chip filter bind:selected>
+  <Chip {chip} touch>
+    <LeadingIcon class="material-icons">checkroom</LeadingIcon>
+    <Text>{chip}</Text>
+  </Chip>
+</Set>
+
+<pre class="status">Selected: {selected.join(', ')}</pre>
+
+<script>
+  import Chip, { Set, LeadingIcon, Text } from '@smui/chips';
+
+  let choices = ['Shoes', 'Pants', 'Shirts', 'Hats', 'Coats'];
+  let selected = ['Shoes', 'Shirts', 'Coats'];
+</script>
