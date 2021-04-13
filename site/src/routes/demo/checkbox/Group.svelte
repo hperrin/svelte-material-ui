@@ -1,5 +1,4 @@
 <div>
-  <h6 class="demo-title">Group checkbox</h6>
   {#each options as option}
     <FormField>
       <Checkbox

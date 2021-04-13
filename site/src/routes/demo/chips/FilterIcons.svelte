@@ -1,5 +1,3 @@
-<h6 class="demo-title">The same, but with leading icons</h6>
-
 <Set chips={choices} let:chip filter bind:selected>
   <Chip {chip} touch>
     <LeadingIcon class="material-icons">checkroom</LeadingIcon>

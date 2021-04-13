@@ -1,5 +1,3 @@
-<h6 class="demo-title">Icon indicators</h6>
-
 <div class="icon-indicators">
   <TabBar tabs={['Home', 'Merchandise', 'About Us']} let:tab bind:active>
     <Tab

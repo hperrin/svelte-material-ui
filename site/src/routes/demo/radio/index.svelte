@@ -5,15 +5,15 @@
 <section>
   <h2>Radio</h2>
 
-  <Simple />
-  <ShowSource file="radio/Simple.svelte" />
+  <Demo component={Simple} file="radio/Simple.svelte" />
 
-  <Touch />
-  <ShowSource file="radio/Touch.svelte" />
+  <Demo component={Touch} file="radio/Touch.svelte">
+    Increased touch target
+  </Demo>
 </section>
 
 <script>
-  import ShowSource from '../../../components/ShowSource.svelte';
+  import Demo from '../../../components/Demo.svelte';
   import Simple from './Simple.svelte';
   import Touch from './Touch.svelte';
 </script>

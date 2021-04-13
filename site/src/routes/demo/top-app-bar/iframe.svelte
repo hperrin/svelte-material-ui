@@ -20,7 +20,7 @@
   </Row>
 </TopAppBar>
 <AutoAdjust {topAppBar}>
-  {#if variant === 'short' && collapsed}
+  {#if shortAlwaysCollapsed}
     <h5>Short, Always Collapsed</h5>
   {/if}
   <LoremIpsum />
@@ -46,6 +46,7 @@
   let variant = 'standard';
   let collapsed = false;
   let title = 'Standard';
+  let shortAlwaysCollapsed = false;
   let topAppBar;
 
   switch ($page.query.style) {
@@ -66,6 +67,7 @@
       title = 'Short';
       break;
     case 'short-closed':
+      shortAlwaysCollapsed = true;
       variant = 'short';
       collapsed = true;
       title = 'Short';

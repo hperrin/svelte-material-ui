@@ -1,5 +1,3 @@
-<h6 class="demo-title">Shaped Filled (Styled with CSS)</h6>
-
 <div class="columns margins">
   <div>
     <Select class="shaped-filled" variant="filled" bind:value label="Fruit">

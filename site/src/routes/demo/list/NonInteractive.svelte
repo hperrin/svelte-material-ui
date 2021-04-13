@@ -1,5 +1,3 @@
-<h6 class="demo-title">A non-interactive list with activated item</h6>
-
 <div>
   <List class="demo-list" nonInteractive>
     <Item ripple={false}><Text>Thing 1</Text></Item>

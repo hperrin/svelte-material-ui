@@ -5,27 +5,25 @@
 <section>
   <h2>Chips</h2>
 
-  <Simple />
-  <ShowSource file="chips/Simple.svelte" />
+  <Demo component={Simple} file="chips/Simple.svelte" />
 
-  <Choice />
-  <ShowSource file="chips/Choice.svelte" />
+  <Demo component={Choice} file="chips/Choice.svelte">Choice chips</Demo>
 
-  <Filter />
-  <ShowSource file="chips/Filter.svelte" />
+  <Demo component={Filter} file="chips/Filter.svelte">
+    Filter chips with increased touch target
+  </Demo>
 
-  <FilterIcons />
-  <ShowSource file="chips/FilterIcons.svelte" />
+  <Demo component={FilterIcons} file="chips/FilterIcons.svelte">
+    The same, but with leading icons
+  </Demo>
 
-  <Input />
-  <ShowSource file="chips/Input.svelte" />
+  <Demo component={Input} file="chips/Input.svelte">Input chips</Demo>
 
-  <Keyed />
-  <ShowSource file="chips/Keyed.svelte" />
+  <Demo component={Keyed} file="chips/Keyed.svelte">Keyed chips</Demo>
 </section>
 
 <script>
-  import ShowSource from '../../../components/ShowSource.svelte';
+  import Demo from '../../../components/Demo.svelte';
   import Simple from './Simple.svelte';
   import Choice from './Choice.svelte';
   import Filter from './Filter.svelte';

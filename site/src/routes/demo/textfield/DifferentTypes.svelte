@@ -1,5 +1,3 @@
-<h6 class="demo-title">Different Types</h6>
-
 <div class="columns margins">
   <div>
     <Textfield bind:value={valueTypeNumber} label="Number" type="number" />

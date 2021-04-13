@@ -1,5 +1,4 @@
 <div>
-  <h6 class="demo-title">Secondary color</h6>
   <Button color="secondary" on:click={() => clicked++}>
     <Label>Default</Label>
   </Button>

@@ -1,5 +1,3 @@
-<h6 class="demo-title">Outlined</h6>
-
 <div class="columns margins">
   <div>
     <Textfield variant="outlined" bind:value={valueA} label="Label">

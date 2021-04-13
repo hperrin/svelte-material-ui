@@ -1,5 +1,3 @@
-<h6 class="demo-title">A large, scrollable dialog</h6>
-
 <Dialog
   bind:open
   aria-labelledby="large-scroll-title"

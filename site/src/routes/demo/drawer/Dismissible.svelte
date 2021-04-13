@@ -1,7 +1,3 @@
-<h6 class="demo-title">
-  A dismissible drawer with a header and activated items
-</h6>
-
 <div class="drawer-container">
   <Drawer variant="dismissible" bind:open>
     <Header>

@@ -5,18 +5,17 @@
 <section>
   <h2>Switch</h2>
 
-  <Simple />
-  <ShowSource file="switch/Simple.svelte" />
+  <Demo component={Simple} file="switch/Simple.svelte" />
 
-  <PrimaryColor />
-  <ShowSource file="switch/PrimaryColor.svelte" />
+  <Demo component={PrimaryColor} file="switch/PrimaryColor.svelte">
+    Primary color
+  </Demo>
 
-  <Group />
-  <ShowSource file="switch/Group.svelte" />
+  <Demo component={Group} file="switch/Group.svelte">Group switch</Demo>
 </section>
 
 <script>
-  import ShowSource from '../../../components/ShowSource.svelte';
+  import Demo from '../../../components/Demo.svelte';
   import Simple from './Simple.svelte';
   import PrimaryColor from './PrimaryColor.svelte';
   import Group from './Group.svelte';

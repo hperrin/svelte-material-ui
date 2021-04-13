@@ -1,5 +1,3 @@
-<h6 class="demo-title">A radio list</h6>
-
 <div>
   <List class="demo-list" radioList>
     <Item>

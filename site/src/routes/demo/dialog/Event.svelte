@@ -1,8 +1,3 @@
-<h6 class="demo-title">
-  Using dialog events instead of button clicks, with a default button that is
-  initially focused
-</h6>
-
 <Dialog
   bind:open
   aria-labelledby="event-title"

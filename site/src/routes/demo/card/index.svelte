@@ -5,24 +5,19 @@
 <section>
   <h2>Cards</h2>
 
-  <Simple />
-  <ShowSource file="card/Simple.svelte" />
+  <Demo component={Simple} file="card/Simple.svelte" />
 
-  <Actions />
-  <ShowSource file="card/Actions.svelte" />
+  <Demo component={Actions} file="card/Actions.svelte">With Actions</Demo>
 
-  <Media />
-  <ShowSource file="card/Media.svelte" />
+  <Demo component={Media} file="card/Media.svelte">With Media</Demo>
 
-  <List />
-  <ShowSource file="card/List.svelte" />
+  <Demo component={List} file="card/List.svelte">With a List</Demo>
 
-  <Complex />
-  <ShowSource file="card/Complex.svelte" />
+  <Demo component={Complex} file="card/Complex.svelte">Complex</Demo>
 </section>
 
 <script>
-  import ShowSource from '../../../components/ShowSource.svelte';
+  import Demo from '../../../components/Demo.svelte';
   import Simple from './Simple.svelte';
   import Actions from './Actions.svelte';
   import Media from './Media.svelte';

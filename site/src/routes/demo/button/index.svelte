@@ -5,30 +5,33 @@
 <section>
   <h2>Button</h2>
 
-  <Simple />
-  <ShowSource file="button/Simple.svelte" />
+  <Demo component={Simple} file="button/Simple.svelte" />
 
-  <Touch />
-  <ShowSource file="button/Touch.svelte" />
+  <Demo component={Touch} file="button/Touch.svelte">
+    Increased touch target
+  </Demo>
 
-  <SecondaryColor />
-  <ShowSource file="button/SecondaryColor.svelte" />
+  <Demo component={SecondaryColor} file="button/SecondaryColor.svelte">
+    Secondary color
+  </Demo>
 
-  <Groups />
-  <ShowSource file="button/Groups.svelte" />
+  <Demo component={Groups} file="button/Groups.svelte">Button groups</Demo>
 
-  <SplitButtons />
-  <ShowSource file="button/SplitButtons.svelte" />
+  <Demo component={SplitButtons} file="button/SplitButtons.svelte">
+    Split buttons using a button group
+  </Demo>
 
-  <Round />
-  <ShowSource file="button/Round.svelte" />
+  <Demo component={Round} file="button/Round.svelte">
+    Creating rounded buttons with Sass mixins
+  </Demo>
 
-  <Notched />
-  <ShowSource file="button/Notched.svelte" />
+  <Demo component={Notched} file="button/Notched.svelte">
+    Creating notched buttons with Sass
+  </Demo>
 </section>
 
 <script>
-  import ShowSource from '../../../components/ShowSource.svelte';
+  import Demo from '../../../components/Demo.svelte';
   import Simple from './Simple.svelte';
   import Touch from './Touch.svelte';
   import SecondaryColor from './SecondaryColor.svelte';

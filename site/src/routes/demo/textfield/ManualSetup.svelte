@@ -14,7 +14,6 @@
   components. (This may have unforeseen consequences, IDK.
   Use this feature at your own risk.)
 -->
-<h6 class="demo-title">Manual Setup</h6>
 
 <div class="columns margins">
   <div>

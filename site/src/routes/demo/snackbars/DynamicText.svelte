@@ -1,5 +1,3 @@
-<h6 class="demo-title">Using dynamic text</h6>
-
 <Snackbar bind:this={snackbar} labelText={text} timeoutMs={-1}>
   <Label />
   <Actions>

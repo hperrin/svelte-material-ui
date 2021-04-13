@@ -1,7 +1,3 @@
-<h6 class="demo-title">
-  A two-line single selection list with avatars, disabled item, and meta
-</h6>
-
 <div>
   <List
     class="demo-list"

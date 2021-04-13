@@ -1,5 +1,3 @@
-<h6 class="demo-title">End Alignment</h6>
-
 <FormField align="end">
   <Checkbox bind:checked />
   <span slot="label"> The input can be aligned at the end too. </span>

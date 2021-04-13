@@ -1,5 +1,3 @@
-<h6 class="demo-title">With a List</h6>
-
 <div style="display: flex; flex-wrap: wrap;">
   <div class="card-container">
     <Card style="width: 320px;">

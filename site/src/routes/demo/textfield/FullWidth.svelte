@@ -1,5 +1,3 @@
-<h6 class="demo-title">Full Width</h6>
-
 <div class="margins">
   <Textfield style="width: 100%;" lineRipple={false} bind:value label="Label">
     <HelperText slot="helper">Helper Text</HelperText>

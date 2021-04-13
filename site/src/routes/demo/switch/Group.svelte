@@ -1,5 +1,3 @@
-<h6 class="demo-title">Group switch</h6>
-
 {#each options as option}
   <div style="margin: 18px 0;">
     <FormField>

@@ -1,5 +1,3 @@
-<h6 class="demo-title">Discrete with min/max/step</h6>
-
 <Slider
   bind:value
   min={-10}

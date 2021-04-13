@@ -1,5 +1,3 @@
-<h6 class="demo-title">Selection groups</h6>
-
 <div style="min-width: 100px;">
   <Button on:click={() => menu.setOpen(true)}>Open Menu</Button>
   <Menu bind:this={menu}>

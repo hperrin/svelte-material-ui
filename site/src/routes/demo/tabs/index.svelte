@@ -5,32 +5,45 @@
 <section>
   <h2>Tabs</h2>
 
-  <Simple />
-  <ShowSource file="tabs/Simple.svelte" />
+  <Demo component={Simple} file="tabs/Simple.svelte" />
 
-  <Icons />
-  <ShowSource file="tabs/Icons.svelte" />
+  <Demo component={Icons} file="tabs/Icons.svelte">
+    Tabs with icons next to labels
+  </Demo>
 
-  <KeyedIconsAboveRestrictedIndicatorsFadeTransition />
-  <ShowSource
+  <Demo
+    component={KeyedIconsAboveRestrictedIndicatorsFadeTransition}
     file="tabs/KeyedIconsAboveRestrictedIndicatorsFadeTransition.svelte"
-  />
+  >
+    Keyed tabs with icons above labels, indicators restricted to content, and
+    fade transition
+  </Demo>
 
-  <ScrollingNoInitialActive />
-  <ShowSource file="tabs/ScrollingNoInitialActive.svelte" />
+  <Demo
+    component={ScrollingNoInitialActive}
+    file="tabs/ScrollingNoInitialActive.svelte"
+  >
+    Scrolling tabs with no initial active tab
+  </Demo>
 
-  <MinWidth />
-  <ShowSource file="tabs/MinWidth.svelte" />
+  <Demo component={MinWidth} file="tabs/MinWidth.svelte">Min width tabs</Demo>
 
-  <IconIndicators />
-  <ShowSource file="tabs/IconIndicators.svelte" />
+  <Demo component={IconIndicators} file="tabs/IconIndicators.svelte">
+    Icon indicators
+  </Demo>
 
-  <HrefAnchors />
-  <ShowSource file="tabs/HrefAnchors.svelte" />
+  <Demo component={HrefAnchors} file="tabs/HrefAnchors.svelte">
+    Tabs with href attributes render as anchor elements
+
+    <svelte:fragment slot="subtitle">
+      But they don't activate through keyboard arrow keys. They need to be
+      activated with the enter key.
+    </svelte:fragment>
+  </Demo>
 </section>
 
 <script>
-  import ShowSource from '../../../components/ShowSource.svelte';
+  import Demo from '../../../components/Demo.svelte';
   import Simple from './Simple.svelte';
   import Icons from './Icons.svelte';
   import KeyedIconsAboveRestrictedIndicatorsFadeTransition from './KeyedIconsAboveRestrictedIndicatorsFadeTransition.svelte';

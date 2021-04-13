@@ -5,66 +5,87 @@
 <section>
   <h2>Text Field</h2>
 
-  <Showcase />
-  <ShowSource file="textfield/Showcase.svelte" />
+  <Demo component={Showcase} file="textfield/Showcase.svelte" />
 
-  <Standard />
-  <ShowSource file="textfield/Standard.svelte" />
+  <Demo component={Standard} file="textfield/Standard.svelte">Standard</Demo>
 
-  <Filled />
-  <ShowSource file="textfield/Filled.svelte" />
+  <Demo component={Filled} file="textfield/Filled.svelte">Filled</Demo>
 
-  <Outlined />
-  <ShowSource file="textfield/Outlined.svelte" />
+  <Demo component={Outlined} file="textfield/Outlined.svelte">Outlined</Demo>
 
-  <ShapedFilled />
-  <ShowSource file="textfield/ShapedFilled.svelte" />
+  <Demo component={ShapedFilled} file="textfield/ShapedFilled.svelte">
+    Shaped Filled
+    <svelte:fragment slot="subtitle">Styled with CSS</svelte:fragment>
+  </Demo>
 
-  <ShapedOutlined />
-  <ShowSource file="textfield/ShapedOutlined.svelte" />
+  <Demo component={ShapedOutlined} file="textfield/ShapedOutlined.svelte">
+    Shaped Outlined
+    <svelte:fragment slot="subtitle">Styled with CSS</svelte:fragment>
+  </Demo>
 
-  <Disabled />
-  <ShowSource file="textfield/Disabled.svelte" />
+  <Demo component={Disabled} file="textfield/Disabled.svelte">Disabled</Demo>
 
-  <NoLabelOrHelperText />
-  <ShowSource file="textfield/NoLabelOrHelperText.svelte" />
+  <Demo
+    component={NoLabelOrHelperText}
+    file="textfield/NoLabelOrHelperText.svelte"
+  >
+    Without label or helper text
+  </Demo>
 
-  <PersistentHelperText />
-  <ShowSource file="textfield/PersistentHelperText.svelte" />
+  <Demo
+    component={PersistentHelperText}
+    file="textfield/PersistentHelperText.svelte"
+  >
+    With persistent helper text
+  </Demo>
 
-  <CharacterCount />
-  <ShowSource file="textfield/CharacterCount.svelte" />
+  <Demo component={CharacterCount} file="textfield/CharacterCount.svelte">
+    With character count
+  </Demo>
 
-  <HelperTextCharacterCount />
-  <ShowSource file="textfield/HelperTextCharacterCount.svelte" />
+  <Demo
+    component={HelperTextCharacterCount}
+    file="textfield/HelperTextCharacterCount.svelte"
+  >
+    With helper text and character count
+  </Demo>
 
-  <BothIcons />
-  <ShowSource file="textfield/BothIcons.svelte" />
+  <Demo component={BothIcons} file="textfield/BothIcons.svelte">
+    Both icons
+  </Demo>
 
-  <Textarea />
-  <ShowSource file="textfield/Textarea.svelte" />
+  <Demo component={Textarea} file="textfield/Textarea.svelte">Textarea</Demo>
 
-  <TextareaCharacterCount />
-  <ShowSource file="textfield/TextareaCharacterCount.svelte" />
+  <Demo
+    component={TextareaCharacterCount}
+    file="textfield/TextareaCharacterCount.svelte"
+  >
+    Textarea with character count
+  </Demo>
 
-  <FullWidth />
-  <ShowSource file="textfield/FullWidth.svelte" />
+  <Demo component={FullWidth} file="textfield/FullWidth.svelte">
+    Full width
+  </Demo>
 
-  <FullWidthTextarea />
-  <ShowSource file="textfield/FullWidthTextarea.svelte" />
+  <Demo component={FullWidthTextarea} file="textfield/FullWidthTextarea.svelte">
+    Full width textarea
+  </Demo>
 
-  <ElementsInLabel />
-  <ShowSource file="textfield/ElementsInLabel.svelte" />
+  <Demo component={ElementsInLabel} file="textfield/ElementsInLabel.svelte">
+    Elements in the label
+  </Demo>
 
-  <DifferentTypes />
-  <ShowSource file="textfield/DifferentTypes.svelte" />
+  <Demo component={DifferentTypes} file="textfield/DifferentTypes.svelte">
+    Different input types
+  </Demo>
 
-  <ManualSetup />
-  <ShowSource file="textfield/ManualSetup.svelte" />
+  <Demo component={ManualSetup} file="textfield/ManualSetup.svelte">
+    Manual setup
+  </Demo>
 </section>
 
 <script>
-  import ShowSource from '../../../components/ShowSource.svelte';
+  import Demo from '../../../components/Demo.svelte';
   import Showcase from './Showcase.svelte';
   import Standard from './Standard.svelte';
   import Filled from './Filled.svelte';

@@ -1,5 +1,3 @@
-<h6 class="demo-title">A selection dialog</h6>
-
 <Dialog
   bind:open
   selection

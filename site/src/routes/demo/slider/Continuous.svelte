@@ -1,5 +1,3 @@
-<h6 class="demo-title">Continuous</h6>
-
 <Slider
   bind:value
   min={-10}

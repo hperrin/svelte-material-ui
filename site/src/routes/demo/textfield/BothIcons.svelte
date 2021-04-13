@@ -1,5 +1,3 @@
-<h6 class="demo-title">Both icons</h6>
-
 <div class="columns margins">
   <div>
     <Textfield bind:value={valueA} label="Standard">

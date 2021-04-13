@@ -5,15 +5,15 @@
 <section>
   <h2>Icon Button</h2>
 
-  <Simple />
-  <ShowSource file="card/Simple.svelte" />
+  <Demo component={Simple} file="icon-button/Simple.svelte" />
 
-  <Toggle />
-  <ShowSource file="card/Toggle.svelte" />
+  <Demo component={Toggle} file="icon-button/Toggle.svelte">
+    Toggle buttons
+  </Demo>
 </section>
 
 <script>
-  import ShowSource from '../../../components/ShowSource.svelte';
+  import Demo from '../../../components/Demo.svelte';
   import Simple from './Simple.svelte';
   import Toggle from './Toggle.svelte';
 </script>

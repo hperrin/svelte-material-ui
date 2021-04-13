@@ -1,5 +1,3 @@
-<h6 class="demo-title">Anchored automatically, corner set to bottom-left</h6>
-
 <div style="min-width: 100px;">
   <Button on:click={() => surface.setOpen(true)}>Open Menu Surface</Button>
   <MenuSurface bind:this={surface} anchorCorner="BOTTOM_LEFT">

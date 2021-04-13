@@ -1,5 +1,3 @@
-<h6 class="demo-title">Disabled</h6>
-
 <Slider disabled value={5} />
 
 <script>

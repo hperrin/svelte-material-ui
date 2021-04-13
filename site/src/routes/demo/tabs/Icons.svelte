@@ -1,5 +1,3 @@
-<h6 class="demo-title">Tabs with icons next to labels</h6>
-
 <div>
   <TabBar {tabs} let:tab bind:active>
     <Tab {tab}>

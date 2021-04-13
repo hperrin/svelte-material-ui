@@ -1,7 +1,5 @@
 <!-- See the CustomColor.scss file for how to do this. -->
 
-<h6 class="demo-title">Custom color</h6>
-
 <div class="paper-container">
   <Paper color="custom-green" class="paper-demo">
     <Title>Custom Color Paper</Title>

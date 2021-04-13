@@ -1,5 +1,3 @@
-<h6 class="demo-title">Unbounded</h6>
-
 <p>
   <span
     use:Ripple={{

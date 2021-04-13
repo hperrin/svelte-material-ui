@@ -1,5 +1,3 @@
-<h6 class="demo-title">Input chips</h6>
-
 <Set chips={input} let:chip input>
   <Chip {chip}>
     <Text>{chip}</Text>

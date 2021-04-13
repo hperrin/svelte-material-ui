@@ -5,15 +5,15 @@
 <section>
   <h2>Data Table</h2>
 
-  <Simple />
-  <ShowSource file="data-table/Simple.svelte" />
+  <Demo component={Simple} file="data-table/Simple.svelte" />
 
-  <RowSelection />
-  <ShowSource file="data-table/RowSelection.svelte" />
+  <Demo component={RowSelection} file="data-table/RowSelection.svelte">
+    With row selection
+  </Demo>
 </section>
 
 <script>
-  import ShowSource from '../../../components/ShowSource.svelte';
+  import Demo from '../../../components/Demo.svelte';
   import Simple from './Simple.svelte';
   import RowSelection from './RowSelection.svelte';
 </script>

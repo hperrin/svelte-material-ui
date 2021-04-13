@@ -1,5 +1,3 @@
-<h6 class="demo-title">Disabled</h6>
-
 <div class="columns margins">
   <div>
     <Textfield disabled value="" label="Standard">

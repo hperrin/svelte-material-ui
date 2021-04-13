@@ -1,5 +1,3 @@
-<h6 class="demo-title">Checkbox</h6>
-
 <FormField>
   <Checkbox bind:checked />
   <span slot="label">

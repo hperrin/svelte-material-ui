@@ -1,5 +1,3 @@
-<h6 class="demo-title">A check list with trailing checkboxes</h6>
-
 <div>
   <List class="demo-list" checkList>
     <Item>

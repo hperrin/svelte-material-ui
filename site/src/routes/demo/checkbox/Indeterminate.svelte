@@ -1,15 +1,12 @@
-<div>
-  <h6 class="demo-title">Indeterminate</h6>
-  <FormField>
-    <!-- Note that binding to `indeterminate` is probably a bad idea.
+<FormField>
+  <!-- Note that binding to `indeterminate` is probably a bad idea.
         The component will never set `indeterminate` internally. -->
-    <Checkbox bind:checked indeterminate={checked === null} input$required />
-    <span slot="label">I agree to the terms.</span>
-  </FormField>
+  <Checkbox bind:checked indeterminate={checked === null} input$required />
+  <span slot="label">I agree to the terms.</span>
+</FormField>
 
-  <br />
-  <Button on:click={() => (checked = null)}>Reset</Button>
-</div>
+<br />
+<Button on:click={() => (checked = null)}>Reset</Button>
 
 <pre class="status">Checked: {checked}</pre>
 

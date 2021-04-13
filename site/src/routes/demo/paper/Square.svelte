@@ -1,5 +1,3 @@
-<h6 class="demo-title">Square paper</h6>
-
 <div class="paper-container">
   <Paper square class="paper-demo">
     <Title>Square Paper</Title>

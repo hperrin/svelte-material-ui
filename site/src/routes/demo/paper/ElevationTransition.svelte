@@ -1,5 +1,3 @@
-<h6 class="demo-title">Elevation and transition</h6>
-
 <div class="paper-container">
   <Paper transition {elevation} {color} class="paper-demo">
     <Title>Elevated Paper</Title>

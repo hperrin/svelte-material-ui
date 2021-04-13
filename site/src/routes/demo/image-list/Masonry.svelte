@@ -2,8 +2,6 @@
   Check out Masonry.scss
 -->
 
-<h6 class="demo-title">Masonry, with rounded shapes</h6>
-
 <ImageList class="my-image-list-masonry" masonry>
   {#each Array(15) as _unused, i}
     <Item>

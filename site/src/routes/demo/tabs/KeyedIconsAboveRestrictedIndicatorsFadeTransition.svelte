@@ -1,8 +1,3 @@
-<h6 class="demo-title">
-  Keyed tabs with icons above labels, indicators restricted to content, and fade
-  transition
-</h6>
-
 <div>
   <TabBar {tabs} let:tab key={(tab) => tab.k} bind:active>
     <Tab

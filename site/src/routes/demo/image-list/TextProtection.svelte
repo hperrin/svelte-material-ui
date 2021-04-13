@@ -2,8 +2,6 @@
   Check out TextProtection.scss
 -->
 
-<h6 class="demo-title">4x5 aspect ratio, with text protection</h6>
-
 <ImageList class="my-image-list-4x5" withTextProtection>
   {#each Array(15) as _unused, i}
     <Item>

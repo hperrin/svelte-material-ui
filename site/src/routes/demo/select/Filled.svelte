@@ -1,5 +1,3 @@
-<h6 class="demo-title">Filled</h6>
-
 <div class="columns margins">
   <div>
     <Select variant="filled" bind:value label="Fruit">

@@ -5,24 +5,27 @@
 <section>
   <h2>Snackbars</h2>
 
-  <Simple />
-  <ShowSource file="snackbars/Simple.svelte" />
+  <Demo component={Simple} file="snackbars/Simple.svelte" />
 
-  <LeadingWithAction />
-  <ShowSource file="snackbars/LeadingWithAction.svelte" />
+  <Demo component={LeadingWithAction} file="snackbars/LeadingWithAction.svelte">
+    Leading with action
+  </Demo>
 
-  <StackedWithAction />
-  <ShowSource file="snackbars/StackedWithAction.svelte" />
+  <Demo component={StackedWithAction} file="snackbars/StackedWithAction.svelte">
+    Stacked with action
+  </Demo>
 
-  <DynamicText />
-  <ShowSource file="snackbars/DynamicText.svelte" />
+  <Demo component={DynamicText} file="snackbars/DynamicText.svelte">
+    Using dynamic text
+  </Demo>
 
-  <Kitchen />
-  <ShowSource file="snackbars/Kitchen.svelte" />
+  <Demo component={Kitchen} file="snackbars/Kitchen.svelte">
+    The "Kitchen" Snackbar generator
+  </Demo>
 </section>
 
 <script>
-  import ShowSource from '../../../components/ShowSource.svelte';
+  import Demo from '../../../components/Demo.svelte';
   import Simple from './Simple.svelte';
   import LeadingWithAction from './LeadingWithAction.svelte';
   import StackedWithAction from './StackedWithAction.svelte';

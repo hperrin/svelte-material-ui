@@ -1,35 +1,31 @@
-<h6 class="demo-title">With Row Selection</h6>
-
-<div>
-  <DataTable>
-    <Head>
+<DataTable>
+  <Head>
+    <Row>
+      <Cell checkbox>
+        <Checkbox />
+      </Cell>
+      <Cell>Name</Cell>
+      <Cell>Description</Cell>
+      <Cell numeric>Price</Cell>
+    </Row>
+  </Head>
+  <Body>
+    {#each options as option (option.name)}
       <Row>
         <Cell checkbox>
-          <Checkbox />
+          <Checkbox
+            bind:group={selected}
+            value={option}
+            valueKey={option.name}
+          />
         </Cell>
-        <Cell>Name</Cell>
-        <Cell>Description</Cell>
-        <Cell numeric>Price</Cell>
+        <Cell>{option.name}</Cell>
+        <Cell>{option.description}</Cell>
+        <Cell numeric>{option.price}</Cell>
       </Row>
-    </Head>
-    <Body>
-      {#each options as option (option.name)}
-        <Row>
-          <Cell checkbox>
-            <Checkbox
-              bind:group={selected}
-              value={option}
-              valueKey={option.name}
-            />
-          </Cell>
-          <Cell>{option.name}</Cell>
-          <Cell>{option.description}</Cell>
-          <Cell numeric>{option.price}</Cell>
-        </Row>
-      {/each}
-    </Body>
-  </DataTable>
-</div>
+    {/each}
+  </Body>
+</DataTable>
 
 <pre
   class="status">Selected: {selected.map(option => option.name).join(', ')}</pre>

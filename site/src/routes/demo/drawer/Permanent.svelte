@@ -1,5 +1,3 @@
-<h6 class="demo-title">A permanent drawer</h6>
-
 <div class="drawer-container">
   <Drawer>
     <Content>

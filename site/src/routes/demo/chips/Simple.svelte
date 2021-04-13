@@ -1,4 +1,5 @@
-<!-- Note that chips must be unique. (They cannot === each other.) -->
+<!-- Note that chips must be unique. (They cannot === each other.)
+    If you need to show the same value, use keyed chips.-->
 <Set chips={['one', 'two', 'three', 'four', 'five']} let:chip>
   <!-- Notice that the `chip` property is required! -->
   <Chip {chip} shouldRemoveOnTrailingIconClick={false}>

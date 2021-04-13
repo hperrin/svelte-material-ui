@@ -1,5 +1,3 @@
-<h6 class="demo-title">Range slider</h6>
-
 <Slider
   range
   bind:start={valueStart}

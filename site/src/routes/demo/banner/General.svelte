@@ -1,6 +1,4 @@
 <div>
-  <h6 class="demo-title">Banner Options</h6>
-
   <FormField>
     <Checkbox bind:checked={open} />
     <span slot="label">Open</span>

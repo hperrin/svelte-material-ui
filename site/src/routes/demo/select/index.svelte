@@ -5,27 +5,27 @@
 <section>
   <h2>Select</h2>
 
-  <Showcase />
-  <ShowSource file="select/Showcase.svelte" />
+  <Demo component={Showcase} file="select/Showcase.svelte" />
 
-  <Standard />
-  <ShowSource file="select/Standard.svelte" />
+  <Demo component={Standard} file="select/Standard.svelte">Standard</Demo>
 
-  <Filled />
-  <ShowSource file="select/Filled.svelte" />
+  <Demo component={Filled} file="select/Filled.svelte">Filled</Demo>
 
-  <Outlined />
-  <ShowSource file="select/Outlined.svelte" />
+  <Demo component={Outlined} file="select/Outlined.svelte">Outlined</Demo>
 
-  <ShapedFilled />
-  <ShowSource file="select/ShapedFilled.svelte" />
+  <Demo component={ShapedFilled} file="select/ShapedFilled.svelte">
+    Shaped Filled
+    <svelte:fragment slot="subtitle">Styled with CSS</svelte:fragment>
+  </Demo>
 
-  <ShapedOutlined />
-  <ShowSource file="select/ShapedOutlined.svelte" />
+  <Demo component={ShapedOutlined} file="select/ShapedOutlined.svelte">
+    Shaped Outlined
+    <svelte:fragment slot="subtitle">Styled with CSS</svelte:fragment>
+  </Demo>
 </section>
 
 <script>
-  import ShowSource from '../../../components/ShowSource.svelte';
+  import Demo from '../../../components/Demo.svelte';
   import Showcase from './Showcase.svelte';
   import Standard from './Standard.svelte';
   import Filled from './Filled.svelte';

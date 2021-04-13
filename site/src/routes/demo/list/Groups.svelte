@@ -1,5 +1,3 @@
-<h6 class="demo-title">A list group</h6>
-
 <div>
   <Group>
     <Subheader>Actors</Subheader>

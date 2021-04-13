@@ -1,5 +1,3 @@
-<h6 class="demo-title">Radio Button</h6>
-
 {#each ['yes', 'no'] as option}
   <FormField style="margin-right: 1em;">
     <Radio bind:group={selected} value={option} />

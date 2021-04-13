@@ -5,27 +5,29 @@
 <section>
   <h2>Paper</h2>
 
-  <Simple />
-  <ShowSource file="paper/Simple.svelte" />
+  <Demo component={Simple} file="paper/Simple.svelte" />
 
-  <Square />
-  <ShowSource file="paper/Square.svelte" />
+  <Demo component={Square} file="paper/Square.svelte">Square paper</Demo>
 
-  <PrimaryColor />
-  <ShowSource file="paper/PrimaryColor.svelte" />
+  <Demo component={PrimaryColor} file="paper/PrimaryColor.svelte">
+    Primary color
+  </Demo>
 
-  <SecondaryColor />
-  <ShowSource file="paper/SecondaryColor.svelte" />
+  <Demo component={SecondaryColor} file="paper/SecondaryColor.svelte">
+    Secondary color
+  </Demo>
 
-  <CustomColor />
-  <ShowSource file="paper/CustomColor.svelte" />
+  <Demo component={CustomColor} file="paper/CustomColor.svelte">
+    Custom color
+  </Demo>
 
-  <ElevationTransition />
-  <ShowSource file="paper/ElevationTransition.svelte" />
+  <Demo component={ElevationTransition} file="paper/ElevationTransition.svelte">
+    Elevation and transition
+  </Demo>
 </section>
 
 <script>
-  import ShowSource from '../../../components/ShowSource.svelte';
+  import Demo from '../../../components/Demo.svelte';
   import Simple from './Simple.svelte';
   import Square from './Square.svelte';
   import PrimaryColor from './PrimaryColor.svelte';

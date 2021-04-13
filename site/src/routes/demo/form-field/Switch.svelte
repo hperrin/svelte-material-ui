@@ -1,5 +1,3 @@
-<h6 class="demo-title">Switch</h6>
-
 <FormField>
   <Switch bind:checked={agreed} />
   <span slot="label">

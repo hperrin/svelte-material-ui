@@ -5,23 +5,28 @@
 <section>
   <h2>Menu</h2>
 
-  <Static />
-  <ShowSource file="menu/Static.svelte" />
+  <Demo component={Static} file="menu/Static.svelte" />
 
-  <Anchored />
-  <ShowSource file="menu/Anchored.svelte" />
+  <Demo component={Anchored} file="menu/Anchored.svelte">
+    Anchored automatically
+  </Demo>
 
-  <TwoLineManunalAnchor />
-  <ShowSource file="menu/TwoLineManunalAnchor.svelte" />
+  <Demo
+    component={TwoLineManunalAnchor}
+    file="menu/TwoLineManunalAnchor.svelte"
+  >
+    Two line, anchored manually, corner set to bottom-left
+  </Demo>
 
-  <SelectionGroup />
-  <ShowSource file="menu/SelectionGroup.svelte" />
+  <Demo component={SelectionGroup} file="menu/SelectionGroup.svelte">
+    Selection groups
+  </Demo>
 
   <div style="padding-top: 200px;">Long div for scrolling...</div>
 </section>
 
 <script>
-  import ShowSource from '../../../components/ShowSource.svelte';
+  import Demo from '../../../components/Demo.svelte';
   import Static from './Static.svelte';
   import Anchored from './Anchored.svelte';
   import TwoLineManunalAnchor from './TwoLineManunalAnchor.svelte';

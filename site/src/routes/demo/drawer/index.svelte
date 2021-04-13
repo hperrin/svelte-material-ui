@@ -5,18 +5,21 @@
 <section>
   <h2>Drawers</h2>
 
-  <Permanent />
-  <ShowSource file="drawer/Permanent.svelte" />
+  <Demo component={Permanent} file="drawer/Permanent.svelte">
+    A permanent drawer
+  </Demo>
 
-  <Dismissible />
-  <ShowSource file="drawer/Dismissible.svelte" />
+  <Demo component={Dismissible} file="drawer/Dismissible.svelte">
+    A dismissible drawer with a header and activated items
+  </Demo>
 
-  <Modal />
-  <ShowSource file="drawer/Modal.svelte" />
+  <Demo component={Modal} file="drawer/Modal.svelte">
+    A modal drawer with header, activated items, subheading, icons, list groups
+  </Demo>
 </section>
 
 <script>
-  import ShowSource from '../../../components/ShowSource.svelte';
+  import Demo from '../../../components/Demo.svelte';
   import Permanent from './Permanent.svelte';
   import Dismissible from './Dismissible.svelte';
   import Modal from './Modal.svelte';

@@ -1,5 +1,3 @@
-<h6 class="demo-title">A simple list</h6>
-
 <div>
   <List class="demo-list">
     <Item on:SMUI:action={() => (clicked = 'Cut')}><Text>Cut</Text></Item>

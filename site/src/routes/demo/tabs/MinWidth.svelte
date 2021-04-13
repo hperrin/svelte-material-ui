@@ -1,5 +1,3 @@
-<h6 class="demo-title">Min width tabs</h6>
-
 <div>
   <TabBar tabs={['Home', 'Merchandise', 'About Us']} let:tab bind:active>
     <Tab {tab} minWidth>

@@ -1,5 +1,3 @@
-<h6 class="demo-title">A dialog with sliders</h6>
-
 <Dialog
   bind:open
   aria-labelledby="slider-title"

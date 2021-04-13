@@ -1,5 +1,3 @@
-<h6 class="demo-title">Anchored manually</h6>
-
 <div
   class={Object.keys(anchorClasses).join(' ')}
   use:Anchor={{

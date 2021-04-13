@@ -1,5 +1,3 @@
-<h6 class="demo-title">Primary color</h6>
-
 <div>
   <FormField>
     <Switch color="primary" bind:checked={checked1} />

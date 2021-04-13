@@ -1,5 +1,3 @@
-<h6 class="demo-title">Too many action buttons for one line</h6>
-
 <Dialog
   bind:open
   aria-labelledby="buttons-title"

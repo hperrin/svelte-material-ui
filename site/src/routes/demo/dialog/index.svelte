@@ -5,30 +5,36 @@
 <section>
   <h2>Dialogs</h2>
 
-  <Simple />
-  <ShowSource file="dialog/Simple.svelte" />
+  <Demo component={Simple} file="dialog/Simple.svelte" />
 
-  <Event />
-  <ShowSource file="dialog/Event.svelte" />
+  <Demo component={Event} file="dialog/Event.svelte">
+    Using dialog events instead of button clicks, with a default button that is
+    initially focused
+  </Demo>
 
-  <List />
-  <ShowSource file="dialog/List.svelte" />
+  <Demo component={List} file="dialog/List.svelte">
+    No actions, and a very long selection list dialog
+  </Demo>
 
-  <Selection />
-  <ShowSource file="dialog/Selection.svelte" />
+  <Demo component={Selection} file="dialog/Selection.svelte">
+    A selection dialog
+  </Demo>
 
-  <Sliders />
-  <ShowSource file="dialog/Sliders.svelte" />
+  <Demo component={Sliders} file="dialog/Sliders.svelte">
+    A dialog with sliders
+  </Demo>
 
-  <LargeScroll />
-  <ShowSource file="dialog/LargeScroll.svelte" />
+  <Demo component={LargeScroll} file="dialog/LargeScroll.svelte">
+    A large, scrollable dialog
+  </Demo>
 
-  <ManyActions />
-  <ShowSource file="dialog/ManyActions.svelte" />
+  <Demo component={ManyActions} file="dialog/ManyActions.svelte">
+    Too many action buttons for one line
+  </Demo>
 </section>
 
 <script>
-  import ShowSource from '../../../components/ShowSource.svelte';
+  import Demo from '../../../components/Demo.svelte';
   import Simple from './Simple.svelte';
   import Event from './Event.svelte';
   import List from './List.svelte';

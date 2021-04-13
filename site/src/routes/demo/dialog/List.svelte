@@ -1,5 +1,3 @@
-<h6 class="demo-title">No actions, and a very long selection list dialog</h6>
-
 <Dialog
   bind:open
   selection

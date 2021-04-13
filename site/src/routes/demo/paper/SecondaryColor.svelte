@@ -1,5 +1,3 @@
-<h6 class="demo-title">Secondary color</h6>
-
 <div class="paper-container">
   <Paper color="secondary" class="paper-demo">
     <Title>Secondary Paper</Title>

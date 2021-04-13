@@ -1,5 +1,3 @@
-<h6 class="demo-title">Textarea with Character Count</h6>
-
 <div class="margins">
   <Textfield textarea input$maxlength="100" bind:value label="Label">
     <CharacterCounter slot="internalCounter">0 / 100</CharacterCounter>

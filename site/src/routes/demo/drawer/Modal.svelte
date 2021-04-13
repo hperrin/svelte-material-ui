@@ -1,7 +1,3 @@
-<h6 class="demo-title">
-  A modal drawer with header, activated items, subheading, icons, list groups
-</h6>
-
 <div class="drawer-container">
   <!-- Don't include fixed={false} if this is a page wide drawer.
         It adds a style for absolute positioning. -->

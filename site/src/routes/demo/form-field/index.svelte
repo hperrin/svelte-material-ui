@@ -5,21 +5,19 @@
 <section>
   <h2>Form Fields</h2>
 
-  <Checkbox />
-  <ShowSource file="form-field/Checkbox.svelte" />
+  <Demo component={Checkbox} file="form-field/Checkbox.svelte">Checkbox</Demo>
 
-  <EndAlignment />
-  <ShowSource file="form-field/EndAlignment.svelte" />
+  <Demo component={EndAlignment} file="form-field/EndAlignment.svelte">
+    End alignment
+  </Demo>
 
-  <Radio />
-  <ShowSource file="form-field/Radio.svelte" />
+  <Demo component={Radio} file="form-field/Radio.svelte">Radio button</Demo>
 
-  <Switch />
-  <ShowSource file="form-field/Switch.svelte" />
+  <Demo component={Switch} file="form-field/Switch.svelte">Switch</Demo>
 </section>
 
 <script>
-  import ShowSource from '../../../components/ShowSource.svelte';
+  import Demo from '../../../components/Demo.svelte';
   import Checkbox from './Checkbox.svelte';
   import EndAlignment from './EndAlignment.svelte';
   import Radio from './Radio.svelte';

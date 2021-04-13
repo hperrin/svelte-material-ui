@@ -1,5 +1,3 @@
-<h6 class="demo-title">Shaped Outlined (Styled with CSS)</h6>
-
 <div class="columns margins">
   <div>
     <Select class="shaped-outlined" variant="outlined" bind:value label="Fruit">

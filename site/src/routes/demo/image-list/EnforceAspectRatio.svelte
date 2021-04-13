@@ -2,10 +2,6 @@
   Check out EnforceAspectRatio.scss
 -->
 
-<h6 class="demo-title">
-  Using a <code>div</code> instead of an <code>img</code> to enforce aspect ratio
-</h6>
-
 <ImageList class="my-image-list-enforce-ratio">
   {#each Array(15) as _unused, i}
     <Item>

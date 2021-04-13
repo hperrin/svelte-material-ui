@@ -1,5 +1,3 @@
-<h6 class="demo-title">Increased touch target</h6>
-
 <div class="radio-demo">
   {#each ['On', 'Off'] as option}
     <FormField>

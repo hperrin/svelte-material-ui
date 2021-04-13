@@ -5,21 +5,21 @@
 <section>
   <h2>Checkbox</h2>
 
-  <Simple />
-  <ShowSource file="checkbox/Simple.svelte" />
+  <Demo component={Simple} file="checkbox/Simple.svelte" />
 
-  <Touch />
-  <ShowSource file="checkbox/Touch.svelte" />
+  <Demo component={Touch} file="checkbox/Touch.svelte">
+    Increased touch target
+  </Demo>
 
-  <Group />
-  <ShowSource file="checkbox/Group.svelte" />
+  <Demo component={Group} file="checkbox/Group.svelte">Group checkbox</Demo>
 
-  <Indeterminate />
-  <ShowSource file="checkbox/Indeterminate.svelte" />
+  <Demo component={Indeterminate} file="checkbox/Indeterminate.svelte">
+    Indeterminate
+  </Demo>
 </section>
 
 <script>
-  import ShowSource from '../../../components/ShowSource.svelte';
+  import Demo from '../../../components/Demo.svelte';
   import Simple from './Simple.svelte';
   import Touch from './Touch.svelte';
   import Group from './Group.svelte';

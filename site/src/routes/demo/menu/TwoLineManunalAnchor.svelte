@@ -1,7 +1,3 @@
-<h6 class="demo-title">
-  Two line, anchored manually, corner set to bottom-left
-</h6>
-
 <div
   class={Object.keys(anchorClasses).join(' ')}
   use:Anchor={{

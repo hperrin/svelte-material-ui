@@ -1,5 +1,3 @@
-<h6 class="demo-title">A three-line list</h6>
-
 <div>
   <List class="demo-list" threeLine nonInteractive>
     <Item>

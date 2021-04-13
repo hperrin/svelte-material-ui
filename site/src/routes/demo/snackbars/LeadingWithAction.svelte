@@ -1,5 +1,3 @@
-<h6 class="demo-title">Leading with Action</h6>
-
 <Snackbar leading bind:this={snackbar} on:MDCSnackbar:closed={handleClosed}>
   <Label>This is a leading snackbar.</Label>
   <Actions>

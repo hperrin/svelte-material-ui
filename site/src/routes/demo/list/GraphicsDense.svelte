@@ -1,5 +1,3 @@
-<h6 class="demo-title">A dense list with graphics</h6>
-
 <div>
   <List class="demo-list" dense>
     <Item on:SMUI:action={() => (clicked = 'Edit')}>

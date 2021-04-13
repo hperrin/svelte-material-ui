@@ -5,21 +5,23 @@
 <section>
   <h2>Linear Progress</h2>
 
-  <Simple />
-  <ShowSource file="linear-progress/Simple.svelte" />
+  <Demo component={Simple} file="linear-progress/Simple.svelte" />
 
-  <Buffered />
-  <ShowSource file="linear-progress/Buffered.svelte" />
+  <Demo component={Buffered} file="linear-progress/Buffered.svelte">
+    Buffered
+  </Demo>
 
-  <Indeterminate />
-  <ShowSource file="linear-progress/Indeterminate.svelte" />
+  <Demo component={Indeterminate} file="linear-progress/Indeterminate.svelte">
+    Indeterminate
+  </Demo>
 
-  <Colored />
-  <ShowSource file="linear-progress/Colored.svelte" />
+  <Demo component={Colored} file="linear-progress/Colored.svelte">
+    Colored (using Sass mixins)
+  </Demo>
 </section>
 
 <script>
-  import ShowSource from '../../../components/ShowSource.svelte';
+  import Demo from '../../../components/Demo.svelte';
   import Simple from './Simple.svelte';
   import Buffered from './Buffered.svelte';
   import Indeterminate from './Indeterminate.svelte';

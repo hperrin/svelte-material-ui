@@ -1,5 +1,3 @@
-<h6 class="demo-title">Elements in the Label</h6>
-
 <div class="margins">
   <Textfield bind:value={valueElementsLabel} type="email">
     <svelte:fragment slot="label">

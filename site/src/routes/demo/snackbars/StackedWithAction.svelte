@@ -1,5 +1,3 @@
-<h6 class="demo-title">Stacked with Action</h6>
-
 <Snackbar
   variant="stacked"
   bind:this={nnackbar}

@@ -1,5 +1,3 @@
-<h6 class="demo-title">Filled</h6>
-
 <div class="columns margins">
   <div>
     <Textfield variant="filled" bind:value={valueA} label="Label">

@@ -1,8 +1,3 @@
-<h6 class="demo-title">Top app bars in a container</h6>
-<p class="demo-subtitle mdc-typography--subtitle1">
-  (Only the "static" variant works inside containers.)
-</p>
-
 <div>
   <FormField>
     <Checkbox bind:checked={prominent} />

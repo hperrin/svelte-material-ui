@@ -1,5 +1,3 @@
-<h6 class="demo-title">Keyed chips</h6>
-
 <Set chips={keyed} let:chip key={(chip) => chip.k} input>
   <Chip {chip}>
     <Text>{chip.v}</Text>

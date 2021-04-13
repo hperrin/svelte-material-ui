@@ -5,27 +5,25 @@
 <section>
   <h2>Slider</h2>
 
-  <Simple />
-  <ShowSource file="slider/Simple.svelte" />
+  <Demo component={Simple} file="slider/Simple.svelte" />
 
-  <Continuous />
-  <ShowSource file="slider/Continuous.svelte" />
+  <Demo component={Continuous} file="slider/Continuous.svelte">Continuous</Demo>
 
-  <Discrete />
-  <ShowSource file="slider/Discrete.svelte" />
+  <Demo component={Discrete} file="slider/Discrete.svelte">
+    Discrete with min/max/step
+  </Demo>
 
-  <TickMarks />
-  <ShowSource file="slider/TickMarks.svelte" />
+  <Demo component={TickMarks} file="slider/TickMarks.svelte">
+    Adding tick marks to discrete
+  </Demo>
 
-  <Range />
-  <ShowSource file="slider/Range.svelte" />
+  <Demo component={Range} file="slider/Range.svelte">Range slider</Demo>
 
-  <Disabled />
-  <ShowSource file="slider/Disabled.svelte" />
+  <Demo component={Disabled} file="slider/Disabled.svelte">Disabled</Demo>
 </section>
 
 <script>
-  import ShowSource from '../../../components/ShowSource.svelte';
+  import Demo from '../../../components/Demo.svelte';
   import Simple from './Simple.svelte';
   import Continuous from './Continuous.svelte';
   import Discrete from './Discrete.svelte';

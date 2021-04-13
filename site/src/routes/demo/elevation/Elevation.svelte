@@ -1,6 +1,6 @@
 <!--
   You need to import `@material/elevation/mdc-elevation` in SCSS for
-  these to work. See the elevation.scss file.
+  these to work. See the Elevation.scss file.
 -->
 
 <div class="flexy-dad">
@@ -9,42 +9,8 @@
   {/each}
 </div>
 
-<h6 class="demo-title">Transitions and color</h6>
-
-<FormField>
-  <Checkbox bind:checked={liftMeUp} />
-  <span slot="label">You raise me up, so I can stand on mountains!</span>
-</FormField>
-
-<br /><br />
-
-<div class="flexy-dad">
-  <div
-    class="mdc-elevation-transition rounded flexy-boy"
-    class:mdc-elevation--z4={liftMeUp}
-  >
-    Standard
-  </div>
-  <div
-    class="my-primary mdc-elevation-transition rounded flexy-boy"
-    class:elevated={liftMeUp}
-  >
-    Primary
-  </div>
-  <div
-    class="my-secondary mdc-elevation-transition rounded flexy-boy"
-    class:elevated={liftMeUp}
-  >
-    Secondary
-  </div>
-</div>
-
 <script>
   import './Elevation.scss';
-  import Checkbox from '@smui/checkbox';
-  import FormField from '@smui/form-field';
-
-  let liftMeUp = false;
 </script>
 
 <style>
@@ -60,9 +26,5 @@
     width: 120px;
     height: 120px;
     margin: 0 36px 36px 0;
-  }
-
-  .rounded {
-    border-radius: 4px;
   }
 </style>

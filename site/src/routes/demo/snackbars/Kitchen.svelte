@@ -1,5 +1,3 @@
-<h6 class="demo-title">The "Kitchen" Snackbar generator</h6>
-
 <Kitchen bind:this={kitchen} dismiss$class="material-icons" />
 
 <Button on:click={pushToKitchen}><Label>Push a New Snackbar</Label></Button>

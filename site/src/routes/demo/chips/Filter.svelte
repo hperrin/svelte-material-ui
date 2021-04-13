@@ -1,5 +1,3 @@
-<h6 class="demo-title">Filter chips with increased touch target</h6>
-
 <Set chips={choices} let:chip filter bind:selected>
   <Chip {chip} touch>
     <Text>{chip}</Text>

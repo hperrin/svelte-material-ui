@@ -1,5 +1,3 @@
-<h6 class="demo-title">Choice chips</h6>
-
 <Set chips={choices} let:chip choice bind:selected>
   <Chip {chip}>
     <Text>{chip}</Text>

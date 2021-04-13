@@ -1,5 +1,3 @@
-<h6 class="demo-title">Standard</h6>
-
 <div class="columns margins">
   <div>
     <Select bind:value label="Fruit">
