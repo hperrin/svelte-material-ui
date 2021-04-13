@@ -5,85 +5,15 @@
 <section>
   <h2>Radio</h2>
 
-  <div class="radio-demo">
-    {#each options as option}
-      <FormField>
-        <Radio
-          bind:group={selected}
-          value={option.name}
-          disabled={option.disabled}
-        />
-        <span slot="label"
-          >{option.name}{option.disabled ? ' (disabled)' : ''}</span
-        >
-      </FormField>
-    {/each}
-  </div>
+  <Simple />
+  <ShowSource file="radio/Simple.svelte" />
 
-  <div>
-    <Button
-      on:click={() => {
-        selected = 'Doc';
-      }}>Select Doc Programmatically</Button
-    >
-  </div>
-
-  <pre class="status">Selected: {selected}</pre>
-
-  <div class="radio-demo">
-    <h6 class="demo-title">Increased touch target</h6>
-    {#each ['On', 'Off'] as option}
-      <FormField>
-        <Radio bind:group={onoff} value={option} touch />
-        <span slot="label">{option}</span>
-      </FormField>
-    {/each}
-  </div>
-
-  <pre class="status">Selected: {onoff}</pre>
+  <Touch />
+  <ShowSource file="radio/Touch.svelte" />
 </section>
 
 <script>
-  import Radio from '@smui/radio';
-  import FormField from '@smui/form-field';
-  import Button from '@smui/button';
-
-  let options = [
-    {
-      name: 'Bashful',
-      disabled: false,
-    },
-    {
-      name: 'Doc',
-      disabled: true,
-    },
-    {
-      name: 'Dopey',
-      disabled: false,
-    },
-    {
-      name: 'Happy',
-      disabled: false,
-    },
-    {
-      name: 'Sleepy',
-      disabled: false,
-    },
-    {
-      name: 'Sneezy',
-      disabled: false,
-    },
-    {
-      name: 'Grumpy',
-      disabled: false,
-    },
-  ];
-  let selected = 'Grumpy';
-  let onoff = 'On';
+  import ShowSource from '../../../components/ShowSource.svelte';
+  import Simple from './Simple.svelte';
+  import Touch from './Touch.svelte';
 </script>
-
-<style>
-  .radio-demo > :global(*) {
-    margin: 0 0.2em;
-  }
-</style>
