@@ -7,7 +7,7 @@
 
   <!--
     You need to import `@material/typography/mdc-typography` in SCSS for
-    these classes to work. See the typography.scss file.
+    these classes to work. See the Typography.scss file.
   -->
 
   <div class="mdc-typography--headline1">Headline 1</div>
@@ -44,4 +44,10 @@
     <strong>strong</strong>
     <em>em</em>
   </div>
+
+  <ShowSource file="typography/Typography.scss" />
 </section>
+
+<script>
+  import ShowSource from '../../../components/ShowSource.svelte';
+</script>
