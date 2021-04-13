@@ -55,6 +55,8 @@
 </script>
 
 <style>
+  /* These classes are only needed because the
+    drawer is in a container on the page. */
   .drawer-container {
     position: relative;
     display: flex;
