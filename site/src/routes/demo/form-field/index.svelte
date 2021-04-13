@@ -8,6 +8,9 @@
   <Checkbox />
   <ShowSource file="form-field/Checkbox.svelte" />
 
+  <EndAlignment />
+  <ShowSource file="form-field/EndAlignment.svelte" />
+
   <Radio />
   <ShowSource file="form-field/Radio.svelte" />
 
@@ -18,6 +21,7 @@
 <script>
   import ShowSource from '../../../components/ShowSource.svelte';
   import Checkbox from './Checkbox.svelte';
+  import EndAlignment from './EndAlignment.svelte';
   import Radio from './Radio.svelte';
   import Switch from './Switch.svelte';
 </script>
