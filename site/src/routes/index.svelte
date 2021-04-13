@@ -115,8 +115,10 @@
           <Text>
             <PrimaryText>Accessible by Default</PrimaryText>
             <SecondaryText style="white-space: normal;">
-              SMUI's components automatically add ARIA attributes to their
-              elements to provide accessibility to screen readers.
+              SMUI's components automatically add appropriate ARIA attributes to
+              their elements to provide accessibility to screen readers. They
+              are also fully keyboard accessible, meaning motor impaired users
+              can easily use SMUI components.
             </SecondaryText>
           </Text>
         </Item>
