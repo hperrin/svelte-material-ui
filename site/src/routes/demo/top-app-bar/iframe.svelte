@@ -37,6 +37,8 @@
   import IconButton from '@smui/icon-button';
   import LoremIpsum from '../../../components/LoremIpsum.svelte';
 
+  // The iframe is loaded with a style in the query part
+  // of the URL, and we can read it from here.
   const { page } = stores();
 
   let dense = false;
@@ -72,6 +74,7 @@
 </script>
 
 <style>
+  /* Hide everything above this component. */
   :global(app, body, html) {
     display: block !important;
     height: auto !important;
