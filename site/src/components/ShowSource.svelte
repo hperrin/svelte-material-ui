@@ -60,7 +60,7 @@
 
 <style>
   * :global(.demo-source-file) {
-    height: 350px;
+    max-height: 350px;
     overflow: auto;
     margin: 1em;
   }

@@ -5,135 +5,31 @@
 <section>
   <h2>Paper</h2>
 
-  <div>
-    <div class="paper-container">
-      <Paper class="paper-demo">
-        <Title>Paper</Title>
-        <Subtitle>This is a sheet of paper.</Subtitle>
-        <Content>Paper is used to build an elevated surface.</Content>
-      </Paper>
-    </div>
-  </div>
+  <Simple />
+  <ShowSource file="paper/Simple.svelte" />
 
-  <div>
-    <h6 class="demo-title">Square paper</h6>
+  <Square />
+  <ShowSource file="paper/Square.svelte" />
 
-    <div class="paper-container">
-      <Paper square class="paper-demo">
-        <Title>Square Paper</Title>
-        <Content
-          >By adding the <code>square</code> property, the paper gains sharper corners
-          and can be used to intimidate foes.</Content
-        >
-      </Paper>
-    </div>
-  </div>
+  <PrimaryColor />
+  <ShowSource file="paper/PrimaryColor.svelte" />
 
-  <div>
-    <h6 class="demo-title">Paper color</h6>
+  <SecondaryColor />
+  <ShowSource file="paper/SecondaryColor.svelte" />
 
-    <div class="paper-container">
-      <Paper color="primary" class="paper-demo">
-        <Title>Primary Paper</Title>
-        <Content
-          >Paper can have a color, allowing you to construct fancy school
-          projects with the colored paper and glue sticks.</Content
-        >
-      </Paper>
-    </div>
+  <CustomColor />
+  <ShowSource file="paper/CustomColor.svelte" />
 
-    <div class="paper-container">
-      <Paper color="secondary" class="paper-demo">
-        <Title>Secondary Paper</Title>
-        <Content
-          >Paper can have a color, allowing you to construct fancy school
-          projects with the colored paper and glue sticks.</Content
-        >
-      </Paper>
-    </div>
-
-    <div class="paper-container">
-      <!-- See the paper.scss file for how to do this. -->
-      <Paper color="custom-green" class="paper-demo">
-        <Title>Custom Color Paper</Title>
-        <Content
-          >Paper can have a color, allowing you to construct fancy school
-          projects with the colored paper and glue sticks.</Content
-        >
-      </Paper>
-    </div>
-  </div>
-
-  <div>
-    <h6 class="demo-title">Elevation and transition</h6>
-
-    <div class="paper-container">
-      <Paper transition {elevation} {color} class="paper-demo">
-        <Title>Elevated Paper</Title>
-        <Content>
-          If you add the <code>transition</code> property, elevation changes
-          will animate.
-
-          <br /><br />
-
-          <Paper elevation={0}>
-            <div>
-              <FormField align="end" style="display: flex;">
-                <Slider
-                  style="flex-grow: 1;"
-                  bind:value={elevation}
-                  min={0}
-                  max={24}
-                  discrete
-                />
-                <span
-                  slot="label"
-                  style="padding-right: 12px; width: max-content; display: block;"
-                  >Elevation</span
-                >
-              </FormField>
-            </div>
-
-            <div>
-              <FormField>
-                <Radio bind:group={color} value="default" />
-                <span slot="label">Default</span>
-              </FormField>
-              <FormField>
-                <Radio bind:group={color} value="primary" />
-                <span slot="label">Primary</span>
-              </FormField>
-              <FormField>
-                <Radio bind:group={color} value="secondary" />
-                <span slot="label">Secondary</span>
-              </FormField>
-            </div>
-          </Paper>
-        </Content>
-      </Paper>
-    </div>
-  </div>
+  <ElevationTransition />
+  <ShowSource file="paper/ElevationTransition.svelte" />
 </section>
 
 <script>
-  import Paper, { Title, Subtitle, Content } from '@smui/paper';
-  import Slider from '@smui/slider';
-  import Radio from '@smui/radio';
-  import FormField from '@smui/form-field';
-  import './paper.scss';
-
-  let elevation = 1;
-  let color = 'default';
+  import ShowSource from '../../../components/ShowSource.svelte';
+  import Simple from './Simple.svelte';
+  import Square from './Square.svelte';
+  import PrimaryColor from './PrimaryColor.svelte';
+  import SecondaryColor from './SecondaryColor.svelte';
+  import CustomColor from './CustomColor.svelte';
+  import ElevationTransition from './ElevationTransition.svelte';
 </script>
-
-<style>
-  .paper-container {
-    background-color: #f8f8f8;
-    padding: 36px 18px;
-  }
-
-  * :global(.paper-demo) {
-    margin: 0 auto;
-    max-width: 600px;
-  }
-</style>
