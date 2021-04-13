@@ -5,11 +5,11 @@
 <section>
   <h2>Button</h2>
 
-  <RegularButtons />
-  <ShowSource file="button/RegularButtons.svelte" />
+  <Simple />
+  <ShowSource file="button/Simple.svelte" />
 
-  <IncreasedTouchTarget />
-  <ShowSource file="button/IncreasedTouchTarget.svelte" />
+  <Touch />
+  <ShowSource file="button/Touch.svelte" />
 
   <SecondaryColor />
   <ShowSource file="button/SecondaryColor.svelte" />
@@ -29,8 +29,8 @@
 
 <script>
   import ShowSource from '../../../components/ShowSource.svelte';
-  import RegularButtons from './RegularButtons.svelte';
-  import IncreasedTouchTarget from './IncreasedTouchTarget.svelte';
+  import Simple from './Simple.svelte';
+  import Touch from './Touch.svelte';
   import SecondaryColor from './SecondaryColor.svelte';
   import Groups from './Groups.svelte';
   import SplitButtons from './SplitButtons.svelte';
