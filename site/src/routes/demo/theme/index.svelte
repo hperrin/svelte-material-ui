@@ -14,45 +14,54 @@
   </p>
 
   <div>
-    <Button on:click={() => clicked++}><Label>Default</Label></Button>
-    <Button on:click={() => clicked++} color="secondary"
-      ><Label>Secondary</Label></Button
-    >
-    <Button on:click={() => clicked++} disabled><Label>Disabled</Label></Button>
-    <Button on:click={() => clicked++} variant="raised"
-      ><Label>Raised</Label></Button
-    >
-    <Button on:click={() => clicked++} variant="unelevated"
-      ><Label>Unelevated</Label></Button
-    >
-    <Button on:click={() => clicked++} variant="outlined"
-      ><Label>Outlined</Label></Button
-    >
-    <Button on:click={() => clicked++}
-      ><Icon class="material-icons">favorite</Icon><Label>Icon</Label></Button
-    >
+    <Button on:click={() => clicked++}>
+      <Label>Default</Label>
+    </Button>
+    <Button on:click={() => clicked++} color="secondary">
+      <Label>Secondary</Label>
+    </Button>
+    <Button on:click={() => clicked++} disabled>
+      <Label>Disabled</Label>
+    </Button>
+    <Button on:click={() => clicked++} variant="raised">
+      <Label>Raised</Label>
+    </Button>
+    <Button on:click={() => clicked++} variant="unelevated">
+      <Label>Unelevated</Label>
+    </Button>
+    <Button on:click={() => clicked++} variant="outlined">
+      <Label>Outlined</Label>
+    </Button>
+    <Button on:click={() => clicked++}>
+      <Icon class="material-icons">favorite</Icon>
+      <Label>Icon</Label>
+    </Button>
   </div>
 
   <div>
-    <Fab on:click={() => clicked++}
-      ><Icon class="material-icons">favorite</Icon></Fab
-    >
-    <Fab on:click={() => clicked++} color="primary"
-      ><Icon class="material-icons">favorite</Icon></Fab
-    >
-    <Fab on:click={() => clicked++} mini
-      ><Icon class="material-icons">favorite</Icon></Fab
-    >
-    <Fab on:click={() => clicked++} extended
-      ><Icon class="material-icons">favorite</Icon><Label>Extended</Label></Fab
-    >
+    <Fab on:click={() => clicked++}>
+      <Icon class="material-icons">favorite</Icon>
+    </Fab>
+    <Fab on:click={() => clicked++} color="primary">
+      <Icon class="material-icons">favorite</Icon>
+    </Fab>
+    <Fab on:click={() => clicked++} mini>
+      <Icon class="material-icons">favorite</Icon>
+    </Fab>
+    <Fab on:click={() => clicked++} extended>
+      <Icon class="material-icons">favorite</Icon>
+      <Label>Extended</Label>
+    </Fab>
   </div>
 
   <pre class="status">Clicked: {clicked}</pre>
+
+  <ShowSource file="theme/Theme.scss" />
 </section>
 
 <script>
-  import './theme.scss';
+  import ShowSource from '../../../components/ShowSource.svelte';
+  import './Theme.scss';
   import Button from '@smui/button/Button.svelte';
   import Fab from '@smui/fab/Fab.svelte';
   import { Label, Icon } from '@smui/common';
