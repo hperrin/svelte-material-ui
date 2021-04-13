@@ -1,10 +1,6 @@
 @use '@material/button' as mdc-button;
 @use '@material/shape/variables' as mdc-shape;
 
-.button-shaped-round {
-  @include mdc-button.shape-radius(999px);
-}
-
 .button-shaped-notch {
   --notchSize: #{mdc-shape.$small-component-radius * 2};
 

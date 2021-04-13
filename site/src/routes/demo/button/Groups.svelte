@@ -1,0 +1,78 @@
+<div>
+  <h6 class="demo-title">Button groups</h6>
+  <Group>
+    <Button on:click={() => clicked++}><Label>One</Label></Button>
+    <Button on:click={() => clicked++}><Label>Two</Label></Button>
+    <Button on:click={() => clicked++}><Label>Three</Label></Button>
+  </Group>
+  <Group variant="raised">
+    <Button on:click={() => clicked++} variant="raised">
+      <Label>One</Label>
+    </Button>
+    <Button on:click={() => clicked++} variant="raised">
+      <Label>Two</Label>
+    </Button>
+    <Button on:click={() => clicked++} variant="raised">
+      <Label>Three</Label>
+    </Button>
+  </Group>
+  <Group variant="unelevated">
+    <Button on:click={() => clicked++} variant="unelevated">
+      <Label>One</Label>
+    </Button>
+    <Button on:click={() => clicked++} variant="unelevated">
+      <Label>Two</Label>
+    </Button>
+    <Button on:click={() => clicked++} variant="unelevated">
+      <Label>Three</Label>
+    </Button>
+  </Group>
+  <Group variant="outlined">
+    <Button on:click={() => clicked++} variant="outlined">
+      <Label>One</Label>
+    </Button>
+    <Button on:click={() => clicked++} variant="outlined">
+      <Label>Two</Label>
+    </Button>
+    <Button on:click={() => clicked++} variant="outlined">
+      <Label>Three</Label>
+    </Button>
+  </Group>
+
+  <br /> <br />
+
+  <Group variant="outlined" style="display: flex; justify-content: stretch;">
+    <Button
+      on:click={() => clicked++}
+      variant="unelevated"
+      color="primary"
+      style="width: 60%;"
+    >
+      <Label>Primary</Label>
+    </Button>
+    <Button on:click={() => clicked++} variant="unelevated" color="secondary">
+      <Label>Secondary</Label>
+    </Button>
+    <Button on:click={() => clicked++} variant="unelevated" color="secondary">
+      <Label>Secondary</Label>
+    </Button>
+  </Group>
+</div>
+
+<pre class="status">Clicked: {clicked}</pre>
+
+<script>
+  import Button, { Group, Label } from '@smui/button';
+
+  let clicked = 0;
+</script>
+
+<style>
+  * :global(.mdc-button, .smui-button__group) {
+    margin-bottom: 0.4em;
+  }
+
+  * :global(.smui-button__group .mdc-button) {
+    margin-bottom: 0;
+  }
+</style>
