@@ -12,7 +12,7 @@
       </p>
     {/if}
     {#if typeof component === 'string'}
-      <i>{component}</i>
+      <em>{component}</em>
     {:else}
       <div>
         <svelte:component this={component} />
@@ -42,24 +42,21 @@
         target="_blank"
         title="View this file on GitHub"
       >
-        <Icon component={Svg} style="width:24px;height:24px" viewBox="0 0 24 24"
-          ><path fill="currentColor" d={mdiGithub} /></Icon
-        >
+        <Icon component={Svg} viewBox="0 0 24 24">
+          <path fill="currentColor" d={mdiGithub} />
+        </Icon>
       </IconButton>
       <IconButton
         pressed={show}
         on:click={toggleSource}
         title={`${show ? 'Hide' : 'Show'} the source code`}
       >
-        <Icon
-          component={Svg}
-          style="width:24px;height:24px"
-          viewBox="0 0 24 24"
-          on><path fill="currentColor" d={mdiCodeTagsCheck} /></Icon
-        >
-        <Icon component={Svg} style="width:24px;height:24px" viewBox="0 0 24 24"
-          ><path fill="currentColor" d={mdiCodeTags} /></Icon
-        >
+        <Icon component={Svg} viewBox="0 0 24 24" on>
+          <path fill="currentColor" d={mdiCodeTagsCheck} />
+        </Icon>
+        <Icon component={Svg} viewBox="0 0 24 24">
+          <path fill="currentColor" d={mdiCodeTags} />
+        </Icon>
       </IconButton>
     </ActionIcons>
   </Actions>

@@ -10,10 +10,13 @@
   <Demo component={Toggle} file="icon-button/Toggle.svelte">
     Toggle buttons
   </Demo>
+
+  <Demo component={Svgs} file="icon-button/Svgs.svelte">Using SVGs</Demo>
 </section>
 
 <script>
   import Demo from '../../../components/Demo.svelte';
   import Simple from './Simple.svelte';
   import Toggle from './Toggle.svelte';
+  import Svgs from './Svgs.svelte';
 </script>

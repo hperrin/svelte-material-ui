@@ -29,11 +29,7 @@
               target="_blank"
               title={`View Docs: ${repo.split('/').slice(-1)[0]}`}
             >
-              <Icon
-                component={Svg}
-                style="width:24px;height:24px"
-                viewBox="0 0 24 24"
-              >
+              <Icon component={Svg} viewBox="0 0 24 24">
                 <path fill="#000000" d={mdiFileDocument} />
               </Icon>
             </IconButton>
@@ -43,28 +39,18 @@
             target="_blank"
             title="View Source Directory"
           >
-            <Icon
-              component={Svg}
-              style="width:24px;height:24px"
-              viewBox="0 0 24 24"><path fill="#000000" d={mdiCodeTags} /></Icon
-            >
+            <Icon component={Svg} viewBox="0 0 24 24">
+              <path fill="#000000" d={mdiCodeTags} />
+            </Icon>
           </IconButton>
         {/if}
         <IconButton href="https://twitter.com/SciActive">
-          <Icon
-            component={Svg}
-            style="width:24px;height:24px"
-            viewBox="0 0 24 24"
-          >
+          <Icon component={Svg} viewBox="0 0 24 24">
             <path fill="#000000" d={mdiTwitter} />
           </Icon>
         </IconButton>
         <IconButton href="https://github.com/hperrin/svelte-material-ui">
-          <Icon
-            component={Svg}
-            style="width:24px;height:24px"
-            viewBox="0 0 24 24"
-          >
+          <Icon component={Svg} viewBox="0 0 24 24">
             <path fill="#000000" d={mdiGithub} />
           </Icon>
         </IconButton>
