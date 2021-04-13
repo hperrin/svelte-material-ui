@@ -22,43 +22,27 @@
         </Title>
       </Section>
       <Section align="end" toolbar>
-        {#each repos as repo}
-          <IconButton
-            href={repo}
-            target="_blank"
-            title={`View Docs: ${repo.split('/').slice(-1)[0]}`}
-          >
-            <Icon
-              component={Svg}
-              style="width:24px;height:24px"
-              viewBox="0 0 24 24"
-            >
-              <path fill="#000000" d={mdiFileDocument} />
-            </Icon>
-          </IconButton>
-        {/each}
         {#if activeSection}
+          {#each repos as repo}
+            <IconButton
+              href={repo}
+              target="_blank"
+              title={`View Docs: ${repo.split('/').slice(-1)[0]}`}
+            >
+              <Icon
+                component={Svg}
+                style="width:24px;height:24px"
+                viewBox="0 0 24 24"
+              >
+                <path fill="#000000" d={mdiFileDocument} />
+              </Icon>
+            </IconButton>
+          {/each}
           <IconButton
             href={`https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes${activeSection.route}`}
-            on:click={(event) => event.preventDefault()}
-            on:MDCIconButtonToggle:change={() => {
-              if (sourceFile == null) {
-                sourceFile = `https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes${activeSection.route}index.svelte`;
-              } else {
-                sourceFile = null;
-                sourceHTML = null;
-              }
-            }}
-            toggle
-            pressed={sourceFile != null}
-            title="Toggle Source Code"
+            target="_blank"
+            title="View Source Directory"
           >
-            <Icon
-              component={Svg}
-              style="width:24px;height:24px"
-              viewBox="0 0 24 24"
-              on><path fill="#000000" d={mdiCodeTagsCheck} /></Icon
-            >
             <Icon
               component={Svg}
               style="width:24px;height:24px"
@@ -124,16 +108,6 @@
       <Scrim />
     {/if}
     <AppContent class="demo-app-content">
-      {#if sourceHTML}
-        <div id="demo-source-file">
-          {@html sourceHTML}
-        </div>
-      {:else if sourceFile}
-        <script
-          src="https://emgithub.com/embed.js?target={encodeURIComponent(
-            sourceFile
-          )}&style=github&showBorder=on&showLineNumbers=on&showFileMeta=on"></script>
-      {/if}
       <main class="demo-main-content" bind:this={mainContent}>
         <slot />
       </main>
@@ -144,13 +118,7 @@
 <script>
   import { onMount } from 'svelte';
   import { stores } from '@sapper/app';
-  import {
-    mdiFileDocument,
-    mdiCodeTags,
-    mdiCodeTagsCheck,
-    mdiTwitter,
-    mdiGithub,
-  } from '@mdi/js';
+  import { mdiFileDocument, mdiCodeTags, mdiTwitter, mdiGithub } from '@mdi/js';
 
   import './_app.scss';
 
@@ -168,19 +136,6 @@
   let mainContent;
   let miniWindow = false;
   let drawerOpen = false;
-  let sourceFile = null;
-  let sourceHTML = null;
-
-  if (typeof document !== 'undefined') {
-    document.write = (value) => {
-      sourceHTML = value;
-    };
-  }
-
-  $: if (!activeSection) {
-    sourceFile = null;
-    sourceHTML = null;
-  }
 
   const sections = [
     {
@@ -433,9 +388,6 @@
     // Svelte/Sapper is not updated the components correctly, so I need this.
     sections.forEach((section) => section.component.$set({ activated: false }));
     section.component.$set({ activated: true });
-
-    sourceFile = null;
-    sourceHTML = null;
 
     activeSection =
       'shortcut' in section

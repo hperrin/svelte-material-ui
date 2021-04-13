@@ -1,6 +1,4 @@
 <div>
-  <h6 class="demo-title">Regular Buttons</h6>
-
   <Button on:click={() => clicked++}>
     <Label>Default</Label>
   </Button>

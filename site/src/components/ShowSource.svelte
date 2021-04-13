@@ -1,12 +1,14 @@
-<Button on:click={toggleSource}>
-  <Icon component={Svg} style="width:24px;height:24px" viewBox="0 0 24 24" on
-    ><path
-      fill="currentColor"
-      d={show ? mdiCodeTagsCheck : mdiCodeTags}
-    /></Icon
-  >
-  <Label>{show ? 'Hide' : 'Show'} Source</Label>
-</Button>
+<div style="padding-left: 2em;">
+  <Button on:click={toggleSource}>
+    <Icon component={Svg} style="width:24px;height:24px" viewBox="0 0 24 24" on
+      ><path
+        fill="currentColor"
+        d={show ? mdiCodeTagsCheck : mdiCodeTags}
+      /></Icon
+    >
+    <Label>{show ? 'Hide' : 'Show'} Source</Label>
+  </Button>
+</div>
 
 {#if show}
   <div>

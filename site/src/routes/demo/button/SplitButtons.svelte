@@ -69,13 +69,3 @@
   let menu;
   let menu2;
 </script>
-
-<style>
-  * :global(.mdc-button, .smui-button__group) {
-    margin-bottom: 0.4em;
-  }
-
-  * :global(.smui-button__group .mdc-button) {
-    margin-bottom: 0;
-  }
-</style>

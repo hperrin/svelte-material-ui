@@ -71,15 +71,6 @@ body,
   flex-direction: column;
 }
 
-#demo-source-file {
-  height: 350px;
-  overflow: auto;
-}
-
-#demo-source-file .emgithub-container {
-  margin: 0 !important;
-}
-
 .demo-main-content {
   overflow: auto;
   display: flex;
@@ -112,8 +103,7 @@ section > div {
   font-size: 0.9em;
   word-break: break-word;
   white-space: normal;
-  margin-bottom: 3em;
-  // border-bottom: 1px solid var(--mdc-theme-secondary, #000);
+  margin-bottom: 0;
 }
 
 @include paper.paper-color(svelte-blue, #40b3ff, #fff);
