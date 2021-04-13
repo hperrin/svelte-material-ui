@@ -9,7 +9,7 @@
   <ShowSource file="top-app-bar/Static.svelte" />
 
   <Variants />
-  <ShowSource file="top-app-bar/Variants.svelte" />
+  <ShowSource file="top-app-bar/iframe.svelte" />
 </section>
 
 <script>
