@@ -5,176 +5,25 @@
 <section>
   <h2>Menu</h2>
 
-  <div>
-    <Menu static>
-      <List>
-        <Item on:SMUI:action={() => (clicked = 'Cut')}><Text>Cut</Text></Item>
-        <Item on:SMUI:action={() => (clicked = 'Copy')}><Text>Copy</Text></Item>
-        <Item on:SMUI:action={() => (clicked = 'Paste')}
-          ><Text>Paste</Text></Item
-        >
-        <Separator />
-        <Item on:SMUI:action={() => (clicked = 'Delete')}
-          ><Text>Delete</Text></Item
-        >
-      </List>
-    </Menu>
-  </div>
+  <Static />
+  <ShowSource file="menu/Static.svelte" />
 
-  <div>
-    <h6 class="demo-title">Anchored automatically</h6>
+  <Anchored />
+  <ShowSource file="menu/Anchored.svelte" />
 
-    <div style="min-width: 100px;">
-      <Button on:click={() => menu.setOpen(true)}>Open Menu</Button>
-      <Menu bind:this={menu}>
-        <List>
-          <Item on:SMUI:action={() => (clicked = 'Cut')}><Text>Cut</Text></Item>
-          <Item on:SMUI:action={() => (clicked = 'Copy')}
-            ><Text>Copy</Text></Item
-          >
-          <Item on:SMUI:action={() => (clicked = 'Paste')}
-            ><Text>Paste</Text></Item
-          >
-          <Separator />
-          <Item on:SMUI:action={() => (clicked = 'Delete')}
-            ><Text>Delete</Text></Item
-          >
-        </List>
-      </Menu>
-    </div>
-  </div>
+  <TwoLineManunalAnchor />
+  <ShowSource file="menu/TwoLineManunalAnchor.svelte" />
 
-  <div>
-    <h6 class="demo-title">
-      Two line, anchored manually, corner set to bottom-left
-    </h6>
-
-    <div
-      class={Object.keys(anchor2Classes).join(' ')}
-      use:Anchor={{
-        addClass: (className) => {
-          if (!anchor2Classes[className]) {
-            anchor2Classes[className] = true;
-          }
-        },
-        removeClass: (className) => {
-          if (anchor2Classes[className]) {
-            delete anchor2Classes[className];
-            anchor2Classes = anchor2Classes;
-          }
-        },
-      }}
-      bind:this={anchor2}
-    >
-      <Button on:click={() => menu2.setOpen(true)}>Open Menu</Button>
-      <Menu
-        bind:this={menu2}
-        anchor={false}
-        bind:anchorElement={anchor2}
-        anchorCorner="BOTTOM_LEFT"
-      >
-        <List twoLine>
-          <Item on:SMUI:action={() => (clicked = 'Cut')}>
-            <Text>
-              <PrimaryText>Cut</PrimaryText>
-              <SecondaryText>Copy to clipboard and remove.</SecondaryText>
-            </Text>
-          </Item>
-          <Item on:SMUI:action={() => (clicked = 'Copy')}>
-            <Text>
-              <PrimaryText>Copy</PrimaryText>
-              <SecondaryText>Copy to clipboard.</SecondaryText>
-            </Text>
-          </Item>
-          <Item on:SMUI:action={() => (clicked = 'Paste')}>
-            <Text>
-              <PrimaryText>Paste</PrimaryText>
-              <SecondaryText>Paste from clipboard.</SecondaryText>
-            </Text>
-          </Item>
-          <Separator />
-          <Item on:SMUI:action={() => (clicked = 'Delete')}>
-            <Text>
-              <PrimaryText>Delete</PrimaryText>
-              <SecondaryText>Remove item.</SecondaryText>
-            </Text>
-          </Item>
-        </List>
-      </Menu>
-    </div>
-  </div>
-
-  <pre class="status">Clicked: {clicked}</pre>
-
-  <div>
-    <h6 class="demo-title">Selection groups</h6>
-
-    <div style="min-width: 100px;">
-      <Button on:click={() => menu3.setOpen(true)}>Open Menu</Button>
-      <Menu bind:this={menu3}>
-        <List>
-          <SelectionGroup>
-            {#each ['Red', 'Green', 'Blue'] as item}
-              <Item
-                on:SMUI:action={() => (selected1 = item)}
-                selected={selected1 === item}
-              >
-                <SelectionGroupIcon>
-                  <i class="material-icons">check</i>
-                </SelectionGroupIcon>
-                <Text>{item}</Text>
-              </Item>
-            {/each}
-          </SelectionGroup>
-          <Separator />
-          <SelectionGroup>
-            {#each ['Small', 'Medium', 'Large'] as item}
-              <Item
-                on:SMUI:action={() => (selected2 = item)}
-                selected={selected2 === item}
-              >
-                <SelectionGroupIcon>
-                  <i class="material-icons">check</i>
-                </SelectionGroupIcon>
-                <Text>{item}</Text>
-              </Item>
-            {/each}
-          </SelectionGroup>
-          <Separator />
-          <Item on:SMUI:action={() => (clicked2 = 'Save for Later')}>
-            <Text>Save for Later</Text>
-          </Item>
-        </List>
-      </Menu>
-    </div>
-  </div>
-
-  <pre class="status">Selection 1: {selected1}</pre>
-  <pre class="status">Selection 2: {selected2}</pre>
-  <pre class="status">Clicked: {clicked2}</pre>
+  <SelectionGroup />
+  <ShowSource file="menu/SelectionGroup.svelte" />
 
   <div style="padding-top: 200px;">Long div for scrolling...</div>
 </section>
 
 <script>
-  import Menu, { SelectionGroup, SelectionGroupIcon } from '@smui/menu';
-  import { Anchor } from '@smui/menu-surface';
-  import List, {
-    Item,
-    Separator,
-    Text,
-    PrimaryText,
-    SecondaryText,
-  } from '@smui/list';
-  import Button from '@smui/button';
-
-  let menu;
-  let menu2;
-  let menu3;
-  let anchor2;
-  let anchor2Classes = {};
-  let clicked = 'nothing yet';
-  let clicked2 = 'nothing yet';
-  let selected1 = 'Red';
-  let selected2 = 'Small';
+  import ShowSource from '../../../components/ShowSource.svelte';
+  import Static from './Static.svelte';
+  import Anchored from './Anchored.svelte';
+  import TwoLineManunalAnchor from './TwoLineManunalAnchor.svelte';
+  import SelectionGroup from './SelectionGroup.svelte';
 </script>
