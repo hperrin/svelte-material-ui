@@ -29,7 +29,7 @@
 
 <script>
   import Textfield from '@smui/textfield';
-  import Icon from '@smui/textfield/icon/index';
+  import Icon from '@smui/textfield/icon';
 
   let valueA = '';
   let valueB = '';

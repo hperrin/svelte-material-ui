@@ -50,7 +50,7 @@
 
 <script>
   import Select, { Option } from '@smui/select';
-  import Icon from '@smui/select/icon/index';
+  import Icon from '@smui/select/icon';
 
   let fruits = ['Apple', 'Orange', 'Banana', 'Mango'];
 

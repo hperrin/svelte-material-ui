@@ -127,7 +127,7 @@
 
 <script>
   import Textfield, { Input, Textarea } from '@smui/textfield';
-  import Icon from '@smui/textfield/icon/index';
+  import Icon from '@smui/textfield/icon';
   import HelperText from '@smui/textfield/helper-text/index';
   import FloatingLabel from '@smui/floating-label';
   import LineRipple from '@smui/line-ripple';

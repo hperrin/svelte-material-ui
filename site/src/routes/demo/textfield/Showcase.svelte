@@ -33,7 +33,7 @@
 
 <script>
   import Textfield from '@smui/textfield';
-  import Icon from '@smui/textfield/icon/index';
+  import Icon from '@smui/textfield/icon';
   import HelperText from '@smui/textfield/helper-text/index';
 
   let focused = false;
