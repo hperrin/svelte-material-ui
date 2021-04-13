@@ -1,0 +1,17 @@
+<h6 class="demo-title">Continuous</h6>
+
+<Slider
+  bind:value
+  min={-10}
+  max={10}
+  step={0.001}
+  input$aria-label="Continuous slider"
+/>
+
+<pre class="status">Value: {value.toFixed(3)}</pre>
+
+<script>
+  import Slider from '@smui/slider';
+
+  let value = 0;
+</script>
