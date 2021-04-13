@@ -5,187 +5,43 @@
 <section>
   <h2>Tabs</h2>
 
-  <div>
-    <!-- Note that tabs must be unique. (They cannot === each other.) -->
-    <TabBar tabs={['Home', 'Merchandise', 'About Us']} let:tab bind:active>
-      <!-- Notice that the `tab` property is required! -->
-      <Tab {tab}>
-        <Label>{tab}</Label>
-      </Tab>
-    </TabBar>
+  <Simple />
+  <ShowSource file="tabs/Simple.svelte" />
 
-    <div style="margin-top: 15px;">
-      <h6 class="demo-title">Programmatically select</h6>
-      {#each ['Home', 'Merchandise', 'About Us'] as tab}
-        <Button on:click={() => (active = tab)}><Label>{tab}</Label></Button>
-      {/each}
-    </div>
+  <Icons />
+  <ShowSource file="tabs/Icons.svelte" />
 
-    <pre class="status">Selected: {active}</pre>
-  </div>
+  <KeyedIconsAboveRestrictedIndicatorsFadeTransition />
+  <ShowSource
+    file="tabs/KeyedIconsAboveRestrictedIndicatorsFadeTransition.svelte"
+  />
 
-  <div>
-    <h6 class="demo-title">Tabs with icons next to labels</h6>
-    <TabBar tabs={iconTabs} let:tab bind:active={iconActive}>
-      <Tab {tab}>
-        <Icon class="material-icons">{tab.icon}</Icon>
-        <Label>{tab.label}</Label>
-      </Tab>
-    </TabBar>
-  </div>
+  <ScrollingNoInitialActive />
+  <ShowSource file="tabs/ScrollingNoInitialActive.svelte" />
 
-  <div>
-    <h6 class="demo-title">
-      Keyed tabs with icons above labels, indicators restricted to content, and
-      fade transition
-    </h6>
-    <TabBar
-      tabs={keyedTabs}
-      let:tab
-      key={(tab) => tab.k}
-      bind:active={keyedTabsActive}
-    >
-      <Tab
-        {tab}
-        stacked={true}
-        indicatorSpanOnlyContent={true}
-        tabIndicator$transition="fade"
-      >
-        <Icon class="material-icons">{tab.icon}</Icon>
-        <Label>{tab.label}</Label>
-      </Tab>
-    </TabBar>
+  <MinWidth />
+  <ShowSource file="tabs/MinWidth.svelte" />
 
-    <pre class="status">Selected: {keyedTabsActive.k}</pre>
-  </div>
+  <IconIndicators />
+  <ShowSource file="tabs/IconIndicators.svelte" />
 
-  <div>
-    <h6 class="demo-title">Scrolling tabs with no initial active tab</h6>
-    <TabBar tabs={[...Array(20)].map((v, i) => i + 1)} let:tab>
-      <Tab {tab}>
-        <Label>Tab {tab}</Label>
-      </Tab>
-    </TabBar>
-  </div>
-
-  <div>
-    <h6 class="demo-title">Min width tabs</h6>
-    <TabBar
-      tabs={['Home', 'Merchandise', 'About Us']}
-      let:tab
-      bind:active={minWidthActive}
-    >
-      <Tab {tab} minWidth>
-        <Label>{tab}</Label>
-      </Tab>
-    </TabBar>
-  </div>
-
-  <div class="icon-indicators">
-    <h6 class="demo-title">Icon indicators</h6>
-    <TabBar
-      tabs={['Home', 'Merchandise', 'About Us']}
-      let:tab
-      bind:active={iconIndicatorActive}
-    >
-      <Tab
-        {tab}
-        tabIndicator$type="icon"
-        tabIndicator$content$class="material-icons"
-      >
-        <Label>{tab}</Label>
-        <span slot="tab-indicator">star</span>
-      </Tab>
-    </TabBar>
-  </div>
-
-  <div>
-    <h6 class="demo-title">
-      Tabs with href attributes render as anchor elements
-    </h6>
-    <p>
-      (But they don't activate through keyboard arrow keys. They need to be
-      activated with the enter key.)
-    </p>
-    <TabBar
-      tabs={['Home', 'Merchandise', 'About Us']}
-      let:tab
-      bind:active={hrefActive}
-    >
-      <Tab
-        {tab}
-        href="https://en.wikipedia.org/wiki/{tab.replace(/ /g, '_')}"
-        target="href-tabs-frame"
-      >
-        <Label>{tab}</Label>
-      </Tab>
-    </TabBar>
-
-    <iframe
-      src="https://en.wikipedia.org/wiki/Home"
-      title="Selected Tab"
-      name="href-tabs-frame"
-      style="width: 100%; height: 400px; border: 0;"
-    />
-  </div>
+  <HrefAnchors />
+  <ShowSource file="tabs/HrefAnchors.svelte" />
 </section>
 
 <script>
-  import Tab, { Icon, Label } from '@smui/tab';
-  import TabBar from '@smui/tab-bar';
-  import Button from '@smui/button';
-
-  let active = 'Home';
-  let iconTabs = [
-    {
-      icon: 'access_time',
-      label: 'Recents',
-    },
-    {
-      icon: 'near_me',
-      label: 'Nearby',
-    },
-    {
-      icon: 'favorite',
-      label: 'Favorites',
-    },
-  ];
-  let iconActive = iconTabs[0];
-  let keyedTabs = [
-    {
-      k: 1,
-      icon: 'code',
-      label: 'Code',
-    },
-    {
-      k: 2,
-      icon: 'code',
-      label: 'Code',
-    },
-    {
-      k: 3,
-      icon: 'code',
-      label: 'Code',
-    },
-    {
-      k: 4,
-      icon: 'code',
-      label: 'Code',
-    },
-  ];
-  let keyedTabsActive = keyedTabs[2];
-  let minWidthActive = 'Home';
-  let iconIndicatorActive = 'Home';
-  let hrefActive = 'Home';
+  import ShowSource from '../../../components/ShowSource.svelte';
+  import Simple from './Simple.svelte';
+  import Icons from './Icons.svelte';
+  import KeyedIconsAboveRestrictedIndicatorsFadeTransition from './KeyedIconsAboveRestrictedIndicatorsFadeTransition.svelte';
+  import ScrollingNoInitialActive from './ScrollingNoInitialActive.svelte';
+  import MinWidth from './MinWidth.svelte';
+  import IconIndicators from './IconIndicators.svelte';
+  import HrefAnchors from './HrefAnchors.svelte';
 </script>
 
 <style>
-  section > div {
+  section > :globa(div) {
     margin-bottom: 40px;
-  }
-
-  .icon-indicators
-    :global(.mdc-tab-indicator--active .mdc-tab-indicator__content) {
-    opacity: 0.2;
   }
 </style>

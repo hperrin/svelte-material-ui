@@ -1,0 +1,16 @@
+<h6 class="demo-title">Min width tabs</h6>
+
+<div>
+  <TabBar tabs={['Home', 'Merchandise', 'About Us']} let:tab bind:active>
+    <Tab {tab} minWidth>
+      <Label>{tab}</Label>
+    </Tab>
+  </TabBar>
+</div>
+
+<script>
+  import Tab, { Label } from '@smui/tab';
+  import TabBar from '@smui/tab-bar';
+
+  let active = 'Home';
+</script>
