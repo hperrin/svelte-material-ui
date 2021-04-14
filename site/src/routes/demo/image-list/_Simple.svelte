@@ -1,13 +1,13 @@
 <!--
-  Check out TextProtection.scss
+  Check out Simple.scss
 -->
 
-<ImageList class="my-image-list-4x5" withTextProtection>
+<ImageList class="my-image-list-standard">
   {#each Array(15) as _unused, i}
     <Item>
       <ImageAspectContainer>
         <Image
-          src="https://place-hold.it/190x238?text=4x5&fontsize=23"
+          src="https://place-hold.it/190x190?text=square&fontsize=23"
           alt="Image {i + 1}"
         />
       </ImageAspectContainer>
@@ -26,5 +26,5 @@
     Supporting,
     Label,
   } from '@smui/image-list';
-  import './TextProtection.scss';
+  import './_Simple.scss';
 </script>

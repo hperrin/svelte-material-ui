@@ -5,11 +5,11 @@
 <section>
   <h2>Elevation</h2>
 
-  <Demo component={Elevation} file="elevation/Elevation.svelte" />
+  <Demo component={Elevation} file="elevation/_Elevation.svelte" />
 
   <Demo
     component={TransitionsAndColor}
-    file="elevation/TransitionsAndColor.svelte"
+    file="elevation/_TransitionsAndColor.svelte"
   >
     Transitions and color
   </Demo>
@@ -17,6 +17,6 @@
 
 <script>
   import Demo from '../../../components/Demo.svelte';
-  import Elevation from './Elevation.svelte';
-  import TransitionsAndColor from './TransitionsAndColor.svelte';
+  import Elevation from './_Elevation.svelte';
+  import TransitionsAndColor from './_TransitionsAndColor.svelte';
 </script>

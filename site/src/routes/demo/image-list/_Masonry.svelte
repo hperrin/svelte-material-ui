@@ -23,7 +23,7 @@
 
 <script>
   import ImageList, { Item, Image, Supporting, Label } from '@smui/image-list';
-  import './Masonry.scss';
+  import './_Masonry.scss';
 
   function getUnevenImageSize(counter, base, variance, preAdd = (num) => num) {
     const mid = (counter % 2 ? Math.cos : Math.sin)(counter) * variance;

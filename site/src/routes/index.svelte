@@ -109,7 +109,7 @@
               style="width: 40px; height: 40px;"
               viewBox="0 0 24 24"
             >
-              <path fill="currentColor" d={mdiHuman} />
+              <path fill="currentColor" d={mdiHumanHandsup} />
             </Icon>
           </Graphic>
           <Text>
@@ -265,7 +265,7 @@
   import {
     mdiMaterialDesign,
     mdiSass,
-    mdiHuman,
+    mdiHumanHandsup,
     mdiMonitorScreenshot,
     mdiPalette,
     mdiTranslate,

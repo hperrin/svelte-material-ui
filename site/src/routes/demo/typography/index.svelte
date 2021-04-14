@@ -5,10 +5,10 @@
 <section>
   <h2>Typography</h2>
 
-  <Demo component={Typography} file="typography/Typography.svelte" />
+  <Demo component={Typography} file="typography/_Typography.svelte" />
 </section>
 
 <script>
   import Demo from '../../../components/Demo.svelte';
-  import Typography from './Typography.svelte';
+  import Typography from './_Typography.svelte';
 </script>

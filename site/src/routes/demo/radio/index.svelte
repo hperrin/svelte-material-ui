@@ -5,15 +5,15 @@
 <section>
   <h2>Radio</h2>
 
-  <Demo component={Simple} file="radio/Simple.svelte" />
+  <Demo component={Simple} file="radio/_Simple.svelte" />
 
-  <Demo component={Touch} file="radio/Touch.svelte">
+  <Demo component={Touch} file="radio/_Touch.svelte">
     Increased touch target
   </Demo>
 </section>
 
 <script>
   import Demo from '../../../components/Demo.svelte';
-  import Simple from './Simple.svelte';
-  import Touch from './Touch.svelte';
+  import Simple from './_Simple.svelte';
+  import Touch from './_Touch.svelte';
 </script>

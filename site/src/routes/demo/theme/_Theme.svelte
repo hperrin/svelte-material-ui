@@ -52,7 +52,7 @@
 </div>
 
 <script>
-  import './Theme.scss';
+  import './_Theme.scss';
   import Button from '@smui/button/Button.svelte';
   import Fab from '@smui/fab/Fab.svelte';
   import { Label, Icon } from '@smui/common';

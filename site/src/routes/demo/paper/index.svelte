@@ -5,33 +5,36 @@
 <section>
   <h2>Paper</h2>
 
-  <Demo component={Simple} file="paper/Simple.svelte" />
+  <Demo component={Simple} file="paper/_Simple.svelte" />
 
-  <Demo component={Square} file="paper/Square.svelte">Square paper</Demo>
+  <Demo component={Square} file="paper/_Square.svelte">Square paper</Demo>
 
-  <Demo component={PrimaryColor} file="paper/PrimaryColor.svelte">
+  <Demo component={PrimaryColor} file="paper/_PrimaryColor.svelte">
     Primary color
   </Demo>
 
-  <Demo component={SecondaryColor} file="paper/SecondaryColor.svelte">
+  <Demo component={SecondaryColor} file="paper/_SecondaryColor.svelte">
     Secondary color
   </Demo>
 
-  <Demo component={CustomColor} file="paper/CustomColor.svelte">
+  <Demo component={CustomColor} file="paper/_CustomColor.svelte">
     Custom color
   </Demo>
 
-  <Demo component={ElevationTransition} file="paper/ElevationTransition.svelte">
+  <Demo
+    component={ElevationTransition}
+    file="paper/_ElevationTransition.svelte"
+  >
     Elevation and transition
   </Demo>
 </section>
 
 <script>
   import Demo from '../../../components/Demo.svelte';
-  import Simple from './Simple.svelte';
-  import Square from './Square.svelte';
-  import PrimaryColor from './PrimaryColor.svelte';
-  import SecondaryColor from './SecondaryColor.svelte';
-  import CustomColor from './CustomColor.svelte';
-  import ElevationTransition from './ElevationTransition.svelte';
+  import Simple from './_Simple.svelte';
+  import Square from './_Square.svelte';
+  import PrimaryColor from './_PrimaryColor.svelte';
+  import SecondaryColor from './_SecondaryColor.svelte';
+  import CustomColor from './_CustomColor.svelte';
+  import ElevationTransition from './_ElevationTransition.svelte';
 </script>

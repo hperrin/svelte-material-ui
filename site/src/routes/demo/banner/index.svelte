@@ -7,13 +7,13 @@
 <section>
   <h2>Banner</h2>
 
-  <Demo component="Shown above." file="banner/Fixed.svelte" />
+  <Demo component="Shown above." file="banner/_Fixed.svelte" />
 
-  <Demo component={General} file="banner/General.svelte">Banner options</Demo>
+  <Demo component={General} file="banner/_General.svelte">Banner options</Demo>
 </section>
 
 <script>
   import Demo from '../../../components/Demo.svelte';
-  import Fixed from './Fixed.svelte';
-  import General from './General.svelte';
+  import Fixed from './_Fixed.svelte';
+  import General from './_General.svelte';
 </script>

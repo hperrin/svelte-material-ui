@@ -5,29 +5,30 @@
 <section>
   <h2>Slider</h2>
 
-  <Demo component={Simple} file="slider/Simple.svelte" />
+  <Demo component={Simple} file="slider/_Simple.svelte" />
 
-  <Demo component={Continuous} file="slider/Continuous.svelte">Continuous</Demo>
+  <Demo component={Continuous} file="slider/_Continuous.svelte">Continuous</Demo
+  >
 
-  <Demo component={Discrete} file="slider/Discrete.svelte">
+  <Demo component={Discrete} file="slider/_Discrete.svelte">
     Discrete with min/max/step
   </Demo>
 
-  <Demo component={TickMarks} file="slider/TickMarks.svelte">
+  <Demo component={TickMarks} file="slider/_TickMarks.svelte">
     Adding tick marks to discrete
   </Demo>
 
-  <Demo component={Range} file="slider/Range.svelte">Range slider</Demo>
+  <Demo component={Range} file="slider/_Range.svelte">Range slider</Demo>
 
-  <Demo component={Disabled} file="slider/Disabled.svelte">Disabled</Demo>
+  <Demo component={Disabled} file="slider/_Disabled.svelte">Disabled</Demo>
 </section>
 
 <script>
   import Demo from '../../../components/Demo.svelte';
-  import Simple from './Simple.svelte';
-  import Continuous from './Continuous.svelte';
-  import Discrete from './Discrete.svelte';
-  import TickMarks from './TickMarks.svelte';
-  import Range from './Range.svelte';
-  import Disabled from './Disabled.svelte';
+  import Simple from './_Simple.svelte';
+  import Continuous from './_Continuous.svelte';
+  import Discrete from './_Discrete.svelte';
+  import TickMarks from './_TickMarks.svelte';
+  import Range from './_Range.svelte';
+  import Disabled from './_Disabled.svelte';
 </script>

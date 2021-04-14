@@ -5,15 +5,15 @@
 <section>
   <h2>Menu Surface</h2>
 
-  <Demo component={Simple} file="menu-surface/Simple.svelte" />
+  <Demo component={Simple} file="menu-surface/_Simple.svelte" />
 
-  <Demo component={Static} file="menu-surface/Static.svelte" />
+  <Demo component={Static} file="menu-surface/_Static.svelte" />
 
-  <Demo component={Anchored} file="menu-surface/Anchored.svelte">
+  <Demo component={Anchored} file="menu-surface/_Anchored.svelte">
     Anchored automatically, corner set to bottom-left
   </Demo>
 
-  <Demo component={ManualAnchor} file="menu-surface/ManualAnchor.svelte">
+  <Demo component={ManualAnchor} file="menu-surface/_ManualAnchor.svelte">
     Anchored manually
   </Demo>
 
@@ -22,8 +22,8 @@
 
 <script>
   import Demo from '../../../components/Demo.svelte';
-  import Simple from './Simple.svelte';
-  import Static from './Static.svelte';
-  import Anchored from './Anchored.svelte';
-  import ManualAnchor from './ManualAnchor.svelte';
+  import Simple from './_Simple.svelte';
+  import Static from './_Static.svelte';
+  import Anchored from './_Anchored.svelte';
+  import ManualAnchor from './_ManualAnchor.svelte';
 </script>

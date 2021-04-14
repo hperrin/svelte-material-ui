@@ -5,15 +5,15 @@
 <section>
   <h2>Tabs</h2>
 
-  <Demo component={Simple} file="tabs/Simple.svelte" />
+  <Demo component={Simple} file="tabs/_Simple.svelte" />
 
-  <Demo component={Icons} file="tabs/Icons.svelte">
+  <Demo component={Icons} file="tabs/_Icons.svelte">
     Tabs with icons next to labels
   </Demo>
 
   <Demo
     component={KeyedIconsAboveRestrictedIndicatorsFadeTransition}
-    file="tabs/KeyedIconsAboveRestrictedIndicatorsFadeTransition.svelte"
+    file="tabs/_KeyedIconsAboveRestrictedIndicatorsFadeTransition.svelte"
   >
     Keyed tabs with icons above labels, indicators restricted to content, and
     fade transition
@@ -21,18 +21,18 @@
 
   <Demo
     component={ScrollingNoInitialActive}
-    file="tabs/ScrollingNoInitialActive.svelte"
+    file="tabs/_ScrollingNoInitialActive.svelte"
   >
     Scrolling tabs with no initial active tab
   </Demo>
 
-  <Demo component={MinWidth} file="tabs/MinWidth.svelte">Min width tabs</Demo>
+  <Demo component={MinWidth} file="tabs/_MinWidth.svelte">Min width tabs</Demo>
 
-  <Demo component={IconIndicators} file="tabs/IconIndicators.svelte">
+  <Demo component={IconIndicators} file="tabs/_IconIndicators.svelte">
     Icon indicators
   </Demo>
 
-  <Demo component={HrefAnchors} file="tabs/HrefAnchors.svelte">
+  <Demo component={HrefAnchors} file="tabs/_HrefAnchors.svelte">
     Tabs with href attributes render as anchor elements
 
     <svelte:fragment slot="subtitle">
@@ -44,13 +44,13 @@
 
 <script>
   import Demo from '../../../components/Demo.svelte';
-  import Simple from './Simple.svelte';
-  import Icons from './Icons.svelte';
-  import KeyedIconsAboveRestrictedIndicatorsFadeTransition from './KeyedIconsAboveRestrictedIndicatorsFadeTransition.svelte';
-  import ScrollingNoInitialActive from './ScrollingNoInitialActive.svelte';
-  import MinWidth from './MinWidth.svelte';
-  import IconIndicators from './IconIndicators.svelte';
-  import HrefAnchors from './HrefAnchors.svelte';
+  import Simple from './_Simple.svelte';
+  import Icons from './_Icons.svelte';
+  import KeyedIconsAboveRestrictedIndicatorsFadeTransition from './_KeyedIconsAboveRestrictedIndicatorsFadeTransition.svelte';
+  import ScrollingNoInitialActive from './_ScrollingNoInitialActive.svelte';
+  import MinWidth from './_MinWidth.svelte';
+  import IconIndicators from './_IconIndicators.svelte';
+  import HrefAnchors from './_HrefAnchors.svelte';
 </script>
 
 <style>

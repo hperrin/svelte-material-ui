@@ -5,15 +5,15 @@
 <section>
   <h2>Floating Action Button</h2>
 
-  <Demo component={Simple} file="fab/Simple.svelte" />
+  <Demo component={Simple} file="fab/_Simple.svelte" />
 
-  <Demo component={PrimaryColor} file="fab/PrimaryColor.svelte">
+  <Demo component={PrimaryColor} file="fab/_PrimaryColor.svelte">
     Primary color
   </Demo>
 </section>
 
 <script>
   import Demo from '../../../components/Demo.svelte';
-  import Simple from './Simple.svelte';
-  import PrimaryColor from './PrimaryColor.svelte';
+  import Simple from './_Simple.svelte';
+  import PrimaryColor from './_PrimaryColor.svelte';
 </script>

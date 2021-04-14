@@ -31,7 +31,7 @@
     Label,
   } from '@smui/image-list';
   import Div from '@smui/common/Div.svelte';
-  import './EnforceAspectRatio.scss';
+  import './_EnforceAspectRatio.scss';
 
   function getUnevenImageSize(counter, base, variance, preAdd = (num) => num) {
     const mid = (counter % 2 ? Math.cos : Math.sin)(counter) * variance;

@@ -5,20 +5,20 @@
 <section>
   <h2>Select</h2>
 
-  <Demo component={Showcase} file="select/Showcase.svelte" />
+  <Demo component={Showcase} file="select/_Showcase.svelte" />
 
-  <Demo component={Standard} file="select/Standard.svelte">Standard</Demo>
+  <Demo component={Standard} file="select/_Standard.svelte">Standard</Demo>
 
-  <Demo component={Filled} file="select/Filled.svelte">Filled</Demo>
+  <Demo component={Filled} file="select/_Filled.svelte">Filled</Demo>
 
-  <Demo component={Outlined} file="select/Outlined.svelte">Outlined</Demo>
+  <Demo component={Outlined} file="select/_Outlined.svelte">Outlined</Demo>
 
-  <Demo component={ShapedFilled} file="select/ShapedFilled.svelte">
+  <Demo component={ShapedFilled} file="select/_ShapedFilled.svelte">
     Shaped Filled
     <svelte:fragment slot="subtitle">Styled with CSS</svelte:fragment>
   </Demo>
 
-  <Demo component={ShapedOutlined} file="select/ShapedOutlined.svelte">
+  <Demo component={ShapedOutlined} file="select/_ShapedOutlined.svelte">
     Shaped Outlined
     <svelte:fragment slot="subtitle">Styled with CSS</svelte:fragment>
   </Demo>
@@ -26,10 +26,10 @@
 
 <script>
   import Demo from '../../../components/Demo.svelte';
-  import Showcase from './Showcase.svelte';
-  import Standard from './Standard.svelte';
-  import Filled from './Filled.svelte';
-  import Outlined from './Outlined.svelte';
-  import ShapedFilled from './ShapedFilled.svelte';
-  import ShapedOutlined from './ShapedOutlined.svelte';
+  import Showcase from './_Showcase.svelte';
+  import Standard from './_Standard.svelte';
+  import Filled from './_Filled.svelte';
+  import Outlined from './_Outlined.svelte';
+  import ShapedFilled from './_ShapedFilled.svelte';
+  import ShapedOutlined from './_ShapedOutlined.svelte';
 </script>

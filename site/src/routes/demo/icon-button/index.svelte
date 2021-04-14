@@ -5,18 +5,18 @@
 <section>
   <h2>Icon Button</h2>
 
-  <Demo component={Simple} file="icon-button/Simple.svelte" />
+  <Demo component={Simple} file="icon-button/_Simple.svelte" />
 
-  <Demo component={Toggle} file="icon-button/Toggle.svelte">
+  <Demo component={Toggle} file="icon-button/_Toggle.svelte">
     Toggle buttons
   </Demo>
 
-  <Demo component={Svgs} file="icon-button/Svgs.svelte">Using SVGs</Demo>
+  <Demo component={Svgs} file="icon-button/_Svgs.svelte">Using SVGs</Demo>
 </section>
 
 <script>
   import Demo from '../../../components/Demo.svelte';
-  import Simple from './Simple.svelte';
-  import Toggle from './Toggle.svelte';
-  import Svgs from './Svgs.svelte';
+  import Simple from './_Simple.svelte';
+  import Toggle from './_Toggle.svelte';
+  import Svgs from './_Svgs.svelte';
 </script>

@@ -5,20 +5,20 @@
 <section>
   <h2>Menu</h2>
 
-  <Demo component={Static} file="menu/Static.svelte" />
+  <Demo component={Static} file="menu/_Static.svelte" />
 
-  <Demo component={Anchored} file="menu/Anchored.svelte">
+  <Demo component={Anchored} file="menu/_Anchored.svelte">
     Anchored automatically
   </Demo>
 
   <Demo
     component={TwoLineManunalAnchor}
-    file="menu/TwoLineManunalAnchor.svelte"
+    file="menu/_TwoLineManunalAnchor.svelte"
   >
     Two line, anchored manually, corner set to bottom-left
   </Demo>
 
-  <Demo component={SelectionGroup} file="menu/SelectionGroup.svelte">
+  <Demo component={SelectionGroup} file="menu/_SelectionGroup.svelte">
     Selection groups
   </Demo>
 
@@ -27,8 +27,8 @@
 
 <script>
   import Demo from '../../../components/Demo.svelte';
-  import Static from './Static.svelte';
-  import Anchored from './Anchored.svelte';
-  import TwoLineManunalAnchor from './TwoLineManunalAnchor.svelte';
-  import SelectionGroup from './SelectionGroup.svelte';
+  import Static from './_Static.svelte';
+  import Anchored from './_Anchored.svelte';
+  import TwoLineManunalAnchor from './_TwoLineManunalAnchor.svelte';
+  import SelectionGroup from './_SelectionGroup.svelte';
 </script>

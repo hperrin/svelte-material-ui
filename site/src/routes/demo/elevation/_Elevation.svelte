@@ -10,7 +10,7 @@
 </div>
 
 <script>
-  import './Elevation.scss';
+  import './_Elevation.scss';
 </script>
 
 <style>

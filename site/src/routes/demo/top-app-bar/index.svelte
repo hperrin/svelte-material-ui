@@ -5,7 +5,7 @@
 <section>
   <h2>Top App Bar</h2>
 
-  <Demo component={Static} file="top-app-bar/Static.svelte">
+  <Demo component={Static} file="top-app-bar/_Static.svelte">
     Top app bars in a container
     <svelte:fragment slot="subtitle">
       Only the "static" variant works inside containers.
@@ -23,6 +23,6 @@
 
 <script>
   import Demo from '../../../components/Demo.svelte';
-  import Static from './Static.svelte';
-  import Variants from './Variants.svelte';
+  import Static from './_Static.svelte';
+  import Variants from './_Variants.svelte';
 </script>

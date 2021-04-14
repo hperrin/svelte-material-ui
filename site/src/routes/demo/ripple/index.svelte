@@ -5,25 +5,25 @@
 <section>
   <h2>Ripple</h2>
 
-  <Demo component={Simple} file="ripple/Simple.svelte" />
+  <Demo component={Simple} file="ripple/_Simple.svelte" />
 
-  <Demo component={PrimaryColor} file="ripple/PrimaryColor.svelte" />
+  <Demo component={PrimaryColor} file="ripple/_PrimaryColor.svelte" />
 
-  <Demo component={SecondaryColor} file="ripple/SecondaryColor.svelte" />
+  <Demo component={SecondaryColor} file="ripple/_SecondaryColor.svelte" />
 
-  <Demo component={Unbounded} file="ripple/Unbounded.svelte">Unbounded</Demo>
+  <Demo component={Unbounded} file="ripple/_Unbounded.svelte">Unbounded</Demo>
 
   <Demo
     component={KeyboardActivation}
-    file="ripple/KeyboardActivation.svelte"
+    file="ripple/_KeyboardActivation.svelte"
   />
 </section>
 
 <script>
   import Demo from '../../../components/Demo.svelte';
-  import Simple from './Simple.svelte';
-  import PrimaryColor from './PrimaryColor.svelte';
-  import SecondaryColor from './SecondaryColor.svelte';
-  import Unbounded from './Unbounded.svelte';
-  import KeyboardActivation from './KeyboardActivation.svelte';
+  import Simple from './_Simple.svelte';
+  import PrimaryColor from './_PrimaryColor.svelte';
+  import SecondaryColor from './_SecondaryColor.svelte';
+  import Unbounded from './_Unbounded.svelte';
+  import KeyboardActivation from './_KeyboardActivation.svelte';
 </script>
