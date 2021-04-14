@@ -1,0 +1,37 @@
+{
+  "name": "@smui/circular-progress",
+  "version": "3.0.0-beta.4",
+  "description": "Svelte Material UI - Circular Progress",
+  "keywords": [
+    "svelte",
+    "svelte3",
+    "material-ui",
+    "material-design",
+    "material",
+    "svelte-components",
+    "sveltejs"
+  ],
+  "scripts": {
+    "prepare": "sass --no-source-map -I node_modules _style.scss bare.css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hperrin/svelte-material-ui.git"
+  },
+  "author": "Hunter Perrin <hperrin@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/hperrin/svelte-material-ui/issues"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@material/circular-progress": "^10.0.0",
+    "@smui/common": "^3.0.0-beta.4"
+  },
+  "devDependencies": {
+    "sass": "^1.32.8"
+  }
+}

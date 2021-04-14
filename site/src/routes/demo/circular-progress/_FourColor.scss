@@ -1,0 +1,8 @@
+@use '@material/circular-progress';
+@use '@material/theme';
+
+.my-four-colors {
+  @include circular-progress.indeterminate-colors(
+    theme.$green-500 theme.$yellow-500 theme.$red-500 theme.$blue-500
+  );
+}

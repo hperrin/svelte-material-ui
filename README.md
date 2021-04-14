@@ -243,11 +243,13 @@ Click a component below to go to its documentation. (Note that this documentatio
     - [Text Field Character Counter](https://github.com/hperrin/svelte-material-ui/blob/master/packages/textfield/character-counter/README.md)
     - [Text Field Helper Text](https://github.com/hperrin/svelte-material-ui/blob/master/packages/textfield/helper-text/README.md)
     - [Text Field Icon](https://github.com/hperrin/svelte-material-ui/blob/master/packages/textfield/icon/README.md)
-- [Linear Progress](https://github.com/hperrin/svelte-material-ui/blob/master/packages/linear-progress/README.md)
 - [Lists](https://github.com/hperrin/svelte-material-ui/blob/master/packages/list/README.md)
 - [Menu Surface](https://github.com/hperrin/svelte-material-ui/blob/master/packages/menu-surface/README.md)
 - [Menus](https://github.com/hperrin/svelte-material-ui/blob/master/packages/menu/README.md)
 - [Paper](https://github.com/hperrin/svelte-material-ui/blob/master/packages/paper/README.md)‡
+- Progress Indicators
+  - [Circular Progress](https://github.com/hperrin/svelte-material-ui/blob/master/packages/circular-progress/README.md)
+  - [Linear Progress](https://github.com/hperrin/svelte-material-ui/blob/master/packages/linear-progress/README.md)
 - [Ripples](https://github.com/hperrin/svelte-material-ui/blob/master/packages/ripple/README.md)
 - [Snackbars](https://github.com/hperrin/svelte-material-ui/blob/master/packages/snackbar/README.md)
   - [Kitchen](https://github.com/hperrin/svelte-material-ui/blob/master/packages/snackbar/kitchen/README.md)‡
@@ -261,7 +263,7 @@ Click a component below to go to its documentation. (Note that this documentatio
 New components from the upstream library to build for SMUI v3:
 
 - [x] Banners
-- [ ] Circular Progress
+- [x] Circular Progress
 - [ ] Layout Grids (Not new to MDC, but I haven't made a component for it.)
 - [ ] Segmented Buttons (This is different than SMUI's button groups.)
 - [ ] Tooltips

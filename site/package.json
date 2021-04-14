@@ -86,6 +86,7 @@
     "@smui/card": "file:../packages/card",
     "@smui/checkbox": "file:../packages/checkbox",
     "@smui/chips": "file:../packages/chips",
+    "@smui/circular-progress": "file:../packages/circular-progress",
     "@smui/common": "file:../packages/common",
     "@smui/data-table": "file:../packages/data-table",
     "@smui/dialog": "file:../packages/dialog",

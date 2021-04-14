@@ -314,14 +314,6 @@
       ],
     },
     {
-      name: 'Linear Progress',
-      route: '/demo/linear-progress/',
-      indent: 0,
-      repos: [
-        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/linear-progress',
-      ],
-    },
-    {
       name: 'Lists',
       route: '/demo/list/',
       indent: 0,
@@ -351,6 +343,26 @@
       indent: 0,
       repos: [
         'https://github.com/hperrin/svelte-material-ui/tree/master/packages/paper',
+      ],
+    },
+    {
+      name: 'Progress Indicators',
+      indent: 0,
+    },
+    {
+      name: 'Circular Progress',
+      route: '/demo/circular-progress/',
+      indent: 1,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/circular-progress',
+      ],
+    },
+    {
+      name: 'Linear Progress',
+      route: '/demo/linear-progress/',
+      indent: 1,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/linear-progress',
       ],
     },
     {
