@@ -2,9 +2,7 @@
   <title>Svelte Material UI</title>
 </svelte:head>
 
-<section style="padding: 36px 56px; position: relative; overflow-x: hidden;">
-  <img class="logo" src="logo.png" alt="logo" />
-
+<section>
   <div style="margin: 3em 0;">
     <h2 style="margin-bottom: 0;">Svelte Material UI</h2>
     <p class="mdc-typography--subtitle1">Material UI Components for Svelte 3</p>
@@ -286,14 +284,27 @@
 </script>
 
 <style>
-  .logo {
+  section {
+    z-index: 0;
+    padding: 48px 56px 36px;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  section::before {
+    content: ' ';
+    z-index: -1;
+    background-image: url('/logo.png');
+    background-repeat: no-repeat;
+    background-position: 50% 0;
+    background-size: cover;
     display: block;
     position: absolute;
-    right: 250px;
-    top: -15px;
+    right: calc(50% - 550px);
+    top: -125px;
     opacity: 0.4;
-    transform: scale(1.8);
-    z-index: -1;
+    height: 496px;
+    width: 496px;
   }
 
   .boxes {
@@ -308,11 +319,12 @@
   }
 
   @media (max-width: 460px) {
-    .logo {
+    section::before {
       opacity: 0.2;
-      right: -50px;
+      right: calc(50% - 300px);
       top: -35px;
-      transform: scale(1);
+      height: 276px;
+      width: 276px;
     }
 
     .boxes {

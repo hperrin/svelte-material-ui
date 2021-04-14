@@ -40,3 +40,14 @@
   import Round from './_Round.svelte';
   import Notched from './_Notched.svelte';
 </script>
+
+<style>
+  * :global(.mdc-button, .smui-button__group) {
+    margin-bottom: 8px;
+  }
+  *
+    :global(.smui-button__group > .mdc-button, .smui-button__group-item
+      > .mdc-button) {
+    margin-bottom: 0;
+  }
+</style>

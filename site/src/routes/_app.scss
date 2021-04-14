@@ -79,7 +79,7 @@ body,
 }
 
 .demo-main-content section {
-  padding: 16px;
+  padding: 48px;
   width: 100%;
   box-sizing: border-box;
 }
@@ -88,15 +88,6 @@ body,
   height: 32px;
   display: block;
   content: ' ';
-}
-
-section > div {
-  margin: 1em 0 0.6em;
-}
-
-.demo-title,
-.demo-subtitle {
-  margin-bottom: 0.5em;
 }
 
 .status {
