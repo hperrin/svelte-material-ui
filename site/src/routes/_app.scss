@@ -78,13 +78,13 @@ body,
   position: relative;
 }
 
-.demo-main-content section {
+.demo-main-content > section {
   padding: 48px;
   width: 100%;
   box-sizing: border-box;
 }
 
-.demo-main-content section:after {
+.demo-main-content > section:after {
   height: 32px;
   display: block;
   content: ' ';
@@ -101,7 +101,7 @@ body,
 @include paper.paper-color(svelte-blue, #40b3ff, #fff);
 
 @media (max-width: 460px) {
-  .demo-main-content section {
+  .demo-main-content > section {
     padding: 16px;
   }
 }
