@@ -90,6 +90,7 @@ Here are some features you should know about:
 - You can add props to lower components and elements with "$" props, like `input$maxlength="15"`.
 - All [standard UI and transition events](https://github.com/hperrin/svelte-material-ui/blob/master/packages/common/forwardEventsBuilder.js#L4) are forwarded on components, input events ("input" and "change") are forwarded on input components, and all MDC events are forwarded.
 - Labels and icons are named exports in the components that use them, or you can use the 'Label' and 'Icon' exports from '@smui/common'. (Except for chips labels and icons, textfield icons, and select icons, because they are special snowflakes.)
+- SMUI [supports RTL languages](https://svelte.dev/repl/c2ff2d5dd5404eccb901ba04ef0161be?version=3.37.0).
 
 ## Integration for Sapper
 
