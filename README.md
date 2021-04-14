@@ -36,9 +36,10 @@ If you are upgrading from an older version of SMUI to a newer one, it might be w
 
 Check out the [Webpack template](https://github.com/hperrin/smui-example-webpack) and the [Rollup template](https://github.com/hperrin/smui-example-rollup) for examples.
 
-1. To bundle this in your own code, use a Sass processor (not a Sass Svelte **preprocessor**, but a Sass **processor**). SMUI `index.js` files import _Sass files_, and they need to be compiled by a processor. The `*.svelte` files don't include any Sass or CSS, so a Svelte preprocessor is not necessary.
-   - Alternatively, you can import from the `bare.js` files, which doesn't include any styling. Then you can either import the Sass yourself, or use the `bare.css` files which are precompiled and packaged with the default theme.
-2. You must have a `_smui-theme.scss` file in one of your Sass include paths to compile the Sass. That is where you set the MDC theme variables. If it's empty, it will use the default theme values from MDC. See the [theme file](https://github.com/hperrin/svelte-material-ui/blob/master/site/src/theme/_smui-theme.scss) in the demo site for an example that uses Svelte colors.
+1. To bundle this in your own code, use a Sass processor (not a Sass Svelte **preprocessor**, but a Sass **processor**). SMUI's `index.js` files import _.scss files_, and they need to be compiled by a Sass processor. SMUI's `*.svelte` files don't include any Sass or CSS, so a Svelte _preprocessor_ is not necessary.
+   - Alternatively, you can import components from the `bare.js` files, which don't include any styling. Then you can either import the Sass yourself, or use the `bare.css` files which are precompiled (with the default theme) and packaged with components. Then you can skip the next step, but your [theming options](https://github.com/hperrin/svelte-material-ui/blob/master/THEMING.md#theming-the-bare-css) are limited.
+   - Note that `node-sass` is deprecated, and SMUI uses features that it doesn't support. You should use [Dart Sass](https://www.npmjs.com/package/sass) instead.
+2. You must have a `_smui-theme.scss` file in one of your Sass include paths to compile the Sass. That is where you [set the theme variables](https://github.com/hperrin/svelte-material-ui/blob/master/THEMING.md). If it's empty, it will use the default theme values from MDC-Web.
 3. If you want the Material Icon, Roboto, and Roboto Mono fonts, be sure to include these stylesheets (or include them from a package):
    ```html
    <link
@@ -54,7 +55,7 @@ Check out the [Webpack template](https://github.com/hperrin/smui-example-webpack
      href="https://fonts.googleapis.com/css?family=Roboto+Mono"
    />
    ```
-4. You're now ready to use SMUI. Here's some example code:
+4. You're now ready to install and use SMUI packages. Here's some example code:
 
    ```svelte
    <Button on:click={() => alert('Clicked!')}>Just a Button</Button>
@@ -94,7 +95,7 @@ Here are some features you should know about:
 
 ## Integration for Sapper
 
-<sub>\* As of 2021-Apr-06, these instructions will now work without a FOUC!</sub>
+<sub>\* As of 2021-Apr-06, these instructions will now work without a flash of unstyled content!</sub>
 
 1. Install the following packages as dev dependencies
    - With yarn
@@ -212,8 +213,6 @@ Now load the Components, remembering to use the `/bare` script, from within a `<
 If you import from `@smui/common`, you don't need the `/bare` portion, since it doesn't have any Sass, so it can use the index file.
 
 # Components
-
-I've only done components that need to/can be Svelte-ified. For some things, like RTL, you can just use the MDC packages.
 
 Click a component below to go to its documentation. (Note that this documentation is a work in progress. The demo code should be your main source of truth for how something works.)
 

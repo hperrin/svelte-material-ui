@@ -7,6 +7,10 @@ This doc contains information that will help you migrate your code from an older
 SMUI 3 migrated to upstream MDC 10.0:
 https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#1000-2021-02-05
 
+- Sass
+  - MDC-Web migrated to the "@use" syntax, so mixins, functions, and variables are namespaced by the "@use" statement now isntead of a prefix.
+- Theming
+  - Theming has changed, so you'll need to update your "\_smui-theme.scss" file. Follow [this guide](THEMING.md).
 - Textbox
   - This is almost completely rewritten. You will need to migrate a lot of code for it. Check out the demo page.
 - Select
