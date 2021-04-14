@@ -21,11 +21,15 @@
     Split buttons using a button group
   </Demo>
 
-  <Demo component={Round} file="button/_Round.svelte">
+  <Demo component={Round} file="button/_Round.svelte" scss="button/_Round.scss">
     Creating rounded buttons with Sass mixins
   </Demo>
 
-  <Demo component={Notched} file="button/_Notched.svelte">
+  <Demo
+    component={Notched}
+    file="button/_Notched.svelte"
+    scss="button/_Notched.scss"
+  >
     Creating notched buttons with Sass
   </Demo>
 </section>

@@ -5,7 +5,11 @@
 <section>
   <h2>Elevation</h2>
 
-  <Demo component={Elevation} file="elevation/_Elevation.svelte" />
+  <Demo
+    component={Elevation}
+    file="elevation/_Elevation.svelte"
+    scss="elevation/_Elevation.scss"
+  />
 
   <Demo
     component={TransitionsAndColor}

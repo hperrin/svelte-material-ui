@@ -21,19 +21,25 @@
   </Content>
 
   {#if show}
+    {#if loading}
+      <script
+        src="https://emgithub.com/embed.js?target={encodeURIComponent(
+          `https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/${sourceFile}`
+        )}&style=github&showBorder=on&showLineNumbers=on&showFileMeta=on"></script>
+    {/if}
     <Content>
-      {#if loading}
-        <script
-          src="https://emgithub.com/embed.js?target={encodeURIComponent(
-            `https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/${file}`
-          )}&style=github&showBorder=on&showLineNumbers=on&showFileMeta=on"></script>
-      {/if}
-      <!-- <Card variant="outlined" class="demo-source-file"> -->
       <div class="demo-source-file" bind:this={sourceContainer}>
         {@html sourceHTML}
       </div>
-      <!-- </Card> -->
     </Content>
+
+    {#if scssHTML}
+      <Content>
+        <div class="demo-source-file" bind:this={scssContainer}>
+          {@html scssHTML}
+        </div>
+      </Content>
+    {/if}
   {/if}
   <Actions>
     <ActionIcons>
@@ -70,25 +76,43 @@
   import Svg from '@smui/common/Svg.svelte';
 
   export let file;
+  export let scss = null;
   export let component;
 
   let sourceContainer;
+  let scssContainer;
   let show = false;
   let loading = false;
+  let sourceFile = null;
   let sourceHTML = null;
+  let scssHTML = null;
 
   function toggleSource() {
     if (!sourceHTML) {
       loading = true;
+      sourceFile = file;
 
       document.write = (value) => {
-        sourceHTML = value;
         loading = false;
+        sourceHTML = value;
+
+        if (scss) {
+          requestAnimationFrame(() => {
+            loading = true;
+            sourceFile = scss;
+
+            document.write = (value) => {
+              loading = false;
+              scssHTML = value;
+            };
+          });
+        }
       };
     }
 
     if (show) {
       sourceHTML = sourceContainer.innerHTML;
+      scssHTML = scssContainer.innerHTML;
     }
 
     show = !show;
@@ -96,12 +120,6 @@
 </script>
 
 <style>
-  /* * :global(.demo-source-file) {
-    max-height: 350px;
-    overflow: auto;
-    margin: 1em;
-  } */
-
   .demo-source-file :global(.emgithub-container) {
     margin: 0 !important;
   }
@@ -110,12 +128,4 @@
     max-height: 350px;
     overflow: auto;
   }
-
-  /* *
-    :global(.demo-source-file
-      .emgithub-container
-      > div
-      > code, .demo-source-file .emgithub-container > .file-meta) {
-    border: 0 !important;
-  } */
 </style>

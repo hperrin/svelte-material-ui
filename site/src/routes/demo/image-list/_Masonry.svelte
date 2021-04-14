@@ -1,7 +1,3 @@
-<!--
-  Check out Masonry.scss
--->
-
 <ImageList class="my-image-list-masonry" masonry>
   {#each Array(15) as _unused, i}
     <Item>

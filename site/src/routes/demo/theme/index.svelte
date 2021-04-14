@@ -5,7 +5,7 @@
 <section>
   <h2>Theme</h2>
 
-  <Demo component={Theme} file="theme/_Theme.svelte" />
+  <Demo component={Theme} file="theme/_Theme.svelte" scss="theme/_Theme.scss" />
 </section>
 
 <script>

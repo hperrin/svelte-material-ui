@@ -13,7 +13,11 @@
     Anchored automatically, corner set to bottom-left
   </Demo>
 
-  <Demo component={ManualAnchor} file="menu-surface/_ManualAnchor.svelte">
+  <Demo
+    component={ManualAnchor}
+    file="menu-surface/_ManualAnchor.svelte"
+    scss="menu-surface/_ManualAnchor.scss"
+  >
     Anchored manually
   </Demo>
 

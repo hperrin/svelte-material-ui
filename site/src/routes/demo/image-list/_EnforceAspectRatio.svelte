@@ -1,7 +1,3 @@
-<!--
-  Check out EnforceAspectRatio.scss
--->
-
 <ImageList class="my-image-list-enforce-ratio">
   {#each Array(15) as _unused, i}
     <Item>

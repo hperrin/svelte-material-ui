@@ -5,7 +5,11 @@
 <section>
   <h2>Typography</h2>
 
-  <Demo component={Typography} file="typography/_Typography.svelte" />
+  <Demo
+    component={Typography}
+    file="typography/_Typography.svelte"
+    scss="typography/_Typography.scss"
+  />
 </section>
 
 <script>

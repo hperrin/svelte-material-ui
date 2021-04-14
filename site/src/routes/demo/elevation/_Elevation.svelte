@@ -1,6 +1,6 @@
 <!--
   You need to import `@material/elevation/mdc-elevation` in SCSS for
-  these to work. See the Elevation.scss file.
+  these to work. Check out "_Elevation.scss"
 -->
 
 <div class="flexy-dad">

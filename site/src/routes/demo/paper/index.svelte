@@ -17,7 +17,11 @@
     Secondary color
   </Demo>
 
-  <Demo component={CustomColor} file="paper/_CustomColor.svelte">
+  <Demo
+    component={CustomColor}
+    file="paper/_CustomColor.svelte"
+    scss="paper/_CustomColor.scss"
+  >
     Custom color
   </Demo>
 

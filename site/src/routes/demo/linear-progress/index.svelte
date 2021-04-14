@@ -15,7 +15,11 @@
     Indeterminate
   </Demo>
 
-  <Demo component={Colored} file="linear-progress/_Colored.svelte">
+  <Demo
+    component={Colored}
+    file="linear-progress/_Colored.svelte"
+    scss="linear-progress/_Colored.scss"
+  >
     Colored (using Sass mixins)
   </Demo>
 </section>

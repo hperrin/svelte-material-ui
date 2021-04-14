@@ -1,7 +1,3 @@
-<!--
-  Check out TextProtection.scss
--->
-
 <ImageList class="my-image-list-4x5" withTextProtection>
   {#each Array(15) as _unused, i}
     <Item>
@@ -26,5 +22,5 @@
     Supporting,
     Label,
   } from '@smui/image-list';
-  import './_TextProtection.scss';
+  import './_FourByFive.scss';
 </script>
