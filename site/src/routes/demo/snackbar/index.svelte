@@ -5,27 +5,21 @@
 <section>
   <h2>Snackbars</h2>
 
-  <Demo component={Simple} file="snackbars/_Simple.svelte" />
+  <Demo component={Simple} file="snackbar/_Simple.svelte" />
 
-  <Demo
-    component={LeadingWithAction}
-    file="snackbars/_LeadingWithAction.svelte"
-  >
+  <Demo component={LeadingWithAction} file="snackbar/_LeadingWithAction.svelte">
     Leading with action
   </Demo>
 
-  <Demo
-    component={StackedWithAction}
-    file="snackbars/_StackedWithAction.svelte"
-  >
+  <Demo component={StackedWithAction} file="snackbar/_StackedWithAction.svelte">
     Stacked with action
   </Demo>
 
-  <Demo component={DynamicText} file="snackbars/_DynamicText.svelte">
+  <Demo component={DynamicText} file="snackbar/_DynamicText.svelte">
     Using dynamic text
   </Demo>
 
-  <Demo component={Kitchen} file="snackbars/_Kitchen.svelte">
+  <Demo component={Kitchen} file="snackbar/_Kitchen.svelte">
     The "Kitchen" Snackbar generator
   </Demo>
 </section>

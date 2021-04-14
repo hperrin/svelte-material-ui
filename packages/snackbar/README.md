@@ -10,9 +10,9 @@ npm install --save-dev @smui/snackbar
 
 # Demo
 
-_in action:_ https://sveltematerialui.com/demo/snackbars
+_in action:_ https://sveltematerialui.com/demo/snackbar
 
-_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/snackbars/
+_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/snackbar/
 
 # Basic Usage
 

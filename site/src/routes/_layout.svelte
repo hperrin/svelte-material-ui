@@ -177,7 +177,7 @@
       ],
     },
     {
-      name: 'Buttons',
+      name: 'Button',
       route: '/demo/button/',
       indent: 0,
       repos: [
@@ -193,7 +193,7 @@
       ],
     },
     {
-      name: 'Icon Buttons',
+      name: 'Icon Button',
       route: '/demo/icon-button/',
       indent: 1,
       repos: [
@@ -217,7 +217,7 @@
       ],
     },
     {
-      name: 'Data Tables',
+      name: 'Data Table',
       route: '/demo/data-table/',
       indent: 0,
       repos: [
@@ -225,7 +225,7 @@
       ],
     },
     {
-      name: 'Dialogs',
+      name: 'Dialog',
       route: '/demo/dialog/',
       indent: 0,
       repos: [
@@ -233,7 +233,7 @@
       ],
     },
     {
-      name: 'Drawers',
+      name: 'Drawer',
       route: '/demo/drawer/',
       indent: 0,
       repos: [
@@ -258,7 +258,7 @@
       indent: 0,
     },
     {
-      name: 'Checkboxes',
+      name: 'Checkbox',
       route: '/demo/checkbox/',
       indent: 1,
       repos: [
@@ -266,7 +266,7 @@
       ],
     },
     {
-      name: 'Form Fields',
+      name: 'Form Field',
       route: '/demo/form-field/',
       indent: 1,
       repos: [
@@ -274,7 +274,7 @@
       ],
     },
     {
-      name: 'Radio Buttons',
+      name: 'Radio Button',
       route: '/demo/radio/',
       indent: 1,
       repos: [
@@ -282,7 +282,7 @@
       ],
     },
     {
-      name: 'Select Menus',
+      name: 'Select Menu',
       route: '/demo/select/',
       indent: 1,
       repos: [
@@ -290,7 +290,7 @@
       ],
     },
     {
-      name: 'Sliders',
+      name: 'Slider',
       route: '/demo/slider/',
       indent: 1,
       repos: [
@@ -298,7 +298,7 @@
       ],
     },
     {
-      name: 'Switches',
+      name: 'Switch',
       route: '/demo/switch/',
       indent: 1,
       repos: [
@@ -314,7 +314,15 @@
       ],
     },
     {
-      name: 'Lists',
+      name: 'Layout Grid',
+      route: '/demo/layout-grid/',
+      indent: 0,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/layout-grid',
+      ],
+    },
+    {
+      name: 'List',
       route: '/demo/list/',
       indent: 0,
       repos: [
@@ -330,7 +338,7 @@
       ],
     },
     {
-      name: 'Menus',
+      name: 'Menu',
       route: '/demo/menu/',
       indent: 0,
       repos: [
@@ -366,7 +374,7 @@
       ],
     },
     {
-      name: 'Ripples',
+      name: 'Ripple',
       route: '/demo/ripple/',
       indent: 0,
       repos: [
@@ -374,8 +382,8 @@
       ],
     },
     {
-      name: 'Snackbars',
-      route: '/demo/snackbars/',
+      name: 'Snackbar',
+      route: '/demo/snackbar/',
       indent: 0,
       repos: [
         'https://github.com/hperrin/svelte-material-ui/tree/master/packages/snackbar',

@@ -96,6 +96,7 @@
     "@smui/form-field": "file:../packages/form-field",
     "@smui/icon-button": "file:../packages/icon-button",
     "@smui/image-list": "file:../packages/image-list",
+    "@smui/layout-grid": "file:../packages/layout-grid",
     "@smui/line-ripple": "file:../packages/line-ripple",
     "@smui/linear-progress": "file:../packages/linear-progress",
     "@smui/list": "file:../packages/list",
