@@ -1,6 +1,6 @@
 {
   "name": "@smui/chips",
-  "version": "3.0.0-beta.4",
+  "version": "3.0.0-beta.5",
   "description": "Svelte Material UI - Chips",
   "keywords": [
     "svelte",
@@ -31,8 +31,8 @@
     "@material/chips": "^10.0.0",
     "@material/dom": "^10.0.0",
     "@material/rtl": "^10.0.0",
-    "@smui/common": "^3.0.0-beta.4",
-    "@smui/ripple": "^3.0.0-beta.4"
+    "@smui/common": "^3.0.0-beta.5",
+    "@smui/ripple": "^3.0.0-beta.5"
   },
   "devDependencies": {
     "sass": "^1.32.8"

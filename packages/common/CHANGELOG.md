@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-beta.5](https://github.com/hperrin/svelte-material-ui/compare/v3.0.0-beta.4...v3.0.0-beta.5) (2021-04-14)
+
+
+### Bug Fixes
+
+* classAdderBuilder polluting ClassAdder internals ([b484114](https://github.com/hperrin/svelte-material-ui/commit/b4841149c65df6c60d7cd691722aaaa9cedde3d9))
+
+
+
+
+
 # [3.0.0-beta.4](https://github.com/hperrin/svelte-material-ui/compare/v3.0.0-beta.3...v3.0.0-beta.4) (2021-04-12)
 
 
