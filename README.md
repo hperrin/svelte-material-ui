@@ -37,9 +37,9 @@ If you are upgrading from an older version of SMUI to a newer one, it might be w
 Check out the [Webpack template](https://github.com/hperrin/smui-example-webpack) and the [Rollup template](https://github.com/hperrin/smui-example-rollup) for examples.
 
 1. To bundle this in your own code, use a Sass processor (not a Sass Svelte **preprocessor**, but a Sass **processor**). SMUI's `index.js` files import _.scss files_, and they need to be compiled by a Sass processor. SMUI's `*.svelte` files don't include any Sass or CSS, so a Svelte _preprocessor_ is not necessary.
-   - Alternatively, you can import components from the `bare.js` files, which don't include any styling. Then you can either import the Sass yourself, or use the `bare.css` files which are precompiled (with the default theme) and packaged with components. Then you can skip the next step, but your [theming options](https://github.com/hperrin/svelte-material-ui/blob/master/THEMING.md#theming-the-bare-css) are limited.
+   - Alternatively, you can import components from the `bare.js` files, which don't include any styling. Then you can either import the Sass yourself, or use the `bare.css` files which are precompiled (with the default theme) and packaged with components. Then you can skip the next step, but your [theming options](THEMING.md#theming-the-bare-css) are limited.
    - Note that `node-sass` is deprecated, and SMUI uses features that it doesn't support. You should use [Dart Sass](https://www.npmjs.com/package/sass) instead.
-2. You must have a `_smui-theme.scss` file in one of your Sass include paths to compile the Sass. That is where you [set the theme variables](https://github.com/hperrin/svelte-material-ui/blob/master/THEMING.md). If it's empty, it will use the default theme values from MDC-Web.
+2. You must have a `_smui-theme.scss` file in one of your Sass include paths to compile the Sass. That is where you [set the theme variables](THEMING.md). If it's empty, it will use the default theme values from MDC-Web.
 3. If you want the Material Icon, Roboto, and Roboto Mono fonts, be sure to include these stylesheets (or include them from a package):
    ```html
    <link
@@ -89,7 +89,7 @@ Here are some features you should know about:
 - You can add arbitrary properties to all of the components and many of the elements within them.
 - You can add actions to the components with `use={[Action1, [Action2, action2Props], Action3]}`.
 - You can add props to lower components and elements with "$" props, like `input$maxlength="15"`.
-- All [standard UI and transition events](https://github.com/hperrin/svelte-material-ui/blob/master/packages/common/forwardEventsBuilder.js#L4) are forwarded on components, input events ("input" and "change") are forwarded on input components, and all MDC events are forwarded.
+- All [standard UI and transition events](packages/common/forwardEventsBuilder.js#L4) are forwarded on components, input events ("input" and "change") are forwarded on input components, and all MDC events are forwarded.
 - Labels and icons are named exports in the components that use them, or you can use the 'Label' and 'Icon' exports from '@smui/common'. (Except for chips labels and icons, textfield icons, and select icons, because they are special snowflakes.)
 - SMUI [supports RTL languages](https://svelte.dev/repl/c2ff2d5dd5404eccb901ba04ef0161be?version=3.37.0).
 
@@ -216,49 +216,49 @@ If you import from `@smui/common`, you don't need the `/bare` portion, since it 
 
 Click a component below to go to its documentation. (Note that this documentation is a work in progress. The demo code should be your main source of truth for how something works.)
 
-- [Banner](https://github.com/hperrin/svelte-material-ui/blob/master/packages/banner/README.md)
-- [Button](https://github.com/hperrin/svelte-material-ui/blob/master/packages/button/README.md)
-  - [Floating Action Button](https://github.com/hperrin/svelte-material-ui/blob/master/packages/fab/README.md)
-  - [Icon Button](https://github.com/hperrin/svelte-material-ui/blob/master/packages/icon-button/README.md)
-- [Card](https://github.com/hperrin/svelte-material-ui/blob/master/packages/card/README.md)
-- [Chips](https://github.com/hperrin/svelte-material-ui/blob/master/packages/chips/README.md)
-- [Data Table](https://github.com/hperrin/svelte-material-ui/blob/master/packages/data-table/README.md)
-- [Dialog](https://github.com/hperrin/svelte-material-ui/blob/master/packages/dialog/README.md)
-- [Drawer](https://github.com/hperrin/svelte-material-ui/blob/master/packages/drawer/README.md)
+- [Banner](packages/banner/README.md)
+- [Button](packages/button/README.md)
+  - [Floating Action Button](packages/fab/README.md)
+  - [Icon Button](packages/icon-button/README.md)
+- [Card](packages/card/README.md)
+- [Chips](packages/chips/README.md)
+- [Data Table](packages/data-table/README.md)
+- [Dialog](packages/dialog/README.md)
+- [Drawer](packages/drawer/README.md)
 - [Elevation](https://sveltematerialui.com/demo/elevation/)†
-- [Image List](https://github.com/hperrin/svelte-material-ui/blob/master/packages/image-list/README.md)
+- [Image List](packages/image-list/README.md)
 - Inputs and Controls
-  - [Checkbox](https://github.com/hperrin/svelte-material-ui/blob/master/packages/checkbox/README.md)
-  - [Floating Label](https://github.com/hperrin/svelte-material-ui/blob/master/packages/floating-label/README.md)
-  - [Form Field](https://github.com/hperrin/svelte-material-ui/blob/master/packages/form-field/README.md)
-  - [Line Ripple](https://github.com/hperrin/svelte-material-ui/blob/master/packages/line-ripple/README.md)
-  - [Notched Outline](https://github.com/hperrin/svelte-material-ui/blob/master/packages/notched-outline/README.md)
-  - [Radio Button](https://github.com/hperrin/svelte-material-ui/blob/master/packages/radio/README.md)
-  - [Select Menu](https://github.com/hperrin/svelte-material-ui/blob/master/packages/select/README.md)
-    - [Select Helper Text](https://github.com/hperrin/svelte-material-ui/blob/master/packages/select/helper-text/README.md)
-    - [Select Icon](https://github.com/hperrin/svelte-material-ui/blob/master/packages/select/icon/README.md)
-  - [Slider](https://github.com/hperrin/svelte-material-ui/blob/master/packages/slider/README.md)
-  - [Switch](https://github.com/hperrin/svelte-material-ui/blob/master/packages/switch/README.md)
-  - [Text Field](https://github.com/hperrin/svelte-material-ui/blob/master/packages/textfield/README.md)
-    - [Text Field Character Counter](https://github.com/hperrin/svelte-material-ui/blob/master/packages/textfield/character-counter/README.md)
-    - [Text Field Helper Text](https://github.com/hperrin/svelte-material-ui/blob/master/packages/textfield/helper-text/README.md)
-    - [Text Field Icon](https://github.com/hperrin/svelte-material-ui/blob/master/packages/textfield/icon/README.md)
-- [Layout Grid](https://github.com/hperrin/svelte-material-ui/blob/master/packages/layout-grid/README.md)
-- [List](https://github.com/hperrin/svelte-material-ui/blob/master/packages/list/README.md)
-- [Menu Surface](https://github.com/hperrin/svelte-material-ui/blob/master/packages/menu-surface/README.md)
-- [Menu](https://github.com/hperrin/svelte-material-ui/blob/master/packages/menu/README.md)
-- [Paper](https://github.com/hperrin/svelte-material-ui/blob/master/packages/paper/README.md)‡
+  - [Checkbox](packages/checkbox/README.md)
+  - [Floating Label](packages/floating-label/README.md)
+  - [Form Field](packages/form-field/README.md)
+  - [Line Ripple](packages/line-ripple/README.md)
+  - [Notched Outline](packages/notched-outline/README.md)
+  - [Radio Button](packages/radio/README.md)
+  - [Select Menu](packages/select/README.md)
+    - [Select Helper Text](packages/select/helper-text/README.md)
+    - [Select Icon](packages/select/icon/README.md)
+  - [Slider](packages/slider/README.md)
+  - [Switch](packages/switch/README.md)
+  - [Text Field](packages/textfield/README.md)
+    - [Text Field Character Counter](packages/textfield/character-counter/README.md)
+    - [Text Field Helper Text](packages/textfield/helper-text/README.md)
+    - [Text Field Icon](packages/textfield/icon/README.md)
+- [Layout Grid](packages/layout-grid/README.md)
+- [List](packages/list/README.md)
+- [Menu Surface](packages/menu-surface/README.md)
+- [Menu](packages/menu/README.md)
+- [Paper](packages/paper/README.md)‡
 - Progress Indicators
-  - [Circular Progress](https://github.com/hperrin/svelte-material-ui/blob/master/packages/circular-progress/README.md)
-  - [Linear Progress](https://github.com/hperrin/svelte-material-ui/blob/master/packages/linear-progress/README.md)
-- [Ripple](https://github.com/hperrin/svelte-material-ui/blob/master/packages/ripple/README.md)
-- [Snackbar](https://github.com/hperrin/svelte-material-ui/blob/master/packages/snackbar/README.md)
-  - [Kitchen](https://github.com/hperrin/svelte-material-ui/blob/master/packages/snackbar/kitchen/README.md)‡
+  - [Circular Progress](packages/circular-progress/README.md)
+  - [Linear Progress](packages/linear-progress/README.md)
+- [Ripple](packages/ripple/README.md)
+- [Snackbar](packages/snackbar/README.md)
+  - [Kitchen](packages/snackbar/kitchen/README.md)‡
 - Tabs
-  - [Tab](https://github.com/hperrin/svelte-material-ui/blob/master/packages/tab/README.md)
-  - [Tab Bar](https://github.com/hperrin/svelte-material-ui/blob/master/packages/tab-bar/README.md)
+  - [Tab](packages/tab/README.md)
+  - [Tab Bar](packages/tab-bar/README.md)
 - [Theme](https://sveltematerialui.com/demo/theme/)†
-- [Top App Bar](https://github.com/hperrin/svelte-material-ui/blob/master/packages/top-app-bar/README.md)
+- [Top App Bar](packages/top-app-bar/README.md)
 - [Typography](https://sveltematerialui.com/demo/typography/)†
 
 New components from the upstream library to build for SMUI v3:
