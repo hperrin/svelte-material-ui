@@ -16,6 +16,7 @@
 <style>
   * :global(.demo-list) {
     max-width: 600px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    border: 1px solid
+      var(--mdc-theme-text-hint-on-background, rgba(0, 0, 0, 0.1));
   }
 </style>

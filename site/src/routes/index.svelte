@@ -100,7 +100,7 @@
       <List
         twoLine
         nonInteractive
-        style="border: 1px solid rgba(0, 0, 0, 0.1);"
+        style="border: 1px solid var(--mdc-theme-text-hint-on-background, rgba(0, 0, 0, 0.1));"
       >
         <Item style="height: auto; min-height: 64px;">
           <Graphic style="height: auto; width: auto;">

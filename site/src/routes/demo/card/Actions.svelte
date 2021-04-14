@@ -121,9 +121,11 @@
     align-items: center;
     min-height: 500px;
     min-width: 380px;
-    background-color: #f8f8f8;
     margin-right: 20px;
     margin-bottom: 20px;
+    background-color: var(--mdc-theme-background, #f8f8f8);
+    border: 1px solid
+      var(--mdc-theme-text-hint-on-background, rgba(0, 0, 0, 0.1));
   }
   .card-container.short {
     min-height: 200px;

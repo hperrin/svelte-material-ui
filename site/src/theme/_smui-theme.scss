@@ -1,6 +1,4 @@
-//
-// MDC Theme
-//
+@use 'sass:color';
 
 @use '@material/theme/color-palette';
 
@@ -13,7 +11,18 @@
   $error: color-palette.$red-900,
 );
 
-// The other Svelte color: #40b3ff,
+html,
+body {
+  background-color: theme.$surface;
+  color: theme.$on-surface;
+}
+
+a {
+  color: #40b3ff;
+}
+a:visited {
+  color: color.scale(#40b3ff, $lightness: -50%);
+}
 
 // If you've come here looking for how to make a theme
 // file in older versions of SMUI, check here instead:

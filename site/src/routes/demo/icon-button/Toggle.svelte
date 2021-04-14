@@ -18,7 +18,7 @@
 <div style="display: flex; align-items: center;">
   <IconButton
     on:click={() => toggleClicked++}
-    on:click={() => (usingEvents = !usingEvents)}
+    on:MDCIconButtonToggle:change={() => (usingEvents = !usingEvents)}
     pressed={usingEvents}
   >
     <Icon class="material-icons" on>bookmark</Icon>

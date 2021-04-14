@@ -1,4 +1,5 @@
 import path from 'path';
+import fs from 'fs';
 import postcss from 'rollup-plugin-postcss';
 import resolve from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
@@ -20,15 +21,30 @@ const onwarn = (warning, onwarn) =>
     /[/\\]@sapper[/\\]/.test(warning.message)) ||
   onwarn(warning);
 
-const postcssOptions = (extract) => ({
+const postcssOptions = (light) => ({
   extensions: ['.scss'],
-  extract: extract ? 'smui.css' : false,
+  extract: `smui.css`,
   minimize: true,
+  onExtract: light
+    ? null
+    : (getExtracted) => {
+        let { code } = getExtracted();
+        const result = require('cssnano')
+          .process(code)
+          .then(({ css }) => {
+            const filename = `${config.client.output().dir}/smui-dark.css`;
+            fs.writeFileSync(filename, css);
+          });
+        return false;
+      },
   use: [
     [
       'sass',
       {
-        includePaths: ['./src/theme', './node_modules'],
+        includePaths: [
+          light ? './src/theme' : './src/theme-dark',
+          './node_modules',
+        ],
       },
     ],
   ],

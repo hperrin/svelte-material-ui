@@ -21,7 +21,7 @@
           Svelte Material UI
         </Title>
       </Section>
-      <Section align="end" toolbar>
+      <Section align="end" toolbar style="color: var(--mdc-on-surface, #000);">
         {#if activeSection}
           {#each repos as repo}
             <IconButton
@@ -30,7 +30,7 @@
               title={`View Docs: ${repo.split('/').slice(-1)[0]}`}
             >
               <Icon component={Svg} viewBox="0 0 24 24">
-                <path fill="#000000" d={mdiFileDocument} />
+                <path fill="currentColor" d={mdiFileDocument} />
               </Icon>
             </IconButton>
           {/each}
@@ -40,18 +40,37 @@
             title="View Source Directory"
           >
             <Icon component={Svg} viewBox="0 0 24 24">
-              <path fill="#000000" d={mdiCodeTags} />
+              <path fill="currentColor" d={mdiCodeTags} />
             </Icon>
           </IconButton>
         {/if}
-        <IconButton href="https://twitter.com/SciActive">
+        <IconButton
+          href="https://twitter.com/SciActive"
+          title="Hunter Perrin (SMUI Author) on Twitter"
+        >
           <Icon component={Svg} viewBox="0 0 24 24">
-            <path fill="#000000" d={mdiTwitter} />
+            <path fill="currentColor" d={mdiTwitter} />
           </Icon>
         </IconButton>
-        <IconButton href="https://github.com/hperrin/svelte-material-ui">
+        <IconButton
+          href="https://github.com/hperrin/svelte-material-ui"
+          title="SMUI on GitHub"
+        >
           <Icon component={Svg} viewBox="0 0 24 24">
-            <path fill="#000000" d={mdiGithub} />
+            <path fill="currentColor" d={mdiGithub} />
+          </Icon>
+        </IconButton>
+        <IconButton
+          toggle
+          pressed={theme === 'dark'}
+          on:MDCIconButtonToggle:change={switchTheme}
+          title={theme === 'light' ? 'Lights off' : 'Lights on'}
+        >
+          <Icon component={Svg} viewBox="0 0 24 24" on>
+            <path fill="currentColor" d={mdiWeatherSunny} />
+          </Icon>
+          <Icon component={Svg} viewBox="0 0 24 24">
+            <path fill="currentColor" d={mdiWeatherNight} />
           </Icon>
         </IconButton>
       </Section>
@@ -104,7 +123,14 @@
 <script>
   import { onMount } from 'svelte';
   import { stores } from '@sapper/app';
-  import { mdiFileDocument, mdiCodeTags, mdiTwitter, mdiGithub } from '@mdi/js';
+  import {
+    mdiFileDocument,
+    mdiCodeTags,
+    mdiTwitter,
+    mdiGithub,
+    mdiWeatherSunny,
+    mdiWeatherNight,
+  } from '@mdi/js';
 
   import './_app.scss';
 
@@ -122,6 +148,24 @@
   let mainContent;
   let miniWindow = false;
   let drawerOpen = false;
+
+  let theme = ['light', 'dark'][
+    typeof window === 'undefined'
+      ? 0
+      : window.matchMedia('(prefers-color-scheme: light)').matches
+      ? 0
+      : 1
+  ];
+  function switchTheme() {
+    theme = theme === 'light' ? 'dark' : 'light';
+    let themeLink = document.head.querySelector('#theme');
+    if (!themeLink) {
+      themeLink = document.createElement('link');
+      themeLink.rel = 'stylesheet';
+    }
+    themeLink.href = `client/smui${theme === 'light' ? '' : '-dark'}.css`;
+    document.head.appendChild(themeLink);
+  }
 
   const sections = [
     {
