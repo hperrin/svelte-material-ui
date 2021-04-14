@@ -15,8 +15,8 @@ $background: #fff;
 @use '@material/theme' with (
   $primary: color-palette.$purple-500,
   $secondary: color-palette.$teal-600,
-  $surface: $background,
-  $background: #fff,
+  $surface: #fff,
+  $background: $background,
   $error: #b00020,
 );
 
