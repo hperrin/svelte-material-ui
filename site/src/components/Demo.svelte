@@ -111,8 +111,12 @@
     }
 
     if (show) {
-      sourceHTML = sourceContainer.innerHTML;
-      scssHTML = scssContainer.innerHTML;
+      if (sourceContainer) {
+        sourceHTML = sourceContainer.innerHTML;
+      }
+      if (scssContainer) {
+        scssHTML = scssContainer.innerHTML;
+      }
     }
 
     show = !show;
