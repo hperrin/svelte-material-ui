@@ -99,3 +99,9 @@ body,
 }
 
 @include paper.paper-color(svelte-blue, #40b3ff, #fff);
+
+@media (max-width: 460px) {
+  .demo-main-content section {
+    padding: 16px;
+  }
+}

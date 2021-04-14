@@ -319,6 +319,11 @@
   }
 
   @media (max-width: 460px) {
+    section {
+      padding-left: 36px;
+      padding-right: 36px;
+    }
+
     section::before {
       opacity: 0.2;
       right: calc(50% - 300px);
