@@ -6,6 +6,8 @@
   <h2>Layout Grid</h2>
   <p>Try resizing your window to see the cells adapt to the new size.</p>
 
+  <pre class="spaced">npm install --save-dev @smui/layout-grid</pre>
+
   <Demo component={Simple} file="layout-grid/_Simple.svelte" />
 
   <Demo component={Span} file="layout-grid/_Span.svelte">Span</Demo>

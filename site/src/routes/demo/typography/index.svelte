@@ -5,6 +5,8 @@
 <section>
   <h2>Typography</h2>
 
+  <pre class="spaced">npm install --save-dev @material/typography</pre>
+
   <Demo
     component={Typography}
     file="typography/_Typography.svelte"

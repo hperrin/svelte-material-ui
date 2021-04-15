@@ -5,6 +5,8 @@
 <section>
   <h2>Checkbox</h2>
 
+  <pre class="spaced">npm install --save-dev @smui/checkbox</pre>
+
   <Demo component={Simple} file="checkbox/_Simple.svelte" />
 
   <Demo component={Touch} file="checkbox/_Touch.svelte">

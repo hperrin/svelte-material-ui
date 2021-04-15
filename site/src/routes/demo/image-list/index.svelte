@@ -5,6 +5,8 @@
 <section>
   <h2>Image Lists</h2>
 
+  <pre class="spaced">npm install --save-dev @smui/image-list</pre>
+
   <Demo
     component={Simple}
     file="image-list/_Simple.svelte"

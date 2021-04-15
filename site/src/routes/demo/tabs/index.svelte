@@ -5,6 +5,8 @@
 <section>
   <h2>Tabs</h2>
 
+  <pre class="spaced">npm install --save-dev @smui/tab @smui/tab-bar</pre>
+
   <Demo component={Simple} file="tabs/_Simple.svelte" />
 
   <Demo component={Icons} file="tabs/_Icons.svelte">

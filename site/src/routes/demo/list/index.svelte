@@ -5,6 +5,8 @@
 <section>
   <h2>Lists</h2>
 
+  <pre class="spaced">npm install --save-dev @smui/list</pre>
+
   <Demo component={Simple} file="list/_Simple.svelte" />
 
   <Demo component={GraphicsDense} file="list/_GraphicsDense.svelte">

@@ -5,6 +5,8 @@
 <section>
   <h2>Menu</h2>
 
+  <pre class="spaced">npm install --save-dev @smui/menu</pre>
+
   <Demo component={Static} file="menu/_Static.svelte" />
 
   <Demo component={Anchored} file="menu/_Anchored.svelte">

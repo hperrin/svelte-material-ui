@@ -48,10 +48,20 @@
   >
     <Label>Primary</Label>
   </Button>
-  <Button on:click={() => clicked++} variant="unelevated" color="secondary">
+  <Button
+    on:click={() => clicked++}
+    variant="unelevated"
+    color="secondary"
+    style="flex-grow: 1;"
+  >
     <Label>Secondary</Label>
   </Button>
-  <Button on:click={() => clicked++} variant="unelevated" color="secondary">
+  <Button
+    on:click={() => clicked++}
+    variant="unelevated"
+    color="secondary"
+    style="flex-grow: 1;"
+  >
     <Label>Secondary</Label>
   </Button>
 </Group>

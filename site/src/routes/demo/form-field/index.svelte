@@ -5,6 +5,8 @@
 <section>
   <h2>Form Fields</h2>
 
+  <pre class="spaced">npm install --save-dev @smui/form-field</pre>
+
   <Demo component={Checkbox} file="form-field/_Checkbox.svelte">Checkbox</Demo>
 
   <Demo component={EndAlignment} file="form-field/_EndAlignment.svelte">

@@ -5,6 +5,8 @@
 <section>
   <h2>Switch</h2>
 
+  <pre class="spaced">npm install --save-dev @smui/switch</pre>
+
   <Demo component={Simple} file="switch/_Simple.svelte" />
 
   <Demo component={PrimaryColor} file="switch/_PrimaryColor.svelte">

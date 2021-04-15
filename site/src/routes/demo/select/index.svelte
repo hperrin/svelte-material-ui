@@ -5,6 +5,8 @@
 <section>
   <h2>Select</h2>
 
+  <pre class="spaced">npm install --save-dev @smui/select</pre>
+
   <Demo component={Showcase} file="select/_Showcase.svelte" />
 
   <Demo component={Standard} file="select/_Standard.svelte">Standard</Demo>

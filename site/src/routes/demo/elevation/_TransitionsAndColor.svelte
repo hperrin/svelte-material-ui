@@ -32,7 +32,7 @@
 </div>
 
 <script>
-  import './_Elevation.scss';
+  import './_TransitionsAndColor.scss';
   import Checkbox from '@smui/checkbox';
   import FormField from '@smui/form-field';
 

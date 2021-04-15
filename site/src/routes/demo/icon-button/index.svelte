@@ -5,6 +5,8 @@
 <section>
   <h2>Icon Button</h2>
 
+  <pre class="spaced">npm install --save-dev @smui/icon-button</pre>
+
   <Demo component={Simple} file="icon-button/_Simple.svelte" />
 
   <Demo component={Toggle} file="icon-button/_Toggle.svelte">

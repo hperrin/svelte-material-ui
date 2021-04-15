@@ -5,6 +5,8 @@
 <section>
   <h2>Elevation</h2>
 
+  <pre class="spaced">npm install --save-dev @material/elevation</pre>
+
   <Demo
     component={Elevation}
     file="elevation/_Elevation.svelte"
@@ -14,6 +16,7 @@
   <Demo
     component={TransitionsAndColor}
     file="elevation/_TransitionsAndColor.svelte"
+    scss="elevation/_TransitionsAndColor.scss"
   >
     Transitions and color
   </Demo>

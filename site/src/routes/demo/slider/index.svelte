@@ -5,10 +5,13 @@
 <section>
   <h2>Slider</h2>
 
+  <pre class="spaced">npm install --save-dev @smui/slider</pre>
+
   <Demo component={Simple} file="slider/_Simple.svelte" />
 
-  <Demo component={Continuous} file="slider/_Continuous.svelte">Continuous</Demo
-  >
+  <Demo component={Continuous} file="slider/_Continuous.svelte">
+    Continuous
+  </Demo>
 
   <Demo component={Discrete} file="slider/_Discrete.svelte">
     Discrete with min/max/step

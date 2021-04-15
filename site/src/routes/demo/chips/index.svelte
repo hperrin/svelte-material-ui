@@ -5,6 +5,8 @@
 <section>
   <h2>Chips</h2>
 
+  <pre class="spaced">npm install --save-dev @smui/chips</pre>
+
   <Demo component={Simple} file="chips/_Simple.svelte" />
 
   <Demo component={Choice} file="chips/_Choice.svelte">Choice chips</Demo>

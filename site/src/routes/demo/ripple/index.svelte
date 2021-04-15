@@ -5,6 +5,8 @@
 <section>
   <h2>Ripple</h2>
 
+  <pre class="spaced">npm install --save-dev @smui/ripple</pre>
+
   <Demo component={Simple} file="ripple/_Simple.svelte" />
 
   <Demo component={PrimaryColor} file="ripple/_PrimaryColor.svelte" />

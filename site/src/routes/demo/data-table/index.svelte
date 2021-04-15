@@ -5,6 +5,8 @@
 <section>
   <h2>Data Table</h2>
 
+  <pre class="spaced">npm install --save-dev @smui/data-table</pre>
+
   <Demo component={Simple} file="data-table/_Simple.svelte" />
 
   <Demo component={RowSelection} file="data-table/_RowSelection.svelte">

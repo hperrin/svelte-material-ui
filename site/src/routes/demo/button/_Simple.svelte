@@ -17,6 +17,8 @@
   <Button on:click={() => clicked++} variant="outlined">
     <Label>Outlined</Label>
   </Button>
+  <!-- Notice that to target this class,
+    you need to use a :global() selector. -->
   <Button on:click={() => clicked++} class="myClass">
     <Label>With a Class</Label>
   </Button>
@@ -45,6 +47,9 @@
 </script>
 
 <style>
+  /* Accessing the class with "*" in front limits
+    the scope to anything under this component's
+    elements. */
   * :global(.myClass) {
     font-family: 'Roboto Mono', monospace !important;
   }

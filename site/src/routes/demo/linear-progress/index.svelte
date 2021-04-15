@@ -5,6 +5,8 @@
 <section>
   <h2>Linear Progress</h2>
 
+  <pre class="spaced">npm install --save-dev @smui/linear-progress</pre>
+
   <Demo component={Simple} file="linear-progress/_Simple.svelte" />
 
   <Demo component={Buffered} file="linear-progress/_Buffered.svelte">
