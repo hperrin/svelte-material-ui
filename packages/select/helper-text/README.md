@@ -6,7 +6,7 @@ Select helper texts are informative messages that give context to a select menu.
 
 _in action:_ https://sveltematerialui.com/demo/select
 
-_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/select/
+_demo code:_ /site/src/routes/demo/select/
 
 # Basic Usage
 

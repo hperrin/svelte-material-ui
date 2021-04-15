@@ -12,7 +12,7 @@ npm install --save-dev @smui/layout-grid
 
 _in action:_ https://sveltematerialui.com/demo/layout-grid
 
-_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/layout-grid/
+_demo code:_ /site/src/routes/demo/layout-grid/
 
 # Basic Usage
 

@@ -14,7 +14,7 @@ npm install --save-dev @smui/floating-label
 
 _in action:_ https://sveltematerialui.com/demo/textfield
 
-_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/textfield/
+_demo code:_ /site/src/routes/demo/textfield/
 
 # Whoa There, These Docs are Outdated
 

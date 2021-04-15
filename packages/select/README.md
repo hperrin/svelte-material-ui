@@ -12,7 +12,7 @@ npm install --save-dev @smui/select
 
 _in action:_ https://sveltematerialui.com/demo/select
 
-_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/select/
+_demo code:_ /site/src/routes/demo/select/
 
 # Whoa There, These Docs are Outdated
 
