@@ -149,13 +149,11 @@
   let miniWindow = false;
   let drawerOpen = false;
 
-  let theme = ['light', 'dark'][
-    typeof window === 'undefined'
-      ? 0
-      : window.matchMedia('(prefers-color-scheme: light)').matches
-      ? 0
-      : 1
-  ];
+  let theme =
+    typeof window === 'undefined' ||
+    window.matchMedia('(prefers-color-scheme: light)').matches
+      ? 'light'
+      : 'dark';
   function switchTheme() {
     theme = theme === 'light' ? 'dark' : 'light';
     let themeLink = document.head.querySelector('#theme');

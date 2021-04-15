@@ -30,7 +30,7 @@ const postcssOptions = (light) => ({
     : (getExtracted) => {
         let { code } = getExtracted();
         const result = require('cssnano')
-          .process(code)
+          .process(code, { from: undefined })
           .then(({ css }) => {
             const filename = `${config.client.output().dir}/smui-dark.css`;
             fs.writeFileSync(filename, css);
@@ -41,10 +41,7 @@ const postcssOptions = (light) => ({
     [
       'sass',
       {
-        includePaths: [
-          light ? './src/theme' : './src/theme-dark',
-          './node_modules',
-        ],
+        includePaths: [`./src/theme${light ? '' : '/dark'}`, './node_modules'],
       },
     ],
   ],
