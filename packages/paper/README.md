@@ -47,10 +47,6 @@ A paper surface.
 - `elevation`: `1` - The component's elevation. (integer between 0 and 24, inclusive)
 - `transition`: `false` - Trigger a transition animation when elevation is changed.
 
-### Events
-
-All standard UI events are forwarded.
-
 ## Title
 
 A fragment used as a title on the Paper.

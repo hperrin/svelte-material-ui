@@ -57,8 +57,6 @@ An icon button.
 
 ### Events
 
-All standard UI events are forwarded.
-
 - `MDCIconButtonToggle:change`
 
 ## Icon

@@ -48,10 +48,6 @@ A floating action button.
 - `exited`: `false` - Whether the FAB is not visible. Changing this will cause the FAB to animate in/out.
 - `extended`: `false` - Whether the FAB contains a label.
 
-### Events
-
-All standard UI events are forwarded.
-
 ## Label
 
 A text label.

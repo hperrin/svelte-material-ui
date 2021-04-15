@@ -68,8 +68,6 @@ A chip.
 
 ### Events
 
-All standard UI events are forwarded.
-
 - `MDCChip:interaction`
 - `MDCChip:selection`
 - `MDCChip:removal`
@@ -90,10 +88,6 @@ A set of chips. Chips should only be added onto the end of the set's chip array.
 - `choice` `false` - Whether to present the chips as a set of choices, allowing one to be chosen.
 - `filter` `false` - Whether to present the chips as a set of options, allowing any number to be chosen.
 - `input` `false` - Whether to present the chips as a set of values, allowing them to be removed.
-
-### Events
-
-All standard UI events are forwarded.
 
 ## Text
 

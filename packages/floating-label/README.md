@@ -55,10 +55,6 @@ A Floating Label component.
 - `for`: `''` - The ID of the input the label is to be associated with.
 - `wrapped`: `false` - If the label is wrapped, a `span` element is used with no `for` attribute, otherwise, a `label` element is used with a `for` attribute.
 
-### Events
-
-All standard UI events are forwarded.
-
 ### Functions
 
 - `shake(boolean)` - Shakes the label element.

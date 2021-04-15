@@ -42,10 +42,6 @@ A layout grid container. It contains an inner grid.
 - `fixedColumnWidth`: `false` - Give the grid fixed column width.
 - `align`: `null` - Specifies the alignment of the entire grid. ('left' or 'right')
 
-### Events
-
-All standard UI events are forwarded.
-
 ## Cell
 
 A layout grid cell.
@@ -63,10 +59,6 @@ A layout grid cell.
 
 - `innerGrid$` - Props forwarded to the inner grid.
 
-### Events
-
-All standard UI events are forwarded.
-
 ## InnerGrid
 
 An inner layout grid used for nesting. It is meant to be put directly under a cell to create a new nested grid layout.
@@ -75,10 +67,6 @@ An inner layout grid used for nesting. It is meant to be put directly under a ce
 
 - `use`: `[]` - An array of Svelte actions and/or arrays of an action and its options.
 - `class`: `''` - A CSS class string.
-
-### Events
-
-All standard UI events are forwarded.
 
 # More Information
 

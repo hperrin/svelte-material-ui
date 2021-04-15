@@ -51,10 +51,6 @@ A Form Field component.
 
 The ID is generated using a module context counter, so you don't need to provide one yourself. The format is `SMUI-form-field-{counter}`, and the counter starts at 0.
 
-### Events
-
-All standard UI events are forwarded.
-
 ### Forwarded Props
 
 - `label$` - Props forwarded to the label element.

@@ -103,10 +103,6 @@ A card.
 - `variant`: `'raised'` - The card's style variant. ('raised' or 'outlined')
 - `padded`: `false` - Whether to apply padding to the card. You can also use a `Content` component to achieve the same effect.
 
-### Events
-
-All standard UI events are forwarded.
-
 ## Content
 
 A fragment used as a content area within a card.
@@ -128,10 +124,6 @@ An interactive portion of the card. Meant to be the primary way to interact with
 - `padded`: `false` - Whether to apply padding to the area.
 - `tabindex`: `'0'` - The tabindex of the area.
 
-### Events
-
-All standard UI events are forwarded.
-
 ## Media
 
 An area of the card meant to show media content.
@@ -141,10 +133,6 @@ An area of the card meant to show media content.
 - `use`: `[]` - An array of Svelte actions and/or arrays of an action and its options.
 - `class`: `''` - A CSS class string.
 - `aspectRatio`: `null` - Add styling to maintain a given aspect ratio. ('square' or '16x9')
-
-### Events
-
-All standard UI events are forwarded.
 
 ## MediaContent
 
@@ -161,10 +149,6 @@ An area of the card containing interactive actions.
 - `use`: `[]` - An array of Svelte actions and/or arrays of an action and its options.
 - `class`: `''` - A CSS class string.
 - `fullBleed`: `false` - Whether to style the actions as full bleed, meaning they take up the whole width of the card.
-
-### Events
-
-All standard UI events are forwarded.
 
 ## ActionButtons
 

@@ -54,13 +54,6 @@ A switch.
 
 - `input$` - Props forwarded to the input element.
 
-### Events
-
-All standard UI events are forwarded.
-
-- `change`
-- `input`
-
 ### Functions
 
 - `getId` - Get the HTML ID of the element.

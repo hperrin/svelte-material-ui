@@ -23,10 +23,6 @@ The common label is used everywhere that exports a `Label` component.
 - `use`: `[]` - An array of Svelte actions and/or arrays of an action and its options.
 - `class`: `''` - A CSS class string.
 
-### Events
-
-All standard UI events are forwarded.
-
 ## Icon
 
 A common icon.
@@ -39,10 +35,6 @@ The common icon is used everywhere that exports an `Icon` component except for `
 - `use`: `[]` - An array of Svelte actions and/or arrays of an action and its options.
 - `class`: `''` - A CSS class string.
 - `on`: `false` - Used in the context of an icon button toggle to denote the icon for when the button is on.
-
-### Events
-
-All standard UI events are forwarded.
 
 # Other Components
 
@@ -57,7 +49,6 @@ A base component that adds a class to an element. The ClassAdder is used to prov
 - `component`: `(depends on context)` - The component to extend. Usually it is set to one of the elemental components below.
 - `use`: `[]` - An array of Svelte actions and/or arrays of an action and its options.
 - `class`: `''` - A CSS class string.
-- `forwardEvents`: `[]` - An array of additional events that should be forwarded.
 
 ## ContextFragment.svelte
 
@@ -75,7 +66,6 @@ These components are used in SMUI components that take a `component` prop. They 
 ### Props / Defaults (Common to all Elemental Components)
 
 - `use`: `[]` - An array of Svelte actions and/or arrays of an action and its options.
-- `forwardEvents`: `[]` - An array of additional events that should be forwarded.
 
 ## A.svelte
 

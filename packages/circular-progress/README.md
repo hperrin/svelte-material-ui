@@ -46,10 +46,6 @@ A Circular Progress component.
 - `progress`: `0` - The progress to indicate. (float between 0 and 1, inclusive)
 - `fourColor`: `false` - Whether the indeterminate indicator will cycle through four colors.
 
-### Events
-
-All standard UI events are forwarded.
-
 # More Information
 
 See [Progress indicators](https://material.io/components/progress-indicators) in the Material design spec.

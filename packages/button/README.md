@@ -50,10 +50,6 @@ A button.
 - `default`: `false` - Used in the context of a dialog. This makes the button the default for the dialog.
 - `secondary`: `false` - Used in the context of a banner. This makes the button the secondary action for the banner.
 
-### Events
-
-All standard UI events are forwarded.
-
 ## Group
 
 A button group.
@@ -63,10 +59,6 @@ A button group.
 - `use`: `[]` - An array of Svelte actions and/or arrays of an action and its options.
 - `class`: `''` - A CSS class string.
 - `variant`: `'text'` - The button group's style variant. ('text', 'raised', 'unelevated', or 'outlined')
-
-### Events
-
-All standard UI events are forwarded.
 
 ## GroupItem
 
