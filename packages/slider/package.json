@@ -1,6 +1,6 @@
 {
   "name": "@smui/slider",
-  "version": "3.0.0-beta.6",
+  "version": "3.0.0-beta.7",
   "description": "Svelte Material UI - Slider",
   "keywords": [
     "svelte",
@@ -30,8 +30,8 @@
   "dependencies": {
     "@material/dom": "^10.0.0",
     "@material/slider": "^10.0.0",
-    "@smui/common": "^3.0.0-beta.6",
-    "@smui/ripple": "^3.0.0-beta.6"
+    "@smui/common": "^3.0.0-beta.7",
+    "@smui/ripple": "^3.0.0-beta.7"
   },
   "devDependencies": {
     "sass": "^1.32.8"

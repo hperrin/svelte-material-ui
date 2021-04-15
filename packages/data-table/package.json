@@ -1,6 +1,6 @@
 {
   "name": "@smui/data-table",
-  "version": "3.0.0-beta.6",
+  "version": "3.0.0-beta.7",
   "description": "Svelte Material UI - Data Table",
   "keywords": [
     "svelte",
@@ -30,8 +30,8 @@
   "dependencies": {
     "@material/data-table": "^10.0.0",
     "@material/dom": "^10.0.0",
-    "@smui/checkbox": "^3.0.0-beta.6",
-    "@smui/common": "^3.0.0-beta.6",
+    "@smui/checkbox": "^3.0.0-beta.7",
+    "@smui/common": "^3.0.0-beta.7",
     "@smui/icon-button": "*"
   },
   "devDependencies": {
