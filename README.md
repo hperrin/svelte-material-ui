@@ -165,6 +165,8 @@ Here are some features you should know about:
 
 6. Profit!
 
+You can also [set up a dark mode](THEMING.md#dark-mode) in your Sapper app.
+
 ## Loading SMUI in the Svelte REPL
 
 Check out an [example REPL](https://svelte.dev/repl/aa857c3bb5eb478cbe6b1fd6c6da522a?version=3.37.0).
