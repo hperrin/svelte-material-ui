@@ -91,7 +91,7 @@
     </div>
 
     <div style="margin: 6em 0 3em;">
-      <h4>SMUI's Features and Values</h4>
+      <h4>SMUI Features and Values</h4>
     </div>
 
     <div style="margin: 3em 0;">
@@ -113,10 +113,29 @@
           <Text>
             <PrimaryText>Accessible by Default</PrimaryText>
             <SecondaryText style="white-space: normal;">
-              SMUI's components automatically add appropriate ARIA attributes to
-              their elements to provide accessibility to screen readers. They
-              are also fully keyboard accessible, meaning motor impaired users
-              can easily use SMUI components.
+              SMUI automatically adds appropriate ARIA attributes to components
+              to provide accessibility to screen readers. SMUI is also fully
+              keyboard accessible, meaning motor impaired users can easily use
+              SMUI components.
+            </SecondaryText>
+          </Text>
+        </Item>
+        <Item style="height: auto; min-height: 64px;">
+          <Graphic style="height: auto; width: auto;">
+            <Icon
+              component={Svg}
+              style="width: 40px; height: 40px;"
+              viewBox="0 0 24 24"
+            >
+              <path fill="currentColor" d={mdiGestureTap} />
+            </Icon>
+          </Graphic>
+          <Text>
+            <PrimaryText>Touch Friendly</PrimaryText>
+            <SecondaryText style="white-space: normal;">
+              SMUI provides increased touch targets to allow ease of use on
+              mobile devices, conforming to the Material Spec requirement of
+              48px x 48px touch targets.
             </SecondaryText>
           </Text>
         </Item>
@@ -133,9 +152,9 @@
           <Text>
             <PrimaryText>Server Side Rendering</PrimaryText>
             <SecondaryText style="white-space: normal;">
-              Every components can be fully rendered on the server, meaning
-              faster time to first meaningful paint. SMUI fully supports Sapper.
-              In fact, the site you're looking at is a Sapper app.
+              SMUI can be fully rendered on the server, meaning faster time to
+              first meaningful paint. SMUI fully supports Sapper. In fact, the
+              site you're looking at is a Sapper app.
             </SecondaryText>
           </Text>
         </Item>
@@ -165,7 +184,7 @@
               style="width: 40px; height: 40px;"
               viewBox="0 0 24 24"
             >
-              <path fill="currentColor" d={mdiTranslate} />
+              <path fill="currentColor" d={mdiCommentArrowLeft} />
             </Icon>
           </Graphic>
           <Text>
@@ -264,9 +283,10 @@
     mdiMaterialDesign,
     mdiSass,
     mdiHumanHandsup,
+    mdiGestureTap,
     mdiMonitorScreenshot,
     mdiPalette,
-    mdiTranslate,
+    mdiCommentArrowLeft,
     mdiAccountGroup,
     mdiRotateRightVariant,
     mdiClipboardCheck,

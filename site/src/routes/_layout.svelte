@@ -411,6 +411,14 @@
       ],
     },
     {
+      name: 'Touch Target',
+      route: '/demo/touch-target/',
+      indent: 0,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/touch-target',
+      ],
+    },
+    {
       name: 'Typography',
       route: '/demo/typography/',
       indent: 0,
