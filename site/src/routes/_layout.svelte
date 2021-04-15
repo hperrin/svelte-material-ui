@@ -18,7 +18,7 @@
           class="mdc-theme--primary"
           style={miniWindow ? 'padding-left: 0;' : ''}
         >
-          Svelte Material UI
+          {miniWindow ? 'SMUI' : 'Svelte Material UI'}
         </Title>
       </Section>
       <Section align="end" toolbar style="color: var(--mdc-on-surface, #000);">
