@@ -1,15 +1,15 @@
-<div style="display: flex; flex-wrap: wrap;">
-  <div class="card-container short">
-    <Card style="width: 250px;">
+<div class="card-display">
+  <div class="card-container">
+    <Card>
       <PrimaryAction on:click={() => clicked++} padded>
         Primary Action, a clickable area of the card.
       </PrimaryAction>
     </Card>
   </div>
 
-  <div class="card-container short">
-    <Card style="width: 320px;">
-      <Content>A card with actions.</Content>
+  <div class="card-container">
+    <Card>
+      <Content>A card with action buttons.</Content>
       <Actions>
         <Button on:click={() => clicked++}>
           <Label>Action</Label>
@@ -21,8 +21,8 @@
     </Card>
   </div>
 
-  <div class="card-container short">
-    <Card style="width: 320px;">
+  <div class="card-container">
+    <Card>
       <Content>A card with a full-bleed action.</Content>
       <Actions fullBleed>
         <Button on:click={() => clicked++}>
@@ -33,8 +33,8 @@
     </Card>
   </div>
 
-  <div class="card-container short">
-    <Card style="width: 320px;">
+  <div class="card-container">
+    <Card>
       <Content>A card with action icons.</Content>
       <Actions>
         <IconButton
@@ -60,8 +60,8 @@
     </Card>
   </div>
 
-  <div class="card-container short">
-    <Card style="width: 360px;">
+  <div class="card-container">
+    <Card>
       <Content>A card with Both.</Content>
       <Actions>
         <ActionButtons>
@@ -113,21 +113,3 @@
 
   let clicked = 0;
 </script>
-
-<style>
-  .card-container {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 500px;
-    min-width: 380px;
-    margin-right: 20px;
-    margin-bottom: 20px;
-    background-color: var(--mdc-theme-background, #f8f8f8);
-    border: 1px solid
-      var(--mdc-theme-text-hint-on-background, rgba(0, 0, 0, 0.1));
-  }
-  .card-container.short {
-    min-height: 200px;
-  }
-</style>

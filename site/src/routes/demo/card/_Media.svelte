@@ -1,6 +1,6 @@
-<div style="display: flex; flex-wrap: wrap;">
+<div class="card-display">
   <div class="card-container">
-    <Card style="width: 320px;">
+    <Card>
       <Media class="card-media-16x9" aspectRatio="16x9">
         <MediaContent>
           <h2
@@ -16,7 +16,7 @@
   </div>
 
   <div class="card-container">
-    <Card style="width: 320px;">
+    <Card style="min-width: 300px;">
       <Media class="card-media-square" aspectRatio="square">
         <div style="color: #fff; position: absolute; bottom: 16px; left: 16px;">
           <h2 class="mdc-typography--headline6" style="margin: 0;">
@@ -31,7 +31,7 @@
   </div>
 
   <div class="card-container">
-    <Card style="width: 320px;">
+    <Card>
       <div style="padding: 1rem;">
         <h2 class="mdc-typography--headline6" style="margin: 0;">
           A card with media.
@@ -65,19 +65,6 @@
 </script>
 
 <style>
-  .card-container {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 500px;
-    min-width: 380px;
-    margin-right: 20px;
-    margin-bottom: 20px;
-    background-color: var(--mdc-theme-background, #f8f8f8);
-    border: 1px solid
-      var(--mdc-theme-text-hint-on-background, rgba(0, 0, 0, 0.1));
-  }
-
   * :global(.card-media-16x9) {
     background-image: url(https://place-hold.it/320x180?text=16x9&fontsize=23);
   }

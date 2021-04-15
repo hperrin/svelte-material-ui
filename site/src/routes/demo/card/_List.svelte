@@ -1,6 +1,6 @@
-<div style="display: flex; flex-wrap: wrap;">
+<div class="card-display">
   <div class="card-container">
-    <Card style="width: 320px;">
+    <Card>
       <Content component={List}>
         <Item on:click={() => clicked++}>
           <Text>A card with a list as content.</Text>
@@ -23,18 +23,3 @@
 
   let clicked = 0;
 </script>
-
-<style>
-  .card-container {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 500px;
-    min-width: 380px;
-    margin-right: 20px;
-    margin-bottom: 20px;
-    background-color: var(--mdc-theme-background, #f8f8f8);
-    border: 1px solid
-      var(--mdc-theme-text-hint-on-background, rgba(0, 0, 0, 0.1));
-  }
-</style>

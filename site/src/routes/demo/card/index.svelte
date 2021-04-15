@@ -26,3 +26,41 @@
   import List from './_List.svelte';
   import Complex from './_Complex.svelte';
 </script>
+
+<style>
+  * :global(.card-display) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: stretch;
+  }
+
+  * :global(.card-container) {
+    display: inline-flex;
+    /* justify-content: center; */
+    align-items: center;
+    min-height: 200px;
+    width: 380px;
+    max-width: 100%;
+    overflow-x: auto;
+    background-color: var(--mdc-theme-background, #f8f8f8);
+    border: 1px solid
+      var(--mdc-theme-text-hint-on-background, rgba(0, 0, 0, 0.1));
+
+    padding: 20px;
+
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+
+  * :global(.card-container > *) {
+    margin: 0 auto;
+  }
+
+  @media (max-width: 480px) {
+    * :global(.card-container) {
+      margin-right: 0;
+      padding-right: 0;
+      padding-left: 0;
+    }
+  }
+</style>
