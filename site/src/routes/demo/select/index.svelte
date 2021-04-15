@@ -5,7 +5,7 @@
 <section>
   <h2>Select</h2>
 
-  <pre class="demo-spaced">npm install --save-dev @smui/select</pre>
+  <pre class="demo-spaced">npm i -D @smui/select</pre>
 
   <Demo component={Showcase} file="select/_Showcase.svelte" />
 

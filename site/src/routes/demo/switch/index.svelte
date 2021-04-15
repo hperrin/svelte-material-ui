@@ -5,7 +5,7 @@
 <section>
   <h2>Switch</h2>
 
-  <pre class="demo-spaced">npm install --save-dev @smui/switch</pre>
+  <pre class="demo-spaced">npm i -D @smui/switch</pre>
 
   <Demo component={Simple} file="switch/_Simple.svelte" />
 

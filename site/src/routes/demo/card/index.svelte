@@ -5,7 +5,7 @@
 <section>
   <h2>Cards</h2>
 
-  <pre class="demo-spaced">npm install --save-dev @smui/card</pre>
+  <pre class="demo-spaced">npm i -D @smui/card</pre>
 
   <Demo component={Simple} file="card/_Simple.svelte" />
 

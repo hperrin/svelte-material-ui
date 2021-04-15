@@ -5,7 +5,7 @@
 <section>
   <h2>Menu</h2>
 
-  <pre class="demo-spaced">npm install --save-dev @smui/menu</pre>
+  <pre class="demo-spaced">npm i -D @smui/menu</pre>
 
   <Demo component={Static} file="menu/_Static.svelte" />
 

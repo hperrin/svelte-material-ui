@@ -5,7 +5,7 @@
 <section>
   <h2>Drawers</h2>
 
-  <pre class="demo-spaced">npm install --save-dev @smui/drawer</pre>
+  <pre class="demo-spaced">npm i -D @smui/drawer</pre>
 
   <Demo component={Permanent} file="drawer/_Permanent.svelte">
     A permanent drawer

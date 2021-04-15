@@ -5,7 +5,7 @@
 <section>
   <h2>Slider</h2>
 
-  <pre class="demo-spaced">npm install --save-dev @smui/slider</pre>
+  <pre class="demo-spaced">npm i -D @smui/slider</pre>
 
   <Demo component={Simple} file="slider/_Simple.svelte" />
 

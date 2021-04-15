@@ -5,7 +5,7 @@
 <section>
   <h2>Theme</h2>
 
-  <pre class="demo-spaced">npm install --save-dev @material/theme</pre>
+  <pre class="demo-spaced">npm i -D @material/theme</pre>
 
   <Demo component={Theme} file="theme/_Theme.svelte" scss="theme/_Theme.scss" />
 </section>

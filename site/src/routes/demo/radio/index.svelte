@@ -5,7 +5,7 @@
 <section>
   <h2>Radio</h2>
 
-  <pre class="demo-spaced">npm install --save-dev @smui/radio</pre>
+  <pre class="demo-spaced">npm i -D @smui/radio</pre>
 
   <Demo component={Simple} file="radio/_Simple.svelte" />
 

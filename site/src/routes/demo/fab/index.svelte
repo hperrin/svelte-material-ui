@@ -5,7 +5,7 @@
 <section>
   <h2>Floating Action Button</h2>
 
-  <pre class="demo-spaced">npm install --save-dev @smui/fab</pre>
+  <pre class="demo-spaced">npm i -D @smui/fab</pre>
 
   <Demo component={Simple} file="fab/_Simple.svelte" />
 

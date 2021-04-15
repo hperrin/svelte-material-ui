@@ -5,7 +5,7 @@
 <section>
   <h2>Button</h2>
 
-  <pre class="demo-spaced">npm install --save-dev @smui/button</pre>
+  <pre class="demo-spaced">npm i -D @smui/button</pre>
 
   <Demo component={Simple} file="button/_Simple.svelte" />
 

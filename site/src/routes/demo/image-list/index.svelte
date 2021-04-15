@@ -5,7 +5,7 @@
 <section>
   <h2>Image Lists</h2>
 
-  <pre class="demo-spaced">npm install --save-dev @smui/image-list</pre>
+  <pre class="demo-spaced">npm i -D @smui/image-list</pre>
 
   <Demo
     component={Simple}

@@ -5,7 +5,7 @@
 <section>
   <h2>Elevation</h2>
 
-  <pre class="demo-spaced">npm install --save-dev @material/elevation</pre>
+  <pre class="demo-spaced">npm i -D @material/elevation</pre>
 
   <Demo
     component={Elevation}

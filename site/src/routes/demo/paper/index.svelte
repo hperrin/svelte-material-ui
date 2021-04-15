@@ -5,7 +5,7 @@
 <section>
   <h2>Paper</h2>
 
-  <pre class="demo-spaced">npm install --save-dev @smui/paper</pre>
+  <pre class="demo-spaced">npm i -D @smui/paper</pre>
 
   <Demo component={Simple} file="paper/_Simple.svelte" />
 

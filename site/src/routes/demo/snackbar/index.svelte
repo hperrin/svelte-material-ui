@@ -5,7 +5,7 @@
 <section>
   <h2>Snackbars</h2>
 
-  <pre class="demo-spaced">npm install --save-dev @smui/snackbar</pre>
+  <pre class="demo-spaced">npm i -D @smui/snackbar</pre>
 
   <Demo component={Simple} file="snackbar/_Simple.svelte" />
 

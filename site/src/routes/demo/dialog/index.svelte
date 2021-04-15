@@ -5,7 +5,7 @@
 <section>
   <h2>Dialogs</h2>
 
-  <pre class="demo-spaced">npm install --save-dev @smui/dialog</pre>
+  <pre class="demo-spaced">npm i -D @smui/dialog</pre>
 
   <Demo component={Simple} file="dialog/_Simple.svelte" />
 

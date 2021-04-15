@@ -5,7 +5,7 @@
 <section>
   <h2>Text Field</h2>
 
-  <pre class="demo-spaced">npm install --save-dev @smui/textfield</pre>
+  <pre class="demo-spaced">npm i -D @smui/textfield</pre>
 
   <Demo component={Showcase} file="textfield/_Showcase.svelte" />
 
