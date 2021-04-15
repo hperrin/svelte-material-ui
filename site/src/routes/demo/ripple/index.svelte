@@ -5,7 +5,7 @@
 <section>
   <h2>Ripple</h2>
 
-  <pre class="spaced">npm install --save-dev @smui/ripple</pre>
+  <pre class="demo-spaced">npm install --save-dev @smui/ripple</pre>
 
   <Demo component={Simple} file="ripple/_Simple.svelte" />
 

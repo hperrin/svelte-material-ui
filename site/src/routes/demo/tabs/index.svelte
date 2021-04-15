@@ -5,7 +5,7 @@
 <section>
   <h2>Tabs</h2>
 
-  <pre class="spaced">npm install --save-dev @smui/tab @smui/tab-bar</pre>
+  <pre class="demo-spaced">npm install --save-dev @smui/tab @smui/tab-bar</pre>
 
   <Demo component={Simple} file="tabs/_Simple.svelte" />
 

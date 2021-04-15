@@ -5,7 +5,7 @@
 <section>
   <h2>Top App Bar</h2>
 
-  <pre class="spaced">npm install --save-dev @smui/top-app-bar</pre>
+  <pre class="demo-spaced">npm install --save-dev @smui/top-app-bar</pre>
 
   <Demo component={Static} file="top-app-bar/_Static.svelte">
     Top app bars in a container

@@ -7,7 +7,7 @@
 <section>
   <h2>Banner</h2>
 
-  <pre class="spaced">npm install --save-dev @smui/banner</pre>
+  <pre class="demo-spaced">npm install --save-dev @smui/banner</pre>
 
   <Demo component="Shown above." file="banner/_Fixed.svelte" />
 

@@ -1,4 +1,4 @@
-<Card class="spaced">
+<Card class="demo-spaced">
   <Content>
     <h6 class="mdc-typography--headline6" style="margin: 0;">
       <slot />

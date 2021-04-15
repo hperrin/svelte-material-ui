@@ -5,7 +5,7 @@
 <section>
   <h2>Circular Progress</h2>
 
-  <pre class="spaced">npm install --save-dev @smui/circular-progress</pre>
+  <pre class="demo-spaced">npm install --save-dev @smui/circular-progress</pre>
 
   <Demo component={Simple} file="circular-progress/_Simple.svelte" />
 
