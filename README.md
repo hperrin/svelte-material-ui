@@ -22,15 +22,29 @@ npm install --save-dev @smui/card
 npm install --save-dev svelte-material-ui
 ```
 
-# MDC 10 Update!
-
-The latest SMUI, v3 (beta), uses the latest upstream [Material Design Components for Web (MDC)](https://github.com/material-components/material-components-web), v10. I've done a lot more than upgrade the version, though! I rewrote SMUI to use the ["Advanced Approach"](https://github.com/material-components/material-components-web/blob/master/docs/integrating-into-frameworks.md#the-advanced-approach-using-foundations-and-adapters) of integrating with the library, which should make updating to later upstream versions much easier. There should also be fewer bugs, because _Svelte_ is in charge of updating the DOM, instead of MDC.
-
-<sub>I literally used a vacation week to do this.</sub>
-
 ## Migration
 
 If you are upgrading from an older version of SMUI to a newer one, it might be worth checking out the [migration doc](MIGRATING.md).
+
+# Features
+
+Here are some features you should know about:
+
+- You can add arbitrary attributes to all of the components and many of the elements within them.
+- You can add actions to the components with `use={[Action1, [Action2, action2Props], Action3]}`.
+- You can add props to lower components and elements with "$" props, like `input$maxlength="15"`.
+- **All** events are forwarded. This includes DOM events, MDC events, and custom events.
+  - You can add event modifiers with the `on:click:preventDefault:capture={handler}` syntax.
+    - If you use Svelte's native `on:click|preventDefault={handler}` syntax, it will not compile. You have to use ":" instead of "|".
+  - Supported modifiers are:
+    - preventDefault
+    - stopPropagation
+    - passive
+    - nonpassive
+    - capture
+    - once
+- Labels and icons are named exports in the components that use them, or you can use the 'Label' and 'Icon' exports from '@smui/common'. (Except for chips labels and icons, textfield icons, and select icons, because they are special snowflakes.)
+- SMUI [supports RTL languages](https://svelte.dev/repl/c2ff2d5dd5404eccb901ba04ef0161be?version=3.37.0).
 
 # Usage
 
@@ -83,26 +97,6 @@ Check out the [Webpack template](https://github.com/hperrin/smui-example-webpack
      let superText = '';
    </script>
    ```
-
-# Features
-
-Here are some features you should know about:
-
-- You can add arbitrary attributes to all of the components and many of the elements within them.
-- You can add actions to the components with `use={[Action1, [Action2, action2Props], Action3]}`.
-- You can add props to lower components and elements with "$" props, like `input$maxlength="15"`.
-- **All** events are forwarded. This includes DOM events, MDC events, and custom events.
-  - You can add event modifiers with the `on:click:preventDefault:capture={handler}` syntax.
-    - If you use Svelte's native `on:click|preventDefault={handler}` syntax, it will not compile. You have to use ":" instead of "|".
-  - Supported modifiers are:
-    - preventDefault
-    - stopPropagation
-    - passive
-    - nonpassive
-    - capture
-    - once
-- Labels and icons are named exports in the components that use them, or you can use the 'Label' and 'Icon' exports from '@smui/common'. (Except for chips labels and icons, textfield icons, and select icons, because they are special snowflakes.)
-- SMUI [supports RTL languages](https://svelte.dev/repl/c2ff2d5dd5404eccb901ba04ef0161be?version=3.37.0).
 
 ## Integration for Sapper
 
@@ -290,6 +284,12 @@ New components from the upstream library to build for SMUI v3:
 <sub>† This is Sass based, and therefore doesn't require Svelte components. I've included a demo showing how you can use it.</sub>
 
 <sub>‡ This is not an MDC Web component. It is an addition that SMUI provides.</sub>
+
+# MDC 10 Update!
+
+The latest SMUI, v3 (beta), uses the latest upstream [Material Design Components for Web (MDC)](https://github.com/material-components/material-components-web), v10. I've done a lot more than upgrade the version, though! I rewrote SMUI to use the ["Advanced Approach"](https://github.com/material-components/material-components-web/blob/master/docs/integrating-into-frameworks.md#the-advanced-approach-using-foundations-and-adapters) of integrating with the library, which should make updating to later upstream versions much easier. There should also be fewer bugs, because _Svelte_ is in charge of updating the DOM, instead of MDC.
+
+<sub>I literally used a vacation week to do this.</sub>
 
 # Support
 
