@@ -12,7 +12,7 @@ npm install --save-dev @smui/button
 
 _in action:_ https://sveltematerialui.com/demo/button
 
-_demo code:_ /site/src/routes/demo/button/
+_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/button/
 
 # Basic Usage
 
@@ -81,13 +81,13 @@ A Svelte action for a group item. Used for containing a button in a group. This 
 
 A text label.
 
-See the [common label readme](/packages/common/README.md#label).
+See the [common label readme](https://github.com/hperrin/svelte-material-ui/blob/master/packages/common/README.md#label).
 
 ## Icon
 
 A graphic icon.
 
-See the [common icon readme](/packages/common/README.md#icon).
+See the [common icon readme](https://github.com/hperrin/svelte-material-ui/blob/master/packages/common/README.md#icon).
 
 # More Information
 

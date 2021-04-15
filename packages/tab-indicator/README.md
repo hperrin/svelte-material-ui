@@ -10,7 +10,7 @@ Don't install or use this package directly. It's a dependency of the Tab package
 
 _in action:_ https://sveltematerialui.com/demo/tabs
 
-_demo code:_ /site/src/routes/demo/tabs/
+_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/tabs/
 
 # More Information
 

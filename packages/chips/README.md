@@ -12,7 +12,7 @@ npm install --save-dev @smui/chips
 
 _in action:_ https://sveltematerialui.com/demo/chips
 
-_demo code:_ /site/src/routes/demo/chips/
+_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/chips/
 
 # Whoa There, These Docs are Outdated
 

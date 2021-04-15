@@ -12,7 +12,7 @@ npm install --save-dev @smui/paper
 
 _in action:_ https://sveltematerialui.com/demo/paper
 
-_demo code:_ /site/src/routes/demo/paper/
+_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/paper/
 
 # Whoa There, These Docs are Outdated
 
@@ -55,19 +55,19 @@ All standard UI events are forwarded.
 
 A fragment used as a title on the Paper.
 
-Equivalent to the [`ClassAdder` with `H5` common component](/packages/common/README.md#classaddersvelte).
+Equivalent to the [`ClassAdder` with `H5` common component](https://github.com/hperrin/svelte-material-ui/blob/master/packages/common/README.md#classaddersvelte).
 
 ## Subtitle
 
 A fragment used as a subtitle on the Paper.
 
-Equivalent to the [`ClassAdder` with `H6` common component](/packages/common/README.md#classaddersvelte).
+Equivalent to the [`ClassAdder` with `H6` common component](https://github.com/hperrin/svelte-material-ui/blob/master/packages/common/README.md#classaddersvelte).
 
 ## Content
 
 A fragment used as a body of the Paper.
 
-Equivalent to the [`ClassAdder` with `Div` common component](/packages/common/README.md#classaddersvelte).
+Equivalent to the [`ClassAdder` with `Div` common component](https://github.com/hperrin/svelte-material-ui/blob/master/packages/common/README.md#classaddersvelte).
 
 # More Information
 

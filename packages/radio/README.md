@@ -12,7 +12,7 @@ npm install --save-dev @smui/radio
 
 _in action:_ https://sveltematerialui.com/demo/radio
 
-_demo code:_ /site/src/routes/demo/radio/
+_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/radio/
 
 # Whoa There, These Docs are Outdated
 

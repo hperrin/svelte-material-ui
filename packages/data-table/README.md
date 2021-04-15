@@ -12,7 +12,7 @@ npm install --save-dev @smui/data-table
 
 _in action:_ https://sveltematerialui.com/demo/data-table
 
-_demo code:_ /site/src/routes/demo/data-table/
+_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/data-table/
 
 # Whoa There, These Docs are Outdated
 

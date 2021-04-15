@@ -6,7 +6,7 @@ A Snackbar generator to programmatically create Snackbars on the fly.
 
 _in action:_ https://sveltematerialui.com/demo/snackbars
 
-_demo code:_ /site/src/routes/demo/snackbars/
+_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/snackbars/
 
 # Basic Usage
 
