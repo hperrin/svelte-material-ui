@@ -51,10 +51,7 @@
     dispatch,
   } from '@smui/common/internal.js';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component(), [
-    'MDCList:action',
-    'MDCTopAppBar:nav',
-  ]);
+  const forwardEvents = forwardEventsBuilder(get_current_component());
   let uninitializedValue = () => {};
 
   export let use = [];

@@ -15,7 +15,6 @@
     forwardEvents,
     ...use,
   ]}
-  forwardEvents={forwardedEvents}
   class={classMap({
     [className]: true,
     'mdc-tab': true,
@@ -83,15 +82,7 @@
   import Button from '@smui/common/Button.svelte';
   import TabIndicator from '@smui/tab-indicator/TabIndicator.svelte';
 
-  const forwardedEvents = [
-    'MDCTab:interacted',
-    'SMUI:tab:mount',
-    'SMUI:tab:unmount',
-  ];
-  const forwardEvents = forwardEventsBuilder(
-    get_current_component(),
-    forwardedEvents
-  );
+  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   export let use = [];
   let className = '';

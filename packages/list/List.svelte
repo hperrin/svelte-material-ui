@@ -2,11 +2,6 @@
   this={component}
   bind:this={element}
   use={[forwardEvents, ...use]}
-  forwardEvents={[
-    'SMUI:list:item:mount',
-    'SMUI:list:item:unmount',
-    ...forwardedEvents,
-  ]}
   class={classMap({
     [className]: true,
     'mdc-list': true,
@@ -60,11 +55,7 @@
   import Ul from '@smui/common/Ul.svelte';
   import Nav from '@smui/common/Nav.svelte';
 
-  const forwardedEvents = ['MDCList:action', 'SMUI:action', 'SMUI:list:mount'];
-  const forwardEvents = forwardEventsBuilder(
-    get_current_component(),
-    forwardedEvents
-  );
+  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   export let use = [];
   let className = '';

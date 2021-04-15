@@ -46,12 +46,7 @@
     dispatch,
   } from '@smui/common/internal.js';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component(), [
-    'MDCSnackbar:opening',
-    'MDCSnackbar:opened',
-    'MDCSnackbar:closing',
-    'MDCSnackbar:closed',
-  ]);
+  const forwardEvents = forwardEventsBuilder(get_current_component());
   const uninitializedValue = () => {};
 
   export let use = [];

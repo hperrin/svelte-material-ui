@@ -76,12 +76,7 @@
   } from '@smui/common/internal.js';
   import Ripple from '@smui/ripple/bare.js';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component(), [
-    'SMUI:generic:input:mount',
-    'SMUI:generic:input:unmount',
-    'SMUI:checkbox:mount',
-    'SMUI:checkbox:unmount',
-  ]);
+  const forwardEvents = forwardEventsBuilder(get_current_component());
   let uninitializedValue = () => {};
 
   export let use = [];

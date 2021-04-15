@@ -21,7 +21,6 @@
     classMap: {},
     contexts: {},
     props: {},
-    forwardEvents: [],
   };
 </script>
 
@@ -34,8 +33,6 @@
   export let use = [];
   let className = '';
   export { className as class };
-  let forwardEventsAdditional = [];
-  export { forwardEventsAdditional as forwardEvents };
 
   let element;
   const smuiClass = internals.class;
@@ -58,10 +55,7 @@
     }
   });
 
-  const forwardEvents = forwardEventsBuilder(get_current_component(), [
-    ...internals.forwardEvents,
-    ...forwardEventsAdditional,
-  ]);
+  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   for (let context in contexts) {
     if (contexts.hasOwnProperty(context)) {

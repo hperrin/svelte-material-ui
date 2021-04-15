@@ -23,10 +23,7 @@
     useActions,
   } from '@smui/common/internal.js';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component(), [
-    'SMUI:top-app-bar:icon-button:nav',
-    'MDCList:action',
-  ]);
+  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   export let use = [];
   let className = '';

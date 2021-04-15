@@ -32,10 +32,7 @@
     dispatch,
   } from '@smui/common/internal.js';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component(), [
-    'MDCDrawer:opened',
-    'MDCDrawer:closed',
-  ]);
+  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   export let use = [];
   let className = '';

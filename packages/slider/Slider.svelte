@@ -48,6 +48,8 @@
       bind:value={end}
       on:change
       on:input
+      on:blur
+      on:focus
       {...inputProps}
       {...inputAttrs}
       {...prefixFilter($$restProps, 'input$')}
@@ -67,6 +69,8 @@
       bind:value
       on:change
       on:input
+      on:blur
+      on:focus
       {...inputProps}
       {...inputAttrs}
       {...prefixFilter($$restProps, 'input$')}
@@ -201,12 +205,7 @@
   } from '@smui/common/internal.js';
   import Ripple from '@smui/ripple/bare.js';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component(), [
-    'MDCSlider:input',
-    'MDCSlider:change',
-    'SMUI:generic:input:mount',
-    'SMUI:generic:input:unmount',
-  ]);
+  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   export let use = [];
   let className = '';

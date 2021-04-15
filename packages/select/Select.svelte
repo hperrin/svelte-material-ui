@@ -236,9 +236,7 @@
   import NotchedOutline from '@smui/notched-outline/NotchedOutline.svelte';
   import HelperText from './helper-text/HelperText.svelte';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component(), [
-    'MDCSelect:change',
-  ]);
+  const forwardEvents = forwardEventsBuilder(get_current_component());
   const uninitializedValue = () => {};
 
   export let use = [];

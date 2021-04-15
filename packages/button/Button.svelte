@@ -61,10 +61,7 @@
   import A from '@smui/common/A.svelte';
   import Button from '@smui/common/Button.svelte';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component(), [
-    'SMUI:banner:button:primaryActionClick',
-    'SMUI:banner:button:secondaryActionClick',
-  ]);
+  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   export let use = [];
   let className = '';

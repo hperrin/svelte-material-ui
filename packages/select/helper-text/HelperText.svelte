@@ -32,11 +32,7 @@
     dispatch,
   } from '@smui/common/internal.js';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component(), [
-    'SMUI:select:helper-text:id',
-    'SMUI:select:helper-text:mount',
-    'SMUI:select:helper-text:unmount',
-  ]);
+  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   export let use = [];
   let className = '';

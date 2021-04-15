@@ -25,11 +25,7 @@
     dispatch,
   } from '@smui/common/internal.js';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component(), [
-    'MDCSelect:icon',
-    'SMUI:select:leading-icon:mount',
-    'SMUI:select:leading-icon:unmount',
-  ]);
+  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   export let use = [];
   let className = '';

@@ -22,7 +22,6 @@
     forwardEvents,
     ...use,
   ]}
-  forwardEvents={forwardedEvents}
   class={classMap({
     [className]: true,
     'mdc-list-item': true,
@@ -75,17 +74,7 @@
   import Span from '@smui/common/Span.svelte';
   import Li from '@smui/common/Li.svelte';
 
-  const forwardedEvents = [
-    'SMUI:generic:input:mount',
-    'SMUI:generic:input:unmount',
-    'SMUI:action',
-    'SMUI:list:item:mount',
-    'SMUI:list:item:unmount',
-  ];
-  const forwardEvents = forwardEventsBuilder(
-    get_current_component(),
-    forwardedEvents
-  );
+  const forwardEvents = forwardEventsBuilder(get_current_component());
   let uninitializedValue = () => {};
 
   export let use = [];

@@ -12,13 +12,8 @@
 
   export let alt = '';
   export let use = [];
-  let forwardEventsAdditional = [];
-  export { forwardEventsAdditional as forwardEvents };
 
-  const forwardEvents = forwardEventsBuilder(
-    get_current_component(),
-    forwardEventsAdditional
-  );
+  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   let element = null;
 

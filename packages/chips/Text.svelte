@@ -32,10 +32,7 @@
   } from '@smui/common/internal.js';
   import Checkmark from './Checkmark.svelte';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component(), [
-    'SMUI:chip:primary-action:mount',
-    'SMUI:chip:primary-action:unmount',
-  ]);
+  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   export let use = [];
   let className = '';

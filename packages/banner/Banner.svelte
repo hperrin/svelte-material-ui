@@ -80,12 +80,7 @@
   } from '@smui/common/internal.js';
   import Fixed from './Fixed.svelte';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component(), [
-    'MDCBanner:closed',
-    'MDCBanner:closing',
-    'MDCBanner:opened',
-    'MDCBanner:opening',
-  ]);
+  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   export let use = [];
   let className = '';

@@ -15,14 +15,6 @@
     forwardEvents,
     ...use,
   ]}
-  forwardEvents={[
-    'MDCChipTrailingAction:interaction',
-    'MDCChipTrailingAction:navigation',
-    'SMUI:chip:primary-action:mount',
-    'SMUI:chip:primary-action:unmount',
-    'SMUI:chip:trailing-action:mount',
-    ...forwardedEvents,
-  ]}
   class={classMap({
     [className]: true,
     'mdc-chip': true,
@@ -74,19 +66,7 @@
   import Ripple from '@smui/ripple/bare.js';
   import Div from '@smui/common/Div.svelte';
 
-  const forwardedEvents = [
-    'MDCChip:interaction',
-    'MDCChip:selection',
-    'MDCChip:removal',
-    'MDCChip:trailingIconInteraction',
-    'MDCChip:navigation',
-    'SMUI:chip:mount',
-    'SMUI:chip:unmount',
-  ];
-  const forwardEvents = forwardEventsBuilder(
-    get_current_component(),
-    forwardedEvents
-  );
+  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   export let use = [];
   let className = '';

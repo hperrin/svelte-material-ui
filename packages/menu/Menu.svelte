@@ -31,15 +31,7 @@
   } from '@smui/common/internal.js';
   import MenuSurface from '@smui/menu-surface/MenuSurface.svelte';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component(), [
-    'MDCList:action',
-    'SMUI:list:mount',
-    'MDCMenuSurface:closing',
-    'MDCMenuSurface:closed',
-    'MDCMenuSurface:opened',
-    'MDCMenu:selected',
-    'SMUI:menu:mount',
-  ]);
+  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   export let use = [];
   let className = '';

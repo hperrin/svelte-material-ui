@@ -21,12 +21,7 @@
     dispatch,
   } from '@smui/common/internal.js';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component(), [
-    'SMUI:checkbox:mount',
-    'SMUI:data-table:body:mount',
-    'SMUI:data-table:body:unmount',
-    'SMUI:data-table:body:checkbox:change',
-  ]);
+  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   export let use = [];
   let className = '';

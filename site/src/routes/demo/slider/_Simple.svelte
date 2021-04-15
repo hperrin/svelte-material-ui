@@ -8,6 +8,10 @@
   </span>
 </FormField>
 
+{#if value == 0}
+  <p>No wonder.</p>
+{/if}
+
 <pre class="status">Value: {value}</pre>
 
 <script>

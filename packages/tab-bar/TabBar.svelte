@@ -38,9 +38,7 @@
   } from '@smui/common/internal.js';
   import TabScroller from '@smui/tab-scroller/TabScroller.svelte';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component(), [
-    'MDCTabBar:activated',
-  ]);
+  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   export let use = [];
   let className = '';

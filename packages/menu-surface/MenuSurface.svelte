@@ -42,14 +42,7 @@
     dispatch,
   } from '@smui/common/internal.js';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component(), [
-    'MDCList:action',
-    'SMUI:list:mount',
-    'MDCMenuSurface:closed',
-    'MDCMenuSurface:closing',
-    'MDCMenuSurface:opened',
-    'SMUI:menu-surface:mount',
-  ]);
+  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   export let use = [];
   let className = '';

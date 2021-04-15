@@ -84,12 +84,23 @@ Check out the [Webpack template](https://github.com/hperrin/smui-example-webpack
    </script>
    ```
 
+# Features
+
 Here are some features you should know about:
 
-- You can add arbitrary properties to all of the components and many of the elements within them.
+- You can add arbitrary attributes to all of the components and many of the elements within them.
 - You can add actions to the components with `use={[Action1, [Action2, action2Props], Action3]}`.
 - You can add props to lower components and elements with "$" props, like `input$maxlength="15"`.
-- All [standard UI and transition events](packages/common/forwardEventsBuilder.js#L4) are forwarded on components, input events ("input" and "change") are forwarded on input components, and all MDC events are forwarded.
+- **All** events are forwarded. This includes DOM events, MDC events, and custom events.
+  - You can add event modifiers with the `on:click:preventDefault:capture={handler}` syntax.
+    - If you use Svelte's native `on:click|preventDefault={handler}` syntax, it will not compile. You have to use ":" instead of "|".
+  - Supported modifiers are:
+    - preventDefault
+    - stopPropagation
+    - passive
+    - nonpassive
+    - capture
+    - once
 - Labels and icons are named exports in the components that use them, or you can use the 'Label' and 'Icon' exports from '@smui/common'. (Except for chips labels and icons, textfield icons, and select icons, because they are special snowflakes.)
 - SMUI [supports RTL languages](https://svelte.dev/repl/c2ff2d5dd5404eccb901ba04ef0161be?version=3.37.0).
 

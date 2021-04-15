@@ -63,12 +63,7 @@
     dispatch,
   } from '@smui/common/internal.js';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component(), [
-    'MDCDialog:opening',
-    'MDCDialog:opened',
-    'MDCDialog:closing',
-    'MDCDialog:closed',
-  ]);
+  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   export let use = [];
   let className = '';

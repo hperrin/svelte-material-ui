@@ -53,12 +53,7 @@
   } from '@smui/common/internal.js';
   import Ripple from '@smui/ripple/bare.js';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component(), [
-    'MDCChipTrailingAction:interaction',
-    'MDCChipTrailingAction:navigation',
-    'SMUI:chip:trailing-action:mount',
-    'SMUI:chip:trailing-action:unmount',
-  ]);
+  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   export let use = [];
   let className = '';

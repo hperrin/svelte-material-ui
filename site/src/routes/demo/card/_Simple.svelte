@@ -1,6 +1,15 @@
 <div style="display: flex; flex-wrap: wrap;">
   <div class="card-container short">
-    <Card style="width: 250px;" padded>A simple padded card.</Card>
+    <Card
+      style="width: 250px;"
+      on:click={() => {
+        alert('click');
+      }}
+      on:wheel:passive={() => {
+        console.log('wheel');
+      }}
+      padded>A simple padded card.</Card
+    >
   </div>
 
   <div class="card-container short">

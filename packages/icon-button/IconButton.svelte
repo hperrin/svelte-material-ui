@@ -17,7 +17,6 @@
     forwardEvents,
     ...use,
   ]}
-  forwardEvents={forwardedEvents}
   class={classMap({
     [className]: true,
     'mdc-icon-button': true,
@@ -59,11 +58,7 @@
   import A from '@smui/common/A.svelte';
   import Button from '@smui/common/Button.svelte';
 
-  const forwardedEvents = ['MDCIconButtonToggle:change'];
-  const forwardEvents = forwardEventsBuilder(
-    get_current_component(),
-    forwardedEvents
-  );
+  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   export let use = [];
   let className = '';

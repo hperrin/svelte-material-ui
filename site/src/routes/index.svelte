@@ -135,7 +135,7 @@
             <SecondaryText style="white-space: normal;">
               SMUI provides increased touch targets to allow ease of use on
               mobile devices, conforming to the Material Spec requirement of
-              48px x 48px touch targets.
+              minimum 48px x 48px touch targets.
             </SecondaryText>
           </Text>
         </Item>
@@ -230,10 +230,10 @@
           <Text>
             <PrimaryText>Adaptable, Versatile</PrimaryText>
             <SecondaryText style="white-space: normal;">
-              SMUI supports adding arbitrary props and actions to every
+              SMUI supports adding arbitrary attributes and actions to every
               component and many internal elements within them. SMUI forwards
-              all UI, transition, and input events from every component. SMUI
-              works in the Svelte REPL, meaning you can <a
+              all events from every component, and supports event modifiers,
+              including passive. SMUI works in the Svelte REPL, meaning you can <a
                 href="https://svelte.dev/repl/aa857c3bb5eb478cbe6b1fd6c6da522a?version=3.37.0"
                 target="_blank">play with it right now</a
               >.

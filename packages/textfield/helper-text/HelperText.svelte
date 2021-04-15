@@ -32,11 +32,7 @@
     dispatch,
   } from '@smui/common/internal.js';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component(), [
-    'SMUI:textfield:helper-text:id',
-    'SMUI:textfield:helper-text:mount',
-    'SMUI:textfield:helper-text:unmount',
-  ]);
+  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   export let use = [];
   let className = '';
