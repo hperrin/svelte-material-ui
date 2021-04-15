@@ -12,7 +12,7 @@ npm install --save-dev @smui/tab-bar
 
 [See it in action.](https://sveltematerialui.com/demo/tabs)
 
-[See the demo code.](https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/tabs/)
+[See the demo code.](/site/src/routes/demo/tabs/)
 
 # Basic Usage
 

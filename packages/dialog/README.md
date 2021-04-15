@@ -12,7 +12,7 @@ npm install --save-dev @smui/dialog
 
 [See it in action.](https://sveltematerialui.com/demo/dialog)
 
-[See the demo code.](https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/dialog/)
+[See the demo code.](/site/src/routes/demo/dialog/)
 
 # Whoa There, These Docs are Outdated
 

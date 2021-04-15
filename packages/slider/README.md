@@ -12,7 +12,7 @@ npm install --save-dev @smui/slider
 
 [See it in action.](https://sveltematerialui.com/demo/slider)
 
-[See the demo code.](https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/slider/)
+[See the demo code.](/site/src/routes/demo/slider/)
 
 # Whoa There, These Docs are Outdated
 

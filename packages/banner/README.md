@@ -14,7 +14,7 @@ npm install --save-dev @smui/banner
 
 [See it in action.](https://sveltematerialui.com/demo/banner)
 
-[See the demo code.](https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/banner/)
+[See the demo code.](/site/src/routes/demo/banner/)
 
 # Basic Usage
 

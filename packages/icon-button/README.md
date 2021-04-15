@@ -12,7 +12,7 @@ npm install --save-dev @smui/icon-button
 
 [See it in action.](https://sveltematerialui.com/demo/icon-button)
 
-[See the demo code.](https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/icon-button/)
+[See the demo code.](/site/src/routes/demo/icon-button/)
 
 # Whoa There, These Docs are Outdated
 
@@ -65,7 +65,7 @@ All standard UI events are forwarded.
 
 A graphic icon.
 
-See the [common icon readme](https://github.com/hperrin/svelte-material-ui/blob/master/packages/common/README.md#icon).
+See the [common icon readme](/packages/common/README.md#icon).
 
 # More Information
 

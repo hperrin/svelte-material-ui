@@ -12,7 +12,7 @@ npm install --save-dev @smui/drawer
 
 [See it in action.](https://sveltematerialui.com/demo/drawer)
 
-[See the demo code.](https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/drawer/)
+[See the demo code.](/site/src/routes/demo/drawer/)
 
 # Whoa There, These Docs are Outdated
 

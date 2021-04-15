@@ -20,7 +20,7 @@ npm install --save-dev @smui/touch-target
 
 [See it in action.](https://sveltematerialui.com/demo/touch-target)
 
-[See the demo code.](https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/touch-target/)
+[See the demo code.](/site/src/routes/demo/touch-target/)
 
 # Basic Usage
 
@@ -41,7 +41,7 @@ npm install --save-dev @smui/touch-target
 
 A fragment used as a touch target wrapper.
 
-Equivalent to the [`ClassAdder` with `Div` common component](https://github.com/hperrin/svelte-material-ui/blob/master/packages/common/README.md#classaddersvelte).
+Equivalent to the [`ClassAdder` with `Div` common component](/packages/common/README.md#classaddersvelte).
 
 # More Information
 

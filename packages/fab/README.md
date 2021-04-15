@@ -12,7 +12,7 @@ npm install --save-dev @smui/fab
 
 [See it in action.](https://sveltematerialui.com/demo/fab)
 
-[See the demo code.](https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/fab/)
+[See the demo code.](/site/src/routes/demo/fab/)
 
 # Whoa There, These Docs are Outdated
 
@@ -56,13 +56,13 @@ All standard UI events are forwarded.
 
 A text label.
 
-See the [common label readme](https://github.com/hperrin/svelte-material-ui/blob/master/packages/common/README.md#label).
+See the [common label readme](/packages/common/README.md#label).
 
 ## Icon
 
 A graphic icon.
 
-See the [common icon readme](https://github.com/hperrin/svelte-material-ui/blob/master/packages/common/README.md#icon).
+See the [common icon readme](/packages/common/README.md#icon).
 
 # More Information
 

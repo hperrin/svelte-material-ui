@@ -6,7 +6,7 @@ Text field icons appear next to a text field.
 
 [See it in action.](https://sveltematerialui.com/demo/textfield)
 
-[See the demo code.](https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/textfield/)
+[See the demo code.](/site/src/routes/demo/textfield/)
 
 # Basic Usage
 

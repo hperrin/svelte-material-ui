@@ -12,7 +12,7 @@ npm install --save-dev @smui/list
 
 [See it in action.](https://sveltematerialui.com/demo/list)
 
-[See the demo code.](https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/list/)
+[See the demo code.](/site/src/routes/demo/list/)
 
 # Whoa There, These Docs are Outdated
 

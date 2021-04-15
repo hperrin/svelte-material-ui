@@ -6,7 +6,7 @@ Select icons appear next to a select menu.
 
 [See it in action.](https://sveltematerialui.com/demo/select)
 
-[See the demo code.](https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/select/)
+[See the demo code.](/site/src/routes/demo/select/)
 
 # Basic Usage
 
