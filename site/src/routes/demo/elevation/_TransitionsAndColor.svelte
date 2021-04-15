@@ -1,6 +1,6 @@
 <!--
-  You need to import `@material/elevation/mdc-elevation` in SCSS for
-  these to work. See the Elevation.scss file.
+  You need to use `@material/elevation` mixins in SCSS for
+  these to work. Check out "_TransitionsAndColor.scss"
 -->
 
 <FormField>
