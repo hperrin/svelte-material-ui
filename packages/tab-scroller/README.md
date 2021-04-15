@@ -8,9 +8,9 @@ Don't install or use this package directly. It's a dependency of the Tab Bar pac
 
 # Demo
 
-_in action:_ https://sveltematerialui.com/demo/tabs
+[See it in action.](https://sveltematerialui.com/demo/tabs)
 
-_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/tabs/
+[See the demo code.](https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/tabs/)
 
 # More Information
 

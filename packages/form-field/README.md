@@ -12,9 +12,9 @@ npm install --save-dev @smui/form-field
 
 # Demo
 
-_in action:_ https://sveltematerialui.com/demo/radio
+[See it in action.](https://sveltematerialui.com/demo/radio)
 
-_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/radio/
+[See the demo code.](https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/radio/)
 
 # Whoa There, These Docs are Outdated
 

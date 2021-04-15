@@ -10,9 +10,9 @@ npm install --save-dev @smui/ripple
 
 # Demo
 
-_in action:_ https://sveltematerialui.com/demo/ripple
+[See it in action.](https://sveltematerialui.com/demo/ripple)
 
-_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/ripple/
+[See the demo code.](https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/ripple/)
 
 # Basic Usage
 

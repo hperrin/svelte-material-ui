@@ -10,9 +10,9 @@ npm install --save-dev @smui/card
 
 # Demo
 
-_in action:_ https://sveltematerialui.com/demo/card
+[See it in action.](https://sveltematerialui.com/demo/card)
 
-_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/card/
+[See the demo code.](https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/card/)
 
 # Whoa There, These Docs are Outdated
 

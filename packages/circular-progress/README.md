@@ -10,9 +10,9 @@ npm install --save-dev @smui/circular-progress
 
 # Demo
 
-_in action:_ https://sveltematerialui.com/demo/circular-progress
+[See it in action.](https://sveltematerialui.com/demo/circular-progress)
 
-_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/circular-progress/
+[See the demo code.](https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/circular-progress/)
 
 # Basic Usage
 

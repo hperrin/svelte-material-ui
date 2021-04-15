@@ -10,9 +10,9 @@ npm install --save-dev @smui/linear-progress
 
 # Demo
 
-_in action:_ https://sveltematerialui.com/demo/linear-progress
+[See it in action.](https://sveltematerialui.com/demo/linear-progress)
 
-_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/linear-progress/
+[See the demo code.](https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/linear-progress/)
 
 # Whoa There, These Docs are Outdated
 

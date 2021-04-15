@@ -10,9 +10,9 @@ npm install --save-dev @smui/top-app-bar
 
 # Demo
 
-_in action:_ https://sveltematerialui.com/demo/top-app-bar
+[See it in action.](https://sveltematerialui.com/demo/top-app-bar)
 
-_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/top-app-bar/
+[See the demo code.](https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/top-app-bar/)
 
 # Basic Usage
 

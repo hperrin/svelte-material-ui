@@ -10,9 +10,9 @@ npm install --save-dev @smui/checkbox
 
 # Demo
 
-_in action:_ https://sveltematerialui.com/demo/checkbox
+[See it in action.](https://sveltematerialui.com/demo/checkbox)
 
-_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/checkbox/
+[See the demo code.](https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/checkbox/)
 
 # Whoa There, These Docs are Outdated
 

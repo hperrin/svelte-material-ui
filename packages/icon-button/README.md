@@ -10,9 +10,9 @@ npm install --save-dev @smui/icon-button
 
 # Demo
 
-_in action:_ https://sveltematerialui.com/demo/icon-button
+[See it in action.](https://sveltematerialui.com/demo/icon-button)
 
-_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/icon-button/
+[See the demo code.](https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/icon-button/)
 
 # Whoa There, These Docs are Outdated
 

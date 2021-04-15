@@ -10,9 +10,9 @@ npm install --save-dev @smui/paper
 
 # Demo
 
-_in action:_ https://sveltematerialui.com/demo/paper
+[See it in action.](https://sveltematerialui.com/demo/paper)
 
-_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/paper/
+[See the demo code.](https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/paper/)
 
 # Whoa There, These Docs are Outdated
 

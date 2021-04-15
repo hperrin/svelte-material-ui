@@ -10,9 +10,9 @@ npm install --save-dev @smui/fab
 
 # Demo
 
-_in action:_ https://sveltematerialui.com/demo/fab
+[See it in action.](https://sveltematerialui.com/demo/fab)
 
-_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/fab/
+[See the demo code.](https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/fab/)
 
 # Whoa There, These Docs are Outdated
 

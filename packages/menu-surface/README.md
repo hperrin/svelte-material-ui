@@ -12,9 +12,9 @@ npm install --save-dev @smui/menu-surface
 
 # Demo
 
-_in action:_ https://sveltematerialui.com/demo/menu-surface
+[See it in action.](https://sveltematerialui.com/demo/menu-surface)
 
-_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/menu-surface/
+[See the demo code.](https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/menu-surface/)
 
 # Basic Usage
 

@@ -10,9 +10,9 @@ npm install --save-dev @smui/menu
 
 # Demo
 
-_in action:_ https://sveltematerialui.com/demo/menu
+[See it in action.](https://sveltematerialui.com/demo/menu)
 
-_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/menu/
+[See the demo code.](https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/menu/)
 
 # Basic Usage
 

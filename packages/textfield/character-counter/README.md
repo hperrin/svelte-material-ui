@@ -4,9 +4,9 @@ Text field character counts give the user context to the limit of a text field's
 
 # Demo
 
-_in action:_ https://sveltematerialui.com/demo/textfield
+[See it in action.](https://sveltematerialui.com/demo/textfield)
 
-_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/textfield/
+[See the demo code.](https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/textfield/)
 
 # Basic Usage
 
