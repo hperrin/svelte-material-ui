@@ -22,6 +22,10 @@
     Shaped Outlined
     <svelte:fragment slot="subtitle">Styled with CSS</svelte:fragment>
   </Demo>
+
+  <Demo component={Disabled} file="select/_Disabled.svelte">Disabled</Demo>
+
+  <Demo component={Required} file="select/_Required.svelte">Required</Demo>
 </section>
 
 <script>
@@ -32,4 +36,6 @@
   import Outlined from './_Outlined.svelte';
   import ShapedFilled from './_ShapedFilled.svelte';
   import ShapedOutlined from './_ShapedOutlined.svelte';
+  import Disabled from './_Disabled.svelte';
+  import Required from './_Required.svelte';
 </script>

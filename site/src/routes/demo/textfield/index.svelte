@@ -23,7 +23,13 @@
     <svelte:fragment slot="subtitle">Styled with CSS</svelte:fragment>
   </Demo>
 
+  <Demo component={Required} file="textfield/_Required.svelte">Required</Demo>
+
   <Demo component={Disabled} file="textfield/_Disabled.svelte">Disabled</Demo>
+
+  <Demo component={Prefixed} file="textfield/_Prefixed.svelte">Prefixed</Demo>
+
+  <Demo component={Suffixed} file="textfield/_Suffixed.svelte">Suffixed</Demo>
 
   <Demo
     component={NoLabelOrHelperText}
@@ -74,6 +80,16 @@
     Full width textarea
   </Demo>
 
+  <Demo
+    component={FixedSizeTextarea}
+    file="textfield/_FixedSizeTextarea.svelte"
+  >
+    Fixed Size Textarea
+    <svelte:fragment slot="subtitle">
+      Turn off the browser's native resize feature.
+    </svelte:fragment>
+  </Demo>
+
   <Demo component={ElementsInLabel} file="textfield/_ElementsInLabel.svelte">
     Elements in the label
   </Demo>
@@ -95,7 +111,10 @@
   import Outlined from './_Outlined.svelte';
   import ShapedFilled from './_ShapedFilled.svelte';
   import ShapedOutlined from './_ShapedOutlined.svelte';
+  import Required from './_Required.svelte';
   import Disabled from './_Disabled.svelte';
+  import Prefixed from './_Prefixed.svelte';
+  import Suffixed from './_Suffixed.svelte';
   import NoLabelOrHelperText from './_NoLabelOrHelperText.svelte';
   import PersistentHelperText from './_PersistentHelperText.svelte';
   import CharacterCount from './_CharacterCount.svelte';
@@ -105,6 +124,7 @@
   import TextareaCharacterCount from './_TextareaCharacterCount.svelte';
   import FullWidth from './_FullWidth.svelte';
   import FullWidthTextarea from './_FullWidthTextarea.svelte';
+  import FixedSizeTextarea from './_FixedSizeTextarea.svelte';
   import ElementsInLabel from './_ElementsInLabel.svelte';
   import DifferentTypes from './_DifferentTypes.svelte';
   import ManualSetup from './_ManualSetup.svelte';

@@ -86,6 +86,7 @@
         bind:this={floatingLabel}
         id={inputId + '-smui-label'}
         floatAbove={value !== ''}
+        {required}
         {...prefixFilter($$restProps, 'label$')}
         >{label == null ? '' : label}<slot name="label" /></FloatingLabel
       >
@@ -101,6 +102,7 @@
             bind:this={floatingLabel}
             id={inputId + '-smui-label'}
             floatAbove={value !== ''}
+            {required}
             {...prefixFilter($$restProps, 'label$')}
             >{label == null ? '' : label}<slot name="label" /></FloatingLabel
           >

@@ -6,6 +6,7 @@
     [className]: true,
     'mdc-text-field__input': true,
   })}
+  style={`${resizable ? '' : 'resize: none; '}${style}`}
   on:change={changeHandler}
   bind:value
   {...internalAttrs}
@@ -29,10 +30,12 @@
   export let use = [];
   let className = '';
   export { className as class };
+  export let style = '';
   export let value = '';
   export let dirty = false;
   export let invalid = false;
   export let updateInvalid = true;
+  export let resizable = true;
 
   let element;
   let internalAttrs = {};

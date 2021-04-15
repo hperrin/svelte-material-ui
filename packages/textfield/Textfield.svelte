@@ -91,7 +91,12 @@
     </ContextFragment>
     <slot />
     {#if textarea}
-      <span class="mdc-text-field__resizer">
+      <span
+        class={classMap({
+          'mdc-text-field__resizer':
+            !('input$resizable' in $$restProps) || $$restProps.input$resizable,
+        })}
+      >
         <Textarea
           bind:this={input}
           {disabled}
@@ -224,7 +229,6 @@
 <script>
   import { MDCTextFieldFoundation } from '@material/textfield';
   import { applyPassive } from '@material/dom/events';
-  import { matches } from '@material/dom/ponyfill';
   import { onMount, onDestroy, getContext, tick } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {
