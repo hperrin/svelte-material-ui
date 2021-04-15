@@ -34,7 +34,7 @@ If you are upgrading from an older version of SMUI to a newer one, it might be w
 
 # Usage
 
-Check out the [Webpack template](https://github.com/hperrin/smui-example-webpack) and the [Rollup template](https://github.com/hperrin/smui-example-rollup) for examples.
+Check out the [Webpack template](https://github.com/hperrin/smui-example-webpack) and the [Rollup template](https://github.com/hperrin/smui-example-rollup) for examples. If you are using Svelte with Sapper give it a check to the [Sapper template](examples/smui-sapper-example-rollup) for a starter reference.
 
 1. To bundle this in your own code, use a Sass processor (not a Sass Svelte **preprocessor**, but a Sass **processor**). SMUI's `index.js` files import _.scss files_, and they need to be compiled by a Sass processor. SMUI's `*.svelte` files don't include any Sass or CSS, so a Svelte _preprocessor_ is not necessary.
    - Alternatively, you can import components from the `bare.js` files, which don't include any styling. Then you can either import the Sass yourself, or use the `bare.css` files which are precompiled (with the default theme) and packaged with components. Then you can skip the next step, but your [theming options](THEMING.md#theming-the-bare-css) are limited.
