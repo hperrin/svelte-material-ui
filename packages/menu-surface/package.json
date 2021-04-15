@@ -1,6 +1,6 @@
 {
   "name": "@smui/menu-surface",
-  "version": "3.0.0-beta.7",
+  "version": "3.0.0-beta.8",
   "description": "Svelte Material UI - Menu Surface",
   "keywords": [
     "svelte",
@@ -30,7 +30,7 @@
   "dependencies": {
     "@material/animation": "^10.0.0",
     "@material/menu-surface": "^10.0.0",
-    "@smui/common": "^3.0.0-beta.7"
+    "@smui/common": "^3.0.0-beta.8"
   },
   "devDependencies": {
     "sass": "^1.32.8"

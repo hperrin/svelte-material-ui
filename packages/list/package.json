@@ -1,6 +1,6 @@
 {
   "name": "@smui/list",
-  "version": "3.0.0-beta.7",
+  "version": "3.0.0-beta.8",
   "description": "Svelte Material UI - List",
   "keywords": [
     "svelte",
@@ -31,8 +31,8 @@
     "@material/dom": "^10.0.0",
     "@material/feature-targeting": "^10.0.0",
     "@material/list": "^10.0.0",
-    "@smui/common": "^3.0.0-beta.7",
-    "@smui/ripple": "^3.0.0-beta.7"
+    "@smui/common": "^3.0.0-beta.8",
+    "@smui/ripple": "^3.0.0-beta.8"
   },
   "devDependencies": {
     "sass": "^1.32.8"
