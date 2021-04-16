@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-beta.9](https://github.com/hperrin/svelte-material-ui/compare/v3.0.0-beta.8...v3.0.0-beta.9) (2021-04-16)
+
+
+### Bug Fixes
+
+* non-interactive chip text color ([e673c93](https://github.com/hperrin/svelte-material-ui/commit/e673c934e4d8bf08f914e879059eb9b6e1645c25))
+* primary action span missing from chips ([17758af](https://github.com/hperrin/svelte-material-ui/commit/17758afe5e570514b30e017472379983220095f7))
+
+
+### Features
+
+* add nonInteractive chip set feature and fix chip tabindex management ([c1f223f](https://github.com/hperrin/svelte-material-ui/commit/c1f223f2d82fb9cd592f5b89c03f9c1ee9a55367))
+* new Tooltip component ([6293aef](https://github.com/hperrin/svelte-material-ui/commit/6293aefc40389d01c56301331380e660bed5e086))
+
+
+
+
+
 # [3.0.0-beta.8](https://github.com/hperrin/svelte-material-ui/compare/v3.0.0-beta.7...v3.0.0-beta.8) (2021-04-15)
 
 

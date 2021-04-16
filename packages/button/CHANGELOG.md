@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-beta.9](https://github.com/hperrin/svelte-material-ui/compare/v3.0.0-beta.8...v3.0.0-beta.9) (2021-04-16)
+
+
+### Features
+
+* new Tooltip component ([6293aef](https://github.com/hperrin/svelte-material-ui/commit/6293aefc40389d01c56301331380e660bed5e086))
+
+
+
+
+
 # [3.0.0-beta.8](https://github.com/hperrin/svelte-material-ui/compare/v3.0.0-beta.7...v3.0.0-beta.8) (2021-04-15)
 
 

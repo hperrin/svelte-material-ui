@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-beta.9](https://github.com/hperrin/svelte-material-ui/compare/v3.0.0-beta.8...v3.0.0-beta.9) (2021-04-16)
+
+
+### Bug Fixes
+
+* remove more event forwarding declarations ([17165ce](https://github.com/hperrin/svelte-material-ui/commit/17165cea455446ab1fb7f450e10ec0c1d293eb27))
+
+
+
+
+
 # [3.0.0-beta.8](https://github.com/hperrin/svelte-material-ui/compare/v3.0.0-beta.7...v3.0.0-beta.8) (2021-04-15)
 
 

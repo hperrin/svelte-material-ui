@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-beta.9](https://github.com/hperrin/svelte-material-ui/compare/v3.0.0-beta.8...v3.0.0-beta.9) (2021-04-16)
+
+
+### Bug Fixes
+
+* remove Slider highlight color on tap in Chrome ([3ccb603](https://github.com/hperrin/svelte-material-ui/commit/3ccb60342f3ce6087ef1de6c9b3d8bb7a39bae38)), closes [#219](https://github.com/hperrin/svelte-material-ui/issues/219)
+
+
+
+
+
 # [3.0.0-beta.8](https://github.com/hperrin/svelte-material-ui/compare/v3.0.0-beta.7...v3.0.0-beta.8) (2021-04-15)
 
 
