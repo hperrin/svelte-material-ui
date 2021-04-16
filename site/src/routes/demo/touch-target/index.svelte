@@ -7,7 +7,7 @@
 
   <pre class="demo-spaced">npm i -D @smui/touch-target</pre>
 
-  <Demo component={Simple} file="button/_Simple.svelte">
+  <Demo component={Simple} file="touch-target/_Simple.svelte">
     Touch Target Wrapper
     <svelte:fragment slot="subtitle">
       These interactive components all have increased touch targets, and they
