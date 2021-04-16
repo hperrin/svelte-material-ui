@@ -22,6 +22,7 @@ There are [newly updated instructiong](README.md#integration-for-sapper) for usi
   - You now need to use `let:chip` on the set and pass it to the chip with `{chip}`.
   - Chips now export LeadingIcon, TrailingIcon, and TrailingAction, instead of Icon.
   - Removed `selected` prop on Chip. `selected` prop on Chips is now the only way to set the selected chip(s), and it/they should be identical to one/some of the entries in `chips` (pass objects by reference).
+  - Don't provide any `tabindex` props to any of the Chips, Texts, or the Set. They will manage their own tabindex.
   - On TrailingAction, use `icon$class` to add classes to the icon element.
 - Data Table
   - `numeric` prop on Cell should now also be set on Head Cells.
@@ -75,6 +76,7 @@ There are [newly updated instructiong](README.md#integration-for-sapper) for usi
 - They can also take event modifiers with the ":" syntax istead of "|" ("on:click:capture={handler}").
 
 - Chips
+  - New `nonInteractive` prop on Set.
   - New `shouldFocusPrimaryActionOnClick` prop on Chip.
 - Common
   - Icon now takes a `component` prop.

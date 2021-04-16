@@ -7,22 +7,28 @@
   use:forwardEvents
   role="gridcell"
 >
-  <span
-    class={classMap({
-      [className]: true,
-      'mdc-chip__primary-action': true,
-    })}
-    role={$filter ? 'checkbox' : $choice ? 'radio' : 'button'}
-    {...$filter || $choice
-      ? { 'aria-selected': $isSelected ? 'true' : 'false' }
-      : {}}
-    {...internalAttrs}
-    {...$$restProps}><span class="mdc-chip__text"><slot /></span></span
-  >
+  {#if nonInteractive}
+    <span class="mdc-chip__text"><slot /></span>
+  {:else}
+    <span
+      bind:this={primaryAction}
+      class={classMap({
+        [className]: true,
+        'mdc-chip__primary-action': true,
+      })}
+      role={$filter ? 'checkbox' : $choice ? 'radio' : 'button'}
+      {...$filter || $choice
+        ? { 'aria-selected': $isSelected ? 'true' : 'false' }
+        : {}}
+      {tabindex}
+      {...internalAttrs}
+      {...$$restProps}><span class="mdc-chip__text"><slot /></span></span
+    >
+  {/if}
 </span>
 
 <script>
-  import { onMount, getContext } from 'svelte';
+  import { onMount, getContext, tick } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
@@ -37,20 +43,24 @@
   export let use = [];
   let className = '';
   export { className as class };
+  export let tabindex = getContext('SMUI:chip:focusable') ? '0' : '-1';
 
   let element;
   let input;
+  let primaryAction;
   let internalAttrs = {};
-  let accessor = {
-    focus,
-    addAttr,
-  };
 
+  const nonInteractive = getContext('SMUI:chip:nonInteractive');
   const choice = getContext('SMUI:chip:choice');
   const filter = getContext('SMUI:chip:filter');
   const isSelected = getContext('SMUI:chip:isSelected');
 
   onMount(() => {
+    let accessor = {
+      focus,
+      addAttr,
+    };
+
     dispatch(getElement(), 'SMUI:chip:primary-action:mount', accessor);
 
     return () => {
@@ -64,8 +74,20 @@
     }
   }
 
+  function waitForTabindex(fn) {
+    if (internalAttrs['tabindex'] !== element.getAttribute('tabindex')) {
+      tick().then(fn);
+    } else {
+      fn();
+    }
+  }
+
   export function focus() {
-    getElement().focus();
+    console.log('focus primary action');
+    // Let the tabindex change propagate.
+    waitForTabindex(() => {
+      primaryAction && primaryAction.focus();
+    });
   }
 
   export function getInput() {

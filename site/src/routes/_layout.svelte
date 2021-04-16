@@ -62,15 +62,15 @@
         </IconButton>
         <IconButton
           toggle
-          pressed={theme === 'dark'}
+          pressed={lightTheme}
           on:MDCIconButtonToggle:change={switchTheme}
-          title={theme === 'light' ? 'Lights off' : 'Lights on'}
+          title={lightTheme ? 'Lights off' : 'Lights on'}
         >
           <Icon component={Svg} viewBox="0 0 24 24" on>
-            <path fill="currentColor" d={mdiWeatherSunny} />
+            <path fill="currentColor" d={mdiWeatherNight} />
           </Icon>
           <Icon component={Svg} viewBox="0 0 24 24">
-            <path fill="currentColor" d={mdiWeatherNight} />
+            <path fill="currentColor" d={mdiWeatherSunny} />
           </Icon>
         </IconButton>
       </Section>
@@ -149,19 +149,17 @@
   let miniWindow = false;
   let drawerOpen = false;
 
-  let theme =
+  let lightTheme =
     typeof window === 'undefined' ||
-    window.matchMedia('(prefers-color-scheme: light)').matches
-      ? 'light'
-      : 'dark';
+    window.matchMedia('(prefers-color-scheme: light)').matches;
   function switchTheme() {
-    theme = theme === 'light' ? 'dark' : 'light';
+    lightTheme = !lightTheme;
     let themeLink = document.head.querySelector('#theme');
     if (!themeLink) {
       themeLink = document.createElement('link');
       themeLink.rel = 'stylesheet';
     }
-    themeLink.href = `client/smui${theme === 'light' ? '' : '-dark'}.css`;
+    themeLink.href = `client/smui${lightTheme ? '' : '-dark'}.css`;
     document.head.appendChild(themeLink);
   }
 

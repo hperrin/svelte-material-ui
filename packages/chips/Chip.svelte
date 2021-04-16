@@ -5,7 +5,7 @@
     [
       Ripple,
       {
-        ripple,
+        ripple: ripple && !$nonInteractive,
         unbounded: false,
         addClass,
         removeClass,
@@ -46,7 +46,9 @@
     (trailingActionAccessor = undefined)}
   {...$$restProps}
 >
-  <div class="mdc-chip__ripple" />
+  {#if ripple && !$nonInteractive}
+    <div class="mdc-chip__ripple" />
+  {/if}
   <slot />
   {#if touch}
     <div class="mdc-chip__touch" />
@@ -55,7 +57,7 @@
 
 <script>
   import { MDCChipFoundation } from '@material/chips';
-  import { onMount, setContext, getContext, tick } from 'svelte';
+  import { onMount, setContext, getContext } from 'svelte';
   import { writable } from 'svelte/store';
   import { get_current_component } from 'svelte/internal';
   import {
@@ -88,16 +90,9 @@
   let selected = $initialSelectedStore;
   let primaryActionAccessor;
   let trailingActionAccessor;
-  let accessor = {
-    chipId,
-    get selected() {
-      return selected;
-    },
-    focusPrimaryAction,
-    focusTrailingAction,
-    removeFocus,
-    setSelectedFromChipSet,
-  };
+  const nonInteractive = getContext('SMUI:chip:nonInteractive');
+  const choice = getContext('SMUI:chip:choice');
+  const index = getContext('SMUI:chip:index');
 
   export let component = Div;
 
@@ -115,6 +110,7 @@
   const leadingIconClassesStore = writable(leadingIconClasses);
   $: $leadingIconClassesStore = leadingIconClasses;
   setContext('SMUI:chip:leadingIconClasses', leadingIconClassesStore);
+  setContext('SMUI:chip:focusable', ($choice && selected) || $index === 0);
 
   if (!chipId) {
     throw new Error(
@@ -215,6 +211,17 @@
       },
       setStyleProperty: addStyle,
     });
+
+    const accessor = {
+      chipId,
+      get selected() {
+        return selected;
+      },
+      focusPrimaryAction,
+      focusTrailingAction,
+      removeFocus,
+      setSelectedFromChipSet,
+    };
 
     dispatch(getElement(), 'SMUI:chip:mount', accessor);
 

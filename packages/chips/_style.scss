@@ -1,1 +1,5 @@
 @use '@material/chips/mdc-chips';
+
+.smui-chip-set--non-interactive .mdc-chip {
+  cursor: initial;
+}

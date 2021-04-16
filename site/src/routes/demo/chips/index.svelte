@@ -9,6 +9,10 @@
 
   <Demo component={Simple} file="chips/_Simple.svelte" />
 
+  <Demo component={NonInteractive} file="chips/_NonInteractive.svelte"
+    >Non-interactive chips</Demo
+  >
+
   <Demo component={Choice} file="chips/_Choice.svelte">Choice chips</Demo>
 
   <Demo component={Filter} file="chips/_Filter.svelte">
@@ -27,6 +31,7 @@
 <script>
   import Demo from '../../../components/Demo.svelte';
   import Simple from './_Simple.svelte';
+  import NonInteractive from './_NonInteractive.svelte';
   import Choice from './_Choice.svelte';
   import Filter from './_Filter.svelte';
   import FilterIcons from './_FilterIcons.svelte';

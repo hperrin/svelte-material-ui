@@ -93,19 +93,17 @@ Now let's get it on your page. In your template, where you included the "smui.cs
 This will get your dark theme working if the user has expressed a preference in their OS. To let the user choose which theme while on your site, you can do something like the following.
 
 ```js
-let theme =
+let lightTheme =
   typeof window === 'undefined' ||
-  window.matchMedia('(prefers-color-scheme: light)').matches
-    ? 'light'
-    : 'dark';
+  window.matchMedia('(prefers-color-scheme: light)').matches;
 function switchTheme() {
-  theme = theme === 'light' ? 'dark' : 'light';
+  lightTheme = !lightTheme;
   let themeLink = document.head.querySelector('#theme');
   if (!themeLink) {
     themeLink = document.createElement('link');
     themeLink.rel = 'stylesheet';
   }
-  themeLink.href = `client/smui${theme === 'light' ? '' : '-dark'}.css`;
+  themeLink.href = `client/smui${lightTheme ? '' : '-dark'}.css`;
   document.head.appendChild(themeLink);
 }
 ```

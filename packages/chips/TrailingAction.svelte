@@ -41,7 +41,7 @@
 
 <script>
   import { MDCChipTrailingActionFoundation } from '@material/chips';
-  import { onMount } from 'svelte';
+  import { onMount, tick } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
@@ -74,7 +74,12 @@
   onMount(() => {
     instance = new MDCChipTrailingActionFoundation({
       focus: () => {
-        getElement().focus();
+        console.log('focus trailing action');
+        const element = getElement();
+        // Let the tabindex change propagate.
+        waitForTabindex(() => {
+          element.focus();
+        });
       },
       getAttribute: getAttr,
       notifyInteraction: (trigger) =>
@@ -134,6 +139,14 @@
   function addAttr(name, value) {
     if (internalAttrs[name] !== value) {
       internalAttrs[name] = value;
+    }
+  }
+
+  function waitForTabindex(fn) {
+    if (internalAttrs['tabindex'] !== element.getAttribute('tabindex')) {
+      tick().then(fn);
+    } else {
+      fn();
     }
   }
 
