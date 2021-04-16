@@ -15,9 +15,10 @@
     'mdc-menu-surface--fullwidth': fullWidth,
     ...internalClasses,
   })}
-  style="{style} {Object.entries(internalStyles)
+  style={Object.entries(internalStyles)
     .map(([name, value]) => `${name}: ${value};`)
-    .join(' ')}"
+    .concat([style])
+    .join(' ')}
   on:keydown={(event) => instance && instance.handleKeydown(event)}
   {...$$restProps}
 >
