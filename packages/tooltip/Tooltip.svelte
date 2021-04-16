@@ -199,10 +199,18 @@
         document.body.removeEventListener(evt, handler);
       },
       registerWindowEventHandler: (evt, handler) => {
-        window.addEventListener(evt, handler, { capture: evt === 'scroll' });
+        window.addEventListener(
+          evt,
+          handler,
+          evt === 'scroll' && { capture: true, passive: true }
+        );
       },
       deregisterWindowEventHandler: (evt, handler) => {
-        window.removeEventListener(evt, handler, { capture: evt === 'scroll' });
+        window.removeEventListener(
+          evt,
+          handler,
+          evt === 'scroll' && { capture: true, passive: true }
+        );
       },
       notifyHidden: () => {
         dispatch(getElement(), 'MDCTooltip:hidden');
