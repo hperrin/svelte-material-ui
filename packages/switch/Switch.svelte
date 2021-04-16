@@ -21,6 +21,7 @@
       addClass: addThumbUnderlayClass,
       removeClass: removeThumbUnderlayClass,
       // Don't need addStyle, since we don't set style prop.
+      eventTarget: checkbox,
     }}
     class={classMap({
       'mdc-switch__thumb-underlay': true,
@@ -29,6 +30,7 @@
   >
     <div class="mdc-switch__thumb" />
     <input
+      bind:this={checkbox}
       use:useActions={input$use}
       class={classMap({
         [input$class]: true,
@@ -82,6 +84,7 @@
 
   let element;
   let instance;
+  let checkbox;
   let internalClasses = {};
   let thumbUnderlayClasses = {};
   let nativeControlAttrs = {};

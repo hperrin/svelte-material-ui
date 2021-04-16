@@ -8,6 +8,7 @@
     removeClass,
     addStyle,
     active: rippleActive,
+    eventTarget: checkbox,
   }}
   class={classMap({
     [className]: true,
