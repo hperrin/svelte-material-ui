@@ -24,7 +24,7 @@ npm install --save-dev svelte-material-ui
 
 ## Migration
 
-If you are upgrading from an older version of SMUI to a newer one, it might be worth checking out the [migration doc](MIGRATING.md).
+If you are upgrading from an older version of SMUI to a newer one, it might be worth checking out the [migration doc](MIGRATING.md). (Now updated for v3.)
 
 # Features
 
