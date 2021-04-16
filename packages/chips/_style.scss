@@ -1,5 +1,4 @@
 @use '@material/chips/mdc-chips';
+@use './mixins';
 
-.smui-chip-set--non-interactive .mdc-chip {
-  cursor: initial;
-}
+@include mixins.core-styles;
