@@ -115,6 +115,7 @@
     "@smui/tab-indicator": "file:../packages/tab-indicator",
     "@smui/tab-scroller": "file:../packages/tab-scroller",
     "@smui/textfield": "file:../packages/textfield",
+    "@smui/tooltip": "file:../packages/tooltip",
     "@smui/top-app-bar": "file:../packages/top-app-bar",
     "@smui/touch-target": "file:../packages/touch-target",
     "npm-run-all": "^4.1.5",

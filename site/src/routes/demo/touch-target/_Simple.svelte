@@ -1,4 +1,4 @@
-<div style="display: flex; align-items: center;">
+<div style="display: flex; flex-wrap: wrap; align-items: center;">
   <Wrapper>
     <Button on:click={() => clicked++} touch>
       <Label>Button</Label>

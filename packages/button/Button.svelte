@@ -33,6 +33,7 @@
     'mdc-snackbar__action': context === 'snackbar:actions',
     'mdc-banner__secondary-action': context === 'banner' && secondary,
     'mdc-banner__primary-action': context === 'banner' && !secondary,
+    'mdc-tooltip__action': context === 'tooltip:rich-actions',
     ...internalClasses,
   })}
   style={Object.entries(internalStyles)

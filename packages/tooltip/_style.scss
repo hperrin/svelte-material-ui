@@ -1,0 +1,14 @@
+@use '@material/tooltip/styles';
+
+.mdc-tooltip--rich {
+  // I don't know why MDC doesn't have this style.
+  display: none;
+}
+
+.smui-tooltip--force-show {
+  display: inline-flex !important;
+
+  &.mdc-tooltip--rich {
+    display: inline-block !important;
+  }
+}

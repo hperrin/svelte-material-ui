@@ -24,55 +24,58 @@
       <Section align="end" toolbar style="color: var(--mdc-on-surface, #000);">
         {#if activeSection}
           {#each repos as repo}
+            <Wrapper>
+              <IconButton href={repo} target="_blank">
+                <Icon component={Svg} viewBox="0 0 24 24">
+                  <path fill="currentColor" d={mdiFileDocument} />
+                </Icon>
+              </IconButton>
+              <Tooltip>View Docs: {repo.split('/').slice(-1)[0]}</Tooltip>
+            </Wrapper>
+          {/each}
+          <Wrapper>
             <IconButton
-              href={repo}
+              href={`https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes${activeSection.route}`}
               target="_blank"
-              title={`View Docs: ${repo.split('/').slice(-1)[0]}`}
             >
               <Icon component={Svg} viewBox="0 0 24 24">
-                <path fill="currentColor" d={mdiFileDocument} />
+                <path fill="currentColor" d={mdiCodeTags} />
               </Icon>
             </IconButton>
-          {/each}
-          <IconButton
-            href={`https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes${activeSection.route}`}
-            target="_blank"
-            title="View Source Directory"
-          >
+            <Tooltip>View Source Directory</Tooltip>
+          </Wrapper>
+        {/if}
+        <Wrapper>
+          <IconButton href="https://twitter.com/SciActive">
             <Icon component={Svg} viewBox="0 0 24 24">
-              <path fill="currentColor" d={mdiCodeTags} />
+              <path fill="currentColor" d={mdiTwitter} />
             </Icon>
           </IconButton>
-        {/if}
-        <IconButton
-          href="https://twitter.com/SciActive"
-          title="Hunter Perrin (SMUI Author) on Twitter"
-        >
-          <Icon component={Svg} viewBox="0 0 24 24">
-            <path fill="currentColor" d={mdiTwitter} />
-          </Icon>
-        </IconButton>
-        <IconButton
-          href="https://github.com/hperrin/svelte-material-ui"
-          title="SMUI on GitHub"
-        >
-          <Icon component={Svg} viewBox="0 0 24 24">
-            <path fill="currentColor" d={mdiGithub} />
-          </Icon>
-        </IconButton>
-        <IconButton
-          toggle
-          pressed={lightTheme}
-          on:MDCIconButtonToggle:change={switchTheme}
-          title={lightTheme ? 'Lights off' : 'Lights on'}
-        >
-          <Icon component={Svg} viewBox="0 0 24 24" on>
-            <path fill="currentColor" d={mdiWeatherNight} />
-          </Icon>
-          <Icon component={Svg} viewBox="0 0 24 24">
-            <path fill="currentColor" d={mdiWeatherSunny} />
-          </Icon>
-        </IconButton>
+          <Tooltip>Hunter Perrin (SMUI Author) on Twitter</Tooltip>
+        </Wrapper>
+        <Wrapper>
+          <IconButton href="https://github.com/hperrin/svelte-material-ui">
+            <Icon component={Svg} viewBox="0 0 24 24">
+              <path fill="currentColor" d={mdiGithub} />
+            </Icon>
+          </IconButton>
+          <Tooltip>SMUI on GitHub</Tooltip>
+        </Wrapper>
+        <Wrapper>
+          <IconButton
+            toggle
+            pressed={lightTheme}
+            on:MDCIconButtonToggle:change={switchTheme}
+          >
+            <Icon component={Svg} viewBox="0 0 24 24" on>
+              <path fill="currentColor" d={mdiWeatherNight} />
+            </Icon>
+            <Icon component={Svg} viewBox="0 0 24 24">
+              <path fill="currentColor" d={mdiWeatherSunny} />
+            </Icon>
+          </IconButton>
+          <Tooltip>{lightTheme ? 'Lights off' : 'Lights on'}</Tooltip>
+        </Wrapper>
       </Section>
     </Row>
   </TopAppBar>
@@ -97,7 +100,6 @@
                 : null}
               on:click={() => pickSection(section)}
               activated={'route' in section && section.route === $page.path}
-              title={section.name}
               style={section.indent
                 ? 'margin-left: ' + section.indent * 25 + 'px;'
                 : ''}
@@ -138,6 +140,7 @@
   import Drawer, { Content, Scrim, AppContent } from '@smui/drawer';
   import IconButton from '@smui/icon-button';
   import List, { Item, Text } from '@smui/list';
+  import Tooltip, { Wrapper } from '@smui/tooltip';
   import { Icon } from '@smui/common';
   import A from '@smui/common/A.svelte';
   import Svg from '@smui/common/Svg.svelte';
@@ -399,6 +402,14 @@
       name: 'Theme',
       route: '/demo/theme/',
       indent: 0,
+    },
+    {
+      name: 'Tooltip',
+      route: '/demo/tooltip/',
+      indent: 0,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/tooltip',
+      ],
     },
     {
       name: 'Top App Bar',

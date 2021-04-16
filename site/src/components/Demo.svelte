@@ -43,27 +43,28 @@
   {/if}
   <Actions>
     <ActionIcons>
-      <IconButton
-        href={`https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/${file}`}
-        target="_blank"
-        title="View this file on GitHub"
-      >
-        <Icon component={Svg} viewBox="0 0 24 24">
-          <path fill="currentColor" d={mdiGithub} />
-        </Icon>
-      </IconButton>
-      <IconButton
-        pressed={show}
-        on:click={toggleSource}
-        title={`${show ? 'Hide' : 'Show'} the source code`}
-      >
-        <Icon component={Svg} viewBox="0 0 24 24" on>
-          <path fill="currentColor" d={mdiCodeTagsCheck} />
-        </Icon>
-        <Icon component={Svg} viewBox="0 0 24 24">
-          <path fill="currentColor" d={mdiCodeTags} />
-        </Icon>
-      </IconButton>
+      <Wrapper>
+        <IconButton
+          href={`https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/${file}`}
+          target="_blank"
+        >
+          <Icon component={Svg} viewBox="0 0 24 24">
+            <path fill="currentColor" d={mdiGithub} />
+          </Icon>
+        </IconButton>
+        <Tooltip>View this file on GitHub</Tooltip>
+      </Wrapper>
+      <Wrapper>
+        <IconButton pressed={show} on:click={toggleSource}>
+          <Icon component={Svg} viewBox="0 0 24 24" on>
+            <path fill="currentColor" d={mdiCodeTagsCheck} />
+          </Icon>
+          <Icon component={Svg} viewBox="0 0 24 24">
+            <path fill="currentColor" d={mdiCodeTags} />
+          </Icon>
+        </IconButton>
+        <Tooltip>{show ? 'Hide' : 'Show'} the source code</Tooltip>
+      </Wrapper>
     </ActionIcons>
   </Actions>
 </Card>
@@ -73,6 +74,7 @@
 
   import Card, { Content, Actions, ActionIcons } from '@smui/card';
   import IconButton, { Icon } from '@smui/icon-button';
+  import Tooltip, { Wrapper } from '@smui/tooltip';
   import Svg from '@smui/common/Svg.svelte';
 
   export let file;

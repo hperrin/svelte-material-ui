@@ -265,6 +265,7 @@ Click a component below to go to its documentation. (Note that this documentatio
   - [Tab](packages/tab/README.md)
   - [Tab Bar](packages/tab-bar/README.md)
 - [Theme](https://sveltematerialui.com/demo/theme/)†
+- [Tooltip](packages/tooltip/README.md)
 - [Top App Bar](packages/top-app-bar/README.md)
 - [Touch Target](packages/touch-target/README.md)
 - [Typography](https://sveltematerialui.com/demo/typography/)†
@@ -275,7 +276,7 @@ New components from the upstream library to build for SMUI v3:
 - [x] Circular Progress
 - [x] Layout Grids (Not new to MDC, but I haven't made a component for it.)
 - [ ] Segmented Buttons (This is different than SMUI's button groups.)
-- [ ] Tooltips
+- [x] Tooltips
 - [x] Touch Target Wrappers
 - [ ] Data Table Pagination
 - [ ] Data Table Progress Indicator

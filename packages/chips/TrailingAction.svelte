@@ -74,7 +74,6 @@
   onMount(() => {
     instance = new MDCChipTrailingActionFoundation({
       focus: () => {
-        console.log('focus trailing action');
         const element = getElement();
         // Let the tabindex change propagate.
         waitForTabindex(() => {

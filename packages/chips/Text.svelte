@@ -83,7 +83,6 @@
   }
 
   export function focus() {
-    console.log('focus primary action');
     // Let the tabindex change propagate.
     waitForTabindex(() => {
       primaryAction && primaryAction.focus();
