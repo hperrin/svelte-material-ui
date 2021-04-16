@@ -7,7 +7,7 @@
   use:forwardEvents
   role="gridcell"
 >
-  {#if nonInteractive}
+  {#if $nonInteractive}
     <span class="mdc-chip__text"><slot /></span>
   {:else}
     <span
