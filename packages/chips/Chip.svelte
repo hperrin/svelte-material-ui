@@ -36,13 +36,13 @@
     instance && instance.handleTrailingActionInteraction()}
   on:MDCChipTrailingAction:navigation={(event) =>
     instance && instance.handleTrailingActionNavigation(event)}
-  on:SMUI:chip:primary-action:mount={(event) =>
+  on:SMUI:chips:chip:primary-action:mount={(event) =>
     (primaryActionAccessor = event.detail)}
-  on:SMUI:chip:primary-action:unmount={() =>
+  on:SMUI:chips:chip:primary-action:unmount={() =>
     (primaryActionAccessor = undefined)}
-  on:SMUI:chip:trailing-action:mount={(event) =>
+  on:SMUI:chips:chip:trailing-action:mount={(event) =>
     (trailingActionAccessor = event.detail)}
-  on:SMUI:chip:trailing-action:unmount={() =>
+  on:SMUI:chips:chip:trailing-action:unmount={() =>
     (trailingActionAccessor = undefined)}
   {...$$restProps}
 >
@@ -86,13 +86,13 @@
   let internalClasses = {};
   let leadingIconClasses = {};
   let internalStyles = {};
-  const initialSelectedStore = getContext('SMUI:chip:initialSelected');
+  const initialSelectedStore = getContext('SMUI:chips:chip:initialSelected');
   let selected = $initialSelectedStore;
   let primaryActionAccessor;
   let trailingActionAccessor;
-  const nonInteractive = getContext('SMUI:chip:nonInteractive');
-  const choice = getContext('SMUI:chip:choice');
-  const index = getContext('SMUI:chip:index');
+  const nonInteractive = getContext('SMUI:chips:nonInteractive');
+  const choice = getContext('SMUI:chips:choice');
+  const index = getContext('SMUI:chips:chip:index');
 
   export let component = Div;
 
@@ -101,16 +101,19 @@
   );
   $: $shouldRemoveOnTrailingIconClickStore = shouldRemoveOnTrailingIconClick;
   setContext(
-    'SMUI:chip:shouldRemoveOnTrailingIconClick',
+    'SMUI:chips:chip:shouldRemoveOnTrailingIconClick',
     shouldRemoveOnTrailingIconClickStore
   );
   const isSelectedStore = writable(selected);
   $: $isSelectedStore = selected;
-  setContext('SMUI:chip:isSelected', isSelectedStore);
+  setContext('SMUI:chips:chip:isSelected', isSelectedStore);
   const leadingIconClassesStore = writable(leadingIconClasses);
   $: $leadingIconClassesStore = leadingIconClasses;
-  setContext('SMUI:chip:leadingIconClasses', leadingIconClassesStore);
-  setContext('SMUI:chip:focusable', ($choice && selected) || $index === 0);
+  setContext('SMUI:chips:chip:leadingIconClasses', leadingIconClassesStore);
+  setContext(
+    'SMUI:chips:chip:focusable',
+    ($choice && selected) || $index === 0
+  );
 
   if (!chipId) {
     throw new Error(
@@ -223,12 +226,12 @@
       setSelectedFromChipSet,
     };
 
-    dispatch(getElement(), 'SMUI:chip:mount', accessor);
+    dispatch(getElement(), 'SMUI:chips:chip:mount', accessor);
 
     instance.init();
 
     return () => {
-      dispatch(getElement(), 'SMUI:chip:unmount', accessor);
+      dispatch(getElement(), 'SMUI:chips:chip:unmount', accessor);
 
       instance.destroy();
     };

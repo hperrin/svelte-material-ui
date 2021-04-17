@@ -10,6 +10,7 @@
     'mdc-icon-button__icon--on': context === 'icon-button' && on,
     'mdc-tab__icon': context === 'tab',
     'mdc-banner__icon': context === 'banner',
+    'mdc-segmented-button__icon': context === 'segmented-button',
   })}
   aria-hidden="true"
   {...component === Svg ? { focusable: 'false', tabindex: '-1' } : {}}

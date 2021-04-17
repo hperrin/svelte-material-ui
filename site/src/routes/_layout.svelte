@@ -208,14 +208,6 @@
       ],
     },
     {
-      name: 'Chips',
-      route: '/demo/chips/',
-      indent: 0,
-      repos: [
-        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/chips',
-      ],
-    },
-    {
       name: 'Data Table',
       route: '/demo/data-table/',
       indent: 0,
@@ -265,6 +257,14 @@
       ],
     },
     {
+      name: 'Chips',
+      route: '/demo/chips/',
+      indent: 1,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/chips',
+      ],
+    },
+    {
       name: 'Form Field',
       route: '/demo/form-field/',
       indent: 1,
@@ -278,6 +278,14 @@
       indent: 1,
       repos: [
         'https://github.com/hperrin/svelte-material-ui/tree/master/packages/radio',
+      ],
+    },
+    {
+      name: 'Segmented Button',
+      route: '/demo/segmented-button/',
+      indent: 1,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/segmented-button',
       ],
     },
     {

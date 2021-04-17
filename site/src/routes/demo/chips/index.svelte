@@ -9,9 +9,9 @@
 
   <Demo component={Simple} file="chips/_Simple.svelte" />
 
-  <Demo component={NonInteractive} file="chips/_NonInteractive.svelte"
-    >Non-interactive chips</Demo
-  >
+  <Demo component={NonInteractive} file="chips/_NonInteractive.svelte">
+    Non-interactive chips
+  </Demo>
 
   <Demo component={Choice} file="chips/_Choice.svelte">Choice chips</Demo>
 

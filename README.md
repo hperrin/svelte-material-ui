@@ -228,7 +228,6 @@ Click a component below to go to its documentation. (Note that this documentatio
   - [Floating Action Button](packages/fab/README.md)
   - [Icon Button](packages/icon-button/README.md)
 - [Card](packages/card/README.md)
-- [Chips](packages/chips/README.md)
 - [Data Table](packages/data-table/README.md)
 - [Dialog](packages/dialog/README.md)
 - [Drawer](packages/drawer/README.md)
@@ -236,11 +235,13 @@ Click a component below to go to its documentation. (Note that this documentatio
 - [Image List](packages/image-list/README.md)
 - Inputs and Controls
   - [Checkbox](packages/checkbox/README.md)
+  - [Chips](packages/chips/README.md)
   - [Floating Label](packages/floating-label/README.md)
   - [Form Field](packages/form-field/README.md)
   - [Line Ripple](packages/line-ripple/README.md)
   - [Notched Outline](packages/notched-outline/README.md)
   - [Radio Button](packages/radio/README.md)
+  - [Segmented Button](packages/segmented-button/README.md)
   - [Select Menu](packages/select/README.md)
     - [Select Helper Text](packages/select/helper-text/README.md)
     - [Select Icon](packages/select/icon/README.md)
@@ -275,7 +276,7 @@ New components from the upstream library to build for SMUI v3:
 - [x] Banners
 - [x] Circular Progress
 - [x] Layout Grids (Not new to MDC, but I haven't made a component for it.)
-- [ ] Segmented Buttons (This is different than SMUI's button groups.)
+- [x] Segmented Buttons (This is different than SMUI's button groups.)
 - [x] Tooltips
 - [x] Touch Target Wrappers
 - [ ] Data Table Pagination

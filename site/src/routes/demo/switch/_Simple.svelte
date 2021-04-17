@@ -14,7 +14,7 @@
   </FormField>
 </div>
 
-<div>
+<div style="margin-top: 1em;">
   <Button on:click={() => (checked2 = !checked2)}>
     Toggle Programmatically
   </Button>

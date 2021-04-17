@@ -1,8 +1,11 @@
-<Set chips={choices} let:chip choice bind:selected>
-  <Chip {chip}>
-    <Text>{chip}</Text>
-  </Chip>
-</Set>
+<!-- Note that segments must be unique. (They cannot === each other.)
+    If you need to show the same value, use keyed segments.-->
+<SegmentedButton segments={choices} let:segment singleSelect bind:selected>
+  <!-- Notice that the `segment` property is required! -->
+  <Segment {segment}>
+    <Label>{segment}</Label>
+  </Segment>
+</SegmentedButton>
 
 <div style="margin-top: 1em;">Programmatically select:</div>
 <Button on:click={() => (selected = 'Morning')}>
@@ -21,8 +24,9 @@
 <pre class="status">Selected: {selected}</pre>
 
 <script>
-  import Chip, { Set, Text } from '@smui/chips';
-  import Button, { Label } from '@smui/button';
+  import SegmentedButton, { Segment } from '@smui/segmented-button';
+  import Button from '@smui/button';
+  import { Label } from '@smui/common';
 
   let choices = ['Morning', 'Afternoon', 'Evening', 'Night'];
   let selected = 'Morning';

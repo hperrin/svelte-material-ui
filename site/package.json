@@ -106,6 +106,7 @@
     "@smui/paper": "file:../packages/paper",
     "@smui/radio": "file:../packages/radio",
     "@smui/ripple": "file:../packages/ripple",
+    "@smui/segmented-button": "file:../packages/segmented-button",
     "@smui/select": "file:../packages/select",
     "@smui/slider": "file:../packages/slider",
     "@smui/snackbar": "file:../packages/snackbar",

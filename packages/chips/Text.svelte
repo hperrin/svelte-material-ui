@@ -43,17 +43,17 @@
   export let use = [];
   let className = '';
   export { className as class };
-  export let tabindex = getContext('SMUI:chip:focusable') ? '0' : '-1';
+  export let tabindex = getContext('SMUI:chips:chip:focusable') ? '0' : '-1';
 
   let element;
   let input;
   let primaryAction;
   let internalAttrs = {};
 
-  const nonInteractive = getContext('SMUI:chip:nonInteractive');
-  const choice = getContext('SMUI:chip:choice');
-  const filter = getContext('SMUI:chip:filter');
-  const isSelected = getContext('SMUI:chip:isSelected');
+  const nonInteractive = getContext('SMUI:chips:nonInteractive');
+  const choice = getContext('SMUI:chips:choice');
+  const filter = getContext('SMUI:chips:filter');
+  const isSelected = getContext('SMUI:chips:chip:isSelected');
 
   onMount(() => {
     let accessor = {
@@ -61,10 +61,10 @@
       addAttr,
     };
 
-    dispatch(getElement(), 'SMUI:chip:primary-action:mount', accessor);
+    dispatch(getElement(), 'SMUI:chips:chip:primary-action:mount', accessor);
 
     return () => {
-      dispatch(getElement(), 'SMUI:chip:primary-action:unmount');
+      dispatch(getElement(), 'SMUI:chips:chip:primary-action:unmount');
     };
   });
 

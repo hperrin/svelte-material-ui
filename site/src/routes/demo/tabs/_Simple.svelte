@@ -7,7 +7,7 @@
     </Tab>
   </TabBar>
 
-  <div style="margin-top: 15px;">
+  <div style="margin-top: 1em;">
     <div>Programmatically select:</div>
     {#each ['Home', 'Merchandise', 'About Us'] as tab}
       <Button on:click={() => (active = tab)}><Label>{tab}</Label></Button>

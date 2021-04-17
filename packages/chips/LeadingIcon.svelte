@@ -27,9 +27,9 @@
   let className = '';
   export { className as class };
 
-  const filter = getContext('SMUI:chip:filter');
-  const isSelected = getContext('SMUI:chip:isSelected');
-  const leadingIconClasses = getContext('SMUI:chip:leadingIconClasses');
+  const filter = getContext('SMUI:chips:filter');
+  const isSelected = getContext('SMUI:chips:chip:isSelected');
+  const leadingIconClasses = getContext('SMUI:chips:chip:leadingIconClasses');
 
   let element;
 

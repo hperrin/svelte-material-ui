@@ -13,13 +13,15 @@
   {/each}
 </div>
 
-<Button
-  on:click={() => {
-    selected = 'Doc';
-  }}
->
-  Select Doc Programmatically
-</Button>
+<div style="margin-top: 1em;">
+  <Button
+    on:click={() => {
+      selected = 'Doc';
+    }}
+  >
+    Select Doc Programmatically
+  </Button>
+</div>
 
 <pre class="status">Selected: {selected}</pre>
 

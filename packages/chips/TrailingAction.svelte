@@ -91,7 +91,7 @@
       setAttribute: addAttr,
     });
 
-    dispatch(getElement(), 'SMUI:chip:trailing-action:mount', {
+    dispatch(getElement(), 'SMUI:chips:chip:trailing-action:mount', {
       isNavigable,
       focus,
       removeFocus,
@@ -100,7 +100,7 @@
     instance.init();
 
     return () => {
-      dispatch(getElement(), 'SMUI:chip:trailing-action:unmount');
+      dispatch(getElement(), 'SMUI:chips:chip:trailing-action:unmount');
 
       instance.destroy();
     };

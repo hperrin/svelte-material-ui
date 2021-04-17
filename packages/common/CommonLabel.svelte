@@ -10,6 +10,7 @@
     'mdc-image-list__label': context === 'image-list',
     'mdc-snackbar__label': context === 'snackbar',
     'mdc-banner__text': context === 'banner',
+    'mdc-segmented-button__label': context === 'segmented-button',
   })}
   {...context === 'snackbar' ? { 'aria-atomic': 'false' } : {}}
   {tabindex}

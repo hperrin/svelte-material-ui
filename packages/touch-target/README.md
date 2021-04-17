@@ -7,6 +7,7 @@ A touch target is the area that extends beyond the visible boundary of an intera
 - Checkbox
 - Radio
 - Mini FAB
+- Segmented Button
 
 This component provides a wrapper to ensure that collapsing margins don't cause touch targets to overlap.
 

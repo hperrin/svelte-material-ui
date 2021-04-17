@@ -13,7 +13,7 @@
   {/each}
 </div>
 
-<div>
+<div style="margin-top: 1em;">
   <Button
     on:click={() => {
       const idx = selected.indexOf('Doc');

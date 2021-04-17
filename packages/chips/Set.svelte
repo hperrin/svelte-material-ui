@@ -11,8 +11,8 @@
     'mdc-chip-set--input': input,
   })}
   role="grid"
-  on:SMUI:chip:mount={(event) => handleChipMount(event)}
-  on:SMUI:chip:unmount={(event) => handleChipUnmount(event)}
+  on:SMUI:chips:chip:mount={(event) => handleChipMount(event)}
+  on:SMUI:chips:chip:unmount={(event) => handleChipUnmount(event)}
   on:MDCChip:interaction={(event) =>
     instance && instance.handleChipInteraction(event.detail)}
   on:MDCChip:selection={(event) =>
@@ -24,9 +24,9 @@
   {...$$restProps}
 >
   {#each chips as chip, i (key(chip))}
-    <ContextFragment key="SMUI:chip:index" value={i}>
+    <ContextFragment key="SMUI:chips:chip:index" value={i}>
       <ContextFragment
-        key="SMUI:chip:initialSelected"
+        key="SMUI:chips:chip:initialSelected"
         value={initialSelected[i]}
       >
         <slot {chip} />
@@ -65,27 +65,21 @@
   let instance;
   let chipAccessorMap = {};
   let chipAccessorWeakMap = new WeakMap();
-  let initialSelected = chips.map((chipId) => {
-    if (choice && selected === chipId) {
-      return true;
-    } else if (filter && selected.indexOf(chipId) !== -1) {
-      return true;
-    }
-    return false;
-  });
+  let initialSelected = chips.map(
+    (chipId) =>
+      (choice && selected === chipId) ||
+      (filter && selected.indexOf(chipId) !== -1)
+  );
 
   const nonInteractiveStore = writable(nonInteractive);
   $: $nonInteractiveStore = nonInteractive;
-  setContext('SMUI:chip:nonInteractive', nonInteractiveStore);
+  setContext('SMUI:chips:nonInteractive', nonInteractiveStore);
   const choiceStore = writable(choice);
   $: $choiceStore = choice;
-  setContext('SMUI:chip:choice', choiceStore);
+  setContext('SMUI:chips:choice', choiceStore);
   const filterStore = writable(filter);
   $: $filterStore = filter;
-  setContext('SMUI:chip:filter', filterStore);
-  const selectedStore = writable(selected);
-  $: $selectedStore = selected;
-  setContext('SMUI:chip:selected', selectedStore);
+  setContext('SMUI:chips:filter', filterStore);
 
   let previousSelected = filter ? new Set(selected) : selected;
   $: if (instance && choice && previousSelected !== selected) {
@@ -214,7 +208,7 @@
     }
   }
 
-  function removeAccessor(chipId, accessor) {
+  function removeAccessor(chipId) {
     if (chipId instanceof Object) {
       chipAccessorWeakMap.delete(chipId);
     } else {
