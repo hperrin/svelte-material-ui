@@ -119,7 +119,7 @@ Check out the [Webpack template](https://github.com/hperrin/smui-example-webpack
 
 3. Update `rollup.config.js` with the following configuration
 
-   ```
+   ```js
    // ...
    // Put this along with the other imports.
    import postcss from "rollup-plugin-postcss";
@@ -153,9 +153,9 @@ Check out the [Webpack template](https://github.com/hperrin/smui-example-webpack
 
 4. In the `template.html` file, in the `<head>` section right after `%sapper.base%`, paste the following
 
-   ```
+   ```html
    <!-- SMUI Styles -->
-   <link rel="stylesheet" href="client/smui.css">
+   <link rel="stylesheet" href="client/smui.css" />
    ```
 
 5. Install a SMUI package, and include it from your Svelte files like this
