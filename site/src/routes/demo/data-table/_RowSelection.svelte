@@ -57,6 +57,11 @@
       price: 18,
     },
     {
+      name: 'Horse',
+      description: "She's got some miles on her.",
+      price: 83,
+    },
+    {
       name: 'Bucket',
       description: 'A metal bucket.',
       price: 13,

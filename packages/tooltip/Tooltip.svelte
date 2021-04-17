@@ -95,8 +95,6 @@
   let tooltip = getContext('SMUI:tooltip:wrapper:tooltip');
   const rich = getContext('SMUI:tooltip:rich');
 
-  $: $tooltip = element;
-
   let previousAnchor = null;
   $: if (instance && previousAnchor !== $anchor) {
     if (previousAnchor) {
@@ -216,6 +214,8 @@
         dispatch(getElement(), 'MDCTooltip:hidden');
       },
     });
+
+    $tooltip = element;
 
     return () => {
       if ($anchor) {

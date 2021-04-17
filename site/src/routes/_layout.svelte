@@ -146,7 +146,7 @@
   import Svg from '@smui/common/Svg.svelte';
 
   const { page } = stores();
-  const iframe = $page.path.startsWith('/demo/top-app-bar/iframe');
+  const iframe = $page.path.includes('/iframe');
 
   let mainContent;
   let miniWindow = false;

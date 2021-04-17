@@ -42,6 +42,7 @@
     context === 'top-app-bar:navigation' &&
     dispatch(element, 'SMUI:top-app-bar:icon-button:nav')}
   {href}
+  {...actionProp}
   {...internalAttrs}
   {...$$restProps}><slot /></svelte:component
 >
@@ -84,7 +85,7 @@
   export let component = href == null ? Button : A;
 
   $: actionProp =
-    context === 'data-table:pagination' && action != null
+    context === 'data-table:pagination'
       ? {
           [action === 'first-page'
             ? 'data-first-page'
@@ -96,26 +97,26 @@
             ? 'data-last-page'
             : 'data-action']: 'true',
         }
-      : { action: $$props.action };
+      : { action };
 
   setContext('SMUI:icon:context', 'icon-button');
 
   let oldToggle = null;
-  $: if (element && toggle !== oldToggle) {
-    if (toggle) {
+  $: if (element && getElement() && toggle !== oldToggle) {
+    if (toggle && !instance) {
       instance = new MDCIconButtonToggleFoundation({
         addClass,
         hasClass,
         notifyChange: (evtData) => {
           handleChange(evtData);
-          dispatch(element, 'MDCIconButtonToggle:change', evtData);
+          dispatch(getElement(), 'MDCIconButtonToggle:change', evtData);
         },
         removeClass,
         getAttr,
         setAttr: addAttr,
       });
       instance.init();
-    } else if (instance) {
+    } else if (!toggle && instance) {
       instance.destroy();
       instance = null;
       internalClasses = {};

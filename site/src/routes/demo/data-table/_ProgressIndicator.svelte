@@ -1,4 +1,8 @@
-<DataTable table$aria-label="Todo list" style="width: 100%;">
+<div style="margin-bottom: 1em;">
+  <Button on:click={() => loadThings(true)}>Do Pretend Loading</Button>
+</div>
+
+<DataTable table$aria-label="User list" style="width: 100%;">
   <Head>
     <Row>
       <Cell numeric>ID</Cell>
@@ -25,10 +29,6 @@
     slot="progress"
   />
 </DataTable>
-
-<div style="margin-top: 1em;">
-  <Button on:click={() => loadThings(true)}>Do Pretend Loading</Button>
-</div>
 
 <script>
   import DataTable, { Head, Body, Row, Cell } from '@smui/data-table';

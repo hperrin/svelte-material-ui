@@ -16,6 +16,15 @@
     Progress indicator
   </Demo>
 
+  <Demo component={StickyHeader} file="data-table/iframe.svelte">
+    Sticky header
+    <svelte:fragment slot="subtitle">
+      This is displayed in an iframe and the source viewer shows the iframe
+      source. Sticky headers don't work if any ancestor element has the
+      "overflow" style set to "hidden", "scroll", or "auto".
+    </svelte:fragment>
+  </Demo>
+
   <Demo component={RowSelection} file="data-table/_RowSelection.svelte">
     Row selection
   </Demo>
@@ -29,6 +38,7 @@
   import Demo from '../../../components/Demo.svelte';
   import Simple from './_Simple.svelte';
   import ProgressIndicator from './_ProgressIndicator.svelte';
+  import StickyHeader from './_StickyHeader.svelte';
   import RowSelection from './_RowSelection.svelte';
   import Pagination from './_Pagination.svelte';
 </script>

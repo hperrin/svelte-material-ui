@@ -4,3 +4,8 @@
 
 @include data-table.core-styles;
 @include data-table.theme-baseline;
+
+// Unset overflow on sticker header tables, because it interferes.
+.mdc-data-table--sticky-header > .mdc-data-table__table-container {
+  overflow-x: unset;
+}

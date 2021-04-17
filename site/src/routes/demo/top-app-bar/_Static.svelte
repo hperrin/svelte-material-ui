@@ -90,7 +90,7 @@
 <style>
   .top-app-bar-container {
     max-width: 480px;
-    min-width: 480px;
+    width: 100%;
     height: 320px;
     border: 1px solid
       var(--mdc-theme-text-hint-on-background, rgba(0, 0, 0, 0.1));
@@ -99,6 +99,12 @@
 
     overflow: auto;
     display: inline-block;
+  }
+
+  @media (max-width: 480px) {
+    .top-app-bar-container {
+      margin-right: 0;
+    }
   }
 
   .flexy {

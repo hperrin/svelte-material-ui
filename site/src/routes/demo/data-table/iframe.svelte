@@ -1,0 +1,45 @@
+<DataTable table$aria-label="User list" stickyHeader style="width: 100%;">
+  <Head>
+    <Row>
+      <Cell numeric>ID</Cell>
+      <Cell style="width: 100%;">Name</Cell>
+      <Cell>Username</Cell>
+      <Cell>Email</Cell>
+    </Row>
+  </Head>
+  <Body>
+    {#each items as item (item.id)}
+      <Row>
+        <Cell numeric>{item.id}</Cell>
+        <Cell>{item.name}</Cell>
+        <Cell>{item.username}</Cell>
+        <Cell>{item.email}</Cell>
+      </Row>
+    {/each}
+  </Body>
+</DataTable>
+
+<script>
+  import DataTable, { Head, Body, Row, Cell } from '@smui/data-table';
+
+  let items = [];
+
+  if (typeof fetch !== 'undefined') {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then((response) => response.json())
+      .then((json) => (items = json));
+  }
+</script>
+
+<style>
+  /* Reset some of the demo app styles that interfere. */
+  :global(html) {
+    height: auto;
+    width: auto;
+    position: static;
+  }
+  :global(#sapper, body) {
+    display: block;
+    height: auto;
+  }
+</style>
