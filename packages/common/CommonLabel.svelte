@@ -13,6 +13,8 @@
     'mdc-segmented-button__label': context === 'segmented-button',
     'mdc-data-table__pagination-rows-per-page-label':
       context === 'data-table:pagination',
+    'mdc-data-table__header-cell-label':
+      context === 'data-table:sortable-header-cell',
   })}
   {...context === 'snackbar' ? { 'aria-atomic': 'false' } : {}}
   {tabindex}

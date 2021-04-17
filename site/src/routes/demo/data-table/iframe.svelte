@@ -1,4 +1,4 @@
-<DataTable table$aria-label="User list" stickyHeader style="width: 100%;">
+<DataTable stickyHeader table$aria-label="User list" style="width: 100%;">
   <Head>
     <Row>
       <Cell numeric>ID</Cell>

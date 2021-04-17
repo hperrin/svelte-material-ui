@@ -8,13 +8,33 @@
       'mdc-data-table__header-cell': true,
       'mdc-data-table__header-cell--numeric': numeric,
       'mdc-data-table__header-cell--checkbox': checkbox,
+      'mdc-data-table__header-cell--with-sort': sortable,
+      'mdc-data-table__header-cell--sorted': sortable && $sort === columnId,
       ...internalClasses,
     })}
     on:change={(event) => checkbox && notifyHeaderChange(event)}
     role="columnheader"
     scope="col"
+    data-column-id={columnId}
+    aria-sort={sortable ? ($sort === columnId ? $sortDirection : 'none') : null}
     {...internalAttrs}
-    {...$$restProps}><slot /></th
+    {...$$restProps}
+    >{#if sortable}
+      <div class="mdc-data-table__header-cell-wrapper">
+        <slot />
+        <div
+          class="mdc-data-table__sort-status-label"
+          aria-hidden="true"
+          id="{columnId}-status-label"
+        >
+          {$sort === columnId
+            ? $sortDirection === 'ascending'
+              ? sortAscendingAriaLabel
+              : sortDescendingAriaLabel
+            : ''}
+        </div>
+      </div>
+    {:else}<slot />{/if}</th
   >
 {:else}
   <td
@@ -39,7 +59,7 @@
 </script>
 
 <script>
-  import { onMount, getContext } from 'svelte';
+  import { onMount, getContext, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
@@ -58,10 +78,25 @@
   export let numeric = false;
   export let checkbox = false;
   export let columnId = header ? 'SMUI-data-table-column-' + counter++ : null;
+  export let sortable = getContext('SMUI:data-table:sortable');
 
   let element;
   let internalClasses = {};
   let internalAttrs = {};
+  let sort = getContext('SMUI:data-table:sort');
+  let sortDirection = getContext('SMUI:data-table:sortDirection');
+  let sortAscendingAriaLabel = getContext(
+    'SMUI:data-table:sortAscendingAriaLabel'
+  );
+  let sortDescendingAriaLabel = getContext(
+    'SMUI:data-table:sortDescendingAriaLabel'
+  );
+
+  if (sortable) {
+    setContext('SMUI:label:context', 'data-table:sortable-header-cell');
+    setContext('SMUI:icon-button:context', 'data-table:sortable-header-cell');
+    setContext('SMUI:icon-button:aria-describedby', columnId + '-status-label');
+  }
 
   onMount(() => {
     const accessor = {

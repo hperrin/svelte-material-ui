@@ -32,6 +32,8 @@
   <Demo component={Pagination} file="data-table/_Pagination.svelte">
     Pagination
   </Demo>
+
+  <Demo component={Sortable} file="data-table/_Sortable.svelte">Sortable</Demo>
 </section>
 
 <script>
@@ -41,4 +43,5 @@
   import StickyHeader from './_StickyHeader.svelte';
   import RowSelection from './_RowSelection.svelte';
   import Pagination from './_Pagination.svelte';
+  import Sortable from './_Sortable.svelte';
 </script>

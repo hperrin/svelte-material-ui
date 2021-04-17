@@ -27,6 +27,8 @@
     'mdc-top-app-bar__action-item': context === 'top-app-bar:action',
     'mdc-snackbar__dismiss': context === 'snackbar:actions',
     'mdc-data-table__pagination-button': context === 'data-table:pagination',
+    'mdc-data-table__sort-icon-button':
+      context === 'data-table:sortable-header-cell',
     ...internalClasses,
   })}
   style={Object.entries(internalStyles)
@@ -37,6 +39,7 @@
   aria-label={pressed ? ariaLabelOn : ariaLabelOff}
   data-aria-label-on={ariaLabelOn}
   data-aria-label-off={ariaLabelOff}
+  aria-describedby={ariaDescribedby}
   on:click={() => instance && instance.handleClick()}
   on:click={() =>
     context === 'top-app-bar:navigation' &&
@@ -81,6 +84,7 @@
   let internalStyles = {};
   let internalAttrs = {};
   let context = getContext('SMUI:icon-button:context');
+  let ariaDescribedby = getContext('SMUI:icon-button:aria-describedby');
 
   export let component = href == null ? Button : A;
 

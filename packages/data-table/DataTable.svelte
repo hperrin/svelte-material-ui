@@ -42,16 +42,15 @@
   </div>
 
   {#if $$slots.progress}
-    <div class="mdc-data-table__progress-indicator">
+    <div
+      class="mdc-data-table__progress-indicator"
+      style={Object.entries(progressIndicatorStyles)
+        .map(([name, value]) => `${name}: ${value};`)
+        .join(' ')}
+    >
+      <div class="mdc-data-table__scrim" />
       <slot name="progress" />
     </div>
-    {#if !$progressClosed}
-      <!--
-        MDC docs put this under mdc-data-table__progress-indicator,
-        but then it doesn't cover the table, so I think it goes here.
-      -->
-      <div class="mdc-data-table__scrim" />
-    {/if}
   {/if}
 
   <slot name="paginate" />
@@ -78,6 +77,11 @@
   let className = '';
   export { className as class };
   export let stickyHeader = false;
+  export let sortable = false;
+  export let sort = null;
+  export let sortDirection = 'ascending';
+  export let sortAscendingAriaLabel = 'sorted, ascending';
+  export let sortDescendingAriaLabel = 'sorted, descending';
   export let container$use = [];
   export let container$class = '';
   export let table$use = [];
@@ -89,14 +93,28 @@
   let header;
   let body;
   let internalClasses = {};
+  let progressIndicatorStyles = {};
   let addLayoutListener = getContext('SMUI:addLayoutListener');
   let removeLayoutListener;
   let postMount = false;
   let progressClosed = writable(false);
+  let sortStore = writable(sort);
+  let sortDirectionStore = writable(sortDirection);
 
   setContext('SMUI:checkbox:context', 'data-table');
   setContext('SMUI:linear-progress:context', 'data-table');
   setContext('SMUI:linear-progress:closed', progressClosed);
+  setContext('SMUI:data-table:sortable', sortable);
+  setContext('SMUI:data-table:sort', sortStore);
+  setContext('SMUI:data-table:sortDirection', sortDirectionStore);
+  setContext('SMUI:data-table:sortAscendingAriaLabel', sortAscendingAriaLabel);
+  setContext(
+    'SMUI:data-table:sortDescendingAriaLabel',
+    sortDescendingAriaLabel
+  );
+
+  $: $sortStore = sort;
+  $: $sortDirectionStore = sortDirection;
 
   if (addLayoutListener) {
     removeLayoutListener = addLayoutListener(layout);
@@ -136,6 +154,8 @@
         header.orderedCells[index].removeClass(className);
       },
       notifySortAction: (data) => {
+        sort = data.columnId;
+        sortDirection = data.sortValue;
         dispatch(getElement(), 'MDCDataTable:sorted', data);
       },
       getTableContainerHeight: () => container.getBoundingClientRect().height,
@@ -148,8 +168,8 @@
         }
         return tableHeader.getBoundingClientRect().height;
       },
-      setProgressIndicatorStyles: (_styles) => {
-        /* Not Implemented. */
+      setProgressIndicatorStyles: (styles) => {
+        progressIndicatorStyles = styles;
       },
       addClassAtRowIndex: (rowIndex, className) => {
         body.orderedRows[rowIndex].addClass(className);
@@ -224,7 +244,7 @@
         }
       },
       setSortStatusLabelByHeaderCellIndex: (_columnIndex, _sortValue) => {
-        /* Not Implemented. */
+        // Handled automatically.
       },
     });
 
@@ -270,7 +290,7 @@
     }
 
     const headerCell = closest(
-      event.target,
+      event.detail.target,
       '.mdc-data-table__header-cell--with-sort'
     );
 
