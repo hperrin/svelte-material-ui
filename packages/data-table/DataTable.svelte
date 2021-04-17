@@ -41,6 +41,19 @@
     </table>
   </div>
 
+  {#if $$slots.progress}
+    <div class="mdc-data-table__progress-indicator">
+      <slot name="progress" />
+    </div>
+    {#if !$progressClosed}
+      <!--
+        MDC docs put this under mdc-data-table__progress-indicator,
+        but then it doesn't cover the table, so I think it goes here.
+      -->
+      <div class="mdc-data-table__scrim" />
+    {/if}
+  {/if}
+
   <slot name="paginate" />
 </div>
 
@@ -48,6 +61,7 @@
   import { MDCDataTableFoundation } from '@material/data-table';
   import { closest } from '@material/dom/ponyfill';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
+  import { writable } from 'svelte/store';
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
@@ -78,11 +92,28 @@
   let addLayoutListener = getContext('SMUI:addLayoutListener');
   let removeLayoutListener;
   let postMount = false;
+  let progressClosed = writable(false);
 
   setContext('SMUI:checkbox:context', 'data-table');
+  setContext('SMUI:linear-progress:context', 'data-table');
+  setContext('SMUI:linear-progress:closed', progressClosed);
 
   if (addLayoutListener) {
     removeLayoutListener = addLayoutListener(layout);
+  }
+
+  let previousProgressClosed = null;
+  $: if (
+    $$slots.progress &&
+    instance &&
+    previousProgressClosed !== $progressClosed
+  ) {
+    previousProgressClosed = $progressClosed;
+    if ($progressClosed) {
+      instance.hideProgress();
+    } else {
+      instance.showProgress();
+    }
   }
 
   onMount(() => {

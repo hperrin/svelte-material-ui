@@ -9,6 +9,13 @@
 
   <Demo component={Simple} file="data-table/_Simple.svelte" />
 
+  <Demo
+    component={ProgressIndicator}
+    file="data-table/_ProgressIndicator.svelte"
+  >
+    Progress indicator
+  </Demo>
+
   <Demo component={RowSelection} file="data-table/_RowSelection.svelte">
     Row selection
   </Demo>
@@ -21,6 +28,7 @@
 <script>
   import Demo from '../../../components/Demo.svelte';
   import Simple from './_Simple.svelte';
+  import ProgressIndicator from './_ProgressIndicator.svelte';
   import RowSelection from './_RowSelection.svelte';
   import Pagination from './_Pagination.svelte';
 </script>

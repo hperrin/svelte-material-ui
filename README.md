@@ -280,7 +280,7 @@ New components from the upstream library to build for SMUI v3:
 - [x] Tooltips
 - [x] Touch Target Wrappers
 - [x] Data Table Pagination
-- [ ] Data Table Progress Indicator
+- [x] Data Table Progress Indicator
 - [ ] Data Table Column Sort Buttons
 
 <sub>† This is Sass based, and therefore doesn't require Svelte components. I've included a demo showing how you can use it.</sub>

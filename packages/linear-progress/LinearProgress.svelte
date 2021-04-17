@@ -7,6 +7,7 @@
     'mdc-linear-progress': true,
     'mdc-linear-progress--indeterminate': indeterminate,
     'mdc-linear-progress--closed': closed,
+    'mdc-data-table__linear-progress': context === 'data-table',
     ...internalClasses,
   })}
   style={Object.entries(internalStyles)
@@ -45,7 +46,7 @@
 
 <script>
   import { MDCLinearProgressFoundation } from '@material/linear-progress';
-  import { onMount } from 'svelte';
+  import { onMount, getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
@@ -71,6 +72,12 @@
   let internalStyles = {};
   let bufferBarStyles = {};
   let primaryBarStyles = {};
+  let context = getContext('SMUI:linear-progress:context');
+  let closedStore = getContext('SMUI:linear-progress:closed');
+
+  $: if (closedStore) {
+    $closedStore = closed;
+  }
 
   $: if (instance && instance.getDeterminate() !== !indeterminate) {
     instance.setDeterminate(!indeterminate);
