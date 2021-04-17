@@ -40,6 +40,8 @@
       <slot />
     </table>
   </div>
+
+  <slot name="paginate" />
 </div>
 
 <script>

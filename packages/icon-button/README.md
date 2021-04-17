@@ -54,6 +54,7 @@ An icon button.
 - `toggle`: `false` - Whether the button is a toggle. A toggle button should have two `Icon` children, one with the `on` prop.
 - `pressed`: `false` - Whether the toggle button is pressed.
 - `href`: `null` - A hyperlink ref attribute. If this is present, the icon button will use an `a` element instead of a `button` element.
+- `action`: `null` - Used in the context of a data table pagination. This sets the button's action. ('first-page', 'prev-page', 'next-page', or 'last-page')
 
 ### Events
 

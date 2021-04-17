@@ -189,6 +189,11 @@
           input.deactivateRipple();
         }
       },
+
+      // For select options.
+      getValue() {
+        return $$restProps.value;
+      },
     };
 
     dispatch(element, 'SMUI:list:item:mount', accessor);
@@ -289,17 +294,17 @@
   }
 
   export function getPrimaryText() {
-    const primaryText = getElement().querySelector(
-      '.mdc-list-item__primary-text'
-    );
+    const element = getElement();
+
+    const primaryText = element.querySelector('.mdc-list-item__primary-text');
     if (primaryText) {
       return primaryText.textContent;
     }
-    const text = getElement().querySelector('.mdc-list-item__text');
+    const text = element.querySelector('.mdc-list-item__text');
     if (text) {
       return text.textContent;
     }
-    return getElement().textContent;
+    return element.textContent;
   }
 
   export function getElement() {

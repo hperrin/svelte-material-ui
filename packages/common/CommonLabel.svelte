@@ -11,6 +11,8 @@
     'mdc-snackbar__label': context === 'snackbar',
     'mdc-banner__text': context === 'banner',
     'mdc-segmented-button__label': context === 'segmented-button',
+    'mdc-data-table__pagination-rows-per-page-label':
+      context === 'data-table:pagination',
   })}
   {...context === 'snackbar' ? { 'aria-atomic': 'false' } : {}}
   {tabindex}

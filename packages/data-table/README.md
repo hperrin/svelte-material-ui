@@ -26,7 +26,7 @@ The latest SMUI v3 beta had a lot of changes, and these docs haven't been caught
     <Row>
       <Cell>Name</Cell>
       <Cell>Description</Cell>
-      <Cell>Quantity</Cell>
+      <Cell numeric>Quantity</Cell>
     </Row>
   </Head>
   <Body>

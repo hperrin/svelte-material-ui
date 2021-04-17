@@ -4,7 +4,7 @@
 
 <section>
   <h2>Toolip</h2>
-  <p>Or tooltip, whatever, I can't spell.</p>
+  <p>Or tooltip. Whatever; I can't spell.</p>
 
   <pre class="demo-spaced">npm i -D @smui/tooltip</pre>
 

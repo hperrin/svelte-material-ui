@@ -26,6 +26,7 @@
     'mdc-top-app-bar__navigation-icon': context === 'top-app-bar:navigation',
     'mdc-top-app-bar__action-item': context === 'top-app-bar:action',
     'mdc-snackbar__dismiss': context === 'snackbar:actions',
+    'mdc-data-table__pagination-button': context === 'data-table:pagination',
     ...internalClasses,
   })}
   style={Object.entries(internalStyles)
@@ -71,6 +72,7 @@
   export let ariaLabelOn = null;
   export let ariaLabelOff = null;
   export let href = null;
+  export let action = null;
 
   let element;
   let instance;
@@ -80,6 +82,21 @@
   let context = getContext('SMUI:icon-button:context');
 
   export let component = href == null ? Button : A;
+
+  $: actionProp =
+    context === 'data-table:pagination' && action != null
+      ? {
+          [action === 'first-page'
+            ? 'data-first-page'
+            : action === 'prev-page'
+            ? 'data-prev-page'
+            : action === 'next-page'
+            ? 'data-next-page'
+            : action === 'last-page'
+            ? 'data-last-page'
+            : 'data-action']: 'true',
+        }
+      : { action: $$props.action };
 
   setContext('SMUI:icon:context', 'icon-button');
 

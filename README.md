@@ -279,7 +279,7 @@ New components from the upstream library to build for SMUI v3:
 - [x] Segmented Buttons (This is different than SMUI's button groups.)
 - [x] Tooltips
 - [x] Touch Target Wrappers
-- [ ] Data Table Pagination
+- [x] Data Table Pagination
 - [ ] Data Table Progress Indicator
 - [ ] Data Table Column Sort Buttons
 

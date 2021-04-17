@@ -22,6 +22,8 @@
     'mdc-select--no-label': noLabel || (label == null && !$$slots.label),
     'mdc-select--invalid': invalid !== uninitializedValue && invalid,
     'mdc-select--activated': menuOpen,
+    'mdc-data-table__pagination-rows-per-page-select':
+      context === 'data-table:pagination',
     ...internalClasses,
   })}
   style={Object.entries(internalStyles)
@@ -282,6 +284,7 @@
   let anchorCorner;
   let wrapFocus = false;
   let list;
+  let context = getContext('SMUI:select:context');
   // These are instances, not accessors.
   let leadingIcon;
   let helperText;
@@ -433,6 +436,8 @@
       }
     );
 
+    selectedIndex = getMenuItemValues().indexOf(value);
+
     instance.init();
 
     if (updateInvalid) {
@@ -510,9 +515,7 @@
   }
 
   function getMenuItemValues() {
-    return list
-      .getOrderedList()
-      .map((accessor) => accessor.getAttr('data-value'));
+    return list.getOrderedList().map((accessor) => accessor.getValue());
   }
 
   function getNormalizedXCoordinate(evt) {
