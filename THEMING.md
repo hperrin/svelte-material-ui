@@ -102,6 +102,7 @@ function switchTheme() {
   if (!themeLink) {
     themeLink = document.createElement('link');
     themeLink.rel = 'stylesheet';
+    themeLink.id = 'theme';
   }
   themeLink.href = `client/smui${lightTheme ? '' : '-dark'}.css`;
   document.head.appendChild(themeLink);
