@@ -1,6 +1,6 @@
 {
   "name": "@smui/fab",
-  "version": "3.0.0-beta.9",
+  "version": "3.0.0-beta.10",
   "description": "Svelte Material UI - Floating Action Button",
   "keywords": [
     "svelte",
@@ -30,8 +30,8 @@
   "dependencies": {
     "@material/fab": "^10.0.0",
     "@material/feature-targeting": "^10.0.0",
-    "@smui/common": "^3.0.0-beta.9",
-    "@smui/ripple": "^3.0.0-beta.9"
+    "@smui/common": "^3.0.0-beta.10",
+    "@smui/ripple": "^3.0.0-beta.10"
   },
   "devDependencies": {
     "sass": "^1.32.8"
