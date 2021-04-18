@@ -27,7 +27,7 @@
 
   setContext('SMUI:list:item:role', 'option');
 
-  $: selected = value !== '' && $selectedValue === value;
+  $: selected = value != null && value !== '' && $selectedValue === value;
 
   onMount(setSelectedText);
 

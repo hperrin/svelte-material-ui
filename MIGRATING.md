@@ -126,6 +126,7 @@ New Features in Existing Components
   - New `MDCMenuSurface:closing` event.
 - Select
   - New `hiddenInput` prop.
+  - New `key` prop for using objects as options.
 - Slider
   - New `range`, `start`, `end` props for range sliders.
   - New `valueToAriaValueTextFn` prop for updating the ARIA value attribute.

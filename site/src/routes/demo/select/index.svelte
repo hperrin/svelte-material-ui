@@ -28,6 +28,8 @@
   <Demo component={Disabled} file="select/_Disabled.svelte">Disabled</Demo>
 
   <Demo component={Required} file="select/_Required.svelte">Required</Demo>
+
+  <Demo component={Objects} file="select/_Objects.svelte">Using Objects</Demo>
 </section>
 
 <script>
@@ -40,6 +42,7 @@
   import ShapedOutlined from './_ShapedOutlined.svelte';
   import Disabled from './_Disabled.svelte';
   import Required from './_Required.svelte';
+  import Objects from './_Objects.svelte';
 </script>
 
 <style>

@@ -87,7 +87,7 @@
       <FloatingLabel
         bind:this={floatingLabel}
         id={inputId + '-smui-label'}
-        floatAbove={value !== ''}
+        floatAbove={$selectedTextStore !== ''}
         {required}
         {...prefixFilter($$restProps, 'label$')}
         >{label == null ? '' : label}<slot name="label" /></FloatingLabel
@@ -103,7 +103,7 @@
           <FloatingLabel
             bind:this={floatingLabel}
             id={inputId + '-smui-label'}
-            floatAbove={value !== ''}
+            floatAbove={$selectedTextStore !== ''}
             {required}
             {...prefixFilter($$restProps, 'label$')}
             >{label == null ? '' : label}<slot name="label" /></FloatingLabel
@@ -251,6 +251,7 @@
   export let noLabel = false;
   export let label = null;
   export let value = '';
+  export let key = (item) => item;
   export let dirty = false;
   export let invalid = uninitializedValue;
   export let updateInvalid = invalid === uninitializedValue;
@@ -305,8 +306,8 @@
   $: $valueStore = value;
   setContext('SMUI:select:value', valueStore);
 
-  $: if (instance && instance.getValue() !== value) {
-    instance.setValue(value);
+  $: if (instance && instance.getValue() !== key(value)) {
+    instance.setValue(key(value));
   }
 
   let previousSelectedIndex = selectedIndex;
@@ -330,7 +331,7 @@
     instance.setDisabled(disabled);
   }
 
-  $: if (instance && instance.isValid() !== !invalid) {
+  $: if (instance && dirty && instance.isValid() !== !invalid) {
     if (updateInvalid) {
       invalid = !instance.isValid();
     } else {
@@ -376,18 +377,18 @@
         setMenuWrapFocus: (value) => {
           wrapFocus = value;
         },
-        getSelectedIndex: () => {
-          const index = selectedIndex;
-          return index instanceof Array ? index[0] : index;
-        },
+        getSelectedIndex: () => selectedIndex,
         setSelectedIndex: (index) => {
+          // Don't update the instance again.
+          previousSelectedIndex = index;
           selectedIndex = index;
+          value = getMenuItemValues()[selectedIndex];
         },
         focusMenuItemAtIndex: (index) => {
           list.focusItemAtIndex(index);
         },
         getMenuItemCount: () => list.items.length,
-        getMenuItemValues,
+        getMenuItemValues: () => getMenuItemValues().map(key),
         getMenuItemTextAtIndex: (index) => list.getPrimaryTextAtIndex(index),
         isTypeaheadInProgress: () => list.typeaheadInProgress,
         typeaheadMatchItem: (nextChar, startingIndex) =>
@@ -402,14 +403,15 @@
         activateBottomLine: () => lineRipple && lineRipple.activate(),
         deactivateBottomLine: () => lineRipple && lineRipple.deactivate(),
 
-        notifyChange: (selectedValue) => {
-          const index = selectedIndex;
-          value = selectedValue;
+        notifyChange: (_selectedValue) => {
           dirty = true;
           if (updateInvalid) {
             invalid = !instance.isValid();
           }
-          dispatch(getElement(), 'MDCSelect:change', { value, index });
+          dispatch(getElement(), 'MDCSelect:change', {
+            value,
+            index: selectedIndex,
+          });
         },
 
         // getOutlineAdapterMethods
@@ -439,10 +441,6 @@
     selectedIndex = getMenuItemValues().indexOf(value);
 
     instance.init();
-
-    if (updateInvalid) {
-      invalid = !instance.isValid();
-    }
 
     return () => {
       instance.destroy();
