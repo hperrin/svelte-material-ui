@@ -65,7 +65,7 @@
     { label: 'Mango', price: 25 },
   ];
 
-  let valueA = '';
-  let valueB = '';
-  let valueC = '';
+  let valueA = null;
+  let valueB = null;
+  let valueC = null;
 </script>
