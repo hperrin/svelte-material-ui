@@ -25,7 +25,7 @@ const onwarn = (warning, onwarn) =>
 
 const postcssOptions = (light) => ({
   extensions: ['.scss'],
-  extract: `smui.css`,
+  extract: 'smui.css',
   minimize: true,
   onExtract: light
     ? null

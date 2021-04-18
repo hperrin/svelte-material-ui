@@ -44,7 +44,7 @@ import fs from 'fs';
 
 const postcssOptions = (light) => ({
   extensions: ['.scss'],
-  extract: `smui.css`,
+  extract: 'smui.css',
   minimize: true,
   onExtract: light
     ? null
