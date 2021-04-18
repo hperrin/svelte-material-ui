@@ -32,6 +32,10 @@ Here are some features you should know about:
 
 Upgrading from v2? Check out the [upgrade instructions](MIGRATING.md#smui-2---smui-3) in the [migration doc](MIGRATING.md).
 
+# Need Help?
+
+If you need help using SMUI, join the new [Discord server](https://discord.gg/aFzmkrmg9P).
+
 # Installation
 
 ## Installing Packages
