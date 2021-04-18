@@ -2,21 +2,28 @@
 
 This doc contains information that will help you migrate your code from an older version of SMUI to a newer one. Things that you will need to change in your existing code will be written here. It would also be helpful to check the MDC changelog if the upstream MDC versions has changed between SMUI versions.
 
-## SMUI 2 -> SMUI 3
+# SMUI 2 -> SMUI 3
+
+You will need to migrate to Dart Sass. `node-sass` is no longer supported, as it is deprecated and too old now.
+
+```sh
+npm un -D node-sass
+npm i -D sass
+```
 
 SMUI 3 migrated to upstream MDC 10.0 from 4.0:
 https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#1000-2021-02-05
 
 There are [newly updated instructiong](README.md#integration-for-sapper) for using SMUI in Sapper.
 
-### Breaking Changes
+## Breaking Changes
 
-#### Theming, Sass
+### Theming, Sass
 
 - MDC-Web migrated to the "@use" syntax, so mixins, functions, and variables are namespaced by the "@use" statement now instead of a prefix.
 - Theming has changed, so you'll need to update your "\_smui-theme.scss" file. Follow [this guide](THEMING.md).
 
-#### Components
+### Components
 
 - Chips
   - You now need to use `let:chip` on the set and pass it to the chip with `{chip}`.
@@ -60,20 +67,31 @@ There are [newly updated instructiong](README.md#integration-for-sapper) for usi
   - You should now set `required` prop on the Textfield instead of `input$required`.
   - Manual setup now requires passing the sub-components into Textfield with `input`, `floatingLabel`, `lineRipple`, and `notchedOutline` props.
 
-### New Features.
+## New Features.
 
-#### Theming, Sass
+### Theming, Sass
 
 - Paper
   - New `paper-color` mixin.
 - Switch
   - New `color` prop.
 
-#### Components
+### Components
 
 - All components have a `getElement` function that will return their top level DOM element.
 - All components now forward **all** events, and only listen for them if bounded.
 - They can also take event modifiers with the ":" syntax istead of "|" ("on:click:capture={handler}").
+
+New Components
+
+- Banners
+- Circular Progress
+- Layout Grids
+- Segmented Buttons
+- Tooltips
+- Touch Target Wrappers
+
+New Features in Existing Components
 
 - Chips
   - New `nonInteractive` prop on Set.
@@ -84,6 +102,9 @@ There are [newly updated instructiong](README.md#integration-for-sapper) for usi
   - New `stickyHeader` prop.
   - New `columnId` prop on Cell (defaults to an automatic ID).
   - New `rowId` prop on Row (defaults to an automatic ID).
+  - Pagination
+  - Progress Indicator
+  - Column Sort Buttons
 - Dialog
   - New `selection` prop.
 - Drawer
@@ -120,7 +141,7 @@ There are [newly updated instructiong](README.md#integration-for-sapper) for usi
 
 If you have trouble upgrading with these instructions, you can raise an issue on GitHub.
 
-## SMUI 1 -> SMUI 2
+# SMUI 1 -> SMUI 2
 
 SMUI 2 migrated to upstream MDC 4.0 from 3.0:
 https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#400-2019-11-02-1

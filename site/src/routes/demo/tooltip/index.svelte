@@ -1,5 +1,5 @@
 <svelte:head>
-  <title>Toolip - SMUI</title>
+  <title>Tooltip - SMUI</title>
 </svelte:head>
 
 <section>

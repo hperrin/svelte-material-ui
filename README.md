@@ -8,24 +8,6 @@ A library of Svelte 3 Material UI components, based on the [Material Design Comp
 
 https://sveltematerialui.com
 
-# Installation
-
-You _should_ install the packages individually. Alternatively, you can install all of them at once with the `svelte-material-ui` package.
-
-```sh
-# Install the packages individually.
-npm install --save-dev @smui/button
-npm install --save-dev @smui/card
-# ...
-
-# Or, you can install this to get them all.
-npm install --save-dev svelte-material-ui
-```
-
-## Migration
-
-If you are upgrading from an older version of SMUI to a newer one, it might be worth checking out the [migration doc](MIGRATING.md). (Now updated for v3.)
-
 # Features
 
 Here are some features you should know about:
@@ -46,90 +28,73 @@ Here are some features you should know about:
 - Labels and icons are named exports in the components that use them, or you can use the 'Label' and 'Icon' exports from '@smui/common'. (Except for chips labels and icons, textfield icons, and select icons, because they are special snowflakes.)
 - SMUI [supports RTL languages](https://svelte.dev/repl/c2ff2d5dd5404eccb901ba04ef0161be?version=3.37.0).
 
-# Usage
+# Migration
 
-Check out the [Webpack template](https://github.com/hperrin/smui-example-webpack) and the [Rollup template](https://github.com/hperrin/smui-example-rollup) for examples.
+Upgrading from v2? Check out the [upgrade instructions](MIGRATING.md#smui-2---smui-3) in the [migration doc](MIGRATING.md).
 
-1. To bundle this in your own code, use a Sass processor (not a Sass Svelte **preprocessor**, but a Sass **processor**). SMUI's `index.js` files import _.scss files_, and they need to be compiled by a Sass processor. SMUI's `*.svelte` files don't include any Sass or CSS, so a Svelte _preprocessor_ is not necessary.
-   - Alternatively, you can import components from the `bare.js` files, which don't include any styling. Then you can either import the Sass yourself, or use the `bare.css` files which are precompiled (with the default theme) and packaged with components. Then you can skip the next step, but your [theming options](THEMING.md#theming-the-bare-css) are limited.
-   - Note that `node-sass` is deprecated, and SMUI uses features that it doesn't support. You should use [Dart Sass](https://www.npmjs.com/package/sass) instead.
-2. You must have a `_smui-theme.scss` file in one of your Sass include paths to compile the Sass. That is where you [set the theme variables](THEMING.md). If it's empty, it will use the default theme values from MDC-Web.
-3. If you want the Material Icon, Roboto, and Roboto Mono fonts, be sure to include these stylesheets (or include them from a package):
-   ```html
-   <link
-     rel="stylesheet"
-     href="https://fonts.googleapis.com/icon?family=Material+Icons"
-   />
-   <link
-     rel="stylesheet"
-     href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700"
-   />
-   <link
-     rel="stylesheet"
-     href="https://fonts.googleapis.com/css?family=Roboto+Mono"
-   />
-   ```
-4. You're now ready to install and use SMUI packages. Here's some example code:
+# Installation
 
-   ```svelte
-   <Button on:click={() => alert('Clicked!')}>Just a Button</Button>
-   <Button variant="raised"><Label>Raised Button, Using a Label</Label></Button>
-   <Button some-arbitrary-prop="placed on the actual button">Button</Button>
+## Installing Packages
 
-   <Fab on:click={() => alert('Clicked!')} extended>
-     <Icon class="material-icons" style="margin-right: 12px;">favorite</Icon>
-     <Label>Extended FAB</Label>
-   </Fab>
+You _should_ install the packages individually. Alternatively, you can install all of them at once with the `svelte-material-ui` package.
 
-   <Textfield bind:value={superText} label="Super Text">
-     <HelperText slot="helper"
-       >What you put in this box will become super!</HelperText
-     >
-   </Textfield>
+```sh
+# Install the packages individually.
+npm install --save-dev @smui/button
+npm install --save-dev @smui/card
+# ...
 
-   <script>
-     import Button from '@smui/button';
-     import Fab from '@smui/fab';
-     import Textfield from '@smui/textfield';
-     import HelperText from '@smui/textfield/helper-text';
-     import { Label, Icon } from '@smui/common';
+# Or, you can install this to get them all.
+npm install --save-dev svelte-material-ui
+```
 
-     let superText = '';
-   </script>
-   ```
+(From here there are [different instructions](#integration-for-sapper) for Sapper.)
 
-## Integration for Sapper
+You also need [Dart Sass](https://www.npmjs.com/package/sass). (`node-sass` is deprecated, and SMUI uses features that it doesn't support.)
 
-<sub>\* As of 2021-Apr-06, these instructions will now work without a flash of unstyled content!</sub>
+```sh
+npm install --save-dev sass
+```
 
-1. Install the following packages as dev dependencies
-   - With yarn
-     ```sh
-     yarn add rollup-plugin-postcss sass --dev
-     ```
-   - With npm
-     ```sh
-     npm i -D rollup-plugin-postcss sass
-     ```
-2. Create the `src/theme/_smui-theme.scss` file
+For Rollup, you will need the PostCSS plugin. (Check out the [Rollup template](https://github.com/hperrin/smui-example-rollup).)
 
-   ```sh
-   mkdir src/theme && touch src/theme/_smui-theme.scss
-   ```
+```sh
+npm install --save-dev rollup-plugin-postcss
+```
 
-3. Update `rollup.config.js` with the following configuration
+Or, for Webpack, you will need the Style, CSS, and Sass Loaders. (Check out the [Webpack template](https://github.com/hperrin/smui-example-webpack).)
 
-   ```js
-   // ...
-   // Put this along with the other imports.
-   import postcss from "rollup-plugin-postcss";
+```sh
+npm install --save-dev style-loader css-loader sass-loader
+```
 
-   // ...
+If you're not using a bunbler, you can import components from the `bare.js` files, which don't include any styling. Then you can use the `bare.css` files which are precompiled (with the default theme) and packaged with components. Then you can skip the next step, but your [theming options](THEMING.md#theming-the-bare-css) are limited.
 
-   // Insert the following right before the "export default {" line:
-   const postcssOptions = (extract) => ({
-      extensions: ['.scss'],
-      extract: extract ? 'smui.css' : false,
+## Setting up Sass
+
+You must have a `_smui-theme.scss` file in one of your Sass include paths to compile the Sass. That is where you [set the theme variables](THEMING.md). If it's empty, it will use the default theme values from MDC-Web. You can create a "theme" directory in your source directory, and create the file there.
+
+```sh
+mkdir src/theme
+touch src/theme/_smui-theme.scss
+```
+
+In your bundler's config, you'll need to tell your bundler to compile Sass files.
+
+For Rollup, add the following plugin to your "rollup.config.js". (Adjusting the source path if needed.)
+
+```js
+import postcss from 'rollup-plugin-postcss';
+
+// ...
+
+module.exports = {
+  // ...
+  plugins: [
+    // ...
+
+    postcss({
+      extract: true,
       minimize: true,
       use: [
         [
@@ -139,40 +104,182 @@ Check out the [Webpack template](https://github.com/hperrin/smui-example-webpack
           },
         ],
       ],
-    });
+    }),
 
-   // Right after the "svelte" plugin in the "client:" section, paste the following plugin.
-   postcss(postcssOptions(true)),
+    // ...
+  ],
+};
+```
 
-   // Right after the "svelte" plugin in the "server:" section, paste the following plugin.
-   postcss(postcssOptions(false)),
+Or, for Webpack, add the following module rule to your "webpack.config.js". (Adjusting the source path if needed.)
 
-   // Don't touch the "serviceworker:" section.
-   // ...
-   ```
+```js
+// ...
 
-4. In the `template.html` file, in the `<head>` section right after `%sapper.base%`, paste the following
+module.exports = {
+  // ...
+  module: {
+    rules: [
+      // ...
 
-   ```html
-   <!-- SMUI Styles -->
-   <link rel="stylesheet" href="client/smui.css" />
-   ```
+      {
+        test: /\.s?css$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              // Prefer `dart-sass`
+              implementation: require('sass'),
+              sassOptions: {
+                includePaths: ['./src/theme', './node_modules'],
+              },
+            },
+          },
+        ],
+      },
 
-5. Install a SMUI package, and include it from your Svelte files like this
+      // ...
+    ],
+  },
+};
+```
 
-   ```svelte
-   <Button on:click={() => alert('Clicked!')}>Click Me!</Button>
+## Material Fonts
 
-   <script>
-     import Button from '@smui/button';
-   </script>
-   ```
+If you want the Material Icon, Roboto, and Roboto Mono fonts, be sure to include these stylesheets (or include them from a package).
 
-6. Profit!
+```html
+<!-- Material Icons -->
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/icon?family=Material+Icons"
+/>
+<!-- Roboto -->
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700"
+/>
+<!-- Roboto Mono -->
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Roboto+Mono"
+/>
+```
+
+## Using SMUI Components
+
+You're now ready to use SMUI packages. Here's some example code.
+
+```svelte
+<Button on:click={() => alert('Clicked!')}>Just a Button</Button>
+<Button variant="raised"><Label>Raised Button, Using a Label</Label></Button>
+<Button some-arbitrary-prop="placed on the actual button">Button</Button>
+
+<Fab on:click={() => alert('Clicked!')} extended>
+  <Icon class="material-icons" style="margin-right: 12px;">favorite</Icon>
+  <Label>Extended FAB</Label>
+</Fab>
+
+<Textfield bind:value={superText} label="Super Text">
+  <HelperText slot="helper"
+    >What you put in this box will become super!</HelperText
+  >
+</Textfield>
+
+<script>
+  import Button from '@smui/button';
+  import Fab from '@smui/fab';
+  import Textfield from '@smui/textfield';
+  import HelperText from '@smui/textfield/helper-text';
+  import { Label, Icon } from '@smui/common';
+
+  let superText = '';
+</script>
+```
+
+# Integration for Sapper
+
+<sub>\* As of 2021-Apr-06, these instructions will now work without a flash of unstyled content!</sub>
+
+Install the following packages as dev dependencies
+
+```sh
+npm i -D rollup-plugin-postcss sass
+```
+
+Create the `src/theme/_smui-theme.scss` file
+
+```sh
+mkdir src/theme
+touch src/theme/_smui-theme.scss
+```
+
+Update `rollup.config.js` with the following configuration
+
+```js
+// ...
+// Put this along with the other imports.
+import postcss from "rollup-plugin-postcss";
+
+// ...
+
+// Insert the following right before the "export default {" line:
+const postcssOptions = (extract) => ({
+  extensions: ['.scss'],
+  extract: extract ? 'smui.css' : false,
+  minimize: true,
+  use: [
+    [
+      'sass',
+      {
+        includePaths: ['./src/theme', './node_modules'],
+      },
+    ],
+  ],
+});
+
+// Right after the "svelte" plugin in the "client:" section, paste the following plugin.
+postcss(postcssOptions(true)),
+
+// Right after the "svelte" plugin in the "server:" section, paste the following plugin.
+postcss(postcssOptions(false)),
+
+// Don't touch the "serviceworker:" section.
+// ...
+```
+
+In the `template.html` file, in the `<head>` section right after `%sapper.base%`, paste the following
+
+```html
+<!-- SMUI Styles -->
+<link rel="stylesheet" href="client/smui.css" />
+<!-- Material Icons -->
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/icon?family=Material+Icons"
+/>
+<!-- Roboto -->
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700"
+/>
+```
+
+You're now ready to use SMUI packages. Here's some example code.
+
+```svelte
+<Button on:click={() => alert('Clicked!')}>Click Me!</Button>
+
+<script>
+  import Button from '@smui/button';
+</script>
+```
 
 You can also [set up a dark mode](THEMING.md#dark-mode) in your Sapper app.
 
-## Loading SMUI in the Svelte REPL
+# Using SMUI in the Svelte REPL
 
 Check out an [example REPL](https://svelte.dev/repl/aa857c3bb5eb478cbe6b1fd6c6da522a?version=3.37.0).
 
@@ -270,18 +377,6 @@ Click a component below to go to its documentation. (Note that this documentatio
 - [Top App Bar](packages/top-app-bar/README.md)
 - [Touch Target](packages/touch-target/README.md)
 - [Typography](https://sveltematerialui.com/demo/typography/)†
-
-New components from the upstream library to build for SMUI v3:
-
-- [x] Banners
-- [x] Circular Progress
-- [x] Layout Grids (Not new to MDC, but I haven't made a component for it.)
-- [x] Segmented Buttons (This is different than SMUI's button groups.)
-- [x] Tooltips
-- [x] Touch Target Wrappers
-- [x] Data Table Pagination
-- [x] Data Table Progress Indicator
-- [x] Data Table Column Sort Buttons
 
 <sub>† This is Sass based, and therefore doesn't require Svelte components. I've included a demo showing how you can use it.</sub>
 
