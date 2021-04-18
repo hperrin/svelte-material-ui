@@ -28,6 +28,10 @@ Here are some features you should know about:
 - Labels and icons are named exports in the components that use them, or you can use the 'Label' and 'Icon' exports from '@smui/common'. (Except for chips labels and icons, textfield icons, and select icons, because they are special snowflakes.)
 - SMUI [supports RTL languages](https://svelte.dev/repl/c2ff2d5dd5404eccb901ba04ef0161be?version=3.37.0).
 
+# Installation
+
+To get started, check out the [installation docs](INSTALL.md).
+
 # Migration
 
 Upgrading from v2? Check out the [upgrade instructions](MIGRATING.md#smui-2---smui-3) in the [migration doc](MIGRATING.md).
@@ -35,10 +39,6 @@ Upgrading from v2? Check out the [upgrade instructions](MIGRATING.md#smui-2---sm
 # Need Help?
 
 If you need help using SMUI, join the new [Discord server](https://discord.gg/aFzmkrmg9P).
-
-# Installation
-
-To get started, check out the [installation docs](INSTALL.md).
 
 # Components
 
