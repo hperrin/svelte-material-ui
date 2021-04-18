@@ -36,7 +36,7 @@ a:visited {
 
 ## Dark Mode
 
-The best way to implement a dark mode is to recompile the Sass with a different theme. This involves running the same code through your bundler again with a different Sass configuration. The demo site accomplishes this within Sapper by using the following modified code from the Sapper installation instructions.
+The best way to implement a dark mode is to recompile the Sass with a different theme. This involves running the same code through your bundler again with a different Sass configuration. The website accomplishes this within Sapper by using the following modified code from the Sapper installation instructions.
 
 ```js
 import fs from 'fs';
