@@ -20,24 +20,3 @@
   import Textfield from '@smui/textfield';
   import HelperText from '@smui/textfield/helper-text/index';
 </script>
-
-<style>
-  .margins {
-    margin: 18px 0 24px;
-  }
-
-  .columns {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-
-  .columns > * {
-    flex-basis: 0;
-    min-width: 218px;
-  }
-
-  .columns :global(.mdc-text-field) {
-    width: 218px;
-  }
-</style>

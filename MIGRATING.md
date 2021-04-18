@@ -14,7 +14,7 @@ npm i -D sass
 SMUI 3 migrated to upstream MDC 10.0 from 4.0:
 https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#1000-2021-02-05
 
-There are [newly updated instructiong](README.md#integration-for-sapper) for using SMUI in Sapper.
+There are [newly updated instructiong](INSTALL.md#integration-for-sapper) for using SMUI in Sapper.
 
 ## Breaking Changes
 
@@ -80,7 +80,7 @@ There are [newly updated instructiong](README.md#integration-for-sapper) for usi
 
 - All components have a `getElement` function that will return their top level DOM element.
 - All components now forward **all** events, and only listen for them if bounded.
-- They can also take event modifiers with the ":" syntax istead of "|" ("on:click:capture={handler}").
+- They can also take event modifiers with the ":" syntax istead of "|" (`on:click:capture={handler}`).
 
 New Components
 

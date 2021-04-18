@@ -10,9 +10,3 @@
 
   let value = '';
 </script>
-
-<style>
-  .margins {
-    margin: 18px 0 24px;
-  }
-</style>

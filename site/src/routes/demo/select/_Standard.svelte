@@ -57,22 +57,3 @@
   let valueLeadingIcon = '';
   let valueInvalid = '';
 </script>
-
-<style>
-  .margins {
-    margin: 18px 0 24px;
-  }
-
-  .columns {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-
-  .columns > * {
-    margin-left: 12px;
-  }
-  .columns > *:first-child {
-    margin-left: 0;
-  }
-</style>

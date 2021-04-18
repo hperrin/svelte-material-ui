@@ -107,7 +107,7 @@
               style="width: 40px; height: 40px;"
               viewBox="0 0 24 24"
             >
-              <path fill="currentColor" d={mdiHumanHandsup} />
+              <path fill="currentColor" d={mdiHuman} />
             </Icon>
           </Graphic>
           <Text>
@@ -265,13 +265,12 @@
   <div style="margin: 3em 0;">
     <p>
       [
-      <a href="https://github.com/hperrin/svelte-material-ui" target="_blank"
-        >GitHub</a
-      >
+      <a href="https://discord.gg/aFzmkrmg9P">Discord</a>
       |
-      <a
-        href="https://github.com/hperrin/svelte-material-ui/issues"
-        target="_blank">Issue Tracker</a
+      <a href="https://github.com/hperrin/svelte-material-ui">GitHub</a>
+      |
+      <a href="https://github.com/hperrin/svelte-material-ui/issues"
+        >Issue Tracker</a
       >
       | &copy; 2021 Hunter Perrin ]
     </p>
@@ -282,7 +281,7 @@
   import {
     mdiMaterialDesign,
     mdiSass,
-    mdiHumanHandsup,
+    mdiHuman,
     mdiGestureTap,
     mdiMonitorScreenshot,
     mdiPalette,

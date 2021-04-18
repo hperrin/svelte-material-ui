@@ -3,8 +3,8 @@
     textarea
     bind:value
     label="Label"
-    input$rows="6"
-    input$cols="18"
+    input$rows="4"
+    input$cols="24"
     input$resizable={false}
   >
     <HelperText slot="helper">Helper Text</HelperText>
@@ -17,9 +17,3 @@
 
   let value = '';
 </script>
-
-<style>
-  .margins {
-    margin: 18px 0 24px;
-  }
-</style>

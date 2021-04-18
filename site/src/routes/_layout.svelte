@@ -33,18 +33,28 @@
               <Tooltip>View Docs: {repo.split('/').slice(-1)[0]}</Tooltip>
             </Wrapper>
           {/each}
-          <Wrapper>
-            <IconButton
-              href={`https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes${activeSection.route}`}
-              target="_blank"
-            >
-              <Icon component={Svg} viewBox="0 0 24 24">
-                <path fill="currentColor" d={mdiCodeTags} />
-              </Icon>
-            </IconButton>
-            <Tooltip>View Source Directory</Tooltip>
-          </Wrapper>
+          {#if !activeSection.nosource}
+            <Wrapper>
+              <IconButton
+                href={`https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes${activeSection.route}`}
+                target="_blank"
+              >
+                <Icon component={Svg} viewBox="0 0 24 24">
+                  <path fill="currentColor" d={mdiCodeTags} />
+                </Icon>
+              </IconButton>
+              <Tooltip>View Source Directory</Tooltip>
+            </Wrapper>
+          {/if}
         {/if}
+        <Wrapper>
+          <IconButton href="https://discord.gg/aFzmkrmg9P">
+            <Icon component={Svg} viewBox="0 0 24 24">
+              <path fill="currentColor" d={mdiDiscord} />
+            </Icon>
+          </IconButton>
+          <Tooltip>Join the Discord Server</Tooltip>
+        </Wrapper>
         <Wrapper>
           <IconButton href="https://twitter.com/SciActive">
             <Icon component={Svg} viewBox="0 0 24 24">
@@ -90,22 +100,26 @@
       <Content>
         <List>
           {#each sections as section (section.name)}
-            <Item
-              bind:this={section.component}
-              nonInteractive={!('route' in section || 'shortcut' in section)}
-              href={'route' in section
-                ? section.route
-                : 'shortcut' in section
-                ? section.shortcut
-                : null}
-              on:click={() => pickSection(section)}
-              activated={'route' in section && section.route === $page.path}
-              style={section.indent
-                ? 'margin-left: ' + section.indent * 25 + 'px;'
-                : ''}
-            >
-              <Text class="mdc-theme--on-secondary">{section.name}</Text>
-            </Item>
+            {#if section.separator}
+              <Separator />
+            {:else}
+              <Item
+                bind:this={section.component}
+                nonInteractive={!('route' in section || 'shortcut' in section)}
+                href={'route' in section
+                  ? section.route
+                  : 'shortcut' in section
+                  ? section.shortcut
+                  : null}
+                on:click={() => pickSection(section)}
+                activated={'route' in section && section.route === $page.path}
+                style={section.indent
+                  ? 'margin-left: ' + section.indent * 25 + 'px;'
+                  : ''}
+              >
+                <Text class="mdc-theme--on-secondary">{section.name}</Text>
+              </Item>
+            {/if}
           {/each}
         </List>
       </Content>
@@ -128,6 +142,7 @@
   import {
     mdiFileDocument,
     mdiCodeTags,
+    mdiDiscord,
     mdiTwitter,
     mdiGithub,
     mdiWeatherSunny,
@@ -139,7 +154,7 @@
   import TopAppBar, { Row, Section, Title } from '@smui/top-app-bar';
   import Drawer, { Content, Scrim, AppContent } from '@smui/drawer';
   import IconButton from '@smui/icon-button';
-  import List, { Item, Text } from '@smui/list';
+  import List, { Item, Text, Separator } from '@smui/list';
   import Tooltip, { Wrapper } from '@smui/tooltip';
   import { Icon } from '@smui/common';
   import A from '@smui/common/A.svelte';
@@ -167,6 +182,27 @@
   }
 
   const sections = [
+    {
+      name: 'Installation',
+      route: '/INSTALL.md/',
+      indent: 0,
+      nosource: true,
+    },
+    {
+      name: 'Theming',
+      route: '/THEMING.md/',
+      indent: 0,
+      nosource: true,
+    },
+    {
+      name: 'Migrating',
+      route: '/MIGRATING.md/',
+      indent: 0,
+      nosource: true,
+    },
+    {
+      separator: true,
+    },
     {
       name: 'Banner',
       route: '/demo/banner/',
@@ -459,7 +495,11 @@
     mainContent.scrollTop = 0;
 
     // Svelte/Sapper is not updated the components correctly, so I need this.
-    sections.forEach((section) => section.component.$set({ activated: false }));
+    sections.forEach((section) => {
+      if (!section.separator) {
+        section.component.$set({ activated: false });
+      }
+    });
     section.component.$set({ activated: true });
 
     activeSection =

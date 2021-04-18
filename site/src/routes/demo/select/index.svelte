@@ -41,3 +41,22 @@
   import Disabled from './_Disabled.svelte';
   import Required from './_Required.svelte';
 </script>
+
+<style>
+  * :global(.margins) {
+    margin: 18px 0 24px;
+  }
+
+  * :global(.columns) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  * :global(.columns > *) {
+    margin-right: 12px;
+  }
+  * :global(.columns > *:last-child) {
+    margin-right: 0;
+  }
+</style>

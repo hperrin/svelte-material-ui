@@ -131,3 +131,31 @@
   import DifferentTypes from './_DifferentTypes.svelte';
   import ManualSetup from './_ManualSetup.svelte';
 </script>
+
+<style>
+  * :global(.margins) {
+    margin: 18px 0 24px;
+  }
+
+  * :global(.columns) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  * :global(.columns > *) {
+    flex-basis: 0;
+    min-width: 218px;
+  }
+
+  * :global(.columns .mdc-text-field),
+  * :global(.columns .mdc-text-field + .mdc-text-field-helper-line) {
+    width: 218px;
+  }
+
+  * :global(.columns .status) {
+    width: auto;
+    word-break: break-all;
+    overflow-wrap: break-word;
+  }
+</style>

@@ -18,6 +18,9 @@
 @use '@smui/paper';
 @use '@material/theme';
 
+// Typography mixins.
+@use "@material/typography";
+
 // Main Top App Bar styling.
 @use '@material/top-app-bar';
 .mdc-top-app-bar.demo-top-app-bar {
@@ -107,5 +110,31 @@ body,
 @media (max-width: 460px) {
   .demo-main-content > section {
     padding: 16px;
+  }
+}
+
+section.markdown {
+  h1 {
+    @include typography.typography('headline2');
+  }
+
+  h2 {
+    @include typography.typography('headline3');
+  }
+
+  h3 {
+    @include typography.typography('headline4');
+  }
+
+  h4 {
+    @include typography.typography('headline5');
+  }
+
+  h5 {
+    @include typography.typography('headline6');
+  }
+
+  pre {
+    padding-left: 2em;
   }
 }

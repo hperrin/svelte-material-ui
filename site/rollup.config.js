@@ -1,6 +1,8 @@
 import path from 'path';
 import fs from 'fs';
 import postcss from 'rollup-plugin-postcss';
+import { mdsvex } from 'mdsvex';
+import slug from 'remark-slug';
 import resolve from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
 import commonjs from '@rollup/plugin-commonjs';
@@ -61,6 +63,14 @@ export default {
       }),
 
       svelte({
+        extensions: ['.svelte', '.svx', '.md'],
+        preprocess: mdsvex({
+          extensions: ['.svx', '.md'],
+          highlight: {
+            alias: { svelte: 'html' },
+          },
+          remarkPlugins: [slug],
+        }),
         compilerOptions: {
           dev,
           hydratable: true,
@@ -124,6 +134,14 @@ export default {
       }),
 
       svelte({
+        extensions: ['.svelte', '.svx', '.md'],
+        preprocess: mdsvex({
+          extensions: ['.svx', '.md'],
+          highlight: {
+            alias: { svelte: 'html' },
+          },
+          remarkPlugins: [slug],
+        }),
         compilerOptions: {
           dev,
           generate: 'ssr',
