@@ -1,7 +1,9 @@
 <div>
-  <!-- Note that tabs must be unique. (They cannot === each other.) -->
+  <!--
+    Note: tabs must be unique. (They cannot === each other.)
+  -->
   <TabBar tabs={['Home', 'Merchandise', 'About Us']} let:tab bind:active>
-    <!-- Notice that the `tab` property is required! -->
+    <!-- Note: the `tab` property is required! -->
     <Tab {tab}>
       <Label>{tab}</Label>
     </Tab>

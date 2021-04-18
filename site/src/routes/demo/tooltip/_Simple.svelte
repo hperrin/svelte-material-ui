@@ -3,7 +3,7 @@
   style="display: flex; flex-wrap: wrap; align-items: center;"
 >
   <!--
-    Note that the wrapper on a simple tooltip
+    Note: the wrapper on a simple tooltip
     doesn't create any DOM elements.
   -->
   <Wrapper>
@@ -11,7 +11,7 @@
       <Label>Button</Label>
     </Button>
     <!--
-      Note that the toolip element in a simple
+      Note: the toolip element in a simple
       tooltip is hoisted up to the body element.
     -->
     <Tooltip>Tooltip on a button.</Tooltip>

@@ -9,7 +9,7 @@
   <Head>
     <Row>
       <!--
-        Note that whatever you supply to "columnId" is
+        Note: whatever you supply to "columnId" is
         appended with "-status-label" and used as an ID
         for the hidden label that describes the sort
         status to screen readers.

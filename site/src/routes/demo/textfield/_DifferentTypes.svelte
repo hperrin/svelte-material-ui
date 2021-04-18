@@ -21,7 +21,10 @@
   </div>
 
   <div>
-    <!-- Note that the change and input events fire before the `files` prop is updated. -->
+    <!--
+      Note: the change and input events fire
+      before the `files` prop is updated.
+    -->
     <Textfield bind:files={valueTypeFiles} label="File" type="file" />
   </div>
 </div>
@@ -34,7 +37,7 @@
   let valueTypeDate = '';
   let valueTypeFiles = [];
 
-  // Note that the change and input events fire before the `files` prop is updated.
+  // Note: the change and input events fire before the `files` prop is updated.
   $: if (valueTypeFiles.length) {
     alert('Selected ' + valueTypeFiles.length + ' file(s).');
   }

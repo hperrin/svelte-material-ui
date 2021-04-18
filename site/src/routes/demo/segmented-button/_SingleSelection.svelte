@@ -1,7 +1,9 @@
-<!-- Note that segments must be unique. (They cannot === each other.)
-    If you need to show the same value, use keyed segments.-->
+<!--
+  Note: segments must be unique. (They cannot === each other.)
+  If you need to show the same value, use keyed segments.
+-->
 <SegmentedButton segments={choices} let:segment singleSelect bind:selected>
-  <!-- Notice that the `segment` property is required! -->
+  <!-- Note: the `segment` property is required! -->
   <Segment {segment}>
     <Label>{segment}</Label>
   </Segment>

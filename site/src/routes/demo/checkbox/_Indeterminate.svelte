@@ -1,6 +1,8 @@
 <FormField>
-  <!-- Note that binding to `indeterminate` is probably a bad idea.
-        The component will never set `indeterminate` internally. -->
+  <!--
+    Note: binding to `indeterminate` is probably a bad idea.
+    The component will never set `indeterminate` internally.
+  -->
   <Checkbox bind:checked indeterminate={checked === null} input$required />
   <span slot="label">I agree to the terms.</span>
 </FormField>

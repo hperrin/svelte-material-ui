@@ -1,6 +1,6 @@
 <div style="display: flex; flex-wrap: wrap; align-items: center;">
   <!--
-    Note that the wrapper on a rich tooltip
+    Note: the wrapper on a rich tooltip
     creates a DOM element.
   -->
   <Wrapper rich>
@@ -8,7 +8,7 @@
       <Label>Rich Tooltip</Label>
     </Button>
     <!--
-      Note that the toolip element in a rich
+      Note: the toolip element in a rich
       tooltip stays in place.
     -->
     <Tooltip>
@@ -43,8 +43,8 @@
       <Title>With a Title!</Title>
       <Content>
         A persistent rich tooltip shows up when you click or press enter/space
-        bar on an element and goes away when you do it again. Great for
-        informational popups on those little "i" icons.
+        bar on an element and goes away when you activate it again or it loses
+        focus. Great for informational popups on those little "i" icons.
       </Content>
     </Tooltip>
   </Wrapper>
