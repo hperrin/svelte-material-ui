@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-beta.11](https://github.com/hperrin/svelte-material-ui/compare/v3.0.0-beta.10...v3.0.0-beta.11) (2021-04-18)
+
+
+### Features
+
+* new Data Table Pagination component ([267f31d](https://github.com/hperrin/svelte-material-ui/commit/267f31d19434bf03bec82b877dc83d52fd69283d))
+
+
+
+
+
 # [3.0.0-beta.10](https://github.com/hperrin/svelte-material-ui/compare/v3.0.0-beta.9...v3.0.0-beta.10) (2021-04-17)
 
 **Note:** Version bump only for package @smui/select
