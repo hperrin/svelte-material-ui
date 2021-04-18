@@ -7,7 +7,6 @@ Inside that file is where you will place your Sass variables for MDC-Web to read
 Here is an example "\_smui-theme.scss" file you can use as a starting point for your own theme.
 
 ```scss
-@use 'sass:color';
 @use '@material/theme/color-palette';
 
 $background: #fff;
@@ -30,7 +29,7 @@ a {
   color: color-palette.$blue-500;
 }
 a:visited {
-  color: color.scale(color-palette.$blue-500, $lightness: -50%);
+  color: color-palette.$blue-800;
 }
 ```
 
@@ -51,7 +50,7 @@ const postcssOptions = (light) => ({
     ? null
     : (getExtracted) => {
         let { code } = getExtracted();
-        const result = require('cssnano')
+        require('cssnano')
           .process(code, { from: undefined })
           .then(({ css }) => {
             const filename = `${config.client.output().dir}/smui-dark.css`;
