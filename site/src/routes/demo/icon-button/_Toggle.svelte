@@ -9,27 +9,23 @@
     <Icon class="material-icons" on>alarm_on</Icon>
     <Icon class="material-icons">alarm_off</Icon>
   </IconButton>
-  <div>
-    <Button on:click={() => (initialOn = !initialOn)}>
-      <Label>Toggle Programmatically</Label>
-    </Button>
-    &nbsp;(Note: this doesn't fire the&nbsp;
-    <code>MDCIconButtonToggle:change</code> &nbsp;event.)
-  </div>
+
+  <!-- Note: this doesn't fire the MDCIconButtonToggle:change event. -->
+  <Button on:click={() => (initialOn = !initialOn)}>
+    <Label>Toggle Programmatically</Label>
+  </Button>
 </div>
 <div style="display: flex; align-items: center;">
+  <!-- Note: don't use `toggle` prop in this case. -->
   <IconButton
     on:click={() => toggleClicked++}
-    on:MDCIconButtonToggle:change={() => (usingEvents = !usingEvents)}
+    on:click={() => (usingEvents = !usingEvents)}
     pressed={usingEvents}
   >
     <Icon class="material-icons" on>bookmark</Icon>
     <Icon class="material-icons">bookmark_border</Icon>
   </IconButton>
-  <div>
-    Using events instead of bound variables. (Note: don't use&nbsp;
-    <code>toggle</code> &nbsp;prop in this case.)
-  </div>
+  <div>Using events instead of bound variables.</div>
 </div>
 
 <pre class="status">Clicked: {toggleClicked}</pre>

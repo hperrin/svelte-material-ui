@@ -20,7 +20,7 @@
   class={classMap({
     [className]: true,
     'mdc-icon-button': true,
-    'mdc-icon-button--on': pressed,
+    'mdc-icon-button--on': pressed !== uninitializedValue && pressed,
     'mdc-card__action': context === 'card:action',
     'mdc-card__action--icon': context === 'card:action',
     'mdc-top-app-bar__navigation-icon': context === 'top-app-bar:navigation',
@@ -35,7 +35,11 @@
     .map(([name, value]) => `${name}: ${value};`)
     .concat([style])
     .join(' ')}
-  aria-pressed={toggle ? (pressed ? 'true' : 'false') : null}
+  aria-pressed={pressed !== uninitializedValue
+    ? pressed
+      ? 'true'
+      : 'false'
+    : null}
   aria-label={pressed ? ariaLabelOn : ariaLabelOff}
   data-aria-label-on={ariaLabelOn}
   data-aria-label-off={ariaLabelOff}
@@ -64,6 +68,7 @@
   import Button from '@smui/common/Button.svelte';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
+  let uninitializedValue = () => {};
 
   export let use = [];
   let className = '';
@@ -72,7 +77,7 @@
   export let ripple = true;
   export let color = null;
   export let toggle = false;
-  export let pressed = false;
+  export let pressed = uninitializedValue;
   export let ariaLabelOn = null;
   export let ariaLabelOff = null;
   export let href = null;

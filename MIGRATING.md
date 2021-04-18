@@ -37,6 +37,8 @@ There are [newly updated instructiong](INSTALL.md#integration-for-sapper) for us
   - Open state is now controled by an `open` prop, instead of `open` and `close` functions. There are also `isOpen` and `setOpen` functions.
   - Lists should now be placed below `Content` element, rather than being the `Content` component. For selection from a list, use the new `selection` prop on the dialog.
   - Slider dialogs are styled a bit differently. See the [demo](https://sveltematerialui.com/demo/dialog/).
+- Icon Button
+  - No longer emit 'MDCIconButtonToggle:change' event without the `toggle` prop. Instead, listen for click event.
 - Linear Progress
   - Removed `reversed` prop.
 - List
