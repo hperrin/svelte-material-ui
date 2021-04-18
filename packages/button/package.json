@@ -1,6 +1,6 @@
 {
   "name": "@smui/button",
-  "version": "3.0.0-beta.11",
+  "version": "3.0.0-beta.12",
   "description": "Svelte Material UI - Button",
   "keywords": [
     "svelte",
@@ -33,8 +33,8 @@
     "@material/feature-targeting": "^10.0.0",
     "@material/ripple": "^10.0.0",
     "@material/theme": "^10.0.0",
-    "@smui/common": "^3.0.0-beta.11",
-    "@smui/ripple": "^3.0.0-beta.11"
+    "@smui/common": "^3.0.0-beta.12",
+    "@smui/ripple": "^3.0.0-beta.12"
   },
   "devDependencies": {
     "sass": "^1.32.8"

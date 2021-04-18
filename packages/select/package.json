@@ -1,6 +1,6 @@
 {
   "name": "@smui/select",
-  "version": "3.0.0-beta.11",
+  "version": "3.0.0-beta.12",
   "description": "Svelte Material UI - Select",
   "keywords": [
     "svelte",
@@ -33,14 +33,14 @@
     "@material/rtl": "^10.0.0",
     "@material/select": "^10.0.0",
     "@material/theme": "^10.0.0",
-    "@smui/common": "^3.0.0-beta.11",
-    "@smui/floating-label": "^3.0.0-beta.11",
-    "@smui/line-ripple": "^3.0.0-beta.11",
-    "@smui/list": "^3.0.0-beta.11",
-    "@smui/menu": "^3.0.0-beta.11",
-    "@smui/menu-surface": "^3.0.0-beta.11",
-    "@smui/notched-outline": "^3.0.0-beta.11",
-    "@smui/ripple": "^3.0.0-beta.11"
+    "@smui/common": "^3.0.0-beta.12",
+    "@smui/floating-label": "^3.0.0-beta.12",
+    "@smui/line-ripple": "^3.0.0-beta.12",
+    "@smui/list": "^3.0.0-beta.12",
+    "@smui/menu": "^3.0.0-beta.12",
+    "@smui/menu-surface": "^3.0.0-beta.12",
+    "@smui/notched-outline": "^3.0.0-beta.12",
+    "@smui/ripple": "^3.0.0-beta.12"
   },
   "devDependencies": {
     "sass": "^1.32.8"

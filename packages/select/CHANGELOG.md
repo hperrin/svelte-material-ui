@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-beta.12](https://github.com/hperrin/svelte-material-ui/compare/v3.0.0-beta.11...v3.0.0-beta.12) (2021-04-18)
+
+
+### Features
+
+* allow using objects as Select options ([880a22b](https://github.com/hperrin/svelte-material-ui/commit/880a22b1f06cdba9c67352ba4d26185fb331e039))
+
+
+
+
+
 # [3.0.0-beta.11](https://github.com/hperrin/svelte-material-ui/compare/v3.0.0-beta.10...v3.0.0-beta.11) (2021-04-18)
 
 
