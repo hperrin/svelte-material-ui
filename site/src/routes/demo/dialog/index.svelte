@@ -9,9 +9,16 @@
 
   <Demo component={Simple} file="dialog/_Simple.svelte" />
 
+  <Demo component={DefaultFocus} file="dialog/_DefaultFocus.svelte">
+    Default, initially focused button
+  </Demo>
+
   <Demo component={Event} file="dialog/_Event.svelte">
-    Using dialog events instead of button clicks, with a default button that is
-    initially focused
+    Using dialog events instead of button clicks
+  </Demo>
+
+  <Demo component={Mandatory} file="dialog/_Mandatory.svelte">
+    Mandatory dialog (won't close on scrim click or Esc key)
   </Demo>
 
   <Demo component={List} file="dialog/_List.svelte">
@@ -38,7 +45,9 @@
 <script>
   import Demo from '../../../components/Demo.svelte';
   import Simple from './_Simple.svelte';
+  import DefaultFocus from './_DefaultFocus.svelte';
   import Event from './_Event.svelte';
+  import Mandatory from './_Mandatory.svelte';
   import List from './_List.svelte';
   import Selection from './_Selection.svelte';
   import Sliders from './_Sliders.svelte';

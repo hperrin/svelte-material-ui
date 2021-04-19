@@ -24,6 +24,11 @@
     <h5>Short, Always Collapsed</h5>
   {/if}
   <LoremIpsum />
+  <img
+    alt="Page content placeholder"
+    src="/page-content.jpg"
+    style="display: block; max-width: 100%; height: auto; margin: 1em auto;"
+  />
 </AutoAdjust>
 
 <script>

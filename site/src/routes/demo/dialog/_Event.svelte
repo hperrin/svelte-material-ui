@@ -12,7 +12,7 @@
     <Button action="none">
       <Label>None of Them</Label>
     </Button>
-    <Button action="all" default use={[InitialFocus]}>
+    <Button action="all" default>
       <Label>All of Them</Label>
     </Button>
   </Actions>
@@ -25,7 +25,7 @@
 <pre class="status">Response: {response}</pre>
 
 <script>
-  import Dialog, { Title, Content, Actions, InitialFocus } from '@smui/dialog';
+  import Dialog, { Title, Content, Actions } from '@smui/dialog';
   import Button, { Label } from '@smui/button';
 
   let open;
@@ -40,6 +40,7 @@
         response = 'You are correct. All dogs are the best dog.';
         break;
       default:
+        // This means the user clicked the scrim or pressed Esc to close the dialog.
         response = "It's a simple question. You should be able to answer it.";
         break;
     }

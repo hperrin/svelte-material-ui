@@ -41,6 +41,11 @@
     </TopAppBar>
     <div>
       <LoremIpsum />
+      <img
+        alt="Page content placeholder"
+        src="/page-content.jpg"
+        style="display: block; max-width: 100%; height: auto; margin: 1em auto;"
+      />
     </div>
   </div>
 
@@ -71,6 +76,11 @@
     </TopAppBar>
     <div class="flexor-content">
       <LoremIpsum />
+      <img
+        alt="Page content placeholder"
+        src="/page-content.jpg"
+        style="display: block; max-width: 100%; height: auto; margin: 1em auto;"
+      />
     </div>
   </div>
 </div>

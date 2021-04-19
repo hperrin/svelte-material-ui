@@ -58,7 +58,11 @@
     </Banner>
   {/if}
   <div>
-    <LoremIpsum />
+    <img
+      alt="Page content placeholder"
+      src="/page-content.jpg"
+      style="display: block; max-width: 100%; height: auto; margin: 1em auto;"
+    />
   </div>
 </div>
 
@@ -68,7 +72,6 @@
   import TopAppBar, { Row, Section, Title } from '@smui/top-app-bar';
   import Checkbox from '@smui/checkbox';
   import FormField from '@smui/form-field';
-  import LoremIpsum from '../../../components/LoremIpsum.svelte';
 
   let open = true;
   let centered = false;

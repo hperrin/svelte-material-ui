@@ -6,8 +6,9 @@
 >
   <Title id="large-scroll-title">A Brief Selection of Placeholder Text</Title>
   <Content id="large-scroll-content">
-    <LoremIpsum />
-    <LoremIpsum />
+    {#each Array(10) as _item}
+      <LoremIpsum />
+    {/each}
   </Content>
   <Actions>
     <Button action="accept">
