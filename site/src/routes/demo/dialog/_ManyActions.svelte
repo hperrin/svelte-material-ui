@@ -2,8 +2,8 @@
   bind:open
   aria-labelledby="buttons-title"
   aria-describedby="buttons-content"
+  autoStackButtons={false}
   on:MDCDialog:closed={(e) => (buttoned = e.detail.action)}
-  surface$style="width: 280px; max-width: calc(100vw - 32px);"
 >
   <Title id="buttons-title">Use speed bost?</Title>
   <Content id="buttons-content">

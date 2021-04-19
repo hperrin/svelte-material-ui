@@ -111,6 +111,10 @@
     instance.setAutoStackButtons(autoStackButtons);
   }
 
+  $: if (!autoStackButtons) {
+    $actionButtonsReversed = true;
+  }
+
   if (addLayoutListener) {
     removeLayoutListener = addLayoutListener(layout);
   }

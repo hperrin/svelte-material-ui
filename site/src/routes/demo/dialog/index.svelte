@@ -39,6 +39,10 @@
 
   <Demo component={ManyActions} file="dialog/_ManyActions.svelte">
     Too many action buttons for one line
+    <svelte:fragment slot="subtitle">
+      Actions buttons will stack automatically if the dialog is too narrow. If
+      you want them to stack regardless, you can force it.
+    </svelte:fragment>
   </Demo>
 </section>
 
