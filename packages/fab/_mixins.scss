@@ -12,6 +12,20 @@
     @include fab.container-color(primary, $query: $query);
     @include fab.ink-color(on-primary, $query: $query);
   }
+
+  a.mdc-fab {
+    &,
+    &:visited {
+      @include fab.ink-color(on-secondary, $query: $query);
+    }
+  }
+
+  a.smui-fab--color-primary {
+    &,
+    &:visited {
+      @include fab.ink-color(on-primary, $query: $query);
+    }
+  }
 }
 
 @mixin ripple($query: feature-targeting.all()) {

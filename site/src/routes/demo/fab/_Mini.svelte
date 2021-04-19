@@ -1,6 +1,11 @@
 <div class="flexy">
   <div class="margins">
-    <Fab on:click={() => clicked++}>
+    <Fab on:click={() => clicked++} mini>
+      <Icon class="material-icons">favorite</Icon>
+    </Fab>
+  </div>
+  <div class="margins">
+    <Fab color="primary" on:click={() => clicked++} mini>
       <Icon class="material-icons">favorite</Icon>
     </Fab>
   </div>

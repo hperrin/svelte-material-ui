@@ -12,10 +12,37 @@
   <Demo component={PrimaryColor} file="fab/_PrimaryColor.svelte">
     Primary color
   </Demo>
+
+  <Demo component={Exited} file="fab/_Exited.svelte">Exited</Demo>
+
+  <Demo component={Mini} file="fab/_Mini.svelte">Mini</Demo>
+
+  <Demo component={Extended} file="fab/_Extended.svelte">Extended</Demo>
+
+  <Demo component={NoRipple} file="fab/_NoRipple.svelte">No Ripple</Demo>
+
+  <Demo component={Link} file="fab/_Link.svelte">Link</Demo>
 </section>
 
 <script>
   import Demo from '../../../components/Demo.svelte';
   import Simple from './_Simple.svelte';
   import PrimaryColor from './_PrimaryColor.svelte';
+  import Exited from './_Exited.svelte';
+  import Mini from './_Mini.svelte';
+  import Extended from './_Extended.svelte';
+  import NoRipple from './_NoRipple.svelte';
+  import Link from './_Link.svelte';
 </script>
+
+<style>
+  * :global(.flexy) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  * :global(.margins) {
+    margin: 0 0.4em 0.4em 0;
+  }
+</style>
