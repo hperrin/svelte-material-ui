@@ -104,7 +104,9 @@ function switchTheme() {
     themeLink.id = 'theme';
   }
   themeLink.href = `client/smui${lightTheme ? '' : '-dark'}.css`;
-  document.head.appendChild(themeLink);
+  document.head
+    .querySelector('link[href="client/smui-dark.css"]')
+    .insertAdjacentElement('afterend', themeLink);
 }
 ```
 

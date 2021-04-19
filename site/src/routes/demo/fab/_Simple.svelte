@@ -66,6 +66,7 @@
 <style>
   .flexy {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
   }
 

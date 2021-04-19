@@ -339,8 +339,7 @@
 
   @media (max-width: 460px) {
     section {
-      padding-left: 36px;
-      padding-right: 36px;
+      padding: 16px;
     }
 
     section::before {
