@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/hperrin/svelte-material-ui/compare/v3.0.0-beta.12...v3.0.0) (2021-04-19)
+
+
+### Bug Fixes
+
+* button order when dialog auto stack buttons in false ([98e9a63](https://github.com/hperrin/svelte-material-ui/commit/98e9a63c4c568833f686118b00d66dfeacecbfb1))
+* fab link text color ([f91c438](https://github.com/hperrin/svelte-material-ui/commit/f91c4384c0f51e6845aa979a496ad2161c0b473f))
+* icon button pressed state wasn't setting aria attrs without toggle ([ce550f1](https://github.com/hperrin/svelte-material-ui/commit/ce550f196d1e5e9a29ef205bf067bc49a93c05fa))
+
+
+
+
+
 # [3.0.0-beta.12](https://github.com/hperrin/svelte-material-ui/compare/v3.0.0-beta.11...v3.0.0-beta.12) (2021-04-18)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/hperrin/svelte-material-ui/compare/v3.0.0-beta.12...v3.0.0) (2021-04-19)
+
+
+### Bug Fixes
+
+* icon button pressed state wasn't setting aria attrs without toggle ([ce550f1](https://github.com/hperrin/svelte-material-ui/commit/ce550f196d1e5e9a29ef205bf067bc49a93c05fa))
+
+
+
+
+
 # [3.0.0-beta.12](https://github.com/hperrin/svelte-material-ui/compare/v3.0.0-beta.11...v3.0.0-beta.12) (2021-04-18)
 
 **Note:** Version bump only for package @smui/icon-button

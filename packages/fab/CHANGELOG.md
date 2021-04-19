@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/hperrin/svelte-material-ui/compare/v3.0.0-beta.12...v3.0.0) (2021-04-19)
+
+
+### Bug Fixes
+
+* fab link text color ([f91c438](https://github.com/hperrin/svelte-material-ui/commit/f91c4384c0f51e6845aa979a496ad2161c0b473f))
+
+
+
+
+
 # [3.0.0-beta.12](https://github.com/hperrin/svelte-material-ui/compare/v3.0.0-beta.11...v3.0.0-beta.12) (2021-04-18)
 
 **Note:** Version bump only for package @smui/fab
