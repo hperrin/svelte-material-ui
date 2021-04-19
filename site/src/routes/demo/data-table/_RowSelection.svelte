@@ -1,4 +1,4 @@
-<DataTable>
+<DataTable style="max-width: 100%;">
   <Head>
     <Row>
       <Cell checkbox>

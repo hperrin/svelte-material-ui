@@ -1,4 +1,4 @@
-<DataTable table$aria-label="People list">
+<DataTable table$aria-label="People list" style="max-width: 100%;">
   <Head>
     <Row>
       <Cell>Name</Cell>

@@ -23,6 +23,10 @@
 
   <Demo component={Range} file="slider/_Range.svelte">Range slider</Demo>
 
+  <Demo component={DiscreteRange} file="slider/_DiscreteRange.svelte">
+    Discrete range slider with tick marks
+  </Demo>
+
   <Demo component={Disabled} file="slider/_Disabled.svelte">Disabled</Demo>
 </section>
 
@@ -33,5 +37,6 @@
   import Discrete from './_Discrete.svelte';
   import TickMarks from './_TickMarks.svelte';
   import Range from './_Range.svelte';
+  import DiscreteRange from './_DiscreteRange.svelte';
   import Disabled from './_Disabled.svelte';
 </script>

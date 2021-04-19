@@ -1,8 +1,8 @@
 <div class="margins">
   <!--
-    Notice that when you bind to `invalid`, but you only want to monitor it
-    instead of updating it yourself, you also should include
-    `updateInvalid`.
+    Note: when you bind to `invalid`, but you only want to
+    monitor it instead of updating it yourself, you also
+    should include `updateInvalid`.
   -->
   <Textfield
     type="email"

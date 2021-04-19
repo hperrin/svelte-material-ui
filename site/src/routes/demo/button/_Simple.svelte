@@ -17,8 +17,10 @@
   <Button on:click={() => clicked++} variant="outlined">
     <Label>Outlined</Label>
   </Button>
-  <!-- Notice that to target this class,
-    you need to use a :global() selector. -->
+  <!--
+    Note: to target this class, you need to use
+    a :global() selector. See the styles below.
+  -->
   <Button on:click={() => clicked++} class="myClass">
     <Label>With a Class</Label>
   </Button>

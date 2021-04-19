@@ -1,7 +1,7 @@
 <div class="columns margins">
   <div>
     <!--
-      Notice you need to provide a function
+      Note: you need to provide a function
       as `key` that returns a unique string
       for each option.
     -->
@@ -17,7 +17,7 @@
     </Select>
 
     <pre
-      class="status">Selected: {valueA ? valueA.label : ''}, Price: {valueA ?  valueA.price : '0'}¢</pre>
+      class="status">Selected: {valueA ? valueA.label : 'None'}, Price: {valueA ?  valueA.price : '0'}¢</pre>
   </div>
 
   <div>
@@ -34,7 +34,7 @@
     </Select>
 
     <pre
-      class="status">Selected: {valueB ? valueB.label : ''}, Price: {valueB ?  valueB.price : '0'}¢</pre>
+      class="status">Selected: {valueB ? valueB.label : 'None'}, Price: {valueB ?  valueB.price : '0'}¢</pre>
   </div>
 
   <div>
@@ -51,7 +51,7 @@
     </Select>
 
     <pre
-      class="status">Selected: {valueC ? valueC.label : ''}, Price: {valueC ?  valueC.price : '0'}¢</pre>
+      class="status">Selected: {valueC ? valueC.label : 'None'}, Price: {valueC ?  valueC.price : '0'}¢</pre>
   </div>
 </div>
 
