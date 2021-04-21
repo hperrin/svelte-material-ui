@@ -1,6 +1,6 @@
 {
   "name": "@smui/layout-grid",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Svelte Material UI - Layout Grid",
   "type": "module",
   "module": "index.js",
@@ -31,7 +31,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@material/layout-grid": "^10.0.0",
-    "@smui/common": "^3.0.1"
+    "@smui/common": "^3.0.2"
   },
   "devDependencies": {
     "sass": "^1.32.8"
