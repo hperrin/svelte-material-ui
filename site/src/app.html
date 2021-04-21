@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns#" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="description" content="Material UI Components for Svelte 3, ready to use in your apps." />
+	
+		<!-- Twitter Card data -->
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:site" content="@SciActive" />
+		<meta name="twitter:creator" content="@SciActive" />
+	
+		<!-- Open Graph data -->
+		<meta property="og:title" content="Svelte Material UI" />
+		<meta property="og:url" content="https://sveltematerialui.com/" />
+		<meta property="og:image" content="https://sveltematerialui.com/header.png" />
+		<meta property="og:description" content="Material UI Components for Svelte 3, ready to use in your apps." />
+		<meta property="og:type" content="website" />
+	
+		<!-- Icons -->
+		<link rel="apple-touch-icon" sizes="57x57" href="/icons/apple-icon-57x57.png" />
+		<link rel="apple-touch-icon" sizes="60x60" href="/icons/apple-icon-60x60.png" />
+		<link rel="apple-touch-icon" sizes="72x72" href="/icons/apple-icon-72x72.png" />
+		<link rel="apple-touch-icon" sizes="76x76" href="/icons/apple-icon-76x76.png" />
+		<link rel="apple-touch-icon" sizes="114x114" href="/icons/apple-icon-114x114.png" />
+		<link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-icon-120x120.png" />
+		<link rel="apple-touch-icon" sizes="144x144" href="/icons/apple-icon-144x144.png" />
+		<link rel="apple-touch-icon" sizes="152x152" href="/icons/apple-icon-152x152.png" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-icon-180x180.png" />
+		<link rel="icon" type="image/png" sizes="192x192"  href="/icons/android-icon-192x192.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="96x96" href="/icons/favicon-96x96.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png" />
+		<link rel="manifest" href="/manifest.json" />
+		<meta name="msapplication-TileColor" content="#ffffff" />
+		<meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
+		<meta name="theme-color" content="#ffffff" />
+	
+		<!-- Fonts and CSS -->
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700" />
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono" />
+	
+		<!-- Prism Theme (For Markdown Pages) -->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism.min.css" />
+	
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<style>
+			html, body {
+				margin: 0;
+				padding: 0;
+			}
+		</style>
+	
+		<!-- SMUI Styles -->
+		<!-- <link rel="stylesheet" href="client/smui.css" media="(prefers-color-scheme: light)" /> -->
+		<!-- <link rel="stylesheet" href="client/smui-dark.css" media="screen and (prefers-color-scheme: dark)" /> -->
+
+		%svelte.head%
+
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-79MKYND6TX"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+	
+			gtag('config', 'G-79MKYND6TX');
+		</script>
+	</head>
+	<body>
+		<div id="svelte">%svelte.body%</div>
+	</body>
+</html>

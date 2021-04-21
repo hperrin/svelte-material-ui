@@ -32,7 +32,9 @@
 </AutoAdjust>
 
 <script>
-  import { stores } from '@sapper/app';
+  // The iframe is loaded with a style in the query part
+  // of the URL, and we can read it from here.
+  import { page } from '$app/stores';
   import TopAppBar, {
     Row,
     Section,
@@ -41,10 +43,6 @@
   } from '@smui/top-app-bar';
   import IconButton from '@smui/icon-button';
   import LoremIpsum from '../../../components/LoremIpsum.svelte';
-
-  // The iframe is loaded with a style in the query part
-  // of the URL, and we can read it from here.
-  const { page } = stores();
 
   let dense = false;
   let prominent = false;

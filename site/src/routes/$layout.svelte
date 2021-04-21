@@ -138,7 +138,7 @@
 
 <script>
   import { onMount } from 'svelte';
-  import { stores } from '@sapper/app';
+  import { page } from '$app/stores';
   import {
     mdiFileDocument,
     mdiCodeTags,
@@ -160,7 +160,6 @@
   import A from '@smui/common/A.svelte';
   import Svg from '@smui/common/Svg.svelte';
 
-  const { page } = stores();
   const iframe = $page.path.includes('/iframe');
 
   let mainContent;

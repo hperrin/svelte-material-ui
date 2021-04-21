@@ -2,11 +2,11 @@
   "name": "svelte-material-ui-site",
   "version": "0.0.0",
   "description": "SMUI Website",
+  "type": "module",
   "scripts": {
-    "dev": "sapper dev -p 5000",
-    "build": "sapper build --legacy",
-    "export": "sapper export ./dist --legacy",
-    "start": "node __sapper__/build",
+    "dev": "svelte-kit dev",
+    "build": "svelte-kit build",
+    "start": "svelte-kit start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,16 +19,6 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "compression": "^1.7.4",
-    "polka": "next",
-    "sirv": "^1.0.11"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.13.14",
-    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
-    "@babel/plugin-transform-runtime": "^7.13.10",
-    "@babel/preset-env": "^7.13.12",
-    "@babel/runtime": "^7.13.10",
     "@material/animation": "^10.0.0",
     "@material/banner": "^10.0.0",
     "@material/button": "^10.0.0",
@@ -76,11 +66,6 @@
     "@material/touch-target": "^10.0.0",
     "@material/typography": "^10.0.0",
     "@mdi/js": "^5.9.55",
-    "@rollup/plugin-babel": "^5.3.0",
-    "@rollup/plugin-commonjs": "^18.0.0",
-    "@rollup/plugin-node-resolve": "^11.2.1",
-    "@rollup/plugin-replace": "^2.4.2",
-    "@rollup/plugin-url": "^6.0.0",
     "@smui/banner": "file:../packages/banner",
     "@smui/button": "file:../packages/button",
     "@smui/card": "file:../packages/card",
@@ -118,17 +103,16 @@
     "@smui/textfield": "file:../packages/textfield",
     "@smui/tooltip": "file:../packages/tooltip",
     "@smui/top-app-bar": "file:../packages/top-app-bar",
-    "@smui/touch-target": "file:../packages/touch-target",
+    "@smui/touch-target": "file:../packages/touch-target"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-node": "^1.0.0-next.16",
+    "@sveltejs/adapter-static": "next",
+    "@sveltejs/kit": "next",
     "mdsvex": "^0.9.0",
-    "npm-run-all": "^4.1.5",
-    "postcss-scss": "^3.0.5",
     "remark-slug": "^6.0.0",
-    "rollup": "^2.44.0",
-    "rollup-plugin-postcss": "^4.0.0",
-    "rollup-plugin-svelte": "^7.1.0",
-    "rollup-plugin-terser": "^7.0.2",
-    "sapper": "^0.29.1",
-    "sass": "^1.32.8",
-    "svelte": "^3.37.0"
+    "sass": "^1.32.11",
+    "svelte": "^3.37.0",
+    "vite": "^2.2.1"
   }
 }
