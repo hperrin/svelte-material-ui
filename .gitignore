@@ -1,2 +1,4 @@
 node_modules
 /packages/**/bare.css
+/site/.svelte
+/site/build

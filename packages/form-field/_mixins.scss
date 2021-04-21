@@ -1,5 +1,5 @@
-@use '@material/rtl';
-@use '@material/feature-targeting';
+@use '@material/rtl/index' as rtl;
+@use '@material/feature-targeting/index' as feature-targeting;
 
 @mixin core-styles($query: feature-targeting.all()) {
   .mdc-form-field {

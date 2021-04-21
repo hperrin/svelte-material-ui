@@ -2,6 +2,8 @@
   "name": "@smui/icon-button",
   "version": "3.0.0",
   "description": "Svelte Material UI - Icon Button",
+  "type": "module",
+  "module": "index.js",
   "keywords": [
     "svelte",
     "svelte3",

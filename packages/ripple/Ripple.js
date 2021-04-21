@@ -1,8 +1,9 @@
 import { MDCRippleFoundation } from '@material/ripple';
 import * as util from '@material/ripple/util';
-import { applyPassive } from '@material/dom/events';
-import { matches } from '@material/dom/ponyfill';
+import { events, ponyfill } from '@material/dom';
 import { getContext } from 'svelte';
+const { applyPassive } = events;
+const { matches } = ponyfill;
 
 export default function Ripple(
   node,

@@ -1,4 +1,4 @@
-@use '@material/drawer';
+@use '@material/drawer/index' as drawer;
 
 @include drawer.core-styles;
 @include drawer.dismissible-core-styles;

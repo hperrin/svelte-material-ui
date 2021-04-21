@@ -2,6 +2,8 @@
   "name": "@smui/floating-label",
   "version": "3.0.0",
   "description": "Svelte Material UI - Floating Label",
+  "type": "module",
+  "module": "index.js",
   "keywords": [
     "svelte",
     "svelte3",

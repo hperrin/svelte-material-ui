@@ -1,9 +1,9 @@
 // Theme Colors (because MDC Elevation uses them)
-@use "smui-theme";
+@use 'smui-theme';
 
 // Elevation and theme mixins.
-@use "@material/elevation";
-@use "@material/theme";
+@use '@material/elevation/index' as elevation;
+@use '@material/theme/index' as theme;
 
 .my-primary {
   // Set the font color.

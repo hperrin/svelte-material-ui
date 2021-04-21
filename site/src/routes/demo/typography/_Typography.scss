@@ -1,5 +1,5 @@
 // Import all the styles for the classes.
-@use "@material/typography/mdc-typography";
+@use '@material/typography/mdc-typography';
 // The following classes become available:
 //   mdc-typography--headline1
 //   mdc-typography--headline2
@@ -17,12 +17,12 @@
 //   mdc-typography--body1
 
 // Import the mixins.
-@use "@material/typography";
+@use '@material/typography/index' as typography;
 
 //
 // Some defaults that may be helpful to you.
 // If you just want to use these, and not the classes, you can instead just
-// @use "@material/typography", and your CSS file will be smaller.
+// @use '@material/typography/index' as typography, and your CSS file will be smaller.
 //
 html {
   @include typography.typography('body1');

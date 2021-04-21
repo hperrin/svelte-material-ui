@@ -1,8 +1,8 @@
-@use '@material/elevation';
-@use '@material/theme';
-@use '@material/feature-targeting';
-@use '@material/shape';
-@use '@material/typography';
+@use '@material/elevation/index' as elevation;
+@use '@material/theme/index' as theme;
+@use '@material/feature-targeting/index' as feature-targeting;
+@use '@material/shape/index' as shape;
+@use '@material/typography/index' as typography;
 
 $paper-padding: 24px 16px !default;
 

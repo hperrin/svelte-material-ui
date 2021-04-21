@@ -34,7 +34,7 @@
 
 <script>
   import { MDCSnackbarFoundation, util } from '@material/snackbar';
-  import { closest } from '@material/dom/ponyfill';
+  import { ponyfill } from '@material/dom';
   import { onMount, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {
@@ -45,6 +45,7 @@
     useActions,
     dispatch,
   } from '@smui/common/internal.js';
+  const { closest } = ponyfill;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
   const uninitializedValue = () => {};

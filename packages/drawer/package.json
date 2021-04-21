@@ -2,6 +2,8 @@
   "name": "@smui/drawer",
   "version": "3.0.0",
   "description": "Svelte Material UI - Drawer",
+  "type": "module",
+  "module": "index.js",
   "keywords": [
     "svelte",
     "svelte3",

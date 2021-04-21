@@ -1,6 +1,6 @@
 @use '@material/feature-targeting/feature-targeting';
-@use "@material/ripple";
-@use '@material/button' as mdc-button;
+@use '@material/ripple/index' as ripple;
+@use '@material/button/index' as mdc-button;
 @use '@material/theme/theme-color';
 @use '@material/elevation/mixins' as mdc-elevation;
 

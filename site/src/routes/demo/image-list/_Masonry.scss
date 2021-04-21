@@ -1,4 +1,4 @@
-@use "@material/image-list";
+@use '@material/image-list/index' as image-list;
 
 .my-image-list-masonry {
   @include image-list.masonry-columns(5);

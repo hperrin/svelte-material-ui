@@ -44,7 +44,7 @@
 
 <script>
   import { MDCListFoundation } from '@material/list';
-  import { closest, matches } from '@material/dom/ponyfill';
+  import { ponyfill } from '@material/dom';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {
@@ -54,6 +54,7 @@
   } from '@smui/common/internal.js';
   import Ul from '@smui/common/Ul.svelte';
   import Nav from '@smui/common/Nav.svelte';
+  const { closest, matches } = ponyfill;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

@@ -37,7 +37,7 @@
 
 <script>
   import { MDCChipSetFoundation } from '@material/chips';
-  import { announce } from '@material/dom/announce';
+  import { announce } from '@material/dom/announce.js';
   import { onMount, setContext } from 'svelte';
   import { writable } from 'svelte/store';
   import { get_current_component } from 'svelte/internal';

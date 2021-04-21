@@ -46,7 +46,7 @@ There are [newly updated instructiong](INSTALL.md#integration-for-sapper) for us
 - Menu Surface
   - Anchor action now takes `addClass` and `removeClass` instead of `classForward` (like Ripple).
 - Ripple
-  - [Ripple's options](packages/ripple#default) have changed considerably.
+  - [Ripple's options](https://github.com/hperrin/svelte-material-ui/blob/v3.0.0/packages/ripple/README.md#default) have changed considerably.
 - Select
   - This is almost completely rewritten. You will need to migrate code for it. Check out the demo page.
   - Helper Text in no longer a component. Instead, a `svelte:fragment` with text now goes inside the component in the "helper" slot. Its ID and ARIA attributes are set automatically.

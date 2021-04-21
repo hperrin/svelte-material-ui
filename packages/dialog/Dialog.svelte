@@ -49,8 +49,7 @@
 
 <script>
   import { MDCDialogFoundation, util } from '@material/dialog';
-  import { FocusTrap } from '@material/dom/focus-trap';
-  import { closest, matches } from '@material/dom/ponyfill';
+  import { focusTrap as domFocusTrap, ponyfill } from '@material/dom';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
   import { writable } from 'svelte/store';
   import { get_current_component } from 'svelte/internal';
@@ -62,6 +61,8 @@
     useActions,
     dispatch,
   } from '@smui/common/internal.js';
+  const { FocusTrap } = domFocusTrap;
+  const { closest, matches } = ponyfill;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

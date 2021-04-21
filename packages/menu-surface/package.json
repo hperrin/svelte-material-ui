@@ -2,6 +2,8 @@
   "name": "@smui/menu-surface",
   "version": "3.0.0",
   "description": "Svelte Material UI - Menu Surface",
+  "type": "module",
+  "module": "index.js",
   "keywords": [
     "svelte",
     "svelte3",

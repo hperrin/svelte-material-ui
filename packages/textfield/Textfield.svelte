@@ -228,7 +228,7 @@
 
 <script>
   import { MDCTextFieldFoundation } from '@material/textfield';
-  import { applyPassive } from '@material/dom/events';
+  import { events } from '@material/dom';
   import { onMount, onDestroy, getContext, tick } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {
@@ -248,6 +248,7 @@
   import Suffix from './Suffix.js';
   import Input from './Input.svelte';
   import Textarea from './Textarea.svelte';
+  const { applyPassive } = events;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
   let uninitializedValue = () => {};

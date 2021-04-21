@@ -1,6 +1,6 @@
 // Set up an alternate theme with custom colors.
 @use '@material/theme/color-palette';
-@use '@material/theme' with (
+@use '@material/theme/index' as theme with (
   $primary: color-palette.$green-100,
   $secondary: color-palette.$cyan-100,
   $background: color-palette.$purple-900,

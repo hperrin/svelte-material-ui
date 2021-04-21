@@ -39,7 +39,7 @@
 
 <script>
   import { MDCFloatingLabelFoundation } from '@material/floating-label';
-  import { estimateScrollWidth } from '@material/dom/ponyfill';
+  import { ponyfill } from '@material/dom';
   import { onMount, getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {
@@ -48,6 +48,7 @@
     useActions,
     dispatch,
   } from '@smui/common/internal.js';
+  const { estimateScrollWidth } = ponyfill;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

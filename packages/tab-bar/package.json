@@ -2,6 +2,8 @@
   "name": "@smui/tab-bar",
   "version": "3.0.0",
   "description": "Svelte Material UI - Tab Bar",
+  "type": "module",
+  "module": "index.js",
   "keywords": [
     "svelte",
     "svelte3",

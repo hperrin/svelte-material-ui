@@ -2,6 +2,8 @@
   "name": "@smui/snackbar",
   "version": "3.0.0",
   "description": "Svelte Material UI - Snackbar",
+  "type": "module",
+  "module": "index.js",
   "keywords": [
     "svelte",
     "svelte3",

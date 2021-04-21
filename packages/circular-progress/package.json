@@ -2,6 +2,8 @@
   "name": "@smui/circular-progress",
   "version": "3.0.0",
   "description": "Svelte Material UI - Circular Progress",
+  "type": "module",
+  "module": "index.js",
   "keywords": [
     "svelte",
     "svelte3",

@@ -3,7 +3,7 @@
 @use '@material/theme/color-palette';
 
 // Svelte Colors!
-@use '@material/theme' with (
+@use '@material/theme/index' as theme with (
   $primary: #ff3e00,
   $secondary: #676778,
   $surface: #fff,

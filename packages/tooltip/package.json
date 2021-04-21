@@ -2,6 +2,8 @@
   "name": "@smui/tooltip",
   "version": "3.0.0",
   "description": "Svelte Material UI - Tooltip",
+  "type": "module",
+  "module": "index.js",
   "keywords": [
     "svelte",
     "svelte3",

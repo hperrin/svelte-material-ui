@@ -2,7 +2,7 @@
  Temporary addition until support for three-line added to @material
 https://github.com/material-components/material-components-web/issues/31
 */
-@use '@material/feature-targeting';
+@use '@material/feature-targeting/index' as feature-targeting;
 
 @mixin core-styles($query: feature-targeting.all()) {
   $feat-structure: feature-targeting.create-target($query, structure);

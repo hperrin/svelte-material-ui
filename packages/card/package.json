@@ -2,6 +2,8 @@
   "name": "@smui/card",
   "version": "3.0.0",
   "description": "Svelte Material UI - Card",
+  "type": "module",
+  "module": "index.js",
   "keywords": [
     "svelte",
     "svelte3",

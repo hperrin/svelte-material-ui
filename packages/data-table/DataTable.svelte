@@ -58,7 +58,7 @@
 
 <script>
   import { MDCDataTableFoundation } from '@material/data-table';
-  import { closest } from '@material/dom/ponyfill';
+  import { ponyfill } from '@material/dom';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
   import { writable } from 'svelte/store';
   import { get_current_component } from 'svelte/internal';
@@ -70,6 +70,7 @@
     useActions,
     dispatch,
   } from '@smui/common/internal.js';
+  const { closest } = ponyfill;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

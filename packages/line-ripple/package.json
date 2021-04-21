@@ -2,6 +2,8 @@
   "name": "@smui/line-ripple",
   "version": "3.0.0",
   "description": "Svelte Material UI - Line Ripple",
+  "type": "module",
+  "module": "index.js",
   "keywords": [
     "svelte",
     "svelte3",

@@ -2,6 +2,8 @@
   "name": "@smui/notched-outline",
   "version": "3.0.0",
   "description": "Svelte Material UI - Notched Outline",
+  "type": "module",
+  "module": "index.js",
   "keywords": [
     "svelte",
     "svelte3",

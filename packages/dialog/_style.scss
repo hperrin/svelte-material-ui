@@ -1,4 +1,4 @@
-@use '@material/dialog';
+@use '@material/dialog/index' as dialog;
 
 @include dialog.core-styles;
 

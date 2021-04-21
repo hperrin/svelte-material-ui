@@ -1,5 +1,5 @@
-@use '@material/circular-progress';
-@use '@material/theme';
+@use '@material/circular-progress/index' as circular-progress;
+@use '@material/theme/index' as theme;
 
 .my-four-colors {
   @include circular-progress.indeterminate-colors(

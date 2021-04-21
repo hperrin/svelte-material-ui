@@ -1,6 +1,6 @@
-@use '@material/feature-targeting';
-@use '@material/ripple';
-@use '@material/fab';
+@use '@material/feature-targeting/index' as feature-targeting;
+@use '@material/ripple/index' as ripple;
+@use '@material/fab/index' as fab;
 
 @mixin core-styles($query: feature-targeting.all()) {
   @include without-ripple($query);

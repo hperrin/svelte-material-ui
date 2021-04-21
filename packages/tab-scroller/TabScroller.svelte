@@ -51,7 +51,7 @@
 
 <script>
   import { MDCTabScrollerFoundation, util } from '@material/tab-scroller';
-  import { matches } from '@material/dom/ponyfill';
+  import { ponyfill } from '@material/dom';
   import { onMount } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {
@@ -61,6 +61,7 @@
     prefixFilter,
     useActions,
   } from '@smui/common/internal.js';
+  const { matches } = ponyfill;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

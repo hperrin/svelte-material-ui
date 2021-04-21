@@ -1,5 +1,5 @@
-@use '@material/top-app-bar';
-@use '@material/feature-targeting';
+@use '@material/top-app-bar/index' as top-app-bar;
+@use '@material/feature-targeting/index' as feature-targeting;
 
 @mixin core-styles($query: feature-targeting.all()) {
   .smui-top-app-bar--static {

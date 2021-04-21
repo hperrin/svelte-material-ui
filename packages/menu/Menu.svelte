@@ -21,7 +21,7 @@
 
 <script>
   import { MDCMenuFoundation, cssClasses } from '@material/menu';
-  import { closest } from '@material/dom/ponyfill';
+  import { ponyfill } from '@material/dom';
   import { onMount } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {
@@ -30,6 +30,7 @@
     dispatch,
   } from '@smui/common/internal.js';
   import MenuSurface from '@smui/menu-surface/MenuSurface.svelte';
+  const { closest } = ponyfill;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

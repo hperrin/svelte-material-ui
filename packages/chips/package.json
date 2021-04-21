@@ -2,6 +2,8 @@
   "name": "@smui/chips",
   "version": "3.0.0",
   "description": "Svelte Material UI - Chips",
+  "type": "module",
+  "module": "index.js",
   "keywords": [
     "svelte",
     "svelte3",

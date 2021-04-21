@@ -2,6 +2,8 @@
   "name": "@smui/image-list",
   "version": "3.0.0",
   "description": "Svelte Material UI - Image List",
+  "type": "module",
+  "module": "index.js",
   "keywords": [
     "svelte",
     "svelte3",

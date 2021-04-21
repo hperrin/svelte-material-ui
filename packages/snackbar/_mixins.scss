@@ -1,6 +1,6 @@
-@use '@material/icon-button';
-@use '@material/snackbar';
-@use '@material/feature-targeting';
+@use '@material/icon-button/index' as icon-button;
+@use '@material/snackbar/index' as snackbar;
+@use '@material/feature-targeting/index' as feature-targeting;
 
 @mixin core-styles($query: feature-targeting.all()) {
   // Increase specificity.

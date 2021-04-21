@@ -1,11 +1,11 @@
-@use '@material/textfield';
+@use '@material/textfield/index' as textfield;
 @use '@material/textfield/icon/variables' as icon-variables;
-@use '@material/ripple';
+@use '@material/ripple/index' as ripple;
 @use '@material/floating-label/mixins' as floating-label-mixins;
 @use '@material/floating-label/variables' as floating-label-variables;
 @use '@material/rtl/mixins' as rtl-mixins;
 @use '@material/typography/typography';
-@use '@material/feature-targeting';
+@use '@material/feature-targeting/index' as feature-targeting;
 
 @mixin core-styles($query: feature-targeting.all()) {
   $feat-structure: feature-targeting.create-target($query, structure);

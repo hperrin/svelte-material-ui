@@ -22,7 +22,7 @@
     MDCDismissibleDrawerFoundation,
     MDCModalDrawerFoundation,
   } from '@material/drawer';
-  import { FocusTrap } from '@material/dom/focus-trap';
+  import { focusTrap as domFocusTrap } from '@material/dom';
   import { onMount, onDestroy, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {
@@ -31,6 +31,7 @@
     useActions,
     dispatch,
   } from '@smui/common/internal.js';
+  const { FocusTrap } = domFocusTrap;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
