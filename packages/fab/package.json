@@ -1,6 +1,6 @@
 {
   "name": "@smui/fab",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Svelte Material UI - Floating Action Button",
   "type": "module",
   "module": "index.js",
@@ -32,8 +32,8 @@
   "dependencies": {
     "@material/fab": "^10.0.0",
     "@material/feature-targeting": "^10.0.0",
-    "@smui/common": "^3.0.0",
-    "@smui/ripple": "^3.0.0"
+    "@smui/common": "^3.0.1",
+    "@smui/ripple": "^3.0.1"
   },
   "devDependencies": {
     "sass": "^1.32.8"
