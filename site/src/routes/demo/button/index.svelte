@@ -9,13 +9,19 @@
 
   <Demo component={Simple} file="button/_Simple.svelte" />
 
+  <Demo component={SecondaryColor} file="button/_SecondaryColor.svelte">
+    Secondary color
+  </Demo>
+
+  <Demo component={Variants} file="button/_Variants.svelte">Variants</Demo>
+
   <Demo component={Touch} file="button/_Touch.svelte">
     Increased touch target
   </Demo>
 
-  <Demo component={SecondaryColor} file="button/_SecondaryColor.svelte">
-    Secondary color
-  </Demo>
+  <Demo component={Icons} file="button/_Icons.svelte">Icons</Demo>
+
+  <Demo component={Link} file="button/_Link.svelte">Link</Demo>
 
   <Demo component={Groups} file="button/_Groups.svelte">Button groups</Demo>
 
@@ -39,8 +45,11 @@
 <script>
   import Demo from '../../../components/Demo.svelte';
   import Simple from './_Simple.svelte';
-  import Touch from './_Touch.svelte';
   import SecondaryColor from './_SecondaryColor.svelte';
+  import Variants from './_Variants.svelte';
+  import Touch from './_Touch.svelte';
+  import Icons from './_Icons.svelte';
+  import Link from './_Link.svelte';
   import Groups from './_Groups.svelte';
   import SplitButtons from './_SplitButtons.svelte';
   import Round from './_Round.svelte';
