@@ -20,12 +20,16 @@ You should update your MDC dependencies to 11.0 as well.
 
 ### Compoennts
 
+- Banner
+  - Add focus trap on the banner.
 - Dialog
   - New `fullscreen` prop.
   - New `over` slot.
 - Menu Surface
   - New `maxHeight` prop.
   - New `horizontallyCenteredOnViewport` prop.
+- Slider
+  - Rounds values to correct decimal places based on `step` prop.
 - Tooltip
   - New `attachScrollHandler` and `removeScrollHandler` functions for adding additional scrollable elements to handle. Both accept a function.
 
