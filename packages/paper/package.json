@@ -1,6 +1,6 @@
 {
   "name": "@smui/paper",
-  "version": "3.1.0",
+  "version": "3.0.2",
   "description": "Svelte Material UI - Paper",
   "type": "module",
   "module": "index.js",
@@ -35,7 +35,7 @@
     "@material/shape": "^11.0.0",
     "@material/theme": "^11.0.0",
     "@material/typography": "^11.0.0",
-    "@smui/common": "^3.1.0"
+    "@smui/common": "^3.0.2"
   },
   "devDependencies": {
     "sass": "^1.32.8"
