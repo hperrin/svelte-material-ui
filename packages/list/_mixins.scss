@@ -7,25 +7,25 @@ https://github.com/material-components/material-components-web/issues/31
 @mixin core-styles($query: feature-targeting.all()) {
   $feat-structure: feature-targeting.create-target($query, structure);
 
-  .smui-list--three-line .mdc-list-item__text {
+  .smui-list--three-line .mdc-deprecated-list-item__text {
     @include feature-targeting.targets($feat-structure) {
       align-self: flex-start;
     }
   }
 
-  .smui-list--three-line .mdc-list-item {
+  .smui-list--three-line .mdc-deprecated-list-item {
     @include feature-targeting.targets($feat-structure) {
       height: 88px;
     }
   }
 
-  .smui-list--three-line.mdc-list--dense .mdc-list-item {
+  .smui-list--three-line.mdc-deprecated-list--dense .mdc-deprecated-list-item {
     @include feature-targeting.targets($feat-structure) {
       height: 76px;
     }
   }
 
-  .mdc-list-item.smui-menu-item--non-interactive {
+  .mdc-deprecated-list-item.smui-menu-item--non-interactive {
     cursor: auto;
   }
 }

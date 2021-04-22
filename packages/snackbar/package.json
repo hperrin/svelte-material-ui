@@ -30,9 +30,9 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@material/dom": "^10.0.0",
-    "@material/feature-targeting": "^10.0.0",
-    "@material/snackbar": "^10.0.0",
+    "@material/dom": "^11.0.0",
+    "@material/feature-targeting": "^11.0.0",
+    "@material/snackbar": "^11.0.0",
     "@smui/button": "^3.0.3",
     "@smui/common": "^3.0.2",
     "@smui/icon-button": "^3.0.3",

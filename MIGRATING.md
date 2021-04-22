@@ -2,6 +2,31 @@
 
 This doc contains information that will help you migrate your code from an older version of SMUI to a newer one. Things that you will need to change in your existing code will be written here. It would also be helpful to check the MDC changelog if the upstream MDC versions has changed between SMUI versions.
 
+# SMUI 3.0 -> SMUI 3.1
+
+SMUI 3.1 migrated to upstream MDC 11.0 from 10.0:
+https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#1100-2021-04-15
+
+## Breaking Changes
+
+### Theming, Sass
+
+- MDC-Web chips trailing actions class changed.
+- MDC-Web list classes changed.
+
+## New Features
+
+### Compoennts
+
+- Dialog
+  - New `fullscreen` prop.
+  - New `over` slot.
+- Menu Surface
+  - New `maxHeight` prop.
+  - New `horizontallyCenteredOnViewport` prop.
+- Tooltip
+  - New `attachScrollHandler` and `removeScrollHandler` functions for adding additional scrollable elements to handle. Both accept a function.
+
 # SMUI 2 -> SMUI 3
 
 You will need to migrate to Dart Sass. `node-sass` is no longer supported, as it is deprecated and too old now.

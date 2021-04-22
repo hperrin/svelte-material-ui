@@ -30,7 +30,7 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@material/banner": "^10.0.0",
+    "@material/banner": "^11.0.0",
     "@smui/common": "^3.0.2"
   },
   "devDependencies": {

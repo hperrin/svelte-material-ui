@@ -30,8 +30,8 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@material/dom": "^10.0.0",
-    "@material/slider": "^10.0.0",
+    "@material/dom": "^11.0.0",
+    "@material/slider": "^11.0.0",
     "@smui/common": "^3.0.2",
     "@smui/ripple": "^3.0.3"
   },

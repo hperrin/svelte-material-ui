@@ -2,5 +2,5 @@
 @use '@smui/ripple/style';
 @use './mixins';
 
-@include list.core-styles;
+@include list.deprecated-core-styles;
 @include mixins.core-styles;

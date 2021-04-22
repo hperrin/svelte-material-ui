@@ -30,8 +30,8 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@material/dom": "^10.0.0",
-    "@material/menu": "^10.0.0",
+    "@material/dom": "^11.0.0",
+    "@material/menu": "^11.0.0",
     "@smui/common": "^3.0.2",
     "@smui/list": "^3.0.3",
     "@smui/menu-surface": "^3.0.2"

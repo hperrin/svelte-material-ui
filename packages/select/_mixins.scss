@@ -27,6 +27,12 @@
       position: relative;
       margin: 0;
 
+      @include rtl-mixins.reflexive-box(
+        margin,
+        right,
+        (select-icon-theme.$icon-horizontal-margin) * -2
+      );
+
       @include rtl-mixins.reflexive-position(
         left,
         (

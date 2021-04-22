@@ -30,7 +30,7 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@material/touch-target": "^10.0.0",
+    "@material/touch-target": "^11.0.0",
     "@smui/common": "^3.0.2"
   },
   "devDependencies": {

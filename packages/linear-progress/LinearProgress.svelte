@@ -79,7 +79,7 @@
     $closedStore = closed;
   }
 
-  $: if (instance && instance.getDeterminate() !== !indeterminate) {
+  $: if (instance && instance.isDeterminate() !== !indeterminate) {
     instance.setDeterminate(!indeterminate);
   }
 

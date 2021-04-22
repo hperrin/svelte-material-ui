@@ -1,4 +1,4 @@
-<div
+<aside
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
@@ -26,7 +26,7 @@
   >
     <slot />
   </div>
-</div>
+</aside>
 
 <script context="module">
   let waiting = Promise.resolve();

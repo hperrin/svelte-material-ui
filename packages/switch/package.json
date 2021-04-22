@@ -30,8 +30,8 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@material/density": "^10.0.0",
-    "@material/switch": "^10.0.0",
+    "@material/density": "^11.0.0",
+    "@material/switch": "^11.0.0",
     "@smui/common": "^3.0.2",
     "@smui/ripple": "^3.0.3"
   },

@@ -56,7 +56,7 @@
 </svelte:component>
 
 <script>
-  import { MDCChipFoundation } from '@material/chips';
+  import { MDCChipFoundation } from '@material/chips/deprecated';
   import { onMount, setContext, getContext } from 'svelte';
   import { writable } from 'svelte/store';
   import { get_current_component } from 'svelte/internal';

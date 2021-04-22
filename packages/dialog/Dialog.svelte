@@ -14,6 +14,7 @@
     [className]: true,
     'mdc-dialog': true,
     'mdc-dialog--stacked': !autoStackButtons,
+    'mdc-dialog--fullscreen': fullscreen,
     'smui-dialog--selection': selection,
     ...internalClasses,
   })}
@@ -21,6 +22,7 @@
   aria-modal="true"
   on:MDCDialog:opening={handleDialogOpening}
   on:MDCDialog:opened={handleDialogOpened}
+  on:MDCDialog:closed={handleDialogClosed}
   on:click={(event) => instance && instance.handleClick(event)}
   on:keydown={(event) => instance && instance.handleKeydown(event)}
   {...exclude($$restProps, ['container$', 'surface$'])}
@@ -42,10 +44,19 @@
       {...prefixFilter($$restProps, 'surface$')}
     >
       <slot />
+      {#if fullscreen}
+        <div
+          class="mdc-dialog__surface-scrim"
+          on:transitionend={() =>
+            instance && instance.handleSurfaceScrimTransitionEnd()}
+        />
+      {/if}
     </div>
   </div>
   <div class="mdc-dialog__scrim" />
 </div>
+
+<slot name="over" />
 
 <script>
   import { MDCDialogFoundation, util } from '@material/dialog';
@@ -74,6 +85,7 @@
   export let escapeKeyAction = 'close';
   export let scrimClickAction = 'close';
   export let autoStackButtons = true;
+  export let fullscreen = false;
   export let container$class = '';
   export let surface$class = '';
 
@@ -83,6 +95,9 @@
   let focusTrap;
   let actionButtonsReversed = writable(false);
   let addLayoutListener = getContext('SMUI:addLayoutListener');
+  let aboveFullscreen = getContext('SMUI:dialog:aboveFullscreen');
+  let aboveFullscreenShown =
+    getContext('SMUI:dialog:aboveFullscreenShown') || writable(false);
   let removeLayoutListener;
   let layoutListeners = [];
   let addLayoutListenerFn = (listener) => {
@@ -99,6 +114,8 @@
   setContext('SMUI:dialog:actions:reversed', actionButtonsReversed);
   setContext('SMUI:addLayoutListener', addLayoutListenerFn);
   setContext('SMUI:dialog:selection', selection);
+  setContext('SMUI:dialog:aboveFullscreen', aboveFullscreen || fullscreen);
+  setContext('SMUI:dialog:aboveFullscreenShown', aboveFullscreenShown);
 
   $: if (instance && instance.getEscapeKeyAction() !== escapeKeyAction) {
     instance.setEscapeKeyAction(escapeKeyAction);
@@ -122,9 +139,25 @@
 
   $: if (instance && instance.isOpen() !== open) {
     if (open) {
-      instance.open();
+      instance.open({
+        isAboveFullscreenDialog: !!aboveFullscreen,
+      });
     } else {
       instance.close();
+    }
+  }
+
+  let previousAboveFullscreenShown = $aboveFullscreenShown;
+  $: if (
+    fullscreen &&
+    instance &&
+    previousAboveFullscreenShown !== $aboveFullscreenShown
+  ) {
+    previousAboveFullscreenShown = $aboveFullscreenShown;
+    if ($aboveFullscreenShown) {
+      instance.showSurfaceScrim();
+    } else {
+      instance.hideSurfaceScrim();
     }
   }
 
@@ -152,7 +185,7 @@
         const element = closest(evt.target, '[data-mdc-dialog-action]');
         return element && element.getAttribute('data-mdc-dialog-action');
       },
-      getInitialFocusEl: () => getInitialFocusEl(),
+      getInitialFocusEl,
       hasClass,
       isContentScrollable: () => util.isScrollable(getContentEl()),
       notifyClosed: (action) => {
@@ -187,6 +220,12 @@
       },
       isScrollableContentAtBottom: () => {
         return util.isScrollAtBottom(getContentEl());
+      },
+      registerWindowEventHandler: (evt, handler) => {
+        window.addEventListener(evt, handler);
+      },
+      deregisterWindowEventHandler: (evt, handler) => {
+        window.removeEventListener(evt, handler);
       },
     });
 
@@ -238,6 +277,9 @@
   }
 
   function handleDialogOpening() {
+    if (aboveFullscreen) {
+      $aboveFullscreenShown = true;
+    }
     requestAnimationFrame(() => {
       layoutListeners.forEach((listener) => listener());
     });
@@ -245,6 +287,12 @@
 
   function handleDialogOpened() {
     layoutListeners.forEach((listener) => listener());
+  }
+
+  function handleDialogClosed() {
+    if (aboveFullscreen) {
+      $aboveFullscreenShown = false;
+    }
   }
 
   export function isOpen() {

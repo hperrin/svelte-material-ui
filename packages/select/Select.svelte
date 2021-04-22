@@ -130,8 +130,7 @@
         })}
         role="button"
         aria-haspopup="listbox"
-        aria-labelledby="{inputId + '-smui-label'} {inputId +
-          '-smui-selected-text'}"
+        aria-labelledby={inputId + '-smui-label'}
         {...prefixFilter($$restProps, 'selectedText$')}
       >
         {$selectedTextStore}

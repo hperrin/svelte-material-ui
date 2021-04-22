@@ -4,16 +4,16 @@
   use={[forwardEvents, ...use]}
   class={classMap({
     [className]: true,
-    'mdc-list': true,
-    'mdc-list--non-interactive': nonInteractive,
-    'mdc-list--dense': dense,
-    'mdc-list--textual-list': textualList,
-    'mdc-list--avatar-list': avatarList || selectionDialog,
-    'mdc-list--icon-list': iconList,
-    'mdc-list--image-list': imageList,
-    'mdc-list--thumbnail-list': thumbnailList,
-    'mdc-list--video-list': videoList,
-    'mdc-list--two-line': twoLine,
+    'mdc-deprecated-list': true,
+    'mdc-deprecated-list--non-interactive': nonInteractive,
+    'mdc-deprecated-list--dense': dense,
+    'mdc-deprecated-list--textual-list': textualList,
+    'mdc-deprecated-list--avatar-list': avatarList || selectionDialog,
+    'mdc-deprecated-list--icon-list': iconList,
+    'mdc-deprecated-list--image-list': imageList,
+    'mdc-deprecated-list--thumbnail-list': thumbnailList,
+    'mdc-deprecated-list--video-list': videoList,
+    'mdc-deprecated-list--two-line': twoLine,
     'smui-list--three-line': threeLine && !twoLine,
   })}
   {role}
@@ -21,7 +21,7 @@
     instance &&
     instance.handleKeydown(
       event,
-      event.target.classList.contains('mdc-list-item'),
+      event.target.classList.contains('mdc-deprecated-list-item'),
       getListItemIndex(event.target)
     )}
   on:focusin={(event) =>
@@ -316,10 +316,13 @@
   }
 
   function getListItemIndex(element) {
-    const nearestParent = closest(element, '.mdc-list-item, .mdc-list');
+    const nearestParent = closest(
+      element,
+      '.mdc-deprecated-list-item, .mdc-deprecated-list'
+    );
 
     // Get the index of the element if it is a list item.
-    if (nearestParent && matches(nearestParent, '.mdc-list-item')) {
+    if (nearestParent && matches(nearestParent, '.mdc-deprecated-list-item')) {
       return getOrderedList()
         .map((item) => item.element)
         .indexOf(nearestParent);
