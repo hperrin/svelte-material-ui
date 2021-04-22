@@ -1,6 +1,6 @@
 {
   "name": "@smui/checkbox",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "Svelte Material UI - Checkbox",
   "type": "module",
   "module": "index.js",
@@ -32,7 +32,7 @@
   "dependencies": {
     "@material/checkbox": "^10.0.0",
     "@smui/common": "^3.0.2",
-    "@smui/ripple": "^3.0.2"
+    "@smui/ripple": "^3.0.3"
   },
   "devDependencies": {
     "sass": "^1.32.8"

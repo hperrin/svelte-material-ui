@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.3](https://github.com/hperrin/svelte-material-ui/compare/v3.0.2...v3.0.3) (2021-04-22)
+
+
+### Bug Fixes
+
+* import only from Ripple index ([99ed6dc](https://github.com/hperrin/svelte-material-ui/commit/99ed6dc9d99ee9a5f7accf73400bedda04768cb6))
+
+
+
+
+
 ## [3.0.2](https://github.com/hperrin/svelte-material-ui/compare/v3.0.1...v3.0.2) (2021-04-21)
 
 

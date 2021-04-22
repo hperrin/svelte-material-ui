@@ -1,6 +1,6 @@
 {
   "name": "@smui/list",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "Svelte Material UI - List",
   "type": "module",
   "module": "index.js",
@@ -34,7 +34,7 @@
     "@material/feature-targeting": "^10.0.0",
     "@material/list": "^10.0.0",
     "@smui/common": "^3.0.2",
-    "@smui/ripple": "^3.0.2"
+    "@smui/ripple": "^3.0.3"
   },
   "devDependencies": {
     "sass": "^1.32.8"

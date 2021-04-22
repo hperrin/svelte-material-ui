@@ -1,6 +1,6 @@
 {
   "name": "@smui/select",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "Svelte Material UI - Select",
   "type": "module",
   "module": "index.js",
@@ -38,11 +38,11 @@
     "@smui/common": "^3.0.2",
     "@smui/floating-label": "^3.0.2",
     "@smui/line-ripple": "^3.0.2",
-    "@smui/list": "^3.0.2",
-    "@smui/menu": "^3.0.2",
+    "@smui/list": "^3.0.3",
+    "@smui/menu": "^3.0.3",
     "@smui/menu-surface": "^3.0.2",
     "@smui/notched-outline": "^3.0.2",
-    "@smui/ripple": "^3.0.2"
+    "@smui/ripple": "^3.0.3"
   },
   "devDependencies": {
     "sass": "^1.32.8"

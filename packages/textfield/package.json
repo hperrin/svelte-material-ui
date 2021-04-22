@@ -1,6 +1,6 @@
 {
   "name": "@smui/textfield",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "Svelte Material UI - Text Field",
   "type": "module",
   "module": "index.js",
@@ -39,7 +39,7 @@
     "@smui/floating-label": "^3.0.2",
     "@smui/line-ripple": "^3.0.2",
     "@smui/notched-outline": "^3.0.2",
-    "@smui/ripple": "^3.0.2"
+    "@smui/ripple": "^3.0.3"
   },
   "devDependencies": {
     "sass": "^1.32.8"
