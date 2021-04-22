@@ -64,7 +64,7 @@ If you want the Material Icon, Roboto, and Roboto Mono fonts, be sure to include
 
 # Using the Default Theme
 
-If you don't care about theming, you can use the prebuilt "bare.css" file from the "svelte-material-ui" package. You can also use the "bare.css" files from the individual packages if you don't use many components and want smaller file sizes.
+If you don't care about theming, you can use the prebuilt "bare.css" file from the "svelte-material-ui" package. You can also use the "bare.css" files from the individual packages if you don't use many components and want smaller file sizes. If you use this option you _can_ customize your theme somewhat, but your [theming options](THEMING.md#theming-the-bare-css) are limited.
 
 ```sh
 npm install --save svelte-material-ui
@@ -145,8 +145,6 @@ Or, for Webpack, you will need the Style, CSS, and Sass Loaders. (Check out the 
 ```sh
 npm install --save-dev style-loader css-loader sass-loader
 ```
-
-If you're not using a bunbler, you can import components from the `bare.js` files, which don't include any styling. Then you can use the `bare.css` files which are precompiled (with the default theme) and packaged with components. Then you can skip the next step, but your [theming options](THEMING.md#theming-the-bare-css) are limited.
 
 ### Setting up Sass
 
