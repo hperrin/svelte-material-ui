@@ -38,7 +38,7 @@ And this method will only include the components. Use this for the Easy Styling 
 
 Notice that adding "/bare" to your import path means no Sass files will be imported. Use this method if you use the Easy Styling Method or the Default Theme with "bare.css".
 
-For SvelteKit, check out the [SvelteKit instructions](#sveltkit).
+For SvelteKit, check out the [SvelteKit instructions](INSTALL.md#sveltkit).
 
 ## Material Fonts
 
