@@ -38,6 +38,8 @@ And this method will only include the components. Use this for the Easy Styling 
 
 Notice that adding "/bare" to your import path means no Sass files will be imported. Use this method if you use the Easy Styling Method or the Default Theme with "bare.css".
 
+For SvelteKit, check out the [SvelteKit instructions](#sveltkit).
+
 ## Material Fonts
 
 If you want the Material Icon, Roboto, and Roboto Mono fonts, be sure to include these stylesheets (or include them from a package).
@@ -101,7 +103,7 @@ npm install --save-dev svelte-material-ui
 
 In your package.json file, add this script in the "scripts" section, adjusting the destination file as desired.
 
-```json
+```
 "prepare": "sass --no-source-map -I src/theme -I node_modules node_modules/svelte-material-ui/_index.scss build/smui.css",
 ```
 
@@ -118,7 +120,7 @@ touch src/theme/dark/_smui-theme.scss
 
 Replace the sript above with this.
 
-```json
+```
 "prepare": "npm run smui-theme-light && npm run smui-theme-dark",
 "smui-theme-light": "sass --no-source-map -I src/theme -I node_modules node_modules/svelte-material-ui/_index.scss build/smui.css",
 "smui-theme-dark": "sass --no-source-map -I src/theme/dark -I node_modules node_modules/svelte-material-ui/_index.scss build/smui-dark.css",
@@ -213,4 +215,28 @@ module.exports = {
     ],
   },
 };
+```
+
+# SvelteKit
+
+Check out the [SvelteKit example repo](https://github.com/hperrin/smui-example-sveltekit).
+
+You will need to use the Easy Styling Method for dark mode support. You will also need to add this in your Vite SSR config.
+
+```js
+noExternal: [
+  ...Object.keys(pkg.dependencies || {}),
+  ...Object.keys(pkg.devDependencies || {}).filter((name) =>
+    name.startsWith("@smui")
+  ),
+],
+```
+
+And you will need to use this set of prepare scripts.
+
+```
+"prepare": "npm run vite-workaround && npm run smui-theme-light && npm run smui-theme-dark",
+"vite-workaround": "find node_modules/@material/ -name \"*.js.map\" -type f -delete",
+"smui-theme-light": "sass --no-source-map -I src/theme -I node_modules src/app.scss static/smui.css",
+"smui-theme-dark": "sass --no-source-map -I src/theme/dark -I node_modules src/app.scss static/smui-dark.css"
 ```
