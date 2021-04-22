@@ -7,6 +7,8 @@ This doc contains information that will help you migrate your code from an older
 SMUI 3.1 migrated to upstream MDC 11.0 from 10.0:
 https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#1100-2021-04-15
 
+You should update your MDC dependencies to 11.0 as well.
+
 ## Breaking Changes
 
 ### Theming, Sass
