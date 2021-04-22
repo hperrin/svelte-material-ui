@@ -26,4 +26,4 @@ todo...
 
 See [Tabs](https://material.io/components/tabs) in the Material design spec.
 
-See [Tab Bar](https://github.com/material-components/material-components-web/tree/v10.0.0/packages/mdc-tab-bar) in MDC-Web for information about the upstream library's architecture.
+See [Tab Bar](https://github.com/material-components/material-components-web/tree/v11.0.0/packages/mdc-tab-bar) in MDC-Web for information about the upstream library's architecture.

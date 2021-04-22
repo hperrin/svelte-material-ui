@@ -19,7 +19,7 @@ SMUI components provide "bare.css" and "bare.js" files to use in the REPL. In a 
   <!-- Material Typography -->
   <link
     rel="stylesheet"
-    href="https://unpkg.com/@material/typography@10.0.0/dist/mdc.typography.css"
+    href="https://unpkg.com/@material/typography@11.0.0/dist/mdc.typography.css"
   />
 
   <!-- SMUI -->
