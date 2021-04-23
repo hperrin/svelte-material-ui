@@ -1,9 +1,11 @@
 # Installation
 
-To get started, install the main package.
+To get started, install the SMUI packages.
 
 ```sh
-npm install --save svelte-material-ui
+npm install --save @smui/button
+npm install --save @smui/card
+# etc...
 ```
 
 You can also [use SMUI in the Svelte REPL](REPL.md).
