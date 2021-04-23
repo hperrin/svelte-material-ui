@@ -35,7 +35,9 @@
     $padding: (variables.$touch-target-size - variables.$icon-size) / 2;
     $left-margin: variables.$trailing-icon-padding-left - $padding;
 
-    padding: $padding;
+    padding-top: $padding;
+    padding-bottom: $padding;
+    @include rtl-mixins.reflexive-property(padding, $padding, 0);
     @include rtl-mixins.reflexive-property(margin, $left-margin, 0);
   }
 }
