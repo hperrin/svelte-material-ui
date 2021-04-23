@@ -33,7 +33,7 @@ And you will need to use one of these sets of prepare scripts.
   "vite-workaround": "find node_modules/@material/ -name \"*.js.map\" -type f -delete"
   ```
 
-- Without Dark Mode
+- [Custom Theme](THEMING.md), without Dark Mode
 
   ```
   "prepare": "npm run vite-workaround && npm run smui-theme",
@@ -41,7 +41,7 @@ And you will need to use one of these sets of prepare scripts.
   "smui-theme": "sass --no-source-map -I src/theme -I node_modules src/app.scss static/smui.css"
   ```
 
-- With Dark Mode
+- [Custom Theme](THEMING.md), with Dark Mode
 
   ```
   "prepare": "npm run vite-workaround && npm run smui-theme-light && npm run smui-theme-dark",
@@ -50,4 +50,4 @@ And you will need to use one of these sets of prepare scripts.
   "smui-theme-dark": "sass --no-source-map -I src/theme/dark -I node_modules src/app.scss static/smui-dark.css"
   ```
 
-If you are on Windows, check out the [workaround script](https://github.com/hperrin/smui-example-sveltekit/blob/master/_helper/vite-workaround.js) and [how to use it](https://github.com/hperrin/smui-example-sveltekit/blob/master/package.json) in the [SvelteKit example repo](https://github.com/hperrin/smui-example-sveltekit) instead, because the `find` command in the `vite-workaround` script above won't work for you.
+If you are on Windows, check out the [workaround script](https://github.com/hperrin/smui-example-sveltekit/blob/master/_helper/vite-workaround.js) and [how to use it](https://github.com/hperrin/smui-example-sveltekit/blob/master/package.json) in the [SvelteKit example repo](https://github.com/hperrin/smui-example-sveltekit) instead, because the `find` command in the `vite-workaround` scripts above won't work for you.
