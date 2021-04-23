@@ -37,7 +37,7 @@ a:visited {
 
 ## Theming the Bare CSS
 
-If you don't want to (or can't) theme SMUI using Sass variables, and instead include the bare CSS for each component, you can set a subset of the theme options with CSS variables. Note that not all of the colors in SMUI read from CSS variables, so some parts will still use the colors defined in the original Sass compile. Below is a copy of the variables from the CSS on the SMUI website. You can use this as a starting point for your own theme.
+If you use the bare CSS, you can set a subset of the theme options with CSS variables. Note that not all of the colors in SMUI read from CSS variables, so some parts will still use the colors defined in the original Sass compile. Below is a copy of the variables from the CSS on the SMUI website. You can use this as a starting point for your own theme.
 
 ```css
 /* Theme colors. */
