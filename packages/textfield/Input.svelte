@@ -10,6 +10,7 @@
   on:input={(e) => type !== 'file' && valueUpdater(e)}
   on:change={changeHandler}
   {type}
+  {placeholder}
   {...valueProp}
   {...internalAttrs}
   {...$$restProps}
@@ -30,6 +31,9 @@
   let className = '';
   export { className as class };
   export let type = 'text';
+  // Always having a placeholder fixes Safari's baseline alignment.
+  // See: https://github.com/philipwalton/flexbugs/issues/270
+  export let placeholder = ' ';
   export let value = '';
   export let files = undefined;
   export let dirty = false;
