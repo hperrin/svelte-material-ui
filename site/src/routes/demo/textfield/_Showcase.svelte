@@ -29,7 +29,7 @@
   </Textfield>
 </div>
 
-<pre class="status">Focused: {focused}, Dirty: {dirty}, Invalid: {invalid}</pre>
+<pre class="status">Value: {value}, Focused: {focused}, Dirty: {dirty}, Invalid: {invalid}</pre>
 
 <script>
   import Textfield from '@smui/textfield';
@@ -37,14 +37,20 @@
   import HelperText from '@smui/textfield/helper-text/index';
 
   let focused = false;
-  let value = '';
+  let value = null;
   let dirty = false;
   let invalid = false;
-  $: disabled = value === '' || !dirty || invalid;
+  $: disabled = !value || !dirty || invalid;
 
   function clickHandler() {
     alert(`Sending to ${value}!`);
-    value = '';
+    value = null;
     dirty = false;
   }
 </script>
+
+<style>
+  * :global([aria-disabled="true"]) {
+    cursor: not-allowed;
+  }
+</style>

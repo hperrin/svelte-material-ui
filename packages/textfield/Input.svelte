@@ -48,7 +48,7 @@
     delete valueProp.value;
     valueProp = valueProp;
   } else {
-    valueProp.value = value === undefined ? '' : value;
+    valueProp.value = value == null ? '' : value;
   }
 
   onMount(() => {
