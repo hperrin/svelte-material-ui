@@ -60,6 +60,15 @@ You can use the prebuilt "bare.css" file from the "svelte-material-ui" package. 
 <link rel="stylesheet" href="node_modules/svelte-material-ui/bare.css" />
 ```
 
+If that's not working (probably because your dependencies aren't copied to your build folder), you can also use a CDN. Just be sure you update the version here when you update to a new version of SMUI.
+
+```html
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/svelte-material-ui@3.1.0/bare.min.css"
+/>
+```
+
 You can also use the "bare.css" files from the individual packages if you don't use many components and want smaller file sizes.
 
 **Remember to import components with the "/bare" endpoint.**
