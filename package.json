@@ -13,7 +13,7 @@
   ],
   "scripts": {
     "pages": "git checkout site -- && git rebase master && cd site && npm install && npm run export && cd .. && git add . && git commit -m 'chore: update built files' && git push origin $(git subtree split --prefix site/dist site):gh-pages --force && git reset --hard HEAD^ && git push --force origin site && git checkout master",
-    "prepare": "sass --no-source-map -I node_modules _style.scss bare.css",
+    "prepare": "smui-theme compile bare.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "files": [
@@ -162,6 +162,7 @@
     "prettier": "2.2.1",
     "prettier-plugin-svelte": "^2.2.0",
     "sass": "^1.32.8",
+    "smui-theme": "file:packages/smui-theme",
     "svelte": "^3.35.0"
   }
 }
