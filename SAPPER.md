@@ -2,20 +2,21 @@
 
 <sub>\* As of 2021-Apr-06, these instructions will now work without a flash of unstyled content!</sub>
 
-Install the following packages as dev dependencies
+These instructions are for the Advanced Styling Method. If you don't need the advantages of this method, it's much easier to use the [Easy Styling Method](SASS.md).
+
+Install the following packages as dev dependencies.
 
 ```sh
 npm i -D rollup-plugin-postcss sass
 ```
 
-Create the `src/theme/_smui-theme.scss` file
+Create the `src/theme/_smui-theme.scss` file.
 
 ```sh
-mkdir src/theme
-touch src/theme/_smui-theme.scss
+npx smui-theme template src/theme
 ```
 
-Update `rollup.config.js` with the following configuration
+Update `rollup.config.js` with the following configuration.
 
 ```js
 // ...
@@ -49,7 +50,7 @@ postcss(postcssOptions(false)),
 // ...
 ```
 
-In the `template.html` file, in the `<head>` section right after `%sapper.base%`, paste the following
+In the `template.html` file, in the `<head>` section right after `%sapper.base%`, paste the following.
 
 ```html
 <!-- SMUI Styles -->

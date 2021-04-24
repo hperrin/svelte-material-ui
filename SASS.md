@@ -1,6 +1,6 @@
 # Custom Theme with Sass
 
-To create a custom theme, use the SMUI Theme Builder.
+To create a custom theme, install the SMUI Theme Builder.
 
 ```sh
 npm install --save-dev smui-theme
@@ -32,7 +32,7 @@ Or for dark mode.
 "smui-theme-dark": "smui-theme compile build/smui-dark.css -i src/theme/dark",
 ```
 
-Now run `npm run prepare` to build the CSS file(s), and include it/them on your page.
+Now run `npm run prepare` to build the CSS file(s), then add it/them on your page.
 
 **Remember to import components with the "/bare" endpoint.**
 
