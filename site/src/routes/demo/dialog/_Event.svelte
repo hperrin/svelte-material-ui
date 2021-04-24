@@ -41,6 +41,7 @@
         break;
       default:
         // This means the user clicked the scrim or pressed Esc to close the dialog.
+        // The actions will be "close".
         response = "It's a simple question. You should be able to answer it.";
         break;
     }

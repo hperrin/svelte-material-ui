@@ -2,6 +2,37 @@
 
 This doc contains information that will help you migrate your code from an older version of SMUI to a newer one. Things that you will need to change in your existing code will be written here. It would also be helpful to check the MDC changelog if the upstream MDC versions has changed between SMUI versions.
 
+# SMUI 3.0 -> SMUI 3.1
+
+SMUI 3.1 migrated to upstream MDC 11.0 from 10.0:
+https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#1100-2021-04-15
+
+You should update your MDC dependencies to 11.0 as well.
+
+## Breaking Changes
+
+### Theming, Sass
+
+- MDC-Web chips trailing actions class changed.
+- MDC-Web list classes changed.
+
+## New Features
+
+### Compoennts
+
+- Banner
+  - Add focus trap on the banner.
+- Dialog
+  - New `fullscreen` prop.
+  - New `over` slot.
+- Menu Surface
+  - New `maxHeight` prop.
+  - New `horizontallyCenteredOnViewport` prop.
+- Slider
+  - Rounds values to correct decimal places based on `step` prop.
+- Tooltip
+  - New `attachScrollHandler` and `removeScrollHandler` functions for adding additional scrollable elements to handle. Both accept a function.
+
 # SMUI 2 -> SMUI 3
 
 You will need to migrate to Dart Sass. `node-sass` is no longer supported, as it is deprecated and too old now.
@@ -14,7 +45,7 @@ npm i -D sass
 SMUI 3 migrated to upstream MDC 10.0 from 4.0:
 https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#1000-2021-02-05
 
-There are [newly updated instructiong](INSTALL.md#integration-for-sapper) for using SMUI in Sapper.
+There are [newly updated instructiong](SAPPER.md) for using SMUI in Sapper.
 
 ## Breaking Changes
 

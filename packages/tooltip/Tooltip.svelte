@@ -4,7 +4,7 @@
   use:forwardEvents
   class={classMap({
     [className]: true,
-    'mdc-tooltip': !rich,
+    'mdc-tooltip': true,
     'mdc-tooltip--rich': rich,
     ...internalClasses,
   })}
@@ -29,6 +29,7 @@
     class={classMap({
       [surface$class]: true,
       'mdc-tooltip__surface': true,
+      'mdc-tooltip__surface-animation': true,
     })}
     style={Object.entries(surfaceStyles)
       .map(([name, value]) => `${name}: ${value};`)
@@ -190,6 +191,12 @@
       deregisterEventHandler: (evt, handler) => {
         getElement().removeEventListener(evt, handler);
       },
+      registerAnchorEventHandler: (evt, handler) => {
+        $anchor && $anchor.addEventListener(evt, handler);
+      },
+      deregisterAnchorEventHandler: (evt, handler) => {
+        $anchor && $anchor.removeEventListener(evt, handler);
+      },
       registerDocumentEventHandler: (evt, handler) => {
         document.body.addEventListener(evt, handler);
       },
@@ -239,7 +246,7 @@
   });
 
   function destroy(anchor) {
-    anchor.removeEventListener('focusout', handleAnchorBlur);
+    anchor.removeEventListener('focusout', handleAnchorFocusOut);
     if (rich && persistent) {
       anchor.removeEventListener('click', handleAnchorActivate);
       anchor.removeEventListener('keydown', handleAnchorActivate);
@@ -247,6 +254,8 @@
       anchor.removeEventListener('mouseenter', handleAnchorMouseEnter);
       anchor.removeEventListener('focusin', handleAnchorFocus);
       anchor.removeEventListener('mouseleave', handleAnchorMouseLeave);
+      anchor.removeEventListener('touchstart', handleAnchorTouchStart);
+      anchor.removeEventListener('touchend', handleAnchorTouchEnd);
     }
     if (rich && interactive) {
       anchor.removeAttribute('aria-haspopup');
@@ -260,7 +269,7 @@
   }
 
   function init(anchor) {
-    anchor.addEventListener('focusout', handleAnchorBlur);
+    anchor.addEventListener('focusout', handleAnchorFocusOut);
     if (rich && persistent) {
       anchor.addEventListener('click', handleAnchorActivate);
       anchor.addEventListener('keydown', handleAnchorActivate);
@@ -268,6 +277,8 @@
       anchor.addEventListener('mouseenter', handleAnchorMouseEnter);
       anchor.addEventListener('focusin', handleAnchorFocus);
       anchor.addEventListener('mouseleave', handleAnchorMouseLeave);
+      anchor.addEventListener('touchstart', handleAnchorTouchStart);
+      anchor.addEventListener('touchend', handleAnchorTouchEnd);
     }
     if (rich && interactive) {
       anchor.setAttribute('aria-haspopup', 'dialog');
@@ -335,8 +346,15 @@
     }
   }
 
-  function handleAnchorBlur(event) {
-    instance && instance.handleAnchorBlur(event);
+  function handleAnchorFocusOut(event) {
+    // The foundation only watches for blur, which
+    // doesn't fire on all components you would
+    // anchor a tooltip to (since it doesn't
+    // bubble), so we handle focusout like a blur.
+    if (element.contains(event.relatedTarget)) {
+      return;
+    }
+    instance && instance.hide();
   }
 
   function handleAnchorActivate(event) {
@@ -362,12 +380,30 @@
     instance && instance.handleAnchorMouseLeave();
   }
 
+  function handleAnchorTouchStart() {
+    // Purposefully capitalized differently to match MDC.
+    instance && instance.handleAnchorTouchstart();
+  }
+
+  function handleAnchorTouchEnd() {
+    // Purposefully capitalized differently to match MDC.
+    instance && instance.handleAnchorTouchend();
+  }
+
   function hoistToBody() {
     if ($anchor && document.body !== getElement().parentNode) {
       nonReactiveLocationStore.setParent(getElement().parentNode);
       nonReactiveLocationStore.setNextSibling(getElement().nextSibling);
       document.body.appendChild(getElement());
     }
+  }
+
+  export function attachScrollHandler(addEventListenerFn) {
+    instance && instance.attachScrollHandler(addEventListenerFn);
+  }
+
+  export function removeScrollHandler(removeEventHandlerFn) {
+    instance && instance.removeScrollHandler(removeEventHandlerFn);
   }
 
   export function getElement() {

@@ -1,6 +1,7 @@
 @use '@material/feature-targeting/index' as feature-targeting;
 @use '@material/ripple/index' as ripple;
 @use '@material/fab/index' as fab;
+@use '@material/fab/fab-theme';
 
 @mixin core-styles($query: feature-targeting.all()) {
   @include without-ripple($query);
@@ -29,11 +30,20 @@
 }
 
 @mixin ripple($query: feature-targeting.all()) {
+  // Ripple aren't working in MDC 11.
+  .mdc-fab {
+    @include ripple.states(
+      on-secondary,
+      $query: $query,
+      $ripple-target: fab-theme.$ripple-target
+    );
+  }
+
   .smui-fab--color-primary {
     @include ripple.states(
       on-primary,
       $query: $query,
-      $ripple-target: fab.$ripple-target
+      $ripple-target: fab-theme.$ripple-target
     );
   }
 }

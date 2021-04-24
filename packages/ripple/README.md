@@ -69,4 +69,4 @@ The action accepts an array, with two entries. The first is a boolean, whether t
 
 # More Information
 
-See [Ripple](https://github.com/material-components/material-components-web/tree/v10.0.0/packages/mdc-ripple) in MDC-Web for information about the upstream library's architecture.
+See [Ripple](https://github.com/material-components/material-components-web/tree/v11.0.0/packages/mdc-ripple) in MDC-Web for information about the upstream library's architecture.

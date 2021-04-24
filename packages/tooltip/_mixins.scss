@@ -1,0 +1,28 @@
+@use '@material/feature-targeting/feature-targeting';
+@use '@material/tooltip/tooltip-theme';
+
+$rich-title-text-color: on-surface !default;
+$rich-content-text-color: on-surface !default;
+$rich-content-link-color: primary !default;
+
+@mixin core-styles($query: feature-targeting.all()) {
+  .mdc-tooltip--rich {
+    // I don't know why MDC doesn't have this style.
+    display: none;
+
+    @include tooltip-theme.rich-text-ink-color(
+      on-surface,
+      on-surface,
+      primary,
+      $query: $query
+    );
+  }
+
+  .smui-tooltip--force-show {
+    display: inline-flex !important;
+
+    &.mdc-tooltip--rich {
+      display: inline-block !important;
+    }
+  }
+}

@@ -44,4 +44,4 @@ todo...
 
 See [Lists](https://material.io/components/lists) in the Material design spec.
 
-See [List](https://github.com/material-components/material-components-web/tree/v10.0.0/packages/mdc-list) in MDC-Web for information about the upstream library's architecture.
+See [List](https://github.com/material-components/material-components-web/tree/v11.0.0/packages/mdc-list) in MDC-Web for information about the upstream library's architecture.

@@ -1,6 +1,6 @@
 {
   "name": "@smui/common",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "Svelte Material UI - Common",
   "type": "module",
   "module": "index.js",
@@ -29,7 +29,7 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@material/dom": "^10.0.0",
+    "@material/dom": "^11.0.0",
     "svelte": "^3.35.0"
   }
 }

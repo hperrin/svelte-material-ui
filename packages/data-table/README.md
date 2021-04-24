@@ -61,4 +61,4 @@ todo...
 
 See [Data tables](https://material.io/components/data-tables) in the Material design spec.
 
-See [Data Table](https://github.com/material-components/material-components-web/tree/v10.0.0/packages/mdc-data-table) in MDC-Web for information about the upstream library's architecture.
+See [Data Table](https://github.com/material-components/material-components-web/tree/v11.0.0/packages/mdc-data-table) in MDC-Web for information about the upstream library's architecture.

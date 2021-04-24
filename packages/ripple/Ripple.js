@@ -1,5 +1,4 @@
-import { MDCRippleFoundation } from '@material/ripple';
-import * as util from '@material/ripple/util';
+import { MDCRippleFoundation, util } from '@material/ripple';
 import { events, ponyfill } from '@material/dom';
 import { getContext } from 'svelte';
 const { applyPassive } = events;

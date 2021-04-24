@@ -8,7 +8,7 @@
   input$aria-label="Range slider"
 />
 
-<pre class="status">Value: {valueStart.toFixed(1)} - {valueEnd.toFixed(1)}</pre>
+<pre class="status">Value: {valueStart} - {valueEnd}</pre>
 
 <script>
   import Slider from '@smui/slider';

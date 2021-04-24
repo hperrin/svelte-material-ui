@@ -55,4 +55,4 @@ todo...
 
 See [Dropdown menu](https://material.io/components/menus#dropdown-menu) in the Material design spec.
 
-See [Select](https://github.com/material-components/material-components-web/tree/v10.0.0/packages/mdc-select) in MDC-Web for information about the upstream library's architecture.
+See [Select](https://github.com/material-components/material-components-web/tree/v11.0.0/packages/mdc-select) in MDC-Web for information about the upstream library's architecture.

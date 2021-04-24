@@ -6,7 +6,7 @@
   input$aria-label="Continuous slider"
 />
 
-<pre class="status">Value: {value.toFixed(3)}</pre>
+<pre class="status">Value: {value}</pre>
 
 <script>
   import Slider from '@smui/slider';

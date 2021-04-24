@@ -59,6 +59,8 @@
   export let anchorElement = null;
   export let anchorCorner = null;
   export let anchorMargin = { top: 0, right: 0, bottom: 0, left: 0 };
+  export let maxHeight = 0;
+  export let horizontallyCenteredOnViewport = false;
 
   let element;
   let instance;
@@ -92,6 +94,16 @@
 
   $: if (instance) {
     instance.setFixedPosition(fixed);
+  }
+
+  $: if (instance && maxHeight > 0) {
+    instance.setMaxHeight(maxHeight);
+  }
+
+  $: if (instance) {
+    instance.setIsHorizontallyCenteredOnViewport(
+      horizontallyCenteredOnViewport
+    );
   }
 
   const iCorner = Corner;

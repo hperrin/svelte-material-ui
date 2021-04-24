@@ -24,10 +24,10 @@
   ]}
   class={classMap({
     [className]: true,
-    'mdc-list-item': true,
-    'mdc-list-item--activated': activated,
-    'mdc-list-item--selected': selected,
-    'mdc-list-item--disabled': disabled,
+    'mdc-deprecated-list-item': true,
+    'mdc-deprecated-list-item--activated': activated,
+    'mdc-deprecated-list-item--selected': selected,
+    'mdc-deprecated-list-item--disabled': disabled,
     'mdc-menu-item--selected': !nav && role === 'menuitem' && selected,
     'smui-menu-item--non-interactive': nonInteractive,
     ...internalClasses,
@@ -53,7 +53,7 @@
   {href}
   {...internalAttrs}
   {...$$restProps}
-  >{#if ripple}<span class="mdc-list-item__ripple" />{/if}<slot
+  >{#if ripple}<span class="mdc-deprecated-list-item__ripple" />{/if}<slot
   /></svelte:component
 >
 
@@ -129,8 +129,8 @@
         el = el.previousSibling;
         if (
           el.nodeType === 1 &&
-          el.classList.contains('mdc-list-item') &&
-          !el.classList.contains('mdc-list-item--disabled')
+          el.classList.contains('mdc-deprecated-list-item') &&
+          !el.classList.contains('mdc-deprecated-list-item--disabled')
         ) {
           first = false;
           break;
@@ -264,7 +264,7 @@
       el = el.nextSibling;
       if (
         el.nodeType === 1 &&
-        el.classList.contains('mdc-list-item') &&
+        el.classList.contains('mdc-deprecated-list-item') &&
         el.attributes['tabindex'] &&
         el.attributes['tabindex'].value === '0'
       ) {
@@ -296,11 +296,13 @@
   export function getPrimaryText() {
     const element = getElement();
 
-    const primaryText = element.querySelector('.mdc-list-item__primary-text');
+    const primaryText = element.querySelector(
+      '.mdc-deprecated-list-item__primary-text'
+    );
     if (primaryText) {
       return primaryText.textContent;
     }
-    const text = element.querySelector('.mdc-list-item__text');
+    const text = element.querySelector('.mdc-deprecated-list-item__text');
     if (text) {
       return text.textContent;
     }

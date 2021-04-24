@@ -26,4 +26,4 @@ todo...
 
 # More Information
 
-See [Menu Surface](https://github.com/material-components/material-components-web/tree/v10.0.0/packages/mdc-menu-surface) in MDC-Web for information about the upstream library's architecture.
+See [Menu Surface](https://github.com/material-components/material-components-web/tree/v11.0.0/packages/mdc-menu-surface) in MDC-Web for information about the upstream library's architecture.

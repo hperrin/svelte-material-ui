@@ -51,4 +51,4 @@ todo...
 
 See [Text fields](https://material.io/components/text-fields) in the Material design spec.
 
-See [Notched Outline](https://github.com/material-components/material-components-web/tree/v10.0.0/packages/mdc-notched-outline) in MDC-Web for information about the upstream library's architecture.
+See [Notched Outline](https://github.com/material-components/material-components-web/tree/v11.0.0/packages/mdc-notched-outline) in MDC-Web for information about the upstream library's architecture.

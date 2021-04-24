@@ -10,14 +10,6 @@
 <Button on:click={() => clicked++} touch variant="outlined">
   <Label>Outlined</Label>
 </Button>
-<Button
-  on:click={() => clicked++}
-  touch
-  href="http://example.com"
-  target="_blank"
->
-  <Label>Link</Label>
-</Button>
 
 <pre class="status">Clicked: {clicked}</pre>
 

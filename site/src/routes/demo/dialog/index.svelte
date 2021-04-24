@@ -26,15 +26,32 @@
   </Demo>
 
   <Demo component={Selection} file="dialog/_Selection.svelte">
-    A selection dialog
+    Selection dialog
   </Demo>
 
   <Demo component={Sliders} file="dialog/_Sliders.svelte">
-    A dialog with sliders
+    Dialog with sliders
   </Demo>
 
   <Demo component={LargeScroll} file="dialog/_LargeScroll.svelte">
-    A large, scrollable dialog
+    Large, scrollable dialog
+  </Demo>
+
+  <Demo component={Fullscreen} file="dialog/_Fullscreen.svelte">
+    Fullscreen dialog
+    <svelte:fragment slot="subtitle">
+      Note that dialogs will only be fullscreen on mobile sized screens. On
+      desktop sized screens, it will be shown as a modal dialog.
+    </svelte:fragment>
+  </Demo>
+
+  <Demo component={OverFullscreen} file="dialog/_OverFullscreen.svelte">
+    Dialog over fullscreen dialog
+    <svelte:fragment slot="subtitle">
+      Note that the Material Spec states that the only time a dialog should be
+      placed on top of another dialog is a confirmation dialog showing on top of
+      a fullscreen dialog.
+    </svelte:fragment>
   </Demo>
 
   <Demo component={ManyActions} file="dialog/_ManyActions.svelte">
@@ -56,5 +73,7 @@
   import Selection from './_Selection.svelte';
   import Sliders from './_Sliders.svelte';
   import LargeScroll from './_LargeScroll.svelte';
+  import Fullscreen from './_Fullscreen.svelte';
+  import OverFullscreen from './_OverFullscreen.svelte';
   import ManyActions from './_ManyActions.svelte';
 </script>

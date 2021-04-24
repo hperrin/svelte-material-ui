@@ -11,7 +11,7 @@
   use:forwardEvents
   class={classMap({
     [className]: true,
-    'mdc-chip-trailing-action': true,
+    'mdc-deprecated-chip-trailing-action': true,
     ...internalClasses,
   })}
   style={Object.entries(internalStyles)
@@ -25,22 +25,22 @@
   {...internalAttrs}
   {...exclude($$restProps, ['icon$'])}
 >
-  <span class="mdc-chip-trailing-action__ripple" />
+  <span class="mdc-deprecated-chip-trailing-action__ripple" />
   {#if touch}
-    <span class="mdc-chip-trailing-action__touch" />
+    <span class="mdc-deprecated-chip-trailing-action__touch" />
   {/if}
   <span
     use:useActions={icon$use}
     class={classMap({
       [icon$class]: true,
-      'mdc-chip-trailing-action__icon': true,
+      'mdc-deprecated-chip-trailing-action__icon': true,
     })}
     {...prefixFilter($$restProps, 'icon$')}><slot /></span
   >
 </button>
 
 <script>
-  import { MDCChipTrailingActionFoundation } from '@material/chips';
+  import { MDCChipTrailingActionFoundation } from '@material/chips/deprecated';
   import { onMount, tick } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {

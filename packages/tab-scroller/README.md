@@ -16,4 +16,4 @@ Don't install or use this package directly. It's a dependency of the Tab Bar pac
 
 See [Tabs](https://material.io/components/tabs) in the Material design spec.
 
-See [Tab Scroller](https://github.com/material-components/material-components-web/tree/v10.0.0/packages/mdc-tab-scroller) in MDC-Web for information about the upstream library's architecture.
+See [Tab Scroller](https://github.com/material-components/material-components-web/tree/v11.0.0/packages/mdc-tab-scroller) in MDC-Web for information about the upstream library's architecture.

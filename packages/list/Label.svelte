@@ -4,7 +4,7 @@
   use:forwardEvents
   class={classMap({
     [className]: true,
-    'mdc-list-item__text': true,
+    'mdc-deprecated-list-item__text': true,
   })}
   for={inputProps ? inputProps.id : null}
   {...$$restProps}><slot /></label

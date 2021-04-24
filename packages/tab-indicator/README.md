@@ -16,4 +16,4 @@ Don't install or use this package directly. It's a dependency of the Tab package
 
 See [Tabs](https://material.io/components/tabs) in the Material design spec.
 
-See [Tab Indicator](https://github.com/material-components/material-components-web/tree/v10.0.0/packages/mdc-tab-indicator) in MDC-Web for information about the upstream library's architecture.
+See [Tab Indicator](https://github.com/material-components/material-components-web/tree/v11.0.0/packages/mdc-tab-indicator) in MDC-Web for information about the upstream library's architecture.

@@ -4,7 +4,7 @@
   use:forwardEvents
   class={classMap({
     [className]: true,
-    'mdc-list-item__graphic': true,
+    'mdc-deprecated-list-item__graphic': true,
     'mdc-menu__selection-group-icon': menuSelectionGroup,
   })}
   {...$$restProps}><slot /></span

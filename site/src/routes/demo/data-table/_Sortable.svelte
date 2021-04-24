@@ -62,7 +62,9 @@
   let sortDirection = 'ascending';
 
   if (typeof fetch !== 'undefined') {
-    fetch('https://jsonplaceholder.typicode.com/users')
+    fetch(
+      'https://gist.githubusercontent.com/hperrin/e24a4ebd9afdf2a8c283338ae5160a62/raw/dcbf8e6382db49b0dcab70b22f56b1cc444f26d4/users.json'
+    )
       .then((response) => response.json())
       .then((json) => (items = json));
   }

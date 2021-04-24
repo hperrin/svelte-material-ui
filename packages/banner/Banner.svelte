@@ -29,7 +29,7 @@
         [content$class]: true,
         'mdc-banner__content': true,
       })}
-      role="status"
+      role="alertdialog"
       aria-live="assertive"
       {...prefixFilter($$restProps, 'content$')}
     >
@@ -68,6 +68,7 @@
 
 <script>
   import { MDCBannerFoundation } from '@material/banner';
+  import { focusTrap as domFocusTrap } from '@material/dom';
   import { onMount, onDestroy, getContext, setContext, tick } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {
@@ -79,6 +80,7 @@
     dispatch,
   } from '@smui/common/internal.js';
   import Fixed from './Fixed.svelte';
+  const { FocusTrap } = domFocusTrap;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
@@ -99,6 +101,7 @@
   let internalClasses = {};
   let internalStyles = {};
   let content;
+  let focusTrap;
   let addLayoutListener = getContext('SMUI:addLayoutListener');
   let removeLayoutListener;
   let width;
@@ -126,6 +129,10 @@
   }
 
   onMount(() => {
+    focusTrap = new FocusTrap(element, {
+      initialFocusEl: getPrimaryActionEl(),
+    });
+
     instance = new MDCBannerFoundation({
       addClass,
       getContentHeight: () => {
@@ -151,8 +158,10 @@
       notifyOpening: () => {
         dispatch(getElement(), 'MDCBanner:opening', {});
       },
+      releaseFocus: () => focusTrap.releaseFocus(),
       removeClass,
       setStyleProperty: addStyle,
+      trapFocus: () => focusTrap.trapFocus(),
     });
 
     instance.init();
@@ -190,6 +199,10 @@
         internalStyles[name] = value;
       }
     }
+  }
+
+  function getPrimaryActionEl() {
+    return element.querySelector('.mdc-banner__primary-action');
   }
 
   export function isOpen() {

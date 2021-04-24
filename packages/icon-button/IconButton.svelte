@@ -29,6 +29,7 @@
     'mdc-data-table__pagination-button': context === 'data-table:pagination',
     'mdc-data-table__sort-icon-button':
       context === 'data-table:sortable-header-cell',
+    'mdc-dialog__close': context === 'dialog:header' && action === 'close',
     ...internalClasses,
   })}
   style={Object.entries(internalStyles)
@@ -93,20 +94,26 @@
 
   export let component = href == null ? Button : A;
 
-  $: actionProp =
-    context === 'data-table:pagination'
-      ? {
-          [action === 'first-page'
-            ? 'data-first-page'
-            : action === 'prev-page'
-            ? 'data-prev-page'
-            : action === 'next-page'
-            ? 'data-next-page'
-            : action === 'last-page'
-            ? 'data-last-page'
-            : 'data-action']: 'true',
-        }
-      : { action };
+  $: actionProp = (() => {
+    if (context === 'data-table:pagination') {
+      switch (action) {
+        case 'first-page':
+          return { 'data-first-page': 'true' };
+        case 'prev-page':
+          return { 'data-prev-page': 'true' };
+        case 'next-page':
+          return { 'data-next-page': 'true' };
+        case 'last-page':
+          return { 'data-last-page': 'true' };
+        default:
+          return { 'data-action': 'true' };
+      }
+    } else if (context === 'dialog:header') {
+      return { 'data-mdc-dialog-action': action };
+    } else {
+      return { action };
+    }
+  })();
 
   setContext('SMUI:icon:context', 'icon-button');
 
