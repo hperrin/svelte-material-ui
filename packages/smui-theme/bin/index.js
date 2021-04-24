@@ -36,6 +36,15 @@ yargs(hideBin(process.argv))
         });
     },
     (argv) => {
+      if (!fs.existsSync(path.dirname(argv.output))) {
+        console.error(
+          "It looks like the output directory doesn't exist.\n",
+          path.dirname(argv.output),
+          '\nDid you mean to output the file into another directory?'
+        );
+        process.exit(1);
+      }
+
       console.log('Compiling SMUI Styles...');
 
       const result = sass.renderSync({
