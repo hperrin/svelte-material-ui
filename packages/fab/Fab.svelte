@@ -41,7 +41,7 @@
   import { setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import { forwardEventsBuilder, classMap } from '@smui/common/internal.js';
-  import Ripple from '@smui/ripple/bare.js';
+  import Ripple from '@smui/ripple';
   import A from '@smui/common/A.svelte';
   import Button from '@smui/common/Button.svelte';
 

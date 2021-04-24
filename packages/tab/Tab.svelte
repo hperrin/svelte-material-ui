@@ -77,7 +77,7 @@
     useActions,
     dispatch,
   } from '@smui/common/internal.js';
-  import Ripple from '@smui/ripple/bare.js';
+  import Ripple from '@smui/ripple';
   import A from '@smui/common/A.svelte';
   import Button from '@smui/common/Button.svelte';
   import TabIndicator from '@smui/tab-indicator/TabIndicator.svelte';
