@@ -67,7 +67,7 @@ If that's not working (probably because your dependencies aren't copied to your 
 ```html
 <link
   rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/svelte-material-ui@3.1.0/bare.min.css"
+  href="https://cdn.jsdelivr.net/npm/svelte-material-ui@4.0.0/bare.min.css"
 />
 ```
 
