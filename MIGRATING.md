@@ -2,6 +2,14 @@
 
 This doc contains information that will help you migrate your code from an older version of SMUI to a newer one. Things that you will need to change in your existing code will be written here. It would also be helpful to check the MDC changelog if the upstream MDC versions has changed between SMUI versions.
 
+# SMUI 3 -> SMUI 4
+
+## Breaking Changes
+
+Components no longer import styles from their "index.js" files. If you were using "/bare" before, you don't need to anymore. If you were relying on styles being imported, you now need to use the "/styled" endpoint for components.
+
+Check out the new [smui-theme](https://github.com/hperrin/svelte-material-ui/tree/master/packages/smui-theme) package. It can help you with your themes.
+
 # SMUI 3.0 -> SMUI 3.1
 
 SMUI 3.1 migrated to upstream MDC 11.0 from 10.0:
