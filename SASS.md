@@ -6,19 +6,19 @@ To create a custom theme, install the SMUI Theme Builder.
 npm install --save-dev smui-theme
 ```
 
-You can use it to create your theme directory from a template.
+You can use it to create your theme directory from a template. Adjust to your source directory if needed.
 
 ```sh
 npx smui-theme template src/theme
 ```
 
-This creates `_smui-theme.scss` files. That is where you [set the theme variables](THEMING.md).
+This creates `_smui-theme.scss` files in `src/theme`. That is where you [set the theme variables](THEMING.md).
 
 ## Easy Styling Method
 
 The Easy Styling Method builds styles into a CSS file that you can include on your page easily.
 
-In your package.json file, add this script in the "scripts" section, adjusting the destination file as desired.
+In your package.json file, add this script in the "scripts" section, adjusting the source/destination files as needed.
 
 ```
 "prepare": "smui-theme compile build/smui.css -i src/theme",
@@ -33,8 +33,6 @@ Or for dark mode.
 ```
 
 Now run `npm run prepare` to build the CSS file(s), then add it/them on your page.
-
-**Remember to import components with the "/bare" endpoint.**
 
 ## Advanced Styling Method
 
@@ -53,6 +51,8 @@ Or, for Webpack, you will need the Style, CSS, and Sass Loaders. (Check out the 
 ```sh
 npm install --save-dev sass style-loader css-loader sass-loader
 ```
+
+**Remember to import components with the "/styled" endpoint.**
 
 ### Setting up Sass
 

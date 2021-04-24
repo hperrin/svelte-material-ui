@@ -33,7 +33,7 @@
     classMap,
     useActions,
   } from '@smui/common/internal.js';
-  import Ripple from '@smui/ripple/bare.js';
+  import Ripple from '@smui/ripple';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

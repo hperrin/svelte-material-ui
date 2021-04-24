@@ -1,3 +1,2 @@
-import TabIndicator from './TabIndicator.svelte';
-
-export default TabIndicator;
+export * from './index.js';
+export { default } from './index.js';

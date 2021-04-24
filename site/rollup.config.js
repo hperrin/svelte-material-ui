@@ -1,6 +1,4 @@
 import path from 'path';
-import fs from 'fs';
-import postcss from 'rollup-plugin-postcss';
 import { mdsvex } from 'mdsvex';
 import slug from 'remark-slug';
 import resolve from '@rollup/plugin-node-resolve';
@@ -22,32 +20,6 @@ const onwarn = (warning, onwarn) =>
   (warning.code === 'CIRCULAR_DEPENDENCY' &&
     /[/\\]@sapper[/\\]/.test(warning.message)) ||
   onwarn(warning);
-
-const postcssOptions = (light) => ({
-  extensions: ['.scss'],
-  extract: 'smui.css',
-  minimize: true,
-  onExtract: light
-    ? null
-    : (getExtracted) => {
-        let { code } = getExtracted();
-        require('cssnano')
-          .process(code, { from: undefined })
-          .then(({ css }) => {
-            const filename = `${config.client.output().dir}/smui-dark.css`;
-            fs.writeFileSync(filename, css);
-          });
-        return false;
-      },
-  use: [
-    [
-      'sass',
-      {
-        includePaths: [`./src/theme${light ? '' : '/dark'}`, './node_modules'],
-      },
-    ],
-  ],
-});
 
 export default {
   client: {
@@ -76,7 +48,6 @@ export default {
           hydratable: true,
         },
       }),
-      postcss(postcssOptions(true)),
       url({
         sourceDir: path.resolve(__dirname, 'src/node_modules/images'),
         publicPath: '/client/',
@@ -149,7 +120,6 @@ export default {
         },
         emitCss: false,
       }),
-      postcss(postcssOptions(false)),
       url({
         sourceDir: path.resolve(__dirname, 'src/node_modules/images'),
         publicPath: '/client/',

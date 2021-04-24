@@ -1,3 +1,2 @@
-import Ripple from './Ripple.js';
-
-export default Ripple;
+export * from './index.js';
+export { default } from './index.js';

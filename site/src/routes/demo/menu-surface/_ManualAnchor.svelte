@@ -41,7 +41,6 @@
     Image,
   } from '@smui/image-list';
   import Button from '@smui/button';
-  import './_ManualAnchor.scss';
 
   let surface;
   let anchor;

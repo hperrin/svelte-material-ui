@@ -1,3 +1,2 @@
-import HelperText from './HelperText.svelte';
-
-export default HelperText;
+export * from './index.js';
+export { default } from './index.js';

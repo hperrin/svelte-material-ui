@@ -1,3 +1,2 @@
-import CharacterCounter from './CharacterCounter.svelte';
-
-export default CharacterCounter;
+export * from './index.js';
+export { default } from './index.js';

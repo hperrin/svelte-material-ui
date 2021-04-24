@@ -1,3 +1,2 @@
-import Kitchen from './Kitchen.svelte';
-
-export default Kitchen;
+export * from './index.js';
+export { default } from './index.js';

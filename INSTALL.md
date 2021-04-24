@@ -18,7 +18,7 @@ This method will only include the JavaScript. Use this for the Default Theme or 
 
 ```svelte
 <script>
-  import Button from '@smui/button/bare';
+  import Button from '@smui/button';
 </script>
 ```
 
@@ -26,11 +26,11 @@ This method will include Sass files as well. Use this for the [Advanced Styling 
 
 ```svelte
 <script>
-  import Button from '@smui/button';
+  import Button from '@smui/button/styled';
 </script>
 ```
 
-Notice that adding "/bare" to your import path means no Sass files will be imported.
+Notice that adding "/styled" to your import path means Sass files will be imported.
 
 ## Material Fonts
 
@@ -58,6 +58,10 @@ If you want the Material Icon, Roboto, and Roboto Mono fonts, be sure to include
 
 You can use the prebuilt "bare.css" file from the "svelte-material-ui" package. If you use this option you _can_ mostly customize your theme, but your [theming options](THEMING.md#theming-the-bare-css) are more limited.
 
+```sh
+npm install --save svelte-material-ui
+```
+
 ```html
 <link rel="stylesheet" href="node_modules/svelte-material-ui/bare.css" />
 ```
@@ -67,13 +71,11 @@ If that's not working (probably because your dependencies aren't copied to your 
 ```html
 <link
   rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/svelte-material-ui@3.1.0/bare.min.css"
+  href="https://cdn.jsdelivr.net/npm/svelte-material-ui@4.0.0/bare.min.css"
 />
 ```
 
 You can also use the "bare.css" files from the individual packages if you don't use many components and want smaller file sizes.
-
-**Remember to import components with the "/bare" endpoint.**
 
 ## Using a Custom Theme
 

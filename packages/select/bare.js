@@ -1,7 +1,2 @@
-import Select from './Select.svelte';
-
-import Option from './Option.svelte';
-
-export default Select;
-
-export { Option };
+export * from './index.js';
+export { default } from './index.js';

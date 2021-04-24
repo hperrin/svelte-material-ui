@@ -9,10 +9,6 @@
   {/each}
 </div>
 
-<script>
-  import './_Elevation.scss';
-</script>
-
 <style>
   .flexy-dad {
     display: flex;

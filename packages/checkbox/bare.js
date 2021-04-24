@@ -1,3 +1,2 @@
-import Checkbox from './Checkbox.svelte';
-
-export default Checkbox;
+export * from './index.js';
+export { default } from './index.js';

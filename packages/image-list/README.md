@@ -42,7 +42,6 @@ The latest SMUI v3 had a lot of changes, and these docs haven't been caught up y
     Supporting,
     Label,
   } from '@smui/image-list';
-  import './style.scss';
   import { images } from './store.js';
 </script>
 ```

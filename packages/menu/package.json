@@ -1,6 +1,6 @@
 {
   "name": "@smui/menu",
-  "version": "3.1.0",
+  "version": "4.0.0",
   "description": "Svelte Material UI - Menu",
   "type": "module",
   "module": "index.js",
@@ -32,9 +32,9 @@
   "dependencies": {
     "@material/dom": "^11.0.0",
     "@material/menu": "^11.0.0",
-    "@smui/common": "^3.1.0",
-    "@smui/list": "^3.1.0",
-    "@smui/menu-surface": "^3.1.0"
+    "@smui/common": "^4.0.0",
+    "@smui/list": "^4.0.0",
+    "@smui/menu-surface": "^4.0.0"
   },
   "devDependencies": {
     "sass": "^1.32.8"

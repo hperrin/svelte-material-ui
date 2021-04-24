@@ -1,16 +1,3 @@
-//
-// Demo App Styles
-//
-
-// Import the theme first.
-@use 'smui-theme';
-
-// Import the typography styles.
-@use 'demo/typography/Typography.scss';
-
-// This adds classes like "mdc-theme--primary-bg".
-@use '@material/theme/styles';
-
 // Elevation mixins.
 @use '@material/elevation/index' as elevation;
 

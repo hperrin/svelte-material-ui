@@ -239,7 +239,7 @@
     useActions,
   } from '@smui/common/internal.js';
   import ContextFragment from '@smui/common/ContextFragment.svelte';
-  import Ripple from '@smui/ripple/bare.js';
+  import Ripple from '@smui/ripple';
   import FloatingLabel from '@smui/floating-label/FloatingLabel.svelte';
   import LineRipple from '@smui/line-ripple/LineRipple.svelte';
   import NotchedOutline from '@smui/notched-outline/NotchedOutline.svelte';

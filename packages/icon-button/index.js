@@ -1,3 +1,7 @@
-import './_index.scss';
-export * from './bare.js';
-export { default } from './bare.js';
+import IconButton from './IconButton.svelte';
+
+import Icon from '@smui/common/CommonIcon.svelte';
+
+export default IconButton;
+
+export { Icon };

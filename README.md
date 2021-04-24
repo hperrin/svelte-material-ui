@@ -86,7 +86,6 @@ Click a component below to go to its documentation. (Note that this documentatio
 - Tabs
   - [Tab](packages/tab/README.md)
   - [Tab Bar](packages/tab-bar/README.md)
-- [Theme](https://sveltematerialui.com/demo/theme/)†
 - [Tooltip](packages/tooltip/README.md)
 - [Top App Bar](packages/top-app-bar/README.md)
 - [Touch Target](packages/touch-target/README.md)

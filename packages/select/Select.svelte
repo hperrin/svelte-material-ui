@@ -228,7 +228,7 @@
     useActions,
     dispatch,
   } from '@smui/common/internal.js';
-  import Ripple from '@smui/ripple/bare.js';
+  import Ripple from '@smui/ripple';
   import Anchor from '@smui/menu-surface/Anchor.js';
   import Menu from '@smui/menu/Menu.svelte';
   import List from '@smui/list/List.svelte';

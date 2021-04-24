@@ -1,3 +1,3 @@
-import './_index.scss';
-export * from './bare.js';
-export { default } from './bare.js';
+import LinearProgress from './LinearProgress.svelte';
+
+export default LinearProgress;

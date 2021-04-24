@@ -7,7 +7,7 @@ These instructions are for the Advanced Styling Method. If you don't need the ad
 Install the following packages as dev dependencies.
 
 ```sh
-npm i -D rollup-plugin-postcss sass
+npm install --save-dev rollup-plugin-postcss sass
 ```
 
 Create the `src/theme/_smui-theme.scss` file.

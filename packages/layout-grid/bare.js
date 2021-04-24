@@ -1,8 +1,2 @@
-import LayoutGrid from './LayoutGrid.svelte';
-
-import Cell from './Cell.svelte';
-import InnerGrid from './InnerGrid.svelte';
-
-export default LayoutGrid;
-
-export { Cell, InnerGrid };
+export * from './index.js';
+export { default } from './index.js';

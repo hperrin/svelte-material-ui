@@ -65,7 +65,7 @@
     classMap,
     dispatch,
   } from '@smui/common/internal.js';
-  import Ripple from '@smui/ripple/bare.js';
+  import Ripple from '@smui/ripple';
   import Div from '@smui/common/Div.svelte';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());

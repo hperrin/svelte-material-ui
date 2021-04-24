@@ -1,3 +1,2 @@
-import CircularProgress from './CircularProgress.svelte';
-
-export default CircularProgress;
+export * from './index.js';
+export { default } from './index.js';

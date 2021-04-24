@@ -1,3 +1,8 @@
-import './_index.scss';
-export * from './bare.js';
-export { default } from './bare.js';
+import Tab from './Tab.svelte';
+
+import Label from '@smui/common/CommonLabel.svelte';
+import Icon from '@smui/common/CommonIcon.svelte';
+
+export default Tab;
+
+export { Label, Icon };

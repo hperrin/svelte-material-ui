@@ -1,3 +1,3 @@
-import './_index.scss';
-export * from './bare.js';
-export { default } from './bare.js';
+import CharacterCounter from './CharacterCounter.svelte';
+
+export default CharacterCounter;
