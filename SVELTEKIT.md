@@ -5,21 +5,11 @@ Check out the [SvelteKit example repo](https://github.com/hperrin/smui-example-s
 You will need to install the packages you use individually as well as the theme package.
 
 ```sh
+npm install --save @smui/button
+npm install --save @smui/card
+# etc...
+
 npm install --save-dev smui-theme
-npm install --save-dev @smui/button
-npm install --save-dev @smui/card
-# etc.
-```
-
-You will also need to add this in your Vite SSR config in `svelte.config.cjs`.
-
-```js
-noExternal: [
-  ...Object.keys(pkg.dependencies || {}),
-  ...Object.keys(pkg.devDependencies || {}).filter((name) =>
-    name.startsWith("@smui")
-  ),
-],
 ```
 
 You will need to use the Easy Styling Method, and you will need to use one of these sets of prepare scripts.

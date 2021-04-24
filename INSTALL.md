@@ -58,6 +58,10 @@ If you want the Material Icon, Roboto, and Roboto Mono fonts, be sure to include
 
 You can use the prebuilt "bare.css" file from the "svelte-material-ui" package. If you use this option you _can_ mostly customize your theme, but your [theming options](THEMING.md#theming-the-bare-css) are more limited.
 
+```sh
+npm install --save svelte-material-ui
+```
+
 ```html
 <link rel="stylesheet" href="node_modules/svelte-material-ui/bare.css" />
 ```
