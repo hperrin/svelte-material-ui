@@ -1,6 +1,6 @@
 {
   "name": "smui-theme",
-  "version": "3.1.0",
+  "version": "4.0.0",
   "description": "Svelte Material UI - Theme Builder",
   "bin": {
     "smui-theme": "smui-theme"

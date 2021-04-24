@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0](https://github.com/hperrin/svelte-material-ui/compare/v3.1.0...v4.0.0) (2021-04-24)
+
+
+### Bug Fixes
+
+* let textfield value be null ([769678c](https://github.com/hperrin/svelte-material-ui/commit/769678c4b22b0d0ce17dce252ce51dd2e23c95d4)), closes [#143](https://github.com/hperrin/svelte-material-ui/issues/143)
+* textfield baseline alignment in safari ([7186a26](https://github.com/hperrin/svelte-material-ui/commit/7186a26bbb0269d60c5b1db2b36cd2a7c7eb6490)), closes [#226](https://github.com/hperrin/svelte-material-ui/issues/226)
+* textfield trailing icon padding ([744cb55](https://github.com/hperrin/svelte-material-ui/commit/744cb5507ac3eabd99d600f4bdbecf72711f7bc7)), closes [#227](https://github.com/hperrin/svelte-material-ui/issues/227)
+
+
+### Features
+
+* add focus trap to banner ([79d70de](https://github.com/hperrin/svelte-material-ui/commit/79d70de634abda1d663e9d2c029623261741a8c1))
+* new Theme Builder package ([a717225](https://github.com/hperrin/svelte-material-ui/commit/a717225d8f0efb2a6bc8ef6022b9cd08fa3c0f9d))
+* remove style importing from index files, no more /bare ([2ab900a](https://github.com/hperrin/svelte-material-ui/commit/2ab900a4a2b9705b3844121f7a987c272171c7c5))
+
+
+
+
+
 # [3.1.0](https://github.com/hperrin/svelte-material-ui/compare/v3.0.3...v3.1.0) (2021-04-22)
 
 
