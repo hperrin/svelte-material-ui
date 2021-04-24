@@ -34,8 +34,6 @@ Or for dark mode.
 
 Now run `npm run prepare` to build the CSS file(s), then add it/them on your page.
 
-**Remember to import components with the "/bare" endpoint.**
-
 ## Advanced Styling Method
 
 The Advanced Styling Method bundles SMUI's CSS with your app's CSS.
@@ -53,6 +51,8 @@ Or, for Webpack, you will need the Style, CSS, and Sass Loaders. (Check out the 
 ```sh
 npm install --save-dev sass style-loader css-loader sass-loader
 ```
+
+**Remember to import components with the "/styled" endpoint.**
 
 ### Setting up Sass
 

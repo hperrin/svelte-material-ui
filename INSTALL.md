@@ -18,7 +18,7 @@ This method will only include the JavaScript. Use this for the Default Theme or 
 
 ```svelte
 <script>
-  import Button from '@smui/button/bare';
+  import Button from '@smui/button';
 </script>
 ```
 
@@ -26,11 +26,11 @@ This method will include Sass files as well. Use this for the [Advanced Styling 
 
 ```svelte
 <script>
-  import Button from '@smui/button';
+  import Button from '@smui/button/styled';
 </script>
 ```
 
-Notice that adding "/bare" to your import path means no Sass files will be imported.
+Notice that adding "/styled" to your import path means Sass files will be imported.
 
 ## Material Fonts
 
@@ -72,8 +72,6 @@ If that's not working (probably because your dependencies aren't copied to your 
 ```
 
 You can also use the "bare.css" files from the individual packages if you don't use many components and want smaller file sizes.
-
-**Remember to import components with the "/bare" endpoint.**
 
 ## Using a Custom Theme
 
