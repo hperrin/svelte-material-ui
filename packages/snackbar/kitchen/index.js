@@ -1,3 +1,3 @@
-import './_index.scss';
-export * from './bare.js';
-export { default } from './bare.js';
+import Kitchen from './Kitchen.svelte';
+
+export default Kitchen;

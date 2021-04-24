@@ -22,5 +22,4 @@
     Supporting,
     Label,
   } from '@smui/image-list';
-  import './_Simple.scss';
 </script>

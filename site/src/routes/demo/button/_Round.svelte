@@ -35,7 +35,6 @@
 <pre class="status">Clicked: {clicked}</pre>
 
 <script>
-  import './_Round.scss';
   import Button, { Label, Icon } from '@smui/button';
 
   let clicked = 0;

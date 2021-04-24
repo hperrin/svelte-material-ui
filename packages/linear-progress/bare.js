@@ -1,3 +1,2 @@
-import LinearProgress from './LinearProgress.svelte';
-
-export default LinearProgress;
+export * from './index.js';
+export { default } from './index.js';

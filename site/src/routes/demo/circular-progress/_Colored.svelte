@@ -8,5 +8,4 @@
 
 <script>
   import CircularProgress from '@smui/circular-progress';
-  import './_Colored.scss';
 </script>

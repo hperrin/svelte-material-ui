@@ -32,7 +32,6 @@
 </div>
 
 <script>
-  import './_TransitionsAndColor.scss';
   import Checkbox from '@smui/checkbox';
   import FormField from '@smui/form-field';
 

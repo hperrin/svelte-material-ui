@@ -10,7 +10,6 @@
 
 <script>
   import Paper, { Title, Content } from '@smui/paper';
-  import './_CustomColor.scss';
 </script>
 
 <style>

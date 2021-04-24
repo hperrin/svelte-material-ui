@@ -1,3 +1,3 @@
-import './_index.scss';
-export * from './bare.js';
-export { default } from './bare.js';
+import TabScroller from './TabScroller.svelte';
+
+export default TabScroller;

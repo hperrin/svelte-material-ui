@@ -28,7 +28,6 @@
 <pre class="status">Clicked: {clicked}</pre>
 
 <script>
-  import './_Notched.scss';
   import Button, { Label, Icon } from '@smui/button';
 
   let clicked = 0;

@@ -1,3 +1,2 @@
-import Wrapper from './Wrapper.js';
-
-export default Wrapper;
+export * from './index.js';
+export { default } from './index.js';

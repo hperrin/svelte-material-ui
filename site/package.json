@@ -7,6 +7,11 @@
     "build": "sapper build --legacy",
     "export": "sapper export ./dist --legacy",
     "start": "node __sapper__/build",
+    "prepare": "npm run smui-theme-light && npm run smui-theme-dark && npm run site-light && npm run site-dark",
+    "smui-theme-light": "smui-theme compile static/smui.css -s expanded -i src/theme",
+    "smui-theme-dark": "smui-theme compile static/smui-dark.css -s expanded -i src/theme/dark",
+    "site-light": "sass --no-source-map -I src/theme -I node_modules src/site.scss static/site.css",
+    "site-dark": "sass --no-source-map -I src/theme/dark -I node_modules src/site.scss static/site-dark.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -121,14 +126,12 @@
     "@smui/touch-target": "file:../packages/touch-target",
     "mdsvex": "^0.9.0",
     "npm-run-all": "^4.1.5",
-    "postcss-scss": "^3.0.5",
     "remark-slug": "^6.0.0",
     "rollup": "^2.44.0",
-    "rollup-plugin-postcss": "^4.0.0",
     "rollup-plugin-svelte": "^7.1.0",
     "rollup-plugin-terser": "^7.0.2",
     "sapper": "^0.29.1",
-    "sass": "^1.32.8",
+    "smui-theme": "file:../packages/smui-theme",
     "svelte": "^3.37.0"
   }
 }

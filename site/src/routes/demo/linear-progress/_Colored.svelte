@@ -2,5 +2,4 @@
 
 <script>
   import LinearProgress from '@smui/linear-progress';
-  import './_Colored.scss';
 </script>

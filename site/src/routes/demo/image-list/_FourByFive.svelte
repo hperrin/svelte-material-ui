@@ -22,5 +22,4 @@
     Supporting,
     Label,
   } from '@smui/image-list';
-  import './_FourByFive.scss';
 </script>

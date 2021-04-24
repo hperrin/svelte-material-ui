@@ -1,3 +1,2 @@
-import NotchedOutline from './NotchedOutline.svelte';
-
-export default NotchedOutline;
+export * from './index.js';
+export { default } from './index.js';

@@ -149,8 +149,6 @@
     mdiWeatherNight,
   } from '@mdi/js';
 
-  import './_app.scss';
-
   import TopAppBar, { Row, Section, Title } from '@smui/top-app-bar';
   import Drawer, { Content, Scrim, AppContent } from '@smui/drawer';
   import IconButton from '@smui/icon-button';
@@ -172,16 +170,28 @@
     window.matchMedia('(prefers-color-scheme: light)').matches;
   function switchTheme() {
     lightTheme = !lightTheme;
+
     let themeLink = document.head.querySelector('#theme');
     if (!themeLink) {
       themeLink = document.createElement('link');
       themeLink.rel = 'stylesheet';
       themeLink.id = 'theme';
     }
-    themeLink.href = `client/smui${lightTheme ? '' : '-dark'}.css`;
+    themeLink.href = `smui${lightTheme ? '' : '-dark'}.css`;
     document.head
-      .querySelector('link[href="client/smui-dark.css"]')
+      .querySelector('link[href="smui-dark.css"]')
       .insertAdjacentElement('afterend', themeLink);
+
+    let siteLink = document.head.querySelector('#site');
+    if (!siteLink) {
+      siteLink = document.createElement('link');
+      siteLink.rel = 'stylesheet';
+      siteLink.id = 'site';
+    }
+    siteLink.href = `site${lightTheme ? '' : '-dark'}.css`;
+    document.head
+      .querySelector('link[href="site-dark.css"]')
+      .insertAdjacentElement('afterend', siteLink);
   }
 
   const sections = [
@@ -444,11 +454,6 @@
         'https://github.com/hperrin/svelte-material-ui/tree/master/packages/tab',
         'https://github.com/hperrin/svelte-material-ui/tree/master/packages/tab-bar',
       ],
-    },
-    {
-      name: 'Theme',
-      route: '/demo/theme/',
-      indent: 0,
     },
     {
       name: 'Tooltip',

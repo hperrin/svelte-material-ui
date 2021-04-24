@@ -1,3 +1,2 @@
-import FormField from './FormField.svelte';
-
-export default FormField;
+export * from './index.js';
+export { default } from './index.js';

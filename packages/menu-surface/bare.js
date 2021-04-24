@@ -1,7 +1,2 @@
-import MenuSurface, { Corner, CornerBit } from './MenuSurface.svelte';
-
-import Anchor from './Anchor.js';
-
-export default MenuSurface;
-
-export { Corner, CornerBit, Anchor };
+export * from './index.js';
+export { default } from './index.js';

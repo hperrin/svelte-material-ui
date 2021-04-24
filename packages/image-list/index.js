@@ -1,3 +1,11 @@
-import './_index.scss';
-export * from './bare.js';
-export { default } from './bare.js';
+import ImageList from './ImageList.svelte';
+
+import Item from './Item.js';
+import ImageAspectContainer from './ImageAspectContainer.js';
+import Image from './Image.js';
+import Supporting from './Supporting.js';
+import Label from '@smui/common/CommonLabel.svelte';
+
+export default ImageList;
+
+export { Item, ImageAspectContainer, Image, Supporting, Label };
