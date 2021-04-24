@@ -1,7 +1,6 @@
 // const node = require('@sveltejs/adapter-node');
 const static = require('@sveltejs/adapter-static');
 const pkg = require('./package.json');
-const path = require('path');
 const { mdsvex } = require('mdsvex');
 const slug = require('remark-slug');
 
@@ -20,10 +19,6 @@ module.exports = {
         noExternal: Object.keys(pkg.dependencies || {}),
       },
       resolve: {
-        extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.scss'],
-        alias: {
-          'smui-theme': path.resolve(__dirname, 'src/theme/_smui-theme.scss'),
-        },
         dedupe: ['svelte', '@material', '@smui'],
       },
     },
