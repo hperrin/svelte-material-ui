@@ -112,7 +112,7 @@
                   ? section.shortcut
                   : null}
                 on:click={() => pickSection(section)}
-                activated={'route' in section && section.route === $page.path}
+                activated={'route' in section && section.route === null}
                 style={section.indent
                   ? 'margin-left: ' + section.indent * 25 + 'px;'
                   : ''}
@@ -138,7 +138,7 @@
 
 <script>
   import { onMount } from 'svelte';
-  import { page } from '$app/stores';
+  // import { page } from '$app/stores';
   import {
     mdiFileDocument,
     mdiCodeTags,
@@ -158,7 +158,8 @@
   import A from '@smui/common/A.svelte';
   import Svg from '@smui/common/Svg.svelte';
 
-  const iframe = $page.path.includes('/iframe');
+  // const iframe = $page.path.includes('/iframe');
+  const iframe = false;
 
   let mainContent;
   let miniWindow = false;
@@ -485,9 +486,9 @@
     },
   ];
 
-  let activeSection = sections.find(
-    (section) => 'route' in section && section.route === $page.path
-  );
+  let activeSection = null; //sections.find(
+  //   (section) => 'route' in section && section.route === $page.path
+  // );
   $: repos =
     activeSection && 'repos' in activeSection ? activeSection.repos : [];
 

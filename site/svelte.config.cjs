@@ -19,7 +19,10 @@ module.exports = {
         noExternal: Object.keys(pkg.dependencies || {}),
       },
       resolve: {
-        dedupe: ['svelte', '@material', '@smui'],
+        alias: {
+          svelte: '../node_modules/svelte',
+        },
+        dedupe: ['@material', '@smui'],
       },
     },
   },
