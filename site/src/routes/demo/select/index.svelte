@@ -25,9 +25,13 @@
     <svelte:fragment slot="subtitle">Styled with CSS</svelte:fragment>
   </Demo>
 
+  <Demo component={Required} file="select/_Required.svelte">Required</Demo>
+
   <Demo component={Disabled} file="select/_Disabled.svelte">Disabled</Demo>
 
-  <Demo component={Required} file="select/_Required.svelte">Required</Demo>
+  <Demo component={ConditionalIcon} file="select/_ConditionalIcon.svelte">
+    Conditional icon
+  </Demo>
 
   <Demo component={Objects} file="select/_Objects.svelte">Using Objects</Demo>
 </section>
@@ -40,8 +44,9 @@
   import Outlined from './_Outlined.svelte';
   import ShapedFilled from './_ShapedFilled.svelte';
   import ShapedOutlined from './_ShapedOutlined.svelte';
-  import Disabled from './_Disabled.svelte';
   import Required from './_Required.svelte';
+  import Disabled from './_Disabled.svelte';
+  import ConditionalIcon from './_ConditionalIcon.svelte';
   import Objects from './_Objects.svelte';
 </script>
 

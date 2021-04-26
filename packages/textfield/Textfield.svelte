@@ -23,8 +23,14 @@
       'smui-text-field--standard': variant === 'standard' && !textarea,
       'mdc-text-field--no-label': noLabel || (label == null && !$$slots.label),
       'mdc-text-field--label-floating': value != null && value !== '',
-      'mdc-text-field--with-leading-icon': $$slots.leadingIcon,
-      'mdc-text-field--with-trailing-icon': $$slots.trailingIcon,
+      'mdc-text-field--with-leading-icon':
+        withLeadingIcon === uninitializedValue
+          ? $$slots.leadingIcon
+          : withLeadingIcon,
+      'mdc-text-field--with-trailing-icon':
+        withTrailingIcon === uninitializedValue
+          ? $$slots.trailingIcon
+          : withTrailingIcon,
       'mdc-text-field--with-internal-counter':
         textarea && $$slots.internalCounter,
       'mdc-text-field--invalid': invalid !== uninitializedValue && invalid,
@@ -274,6 +280,8 @@
   export let updateInvalid = invalid === uninitializedValue;
   export let validateOnValueChange = updateInvalid;
   export let useNativeValidation = updateInvalid;
+  export let withLeadingIcon = uninitializedValue;
+  export let withTrailingIcon = uninitializedValue;
 
   // Components
   export let input = undefined;

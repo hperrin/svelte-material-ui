@@ -18,7 +18,10 @@
     'mdc-select--filled': variant === 'filled',
     'mdc-select--outlined': variant === 'outlined',
     'smui-select--standard': variant === 'standard',
-    'mdc-select--with-leading-icon': $$slots.leadingIcon,
+    'mdc-select--with-leading-icon':
+      withLeadingIcon === uninitializedValue
+        ? $$slots.leadingIcon
+        : withLeadingIcon,
     'mdc-select--no-label': noLabel || (label == null && !$$slots.label),
     'mdc-select--invalid': invalid !== uninitializedValue && invalid,
     'mdc-select--activated': menuOpen,
@@ -266,6 +269,7 @@
   export let dropdownIcon$use = [];
   export let dropdownIcon$class = '';
   export let menu$class = '';
+  export let withLeadingIcon = uninitializedValue;
 
   let element;
   let instance;

@@ -62,6 +62,10 @@
     Both icons
   </Demo>
 
+  <Demo component={ConditionalIcons} file="textfield/_ConditionalIcons.svelte">
+    Conditional icons
+  </Demo>
+
   <Demo component={Textarea} file="textfield/_Textarea.svelte">Textarea</Demo>
 
   <Demo
@@ -122,6 +126,7 @@
   import CharacterCount from './_CharacterCount.svelte';
   import HelperTextCharacterCount from './_HelperTextCharacterCount.svelte';
   import BothIcons from './_BothIcons.svelte';
+  import ConditionalIcons from './_ConditionalIcons.svelte';
   import Textarea from './_Textarea.svelte';
   import TextareaCharacterCount from './_TextareaCharacterCount.svelte';
   import FullWidth from './_FullWidth.svelte';

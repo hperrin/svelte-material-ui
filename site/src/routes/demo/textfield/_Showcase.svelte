@@ -15,21 +15,27 @@
     input$autocomplete="email"
     on:focus={() => (focused = true)}
     on:blur={() => (focused = false)}
+    withTrailingIcon={!disabled}
   >
-    <Icon
-      class="material-icons"
-      role="button"
-      {disabled}
-      on:click={() => disabled || clickHandler()}
-      slot="trailingIcon">send</Icon
-    >
-    <HelperText validationMsg slot="helper"
-      >That's not a valid email address.</HelperText
-    >
+    <!--
+      Since this icon is conditional, it needs to be wrapped
+      in a fragment, and we need to provide withTrailingIcon.
+    -->
+    <svelte:fragment slot="trailingIcon">
+      {#if !disabled}
+        <Icon class="material-icons" role="button" on:click={clickHandler}
+          >send</Icon
+        >
+      {/if}
+    </svelte:fragment>
+    <HelperText validationMsg slot="helper">
+      That's not a valid email address.
+    </HelperText>
   </Textfield>
 </div>
 
-<pre class="status">Value: {value}, Focused: {focused}, Dirty: {dirty}, Invalid: {invalid}</pre>
+<pre
+  class="status">Value: {value}, Focused: {focused}, Dirty: {dirty}, Invalid: {invalid}</pre>
 
 <script>
   import Textfield from '@smui/textfield';
@@ -40,7 +46,7 @@
   let value = null;
   let dirty = false;
   let invalid = false;
-  $: disabled = !value || !dirty || invalid;
+  $: disabled = focused || !value || !dirty || invalid;
 
   function clickHandler() {
     alert(`Sending to ${value}!`);
@@ -48,9 +54,3 @@
     dirty = false;
   }
 </script>
-
-<style>
-  * :global([aria-disabled="true"]) {
-    cursor: not-allowed;
-  }
-</style>
