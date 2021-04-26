@@ -12,11 +12,14 @@
   <p>No wonder.</p>
 {/if}
 
+<div><Button on:click={() => (value = 100)}>Maximum Wonder!</Button></div>
+
 <pre class="status">Value: {value}</pre>
 
 <script>
   import Slider from '@smui/slider';
   import FormField from '@smui/form-field';
+  import Button from '@smui/button';
 
   let value = 50;
 </script>
