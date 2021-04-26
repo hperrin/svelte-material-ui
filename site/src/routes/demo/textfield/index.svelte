@@ -107,6 +107,13 @@
   <Demo component={ManualSetup} file="textfield/_ManualSetup.svelte">
     Manual setup
   </Demo>
+
+  <Demo component={Solo} file="textfield/_Solo.svelte">
+    Solo style
+    <svelte:fragment slot="subtitle">
+      Using Paper and an Input outside a Textfield to create a "Solo" input
+    </svelte:fragment>
+  </Demo>
 </section>
 
 <script>
@@ -135,6 +142,7 @@
   import ElementsInLabel from './_ElementsInLabel.svelte';
   import DifferentTypes from './_DifferentTypes.svelte';
   import ManualSetup from './_ManualSetup.svelte';
+  import Solo from './_Solo.svelte';
 </script>
 
 <style>
