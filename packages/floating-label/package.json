@@ -30,7 +30,6 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@material/dom": "^11.0.0",
     "@material/floating-label": "^11.0.0",
     "@smui/common": "^4.0.0"
   },
