@@ -22,7 +22,8 @@
       'mdc-text-field--outlined': variant === 'outlined',
       'smui-text-field--standard': variant === 'standard' && !textarea,
       'mdc-text-field--no-label': noLabel || (label == null && !$$slots.label),
-      'mdc-text-field--label-floating': value != null && value !== '',
+      'mdc-text-field--label-floating':
+        focused || (value != null && value !== ''),
       'mdc-text-field--with-leading-icon':
         withLeadingIcon === uninitializedValue
           ? $$slots.leadingIcon
@@ -333,6 +334,16 @@
 
   $: if (instance) {
     instance.setDisabled(disabled);
+  }
+
+  // React to changes of value from outside component.
+  let previousValue = value;
+  $: if (instance && valued && previousValue !== value) {
+    previousValue = value;
+    // Check the data is flowing down.
+    if (instance.getValue() !== value) {
+      instance.setValue(value);
+    }
   }
 
   if (addLayoutListener) {
