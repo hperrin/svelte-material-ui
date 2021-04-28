@@ -3,22 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [4.1.0](https://github.com/hperrin/svelte-material-ui/compare/v4.0.0...v4.1.0) (2021-04-28)
-
-
-### Features
-
-* include props for conditional icons on Textfield and Select ([2d95dc7](https://github.com/hperrin/svelte-material-ui/commit/2d95dc7305027c2580ec42403361aa5435088246)), closes [#230](https://github.com/hperrin/svelte-material-ui/issues/230)
-
-
-### Reverts
-
-* Revert "v4.1.0" ([3e683d9](https://github.com/hperrin/svelte-material-ui/commit/3e683d9166e7df9eaab2756c9ace64c4dd547758))
-
-
-
-
-
 # [4.0.0](https://github.com/hperrin/svelte-material-ui/compare/v3.1.0...v4.0.0) (2021-04-24)
 
 
