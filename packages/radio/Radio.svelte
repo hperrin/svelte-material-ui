@@ -33,8 +33,6 @@
     {disabled}
     value={valueKey === uninitializedValue ? value : valueKey}
     bind:group
-    on:change
-    on:input
     on:blur
     on:focus
     {...prefixFilter($$restProps, 'input$')}

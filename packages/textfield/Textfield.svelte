@@ -111,8 +111,6 @@
           bind:dirty
           bind:invalid
           {updateInvalid}
-          on:change
-          on:input
           on:blur
           on:focus
           aria-controls={helperId}
@@ -136,8 +134,6 @@
         bind:dirty
         bind:invalid
         {updateInvalid}
-        on:change
-        on:input
         on:blur
         on:focus
         aria-controls={helperId}

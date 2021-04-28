@@ -7,7 +7,7 @@
 
 <pre class="status">Checked: {checked}</pre>
 
-<div>
+<div style="margin-top: 1em;">
   <FormField align="end">
     <Checkbox bind:checked={checked2} />
     <span slot="label">Remember me.</span>

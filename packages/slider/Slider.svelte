@@ -29,8 +29,8 @@
       {min}
       max={end}
       bind:value={start}
-      on:change
-      on:input
+      on:blur
+      on:focus
       {...inputStartAttrs}
       {...prefixFilter($$restProps, 'input$')}
     />
@@ -46,8 +46,6 @@
       min={start}
       {max}
       bind:value={end}
-      on:change
-      on:input
       on:blur
       on:focus
       {...inputProps}
@@ -67,8 +65,6 @@
       {min}
       {max}
       bind:value
-      on:change
-      on:input
       on:blur
       on:focus
       {...inputProps}

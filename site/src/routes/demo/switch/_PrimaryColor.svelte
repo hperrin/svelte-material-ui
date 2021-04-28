@@ -7,7 +7,7 @@
 
 <pre class="status">Checked: {checked1}</pre>
 
-<div>
+<div style="margin-top: 1em;">
   <FormField align="end">
     <Switch color="primary" bind:checked={checked2} />
     <span slot="label">Fields of grain.</span>
