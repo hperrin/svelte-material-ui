@@ -6,7 +6,9 @@ import {
 } from 'svelte/internal';
 
 // Match modifiers on DOM events.
-const modifierRegex = /^[a-z]+(?::(?:preventDefault|stopPropagation|passive|nonpassive|capture|once|self))+$/;
+const oldModifierRegex = /^[a-z]+(?::(?:preventDefault|stopPropagation|passive|nonpassive|capture|once|self))+$/;
+// Match modifiers on other events.
+const newModifierRegex = /^[^$]+(?:\$(?:preventDefault|stopPropagation|passive|nonpassive|capture|once|self))+$/;
 
 export function forwardEventsBuilder(component) {
   // This is our pseudo $on function. It is defined on component mount.
@@ -27,11 +29,20 @@ export function forwardEventsBuilder(component) {
       // The event was bound before mount by Svelte.
       events.push(eventType);
     }
-    const modifierMatch = eventType.match(modifierRegex);
+    const oldModifierMatch = eventType.match(oldModifierRegex);
+    const newModifierMatch = eventType.match(newModifierRegex);
+    const modifierMatch = oldModifierMatch || newModifierMatch;
+
+    if (oldModifierMatch && console) {
+      console.warn(
+        'Event modifiers in SMUI now use "$" instead of ":", so that all events can be bound with modifiers. Please update your event binding: ',
+        eventType
+      );
+    }
 
     if (modifierMatch) {
       // Remove modifiers from the real event.
-      const parts = eventType.split(':');
+      const parts = eventType.split(oldModifierMatch ? ':' : '$');
       eventType = parts[0];
     }
 
@@ -58,7 +69,9 @@ export function forwardEventsBuilder(component) {
       let handler = forward;
       // DOM addEventListener options argument.
       let options = false;
-      const modifierMatch = eventType.match(modifierRegex);
+      const oldModifierMatch = eventType.match(oldModifierRegex);
+      const newModifierMatch = eventType.match(newModifierRegex);
+      const modifierMatch = oldModifierMatch || newModifierMatch;
       if (modifierMatch) {
         // Parse the event modifiers.
         // Supported modifiers:
@@ -68,7 +81,7 @@ export function forwardEventsBuilder(component) {
         // - nonpassive
         // - capture
         // - once
-        const parts = eventType.split(':');
+        const parts = eventType.split(oldModifierMatch ? ':' : '$');
         eventType = parts[0];
         options = Object.fromEntries(parts.slice(1).map((mod) => [mod, true]));
         if (options.nonpassive) {

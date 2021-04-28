@@ -2,6 +2,11 @@
 
 This doc contains information that will help you migrate your code from an older version of SMUI to a newer one. Things that you will need to change in your existing code will be written here. It would also be helpful to check the MDC changelog if the upstream MDC versions has changed between SMUI versions.
 
+# SMUI 4.0 -> SMUI 4.1
+
+- Event modifiers have changed to use "$" instead of ":" (`on:click$capture={handler}`), so that all events, even MDC events, can be bound with modifiers.
+  - The old ":" syntax will still work, it will just give a warning in the console.
+
 # SMUI 3 -> SMUI 4
 
 ## Breaking Changes
