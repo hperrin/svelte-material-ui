@@ -35,7 +35,7 @@
 </div>
 
 <pre
-  class="status">Value: {value}, Focused: {focused}, Dirty: {dirty}, Invalid: {invalid}</pre>
+  class="status">Focused: {focused}, Dirty: {dirty}, Invalid: {invalid}, Value: {value}</pre>
 
 <script>
   import Textfield from '@smui/textfield';

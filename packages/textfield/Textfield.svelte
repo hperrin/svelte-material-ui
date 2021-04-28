@@ -66,7 +66,7 @@
       {#if !noLabel && (label != null || $$slots.label)}
         <FloatingLabel
           bind:this={floatingLabel}
-          floatAbove={value != null && value !== ''}
+          floatAbove={focused || (value != null && value !== '')}
           {required}
           wrapped
           {...prefixFilter($$restProps, 'label$')}
@@ -83,7 +83,7 @@
         {#if !noLabel && (label != null || $$slots.label)}
           <FloatingLabel
             bind:this={floatingLabel}
-            floatAbove={value != null && value !== ''}
+            floatAbove={focused || (value != null && value !== '')}
             {required}
             wrapped
             {...prefixFilter($$restProps, 'label$')}
@@ -111,6 +111,8 @@
           bind:dirty
           bind:invalid
           {updateInvalid}
+          on:blur={() => (focused = false)}
+          on:focus={() => (focused = true)}
           on:blur
           on:focus
           aria-controls={helperId}
@@ -134,6 +136,8 @@
         bind:dirty
         bind:invalid
         {updateInvalid}
+        on:blur={() => (focused = false)}
+        on:focus={() => (focused = true)}
         on:blur
         on:focus
         aria-controls={helperId}
@@ -290,6 +294,7 @@
   let internalClasses = {};
   let internalStyles = {};
   let helperId;
+  let focused = false;
   let addLayoutListener = getContext('SMUI:addLayoutListener');
   let removeLayoutListener;
   let initPromiseResolve;
@@ -351,9 +356,11 @@
               .map((mutation) => mutation.attributeName)
               .filter((attributeName) => attributeName);
           };
-          const observer = new MutationObserver((mutationsList) =>
-            handler(getAttributesList(mutationsList))
-          );
+          const observer = new MutationObserver((mutationsList) => {
+            if (useNativeValidation) {
+              handler(getAttributesList(mutationsList));
+            }
+          });
           const config = { attributes: true };
           observer.observe(input.getElement(), config);
           return observer;
