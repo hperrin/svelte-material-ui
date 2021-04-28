@@ -3,17 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [4.1.0](https://github.com/hperrin/svelte-material-ui/compare/v4.0.0...v4.1.0) (2021-04-28)
-
-
-### Bug Fixes
-
-* remove duplicate change and input event forwarding ([641acf1](https://github.com/hperrin/svelte-material-ui/commit/641acf1deeb65c636192ff35f8f83ce59a1842da)), closes [#233](https://github.com/hperrin/svelte-material-ui/issues/233)
-
-
-
-
-
 # [4.0.0](https://github.com/hperrin/svelte-material-ui/compare/v3.1.0...v4.0.0) (2021-04-24)
 
 

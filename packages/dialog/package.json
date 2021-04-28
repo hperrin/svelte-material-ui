@@ -1,6 +1,6 @@
 {
   "name": "@smui/dialog",
-  "version": "4.1.0",
+  "version": "4.0.0",
   "description": "Svelte Material UI - Dialog",
   "type": "module",
   "module": "index.js",
@@ -33,7 +33,7 @@
     "@material/button": "^11.0.0",
     "@material/dialog": "^11.0.0",
     "@material/dom": "^11.0.0",
-    "@smui/common": "^4.1.0"
+    "@smui/common": "^4.0.0"
   },
   "devDependencies": {
     "sass": "^1.32.8"

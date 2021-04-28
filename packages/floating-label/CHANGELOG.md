@@ -3,17 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [4.1.0](https://github.com/hperrin/svelte-material-ui/compare/v4.0.0...v4.1.0) (2021-04-28)
-
-
-### Bug Fixes
-
-* textfield labels and notches show incorrect state and position ([c935423](https://github.com/hperrin/svelte-material-ui/commit/c9354235b09523ce12333fe7671392b95f62c480)), closes [#236](https://github.com/hperrin/svelte-material-ui/issues/236)
-
-
-
-
-
 # [4.0.0](https://github.com/hperrin/svelte-material-ui/compare/v3.1.0...v4.0.0) (2021-04-24)
 
 
