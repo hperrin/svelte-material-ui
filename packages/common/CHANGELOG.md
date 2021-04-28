@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0](https://github.com/hperrin/svelte-material-ui/compare/v4.0.0...v4.1.0) (2021-04-28)
+
+
+### Bug Fixes
+
+* warnings about unexpected slot in Img and Hr ([98a555f](https://github.com/hperrin/svelte-material-ui/commit/98a555f19273176099b8aa60b9e23028bb46e6e0))
+
+
+### Features
+
+* change event modifier syntax to allow use on all events ([1fe4f82](https://github.com/hperrin/svelte-material-ui/commit/1fe4f82ef29f88567a81a24a746ef7f82389e7dc))
+
+
+
+
+
 # [4.0.0](https://github.com/hperrin/svelte-material-ui/compare/v3.1.0...v4.0.0) (2021-04-24)
 
 

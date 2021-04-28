@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0](https://github.com/hperrin/svelte-material-ui/compare/v4.0.0...v4.1.0) (2021-04-28)
+
+
+### Bug Fixes
+
+* theme builder error when the output directory doesn't exist ([36c2531](https://github.com/hperrin/svelte-material-ui/commit/36c2531c073a72a46ab6d8b0392f542f73879fcd))
+
+
+
+
+
 # [4.0.0](https://github.com/hperrin/svelte-material-ui/compare/v3.1.0...v4.0.0) (2021-04-24)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@smui/slider",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "description": "Svelte Material UI - Slider",
   "type": "module",
   "module": "index.js",
@@ -32,8 +32,8 @@
   "dependencies": {
     "@material/dom": "^11.0.0",
     "@material/slider": "^11.0.0",
-    "@smui/common": "^4.0.0",
-    "@smui/ripple": "^4.0.0"
+    "@smui/common": "^4.1.0",
+    "@smui/ripple": "^4.1.0"
   },
   "devDependencies": {
     "sass": "^1.32.8"
