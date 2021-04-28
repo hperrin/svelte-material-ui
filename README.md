@@ -34,7 +34,11 @@ To get started, check out the [installation docs](INSTALL.md).
 
 # Migration
 
-Upgrading from v2? Check out the [upgrade instructions](MIGRATING.md#smui-2---smui-3) in the [migration doc](MIGRATING.md).
+Upgrading from an old version? Be sure to read the [migration doc](MIGRATING.md).
+
+Upgrading from v2? There are **lots** of changes listed in the [upgrade instructions](MIGRATING.md#smui-2---smui-3).
+
+Upgrading from v3? SMUI's styling method has been simplified. Check out the [upgrade instructions](MIGRATING.md#smui-3---smui-4).
 
 # Need Help?
 
