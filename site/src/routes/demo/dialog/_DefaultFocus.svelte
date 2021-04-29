@@ -5,7 +5,7 @@
 >
   <Title id="default-focus-title">Advice</Title>
   <Content id="default-focus-content">
-    Build something today, event if it sucks.
+    Build something today, even if it sucks.
   </Content>
   <Actions>
     <Button on:click={() => (response = 'I will make you! Do it!')}>
