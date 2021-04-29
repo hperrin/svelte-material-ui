@@ -2,7 +2,7 @@
   <img src="site/static/header-transparent.png" alt="Svelte Material UI" />
 </div>
 
-A library of Svelte 3 Material UI components, based on the [Material Design Components - Web](https://material.io/develop/web/) using the [Advanced Approach](https://github.com/material-components/material-components-web/blob/master/docs/integrating-into-frameworks.md#the-advanced-approach-using-foundations-and-adapters).
+A library of Svelte 3 Material UI components, based on the [Material Design Components - Web](https://material.io/develop/web/).
 
 # Demos
 
