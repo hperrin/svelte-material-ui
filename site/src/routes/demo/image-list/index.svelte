@@ -9,30 +9,29 @@
 
   <Demo
     component={Simple}
-    file="image-list/_Simple.svelte"
-    scss="image-list/_Simple.scss"
+    files={['image-list/_Simple.svelte', 'image-list/_Simple.scss']}
   />
 
   <Demo
     component={FourByFive}
-    file="image-list/_FourByFive.svelte"
-    scss="image-list/_FourByFive.scss"
+    files={['image-list/_FourByFive.svelte', 'image-list/_FourByFive.scss']}
   >
     4x5 aspect ratio, with text protection
   </Demo>
 
   <Demo
     component={Masonry}
-    file="image-list/_Masonry.svelte"
-    scss="image-list/_Masonry.scss"
+    files={['image-list/_Masonry.svelte', 'image-list/_Masonry.scss']}
   >
     Masonry, with rounded shapes
   </Demo>
 
   <Demo
     component={EnforceAspectRatio}
-    file="image-list/_EnforceAspectRatio.svelte"
-    scss="image-list/_EnforceAspectRatio.scss"
+    files={[
+      'image-list/_EnforceAspectRatio.svelte',
+      'image-list/_EnforceAspectRatio.scss',
+    ]}
   >
     Using a <code>div</code> instead of an <code>img</code> to enforce aspect ratio
   </Demo>

@@ -9,14 +9,15 @@
 
   <Demo
     component={Elevation}
-    file="elevation/_Elevation.svelte"
-    scss="elevation/_Elevation.scss"
+    files={['elevation/_Elevation.svelte', 'elevation/_Elevation.scss']}
   />
 
   <Demo
     component={TransitionsAndColor}
-    file="elevation/_TransitionsAndColor.svelte"
-    scss="elevation/_TransitionsAndColor.scss"
+    files={[
+      'elevation/_TransitionsAndColor.svelte',
+      'elevation/_TransitionsAndColor.scss',
+    ]}
   >
     Transitions and color
   </Demo>

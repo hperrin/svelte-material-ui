@@ -29,14 +29,16 @@
     Split buttons using a button group
   </Demo>
 
-  <Demo component={Round} file="button/_Round.svelte" scss="button/_Round.scss">
+  <Demo
+    component={Round}
+    files={['button/_Round.svelte', 'button/_Round.scss']}
+  >
     Creating rounded buttons with Sass mixins
   </Demo>
 
   <Demo
     component={Notched}
-    file="button/_Notched.svelte"
-    scss="button/_Notched.scss"
+    files={['button/_Notched.svelte', 'button/_Notched.scss']}
   >
     Creating notched buttons with Sass
   </Demo>

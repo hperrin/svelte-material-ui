@@ -21,41 +21,45 @@
   </Content>
 
   {#if show}
-    {#if loading}
+    {#if sourceFile}
       <script
         src="https://emgithub.com/embed.js?target={encodeURIComponent(
           `https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/${sourceFile}`
         )}&style=github&showBorder=on&showLineNumbers=on&showFileMeta=on"></script>
     {/if}
-    <Content>
-      <div class="demo-source-file" bind:this={sourceContainer}>
-        {@html sourceHTML}
-      </div>
-    </Content>
-
-    {#if scssHTML}
+    {#if sourceHTML}
       <Content>
-        <div class="demo-source-file" bind:this={scssContainer}>
-          {@html scssHTML}
+        <div class="demo-source-file" bind:this={sourceContainer}>
+          {@html sourceHTML}
         </div>
       </Content>
     {/if}
+
+    {#each sources as source}
+      <Content>
+        <div class="demo-source-file">
+          {@html source}
+        </div>
+      </Content>
+    {/each}
   {/if}
   <Actions>
     <ActionIcons>
+      {#each files as file}
+        <Wrapper>
+          <IconButton
+            href={`https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/${file}`}
+            target="_blank"
+          >
+            <Icon component={Svg} viewBox="0 0 24 24">
+              <path fill="currentColor" d={mdiGithub} />
+            </Icon>
+          </IconButton>
+          <Tooltip>View {file} on GitHub</Tooltip>
+        </Wrapper>
+      {/each}
       <Wrapper>
-        <IconButton
-          href={`https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/${file}`}
-          target="_blank"
-        >
-          <Icon component={Svg} viewBox="0 0 24 24">
-            <path fill="currentColor" d={mdiGithub} />
-          </Icon>
-        </IconButton>
-        <Tooltip>View this file on GitHub</Tooltip>
-      </Wrapper>
-      <Wrapper>
-        <IconButton pressed={show} on:click={toggleSource}>
+        <IconButton toggle bind:pressed={show}>
           <Icon component={Svg} viewBox="0 0 24 24" on>
             <path fill="currentColor" d={mdiCodeTagsCheck} />
           </Icon>
@@ -78,50 +82,29 @@
   import Svg from '@smui/common/Svg.svelte';
 
   export let file;
-  export let scss = null;
+  export let files = [file];
   export let component;
 
   let sourceContainer;
-  let scssContainer;
   let show = false;
-  let loading = false;
   let sourceFile = null;
   let sourceHTML = null;
-  let scssHTML = null;
+  let sources = [];
+  const docWrite = (value) => {
+    sourceFile = null;
+    sourceHTML = value;
 
-  function toggleSource() {
-    if (!sourceHTML) {
-      loading = true;
-      sourceFile = file;
+    requestAnimationFrame(() => {
+      sources.push(sourceContainer.innerHTML);
+      sourceFile = null;
+      sourceHTML = null;
+      sources = sources;
+    });
+  };
 
-      document.write = (value) => {
-        loading = false;
-        sourceHTML = value;
-
-        if (scss) {
-          requestAnimationFrame(() => {
-            loading = true;
-            sourceFile = scss;
-
-            document.write = (value) => {
-              loading = false;
-              scssHTML = value;
-            };
-          });
-        }
-      };
-    }
-
-    if (show) {
-      if (sourceContainer) {
-        sourceHTML = sourceContainer.innerHTML;
-      }
-      if (scssContainer) {
-        scssHTML = scssContainer.innerHTML;
-      }
-    }
-
-    show = !show;
+  $: if (show && sources.length < files.length && !sourceFile && !sourceHTML) {
+    sourceFile = files[sources.length];
+    document.write = docWrite;
   }
 </script>
 

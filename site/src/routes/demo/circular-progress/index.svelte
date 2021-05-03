@@ -18,16 +18,20 @@
 
   <Demo
     component={FourColor}
-    file="circular-progress/_FourColor.svelte"
-    scss="circular-progress/_FourColor.scss"
+    files={[
+      'circular-progress/_FourColor.svelte',
+      'circular-progress/_FourColor.scss',
+    ]}
   >
     Four Color
   </Demo>
 
   <Demo
     component={Colored}
-    file="circular-progress/_Colored.svelte"
-    scss="circular-progress/_Colored.scss"
+    files={[
+      'circular-progress/_Colored.svelte',
+      'circular-progress/_Colored.scss',
+    ]}
   >
     Colored (using Sass mixins)
   </Demo>
