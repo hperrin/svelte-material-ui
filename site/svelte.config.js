@@ -1,8 +1,8 @@
 // const node = require('@sveltejs/adapter-node');
-const static = require('@sveltejs/adapter-static');
-const pkg = require('./package.json');
-const { mdsvex } = require('mdsvex');
-const slug = require('remark-slug');
+import static from '@sveltejs/adapter-static';
+import pkg from './package.json';
+import { mdsvex } from 'mdsvex';
+import slug from 'remark-slug';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
