@@ -1,6 +1,6 @@
 {
   "name": "@smui/tab-bar",
-  "version": "4.1.0",
+  "version": "4.2.0",
   "description": "Svelte Material UI - Tab Bar",
   "type": "module",
   "module": "index.js",
@@ -31,8 +31,8 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@material/tab-bar": "^11.0.0",
-    "@smui/common": "^4.1.0",
-    "@smui/tab-scroller": "^4.1.0"
+    "@smui/common": "^4.2.0",
+    "@smui/tab-scroller": "^4.2.0"
   },
   "devDependencies": {
     "sass": "^1.32.8"

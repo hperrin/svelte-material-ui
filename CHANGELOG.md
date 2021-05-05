@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0](https://github.com/hperrin/svelte-material-ui/compare/v4.1.0...v4.2.0) (2021-05-05)
+
+
+### Bug Fixes
+
+* events with modifiers called once for every event listener on event ([4234efa](https://github.com/hperrin/svelte-material-ui/commit/4234efa678ca9e33ab2c7647b9d4e634936309e0))
+* textfield layout ([0ff4b00](https://github.com/hperrin/svelte-material-ui/commit/0ff4b00a884291303cc679e72d16d7e7cd11b2f2)), closes [#241](https://github.com/hperrin/svelte-material-ui/issues/241)
+
+
+### Features
+
+* allow customizing Label component, add Em and Strong elemental components ([5dd42e2](https://github.com/hperrin/svelte-material-ui/commit/5dd42e2829ef20328cfb5b6171191117286a8c05))
+
+
+
+
+
 # [4.1.0](https://github.com/hperrin/svelte-material-ui/compare/v4.0.0...v4.1.0) (2021-04-28)
 
 

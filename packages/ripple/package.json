@@ -1,6 +1,6 @@
 {
   "name": "@smui/ripple",
-  "version": "4.1.0",
+  "version": "4.2.0",
   "description": "Svelte Material UI - Ripple",
   "type": "module",
   "module": "index.js",
