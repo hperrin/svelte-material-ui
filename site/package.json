@@ -132,6 +132,7 @@
     "rollup-plugin-terser": "^7.0.2",
     "sapper": "^0.29.1",
     "smui-theme": "file:../packages/smui-theme",
-    "svelte": "^3.37.0"
+    "svelte": "^3.37.0",
+    "tinygesture": "^1.1.4"
   }
 }

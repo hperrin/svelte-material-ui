@@ -257,6 +257,14 @@
       ],
     },
     {
+      name: 'Common',
+      route: '/demo/common/',
+      indent: 0,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/common',
+      ],
+    },
+    {
       name: 'Data Table',
       route: '/demo/data-table/',
       indent: 0,

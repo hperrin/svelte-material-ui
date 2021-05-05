@@ -1,14 +1,20 @@
 # Svelte Material UI - Common Components
 
-These common components are used in other components.
+Common Label and Icon components, elemental components, and helper utilities.
 
-You can also use the elemental components to switch the HTML element that an SMUI component with a `component` prop uses.
+You can use the elemental components to switch the HTML element that an SMUI component with a `component` prop uses.
 
 # Installation
 
 ```sh
 npm install --save-dev @smui/common
 ```
+
+# Demo
+
+[See it in action.](https://sveltematerialui.com/demo/common)
+
+[See the demo code.](/site/src/routes/demo/common/)
 
 # Exports
 

@@ -46,13 +46,14 @@ If you need help using SMUI, join the new [Discord server](https://discord.gg/aF
 
 # Components
 
-Click a component below to go to its documentation. (Note that this documentation is a work in progress. The demo code should be your main source of truth for how something works.)
+Click a component/package below to go to the documentation. (Note that this documentation is a work in progress. The demo code should be your main source of truth for how something works.)
 
 - [Banner](packages/banner/README.md)
 - [Button](packages/button/README.md)
   - [Floating Action Button](packages/fab/README.md)
   - [Icon Button](packages/icon-button/README.md)
 - [Card](packages/card/README.md)
+- [Common](packages/common/README.md)
 - [Data Table](packages/data-table/README.md)
 - [Dialog](packages/dialog/README.md)
 - [Drawer](packages/drawer/README.md)
