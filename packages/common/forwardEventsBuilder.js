@@ -5,9 +5,9 @@ import {
   stop_propagation,
 } from 'svelte/internal';
 
-// Match modifiers on DOM events.
+// Match old modifiers. (only works on DOM events)
 const oldModifierRegex = /^[a-z]+(?::(?:preventDefault|stopPropagation|passive|nonpassive|capture|once|self))+$/;
-// Match modifiers on other events.
+// Match new modifiers.
 const newModifierRegex = /^[^$]+(?:\$(?:preventDefault|stopPropagation|passive|nonpassive|capture|once|self))+$/;
 
 export function forwardEventsBuilder(component) {
@@ -30,23 +30,20 @@ export function forwardEventsBuilder(component) {
       events.push([eventType, callback]);
     }
     const oldModifierMatch = eventType.match(oldModifierRegex);
-    const newModifierMatch = eventType.match(newModifierRegex);
-    const modifierMatch = oldModifierMatch || newModifierMatch;
 
     if (oldModifierMatch && console) {
       console.warn(
-        'Event modifiers in SMUI now use "$" instead of ":", so that all events can be bound with modifiers. Please update your event binding: ',
+        'Event modifiers in SMUI now use "$" instead of ":", so that ' +
+          'all events can be bound with modifiers. Please update your ' +
+          'event binding: ',
         eventType
       );
     }
 
-    if (modifierMatch) {
-      // Remove modifiers from the real event.
-      const parts = eventType.split(oldModifierMatch ? ':' : '$');
-      eventType = parts[0];
-    }
-
     // Call the original $on function.
+    // The modifiers are passed in so that if a lower component
+    // forwards an event that doesn't bubble automatically, the
+    // bound listeners will only be fired once.
     const componentDestructor = componentOn.call(
       component,
       eventType,
@@ -68,7 +65,8 @@ export function forwardEventsBuilder(component) {
     const destructors = [];
     const forwardDestructors = {};
 
-    // This function is responsible for forwarding all bound events.
+    // This function is responsible for listening and forwarding
+    // all bound events.
     $on = (fullEventType, callback) => {
       let eventType = fullEventType;
       let handler = callback;
