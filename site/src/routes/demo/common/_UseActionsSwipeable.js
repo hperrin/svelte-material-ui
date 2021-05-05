@@ -1,6 +1,6 @@
 import TinyGesture from 'tinygesture';
 
-export default function (node) {
+export default function Swipeable(node) {
   const gesture = new TinyGesture(node);
   let timeout;
   const preventDefault = (event) => {

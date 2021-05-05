@@ -2,7 +2,7 @@ import TinyGesture from 'tinygesture';
 import { tweened } from 'svelte/motion';
 import { cubicInOut } from 'svelte/easing';
 
-export default function (node) {
+export default function Pannable(node) {
   const gesture = new TinyGesture(node);
   let animationFrame = null;
   const preventDefault = (event) => {

@@ -107,7 +107,7 @@
     component={ForwardEventsBuilder}
     files={[
       'common/_ForwardEventsBuilder.svelte',
-      'common/_ForwardEventsBuilderComponent.js',
+      'common/_ForwardEventsBuilderComponent.svelte',
     ]}
   >
     Forward Events Builder
@@ -144,7 +144,7 @@
     component={UseActions}
     files={[
       'common/_UseActions.svelte',
-      'common/_UseActionsComponent.js',
+      'common/_UseActionsComponent.svelte',
       'common/_UseActionsPannable.js',
       'common/_UseActionsSwipeable.js',
       'common/_UseActionsTappable.js',

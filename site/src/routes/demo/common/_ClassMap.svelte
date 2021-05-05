@@ -1,6 +1,7 @@
 <div>
   <Button
     class={classMap({
+      'my-button': true,
       big: big,
       [color]: true,
     })}
@@ -35,6 +36,10 @@
 </script>
 
 <style>
+  * :global(.my-button) {
+    margin: 0.5em;
+  }
+
   * :global(.red) {
     color: red;
   }

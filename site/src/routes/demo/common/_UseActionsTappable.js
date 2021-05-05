@@ -1,6 +1,6 @@
 import TinyGesture from 'tinygesture';
 
-export default function (node, options) {
+export default function Tappable(node, options) {
   const gesture = new TinyGesture(node);
   let tapTimeout;
   let pressTimeout;
