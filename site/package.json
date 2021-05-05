@@ -84,6 +84,6 @@
     "smui-theme": "file:../packages/smui-theme",
     "svelte": "^3.37.0",
     "tinygesture": "^1.1.4",
-    "vite": "^2.2.1"
+    "vite": "^2.2.3"
   }
 }

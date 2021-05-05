@@ -5,7 +5,7 @@ const { mdsvex } = require('mdsvex');
 const slug = require('remark-slug');
 
 /** @type {import('@sveltejs/kit').Config} */
-module.exports = {
+const config = {
   extensions: ['.svelte', '.svx', '.md'],
 
   kit: {
@@ -36,3 +36,5 @@ module.exports = {
     remarkPlugins: [slug],
   }),
 };
+
+export default config;
