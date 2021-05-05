@@ -14,7 +14,7 @@ You can also [use SMUI in the Svelte REPL](REPL.md).
 
 You will always import Svelte components from the individual packages.
 
-This method will only include the JavaScript. Use this for the Default Theme or the [Easy Styling Method](SASS.md).
+This method will only include the JavaScript. Use this for the Default Theme or the [Easy Styling Method](SASS.md#easy-styling-method).
 
 ```svelte
 <script>
@@ -22,7 +22,7 @@ This method will only include the JavaScript. Use this for the Default Theme or 
 </script>
 ```
 
-This method will include Sass files as well. Use this for the [Advanced Styling Method](SASS.md).
+This method will include Sass files as well. Use this for the [Advanced Styling Method](SASS.md#advanced-styling-method).
 
 ```svelte
 <script>
