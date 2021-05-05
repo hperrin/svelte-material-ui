@@ -1,7 +1,7 @@
-<span
+<svelte:component
+  this={component}
   bind:this={element}
-  use:useActions={use}
-  use:forwardEvents
+  use={[forwardEvents, ...use]}
   class={classMap({
     [className]: true,
     'mdc-button__label': context === 'button',
@@ -18,13 +18,14 @@
   })}
   {...context === 'snackbar' ? { 'aria-atomic': 'false' } : {}}
   {tabindex}
-  {...$$restProps}><slot /></span
+  {...$$restProps}><slot /></svelte:component
 >
 
 <script>
   import { getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import { forwardEventsBuilder, classMap, useActions } from './internal.js';
+  import Span from './Span.svelte';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
@@ -34,10 +35,12 @@
 
   let element;
 
+  export let component = Span;
+
   const context = getContext('SMUI:label:context');
   const tabindex = getContext('SMUI:label:tabindex');
 
   export function getElement() {
-    return element;
+    return element.getElement();
   }
 </script>

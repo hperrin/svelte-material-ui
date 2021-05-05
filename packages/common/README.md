@@ -20,6 +20,7 @@ The common label is used everywhere that exports a `Label` component.
 
 ### Props / Defaults
 
+- `component`: `Span` - A component to use as the root element.
 - `use`: `[]` - An array of Svelte actions and/or arrays of an action and its options.
 - `class`: `''` - A CSS class string.
 
@@ -82,6 +83,10 @@ An elemental component for the `button` tag.
 ## Div.svelte
 
 An elemental component for the `div` tag.
+
+## Em.svelte
+
+An elemental component for the `em` tag.
 
 ## Footer.svelte
 
@@ -146,6 +151,10 @@ An elemental component for the `section` tag.
 ## Span.svelte
 
 An elemental component for the `span` tag.
+
+## Strong.svelte
+
+An elemental component for the `strong` tag.
 
 ## Svg.svelte
 
@@ -392,7 +401,7 @@ An action that takes actions and runs them on the element. Used to allow actions
 </div>
 
 <script>
-  import { useActions } from './internal.js';
+  import { useActions } from '@smui/common/internal.js';
 
   export let use = [];
 </script>
@@ -407,7 +416,7 @@ An action that takes actions and runs them on the element. Used to allow actions
 
 <script>
   import MyComponent from './MyComponent.svelte';
-  import SomeAction from './SomeAction.svelte';
-  import SomeOtherAction from './SomeOtherAction.svelte';
+  import SomeAction from './SomeAction.js';
+  import SomeOtherAction from './SomeOtherAction.js';
 </script>
 ```
