@@ -493,7 +493,10 @@
   }
 
   export function layout() {
-    instance.layout();
+    if (instance) {
+      const openNotch = instance.shouldFloat;
+      instance.notchOutline(openNotch);
+    }
   }
 
   export function getElement() {
