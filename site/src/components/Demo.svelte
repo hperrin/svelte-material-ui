@@ -81,7 +81,7 @@
   import Tooltip, { Wrapper } from '@smui/tooltip';
   import Svg from '@smui/common/Svg.svelte';
 
-  export let file;
+  export let file = null;
   export let files = [file];
   export let component;
 
