@@ -29,7 +29,8 @@
     bind:mobileStacked
     on:MDCBanner:closed={(event) => (closedReason = event.detail.reason)}
   >
-    <Label slot="label">This is a banner with no icon and some actions.</Label>
+    <Icon slot="icon" class="material-icons">favorite</Icon>
+    <Label slot="label">This is a banner with an icon and some actions.</Label>
     <svelte:fragment slot="actions">
       <Button secondary>Secondary</Button>
       <Button>Primary</Button>
@@ -45,7 +46,7 @@
 </div>
 
 <script>
-  import Banner, { Label } from '@smui/banner';
+  import Banner, { Label, Icon } from '@smui/banner';
   import Button from '@smui/button';
   import TopAppBar, { Row, Section, Title } from '@smui/top-app-bar';
   import Checkbox from '@smui/checkbox';
