@@ -26,7 +26,13 @@
 </div>
 
 <div>
-  <Button on:click$capture={addEventCapture} on:click={addEventBubble}>
+  Try clicking and using the Enter key to activate this next button. (The click
+  event's target is an element below the button while the key event's target is
+  the button.)
+</div>
+
+<div>
+  <Button on:click$capture={addEventPhase} on:click={addEventPhase}>
     <Label>Capture and Bubble Phase Listeners</Label>
   </Button>
 </div>
@@ -40,17 +46,18 @@
 </div>
 
 <div>
-  <Button
+  <A
     href="http://example.com"
     on:click$preventDefault={() =>
       console.log("You tried to go, but didn't make it.")}
   >
-    <Label>A Link Button, with Default Prevented</Label>
-  </Button>
+    A Link, with Default Prevented
+  </A>
 </div>
 
 <script>
   import Button, { Label } from '@smui/button';
+  import A from '@smui/common/A.svelte';
 
   let eventOutput;
   let eventPhaseOutput;
@@ -65,16 +72,9 @@
     });
   }
 
-  function addEventCapture(event) {
-    eventPhases.push([event, 'capture']);
-    eventPhases = eventPhases;
-    requestAnimationFrame(() => {
-      eventPhaseOutput.scrollTop = eventPhaseOutput.scrollHeight;
-    });
-  }
-
-  function addEventBubble(event) {
-    eventPhases.push([event, 'bubble']);
+  function addEventPhase(event) {
+    const phases = ['none', 'capturing', 'at-target', 'bubbling'];
+    eventPhases.push([event, phases[event.eventPhase]]);
     eventPhases = eventPhases;
     requestAnimationFrame(() => {
       eventPhaseOutput.scrollTop = eventPhaseOutput.scrollHeight;
