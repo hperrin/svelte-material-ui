@@ -17,8 +17,10 @@
 
   <Demo
     component={ManualAnchor}
-    file="menu-surface/_ManualAnchor.svelte"
-    scss="menu-surface/_ManualAnchor.scss"
+    files={[
+      'menu-surface/_ManualAnchor.svelte',
+      'menu-surface/_ManualAnchor.scss',
+    ]}
   >
     Anchored manually
   </Demo>

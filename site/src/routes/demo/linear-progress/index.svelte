@@ -19,8 +19,7 @@
 
   <Demo
     component={Colored}
-    file="linear-progress/_Colored.svelte"
-    scss="linear-progress/_Colored.scss"
+    files={['linear-progress/_Colored.svelte', 'linear-progress/_Colored.scss']}
   >
     Colored (using Sass mixins)
   </Demo>

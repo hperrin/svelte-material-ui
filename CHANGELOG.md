@@ -3,6 +3,51 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0](https://github.com/hperrin/svelte-material-ui/compare/v4.1.0...v4.2.0) (2021-05-05)
+
+
+### Bug Fixes
+
+* events with modifiers called once for every event listener on event ([4234efa](https://github.com/hperrin/svelte-material-ui/commit/4234efa678ca9e33ab2c7647b9d4e634936309e0))
+* textfield layout ([0ff4b00](https://github.com/hperrin/svelte-material-ui/commit/0ff4b00a884291303cc679e72d16d7e7cd11b2f2)), closes [#241](https://github.com/hperrin/svelte-material-ui/issues/241)
+
+
+### Features
+
+* allow customizing Label component, add Em and Strong elemental components ([5dd42e2](https://github.com/hperrin/svelte-material-ui/commit/5dd42e2829ef20328cfb5b6171191117286a8c05))
+
+
+
+
+
+# [4.1.0](https://github.com/hperrin/svelte-material-ui/compare/v4.0.0...v4.1.0) (2021-04-28)
+
+
+### Bug Fixes
+
+* remove duplicate change and input event forwarding ([641acf1](https://github.com/hperrin/svelte-material-ui/commit/641acf1deeb65c636192ff35f8f83ce59a1842da)), closes [#233](https://github.com/hperrin/svelte-material-ui/issues/233)
+* required causes textfield to use native validation, label stops floating when value deleted ([b13b2a0](https://github.com/hperrin/svelte-material-ui/commit/b13b2a029d607fbf1b94462c9a15ca5649b5b95d)), closes [#234](https://github.com/hperrin/svelte-material-ui/issues/234)
+* slider external updates not reflected in UI ([d46b854](https://github.com/hperrin/svelte-material-ui/commit/d46b8546346cfde2136fb14063f15587a4819de0))
+* textfield labels and notches show incorrect state and position ([c935423](https://github.com/hperrin/svelte-material-ui/commit/c9354235b09523ce12333fe7671392b95f62c480)), closes [#236](https://github.com/hperrin/svelte-material-ui/issues/236)
+* theme builder error when the output directory doesn't exist ([36c2531](https://github.com/hperrin/svelte-material-ui/commit/36c2531c073a72a46ab6d8b0392f542f73879fcd))
+* warnings about unexpected slot in Img and Hr ([98a555f](https://github.com/hperrin/svelte-material-ui/commit/98a555f19273176099b8aa60b9e23028bb46e6e0))
+
+
+### Features
+
+* change event modifier syntax to allow use on all events ([1fe4f82](https://github.com/hperrin/svelte-material-ui/commit/1fe4f82ef29f88567a81a24a746ef7f82389e7dc))
+* include props for conditional icons on Textfield and Select ([2d95dc7](https://github.com/hperrin/svelte-material-ui/commit/2d95dc7305027c2580ec42403361aa5435088246)), closes [#230](https://github.com/hperrin/svelte-material-ui/issues/230)
+
+
+### Reverts
+
+* Revert "v4.1.0" ([54dfd48](https://github.com/hperrin/svelte-material-ui/commit/54dfd48fc0560843ccef9cb9821b12e251977c67))
+* Revert "v4.1.0" ([3e683d9](https://github.com/hperrin/svelte-material-ui/commit/3e683d9166e7df9eaab2756c9ace64c4dd547758))
+
+
+
+
+
 # [4.0.0](https://github.com/hperrin/svelte-material-ui/compare/v3.1.0...v4.0.0) (2021-04-24)
 
 

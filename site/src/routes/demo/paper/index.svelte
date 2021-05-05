@@ -21,8 +21,7 @@
 
   <Demo
     component={CustomColor}
-    file="paper/_CustomColor.svelte"
-    scss="paper/_CustomColor.scss"
+    files={['paper/_CustomColor.svelte', 'paper/_CustomColor.scss']}
   >
     Custom color
   </Demo>

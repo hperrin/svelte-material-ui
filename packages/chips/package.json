@@ -1,6 +1,6 @@
 {
   "name": "@smui/chips",
-  "version": "4.0.0",
+  "version": "4.2.0",
   "description": "Svelte Material UI - Chips",
   "type": "module",
   "module": "index.js",
@@ -33,8 +33,8 @@
     "@material/chips": "^11.0.0",
     "@material/dom": "^11.0.0",
     "@material/rtl": "^11.0.0",
-    "@smui/common": "^4.0.0",
-    "@smui/ripple": "^4.0.0"
+    "@smui/common": "^4.2.0",
+    "@smui/ripple": "^4.2.0"
   },
   "devDependencies": {
     "sass": "^1.32.8"

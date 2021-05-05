@@ -9,8 +9,7 @@
 
   <Demo
     component={Typography}
-    file="typography/_Typography.svelte"
-    scss="typography/_Typography.scss"
+    files={['typography/_Typography.svelte', 'typography/_Typography.scss']}
   />
 </section>
 

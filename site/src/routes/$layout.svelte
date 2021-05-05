@@ -23,7 +23,7 @@
       </Section>
       <Section align="end" toolbar style="color: var(--mdc-on-surface, #000);">
         {#if activeSection}
-          {#each repos as repo}
+          {#each activeSection.repos || [] as repo}
             <Wrapper>
               <IconButton href={repo} target="_blank">
                 <Icon component={Svg} viewBox="0 0 24 24">
@@ -111,8 +111,7 @@
                   : 'shortcut' in section
                   ? section.shortcut
                   : null}
-                on:click={() => pickSection(section)}
-                activated={'route' in section && section.route === null}
+                activated={section === activeSection}
                 style={section.indent
                   ? 'margin-left: ' + section.indent * 25 + 'px;'
                   : ''}
@@ -138,7 +137,7 @@
 
 <script>
   import { onMount } from 'svelte';
-  // import { page } from '$app/stores';
+  import { page } from '$app/stores';
   import {
     mdiFileDocument,
     mdiCodeTags,
@@ -158,8 +157,7 @@
   import A from '@smui/common/A.svelte';
   import Svg from '@smui/common/Svg.svelte';
 
-  // const iframe = $page.path.includes('/iframe');
-  const iframe = false;
+  const iframe = $page.path.includes('/iframe');
 
   let mainContent;
   let miniWindow = false;
@@ -254,6 +252,14 @@
       indent: 0,
       repos: [
         'https://github.com/hperrin/svelte-material-ui/tree/master/packages/card',
+      ],
+    },
+    {
+      name: 'Common',
+      route: '/demo/common/',
+      indent: 0,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/common',
       ],
     },
     {
@@ -486,34 +492,26 @@
     },
   ];
 
-  let activeSection = null; //sections.find(
-  //   (section) => 'route' in section && section.route === $page.path
-  // );
-  $: repos =
-    activeSection && 'repos' in activeSection ? activeSection.repos : [];
+  $: activeSection = sections.find(
+    (section) => 'route' in section && routesEqual(section.route, $page.path)
+  );
+  let previousPagePath = null;
+  $: if (mainContent && previousPagePath !== $page.path) {
+    drawerOpen = false;
+    const top = window.location.hash
+      ? document.querySelector(window.location.hash)?.offsetTop || 0
+      : 0;
+    mainContent.scrollTop = top;
+    previousPagePath = $page.path;
+  }
 
   onMount(setMiniWindow);
 
-  function pickSection(section) {
-    if (!('shortcut' in section) && !('route' in section)) {
-      return;
-    }
-
-    drawerOpen = false;
-    mainContent.scrollTop = 0;
-
-    // Svelte/Sapper is not updated the components correctly, so I need this.
-    sections.forEach((section) => {
-      if (!section.separator) {
-        section.component.$set({ activated: false });
-      }
-    });
-    section.component.$set({ activated: true });
-
-    activeSection =
-      'shortcut' in section
-        ? sections.find((sec) => sec.route === section.shortcut)
-        : section;
+  function routesEqual(a, b) {
+    return (
+      (a.endsWith('/') ? a.slice(0, -1) : a) ===
+      (b.endsWith('/') ? b.slice(0, -1) : b)
+    );
   }
 
   function setMiniWindow() {

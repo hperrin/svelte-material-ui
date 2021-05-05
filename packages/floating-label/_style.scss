@@ -1,1 +1,10 @@
 @use '@material/floating-label/mdc-floating-label';
+
+.smui-floating-label--remove-transition {
+  transition: unset !important;
+}
+
+.smui-floating-label--force-size {
+  position: absolute !important;
+  transform: unset !important;
+}

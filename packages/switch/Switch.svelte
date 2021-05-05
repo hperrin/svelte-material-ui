@@ -43,8 +43,6 @@
       bind:checked={nativeChecked}
       aria-checked={nativeChecked ? 'true' : 'false'}
       value={valueKey === uninitializedValue ? value : valueKey}
-      on:change
-      on:input
       on:blur
       on:focus
       {...nativeControlAttrs}

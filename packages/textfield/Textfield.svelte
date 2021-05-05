@@ -22,9 +22,16 @@
       'mdc-text-field--outlined': variant === 'outlined',
       'smui-text-field--standard': variant === 'standard' && !textarea,
       'mdc-text-field--no-label': noLabel || (label == null && !$$slots.label),
-      'mdc-text-field--label-floating': value != null && value !== '',
-      'mdc-text-field--with-leading-icon': $$slots.leadingIcon,
-      'mdc-text-field--with-trailing-icon': $$slots.trailingIcon,
+      'mdc-text-field--label-floating':
+        focused || (value != null && value !== ''),
+      'mdc-text-field--with-leading-icon':
+        withLeadingIcon === uninitializedValue
+          ? $$slots.leadingIcon
+          : withLeadingIcon,
+      'mdc-text-field--with-trailing-icon':
+        withTrailingIcon === uninitializedValue
+          ? $$slots.trailingIcon
+          : withTrailingIcon,
       'mdc-text-field--with-internal-counter':
         textarea && $$slots.internalCounter,
       'mdc-text-field--invalid': invalid !== uninitializedValue && invalid,
@@ -60,7 +67,7 @@
       {#if !noLabel && (label != null || $$slots.label)}
         <FloatingLabel
           bind:this={floatingLabel}
-          floatAbove={value != null && value !== ''}
+          floatAbove={focused || (value != null && value !== '')}
           {required}
           wrapped
           {...prefixFilter($$restProps, 'label$')}
@@ -77,7 +84,7 @@
         {#if !noLabel && (label != null || $$slots.label)}
           <FloatingLabel
             bind:this={floatingLabel}
-            floatAbove={value != null && value !== ''}
+            floatAbove={focused || (value != null && value !== '')}
             {required}
             wrapped
             {...prefixFilter($$restProps, 'label$')}
@@ -105,8 +112,8 @@
           bind:dirty
           bind:invalid
           {updateInvalid}
-          on:change
-          on:input
+          on:blur={() => (focused = false)}
+          on:focus={() => (focused = true)}
           on:blur
           on:focus
           aria-controls={helperId}
@@ -130,8 +137,8 @@
         bind:dirty
         bind:invalid
         {updateInvalid}
-        on:change
-        on:input
+        on:blur={() => (focused = false)}
+        on:focus={() => (focused = true)}
         on:blur
         on:focus
         aria-controls={helperId}
@@ -274,6 +281,8 @@
   export let updateInvalid = invalid === uninitializedValue;
   export let validateOnValueChange = updateInvalid;
   export let useNativeValidation = updateInvalid;
+  export let withLeadingIcon = uninitializedValue;
+  export let withTrailingIcon = uninitializedValue;
 
   // Components
   export let input = undefined;
@@ -286,6 +295,7 @@
   let internalClasses = {};
   let internalStyles = {};
   let helperId;
+  let focused = false;
   let addLayoutListener = getContext('SMUI:addLayoutListener');
   let removeLayoutListener;
   let initPromiseResolve;
@@ -326,6 +336,16 @@
     instance.setDisabled(disabled);
   }
 
+  // React to changes of value from outside component.
+  let previousValue = value;
+  $: if (instance && valued && previousValue !== value) {
+    previousValue = value;
+    // Check the data is flowing down.
+    if (instance.getValue() !== value) {
+      instance.setValue(value);
+    }
+  }
+
   if (addLayoutListener) {
     removeLayoutListener = addLayoutListener(layout);
   }
@@ -347,9 +367,11 @@
               .map((mutation) => mutation.attributeName)
               .filter((attributeName) => attributeName);
           };
-          const observer = new MutationObserver((mutationsList) =>
-            handler(getAttributesList(mutationsList))
-          );
+          const observer = new MutationObserver((mutationsList) => {
+            if (useNativeValidation) {
+              handler(getAttributesList(mutationsList));
+            }
+          });
           const config = { attributes: true };
           observer.observe(input.getElement(), config);
           return observer;
@@ -471,7 +493,10 @@
   }
 
   export function layout() {
-    instance.layout();
+    if (instance) {
+      const openNotch = instance.shouldFloat;
+      instance.notchOutline(openNotch);
+    }
   }
 
   export function getElement() {

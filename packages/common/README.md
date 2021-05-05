@@ -1,14 +1,20 @@
 # Svelte Material UI - Common Components
 
-These common components are used in other components.
+Common Label and Icon components, elemental components, and helper utilities.
 
-You can also use the elemental components to switch the HTML element that an SMUI component with a `component` prop uses.
+You can use the elemental components to switch the HTML element that an SMUI component with a `component` prop uses.
 
 # Installation
 
 ```sh
 npm install --save-dev @smui/common
 ```
+
+# Demo
+
+[See it in action.](https://sveltematerialui.com/demo/common)
+
+[See the demo code.](/site/src/routes/demo/common/)
 
 # Exports
 
@@ -20,6 +26,7 @@ The common label is used everywhere that exports a `Label` component.
 
 ### Props / Defaults
 
+- `component`: `Span` - A component to use as the root element.
 - `use`: `[]` - An array of Svelte actions and/or arrays of an action and its options.
 - `class`: `''` - A CSS class string.
 
@@ -82,6 +89,10 @@ An elemental component for the `button` tag.
 ## Div.svelte
 
 An elemental component for the `div` tag.
+
+## Em.svelte
+
+An elemental component for the `em` tag.
 
 ## Footer.svelte
 
@@ -147,6 +158,10 @@ An elemental component for the `section` tag.
 
 An elemental component for the `span` tag.
 
+## Strong.svelte
+
+An elemental component for the `strong` tag.
+
 ## Svg.svelte
 
 An elemental component for the `svg` tag.
@@ -154,3 +169,260 @@ An elemental component for the `svg` tag.
 ## Ul.svelte
 
 An elemental component for the `ul` tag.
+
+# Helper Utilities
+
+Helper utilities are exported from the `@smui/common/internal` endpoint. They are used within SMUI to provide additional functionality outside of the features the Svelte API is natively capable of. You can use them in your own components to provide the same additional functionality.
+
+`classAdderBuilder` and `forwardEventsBuilder` use internal Svelte features. Since they depend on `svelte/internal`, you should consider use of them the same way you consider use of `svelte/internal` directly.
+
+## classAdderBuilder
+
+Use this to build a ClassAdder component. ClassAdder components are useful for reducing the size of your bundle. If you have tons of simple components that just need to add classes/props or set a context, using ClassAdder components means there's only one "big" Svelte component in your bundle for all of these many tiny components.
+
+```js
+import { classAdderBuilder } from '@smui/common/internal.js';
+import Div from '@smui/common/Div.svelte';
+
+export default classAdderBuilder({
+  class: 'my-added-class',
+  component: Div,
+});
+```
+
+### Props / Defaults
+
+- `component`: `null` - An elemental component.
+- `class`: `''` - The class to add.
+- `classMap`: `{}` - A map of classes to contexts. The context should resolve to a Svelte store, and the class will be added if the Svelte store's value is true.
+- `contexts`: `{}` - A map of contexts to values to set for them.
+- `props`: `{}` - A map of props to add to the element.
+
+## classMap
+
+Build a class string from a map of class names to conditions. This is useful when you need to add classes to a component, since Svelte's "class:" directives don't work on components. (It's also useful for actions that take `addClass` and `removeClass` functions.)
+
+```svelte
+<SomeComponent
+  class={classMap({
+    'my-always-on-class': true,
+    'my-conditional-class': condition,
+    ...internalClasses,
+  })}
+>
+  I've got class.
+</SomeComponent>
+
+<script>
+  import { classAdderBuilder } from '@smui/common/internal.js';
+  import SomeComponent from './SomeComponent.svelte';
+
+  export let condition = true;
+
+  let internalClasses = {};
+
+  export function addClass(className) {
+    if (!internalClasses[className]) {
+      internalClasses[className] = true;
+    }
+  }
+
+  export function removeClass(className) {
+    if (!(className in internalClasses) || internalClasses[className]) {
+      internalClasses[className] = false;
+    }
+  }
+</script>
+```
+
+## dispatch
+
+Dispatch a custom event. This differs from Svelte's component event system, because these events require a DOM element as a target, can bubble (and do by default), and are cancelable with `event.preventDefault()`. All SMUI/MDC events are dispatched with this instead of Svelte's `createEventDispatcher`.
+
+```svelte
+<div
+  bind:this={eventTarget}
+  on:mouseover={emitEvent}
+  on:click={emitCancelableEvent}
+  tabindex="0"
+/>
+
+<script>
+  import { dispatch } from '@smui/common/internal.js';
+
+  let eventTarget;
+
+  function emitEvent(originalEvent) {
+    dispatch(eventTarget, 'MyCustomEvent', { originalEvent });
+
+    // You would access originalEvent with `event.detail.originalEvent`.
+  }
+
+  function emitCancelableEvent(originalEvent) {
+    const event = dispatch(
+      eventTarget,
+      'MyCustomEvent',
+      { originalEvent },
+      {
+        bubbles: true,
+        cancelable: true,
+      }
+    );
+
+    if (!event.defaultPrevented) {
+      alert('The event was not canceled!');
+    }
+  }
+</script>
+```
+
+## exclude
+
+Exclude a set of properties from an object. It differs from normal `omit` functions by also excluding all properties that begin with a given string if that string ends with "$". It is usually used along with `prefixFilter` to allow props to be given to multiple elements within a component.
+
+```svelte
+<!-- MyComponent.svelte -->
+<div class="my-component {className}" {...exclude($$restProps, ['button$'])}>
+  <button
+    on:click
+    class="button {button$class}"
+    {...prefixFilter($$restProps, 'button$')}
+  >
+    <slot />
+  </button>
+</div>
+
+<script>
+  import { exclude, prefixFilter } from '@smui/common/internal.js';
+
+  let className = '';
+  export { className as class };
+  export let button$class = '';
+</script>
+```
+
+```svelte
+<MyComponent
+  class="my-class"
+  button$disabled={disabled}
+  on:click={() => (disabled = true)}
+>
+  Click Me Only Once
+</MyComponent>
+
+<script>
+  import MyComponent from './MyComponent.svelte';
+
+  let disabled = false;
+</script>
+```
+
+## forwardEventsBuilder
+
+Build an action to allow **all** events to be forwarded from a Svelte component, with support for event modifiers using the "$" syntax.
+
+This is especially useful for UI library components, as it is generally unknown which events will be required from them for all desired use cases. For example, if a Button component only forwards a `click` event, then no use case that requires the `mouseover` or the `keypress` event can be used with it.
+
+In addition, a component that uses Svelte's built in event forwarding system cannot allow event listeners on the "capture" phase of the event lifecycle. It also cannot allow events to be cancelable with the browser's built in `preventDefault` function. In fact, the one big advantage to Svelte's event system, the fact that you don't need an element as an event target, doesn't even apply to UI library components.
+
+```svelte
+<!-- MyComponent.svelte -->
+<div use:forwardEvents tabindex="0">
+  <slot />
+</div>
+
+<script>
+  import { forwardEventsBuilder } from '@smui/common/internal.js';
+  import { get_current_component } from 'svelte/internal';
+
+  const forwardEvents = forwardEventsBuilder(get_current_component());
+</script>
+```
+
+```svelte
+<MyComponent
+  on:click={() => console.log('Click!')}
+  on:mouseover={() => console.log('Mouseover!')}
+  on:touchstart$passive={() => console.log("Touchstart, and it's passive!")}
+  on:keypress$preventDefault$stopPropagation={() =>
+    console.log('No key presses!')}
+>
+  Listen to my events!
+</MyComponent>
+
+<script>
+  import MyComponent from './MyComponent.svelte';
+</script>
+```
+
+## prefixFilter
+
+Filter an object for only properties with a certain prefix. It is usually used along with `exclude` to allow props to be given to multiple elements within a component.
+
+```svelte
+<!-- MyComponent.svelte -->
+<div class="my-component {className}" {...exclude($$restProps, ['button$'])}>
+  <button
+    on:click
+    class="button {button$class}"
+    {...prefixFilter($$restProps, 'button$')}
+  >
+    <slot />
+  </button>
+</div>
+
+<script>
+  import { exclude, prefixFilter } from '@smui/common/internal.js';
+
+  let className = '';
+  export { className as class };
+  export let button$class = '';
+</script>
+```
+
+```svelte
+<MyComponent
+  class="my-class"
+  button$disabled={disabled}
+  on:click={() => (disabled = true)}
+>
+  Click Me Only Once
+</MyComponent>
+
+<script>
+  import MyComponent from './MyComponent.svelte';
+
+  let disabled = false;
+</script>
+```
+
+## useActions
+
+An action that takes actions and runs them on the element. Used to allow actions on components, and forward actions from one component to another, until the ultimate component finally renders the DOM element.
+
+```svelte
+<!-- MyComponent.svelte -->
+<div use:useActions={use}>
+  <slot />
+</div>
+
+<script>
+  import { useActions } from '@smui/common/internal.js';
+
+  export let use = [];
+</script>
+```
+
+```svelte
+<MyComponent use={[SomeAction]}>I use an action!</MyComponent>
+
+<MyComponent use={[SomeAction, [SomeOtherAction, { someOption: true }]]}>
+  I use two actions! And one has options!
+</MyComponent>
+
+<script>
+  import MyComponent from './MyComponent.svelte';
+  import SomeAction from './SomeAction.js';
+  import SomeOtherAction from './SomeOtherAction.js';
+</script>
+```

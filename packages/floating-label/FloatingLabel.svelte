@@ -39,7 +39,6 @@
 
 <script>
   import { MDCFloatingLabelFoundation } from '@material/floating-label';
-  import { ponyfill } from '@material/dom';
   import { onMount, getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {
@@ -48,7 +47,6 @@
     useActions,
     dispatch,
   } from '@smui/common/internal.js';
-  const { estimateScrollWidth } = ponyfill;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
@@ -84,7 +82,17 @@
     instance = new MDCFloatingLabelFoundation({
       addClass,
       removeClass,
-      getWidth: () => estimateScrollWidth(getElement()),
+      getWidth: () => {
+        const el = getElement();
+        const clone = el.cloneNode(true);
+        el.parentNode.appendChild(clone);
+        clone.classList.add('smui-floating-label--remove-transition');
+        clone.classList.add('smui-floating-label--force-size');
+        clone.classList.remove('mdc-floating-label--float-above');
+        const scrollWidth = clone.scrollWidth;
+        el.parentNode.removeChild(clone);
+        return scrollWidth;
+      },
       registerInteractionHandler: (evtType, handler) =>
         getElement().addEventListener(evtType, handler),
       deregisterInteractionHandler: (evtType, handler) =>

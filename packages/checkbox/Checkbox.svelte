@@ -43,8 +43,6 @@
     data-indeterminate={indeterminate !== uninitializedValue && indeterminate
       ? 'true'
       : null}
-    on:change
-    on:input
     on:blur
     on:focus
     {...nativeControlAttrs}

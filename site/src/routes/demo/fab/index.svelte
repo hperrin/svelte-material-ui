@@ -22,6 +22,8 @@
   <Demo component={NoRipple} file="fab/_NoRipple.svelte">No Ripple</Demo>
 
   <Demo component={Link} file="fab/_Link.svelte">Link</Demo>
+
+  <Demo component={Svg} file="fab/_Svg.svelte">Svg</Demo>
 </section>
 
 <script>
@@ -33,6 +35,7 @@
   import Extended from './_Extended.svelte';
   import NoRipple from './_NoRipple.svelte';
   import Link from './_Link.svelte';
+  import Svg from './_Svg.svelte';
 </script>
 
 <style>

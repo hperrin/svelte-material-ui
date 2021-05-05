@@ -29,8 +29,8 @@
       {min}
       max={end}
       bind:value={start}
-      on:change
-      on:input
+      on:blur
+      on:focus
       {...inputStartAttrs}
       {...prefixFilter($$restProps, 'input$')}
     />
@@ -46,8 +46,6 @@
       min={start}
       {max}
       bind:value={end}
-      on:change
-      on:input
       on:blur
       on:focus
       {...inputProps}
@@ -67,8 +65,6 @@
       {min}
       {max}
       bind:value
-      on:change
-      on:input
       on:blur
       on:focus
       {...inputProps}
@@ -285,6 +281,26 @@
     removeLayoutListener = addLayoutListener(layout);
   }
 
+  let previousValue = value;
+  let previousStart = start;
+  let previousEnd = end;
+  $: if (instance) {
+    if (previousValue !== value) {
+      instance.setValue(value);
+    }
+    if (previousStart !== start) {
+      instance.setValueStart(start);
+    }
+    if (previousEnd !== end) {
+      instance.setValue(end);
+    }
+    previousValue = value;
+    previousStart = start;
+    previousEnd = end;
+    // Needed for range start to take effect.
+    instance.layout();
+  }
+
   onMount(() => {
     instance = new MDCSliderFoundation({
       hasClass,
@@ -299,11 +315,14 @@
         if (range) {
           if (thumb === Thumb.START) {
             start = Number(val);
+            previousStart = start;
           } else {
             end = Number(val);
+            previousEnd = end;
           }
         } else {
           value = Number(val);
+          previousValue = value;
         }
       },
       getInputAttribute: getInputAttr,

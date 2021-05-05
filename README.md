@@ -2,7 +2,7 @@
   <img src="site/static/header-transparent.png" alt="Svelte Material UI" />
 </div>
 
-A library of Svelte 3 Material UI components, based on the [Material Design Components - Web](https://material.io/develop/web/) using the [Advanced Approach](https://github.com/material-components/material-components-web/blob/master/docs/integrating-into-frameworks.md#the-advanced-approach-using-foundations-and-adapters).
+A library of Svelte 3 Material UI components, based on the [Material Design Components - Web](https://material.io/develop/web/).
 
 # Demos
 
@@ -16,8 +16,8 @@ Here are some features you should know about:
 - You can add actions to the components with `use={[Action1, [Action2, action2Props], Action3]}`.
 - You can add props to lower components and elements with "$" props, like `input$maxlength="15"`.
 - **All** events are forwarded. This includes DOM events, MDC events, and custom events.
-  - You can add event modifiers with the `on:click:preventDefault:capture={handler}` syntax.
-    - If you use Svelte's native `on:click|preventDefault={handler}` syntax, it will not compile. You have to use ":" instead of "|".
+  - You can add event modifiers with the `on:click$preventDefault$capture={handler}` syntax.
+    - If you use Svelte's native `on:click|preventDefault={handler}` syntax, it will not compile. You have to use "$" instead of "|". (The extra S inside the | stands for SMUI.)
   - Supported modifiers are:
     - preventDefault
     - stopPropagation
@@ -34,7 +34,11 @@ To get started, check out the [installation docs](INSTALL.md).
 
 # Migration
 
-Upgrading from v2? Check out the [upgrade instructions](MIGRATING.md#smui-2---smui-3) in the [migration doc](MIGRATING.md).
+Upgrading from an old version? Be sure to read the [migration doc](MIGRATING.md).
+
+Upgrading from v2? There are **lots** of changes listed in the [upgrade instructions](MIGRATING.md#smui-2---smui-3).
+
+Upgrading from v3? SMUI's styling method has been simplified. Check out the [upgrade instructions](MIGRATING.md#smui-3---smui-4).
 
 # Need Help?
 
@@ -42,13 +46,14 @@ If you need help using SMUI, join the new [Discord server](https://discord.gg/aF
 
 # Components
 
-Click a component below to go to its documentation. (Note that this documentation is a work in progress. The demo code should be your main source of truth for how something works.)
+Click a component/package below to go to the documentation. (Note that this documentation is a work in progress. The demo code should be your main source of truth for how something works.)
 
 - [Banner](packages/banner/README.md)
 - [Button](packages/button/README.md)
   - [Floating Action Button](packages/fab/README.md)
   - [Icon Button](packages/icon-button/README.md)
 - [Card](packages/card/README.md)
+- [Common](packages/common/README.md)
 - [Data Table](packages/data-table/README.md)
 - [Dialog](packages/dialog/README.md)
 - [Drawer](packages/drawer/README.md)
