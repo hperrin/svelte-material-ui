@@ -498,9 +498,9 @@
   let previousPagePath = null;
   $: if (mainContent && previousPagePath !== $page.path) {
     drawerOpen = false;
-    const top = window.location.hash
-      ? document.querySelector(window.location.hash)?.offsetTop || 0
-      : 0;
+    const hashEl =
+      window.location.hash && document.querySelector(window.location.hash);
+    const top = (hashEl && hashEl.offsetTop) || 0;
     mainContent.scrollTop = top;
     previousPagePath = $page.path;
   }
@@ -523,7 +523,7 @@
 
 <style>
   @media (max-width: 720px) {
-    :global(* > .hide-initial-small) {
+    * > :global(.hide-initial-small) {
       display: none;
     }
   }
