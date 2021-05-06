@@ -22,7 +22,7 @@
 </script>
 
 <script>
-  import { MDCTextFieldHelperTextFoundation } from '@material/textfield/helper-text';
+  import { MDCTextFieldHelperTextFoundation } from '@material/textfield/helper-text/foundation.js';
   import { onMount } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {

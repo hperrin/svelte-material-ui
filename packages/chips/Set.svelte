@@ -36,7 +36,7 @@
 </div>
 
 <script>
-  import { MDCChipSetFoundation } from '@material/chips/deprecated';
+  import { MDCChipSetFoundation } from '@material/chips/deprecated/chip-set/foundation.js';
   import { announce } from '@material/dom/announce.js';
   import { onMount, setContext } from 'svelte';
   import { writable } from 'svelte/store';

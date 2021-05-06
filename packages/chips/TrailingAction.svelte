@@ -40,7 +40,7 @@
 </button>
 
 <script>
-  import { MDCChipTrailingActionFoundation } from '@material/chips/deprecated';
+  import { MDCChipTrailingActionFoundation } from '@material/chips/deprecated/trailingaction/foundation.js';
   import { onMount, tick } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {

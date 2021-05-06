@@ -22,7 +22,7 @@
 </script>
 
 <script>
-  import { MDCSelectHelperTextFoundation } from '@material/select/helper-text';
+  import { MDCSelectHelperTextFoundation } from '@material/select/helper-text/foundation.js';
   import { onMount } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {

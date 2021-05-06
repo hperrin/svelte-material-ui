@@ -31,7 +31,7 @@
 >
 
 <script>
-  import { MDCSegmentedButtonSegmentFoundation } from '@material/segmented-button';
+  import { MDCSegmentedButtonSegmentFoundation } from '@material/segmented-button/segment/foundation.js';
   import { onMount, getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {
