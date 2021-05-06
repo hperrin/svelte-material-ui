@@ -39,6 +39,6 @@
   "devDependencies": {
     "@material/button": "^11.0.0",
     "@material/icon-button": "^11.0.0",
-    "sass": "^1.32.8"
+    "sass": "^1.32.11"
   }
 }

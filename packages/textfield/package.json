@@ -42,6 +42,6 @@
     "@smui/ripple": "^4.2.0"
   },
   "devDependencies": {
-    "sass": "^1.32.8"
+    "sass": "^1.32.11"
   }
 }
