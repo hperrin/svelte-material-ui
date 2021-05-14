@@ -31,6 +31,21 @@ a {
 a:visited {
   color: color-palette.$blue-800;
 }
+
+
+// code below seems redundant, but allows you to reuse theme variables in your own components.
+:root {
+  --mdc-theme-primary: #{theme.$primary};
+  --mdc-theme-secondary: #{theme.$secondary};
+  --mdc-theme-background: #{theme.$background};
+  --mdc-theme-surface: #{theme.$surface};
+  --mdc-theme-error: #{theme.$error};
+  --mdc-theme-on-primary: #{theme.$on-primary};
+  --mdc-theme-on-secondary: #{theme.$on-secondary};
+  --mdc-theme-on-surface: #{theme.$on-surface};
+  --mdc-theme-on-error: #{theme.$on-error};
+}
+
 ```
 
 ## Theming the Bare CSS
