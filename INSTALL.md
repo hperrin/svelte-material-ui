@@ -10,9 +10,13 @@ npm install --save @smui/card
 
 You can also [use SMUI in the Svelte REPL](REPL.md).
 
-## Importing Components
+## Option #1: Import the Entire Package
 
-You will always import Svelte components from the individual packages.
+Install all components with `npm install svelte-material-ui`. While this is easier than Option #2, your CSS build will be 10k-20k larger.
+
+## Option #2: Import Components Individually
+
+In this approach, you import Svelte components from the individual packages.
 
 This method will only include the JavaScript. Use this for the Default Theme or the [Easy Styling Method](SASS.md#easy-styling-method).
 
