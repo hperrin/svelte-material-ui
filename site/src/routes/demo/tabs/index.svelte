@@ -56,7 +56,7 @@
 </script>
 
 <style>
-  section > :globa(div) {
+  section > :global(div) {
     margin-bottom: 40px;
   }
 </style>
