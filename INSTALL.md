@@ -12,6 +12,8 @@ You can also [use SMUI in the Svelte REPL](REPL.md).
 
 ## Importing Components
 
+**Please not that these imports will not work if you don't install a theme. See the default theme below.**
+
 You will always import Svelte components from the individual packages.
 
 This method will only include the JavaScript. Use this for the Default Theme or the [Easy Styling Method](SASS.md#easy-styling-method).
