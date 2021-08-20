@@ -77,7 +77,9 @@
   function hasClass(className) {
     return className in internalClasses
       ? internalClasses[className]
-      : getElement().classList.contains(className);
+      : (getElement() 
+        ? getElement().classList.contains(className) 
+        : false);
   }
 
   function addClass(className) {
