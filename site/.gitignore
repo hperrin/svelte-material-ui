@@ -5,3 +5,9 @@
 yarn-error.log
 /cypress/screenshots/
 /__sapper__/
+/.svelte
+/build
+/static/smui.css
+/static/smui-dark.css
+/static/site.css
+/static/site-dark.css

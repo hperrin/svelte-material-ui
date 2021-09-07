@@ -1,41 +1,116 @@
-<p
+<div
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="
-    mdc-select-helper-text
-    {className}
-    {persistent ? 'mdc-select-helper-text--persistent' : ''}
-    {validationMsg ? 'mdc-select-helper-text--validation-msg' : ''}
-  "
-  aria-hidden="true"
-  {...exclude($$props, ['use', 'class', 'persistent', 'validationMsg'])}
-><slot></slot></p>
+  class={classMap({
+    [className]: true,
+    'mdc-select-helper-text': true,
+    'mdc-select-helper-text--validation-msg': validationMsg,
+    'mdc-select-helper-text--validation-msg-persistent': persistent,
+    ...internalClasses,
+  })}
+  aria-hidden={persistent ? null : 'true'}
+  {id}
+  {...internalAttrs}
+  {...$$restProps}
+>
+  {#if content == null}<slot />{:else}{content}{/if}
+</div>
+
+<script context="module">
+  let counter = 0;
+</script>
 
 <script>
-  import {MDCSelectHelperText} from '@material/select/helper-text';
-  import {onMount, onDestroy} from 'svelte';
-  import {get_current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
-  import {exclude} from '@smui/common/exclude.js';
-  import {useActions} from '@smui/common/useActions.js';
+  import { MDCSelectHelperTextFoundation } from '@material/select/helper-text/foundation.js';
+  import { onMount } from 'svelte';
+  import { get_current_component } from 'svelte/internal';
+  import {
+    forwardEventsBuilder,
+    classMap,
+    useActions,
+    dispatch,
+  } from '@smui/common/internal.js';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
   export let use = [];
   let className = '';
-  export {className as class};
+  export { className as class };
+  export let id = 'SMUI-select-helper-text-' + counter++;
   export let persistent = false;
   export let validationMsg = false;
 
   let element;
-  let helperText;
+  let instance;
+  let internalClasses = {};
+  let internalAttrs = {};
+  let content = null;
 
   onMount(() => {
-    helperText = new MDCSelectHelperText(element);
+    instance = new MDCSelectHelperTextFoundation({
+      addClass,
+      removeClass,
+      hasClass,
+      getAttr,
+      setAttr: addAttr,
+      removeAttr,
+      setContent: (value) => {
+        content = value;
+      },
+    });
+
+    if (id.startsWith('SMUI-select-helper-text-')) {
+      dispatch(getElement(), 'SMUI:select:helper-text:id', id);
+    }
+    dispatch(getElement(), 'SMUI:select:helper-text:mount', instance);
+
+    instance.init();
+
+    return () => {
+      dispatch(getElement(), 'SMUI:select:helper-text:unmount', instance);
+
+      instance.destroy();
+    };
   });
 
-  onDestroy(() => {
-    helperText && helperText.destroy();
-  });
+  function hasClass(className) {
+    return className in internalClasses
+      ? internalClasses[className]
+      : getElement().classList.contains(className);
+  }
+
+  function addClass(className) {
+    if (!internalClasses[className]) {
+      internalClasses[className] = true;
+    }
+  }
+
+  function removeClass(className) {
+    if (!(className in internalClasses) || internalClasses[className]) {
+      internalClasses[className] = false;
+    }
+  }
+
+  function getAttr(name) {
+    return name in internalAttrs
+      ? internalAttrs[name]
+      : getElement().getAttribute(name);
+  }
+
+  function addAttr(name, value) {
+    if (internalAttrs[name] !== value) {
+      internalAttrs[name] = value;
+    }
+  }
+
+  function removeAttr(name) {
+    if (!(name in internalAttrs) || internalAttrs[name] != null) {
+      internalAttrs[name] = undefined;
+    }
+  }
+
+  export function getElement() {
+    return element;
+  }
 </script>

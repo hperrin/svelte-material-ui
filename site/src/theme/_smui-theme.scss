@@ -1,15 +1,25 @@
-//
-// MDC Theme
-//
+@use 'sass:color';
 
-@import "@material/theme/color-palette";
+@use '@material/theme/color-palette';
 
 // Svelte Colors!
-$mdc-theme-primary: #ff3e00;
-$mdc-theme-secondary: #676778;
-// Other Svelte color: #40b3ff
+@use '@material/theme/index' as theme with (
+  $primary: #ff3e00,
+  $secondary: #676778,
+  $surface: #fff,
+  $background: #fff,
+  $error: color-palette.$red-900,
+);
 
-$mdc-theme-background: #fff;
-$mdc-theme-surface: #fff;
+html,
+body {
+  background-color: theme.$surface;
+  color: theme.$on-surface;
+}
 
-$mdc-theme-error: $material-color-red-900;
+a {
+  color: #40b3ff;
+}
+a:visited {
+  color: color.scale(#40b3ff, $lightness: -35%);
+}

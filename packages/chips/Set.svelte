@@ -2,149 +2,221 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="
-    mdc-chip-set
-    {className}
-    {choice ? 'mdc-chip-set--choice' : ''}
-    {filter ? 'mdc-chip-set--filter' : ''}
-    {input ? 'mdc-chip-set--input' : ''}
-  "
-  on:MDCChip:removal={handleRemoval}
-  on:MDCChip:selection={handleSelection}
-  {...exclude($$props, ['use', 'class', 'chips', 'key', 'selected', 'choice', 'filter', 'input'])}
+  class={classMap({
+    [className]: true,
+    'mdc-chip-set': true,
+    'smui-chip-set--non-interactive': nonInteractive,
+    'mdc-chip-set--choice': choice,
+    'mdc-chip-set--filter': filter,
+    'mdc-chip-set--input': input,
+  })}
+  role="grid"
+  on:SMUI:chips:chip:mount={(event) => handleChipMount(event)}
+  on:SMUI:chips:chip:unmount={(event) => handleChipUnmount(event)}
+  on:MDCChip:interaction={(event) =>
+    instance && instance.handleChipInteraction(event.detail)}
+  on:MDCChip:selection={(event) =>
+    instance && instance.handleChipSelection(event.detail)}
+  on:MDCChip:removal={(event) =>
+    instance && instance.handleChipRemoval(event.detail)}
+  on:MDCChip:navigation={(event) =>
+    instance && instance.handleChipNavigation(event.detail)}
+  {...$$restProps}
 >
   {#each chips as chip, i (key(chip))}
-    <slot {chip}></slot>
+    <ContextFragment key="SMUI:chips:chip:index" value={i}>
+      <ContextFragment
+        key="SMUI:chips:chip:initialSelected"
+        value={initialSelected[i]}
+      >
+        <slot {chip} />
+      </ContextFragment>
+    </ContextFragment>
   {/each}
 </div>
 
 <script>
-  import {MDCChipSet} from '@material/chips';
-  import {onMount, onDestroy, afterUpdate} from 'svelte';
-  import {get_current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
-  import {exclude} from '@smui/common/exclude.js';
-  import {useActions} from '@smui/common/useActions.js';
+  import { MDCChipSetFoundation } from '@material/chips/deprecated/chip-set/foundation.js';
+  import { announce } from '@material/dom/announce.js';
+  import { onMount, setContext } from 'svelte';
+  import { writable } from 'svelte/store';
+  import { get_current_component } from 'svelte/internal';
+  import {
+    forwardEventsBuilder,
+    classMap,
+    useActions,
+  } from '@smui/common/internal.js';
+  import ContextFragment from '@smui/common/ContextFragment.svelte';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
   export let use = [];
   let className = '';
-  export {className as class};
+  export { className as class };
   export let chips = [];
-  export let key = chip => chip;
+  export let key = (chip) => chip;
   export let selected = null;
+  export let nonInteractive = false;
   export let choice = false;
   export let filter = false;
   export let input = false;
 
   let element;
-  let chipSet;
+  let instance;
+  let chipAccessorMap = {};
+  let chipAccessorWeakMap = new WeakMap();
+  let initialSelected = chips.map(
+    (chipId) =>
+      (choice && selected === chipId) ||
+      (filter && selected.indexOf(chipId) !== -1)
+  );
 
-  // Update the MDCChip when the selection changes.
-  $: if (chipSet) {
-    if (choice) {
-      if (selected !== null) {
-        // Find the selected item.
-        let i;
-        for (i = 0; i < chips.length; i++) {
-          if (selected === chips[i]) {
-            break;
-          }
-        }
-        for (let j = 0; j < chipSet.chips.length; j++) {
-          if (chipSet.chips[j].selected !== (j === i)) {
-            chipSet.chips[j].selected = j === i;
-          }
-        }
-      } else {
-        for (let i = 0; i < chipSet.chips.length; i++) {
-          if (chipSet.chips[i].selected) {
-            chipSet.chips[i].selected = false;
-          }
+  const nonInteractiveStore = writable(nonInteractive);
+  $: $nonInteractiveStore = nonInteractive;
+  setContext('SMUI:chips:nonInteractive', nonInteractiveStore);
+  const choiceStore = writable(choice);
+  $: $choiceStore = choice;
+  setContext('SMUI:chips:choice', choiceStore);
+  const filterStore = writable(filter);
+  $: $filterStore = filter;
+  setContext('SMUI:chips:filter', filterStore);
+
+  let previousSelected = filter ? new Set(selected) : selected;
+  $: if (instance && choice && previousSelected !== selected) {
+    previousSelected = selected;
+    instance.select(selected);
+  }
+  $: if (instance && filter) {
+    const setSelected = new Set(selected);
+    const unSelected = setDifference(previousSelected, setSelected);
+    const newSelected = setDifference(setSelected, previousSelected);
+
+    if (unSelected.size || newSelected.size) {
+      previousSelected = setSelected;
+
+      for (let chipId of unSelected) {
+        if (chips.indexOf(chipId) !== -1) {
+          instance.handleChipSelection({ chipId, selected: false });
         }
       }
-    } else if (Array.isArray(selected)) {
-      for (let i = 0; i < chipSet.chips.length; i++) {
-        const sel = selected.indexOf(chips[i]) !== -1;
-        if (chipSet.chips[i].selected !== sel) {
-          chipSet.chips[i].selected = sel;
-        }
+      for (let chipId of newSelected) {
+        instance.handleChipSelection({ chipId, selected: true });
       }
     }
+  }
+
+  function setDifference(setA, setB) {
+    let _difference = new Set(setA);
+    for (let elem of setB) {
+      _difference.delete(elem);
+    }
+    return _difference;
   }
 
   onMount(() => {
-    chipSet = new MDCChipSet(element);
-    for (let i = 0; i < element.children.length; i++) {
-      element.children[i].setChip(chipSet.chips[i]);
-    }
-  });
+    instance = new MDCChipSetFoundation({
+      announceMessage: (message) => {
+        announce(message);
+      },
+      focusChipPrimaryActionAtIndex: (index) => {
+        getAccessor(chips[index]).focusPrimaryAction();
+      },
+      focusChipTrailingActionAtIndex: (index) => {
+        getAccessor(chips[index]).focusTrailingAction();
+      },
+      getChipListCount: () => chips.length,
+      getIndexOfChipById: (chipId) => chips.indexOf(chipId),
+      hasClass: (className) => getElement().classList.contains(className),
+      isRTL: () =>
+        getComputedStyle(getElement()).getPropertyValue('direction') === 'rtl',
+      removeChipAtIndex: (index) => {
+        if (index >= 0 && index < chips.length) {
+          if (choice && selected === chips[i]) {
+            selected = null;
+          } else if (filter && selected.indexOf(chips[i]) !== -1) {
+            selected.splice(selected.indexOf(chips[i]), 1);
+            selected = selected;
+          }
+          chips.splice(index, 1);
+          chips = chips;
+        }
+      },
+      removeFocusFromChipAtIndex: (index) => {
+        getAccessor(chips[index]).removeFocus();
+      },
+      selectChipAtIndex: (index, selectedValue, shouldNotifyClients) => {
+        if (index >= 0 && index < chips.length) {
+          if (filter) {
+            const selIndex = selected.indexOf(chips[index]);
+            if (selectedValue && selIndex === -1) {
+              selected.push(chips[index]);
+              selected = selected;
+            } else if (!selectedValue && selIndex !== -1) {
+              selected.splice(selIndex, 1);
+              selected = selected;
+            }
+          } else if (choice && (selectedValue || selected === chips[index])) {
+            selected = selectedValue ? chips[index] : null;
+          }
 
-  onDestroy(() => {
-    chipSet && chipSet.destroy();
-  });
+          getAccessor(chips[index]).setSelectedFromChipSet(
+            selectedValue,
+            shouldNotifyClients
+          );
+        }
+      },
+    });
 
-  let previousChipsLength = chips.length;
-  afterUpdate(() => {
-    if (previousChipsLength !== chips.length) {
-      while (previousChipsLength < chips.length) {
-        chipSet.addChip(element.children[previousChipsLength]);
-        element.children[previousChipsLength].setChip(chipSet.chips[previousChipsLength]);
-        previousChipsLength++;
+    instance.init();
+
+    if (choice && selected != null) {
+      instance.select(selected);
+    } else if (filter && selected.length) {
+      for (const chipId of selected) {
+        instance.select(chipId);
       }
-      previousChipsLength = chips.length;
     }
+
+    return () => {
+      instance.destroy();
+    };
   });
 
-  let selectedRaf;
-  function handleSelection(e) {
-    if (selectedRaf) {
-      window.cancelAnimationFrame(selectedRaf);
-    }
-    selectedRaf = window.requestAnimationFrame(updateSelected);
+  function handleChipMount(event) {
+    const accessor = event.detail;
+
+    addAccessor(accessor.chipId, accessor);
   }
 
-  function updateSelected() {
-    if (!chipSet) {
-      return;
-    }
-    if (choice) {
-      if (!chipSet.selectedChipIds.length) {
-        selected = null;
-        return;
-      }
-      for (let i = 0; i < chipSet.chips.length; i++) {
-        if (chipSet.chips[i].id === chipSet.selectedChipIds[0]) {
-          selected = chips[i];
-          return;
-        }
-      }
-      selected = null;
+  function handleChipUnmount(event) {
+    const accessor = event.detail;
+
+    removeAccessor(accessor.chipId);
+  }
+
+  function getAccessor(chipId) {
+    return chipId instanceof Object
+      ? chipAccessorWeakMap.get(chipId)
+      : chipAccessorMap[chipId];
+  }
+
+  function addAccessor(chipId, accessor) {
+    if (chipId instanceof Object) {
+      chipAccessorWeakMap.set(chipId, accessor);
     } else {
-      if (!Array.isArray(selected)) {
-        selected = [];
-      }
-      selected.splice(0, selected.length);
-      for (let i = 0; i < chipSet.chips.length; i++) {
-        if (chipSet.selectedChipIds.indexOf(chipSet.chips[i].id) !== -1) {
-          selected.push(chips[i]);
-        }
-      }
-      selected = selected;
+      chipAccessorMap[chipId] = accessor;
     }
   }
 
-  function handleRemoval(e) {
-    let i = 0;
-    let el = e.detail.root;
-    while (el.previousSibling) {
-      el = el.previousSibling;
-      if (el.nodeType === 1) {
-        i++;
-      }
+  function removeAccessor(chipId) {
+    if (chipId instanceof Object) {
+      chipAccessorWeakMap.delete(chipId);
+    } else {
+      delete chipAccessorMap[chipId];
     }
-    chips.splice(i, 1);
-    chips = chips;
+  }
+
+  export function getElement() {
+    return element;
   }
 </script>

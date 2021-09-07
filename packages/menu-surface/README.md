@@ -2,10 +2,6 @@
 
 Menu surfaces are an area where a list of actions or choices can be supplied to the user.
 
-See [MDC Menu Surface](https://material.io/develop/web/components/menu-surface/) for more information on API and Sass mixins.
-
-See [the Sass variable file](https://github.com/material-components/material-components-web/blob/v3.1.1/packages/mdc-menu-surface/_variables.scss) for styling variables.
-
 # Installation
 
 You won't generally need to install this package. The Menu package is usually a better choice.
@@ -14,16 +10,20 @@ You won't generally need to install this package. The Menu package is usually a 
 npm install --save-dev @smui/menu-surface
 ```
 
+# Demo
+
+[See it in action.](https://sveltematerialui.com/demo/menu-surface)
+
+[See the demo code.](/site/src/routes/demo/menu-surface/)
+
 # Basic Usage
 
 todo...
 
-# Demo
-
-*in action:* https://sveltematerialui.com/demo/menu-surface
-
-*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/menu-surface.svelte
-
 # Exports
 
 todo...
+
+# More Information
+
+See [Menu Surface](https://github.com/material-components/material-components-web/tree/v11.0.0/packages/mdc-menu-surface) in MDC-Web for information about the upstream library's architecture.

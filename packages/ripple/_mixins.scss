@@ -1,0 +1,14 @@
+@use '@material/ripple/index' as ripple;
+@use '@material/feature-targeting/index' as feature-targeting;
+
+@mixin core-styles($query: feature-targeting.all()) {
+  .smui-ripple-surface {
+    &--primary {
+      @include ripple.states($color: primary, $query: $query);
+    }
+
+    &--secondary {
+      @include ripple.states($color: secondary, $query: $query);
+    }
+  }
+}

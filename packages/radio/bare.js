@@ -1,3 +1,2 @@
-import Radio from './Radio.svelte';
-
-export default Radio;
+export * from './index.js';
+export { default } from './index.js';

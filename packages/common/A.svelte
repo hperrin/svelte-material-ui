@@ -1,18 +1,23 @@
 <a
+  bind:this={element}
   use:useActions={use}
   use:forwardEvents
   {href}
-  {...exclude($$props, ['use', 'href'])}
-><slot></slot></a>
+  {...$$restProps}><slot /></a
+>
 
 <script>
-  import {get_current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from './forwardEvents.js';
-  import {exclude} from './exclude.js';
-  import {useActions} from './useActions.js';
+  import { get_current_component } from 'svelte/internal';
+  import { forwardEventsBuilder, useActions } from './internal.js';
+
+  export let href = 'javascript:void(0);';
+  export let use = [];
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  export let use = [];
-  export let href = 'javascript:void(0);';
+  let element = null;
+
+  export function getElement() {
+    return element;
+  }
 </script>

@@ -1,0 +1,5 @@
+@use '@material/button/index' as mdc-button;
+
+.button-shaped-round {
+  @include mdc-button.shape-radius(999px);
+}

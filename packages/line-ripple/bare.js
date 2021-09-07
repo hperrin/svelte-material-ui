@@ -1,3 +1,2 @@
-import LineRipple from './LineRipple.svelte';
-
-export default LineRipple;
+export * from './index.js';
+export { default } from './index.js';

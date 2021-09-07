@@ -1,0 +1,6 @@
+@use '@material/image-list/index' as image-list;
+
+.menu-surface-image-list {
+  @include image-list.standard-columns(2);
+  width: 200px;
+}

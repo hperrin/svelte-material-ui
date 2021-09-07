@@ -5,7 +5,10 @@ export function exclude(obj, keys) {
   for (let i = 0; i < names.length; i++) {
     const name = names[i];
     const cashIndex = name.indexOf('$');
-    if (cashIndex !== -1 && keys.indexOf(name.substring(0, cashIndex + 1)) !== -1) {
+    if (
+      cashIndex !== -1 &&
+      keys.indexOf(name.substring(0, cashIndex + 1)) !== -1
+    ) {
       continue;
     }
     if (keys.indexOf(name) !== -1) {

@@ -1,68 +1,124 @@
 <svelte:window on:resize={setMiniWindow} />
 {#if iframe}
-  <slot></slot>
+  <slot />
 {:else}
   <TopAppBar variant="static" class="demo-top-app-bar">
     <Row>
       <Section>
         {#if miniWindow}
-          <IconButton class="material-icons" on:click={() => drawerOpen = !drawerOpen}>menu</IconButton>
+          <IconButton
+            class="material-icons"
+            on:click={() => (drawerOpen = !drawerOpen)}>menu</IconButton
+          >
         {/if}
-        <Title component={A} href="/" on:click={() => activeSection = null} class="mdc-theme--primary" style="{miniWindow ? 'padding-left: 0;' : ''}">
-          Svelte Material UI
+        <Title
+          component={A}
+          href="/"
+          on:click={() => (activeSection = null)}
+          class="mdc-theme--primary"
+          style={miniWindow ? 'padding-left: 0;' : ''}
+        >
+          {miniWindow ? 'SMUI' : 'Svelte Material UI'}
         </Title>
       </Section>
-      <Section align="end" toolbar>
-        {#each repos as repo}
-          <IconButton href={repo} title={`View Component: ${repo.split('/').slice(-1)[0]}`}>
-            <Icon>
-              <svg style="width:24px;height:24px" viewBox="0 0 24 24">
-                <path fill="#000000" d="{mdiFileDocument}" />
-              </svg>
-            </Icon>
-          </IconButton>
-        {/each}
+      <Section align="end" toolbar style="color: var(--mdc-on-surface, #000);">
         {#if activeSection}
-          <IconButton href={`https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes${activeSection.route}.svelte`} title={`View Demo Code: ${activeSection.route.split('/').slice(-1)[0]}`}>
-            <Icon>
-              <svg style="width:24px;height:24px" viewBox="0 0 24 24">
-                <path fill="#000000" d="{mdiCodeTags}" />
-              </svg>
+          {#each activeSection.repos || [] as repo}
+            <Wrapper>
+              <IconButton href={repo} target="_blank">
+                <Icon component={Svg} viewBox="0 0 24 24">
+                  <path fill="currentColor" d={mdiFileDocument} />
+                </Icon>
+              </IconButton>
+              <Tooltip>View Docs: {repo.split('/').slice(-1)[0]}</Tooltip>
+            </Wrapper>
+          {/each}
+          {#if !activeSection.nosource}
+            <Wrapper>
+              <IconButton
+                href={`https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes${activeSection.route}`}
+                target="_blank"
+              >
+                <Icon component={Svg} viewBox="0 0 24 24">
+                  <path fill="currentColor" d={mdiCodeTags} />
+                </Icon>
+              </IconButton>
+              <Tooltip>View Source Directory</Tooltip>
+            </Wrapper>
+          {/if}
+        {/if}
+        <Wrapper>
+          <IconButton href="https://discord.gg/aFzmkrmg9P">
+            <Icon component={Svg} viewBox="0 0 24 24">
+              <path fill="currentColor" d={mdiDiscord} />
             </Icon>
           </IconButton>
-        {/if}
-        <IconButton href="https://twitter.com/SciActive">
-          <Icon>
-            <svg style="width:24px;height:24px" viewBox="0 0 24 24">
-              <path fill="#000000" d="{mdiTwitter}" />
-            </svg>
-          </Icon>
-        </IconButton>
-        <IconButton href="https://github.com/hperrin/svelte-material-ui">
-          <Icon>
-            <svg style="width:24px;height:24px" viewBox="0 0 24 24">
-              <path fill="#000000" d="{mdiGithub}" />
-            </svg>
-          </Icon>
-        </IconButton>
+          <Tooltip>Join the Discord Server</Tooltip>
+        </Wrapper>
+        <Wrapper>
+          <IconButton href="https://twitter.com/SciActive">
+            <Icon component={Svg} viewBox="0 0 24 24">
+              <path fill="currentColor" d={mdiTwitter} />
+            </Icon>
+          </IconButton>
+          <Tooltip>Hunter Perrin (SMUI Author) on Twitter</Tooltip>
+        </Wrapper>
+        <Wrapper>
+          <IconButton href="https://github.com/hperrin/svelte-material-ui">
+            <Icon component={Svg} viewBox="0 0 24 24">
+              <path fill="currentColor" d={mdiGithub} />
+            </Icon>
+          </IconButton>
+          <Tooltip>SMUI on GitHub</Tooltip>
+        </Wrapper>
+        <Wrapper>
+          <IconButton
+            toggle
+            pressed={lightTheme}
+            on:MDCIconButtonToggle:change={switchTheme}
+          >
+            <Icon component={Svg} viewBox="0 0 24 24" on>
+              <path fill="currentColor" d={mdiWeatherNight} />
+            </Icon>
+            <Icon component={Svg} viewBox="0 0 24 24">
+              <path fill="currentColor" d={mdiWeatherSunny} />
+            </Icon>
+          </IconButton>
+          <Tooltip>{lightTheme ? 'Lights off' : 'Lights on'}</Tooltip>
+        </Wrapper>
       </Section>
     </Row>
   </TopAppBar>
   <div class="drawer-container">
-    <Drawer variant={miniWindow ? 'modal' : null} bind:open={drawerOpen} class="demo-drawer mdc-theme--secondary-bg {miniWindow ? 'demo-drawer-adjust' : ''}">
+    <Drawer
+      variant={miniWindow ? 'modal' : undefined}
+      bind:open={drawerOpen}
+      class="demo-drawer mdc-theme--secondary-bg {miniWindow
+        ? 'demo-drawer-adjust'
+        : 'hide-initial-small'}"
+    >
       <Content>
         <List>
           {#each sections as section (section.name)}
-            <Item
-              bind:this={section.component}
-              href={'route' in section ? section.route : section.shortcut}
-              on:click={() => pickSection(section)}
-              activated={'route' in section && section.route === $page.path}
-              title={section.name}
-              style="{section.indent ? 'margin-left: '+(section.indent * 25)+'px;' : ''}"
-            >
-              <Text class="mdc-theme--on-secondary">{section.name}</Text>
-            </Item>
+            {#if section.separator}
+              <Separator />
+            {:else}
+              <Item
+                bind:this={section.component}
+                nonInteractive={!('route' in section || 'shortcut' in section)}
+                href={'route' in section
+                  ? section.route
+                  : 'shortcut' in section
+                  ? section.shortcut
+                  : null}
+                activated={section === activeSection}
+                style={section.indent
+                  ? 'margin-left: ' + section.indent * 25 + 'px;'
+                  : ''}
+              >
+                <Text class="mdc-theme--on-secondary">{section.name}</Text>
+              </Item>
+            {/if}
           {/each}
         </List>
       </Content>
@@ -73,292 +129,403 @@
     {/if}
     <AppContent class="demo-app-content">
       <main class="demo-main-content" bind:this={mainContent}>
-        <slot></slot>
+        <slot />
       </main>
     </AppContent>
   </div>
 {/if}
 
 <script>
-  import {onMount} from 'svelte';
-  import {stores} from '@sapper/app';
-  import {mdiFileDocument, mdiCodeTags, mdiTwitter, mdiGithub} from '@mdi/js';
+  import { onMount } from 'svelte';
+  import { stores } from '@sapper/app';
+  import {
+    mdiFileDocument,
+    mdiCodeTags,
+    mdiDiscord,
+    mdiTwitter,
+    mdiGithub,
+    mdiWeatherSunny,
+    mdiWeatherNight,
+  } from '@mdi/js';
 
-  import './_app.scss';
-
-  import TopAppBar, {Row, Section, Title} from '@smui/top-app-bar';
-  import Drawer, {Content, Scrim, AppContent} from '@smui/drawer';
-  import Button from '@smui/button';
+  import TopAppBar, { Row, Section, Title } from '@smui/top-app-bar';
+  import Drawer, { Content, Scrim, AppContent } from '@smui/drawer';
   import IconButton from '@smui/icon-button';
-  import List, {Item, Text} from '@smui/list';
-  import {Label, Icon} from '@smui/common';
+  import List, { Item, Text, Separator } from '@smui/list';
+  import Tooltip, { Wrapper } from '@smui/tooltip';
+  import { Icon } from '@smui/common';
   import A from '@smui/common/A.svelte';
+  import Svg from '@smui/common/Svg.svelte';
 
-  const {page} = stores();
-  const iframe = $page.path.startsWith('/demo/top-app-bar-iframe');
+  const { page } = stores();
+  const iframe = $page.path.includes('/iframe');
 
   let mainContent;
   let miniWindow = false;
   let drawerOpen = false;
 
+  let lightTheme =
+    typeof window === 'undefined' ||
+    window.matchMedia('(prefers-color-scheme: light)').matches;
+  function switchTheme() {
+    lightTheme = !lightTheme;
+
+    let themeLink = document.head.querySelector('#theme');
+    if (!themeLink) {
+      themeLink = document.createElement('link');
+      themeLink.rel = 'stylesheet';
+      themeLink.id = 'theme';
+    }
+    themeLink.href = `smui${lightTheme ? '' : '-dark'}.css`;
+    document.head
+      .querySelector('link[href="smui-dark.css"]')
+      .insertAdjacentElement('afterend', themeLink);
+
+    let siteLink = document.head.querySelector('#site');
+    if (!siteLink) {
+      siteLink = document.createElement('link');
+      siteLink.rel = 'stylesheet';
+      siteLink.id = 'site';
+    }
+    siteLink.href = `site${lightTheme ? '' : '-dark'}.css`;
+    document.head
+      .querySelector('link[href="site-dark.css"]')
+      .insertAdjacentElement('afterend', siteLink);
+  }
+
   const sections = [
     {
-      name: 'Buttons',
-      route: '/demo/button',
+      name: 'Installation',
+      route: '/INSTALL.md/',
       indent: 0,
-      repos: ['https://github.com/hperrin/svelte-material-ui/tree/master/packages/button']
+      nosource: true,
+    },
+    {
+      name: 'Theming',
+      route: '/THEMING.md/',
+      indent: 0,
+      nosource: true,
+    },
+    {
+      name: 'Migrating',
+      route: '/MIGRATING.md/',
+      indent: 0,
+      nosource: true,
+    },
+    {
+      separator: true,
+    },
+    {
+      name: 'Banner',
+      route: '/demo/banner/',
+      indent: 0,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/banner',
+      ],
+    },
+    {
+      name: 'Button',
+      route: '/demo/button/',
+      indent: 0,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/button',
+      ],
     },
     {
       name: 'Floating Action Button',
-      route: '/demo/fab',
+      route: '/demo/fab/',
       indent: 1,
-      repos: ['https://github.com/hperrin/svelte-material-ui/tree/master/packages/fab']
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/fab',
+      ],
     },
     {
-      name: 'Icon Buttons',
-      route: '/demo/icon-button',
+      name: 'Icon Button',
+      route: '/demo/icon-button/',
       indent: 1,
-      repos: ['https://github.com/hperrin/svelte-material-ui/tree/master/packages/icon-button']
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/icon-button',
+      ],
     },
     {
       name: 'Cards',
-      route: '/demo/card',
+      route: '/demo/card/',
       indent: 0,
-      repos: ['https://github.com/hperrin/svelte-material-ui/tree/master/packages/card']
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/card',
+      ],
     },
     {
-      name: 'Chips',
-      route: '/demo/chips',
+      name: 'Common',
+      route: '/demo/common/',
       indent: 0,
-      repos: ['https://github.com/hperrin/svelte-material-ui/tree/master/packages/chips']
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/common',
+      ],
     },
     {
-      name: 'Data Tables',
-      route: '/demo/data-table',
+      name: 'Data Table',
+      route: '/demo/data-table/',
       indent: 0,
-      repos: ['https://github.com/hperrin/svelte-material-ui/tree/master/packages/data-table']
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/data-table',
+      ],
     },
     {
-      name: 'Dialogs',
-      route: '/demo/dialog',
+      name: 'Dialog',
+      route: '/demo/dialog/',
       indent: 0,
-      repos: ['https://github.com/hperrin/svelte-material-ui/tree/master/packages/dialog']
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/dialog',
+      ],
     },
     {
-      name: 'Drawers',
-      route: '/demo/drawer',
+      name: 'Drawer',
+      route: '/demo/drawer/',
       indent: 0,
-      repos: ['https://github.com/hperrin/svelte-material-ui/tree/master/packages/drawer']
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/drawer',
+      ],
     },
     {
       name: 'Elevation',
-      route: '/demo/elevation',
-      indent: 0
+      route: '/demo/elevation/',
+      indent: 0,
     },
     {
       name: 'Image List',
-      route: '/demo/image-list',
+      route: '/demo/image-list/',
       indent: 0,
-      repos: ['https://github.com/hperrin/svelte-material-ui/tree/master/packages/image-list']
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/image-list',
+      ],
     },
     {
       name: 'Inputs and Controls',
-      shortcut: '/demo/textfield',
-      indent: 0
+      indent: 0,
     },
     {
-      name: 'Checkboxes',
-      route: '/demo/checkbox',
+      name: 'Checkbox',
+      route: '/demo/checkbox/',
       indent: 1,
-      repos: ['https://github.com/hperrin/svelte-material-ui/tree/master/packages/checkbox']
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/checkbox',
+      ],
     },
     {
-      name: 'Floating Label',
-      shortcut: '/demo/textfield',
-      indent: 1
-    },
-    {
-      name: 'Form Fields',
-      route: '/demo/form-field',
+      name: 'Chips',
+      route: '/demo/chips/',
       indent: 1,
-      repos: ['https://github.com/hperrin/svelte-material-ui/tree/master/packages/form-field']
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/chips',
+      ],
     },
     {
-      name: 'Line Ripple',
-      shortcut: '/demo/textfield',
-      indent: 1
-    },
-    {
-      name: 'Notched Outline',
-      shortcut: '/demo/textfield',
-      indent: 1
-    },
-    {
-      name: 'Radio Buttons',
-      route: '/demo/radio',
+      name: 'Form Field',
+      route: '/demo/form-field/',
       indent: 1,
-      repos: ['https://github.com/hperrin/svelte-material-ui/tree/master/packages/radio']
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/form-field',
+      ],
     },
     {
-      name: 'Select Menus',
-      route: '/demo/select',
+      name: 'Radio Button',
+      route: '/demo/radio/',
       indent: 1,
-      repos: ['https://github.com/hperrin/svelte-material-ui/tree/master/packages/select']
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/radio',
+      ],
     },
     {
-      name: 'Select Helper Text',
-      shortcut: '/demo/select',
-      indent: 2
-    },
-    {
-      name: 'Select Icon',
-      shortcut: '/demo/select',
-      indent: 2
-    },
-    {
-      name: 'Sliders',
-      route: '/demo/slider',
+      name: 'Segmented Button',
+      route: '/demo/segmented-button/',
       indent: 1,
-      repos: ['https://github.com/hperrin/svelte-material-ui/tree/master/packages/slider']
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/segmented-button',
+      ],
     },
     {
-      name: 'Switches',
-      route: '/demo/switch',
+      name: 'Select Menu',
+      route: '/demo/select/',
       indent: 1,
-      repos: ['https://github.com/hperrin/svelte-material-ui/tree/master/packages/switch']
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/select',
+      ],
+    },
+    {
+      name: 'Slider',
+      route: '/demo/slider/',
+      indent: 1,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/slider',
+      ],
+    },
+    {
+      name: 'Switch',
+      route: '/demo/switch/',
+      indent: 1,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/switch',
+      ],
     },
     {
       name: 'Text Field',
-      route: '/demo/textfield',
+      route: '/demo/textfield/',
       indent: 1,
-      repos: ['https://github.com/hperrin/svelte-material-ui/tree/master/packages/textfield']
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/textfield',
+      ],
     },
     {
-      name: 'Text Field Character Count',
-      shortcut: '/demo/textfield',
-      indent: 2
-    },
-    {
-      name: 'Text Field Helper Text',
-      shortcut: '/demo/textfield',
-      indent: 2
-    },
-    {
-      name: 'Text Field Icon',
-      shortcut: '/demo/textfield',
-      indent: 2
-    },
-    {
-      name: 'Linear Progress',
-      route: '/demo/linear-progress',
+      name: 'Layout Grid',
+      route: '/demo/layout-grid/',
       indent: 0,
-      repos: ['https://github.com/hperrin/svelte-material-ui/tree/master/packages/linear-progress']
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/layout-grid',
+      ],
     },
     {
-      name: 'Lists',
-      route: '/demo/list',
+      name: 'List',
+      route: '/demo/list/',
       indent: 0,
-      repos: ['https://github.com/hperrin/svelte-material-ui/tree/master/packages/list']
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/list',
+      ],
     },
     {
       name: 'Menu Surface',
-      route: '/demo/menu-surface',
+      route: '/demo/menu-surface/',
       indent: 0,
-      repos: ['https://github.com/hperrin/svelte-material-ui/tree/master/packages/menu-surface']
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/menu-surface',
+      ],
     },
     {
-      name: 'Menus',
-      route: '/demo/menu',
+      name: 'Menu',
+      route: '/demo/menu/',
       indent: 0,
-      repos: ['https://github.com/hperrin/svelte-material-ui/tree/master/packages/menu']
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/menu',
+      ],
     },
     {
       name: 'Paper',
-      route: '/demo/paper',
+      route: '/demo/paper/',
       indent: 0,
-      repos: ['https://github.com/hperrin/svelte-material-ui/tree/master/packages/paper']
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/paper',
+      ],
     },
     {
-      name: 'Ripples',
-      route: '/demo/ripple',
+      name: 'Progress Indicators',
       indent: 0,
-      repos: ['https://github.com/hperrin/svelte-material-ui/tree/master/packages/ripple']
     },
     {
-      name: 'Snackbars',
-      route: '/demo/snackbars',
+      name: 'Circular Progress',
+      route: '/demo/circular-progress/',
+      indent: 1,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/circular-progress',
+      ],
+    },
+    {
+      name: 'Linear Progress',
+      route: '/demo/linear-progress/',
+      indent: 1,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/linear-progress',
+      ],
+    },
+    {
+      name: 'Ripple',
+      route: '/demo/ripple/',
+      indent: 0,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/ripple',
+      ],
+    },
+    {
+      name: 'Snackbar',
+      route: '/demo/snackbar/',
       indent: 0,
       repos: [
         'https://github.com/hperrin/svelte-material-ui/tree/master/packages/snackbar',
-        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/snackbar/kitchen'
-      ]
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/snackbar/kitchen',
+      ],
     },
     {
       name: 'Tabs',
-      route: '/demo/tabs',
+      route: '/demo/tabs/',
       indent: 0,
       repos: [
         'https://github.com/hperrin/svelte-material-ui/tree/master/packages/tab',
         'https://github.com/hperrin/svelte-material-ui/tree/master/packages/tab-bar',
-        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/tab-indicator',
-        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/tab-scroller'
-      ]
+      ],
     },
     {
-      name: 'Tab',
-      shortcut: '/demo/tabs',
-      indent: 1
-    },
-    {
-      name: 'Tab Bar',
-      shortcut: '/demo/tabs',
-      indent: 1
-    },
-    {
-      name: 'Tab Indicator',
-      shortcut: '/demo/tabs',
-      indent: 1
-    },
-    {
-      name: 'Tab Scroller',
-      shortcut: '/demo/tabs',
-      indent: 1
-    },
-    {
-      name: 'Theme',
-      route: '/demo/theme',
-      indent: 0
+      name: 'Tooltip',
+      route: '/demo/tooltip/',
+      indent: 0,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/tooltip',
+      ],
     },
     {
       name: 'Top App Bar',
-      route: '/demo/top-app-bar',
+      route: '/demo/top-app-bar/',
       indent: 0,
-      repos: ['https://github.com/hperrin/svelte-material-ui/tree/master/packages/top-app-bar']
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/top-app-bar',
+      ],
+    },
+    {
+      name: 'Touch Target',
+      route: '/demo/touch-target/',
+      indent: 0,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/touch-target',
+      ],
     },
     {
       name: 'Typography',
-      route: '/demo/typography',
-      indent: 0
-    }
+      route: '/demo/typography/',
+      indent: 0,
+    },
   ];
 
-  let activeSection = sections.find(section => 'route' in section && section.route === $page.path);
-  $: repos = (activeSection && 'repos' in activeSection) ? activeSection.repos : [];
+  $: activeSection = sections.find(
+    (section) => 'route' in section && routesEqual(section.route, $page.path)
+  );
+  let previousPagePath = null;
+  $: if (mainContent && previousPagePath !== $page.path) {
+    drawerOpen = false;
+    const top = window.location.hash
+      ? document.querySelector(window.location.hash)?.offsetTop || 0
+      : 0;
+    mainContent.scrollTop = top;
+    previousPagePath = $page.path;
+  }
 
   onMount(setMiniWindow);
 
-  function pickSection(section) {
-    drawerOpen = false;
-    mainContent.scrollTop = 0;
-
-    // Svelte/Sapper is not updated the components correctly, so I need this.
-    sections.forEach(section => section.component.$set({activated: false}));
-    section.component.$set({activated: true});
-
-    activeSection = 'shortcut' in section ? sections.find(sec => sec.route === section.shortcut) : section;
+  function routesEqual(a, b) {
+    return (
+      (a.endsWith('/') ? a.slice(0, -1) : a) ===
+      (b.endsWith('/') ? b.slice(0, -1) : b)
+    );
   }
 
   function setMiniWindow() {
-    miniWindow = window.innerWidth < 720;
+    if (typeof window !== 'undefined') {
+      miniWindow = window.innerWidth < 720;
+    }
   }
 </script>
+
+<style>
+  @media (max-width: 720px) {
+    :global(* > .hide-initial-small) {
+      display: none;
+    }
+  }
+</style>

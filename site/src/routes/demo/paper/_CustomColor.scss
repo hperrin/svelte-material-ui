@@ -1,0 +1,8 @@
+@use '@smui/paper/index' as paper;
+@use '@material/theme/index' as theme;
+
+@include paper.paper-color(
+  custom-green,
+  theme.$green-800,
+  theme.accessible-ink-color(theme.$green-800)
+);

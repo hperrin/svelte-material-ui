@@ -2,18 +2,22 @@
 
 Select helper texts are informative messages that give context to a select menu.
 
-See [MDC Select Helper Text](https://material.io/develop/web/components/input-controls/select-menus/helper-text/) for more information on API and Sass mixins.
+# Demo
+
+[See it in action.](https://sveltematerialui.com/demo/select)
+
+[See the demo code.](/site/src/routes/demo/select/)
 
 # Basic Usage
 
 todo...
 
-# Demo
-
-*in action:* https://sveltematerialui.com/demo/select
-
-*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/select.svelte
-
 # Exports
 
 todo...
+
+# More Information
+
+See [Dropdown menu](https://material.io/components/menus#dropdown-menu) in the Material design spec.
+
+See [Select Helper Text](https://github.com/material-components/material-components-web/tree/v11.0.0/packages/mdc-select/helper-text) in MDC-Web for information about the upstream library's architecture.

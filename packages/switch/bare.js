@@ -1,3 +1,2 @@
-import Switch from './Switch.svelte';
-
-export default Switch;
+export * from './index.js';
+export { default } from './index.js';

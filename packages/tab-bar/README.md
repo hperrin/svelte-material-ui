@@ -2,24 +2,28 @@
 
 Tab bars are areas that contain tabs.
 
-See [MDC Tab Bar](https://material.io/develop/web/components/tabs/tab-bar/) for more information on API and Sass mixins.
-
 # Installation
 
 ```sh
 npm install --save-dev @smui/tab-bar
 ```
 
+# Demo
+
+[See it in action.](https://sveltematerialui.com/demo/tabs)
+
+[See the demo code.](/site/src/routes/demo/tabs/)
+
 # Basic Usage
 
 todo...
 
-# Demo
-
-*in action:* https://sveltematerialui.com/demo/tabs
-
-*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/tabs.svelte
-
 # Exports
 
 todo...
+
+# More Information
+
+See [Tabs](https://material.io/components/tabs) in the Material design spec.
+
+See [Tab Bar](https://github.com/material-components/material-components-web/tree/v11.0.0/packages/mdc-tab-bar) in MDC-Web for information about the upstream library's architecture.

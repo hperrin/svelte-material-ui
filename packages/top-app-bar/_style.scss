@@ -1,3 +1,4 @@
-@import "@material/top-app-bar/mdc-top-app-bar";
-@import "./mixins";
-@include smui-top-app-bar-core-styles;
+@use '@material/top-app-bar/mdc-top-app-bar';
+@use './mixins';
+
+@include mixins.core-styles;

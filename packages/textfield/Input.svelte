@@ -2,28 +2,38 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="mdc-text-field__input {className}"
-  {type}
-  {...valueProp}
-  on:change={e => (type === 'file' || type === 'range') && valueUpdater(e)}
-  on:input={e => type !== 'file' && valueUpdater(e)}
+  class={classMap({
+    [className]: true,
+    'mdc-text-field__input': true,
+  })}
+  on:change={(e) => (type === 'file' || type === 'range') && valueUpdater(e)}
+  on:input={(e) => type !== 'file' && valueUpdater(e)}
   on:change={changeHandler}
-  {...exclude($$props, ['use', 'class', 'type', 'value', 'files', 'dirty', 'invalid', 'updateInvalid'])}
+  {type}
+  {placeholder}
+  {...valueProp}
+  {...internalAttrs}
+  {...$$restProps}
 />
 
 <script>
-  import {onMount} from 'svelte';
-  import {get_current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
-  import {exclude} from '@smui/common/exclude.js';
-  import {useActions} from '@smui/common/useActions.js';
+  import { onMount } from 'svelte';
+  import { get_current_component } from 'svelte/internal';
+  import {
+    forwardEventsBuilder,
+    classMap,
+    useActions,
+  } from '@smui/common/internal.js';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component(), ['change', 'input']);
+  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   export let use = [];
   let className = '';
-  export {className as class};
+  export { className as class };
   export let type = 'text';
+  // Always having a placeholder fixes Safari's baseline alignment.
+  // See: https://github.com/philipwalton/flexbugs/issues/270
+  export let placeholder = ' ';
   export let value = '';
   export let files = undefined;
   export let dirty = false;
@@ -31,10 +41,12 @@
   export let updateInvalid = true;
 
   let element;
+  let internalAttrs = {};
   let valueProp = {};
 
   $: if (type === 'file') {
     delete valueProp.value;
+    valueProp = valueProp;
   }
 
   onMount(() => {
@@ -60,7 +72,7 @@
         break;
       case 'file':
         files = e.target.files;
-        // Fall through.
+      // Fall through.
       default:
         value = e.target.value;
         break;
@@ -72,5 +84,31 @@
     if (updateInvalid) {
       invalid = element.matches(':invalid');
     }
+  }
+
+  export function getAttr(name) {
+    return name in internalAttrs
+      ? internalAttrs[name]
+      : getElement().getAttribute(name);
+  }
+
+  export function addAttr(name, value) {
+    if (internalAttrs[name] !== value) {
+      internalAttrs[name] = value;
+    }
+  }
+
+  export function removeAttr(name) {
+    if (!(name in internalAttrs) || internalAttrs[name] != null) {
+      internalAttrs[name] = undefined;
+    }
+  }
+
+  export function focus() {
+    getElement().focus();
+  }
+
+  export function getElement() {
+    return element;
   }
 </script>

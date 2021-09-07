@@ -1,48 +1,72 @@
 <div
   bind:this={element}
+  use:Ripple={{
+    unbounded: true,
+    active: rippleActive,
+    addClass,
+    removeClass,
+    addStyle,
+  }}
   use:useActions={use}
   use:forwardEvents
-  class="
-    mdc-radio
-    {className}
-    {disabled ? 'mdc-radio--disabled' : ''}
-  "
-  {...exclude($$props, ['use', 'class', 'disabled', 'group', 'value', 'valueKey', 'input$'])}
+  class={classMap({
+    [className]: true,
+    'mdc-radio': true,
+    'mdc-radio--disabled': disabled,
+    'mdc-radio--touch': touch,
+    ...internalClasses,
+  })}
+  style={Object.entries(internalStyles)
+    .map(([name, value]) => `${name}: ${value};`)
+    .concat([style])
+    .join(' ')}
+  {...exclude($$restProps, ['input$'])}
 >
   <input
     use:useActions={input$use}
-    class="mdc-radio__native-control {input$class}"
+    class={classMap({
+      [input$class]: true,
+      'mdc-radio__native-control': true,
+    })}
     type="radio"
     {...inputProps}
     {disabled}
     value={valueKey === uninitializedValue ? value : valueKey}
-    {checked}
-    on:change={handleChange}
-    on:change on:input
-    {...exclude(prefixFilter($$props, 'input$'), ['use', 'class'])}
+    bind:group
+    on:blur
+    on:focus
+    {...prefixFilter($$restProps, 'input$')}
   />
   <div class="mdc-radio__background">
-    <div class="mdc-radio__outer-circle"></div>
-    <div class="mdc-radio__inner-circle"></div>
+    <div class="mdc-radio__outer-circle" />
+    <div class="mdc-radio__inner-circle" />
   </div>
+  <div class="mdc-radio__ripple" />
 </div>
 
 <script>
-  import {MDCRadio} from '@material/radio';
-  import {onMount, onDestroy, getContext} from 'svelte';
-  import {get_current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
-  import {exclude} from '@smui/common/exclude.js';
-  import {prefixFilter} from '@smui/common/prefixFilter.js';
-  import {useActions} from '@smui/common/useActions.js';
+  import { MDCRadioFoundation } from '@material/radio';
+  import { onMount, getContext } from 'svelte';
+  import { get_current_component } from 'svelte/internal';
+  import {
+    forwardEventsBuilder,
+    classMap,
+    exclude,
+    prefixFilter,
+    useActions,
+    dispatch,
+  } from '@smui/common/internal.js';
+  import Ripple from '@smui/ripple';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
   let uninitializedValue = () => {};
 
   export let use = [];
   let className = '';
-  export {className as class};
+  export { className as class };
+  export let style = '';
   export let disabled = false;
+  export let touch = false;
   export let group = null;
   export let value = null;
   export let valueKey = uninitializedValue;
@@ -50,52 +74,83 @@
   export let input$class = '';
 
   let element;
-  let radio;
-  let formField = getContext('SMUI:form-field');
+  let instance;
+  let internalClasses = {};
+  let internalStyles = {};
+  let rippleActive = false;
   let inputProps = getContext('SMUI:generic:input:props') || {};
-  let setChecked = getContext('SMUI:generic:input:setChecked');
-
-  $: checked = group === value;
-
-  $: if (setChecked) {
-    setChecked(checked);
-  }
-
-  $: if (radio && radio.checked !== checked) {
-    radio.checked = checked;
-  }
-
-  $: if (radio && radio.disabled !== disabled) {
-    radio.disabled = disabled;
-  }
-
-  $: if (radio && valueKey === uninitializedValue && radio.value !== value) {
-    radio.value = value;
-  }
-
-  $: if (radio && valueKey !== uninitializedValue && radio.value !== valueKey) {
-    radio.value = valueKey;
-  }
 
   onMount(() => {
-    radio = new MDCRadio(element);
+    instance = new MDCRadioFoundation({
+      addClass,
+      removeClass,
+      setNativeControlDisabled: (value) => (disabled = value),
+    });
 
-    if (formField && formField()) {
-      formField().input = radio;
+    const accessor = {
+      _smui_radio_accessor: true,
+      get element() {
+        return getElement();
+      },
+      get checked() {
+        return group === value;
+      },
+      set checked(checked) {
+        if (checked && group !== value) {
+          group = value;
+        } else if (!checked && group === value) {
+          group = undefined;
+        }
+      },
+      activateRipple() {
+        if (!disabled) {
+          rippleActive = true;
+        }
+      },
+      deactivateRipple() {
+        rippleActive = false;
+      },
+    };
+
+    dispatch(element, 'SMUI:generic:input:mount', accessor);
+
+    instance.init();
+
+    return () => {
+      dispatch(element, 'SMUI:generic:input:unmount', accessor);
+
+      instance.destroy();
+    };
+  });
+
+  function addClass(className) {
+    if (!internalClasses[className]) {
+      internalClasses[className] = true;
     }
-  });
+  }
 
-  onDestroy(() => {
-    radio && radio.destroy();
-  });
+  function removeClass(className) {
+    if (!(className in internalClasses) || internalClasses[className]) {
+      internalClasses[className] = false;
+    }
+  }
 
-  function handleChange(e) {
-    if (radio.checked) {
-      group = value;
+  function addStyle(name, value) {
+    if (internalStyles[name] != value) {
+      if (value === '' || value == null) {
+        delete internalStyles[name];
+        internalStyles = internalStyles;
+      } else {
+        internalStyles[name] = value;
+      }
     }
   }
 
   export function getId() {
     return inputProps && inputProps.id;
+  }
+
+  export function getElement() {
+    return element;
   }
 </script>

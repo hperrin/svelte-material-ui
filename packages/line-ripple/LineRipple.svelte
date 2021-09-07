@@ -2,49 +2,103 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="
-    mdc-line-ripple
-    {className}
-    {active ? 'mdc-line-ripple--active' : ''}
-  "
-  {...exclude($$props, ['use', 'class', 'active'])}
-></div>
+  class={classMap({
+    [className]: true,
+    'mdc-line-ripple': true,
+    'mdc-line-ripple--active': active,
+    ...internalClasses,
+  })}
+  style={Object.entries(internalStyles)
+    .map(([name, value]) => `${name}: ${value};`)
+    .concat([style])
+    .join(' ')}
+  {...$$restProps}
+/>
 
 <script>
-  import {MDCLineRipple} from '@material/line-ripple';
-  import {onMount, onDestroy} from 'svelte';
-  import {get_current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
-  import {exclude} from '@smui/common/exclude.js';
-  import {useActions} from '@smui/common/useActions.js';
+  import { MDCLineRippleFoundation } from '@material/line-ripple';
+  import { onMount } from 'svelte';
+  import { get_current_component } from 'svelte/internal';
+  import {
+    forwardEventsBuilder,
+    classMap,
+    useActions,
+  } from '@smui/common/internal.js';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
   export let use = [];
   let className = '';
-  export {className as class};
+  export { className as class };
+  export let style = '';
   export let active = false;
 
   let element;
-  let lineRipple;
+  let instance;
+  let internalClasses = {};
+  let internalStyles = {};
 
   onMount(() => {
-    lineRipple = new MDCLineRipple(element);
+    instance = new MDCLineRippleFoundation({
+      addClass,
+      removeClass,
+      hasClass,
+      setStyle: addStyle,
+      registerEventHandler: (evtType, handler) =>
+        getElement().addEventListener(evtType, handler),
+      deregisterEventHandler: (evtType, handler) =>
+        getElement().removeEventListener(evtType, handler),
+    });
+
+    instance.init();
+
+    return () => {
+      instance.destroy();
+    };
   });
 
-  onDestroy(() => {
-    lineRipple && lineRipple.destroy();
-  });
-
-  export function activate(...args) {
-    return lineRipple.activate(...args);
+  function hasClass(className) {
+    return className in internalClasses
+      ? internalClasses[className]
+      : getElement().classList.contains(className);
   }
 
-  export function deactivate(...args) {
-    return lineRipple.deactivate(...args);
+  function addClass(className) {
+    if (!internalClasses[className]) {
+      internalClasses[className] = true;
+    }
   }
 
-  export function setRippleCenter(xCoordinate, ...args) {
-    return lineRipple.setRippleCenter(xCoordinate, ...args);
+  function removeClass(className) {
+    if (!(className in internalClasses) || internalClasses[className]) {
+      internalClasses[className] = false;
+    }
+  }
+
+  function addStyle(name, value) {
+    if (internalStyles[name] != value) {
+      if (value === '' || value == null) {
+        delete internalStyles[name];
+        internalStyles = internalStyles;
+      } else {
+        internalStyles[name] = value;
+      }
+    }
+  }
+
+  export function activate() {
+    instance.activate();
+  }
+
+  export function deactivate() {
+    instance.deactivate();
+  }
+
+  export function setRippleCenter(xCoordinate) {
+    instance.setRippleCenter(xCoordinate);
+  }
+
+  export function getElement() {
+    return element;
   }
 </script>

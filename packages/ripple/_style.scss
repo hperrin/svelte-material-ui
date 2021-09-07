@@ -1,1 +1,4 @@
-@import "@material/ripple/mdc-ripple";
+@use '@material/ripple/styles';
+@use './mixins';
+
+@include mixins.core-styles;

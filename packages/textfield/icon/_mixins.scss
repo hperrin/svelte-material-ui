@@ -1,0 +1,43 @@
+@use '@material/textfield/icon/variables';
+@use '@material/rtl/mixins' as rtl-mixins;
+@use '@material/feature-targeting/index' as feature-targeting;
+
+@mixin core-styles($query: feature-targeting.all()) {
+  .mdc-text-field__icon--leading {
+    .smui-text-field--standard & {
+      @include leading-icon_($query: $query);
+    }
+  }
+
+  .mdc-text-field__icon--trailing {
+    .smui-text-field--standard & {
+      @include trailing-icon_($query: $query);
+    }
+  }
+}
+
+@mixin leading-icon_($query: feature-targeting.all()) {
+  $feat-structure: feature-targeting.create-target($query, structure);
+
+  @include feature-targeting.targets($feat-structure) {
+    @include rtl-mixins.reflexive-property(
+      margin,
+      0,
+      variables.$leading-icon-padding-right
+    );
+  }
+}
+
+@mixin trailing-icon_($query: feature-targeting.all()) {
+  $feat-structure: feature-targeting.create-target($query, structure);
+
+  @include feature-targeting.targets($feat-structure) {
+    $padding: (variables.$touch-target-size - variables.$icon-size) / 2;
+    $left-margin: variables.$trailing-icon-padding-left - $padding;
+
+    padding-top: $padding;
+    padding-bottom: $padding;
+    @include rtl-mixins.reflexive-property(padding, $padding, 0);
+    @include rtl-mixins.reflexive-property(margin, $left-margin, 0);
+  }
+}

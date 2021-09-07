@@ -2,50 +2,77 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="
-    mdc-switch
-    {className}
-    {disabled ? 'mdc-switch--disabled' : ''}
-    {nativeChecked ? 'mdc-switch--checked' : ''}
-  "
-  {...exclude($$props, ['use', 'class', 'disabled', 'group', 'checked', 'value', 'input$'])}
+  class={classMap({
+    [className]: true,
+    'mdc-switch': true,
+    'mdc-switch--disabled': disabled,
+    'mdc-switch--checked': nativeChecked,
+    'smui-switch--color-primary': color === 'primary',
+    ...internalClasses,
+  })}
+  {...exclude($$restProps, ['input$'])}
 >
-  <div class="mdc-switch__track"></div>
-  <div class="mdc-switch__thumb-underlay">
-    <div class="mdc-switch__thumb">
-      <input
-        use:useActions={input$use}
-        class="mdc-switch__native-control {input$class}"
-        type="checkbox"
-        role="switch"
-        {...inputProps}
-        {disabled}
-        bind:checked={nativeChecked}
-        value={valueKey === uninitializedValue ? value : valueKey}
-        on:change={handleChange}
-        on:change on:input
-        {...exclude(prefixFilter($$props, 'input$'), ['use', 'class'])}
-      />
-    </div>
+  <div class="mdc-switch__track" />
+  <div
+    use:Ripple={{
+      unbounded: true,
+      color,
+      active: rippleActive,
+      addClass: addThumbUnderlayClass,
+      removeClass: removeThumbUnderlayClass,
+      // Don't need addStyle, since we don't set style prop.
+      eventTarget: checkbox,
+    }}
+    class={classMap({
+      'mdc-switch__thumb-underlay': true,
+      ...thumbUnderlayClasses,
+    })}
+  >
+    <div class="mdc-switch__thumb" />
+    <input
+      bind:this={checkbox}
+      use:useActions={input$use}
+      class={classMap({
+        [input$class]: true,
+        'mdc-switch__native-control': true,
+      })}
+      type="checkbox"
+      role="switch"
+      {...inputProps}
+      {disabled}
+      bind:checked={nativeChecked}
+      aria-checked={nativeChecked ? 'true' : 'false'}
+      value={valueKey === uninitializedValue ? value : valueKey}
+      on:blur
+      on:focus
+      {...nativeControlAttrs}
+      {...prefixFilter($$restProps, 'input$')}
+    />
   </div>
 </div>
 
 <script>
-  import {MDCSwitch} from '@material/switch';
-  import {onMount, onDestroy, getContext} from 'svelte';
-  import {get_current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
-  import {exclude} from '@smui/common/exclude.js';
-  import {prefixFilter} from '@smui/common/prefixFilter.js';
-  import {useActions} from '@smui/common/useActions.js';
+  import { MDCSwitchFoundation } from '@material/switch';
+  import { onMount, getContext } from 'svelte';
+  import { get_current_component } from 'svelte/internal';
+  import {
+    forwardEventsBuilder,
+    classMap,
+    exclude,
+    prefixFilter,
+    useActions,
+    dispatch,
+  } from '@smui/common/internal.js';
+  import Ripple from '@smui/ripple';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
   let uninitializedValue = () => {};
 
   export let use = [];
   let className = '';
-  export {className as class};
+  export { className as class };
   export let disabled = false;
+  export let color = 'secondary';
   export let group = uninitializedValue;
   export let checked = uninitializedValue;
   export let value = null;
@@ -54,75 +81,172 @@
   export let input$class = '';
 
   let element;
-  let switchControl;
-  let formField = getContext('SMUI:form-field');
+  let instance;
+  let checkbox;
+  let internalClasses = {};
+  let thumbUnderlayClasses = {};
+  let nativeControlAttrs = {};
+  let rippleActive = false;
   let inputProps = getContext('SMUI:generic:input:props') || {};
-  let setChecked = getContext('SMUI:generic:input:setChecked');
-  let nativeChecked = group === uninitializedValue ? (checked === uninitializedValue ? false : checked) : group.indexOf(value) !== -1;
-
-  $: if (setChecked) {
-    setChecked(nativeChecked);
-  }
-
-  $: if (switchControl) {
-    if (group !== uninitializedValue) {
-      const isChecked = group.indexOf(value) !== -1;
-      if (switchControl.checked !== isChecked) {
-        switchControl.checked = isChecked;
-      }
-    } else if (checked !== uninitializedValue && switchControl.checked !== checked) {
-      switchControl.checked = checked;
-    }
-  }
-
-  $: if (switchControl && switchControl.disabled !== disabled) {
-    switchControl.disabled = disabled;
-  }
-
-  $: if (switchControl && valueKey === uninitializedValue && switchControl.value !== value) {
-    switchControl.value = value;
-  }
-
-  $: if (switchControl && valueKey !== uninitializedValue && switchControl.value !== valueKey) {
-    switchControl.value = valueKey;
-  }
+  let nativeChecked =
+    group === uninitializedValue
+      ? checked === uninitializedValue
+        ? false
+        : checked
+      : group.indexOf(value) !== -1;
 
   let previousChecked = checked;
-  $: if (checked !== uninitializedValue) {
-    if (checked === previousChecked) {
-      checked = nativeChecked;
-    } else if (nativeChecked !== checked) {
-      nativeChecked = checked;
+  let previousGroup = group === uninitializedValue ? [] : [...group];
+  let previousNativeChecked = nativeChecked;
+  $: {
+    // This is a substitute for an on:change listener that is
+    // smarter about when it calls the instance's handler. I do
+    // this so that a group of changes will only trigger one
+    // handler call, since the handler will reset currently
+    // running animations.
+    let callHandleChange = false;
+
+    // First check for group state.
+    if (group !== uninitializedValue) {
+      if (previousNativeChecked !== nativeChecked) {
+        // The change needs to flow up.
+        const idx = group.indexOf(value);
+        if (nativeChecked && idx === -1) {
+          group.push(value);
+          group = group;
+        } else if (!nativeChecked && idx !== -1) {
+          group.splice(idx, 1);
+          group = group;
+        }
+        callHandleChange = true;
+      } else {
+        // Potential changes need to flow down.
+        const idxPrev = previousGroup.indexOf(value);
+        const idx = group.indexOf(value);
+
+        if (idxPrev > -1 && idx === -1) {
+          // The checkbox was removed from the group.
+          nativeChecked = false;
+          callHandleChange = true;
+        } else if (idx > -1 && idxPrev === -1) {
+          // The checkbox was added to the group.
+          nativeChecked = true;
+          callHandleChange = true;
+        }
+      }
     }
+
+    // Now check individual state.
+    if (checked === uninitializedValue) {
+      if (previousNativeChecked !== nativeChecked) {
+        // The checkbox was clicked by the user.
+        callHandleChange = true;
+      }
+    } else if (checked !== nativeChecked) {
+      if (checked === previousChecked) {
+        // The checkbox was clicked by the user
+        // and the change needs to flow up.
+        checked = nativeChecked;
+      } else {
+        // The checkbox was changed programmatically
+        // and the change needs to flow down.
+        nativeChecked = checked;
+      }
+      callHandleChange = true;
+    }
+
     previousChecked = checked;
+    previousGroup = group === uninitializedValue ? [] : [...group];
+    previousNativeChecked = nativeChecked;
+    if (callHandleChange && instance) {
+      instance.handleChange({
+        target: {
+          checked: nativeChecked,
+        },
+      });
+    }
   }
 
   onMount(() => {
-    switchControl = new MDCSwitch(element);
+    instance = new MDCSwitchFoundation({
+      addClass,
+      removeClass,
+      setNativeControlChecked: (checked) => (nativeChecked = checked),
+      setNativeControlDisabled: (disabledValue) => (disabled = disabledValue),
+      setNativeControlAttr: addNativeControlAttr,
+    });
 
-    if (formField && formField()) {
-      formField().input = switchControl;
+    const accessor = {
+      get element() {
+        return getElement();
+      },
+      get checked() {
+        return nativeChecked;
+      },
+      set checked(checked) {
+        if (nativeChecked !== value) {
+          nativeChecked = value;
+        }
+      },
+      activateRipple() {
+        if (!disabled) {
+          rippleActive = true;
+        }
+      },
+      deactivateRipple() {
+        rippleActive = false;
+      },
+    };
+
+    dispatch(element, 'SMUI:generic:input:mount', accessor);
+
+    instance.init();
+
+    return () => {
+      dispatch(element, 'SMUI:generic:input:unmount', accessor);
+
+      instance.destroy();
+    };
+  });
+
+  function addClass(className) {
+    if (!internalClasses[className]) {
+      internalClasses[className] = true;
     }
-  });
+  }
 
-  onDestroy(() => {
-    switchControl && switchControl.destroy();
-  });
+  function removeClass(className) {
+    if (!(className in internalClasses) || internalClasses[className]) {
+      internalClasses[className] = false;
+    }
+  }
 
-  function handleChange(e) {
-    if (group !== uninitializedValue) {
-      const idx = group.indexOf(value);
-      if (switchControl.checked && idx === -1) {
-        group.push(value);
-        group = group;
-      } else if (!switchControl.checked && idx !== -1) {
-        group.splice(idx, 1);
-        group = group;
-      }
+  function addThumbUnderlayClass(className) {
+    if (!thumbUnderlayClasses[className]) {
+      thumbUnderlayClasses[className] = true;
+    }
+  }
+
+  function removeThumbUnderlayClass(className) {
+    if (
+      !(className in thumbUnderlayClasses) ||
+      thumbUnderlayClasses[className]
+    ) {
+      thumbUnderlayClasses[className] = false;
+    }
+  }
+
+  function addNativeControlAttr(name, value) {
+    if (nativeControlAttrs[name] !== value) {
+      nativeControlAttrs[name] = value;
     }
   }
 
   export function getId() {
     return inputProps && inputProps.id;
+  }
+
+  export function getElement() {
+    return element;
   }
 </script>

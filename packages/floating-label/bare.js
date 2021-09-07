@@ -1,3 +1,2 @@
-import FloatingLabel from './FloatingLabel.svelte';
-
-export default FloatingLabel;
+export * from './index.js';
+export { default } from './index.js';

@@ -1,1 +1,19 @@
-@import "@material/dialog/mdc-dialog";
+@use '@material/dialog/index' as dialog;
+
+@include dialog.core-styles;
+
+.mdc-dialog.smui-dialog--selection .mdc-dialog__content {
+  padding: 0;
+}
+
+.mdc-dialog--stacked .mdc-dialog__actions.smui-dialog__actions--reversed {
+  flex-direction: column-reverse;
+
+  .mdc-dialog__button:not(:last-child) {
+    margin-top: 12px;
+  }
+
+  .mdc-dialog__button:last-child {
+    margin-top: 0;
+  }
+}

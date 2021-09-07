@@ -1,42 +1,45 @@
-{#if enhanced}
-  <Item
-    use={[forwardEvents, ...use]}
-    data-value={value}
-    {selected}
-    {...props}
-  ><slot></slot></Item>
-{:else}
-  <option
-    use:useActions={use}
-    use:forwardEvents
-    {value}
-    {...selectedProp}
-    {...props}
-  ><slot></slot></option>
-{/if}
+<Item
+  bind:this={element}
+  use={[forwardEvents, ...use]}
+  data-value={value}
+  {value}
+  {selected}
+  {...$$restProps}><slot /></Item
+>
 
 <script>
-  import {getContext, setContext} from 'svelte';
-  import {get_current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
-  import {exclude} from '@smui/common/exclude.js';
-  import {useActions} from '@smui/common/useActions.js';
+  import { onMount, onDestroy } from 'svelte';
+  import { getContext, setContext } from 'svelte';
+  import { get_current_component } from 'svelte/internal';
+  import { forwardEventsBuilder } from '@smui/common/internal.js';
   import Item from '@smui/list/Item.svelte';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
   export let use = [];
   const className = '';
-  export {className as class};
+  export { className as class };
   export let value = '';
-  export let selected = false;
-
-  $: props = exclude($$props, ['use', 'value', 'selected']);
 
   let element;
-  let enhanced = getContext('SMUI:select:option:enhanced');
+  const selectedText = getContext('SMUI:select:selectedText');
+  const selectedValue = getContext('SMUI:select:value');
 
   setContext('SMUI:list:item:role', 'option');
 
-  $: selectedProp = !enhanced && selected ? {selected: true} : {};
+  $: selected = value != null && value !== '' && $selectedValue === value;
+
+  onMount(setSelectedText);
+
+  onDestroy(setSelectedText);
+
+  function setSelectedText() {
+    if (selected && element) {
+      $selectedText = element.getPrimaryText();
+    }
+  }
+
+  export function getElement() {
+    return element.getElement();
+  }
 </script>

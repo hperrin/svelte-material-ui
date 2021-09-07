@@ -1,0 +1,12 @@
+@use '@material/feature-targeting/feature-targeting';
+@use '@material/theme/index' as theme;
+
+$ripple-target: '.mdc-button__ripple';
+
+@mixin core-styles($query: feature-targeting.all()) {
+  .smui-chip-set--non-interactive .mdc-chip {
+    cursor: initial;
+
+    @include theme.property(color, on-surface);
+  }
+}

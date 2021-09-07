@@ -1,3 +1,2 @@
-import Icon from './Icon.svelte';
-
-export default Icon;
+export * from './index.js';
+export { default } from './index.js';

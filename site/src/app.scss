@@ -1,0 +1,127 @@
+// Elevation mixins.
+@use '@material/elevation/index' as elevation;
+
+// Paper mixins.
+@use '@smui/paper/index' as paper;
+@use '@material/theme/index' as theme;
+
+// Typography mixins.
+@use '@material/typography/index' as typography;
+
+// Main Top App Bar styling.
+@use '@material/top-app-bar/index' as top-app-bar;
+.mdc-top-app-bar.demo-top-app-bar {
+  // Color the top bar with "surface" colors.
+  @include top-app-bar.fill-color(surface);
+  @include top-app-bar.ink-color(on-surface);
+  @include top-app-bar.icon-ink-color(on-surface);
+  // Give it a shadow.
+  @include elevation.elevation(4);
+  // Position it above the drawer.
+  z-index: 7;
+}
+
+// Now on to the regular app styling stuff.
+
+html {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+}
+
+body,
+#sapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.drawer-container {
+  flex-grow: 1;
+  height: 0;
+  display: flex;
+}
+
+.demo-drawer,
+.demo-main-content {
+  overflow: auto;
+  height: 100%;
+}
+
+.demo-drawer.demo-drawer-adjust {
+  padding-bottom: top-app-bar.$row-height;
+}
+
+.demo-app-content {
+  flex: auto;
+  position: relative;
+  width: 0;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.demo-main-content {
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.demo-main-content > section {
+  padding: 48px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.demo-main-content > section:after {
+  height: 32px;
+  display: block;
+  content: ' ';
+}
+
+.demo-spaced {
+  margin-bottom: 2.5em;
+}
+
+.status {
+  max-width: 100%;
+  font-size: 0.9em;
+  word-break: break-word;
+  white-space: normal;
+  margin-bottom: 0;
+}
+
+@include paper.paper-color(svelte-blue, #40b3ff, #fff);
+
+@media (max-width: 460px) {
+  .demo-main-content > section {
+    padding: 16px;
+  }
+}
+
+section.markdown {
+  h1 {
+    @include typography.typography('headline2');
+  }
+
+  h2 {
+    @include typography.typography('headline3');
+  }
+
+  h3 {
+    @include typography.typography('headline4');
+  }
+
+  h4 {
+    @include typography.typography('headline5');
+  }
+
+  h5 {
+    @include typography.typography('headline6');
+  }
+
+  pre {
+    padding-left: 2em;
+  }
+}

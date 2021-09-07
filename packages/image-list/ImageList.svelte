@@ -1,29 +1,40 @@
 <ul
+  bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="
-    mdc-image-list
-    {className}
-    {masonry ? 'mdc-image-list--masonry' : ''}
-    {withTextProtection ? 'mdc-image-list--with-text-protection' : ''}
-  "
-  {...exclude($$props, ['use', 'class', 'masonry', 'withTextProtection'])}
-><slot></slot></ul>
+  class={classMap({
+    [className]: true,
+    'mdc-image-list': true,
+    'mdc-image-list--masonry': masonry,
+    'mdc-image-list--with-text-protection': withTextProtection,
+  })}
+  {...$$restProps}
+>
+  <slot />
+</ul>
 
 <script>
-  import {setContext} from 'svelte';
-  import {get_current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
-  import {exclude} from '@smui/common/exclude.js';
-  import {useActions} from '@smui/common/useActions.js';
+  import { setContext } from 'svelte';
+  import { get_current_component } from 'svelte/internal';
+  import {
+    forwardEventsBuilder,
+    classMap,
+    useActions,
+  } from '@smui/common/internal.js';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
   export let use = [];
   let className = '';
-  export {className as class};
+  export { className as class };
   export let masonry = false;
   export let withTextProtection = false;
 
+  let element;
+
   setContext('SMUI:label:context', 'image-list');
+
+  export function getElement() {
+    return element;
+  }
 </script>

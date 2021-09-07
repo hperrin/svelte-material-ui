@@ -1,9 +1,15 @@
-export default function Anchor(node) {
-  node.classList.add('mdc-menu-surface--anchor');
+export default function Anchor(
+  node,
+  {
+    addClass = (className) => node.classList.add(className),
+    removeClass = (className) => node.classList.remove(className),
+  } = {}
+) {
+  addClass('mdc-menu-surface--anchor');
 
   return {
     destroy() {
-      node.classList.remove('mdc-menu-surface--anchor');
-    }
-  }
+      removeClass('mdc-menu-surface--anchor');
+    },
+  };
 }

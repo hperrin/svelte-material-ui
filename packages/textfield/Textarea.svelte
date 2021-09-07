@@ -2,30 +2,40 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="mdc-text-field__input {className}"
-  bind:value
+  class={classMap({
+    [className]: true,
+    'mdc-text-field__input': true,
+  })}
+  style={`${resizable ? '' : 'resize: none; '}${style}`}
   on:change={changeHandler}
-  {...exclude($$props, ['use', 'class', 'value', 'dirty', 'invalid', 'updateInvalid'])}
+  bind:value
+  {...internalAttrs}
+  {...$$restProps}
 />
 
 <script>
-  import {onMount} from 'svelte';
-  import {get_current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
-  import {exclude} from '@smui/common/exclude.js';
-  import {useActions} from '@smui/common/useActions.js';
+  import { onMount } from 'svelte';
+  import { get_current_component } from 'svelte/internal';
+  import {
+    forwardEventsBuilder,
+    classMap,
+    useActions,
+  } from '@smui/common/internal.js';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component(), ['change', 'input']);
+  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   export let use = [];
   let className = '';
-  export {className as class};
+  export { className as class };
+  export let style = '';
   export let value = '';
   export let dirty = false;
   export let invalid = false;
   export let updateInvalid = true;
+  export let resizable = true;
 
   let element;
+  let internalAttrs = {};
 
   onMount(() => {
     if (updateInvalid) {
@@ -38,5 +48,31 @@
     if (updateInvalid) {
       invalid = element.matches(':invalid');
     }
+  }
+
+  export function getAttr(name) {
+    return name in internalAttrs
+      ? internalAttrs[name]
+      : getElement().getAttribute(name);
+  }
+
+  export function addAttr(name, value) {
+    if (internalAttrs[name] !== value) {
+      internalAttrs[name] = value;
+    }
+  }
+
+  export function removeAttr(name) {
+    if (!(name in internalAttrs) || internalAttrs[name] != null) {
+      internalAttrs[name] = undefined;
+    }
+  }
+
+  export function focus() {
+    getElement().focus();
+  }
+
+  export function getElement() {
+    return element;
   }
 </script>

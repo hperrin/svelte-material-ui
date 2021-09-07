@@ -3,6 +3,272 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0](https://github.com/hperrin/svelte-material-ui/compare/v4.1.0...v4.2.0) (2021-05-05)
+
+**Note:** Version bump only for package @smui/ripple
+
+
+
+
+
+# [4.1.0](https://github.com/hperrin/svelte-material-ui/compare/v4.0.0...v4.1.0) (2021-04-28)
+
+
+### Reverts
+
+* Revert "v4.1.0" ([54dfd48](https://github.com/hperrin/svelte-material-ui/commit/54dfd48fc0560843ccef9cb9821b12e251977c67))
+* Revert "v4.1.0" ([3e683d9](https://github.com/hperrin/svelte-material-ui/commit/3e683d9166e7df9eaab2756c9ace64c4dd547758))
+
+
+
+
+
+# [4.0.0](https://github.com/hperrin/svelte-material-ui/compare/v3.1.0...v4.0.0) (2021-04-24)
+
+
+### Features
+
+* remove style importing from index files, no more /bare ([2ab900a](https://github.com/hperrin/svelte-material-ui/commit/2ab900a4a2b9705b3844121f7a987c272171c7c5))
+
+
+
+
+
+# [3.1.0](https://github.com/hperrin/svelte-material-ui/compare/v3.0.3...v3.1.0) (2021-04-22)
+
+
+### Features
+
+* update to MDC 11, new fullscreen dialogs ([ee962bc](https://github.com/hperrin/svelte-material-ui/commit/ee962bc9cd654423322330a7f786ce2c350e3e49))
+
+
+### Reverts
+
+* Revert "v3.1.0" ([ade5890](https://github.com/hperrin/svelte-material-ui/commit/ade589069db4f68f21815138dfc86805bac11774))
+
+
+
+
+
+## [3.0.3](https://github.com/hperrin/svelte-material-ui/compare/v3.0.2...v3.0.3) (2021-04-22)
+
+
+### Bug Fixes
+
+* import only from Ripple index ([99ed6dc](https://github.com/hperrin/svelte-material-ui/commit/99ed6dc9d99ee9a5f7accf73400bedda04768cb6))
+
+
+
+
+
+## [3.0.2](https://github.com/hperrin/svelte-material-ui/compare/v3.0.1...v3.0.2) (2021-04-21)
+
+**Note:** Version bump only for package @smui/ripple
+
+
+
+
+
+## [3.0.1](https://github.com/hperrin/svelte-material-ui/compare/v3.0.0...v3.0.1) (2021-04-21)
+
+
+### Features
+
+* implement fixes and workarounds for Vite and SvelteKit ([9ed43aa](https://github.com/hperrin/svelte-material-ui/commit/9ed43aa83523877decd3c81c8c06f1219b302a76))
+
+
+### Reverts
+
+* Revert "v3.0.1" ([d6a0858](https://github.com/hperrin/svelte-material-ui/commit/d6a08583dd65bb71f68fa11ff47e130318c844e5))
+
+
+
+
+
+# [3.0.0](https://github.com/hperrin/svelte-material-ui/compare/v3.0.0-beta.12...v3.0.0) (2021-04-19)
+
+**Note:** Version bump only for package @smui/ripple
+
+
+
+
+
+# [3.0.0-beta.12](https://github.com/hperrin/svelte-material-ui/compare/v3.0.0-beta.11...v3.0.0-beta.12) (2021-04-18)
+
+**Note:** Version bump only for package @smui/ripple
+
+
+
+
+
+# [3.0.0-beta.11](https://github.com/hperrin/svelte-material-ui/compare/v3.0.0-beta.10...v3.0.0-beta.11) (2021-04-18)
+
+**Note:** Version bump only for package @smui/ripple
+
+
+
+
+
+# [3.0.0-beta.10](https://github.com/hperrin/svelte-material-ui/compare/v3.0.0-beta.9...v3.0.0-beta.10) (2021-04-17)
+
+**Note:** Version bump only for package @smui/ripple
+
+
+
+
+
+# [3.0.0-beta.9](https://github.com/hperrin/svelte-material-ui/compare/v3.0.0-beta.8...v3.0.0-beta.9) (2021-04-16)
+
+**Note:** Version bump only for package @smui/ripple
+
+
+
+
+
+# [3.0.0-beta.8](https://github.com/hperrin/svelte-material-ui/compare/v3.0.0-beta.7...v3.0.0-beta.8) (2021-04-15)
+
+**Note:** Version bump only for package @smui/ripple
+
+
+
+
+
+# [3.0.0-beta.7](https://github.com/hperrin/svelte-material-ui/compare/v3.0.0-beta.6...v3.0.0-beta.7) (2021-04-15)
+
+
+### Reverts
+
+* Revert "docs: use absolute links in package readmes" ([3392c16](https://github.com/hperrin/svelte-material-ui/commit/3392c167bb145392929a970f58b8b3a1880fa8d6))
+
+
+
+
+
+# [3.0.0-beta.6](https://github.com/hperrin/svelte-material-ui/compare/v3.0.0-beta.5...v3.0.0-beta.6) (2021-04-14)
+
+**Note:** Version bump only for package @smui/ripple
+
+
+
+
+
+# [3.0.0-beta.5](https://github.com/hperrin/svelte-material-ui/compare/v3.0.0-beta.4...v3.0.0-beta.5) (2021-04-14)
+
+**Note:** Version bump only for package @smui/ripple
+
+
+
+
+
+# [3.0.0-beta.4](https://github.com/hperrin/svelte-material-ui/compare/v3.0.0-beta.3...v3.0.0-beta.4) (2021-04-12)
+
+**Note:** Version bump only for package @smui/ripple
+
+
+
+
+
+# [3.0.0-beta.3](https://github.com/hperrin/svelte-material-ui/compare/v3.0.0-beta.2...v3.0.0-beta.3) (2021-04-12)
+
+
+### Bug Fixes
+
+* allow styles on components with ripples ([1c6b28a](https://github.com/hperrin/svelte-material-ui/commit/1c6b28ac1bb7954b4f55a57b6e8c5becfca42cea))
+
+
+
+
+
+# [3.0.0-beta.2](https://github.com/hperrin/svelte-material-ui/compare/v3.0.0-beta.1...v3.0.0-beta.2) (2021-04-11)
+
+**Note:** Version bump only for package @smui/ripple
+
+
+
+
+
+# [3.0.0-beta.1](https://github.com/hperrin/svelte-material-ui/compare/v3.0.0-beta.0...v3.0.0-beta.1) (2021-04-11)
+
+**Note:** Version bump only for package @smui/ripple
+
+
+
+
+
+# [3.0.0-beta.0](https://github.com/hperrin/svelte-material-ui/compare/v2.0.0-beta.1...v3.0.0-beta.0) (2021-04-11)
+
+
+### Bug Fixes
+
+* list item ripples and menus ([4010556](https://github.com/hperrin/svelte-material-ui/commit/4010556b84b634177c706f0e6cec20b0c8500743))
+* ripple activation and colors ([d584be7](https://github.com/hperrin/svelte-material-ui/commit/d584be7d284562d07e278a2dc21bb039ed6a208b))
+* ripple demo and classes ([b9a2530](https://github.com/hperrin/svelte-material-ui/commit/b9a2530522c01bc1672f3ff8c39fc89d6f52bf66))
+* update all the sass imports ([172a557](https://github.com/hperrin/svelte-material-ui/commit/172a55777a506ac26bbe524ca8cab79904512f24))
+
+
+### Features
+
+* updated Floating Actio Button for MDC v10 ([4a85665](https://github.com/hperrin/svelte-material-ui/commit/4a8566530bd6521ec7f1bf2f5ee11568268b0c87))
+* updated Menu for MDC v10 ([ddd6262](https://github.com/hperrin/svelte-material-ui/commit/ddd6262faa7b833472c6bf8ccca6017e6e06ebbe))
+* updated MenuSurface for MDC v10 ([c032c89](https://github.com/hperrin/svelte-material-ui/commit/c032c895ff6463c9cd904e6244027918cc5292e2))
+* updated Radio and FormField for MDC v10 ([f1f95b7](https://github.com/hperrin/svelte-material-ui/commit/f1f95b7cff81237c3a3402a448d3ca87a5df039d))
+* updated Ripple for MDC v10 ([ae3f23d](https://github.com/hperrin/svelte-material-ui/commit/ae3f23d45e88a1c1ee7d384a5f2829c25b9c2cf6))
+* updated Tab, TabBar, TabIndicator, TabScroller for MDC v10 ([3e4bd27](https://github.com/hperrin/svelte-material-ui/commit/3e4bd271f4cfff11993c0bde6ee4264ea0dc111d))
+* updated Text Field for MDC v10 ([60e10c2](https://github.com/hperrin/svelte-material-ui/commit/60e10c2d86628fb09101b90e6f5d11d236742f2f))
+* upgrade upstream MDC components to v10 ([d47c59a](https://github.com/hperrin/svelte-material-ui/commit/d47c59af50bbec2b7de810261b3cb7a2ffe59180))
+
+
+### BREAKING CHANGES
+
+* Upgrading to v10 of upstream components. Their APIs will change. View the component READMEs.
+
+
+
+
+
+# [2.0.0-beta.1](https://github.com/hperrin/svelte-material-ui/compare/v2.0.0-beta.0...v2.0.0-beta.1) (2021-03-27)
+
+**Note:** Version bump only for package @smui/ripple
+
+
+
+
+
+# [2.0.0-beta.0](https://github.com/hperrin/svelte-material-ui/compare/v2.0.0-alpha.0...v2.0.0-beta.0) (2021-01-01)
+
+**Note:** Version bump only for package @smui/ripple
+
+
+
+
+
+# [2.0.0-alpha.0](https://github.com/hperrin/svelte-material-ui/compare/v1.1.0...v2.0.0-alpha.0) (2020-12-31)
+
+
+### Bug Fixes
+
+* fix buttons, ripples, and list item for new mdc ([9b902b5](https://github.com/hperrin/svelte-material-ui/commit/9b902b5def4bbdc0bbe34733a723ce1de1452bf9))
+
+
+
+
+
+# [1.1.0](https://github.com/hperrin/svelte-material-ui/compare/v1.0.0...v1.1.0) (2020-12-24)
+
+**Note:** Version bump only for package @smui/ripple
+
+
+
+
+
+# [1.0.0](https://github.com/hperrin/svelte-material-ui/compare/v1.0.0-beta.21...v1.0.0) (2020-08-04)
+
+**Note:** Version bump only for package @smui/ripple
+
+
+
+
+
 # [1.0.0-beta.21](https://github.com/hperrin/svelte-material-ui/compare/v1.0.0-beta.20...v1.0.0-beta.21) (2020-04-19)
 
 **Note:** Version bump only for package @smui/ripple

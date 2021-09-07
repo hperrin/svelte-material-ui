@@ -1,0 +1,28 @@
+@use '@material/button/index' as mdc-button;
+@use '@material/shape/variables' as mdc-shape;
+
+.button-shaped-notch {
+  --notchSize: #{mdc-shape.$small-component-radius * 2};
+
+  // source: https://css-tricks.com/notched-boxes/
+  -webkit-clip-path: polygon(
+    0% var(--notchSize),
+    var(--notchSize) 0%,
+    calc(100% - var(--notchSize)) 0%,
+    100% var(--notchSize),
+    100% calc(100% - var(--notchSize)),
+    calc(100% - var(--notchSize)) 100%,
+    var(--notchSize) 100%,
+    0% calc(100% - var(--notchSize))
+  );
+  clip-path: polygon(
+    0% var(--notchSize),
+    var(--notchSize) 0%,
+    calc(100% - var(--notchSize)) 0%,
+    100% var(--notchSize),
+    100% calc(100% - var(--notchSize)),
+    calc(100% - var(--notchSize)) 100%,
+    var(--notchSize) 100%,
+    0% calc(100% - var(--notchSize))
+  );
+}

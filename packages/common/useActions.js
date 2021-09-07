@@ -15,7 +15,7 @@ export function useActions(node, actions) {
 
   return {
     update(actions) {
-      if ((actions && actions.length || 0) != objects.length) {
+      if (((actions && actions.length) || 0) != objects.length) {
         throw new Error('You must not change the length of an actions array.');
       }
 
@@ -39,6 +39,6 @@ export function useActions(node, actions) {
           objects[i].destroy();
         }
       }
-    }
-  }
+    },
+  };
 }

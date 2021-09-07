@@ -1,3 +1,2 @@
-import Slider from './Slider.svelte';
-
-export default Slider;
+export * from './index.js';
+export { default } from './index.js';

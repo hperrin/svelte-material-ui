@@ -2,36 +2,87 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="mdc-select__icon {className}"
+  class={classMap({
+    [className]: true,
+    'mdc-select__icon': true,
+  })}
   {tabindex}
   aria-hidden={tabindex === '-1' ? 'true' : 'false'}
-  {...exclude($$props, ['use', 'class', 'tabindex'])}
-><slot></slot></i>
+  aria-disabled={role === 'button' ? (disabled ? 'true' : 'false') : null}
+  {role}
+  {...internalAttrs}
+  {...$$restProps}><slot /></i
+>
 
 <script>
-  import {MDCSelectIcon} from '@material/select/icon';
-  import {onMount, onDestroy} from 'svelte';
-  import {get_current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
-  import {exclude} from '@smui/common/exclude.js';
-  import {useActions} from '@smui/common/useActions.js';
+  import { MDCSelectIconFoundation } from '@material/select/icon/foundation.js';
+  import { onMount } from 'svelte';
+  import { get_current_component } from 'svelte/internal';
+  import {
+    forwardEventsBuilder,
+    classMap,
+    useActions,
+    dispatch,
+  } from '@smui/common/internal.js';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
   export let use = [];
   let className = '';
-  export {className as class};
-  export let role = undefined; // Intentionally left out of exclude call above.
-  export let tabindex = role !== undefined ? '0' : '-1';
+  export { className as class };
+  export let role = null;
+  export let tabindex = role === 'button' ? '0' : '-1';
+  export let disabled = false;
 
   let element;
-  let icon;
+  let instance;
+  let internalAttrs = {};
 
   onMount(() => {
-    icon = new MDCSelectIcon(element);
+    instance = new MDCSelectIconFoundation({
+      getAttr,
+      setAttr: addAttr,
+      removeAttr,
+      setContent: (value) => {
+        content = value;
+      },
+      registerInteractionHandler: (evtType, handler) =>
+        getElement().addEventListener(evtType, handler),
+      deregisterInteractionHandler: (evtType, handler) =>
+        getElement().removeEventListener(evtType, handler),
+      notifyIconAction: () => dispatch(getElement(), 'MDCSelect:icon'),
+    });
+
+    dispatch(getElement(), 'SMUI:select:leading-icon:mount', instance);
+
+    instance.init();
+
+    return () => {
+      dispatch(getElement(), 'SMUI:select:leading-icon:unmount', instance);
+
+      instance.destroy();
+    };
   });
 
-  onDestroy(() => {
-    icon && icon.destroy();
-  });
+  function getAttr(name) {
+    return name in internalAttrs
+      ? internalAttrs[name]
+      : getElement().getAttribute(name);
+  }
+
+  function addAttr(name, value) {
+    if (internalAttrs[name] !== value) {
+      internalAttrs[name] = value;
+    }
+  }
+
+  function removeAttr(name) {
+    if (!(name in internalAttrs) || internalAttrs[name] != null) {
+      internalAttrs[name] = undefined;
+    }
+  }
+
+  export function getElement() {
+    return element;
+  }
 </script>

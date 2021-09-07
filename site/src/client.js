@@ -1,5 +1,5 @@
 import * as sapper from '@sapper/app';
 
 sapper.start({
-  target: document.getElementsByTagName('app')[0]
+  target: document.querySelector('#sapper'),
 });

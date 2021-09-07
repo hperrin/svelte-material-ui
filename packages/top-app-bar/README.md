@@ -2,26 +2,28 @@
 
 Top app bars are navigation and information areas that appear above content.
 
-See [MDC Top App Bar](https://material.io/develop/web/components/top-app-bar/) for more information on API and Sass mixins.
-
-See [the Sass variable file](https://github.com/material-components/material-components-web/blob/v3.1.1/packages/mdc-top-app-bar/_variables.scss) for styling variables.
-
 # Installation
 
 ```sh
 npm install --save-dev @smui/top-app-bar
 ```
 
+# Demo
+
+[See it in action.](https://sveltematerialui.com/demo/top-app-bar)
+
+[See the demo code.](/site/src/routes/demo/top-app-bar/)
+
 # Basic Usage
 
 todo...
 
-# Demo
-
-*in action:* https://sveltematerialui.com/demo/top-app-bar
-
-*demo code:* https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/top-app-bar.svelte and https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/top-app-bar-iframe.svelte
-
 # Exports
 
 todo...
+
+# More Information
+
+See [App bars: top](https://material.io/components/app-bars-top) in the Material design spec.
+
+See [Top App Bar](https://github.com/material-components/material-components-web/tree/v11.0.0/packages/mdc-top-app-bar) in MDC-Web for information about the upstream library's architecture.

@@ -2,32 +2,59 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="mdc-text-field-character-counter {className}"
-  {...exclude($$props, ['use', 'class'])}
-><slot></slot></div>
+  class={classMap({
+    [className]: true,
+    'mdc-text-field-character-counter': true,
+  })}
+  {...$$restProps}
+>
+  {#if content == null}<slot />{:else}{content}{/if}
+</div>
 
 <script>
-  import {MDCTextFieldCharacterCounter} from '@material/textfield/character-counter';
-  import {onMount, onDestroy} from 'svelte';
-  import {get_current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
-  import {exclude} from '@smui/common/exclude.js';
-  import {useActions} from '@smui/common/useActions.js';
+  import { MDCTextFieldCharacterCounterFoundation } from '@material/textfield/character-counter/foundation.js';
+  import { onMount } from 'svelte';
+  import { get_current_component } from 'svelte/internal';
+  import {
+    forwardEventsBuilder,
+    classMap,
+    useActions,
+    dispatch,
+  } from '@smui/common/internal.js';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
   export let use = [];
   let className = '';
-  export {className as class};
+  export { className as class };
 
   let element;
-  let characterCounter;
+  let instance;
+  let content = null;
 
   onMount(() => {
-    characterCounter = new MDCTextFieldCharacterCounter(element);
+    instance = new MDCTextFieldCharacterCounterFoundation({
+      setContent: (value) => {
+        content = value;
+      },
+    });
+
+    dispatch(getElement(), 'SMUI:textfield:character-counter:mount', instance);
+
+    instance.init();
+
+    return () => {
+      dispatch(
+        getElement(),
+        'SMUI:textfield:character-counter:unmount',
+        instance
+      );
+
+      instance.destroy();
+    };
   });
 
-  onDestroy(() => {
-    characterCounter && characterCounter.destroy();
-  });
+  export function getElement() {
+    return element;
+  }
 </script>

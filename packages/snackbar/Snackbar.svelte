@@ -1,42 +1,58 @@
-<div
+<aside
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  class="
-    mdc-snackbar
-    {className}
-    {variant === 'stacked' ? 'mdc-snackbar--stacked' : ''}
-    {leading ? 'mdc-snackbar--leading' : ''}
-  "
+  class={classMap({
+    [className]: true,
+    'mdc-snackbar': true,
+    'mdc-snackbar--stacked': variant === 'stacked',
+    'mdc-snackbar--leading': leading,
+    ...internalClasses,
+  })}
   on:MDCSnackbar:closed={handleClosed}
-  {...exclude($$props, ['use', 'class', 'variant', 'leading', 'surface$'])}
+  on:keydown={(event) => instance && instance.handleKeyDown(event)}
+  {...exclude($$restProps, ['surface$'])}
 >
   <div
     use:useActions={surface$use}
-    class="mdc-snackbar__surface {surface$class}"
-    {...prefixFilter($$props, 'surface$')}
-  ><slot></slot></div>
-</div>
+    class={classMap({
+      [surface$class]: true,
+      'mdc-snackbar__surface': true,
+    })}
+    on:click={handleSurfaceClick}
+    role="status"
+    aria-relevant="additions"
+    {...prefixFilter($$restProps, 'surface$')}
+  >
+    <slot />
+  </div>
+</aside>
 
 <script context="module">
   let waiting = Promise.resolve();
 </script>
 
 <script>
-  import {MDCSnackbar} from '@material/snackbar';
-  import {onMount, onDestroy, setContext} from 'svelte';
-  import {get_current_component} from 'svelte/internal';
-  import {forwardEventsBuilder} from '@smui/common/forwardEvents.js';
-  import {exclude} from '@smui/common/exclude.js';
-  import {prefixFilter} from '@smui/common/prefixFilter.js';
-  import {useActions} from '@smui/common/useActions.js';
+  import { MDCSnackbarFoundation, util } from '@material/snackbar';
+  import { ponyfill } from '@material/dom';
+  import { onMount, setContext } from 'svelte';
+  import { get_current_component } from 'svelte/internal';
+  import {
+    forwardEventsBuilder,
+    classMap,
+    exclude,
+    prefixFilter,
+    useActions,
+    dispatch,
+  } from '@smui/common/internal.js';
+  const { closest } = ponyfill;
 
-  const forwardEvents = forwardEventsBuilder(get_current_component(), ['MDCSnackbar:opening', 'MDCSnackbar:opened', 'MDCSnackbar:closing', 'MDCSnackbar:closed']);
+  const forwardEvents = forwardEventsBuilder(get_current_component());
   const uninitializedValue = () => {};
 
   export let use = [];
   let className = '';
-  export {className as class};
+  export { className as class };
   export let variant = '';
   export let leading = false;
   export let timeoutMs = 5000;
@@ -47,59 +63,113 @@
   export let surface$use = [];
 
   let element;
-  let snackbar;
+  let instance;
+  let internalClasses = {};
   let closeResolve;
-  let closePromise = new Promise(resolve => closeResolve = resolve);
+  let closePromise = new Promise((resolve) => (closeResolve = resolve));
 
-  setContext('SMUI:button:context', 'snackbar');
-  setContext('SMUI:icon-button:context', 'snackbar');
   setContext('SMUI:label:context', 'snackbar');
 
-  $: if (snackbar && snackbar.timeoutMs !== timeoutMs) {
-    snackbar.timeoutMs = timeoutMs;
+  $: if (instance && instance.getTimeoutMs() !== timeoutMs) {
+    instance.setTimeoutMs(timeoutMs);
   }
 
-  $: if (snackbar && snackbar.closeOnEscape !== closeOnEscape) {
-    snackbar.closeOnEscape = closeOnEscape;
+  $: if (instance && instance.getCloseOnEscape() !== closeOnEscape) {
+    instance.setCloseOnEscape(closeOnEscape);
   }
 
-  $: if (snackbar && labelText !== uninitializedValue && snackbar.labelText !== labelText) {
-    snackbar.labelText = labelText;
+  $: if (
+    instance &&
+    labelText !== uninitializedValue &&
+    getLabelElement().textContent !== labelText
+  ) {
+    getLabelElement().textContent = labelText;
   }
 
-  $: if (snackbar && actionButtonText !== uninitializedValue && snackbar.actionButtonText !== actionButtonText) {
-    snackbar.actionButtonText = actionButtonText;
+  $: if (
+    instance &&
+    actionButtonText !== uninitializedValue &&
+    getActionButtonElement().textContent !== actionButtonText
+  ) {
+    getActionButtonElement().textContent = actionButtonText;
   }
 
   onMount(() => {
-    snackbar = new MDCSnackbar(element);
+    instance = new MDCSnackbarFoundation({
+      addClass,
+      announce: () => util.announce(getLabelElement()),
+      notifyClosed: (reason) =>
+        dispatch(getElement(), 'MDCSnackbar:closed', reason ? { reason } : {}),
+      notifyClosing: (reason) =>
+        dispatch(getElement(), 'MDCSnackbar:closing', reason ? { reason } : {}),
+      notifyOpened: () => dispatch(getElement(), 'MDCSnackbar:opened'),
+      notifyOpening: () => dispatch(getElement(), 'MDCSnackbar:opening'),
+      removeClass,
+    });
+
+    instance.init();
+
+    return () => {
+      instance.destroy();
+    };
   });
 
-  onDestroy(() => {
-    snackbar && snackbar.destroy();
-  });
+  function addClass(className) {
+    if (!internalClasses[className]) {
+      internalClasses[className] = true;
+    }
+  }
+
+  function removeClass(className) {
+    if (!(className in internalClasses) || internalClasses[className]) {
+      internalClasses[className] = false;
+    }
+  }
+
+  function handleSurfaceClick(event) {
+    const target = event.target;
+    if (instance) {
+      if (closest(target, '.mdc-snackbar__action')) {
+        instance.handleActionButtonClick(event);
+      } else if (closest(target, '.mdc-snackbar__dismiss')) {
+        instance.handleActionIconClick(event);
+      }
+    }
+  }
 
   function handleClosed() {
     closeResolve();
-    closePromise = new Promise(resolve => closeResolve = resolve);
+    closePromise = new Promise((resolve) => (closeResolve = resolve));
   }
 
-  export function open(...args) {
+  export function open() {
     waiting = waiting.then(() => {
-      snackbar.open(...args);
+      instance.open();
       return closePromise;
     });
   }
 
-  export function forceOpen(...args) {
-    return snackbar.open(...args);
+  export function forceOpen() {
+    return instance.open();
   }
 
-  export function close(...args) {
-    return snackbar.close(...args);
+  export function close(reason = '') {
+    return instance.close(reason);
   }
 
   export function isOpen() {
-    return snackbar.isOpen;
+    return instance.isOpen();
+  }
+
+  export function getLabelElement() {
+    return getElement().querySelector('.mdc-snackbar__label');
+  }
+
+  export function getActionButtonElement() {
+    return getElement().querySelector('.mdc-snackbar__action');
+  }
+
+  export function getElement() {
+    return element;
   }
 </script>
