@@ -27,7 +27,8 @@
     bind:open
     bind:centered
     bind:mobileStacked
-    on:MDCBanner:closed={(event) => (closedReason = event.detail.reason)}
+    on:MDCBanner:closed={(event) =>
+      (closedReason = closedReasons[event.detail.reason])}
   >
     <Icon slot="icon" class="material-icons">favorite</Icon>
     <Label slot="label">This is a banner with an icon and some actions.</Label>
@@ -45,8 +46,8 @@
   </div>
 </div>
 
-<script>
-  import Banner, { Label, Icon } from '@smui/banner';
+<script type="ts">
+  import Banner, { Label, Icon, CloseReason } from '@smui/banner';
   import Button from '@smui/button';
   import TopAppBar, { Row, Section, Title } from '@smui/top-app-bar';
   import Checkbox from '@smui/checkbox';
@@ -56,5 +57,10 @@
   let centered = false;
   let mobileStacked = true;
 
+  const closedReasons = {
+    [CloseReason.PRIMARY]: 'Primary',
+    [CloseReason.SECONDARY]: 'Secondary',
+    [CloseReason.UNSPECIFIED]: 'Unspecified',
+  };
   let closedReason = 'None yet.';
 </script>

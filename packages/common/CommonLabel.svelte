@@ -42,7 +42,9 @@
   const context: string | undefined = getContext('SMUI:label:context');
   const tabindex: string | undefined = getContext('SMUI:label:tabindex');
 
-  export function getElement(): ReturnType<typeof element['getElement']> {
+  export function getElement(): ReturnType<
+    InstanceType<typeof component>['getElement']
+  > {
     return element.getElement();
   }
 </script>

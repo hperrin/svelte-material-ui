@@ -16,7 +16,7 @@
   <Demo component={Icon} file="banner/_Icon.svelte">Banner with icon</Demo>
 </section>
 
-<script>
+<script type="ts">
   import Demo from '../../../components/Demo.svelte';
   import Fixed from './_Fixed.svelte';
   import General from './_General.svelte';

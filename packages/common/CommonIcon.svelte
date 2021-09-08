@@ -38,7 +38,9 @@
 
   const context = getContext('SMUI:icon:context');
 
-  export function getElement(): Element {
+  export function getElement(): ReturnType<
+    InstanceType<typeof component>['getElement']
+  > {
     return element.getElement();
   }
 </script>

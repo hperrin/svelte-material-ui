@@ -5,4 +5,5 @@ import Icon from '@smui/common/CommonIcon.svelte';
 
 export default Banner;
 
+export { CloseReason } from '@material/banner';
 export { Label, Icon };

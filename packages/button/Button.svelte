@@ -134,7 +134,9 @@
     }
   }
 
-  export function getElement(): Element {
+  export function getElement(): ReturnType<
+    InstanceType<typeof component>['getElement']
+  > {
     return element.getElement();
   }
 </script>

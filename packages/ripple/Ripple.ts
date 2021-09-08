@@ -21,7 +21,7 @@ export type RippleProps = {
 };
 
 export default function Ripple(
-  node: Element,
+  node: HTMLElement,
   {
     ripple = true,
     surface = false,
@@ -119,13 +119,17 @@ export default function Ripple(
       });
 
       initPromise.then(() => {
-        instance.init();
-        instance.setUnbounded(unbounded);
+        if (instance) {
+          instance.init();
+          instance.setUnbounded(unbounded);
+        }
       });
     } else if (instance && !ripple) {
       initPromise.then(() => {
-        instance.destroy();
-        instance = undefined;
+        if (instance) {
+          instance.destroy();
+          instance = undefined;
+        }
       });
     }
 
