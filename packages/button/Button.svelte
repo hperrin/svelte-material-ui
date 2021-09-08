@@ -74,7 +74,7 @@
   export let color: 'primary' | 'secondary' = 'primary';
   export let variant: 'text' | 'raised' | 'unelevated' | 'outlined' = 'text';
   export let touch = false;
-  export let href: string | null = null;
+  export let href: string | null | undefined = null;
   export let action = 'close';
   export let defaultAction = false;
   export let secondary = false;

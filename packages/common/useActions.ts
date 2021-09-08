@@ -8,10 +8,11 @@ export type SvelteActionType<P> = (
   params?: P
 ) => SvelteActionReturnType<P>;
 
-export type ActionArray = (
-  | SvelteActionType<any>
-  | [SvelteActionType<any>, any]
-)[];
+export type ActionEntry<P extends any = any> =
+  | SvelteActionType<P>
+  | [SvelteActionType<P>, P];
+
+export type ActionArray = ActionEntry[];
 
 export function useActions(node: Element, actions: ActionArray) {
   let actionReturns: SvelteActionReturnType<any>[] = [];

@@ -22,7 +22,7 @@
 
 <pre class="status">Clicked: {clicked}</pre>
 
-<script>
+<script lang="ts">
   import { mdiFormatColorFill, mdiWrench, mdiCurrencyUsd } from '@mdi/js';
   import IconButton, { Icon } from '@smui/icon-button';
   import Svg from '@smui/common/Svg.svelte';

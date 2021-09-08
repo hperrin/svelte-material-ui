@@ -55,40 +55,54 @@
   {...$$restProps}><slot /></svelte:component
 >
 
-<script>
-  import { MDCIconButtonToggleFoundation } from '@material/icon-button';
+<script lang="ts">
+  import type { SMUIComponent } from '@smui/common';
+  import {
+    MDCIconButtonToggleEventDetail,
+    MDCIconButtonToggleFoundation,
+  } from '@material/icon-button';
   import { onDestroy, getContext, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
     classMap,
     dispatch,
+    ActionArray,
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
   import A from '@smui/common/A.svelte';
   import Button from '@smui/common/Button.svelte';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
-  let uninitializedValue = () => {};
+  interface UninitializedValue {}
+  let uninitializedValue: UninitializedValue = () => {};
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
   export let style = '';
   export let ripple = true;
-  export let color = null;
+  export let color: 'primary' | 'secondary' | null = null;
   export let toggle = false;
-  export let pressed = uninitializedValue;
-  export let ariaLabelOn = null;
-  export let ariaLabelOff = null;
-  export let href = null;
-  export let action = null;
+  export let pressed: UninitializedValue | boolean = uninitializedValue;
+  export let ariaLabelOn: string | null | undefined = null;
+  export let ariaLabelOff: string | null | undefined = null;
+  export let href: string | null | undefined = null;
+  export let action:
+    | 'close'
+    | 'first-page'
+    | 'prev-page'
+    | 'next-page'
+    | 'last-page'
+    | string
+    | null
+    | undefined = null;
 
-  let element;
-  let instance;
-  let internalClasses = {};
-  let internalStyles = {};
-  let internalAttrs = {};
+  let element: SMUIComponent;
+  let instance: MDCIconButtonToggleFoundation;
+  let internalClasses: { [k: string]: boolean } = {};
+  let internalStyles: { [k: string]: string } = {};
+  let internalAttrs: { [k: string]: string } = {};
   let context = getContext('SMUI:icon-button:context');
   let ariaDescribedby = getContext('SMUI:icon-button:aria-describedby');
 
@@ -117,7 +131,7 @@
 
   setContext('SMUI:icon:context', 'icon-button');
 
-  let oldToggle = null;
+  let oldToggle: boolean | null = null;
   $: if (element && getElement() && toggle !== oldToggle) {
     if (toggle && !instance) {
       instance = new MDCIconButtonToggleFoundation({
@@ -141,33 +155,37 @@
     oldToggle = toggle;
   }
 
-  $: if (instance && instance.isOn() !== pressed) {
-    instance.toggle(pressed);
+  $: if (
+    instance &&
+    pressed !== uninitializedValue &&
+    instance.isOn() !== pressed
+  ) {
+    instance.toggle(!!pressed);
   }
 
   onDestroy(() => {
     instance && instance.destroy();
   });
 
-  function hasClass(className) {
+  function hasClass(className: string) {
     return className in internalClasses
       ? internalClasses[className]
       : getElement().classList.contains(className);
   }
 
-  function addClass(className) {
+  function addClass(className: string) {
     if (!internalClasses[className]) {
       internalClasses[className] = true;
     }
   }
 
-  function removeClass(className) {
+  function removeClass(className: string) {
     if (!(className in internalClasses) || internalClasses[className]) {
       internalClasses[className] = false;
     }
   }
 
-  function addStyle(name, value) {
+  function addStyle(name: string, value: string) {
     if (internalStyles[name] != value) {
       if (value === '' || value == null) {
         delete internalStyles[name];
@@ -178,19 +196,19 @@
     }
   }
 
-  function getAttr(name) {
+  function getAttr(name: string) {
     return name in internalAttrs
       ? internalAttrs[name]
       : getElement().getAttribute(name);
   }
 
-  function addAttr(name, value) {
+  function addAttr(name: string, value: string) {
     if (internalAttrs[name] !== value) {
       internalAttrs[name] = value;
     }
   }
 
-  function handleChange(evtData) {
+  function handleChange(evtData: MDCIconButtonToggleEventDetail) {
     pressed = evtData.isOn;
   }
 

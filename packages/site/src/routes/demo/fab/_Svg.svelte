@@ -15,7 +15,7 @@
 
 <pre class="status">Clicked: {clicked}</pre>
 
-<script>
+<script lang="ts">
   import Fab, { Icon } from '@smui/fab';
   import Svg from '@smui/common/Svg.svelte';
   import { mdiPlus } from '@mdi/js';

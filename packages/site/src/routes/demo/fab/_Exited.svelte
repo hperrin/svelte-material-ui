@@ -28,8 +28,8 @@
 
 <pre class="status">Clicked: {clicked}</pre>
 
-<script>
-  import Fab, { Label, Icon } from '@smui/fab';
+<script lang="ts">
+  import Fab, { Icon } from '@smui/fab';
   import FormField from '@smui/form-field';
   import Checkbox from '@smui/checkbox';
 

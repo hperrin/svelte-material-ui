@@ -30,7 +30,7 @@
 
 <pre class="status">Clicked: {toggleClicked}</pre>
 
-<script>
+<script lang="ts">
   import IconButton, { Icon } from '@smui/icon-button';
   import Button, { Label } from '@smui/button';
 

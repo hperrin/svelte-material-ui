@@ -16,7 +16,7 @@
   <Demo component={Svgs} file="icon-button/_Svgs.svelte">Using SVGs</Demo>
 </section>
 
-<script>
+<script lang="ts">
   import Demo from '../../../components/Demo.svelte';
   import Simple from './_Simple.svelte';
   import Toggle from './_Toggle.svelte';

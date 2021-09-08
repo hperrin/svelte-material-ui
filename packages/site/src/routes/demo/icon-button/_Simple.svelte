@@ -16,7 +16,7 @@
 
 <pre class="status">Clicked: {clicked}</pre>
 
-<script>
+<script lang="ts">
   import IconButton from '@smui/icon-button';
 
   let clicked = 0;
