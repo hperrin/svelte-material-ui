@@ -40,7 +40,8 @@
     width: auto;
     position: static;
   }
-  :global(#sapper, body) {
+  :global(#sapper),
+  :global(body) {
     display: block;
     height: auto;
   }

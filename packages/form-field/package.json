@@ -14,7 +14,7 @@
     "sveltejs"
   ],
   "scripts": {
-    "prepare": "sass --no-source-map -I node_modules _style.scss bare.css",
+    "prepare": "sass --no-source-map -I node_modules -I ../../node_modules _style.scss bare.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "publishConfig": {

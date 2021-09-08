@@ -12,7 +12,7 @@
       <Label>You Can't Make Me</Label>
     </Button>
     <Button
-      default
+      defaultAction
       use={[InitialFocus]}
       on:click={() => (response = 'It will be glorious.')}
     >

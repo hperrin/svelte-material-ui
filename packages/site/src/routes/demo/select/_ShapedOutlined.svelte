@@ -75,7 +75,8 @@
 </script>
 
 <style>
-  * :global(.shaped-outlined, .shaped-outlined .mdc-select__anchor) {
+  * :global(.shaped-outlined),
+  * :global(.shaped-outlined .mdc-select__anchor) {
     border-radius: 28px;
   }
   * :global(.shaped-outlined .mdc-text-field__input) {

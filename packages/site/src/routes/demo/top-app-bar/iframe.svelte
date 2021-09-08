@@ -80,7 +80,9 @@
 
 <style>
   /* Hide everything above this component. */
-  :global(app, body, html) {
+  :global(app),
+  :global(body),
+  :global(html) {
     display: block !important;
     height: auto !important;
     width: auto !important;

@@ -74,8 +74,7 @@
   export let touch = false;
   export let href = null;
   export let action = 'close';
-  let defaultAction = false;
-  export { defaultAction as default };
+  export let defaultAction = false;
   export let secondary = false;
 
   let element;

@@ -75,7 +75,8 @@
 </script>
 
 <style>
-  * :global(.shaped-filled, .shaped-filled .mdc-select__anchor) {
+  * :global(.shaped-filled),
+  * :global(.shaped-filled .mdc-select__anchor) {
     border-radius: 16px 16px 0 0;
   }
 </style>

@@ -175,9 +175,9 @@
       themeLink.rel = 'stylesheet';
       themeLink.id = 'theme';
     }
-    themeLink.href = `smui${lightTheme ? '' : '-dark'}.css`;
+    themeLink.href = `/smui${lightTheme ? '' : '-dark'}.css`;
     document.head
-      .querySelector('link[href="smui-dark.css"]')
+      .querySelector('link[href="/smui-dark.css"]')
       .insertAdjacentElement('afterend', themeLink);
 
     let siteLink = document.head.querySelector('#site');
@@ -186,9 +186,9 @@
       siteLink.rel = 'stylesheet';
       siteLink.id = 'site';
     }
-    siteLink.href = `site${lightTheme ? '' : '-dark'}.css`;
+    siteLink.href = `/site${lightTheme ? '' : '-dark'}.css`;
     document.head
-      .querySelector('link[href="site-dark.css"]')
+      .querySelector('link[href="/site-dark.css"]')
       .insertAdjacentElement('afterend', siteLink);
   }
 

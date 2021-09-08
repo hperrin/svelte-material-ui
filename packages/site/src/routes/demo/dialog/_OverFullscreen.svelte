@@ -21,7 +21,7 @@
     <Button action="reject">
       <Label>Reject</Label>
     </Button>
-    <Button action="accept" default>
+    <Button action="accept" defaultAction>
       <Label>Accept</Label>
     </Button>
   </Actions>

@@ -59,12 +59,12 @@
 </script>
 
 <style>
-  * :global(.mdc-button, .smui-button__group) {
+  * :global(.mdc-button),
+  * :global(.smui-button__group) {
     margin-bottom: 8px;
   }
-  *
-    :global(.smui-button__group > .mdc-button, .smui-button__group-item
-      > .mdc-button) {
+  * :global(.smui-button__group > .mdc-button),
+  * :global(.smui-button__group-item > .mdc-button) {
     margin-bottom: 0;
   }
 </style>
