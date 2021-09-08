@@ -13,7 +13,7 @@ npm install --save-dev smui-theme
 Try these.
 
 ```sh
-npx smui-theme tempalte src/theme
+npx smui-theme template src/theme
 npx smui-theme compile build/smui.css -i src/theme
 npx smui-theme compile build/smui-dark.css -i src/theme/dark
 ```
