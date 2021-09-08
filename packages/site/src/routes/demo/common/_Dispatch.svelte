@@ -17,7 +17,7 @@
   class="status">Caught Event Detail: {event && JSON.stringify(event.detail)}</pre>
 
 <script>
-  import { dispatch } from '@smui/common/internal.js';
+  import { dispatch } from '@smui/common/internal';
   import Button from '@smui/button';
 
   let target;

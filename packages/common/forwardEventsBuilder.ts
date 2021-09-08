@@ -1,3 +1,4 @@
+import type { SvelteComponent } from 'svelte';
 import {
   bubble,
   listen,
@@ -10,16 +11,16 @@ const oldModifierRegex = /^[a-z]+(?::(?:preventDefault|stopPropagation|passive|n
 // Match new modifiers.
 const newModifierRegex = /^[^$]+(?:\$(?:preventDefault|stopPropagation|passive|nonpassive|capture|once|self))+$/;
 
-export function forwardEventsBuilder(component) {
+export function forwardEventsBuilder(component: SvelteComponent) {
   // This is our pseudo $on function. It is defined on component mount.
-  let $on;
+  let $on: (eventType: string, callback: (event: any) => void) => () => void;
   // This is a list of events bound before mount.
-  let events = [];
+  let events: [string, (event: any) => void][] = [];
   // This is the original component $on function.
   const componentOn = component.$on;
 
   // And we override the $on function to forward all bound events.
-  component.$on = (fullEventType, callback) => {
+  component.$on = (fullEventType: string, callback: (event: any) => void) => {
     let eventType = fullEventType;
     let destructor = () => {};
     if ($on) {
@@ -56,14 +57,14 @@ export function forwardEventsBuilder(component) {
     };
   };
 
-  function forward(e) {
+  function forward(e: Event) {
     // Internally bubble the event up from Svelte components.
     bubble(component, e);
   }
 
-  return (node) => {
-    const destructors = [];
-    const forwardDestructors = {};
+  return (node: Element) => {
+    const destructors: (() => void)[] = [];
+    const forwardDestructors: { [k: string]: () => void } = {};
 
     // This function is responsible for listening and forwarding
     // all bound events.
@@ -71,7 +72,7 @@ export function forwardEventsBuilder(component) {
       let eventType = fullEventType;
       let handler = callback;
       // DOM addEventListener options argument.
-      let options = false;
+      let options: boolean | AddEventListenerOptions = false;
       const oldModifierMatch = eventType.match(oldModifierRegex);
       const newModifierMatch = eventType.match(newModifierRegex);
       const modifierMatch = oldModifierMatch || newModifierMatch;
@@ -86,18 +87,35 @@ export function forwardEventsBuilder(component) {
         // - once
         const parts = eventType.split(oldModifierMatch ? ':' : '$');
         eventType = parts[0];
-        options = Object.fromEntries(parts.slice(1).map((mod) => [mod, true]));
-        if (options.nonpassive) {
+        const eventOptions: {
+          passive?: true;
+          nonpassive?: true;
+          capture?: true;
+          once?: true;
+          preventDefault?: true;
+          stopPropagation?: true;
+        } = Object.fromEntries(parts.slice(1).map((mod) => [mod, true]));
+        if (eventOptions.passive) {
+          options = options || ({} as AddEventListenerOptions);
+          options.passive = true;
+        }
+        if (eventOptions.nonpassive) {
+          options = options || ({} as AddEventListenerOptions);
           options.passive = false;
-          delete options.nonpassive;
         }
-        if (options.preventDefault) {
+        if (eventOptions.capture) {
+          options = options || ({} as AddEventListenerOptions);
+          options.capture = true;
+        }
+        if (eventOptions.once) {
+          options = options || ({} as AddEventListenerOptions);
+          options.once = true;
+        }
+        if (eventOptions.preventDefault) {
           handler = prevent_default(handler);
-          delete options.preventDefault;
         }
-        if (options.stopPropagation) {
+        if (eventOptions.stopPropagation) {
           handler = stop_propagation(handler);
-          delete options.stopPropagation;
         }
       }
 
@@ -114,7 +132,7 @@ export function forwardEventsBuilder(component) {
       destructors.push(destructor);
 
       // Forward the event from Svelte.
-      if (!eventType in forwardDestructors) {
+      if (!(eventType in forwardDestructors)) {
         forwardDestructors[eventType] = listen(node, eventType, forward);
       }
 

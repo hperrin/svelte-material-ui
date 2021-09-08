@@ -55,7 +55,7 @@
     prefixFilter,
     useActions,
     dispatch,
-  } from '@smui/common/internal.js';
+  } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());

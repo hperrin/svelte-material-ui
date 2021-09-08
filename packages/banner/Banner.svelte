@@ -78,7 +78,7 @@
     prefixFilter,
     useActions,
     dispatch,
-  } from '@smui/common/internal.js';
+  } from '@smui/common/internal';
   import Fixed from './Fixed.svelte';
   const { FocusTrap } = domFocusTrap;
 

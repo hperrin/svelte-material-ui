@@ -28,7 +28,7 @@
     forwardEventsBuilder,
     classMap,
     dispatch,
-  } from '@smui/common/internal.js';
+  } from '@smui/common/internal';
   import MenuSurface from '@smui/menu-surface/MenuSurface.svelte';
   const { closest } = ponyfill;
 

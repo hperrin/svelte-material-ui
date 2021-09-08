@@ -244,7 +244,7 @@
     exclude,
     prefixFilter,
     useActions,
-  } from '@smui/common/internal.js';
+  } from '@smui/common/internal';
   import ContextFragment from '@smui/common/ContextFragment.svelte';
   import Ripple from '@smui/ripple';
   import FloatingLabel from '@smui/floating-label/FloatingLabel.svelte';

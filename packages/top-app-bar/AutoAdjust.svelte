@@ -13,7 +13,7 @@
 
 <script>
   import { get_current_component } from 'svelte/internal';
-  import { forwardEventsBuilder, classMap } from '@smui/common/internal.js';
+  import { forwardEventsBuilder, classMap } from '@smui/common/internal';
   import Main from '@smui/common/Main.svelte';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());

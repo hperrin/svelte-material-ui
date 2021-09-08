@@ -50,39 +50,41 @@
   <slot />{#if touch}<div class="mdc-button__touch" />{/if}</svelte:component
 >
 
-<script>
+<script lang="ts">
+  import type { SMUIComponent } from '@smui/common';
   import { setContext, getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
     classMap,
     dispatch,
-  } from '@smui/common/internal.js';
+    ActionArray,
+  } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
   import A from '@smui/common/A.svelte';
   import Button from '@smui/common/Button.svelte';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
   export let style = '';
   export let ripple = true;
-  export let color = 'primary';
-  export let variant = 'text';
+  export let color: 'primary' | 'secondary' = 'primary';
+  export let variant: 'text' | 'raised' | 'unelevated' | 'outlined' = 'text';
   export let touch = false;
-  export let href = null;
+  export let href: string | null = null;
   export let action = 'close';
   export let defaultAction = false;
   export let secondary = false;
 
-  let element;
-  let internalClasses = {};
-  let internalStyles = {};
-  let context = getContext('SMUI:button:context');
+  let element: SMUIComponent;
+  let internalClasses: { [k: string]: boolean } = {};
+  let internalStyles: { [k: string]: string } = {};
+  let context: string | undefined = getContext('SMUI:button:context');
 
-  export let component = href == null ? Button : A;
+  export let component: typeof SMUIComponent = href == null ? Button : A;
 
   $: actionProp =
     context === 'dialog:action' && action != null
@@ -98,19 +100,19 @@
   setContext('SMUI:label:context', 'button');
   setContext('SMUI:icon:context', 'button');
 
-  function addClass(className) {
+  function addClass(className: string) {
     if (!internalClasses[className]) {
       internalClasses[className] = true;
     }
   }
 
-  function removeClass(className) {
+  function removeClass(className: string) {
     if (!(className in internalClasses) || internalClasses[className]) {
       internalClasses[className] = false;
     }
   }
 
-  function addStyle(name, value) {
+  function addStyle(name: string, value: string) {
     if (internalStyles[name] != value) {
       if (value === '' || value == null) {
         delete internalStyles[name];
@@ -132,7 +134,7 @@
     }
   }
 
-  export function getElement() {
+  export function getElement(): Element {
     return element.getElement();
   }
 </script>

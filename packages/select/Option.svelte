@@ -11,7 +11,7 @@
   import { onMount, onDestroy } from 'svelte';
   import { getContext, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
-  import { forwardEventsBuilder } from '@smui/common/internal.js';
+  import { forwardEventsBuilder } from '@smui/common/internal';
   import Item from '@smui/list/Item.svelte';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());

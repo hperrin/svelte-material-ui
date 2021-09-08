@@ -58,7 +58,7 @@
 
 <pre class="status">Clicked: {clicked}</pre>
 
-<script>
+<script lang="ts">
   import Button, { Group, GroupItem, Label, Icon } from '@smui/button';
   import Menu from '@smui/menu';
   import List, { Item, Separator, Text } from '@smui/list';

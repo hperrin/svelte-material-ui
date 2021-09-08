@@ -23,7 +23,7 @@
     exclude,
     prefixFilter,
     useActions,
-  } from '@smui/common/internal.js';
+  } from '@smui/common/internal';
   import InnerGrid from './InnerGrid.svelte';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());

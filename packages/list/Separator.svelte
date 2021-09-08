@@ -18,7 +18,7 @@
 <script>
   import { getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
-  import { forwardEventsBuilder, classMap } from '@smui/common/internal.js';
+  import { forwardEventsBuilder, classMap } from '@smui/common/internal';
   import Li from '@smui/common/Li.svelte';
   import Hr from '@smui/common/Hr.svelte';
 

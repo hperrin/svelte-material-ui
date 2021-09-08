@@ -1,11 +1,11 @@
-<slot></slot>
+<slot />
 
-<script>
-  import {onDestroy, setContext} from 'svelte';
-  import {writable} from 'svelte/store';
+<script lang="ts">
+  import { onDestroy, setContext } from 'svelte';
+  import { writable } from 'svelte/store';
 
-  export let key;
-  export let value;
+  export let key: string;
+  export let value: any;
 
   const storeValue = writable(value);
   setContext(key, storeValue);

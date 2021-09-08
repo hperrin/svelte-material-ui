@@ -1,4 +1,4 @@
-import { classAdderBuilder } from '@smui/common/internal.js';
+import { classAdderBuilder } from '@smui/common/internal';
 import Span from '@smui/common/Span.svelte';
 
 export default classAdderBuilder({

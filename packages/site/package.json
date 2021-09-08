@@ -1,7 +1,7 @@
 {
-  "name": "svelte-material-ui-site",
+  "name": "@smui-extra/site",
   "version": "4.2.0",
-  "description": "SMUI Website",
+  "description": "SMUI Website (You're not meant to install this.)",
   "type": "module",
   "scripts": {
     "dev": "svelte-kit dev",
@@ -84,7 +84,10 @@
     "sass": "^1.32.11",
     "smui-theme": "^4.2.0",
     "svelte": "^3.35.0",
+    "svelte-preprocess": "^4.9.2",
     "tinygesture": "^1.1.4",
+    "tslib": "^2.3.1",
+    "typescript": "^4.4.2",
     "vite": "^2.2.3"
   }
 }

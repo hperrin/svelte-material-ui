@@ -18,7 +18,7 @@
 </span>
 
 <script>
-  import { classMap, useActions } from '@smui/common/internal.js';
+  import { classMap, useActions } from '@smui/common/internal';
 
   export let use = [];
   let className = '';

@@ -1,4 +1,4 @@
-import { classAdderBuilder } from '@smui/common/internal.js';
+import { classAdderBuilder } from '@smui/common/internal';
 import A from '@smui/common/A.svelte';
 
 export default classAdderBuilder({

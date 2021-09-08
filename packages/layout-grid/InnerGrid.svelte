@@ -16,7 +16,7 @@
     forwardEventsBuilder,
     classMap,
     useActions,
-  } from '@smui/common/internal.js';
+  } from '@smui/common/internal';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

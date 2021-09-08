@@ -34,7 +34,7 @@
 
 <pre class="status">Clicked: {clicked}</pre>
 
-<script>
+<script lang="ts">
   import Button, { Label, Icon } from '@smui/button';
 
   let clicked = 0;

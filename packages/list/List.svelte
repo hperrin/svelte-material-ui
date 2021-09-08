@@ -51,7 +51,7 @@
     forwardEventsBuilder,
     classMap,
     dispatch,
-  } from '@smui/common/internal.js';
+  } from '@smui/common/internal';
   import Ul from '@smui/common/Ul.svelte';
   import Nav from '@smui/common/Nav.svelte';
   const { closest, matches } = ponyfill;

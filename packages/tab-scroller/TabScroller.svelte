@@ -60,7 +60,7 @@
     exclude,
     prefixFilter,
     useActions,
-  } from '@smui/common/internal.js';
+  } from '@smui/common/internal';
   const { matches } = ponyfill;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());

@@ -21,26 +21,28 @@
   {...$$restProps}><slot /></svelte:component
 >
 
-<script>
+<script type="ts">
+  import type { SMUIComponent } from './SMUIComponent';
   import { getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
-  import { forwardEventsBuilder, classMap, useActions } from './internal.js';
+  import { forwardEventsBuilder, classMap } from './internal';
+  import type { ActionArray } from './useActions';
   import Span from './Span.svelte';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
 
-  let element;
+  let element: SMUIComponent;
 
-  export let component = Span;
+  export let component: typeof SMUIComponent = Span;
 
-  const context = getContext('SMUI:label:context');
-  const tabindex = getContext('SMUI:label:tabindex');
+  const context: string | undefined = getContext('SMUI:label:context');
+  const tabindex: string | undefined = getContext('SMUI:label:tabindex');
 
-  export function getElement() {
+  export function getElement(): ReturnType<typeof element['getElement']> {
     return element.getElement();
   }
 </script>

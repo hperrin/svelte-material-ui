@@ -24,7 +24,7 @@
 </div>
 
 <script>
-  import { classMap } from '@smui/common/internal.js';
+  import { classMap } from '@smui/common/internal';
   import { Label } from '@smui/common';
   import Button from '@smui/button';
   import FormField from '@smui/form-field';

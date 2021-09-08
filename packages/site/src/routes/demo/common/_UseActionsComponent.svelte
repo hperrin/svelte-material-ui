@@ -5,7 +5,7 @@
 </div>
 
 <script>
-  import { useActions } from '@smui/common/internal.js';
+  import { useActions } from '@smui/common/internal';
 
   export let use = [];
 </script>

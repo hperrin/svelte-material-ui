@@ -76,7 +76,7 @@
     prefixFilter,
     useActions,
     dispatch,
-  } from '@smui/common/internal.js';
+  } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
   import A from '@smui/common/A.svelte';
   import Button from '@smui/common/Button.svelte';

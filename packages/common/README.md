@@ -181,7 +181,7 @@ Helper utilities are exported from the `@smui/common/internal` endpoint. They ar
 Use this to build a ClassAdder component. ClassAdder components are useful for reducing the size of your bundle. If you have tons of simple components that just need to add classes/props or set a context, using ClassAdder components means there's only one "big" Svelte component in your bundle for all of these many tiny components.
 
 ```js
-import { classAdderBuilder } from '@smui/common/internal.js';
+import { classAdderBuilder } from '@smui/common/internal';
 import Div from '@smui/common/Div.svelte';
 
 export default classAdderBuilder({
@@ -214,7 +214,7 @@ Build a class string from a map of class names to conditions. This is useful whe
 </SomeComponent>
 
 <script>
-  import { classAdderBuilder } from '@smui/common/internal.js';
+  import { classAdderBuilder } from '@smui/common/internal';
   import SomeComponent from './SomeComponent.svelte';
 
   export let condition = true;
@@ -248,7 +248,7 @@ Dispatch a custom event. This differs from Svelte's component event system, beca
 />
 
 <script>
-  import { dispatch } from '@smui/common/internal.js';
+  import { dispatch } from '@smui/common/internal';
 
   let eventTarget;
 
@@ -293,7 +293,7 @@ Exclude a set of properties from an object. It differs from normal `omit` functi
 </div>
 
 <script>
-  import { exclude, prefixFilter } from '@smui/common/internal.js';
+  import { exclude, prefixFilter } from '@smui/common/internal';
 
   let className = '';
   export { className as class };
@@ -332,7 +332,7 @@ In addition, a component that uses Svelte's built in event forwarding system can
 </div>
 
 <script>
-  import { forwardEventsBuilder } from '@smui/common/internal.js';
+  import { forwardEventsBuilder } from '@smui/common/internal';
   import { get_current_component } from 'svelte/internal';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
@@ -372,7 +372,7 @@ Filter an object for only properties with a certain prefix. It is usually used a
 </div>
 
 <script>
-  import { exclude, prefixFilter } from '@smui/common/internal.js';
+  import { exclude, prefixFilter } from '@smui/common/internal';
 
   let className = '';
   export { className as class };
@@ -407,7 +407,7 @@ An action that takes actions and runs them on the element. Used to allow actions
 </div>
 
 <script>
-  import { useActions } from '@smui/common/internal.js';
+  import { useActions } from '@smui/common/internal';
 
   export let use = [];
 </script>

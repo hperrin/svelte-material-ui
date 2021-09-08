@@ -71,7 +71,7 @@
     prefixFilter,
     useActions,
     dispatch,
-  } from '@smui/common/internal.js';
+  } from '@smui/common/internal';
   const { FocusTrap } = domFocusTrap;
   const { closest, matches } = ponyfill;
 

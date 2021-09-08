@@ -19,7 +19,7 @@
     forwardEventsBuilder,
     classMap,
     dispatch,
-  } from '@smui/common/internal.js';
+  } from '@smui/common/internal';
   import Div from '@smui/common/Div.svelte';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());

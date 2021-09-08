@@ -11,8 +11,11 @@
   {...$$restProps}><slot /></svelte:component
 >
 
-<script context="module">
-  export const internals = {
+<script context="module" lang="ts">
+  import type { SvelteComponent } from 'svelte';
+  import type { ClassAdderInternals } from './index.types';
+
+  export const internals: ClassAdderInternals = {
     component: null,
     class: '',
     // The class map maps classes to contexts. The context
@@ -24,27 +27,28 @@
   };
 </script>
 
-<script>
+<script lang="ts">
   import { onDestroy, getContext, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
-  import { forwardEventsBuilder } from './forwardEventsBuilder.js';
-  import { classMap } from './classMap.js';
+  import { forwardEventsBuilder } from '../forwardEventsBuilder';
+  import { classMap } from '../classMap';
+  import type { ActionArray } from '../useActions';
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
 
-  let element;
+  let element: SvelteComponent;
   const smuiClass = internals.class;
-  const smuiClassMap = {};
-  const smuiClassUnsubscribes = [];
+  const smuiClassMap: { [k: string]: any } = {};
+  const smuiClassUnsubscribes: (() => void)[] = [];
   const contexts = internals.contexts;
   const props = internals.props;
 
   export let component = internals.component;
 
   Object.entries(internals.classMap).forEach(([name, context]) => {
-    const store = getContext(context);
+    const store = getContext(context) as SvelteStore<any>;
 
     if (store && 'subscribe' in store) {
       smuiClassUnsubscribes.push(

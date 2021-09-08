@@ -1,4 +1,4 @@
-import { classAdderBuilder } from '@smui/common/internal.js';
+import { classAdderBuilder } from '@smui/common/internal';
 import Img from '@smui/common/Img.svelte';
 
 export default classAdderBuilder({

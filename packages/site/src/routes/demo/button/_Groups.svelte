@@ -39,7 +39,7 @@
 
 <br /> <br />
 
-<Group variant="outlined" style="display: flex; justify-content: stretch;">
+<Group variant="unelevated" style="display: flex; justify-content: stretch;">
   <Button
     on:click={() => clicked++}
     variant="unelevated"
@@ -68,7 +68,7 @@
 
 <pre class="status">Clicked: {clicked}</pre>
 
-<script>
+<script lang="ts">
   import Button, { Group, Label } from '@smui/button';
 
   let clicked = 0;

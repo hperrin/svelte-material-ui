@@ -30,7 +30,7 @@
     classMap,
     useActions,
     dispatch,
-  } from '@smui/common/internal.js';
+  } from '@smui/common/internal';
   const { FocusTrap } = domFocusTrap;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());

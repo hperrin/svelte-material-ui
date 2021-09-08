@@ -4,8 +4,24 @@ import { getContext } from 'svelte';
 const { applyPassive } = events;
 const { matches } = ponyfill;
 
+export type RippleProps = {
+  ripple?: boolean;
+  surface?: boolean;
+  unbounded?: boolean;
+  disabled?: boolean;
+  color?: 'primary' | 'secondary' | null;
+  /** Whether the ripple is active. Leave null to determine automatically. */
+  active?: boolean | null;
+  eventTarget?: Element | null;
+  activeTarget?: Element | null;
+  addClass?: (className: string) => void;
+  removeClass?: (className: string) => void;
+  addStyle?: (name: string, value: string) => void;
+  initPromise?: Promise<void>;
+};
+
 export default function Ripple(
-  node,
+  node: Element,
   {
     ripple = true,
     surface = false,
@@ -19,11 +35,13 @@ export default function Ripple(
     removeClass = (className) => node.classList.remove(className),
     addStyle = (name, value) => node.style.setProperty(name, value),
     initPromise = Promise.resolve(),
-  } = {}
+  }: RippleProps = {}
 ) {
-  let instance;
-  let addLayoutListener = getContext('SMUI:addLayoutListener');
-  let removeLayoutListener;
+  let instance: MDCRippleFoundation | undefined;
+  let addLayoutListener:
+    | ((callback: () => void) => () => void)
+    | undefined = getContext('SMUI:addLayoutListener');
+  let removeLayoutListener: () => void | undefined;
   let oldActive = active;
   let oldEventTarget = eventTarget;
   let oldActiveTarget = activeTarget;
@@ -59,7 +77,7 @@ export default function Ripple(
         addClass,
         browserSupportsCssVars: () => util.supportsCssVariables(window),
         computeBoundingRect: () => node.getBoundingClientRect(),
-        containsEventTarget: (target) => node.contains(target),
+        containsEventTarget: (target) => node.contains(target as Node),
         deregisterDocumentInteractionHandler: (evtType, handler) =>
           document.documentElement.removeEventListener(
             evtType,
@@ -107,7 +125,7 @@ export default function Ripple(
     } else if (instance && !ripple) {
       initPromise.then(() => {
         instance.destroy();
-        instance = null;
+        instance = undefined;
       });
     }
 
@@ -146,7 +164,7 @@ export default function Ripple(
   }
 
   return {
-    update(props) {
+    update(props: RippleProps) {
       ({
         ripple,
         surface,

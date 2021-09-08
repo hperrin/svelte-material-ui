@@ -230,7 +230,7 @@
     prefixFilter,
     useActions,
     dispatch,
-  } from '@smui/common/internal.js';
+  } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
   import Anchor from '@smui/menu-surface/Anchor.js';
   import Menu from '@smui/menu/Menu.svelte';

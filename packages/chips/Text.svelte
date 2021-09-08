@@ -35,7 +35,7 @@
     classMap,
     useActions,
     dispatch,
-  } from '@smui/common/internal.js';
+  } from '@smui/common/internal';
   import Checkmark from './Checkmark.svelte';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
