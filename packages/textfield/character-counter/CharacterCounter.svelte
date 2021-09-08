@@ -12,7 +12,7 @@
 </div>
 
 <script>
-  import { MDCTextFieldCharacterCounterFoundation } from '@material/textfield/character-counter';
+  import { MDCTextFieldCharacterCounterFoundation } from '@material/textfield/character-counter/foundation.js';
   import { onMount } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {

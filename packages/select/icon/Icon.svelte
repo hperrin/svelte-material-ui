@@ -15,7 +15,7 @@
 >
 
 <script>
-  import { MDCSelectIconFoundation } from '@material/select/icon';
+  import { MDCSelectIconFoundation } from '@material/select/icon/foundation.js';
   import { onMount } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {

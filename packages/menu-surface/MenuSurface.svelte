@@ -33,7 +33,7 @@
 
 <script>
   import { MDCMenuSurfaceFoundation } from '@material/menu-surface';
-  import { getCorrectPropertyName } from '@material/animation/util';
+  import { getCorrectPropertyName } from '@material/animation/util.js';
   import { onMount, onDestroy, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {

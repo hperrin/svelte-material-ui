@@ -17,7 +17,7 @@
 >
 
 <script>
-  import { MDCTextFieldIconFoundation } from '@material/textfield/icon';
+  import { MDCTextFieldIconFoundation } from '@material/textfield/icon/foundation.js';
   import { onMount, getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {
