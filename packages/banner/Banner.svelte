@@ -97,7 +97,7 @@
   export let graphic$class = '';
 
   let element: HTMLDivElement;
-  let instance: MDCBannerFoundation | undefined;
+  let instance: MDCBannerFoundation;
   let internalClasses: { [k: string]: boolean } = {};
   let internalStyles: { [k: string]: string } = {};
   let content: HTMLDivElement;
@@ -120,27 +120,6 @@
     }
   }
 
-  const handlePrimaryActionClick = () => {
-    if (instance) {
-      instance.handlePrimaryActionClick();
-    }
-  };
-  const handleSecondaryActionClick = () => {
-    if (instance) {
-      instance.handleSecondaryActionClick();
-    }
-  };
-  $: if (element) {
-    element.addEventListener(
-      'SMUI:banner:button:primaryActionClick',
-      handlePrimaryActionClick
-    );
-    element.addEventListener(
-      'SMUI:banner:button:secondaryActionClick',
-      handleSecondaryActionClick
-    );
-  }
-
   let previousMobileStacked = mobileStacked;
   $: if (previousMobileStacked !== mobileStacked) {
     previousMobileStacked = mobileStacked;
@@ -152,6 +131,15 @@
   }
 
   onMount(() => {
+    element.addEventListener(
+      'SMUI:banner:button:primaryActionClick',
+      handlePrimaryActionClick
+    );
+    element.addEventListener(
+      'SMUI:banner:button:secondaryActionClick',
+      handleSecondaryActionClick
+    );
+
     focusTrap = new FocusTrap(element, {
       initialFocusEl: getPrimaryActionEl(),
     });
@@ -191,9 +179,16 @@
     layout();
 
     return () => {
-      if (instance) {
-        instance.destroy();
-      }
+      element.removeEventListener(
+        'SMUI:banner:button:primaryActionClick',
+        handlePrimaryActionClick
+      );
+      element.removeEventListener(
+        'SMUI:banner:button:secondaryActionClick',
+        handleSecondaryActionClick
+      );
+
+      instance.destroy();
     };
   });
 
@@ -231,6 +226,14 @@
       element.querySelector<HTMLElement>('.mdc-banner__primary-action') ??
       undefined
     );
+  }
+
+  function handlePrimaryActionClick() {
+    instance.handlePrimaryActionClick();
+  }
+
+  function handleSecondaryActionClick() {
+    instance.handleSecondaryActionClick();
   }
 
   export function isOpen() {

@@ -10,7 +10,7 @@
 
 <pre class="status">Agreed: {agreed ? 'Yes, muahahah.' : 'Not yet.'}</pre>
 
-<script>
+<script lang="ts">
   import FormField from '@smui/form-field';
   import Switch from '@smui/switch';
 

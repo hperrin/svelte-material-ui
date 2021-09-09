@@ -106,7 +106,7 @@
   let nativeControlAttrs: { [k: string]: string | undefined } = {};
   let rippleActive = false;
   let inputProps =
-    getContext<{ id?: string }>('SMUI:generic:input:props') ?? {};
+    getContext<{ id?: string } | undefined>('SMUI:generic:input:props') ?? {};
   let nativeChecked = isUninitializedValue(group)
     ? isUninitializedValue(checked)
       ? false

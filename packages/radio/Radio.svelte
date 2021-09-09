@@ -85,7 +85,7 @@
   let internalStyles: { [k: string]: string } = {};
   let rippleActive = false;
   let inputProps =
-    getContext<{ id?: string }>('SMUI:generic:input:props') || {};
+    getContext<{ id?: string } | undefined>('SMUI:generic:input:props') ?? {};
 
   onMount(() => {
     instance = new MDCRadioFoundation({

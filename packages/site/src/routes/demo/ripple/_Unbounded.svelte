@@ -75,12 +75,12 @@
   </span>
 </p>
 
-<script>
+<script lang="ts">
   import Ripple from '@smui/ripple';
 
-  let rippleClasses = {};
-  let primaryRippleClasses = {};
-  let secondaryRippleClasses = {};
+  let rippleClasses: { [k: string]: boolean } = {};
+  let primaryRippleClasses: { [k: string]: boolean } = {};
+  let secondaryRippleClasses: { [k: string]: boolean } = {};
 </script>
 
 <style>

@@ -16,7 +16,7 @@
 
 <pre class="status">Checked: {checked2}</pre>
 
-<script>
+<script lang="ts">
   import Switch from '@smui/switch';
   import FormField from '@smui/form-field';
 

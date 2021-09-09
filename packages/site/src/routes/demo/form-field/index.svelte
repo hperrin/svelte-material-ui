@@ -18,7 +18,7 @@
   <Demo component={Switch} file="form-field/_Switch.svelte">Switch</Demo>
 </section>
 
-<script>
+<script lang="ts">
   import Demo from '../../../components/Demo.svelte';
   import Checkbox from './_Checkbox.svelte';
   import EndAlignment from './_EndAlignment.svelte';

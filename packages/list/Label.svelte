@@ -28,7 +28,7 @@
 
   let element: HTMLLabelElement;
   let inputProps =
-    getContext<{ id?: string }>('SMUI:generic:input:props') ?? {};
+    getContext<{ id?: string } | undefined>('SMUI:generic:input:props') ?? {};
 
   export function getElement() {
     return element;

@@ -31,7 +31,7 @@
 
 <pre class="status">Selected: {selected.join(', ')}</pre>
 
-<script>
+<script lang="ts">
   import Switch from '@smui/switch';
   import FormField from '@smui/form-field';
   import Button from '@smui/button';

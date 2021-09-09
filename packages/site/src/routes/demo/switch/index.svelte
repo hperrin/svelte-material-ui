@@ -16,7 +16,7 @@
   <Demo component={Group} file="switch/_Group.svelte">Group switch</Demo>
 </section>
 
-<script>
+<script lang="ts">
   import Demo from '../../../components/Demo.svelte';
   import Simple from './_Simple.svelte';
   import PrimaryColor from './_PrimaryColor.svelte';

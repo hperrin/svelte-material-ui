@@ -7,7 +7,7 @@
 
 <pre class="status">Selected: {selected}</pre>
 
-<script>
+<script lang="ts">
   import FormField from '@smui/form-field';
   import Radio from '@smui/radio';
 

@@ -5,7 +5,7 @@
 
 <pre class="status">Checked: {checked}</pre>
 
-<script>
+<script lang="ts">
   import Checkbox from '@smui/checkbox';
   import FormField from '@smui/form-field';
 

@@ -3,7 +3,7 @@
   element. Try clicking it to see the ripple.
 </p>
 
-<script>
+<script lang="ts">
   import Ripple from '@smui/ripple';
 </script>
 

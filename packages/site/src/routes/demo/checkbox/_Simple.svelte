@@ -22,7 +22,7 @@
 
 <pre class="status">Checked: {checked2}</pre>
 
-<script>
+<script lang="ts">
   import Checkbox from '@smui/checkbox';
   import FormField from '@smui/form-field';
   import Button from '@smui/button';

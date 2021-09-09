@@ -2,7 +2,7 @@
   Secondary color.
 </p>
 
-<script>
+<script lang="ts">
   import Ripple from '@smui/ripple';
 </script>
 

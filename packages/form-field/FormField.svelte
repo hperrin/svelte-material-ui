@@ -8,8 +8,6 @@
     'mdc-form-field--align-end': align === 'end',
     'mdc-form-field--nowrap': noWrap,
   })}
-  on:SMUI:generic:input:mount={(event) => (input = event.detail)}
-  on:SMUI:generic:input:unmount={() => (input = undefined)}
   {...exclude($$restProps, ['label$'])}
 >
   <slot />
@@ -25,7 +23,8 @@
   let counter = 0;
 </script>
 
-<script>
+<script lang="ts">
+  import type { SMUIGenericInputAccessor } from '@smui/common';
   import { MDCFormFieldFoundation } from '@material/form-field';
   import { onMount, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
@@ -35,26 +34,31 @@
     exclude,
     prefixFilter,
     useActions,
+    ActionArray,
+    SMUIEvent,
   } from '@smui/common/internal';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
-  export let align = 'start';
+  export let align: 'start' | 'end' = 'start';
   export let noWrap = false;
   export let inputId = 'SMUI-form-field-' + counter++;
-  export let label$use = [];
+  export let label$use: ActionArray = [];
 
-  let element;
-  let instance;
-  let label;
-  let input;
+  let element: HTMLDivElement;
+  let instance: MDCFormFieldFoundation;
+  let label: HTMLLabelElement;
+  let input: SMUIGenericInputAccessor | undefined;
 
   setContext('SMUI:generic:input:props', { id: inputId });
 
   onMount(() => {
+    element.addEventListener('SMUI:generic:input:mount', handleInputMount);
+    element.addEventListener('SMUI:generic:input:unmount', handleInputUnmount);
+
     instance = new MDCFormFieldFoundation({
       activateInputRipple: () => {
         if (input) {
@@ -77,9 +81,25 @@
     instance.init();
 
     return () => {
+      element.removeEventListener('SMUI:generic:input:mount', handleInputMount);
+      element.removeEventListener(
+        'SMUI:generic:input:unmount',
+        handleInputUnmount
+      );
+
       instance.destroy();
     };
   });
+
+  function handleInputMount(e: SMUIEvent<SMUIGenericInputAccessor>) {
+    if (e.detail) {
+      input = e.detail;
+    }
+  }
+
+  function handleInputUnmount() {
+    input = undefined;
+  }
 
   export function getElement() {
     return element;
