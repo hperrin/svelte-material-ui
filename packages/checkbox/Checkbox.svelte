@@ -38,9 +38,9 @@
     type="checkbox"
     {...inputProps}
     {disabled}
-    value={valueKey === uninitializedValue ? value : valueKey}
+    value={isUninitializedValue(valueKey) ? value : valueKey}
     bind:checked={nativeChecked}
-    data-indeterminate={indeterminate !== uninitializedValue && indeterminate
+    data-indeterminate={!isUninitializedValue(indeterminate) && indeterminate
       ? 'true'
       : null}
     on:blur
@@ -61,7 +61,8 @@
   <div class="mdc-checkbox__ripple" />
 </div>
 
-<script>
+<script lang="ts">
+  import type { SMUICheckboxInputAccessor } from '@smui/common';
   import { MDCCheckboxFoundation } from '@material/checkbox';
   import { onMount, getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
@@ -72,45 +73,52 @@
     prefixFilter,
     useActions,
     dispatch,
+    ActionArray,
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
-  let uninitializedValue = () => {};
+  interface UninitializedValue extends Function {}
+  let uninitializedValue: UninitializedValue = () => {};
+  function isUninitializedValue(value: any): value is UninitializedValue {
+    return value === uninitializedValue;
+  }
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
   export let style = '';
   export let disabled = false;
   export let touch = false;
-  export let indeterminate = uninitializedValue;
-  export let group = uninitializedValue;
-  export let checked = uninitializedValue;
-  export let value = null;
-  export let valueKey = uninitializedValue;
-  export let input$use = [];
+  export let indeterminate: UninitializedValue | boolean = uninitializedValue;
+  export let group: UninitializedValue | any[] = uninitializedValue;
+  export let checked: UninitializedValue | boolean = uninitializedValue;
+  export let value: any = null;
+  export let valueKey: UninitializedValue | string = uninitializedValue;
+  export let input$use: ActionArray = [];
   export let input$class = '';
 
-  let element;
-  let instance;
-  let checkbox;
-  let internalClasses = {};
-  let internalStyles = {};
-  let nativeControlAttrs = {};
+  let element: HTMLDivElement;
+  let instance: MDCCheckboxFoundation;
+  let checkbox: HTMLInputElement;
+  let internalClasses: { [k: string]: boolean } = {};
+  let internalStyles: { [k: string]: string } = {};
+  let nativeControlAttrs: { [k: string]: string | undefined } = {};
   let rippleActive = false;
-  let inputProps = getContext('SMUI:generic:input:props') || {};
-  let nativeChecked =
-    group === uninitializedValue
-      ? checked === uninitializedValue
-        ? false
-        : checked
-      : group.indexOf(value) !== -1;
-  let context = getContext('SMUI:checkbox:context');
-  let dataTableHeader = getContext('SMUI:data-table:row:header');
+  let inputProps =
+    getContext<{ id?: string }>('SMUI:generic:input:props') ?? {};
+  let nativeChecked = isUninitializedValue(group)
+    ? isUninitializedValue(checked)
+      ? false
+      : checked
+    : group.indexOf(value) !== -1;
+  let context = getContext<string | undefined>('SMUI:checkbox:context');
+  let dataTableHeader = getContext<boolean | undefined>(
+    'SMUI:data-table:row:header'
+  );
 
   let previousChecked = checked;
-  let previousGroup = group === uninitializedValue ? [] : [...group];
+  let previousGroup = isUninitializedValue(group) ? [] : [...group];
   let previousNativeChecked = nativeChecked;
   $: {
     // This is a substitute for an on:change listener that is
@@ -121,7 +129,7 @@
     let callHandleChange = false;
 
     // First check for group state.
-    if (group !== uninitializedValue) {
+    if (!isUninitializedValue(group)) {
       if (previousNativeChecked !== nativeChecked) {
         // The change needs to flow up.
         const idx = group.indexOf(value);
@@ -151,7 +159,7 @@
     }
 
     // Now check individual state.
-    if (checked === uninitializedValue) {
+    if (isUninitializedValue(checked)) {
       if (previousNativeChecked !== nativeChecked) {
         // The checkbox was clicked by the user.
         callHandleChange = true;
@@ -171,7 +179,7 @@
 
     if (checkbox) {
       // Sync indeterminate state with the native input.
-      if (indeterminate === uninitializedValue) {
+      if (isUninitializedValue(indeterminate)) {
         if (checkbox.indeterminate) {
           // I don't think this can happen, but just in case.
           checkbox.indeterminate = false;
@@ -189,7 +197,7 @@
     }
 
     previousChecked = checked;
-    previousGroup = group === uninitializedValue ? [] : [...group];
+    previousGroup = isUninitializedValue(group) ? [] : [...group];
     previousNativeChecked = nativeChecked;
     if (callHandleChange && instance) {
       instance.handleChange();
@@ -204,14 +212,14 @@
       isAttachedToDOM: () => Boolean(element.parentNode),
       isChecked: () => nativeChecked,
       isIndeterminate: () =>
-        indeterminate === uninitializedValue ? false : indeterminate,
+        isUninitializedValue(indeterminate) ? false : indeterminate,
       removeClass,
       removeNativeControlAttr,
       setNativeControlAttr: addNativeControlAttr,
       setNativeControlDisabled: (value) => (disabled = value),
     });
 
-    const accessor = {
+    const accessor: SMUICheckboxInputAccessor = {
       _smui_checkbox_accessor: true,
       get element() {
         return getElement();
@@ -225,7 +233,7 @@
         }
       },
       get indeterminate() {
-        return indeterminate === uninitializedValue ? false : indeterminate;
+        return isUninitializedValue(indeterminate) ? false : indeterminate;
       },
       set indeterminate(value) {
         indeterminate = value;
@@ -253,19 +261,19 @@
     };
   });
 
-  function addClass(className) {
+  function addClass(className: string) {
     if (!internalClasses[className]) {
       internalClasses[className] = true;
     }
   }
 
-  function removeClass(className) {
+  function removeClass(className: string) {
     if (!(className in internalClasses) || internalClasses[className]) {
       internalClasses[className] = false;
     }
   }
 
-  function addStyle(name, value) {
+  function addStyle(name: string, value: string) {
     if (internalStyles[name] != value) {
       if (value === '' || value == null) {
         delete internalStyles[name];
@@ -276,13 +284,13 @@
     }
   }
 
-  function addNativeControlAttr(name, value) {
+  function addNativeControlAttr(name: string, value: string) {
     if (nativeControlAttrs[name] !== value) {
       nativeControlAttrs[name] = value;
     }
   }
 
-  function removeNativeControlAttr(name) {
+  function removeNativeControlAttr(name: string) {
     if (!(name in nativeControlAttrs) || nativeControlAttrs[name] != null) {
       nativeControlAttrs[name] = undefined;
     }

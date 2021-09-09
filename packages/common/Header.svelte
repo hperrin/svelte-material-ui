@@ -16,7 +16,7 @@
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  let element: HTMLElement = null;
+  let element: HTMLElement;
 
   export function getElement() {
     return element;

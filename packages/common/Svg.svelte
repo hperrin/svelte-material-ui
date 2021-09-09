@@ -11,7 +11,7 @@
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  let element: SVGSVGElement = null;
+  let element: SVGSVGElement;
 
   export function getElement() {
     return element;

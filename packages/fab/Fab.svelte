@@ -62,7 +62,7 @@
   export let exited = false;
   export let extended = false;
   export let touch = false;
-  export let href: string | null | undefined = null;
+  export let href: string | undefined = undefined;
 
   let element: SMUIComponent;
   let internalClasses: { [k: string]: boolean } = {};

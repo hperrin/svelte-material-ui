@@ -11,7 +11,7 @@
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  let element: HTMLHeadingElement = null;
+  let element: HTMLHeadingElement;
 
   export function getElement() {
     return element;

@@ -36,7 +36,7 @@
 
   export let component: typeof SvelteComponent = I;
 
-  const context = getContext('SMUI:icon:context');
+  const context = getContext<string | undefined>('SMUI:icon:context');
 
   export function getElement(): ReturnType<
     InstanceType<typeof component>['getElement']

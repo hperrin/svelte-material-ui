@@ -35,7 +35,7 @@
 
 <pre class="status">Selected: {selected.join(', ')}</pre>
 
-<script>
+<script lang="ts">
   import List, { Item, Meta, Label } from '@smui/list';
   import Checkbox from '@smui/checkbox';
 

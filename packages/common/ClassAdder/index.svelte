@@ -12,15 +12,13 @@
 >
 
 <script context="module" lang="ts">
-  import type { SvelteComponent } from 'svelte';
+  import type { SMUIComponent } from '../SMUIComponent.d';
   import type { ClassAdderInternals } from './index.types';
+  import Div from '../Div.svelte';
 
   export const internals: ClassAdderInternals = {
-    component: null,
+    component: Div,
     class: '',
-    // The class map maps classes to contexts. The context
-    // should resolve to a Svelte store, and the class
-    // will be added if the Svelte store's value is true.
     classMap: {},
     contexts: {},
     props: {},
@@ -38,7 +36,7 @@
   let className = '';
   export { className as class };
 
-  let element: SvelteComponent;
+  let element: SMUIComponent;
   const smuiClass = internals.class;
   const smuiClassMap: { [k: string]: any } = {};
   const smuiClassUnsubscribes: (() => void)[] = [];

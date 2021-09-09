@@ -76,7 +76,10 @@
     dispatch,
     ActionArray,
   } from '@smui/common/internal';
+  import type { AddLayoutListener, RemoveLayoutListener } from '@smui/common';
+
   import Fixed from './Fixed.svelte';
+
   const { FocusTrap } = domFocusTrap;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
@@ -99,10 +102,10 @@
   let internalStyles: { [k: string]: string } = {};
   let content: HTMLDivElement;
   let focusTrap: domFocusTrap.FocusTrap | undefined;
-  let addLayoutListener:
-    | ((callback: () => void) => () => void)
-    | undefined = getContext('SMUI:addLayoutListener');
-  let removeLayoutListener: () => void | undefined;
+  let addLayoutListener: AddLayoutListener | undefined = getContext(
+    'SMUI:addLayoutListener'
+  );
+  let removeLayoutListener: RemoveLayoutListener | undefined;
   let width: number | undefined = undefined;
 
   setContext('SMUI:label:context', 'banner');
@@ -178,17 +181,19 @@
       notifyOpening: () => {
         dispatch(getElement(), 'MDCBanner:opening', {});
       },
-      releaseFocus: () => focusTrap.releaseFocus(),
+      releaseFocus: () => focusTrap && focusTrap.releaseFocus(),
       removeClass,
       setStyleProperty: addStyle,
-      trapFocus: () => focusTrap.trapFocus(),
+      trapFocus: () => focusTrap && focusTrap.trapFocus(),
     });
 
     instance.init();
     layout();
 
     return () => {
-      instance.destroy();
+      if (instance) {
+        instance.destroy();
+      }
     };
   });
 
@@ -222,7 +227,10 @@
   }
 
   function getPrimaryActionEl(): HTMLElement | undefined {
-    return element.querySelector('.mdc-banner__primary-action') ?? undefined;
+    return (
+      element.querySelector<HTMLElement>('.mdc-banner__primary-action') ??
+      undefined
+    );
   }
 
   export function isOpen() {
@@ -242,7 +250,9 @@
         element.classList.remove('smui-banner--force-show');
       }
     }
-    instance.layout();
+    if (instance) {
+      instance.layout();
+    }
   }
 
   export function getElement() {

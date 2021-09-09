@@ -42,7 +42,12 @@
   <slot />
 </svelte:component>
 
-<script>
+<script lang="ts">
+  import type {
+    AddLayoutListener,
+    RemoveLayoutListener,
+    SMUIComponent,
+  } from '@smui/common';
   import { MDCListFoundation } from '@material/list';
   import { ponyfill } from '@material/dom';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
@@ -51,14 +56,20 @@
     forwardEventsBuilder,
     classMap,
     dispatch,
+    ActionArray,
+    SMUIEvent,
   } from '@smui/common/internal';
   import Ul from '@smui/common/Ul.svelte';
   import Nav from '@smui/common/Nav.svelte';
+
+  import type { SMUIListAccessor } from './List.types';
+  import type { SMUIListItemAccessor } from './Item.types';
+
   const { closest, matches } = ponyfill;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
   export let nonInteractive = false;
@@ -72,40 +83,29 @@
   export let twoLine = false;
   export let threeLine = false;
   export let vertical = true;
-  export let wrapFocus = getContext('SMUI:list:wrapFocus') || false;
+  export let wrapFocus: boolean =
+    getContext<boolean | undefined>('SMUI:list:wrapFocus') ?? false;
   export let singleSelection = false;
   export let selectedIndex = -1;
   export let radioList = false;
   export let checkList = false;
   export let hasTypeahead = false;
 
-  /**
-   * @deprecated
-   */
-  export let radiolist = false;
-  if (radiolist) {
-    radioList = true;
-  }
+  let element: SMUIComponent;
+  let instance: MDCListFoundation;
+  let items: SMUIListItemAccessor[] = [];
+  let role = getContext<string | undefined>('SMUI:list:role');
+  let nav = getContext<boolean | undefined>('SMUI:list:nav');
+  const itemAccessorMap = new WeakMap<Element, SMUIListItemAccessor>();
+  let selectionDialog = getContext<boolean | undefined>(
+    'SMUI:dialog:selection'
+  );
+  let addLayoutListener = getContext<AddLayoutListener | undefined>(
+    'SMUI:addLayoutListener'
+  );
+  let removeLayoutListener: RemoveLayoutListener | undefined;
 
-  /**
-   * @deprecated
-   */
-  export let checklist = false;
-  if (checklist) {
-    checkList = true;
-  }
-
-  let element;
-  let instance;
-  let items = [];
-  let role = getContext('SMUI:list:role');
-  let nav = getContext('SMUI:list:nav');
-  const itemAccessorMap = new WeakMap();
-  let selectionDialog = getContext('SMUI:dialog:selection');
-  let addLayoutListener = getContext('SMUI:addLayoutListener');
-  let removeLayoutListener;
-
-  export let component = nav ? Nav : Ul;
+  export let component: typeof SMUIComponent = nav ? Nav : Ul;
 
   setContext('SMUI:list:nonInteractive', nonInteractive);
   setContext('SMUI:separator:context', 'list');
@@ -155,18 +155,21 @@
       addClassForElementIndex,
       focusItemAtIndex,
       getAttributeForElementIndex: (index, name) =>
-        getOrderedList()[index].getAttr(name),
+        getOrderedList()[index]?.getAttr(name) ?? null,
       getFocusedElementIndex: () =>
-        getOrderedList()
-          .map((accessor) => accessor.element)
-          .indexOf(document.activeElement),
+        document.activeElement
+          ? getOrderedList()
+              .map((accessor) => accessor.element)
+              .indexOf(document.activeElement)
+          : -1,
       getListItemCount: () => items.length,
       getPrimaryTextAtIndex,
-      hasCheckboxAtIndex: (index) => getOrderedList()[index].hasCheckbox,
-      hasRadioAtIndex: (index) => getOrderedList()[index].hasRadio,
+      hasCheckboxAtIndex: (index) =>
+        getOrderedList()[index]?.hasCheckbox ?? false,
+      hasRadioAtIndex: (index) => getOrderedList()[index]?.hasRadio ?? false,
       isCheckboxCheckedAtIndex: (index) => {
         const listItem = getOrderedList()[index];
-        return listItem.hasCheckbox && listItem.checked;
+        return (listItem?.hasCheckbox && listItem.checked) ?? false;
       },
       isFocusInsideList: () =>
         getElement() !== document.activeElement &&
@@ -187,14 +190,14 @@
         const selector = 'button:not(:disabled), a';
         Array.prototype.forEach.call(
           listItem.element.querySelectorAll(selector),
-          (el) => {
+          (el: HTMLButtonElement | HTMLAnchorElement) => {
             el.setAttribute('tabindex', tabIndexValue);
           }
         );
       },
     });
 
-    dispatch(element, 'SMUI:list:mount', {
+    const accessor: SMUIListAccessor = {
       get element() {
         return getElement();
       },
@@ -204,7 +207,7 @@
       get typeaheadInProgress() {
         return instance.isTypeaheadInProgress();
       },
-      typeaheadMatchItem(nextChar, startingIndex) {
+      typeaheadMatchItem(nextChar: string, startingIndex?: number) {
         return instance.typeaheadMatchItem(
           nextChar,
           startingIndex,
@@ -219,7 +222,9 @@
       setAttributeForElementIndex,
       removeAttributeForElementIndex,
       getPrimaryTextAtIndex,
-    });
+    };
+
+    dispatch(element, 'SMUI:list:mount', accessor);
 
     instance.init();
 
@@ -234,31 +239,35 @@
     }
   });
 
-  function handleItemMount(event) {
-    items.push(event.detail);
-    itemAccessorMap.set(event.detail.element, event.detail);
-    if (singleSelection && event.detail.selected) {
-      selectedIndex = getListItemIndex(event.detail.element);
+  function handleItemMount(event: SMUIEvent<SMUIListItemAccessor>) {
+    if (event.detail) {
+      items.push(event.detail);
+      itemAccessorMap.set(event.detail.element, event.detail);
+      if (singleSelection && event.detail.selected) {
+        selectedIndex = getListItemIndex(event.detail.element);
+      }
     }
     event.stopPropagation();
   }
 
-  function handleItemUnmount(event) {
-    const idx = items.indexOf(event.detail);
+  function handleItemUnmount(event: SMUIEvent<SMUIListItemAccessor>) {
+    const idx = (event.detail && items.indexOf(event.detail)) ?? -1;
     if (idx !== -1) {
       items.splice(idx, 1);
       items = items;
+      if (event.detail?.element) {
+        itemAccessorMap.delete(event.detail?.element);
+      }
     }
-    itemAccessorMap.delete(event.detail.element);
     event.stopPropagation();
   }
 
-  function handleAction(event) {
+  function handleAction(event: Event) {
     if (radioList || checkList) {
-      const index = getListItemIndex(event.target);
+      const index = getListItemIndex(event.target as Element);
       if (index !== -1) {
         const item = getOrderedList()[index];
-        if ((radioList && !item.checked) || checkList) {
+        if (item && ((radioList && !item.checked) || checkList)) {
           item.checked = !item.checked;
           item.activateRipple();
           window.requestAnimationFrame(() => {
@@ -272,25 +281,29 @@
   function getOrderedList() {
     return [...getElement().children]
       .map((element) => itemAccessorMap.get(element))
-      .filter((accessor) => accessor && accessor._smui_list_item_accessor);
+      .filter(
+        (accessor) => accessor && accessor._smui_list_item_accessor
+      ) as SMUIListItemAccessor[];
   }
 
-  function focusItemAtIndex(index) {
+  function focusItemAtIndex(index: number) {
     const accessor = getOrderedList()[index];
-    accessor && accessor.element.focus();
+    accessor &&
+      'focus' in accessor.element &&
+      (accessor.element as HTMLInputElement).focus();
   }
 
-  function listItemAtIndexHasClass(index, className) {
+  function listItemAtIndexHasClass(index: number, className: string) {
     const accessor = getOrderedList()[index];
-    return accessor && accessor.hasClass(className);
+    return (accessor && accessor.hasClass(className)) ?? false;
   }
 
-  function addClassForElementIndex(index, className) {
+  function addClassForElementIndex(index: number, className: string) {
     const accessor = getOrderedList()[index];
     accessor && accessor.addClass(className);
   }
 
-  function removeClassForElementIndex(index, className) {
+  function removeClassForElementIndex(index: number, className: string) {
     const accessor = getOrderedList()[index];
     accessor && accessor.removeClass(className);
   }
@@ -300,22 +313,26 @@
   //   accessor && accessor.getAttr(name, value);
   // }
 
-  function setAttributeForElementIndex(index, name, value) {
+  function setAttributeForElementIndex(
+    index: number,
+    name: string,
+    value: string
+  ) {
     const accessor = getOrderedList()[index];
     accessor && accessor.addAttr(name, value);
   }
 
-  function removeAttributeForElementIndex(index, name) {
+  function removeAttributeForElementIndex(index: number, name: string) {
     const accessor = getOrderedList()[index];
     accessor && accessor.removeAttr(name);
   }
 
-  function getPrimaryTextAtIndex(index) {
+  function getPrimaryTextAtIndex(index: number) {
     const accessor = getOrderedList()[index];
-    return accessor && accessor.getPrimaryText();
+    return (accessor && accessor.getPrimaryText()) ?? '';
   }
 
-  function getListItemIndex(element) {
+  function getListItemIndex(element: Element) {
     const nearestParent = closest(
       element,
       '.mdc-deprecated-list-item, .mdc-deprecated-list'
@@ -324,7 +341,7 @@
     // Get the index of the element if it is a list item.
     if (nearestParent && matches(nearestParent, '.mdc-deprecated-list-item')) {
       return getOrderedList()
-        .map((item) => item.element)
+        .map((item) => item?.element)
         .indexOf(nearestParent);
     }
     return -1;
@@ -334,8 +351,8 @@
     return instance.layout();
   }
 
-  export function setEnabled(...args) {
-    return instance.setEnabled(...args);
+  export function setEnabled(itemIndex: number, isEnabled: boolean) {
+    return instance.setEnabled(itemIndex, isEnabled);
   }
 
   export function getTypeaheadInProgress() {

@@ -14,7 +14,7 @@
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  let element: HTMLSpanElement = null;
+  let element: HTMLSpanElement;
 
   export function getElement() {
     return element;

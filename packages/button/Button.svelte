@@ -74,7 +74,7 @@
   export let color: 'primary' | 'secondary' = 'primary';
   export let variant: 'text' | 'raised' | 'unelevated' | 'outlined' = 'text';
   export let touch = false;
-  export let href: string | null | undefined = null;
+  export let href: string | undefined = undefined;
   export let action = 'close';
   export let defaultAction = false;
   export let secondary = false;
@@ -82,7 +82,7 @@
   let element: SMUIComponent;
   let internalClasses: { [k: string]: boolean } = {};
   let internalStyles: { [k: string]: string } = {};
-  let context: string | undefined = getContext('SMUI:button:context');
+  let context = getContext<string | undefined>('SMUI:button:context');
 
   export let component: typeof SMUIComponent = href == null ? Button : A;
 

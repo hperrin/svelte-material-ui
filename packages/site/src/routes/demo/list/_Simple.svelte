@@ -10,7 +10,7 @@
 
 <pre class="status">Clicked: {clicked}</pre>
 
-<script>
+<script lang="ts">
   import List, { Item, Separator, Text } from '@smui/list';
 
   let clicked = 'nothing yet';

@@ -19,7 +19,7 @@
   </List>
 </div>
 
-<script>
+<script lang="ts">
   import List, { Item, Text, PrimaryText, SecondaryText } from '@smui/list';
 </script>
 

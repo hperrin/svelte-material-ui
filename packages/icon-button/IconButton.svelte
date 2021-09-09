@@ -20,7 +20,7 @@
   class={classMap({
     [className]: true,
     'mdc-icon-button': true,
-    'mdc-icon-button--on': pressed !== uninitializedValue && pressed,
+    'mdc-icon-button--on': !isUninitializedValue(pressed) && pressed,
     'mdc-card__action': context === 'card:action',
     'mdc-card__action--icon': context === 'card:action',
     'mdc-top-app-bar__navigation-icon': context === 'top-app-bar:navigation',
@@ -36,7 +36,7 @@
     .map(([name, value]) => `${name}: ${value};`)
     .concat([style])
     .join(' ')}
-  aria-pressed={pressed !== uninitializedValue
+  aria-pressed={!isUninitializedValue(pressed)
     ? pressed
       ? 'true'
       : 'false'
@@ -74,20 +74,23 @@
   import Button from '@smui/common/Button.svelte';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
-  interface UninitializedValue {}
+  interface UninitializedValue extends Function {}
   let uninitializedValue: UninitializedValue = () => {};
+  function isUninitializedValue(value: any): value is UninitializedValue {
+    return value === uninitializedValue;
+  }
 
   export let use: ActionArray = [];
   let className = '';
   export { className as class };
   export let style = '';
   export let ripple = true;
-  export let color: 'primary' | 'secondary' | null = null;
+  export let color: 'primary' | 'secondary' | undefined = undefined;
   export let toggle = false;
   export let pressed: UninitializedValue | boolean = uninitializedValue;
-  export let ariaLabelOn: string | null | undefined = null;
-  export let ariaLabelOff: string | null | undefined = null;
-  export let href: string | null | undefined = null;
+  export let ariaLabelOn: string | undefined = undefined;
+  export let ariaLabelOff: string | undefined = undefined;
+  export let href: string | undefined = undefined;
   export let action:
     | 'close'
     | 'first-page'
@@ -95,18 +98,17 @@
     | 'next-page'
     | 'last-page'
     | string
-    | null
-    | undefined = null;
+    | undefined = undefined;
 
   let element: SMUIComponent;
-  let instance: MDCIconButtonToggleFoundation;
+  let instance: MDCIconButtonToggleFoundation | undefined;
   let internalClasses: { [k: string]: boolean } = {};
   let internalStyles: { [k: string]: string } = {};
-  let internalAttrs: { [k: string]: string } = {};
+  let internalAttrs: { [k: string]: string | undefined } = {};
   let context = getContext('SMUI:icon-button:context');
   let ariaDescribedby = getContext('SMUI:icon-button:aria-describedby');
 
-  export let component = href == null ? Button : A;
+  export let component: typeof SMUIComponent = href == null ? Button : A;
 
   $: actionProp = (() => {
     if (context === 'data-table:pagination') {
@@ -148,7 +150,7 @@
       instance.init();
     } else if (!toggle && instance) {
       instance.destroy();
-      instance = null;
+      instance = undefined;
       internalClasses = {};
       internalAttrs = {};
     }
@@ -157,10 +159,10 @@
 
   $: if (
     instance &&
-    pressed !== uninitializedValue &&
+    !isUninitializedValue(pressed) &&
     instance.isOn() !== pressed
   ) {
-    instance.toggle(!!pressed);
+    instance.toggle(pressed);
   }
 
   onDestroy(() => {
@@ -198,7 +200,7 @@
 
   function getAttr(name: string) {
     return name in internalAttrs
-      ? internalAttrs[name]
+      ? internalAttrs[name] ?? null
       : getElement().getAttribute(name);
   }
 

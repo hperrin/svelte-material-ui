@@ -16,7 +16,7 @@
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  let element: HTMLAnchorElement = null;
+  let element: HTMLAnchorElement;
 
   export function getElement() {
     return element;

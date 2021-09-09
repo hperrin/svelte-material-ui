@@ -11,7 +11,7 @@
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  let element: HTMLUListElement = null;
+  let element: HTMLUListElement;
 
   export function getElement() {
     return element;

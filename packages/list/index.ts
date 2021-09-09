@@ -1,14 +1,16 @@
 import List from './List.svelte';
+export * from './List.types';
 
 import Item from './Item.svelte';
-import Text from './Text.js';
-import PrimaryText from './PrimaryText.js';
-import SecondaryText from './SecondaryText.js';
+export * from './Item.types';
+import Text from './Text';
+import PrimaryText from './PrimaryText';
+import SecondaryText from './SecondaryText';
 import Graphic from './Graphic.svelte';
-import Meta from './Meta.js';
+import Meta from './Meta';
 import Label from './Label.svelte';
-import Group from './Group.js';
-import Subheader from './Subheader.js';
+import Group from './Group';
+import Subheader from './Subheader';
 import Separator from './Separator.svelte';
 
 export default List;

@@ -1,15 +1,18 @@
-export type SmuiEvent = Event & {
-  detail: { [k: string]: any };
-};
+export interface SMUIEventDetail {}
 
-export function dispatch(
+export interface SMUIEvent<T extends SMUIEventDetail = SMUIEventDetail>
+  extends Event {
+  detail?: T;
+}
+
+export function dispatch<T extends SMUIEventDetail = SMUIEventDetail>(
   element: Element | { getElement: () => Element },
   eventType: string,
-  detail: { [k: string]: any } = {},
+  detail?: T,
   eventInit: EventInit = { bubbles: true }
 ) {
   if (typeof Event !== 'undefined' && element) {
-    const event: SmuiEvent = new Event(eventType, eventInit) as SmuiEvent;
+    const event: SMUIEvent<T> = new Event(eventType, eventInit) as SMUIEvent<T>;
     event.detail = detail;
     const el = 'getElement' in element ? element.getElement() : element;
     el.dispatchEvent(event);

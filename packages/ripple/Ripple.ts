@@ -1,6 +1,7 @@
 import { MDCRippleFoundation, util } from '@material/ripple';
 import { events, ponyfill } from '@material/dom';
 import { getContext } from 'svelte';
+import type { AddLayoutListener, RemoveLayoutListener } from '@smui/common';
 const { applyPassive } = events;
 const { matches } = ponyfill;
 
@@ -9,11 +10,11 @@ export type RippleProps = {
   surface?: boolean;
   unbounded?: boolean;
   disabled?: boolean;
-  color?: 'primary' | 'secondary' | null;
+  color?: 'primary' | 'secondary';
   /** Whether the ripple is active. Leave null to determine automatically. */
-  active?: boolean | null;
-  eventTarget?: Element | null;
-  activeTarget?: Element | null;
+  active?: boolean;
+  eventTarget?: HTMLElement;
+  activeTarget?: HTMLElement;
   addClass?: (className: string) => void;
   removeClass?: (className: string) => void;
   addStyle?: (name: string, value: string) => void;
@@ -27,10 +28,10 @@ export default function Ripple(
     surface = false,
     unbounded = false,
     disabled = false,
-    color = null,
-    active = null,
-    eventTarget = null,
-    activeTarget = null,
+    color,
+    active,
+    eventTarget,
+    activeTarget,
     addClass = (className) => node.classList.add(className),
     removeClass = (className) => node.classList.remove(className),
     addStyle = (name, value) => node.style.setProperty(name, value),
@@ -38,10 +39,10 @@ export default function Ripple(
   }: RippleProps = {}
 ) {
   let instance: MDCRippleFoundation | undefined;
-  let addLayoutListener:
-    | ((callback: () => void) => () => void)
-    | undefined = getContext('SMUI:addLayoutListener');
-  let removeLayoutListener: () => void | undefined;
+  let addLayoutListener = getContext<AddLayoutListener | undefined>(
+    'SMUI:addLayoutListener'
+  );
+  let removeLayoutListener: RemoveLayoutListener | undefined;
   let oldActive = active;
   let oldEventTarget = eventTarget;
   let oldActiveTarget = activeTarget;
@@ -187,10 +188,10 @@ export default function Ripple(
         surface: false,
         unbounded: false,
         disabled: false,
-        color: null,
-        active: null,
-        eventTarget: null,
-        activeTarget: null,
+        color: undefined,
+        active: undefined,
+        eventTarget: undefined,
+        activeTarget: undefined,
         addClass: (className) => node.classList.add(className),
         removeClass: (className) => node.classList.remove(className),
         addStyle: (name, value) => node.style.setProperty(name, value),
@@ -203,7 +204,7 @@ export default function Ripple(
     destroy() {
       if (instance) {
         instance.destroy();
-        instance = null;
+        instance = undefined;
         removeClass('mdc-ripple-surface');
         removeClass('smui-ripple-surface--primary');
         removeClass('smui-ripple-surface--secondary');

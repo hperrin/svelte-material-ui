@@ -31,7 +31,7 @@
 <pre
   class="status">Selected: {selection}, value of selectedIndex: {selectionIndex}</pre>
 
-<script>
+<script lang="ts">
   import List, {
     Item,
     Graphic,

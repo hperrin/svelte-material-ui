@@ -15,7 +15,7 @@
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  let element: HTMLHRElement = null;
+  let element: HTMLHRElement;
 
   export function getElement() {
     return element;

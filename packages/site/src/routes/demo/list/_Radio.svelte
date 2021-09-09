@@ -35,7 +35,7 @@
 
 <pre class="status">Selected: {selected}</pre>
 
-<script>
+<script lang="ts">
   import List, { Item, Graphic, Label } from '@smui/list';
   import Radio from '@smui/radio';
 

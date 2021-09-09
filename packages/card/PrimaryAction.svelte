@@ -43,7 +43,7 @@
   export { className as class };
   export let style = '';
   export let ripple = true;
-  export let color: 'primary' | 'secondary' | null | undefined = null;
+  export let color: 'primary' | 'secondary' | undefined = undefined;
   export let padded = false;
   export let tabindex = 0;
 

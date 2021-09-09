@@ -9,7 +9,7 @@
   </List>
 </div>
 
-<script>
+<script lang="ts">
   import List, { Item, Separator, Text } from '@smui/list';
 </script>
 

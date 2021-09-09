@@ -17,7 +17,7 @@
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  let element: HTMLImageElement = null;
+  let element: HTMLImageElement;
 
   export function getElement() {
     return element;

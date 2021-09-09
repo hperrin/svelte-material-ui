@@ -38,7 +38,7 @@ export function useActions(node: Element, actions: ActionArray) {
       if (actions) {
         for (let i = 0; i < actions.length; i++) {
           const returnEntry = actionReturns[i];
-          if (returnEntry && 'update' in returnEntry) {
+          if (returnEntry && returnEntry.update) {
             const actionEntry = actions[i];
             if (Array.isArray(actionEntry) && actionEntry.length > 1) {
               returnEntry.update(actionEntry[1]);
@@ -53,7 +53,7 @@ export function useActions(node: Element, actions: ActionArray) {
     destroy() {
       for (let i = 0; i < actionReturns.length; i++) {
         const returnEntry = actionReturns[i];
-        if (returnEntry && 'destroy' in returnEntry) {
+        if (returnEntry && returnEntry.destroy) {
           returnEntry.destroy();
         }
       }

@@ -2,4 +2,6 @@ import Label from './CommonLabel.svelte';
 import Icon from './CommonIcon.svelte';
 
 export { Label, Icon };
-export type { SMUIComponent, SMUIComponentTyped } from './SMUIComponent.d';
+export * from './SMUIComponent.d';
+export * from './SMUIInputAccessors.d';
+export * from './LayoutListener.d';

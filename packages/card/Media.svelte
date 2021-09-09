@@ -27,7 +27,7 @@
   export let use: ActionArray = [];
   let className = '';
   export { className as class };
-  export let aspectRatio: 'square' | '16x9' | null | undefined = null;
+  export let aspectRatio: 'square' | '16x9' | undefined = undefined;
 
   let element: HTMLDivElement;
 

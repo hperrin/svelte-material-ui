@@ -3,7 +3,7 @@
     bind:this={element}
     use:forwardEvents
     class="mdc-banner__fixed"
-    style={width == null ? null : `width: ${width}px;`}
+    style={width == null ? undefined : `width: ${width}px;`}
   >
     <slot />
   </div>
