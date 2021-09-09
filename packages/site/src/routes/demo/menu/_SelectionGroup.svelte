@@ -41,7 +41,7 @@
 <pre class="status">Selection 2: {selected2}</pre>
 <pre class="status">Clicked: {clicked}</pre>
 
-<script>
+<script lang="ts">
   import Menu, { SelectionGroup, SelectionGroupIcon } from '@smui/menu';
   import List, { Item, Separator, Text } from '@smui/list';
   import Button from '@smui/button';

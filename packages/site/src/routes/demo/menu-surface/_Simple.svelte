@@ -6,6 +6,6 @@
   </p>
 </MenuSurface>
 
-<script>
+<script lang="ts">
   import MenuSurface from '@smui/menu-surface';
 </script>

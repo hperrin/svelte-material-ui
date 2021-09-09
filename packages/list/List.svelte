@@ -47,6 +47,7 @@
     AddLayoutListener,
     RemoveLayoutListener,
     SMUIComponent,
+    SMUIEvent,
   } from '@smui/common';
   import { MDCListFoundation } from '@material/list';
   import { ponyfill } from '@material/dom';
@@ -57,7 +58,6 @@
     classMap,
     dispatch,
     ActionArray,
-    SMUIEvent,
   } from '@smui/common/internal';
   import Ul from '@smui/common/Ul.svelte';
   import Nav from '@smui/common/Nav.svelte';

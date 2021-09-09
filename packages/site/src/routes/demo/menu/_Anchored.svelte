@@ -21,11 +21,11 @@
 
 <pre class="status">Clicked: {clicked}</pre>
 
-<script>
-  import Menu from '@smui/menu';
+<script lang="ts">
+  import Menu, { MenuComponentDev } from '@smui/menu';
   import List, { Item, Separator, Text } from '@smui/list';
   import Button from '@smui/button';
 
-  let menu;
+  let menu: MenuComponentDev;
   let clicked = 'nothing yet';
 </script>

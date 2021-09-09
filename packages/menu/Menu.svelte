@@ -10,7 +10,7 @@
   on:SMUI:list:mount={handleListAccessor}
   on:MDCMenuSurface:opened={() =>
     instance && instance.handleMenuSurfaceOpened()}
-  on:keydown={(event) => instance && instance.handleKeydown(event)}
+  on:keydown={handleKeydown}
   on:MDCList:action={(event) =>
     instance &&
     instance.handleItemAction(
@@ -19,7 +19,10 @@
   {...$$restProps}><slot /></MenuSurface
 >
 
-<script>
+<script lang="ts">
+  import type { SMUIEvent } from '@smui/common';
+  import type { SMUIListAccessor } from '@smui/list';
+  import type { SMUIMenuSurfaceAccessor } from '@smui/menu-surface';
   import { MDCMenuFoundation, cssClasses } from '@material/menu';
   import { ponyfill } from '@material/dom';
   import { onMount } from 'svelte';
@@ -28,21 +31,25 @@
     forwardEventsBuilder,
     classMap,
     dispatch,
+    ActionArray,
   } from '@smui/common/internal';
-  import MenuSurface from '@smui/menu-surface/MenuSurface.svelte';
+  import MenuSurface from '@smui/menu-surface';
+
+  import type { DefaultFocusState } from './Menu.types';
+
   const { closest } = ponyfill;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
   export let open = false;
 
-  let element;
-  let instance;
-  let menuSurfaceAccessor;
-  let listAccessor;
+  let element: MenuSurface;
+  let instance: MDCMenuFoundation;
+  let menuSurfaceAccessor: SMUIMenuSurfaceAccessor;
+  let listAccessor: SMUIListAccessor;
 
   onMount(() => {
     instance = new MDCMenuFoundation({
@@ -74,7 +81,9 @@
         }),
       getMenuItemCount: () => listAccessor.items.length,
       focusItemAtIndex: (index) => listAccessor.focusItemAtIndex(index),
-      focusListRoot: () => listAccessor.element.focus(),
+      focusListRoot: () =>
+        'focus' in listAccessor.element &&
+        (listAccessor.element as HTMLInputElement).focus(),
       isSelectableItemAtIndex: (index) =>
         !!closest(
           listAccessor.getOrderedList()[index].element,
@@ -86,7 +95,7 @@
           orderedList[index].element,
           `.${cssClasses.MENU_SELECTION_GROUP}`
         );
-        const selectedItemEl = selectionGroupEl.querySelector(
+        const selectedItemEl = selectionGroupEl?.querySelector(
           `.${cssClasses.MENU_SELECTED_LIST_ITEM}`
         );
         return selectedItemEl
@@ -104,14 +113,20 @@
     };
   });
 
-  function handleMenuSurfaceAccessor(event) {
-    if (!menuSurfaceAccessor) {
+  function handleKeydown(event: Event) {
+    instance && instance.handleKeydown(event as KeyboardEvent);
+  }
+
+  function handleMenuSurfaceAccessor(
+    event: SMUIEvent<SMUIMenuSurfaceAccessor>
+  ) {
+    if (!menuSurfaceAccessor && event.detail) {
       menuSurfaceAccessor = event.detail;
     }
   }
 
-  function handleListAccessor(event) {
-    if (!listAccessor) {
+  function handleListAccessor(event: SMUIEvent<SMUIListAccessor>) {
+    if (!listAccessor && event.detail) {
       listAccessor = event.detail;
     }
   }
@@ -120,11 +135,11 @@
     return open;
   }
 
-  export function setOpen(value) {
+  export function setOpen(value: boolean) {
     open = value;
   }
 
-  export function setDefaultFocusState(focusState) {
+  export function setDefaultFocusState(focusState: DefaultFocusState) {
     instance.setDefaultFocusState(focusState);
   }
 

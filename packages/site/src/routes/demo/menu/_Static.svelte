@@ -18,7 +18,7 @@
 
 <pre class="status">Clicked: {clicked}</pre>
 
-<script>
+<script lang="ts">
   import Menu from '@smui/menu';
   import List, { Item, Separator, Text } from '@smui/list';
 

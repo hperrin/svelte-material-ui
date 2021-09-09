@@ -27,7 +27,7 @@
   <div style="padding-top: 200px;">Long div for scrolling...</div>
 </section>
 
-<script>
+<script lang="ts">
   import Demo from '../../../components/Demo.svelte';
   import Static from './_Static.svelte';
   import Anchored from './_Anchored.svelte';

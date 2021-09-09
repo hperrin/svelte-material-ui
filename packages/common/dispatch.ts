@@ -1,9 +1,4 @@
-export interface SMUIEventDetail {}
-
-export interface SMUIEvent<T extends SMUIEventDetail = SMUIEventDetail>
-  extends Event {
-  detail?: T;
-}
+import type { SMUIEventDetail, SMUIEvent } from './Events.d';
 
 export function dispatch<T extends SMUIEventDetail = SMUIEventDetail>(
   element: Element | { getElement: () => Element },

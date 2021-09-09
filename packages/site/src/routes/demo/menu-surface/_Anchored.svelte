@@ -13,12 +13,12 @@
   </MenuSurface>
 </div>
 
-<script>
+<script lang="ts">
   import MenuSurface from '@smui/menu-surface';
   import Textfield from '@smui/textfield';
   import Button from '@smui/button';
 
-  let surface;
+  let surface: MenuSurface;
   let name = '';
   let email = '';
 </script>

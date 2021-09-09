@@ -16,7 +16,7 @@
   </ul>
 </li>
 
-<script>
+<script lang="ts">
   import { setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {
@@ -25,15 +25,16 @@
     exclude,
     prefixFilter,
     useActions,
+    ActionArray,
   } from '@smui/common/internal';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  export let use = [];
-  export let list$use = [];
+  export let use: ActionArray = [];
+  export let list$use: ActionArray = [];
   export let list$class = '';
 
-  let element;
+  let element: HTMLLIElement;
 
   setContext('SMUI:list:graphic:menu-selection-group', true);
 

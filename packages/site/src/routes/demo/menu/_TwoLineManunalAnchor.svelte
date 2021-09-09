@@ -54,8 +54,8 @@
 
 <pre class="status">Clicked: {clicked}</pre>
 
-<script>
-  import Menu from '@smui/menu';
+<script lang="ts">
+  import Menu, { MenuComponentDev } from '@smui/menu';
   import { Anchor } from '@smui/menu-surface';
   import List, {
     Item,
@@ -66,8 +66,8 @@
   } from '@smui/list';
   import Button from '@smui/button';
 
-  let menu;
-  let anchor;
-  let anchorClasses = {};
+  let menu: MenuComponentDev;
+  let anchor: HTMLDivElement;
+  let anchorClasses: { [k: string]: boolean } = {};
   let clicked = 'nothing yet';
 </script>

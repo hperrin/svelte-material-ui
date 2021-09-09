@@ -25,13 +25,7 @@
   <slot />
 </div>
 
-<script context="module">
-  import { Corner, CornerBit } from '@material/menu-surface';
-
-  export { Corner, CornerBit };
-</script>
-
-<script>
+<script lang="ts">
   import { MDCMenuSurfaceFoundation } from '@material/menu-surface';
   import { getCorrectPropertyName } from '@material/animation/util.js';
   import { onMount, onDestroy, setContext } from 'svelte';
@@ -41,11 +35,14 @@
     classMap,
     useActions,
     dispatch,
+    ActionArray,
   } from '@smui/common/internal';
+
+  import { Corner, SMUIMenuSurfaceAccessor } from './MenuSurface.types';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
   export let style = '';
@@ -56,17 +53,17 @@
   export let open = isStatic;
   export let fullWidth = false;
   export let quickOpen = false;
-  export let anchorElement = null;
-  export let anchorCorner = null;
+  export let anchorElement: Element | undefined = undefined;
+  export let anchorCorner: Corner | keyof typeof Corner | undefined = undefined;
   export let anchorMargin = { top: 0, right: 0, bottom: 0, left: 0 };
   export let maxHeight = 0;
   export let horizontallyCenteredOnViewport = false;
 
-  let element;
-  let instance;
-  let internalClasses = {};
-  let internalStyles = {};
-  let previousFocus;
+  let element: HTMLDivElement;
+  let instance: MDCMenuSurfaceFoundation;
+  let internalClasses: { [k: string]: boolean } = {};
+  let internalStyles: { [k: string]: string } = {};
+  let previousFocus: Element | undefined = undefined;
 
   setContext('SMUI:list:role', 'menu');
   setContext('SMUI:list:item:role', 'menuitem');
@@ -74,10 +71,10 @@
   $: if (
     element &&
     anchor &&
-    !element.parentNode.classList.contains('mdc-menu-surface--anchor')
+    !element.parentElement?.classList.contains('mdc-menu-surface--anchor')
   ) {
-    element.parentNode.classList.add('mdc-menu-surface--anchor');
-    anchorElement = element.parentNode;
+    element.parentElement?.classList.add('mdc-menu-surface--anchor');
+    anchorElement = element.parentElement ?? undefined;
   }
 
   $: if (instance && instance.isOpen() !== open) {
@@ -107,12 +104,9 @@
   }
 
   const iCorner = Corner;
-  const iCornerBit = CornerBit;
   $: if (instance && anchorCorner != null) {
-    if (iCorner.hasOwnProperty(anchorCorner)) {
+    if (typeof anchorCorner === 'string') {
       instance.setAnchorCorner(iCorner[anchorCorner]);
-    } else if (iCornerBit.hasOwnProperty(anchorCorner)) {
-      instance.setAnchorCorner(iCornerBit[anchorCorner]);
     } else {
       instance.setAnchorCorner(anchorCorner);
     }
@@ -157,15 +151,15 @@
 
       isFocused: () => document.activeElement === element,
       saveFocus: () => {
-        previousFocus = document.activeElement;
+        previousFocus = document.activeElement ?? undefined;
       },
       restoreFocus: () => {
         if (
           element.contains(document.activeElement) &&
           previousFocus &&
-          previousFocus.focus
+          'focus' in previousFocus
         ) {
-          previousFocus.focus();
+          (previousFocus as HTMLInputElement).focus();
         }
       },
 
@@ -201,7 +195,7 @@
       },
     });
 
-    dispatch(element, 'SMUI:menu-surface:mount', {
+    const accessor: SMUIMenuSurfaceAccessor = {
       get open() {
         return open;
       },
@@ -209,15 +203,17 @@
         open = value;
       },
       closeProgrammatic,
-    });
+    };
+
+    dispatch(element, 'SMUI:menu-surface:mount', accessor);
 
     instance.init();
 
     return () => {
-      const isHoisted = instance.isHoistedElement;
+      const isHoisted = (instance as any).isHoistedElement;
       instance.destroy();
       if (isHoisted) {
-        element.parentNode.removeChild(element);
+        element.parentNode?.removeChild(element);
       }
     };
   });
@@ -225,29 +221,29 @@
   onDestroy(() => {
     if (anchor) {
       element &&
-        element.parentNode.classList.remove('mdc-menu-surface--anchor');
+        element.parentElement?.classList.remove('mdc-menu-surface--anchor');
     }
   });
 
-  function hasClass(className) {
+  function hasClass(className: string) {
     return className in internalClasses
       ? internalClasses[className]
       : getElement().classList.contains(className);
   }
 
-  function addClass(className) {
+  function addClass(className: string) {
     if (!internalClasses[className]) {
       internalClasses[className] = true;
     }
   }
 
-  function removeClass(className) {
+  function removeClass(className: string) {
     if (!(className in internalClasses) || internalClasses[className]) {
       internalClasses[className] = false;
     }
   }
 
-  function closeProgrammatic(skipRestoreFocus) {
+  function closeProgrammatic(skipRestoreFocus?: boolean) {
     instance.close(skipRestoreFocus);
     open = false;
   }
@@ -256,16 +252,16 @@
     return open;
   }
 
-  export function setOpen(value) {
+  export function setOpen(value: boolean) {
     open = value;
   }
 
-  export function setAbsolutePosition(...args) {
-    return instance.setAbsolutePosition(...args);
+  export function setAbsolutePosition(x: number, y: number) {
+    return instance.setAbsolutePosition(x, y);
   }
 
-  export function setIsHoisted(...args) {
-    return instance.setIsHoisted(...args);
+  export function setIsHoisted(isHoisted: boolean) {
+    return instance.setIsHoisted(isHoisted);
   }
 
   export function getElement() {

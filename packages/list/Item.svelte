@@ -65,6 +65,7 @@
   import type {
     SMUICheckboxInputAccessor,
     SMUIComponent,
+    SMUIEvent,
     SMUIGenericInputAccessor,
     SMUIRadioInputAccessor,
   } from '@smui/common';
@@ -75,7 +76,6 @@
     classMap,
     dispatch,
     ActionArray,
-    SMUIEvent,
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
   import A from '@smui/common/A.svelte';

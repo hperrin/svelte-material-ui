@@ -24,7 +24,7 @@
 </script>
 
 <script lang="ts">
-  import type { SMUIGenericInputAccessor } from '@smui/common';
+  import type { SMUIEvent, SMUIGenericInputAccessor } from '@smui/common';
   import { MDCFormFieldFoundation } from '@material/form-field';
   import { onMount, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
@@ -35,7 +35,6 @@
     prefixFilter,
     useActions,
     ActionArray,
-    SMUIEvent,
   } from '@smui/common/internal';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
