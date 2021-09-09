@@ -13,24 +13,25 @@
   <slot />
 </ul>
 
-<script>
+<script lang="ts">
   import { setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
     classMap,
     useActions,
+    ActionArray,
   } from '@smui/common/internal';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
   export let masonry = false;
   export let withTextProtection = false;
 
-  let element;
+  let element: HTMLUListElement;
 
   setContext('SMUI:label:context', 'image-list');
 

@@ -17,10 +17,15 @@
   {/each}
 </ImageList>
 
-<script>
+<script lang="ts">
   import ImageList, { Item, Image, Supporting, Label } from '@smui/image-list';
 
-  function getUnevenImageSize(counter, base, variance, preAdd = (num) => num) {
+  function getUnevenImageSize(
+    counter: number,
+    base: number,
+    variance: number,
+    preAdd = (num: number) => num
+  ) {
     const mid = (counter % 2 ? Math.cos : Math.sin)(counter) * variance;
     return base + Math.floor(preAdd(mid));
   }

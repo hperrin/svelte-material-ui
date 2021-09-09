@@ -18,7 +18,7 @@
   {/each}
 </ImageList>
 
-<script>
+<script lang="ts">
   import ImageList, {
     Item,
     ImageAspectContainer,
@@ -28,7 +28,12 @@
   } from '@smui/image-list';
   import Div from '@smui/common/Div.svelte';
 
-  function getUnevenImageSize(counter, base, variance, preAdd = (num) => num) {
+  function getUnevenImageSize(
+    counter: number,
+    base: number,
+    variance: number,
+    preAdd = (num: number) => num
+  ) {
     const mid = (counter % 2 ? Math.cos : Math.sin)(counter) * variance;
     return base + Math.floor(preAdd(mid));
   }

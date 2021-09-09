@@ -14,7 +14,7 @@
   {/each}
 </ImageList>
 
-<script>
+<script lang="ts">
   import ImageList, {
     Item,
     ImageAspectContainer,

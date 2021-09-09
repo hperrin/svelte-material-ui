@@ -33,7 +33,7 @@
   </MenuSurface>
 </div>
 
-<script>
+<script lang="ts">
   import MenuSurface, { Anchor } from '@smui/menu-surface';
   import ImageList, {
     Item as ImageListItem,
@@ -42,7 +42,7 @@
   } from '@smui/image-list';
   import Button from '@smui/button';
 
-  let surface;
-  let anchor;
+  let surface: MenuSurface;
+  let anchor: HTMLDivElement;
   let anchorClasses = {};
 </script>
