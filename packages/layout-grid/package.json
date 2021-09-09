@@ -3,7 +3,7 @@
   "version": "4.2.0",
   "description": "Svelte Material UI - Layout Grid",
   "type": "module",
-  "module": "index.js",
+  "module": "index.ts",
   "keywords": [
     "svelte",
     "svelte3",
@@ -34,6 +34,9 @@
     "@smui/common": "^4.2.0"
   },
   "devDependencies": {
-    "sass": "^1.32.11"
+    "@tsconfig/svelte": "^2.0.1",
+    "sass": "^1.32.11",
+    "tslib": "^2.3.1",
+    "typescript": "^4.4.2"
   }
 }

@@ -17,7 +17,7 @@
   </Cell>
 </LayoutGrid>
 
-<script>
+<script lang="ts">
   import LayoutGrid, { Cell } from '@smui/layout-grid';
 </script>
 

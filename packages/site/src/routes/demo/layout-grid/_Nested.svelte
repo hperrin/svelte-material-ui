@@ -12,7 +12,7 @@
   {/each}
 </LayoutGrid>
 
-<script>
+<script lang="ts">
   import LayoutGrid, { Cell, InnerGrid } from '@smui/layout-grid';
 </script>
 
