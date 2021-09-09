@@ -100,7 +100,7 @@
 
 <pre class="status">Clicked: {clicked}</pre>
 
-<script>
+<script lang="ts">
   import Card, {
     Content,
     PrimaryAction,

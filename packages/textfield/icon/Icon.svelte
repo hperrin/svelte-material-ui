@@ -33,7 +33,7 @@
   let className = '';
   export { className as class };
   export let role = null;
-  export let tabindex = role === 'button' ? '0' : '-1';
+  export let tabindex = role === 'button' ? 0 : -1;
   export let disabled = false;
 
   let element;

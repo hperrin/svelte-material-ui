@@ -1,12 +1,12 @@
 import Card from './Card.svelte';
 
-import Content from './Content.js';
+import Content from './Content';
 import PrimaryAction from './PrimaryAction.svelte';
 import Media from './Media.svelte';
-import MediaContent from './MediaContent.js';
+import MediaContent from './MediaContent';
 import Actions from './Actions.svelte';
-import ActionButtons from './ActionButtons.js';
-import ActionIcons from './ActionIcons.js';
+import ActionButtons from './ActionButtons';
+import ActionIcons from './ActionIcons';
 
 export default Card;
 

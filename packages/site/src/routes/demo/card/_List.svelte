@@ -17,7 +17,7 @@
 
 <pre class="status">Clicked: {clicked}</pre>
 
-<script>
+<script lang="ts">
   import Card, { Content } from '@smui/card';
   import List, { Item, Text } from '@smui/list';
 

@@ -40,7 +40,7 @@
   export let component: typeof SMUIComponent = Span;
 
   const context: string | undefined = getContext('SMUI:label:context');
-  const tabindex: string | undefined = getContext('SMUI:label:tabindex');
+  const tabindex: number | undefined = getContext('SMUI:label:tabindex');
 
   export function getElement(): ReturnType<
     InstanceType<typeof component>['getElement']

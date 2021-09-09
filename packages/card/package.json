@@ -3,7 +3,7 @@
   "version": "4.2.0",
   "description": "Svelte Material UI - Card",
   "type": "module",
-  "module": "index.js",
+  "module": "index.ts",
   "keywords": [
     "svelte",
     "svelte3",
@@ -39,6 +39,9 @@
   "devDependencies": {
     "@material/button": "^11.0.0",
     "@material/icon-button": "^11.0.0",
-    "sass": "^1.32.11"
+    "@tsconfig/svelte": "^2.0.1",
+    "sass": "^1.32.11",
+    "tslib": "^2.3.1",
+    "typescript": "^4.4.2"
   }
 }

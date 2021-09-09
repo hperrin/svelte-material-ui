@@ -275,7 +275,7 @@
     if (noneSelected) {
       // This is the first element, and no other element is selected, so the
       // tabindex should be '0'.
-      tabindex = '0';
+      tabindex = 0;
     }
   }
 

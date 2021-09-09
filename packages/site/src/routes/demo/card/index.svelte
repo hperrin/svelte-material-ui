@@ -18,7 +18,7 @@
   <Demo component={Complex} file="card/_Complex.svelte">Complex</Demo>
 </section>
 
-<script>
+<script lang="ts">
   import Demo from '../../../components/Demo.svelte';
   import Simple from './_Simple.svelte';
   import Actions from './_Actions.svelte';

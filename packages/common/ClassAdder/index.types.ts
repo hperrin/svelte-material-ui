@@ -1,7 +1,7 @@
-import type { SvelteComponent } from 'svelte';
+import type { SMUIComponent } from '../SMUIComponent.d';
 
 export type ClassAdderInternals = {
-  component: SvelteComponent;
+  component: typeof SMUIComponent;
   class: string;
   /** Map of name to context name that resolves to a Svelte Store. */
   classMap?: { [k: string]: string };
