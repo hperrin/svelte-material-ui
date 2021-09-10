@@ -6,7 +6,7 @@
     'mdc-menu': true,
   })}
   bind:open
-  on:SMUI:menu-surface:mount={handleMenuSurfaceAccessor}
+  on:SMUIMenuSurface:mount={handleMenuSurfaceAccessor}
   on:SMUIList:mount={handleListAccessor}
   on:MDCMenuSurface:opened={() =>
     instance && instance.handleMenuSurfaceOpened()}

@@ -3,6 +3,8 @@ declare namespace svelte.JSX {
     ['onSMUIGenericInput:mount']?: (
       event: CustomEvent<any> & { target: T }
     ) => any;
-    ['onSMUIGenericInput:unmount']?: any;
+    ['onSMUIGenericInput:unmount']?: (
+      event: CustomEvent<any> & { target: T }
+    ) => any;
   }
 }

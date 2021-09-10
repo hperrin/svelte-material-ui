@@ -115,12 +115,12 @@
       },
     };
 
-    dispatch(getElement(), 'SMUI:segmented-button:segment:mount', accessor);
+    dispatch(getElement(), 'SMUISegmentedButtonSegment:mount', accessor);
 
     instance.init();
 
     return () => {
-      dispatch(getElement(), 'SMUI:segmented-button:segment:unmount', accessor);
+      dispatch(getElement(), 'SMUISegmentedButtonSegment:unmount', accessor);
 
       instance.destroy();
     };

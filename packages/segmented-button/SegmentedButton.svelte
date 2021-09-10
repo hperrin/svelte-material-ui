@@ -8,9 +8,8 @@
     'mdc-segmented-button--single-select': singleSelect,
   })}
   role={singleSelect ? 'radiogroup' : 'group'}
-  on:SMUI:segmented-button:segment:mount={(event) => handleSegmentMount(event)}
-  on:SMUI:segmented-button:segment:unmount={(event) =>
-    handleSegmentUnmount(event)}
+  on:SMUISegmentedButtonSegment:mount={(event) => handleSegmentMount(event)}
+  on:SMUISegmentedButtonSegment:unmount={(event) => handleSegmentUnmount(event)}
   on:selected={(event) => instance && instance.handleSelected(event.detail)}
   {...$$restProps}
 >

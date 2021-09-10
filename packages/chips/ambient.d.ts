@@ -3,7 +3,9 @@ declare namespace svelte.JSX {
     ['onSMUIChipsChip:mount']?: (
       event: CustomEvent<any> & { target: T }
     ) => any;
-    ['onSMUIChipsChip:unmount']?: any;
+    ['onSMUIChipsChip:unmount']?: (
+      event: CustomEvent<any> & { target: T }
+    ) => any;
     ['onMDCChip:interaction']?: (
       event: CustomEvent<any> & { target: T }
     ) => any;

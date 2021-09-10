@@ -6,8 +6,8 @@
     [className]: true,
     'mdc-data-table__content': true,
   })}
-  on:SMUI:data-table:row:mount={handleRowMount}
-  on:SMUI:data-table:row:unmount={handleRowUnmount}
+  on:SMUIDataTableRow:mount={handleRowMount}
+  on:SMUIDataTableRow:unmount={handleRowUnmount}
   {...$$restProps}><slot /></tbody
 >
 

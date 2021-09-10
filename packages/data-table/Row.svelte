@@ -65,10 +65,10 @@
       addAttr,
     };
 
-    dispatch(getElement(), 'SMUI:data-table:row:mount', accessor);
+    dispatch(getElement(), 'SMUIDataTableRow:mount', accessor);
 
     return () => {
-      dispatch(getElement(), 'SMUI:data-table:row:unmount');
+      dispatch(getElement(), 'SMUIDataTableRow:unmount');
     };
   });
 

@@ -27,7 +27,7 @@
     .map(([name, value]) => `${name}: ${value};`)
     .concat([style])
     .join(' ')}
-  on:SMUI:top-app-bar:icon-button:nav={() =>
+  on:SMUITopAppBarIconButton:nav={() =>
     instance && instance.handleNavigationClick()}
   {...$$restProps}
 >

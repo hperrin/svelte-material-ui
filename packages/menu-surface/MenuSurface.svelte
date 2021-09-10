@@ -205,7 +205,7 @@
       closeProgrammatic,
     };
 
-    dispatch(element, 'SMUI:menu-surface:mount', accessor);
+    dispatch(element, 'SMUIMenuSurface:mount', accessor);
 
     instance.init();
 

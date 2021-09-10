@@ -32,12 +32,12 @@
       .map(([name, value]) => `${name}: ${value};`)
       .concat([style])
       .join(' ')}
-    for={forId || (inputProps ? inputProps.id : null)}
+    for={forId || (inputProps ? inputProps.id : undefined)}
     {...$$restProps}><slot /></label
   >
 {/if}
 
-<script>
+<script lang="ts">
   import { MDCFloatingLabelFoundation } from '@material/floating-label';
   import { onMount, getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
@@ -46,34 +46,38 @@
     classMap,
     useActions,
     dispatch,
+    ActionArray,
   } from '@smui/common/internal';
+
+  import type { SMUIFloatingLabelAccessor } from './FloatingLabel.types';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
   export let style = '';
-  let forId = null;
+  let forId: string | undefined = undefined;
   export { forId as for };
   export let floatAbove = false;
   export let required = false;
   export let wrapped = false;
 
-  let element;
-  let instance;
-  let internalClasses = {};
-  let internalStyles = {};
-  let inputProps = getContext('SMUI:generic:input:props') || {};
+  let element: HTMLSpanElement | HTMLLabelElement;
+  let instance: MDCFloatingLabelFoundation;
+  let internalClasses: { [k: string]: boolean } = {};
+  let internalStyles: { [k: string]: string } = {};
+  let inputProps =
+    getContext<{ id?: string } | undefined>('SMUI:generic:input:props') ?? {};
 
   let previousFloatAbove = floatAbove;
-  $: if (previousFloatAbove !== floatAbove) {
+  $: if (instance && previousFloatAbove !== floatAbove) {
     previousFloatAbove = floatAbove;
     instance.float(floatAbove);
   }
 
   let previousRequired = required;
-  $: if (previousRequired !== required) {
+  $: if (instance && previousRequired !== required) {
     previousRequired = required;
     instance.setRequired(required);
   }
@@ -84,22 +88,22 @@
       removeClass,
       getWidth: () => {
         const el = getElement();
-        const clone = el.cloneNode(true);
-        el.parentNode.appendChild(clone);
+        const clone = el.cloneNode(true) as typeof el;
+        el.parentNode?.appendChild(clone);
         clone.classList.add('smui-floating-label--remove-transition');
         clone.classList.add('smui-floating-label--force-size');
         clone.classList.remove('mdc-floating-label--float-above');
         const scrollWidth = clone.scrollWidth;
-        el.parentNode.removeChild(clone);
+        el.parentNode?.removeChild(clone);
         return scrollWidth;
       },
       registerInteractionHandler: (evtType, handler) =>
-        getElement().addEventListener(evtType, handler),
+        getElement().addEventListener(evtType, handler as EventListener),
       deregisterInteractionHandler: (evtType, handler) =>
-        getElement().removeEventListener(evtType, handler),
+        getElement().removeEventListener(evtType, handler as EventListener),
     });
 
-    const accessor = {
+    const accessor: SMUIFloatingLabelAccessor = {
       get element() {
         return getElement();
       },
@@ -107,30 +111,30 @@
       removeStyle,
     };
 
-    dispatch(element, 'SMUI:floating-label:mount', accessor);
+    dispatch(element, 'SMUIFloatingLabel:mount', accessor);
 
     instance.init();
 
     return () => {
-      dispatch(element, 'SMUI:floating-label:unmount', accessor);
+      dispatch(element, 'SMUIFloatingLabel:unmount', accessor);
 
       instance.destroy();
     };
   });
 
-  function addClass(className) {
+  function addClass(className: string) {
     if (!internalClasses[className]) {
       internalClasses[className] = true;
     }
   }
 
-  function removeClass(className) {
+  function removeClass(className: string) {
     if (!(className in internalClasses) || internalClasses[className]) {
       internalClasses[className] = false;
     }
   }
 
-  function addStyle(name, value) {
+  function addStyle(name: string, value: string) {
     if (internalStyles[name] != value) {
       if (value === '' || value == null) {
         delete internalStyles[name];
@@ -141,22 +145,22 @@
     }
   }
 
-  function removeStyle(name) {
+  function removeStyle(name: string) {
     if (name in internalStyles) {
       delete internalStyles[name];
       internalStyles = internalStyles;
     }
   }
 
-  export function shake(shouldShake) {
+  export function shake(shouldShake: boolean) {
     instance.shake(shouldShake);
   }
 
-  export function float(shouldFloat) {
+  export function float(shouldFloat: boolean) {
     floatAbove = shouldFloat;
   }
 
-  export function setRequired(isRequired) {
+  export function setRequired(isRequired: boolean) {
     required = isRequired;
   }
 

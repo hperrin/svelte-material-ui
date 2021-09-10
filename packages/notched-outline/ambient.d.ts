@@ -1,9 +1,9 @@
 declare namespace svelte.JSX {
   interface HTMLProps<T extends EventTarget> extends HTMLAttributes<T> {
-    ['onSMUIBannerButton:primaryActionClick']?: (
+    ['onSMUIFloatingLabel:mount']?: (
       event: CustomEvent<any> & { target: T }
     ) => any;
-    ['onSMUIBannerButton:secondaryActionClick']?: (
+    ['onSMUIFloatingLabel:unmount']?: (
       event: CustomEvent<any> & { target: T }
     ) => any;
   }

@@ -48,7 +48,7 @@
   on:click={() => instance && instance.handleClick()}
   on:click={() =>
     context === 'top-app-bar:navigation' &&
-    dispatch(element, 'SMUI:top-app-bar:icon-button:nav')}
+    dispatch(element, 'SMUITopAppBarIconButton:nav')}
   {href}
   {...actionProp}
   {...internalAttrs}
