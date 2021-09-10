@@ -48,8 +48,8 @@
   {tabindex}
   on:click={action}
   on:keydown={handleKeydown}
-  on:SMUI:generic:input:mount={handleInputMount}
-  on:SMUI:generic:input:unmount={() => (input = undefined)}
+  on:SMUIGenericInput:mount={handleInputMount}
+  on:SMUIGenericInput:unmount={() => (input = undefined)}
   {href}
   {...internalAttrs}
   {...$$restProps}
@@ -208,10 +208,10 @@
       },
     };
 
-    dispatch(element, 'SMUI:list:item:mount', accessor);
+    dispatch(element, 'SMUIListItem:mount', accessor);
 
     return () => {
-      dispatch(element, 'SMUI:list:item:unmount', accessor);
+      dispatch(element, 'SMUIListItem:unmount', accessor);
     };
   });
 

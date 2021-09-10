@@ -8,6 +8,8 @@
     'mdc-form-field--align-end': align === 'end',
     'mdc-form-field--nowrap': noWrap,
   })}
+  on:SMUIGenericInput:mount={handleInputMount}
+  on:SMUIGenericInput:unmount={handleInputUnmount}
   {...exclude($$restProps, ['label$'])}
 >
   <slot />
@@ -55,9 +57,6 @@
   setContext('SMUI:generic:input:props', { id: inputId });
 
   onMount(() => {
-    element.addEventListener('SMUI:generic:input:mount', handleInputMount);
-    element.addEventListener('SMUI:generic:input:unmount', handleInputUnmount);
-
     instance = new MDCFormFieldFoundation({
       activateInputRipple: () => {
         if (input) {
@@ -80,12 +79,6 @@
     instance.init();
 
     return () => {
-      element.removeEventListener('SMUI:generic:input:mount', handleInputMount);
-      element.removeEventListener(
-        'SMUI:generic:input:unmount',
-        handleInputUnmount
-      );
-
       instance.destroy();
     };
   });

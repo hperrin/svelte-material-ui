@@ -61,14 +61,14 @@
     });
 
     if (id.startsWith('SMUI-textfield-helper-text-')) {
-      dispatch(getElement(), 'SMUI:textfield:helper-text:id', id);
+      dispatch(getElement(), 'SMUITextfieldHelperText:id', id);
     }
-    dispatch(getElement(), 'SMUI:textfield:helper-text:mount', instance);
+    dispatch(getElement(), 'SMUITextfieldHelperText:mount', instance);
 
     instance.init();
 
     return () => {
-      dispatch(getElement(), 'SMUI:textfield:helper-text:unmount', instance);
+      dispatch(getElement(), 'SMUITextfieldHelperText:unmount', instance);
 
       instance.destroy();
     };

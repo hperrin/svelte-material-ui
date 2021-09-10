@@ -39,16 +39,12 @@
       },
     });
 
-    dispatch(getElement(), 'SMUI:textfield:character-counter:mount', instance);
+    dispatch(getElement(), 'SMUITextfieldCharacterCounter:mount', instance);
 
     instance.init();
 
     return () => {
-      dispatch(
-        getElement(),
-        'SMUI:textfield:character-counter:unmount',
-        instance
-      );
+      dispatch(getElement(), 'SMUITextfieldCharacterCounter:unmount', instance);
 
       instance.destroy();
     };

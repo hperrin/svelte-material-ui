@@ -113,10 +113,10 @@
       addAttr,
     };
 
-    dispatch(getElement(), 'SMUI:data-table:cell:mount', accessor);
+    dispatch(getElement(), 'SMUIDataTableCell:mount', accessor);
 
     return () => {
-      dispatch(getElement(), 'SMUI:data-table:cell:unmount');
+      dispatch(getElement(), 'SMUIDataTableCell:unmount');
     };
   });
 

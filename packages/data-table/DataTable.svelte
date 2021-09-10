@@ -8,15 +8,15 @@
     'mdc-data-table--sticky-header': stickyHeader,
     ...internalClasses,
   })}
-  on:SMUI:checkbox:mount={() => instance && postMount && instance.layout()}
-  on:SMUI:data-table:header:mount={(event) => (header = event.detail)}
-  on:SMUI:data-table:header:unmount={() => (header = undefined)}
-  on:SMUI:data-table:body:mount={(event) => (body = event.detail)}
-  on:SMUI:data-table:body:unmount={() => (body = undefined)}
-  on:SMUI:data-table:header:checkbox:change={() =>
+  on:SMUICheckbox:mount={() => instance && postMount && instance.layout()}
+  on:SMUIDataTableHeader:mount={(event) => (header = event.detail)}
+  on:SMUIDataTableHeader:unmount={() => (header = undefined)}
+  on:SMUIDataTableBody:mount={(event) => (body = event.detail)}
+  on:SMUIDataTableBody:unmount={() => (body = undefined)}
+  on:SMUIDataTableHeader:checkbox:change={() =>
     instance && instance.handleHeaderRowCheckboxChange()}
-  on:SMUI:data-table:header:click={handleHeaderRowClick}
-  on:SMUI:data-table:body:checkbox:change={(event) =>
+  on:SMUIDataTableHeader:click={handleHeaderRowClick}
+  on:SMUIDataTableBody:checkbox:change={(event) =>
     instance && instance.handleRowCheckboxChange(event)}
   {...exclude($$restProps, ['container$', 'table$'])}
 >

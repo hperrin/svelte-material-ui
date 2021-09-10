@@ -17,14 +17,14 @@
   </svg>
 </span>
 
-<script>
-  import { classMap, useActions } from '@smui/common/internal';
+<script lang="ts">
+  import { ActionArray, classMap, useActions } from '@smui/common/internal';
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
 
-  let element;
+  let element: HTMLSpanElement;
 
   export function getElement() {
     return element;

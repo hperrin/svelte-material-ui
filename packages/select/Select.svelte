@@ -33,8 +33,8 @@
     .map(([name, value]) => `${name}: ${value};`)
     .concat([style])
     .join(' ')}
-  on:SMUI:select:leading-icon:mount={(event) => (leadingIcon = event.detail)}
-  on:SMUI:select:leading-icon:unmount={() => (leadingIcon = undefined)}
+  on:SMUISelectLeadingIcon:mount={(event) => (leadingIcon = event.detail)}
+  on:SMUISelectLeadingIcon:unmount={() => (leadingIcon = undefined)}
   {...exclude($$restProps, [
     'input$',
     'anchor$',
@@ -196,16 +196,16 @@
       role="listbox"
       {wrapFocus}
       bind:selectedIndex
-      on:SMUI:list:mount={(event) => (list = event.detail)}
+      on:SMUIList:mount={(event) => (list = event.detail)}
       {...prefixFilter($$restProps, 'list$')}><slot /></List
     >
   </Menu>
 </div>
 {#if $$slots.helperText}
   <HelperText
-    on:SMUI:select:helper-text:id={(event) => (helperId = event.detail)}
-    on:SMUI:select:helper-text:mount={(event) => (helperText = event.detail)}
-    on:SMUI:select:helper-text:unmount={() => {
+    on:SMUISelectHelperText:id={(event) => (helperId = event.detail)}
+    on:SMUISelectHelperText:mount={(event) => (helperText = event.detail)}
+    on:SMUISelectHelperText:unmount={() => {
       helperId = undefined;
       helperText = undefined;
     }}

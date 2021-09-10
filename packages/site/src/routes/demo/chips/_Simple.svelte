@@ -12,7 +12,7 @@
     {#if chip === 'four'}
       <LeadingIcon class="material-icons">book</LeadingIcon>
     {/if}
-    <Text tabindex="0">{chip}</Text>
+    <Text tabindex={0}>{chip}</Text>
     {#if chip === 'five'}
       <TrailingIcon class="material-icons">commute</TrailingIcon>
     {/if}
@@ -21,7 +21,7 @@
 
 <pre class="status">Clicked: {clicked}</pre>
 
-<script>
+<script lang="ts">
   import Chip, { Set, LeadingIcon, TrailingIcon, Text } from '@smui/chips';
 
   let clicked = 0;

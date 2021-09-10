@@ -248,14 +248,14 @@
       },
     };
 
-    dispatch(element, 'SMUI:generic:input:mount', accessor);
-    dispatch(element, 'SMUI:checkbox:mount', accessor);
+    dispatch(element, 'SMUIGenericInput:mount', accessor);
+    dispatch(element, 'SMUICheckbox:mount', accessor);
 
     instance.init();
 
     return () => {
-      dispatch(element, 'SMUI:generic:input:unmount', accessor);
-      dispatch(element, 'SMUI:checkbox:unmount', accessor);
+      dispatch(element, 'SMUIGenericInput:unmount', accessor);
+      dispatch(element, 'SMUICheckbox:unmount', accessor);
 
       instance.destroy();
     };

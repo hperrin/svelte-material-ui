@@ -18,7 +18,7 @@
     .map(([name, value]) => `${name}: ${value};`)
     .concat([style])
     .join(' ')}
-  aria-hidden={nonNavigable ? 'true' : null}
+  aria-hidden={nonNavigable ? 'true' : undefined}
   tabindex="-1"
   on:click={(event) => instance && instance.handleClick(event)}
   on:keydown={(event) => instance && instance.handleKeydown(event)}
@@ -39,7 +39,7 @@
   >
 </button>
 
-<script>
+<script lang="ts">
   import { MDCChipTrailingActionFoundation } from '@material/chips/deprecated/trailingaction/foundation.js';
   import { onMount, tick } from 'svelte';
   import { get_current_component } from 'svelte/internal';
@@ -50,26 +50,29 @@
     prefixFilter,
     useActions,
     dispatch,
+    ActionArray,
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
 
+  import type { SMUIChipsTrailingActionAccessor } from './TrailingAction.types';
+
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
   export let style = '';
   export let ripple = true;
   export let touch = false;
   export let nonNavigable = false;
-  export let icon$use = [];
+  export let icon$use: ActionArray = [];
   export let icon$class = '';
 
-  let element;
-  let instance;
-  let internalClasses = {};
-  let internalStyles = {};
-  let internalAttrs = {};
+  let element: HTMLButtonElement;
+  let instance: MDCChipTrailingActionFoundation;
+  let internalClasses: { [k: string]: boolean } = {};
+  let internalStyles: { [k: string]: string } = {};
+  let internalAttrs: { [k: string]: string | undefined } = {};
 
   onMount(() => {
     instance = new MDCChipTrailingActionFoundation({
@@ -91,34 +94,36 @@
       setAttribute: addAttr,
     });
 
-    dispatch(getElement(), 'SMUI:chips:chip:trailing-action:mount', {
+    const accessor: SMUIChipsTrailingActionAccessor = {
       isNavigable,
       focus,
       removeFocus,
-    });
+    };
+
+    dispatch(getElement(), 'SMUIChipsChipTrailingAction:mount', accessor);
 
     instance.init();
 
     return () => {
-      dispatch(getElement(), 'SMUI:chips:chip:trailing-action:unmount');
+      dispatch(getElement(), 'SMUIChipsChipTrailingAction:unmount');
 
       instance.destroy();
     };
   });
 
-  function addClass(className) {
+  function addClass(className: string) {
     if (!internalClasses[className]) {
       internalClasses[className] = true;
     }
   }
 
-  function removeClass(className) {
+  function removeClass(className: string) {
     if (!(className in internalClasses) || internalClasses[className]) {
       internalClasses[className] = false;
     }
   }
 
-  function addStyle(name, value) {
+  function addStyle(name: string, value: string) {
     if (internalStyles[name] != value) {
       if (value === '' || value == null) {
         delete internalStyles[name];
@@ -129,19 +134,19 @@
     }
   }
 
-  function getAttr(name) {
+  function getAttr(name: string) {
     return name in internalAttrs
-      ? internalAttrs[name]
+      ? internalAttrs[name] ?? null
       : getElement().getAttribute(name);
   }
 
-  function addAttr(name, value) {
+  function addAttr(name: string, value: string) {
     if (internalAttrs[name] !== value) {
       internalAttrs[name] = value;
     }
   }
 
-  function waitForTabindex(fn) {
+  function waitForTabindex(fn: () => void) {
     if (internalAttrs['tabindex'] !== element.getAttribute('tabindex')) {
       tick().then(fn);
     } else {

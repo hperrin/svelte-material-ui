@@ -11,16 +11,12 @@
     'mdc-chip-set--input': input,
   })}
   role="grid"
-  on:SMUI:chips:chip:mount={(event) => handleChipMount(event)}
-  on:SMUI:chips:chip:unmount={(event) => handleChipUnmount(event)}
-  on:MDCChip:interaction={(event) =>
-    instance && instance.handleChipInteraction(event.detail)}
-  on:MDCChip:selection={(event) =>
-    instance && instance.handleChipSelection(event.detail)}
-  on:MDCChip:removal={(event) =>
-    instance && instance.handleChipRemoval(event.detail)}
-  on:MDCChip:navigation={(event) =>
-    instance && instance.handleChipNavigation(event.detail)}
+  on:SMUIChipsChip:mount={handleChipMount}
+  on:SMUIChipsChip:unmount={handleChipUnmount}
+  on:MDCChip:interaction={handleChipInteraction}
+  on:MDCChip:selection={handleChipSelection}
+  on:MDCChip:removal={handleChipRemoval}
+  on:MDCChip:navigation={handleChipNavigation}
   {...$$restProps}
 >
   {#each chips as chip, i (key(chip))}
@@ -35,7 +31,15 @@
   {/each}
 </div>
 
-<script>
+<script lang="ts">
+  import type { SMUIEvent } from '@smui/common';
+  import type {
+    MDCChipInteractionEvent,
+    MDCChipNavigationEvent,
+    MDCChipRemovalEvent,
+    MDCChipSelectionEvent,
+    MDCChipSelectionEventDetail,
+  } from '@material/chips/deprecated/chip/types';
   import { MDCChipSetFoundation } from '@material/chips/deprecated/chip-set/foundation.js';
   import { announce } from '@material/dom/announce.js';
   import { onMount, setContext } from 'svelte';
@@ -45,26 +49,29 @@
     forwardEventsBuilder,
     classMap,
     useActions,
+    ActionArray,
   } from '@smui/common/internal';
   import ContextFragment from '@smui/common/ContextFragment.svelte';
 
+  import type { SMUIChipsChipAccessor } from './Chip.types';
+
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
-  export let chips = [];
-  export let key = (chip) => chip;
-  export let selected = null;
+  export let chips: any[] = [];
+  export let key: (chip: any) => string = (chip: any) => chip;
+  export let selected: any[] | any | undefined = undefined;
   export let nonInteractive = false;
   export let choice = false;
   export let filter = false;
   export let input = false;
 
-  let element;
-  let instance;
-  let chipAccessorMap = {};
-  let chipAccessorWeakMap = new WeakMap();
+  let element: HTMLDivElement;
+  let instance: MDCChipSetFoundation;
+  let chipAccessorMap: { [k: string]: SMUIChipsChipAccessor } = {};
+  let chipAccessorWeakMap = new WeakMap<Object, SMUIChipsChipAccessor>();
   let initialSelected = chips.map(
     (chipId) =>
       (choice && selected === chipId) ||
@@ -96,16 +103,22 @@
 
       for (let chipId of unSelected) {
         if (chips.indexOf(chipId) !== -1) {
-          instance.handleChipSelection({ chipId, selected: false });
+          instance.handleChipSelection({
+            chipId,
+            selected: false,
+          } as MDCChipSelectionEventDetail);
         }
       }
       for (let chipId of newSelected) {
-        instance.handleChipSelection({ chipId, selected: true });
+        instance.handleChipSelection({
+          chipId,
+          selected: true,
+        } as MDCChipSelectionEventDetail);
       }
     }
   }
 
-  function setDifference(setA, setB) {
+  function setDifference(setA: Set<any>, setB: Set<any>) {
     let _difference = new Set(setA);
     for (let elem of setB) {
       _difference.delete(elem);
@@ -119,10 +132,10 @@
         announce(message);
       },
       focusChipPrimaryActionAtIndex: (index) => {
-        getAccessor(chips[index]).focusPrimaryAction();
+        getAccessor(chips[index])?.focusPrimaryAction();
       },
       focusChipTrailingActionAtIndex: (index) => {
-        getAccessor(chips[index]).focusTrailingAction();
+        getAccessor(chips[index])?.focusTrailingAction();
       },
       getChipListCount: () => chips.length,
       getIndexOfChipById: (chipId) => chips.indexOf(chipId),
@@ -131,10 +144,10 @@
         getComputedStyle(getElement()).getPropertyValue('direction') === 'rtl',
       removeChipAtIndex: (index) => {
         if (index >= 0 && index < chips.length) {
-          if (choice && selected === chips[i]) {
+          if (choice && selected === chips[index]) {
             selected = null;
-          } else if (filter && selected.indexOf(chips[i]) !== -1) {
-            selected.splice(selected.indexOf(chips[i]), 1);
+          } else if (filter && selected.indexOf(chips[index]) !== -1) {
+            selected.splice(selected.indexOf(chips[index]), 1);
             selected = selected;
           }
           chips.splice(index, 1);
@@ -142,7 +155,7 @@
         }
       },
       removeFocusFromChipAtIndex: (index) => {
-        getAccessor(chips[index]).removeFocus();
+        getAccessor(chips[index])?.removeFocus();
       },
       selectChipAtIndex: (index, selectedValue, shouldNotifyClients) => {
         if (index >= 0 && index < chips.length) {
@@ -159,7 +172,7 @@
             selected = selectedValue ? chips[index] : null;
           }
 
-          getAccessor(chips[index]).setSelectedFromChipSet(
+          getAccessor(chips[index])?.setSelectedFromChipSet(
             selectedValue,
             shouldNotifyClients
           );
@@ -182,25 +195,53 @@
     };
   });
 
-  function handleChipMount(event) {
-    const accessor = event.detail;
+  function handleChipMount(event: SMUIEvent<SMUIChipsChipAccessor>) {
+    if (event.detail) {
+      const accessor = event.detail;
 
-    addAccessor(accessor.chipId, accessor);
+      addAccessor(accessor.chipId, accessor);
+    }
   }
 
-  function handleChipUnmount(event) {
-    const accessor = event.detail;
+  function handleChipUnmount(event: SMUIEvent<SMUIChipsChipAccessor>) {
+    if (event.detail) {
+      const accessor = event.detail;
 
-    removeAccessor(accessor.chipId);
+      removeAccessor(accessor.chipId);
+    }
   }
 
-  function getAccessor(chipId) {
+  function handleChipInteraction(event: MDCChipInteractionEvent) {
+    if (instance) {
+      instance.handleChipInteraction(event.detail);
+    }
+  }
+
+  function handleChipSelection(event: MDCChipSelectionEvent) {
+    if (instance) {
+      instance.handleChipSelection(event.detail);
+    }
+  }
+
+  function handleChipRemoval(event: MDCChipRemovalEvent) {
+    if (instance) {
+      instance.handleChipRemoval(event.detail);
+    }
+  }
+
+  function handleChipNavigation(event: MDCChipNavigationEvent) {
+    if (instance) {
+      instance.handleChipNavigation(event.detail);
+    }
+  }
+
+  function getAccessor(chipId: any) {
     return chipId instanceof Object
       ? chipAccessorWeakMap.get(chipId)
       : chipAccessorMap[chipId];
   }
 
-  function addAccessor(chipId, accessor) {
+  function addAccessor(chipId: any, accessor: SMUIChipsChipAccessor) {
     if (chipId instanceof Object) {
       chipAccessorWeakMap.set(chipId, accessor);
     } else {
@@ -208,7 +249,7 @@
     }
   }
 
-  function removeAccessor(chipId) {
+  function removeAccessor(chipId: any) {
     if (chipId instanceof Object) {
       chipAccessorWeakMap.delete(chipId);
     } else {

@@ -12,26 +12,31 @@
   {...$$restProps}><slot /></i
 >
 
-<script>
+<script lang="ts">
   import { getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
     classMap,
     useActions,
+    ActionArray,
   } from '@smui/common/internal';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
 
-  const filter = getContext('SMUI:chips:filter');
-  const isSelected = getContext('SMUI:chips:chip:isSelected');
-  const leadingIconClasses = getContext('SMUI:chips:chip:leadingIconClasses');
+  const filter = getContext<SvelteStore<boolean>>('SMUI:chips:filter');
+  const isSelected = getContext<SvelteStore<boolean>>(
+    'SMUI:chips:chip:isSelected'
+  );
+  const leadingIconClasses = getContext<SvelteStore<{ [k: string]: boolean }>>(
+    'SMUI:chips:chip:leadingIconClasses'
+  );
 
-  let element;
+  let element: HTMLElement;
 
   export function getElement() {
     return element;

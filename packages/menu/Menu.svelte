@@ -7,7 +7,7 @@
   })}
   bind:open
   on:SMUI:menu-surface:mount={handleMenuSurfaceAccessor}
-  on:SMUI:list:mount={handleListAccessor}
+  on:SMUIList:mount={handleListAccessor}
   on:MDCMenuSurface:opened={() =>
     instance && instance.handleMenuSurfaceOpened()}
   on:keydown={handleKeydown}
@@ -104,7 +104,7 @@
       },
     });
 
-    dispatch(element, 'SMUI:menu:mount', instance);
+    dispatch(element, 'SMUIMenu:mount', instance);
 
     instance.init();
 

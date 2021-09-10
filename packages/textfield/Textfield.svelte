@@ -42,15 +42,14 @@
       .concat([style])
       .join(' ')}
     for={/* suppress a11y warning, since this is wrapped */ null}
-    on:SMUI:textfield:leading-icon:mount={(event) =>
-      (leadingIcon = event.detail)}
-    on:SMUI:textfield:leading-icon:unmount={() => (leadingIcon = undefined)}
-    on:SMUI:textfield:trailing-icon:mount={(event) =>
+    on:SMUITextfieldLeadingIcon:mount={(event) => (leadingIcon = event.detail)}
+    on:SMUITextfieldLeadingIcon:unmount={() => (leadingIcon = undefined)}
+    on:SMUITextfieldTrailingIcon:mount={(event) =>
       (trailingIcon = event.detail)}
-    on:SMUI:textfield:trailing-icon:unmount={() => (trailingIcon = undefined)}
-    on:SMUI:textfield:character-counter:mount={(event) =>
+    on:SMUITextfieldTrailingIcon:unmount={() => (trailingIcon = undefined)}
+    on:SMUITextfieldCharacterCounter:mount={(event) =>
       (characterCounter = event.detail)}
-    on:SMUI:textfield:character-counter:unmount={() =>
+    on:SMUITextfieldCharacterCounter:unmount={() =>
       (characterCounter = undefined)}
     {...exclude($$restProps, [
       'input$',
@@ -191,12 +190,11 @@
       .map(([name, value]) => `${name}: ${value};`)
       .concat([style])
       .join(' ')}
-    on:SMUI:textfield:leading-icon:mount={(event) =>
-      (leadingIcon = event.detail)}
-    on:SMUI:textfield:leading-icon:unmount={() => (leadingIcon = undefined)}
-    on:SMUI:textfield:trailing-icon:mount={(event) =>
+    on:SMUITextfieldLeadingIcon:mount={(event) => (leadingIcon = event.detail)}
+    on:SMUITextfieldLeadingIcon:unmount={() => (leadingIcon = undefined)}
+    on:SMUITextfieldTrailingIcon:mount={(event) =>
       (trailingIcon = event.detail)}
-    on:SMUI:textfield:trailing-icon:unmount={() => (trailingIcon = undefined)}
+    on:SMUITextfieldTrailingIcon:unmount={() => (trailingIcon = undefined)}
     {...exclude($$restProps, [
       'input$',
       'label$',
@@ -218,15 +216,15 @@
 {/if}
 {#if $$slots.helper}
   <HelperLine
-    on:SMUI:textfield:helper-text:id={(event) => (helperId = event.detail)}
-    on:SMUI:textfield:helper-text:mount={(event) => (helperText = event.detail)}
-    on:SMUI:textfield:helper-text:unmount={() => {
+    on:SMUITextfieldHelperText:id={(event) => (helperId = event.detail)}
+    on:SMUITextfieldHelperText:mount={(event) => (helperText = event.detail)}
+    on:SMUITextfieldHelperText:unmount={() => {
       helperId = undefined;
       helperText = undefined;
     }}
-    on:SMUI:textfield:character-counter:mount={(event) =>
+    on:SMUITextfieldCharacterCounter:mount={(event) =>
       (characterCounter = event.detail)}
-    on:SMUI:textfield:character-counter:unmount={() =>
+    on:SMUITextfieldCharacterCounter:unmount={() =>
       (characterCounter = undefined)}
     {...prefixFilter($$restProps, 'helperLine$')}
     ><slot name="helper" /></HelperLine

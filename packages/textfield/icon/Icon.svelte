@@ -60,8 +60,8 @@
     dispatch(
       getElement(),
       leading
-        ? 'SMUI:textfield:leading-icon:mount'
-        : 'SMUI:textfield:trailing-icon:mount',
+        ? 'SMUITextfieldLeadingIcon:mount'
+        : 'SMUITextfieldTrailingIcon:mount',
       instance
     );
 
@@ -71,8 +71,8 @@
       dispatch(
         getElement(),
         leading
-          ? 'SMUI:textfield:leading-icon:unmount'
-          : 'SMUI:textfield:trailing-icon:unmount',
+          ? 'SMUITextfieldLeadingIcon:unmount'
+          : 'SMUITextfieldTrailingIcon:unmount',
         instance
       );
 

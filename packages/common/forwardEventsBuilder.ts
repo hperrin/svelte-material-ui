@@ -76,6 +76,27 @@ export function forwardEventsBuilder(component: SvelteComponent) {
       const oldModifierMatch = eventType.match(oldModifierRegex);
       const newModifierMatch = eventType.match(newModifierRegex);
       const modifierMatch = oldModifierMatch || newModifierMatch;
+      if (eventType.match(/^SMUI:\w+:/)) {
+        const newEventTypeParts = eventType.split(':');
+        let newEventType = '';
+        for (let i = 0; i < newEventTypeParts.length; i++) {
+          newEventType +=
+            i === newEventTypeParts.length - 1
+              ? ':' + newEventTypeParts[i]
+              : newEventTypeParts[i]
+                  .split('-')
+                  .map(
+                    (value) => value.slice(0, 1).toUpperCase() + value.slice(1)
+                  )
+                  .join('');
+        }
+        console.warn(
+          `The event ${eventType.split('$')[0]} has been renamed to ${
+            newEventType.split('$')[0]
+          }.`
+        );
+        eventType = newEventType;
+      }
       if (modifierMatch) {
         // Parse the event modifiers.
         // Supported modifiers:

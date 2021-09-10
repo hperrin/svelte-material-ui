@@ -34,8 +34,8 @@
       getListItemIndex(event.target),
       !matches(event.target, 'input[type="checkbox"], input[type="radio"]')
     )}
-  on:SMUI:list:item:mount={handleItemMount}
-  on:SMUI:list:item:unmount={handleItemUnmount}
+  on:SMUIListItem:mount={handleItemMount}
+  on:SMUIListItem:unmount={handleItemUnmount}
   on:SMUI:action={handleAction}
   {...$$restProps}
 >
@@ -224,7 +224,7 @@
       getPrimaryTextAtIndex,
     };
 
-    dispatch(element, 'SMUI:list:mount', accessor);
+    dispatch(element, 'SMUIList:mount', accessor);
 
     instance.init();
 

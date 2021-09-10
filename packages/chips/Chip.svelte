@@ -36,13 +36,13 @@
     instance && instance.handleTrailingActionInteraction()}
   on:MDCChipTrailingAction:navigation={(event) =>
     instance && instance.handleTrailingActionNavigation(event)}
-  on:SMUI:chips:chip:primary-action:mount={(event) =>
+  on:SMUIChipsChipPrimaryAction:mount={(event) =>
     (primaryActionAccessor = event.detail)}
-  on:SMUI:chips:chip:primary-action:unmount={() =>
+  on:SMUIChipsChipPrimaryAction:unmount={() =>
     (primaryActionAccessor = undefined)}
-  on:SMUI:chips:chip:trailing-action:mount={(event) =>
+  on:SMUIChipsChipTrailingAction:mount={(event) =>
     (trailingActionAccessor = event.detail)}
-  on:SMUI:chips:chip:trailing-action:unmount={() =>
+  on:SMUIChipsChipTrailingAction:unmount={() =>
     (trailingActionAccessor = undefined)}
   {...$$restProps}
 >
@@ -55,7 +55,8 @@
   {/if}
 </svelte:component>
 
-<script>
+<script lang="ts">
+  import type { SMUIComponent } from '@smui/common';
   import { MDCChipFoundation } from '@material/chips/deprecated/chip/foundation.js';
   import { onMount, setContext, getContext } from 'svelte';
   import { writable } from 'svelte/store';
@@ -64,35 +65,48 @@
     forwardEventsBuilder,
     classMap,
     dispatch,
+    ActionArray,
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
   import Div from '@smui/common/Div.svelte';
 
+  import type { SMUIChipsPrimaryActionAccessor } from './Text.types';
+  import type { SMUIChipsTrailingActionAccessor } from './TrailingAction.types';
+  import type { SMUIChipsChipAccessor } from './Chip.types';
+
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
   export let style = '';
-  let chipId;
+  let chipId: any;
   export { chipId as chip };
   export let ripple = true;
   export let touch = false;
   export let shouldRemoveOnTrailingIconClick = true;
   export let shouldFocusPrimaryActionOnClick = true;
 
-  let element;
-  let instance;
-  let internalClasses = {};
-  let leadingIconClasses = {};
-  let internalStyles = {};
-  const initialSelectedStore = getContext('SMUI:chips:chip:initialSelected');
+  let element: SMUIComponent;
+  let instance: MDCChipFoundation;
+  let internalClasses: { [k: string]: boolean } = {};
+  let leadingIconClasses: { [k: string]: boolean } = {};
+  let internalStyles: { [k: string]: string } = {};
+  const initialSelectedStore = getContext<SvelteStore<boolean>>(
+    'SMUI:chips:chip:initialSelected'
+  );
   let selected = $initialSelectedStore;
-  let primaryActionAccessor;
-  let trailingActionAccessor;
-  const nonInteractive = getContext('SMUI:chips:nonInteractive');
-  const choice = getContext('SMUI:chips:choice');
-  const index = getContext('SMUI:chips:chip:index');
+  let primaryActionAccessor:
+    | SMUIChipsPrimaryActionAccessor
+    | undefined = undefined;
+  let trailingActionAccessor:
+    | SMUIChipsTrailingActionAccessor
+    | undefined = undefined;
+  const nonInteractive = getContext<SvelteStore<boolean>>(
+    'SMUI:chips:nonInteractive'
+  );
+  const choice = getContext<SvelteStore<boolean>>('SMUI:chips:choice');
+  const index = getContext<SvelteStore<number>>('SMUI:chips:chip:index');
 
   export let component = Div;
 
@@ -142,7 +156,9 @@
       addClass,
       addClassToLeadingIcon: addLeadingIconClass,
       eventTargetHasClass: (target, className) =>
-        target ? target.classList.contains(className) : false,
+        target && 'classList' in target
+          ? (target as HTMLElement).classList.contains(className)
+          : false,
       focusPrimaryAction: () => {
         if (primaryActionAccessor) {
           primaryActionAccessor.focus();
@@ -215,7 +231,7 @@
       setStyleProperty: addStyle,
     });
 
-    const accessor = {
+    const accessor: SMUIChipsChipAccessor = {
       chipId,
       get selected() {
         return selected;
@@ -226,48 +242,48 @@
       setSelectedFromChipSet,
     };
 
-    dispatch(getElement(), 'SMUI:chips:chip:mount', accessor);
+    dispatch(getElement(), 'SMUIChipsChip:mount', accessor);
 
     instance.init();
 
     return () => {
-      dispatch(getElement(), 'SMUI:chips:chip:unmount', accessor);
+      dispatch(getElement(), 'SMUIChipsChip:unmount', accessor);
 
       instance.destroy();
     };
   });
 
-  function hasClass(className) {
+  function hasClass(className: string) {
     return className in internalClasses
       ? internalClasses[className]
       : getElement().classList.contains(className);
   }
 
-  function addClass(className) {
+  function addClass(className: string) {
     if (!internalClasses[className]) {
       internalClasses[className] = true;
     }
   }
 
-  function removeClass(className) {
+  function removeClass(className: string) {
     if (!(className in internalClasses) || internalClasses[className]) {
       internalClasses[className] = false;
     }
   }
 
-  function addLeadingIconClass(className) {
+  function addLeadingIconClass(className: string) {
     if (!leadingIconClasses[className]) {
       leadingIconClasses[className] = true;
     }
   }
 
-  function removeLeadingIconClass(className) {
+  function removeLeadingIconClass(className: string) {
     if (!(className in leadingIconClasses) || leadingIconClasses[className]) {
       leadingIconClasses[className] = false;
     }
   }
 
-  function addStyle(name, value) {
+  function addStyle(name: string, value: string) {
     if (internalStyles[name] != value) {
       if (value === '' || value == null) {
         delete internalStyles[name];
@@ -278,13 +294,16 @@
     }
   }
 
-  function getStyle(name) {
+  function getStyle(name: string) {
     return name in internalStyles
       ? internalStyles[name]
       : getComputedStyle(getElement()).getPropertyValue(name);
   }
 
-  function setSelectedFromChipSet(value, shouldNotifyClients) {
+  function setSelectedFromChipSet(
+    value: boolean,
+    shouldNotifyClients: boolean
+  ) {
     selected = value;
     instance.setSelectedFromChipSet(selected, shouldNotifyClients);
   }

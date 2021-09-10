@@ -6,7 +6,7 @@
 </Set>
 <Button on:click={addKeyedChip}><Label>Add</Label></Button>
 
-<script>
+<script lang="ts">
   import Chip, { Set, TrailingAction, Text } from '@smui/chips';
   import Button, { Label } from '@smui/button';
 

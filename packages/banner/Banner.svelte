@@ -16,6 +16,8 @@
     .concat([style])
     .join(' ')}
   role="banner"
+  on:SMUIBannerButton:primaryActionClick={handlePrimaryActionClick}
+  on:SMUIBannerButton:secondaryActionClick={handleSecondaryActionClick}
   {...exclude($$restProps, ['content$', 'textWrapper$', 'graphic$'])}
 >
   <Fixed bind:fixed {width}>
@@ -131,15 +133,6 @@
   }
 
   onMount(() => {
-    element.addEventListener(
-      'SMUI:banner:button:primaryActionClick',
-      handlePrimaryActionClick
-    );
-    element.addEventListener(
-      'SMUI:banner:button:secondaryActionClick',
-      handleSecondaryActionClick
-    );
-
     focusTrap = new FocusTrap(element, {
       initialFocusEl: getPrimaryActionEl(),
     });
@@ -179,15 +172,6 @@
     layout();
 
     return () => {
-      element.removeEventListener(
-        'SMUI:banner:button:primaryActionClick',
-        handlePrimaryActionClick
-      );
-      element.removeEventListener(
-        'SMUI:banner:button:secondaryActionClick',
-        handleSecondaryActionClick
-      );
-
       instance.destroy();
     };
   });

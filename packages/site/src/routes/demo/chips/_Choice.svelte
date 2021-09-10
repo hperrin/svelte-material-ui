@@ -20,7 +20,7 @@
 
 <pre class="status">Selected: {selected}</pre>
 
-<script>
+<script lang="ts">
   import Chip, { Set, Text } from '@smui/chips';
   import Button, { Label } from '@smui/button';
 

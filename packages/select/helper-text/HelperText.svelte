@@ -61,14 +61,14 @@
     });
 
     if (id.startsWith('SMUI-select-helper-text-')) {
-      dispatch(getElement(), 'SMUI:select:helper-text:id', id);
+      dispatch(getElement(), 'SMUISelectHelperText:id', id);
     }
-    dispatch(getElement(), 'SMUI:select:helper-text:mount', instance);
+    dispatch(getElement(), 'SMUISelectHelperText:mount', instance);
 
     instance.init();
 
     return () => {
-      dispatch(getElement(), 'SMUI:select:helper-text:unmount', instance);
+      dispatch(getElement(), 'SMUISelectHelperText:unmount', instance);
 
       instance.destroy();
     };

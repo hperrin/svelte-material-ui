@@ -7,7 +7,7 @@
     'mdc-drawer-scrim': true,
     'smui-drawer-scrim__absolute': !fixed,
   })}
-  on:click={(event) => dispatch(element, 'SMUI:drawer:scrim:click', event)}
+  on:click={(event) => dispatch(element, 'SMUIDrawerScrim:click', event)}
   {...$$restProps}
 >
   <slot />

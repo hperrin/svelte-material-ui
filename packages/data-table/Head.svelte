@@ -2,10 +2,10 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  on:SMUI:checkbox:mount={(event) => (checkbox = event.detail)}
-  on:SMUI:checkbox:unmount={() => (checkbox = undefined)}
-  on:SMUI:data-table:cell:mount={handleCellMount}
-  on:SMUI:data-table:cell:unmount={handleCellUnmount}
+  on:SMUICheckbox:mount={(event) => (checkbox = event.detail)}
+  on:SMUICheckbox:unmount={() => (checkbox = undefined)}
+  on:SMUIDataTableCell:mount={handleCellMount}
+  on:SMUIDataTableCell:unmount={handleCellUnmount}
   {...$$restProps}><slot /></thead
 >
 

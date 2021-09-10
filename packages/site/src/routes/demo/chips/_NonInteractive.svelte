@@ -4,6 +4,6 @@
   </Chip>
 </Set>
 
-<script>
+<script lang="ts">
   import Chip, { Set, Text } from '@smui/chips';
 </script>

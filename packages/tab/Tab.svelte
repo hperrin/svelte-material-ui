@@ -160,12 +160,12 @@
       deactivate,
     };
 
-    dispatch(getElement(), 'SMUI:tab:mount', accessor);
+    dispatch(getElement(), 'SMUITab:mount', accessor);
 
     instance.init();
 
     return () => {
-      dispatch(getElement(), 'SMUI:tab:unmount', accessor);
+      dispatch(getElement(), 'SMUITab:unmount', accessor);
 
       instance.destroy();
     };

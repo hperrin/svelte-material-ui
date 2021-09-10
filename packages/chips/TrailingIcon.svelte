@@ -14,21 +14,22 @@
   >
 </span>
 
-<script>
+<script lang="ts">
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
     classMap,
     useActions,
+    ActionArray,
   } from '@smui/common/internal';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
 
-  let element;
+  let element: HTMLSpanElement;
 
   export function getElement() {
     return element;

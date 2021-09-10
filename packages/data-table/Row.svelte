@@ -10,8 +10,8 @@
     ...internalClasses,
   })}
   on:click={(event) => header && notifyHeaderClick(event)}
-  on:SMUI:checkbox:mount={(event) => (checkbox = event.detail)}
-  on:SMUI:checkbox:unmount={() => (checkbox = undefined)}
+  on:SMUICheckbox:mount={(event) => (checkbox = event.detail)}
+  on:SMUICheckbox:unmount={() => (checkbox = undefined)}
   aria-selected={checkbox ? (checkbox.checked ? 'true' : 'false') : null}
   {...internalAttrs}
   {...$$restProps}><slot /></tr

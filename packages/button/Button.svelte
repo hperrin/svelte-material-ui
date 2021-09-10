@@ -128,8 +128,8 @@
       dispatch(
         getElement(),
         secondary
-          ? 'SMUI:banner:button:secondaryActionClick'
-          : 'SMUI:banner:button:primaryActionClick'
+          ? 'SMUIBannerButton:secondaryActionClick'
+          : 'SMUIBannerButton:primaryActionClick'
       );
     }
   }

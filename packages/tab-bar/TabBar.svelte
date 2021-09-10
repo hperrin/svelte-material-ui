@@ -7,8 +7,8 @@
     'mdc-tab-bar': true,
   })}
   role="tablist"
-  on:SMUI:tab:mount={(event) => handleTabMount(event)}
-  on:SMUI:tab:unmount={(event) => handleTabUnmount(event)}
+  on:SMUITab:mount={(event) => handleTabMount(event)}
+  on:SMUITab:unmount={(event) => handleTabUnmount(event)}
   on:keydown={(event) => instance && instance.handleKeyDown(event)}
   on:MDCTab:interacted={(event) =>
     instance && instance.handleTabInteraction(event)}

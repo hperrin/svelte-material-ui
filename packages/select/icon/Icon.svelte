@@ -53,12 +53,12 @@
       notifyIconAction: () => dispatch(getElement(), 'MDCSelect:icon'),
     });
 
-    dispatch(getElement(), 'SMUI:select:leading-icon:mount', instance);
+    dispatch(getElement(), 'SMUISelectLeadingIcon:mount', instance);
 
     instance.init();
 
     return () => {
-      dispatch(getElement(), 'SMUI:select:leading-icon:unmount', instance);
+      dispatch(getElement(), 'SMUISelectLeadingIcon:unmount', instance);
 
       instance.destroy();
     };

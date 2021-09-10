@@ -28,7 +28,7 @@
   <Demo component={Keyed} file="chips/_Keyed.svelte">Keyed chips</Demo>
 </section>
 
-<script>
+<script lang="ts">
   import Demo from '../../../components/Demo.svelte';
   import Simple from './_Simple.svelte';
   import NonInteractive from './_NonInteractive.svelte';

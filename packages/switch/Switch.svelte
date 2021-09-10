@@ -204,12 +204,12 @@
       },
     };
 
-    dispatch(element, 'SMUI:generic:input:mount', accessor);
+    dispatch(element, 'SMUIGenericInput:mount', accessor);
 
     instance.init();
 
     return () => {
-      dispatch(element, 'SMUI:generic:input:unmount', accessor);
+      dispatch(element, 'SMUIGenericInput:unmount', accessor);
 
       instance.destroy();
     };
