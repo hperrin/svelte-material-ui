@@ -249,9 +249,9 @@
   import FloatingLabel from '@smui/floating-label/FloatingLabel.svelte';
   import LineRipple from '@smui/line-ripple/LineRipple.svelte';
   import NotchedOutline from '@smui/notched-outline/NotchedOutline.svelte';
-  import HelperLine from './HelperLine.js';
-  import Prefix from './Prefix.js';
-  import Suffix from './Suffix.js';
+  import HelperLine from './HelperLine';
+  import Prefix from './Prefix';
+  import Suffix from './Suffix';
   import Input from './Input.svelte';
   import Textarea from './Textarea.svelte';
   const { applyPassive } = events;
@@ -387,12 +387,6 @@
   }
 
   onMount(() => {
-    if (input == null) {
-      throw new Error('SMUI Textfield instantiated without Input component.');
-    }
-
-    const sureInput = input;
-
     instance = new MDCTextFieldFoundation(
       {
         // getRootAdapterMethods_
@@ -415,7 +409,9 @@
             }
           });
           const config = { attributes: true };
-          observer.observe(sureInput.getElement(), config);
+          if (input) {
+            observer.observe(input.getElement(), config);
+          }
           return observer;
         },
         deregisterValidationAttributeChangeHandler: (observer) => {
@@ -423,17 +419,17 @@
         },
 
         // getInputAdapterMethods_
-        getNativeInput: () => sureInput.getElement(),
+        getNativeInput: () => input?.getElement() ?? null,
         setInputAttr: (name, value) => {
-          sureInput.addAttr(name, value);
+          input?.addAttr(name, value);
         },
         removeInputAttr: (name) => {
-          sureInput.removeAttr(name);
+          input?.removeAttr(name);
         },
-        isFocused: () => document.activeElement === sureInput.getElement(),
+        isFocused: () => document.activeElement === input?.getElement(),
         registerInputInteractionHandler: (evtType, handler) => {
-          sureInput
-            .getElement()
+          input
+            ?.getElement()
             .addEventListener(
               evtType,
               handler as EventListener,
@@ -441,8 +437,8 @@
             );
         },
         deregisterInputInteractionHandler: (evtType, handler) => {
-          sureInput
-            .getElement()
+          input
+            ?.getElement()
             .removeEventListener(
               evtType,
               handler as EventListener,
@@ -491,9 +487,17 @@
     );
 
     if (valued) {
+      if (input == null) {
+        throw new Error('SMUI Textfield initialized without Input component.');
+      }
       instance.init();
     } else {
       tick().then(() => {
+        if (input == null) {
+          throw new Error(
+            'SMUI Textfield initialized without Input component.'
+          );
+        }
         instance.init();
       });
     }

@@ -77,11 +77,11 @@
       files = e.currentTarget.files;
       return;
     }
-    if (e.currentTarget.value && emptyValueNull) {
+    if (e.currentTarget.value === '' && emptyValueNull) {
       value = null;
       return;
     }
-    if (e.currentTarget.value && emptyValueUndefined) {
+    if (e.currentTarget.value === '' && emptyValueUndefined) {
       value = undefined;
       return;
     }

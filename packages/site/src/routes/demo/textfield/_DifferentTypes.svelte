@@ -38,7 +38,7 @@
   let valueTypeFiles: FileList | null = null;
 
   // Note: the change and input events fire before the `files` prop is updated.
-  $: if (valueTypeFiles.length) {
+  $: if (valueTypeFiles != null && valueTypeFiles.length) {
     alert('Selected ' + valueTypeFiles.length + ' file(s).');
   }
 </script>
