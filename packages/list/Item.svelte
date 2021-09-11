@@ -307,9 +307,8 @@
 
   function handleInputMount(e: CustomEvent<SMUIGenericInputAccessor>) {
     if (
-      e.detail &&
-      ('_smui_checkbox_accessor' in e.detail ||
-        '_smui_radio_accessor' in e.detail)
+      '_smui_checkbox_accessor' in e.detail ||
+      '_smui_radio_accessor' in e.detail
     ) {
       input = e.detail;
     }

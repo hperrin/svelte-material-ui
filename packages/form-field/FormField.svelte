@@ -8,8 +8,8 @@
     'mdc-form-field--align-end': align === 'end',
     'mdc-form-field--nowrap': noWrap,
   })}
-  on:SMUIGenericInput:mount={handleInputMount}
-  on:SMUIGenericInput:unmount={handleInputUnmount}
+  on:SMUIGenericInput:mount={(event) => (input = event.detail)}
+  on:SMUIGenericInput:unmount={() => (input = undefined)}
   {...exclude($$restProps, ['label$'])}
 >
   <slot />
@@ -82,14 +82,6 @@
       instance.destroy();
     };
   });
-
-  function handleInputMount(e: CustomEvent<SMUIGenericInputAccessor>) {
-    input = e.detail;
-  }
-
-  function handleInputUnmount() {
-    input = undefined;
-  }
 
   export function getElement() {
     return element;

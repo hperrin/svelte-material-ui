@@ -7,23 +7,24 @@
   {...$$restProps}><slot /></Item
 >
 
-<script>
+<script lang="ts">
+  import type { Writable } from 'svelte/store';
   import { onMount, onDestroy } from 'svelte';
   import { getContext, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
-  import { forwardEventsBuilder } from '@smui/common/internal';
+  import { ActionArray, forwardEventsBuilder } from '@smui/common/internal';
   import Item from '@smui/list/Item.svelte';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  export let use = [];
+  export let use: ActionArray = [];
   const className = '';
   export { className as class };
-  export let value = '';
+  export let value: any = '';
 
-  let element;
-  const selectedText = getContext('SMUI:select:selectedText');
-  const selectedValue = getContext('SMUI:select:value');
+  let element: Item;
+  const selectedText = getContext<Writable<string>>('SMUI:select:selectedText');
+  const selectedValue = getContext<SvelteStore<any>>('SMUI:select:value');
 
   setContext('SMUI:list:item:role', 'option');
 

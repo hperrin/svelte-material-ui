@@ -42,11 +42,13 @@
       .concat([style])
       .join(' ')}
     for={/* suppress a11y warning, since this is wrapped */ undefined}
-    on:SMUITextfieldLeadingIcon:mount={handleLeadingIconMount}
+    on:SMUITextfieldLeadingIcon:mount={(event) => (leadingIcon = event.detail)}
     on:SMUITextfieldLeadingIcon:unmount={() => (leadingIcon = undefined)}
-    on:SMUITextfieldTrailingIcon:mount={handleTrailingIconMount}
+    on:SMUITextfieldTrailingIcon:mount={(event) =>
+      (trailingIcon = event.detail)}
     on:SMUITextfieldTrailingIcon:unmount={() => (trailingIcon = undefined)}
-    on:SMUITextfieldCharacterCounter:mount={handleCharacterCounterMount}
+    on:SMUITextfieldCharacterCounter:mount={(event) =>
+      (characterCounter = event.detail)}
     on:SMUITextfieldCharacterCounter:unmount={() =>
       (characterCounter = undefined)}
     {...exclude($$restProps, [
@@ -188,9 +190,10 @@
       .map(([name, value]) => `${name}: ${value};`)
       .concat([style])
       .join(' ')}
-    on:SMUITextfieldLeadingIcon:mount={handleLeadingIconMount}
+    on:SMUITextfieldLeadingIcon:mount={(event) => (leadingIcon = event.detail)}
     on:SMUITextfieldLeadingIcon:unmount={() => (leadingIcon = undefined)}
-    on:SMUITextfieldTrailingIcon:mount={handleTrailingIconMount}
+    on:SMUITextfieldTrailingIcon:mount={(event) =>
+      (trailingIcon = event.detail)}
     on:SMUITextfieldTrailingIcon:unmount={() => (trailingIcon = undefined)}
     {...exclude($$restProps, [
       'input$',
@@ -213,13 +216,14 @@
 {/if}
 {#if $$slots.helper}
   <HelperLine
-    on:SMUITextfieldHelperText:id={handleHelperTextId}
-    on:SMUITextfieldHelperText:mount={handleHelperTextMount}
+    on:SMUITextfieldHelperText:id={(event) => (helperId = event.detail)}
+    on:SMUITextfieldHelperText:mount={(event) => (helperText = event.detail)}
     on:SMUITextfieldHelperText:unmount={() => {
       helperId = undefined;
       helperText = undefined;
     }}
-    on:SMUITextfieldCharacterCounter:mount={handleCharacterCounterMount}
+    on:SMUITextfieldCharacterCounter:mount={(event) =>
+      (characterCounter = event.detail)}
     on:SMUITextfieldCharacterCounter:unmount={() =>
       (characterCounter = undefined)}
     {...prefixFilter($$restProps, 'helperLine$')}
@@ -542,34 +546,6 @@
         internalStyles[name] = value;
       }
     }
-  }
-
-  function handleLeadingIconMount(
-    event: CustomEvent<MDCTextFieldIconFoundation>
-  ) {
-    leadingIcon = event.detail;
-  }
-
-  function handleTrailingIconMount(
-    event: CustomEvent<MDCTextFieldIconFoundation>
-  ) {
-    trailingIcon = event.detail;
-  }
-
-  function handleCharacterCounterMount(
-    event: CustomEvent<MDCTextFieldCharacterCounterFoundation>
-  ) {
-    characterCounter = event.detail;
-  }
-
-  function handleHelperTextMount(
-    event: CustomEvent<MDCTextFieldHelperTextFoundation>
-  ) {
-    helperText = event.detail;
-  }
-
-  function handleHelperTextId(event: CustomEvent<string>) {
-    helperId = event.detail;
   }
 
   export function focus() {

@@ -46,7 +46,7 @@
   </div>
 </div>
 
-<script>
+<script lang="ts">
   import Select, { Option } from '@smui/select';
   import Icon from '@smui/select/icon';
 

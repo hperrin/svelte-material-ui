@@ -10,7 +10,7 @@
   </div>
 </div>
 
-<script>
+<script lang="ts">
   import Select, { Option } from '@smui/select';
 
   let fruits = ['Apple', 'Orange', 'Banana', 'Mango'];
