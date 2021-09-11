@@ -47,7 +47,6 @@
     AddLayoutListener,
     RemoveLayoutListener,
     SMUIComponent,
-    SMUIEvent,
   } from '@smui/common';
   import { MDCListFoundation } from '@material/list';
   import { ponyfill } from '@material/dom';
@@ -239,25 +238,21 @@
     }
   });
 
-  function handleItemMount(event: SMUIEvent<SMUIListItemAccessor>) {
-    if (event.detail) {
-      items.push(event.detail);
-      itemAccessorMap.set(event.detail.element, event.detail);
-      if (singleSelection && event.detail.selected) {
-        selectedIndex = getListItemIndex(event.detail.element);
-      }
+  function handleItemMount(event: CustomEvent<SMUIListItemAccessor>) {
+    items.push(event.detail);
+    itemAccessorMap.set(event.detail.element, event.detail);
+    if (singleSelection && event.detail.selected) {
+      selectedIndex = getListItemIndex(event.detail.element);
     }
     event.stopPropagation();
   }
 
-  function handleItemUnmount(event: SMUIEvent<SMUIListItemAccessor>) {
+  function handleItemUnmount(event: CustomEvent<SMUIListItemAccessor>) {
     const idx = (event.detail && items.indexOf(event.detail)) ?? -1;
     if (idx !== -1) {
       items.splice(idx, 1);
       items = items;
-      if (event.detail?.element) {
-        itemAccessorMap.delete(event.detail?.element);
-      }
+      itemAccessorMap.delete(event.detail.element);
     }
     event.stopPropagation();
   }

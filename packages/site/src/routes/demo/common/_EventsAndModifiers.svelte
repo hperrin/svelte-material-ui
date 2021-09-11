@@ -55,16 +55,16 @@
   </A>
 </div>
 
-<script>
+<script lang="ts">
   import Button, { Label } from '@smui/button';
   import A from '@smui/common/A.svelte';
 
-  let eventOutput;
-  let eventPhaseOutput;
-  let events = [];
-  let eventPhases = [];
+  let eventOutput: HTMLDivElement;
+  let eventPhaseOutput: HTMLDivElement;
+  let events: Event[] = [];
+  let eventPhases: [Event, string][] = [];
 
-  function addEvent(event) {
+  function addEvent(event: Event) {
     events.push(event);
     events = events;
     requestAnimationFrame(() => {
@@ -72,7 +72,7 @@
     });
   }
 
-  function addEventPhase(event) {
+  function addEventPhase(event: Event) {
     const phases = ['none', 'capturing', 'at-target', 'bubbling'];
     eventPhases.push([event, phases[event.eventPhase]]);
     eventPhases = eventPhases;

@@ -8,7 +8,7 @@
   <Fab><Icon class="material-icons">favorite</Icon></Fab>
 </div>
 
-<script>
+<script lang="ts">
   import Button from '@smui/button';
   import IconButton from '@smui/icon-button';
   import Fab from '@smui/fab';

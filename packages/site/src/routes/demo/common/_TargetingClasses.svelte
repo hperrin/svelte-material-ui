@@ -12,7 +12,7 @@
   <Button class="myClass"><Label>This button has a Class</Label></Button>
 </div>
 
-<script>
+<script lang="ts">
   import Button, { Label } from '@smui/button';
 </script>
 

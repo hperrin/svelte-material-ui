@@ -60,10 +60,10 @@
 
 <script lang="ts">
   import Button, { Group, GroupItem, Label, Icon } from '@smui/button';
-  import Menu from '@smui/menu';
+  import Menu, { MenuComponentDev } from '@smui/menu';
   import List, { Item, Separator, Text } from '@smui/list';
 
   let clicked = 0;
-  let menu;
-  let menu2;
+  let menu: MenuComponentDev;
+  let menu2: MenuComponentDev;
 </script>

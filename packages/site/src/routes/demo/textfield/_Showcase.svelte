@@ -37,7 +37,7 @@
 <pre
   class="status">Focused: {focused}, Dirty: {dirty}, Invalid: {invalid}, Value: {value}</pre>
 
-<script>
+<script lang="ts">
   import Textfield from '@smui/textfield';
   import Icon from '@smui/textfield/icon';
   import HelperText from '@smui/textfield/helper-text/index';

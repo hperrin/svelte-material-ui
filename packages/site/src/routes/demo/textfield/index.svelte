@@ -116,7 +116,7 @@
   </Demo>
 </section>
 
-<script>
+<script lang="ts">
   import Demo from '../../../components/Demo.svelte';
   import Showcase from './_Showcase.svelte';
   import Standard from './_Standard.svelte';

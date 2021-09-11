@@ -18,11 +18,11 @@
   </MyComponent>
 </div>
 
-<script>
+<script lang="ts">
   import MyComponent from './_UseActionsComponent.svelte';
-  import Pannable from './_UseActionsPannable.js';
-  import Swipeable from './_UseActionsSwipeable.js';
-  import Tappable from './_UseActionsTappable.js';
+  import Pannable from './_UseActionsPannable';
+  import Swipeable from './_UseActionsSwipeable';
+  import Tappable from './_UseActionsTappable';
 </script>
 
 <style>

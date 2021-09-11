@@ -13,18 +13,19 @@
   {...$$restProps}
 />
 
-<script>
+<script lang="ts">
   import { onMount } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
     classMap,
     useActions,
+    ActionArray,
   } from '@smui/common/internal';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
   export let style = '';
@@ -34,8 +35,8 @@
   export let updateInvalid = true;
   export let resizable = true;
 
-  let element;
-  let internalAttrs = {};
+  let element: HTMLTextAreaElement;
+  let internalAttrs: { [k: string]: string | undefined } = {};
 
   onMount(() => {
     if (updateInvalid) {
@@ -50,19 +51,19 @@
     }
   }
 
-  export function getAttr(name) {
+  export function getAttr(name: string) {
     return name in internalAttrs
-      ? internalAttrs[name]
+      ? internalAttrs[name] ?? null
       : getElement().getAttribute(name);
   }
 
-  export function addAttr(name, value) {
+  export function addAttr(name: string, value: string) {
     if (internalAttrs[name] !== value) {
       internalAttrs[name] = value;
     }
   }
 
-  export function removeAttr(name) {
+  export function removeAttr(name: string) {
     if (!(name in internalAttrs) || internalAttrs[name] != null) {
       internalAttrs[name] = undefined;
     }

@@ -5,7 +5,7 @@
         <Item on:click={() => clicked++}>
           <Text>A card with a list as content.</Text>
         </Item>
-        {#each [...Array(5)].map((v, i) => i + 1) as item}
+        {#each [...Array(5)].map((_v, i) => i + 1) as item}
           <Item on:click={() => clicked++}>
             <Text>Item #{item}</Text>
           </Item>

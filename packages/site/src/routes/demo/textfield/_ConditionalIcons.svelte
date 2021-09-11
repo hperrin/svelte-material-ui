@@ -82,7 +82,7 @@
   </Button>
 </div>
 
-<script>
+<script lang="ts">
   import Textfield from '@smui/textfield';
   import Icon from '@smui/textfield/icon';
   import Button from '@smui/button';

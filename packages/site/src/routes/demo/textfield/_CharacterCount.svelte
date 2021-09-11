@@ -32,7 +32,7 @@
   </div>
 </div>
 
-<script>
+<script lang="ts">
   import Textfield from '@smui/textfield';
   import CharacterCounter from '@smui/textfield/character-counter/index';
 

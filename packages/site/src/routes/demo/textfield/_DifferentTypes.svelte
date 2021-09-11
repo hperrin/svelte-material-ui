@@ -29,13 +29,13 @@
   </div>
 </div>
 
-<script>
+<script lang="ts">
   import Textfield from '@smui/textfield';
 
   let valueTypeNumber = 0;
   let valueTypeNumberStep = 0;
   let valueTypeDate = '';
-  let valueTypeFiles = [];
+  let valueTypeFiles: FileList | null = null;
 
   // Note: the change and input events fire before the `files` prop is updated.
   $: if (valueTypeFiles.length) {

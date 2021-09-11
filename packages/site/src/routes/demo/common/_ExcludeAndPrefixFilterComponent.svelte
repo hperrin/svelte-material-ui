@@ -8,7 +8,7 @@
   </Button>
 </div>
 
-<script>
+<script lang="ts">
   import { exclude, prefixFilter } from '@smui/common/internal';
   import Button from '@smui/button';
 

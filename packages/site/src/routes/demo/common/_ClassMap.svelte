@@ -23,7 +23,7 @@
   {/each}
 </div>
 
-<script>
+<script lang="ts">
   import { classMap } from '@smui/common/internal';
   import { Label } from '@smui/common';
   import Button from '@smui/button';

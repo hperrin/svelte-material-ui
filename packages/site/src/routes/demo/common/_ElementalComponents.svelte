@@ -10,7 +10,7 @@
   <Button component={Em}><Label>I'm a &lt;em /&gt; Button</Label></Button>
 </div>
 
-<script>
+<script lang="ts">
   import Div from '@smui/common/Div.svelte';
   import Span from '@smui/common/Span.svelte';
   import Strong from '@smui/common/Strong.svelte';

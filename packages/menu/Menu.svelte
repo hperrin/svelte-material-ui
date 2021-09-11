@@ -20,7 +20,6 @@
 >
 
 <script lang="ts">
-  import type { SMUIEvent } from '@smui/common';
   import type { SMUIListAccessor } from '@smui/list';
   import type { SMUIMenuSurfaceAccessor } from '@smui/menu-surface';
   import { MDCMenuFoundation, cssClasses } from '@material/menu';
@@ -118,15 +117,15 @@
   }
 
   function handleMenuSurfaceAccessor(
-    event: SMUIEvent<SMUIMenuSurfaceAccessor>
+    event: CustomEvent<SMUIMenuSurfaceAccessor>
   ) {
-    if (!menuSurfaceAccessor && event.detail) {
+    if (!menuSurfaceAccessor) {
       menuSurfaceAccessor = event.detail;
     }
   }
 
-  function handleListAccessor(event: SMUIEvent<SMUIListAccessor>) {
-    if (!listAccessor && event.detail) {
+  function handleListAccessor(event: CustomEvent<SMUIListAccessor>) {
+    if (!listAccessor) {
       listAccessor = event.detail;
     }
   }

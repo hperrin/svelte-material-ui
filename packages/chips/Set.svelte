@@ -32,7 +32,6 @@
 </div>
 
 <script lang="ts">
-  import type { SMUIEvent } from '@smui/common';
   import type {
     MDCChipInteractionEvent,
     MDCChipNavigationEvent,
@@ -195,20 +194,16 @@
     };
   });
 
-  function handleChipMount(event: SMUIEvent<SMUIChipsChipAccessor>) {
-    if (event.detail) {
-      const accessor = event.detail;
+  function handleChipMount(event: CustomEvent<SMUIChipsChipAccessor>) {
+    const accessor = event.detail;
 
-      addAccessor(accessor.chipId, accessor);
-    }
+    addAccessor(accessor.chipId, accessor);
   }
 
-  function handleChipUnmount(event: SMUIEvent<SMUIChipsChipAccessor>) {
-    if (event.detail) {
-      const accessor = event.detail;
+  function handleChipUnmount(event: CustomEvent<SMUIChipsChipAccessor>) {
+    const accessor = event.detail;
 
-      removeAccessor(accessor.chipId);
-    }
+    removeAccessor(accessor.chipId);
   }
 
   function handleChipInteraction(event: MDCChipInteractionEvent) {

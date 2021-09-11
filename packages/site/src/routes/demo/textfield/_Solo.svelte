@@ -3,7 +3,7 @@
     <Icon class="material-icons">search</Icon>
     <Input
       bind:value
-      on:keydown={(event) => event.key === 'Enter' && doSearch()}
+      on:keydown={handleKeyDown}
       placeholder="Search"
       class="solo-input"
     />
@@ -21,7 +21,7 @@
 
 <pre class="status">Value: {value}</pre>
 
-<script>
+<script lang="ts">
   import { Input } from '@smui/textfield';
   import Paper from '@smui/paper';
   import Fab from '@smui/fab';
@@ -31,6 +31,12 @@
 
   function doSearch() {
     alert('Search for ' + value);
+  }
+
+  function handleKeyDown(event: CustomEvent & KeyboardEvent) {
+    if (event.key === 'Enter') {
+      doSearch();
+    }
   }
 </script>
 

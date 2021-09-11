@@ -2,10 +2,10 @@ import TinyGesture from 'tinygesture';
 import { tweened } from 'svelte/motion';
 import { cubicInOut } from 'svelte/easing';
 
-export default function Pannable(node) {
+export default function Pannable(node: HTMLElement) {
   const gesture = new TinyGesture(node);
   let animationFrame = null;
-  const preventDefault = (event) => {
+  const preventDefault = (event: Event) => {
     event.preventDefault();
   };
 
@@ -62,7 +62,7 @@ export default function Pannable(node) {
     destroy() {
       node.removeEventListener('touchstart', preventDefault, {
         passive: false,
-      });
+      } as EventListenerOptions);
       window.cancelAnimationFrame(animationFrame);
       leftUnsub();
       topUnsub();

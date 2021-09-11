@@ -1,9 +1,15 @@
 import TinyGesture from 'tinygesture';
 
-export default function Tappable(node, options) {
+export default function Tappable(
+  node: HTMLElement,
+  options: {
+    bgColor: string;
+    color: string;
+  }
+) {
   const gesture = new TinyGesture(node);
-  let tapTimeout;
-  let pressTimeout;
+  let tapTimeout: NodeJS.Timeout;
+  let pressTimeout: NodeJS.Timeout;
   let pressed = false;
 
   node.style.transition =

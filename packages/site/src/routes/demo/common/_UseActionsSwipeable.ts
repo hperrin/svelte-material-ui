@@ -1,9 +1,9 @@
 import TinyGesture from 'tinygesture';
 
-export default function Swipeable(node) {
+export default function Swipeable(node: HTMLElement) {
   const gesture = new TinyGesture(node);
-  let timeout;
-  const preventDefault = (event) => {
+  let timeout: NodeJS.Timeout;
+  const preventDefault = (event: Event) => {
     event.preventDefault();
   };
 
@@ -38,7 +38,7 @@ export default function Swipeable(node) {
     destroy() {
       node.removeEventListener('touchstart', preventDefault, {
         passive: false,
-      });
+      } as EventListenerOptions);
       clearTimeout(timeout);
       gesture.destroy();
     },

@@ -26,7 +26,7 @@
 </script>
 
 <script lang="ts">
-  import type { SMUIEvent, SMUIGenericInputAccessor } from '@smui/common';
+  import type { SMUIGenericInputAccessor } from '@smui/common';
   import { MDCFormFieldFoundation } from '@material/form-field';
   import { onMount, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
@@ -83,10 +83,8 @@
     };
   });
 
-  function handleInputMount(e: SMUIEvent<SMUIGenericInputAccessor>) {
-    if (e.detail) {
-      input = e.detail;
-    }
+  function handleInputMount(e: CustomEvent<SMUIGenericInputAccessor>) {
+    input = e.detail;
   }
 
   function handleInputUnmount() {

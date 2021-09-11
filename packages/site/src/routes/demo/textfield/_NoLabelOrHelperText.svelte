@@ -16,7 +16,7 @@
   </div>
 </div>
 
-<script>
+<script lang="ts">
   import Textfield from '@smui/textfield';
 
   let valueA = '';

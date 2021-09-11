@@ -51,7 +51,7 @@
     component={ClassAdderBuilder}
     files={[
       'common/_ClassAdderBuilder.svelte',
-      'common/_ClassAdderBuilderComponent.js',
+      'common/_ClassAdderBuilderComponent.ts',
     ]}
   >
     Class Adder Builder
@@ -74,7 +74,10 @@
     </svelte:fragment>
   </Demo>
 
-  <Demo component={Dispatch} file="common/_Dispatch.svelte">
+  <Demo
+    component={Dispatch}
+    files={['common/_Dispatch.svelte', 'common/ambient.d.ts']}
+  >
     Dispatch
     <svelte:fragment slot="subtitle">
       Dispatch a custom event. This differs from Svelte's component event
@@ -145,9 +148,9 @@
     files={[
       'common/_UseActions.svelte',
       'common/_UseActionsComponent.svelte',
-      'common/_UseActionsPannable.js',
-      'common/_UseActionsSwipeable.js',
-      'common/_UseActionsTappable.js',
+      'common/_UseActionsPannable.ts',
+      'common/_UseActionsSwipeable.ts',
+      'common/_UseActionsTappable.ts',
     ]}
   >
     Use Actions
@@ -159,7 +162,7 @@
   </Demo>
 </section>
 
-<script>
+<script lang="ts">
   import Demo from '../../../components/Demo.svelte';
   import CommonLabelIcon from './_CommonLabelIcon.svelte';
   import TargetingClasses from './_TargetingClasses.svelte';

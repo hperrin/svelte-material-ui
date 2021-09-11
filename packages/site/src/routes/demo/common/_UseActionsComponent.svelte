@@ -4,10 +4,10 @@
   </span>
 </div>
 
-<script>
-  import { useActions } from '@smui/common/internal';
+<script lang="ts">
+  import { ActionArray, useActions } from '@smui/common/internal';
 
-  export let use = [];
+  export let use: ActionArray = [];
 </script>
 
 <style>

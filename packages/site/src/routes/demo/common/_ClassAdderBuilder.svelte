@@ -2,8 +2,8 @@
   <MyClassAdder>I'm a component with an added class!</MyClassAdder>
 </div>
 
-<script>
-  import MyClassAdder from './_ClassAdderBuilderComponent.js';
+<script lang="ts">
+  import MyClassAdder from './_ClassAdderBuilderComponent';
 </script>
 
 <style>

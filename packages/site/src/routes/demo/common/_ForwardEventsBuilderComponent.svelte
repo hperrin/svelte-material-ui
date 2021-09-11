@@ -2,7 +2,7 @@
   <slot />
 </div>
 
-<script>
+<script lang="ts">
   import { forwardEventsBuilder } from '@smui/common/internal';
   import { get_current_component } from 'svelte/internal';
 

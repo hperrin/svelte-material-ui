@@ -6,7 +6,7 @@
   Click Me Only Once
 </MyComponent>
 
-<script>
+<script lang="ts">
   import MyComponent from './_ExcludeAndPrefixFilterComponent.svelte';
 
   let disabled = false;

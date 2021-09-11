@@ -16,12 +16,12 @@
 <pre
   class="status">Caught Event Detail: {event && JSON.stringify(event.detail)}</pre>
 
-<script>
+<script lang="ts">
   import { dispatch } from '@smui/common/internal';
   import Button from '@smui/button';
 
-  let target;
-  let event;
+  let target: HTMLDivElement;
+  let event: CustomEvent<{ time: string }>;
 
   function dispatchEvent() {
     dispatch(

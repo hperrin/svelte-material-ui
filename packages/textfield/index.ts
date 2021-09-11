@@ -1,8 +1,8 @@
 import Textfield from './Textfield.svelte';
 
-import Prefix from './Prefix.js';
-import Suffix from './Suffix.js';
-import HelperLine from './HelperLine.js';
+import Prefix from './Prefix';
+import Suffix from './Suffix';
+import HelperLine from './HelperLine';
 import Input from './Input.svelte';
 import Textarea from './Textarea.svelte';
 

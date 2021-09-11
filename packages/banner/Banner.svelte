@@ -65,6 +65,7 @@
 </div>
 
 <script lang="ts">
+  import type { AddLayoutListener, RemoveLayoutListener } from '@smui/common';
   import { CloseReason, MDCBannerFoundation } from '@material/banner';
   import { focusTrap as domFocusTrap } from '@material/dom';
   import { onMount, onDestroy, getContext, setContext, tick } from 'svelte';
@@ -78,7 +79,6 @@
     dispatch,
     ActionArray,
   } from '@smui/common/internal';
-  import type { AddLayoutListener, RemoveLayoutListener } from '@smui/common';
 
   import Fixed from './Fixed.svelte';
 
@@ -104,7 +104,7 @@
   let internalStyles: { [k: string]: string } = {};
   let content: HTMLDivElement;
   let focusTrap: domFocusTrap.FocusTrap | undefined;
-  let addLayoutListener: AddLayoutListener | undefined = getContext(
+  let addLayoutListener = getContext<AddLayoutListener | undefined>(
     'SMUI:addLayoutListener'
   );
   let removeLayoutListener: RemoveLayoutListener | undefined;

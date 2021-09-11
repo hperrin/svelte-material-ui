@@ -24,7 +24,7 @@
     {#if sourceFile}
       <script
         src="https://emgithub.com/embed.js?target={encodeURIComponent(
-          `https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/${sourceFile}`
+          `https://github.com/hperrin/svelte-material-ui/blob/master/packages/site/src/routes/demo/${sourceFile}`
         )}&style=github&showBorder=on&showLineNumbers=on&showFileMeta=on"
         rel="external"></script>
     {/if}
