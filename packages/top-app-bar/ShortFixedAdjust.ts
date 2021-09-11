@@ -1,4 +1,4 @@
-export default function ShortFixedAdjust(node) {
+export default function ShortFixedAdjust(node: HTMLElement) {
   node.classList.add('mdc-top-app-bar--short-fixed-adjust');
 
   return {

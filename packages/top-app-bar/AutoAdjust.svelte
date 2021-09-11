@@ -11,19 +11,25 @@
   <slot />
 </svelte:component>
 
-<script>
+<script lang="ts">
+  import type { SMUIComponent } from '@smui/common';
+  import type TopAppBar from './TopAppBar.svelte';
   import { get_current_component } from 'svelte/internal';
-  import { forwardEventsBuilder, classMap } from '@smui/common/internal';
+  import {
+    forwardEventsBuilder,
+    classMap,
+    ActionArray,
+  } from '@smui/common/internal';
   import Main from '@smui/common/Main.svelte';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
-  export let topAppBar;
+  export let topAppBar: TopAppBar;
 
-  let element;
+  let element: SMUIComponent;
 
   export let component = Main;
 

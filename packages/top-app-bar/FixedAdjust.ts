@@ -1,4 +1,4 @@
-export default function FixedAdjust(node) {
+export default function FixedAdjust(node: HTMLElement) {
   node.classList.add('mdc-top-app-bar--fixed-adjust');
 
   return {

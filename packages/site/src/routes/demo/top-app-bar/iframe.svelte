@@ -31,7 +31,7 @@
   />
 </AutoAdjust>
 
-<script>
+<script lang="ts">
   // The iframe is loaded with a style in the query part
   // of the URL, and we can read it from here.
   import { page } from '$app/stores';
@@ -50,9 +50,9 @@
   let collapsed = false;
   let title = 'Standard';
   let shortAlwaysCollapsed = false;
-  let topAppBar;
+  let topAppBar: TopAppBar;
 
-  switch ($page.query.style) {
+  switch ($page.query.get('style')) {
     case 'fixed':
       variant = 'fixed';
       title = 'Fixed';

@@ -23,7 +23,7 @@
   </Demo>
 </section>
 
-<script>
+<script lang="ts">
   import Demo from '../../../components/Demo.svelte';
   import Static from './_Static.svelte';
   import Variants from './_Variants.svelte';

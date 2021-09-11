@@ -1,4 +1,4 @@
-export default function ProminentFixedAdjust(node) {
+export default function ProminentFixedAdjust(node: HTMLElement) {
   node.classList.add('mdc-top-app-bar--prominent-fixed-adjust');
 
   return {

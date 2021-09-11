@@ -1,4 +1,4 @@
-export default function DenseFixedAdjust(node) {
+export default function DenseFixedAdjust(node: HTMLElement) {
   node.classList.add('mdc-top-app-bar--dense-fixed-adjust');
 
   return {
