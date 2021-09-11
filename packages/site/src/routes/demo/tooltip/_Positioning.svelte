@@ -43,7 +43,7 @@
   </Wrapper>
 </div>
 
-<script>
+<script lang="ts">
   import Tooltip, { Wrapper } from '@smui/tooltip';
   import Button, { Label } from '@smui/button';
 </script>

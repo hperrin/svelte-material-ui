@@ -100,7 +100,7 @@
       <Content>
         <List>
           {#each sections as section (section.name)}
-            {#if section.separator}
+            {#if 'separator' in section}
               <Separator />
             {:else}
               <Item
@@ -135,7 +135,7 @@
   </div>
 {/if}
 
-<script>
+<script lang="ts">
   import { onMount } from 'svelte';
   import { page } from '$app/stores';
   import {
@@ -169,7 +169,7 @@
   function switchTheme() {
     lightTheme = !lightTheme;
 
-    let themeLink = document.head.querySelector('#theme');
+    let themeLink = document.head.querySelector<HTMLLinkElement>('#theme');
     if (!themeLink) {
       themeLink = document.createElement('link');
       themeLink.rel = 'stylesheet';
@@ -180,7 +180,7 @@
       .querySelector('link[href="/smui-dark.css"]')
       .insertAdjacentElement('afterend', themeLink);
 
-    let siteLink = document.head.querySelector('#site');
+    let siteLink = document.head.querySelector<HTMLLinkElement>('#site');
     if (!siteLink) {
       siteLink = document.createElement('link');
       siteLink.rel = 'stylesheet';
@@ -192,7 +192,22 @@
       .insertAdjacentElement('afterend', siteLink);
   }
 
-  const sections = [
+  type DemoSection = {
+    component?: Item;
+    name: string;
+    route?: string;
+    shortcut?: string;
+    indent: number;
+    nosource?: boolean;
+    repos?: string[];
+  };
+  const sections: (
+    | DemoSection
+    | {
+        name: string;
+        separator: true;
+      }
+  )[] = [
     {
       name: 'Installation',
       route: '/INSTALL.md/',
@@ -212,6 +227,7 @@
       nosource: true,
     },
     {
+      name: 'sep1',
       separator: true,
     },
     {
@@ -494,12 +510,13 @@
 
   $: activeSection = sections.find(
     (section) => 'route' in section && routesEqual(section.route, $page.path)
-  );
+  ) as DemoSection;
   let previousPagePath = null;
   $: if (mainContent && previousPagePath !== $page.path) {
     drawerOpen = false;
     const hashEl =
-      window.location.hash && document.querySelector(window.location.hash);
+      window.location.hash &&
+      document.querySelector<HTMLElement>(window.location.hash);
     const top = (hashEl && hashEl.offsetTop) || 0;
     mainContent.scrollTop = top;
     previousPagePath = $page.path;

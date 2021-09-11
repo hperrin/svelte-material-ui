@@ -69,7 +69,7 @@
 <pre
   class="status">Clicked: {clicked}, Checked: {checked}, Selected: {selected}</pre>
 
-<script>
+<script lang="ts">
   import Tooltip, { Wrapper } from '@smui/tooltip';
   import Button from '@smui/button';
   import Fab from '@smui/fab';

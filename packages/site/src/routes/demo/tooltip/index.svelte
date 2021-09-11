@@ -4,7 +4,7 @@
 
 <section>
   <h2>Toolip</h2>
-  <p>Or tooltip. Whatever; I can't spell.</p>
+  <p>Or tooltip. I can't spell.</p>
 
   <pre class="demo-spaced">npm i -D @smui/tooltip</pre>
 
@@ -21,7 +21,7 @@
   <Demo component={Rich} file="tooltip/_Rich.svelte">Rich</Demo>
 </section>
 
-<script>
+<script lang="ts">
   import Demo from '../../../components/Demo.svelte';
   import Simple from './_Simple.svelte';
   import Positioning from './_Positioning.svelte';

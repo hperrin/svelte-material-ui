@@ -1,10 +1,10 @@
 import Tooltip from './Tooltip.svelte';
 
 import Wrapper from './Wrapper.svelte';
-import Title from './Title.js';
-import Content from './Content.js';
-import Link from './Link.js';
-import RichActions from './RichActions.js';
+import Title from './Title';
+import Content from './Content';
+import Link from './Link';
+import RichActions from './RichActions';
 
 export default Tooltip;
 

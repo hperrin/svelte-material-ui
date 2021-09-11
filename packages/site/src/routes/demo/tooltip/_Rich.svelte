@@ -52,7 +52,7 @@
 
 <pre class="status">Clicked: {clicked}</pre>
 
-<script>
+<script lang="ts">
   import Tooltip, {
     Wrapper,
     Title,
