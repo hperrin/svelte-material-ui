@@ -19,7 +19,7 @@
 
 <pre class="status">Value: {valueStart} - {valueEnd}</pre>
 
-<script>
+<script lang="ts">
   import Slider from '@smui/slider';
   import Button from '@smui/button';
 

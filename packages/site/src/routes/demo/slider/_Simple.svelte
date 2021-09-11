@@ -16,7 +16,7 @@
 
 <pre class="status">Value: {value}</pre>
 
-<script>
+<script lang="ts">
   import Slider from '@smui/slider';
   import FormField from '@smui/form-field';
   import Button from '@smui/button';

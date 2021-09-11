@@ -8,7 +8,7 @@
 
 <pre class="status">Value: {value}</pre>
 
-<script>
+<script lang="ts">
   import Slider from '@smui/slider';
 
   let value = 0;

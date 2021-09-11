@@ -125,7 +125,12 @@
 </div>
 
 <script lang="ts">
-  import Textfield, { Input, Textarea } from '@smui/textfield';
+  import Textfield, {
+    Input,
+    InputComponentDev,
+    Textarea,
+    TextareaComponentDev,
+  } from '@smui/textfield';
   import Icon from '@smui/textfield/icon';
   import HelperText from '@smui/textfield/helper-text/index';
   import FloatingLabel from '@smui/floating-label';
@@ -134,22 +139,22 @@
 
   // Manual Setup requires passing the lower components up to the Textfield
   let valueA = '';
-  let inputA: Input;
+  let inputA: InputComponentDev;
   let floatingLabelA: FloatingLabel;
   let lineRippleA: LineRipple;
 
   let valueB = '';
-  let inputB: Input;
+  let inputB: InputComponentDev;
   let floatingLabelB: FloatingLabel;
   let lineRippleB: LineRipple;
 
   let valueC = '';
-  let inputC: Input;
+  let inputC: InputComponentDev;
   let notchedOutlineC: NotchedOutline;
   let floatingLabelC: FloatingLabel;
 
   let valueD = '';
-  let inputD: Textarea;
+  let inputD: TextareaComponentDev;
   let notchedOutlineD: NotchedOutline;
   let floatingLabelD: FloatingLabel;
 </script>

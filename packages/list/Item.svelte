@@ -271,8 +271,8 @@
     // Look through next siblings to see if none of them are selected.
     let noneSelected = true;
     let el = element.getElement();
-    while (el.nextSibling) {
-      el = el.nextSibling as Element;
+    while (el.nextElementSibling) {
+      el = el.nextElementSibling as HTMLElement;
       if (
         el.nodeType === 1 &&
         el.classList.contains('mdc-deprecated-list-item')

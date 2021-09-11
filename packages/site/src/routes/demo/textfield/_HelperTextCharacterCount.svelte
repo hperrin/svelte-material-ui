@@ -1,6 +1,6 @@
 <div class="columns margins">
   <div>
-    <Textfield bind:value={valueA} label="Standard" input$maxlength="18">
+    <Textfield bind:value={valueA} label="Standard" input$maxlength={18}>
       <svelte:fragment slot="helper">
         <HelperText>Helper Text</HelperText>
         <CharacterCounter>0 / 18</CharacterCounter>
@@ -14,7 +14,7 @@
       variant="filled"
       bind:value={valueB}
       label="Filled"
-      input$maxlength="18"
+      input$maxlength={18}
     >
       <svelte:fragment slot="helper">
         <HelperText>Helper Text</HelperText>
@@ -29,7 +29,7 @@
       variant="outlined"
       bind:value={valueC}
       label="Outlined"
-      input$maxlength="18"
+      input$maxlength={18}
     >
       <svelte:fragment slot="helper">
         <HelperText>Helper Text</HelperText>

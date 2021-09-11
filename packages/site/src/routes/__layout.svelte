@@ -159,7 +159,7 @@
 
   const iframe = $page.path.includes('/iframe');
 
-  let mainContent;
+  let mainContent: HTMLElement;
   let miniWindow = false;
   let drawerOpen = false;
 
@@ -524,7 +524,7 @@
 
   onMount(setMiniWindow);
 
-  function routesEqual(a, b) {
+  function routesEqual(a: string, b: string) {
     return (
       (a.endsWith('/') ? a.slice(0, -1) : a) ===
       (b.endsWith('/') ? b.slice(0, -1) : b)

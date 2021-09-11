@@ -30,7 +30,7 @@
   <Demo component={Disabled} file="slider/_Disabled.svelte">Disabled</Demo>
 </section>
 
-<script>
+<script lang="ts">
   import Demo from '../../../components/Demo.svelte';
   import Simple from './_Simple.svelte';
   import Continuous from './_Continuous.svelte';

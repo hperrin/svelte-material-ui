@@ -1,5 +1,5 @@
 <div class="margins">
-  <Textfield textarea input$maxlength="100" bind:value label="Label">
+  <Textfield textarea input$maxlength={100} bind:value label="Label">
     <CharacterCounter slot="internalCounter">0 / 100</CharacterCounter>
   </Textfield>
 </div>

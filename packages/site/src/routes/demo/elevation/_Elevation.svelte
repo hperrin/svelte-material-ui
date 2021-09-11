@@ -4,7 +4,7 @@
 -->
 
 <div class="flexy-dad">
-  {#each [...Array(24)].map((v, i) => i + 1) as n}
+  {#each [...Array(24)].map((_v, i) => i + 1) as n}
     <div class="mdc-elevation--z{n} flexy-boy">Elevation: {n}</div>
   {/each}
 </div>

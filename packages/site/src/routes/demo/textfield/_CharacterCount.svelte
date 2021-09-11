@@ -1,6 +1,6 @@
 <div class="columns margins">
   <div>
-    <Textfield bind:value={valueA} label="Standard" input$maxlength="18">
+    <Textfield bind:value={valueA} label="Standard" input$maxlength={18}>
       <CharacterCounter slot="helper">0 / 18</CharacterCounter>
     </Textfield>
 
@@ -11,7 +11,7 @@
       variant="filled"
       bind:value={valueB}
       label="Filled"
-      input$maxlength="18"
+      input$maxlength={18}
     >
       <CharacterCounter slot="helper">0 / 18</CharacterCounter>
     </Textfield>
@@ -23,7 +23,7 @@
       variant="outlined"
       bind:value={valueC}
       label="Outlined"
-      input$maxlength="18"
+      input$maxlength={18}
     >
       <CharacterCounter slot="helper">0 / 18</CharacterCounter>
     </Textfield>

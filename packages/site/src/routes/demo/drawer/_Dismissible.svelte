@@ -70,7 +70,7 @@
   let open = false;
   let active = 'Gray Kittens';
 
-  function setActive(value) {
+  function setActive(value: string) {
     active = value;
   }
 </script>

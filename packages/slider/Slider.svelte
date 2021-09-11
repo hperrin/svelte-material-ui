@@ -163,9 +163,9 @@
         active: thumbRippleActive,
         eventTarget: input,
         activeTarget: input,
-        addClass: (className) => addThumbClass(className),
-        removeClass: (className) => removeThumbClass(className),
-        addStyle: (name, value) => addThumbStyle(name, value),
+        addClass: (className) => addThumbClass(className, Thumb.END),
+        removeClass: (className) => removeThumbClass(className, Thumb.END),
+        addStyle: (name, value) => addThumbStyle(name, value, Thumb.END),
       }}
       class={classMap({
         'mdc-slider__thumb': true,
@@ -187,9 +187,10 @@
   {/if}
 </div>
 
-<script>
+<script lang="ts">
+  import type { AddLayoutListener, RemoveLayoutListener } from '@smui/common';
   import { MDCSliderFoundation, Thumb, TickMark } from '@material/slider';
-  import { onMount, onDestroy, getContext, tick } from 'svelte';
+  import { onMount, onDestroy, getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
@@ -198,12 +199,13 @@
     prefixFilter,
     useActions,
     dispatch,
+    ActionArray,
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
   export let disabled = false;
@@ -213,50 +215,53 @@
   export let step = 1;
   export let min = 0;
   export let max = 100;
-  export let value = null;
-  export let start = null;
-  export let end = null;
-  export let valueToAriaValueTextFn = (value) => `${value}`;
+  export let value: number | undefined = undefined;
+  export let start: number | undefined = undefined;
+  export let end: number | undefined = undefined;
+  export let valueToAriaValueTextFn: (value: number) => string = (value) =>
+    `${value}`;
   export let input$class = '';
 
-  let element;
-  let instance;
-  let input;
-  let inputStart;
-  let thumbEl;
-  let thumbStart;
-  let thumbKnob;
-  let thumbKnobStart;
-  let internalClasses = {};
-  let thumbStartClasses = {};
-  let thumbClasses = {};
-  let inputAttrs = {};
-  let inputStartAttrs = {};
-  let trackActiveStyles = {};
-  let thumbStyles = {};
-  let thumbStartStyles = {};
+  let element: HTMLDivElement;
+  let instance: MDCSliderFoundation;
+  let input: HTMLInputElement;
+  let inputStart: HTMLInputElement | undefined = undefined;
+  let thumbEl: HTMLDivElement;
+  let thumbStart: HTMLDivElement | undefined = undefined;
+  let thumbKnob: HTMLDivElement;
+  let thumbKnobStart: HTMLDivElement | undefined = undefined;
+  let internalClasses: { [k: string]: boolean } = {};
+  let thumbStartClasses: { [k: string]: boolean } = {};
+  let thumbClasses: { [k: string]: boolean } = {};
+  let inputAttrs: { [k: string]: string | undefined } = {};
+  let inputStartAttrs: { [k: string]: string | undefined } = {};
+  let trackActiveStyles: { [k: string]: string } = {};
+  let thumbStyles: { [k: string]: string } = {};
+  let thumbStartStyles: { [k: string]: string } = {};
   let thumbRippleActive = false;
   let thumbStartRippleActive = false;
-  let currentTickMarks;
-  let inputProps = getContext('SMUI:generic:input:props') || {};
-  let addLayoutListener = getContext('SMUI:addLayoutListener');
-  let removeLayoutListener;
+  let currentTickMarks: TickMark[];
+  let inputProps =
+    getContext<{ id?: string } | undefined>('SMUI:generic:input:props') ?? {};
+  let addLayoutListener = getContext<AddLayoutListener | undefined>(
+    'SMUI:addLayoutListener'
+  );
+  let removeLayoutListener: RemoveLayoutListener | undefined;
 
   if (tickMarks && step > 0) {
     const absMax = max + Math.abs(min);
-    if (range) {
+    if (range && typeof start === 'number' && typeof end === 'number') {
       const absStart = start + Math.abs(min);
       const absEnd = end + Math.abs(min);
       currentTickMarks = [
         ...Array(absStart / step).map(() => TickMark.INACTIVE),
         ...Array(
-          absMax / step - absStart / step - (absMax - absMax) / step + 1
+          absMax / step - absStart / step - (absMax - absEnd) / step + 1
         ).map(() => TickMark.ACTIVE),
-        ...Array((absMax - absMax) / step).map(() => TickMark.INACTIVE),
+        ...Array((absMax - absEnd) / step).map(() => TickMark.INACTIVE),
       ];
-    } else {
+    } else if (typeof value === 'number') {
       const absValue = value + Math.abs(min);
-
       currentTickMarks = [
         ...Array(absValue / step + 1).map(() => TickMark.ACTIVE),
         ...Array((absMax - absValue) / step).map(() => TickMark.INACTIVE),
@@ -264,14 +269,14 @@
     }
   }
 
-  if (range) {
+  if (range && typeof start === 'number' && typeof end === 'number') {
     const percent = (end - start) / (max - min);
     const percentStart = start / (max - min);
     const percentEnd = end / (max - min);
     trackActiveStyles.transform = `scaleX(${percent})`;
     thumbStyles.left = `calc(${percentEnd * 100}% -24px)`;
     thumbStartStyles.left = `calc(${percentStart * 100}% -24px)`;
-  } else {
+  } else if (typeof value === 'number') {
     const percent = value / (max - min);
     trackActiveStyles.transform = `scaleX(${percent})`;
     thumbStyles.left = `calc(${percent * 100}% -24px)`;
@@ -285,13 +290,13 @@
   let previousStart = start;
   let previousEnd = end;
   $: if (instance) {
-    if (previousValue !== value) {
+    if (previousValue !== value && typeof value === 'number') {
       instance.setValue(value);
     }
-    if (previousStart !== start) {
+    if (previousStart !== start && typeof start === 'number') {
       instance.setValueStart(start);
     }
-    if (previousEnd !== end) {
+    if (previousEnd !== end && typeof end === 'number') {
       instance.setValue(end);
     }
     previousValue = value;
@@ -310,7 +315,7 @@
       removeThumbClass,
       getAttribute: (attribute) => getElement().getAttribute(attribute),
       getInputValue: (thumb) =>
-        range ? (thumb === Thumb.START ? start : end) : value,
+        `${(range ? (thumb === Thumb.START ? start : end) : value) ?? 0}`,
       setInputValue: (val, thumb) => {
         if (range) {
           if (thumb === Thumb.START) {
@@ -329,7 +334,7 @@
       setInputAttribute: addInputAttr,
       removeInputAttribute: removeInputAttr,
       focusInput: (thumb) => {
-        if (range && thumb === Thumb.START) {
+        if (range && thumb === Thumb.START && inputStart) {
           inputStart.focus();
         } else {
           input.focus();
@@ -339,14 +344,13 @@
         (range && thumb === Thumb.START ? inputStart : input) ===
         document.activeElement,
       getThumbKnobWidth: (thumb) =>
-        (range && thumb === Thumb.START
-          ? thumbKnobStart
-          : thumbKnob
+        (
+          (range && thumb === Thumb.START ? thumbKnobStart : thumbKnob) ??
+          thumbKnob
         ).getBoundingClientRect().width,
       getThumbBoundingClientRect: (thumb) =>
-        (range && thumb === Thumb.START
-          ? thumbStart
-          : thumbEl
+        (
+          (range && thumb === Thumb.START ? thumbStart : thumbEl) ?? thumbEl
         ).getBoundingClientRect(),
       getBoundingClientRect: () => getElement().getBoundingClientRect(),
       isRTL: () => getComputedStyle(getElement()).direction === 'rtl',
@@ -397,16 +401,16 @@
         (range && thumb === Thumb.START
           ? thumbStart
           : thumbEl
-        ).addEventListener(evtType, handler);
+        )?.addEventListener(evtType, handler);
       },
       deregisterThumbEventHandler: (thumb, evtType, handler) => {
         (range && thumb === Thumb.START
           ? thumbStart
           : thumbEl
-        ).removeEventListener(evtType, handler);
+        )?.removeEventListener(evtType, handler);
       },
       registerInputEventHandler: (thumb, evtType, handler) => {
-        (range && thumb === Thumb.START ? inputStart : input).addEventListener(
+        (range && thumb === Thumb.START ? inputStart : input)?.addEventListener(
           evtType,
           handler
         );
@@ -415,7 +419,7 @@
         (range && thumb === Thumb.START
           ? inputStart
           : input
-        ).removeEventListener(evtType, handler);
+        )?.removeEventListener(evtType, handler);
       },
       registerBodyEventHandler: (evtType, handler) => {
         document.body.addEventListener(evtType, handler);
@@ -448,7 +452,7 @@
     dispatch(element, 'SMUIGenericInput:mount', accessor);
 
     instance.init();
-    instance.layout(true);
+    instance.layout({ skipUpdateUI: true });
 
     return () => {
       dispatch(element, 'SMUIGenericInput:unmount', accessor);
@@ -463,25 +467,25 @@
     }
   });
 
-  function hasClass(className) {
+  function hasClass(className: string) {
     return className in internalClasses
       ? internalClasses[className]
       : getElement().classList.contains(className);
   }
 
-  function addClass(className) {
+  function addClass(className: string) {
     if (!internalClasses[className]) {
       internalClasses[className] = true;
     }
   }
 
-  function removeClass(className) {
+  function removeClass(className: string) {
     if (!(className in internalClasses) || internalClasses[className]) {
       internalClasses[className] = false;
     }
   }
 
-  function addThumbClass(className, thumb) {
+  function addThumbClass(className: string, thumb: Thumb) {
     if (range && thumb === Thumb.START) {
       if (!thumbStartClasses[className]) {
         thumbStartClasses[className] = true;
@@ -493,7 +497,7 @@
     }
   }
 
-  function removeThumbClass(className, thumb) {
+  function removeThumbClass(className: string, thumb: Thumb) {
     if (range && thumb === Thumb.START) {
       if (!(className in thumbStartClasses) || thumbStartClasses[className]) {
         thumbStartClasses[className] = false;
@@ -505,7 +509,7 @@
     }
   }
 
-  function addThumbStyle(name, value, thumb) {
+  function addThumbStyle(name: string, value: string, thumb: Thumb) {
     if (range && thumb === Thumb.START) {
       if (thumbStartStyles[name] != value) {
         if (value === '' || value == null) {
@@ -527,7 +531,7 @@
     }
   }
 
-  function removeThumbStyle(name, thumb) {
+  function removeThumbStyle(name: string, thumb: Thumb) {
     if (range && thumb === Thumb.START) {
       if (name in thumbStartStyles) {
         delete thumbStartStyles[name];
@@ -541,7 +545,7 @@
     }
   }
 
-  function getInputAttr(name, thumb) {
+  function getInputAttr(name: string, thumb: Thumb) {
     // Some custom logic for "value", since Svelte doesn't seem to actually
     // set the attribute, just the DOM property.
     if (range && thumb === Thumb.START) {
@@ -549,17 +553,19 @@
         return `${start}`;
       }
       return name in inputStartAttrs
-        ? inputStartAttrs[name]
-        : inputStart.getAttribute(name);
+        ? inputStartAttrs[name] ?? null
+        : inputStart?.getAttribute(name) ?? null;
     } else {
       if (name === 'value') {
         return `${range ? end : value}`;
       }
-      return name in inputAttrs ? inputAttrs[name] : input.getAttribute(name);
+      return name in inputAttrs
+        ? inputAttrs[name] ?? null
+        : input.getAttribute(name);
     }
   }
 
-  function addInputAttr(name, value, thumb) {
+  function addInputAttr(name: string, value: string, thumb: Thumb) {
     if (range && thumb === Thumb.START) {
       if (inputStartAttrs[name] !== value) {
         inputStartAttrs[name] = value;
@@ -571,7 +577,7 @@
     }
   }
 
-  function removeInputAttr(name, thumb) {
+  function removeInputAttr(name: string, thumb: Thumb) {
     if (range && thumb === Thumb.START) {
       if (!(name in inputStartAttrs) || inputStartAttrs[name] != null) {
         inputStartAttrs[name] = undefined;
@@ -583,7 +589,7 @@
     }
   }
 
-  function addTrackActiveStyle(name, value) {
+  function addTrackActiveStyle(name: string, value: string) {
     if (trackActiveStyles[name] != value) {
       if (value === '' || value == null) {
         delete trackActiveStyles[name];
@@ -594,7 +600,7 @@
     }
   }
 
-  function removeTrackActiveStyle(name) {
+  function removeTrackActiveStyle(name: string) {
     if (name in trackActiveStyles) {
       delete trackActiveStyles[name];
       trackActiveStyles = trackActiveStyles;
