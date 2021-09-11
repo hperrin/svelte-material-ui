@@ -87,7 +87,7 @@
   </AppContent>
 </div>
 
-<script>
+<script lang="ts">
   import Drawer, {
     AppContent,
     Content,
@@ -103,7 +103,7 @@
   let open = false;
   let active = 'Inbox';
 
-  function setActive(value) {
+  function setActive(value: string) {
     active = value;
     open = false;
   }

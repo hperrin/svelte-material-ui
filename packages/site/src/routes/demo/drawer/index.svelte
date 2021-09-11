@@ -20,7 +20,7 @@
   </Demo>
 </section>
 
-<script>
+<script lang="ts">
   import Demo from '../../../components/Demo.svelte';
   import Permanent from './_Permanent.svelte';
   import Dismissible from './_Dismissible.svelte';

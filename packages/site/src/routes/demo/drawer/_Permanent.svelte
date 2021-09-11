@@ -45,7 +45,7 @@
   </AppContent>
 </div>
 
-<script>
+<script lang="ts">
   import Drawer, { AppContent, Content } from '@smui/drawer';
   import List, { Item, Text } from '@smui/list';
 

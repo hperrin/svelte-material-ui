@@ -13,23 +13,25 @@
   <slot />
 </svelte:component>
 
-<script>
+<script lang="ts">
+  import type { SMUIComponent } from '@smui/common';
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
     classMap,
     dispatch,
+    ActionArray,
   } from '@smui/common/internal';
   import Div from '@smui/common/Div.svelte';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
   export let fixed = true;
 
-  let element;
+  let element: SMUIComponent;
 
   export let component = Div;
 

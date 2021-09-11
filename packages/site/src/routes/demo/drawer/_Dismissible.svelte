@@ -56,7 +56,7 @@
   </AppContent>
 </div>
 
-<script>
+<script lang="ts">
   import Drawer, {
     AppContent,
     Content,
