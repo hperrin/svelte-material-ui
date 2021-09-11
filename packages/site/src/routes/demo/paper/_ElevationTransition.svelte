@@ -45,7 +45,7 @@
   </Paper>
 </div>
 
-<script>
+<script lang="ts">
   import Paper, { Title, Content } from '@smui/paper';
   import Slider from '@smui/slider';
   import Radio from '@smui/radio';

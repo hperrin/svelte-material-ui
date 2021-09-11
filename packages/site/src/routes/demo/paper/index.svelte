@@ -34,7 +34,7 @@
   </Demo>
 </section>
 
-<script>
+<script lang="ts">
   import Demo from '../../../components/Demo.svelte';
   import Simple from './_Simple.svelte';
   import Square from './_Square.svelte';

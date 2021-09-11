@@ -8,7 +8,7 @@
   </Paper>
 </div>
 
-<script>
+<script lang="ts">
   import Paper, { Title, Content } from '@smui/paper';
 </script>
 
