@@ -18,6 +18,7 @@
 
 <script lang="ts">
   import Demo from '$lib/Demo.svelte';
+
   import Simple from './_Simple.svelte';
   import Toggle from './_Toggle.svelte';
   import Svgs from './_Svgs.svelte';

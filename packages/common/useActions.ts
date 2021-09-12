@@ -3,18 +3,34 @@ export type SvelteActionReturnType<P> = {
   destroy?: () => void;
 } | void;
 
-export type SvelteActionType<P> = (
+export type SvelteHTMLActionType<P> = (
   node: HTMLElement,
   params?: P
 ) => SvelteActionReturnType<P>;
 
-export type ActionEntry<P extends any = any> =
-  | SvelteActionType<P>
-  | [SvelteActionType<P>, P];
+export type HTMLActionEntry<P extends any = any> =
+  | SvelteHTMLActionType<P>
+  | [SvelteHTMLActionType<P>, P];
 
-export type ActionArray = ActionEntry[];
+export type HTMLActionArray = HTMLActionEntry[];
 
-export function useActions(node: HTMLElement, actions: ActionArray) {
+export type SvelteSVGActionType<P> = (
+  node: SVGElement,
+  params?: P
+) => SvelteActionReturnType<P>;
+
+export type SVGActionEntry<P extends any = any> =
+  | SvelteSVGActionType<P>
+  | [SvelteSVGActionType<P>, P];
+
+export type SVGActionArray = SVGActionEntry[];
+
+export type ActionArray = HTMLActionArray | SVGActionArray;
+
+export function useActions(
+  node: HTMLElement | SVGElement,
+  actions: ActionArray
+) {
   let actionReturns: SvelteActionReturnType<any>[] = [];
 
   if (actions) {
@@ -22,9 +38,11 @@ export function useActions(node: HTMLElement, actions: ActionArray) {
       const actionEntry = actions[i];
       const action = Array.isArray(actionEntry) ? actionEntry[0] : actionEntry;
       if (Array.isArray(actionEntry) && actionEntry.length > 1) {
-        actionReturns.push(action(node, actionEntry[1]));
+        actionReturns.push(
+          action(node as HTMLElement & SVGElement, actionEntry[1])
+        );
       } else {
-        actionReturns.push(action(node));
+        actionReturns.push(action(node as HTMLElement & SVGElement));
       }
     }
   }

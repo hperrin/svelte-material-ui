@@ -250,14 +250,16 @@
   } from '@smui/common/internal';
   import ContextFragment from '@smui/common/ContextFragment.svelte';
   import Ripple from '@smui/ripple';
-  import FloatingLabel from '@smui/floating-label/FloatingLabel.svelte';
-  import LineRipple from '@smui/line-ripple/LineRipple.svelte';
-  import NotchedOutline from '@smui/notched-outline/NotchedOutline.svelte';
+  import FloatingLabel from '@smui/floating-label';
+  import LineRipple from '@smui/line-ripple';
+  import NotchedOutline from '@smui/notched-outline';
+
   import HelperLine from './HelperLine';
   import Prefix from './Prefix';
   import Suffix from './Suffix';
   import Input from './Input.svelte';
   import Textarea from './Textarea.svelte';
+
   const { applyPassive } = events;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());

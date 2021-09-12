@@ -62,7 +62,7 @@ export function forwardEventsBuilder(component: SvelteComponent) {
     bubble(component, e);
   }
 
-  return (node: Element) => {
+  return (node: HTMLElement | SVGElement) => {
     const destructors: (() => void)[] = [];
     const forwardDestructors: { [k: string]: () => void } = {};
 

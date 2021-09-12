@@ -45,6 +45,8 @@
   {/each}
 </div>
 
+<br /> <br />
+
 <div>
   <A
     href="http://example.com"
@@ -54,6 +56,16 @@
     A Link, with Default Prevented
   </A>
 </div>
+
+<br /> <br />
+
+<div>
+  <Button on:mousedown$preventDefault={handleTypedEvent}>
+    Correct Event Type
+  </Button>
+</div>
+
+<pre class="status">Mouse Button: {button}</pre>
 
 <script lang="ts">
   import Button, { Label } from '@smui/button';
@@ -79,6 +91,17 @@
     requestAnimationFrame(() => {
       eventPhaseOutput.scrollTop = eventPhaseOutput.scrollHeight;
     });
+  }
+
+  let button = 'None yet.';
+
+  // In order to get the correct type, you need to reassign the
+  // event with a type assertion.
+  function handleTypedEvent(event: CustomEvent | MouseEvent) {
+    event = event as MouseEvent;
+    button =
+      ['Left.', 'Middle.', 'Right.'][event.button] ??
+      `Button #${event.button}.`;
   }
 </script>
 

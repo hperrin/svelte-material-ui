@@ -6,6 +6,6 @@
   <SvelteKit />
 </section>
 
-<script>
+<script lang="ts">
   import SvelteKit from '../../../SVELTEKIT.md';
 </script>

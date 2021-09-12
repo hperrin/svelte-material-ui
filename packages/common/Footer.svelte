@@ -9,8 +9,9 @@
 
 <script lang="ts">
   import { get_current_component } from 'svelte/internal';
-  import { forwardEventsBuilder, useActions } from './internal';
+
   import type { ActionArray } from './useActions';
+  import { forwardEventsBuilder, useActions } from './internal';
 
   export let use: ActionArray = [];
 

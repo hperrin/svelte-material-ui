@@ -1,9 +1,8 @@
 import Banner from './Banner.svelte';
+export * from './Banner.types';
 
-import Label from '@smui/common/CommonLabel.svelte';
-import Icon from '@smui/common/CommonIcon.svelte';
+import { Label, Icon } from '@smui/common';
 
 export default Banner;
 
-export { CloseReason } from '@material/banner';
 export { Label, Icon };

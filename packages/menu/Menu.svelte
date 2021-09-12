@@ -1,6 +1,6 @@
 <MenuSurface
   bind:this={element}
-  use={[forwardEvents, ...use]}
+  use={usePass}
   class={classMap({
     [className]: true,
     'mdc-menu': true,
@@ -41,6 +41,7 @@
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
   export let use: ActionArray = [];
+  $: usePass = [forwardEvents, ...use] as ActionArray;
   let className = '';
   export { className as class };
   export let open = false;

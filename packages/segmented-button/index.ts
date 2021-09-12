@@ -1,8 +1,7 @@
 import SegmentedButton from './SegmentedButton.svelte';
 
 import Segment from './Segment.svelte';
-import Label from '@smui/common/CommonLabel.svelte';
-import Icon from '@smui/common/CommonIcon.svelte';
+import { Label, Icon } from '@smui/common';
 
 export default SegmentedButton;
 

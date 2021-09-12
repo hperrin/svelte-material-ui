@@ -38,6 +38,7 @@
 
 <script lang="ts">
   import Demo from '$lib/Demo.svelte';
+
   import Showcase from './_Showcase.svelte';
   import Standard from './_Standard.svelte';
   import Filled from './_Filled.svelte';

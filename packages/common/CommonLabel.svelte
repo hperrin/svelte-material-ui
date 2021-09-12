@@ -25,8 +25,9 @@
   import type { SMUIComponent } from './SMUIComponent';
   import { getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
-  import { forwardEventsBuilder, classMap } from './internal';
+
   import type { ActionArray } from './useActions';
+  import { forwardEventsBuilder, classMap } from './internal';
   import Span from './Span.svelte';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());

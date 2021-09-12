@@ -30,6 +30,7 @@
 
 <script lang="ts">
   import Demo from '$lib/Demo.svelte';
+
   import Simple from './_Simple.svelte';
   import NonInteractive from './_NonInteractive.svelte';
   import Choice from './_Choice.svelte';

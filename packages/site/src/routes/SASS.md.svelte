@@ -6,6 +6,6 @@
   <Sass />
 </section>
 
-<script>
+<script lang="ts">
   import Sass from '../../../SASS.md';
 </script>

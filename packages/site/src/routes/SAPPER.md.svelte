@@ -6,6 +6,6 @@
   <Sapper />
 </section>
 
-<script>
+<script lang="ts">
   import Sapper from '../../../SAPPER.md';
 </script>

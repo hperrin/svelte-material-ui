@@ -6,6 +6,6 @@
   <Install />
 </section>
 
-<script>
+<script lang="ts">
   import Install from '../../../INSTALL.md';
 </script>

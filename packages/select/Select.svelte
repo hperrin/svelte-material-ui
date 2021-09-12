@@ -238,11 +238,12 @@
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
   import Anchor from '@smui/menu-surface/Anchor';
-  import Menu from '@smui/menu/Menu.svelte';
-  import List from '@smui/list/List.svelte';
-  import FloatingLabel from '@smui/floating-label/FloatingLabel.svelte';
-  import LineRipple from '@smui/line-ripple/LineRipple.svelte';
-  import NotchedOutline from '@smui/notched-outline/NotchedOutline.svelte';
+  import Menu from '@smui/menu';
+  import List from '@smui/list';
+  import FloatingLabel from '@smui/floating-label';
+  import LineRipple from '@smui/line-ripple';
+  import NotchedOutline from '@smui/notched-outline';
+
   import HelperText from './helper-text/HelperText.svelte';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());

@@ -18,6 +18,7 @@
 
 <script type="ts">
   import Demo from '$lib/Demo.svelte';
+
   import Fixed from './_Fixed.svelte';
   import General from './_General.svelte';
   import Icon from './_Icon.svelte';

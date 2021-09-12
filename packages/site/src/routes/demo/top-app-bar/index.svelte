@@ -25,6 +25,7 @@
 
 <script lang="ts">
   import Demo from '$lib/Demo.svelte';
+
   import Static from './_Static.svelte';
   import Variants from './_Variants.svelte';
 </script>

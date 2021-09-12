@@ -13,7 +13,6 @@
 
 <script lang="ts">
   import type { SMUIComponent } from '@smui/common';
-  import type TopAppBar from './TopAppBar.svelte';
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
@@ -21,6 +20,8 @@
     ActionArray,
   } from '@smui/common/internal';
   import Main from '@smui/common/Main.svelte';
+
+  import type TopAppBar from './TopAppBar.svelte';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

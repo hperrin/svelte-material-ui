@@ -7,7 +7,7 @@
   <Title id="list-title">Dialog Title</Title>
   <Content id="list-content">
     <List>
-      {#each [...Array(100)].map((v, i) => i + 1) as item}
+      {#each [...Array(100)].map((_v, i) => i + 1) as item}
         <Item
           on:click={() => {
             clicked = item;

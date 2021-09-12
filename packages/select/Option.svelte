@@ -1,6 +1,6 @@
 <Item
   bind:this={element}
-  use={[forwardEvents, ...use]}
+  use={usePass}
   data-value={value}
   {value}
   {selected}
@@ -13,11 +13,12 @@
   import { getContext, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import { ActionArray, forwardEventsBuilder } from '@smui/common/internal';
-  import Item from '@smui/list/Item.svelte';
+  import { Item } from '@smui/list';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
   export let use: ActionArray = [];
+  $: usePass = [forwardEvents, ...use] as ActionArray;
   const className = '';
   export { className as class };
   export let value: any = '';

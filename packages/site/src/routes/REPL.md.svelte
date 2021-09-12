@@ -6,6 +6,6 @@
   <Repl />
 </section>
 
-<script>
+<script lang="ts">
   import Repl from '../../../REPL.md';
 </script>

@@ -33,7 +33,8 @@
     alert('Search for ' + value);
   }
 
-  function handleKeyDown(event: CustomEvent & KeyboardEvent) {
+  function handleKeyDown(event: CustomEvent | KeyboardEvent) {
+    event = event as KeyboardEvent;
     if (event.key === 'Enter') {
       doSearch();
     }

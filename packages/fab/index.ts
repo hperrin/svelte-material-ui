@@ -1,7 +1,6 @@
 import Fab from './Fab.svelte';
 
-import Label from '@smui/common/CommonLabel.svelte';
-import Icon from '@smui/common/CommonIcon.svelte';
+import { Label, Icon } from '@smui/common';
 
 export default Fab;
 

@@ -9,8 +9,5 @@ export declare class InputComponentDev extends Component {
    * Does not exist at runtime.
    * ### DO NOT USE!
    */
-  $$prop_def: {
-    [k in keyof ElementAttributes]?: ElementAttributes[k];
-  } &
-    Component['$$prop_def'];
+  $$prop_def: Partial<ElementAttributes> & Component['$$prop_def'];
 }

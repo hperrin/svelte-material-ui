@@ -6,6 +6,6 @@
   <Theming />
 </section>
 
-<script>
+<script lang="ts">
   import Theming from '../../../THEMING.md';
 </script>

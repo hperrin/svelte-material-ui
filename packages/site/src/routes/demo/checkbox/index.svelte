@@ -22,6 +22,7 @@
 
 <script lang="ts">
   import Demo from '$lib/Demo.svelte';
+
   import Simple from './_Simple.svelte';
   import Touch from './_Touch.svelte';
   import Group from './_Group.svelte';

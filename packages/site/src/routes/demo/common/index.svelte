@@ -164,6 +164,7 @@
 
 <script lang="ts">
   import Demo from '$lib/Demo.svelte';
+
   import CommonLabelIcon from './_CommonLabelIcon.svelte';
   import TargetingClasses from './_TargetingClasses.svelte';
   import EventsAndModifiers from './_EventsAndModifiers.svelte';

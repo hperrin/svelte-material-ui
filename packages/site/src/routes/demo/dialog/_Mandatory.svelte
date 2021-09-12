@@ -33,7 +33,7 @@
 <pre class="status">Result: {response}</pre>
 
 <script lang="ts">
-  import Dialog, { Title, Content, Actions, InitialFocus } from '@smui/dialog';
+  import Dialog, { Title, Content, Actions } from '@smui/dialog';
   import Button, { Label } from '@smui/button';
 
   let open = false;

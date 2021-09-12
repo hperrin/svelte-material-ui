@@ -1,6 +1,6 @@
 import IconButton from './IconButton.svelte';
 
-import Icon from '@smui/common/CommonIcon.svelte';
+import { Icon } from '@smui/common';
 
 export default IconButton;
 

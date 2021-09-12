@@ -25,6 +25,7 @@
     useActions,
     ActionArray,
   } from '@smui/common/internal';
+
   import InnerGrid from './InnerGrid.svelte';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());

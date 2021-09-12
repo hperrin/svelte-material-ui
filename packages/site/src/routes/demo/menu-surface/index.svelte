@@ -30,6 +30,7 @@
 
 <script lang="ts">
   import Demo from '$lib/Demo.svelte';
+
   import Simple from './_Simple.svelte';
   import Static from './_Static.svelte';
   import Anchored from './_Anchored.svelte';

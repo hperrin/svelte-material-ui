@@ -43,7 +43,7 @@
   import HelperText from '@smui/textfield/helper-text/index';
 
   let focused = false;
-  let value = null;
+  let value: string | null = null;
   let dirty = false;
   let invalid = false;
   $: disabled = focused || !value || !dirty || invalid;

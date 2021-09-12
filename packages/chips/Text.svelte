@@ -37,9 +37,9 @@
     dispatch,
     ActionArray,
   } from '@smui/common/internal';
-  import Checkmark from './Checkmark.svelte';
 
   import type { SMUIChipsPrimaryActionAccessor } from './Text.types';
+  import Checkmark from './Checkmark.svelte';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

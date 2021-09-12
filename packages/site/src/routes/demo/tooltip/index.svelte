@@ -23,6 +23,7 @@
 
 <script lang="ts">
   import Demo from '$lib/Demo.svelte';
+
   import Simple from './_Simple.svelte';
   import Positioning from './_Positioning.svelte';
   import Rich from './_Rich.svelte';

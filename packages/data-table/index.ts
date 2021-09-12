@@ -10,7 +10,7 @@ export * from './Row.types';
 import Cell from './Cell.svelte';
 export * from './Cell.types';
 import Pagination from './Pagination.svelte';
-import Label from '@smui/common/CommonLabel.svelte';
+import { Label } from '@smui/common';
 
 export default DataTable;
 

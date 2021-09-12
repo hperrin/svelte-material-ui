@@ -82,7 +82,7 @@
   import Ripple from '@smui/ripple';
   import A from '@smui/common/A.svelte';
   import Button from '@smui/common/Button.svelte';
-  import TabIndicator from '@smui/tab-indicator/TabIndicator.svelte';
+  import TabIndicator from '@smui/tab-indicator';
 
   import type { SMUITabAccessor } from './Tab.types';
 

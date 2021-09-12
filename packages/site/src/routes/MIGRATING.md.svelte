@@ -6,6 +6,6 @@
   <Migrating />
 </section>
 
-<script>
+<script lang="ts">
   import Migrating from '../../../MIGRATING.md';
 </script>
