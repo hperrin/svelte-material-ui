@@ -74,31 +74,33 @@
   </Actions>
 </Card>
 
-<script>
+<script lang="ts">
+  import type { SvelteComponent } from 'svelte';
   import { mdiGithub, mdiCodeTags, mdiCodeTagsCheck } from '@mdi/js';
-
   import Card, { Content, Actions, ActionIcons } from '@smui/card';
   import IconButton, { Icon } from '@smui/icon-button';
   import Tooltip, { Wrapper } from '@smui/tooltip';
   import Svg from '@smui/common/Svg.svelte';
 
-  export let file = null;
-  export let files = [file];
-  export let component;
+  export let file: string | undefined = undefined;
+  export let files: string[] = typeof file === 'string' ? [file] : [];
+  export let component: SvelteComponent | string;
 
-  let sourceContainer;
+  let sourceContainer: HTMLDivElement | undefined = undefined;
   let show = false;
-  let sourceFile = null;
-  let sourceHTML = null;
-  let sources = [];
-  const docWrite = (value) => {
-    sourceFile = null;
+  let sourceFile: string | undefined = undefined;
+  let sourceHTML: string | undefined = undefined;
+  let sources: string[] = [];
+  const docWrite = (value: string) => {
+    sourceFile = undefined;
     sourceHTML = value;
 
     requestAnimationFrame(() => {
-      sources.push(sourceContainer.innerHTML);
-      sourceFile = null;
-      sourceHTML = null;
+      if (sourceContainer?.innerHTML) {
+        sources.push(sourceContainer.innerHTML);
+      }
+      sourceFile = undefined;
+      sourceHTML = undefined;
       sources = sources;
     });
   };

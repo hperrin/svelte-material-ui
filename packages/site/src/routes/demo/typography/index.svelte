@@ -14,6 +14,6 @@
 </section>
 
 <script>
-  import Demo from '../../../components/Demo.svelte';
+  import Demo from '$lib/Demo.svelte';
   import Typography from './_Typography.svelte';
 </script>

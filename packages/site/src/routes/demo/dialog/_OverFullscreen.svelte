@@ -82,7 +82,7 @@
   import Button, { Label } from '@smui/button';
   import List, { Item, Graphic, Text } from '@smui/list';
   import Radio from '@smui/radio';
-  import LoremIpsum from '../../../components/LoremIpsum.svelte';
+  import LoremIpsum from '$lib/LoremIpsum.svelte';
 
   let open;
   let subOpen;

@@ -45,7 +45,7 @@
 </section>
 
 <script lang="ts">
-  import Demo from '../../../components/Demo.svelte';
+  import Demo from '$lib/Demo.svelte';
   import Simple from './_Simple.svelte';
   import SecondaryColor from './_SecondaryColor.svelte';
   import Variants from './_Variants.svelte';

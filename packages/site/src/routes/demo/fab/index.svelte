@@ -27,7 +27,7 @@
 </section>
 
 <script lang="ts">
-  import Demo from '../../../components/Demo.svelte';
+  import Demo from '$lib/Demo.svelte';
   import Simple from './_Simple.svelte';
   import PrimaryColor from './_PrimaryColor.svelte';
   import Exited from './_Exited.svelte';

@@ -27,8 +27,7 @@
     bind:open
     bind:centered
     bind:mobileStacked
-    on:MDCBanner:closed={(event) =>
-      (closedReason = closedReasons[event.detail.reason])}
+    on:MDCBanner:closed={handleBannerClosed}
   >
     <Label slot="label">This is a banner with no icon and some actions.</Label>
     <svelte:fragment slot="actions">
@@ -62,4 +61,8 @@
     [CloseReason.UNSPECIFIED]: 'Unspecified',
   };
   let closedReason = 'None yet';
+
+  function handleBannerClosed(event: CustomEvent<{ reason: CloseReason }>) {
+    closedReason = closedReasons[event.detail.reason];
+  }
 </script>

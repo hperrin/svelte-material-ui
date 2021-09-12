@@ -24,7 +24,7 @@
 </section>
 
 <script>
-  import Demo from '../../../components/Demo.svelte';
+  import Demo from '$lib/Demo.svelte';
   import Elevation from './_Elevation.svelte';
   import TransitionsAndColor from './_TransitionsAndColor.svelte';
 </script>

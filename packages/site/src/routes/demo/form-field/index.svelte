@@ -19,7 +19,7 @@
 </section>
 
 <script lang="ts">
-  import Demo from '../../../components/Demo.svelte';
+  import Demo from '$lib/Demo.svelte';
   import Checkbox from './_Checkbox.svelte';
   import EndAlignment from './_EndAlignment.svelte';
   import Radio from './_Radio.svelte';

@@ -31,7 +31,7 @@
 </section>
 
 <script>
-  import Demo from '../../../components/Demo.svelte';
+  import Demo from '$lib/Demo.svelte';
   import SingleSelection from './_SingleSelection.svelte';
   import GroupSelection from './_GroupSelection.svelte';
   import IconsKeys from './_IconsKeys.svelte';

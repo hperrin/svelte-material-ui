@@ -28,7 +28,7 @@
 </section>
 
 <script lang="ts">
-  import Demo from '../../../components/Demo.svelte';
+  import Demo from '$lib/Demo.svelte';
   import Static from './_Static.svelte';
   import Anchored from './_Anchored.svelte';
   import TwoLineManunalAnchor from './_TwoLineManunalAnchor.svelte';

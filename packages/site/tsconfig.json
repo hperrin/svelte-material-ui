@@ -25,7 +25,13 @@
 		"paths": {
 			"$lib": ["src/lib"],
 			"$lib/*": ["src/lib/*"]
-		}
+		},
+
+		/**
+		  Specific to SMUI.
+			*/
+    "noImplicitAny": true,
+    "strict": true
 	},
 	"include": ["src/**/*.d.ts", "src/**/*.js", "src/**/*.ts", "src/**/*.svelte"]
 }

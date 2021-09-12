@@ -24,7 +24,7 @@
 <script>
   import Dialog, { Title, Content, Actions } from '@smui/dialog';
   import Button, { Label } from '@smui/button';
-  import LoremIpsum from '../../../components/LoremIpsum.svelte';
+  import LoremIpsum from '$lib/LoremIpsum.svelte';
 
   let open;
 </script>

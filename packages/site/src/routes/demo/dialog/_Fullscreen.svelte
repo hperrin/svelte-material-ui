@@ -34,7 +34,7 @@
   import Dialog, { Header, Title, Content, Actions } from '@smui/dialog';
   import IconButton from '@smui/icon-button';
   import Button, { Label } from '@smui/button';
-  import LoremIpsum from '../../../components/LoremIpsum.svelte';
+  import LoremIpsum from '$lib/LoremIpsum.svelte';
 
   let open;
   let response = 'Nothing yet.';

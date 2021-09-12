@@ -27,8 +27,7 @@
     bind:open
     bind:centered
     bind:mobileStacked
-    on:MDCBanner:closed={(event) =>
-      (closedReason = closedReasons[event.detail.reason])}
+    on:MDCBanner:closed={handleBannerClosed}
   >
     <Icon slot="icon" class="material-icons">favorite</Icon>
     <Label slot="label">This is a banner with an icon and some actions.</Label>
@@ -63,4 +62,8 @@
     [CloseReason.UNSPECIFIED]: 'Unspecified',
   };
   let closedReason = 'None yet.';
+
+  function handleBannerClosed(event: CustomEvent<{ reason: CloseReason }>) {
+    closedReason = closedReasons[event.detail.reason];
+  }
 </script>

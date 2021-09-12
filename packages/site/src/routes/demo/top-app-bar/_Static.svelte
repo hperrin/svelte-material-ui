@@ -90,7 +90,7 @@
   import IconButton from '@smui/icon-button';
   import Checkbox from '@smui/checkbox';
   import FormField from '@smui/form-field';
-  import LoremIpsum from '../../../components/LoremIpsum.svelte';
+  import LoremIpsum from '$lib/LoremIpsum.svelte';
 
   let prominent = false;
   let dense = false;
