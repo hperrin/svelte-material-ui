@@ -11,7 +11,7 @@
   </TabBar>
 </div>
 
-<script>
+<script lang="ts">
   import Tab, { Label } from '@smui/tab';
   import TabBar from '@smui/tab-bar';
 

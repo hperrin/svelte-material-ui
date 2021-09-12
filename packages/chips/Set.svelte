@@ -60,7 +60,7 @@
   let className = '';
   export { className as class };
   export let chips: any[] = [];
-  export let key: (chip: any) => string = (chip: any) => chip;
+  export let key: (chip: any) => string | number = (chip: any) => chip;
   export let selected: any[] | any | undefined = undefined;
   export let nonInteractive = false;
   export let choice = false;
@@ -69,7 +69,10 @@
 
   let element: HTMLDivElement;
   let instance: MDCChipSetFoundation;
-  let chipAccessorMap: { [k: string]: SMUIChipsChipAccessor } = {};
+  let chipAccessorMap: {
+    [k: string]: SMUIChipsChipAccessor;
+    [k: number]: SMUIChipsChipAccessor;
+  } = {};
   let chipAccessorWeakMap = new WeakMap<Object, SMUIChipsChipAccessor>();
   let initialSelected = chips.map(
     (chipId) =>

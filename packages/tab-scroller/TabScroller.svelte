@@ -49,7 +49,7 @@
   </div>
 </div>
 
-<script>
+<script lang="ts">
   import { MDCTabScrollerFoundation, util } from '@material/tab-scroller';
   import { ponyfill } from '@material/dom';
   import { onMount } from 'svelte';
@@ -60,33 +60,34 @@
     exclude,
     prefixFilter,
     useActions,
+    ActionArray,
   } from '@smui/common/internal';
   const { matches } = ponyfill;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
-  export let align = null;
-  export let scrollArea$use = [];
+  export let align: 'start' | 'end' | 'center' | undefined = undefined;
+  export let scrollArea$use: ActionArray = [];
   export let scrollArea$class = '';
-  export let scrollContent$use = [];
+  export let scrollContent$use: ActionArray = [];
   export let scrollContent$class = '';
 
-  let element;
-  let instance;
-  let scrollArea;
-  let scrollContent;
-  let internalClasses = {};
-  let scrollAreaClasses = {};
-  let scrollAreaStyles = {};
-  let scrollContentStyles = {};
+  let element: HTMLDivElement;
+  let instance: MDCTabScrollerFoundation;
+  let scrollArea: HTMLDivElement;
+  let scrollContent: HTMLDivElement;
+  let internalClasses: { [k: string]: boolean } = {};
+  let scrollAreaClasses: { [k: string]: boolean } = {};
+  let scrollAreaStyles: { [k: string]: string } = {};
+  let scrollContentStyles: { [k: string]: string } = {};
 
   onMount(() => {
     instance = new MDCTabScrollerFoundation({
       eventTargetMatchesSelector: (evtTarget, selector) =>
-        matches(evtTarget, selector),
+        matches(evtTarget as HTMLElement, selector),
       addClass,
       removeClass,
       addScrollAreaClass,
@@ -111,25 +112,25 @@
     };
   });
 
-  function addClass(className) {
+  function addClass(className: string) {
     if (!internalClasses[className]) {
       internalClasses[className] = true;
     }
   }
 
-  function removeClass(className) {
+  function removeClass(className: string) {
     if (!(className in internalClasses) || internalClasses[className]) {
       internalClasses[className] = false;
     }
   }
 
-  function addScrollAreaClass(className) {
+  function addScrollAreaClass(className: string) {
     if (!scrollAreaClasses[className]) {
       scrollAreaClasses[className] = true;
     }
   }
 
-  function addScrollAreaStyle(name, value) {
+  function addScrollAreaStyle(name: string, value: string) {
     if (scrollAreaStyles[name] != value) {
       if (value === '' || value == null) {
         delete scrollAreaStyles[name];
@@ -140,7 +141,7 @@
     }
   }
 
-  function addScrollContentStyle(name, value) {
+  function addScrollContentStyle(name: string, value: string) {
     if (scrollContentStyles[name] != value) {
       if (value === '' || value == null) {
         delete scrollContentStyles[name];
@@ -151,7 +152,7 @@
     }
   }
 
-  function getScrollContentStyle(name) {
+  function getScrollContentStyle(name: string) {
     return name in scrollContentStyles
       ? scrollContentStyles[name]
       : getComputedStyle(scrollContent).getPropertyValue(name);
@@ -165,11 +166,11 @@
     return scrollContent.offsetWidth;
   }
 
-  export function incrementScroll(scrollXIncrement) {
+  export function incrementScroll(scrollXIncrement: number) {
     instance.incrementScroll(scrollXIncrement);
   }
 
-  export function scrollTo(scrollX) {
+  export function scrollTo(scrollX: number) {
     instance.scrollTo(scrollX);
   }
 

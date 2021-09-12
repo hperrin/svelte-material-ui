@@ -14,7 +14,7 @@
   <pre class="status">Selected: {active.k}</pre>
 </div>
 
-<script>
+<script lang="ts">
   import Tab, { Icon, Label } from '@smui/tab';
   import TabBar from '@smui/tab-bar';
 

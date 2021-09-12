@@ -31,7 +31,7 @@
   aria-selected={active ? 'true' : 'false'}
   tabindex={active || forceAccessible ? '0' : '-1'}
   {href}
-  on:click={instance && instance.handleClick()}
+  on:click={() => instance && instance.handleClick()}
   {...internalAttrs}
   {...exclude($$restProps, ['content$', 'tabIndicator$'])}
 >
@@ -65,7 +65,8 @@
   <span class="mdc-tab__ripple" />
 </svelte:component>
 
-<script>
+<script lang="ts">
+  import type { SMUIComponent } from '@smui/common/SMUIComponent';
   import { MDCTabFoundation } from '@material/tab';
   import { onMount, setContext, getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
@@ -76,37 +77,40 @@
     prefixFilter,
     useActions,
     dispatch,
+    ActionArray,
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
   import A from '@smui/common/A.svelte';
   import Button from '@smui/common/Button.svelte';
   import TabIndicator from '@smui/tab-indicator/TabIndicator.svelte';
 
+  import type { SMUITabAccessor } from './Tab.types';
+
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
   export let style = '';
-  let tabId;
+  let tabId: any;
   export { tabId as tab };
   export let ripple = true;
   export let stacked = false;
   export let minWidth = false;
   export let indicatorSpanOnlyContent = false;
-  export let href = null;
-  export let content$use = [];
+  export let href: string | undefined = undefined;
+  export let content$use: ActionArray = [];
   export let content$class = '';
 
-  let element;
-  let instance;
-  let content;
-  let tabIndicator;
-  let internalClasses = {};
-  let internalStyles = {};
-  let internalAttrs = {};
-  let focusOnActivate = getContext('SMUI:tab:focusOnActivate');
-  let active = tabId === getContext('SMUI:tab:initialActive');
+  let element: SMUIComponent;
+  let instance: MDCTabFoundation;
+  let content: HTMLSpanElement;
+  let tabIndicator: TabIndicator;
+  let internalClasses: { [k: string]: boolean } = {};
+  let internalStyles: { [k: string]: string } = {};
+  let internalAttrs: { [k: string]: string | undefined } = {};
+  let focusOnActivate = getContext<boolean>('SMUI:tab:focusOnActivate');
+  let active = tabId === getContext<any | undefined>('SMUI:tab:initialActive');
   let forceAccessible = false;
 
   export let component = href == null ? Button : A;
@@ -130,7 +134,7 @@
       addClass,
       removeClass,
       hasClass,
-      activateIndicator: (previousIndicatorClientRect) =>
+      activateIndicator: (previousIndicatorClientRect: DOMRect) =>
         tabIndicator.activate(previousIndicatorClientRect),
       deactivateIndicator: () => tabIndicator.deactivate(),
       notifyInteracted: () =>
@@ -142,7 +146,7 @@
       focus,
     });
 
-    const accessor = {
+    const accessor: SMUITabAccessor = {
       tabId,
       get element() {
         return getElement();
@@ -150,7 +154,7 @@
       get active() {
         return active;
       },
-      forceAccessible(accessible) {
+      forceAccessible(accessible: boolean) {
         forceAccessible = accessible;
       },
       computeIndicatorClientRect: () => tabIndicator.computeContentClientRect(),
@@ -171,25 +175,25 @@
     };
   });
 
-  function hasClass(className) {
+  function hasClass(className: string) {
     return className in internalClasses
       ? internalClasses[className]
       : getElement().classList.contains(className);
   }
 
-  function addClass(className) {
+  function addClass(className: string) {
     if (!internalClasses[className]) {
       internalClasses[className] = true;
     }
   }
 
-  function removeClass(className) {
+  function removeClass(className: string) {
     if (!(className in internalClasses) || internalClasses[className]) {
       internalClasses[className] = false;
     }
   }
 
-  function addStyle(name, value) {
+  function addStyle(name: string, value: string) {
     if (internalStyles[name] != value) {
       if (value === '' || value == null) {
         delete internalStyles[name];
@@ -200,13 +204,16 @@
     }
   }
 
-  function addAttr(name, value) {
+  function addAttr(name: string, value: string) {
     if (internalAttrs[name] !== value) {
       internalAttrs[name] = value;
     }
   }
 
-  export function activate(previousIndicatorClientRect, skipFocus) {
+  export function activate(
+    previousIndicatorClientRect: DOMRect | undefined,
+    skipFocus: boolean
+  ) {
     active = true;
     if (skipFocus) {
       instance.setFocusOnActivate(false);
