@@ -30,16 +30,16 @@
 
 <pre class="status">Response: {response}</pre>
 
-<script>
+<script lang="ts">
   import Dialog, { Header, Title, Content, Actions } from '@smui/dialog';
   import IconButton from '@smui/icon-button';
   import Button, { Label } from '@smui/button';
   import LoremIpsum from '$lib/LoremIpsum.svelte';
 
-  let open;
+  let open = false;
   let response = 'Nothing yet.';
 
-  function closeHandler(e) {
+  function closeHandler(e: CustomEvent<{ action: string }>) {
     switch (e.detail.action) {
       case 'close':
         response = 'Closed without response.';

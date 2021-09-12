@@ -22,10 +22,10 @@
 
 <pre class="status">Clicked: {clicked}</pre>
 
-<script>
+<script lang="ts">
   import Dialog, { Title, Content, Actions } from '@smui/dialog';
   import Button, { Label } from '@smui/button';
 
-  let open;
+  let open = false;
   let clicked = 'Nothing yet.';
 </script>

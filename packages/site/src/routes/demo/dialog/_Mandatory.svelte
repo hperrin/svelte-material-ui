@@ -32,10 +32,10 @@
 
 <pre class="status">Result: {response}</pre>
 
-<script>
+<script lang="ts">
   import Dialog, { Title, Content, Actions, InitialFocus } from '@smui/dialog';
   import Button, { Label } from '@smui/button';
 
-  let open;
+  let open = false;
   let response = 'Nothing yet.';
 </script>

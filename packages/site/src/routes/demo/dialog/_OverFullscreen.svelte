@@ -70,7 +70,7 @@
 
 <pre class="status">Response: {response}, Selected: {selected}</pre>
 
-<script>
+<script lang="ts">
   import Dialog, {
     Header,
     Title,
@@ -84,20 +84,20 @@
   import Radio from '@smui/radio';
   import LoremIpsum from '$lib/LoremIpsum.svelte';
 
-  let open;
-  let subOpen;
+  let open = false;
+  let subOpen = false;
   let selection = 'Radishes';
   let selected = 'Nothing yet.';
   let response = 'Nothing yet.';
 
-  function confirmationCloseHandler(e) {
+  function confirmationCloseHandler(e: CustomEvent<{ action: string }>) {
     if (e.detail.action === 'accept') {
       selected = selection;
     }
     selection = 'Radishes';
   }
 
-  function closeHandler(e) {
+  function closeHandler(e: CustomEvent<{ action: string }>) {
     switch (e.detail.action) {
       case 'close':
         response = 'Closed without response.';

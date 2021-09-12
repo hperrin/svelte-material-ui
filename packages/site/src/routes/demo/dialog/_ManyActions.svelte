@@ -30,10 +30,10 @@
 
 <pre class="status">Action: {buttoned}</pre>
 
-<script>
+<script lang="ts">
   import Dialog, { Title, Content, Actions } from '@smui/dialog';
   import Button, { Label } from '@smui/button';
 
-  let open;
+  let open = false;
   let buttoned = 'Nothing yet.';
 </script>

@@ -39,13 +39,13 @@
   <Label>Open Dialog</Label>
 </Button>
 
-<script>
+<script lang="ts">
   import Dialog, { Title, Content, Actions, InitialFocus } from '@smui/dialog';
   import Button, { Label } from '@smui/button';
   import Slider from '@smui/slider';
   import FormField from '@smui/form-field';
 
-  let open;
+  let open = false;
   let volumeMedia = 100;
   let volumeRingtone = 80;
   let volumeAlarm = 80;

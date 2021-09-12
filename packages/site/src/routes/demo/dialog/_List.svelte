@@ -23,13 +23,14 @@
 
 <Button on:click={() => (open = true)}><Label>Open Dialog</Label></Button>
 
-<pre class="status">Clicked: {clicked}{clicked === 69 ? ', nice' : ''}</pre>
+<pre
+  class="status">Clicked: {clicked}{clicked === 69 ? ', nice' : clicked === 42 ? ', life, the universe, and everything' : ''}</pre>
 
-<script>
+<script lang="ts">
   import Dialog, { Title, Content } from '@smui/dialog';
   import Button, { Label } from '@smui/button';
   import List, { Item, Text } from '@smui/list';
 
-  let open;
-  let clicked = 'Nothing yet.';
+  let open = false;
+  let clicked: string | number = 'Nothing yet.';
 </script>

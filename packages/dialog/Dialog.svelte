@@ -58,11 +58,12 @@
 
 <slot name="over" />
 
-<script>
+<script lang="ts">
+  import type { AddLayoutListener, RemoveLayoutListener } from '@smui/common';
   import { MDCDialogFoundation, util } from '@material/dialog';
   import { focusTrap as domFocusTrap, ponyfill } from '@material/dom';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
-  import { writable } from 'svelte/store';
+  import { Writable, writable } from 'svelte/store';
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
@@ -71,13 +72,14 @@
     prefixFilter,
     useActions,
     dispatch,
+    ActionArray,
   } from '@smui/common/internal';
   const { FocusTrap } = domFocusTrap;
   const { closest, matches } = ponyfill;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
   export let open = false;
@@ -89,18 +91,24 @@
   export let container$class = '';
   export let surface$class = '';
 
-  let element;
-  let instance;
-  let internalClasses = {};
-  let focusTrap;
+  let element: HTMLDivElement;
+  let instance: MDCDialogFoundation;
+  let internalClasses: { [k: string]: boolean } = {};
+  let focusTrap: domFocusTrap.FocusTrap;
   let actionButtonsReversed = writable(false);
-  let addLayoutListener = getContext('SMUI:addLayoutListener');
-  let aboveFullscreen = getContext('SMUI:dialog:aboveFullscreen');
+  let aboveFullscreen = getContext<boolean | undefined>(
+    'SMUI:dialog:aboveFullscreen'
+  );
   let aboveFullscreenShown =
-    getContext('SMUI:dialog:aboveFullscreenShown') || writable(false);
-  let removeLayoutListener;
-  let layoutListeners = [];
-  let addLayoutListenerFn = (listener) => {
+    getContext<Writable<boolean> | undefined>(
+      'SMUI:dialog:aboveFullscreenShown'
+    ) ?? writable(false);
+  let addLayoutListener = getContext<AddLayoutListener | undefined>(
+    'SMUI:addLayoutListener'
+  );
+  let removeLayoutListener: RemoveLayoutListener | undefined;
+  let layoutListeners: (() => void)[] = [];
+  let addLayoutListenerFn: AddLayoutListener = (listener) => {
     layoutListeners.push(listener);
 
     return () => {
@@ -163,7 +171,7 @@
 
   onMount(() => {
     focusTrap = new FocusTrap(element, {
-      initialFocusEl: getInitialFocusEl(),
+      initialFocusEl: getInitialFocusEl() ?? undefined,
     });
 
     instance = new MDCDialogFoundation({
@@ -177,12 +185,15 @@
         }
       },
       eventTargetMatches: (target, selector) =>
-        target ? matches(target, selector) : false,
+        target ? matches(target as Element, selector) : false,
       getActionFromEvent: (evt) => {
         if (!evt.target) {
           return '';
         }
-        const element = closest(evt.target, '[data-mdc-dialog-action]');
+        const element = closest(
+          evt.target as Element,
+          '[data-mdc-dialog-action]'
+        );
         return element && element.getAttribute('data-mdc-dialog-action');
       },
       getInitialFocusEl,
@@ -242,38 +253,44 @@
     }
   });
 
-  function hasClass(className) {
+  function hasClass(className: string) {
     return className in internalClasses
       ? internalClasses[className]
       : getElement().classList.contains(className);
   }
 
-  function addClass(className) {
+  function addClass(className: string) {
     if (!internalClasses[className]) {
       internalClasses[className] = true;
     }
   }
 
-  function removeClass(className) {
+  function removeClass(className: string) {
     if (!(className in internalClasses) || internalClasses[className]) {
       internalClasses[className] = false;
     }
   }
 
   function getButtonEls() {
-    return [].slice.call(element.querySelectorAll('.mdc-dialog__button'));
+    return [].slice.call(
+      element.querySelectorAll<HTMLButtonElement>('.mdc-dialog__button')
+    ) as HTMLButtonElement[];
   }
 
   function getDefaultButtonEl() {
-    return element.querySelector('[data-mdc-dialog-button-default');
+    return element.querySelector<HTMLButtonElement>(
+      '[data-mdc-dialog-button-default'
+    );
   }
 
   function getContentEl() {
-    return element.querySelector('.mdc-dialog__content');
+    return element.querySelector<HTMLElement>('.mdc-dialog__content');
   }
 
   function getInitialFocusEl() {
-    return element.querySelector('[data-mdc-dialog-initial-focus]');
+    return element.querySelector<HTMLElement>(
+      '[data-mdc-dialog-initial-focus]'
+    );
   }
 
   function handleDialogOpening() {
@@ -299,7 +316,7 @@
     return open;
   }
 
-  export function setOpen(value) {
+  export function setOpen(value: boolean) {
     open = value;
   }
 

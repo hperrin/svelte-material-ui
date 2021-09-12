@@ -21,10 +21,10 @@
   <Label>Open Dialog</Label>
 </Button>
 
-<script>
+<script lang="ts">
   import Dialog, { Title, Content, Actions } from '@smui/dialog';
   import Button, { Label } from '@smui/button';
   import LoremIpsum from '$lib/LoremIpsum.svelte';
 
-  let open;
+  let open = false;
 </script>

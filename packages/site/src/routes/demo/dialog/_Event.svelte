@@ -24,14 +24,14 @@
 
 <pre class="status">Response: {response}</pre>
 
-<script>
+<script lang="ts">
   import Dialog, { Title, Content, Actions } from '@smui/dialog';
   import Button, { Label } from '@smui/button';
 
-  let open;
+  let open = false;
   let response = 'Nothing yet.';
 
-  function closeHandler(e) {
+  function closeHandler(e: CustomEvent<{ action: string }>) {
     switch (e.detail.action) {
       case 'none':
         response = "Ok, well, you're wrong.";

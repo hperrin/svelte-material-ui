@@ -1,4 +1,4 @@
-export default function InitialFocus(node) {
+export default function InitialFocus(node: HTMLElement) {
   node.setAttribute('data-mdc-dialog-initial-focus', '');
 
   return {
