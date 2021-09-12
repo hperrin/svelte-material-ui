@@ -9,7 +9,7 @@
   <span slot="label">Closed</span>
 </FormField>
 
-<script>
+<script lang="ts">
   import { onMount, onDestroy } from 'svelte';
   import LinearProgress from '@smui/linear-progress';
   import Checkbox from '@smui/checkbox';
@@ -18,7 +18,7 @@
 
   let progress = 0;
   let closed = false;
-  let timer;
+  let timer: NodeJS.Timer;
 
   onMount(reset);
 

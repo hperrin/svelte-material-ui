@@ -2,6 +2,6 @@
   <CircularProgress style="height: 32px; width: 32px;" indeterminate />
 </div>
 
-<script>
+<script lang="ts">
   import CircularProgress from '@smui/circular-progress';
 </script>

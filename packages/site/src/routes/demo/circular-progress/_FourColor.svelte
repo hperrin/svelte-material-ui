@@ -7,6 +7,6 @@
   />
 </div>
 
-<script>
+<script lang="ts">
   import CircularProgress from '@smui/circular-progress';
 </script>

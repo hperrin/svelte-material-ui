@@ -1,5 +1,5 @@
 <LinearProgress indeterminate />
 
-<script>
+<script lang="ts">
   import LinearProgress from '@smui/linear-progress';
 </script>

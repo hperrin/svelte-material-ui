@@ -10,9 +10,9 @@
     ...internalClasses,
   })}
   role="progressbar"
-  aria-valuemin="0"
-  aria-valuemax="1"
-  aria-valuenow={indeterminate ? null : `${progress.toLocaleString()}`}
+  aria-valuemin={0}
+  aria-valuemax={1}
+  aria-valuenow={indeterminate ? undefined : progress}
   {...internalAttrs}
   {...$$restProps}
 >
@@ -108,7 +108,7 @@
   </div>
 </div>
 
-<script>
+<script lang="ts">
   import { MDCCircularProgressFoundation } from '@material/circular-progress';
   import { onMount } from 'svelte';
   import { get_current_component } from 'svelte/internal';
@@ -116,11 +116,12 @@
     forwardEventsBuilder,
     classMap,
     useActions,
+    ActionArray,
   } from '@smui/common/internal';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
   export let indeterminate = false;
@@ -128,12 +129,12 @@
   export let progress = 0;
   export let fourColor = false;
 
-  let element;
-  let instance;
-  let internalClasses = {};
-  let internalAttrs = {};
-  let determinateCircleAttrs = {};
-  let determinateCircle;
+  let element: HTMLDivElement;
+  let instance: MDCCircularProgressFoundation;
+  let internalClasses: { [k: string]: boolean } = {};
+  let internalAttrs: { [k: string]: string | undefined } = {};
+  let determinateCircleAttrs: { [k: string]: string | undefined } = {};
+  let determinateCircle: SVGCircleElement;
 
   $: if (instance && instance.isDeterminate() !== !indeterminate) {
     instance.setDeterminate(!indeterminate);
@@ -169,43 +170,43 @@
     };
   });
 
-  function hasClass(className) {
+  function hasClass(className: string) {
     return className in internalClasses
       ? internalClasses[className]
       : getElement().classList.contains(className);
   }
 
-  function addClass(className) {
+  function addClass(className: string) {
     if (!internalClasses[className]) {
       internalClasses[className] = true;
     }
   }
 
-  function removeClass(className) {
+  function removeClass(className: string) {
     if (!(className in internalClasses) || internalClasses[className]) {
       internalClasses[className] = false;
     }
   }
 
-  function addAttr(name, value) {
+  function addAttr(name: string, value: string) {
     if (internalAttrs[name] !== value) {
       internalAttrs[name] = value;
     }
   }
 
-  function removeAttr(name) {
+  function removeAttr(name: string) {
     if (!(name in internalAttrs) || internalAttrs[name] != null) {
       internalAttrs[name] = undefined;
     }
   }
 
-  function getDeterminateCircleAttr(name) {
+  function getDeterminateCircleAttr(name: string) {
     return name in determinateCircleAttrs
-      ? determinateCircleAttrs[name]
+      ? determinateCircleAttrs[name] ?? null
       : determinateCircle.getAttribute(name);
   }
 
-  function addDeterminateCircleAttr(name, value) {
+  function addDeterminateCircleAttr(name: string, value: string) {
     if (determinateCircleAttrs[name] !== value) {
       determinateCircleAttrs[name] = value;
     }
