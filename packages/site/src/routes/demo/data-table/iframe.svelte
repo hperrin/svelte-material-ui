@@ -19,10 +19,17 @@
   </Body>
 </DataTable>
 
-<script>
+<script lang="ts">
   import DataTable, { Head, Body, Row, Cell } from '@smui/data-table';
 
-  let items = [];
+  type User = {
+    id: number;
+    name: string;
+    username: string;
+    email: string;
+    website: string;
+  };
+  let items: User[] = [];
 
   if (typeof fetch !== 'undefined') {
     fetch(

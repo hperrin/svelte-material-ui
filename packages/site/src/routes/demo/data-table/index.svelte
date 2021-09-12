@@ -36,7 +36,7 @@
   <Demo component={Sortable} file="data-table/_Sortable.svelte">Sortable</Demo>
 </section>
 
-<script>
+<script lang="ts">
   import Demo from '$lib/Demo.svelte';
   import Simple from './_Simple.svelte';
   import ProgressIndicator from './_ProgressIndicator.svelte';

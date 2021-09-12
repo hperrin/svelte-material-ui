@@ -16,7 +16,11 @@
     role="columnheader"
     scope="col"
     data-column-id={columnId}
-    aria-sort={sortable ? ($sort === columnId ? $sortDirection : 'none') : null}
+    aria-sort={sortable
+      ? $sort === columnId
+        ? $sortDirection
+        : 'none'
+      : undefined}
     {...internalAttrs}
     {...$$restProps}
     >{#if sortable}
@@ -54,11 +58,13 @@
   >
 {/if}
 
-<script context="module">
+<script context="module" lang="ts">
   let counter = 0;
 </script>
 
-<script>
+<script lang="ts">
+  import type { SortValue } from '@material/data-table';
+  import type { Writable } from 'svelte/store';
   import { onMount, getContext, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {
@@ -66,29 +72,36 @@
     classMap,
     useActions,
     dispatch,
+    ActionArray,
   } from '@smui/common/internal';
+
+  import type { SMUIDataTableCellAccessor } from './Cell.types';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  let header = getContext('SMUI:data-table:row:header');
+  let header = getContext<boolean>('SMUI:data-table:row:header');
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
   export let numeric = false;
   export let checkbox = false;
-  export let columnId = header ? 'SMUI-data-table-column-' + counter++ : null;
-  export let sortable = getContext('SMUI:data-table:sortable');
+  export let columnId = header
+    ? 'SMUI-data-table-column-' + counter++
+    : 'SMUI-data-table-unused';
+  export let sortable = getContext<boolean>('SMUI:data-table:sortable');
 
-  let element;
-  let internalClasses = {};
-  let internalAttrs = {};
-  let sort = getContext('SMUI:data-table:sort');
-  let sortDirection = getContext('SMUI:data-table:sortDirection');
-  let sortAscendingAriaLabel = getContext(
+  let element: HTMLTableCellElement;
+  let internalClasses: { [k: string]: boolean } = {};
+  let internalAttrs: { [k: string]: string | undefined } = {};
+  let sort = getContext<Writable<string | null>>('SMUI:data-table:sort');
+  let sortDirection = getContext<Writable<SortValue>>(
+    'SMUI:data-table:sortDirection'
+  );
+  let sortAscendingAriaLabel = getContext<string>(
     'SMUI:data-table:sortAscendingAriaLabel'
   );
-  let sortDescendingAriaLabel = getContext(
+  let sortDescendingAriaLabel = getContext<string>(
     'SMUI:data-table:sortDescendingAriaLabel'
   );
 
@@ -99,19 +112,33 @@
   }
 
   onMount(() => {
-    const accessor = {
-      _smui_data_table_header_cell_accessor: header,
-      get element() {
-        return getElement();
-      },
-      get columnId() {
-        return columnId;
-      },
-      addClass,
-      removeClass,
-      getAttr,
-      addAttr,
-    };
+    const accessor: SMUIDataTableCellAccessor = header
+      ? {
+          _smui_data_table_header_cell_accessor: true,
+          get element() {
+            return getElement();
+          },
+          get columnId() {
+            return columnId;
+          },
+          addClass,
+          removeClass,
+          getAttr,
+          addAttr,
+        }
+      : {
+          _smui_data_table_header_cell_accessor: false,
+          get element() {
+            return getElement();
+          },
+          get columnId() {
+            return undefined;
+          },
+          addClass,
+          removeClass,
+          getAttr,
+          addAttr,
+        };
 
     dispatch(getElement(), 'SMUIDataTableCell:mount', accessor);
 
@@ -120,36 +147,36 @@
     };
   });
 
-  function addClass(className) {
+  function addClass(className: string) {
     if (!internalClasses[className]) {
       internalClasses[className] = true;
     }
   }
 
-  function removeClass(className) {
+  function removeClass(className: string) {
     if (!(className in internalClasses) || internalClasses[className]) {
       internalClasses[className] = false;
     }
   }
 
-  function getAttr(name) {
+  function getAttr(name: string) {
     return name in internalAttrs
-      ? internalAttrs[name]
+      ? internalAttrs[name] ?? null
       : getElement().getAttribute(name);
   }
 
-  function addAttr(name, value) {
+  function addAttr(name: string, value: string) {
     if (internalAttrs[name] !== value) {
       internalAttrs[name] = value;
     }
   }
 
-  function notifyHeaderChange(event) {
-    dispatch(getElement(), 'SMUI:data-table:header:checkbox:change', event);
+  function notifyHeaderChange(event: Event) {
+    dispatch(getElement(), 'SMUIDataTableHeaderCheckbox:change', event);
   }
 
-  function notifyBodyChange(event) {
-    dispatch(getElement(), 'SMUI:data-table:body:checkbox:change', event);
+  function notifyBodyChange(event: Event) {
+    dispatch(getElement(), 'SMUIDataTableBodyCheckbox:change', event);
   }
 
   export function getElement() {

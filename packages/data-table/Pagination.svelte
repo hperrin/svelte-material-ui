@@ -34,7 +34,7 @@
   </div>
 </div>
 
-<script>
+<script lang="ts">
   import { setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {
@@ -43,17 +43,18 @@
     exclude,
     prefixFilter,
     useActions,
+    ActionArray,
   } from '@smui/common/internal';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
-  export let trailing$use = [];
+  export let trailing$use: ActionArray = [];
   export let trailing$class = '';
 
-  let element;
+  let element: HTMLDivElement;
 
   setContext('SMUI:label:context', 'data-table:pagination');
   setContext('SMUI:select:context', 'data-table:pagination');

@@ -62,7 +62,7 @@
   </Pagination>
 </DataTable>
 
-<script>
+<script lang="ts">
   import DataTable, {
     Head,
     Body,
@@ -74,9 +74,15 @@
   import IconButton from '@smui/icon-button';
   import { Label } from '@smui/common';
 
+  type Todo = {
+    id: number;
+    title: string;
+    completed: boolean;
+    userId: number;
+  };
+  let items: Todo[] = [];
   let rowsPerPage = 10;
   let currentPage = 0;
-  let items = [];
 
   $: start = currentPage * rowsPerPage;
   $: end = Math.min(start + rowsPerPage, items.length);

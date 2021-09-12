@@ -31,7 +31,7 @@
   class="status">Selected: {selected.map(option => option.name).join(', ')}</pre>
 <pre class="status">Total: {selectedPrice}</pre>
 
-<script>
+<script lang="ts">
   import DataTable, { Head, Body, Row, Cell } from '@smui/data-table';
   import Checkbox from '@smui/checkbox';
 

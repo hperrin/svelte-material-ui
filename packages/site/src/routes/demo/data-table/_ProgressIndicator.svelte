@@ -30,17 +30,24 @@
   />
 </DataTable>
 
-<script>
+<script lang="ts">
   import DataTable, { Head, Body, Row, Cell } from '@smui/data-table';
   import LinearProgress from '@smui/linear-progress';
   import Button from '@smui/button';
 
-  let items = [];
+  type User = {
+    id: number;
+    name: string;
+    username: string;
+    email: string;
+    website: string;
+  };
+  let items: User[] = [];
   let loaded = false;
 
   loadThings(false);
 
-  function loadThings(wait) {
+  function loadThings(wait: boolean) {
     if (typeof fetch !== 'undefined') {
       loaded = false;
 

@@ -53,13 +53,27 @@
   </Body>
 </DataTable>
 
-<script>
-  import DataTable, { Head, Body, Row, Cell, Label } from '@smui/data-table';
+<script lang="ts">
+  import DataTable, {
+    Head,
+    Body,
+    Row,
+    Cell,
+    Label,
+    SortValue,
+  } from '@smui/data-table';
   import IconButton from '@smui/icon-button';
 
-  let items = [];
-  let sort = 'id';
-  let sortDirection = 'ascending';
+  type User = {
+    id: number;
+    name: string;
+    username: string;
+    email: string;
+    website: string;
+  };
+  let items: User[] = [];
+  let sort: keyof User = 'id';
+  let sortDirection: Lowercase<keyof typeof SortValue> = 'ascending';
 
   if (typeof fetch !== 'undefined') {
     fetch(
@@ -74,10 +88,10 @@
       const [aVal, bVal] = [a[sort], b[sort]][
         sortDirection === 'ascending' ? 'slice' : 'reverse'
       ]();
-      if (typeof aVal === 'string') {
+      if (typeof aVal === 'string' && typeof bVal === 'string') {
         return aVal.localeCompare(bVal);
       }
-      return aVal - bVal;
+      return Number(aVal) - Number(bVal);
     });
     items = items;
   }

@@ -9,28 +9,36 @@
   {...$$restProps}><slot /></thead
 >
 
-<script>
+<script lang="ts">
+  import type { SMUICheckboxInputAccessor } from '@smui/common';
   import { onMount, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
     useActions,
     dispatch,
+    ActionArray,
   } from '@smui/common/internal';
+
+  import type { SMUIDataTableCellAccessor } from './Cell.types';
+  import type { SMUIDataTableHeadAccessor } from './Head.types';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  export let use = [];
+  export let use: ActionArray = [];
 
-  let element;
-  let checkbox;
-  let cells = [];
-  const cellAccessorMap = new WeakMap();
+  let element: HTMLTableSectionElement;
+  let checkbox: SMUICheckboxInputAccessor | undefined = undefined;
+  let cells: SMUIDataTableCellAccessor[] = [];
+  const cellAccessorMap = new WeakMap<
+    HTMLTableCellElement,
+    SMUIDataTableCellAccessor
+  >();
 
   setContext('SMUI:data-table:row:header', true);
 
   onMount(() => {
-    const accessor = {
+    const accessor: SMUIDataTableHeadAccessor = {
       get cells() {
         return cells;
       },
@@ -49,13 +57,13 @@
     };
   });
 
-  function handleCellMount(event) {
+  function handleCellMount(event: CustomEvent<SMUIDataTableCellAccessor>) {
     cells.push(event.detail);
     cellAccessorMap.set(event.detail.element, event.detail);
     event.stopPropagation();
   }
 
-  function handleCellUnmount(event) {
+  function handleCellUnmount(event: CustomEvent<SMUIDataTableCellAccessor>) {
     const idx = cells.indexOf(event.detail);
     if (idx !== -1) {
       cells.splice(idx, 1);
@@ -66,11 +74,15 @@
   }
 
   function getOrderedCells() {
-    return [...getElement().querySelectorAll('.mdc-data-table__header-cell')]
+    return [
+      ...getElement().querySelectorAll<HTMLTableCellElement>(
+        '.mdc-data-table__header-cell'
+      ),
+    ]
       .map((element) => cellAccessorMap.get(element))
       .filter(
         (accessor) => accessor && accessor._smui_data_table_header_cell_accessor
-      );
+      ) as SMUIDataTableCellAccessor[];
   }
 
   export function getElement() {

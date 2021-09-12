@@ -30,6 +30,6 @@
   </Body>
 </DataTable>
 
-<script>
+<script lang="ts">
   import DataTable, { Head, Body, Row, Cell } from '@smui/data-table';
 </script>
