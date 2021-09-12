@@ -5,15 +5,15 @@
 <pre class="status">Closed Reason: {reason}</pre>
 <pre class="status">Action: {action}</pre>
 
-<script context="module">
+<script context="module" lang="ts">
   let counter = 0;
 </script>
 
-<script>
+<script lang="ts">
   import Kitchen from '@smui/snackbar/kitchen/index';
   import Button, { Label } from '@smui/button';
 
-  let kitchen;
+  let kitchen: Kitchen;
   let reason = 'nothing yet';
   let action = 'nothing yet';
 
@@ -38,7 +38,7 @@
       dismissButton: true,
       onDismiss: () => (action = 'Dismissed'),
       onClose: (e) => {
-        reason = e.detail.reason;
+        reason = e.detail.reason ?? 'Undefined.';
       },
     });
   }

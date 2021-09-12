@@ -28,11 +28,11 @@
   </div>
 </aside>
 
-<script context="module">
+<script context="module" lang="ts">
   let waiting = Promise.resolve();
 </script>
 
-<script>
+<script lang="ts">
   import { MDCSnackbarFoundation, util } from '@material/snackbar';
   import { ponyfill } from '@material/dom';
   import { onMount, setContext } from 'svelte';
@@ -44,29 +44,34 @@
     prefixFilter,
     useActions,
     dispatch,
+    ActionArray,
   } from '@smui/common/internal';
   const { closest } = ponyfill;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
-  const uninitializedValue = () => {};
+  interface UninitializedValue extends Function {}
+  let uninitializedValue: UninitializedValue = () => {};
+  function isUninitializedValue(value: any): value is UninitializedValue {
+    return value === uninitializedValue;
+  }
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
   export let variant = '';
   export let leading = false;
   export let timeoutMs = 5000;
   export let closeOnEscape = true;
-  export let labelText = uninitializedValue;
-  export let actionButtonText = uninitializedValue;
+  export let labelText: UninitializedValue | string = uninitializedValue;
+  export let actionButtonText: UninitializedValue | string = uninitializedValue;
   export let surface$class = '';
-  export let surface$use = [];
+  export let surface$use: ActionArray = [];
 
-  let element;
-  let instance;
-  let internalClasses = {};
-  let closeResolve;
-  let closePromise = new Promise((resolve) => (closeResolve = resolve));
+  let element: HTMLElement;
+  let instance: MDCSnackbarFoundation;
+  let internalClasses: { [k: string]: boolean } = {};
+  let closeResolve: (value: void) => void;
+  let closePromise = new Promise<void>((resolve) => (closeResolve = resolve));
 
   setContext('SMUI:label:context', 'snackbar');
 
@@ -80,7 +85,7 @@
 
   $: if (
     instance &&
-    labelText !== uninitializedValue &&
+    !isUninitializedValue(labelText) &&
     getLabelElement().textContent !== labelText
   ) {
     getLabelElement().textContent = labelText;
@@ -88,7 +93,7 @@
 
   $: if (
     instance &&
-    actionButtonText !== uninitializedValue &&
+    !isUninitializedValue(actionButtonText) &&
     getActionButtonElement().textContent !== actionButtonText
   ) {
     getActionButtonElement().textContent = actionButtonText;
@@ -114,24 +119,24 @@
     };
   });
 
-  function addClass(className) {
+  function addClass(className: string) {
     if (!internalClasses[className]) {
       internalClasses[className] = true;
     }
   }
 
-  function removeClass(className) {
+  function removeClass(className: string) {
     if (!(className in internalClasses) || internalClasses[className]) {
       internalClasses[className] = false;
     }
   }
 
-  function handleSurfaceClick(event) {
+  function handleSurfaceClick(event: MouseEvent) {
     const target = event.target;
     if (instance) {
-      if (closest(target, '.mdc-snackbar__action')) {
+      if (closest(target as HTMLElement, '.mdc-snackbar__action')) {
         instance.handleActionButtonClick(event);
-      } else if (closest(target, '.mdc-snackbar__dismiss')) {
+      } else if (closest(target as HTMLElement, '.mdc-snackbar__dismiss')) {
         instance.handleActionIconClick(event);
       }
     }
@@ -153,7 +158,7 @@
     return instance.open();
   }
 
-  export function close(reason = '') {
+  export function close(reason?: string) {
     return instance.close(reason);
   }
 
@@ -162,11 +167,17 @@
   }
 
   export function getLabelElement() {
-    return getElement().querySelector('.mdc-snackbar__label');
+    return (
+      getElement().querySelector<HTMLElement>('.mdc-snackbar__label') ??
+      document.createElement('div')
+    );
   }
 
   export function getActionButtonElement() {
-    return getElement().querySelector('.mdc-snackbar__action');
+    return (
+      getElement().querySelector<HTMLElement>('.mdc-snackbar__action') ??
+      document.createElement('button')
+    );
   }
 
   export function getElement() {

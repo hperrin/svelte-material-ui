@@ -31,7 +31,7 @@
   </div>
 </div>
 
-<script>
+<script lang="ts">
   import Checkbox from '@smui/checkbox';
   import FormField from '@smui/form-field';
 

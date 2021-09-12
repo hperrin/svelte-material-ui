@@ -21,7 +21,7 @@
   >
 </div>
 
-<script context="module">
+<script context="module" lang="ts">
   let counter = 0;
 </script>
 

@@ -1,6 +1,6 @@
 <Snackbar
   variant="stacked"
-  bind:this={nnackbar}
+  bind:this={snackbar}
   on:MDCSnackbar:closed={handleClosedStacked}
 >
   <Label>
@@ -17,23 +17,23 @@
   </Actions>
 </Snackbar>
 
-<Button on:click={() => nnackbar.open()}>
+<Button on:click={() => snackbar.open()}>
   <Label>Open Snackbar</Label>
 </Button>
 
 <pre class="status">Closed Reason: {reason}</pre>
 <pre class="status">Action: {action}</pre>
 
-<script>
+<script lang="ts">
   import Snackbar, { Actions, Label } from '@smui/snackbar';
   import Button from '@smui/button';
   import IconButton from '@smui/icon-button';
 
-  let nnackbar;
+  let snackbar: Snackbar;
   let reason = 'nothing yet';
   let action = 'nothing yet';
 
-  function handleClosedStacked(e) {
-    reason = e.detail.reason;
+  function handleClosedStacked(e: CustomEvent<{ reason: string | undefined }>) {
+    reason = e.detail.reason ?? 'Undefined.';
   }
 </script>

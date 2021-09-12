@@ -16,11 +16,11 @@
   <Label>Open Snackbar Without Dismiss</Label>
 </Button>
 
-<script>
+<script lang="ts">
   import Snackbar, { Actions, Label } from '@smui/snackbar';
   import Button from '@smui/button';
   import IconButton from '@smui/icon-button';
 
-  let snackbarWithClose;
-  let snackbarWithoutClose;
+  let snackbarWithClose: Snackbar;
+  let snackbarWithoutClose: Snackbar;
 </script>

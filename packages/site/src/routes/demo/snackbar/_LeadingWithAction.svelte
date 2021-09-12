@@ -11,14 +11,14 @@
 
 <pre class="status">Closed Reason: {reason}</pre>
 
-<script>
+<script lang="ts">
   import Snackbar, { Actions, Label } from '@smui/snackbar';
   import Button from '@smui/button';
 
-  let snackbar;
+  let snackbar: Snackbar;
   let reason = 'nothing yet';
 
-  function handleClosed(e) {
-    reason = e.detail.reason;
+  function handleClosed(e: CustomEvent<{ reason: string | undefined }>) {
+    reason = e.detail.reason ?? 'Undefined.';
   }
 </script>

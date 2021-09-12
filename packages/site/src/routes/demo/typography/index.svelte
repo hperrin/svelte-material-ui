@@ -13,7 +13,7 @@
   />
 </section>
 
-<script>
+<script lang="ts">
   import Demo from '$lib/Demo.svelte';
   import Typography from './_Typography.svelte';
 </script>

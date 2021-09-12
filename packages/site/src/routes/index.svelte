@@ -277,7 +277,7 @@
   </div>
 </section>
 
-<script>
+<script lang="ts">
   import {
     mdiMaterialDesign,
     mdiSass,
