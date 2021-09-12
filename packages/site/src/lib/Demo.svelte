@@ -84,7 +84,7 @@
 
   export let file: string | undefined = undefined;
   export let files: string[] = typeof file === 'string' ? [file] : [];
-  export let component: SvelteComponent | string;
+  export let component: typeof SvelteComponent | string;
 
   let sourceContainer: HTMLDivElement | undefined = undefined;
   let show = false;

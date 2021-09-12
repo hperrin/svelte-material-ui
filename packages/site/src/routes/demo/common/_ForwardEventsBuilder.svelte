@@ -17,7 +17,7 @@
   let key = 'None';
   let focused = false;
 
-  function handleKeyPress(event: CustomEvent & KeyboardEvent) {
+  const handleKeyPress = (((event: KeyboardEvent) => {
     key = event.key;
-  }
+  }) as unknown) as (event: CustomEvent) => void;
 </script>

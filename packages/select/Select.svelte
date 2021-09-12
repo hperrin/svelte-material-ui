@@ -261,7 +261,7 @@
   export let variant: 'standard' | 'filled' | 'outlined' = 'standard';
   export let noLabel = false;
   export let label: string | undefined = undefined;
-  export let value = '';
+  export let value: any = '';
   export let key: (item: any) => string = (item) => item;
   export let dirty = false;
 

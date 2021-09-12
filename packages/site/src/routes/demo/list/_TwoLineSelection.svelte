@@ -66,7 +66,7 @@
   let selection = 'Stephen Hawking';
   // This value is updated when the component is initialized, based on the
   // selected Item's `selected` prop.
-  let selectionIndex = null;
+  let selectionIndex: number | undefined = undefined;
 </script>
 
 <style>

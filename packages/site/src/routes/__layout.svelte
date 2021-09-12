@@ -14,7 +14,7 @@
         <Title
           component={A}
           href="/"
-          on:click={() => (activeSection = null)}
+          on:click={() => (activeSection = undefined)}
           class="mdc-theme--primary"
           style={miniWindow ? 'padding-left: 0;' : ''}
         >
@@ -110,7 +110,7 @@
                   ? section.route
                   : 'shortcut' in section
                   ? section.shortcut
-                  : null}
+                  : undefined}
                 activated={section === activeSection}
                 style={section.indent
                   ? 'margin-left: ' + section.indent * 25 + 'px;'
@@ -177,8 +177,8 @@
     }
     themeLink.href = `/smui${lightTheme ? '' : '-dark'}.css`;
     document.head
-      .querySelector('link[href="/smui-dark.css"]')
-      .insertAdjacentElement('afterend', themeLink);
+      .querySelector<HTMLLinkElement>('link[href="/smui-dark.css"]')
+      ?.insertAdjacentElement('afterend', themeLink);
 
     let siteLink = document.head.querySelector<HTMLLinkElement>('#site');
     if (!siteLink) {
@@ -188,8 +188,8 @@
     }
     siteLink.href = `/site${lightTheme ? '' : '-dark'}.css`;
     document.head
-      .querySelector('link[href="/site-dark.css"]')
-      .insertAdjacentElement('afterend', siteLink);
+      .querySelector<HTMLLinkElement>('link[href="/site-dark.css"]')
+      ?.insertAdjacentElement('afterend', siteLink);
   }
 
   type DemoSection = {
@@ -509,9 +509,10 @@
   ];
 
   $: activeSection = sections.find(
-    (section) => 'route' in section && routesEqual(section.route, $page.path)
-  ) as DemoSection;
-  let previousPagePath = null;
+    (section) =>
+      'route' in section && routesEqual(section.route ?? '', $page.path)
+  ) as DemoSection | undefined;
+  let previousPagePath: string | undefined = undefined;
   $: if (mainContent && previousPagePath !== $page.path) {
     drawerOpen = false;
     const hashEl =

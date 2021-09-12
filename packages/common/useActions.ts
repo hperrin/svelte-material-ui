@@ -4,7 +4,7 @@ export type SvelteActionReturnType<P> = {
 } | void;
 
 export type SvelteActionType<P> = (
-  node: Element,
+  node: HTMLElement,
   params?: P
 ) => SvelteActionReturnType<P>;
 
@@ -14,7 +14,7 @@ export type ActionEntry<P extends any = any> =
 
 export type ActionArray = ActionEntry[];
 
-export function useActions(node: Element, actions: ActionArray) {
+export function useActions(node: HTMLElement, actions: ActionArray) {
   let actionReturns: SvelteActionReturnType<any>[] = [];
 
   if (actions) {

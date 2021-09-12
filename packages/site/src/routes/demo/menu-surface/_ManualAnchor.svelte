@@ -44,5 +44,5 @@
 
   let surface: MenuSurface;
   let anchor: HTMLDivElement;
-  let anchorClasses = {};
+  let anchorClasses: { [k: string]: boolean } = {};
 </script>

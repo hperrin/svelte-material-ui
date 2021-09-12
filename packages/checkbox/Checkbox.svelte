@@ -42,7 +42,7 @@
     bind:checked={nativeChecked}
     data-indeterminate={!isUninitializedValue(indeterminate) && indeterminate
       ? 'true'
-      : null}
+      : undefined}
     on:blur
     on:focus
     {...nativeControlAttrs}
@@ -92,7 +92,7 @@
   export let touch = false;
   export let indeterminate: UninitializedValue | boolean = uninitializedValue;
   export let group: UninitializedValue | any[] = uninitializedValue;
-  export let checked: UninitializedValue | boolean = uninitializedValue;
+  export let checked: UninitializedValue | boolean | null = uninitializedValue;
   export let value: any = null;
   export let valueKey: UninitializedValue | string = uninitializedValue;
   export let input$use: ActionArray = [];
@@ -107,10 +107,10 @@
   let rippleActive = false;
   let inputProps =
     getContext<{ id?: string } | undefined>('SMUI:generic:input:props') ?? {};
-  let nativeChecked = isUninitializedValue(group)
+  let nativeChecked: boolean | undefined = isUninitializedValue(group)
     ? isUninitializedValue(checked)
       ? false
-      : checked
+      : checked ?? undefined
     : group.indexOf(value) !== -1;
   let context = getContext<string | undefined>('SMUI:checkbox:context');
   let dataTableHeader = getContext<boolean | undefined>(
@@ -160,19 +160,22 @@
 
     // Now check individual state.
     if (isUninitializedValue(checked)) {
-      if (previousNativeChecked !== nativeChecked) {
+      if (!!previousNativeChecked !== !!nativeChecked) {
         // The checkbox was clicked by the user.
         callHandleChange = true;
       }
-    } else if (checked !== nativeChecked) {
+    } else if (checked !== (nativeChecked ?? null)) {
       if (checked === previousChecked) {
         // The checkbox was clicked by the user
         // and the change needs to flow up.
-        checked = nativeChecked;
+        checked = nativeChecked ?? null;
+        if (!isUninitializedValue(indeterminate)) {
+          indeterminate = false;
+        }
       } else {
         // The checkbox was changed programmatically
         // and the change needs to flow down.
-        nativeChecked = checked;
+        nativeChecked = checked ?? undefined;
       }
       callHandleChange = true;
     }
@@ -205,12 +208,15 @@
   }
 
   onMount(() => {
+    checkbox.indeterminate =
+      !isUninitializedValue(indeterminate) && indeterminate;
+
     instance = new MDCCheckboxFoundation({
       addClass,
       forceLayout: () => element.offsetWidth,
       hasNativeControl: () => true,
       isAttachedToDOM: () => Boolean(element.parentNode),
-      isChecked: () => nativeChecked,
+      isChecked: () => nativeChecked ?? false,
       isIndeterminate: () =>
         isUninitializedValue(indeterminate) ? false : indeterminate,
       removeClass,
@@ -225,7 +231,7 @@
         return getElement();
       },
       get checked() {
-        return nativeChecked;
+        return nativeChecked ?? false;
       },
       set checked(value) {
         if (nativeChecked !== value) {
