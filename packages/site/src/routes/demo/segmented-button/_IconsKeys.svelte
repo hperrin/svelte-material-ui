@@ -55,7 +55,7 @@
 <pre
   class="status">Aligned: {align.name}, Format: {format.length ? format.map(f => f.name).join(' & ') : 'None'}, {actions.map(({name, count}) => `${name}s: ${count}`).join(', ')}</pre>
 
-<script>
+<script lang="ts">
   import SegmentedButton, {
     Segment,
     Icon,
@@ -92,18 +92,19 @@
       icon: mdiFormatAlignJustify,
     },
   ];
-  const formats = [
+  type Format = { name: string; icon: string };
+  const formats: Format[] = [
     { name: 'Bold', icon: mdiFormatBold },
     { name: 'Italic', icon: mdiFormatItalic },
     { name: 'Underline', icon: mdiFormatUnderline },
   ];
-  const actions = [
+  let actions = [
     { name: 'Link', icon: mdiLink, count: 0 },
     { name: 'Image', icon: mdiImage, count: 0 },
   ];
 
   let align = aligns[0];
-  let format = [];
+  let format: Format[] = [];
 </script>
 
 <style>

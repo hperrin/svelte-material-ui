@@ -25,32 +25,42 @@
   {/each}
 </div>
 
-<script>
+<script lang="ts">
   import { MDCSegmentedButtonFoundation } from '@material/segmented-button/segmented-button/foundation.js';
   import { onMount, setContext } from 'svelte';
+  import { writable } from 'svelte/store';
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
     classMap,
     useActions,
     dispatch,
+    ActionArray,
   } from '@smui/common/internal';
   import ContextFragment from '@smui/common/ContextFragment.svelte';
 
+  import type { SMUISegmentedButtonSegmentAccessor } from './Segment.types';
+
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
-  export let segments = [];
-  export let key = (segment) => segment;
+  export let segments: any[] = [];
+  export let key: (segment: any) => string | number = (segment) => segment;
   export let singleSelect = false;
-  export let selected = singleSelect ? null : [];
+  export let selected: any | any[] = singleSelect ? undefined : [];
 
-  let element;
-  let instance;
-  let segmentAccessorMap = {};
-  let segmentAccessorWeakMap = new WeakMap();
+  let element: HTMLDivElement;
+  let instance: MDCSegmentedButtonFoundation;
+  let segmentAccessorMap: {
+    [k: string]: SMUISegmentedButtonSegmentAccessor;
+    [k: number]: SMUISegmentedButtonSegmentAccessor;
+  } = {};
+  let segmentAccessorWeakMap = new WeakMap<
+    Object,
+    SMUISegmentedButtonSegmentAccessor
+  >();
   let initialSelected = segments.map(
     (segmentId) =>
       (singleSelect && selected === segmentId) ||
@@ -59,7 +69,9 @@
 
   setContext('SMUI:icon:context', 'segmented-button');
   setContext('SMUI:label:context', 'segmented-button');
-  setContext('SMUI:segmented-button:singleSelect', singleSelect);
+  const singleSelectStore = writable(singleSelect);
+  $: $singleSelectStore = singleSelect;
+  setContext('SMUI:segmented-button:singleSelect', singleSelectStore);
 
   let previousSelected = singleSelect ? selected : new Set(selected);
   $: if (instance && singleSelect && previousSelected !== selected) {
@@ -89,7 +101,7 @@
     }
   }
 
-  function setDifference(setA, setB) {
+  function setDifference(setA: Set<any>, setB: Set<any>) {
     let _difference = new Set(setA);
     for (let elem of setB) {
       _difference.delete(elem);
@@ -131,25 +143,32 @@
     };
   });
 
-  function handleSegmentMount(event) {
+  function handleSegmentMount(
+    event: CustomEvent<SMUISegmentedButtonSegmentAccessor>
+  ) {
     const accessor = event.detail;
 
     addAccessor(accessor.segmentId, accessor);
   }
 
-  function handleSegmentUnmount(event) {
+  function handleSegmentUnmount(
+    event: CustomEvent<SMUISegmentedButtonSegmentAccessor>
+  ) {
     const accessor = event.detail;
 
     removeAccessor(accessor.segmentId);
   }
 
-  function getAccessor(segmentId) {
+  function getAccessor(segmentId: any) {
     return segmentId instanceof Object
       ? segmentAccessorWeakMap.get(segmentId)
       : segmentAccessorMap[segmentId];
   }
 
-  function addAccessor(segmentId, accessor) {
+  function addAccessor(
+    segmentId: any,
+    accessor: SMUISegmentedButtonSegmentAccessor
+  ) {
     if (segmentId instanceof Object) {
       segmentAccessorWeakMap.set(segmentId, accessor);
     } else {
@@ -157,7 +176,7 @@
     }
   }
 
-  function removeAccessor(segmentId) {
+  function removeAccessor(segmentId: any) {
     if (segmentId instanceof Object) {
       segmentAccessorWeakMap.delete(segmentId);
     } else {
@@ -165,7 +184,7 @@
     }
   }
 
-  function selectSegment(indexOrSegmentId) {
+  function selectSegment(indexOrSegmentId: any) {
     let index = segments.indexOf(indexOrSegmentId);
     if (index === -1) {
       index = indexOrSegmentId;
@@ -180,10 +199,13 @@
       selected = segments[index];
     }
 
-    getAccessor(segments[index]).selected = true;
+    const accessor = getAccessor(segments[index]);
+    if (accessor) {
+      accessor.selected = true;
+    }
   }
 
-  function unselectSegment(indexOrSegmentId) {
+  function unselectSegment(indexOrSegmentId: any) {
     let index = segments.indexOf(indexOrSegmentId);
     if (index === -1) {
       index = indexOrSegmentId;
@@ -198,7 +220,10 @@
       selected = null;
     }
 
-    getAccessor(segments[index]).selected = false;
+    const accessor = getAccessor(segments[index]);
+    if (accessor) {
+      accessor.selected = false;
+    }
   }
 
   export function getElement() {

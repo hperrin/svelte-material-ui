@@ -19,9 +19,9 @@
     .map(([name, value]) => `${name}: ${value};`)
     .concat([style])
     .join(' ')}
-  role={singleSelect ? 'radio' : null}
-  aria-pressed={!singleSelect ? (selected ? 'true' : 'false') : null}
-  aria-checked={singleSelect ? (selected ? 'true' : 'false') : null}
+  role={singleSelect ? 'radio' : undefined}
+  aria-pressed={!singleSelect ? (selected ? 'true' : 'false') : undefined}
+  aria-checked={singleSelect ? (selected ? 'true' : 'false') : undefined}
   on:click={(event) =>
     !event.defaultPrevented && instance && instance.handleClick()}
   {...internalAttrs}
@@ -30,7 +30,7 @@
   />{#if touch}<div class="mdc-segmented-button__segment__touch" />{/if}</button
 >
 
-<script>
+<script lang="ts">
   import { MDCSegmentedButtonSegmentFoundation } from '@material/segmented-button/segment/foundation.js';
   import { onMount, getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
@@ -39,31 +39,38 @@
     classMap,
     useActions,
     dispatch,
+    ActionArray,
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
 
+  import type { SMUISegmentedButtonSegmentAccessor } from './Segment.types';
+
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
   export let style = '';
-  let segmentId;
+  let segmentId: any;
   export { segmentId as segment };
   export let ripple = true;
   export let touch = false;
 
-  let element;
-  let instance;
-  let internalClasses = {};
-  let internalStyles = {};
-  let internalAttrs = {};
-  const initialSelectedStore = getContext(
+  let element: HTMLButtonElement;
+  let instance: MDCSegmentedButtonSegmentFoundation;
+  let internalClasses: { [k: string]: boolean } = {};
+  let internalStyles: { [k: string]: string } = {};
+  let internalAttrs: { [k: string]: string | undefined } = {};
+  const initialSelectedStore = getContext<SvelteStore<boolean>>(
     'SMUI:segmented-button:segment:initialSelected'
   );
   let selected = $initialSelectedStore;
-  const singleSelect = getContext('SMUI:segmented-button:singleSelect');
-  const index = getContext('SMUI:segmented-button:segment:index');
+  const singleSelect = getContext<SvelteStore<boolean>>(
+    'SMUI:segmented-button:singleSelect'
+  );
+  const index = getContext<SvelteStore<number>>(
+    'SMUI:segmented-button:segment:index'
+  );
 
   if (!segmentId) {
     throw new Error(
@@ -82,7 +89,7 @@
   onMount(() => {
     instance = new MDCSegmentedButtonSegmentFoundation({
       isSingleSelect: () => {
-        return singleSelect;
+        return $singleSelect;
       },
       getAttr,
       setAttr: addAttr,
@@ -103,7 +110,7 @@
       },
     });
 
-    const accessor = {
+    const accessor: SMUISegmentedButtonSegmentAccessor = {
       segmentId,
       get selected() {
         return selected;
@@ -126,37 +133,37 @@
     };
   });
 
-  function hasClass(className) {
+  function hasClass(className: string) {
     return className in internalClasses
       ? internalClasses[className]
       : getElement().classList.contains(className);
   }
 
-  function addClass(className) {
+  function addClass(className: string) {
     if (!internalClasses[className]) {
       internalClasses[className] = true;
     }
   }
 
-  function removeClass(className) {
+  function removeClass(className: string) {
     if (!(className in internalClasses) || internalClasses[className]) {
       internalClasses[className] = false;
     }
   }
 
-  function getAttr(name) {
+  function getAttr(name: string) {
     return name in internalAttrs
-      ? internalAttrs[name]
+      ? internalAttrs[name] ?? null
       : getElement().getAttribute(name);
   }
 
-  function addAttr(name, value) {
+  function addAttr(name: string, value: string) {
     if (internalAttrs[name] !== value) {
       internalAttrs[name] = value;
     }
   }
 
-  function addStyle(name, value) {
+  function addStyle(name: string, value: string) {
     if (internalStyles[name] != value) {
       if (value === '' || value == null) {
         delete internalStyles[name];

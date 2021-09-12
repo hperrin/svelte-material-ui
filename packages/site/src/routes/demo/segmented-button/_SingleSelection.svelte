@@ -25,7 +25,7 @@
 
 <pre class="status">Selected: {selected}</pre>
 
-<script>
+<script lang="ts">
   import SegmentedButton, { Segment } from '@smui/segmented-button';
   import Button from '@smui/button';
   import { Label } from '@smui/common';

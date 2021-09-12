@@ -20,7 +20,7 @@
 
 <pre class="status">Aligned: {align.name}</pre>
 
-<script>
+<script lang="ts">
   import SegmentedButton, { Segment, Icon } from '@smui/segmented-button';
   import Wrapper from '@smui/touch-target';
   import Svg from '@smui/common/Svg.svelte';

@@ -12,7 +12,7 @@
   <Wrapper>
     <Set chips={['Chip']} let:chip style="display: inline-flex;">
       <Chip {chip} on:click={() => clicked++} touch>
-        <Text tabindex="0">{chip}</Text>
+        <Text tabindex={0}>{chip}</Text>
       </Chip>
     </Set>
   </Wrapper>
@@ -30,7 +30,7 @@
 <pre
   class="status">Clicked: {clicked}, Checked: {checked}, Selected: {selected}</pre>
 
-<script>
+<script lang="ts">
   import Wrapper from '@smui/touch-target';
   import Button from '@smui/button';
   import Fab from '@smui/fab';
