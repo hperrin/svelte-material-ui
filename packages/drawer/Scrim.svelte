@@ -22,7 +22,7 @@
     dispatch,
     ActionArray,
   } from '@smui/common/internal';
-  import Div from '@smui/common/Div.svelte';
+  import { Div } from '@smui/common/elements';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

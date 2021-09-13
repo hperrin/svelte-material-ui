@@ -11,9 +11,6 @@
 </div>
 
 <script lang="ts">
-  import Div from '@smui/common/Div.svelte';
-  import Span from '@smui/common/Span.svelte';
-  import Strong from '@smui/common/Strong.svelte';
-  import Em from '@smui/common/Em.svelte';
+  import { Div, Span, Strong, Em } from '@smui/common/elements';
   import Button, { Label } from '@smui/button';
 </script>

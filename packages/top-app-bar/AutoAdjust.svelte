@@ -19,7 +19,7 @@
     classMap,
     ActionArray,
   } from '@smui/common/internal';
-  import Main from '@smui/common/Main.svelte';
+  import { Main } from '@smui/common/elements';
 
   import type TopAppBar from './TopAppBar.svelte';
 

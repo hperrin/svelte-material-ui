@@ -221,6 +221,9 @@
   import type { AddLayoutListener, RemoveLayoutListener } from '@smui/common';
   import type { Corner } from '@smui/menu-surface';
   import type { SMUIListAccessor } from '@smui/list';
+  import type { FloatingLabelComponentDev } from '@smui/floating-label';
+  import type { LineRippleComponentDev } from '@smui/line-ripple';
+  import type { NotchedOutlineComponentDev } from '@smui/notched-outline';
   import type MDCSelectIconFoundation from '@material/select/icon/foundation';
   import type MDCSelectHelperTextFoundation from '@material/select/helper-text/foundation';
   import { MDCSelectFoundation } from '@material/select';
@@ -313,9 +316,9 @@
   let helperText: MDCSelectHelperTextFoundation | undefined = undefined;
 
   // Components
-  let floatingLabel: FloatingLabel | undefined = undefined;
-  let lineRipple: LineRipple | undefined = undefined;
-  let notchedOutline: NotchedOutline | undefined = undefined;
+  let floatingLabel: FloatingLabelComponentDev | undefined = undefined;
+  let lineRipple: LineRippleComponentDev | undefined = undefined;
+  let notchedOutline: NotchedOutlineComponentDev | undefined = undefined;
 
   setContext('SMUI:list:role', '');
   setContext('SMUI:list:nav', false);

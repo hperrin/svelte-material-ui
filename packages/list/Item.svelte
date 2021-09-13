@@ -77,9 +77,7 @@
     ActionArray,
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
-  import A from '@smui/common/A.svelte';
-  import Span from '@smui/common/Span.svelte';
-  import Li from '@smui/common/Li.svelte';
+  import { A, Span, Li } from '@smui/common/elements';
 
   import type { SMUIListItemAccessor } from './Item.types';
 

@@ -67,6 +67,7 @@
 
 <script lang="ts">
   import type { SMUIComponent } from '@smui/common/SMUIComponent';
+  import type { TabIndicatorComponentDev } from '@smui/tab-indicator';
   import { MDCTabFoundation } from '@material/tab';
   import { onMount, setContext, getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
@@ -80,8 +81,7 @@
     ActionArray,
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
-  import A from '@smui/common/A.svelte';
-  import Button from '@smui/common/Button.svelte';
+  import { A, Button } from '@smui/common/elements';
   import TabIndicator from '@smui/tab-indicator';
 
   import type { SMUITabAccessor } from './Tab.types';
@@ -105,7 +105,7 @@
   let element: SMUIComponent;
   let instance: MDCTabFoundation;
   let content: HTMLSpanElement;
-  let tabIndicator: TabIndicator;
+  let tabIndicator: TabIndicatorComponentDev;
   let internalClasses: { [k: string]: boolean } = {};
   let internalStyles: { [k: string]: string } = {};
   let internalAttrs: { [k: string]: string | undefined } = {};

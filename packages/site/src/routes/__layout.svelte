@@ -151,11 +151,10 @@
   import TopAppBar, { Row, Section, Title } from '@smui/top-app-bar';
   import Drawer, { Content, Scrim, AppContent } from '@smui/drawer';
   import IconButton from '@smui/icon-button';
-  import List, { Item, Text, Separator } from '@smui/list';
+  import List, { Item, Text, Separator, ItemComponentDev } from '@smui/list';
   import Tooltip, { Wrapper } from '@smui/tooltip';
   import { Icon } from '@smui/common';
-  import A from '@smui/common/A.svelte';
-  import Svg from '@smui/common/Svg.svelte';
+  import { A, Svg } from '@smui/common/elements';
 
   const iframe = $page.path.includes('/iframe');
 
@@ -193,7 +192,7 @@
   }
 
   type DemoSection = {
-    component?: Item;
+    component?: ItemComponentDev;
     name: string;
     route?: string;
     shortcut?: string;

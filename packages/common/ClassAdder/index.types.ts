@@ -1,7 +1,7 @@
 import type { SMUIComponent } from '../SMUIComponent.d';
 
-export type ClassAdderInternals = {
-  component: typeof SMUIComponent;
+export type ClassAdderInternals<T extends typeof SMUIComponent> = {
+  component: T;
   class: string;
   /**
    * Map of name to context name. The context should resolve to a Svelte store,

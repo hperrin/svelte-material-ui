@@ -50,7 +50,7 @@
     useActions,
     ActionArray,
   } from '@smui/common/internal';
-  import ContextFragment from '@smui/common/ContextFragment.svelte';
+  import { ContextFragment } from '@smui/common';
 
   import type { SMUIChipsChipAccessor } from './Chip.types';
 

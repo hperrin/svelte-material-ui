@@ -98,7 +98,7 @@
   } from '@smui/drawer';
   import Button, { Label } from '@smui/button';
   import List, { Item, Text, Graphic, Separator, Subheader } from '@smui/list';
-  import H6 from '@smui/common/H6.svelte';
+  import { H6 } from '@smui/common/elements';
 
   let open = false;
   let active = 'Inbox';

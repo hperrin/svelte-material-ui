@@ -299,7 +299,7 @@
     SecondaryText,
   } from '@smui/list';
   import { Icon } from '@smui/common';
-  import Svg from '@smui/common/Svg.svelte';
+  import { Svg } from '@smui/common/elements';
 </script>
 
 <style>

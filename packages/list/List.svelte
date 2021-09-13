@@ -58,8 +58,7 @@
     dispatch,
     ActionArray,
   } from '@smui/common/internal';
-  import Ul from '@smui/common/Ul.svelte';
-  import Nav from '@smui/common/Nav.svelte';
+  import { Ul, Nav } from '@smui/common/elements';
 
   import type { SMUIListAccessor } from './List.types';
   import type { SMUIListItemAccessor } from './Item.types';

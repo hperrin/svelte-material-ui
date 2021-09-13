@@ -1,8 +1,7 @@
-import type { SMUIComponent } from '@smui/common';
 import { classAdderBuilder } from '@smui/common/internal';
-import H5 from '@smui/common/H5.svelte';
+import { H5 } from '@smui/common/elements';
 
 export default classAdderBuilder({
   class: 'smui-paper__title',
-  component: H5 as typeof SMUIComponent,
+  component: H5,
 });

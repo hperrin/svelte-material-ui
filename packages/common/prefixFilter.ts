@@ -1,14 +1,14 @@
-export function prefixFilter<
-  T extends { [k: string]: any },
-  R extends { [k: string]: any }
->(obj: T, prefix: string): R {
+export function prefixFilter(
+  obj: { [k: string]: any },
+  prefix: string
+): { [k: string]: any } {
   let names = Object.getOwnPropertyNames(obj);
-  const newObj: R = {} as R;
+  const newObj: { [k: string]: any } = {};
 
   for (let i = 0; i < names.length; i++) {
     const name = names[i];
     if (name.substring(0, prefix.length) === prefix) {
-      newObj[name.substring(prefix.length) as keyof R] = obj[name];
+      newObj[name.substring(prefix.length)] = obj[name];
     }
   }
 

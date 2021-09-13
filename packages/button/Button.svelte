@@ -61,8 +61,7 @@
     ActionArray,
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
-  import A from '@smui/common/A.svelte';
-  import Button from '@smui/common/Button.svelte';
+  import { A, Button } from '@smui/common/elements';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

@@ -8,6 +8,7 @@
 >
 
 <script lang="ts">
+  import type { ItemComponentDev } from '@smui/list';
   import type { Writable } from 'svelte/store';
   import { onMount, onDestroy } from 'svelte';
   import { getContext, setContext } from 'svelte';
@@ -23,7 +24,7 @@
   export { className as class };
   export let value: any = '';
 
-  let element: Item;
+  let element: ItemComponentDev;
   const selectedText = getContext<Writable<string>>('SMUI:select:selectedText');
   const selectedValue = getContext<SvelteStore<any>>('SMUI:select:value');
 

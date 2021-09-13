@@ -17,7 +17,7 @@
 
 <script lang="ts">
   import Fab, { Icon } from '@smui/fab';
-  import Svg from '@smui/common/Svg.svelte';
+  import { Svg } from '@smui/common/elements';
   import { mdiPlus } from '@mdi/js';
 
   let clicked = 0;

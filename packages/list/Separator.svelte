@@ -24,8 +24,7 @@
     classMap,
     ActionArray,
   } from '@smui/common/internal';
-  import Li from '@smui/common/Li.svelte';
-  import Hr from '@smui/common/Hr.svelte';
+  import { Li, Hr } from '@smui/common/elements';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

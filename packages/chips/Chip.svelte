@@ -68,7 +68,7 @@
     ActionArray,
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
-  import Div from '@smui/common/Div.svelte';
+  import { Div } from '@smui/common/elements';
 
   import type { SMUIChipsPrimaryActionAccessor } from './Text.types';
   import type { SMUIChipsTrailingActionAccessor } from './TrailingAction.types';

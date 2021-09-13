@@ -1,8 +1,7 @@
-import type { SMUIComponent } from '@smui/common';
 import { classAdderBuilder } from '@smui/common/internal';
-import A from '@smui/common/A.svelte';
+import { A } from '@smui/common/elements';
 
 export default classAdderBuilder({
   class: 'mdc-tooltip__content-link',
-  component: A as typeof SMUIComponent,
+  component: A,
 });

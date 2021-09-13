@@ -1,7 +1,5 @@
 import type Component from './Textarea.svelte';
 
-type ElementAttributes = svelte.JSX.HTMLProps<HTMLTextAreaElement>;
-
 export declare class TextareaComponentDev extends Component {
   /**
    * @private
@@ -9,5 +7,9 @@ export declare class TextareaComponentDev extends Component {
    * Does not exist at runtime.
    * ### DO NOT USE!
    */
-  $$prop_def: Partial<ElementAttributes> & Component['$$prop_def'];
+  $$prop_def: Omit<
+    Partial<svelte.JSX.HTMLAttributes<HTMLTextAreaElement>>,
+    keyof Component['$$prop_def']
+  > &
+    Component['$$prop_def'];
 }

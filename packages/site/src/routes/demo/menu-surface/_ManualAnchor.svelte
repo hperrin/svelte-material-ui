@@ -34,7 +34,10 @@
 </div>
 
 <script lang="ts">
-  import MenuSurface, { Anchor } from '@smui/menu-surface';
+  import MenuSurface, {
+    Anchor,
+    MenuSurfaceComponentDev,
+  } from '@smui/menu-surface';
   import ImageList, {
     Item as ImageListItem,
     ImageAspectContainer,
@@ -42,7 +45,7 @@
   } from '@smui/image-list';
   import Button from '@smui/button';
 
-  let surface: MenuSurface;
+  let surface: MenuSurfaceComponentDev;
   let anchor: HTMLDivElement;
   let anchorClasses: { [k: string]: boolean } = {};
 </script>

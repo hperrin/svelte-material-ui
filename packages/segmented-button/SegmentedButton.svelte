@@ -37,7 +37,7 @@
     dispatch,
     ActionArray,
   } from '@smui/common/internal';
-  import ContextFragment from '@smui/common/ContextFragment.svelte';
+  import { ContextFragment } from '@smui/common';
 
   import type { SMUISegmentedButtonSegmentAccessor } from './Segment.types';
 

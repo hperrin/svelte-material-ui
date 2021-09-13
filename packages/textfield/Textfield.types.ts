@@ -1,22 +1,37 @@
-import type Textfield from './Textfield.svelte';
+import type { FloatingLabelComponentDev } from '@smui/floating-label';
+import type { NotchedOutlineComponentDev } from '@smui/notched-outline';
+import type { LineRippleComponentDev } from '@smui/line-ripple';
+import type Component from './Textfield.svelte';
 import type { InputComponentDev } from './Input.types';
 import type { TextareaComponentDev } from './Textarea.types';
 
-type ElementAttributes = svelte.JSX.HTMLProps<HTMLLabelElement> &
-  svelte.JSX.HTMLProps<HTMLDivElement>;
-
-// TODO: type all component like this, plus all the whatever$ props.
-
-export declare class TextfieldComponentDev extends Textfield {
+export declare class TextfieldComponentDev extends Component {
   /**
    * @private
    * For type checking capabilities only.
    * Does not exist at runtime.
    * ### DO NOT USE!
    */
-  $$prop_def: {
-    [k in keyof ElementAttributes]?: ElementAttributes[k];
-  } &
+  $$prop_def: Omit<
+    Partial<svelte.JSX.HTMLAttributes<HTMLLabelElement>>,
+    keyof Component['$$prop_def']
+  > &
+    {
+      [k in keyof FloatingLabelComponentDev['$$prop_def'] as `label\$${k}`]?: FloatingLabelComponentDev['$$prop_def'][k];
+    } &
+    {
+      [k in keyof NotchedOutlineComponentDev['$$prop_def'] as `outline\$${k}`]?: NotchedOutlineComponentDev['$$prop_def'][k];
+    } &
+    {
+      [k in keyof LineRippleComponentDev['$$prop_def'] as `ripple\$${k}`]?: LineRippleComponentDev['$$prop_def'][k];
+    } &
+    {
+      [k in keyof Partial<
+        svelte.JSX.HTMLAttributes<HTMLDivElement>
+      > as `helperLine\$${k}`]?: Partial<
+        svelte.JSX.HTMLAttributes<HTMLDivElement>
+      >[k];
+    } &
     {
       [k in keyof InputComponentDev['$$prop_def'] as `input\$${k}`]?: InputComponentDev['$$prop_def'][k];
     } &
@@ -33,5 +48,5 @@ export declare class TextfieldComponentDev extends Textfield {
       input$updateInvalid?: never;
       'input$aria-controls'?: never;
       'input$aria-describedby'?: never;
-    } & Textfield['$$prop_def'];
+    } & Component['$$prop_def'];
 }

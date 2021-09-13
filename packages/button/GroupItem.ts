@@ -1,14 +1,12 @@
-export type GroupItemProps = {
-  addClass?: (className: string) => void;
-  removeClass?: (className: string) => void;
-};
-
 export default function GroupItem(
   node: Element,
   {
     addClass = (className) => node.classList.add(className),
     removeClass = (className) => node.classList.remove(className),
-  }: GroupItemProps = {}
+  }: {
+    addClass?: (className: string) => void;
+    removeClass?: (className: string) => void;
+  } = {}
 ) {
   addClass('smui-button__group-item');
 

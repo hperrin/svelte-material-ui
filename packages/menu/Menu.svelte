@@ -21,7 +21,10 @@
 
 <script lang="ts">
   import type { SMUIListAccessor } from '@smui/list';
-  import type { SMUIMenuSurfaceAccessor } from '@smui/menu-surface';
+  import type {
+    MenuSurfaceComponentDev,
+    SMUIMenuSurfaceAccessor,
+  } from '@smui/menu-surface';
   import { MDCMenuFoundation, cssClasses } from '@material/menu';
   import { ponyfill } from '@material/dom';
   import { onMount } from 'svelte';
@@ -46,7 +49,7 @@
   export { className as class };
   export let open = false;
 
-  let element: MenuSurface;
+  let element: MenuSurfaceComponentDev;
   let instance: MDCMenuFoundation;
   let menuSurfaceAccessor: SMUIMenuSurfaceAccessor;
   let listAccessor: SMUIListAccessor;

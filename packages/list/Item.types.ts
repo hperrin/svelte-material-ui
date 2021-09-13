@@ -1,3 +1,23 @@
+import type { SMUIComponent } from '@smui/common';
+import type Component from './Item.svelte';
+import type { LiComponentDev as LiElementComponentDev } from '@smui/common/elements';
+
+export declare class ItemComponentDev<
+  C extends SMUIComponent = LiElementComponentDev
+> extends Component {
+  /**
+   * @private
+   * For type checking capabilities only.
+   * Does not exist at runtime.
+   * ### DO NOT USE!
+   */
+  $$prop_def: Omit<
+    Partial<svelte.JSX.HTMLAttributes<ReturnType<C['getElement']>>>,
+    keyof Component['$$prop_def']
+  > &
+    Component['$$prop_def'];
+}
+
 export interface SMUIListItemAccessor {
   _smui_list_item_accessor: true;
   readonly element: Element;

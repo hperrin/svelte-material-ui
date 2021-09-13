@@ -26,7 +26,7 @@
     Supporting,
     Label,
   } from '@smui/image-list';
-  import Div from '@smui/common/Div.svelte';
+  import { Div } from '@smui/common/elements';
 
   function getUnevenImageSize(
     counter: number,

@@ -1,9 +1,12 @@
 import type { ClassAdderInternals } from './ClassAdder/index.types';
 import ClassAdder, { internals } from './ClassAdder/index.svelte';
+import type { SMUIComponent } from './SMUIComponent';
 
 const defaults = { ...internals };
 
-export function classAdderBuilder(props: Partial<ClassAdderInternals>) {
+export function classAdderBuilder<T extends typeof SMUIComponent>(
+  props: Partial<ClassAdderInternals<T>>
+) {
   return new Proxy(ClassAdder, {
     construct: function (target, args) {
       Object.assign(internals, defaults, props);
@@ -14,5 +17,5 @@ export function classAdderBuilder(props: Partial<ClassAdderInternals>) {
       Object.assign(internals, defaults, props);
       return (target as any)[prop];
     },
-  });
+  }) as T;
 }

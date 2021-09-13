@@ -40,6 +40,7 @@
     Section,
     Title,
     AutoAdjust,
+    TopAppBarComponentDev,
   } from '@smui/top-app-bar';
   import IconButton from '@smui/icon-button';
   import LoremIpsum from '$lib/LoremIpsum.svelte';
@@ -50,7 +51,7 @@
   let collapsed = false;
   let title = 'Standard';
   let shortAlwaysCollapsed = false;
-  let topAppBar: TopAppBar;
+  let topAppBar: TopAppBarComponentDev;
 
   switch ($page.query.get('style')) {
     case 'fixed':

@@ -1,6 +1,5 @@
-import type { SMUIComponent } from '@smui/common';
 import { classAdderBuilder } from '@smui/common/internal';
-import Div from '@smui/common/Div.svelte';
+import { Div } from '@smui/common/elements';
 
 export default classAdderBuilder({
   class: 'mdc-snackbar__actions',
@@ -10,5 +9,5 @@ export default classAdderBuilder({
     'SMUI:icon-button:context': 'snackbar:actions',
     'SMUI:label:context': undefined,
   },
-  component: Div as typeof SMUIComponent,
+  component: Div,
 });

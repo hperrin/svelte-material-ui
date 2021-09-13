@@ -233,6 +233,9 @@
 
 <script lang="ts">
   import type { AddLayoutListener, RemoveLayoutListener } from '@smui/common';
+  import type { FloatingLabelComponentDev } from '@smui/floating-label';
+  import type { LineRippleComponentDev } from '@smui/line-ripple';
+  import type { NotchedOutlineComponentDev } from '@smui/notched-outline';
   import type MDCTextFieldIconFoundation from '@material/textfield/icon/foundation';
   import type MDCTextFieldHelperTextFoundation from '@material/textfield/helper-text/foundation';
   import type MDCTextFieldCharacterCounterFoundation from '@material/textfield/character-counter/foundation';
@@ -248,7 +251,7 @@
     useActions,
     ActionArray,
   } from '@smui/common/internal';
-  import ContextFragment from '@smui/common/ContextFragment.svelte';
+  import { ContextFragment } from '@smui/common';
   import Ripple from '@smui/ripple';
   import FloatingLabel from '@smui/floating-label';
   import LineRipple from '@smui/line-ripple';
@@ -320,9 +323,9 @@
 
   // Components
   export let input: Input | Textarea | undefined = undefined;
-  export let floatingLabel: FloatingLabel | undefined = undefined;
-  export let lineRipple: LineRipple | undefined = undefined;
-  export let notchedOutline: NotchedOutline | undefined = undefined;
+  export let floatingLabel: FloatingLabelComponentDev | undefined = undefined;
+  export let lineRipple: LineRippleComponentDev | undefined = undefined;
+  export let notchedOutline: NotchedOutlineComponentDev | undefined = undefined;
 
   let element: HTMLLabelElement | HTMLDivElement;
   let instance: MDCTextFieldFoundation;

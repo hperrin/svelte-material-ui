@@ -61,7 +61,7 @@
     Icon,
     Label,
   } from '@smui/segmented-button';
-  import Svg from '@smui/common/Svg.svelte';
+  import { Svg } from '@smui/common/elements';
   import {
     mdiFormatAlignLeft,
     mdiFormatAlignCenter,

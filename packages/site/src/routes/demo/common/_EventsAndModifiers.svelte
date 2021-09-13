@@ -69,7 +69,7 @@
 
 <script lang="ts">
   import Button, { Label } from '@smui/button';
-  import A from '@smui/common/A.svelte';
+  import { A } from '@smui/common/elements';
 
   let eventOutput: HTMLDivElement;
   let eventPhaseOutput: HTMLDivElement;

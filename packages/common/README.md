@@ -150,6 +150,10 @@ An elemental component for the `main` tag.
 
 An elemental component for the `nav` tag.
 
+## P.svelte
+
+An elemental component for the `p` tag.
+
 ## Section.svelte
 
 An elemental component for the `section` tag.
@@ -182,7 +186,7 @@ Use this to build a ClassAdder component. ClassAdder components are useful for r
 
 ```js
 import { classAdderBuilder } from '@smui/common/internal';
-import Div from '@smui/common/Div.svelte';
+import { Div } from '@smui/common/elements';
 
 export default classAdderBuilder({
   class: 'my-added-class',

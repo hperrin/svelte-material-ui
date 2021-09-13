@@ -1,17 +1,29 @@
 import DataTable from './DataTable.svelte';
+import type { DataTableComponentDev } from './DataTable.types';
 export * from './DataTable.types';
 
-import Head from './Head.svelte';
+import HeadComponent from './Head.svelte';
+import type { HeadComponentDev } from './Head.types';
 export * from './Head.types';
-import Body from './Body.svelte';
+const Head = HeadComponent as typeof HeadComponentDev;
+import BodyComponent from './Body.svelte';
+import type { BodyComponentDev } from './Body.types';
 export * from './Body.types';
-import Row from './Row.svelte';
+const Body = BodyComponent as typeof BodyComponentDev;
+import RowComponent from './Row.svelte';
+import type { RowComponentDev } from './Row.types';
 export * from './Row.types';
-import Cell from './Cell.svelte';
+const Row = RowComponent as typeof RowComponentDev;
+import CellComponent from './Cell.svelte';
+import type { CellComponentDev } from './Cell.types';
 export * from './Cell.types';
-import Pagination from './Pagination.svelte';
+const Cell = CellComponent as typeof CellComponentDev;
+import PaginationComponent from './Pagination.svelte';
+import type { PaginationComponentDev } from './Pagination.types';
+export * from './Pagination.types';
+const Pagination = PaginationComponent as typeof PaginationComponentDev;
 import { Label } from '@smui/common';
 
-export default DataTable;
+export default DataTable as typeof DataTableComponentDev;
 
 export { Head, Body, Row, Cell, Pagination, Label };

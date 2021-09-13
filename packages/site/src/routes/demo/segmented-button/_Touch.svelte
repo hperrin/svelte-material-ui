@@ -23,7 +23,7 @@
 <script lang="ts">
   import SegmentedButton, { Segment, Icon } from '@smui/segmented-button';
   import Wrapper from '@smui/touch-target';
-  import Svg from '@smui/common/Svg.svelte';
+  import { Svg } from '@smui/common/elements';
   import {
     mdiFormatAlignLeft,
     mdiFormatAlignCenter,

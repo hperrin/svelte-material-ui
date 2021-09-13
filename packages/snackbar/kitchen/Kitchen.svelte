@@ -39,7 +39,7 @@
 
   import type { ConfigAction, Config } from './Kitchen.types';
   import Snackbar from '../Snackbar.svelte';
-  import Actions from '../Actions.js';
+  import Actions from '../Actions';
 
   let element: Snackbar;
   let snackbars: Config[] = [];

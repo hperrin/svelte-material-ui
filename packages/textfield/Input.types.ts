@@ -1,7 +1,5 @@
 import type Component from './Input.svelte';
 
-type ElementAttributes = svelte.JSX.HTMLProps<HTMLInputElement>;
-
 export declare class InputComponentDev extends Component {
   /**
    * @private
@@ -9,5 +7,9 @@ export declare class InputComponentDev extends Component {
    * Does not exist at runtime.
    * ### DO NOT USE!
    */
-  $$prop_def: Partial<ElementAttributes> & Component['$$prop_def'];
+  $$prop_def: Omit<
+    Partial<svelte.JSX.HTMLAttributes<HTMLInputElement>>,
+    keyof Component['$$prop_def']
+  > &
+    Component['$$prop_def'];
 }

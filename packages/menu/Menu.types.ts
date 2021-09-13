@@ -1,20 +1,13 @@
 export { DefaultFocusState } from '@material/menu';
-import type MenuSurface from '@smui/menu-surface';
-import type Menu from './Menu.svelte';
+import type { MenuSurfaceComponentDev } from '@smui/menu-surface';
+import type Component from './Menu.svelte';
 
-export declare class MenuComponentDev extends Menu {
+export declare class MenuComponentDev extends Component {
   /**
    * @private
    * For type checking capabilities only.
    * Does not exist at runtime.
    * ### DO NOT USE!
    */
-  $$prop_def: Menu['$$prop_def'] & MenuSurface['$$prop_def'];
-  /**
-   * @private
-   * For type checking capabilities only.
-   * Does not exist at runtime.
-   * ### DO NOT USE!
-   */
-  $$events_def: Menu['$$events_def'] & MenuSurface['$$events_def'];
+  $$prop_def: MenuSurfaceComponentDev['$$prop_def'] & Component['$$prop_def'];
 }
