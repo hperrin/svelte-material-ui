@@ -10,19 +10,9 @@ You won't generally need to install this package. The Menu package is usually a 
 npm install --save-dev @smui/menu-surface
 ```
 
-# Demo
+# Examples and Usage Information
 
-[See it in action.](https://sveltematerialui.com/demo/menu-surface)
-
-[See the demo code.](/site/src/routes/demo/menu-surface/)
-
-# Basic Usage
-
-todo...
-
-# Exports
-
-todo...
+https://sveltematerialui.com/demo/menu-surface
 
 # More Information
 

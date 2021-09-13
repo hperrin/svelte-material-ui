@@ -8,19 +8,9 @@ Segmented buttons group related options together and allow the user to toggle th
 npm install --save-dev @smui/segmented-button
 ```
 
-# Demo
+# Examples and Usage Information
 
-[See it in action.](https://sveltematerialui.com/demo/segmented-button)
-
-[See the demo code.](/site/src/routes/demo/segmented-button/)
-
-# Basic Usage
-
-todo...
-
-# Exports
-
-todo...
+https://sveltematerialui.com/demo/segmented-button
 
 # More Information
 

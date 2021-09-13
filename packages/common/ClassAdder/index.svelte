@@ -16,7 +16,7 @@
   import type { ClassAdderInternals } from './index.types';
   import Div from '../Div.svelte';
 
-  export const internals: ClassAdderInternals = {
+  export const internals: ClassAdderInternals<typeof Div> = {
     component: Div,
     class: '',
     classMap: {},

@@ -8,31 +8,9 @@ Switches are toggles. They're like checkboxes, but cooler.
 npm install --save-dev @smui/switch
 ```
 
-# Demo
+# Examples and Usage Information
 
-[See it in action.](https://sveltematerialui.com/demo/switch)
-
-[See the demo code.](/site/src/routes/demo/switch/)
-
-# Whoa There, These Docs are Outdated
-
-The latest SMUI v3 had a lot of changes, and these docs haven't been caught up yet. You should check out the demo page's code to see the latest usage.
-
-# Basic Usage
-
-```svelte
-<FormField>
-  <Switch bind:checked={selected} />
-  <span slot="label">Switch me.</span>
-</FormField>
-
-<script>
-  import Switch from '@smui/switch';
-  import FormField from '@smui/form-field';
-
-  let selected = false;
-</script>
-```
+https://sveltematerialui.com/demo/switch
 
 # Exports
 

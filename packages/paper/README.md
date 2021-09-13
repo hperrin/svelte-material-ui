@@ -8,29 +8,9 @@ An elevated and/or colored surface.
 npm install --save-dev @smui/paper
 ```
 
-# Demo
+# Examples and Usage Information
 
-[See it in action.](https://sveltematerialui.com/demo/paper)
-
-[See the demo code.](/site/src/routes/demo/paper/)
-
-# Whoa There, These Docs are Outdated
-
-The latest SMUI v3 had a lot of changes, and these docs haven't been caught up yet. You should check out the demo page's code to see the latest usage.
-
-# Basic Usage
-
-```svelte
-<Paper>
-  <Title>Paper</Title>
-  <Subtitle>This is a sheet of paper.</Subtitle>
-  <Content>Paper is used to build an elevated surface.</Content>
-</Paper>
-
-<script>
-  import Paper, { Title, Subtitle, Content } from '@smui/paper';
-</script>
-```
+https://sveltematerialui.com/demo/paper
 
 # Exports
 
@@ -43,7 +23,7 @@ A paper surface.
 - `use`: `[]` - An array of Svelte actions and/or arrays of an action and its options.
 - `class`: `''` - A CSS class string.
 - `square`: `false` - Whether the component has square or rounded corners.
-- `color`: `'default'` - The component's color. ('primary', 'secondary' or 'default')
+- `color`: `'default'` - The component's color. ('primary', 'secondary', 'default', or a custom color string defined with SASS)
 - `elevation`: `1` - The component's elevation. (integer between 0 and 24, inclusive)
 - `transition`: `false` - Trigger a transition animation when elevation is changed.
 

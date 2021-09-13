@@ -2,19 +2,9 @@
 
 Select helper texts are informative messages that give context to a select menu.
 
-# Demo
+# Examples and Usage Information
 
-[See it in action.](https://sveltematerialui.com/demo/select)
-
-[See the demo code.](/site/src/routes/demo/select/)
-
-# Basic Usage
-
-todo...
-
-# Exports
-
-todo...
+https://sveltematerialui.com/demo/select
 
 # More Information
 

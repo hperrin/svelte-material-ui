@@ -6,11 +6,9 @@ Tab scrollers are areas that allow a smooth scroll animation for a set of tabs t
 
 Don't install or use this package directly. It's a dependency of the Tab Bar package.
 
-# Demo
+# Examples and Usage Information
 
-[See it in action.](https://sveltematerialui.com/demo/tabs)
-
-[See the demo code.](/site/src/routes/demo/tabs/)
+https://sveltematerialui.com/demo/tabs
 
 # More Information
 

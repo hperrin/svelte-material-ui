@@ -8,28 +8,9 @@ A circular progress indicator.
 npm install --save-dev @smui/circular-progress
 ```
 
-# Demo
+# Examples and Usage Information
 
-[See it in action.](https://sveltematerialui.com/demo/circular-progress)
-
-[See the demo code.](/site/src/routes/demo/circular-progress/)
-
-# Basic Usage
-
-```svelte
-<CircularProgress indeterminate {closed} />
-
-<script>
-  import CircularProgress from '@smui/circular-progress';
-  import someAsyncAction from './someAsyncAction.js';
-
-  let closed = false;
-
-  someAsyncAction(() => {
-    closed = true;
-  });
-</script>
-```
+https://sveltematerialui.com/demo/circular-progress
 
 # Exports
 

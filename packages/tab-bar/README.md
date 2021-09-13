@@ -8,19 +8,9 @@ Tab bars are areas that contain tabs.
 npm install --save-dev @smui/tab-bar
 ```
 
-# Demo
+# Examples and Usage Information
 
-[See it in action.](https://sveltematerialui.com/demo/tabs)
-
-[See the demo code.](/site/src/routes/demo/tabs/)
-
-# Basic Usage
-
-todo...
-
-# Exports
-
-todo...
+https://sveltematerialui.com/demo/tabs
 
 # More Information
 

@@ -17,24 +17,9 @@ This component provides a wrapper to ensure that collapsing margins don't cause 
 npm install --save-dev @smui/touch-target
 ```
 
-# Demo
+# Examples and Usage Information
 
-[See it in action.](https://sveltematerialui.com/demo/touch-target)
-
-[See the demo code.](/site/src/routes/demo/touch-target/)
-
-# Basic Usage
-
-```svelte
-<Wrapper>
-  <Button touch><Label>Tap Me</Label></Button>
-</Wrapper>
-
-<script>
-  import Wrapper from '@smui/touch-target';
-  import Button, { Label } from '@smui/button';
-</script>
-```
+https://sveltematerialui.com/demo/touch-target
 
 # Exports
 

@@ -10,31 +10,9 @@ MDC Form Fields make the Input/Label RTL-aware and also activates a ripple effec
 npm install --save-dev @smui/form-field
 ```
 
-# Demo
+# Examples and Usage Information
 
-[See it in action.](https://sveltematerialui.com/demo/radio)
-
-[See the demo code.](/site/src/routes/demo/radio/)
-
-# Whoa There, These Docs are Outdated
-
-The latest SMUI v3 had a lot of changes, and these docs haven't been caught up yet. You should check out the demo page's code to see the latest usage.
-
-# Basic Usage
-
-```svelte
-<FormField>
-  <Checkbox bind:checked={amIChecked} />
-  <span slot="label">Am I Checked</span>
-</FormField>
-
-<script>
-  import FormField from '@smui/form-field';
-  import Checkbox from '@smui/checkbox';
-
-  let amIChecked = false;
-</script>
-```
+https://sveltematerialui.com/demo/radio
 
 # Exports
 

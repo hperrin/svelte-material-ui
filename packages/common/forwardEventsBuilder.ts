@@ -16,8 +16,6 @@ export function forwardEventsBuilder(component: SvelteComponent) {
   let $on: (eventType: string, callback: (event: any) => void) => () => void;
   // This is a list of events bound before mount.
   let events: [string, (event: any) => void][] = [];
-  // TODO: remove... This is the original component $on function.
-  // TODO: remove... const componentOn = component.$on;
 
   // And we override the $on function to forward all bound events.
   component.$on = (fullEventType: string, callback: (event: any) => void) => {
@@ -41,19 +39,8 @@ export function forwardEventsBuilder(component: SvelteComponent) {
       );
     }
 
-    // TODO: remove... Call the original $on function.
-    // TODO: remove... The modifiers are passed in so that if a lower component
-    // TODO: remove... forwards an event that doesn't bubble automatically, the
-    // TODO: remove... bound listeners will only be fired once.
-    // TODO: remove... const componentDestructor = componentOn.call(
-    // TODO: remove...   component,
-    // TODO: remove...   eventType,
-    // TODO: remove...   callback
-    // TODO: remove... );
-
     return (...args) => {
       destructor();
-      // TODO: remove... return componentDestructor(...args);
     };
   };
 

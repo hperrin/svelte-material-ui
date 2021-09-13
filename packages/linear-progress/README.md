@@ -8,32 +8,9 @@ A linear progress indicator.
 npm install --save-dev @smui/linear-progress
 ```
 
-# Demo
+# Examples and Usage Information
 
-[See it in action.](https://sveltematerialui.com/demo/linear-progress)
-
-[See the demo code.](/site/src/routes/demo/linear-progress/)
-
-# Whoa There, These Docs are Outdated
-
-The latest SMUI v3 had a lot of changes, and these docs haven't been caught up yet. You should check out the demo page's code to see the latest usage.
-
-# Basic Usage
-
-```svelte
-<LinearProgress indeterminate {closed} />
-
-<script>
-  import LinearProgress from '@smui/linear-progress';
-  import someAsyncAction from './someAsyncAction.js';
-
-  let closed = false;
-
-  someAsyncAction(() => {
-    closed = true;
-  });
-</script>
-```
+https://sveltematerialui.com/demo/linear-progress
 
 # Exports
 
@@ -49,7 +26,7 @@ A Linear Progress component.
 - `reversed`: `false` - Whether to reverse the indicator.
 - `closed`: `false` - Whether the indicator should be hidden. Using this instead of an `#if` block is recommended, because the height of the container will not change when it is shown/hidden.
 - `progress`: `0` - The progress to indicate. (float between 0 and 1, inclusive)
-- `buffer`: `null` - The buffer progress to indicate. (`null` or float between 0 and 1, inclusive)
+- `buffer`: `undefined` - The buffer progress to indicate. (`null` or float between 0 and 1, inclusive)
 
 # More Information
 
