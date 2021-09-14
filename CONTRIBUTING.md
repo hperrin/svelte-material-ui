@@ -26,7 +26,7 @@ cd smui
 npm i
 
 # This will take a while
-lerna bootstrap
+npm run bootstrap
 
 cd site
 npm i
