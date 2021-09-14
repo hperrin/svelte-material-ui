@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0-beta.0](https://github.com/hperrin/svelte-material-ui/compare/v4.2.0...v5.0.0-beta.0) (2021-09-14)
+
+
+### Features
+
+* add prop types for HTML props for components ([f5c6e53](https://github.com/hperrin/svelte-material-ui/commit/f5c6e53390b4cbb2da04f543ef877cf03133fc80))
+* got sveltekit working local in dev ([024b19a](https://github.com/hperrin/svelte-material-ui/commit/024b19aed05718b76b027dd2e908f4734d17c060))
+* implement js builds of all ts files ([085b829](https://github.com/hperrin/svelte-material-ui/commit/085b82932f75a5c62bb4d5f709a19a8b3cbd12a4))
+* migrate chips to typescript ([075f48a](https://github.com/hperrin/svelte-material-ui/commit/075f48af5e16ee34c38307eb15664e1389596736))
+* migrate common and button to typescript ([cf9c6af](https://github.com/hperrin/svelte-material-ui/commit/cf9c6af17c59afc433c58245cc9444aece2195cc))
+* migrate floating label, line ripple, and notched outline to typescript ([f05373e](https://github.com/hperrin/svelte-material-ui/commit/f05373ebdc97ba3d9c11059758166fd82bb9d9c8))
+* migrate menu surface and menu to typescript ([b479315](https://github.com/hperrin/svelte-material-ui/commit/b479315f4eccd9b3885eab31993949c8d734b888))
+* migrate select to typescript ([c555fa1](https://github.com/hperrin/svelte-material-ui/commit/c555fa107ac2bc0d9cb8e6547da77ddbb58e2f3b))
+* migrate snackbar to typescript ([b7bb054](https://github.com/hperrin/svelte-material-ui/commit/b7bb05467493029ec4b2092d17bb3c6c891b0d25))
+* migrate switch and form field to typescript ([e012927](https://github.com/hperrin/svelte-material-ui/commit/e0129276104fa4cfd866cbe51448bd57a9e6945f))
+* migrate textfield to typescript ([0010211](https://github.com/hperrin/svelte-material-ui/commit/00102118220c8329aa7fbd3b524f1d95e8cebf02))
+
+
+### BREAKING CHANGES
+
+* Renamed SMUI events from like SMUI:component:event to like SMUIComponent:event.
+* Had to rename export "default" from Button to "defaultAction".
+
+
+
+
+
 # [4.2.0](https://github.com/hperrin/svelte-material-ui/compare/v4.1.0...v4.2.0) (2021-05-05)
 
 **Note:** Version bump only for package @smui/form-field

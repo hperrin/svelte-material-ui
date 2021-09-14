@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0-beta.0](https://github.com/hperrin/svelte-material-ui/compare/v4.2.0...v5.0.0-beta.0) (2021-09-14)
+
+
+### Bug Fixes
+
+* listeners for manually forwarded events bound with modifiers were called twice ([3096ffc](https://github.com/hperrin/svelte-material-ui/commit/3096ffc184f9a77926e60abe47f53129c1b2c41a))
+* some more type errors ([f4b8568](https://github.com/hperrin/svelte-material-ui/commit/f4b85687869c378f0df8b11a061c0b4cdf684d61))
+* type errors after making site package strict ([7cdcad9](https://github.com/hperrin/svelte-material-ui/commit/7cdcad900ad81b648db181d186eacc7441ef97d1))
+
+
+### Features
+
+* add prop types for HTML props for components ([f5c6e53](https://github.com/hperrin/svelte-material-ui/commit/f5c6e53390b4cbb2da04f543ef877cf03133fc80))
+* implement js builds of all ts files ([085b829](https://github.com/hperrin/svelte-material-ui/commit/085b82932f75a5c62bb4d5f709a19a8b3cbd12a4))
+* migrate banner to typescript ([dae0f3c](https://github.com/hperrin/svelte-material-ui/commit/dae0f3cb6cdb845a071f8b8bc34c7d5468dc693f))
+* migrate card to typescript ([c1a9ef2](https://github.com/hperrin/svelte-material-ui/commit/c1a9ef2477f4e26b863f0cadb33f548a7b35bf8b))
+* migrate chips to typescript ([075f48a](https://github.com/hperrin/svelte-material-ui/commit/075f48af5e16ee34c38307eb15664e1389596736))
+* migrate common and button to typescript ([cf9c6af](https://github.com/hperrin/svelte-material-ui/commit/cf9c6af17c59afc433c58245cc9444aece2195cc))
+* migrate fab and icon button to typescript ([5e81e89](https://github.com/hperrin/svelte-material-ui/commit/5e81e89f7d7afad4bb54c6f5350f5052f0e848cb))
+* migrate list, checkbox, and radio to typescript ([6b475a5](https://github.com/hperrin/svelte-material-ui/commit/6b475a502daff39ba74c8ea0b29f7930bce2e46c))
+* migrate menu surface and menu to typescript ([b479315](https://github.com/hperrin/svelte-material-ui/commit/b479315f4eccd9b3885eab31993949c8d734b888))
+* migrate slider to typescript ([42c8c00](https://github.com/hperrin/svelte-material-ui/commit/42c8c00e71c96c6326feda678e4886b03a1638ad))
+* migrate textfield to typescript ([0010211](https://github.com/hperrin/svelte-material-ui/commit/00102118220c8329aa7fbd3b524f1d95e8cebf02))
+
+
+### BREAKING CHANGES
+
+* Renamed SMUI events from like SMUI:component:event to like SMUIComponent:event.
+
+
+
+
+
 # [4.2.0](https://github.com/hperrin/svelte-material-ui/compare/v4.1.0...v4.2.0) (2021-05-05)
 
 

@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0-beta.0](https://github.com/hperrin/svelte-material-ui/compare/v4.2.0...v5.0.0-beta.0) (2021-09-14)
+
+
+### Features
+
+* add prop types for HTML props for components ([f5c6e53](https://github.com/hperrin/svelte-material-ui/commit/f5c6e53390b4cbb2da04f543ef877cf03133fc80))
+* got sveltekit working local in dev ([024b19a](https://github.com/hperrin/svelte-material-ui/commit/024b19aed05718b76b027dd2e908f4734d17c060))
+* implement js builds of all ts files ([085b829](https://github.com/hperrin/svelte-material-ui/commit/085b82932f75a5c62bb4d5f709a19a8b3cbd12a4))
+* migrate card to typescript ([c1a9ef2](https://github.com/hperrin/svelte-material-ui/commit/c1a9ef2477f4e26b863f0cadb33f548a7b35bf8b))
+* migrate common and button to typescript ([cf9c6af](https://github.com/hperrin/svelte-material-ui/commit/cf9c6af17c59afc433c58245cc9444aece2195cc))
+* migrate list, checkbox, and radio to typescript ([6b475a5](https://github.com/hperrin/svelte-material-ui/commit/6b475a502daff39ba74c8ea0b29f7930bce2e46c))
+
+
+### BREAKING CHANGES
+
+* Had to rename export "default" from Button to "defaultAction".
+
+
+
+
+
 # [4.2.0](https://github.com/hperrin/svelte-material-ui/compare/v4.1.0...v4.2.0) (2021-05-05)
 
 **Note:** Version bump only for package @smui/card

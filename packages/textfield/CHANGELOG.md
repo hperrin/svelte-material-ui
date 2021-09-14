@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0-beta.0](https://github.com/hperrin/svelte-material-ui/compare/v4.2.0...v5.0.0-beta.0) (2021-09-14)
+
+
+### Bug Fixes
+
+* make non-index import paths explicit ([2821cb0](https://github.com/hperrin/svelte-material-ui/commit/2821cb02391b332692489022b788c265ce29c1bb))
+* some more type errors ([f4b8568](https://github.com/hperrin/svelte-material-ui/commit/f4b85687869c378f0df8b11a061c0b4cdf684d61))
+* textfield had some issues ([fce60e1](https://github.com/hperrin/svelte-material-ui/commit/fce60e1fc79b788331b4835a8e65e8aa09848e72))
+
+
+### Features
+
+* add input props and element props to textfield type ([c929bb8](https://github.com/hperrin/svelte-material-ui/commit/c929bb8698af6b75e36a33b8525ea744c592b39a))
+* add prop types for HTML props for components ([f5c6e53](https://github.com/hperrin/svelte-material-ui/commit/f5c6e53390b4cbb2da04f543ef877cf03133fc80))
+* got sveltekit working local in dev ([024b19a](https://github.com/hperrin/svelte-material-ui/commit/024b19aed05718b76b027dd2e908f4734d17c060))
+* implement js builds of all ts files ([085b829](https://github.com/hperrin/svelte-material-ui/commit/085b82932f75a5c62bb4d5f709a19a8b3cbd12a4))
+* migrate card to typescript ([c1a9ef2](https://github.com/hperrin/svelte-material-ui/commit/c1a9ef2477f4e26b863f0cadb33f548a7b35bf8b))
+* migrate chips to typescript ([075f48a](https://github.com/hperrin/svelte-material-ui/commit/075f48af5e16ee34c38307eb15664e1389596736))
+* migrate common and button to typescript ([cf9c6af](https://github.com/hperrin/svelte-material-ui/commit/cf9c6af17c59afc433c58245cc9444aece2195cc))
+* migrate select to typescript ([c555fa1](https://github.com/hperrin/svelte-material-ui/commit/c555fa107ac2bc0d9cb8e6547da77ddbb58e2f3b))
+* migrate textfield to typescript ([0010211](https://github.com/hperrin/svelte-material-ui/commit/00102118220c8329aa7fbd3b524f1d95e8cebf02))
+
+
+### BREAKING CHANGES
+
+* Renamed SMUI events from like SMUI:component:event to like SMUIComponent:event.
+* Had to rename export "default" from Button to "defaultAction".
+
+
+
+
+
 # [4.2.0](https://github.com/hperrin/svelte-material-ui/compare/v4.1.0...v4.2.0) (2021-05-05)
 
 
