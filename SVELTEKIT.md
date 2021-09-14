@@ -5,8 +5,8 @@ Check out the [SvelteKit example repo](https://github.com/hperrin/smui-example-s
 You will need to install the packages you use individually as well as the theme package.
 
 ```sh
-npm install --save @smui/button
-npm install --save @smui/card
+npm install --save-dev @smui/button
+npm install --save-dev @smui/card
 # etc...
 
 npm install --save-dev smui-theme

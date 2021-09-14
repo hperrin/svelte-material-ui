@@ -1,10 +1,10 @@
 # Installation
 
-To get started, install the SMUI packages.
+To get started, you'll need the [Svelte Preprocess](https://github.com/sveltejs/svelte-preprocess) package installed and working, then install the SMUI packages.
 
 ```sh
-npm install --save @smui/button
-npm install --save @smui/card
+npm install --save-dev @smui/button
+npm install --save-dev @smui/card
 # etc...
 ```
 
