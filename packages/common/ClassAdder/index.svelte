@@ -35,7 +35,7 @@
   const contexts = internals.contexts;
   const props = internals.props;
 
-  export let component = internals.component;
+  export let component: typeof SMUIComponent = internals.component;
 
   Object.entries(internals.classMap).forEach(([name, context]) => {
     const store = getContext(context) as SvelteStore<any>;

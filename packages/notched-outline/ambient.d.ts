@@ -1,6 +1,7 @@
-declare namespace svelte.JSX {
-  interface HTMLAttributes<T> {}
+/// <reference types="svelte" />
+/// <reference types="svelte2tsx/svelte-jsx" />
 
+declare namespace svelte.JSX {
   interface HTMLProps<T extends EventTarget> extends HTMLAttributes<T> {
     ['onSMUIFloatingLabel:mount']?: (
       event: CustomEvent<any> & { target: T }
@@ -9,8 +10,4 @@ declare namespace svelte.JSX {
       event: CustomEvent<any> & { target: T }
     ) => any;
   }
-}
-
-declare module '*.svelte' {
-  export { SvelteComponentDev as default } from 'svelte/internal';
 }

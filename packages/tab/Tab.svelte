@@ -66,7 +66,7 @@
 </svelte:component>
 
 <script lang="ts">
-  import type { SMUIComponent } from '@smui/common/SMUIComponent';
+  import type { SMUIComponent } from '@smui/common';
   import type { TabIndicatorComponentDev } from '@smui/tab-indicator';
   import { MDCTabFoundation } from '@material/tab';
   import { onMount, setContext, getContext } from 'svelte';
@@ -113,7 +113,7 @@
   let active = tabId === getContext<any | undefined>('SMUI:tab:initialActive');
   let forceAccessible = false;
 
-  export let component = href == null ? Button : A;
+  export let component: typeof SMUIComponent = href == null ? Button : A;
 
   setContext('SMUI:label:context', 'tab');
   setContext('SMUI:icon:context', 'tab');

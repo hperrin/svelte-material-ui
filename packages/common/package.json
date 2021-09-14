@@ -35,6 +35,7 @@
     "@material/dom": "^11.0.0",
     "@tsconfig/svelte": "^2.0.1",
     "sass": "^1.32.11",
+    "svelte2tsx": "^0.4.6",
     "svelte": "^3.35.0",
     "tslib": "^2.3.1",
     "typescript": "^4.4.2"

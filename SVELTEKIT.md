@@ -21,7 +21,7 @@ You need to use the Easy Styling Method. If you aren't using the default theme, 
   "smui-theme": "smui-theme compile static/smui.css -i src/theme"
   ```
 
-- For the[Custom Theme](/THEMING.md), with Dark Mode
+- For the [Custom Theme](/THEMING.md), with Dark Mode
 
   ```
   "prepare": "npm run smui-theme-light && npm run smui-theme-dark",

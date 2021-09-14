@@ -36,7 +36,8 @@
   "dependencies": {
     "@material/feature-targeting": "^11.0.0",
     "@material/top-app-bar": "^11.0.0",
-    "@smui/common": "^5.0.0-beta.0"
+    "@smui/common": "^5.0.0-beta.0",
+    "svelte2tsx": "^0.4.6"
   },
   "devDependencies": {
     "@tsconfig/svelte": "^2.0.1",

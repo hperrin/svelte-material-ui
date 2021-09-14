@@ -33,7 +33,7 @@
 
   let element: SMUIComponent;
 
-  export let component = Div;
+  export let component: typeof SMUIComponent = Div;
 
   export function getElement() {
     return element.getElement();

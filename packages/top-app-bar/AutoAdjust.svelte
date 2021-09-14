@@ -32,7 +32,7 @@
 
   let element: SMUIComponent;
 
-  export let component = Main;
+  export let component: typeof SMUIComponent = Main;
 
   $: propStore = topAppBar && topAppBar.getPropStore();
   $: adjustClass = (() => {
