@@ -1,6 +1,6 @@
 {
   "name": "@smui/common",
-  "version": "5.0.0-beta.0",
+  "version": "5.0.0-beta.1",
   "description": "Svelte Material UI - Common",
   "type": "module",
   "module": "index.js",
@@ -36,8 +36,8 @@
     "@material/dom": "^11.0.0",
     "@tsconfig/svelte": "^2.0.1",
     "sass": "^1.32.11",
-    "svelte2tsx": "^0.4.6",
     "svelte": "^3.35.0",
+    "svelte2tsx": "^0.4.6",
     "tslib": "^2.3.1",
     "typescript": "^4.4.2"
   }

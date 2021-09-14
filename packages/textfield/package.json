@@ -1,6 +1,6 @@
 {
   "name": "@smui/textfield",
-  "version": "5.0.0-beta.0",
+  "version": "5.0.0-beta.1",
   "description": "Svelte Material UI - Text Field",
   "type": "module",
   "module": "index.js",
@@ -40,11 +40,11 @@
     "@material/ripple": "^11.0.0",
     "@material/rtl": "^11.0.0",
     "@material/textfield": "^11.0.0",
-    "@smui/common": "^5.0.0-beta.0",
-    "@smui/floating-label": "^5.0.0-beta.0",
-    "@smui/line-ripple": "^5.0.0-beta.0",
-    "@smui/notched-outline": "^5.0.0-beta.0",
-    "@smui/ripple": "^5.0.0-beta.0",
+    "@smui/common": "^5.0.0-beta.1",
+    "@smui/floating-label": "^5.0.0-beta.1",
+    "@smui/line-ripple": "^5.0.0-beta.1",
+    "@smui/notched-outline": "^5.0.0-beta.1",
+    "@smui/ripple": "^5.0.0-beta.1",
     "svelte2tsx": "^0.4.6"
   },
   "devDependencies": {
