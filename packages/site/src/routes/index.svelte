@@ -36,9 +36,9 @@
           </Icon>
         </Title>
         <Content>
-          SMUI provides Svelte components and actions for a wide variety of
-          interface elements. SMUI also provides helper utilities for building
-          custom and advanced UI components.
+          SMUI provides TypeScript Svelte components and actions for a wide
+          variety of interface elements. SMUI also provides helper utilities for
+          building custom and advanced UI components.
         </Content>
       </Paper>
       <Paper color="svelte-blue" class="box">
@@ -100,6 +100,25 @@
         nonInteractive
         style="border: 1px solid var(--mdc-theme-text-hint-on-background, rgba(0, 0, 0, 0.1));"
       >
+        <Item style="height: auto; min-height: 64px;">
+          <Graphic style="height: auto; width: auto;">
+            <Icon
+              component={Svg}
+              style="width: 40px; height: 40px;"
+              viewBox="0 0 24 24"
+            >
+              <path fill="currentColor" d={mdiLanguageTypescript} />
+            </Icon>
+          </Graphic>
+          <Text>
+            <PrimaryText>Fully, Strictly Typed</PrimaryText>
+            <SecondaryText style="white-space: normal;">
+              SMUI is strictly typed with TypeScript. This not only helps catch
+              bugs early, it helps while developing as every property is
+              autocompleted by modern IDEs.
+            </SecondaryText>
+          </Text>
+        </Item>
         <Item style="height: auto; min-height: 64px;">
           <Graphic style="height: auto; width: auto;">
             <Icon
@@ -289,6 +308,7 @@
     mdiAccountGroup,
     mdiRotateRightVariant,
     mdiClipboardCheck,
+    mdiLanguageTypescript,
   } from '@mdi/js';
   import Paper, { Title, Content } from '@smui/paper';
   import List, {

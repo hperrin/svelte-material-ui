@@ -7,5 +7,5 @@
 </section>
 
 <script lang="ts">
-  import SvelteKit from '../../../SVELTEKIT.md';
+  import SvelteKit from '../../../../SVELTEKIT.md';
 </script>

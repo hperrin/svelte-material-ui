@@ -7,5 +7,5 @@
 </section>
 
 <script lang="ts">
-  import Install from '../../../INSTALL.md';
+  import Install from '../../../../INSTALL.md';
 </script>

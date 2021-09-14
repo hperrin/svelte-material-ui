@@ -7,5 +7,5 @@
 </section>
 
 <script lang="ts">
-  import Theming from '../../../THEMING.md';
+  import Theming from '../../../../THEMING.md';
 </script>

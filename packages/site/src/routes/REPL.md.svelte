@@ -7,5 +7,5 @@
 </section>
 
 <script lang="ts">
-  import Repl from '../../../REPL.md';
+  import Repl from '../../../../REPL.md';
 </script>

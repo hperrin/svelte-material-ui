@@ -14,6 +14,13 @@ export declare class BannerComponentDev extends Component {
     {
       [k in keyof Partial<
         svelte.JSX.HTMLAttributes<HTMLDivElement>
+      > as `content\$${k}`]?: Partial<
+        svelte.JSX.HTMLAttributes<HTMLDivElement>
+      >[k];
+    } &
+    {
+      [k in keyof Partial<
+        svelte.JSX.HTMLAttributes<HTMLDivElement>
       > as `textWrapper\$${k}`]?: Partial<
         svelte.JSX.HTMLAttributes<HTMLDivElement>
       >[k];

@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="site/static/header-transparent.png" alt="Svelte Material UI" />
+  <img src="packages/site/static/header-transparent.png" alt="Svelte Material UI" />
 </div>
 
 A library of Svelte 3 Material UI components, based on the [Material Design Components - Web](https://material.io/develop/web/).
@@ -12,6 +12,7 @@ https://sveltematerialui.com
 
 Here are some features you should know about:
 
+- Full TypeScript support, including HTML attributes.
 - You can add arbitrary attributes to all of the components and many of the elements within them.
 - You can add actions to the components with `use={[Action1, [Action2, action2Props], Action3]}`.
 - You can add props to lower components and elements with "$" props, like `input$maxlength="15"`.
@@ -43,6 +44,10 @@ Upgrading from v3? SMUI's styling method has been simplified. Check out the [upg
 # Need Help?
 
 If you need help using SMUI, join the new [Discord server](https://discord.gg/aFzmkrmg9P).
+
+# Get Typed!
+
+I'm super typed to announce, SMUI 5 introduces TypeScript support! All the benefits of TypeScript, all the beauty of SMUI!
 
 # Components
 

@@ -7,5 +7,5 @@
 </section>
 
 <script lang="ts">
-  import Sass from '../../../SASS.md';
+  import Sass from '../../../../SASS.md';
 </script>

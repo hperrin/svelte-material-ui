@@ -2,6 +2,13 @@
 
 This doc contains information that will help you migrate your code from an older version of SMUI to a newer one. Things that you will need to change in your existing code will be written here. It would also be helpful to check the MDC changelog if the upstream MDC versions has changed between SMUI versions.
 
+# SMUI 4 -> SMUI 5
+
+## Breaking Changes
+
+- Events have been renamed from like "SMUI:component:sub-component:event" to "SMUIComponentSubComponent:event".
+- TypeScript!!! You don't need to use TypeScript, but you do need to use the [TypeScript preprocessor](https://github.com/sveltejs/svelte-preprocess) for Svelte.
+
 # SMUI 4.0 -> SMUI 4.1
 
 - Event modifiers have changed to use "$" instead of ":" (`on:click$capture={handler}`), so that all events, even MDC events, can be bound with modifiers.
