@@ -16,6 +16,7 @@
   ],
   "scripts": {
     "build": "tsc",
+    "clean": "git status --ignored -u --porcelain . | grep -v node_modules/ | grep -e '^!! ' | sed 's/^!! packages\\/[a-z-]*\\///g' | tr '\\n' ' ' | xargs rm",
     "prepare": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

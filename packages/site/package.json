@@ -6,9 +6,9 @@
   "scripts": {
     "dev": "svelte-kit dev",
     "build": "svelte-kit build",
+    "clean": "test -d .svelte-kit && rm -r .svelte-kit || true",
     "preview": "svelte-kit preview",
     "prepare": "npm run smui-theme-light && npm run smui-theme-dark && npm run site-light && npm run site-dark",
-    "-unused-vite-workaround": "find ../*/node_modules/@material/ -name \"*.js.map\" -type f -delete",
     "smui-theme-light": "smui-theme compile static/smui.css -s expanded -i src/theme",
     "smui-theme-dark": "smui-theme compile static/smui-dark.css -s expanded -i src/theme/dark",
     "site-light": "sass --no-source-map -I src/theme -I node_modules -I ../../node_modules src/site.scss static/site.css",

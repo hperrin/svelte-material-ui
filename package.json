@@ -14,6 +14,8 @@
   "scripts": {
     "bootstrap": "lerna bootstrap --hoist --nohoist \"@tsconfig/svelte\"",
     "check": "lerna exec svelte-check",
+    "clean": "lerna run clean && npm run clean:css",
+    "clean:css": "test -f bare.css && rm -r bare.css || true",
     "lint": "prettier --ignore-path .gitignore --check --plugin-search-dir=. .",
     "format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. .",
     "pages": "npm run bootstrap && cd packages/site && npm run build && cd ../.. && git add -f packages/site/build && git commit -m 'chore: update built files' && git push origin $(git subtree split --prefix packages/site/build master):gh-pages --force && git reset --hard HEAD^",
