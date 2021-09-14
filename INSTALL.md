@@ -8,13 +8,13 @@ npm install --save-dev @smui/card
 # etc...
 ```
 
-You can also [use SMUI in the Svelte REPL](REPL.md).
+You can also [use SMUI in the Svelte REPL](/REPL.md).
 
 ## Importing Components
 
 You will always import Svelte components from the individual packages.
 
-This method will only include the JavaScript. Use this for the Default Theme or the [Easy Styling Method](SASS.md#easy-styling-method).
+This method will only include the JavaScript. Use this for the Default Theme or the [Easy Styling Method](/SASS.md#easy-styling-method).
 
 ```svelte
 <script>
@@ -22,7 +22,7 @@ This method will only include the JavaScript. Use this for the Default Theme or 
 </script>
 ```
 
-This method will include Sass files as well. Use this for the [Advanced Styling Method](SASS.md#advanced-styling-method).
+This method will include Sass files as well. Use this for the [Advanced Styling Method](/SASS.md#advanced-styling-method).
 
 ```svelte
 <script>
@@ -56,7 +56,7 @@ If you want the Material Icon, Roboto, and Roboto Mono fonts, be sure to include
 
 ## Using the Default Theme
 
-You can use the prebuilt "bare.css" file from the "svelte-material-ui" package. If you use this option you _can_ mostly customize your theme, but your [theming options](THEMING.md#theming-the-bare-css) are more limited.
+You can use the prebuilt "bare.css" file from the "svelte-material-ui" package. If you use this option you _can_ mostly customize your theme, but your [theming options](/THEMING.md#theming-the-bare-css) are more limited.
 
 ```sh
 npm install --save svelte-material-ui
@@ -79,8 +79,8 @@ You can also use the "bare.css" files from the individual packages if you don't 
 
 ## Using a Custom Theme
 
-Check out the [Sass instructions](SASS.md) for setting up a custom theme.
+Check out the [Sass instructions](/SASS.md) for setting up a custom theme.
 
 ## SvelteKit
 
-For SvelteKit, check out the [SvelteKit instructions](SVELTEKIT.md).
+For SvelteKit, check out the [SvelteKit instructions](/SVELTEKIT.md).

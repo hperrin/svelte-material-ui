@@ -21,7 +21,7 @@ You will need to use the Easy Styling Method, and you will need to use one of th
   "vite-workaround": "find node_modules/@material/ -name \"*.js.map\" -type f -delete"
   ```
 
-- [Custom Theme](THEMING.md), without Dark Mode
+- [Custom Theme](/THEMING.md), without Dark Mode
 
   ```
   "prepare": "npm run vite-workaround && npm run smui-theme",
@@ -29,7 +29,7 @@ You will need to use the Easy Styling Method, and you will need to use one of th
   "smui-theme": "smui-theme compile static/smui.css -i src/theme"
   ```
 
-- [Custom Theme](THEMING.md), with Dark Mode
+- [Custom Theme](/THEMING.md), with Dark Mode
 
   ```
   "prepare": "npm run vite-workaround && npm run smui-theme-light && npm run smui-theme-dark",

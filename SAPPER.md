@@ -2,7 +2,7 @@
 
 <sub>\* As of 2021-Apr-06, these instructions will now work without a flash of unstyled content!</sub>
 
-These instructions are for the Advanced Styling Method. If you don't need the advantages of this method, it's much easier to use the [Easy Styling Method](SASS.md#easy-styling-method).
+These instructions are for the Advanced Styling Method. If you don't need the advantages of this method, it's much easier to use the [Easy Styling Method](/SASS.md#easy-styling-method).
 
 Install the following packages as dev dependencies.
 

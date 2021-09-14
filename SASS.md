@@ -12,7 +12,7 @@ You can use it to create your theme directory from a template. Adjust to your so
 npx smui-theme template src/theme
 ```
 
-This creates `_smui-theme.scss` files in `src/theme`. That is where you [set the theme variables](THEMING.md).
+This creates `_smui-theme.scss` files in `src/theme`. That is where you [set the theme variables](/THEMING.md).
 
 ## Easy Styling Method
 
@@ -38,7 +38,7 @@ Now run `npm run prepare` to build the CSS file(s), then add it/them on your pag
 
 The Advanced Styling Method bundles SMUI's CSS with your app's CSS.
 
-(From here there are [different instructions](SAPPER.md) for Sapper.)
+(From here there are [different instructions](/SAPPER.md) for Sapper.)
 
 For Rollup, you will need the PostCSS plugin. (Check out the [Rollup template](https://github.com/hperrin/smui-example-rollup).)
 
