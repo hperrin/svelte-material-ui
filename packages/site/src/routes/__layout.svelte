@@ -33,19 +33,6 @@
               <Tooltip>View Docs: {repo.split('/').slice(-1)[0]}</Tooltip>
             </Wrapper>
           {/each}
-          {#if !activeSection.nosource}
-            <Wrapper>
-              <IconButton
-                href={`https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes${activeSection.route}`}
-                target="_blank"
-              >
-                <Icon component={Svg} viewBox="0 0 24 24">
-                  <path fill="currentColor" d={mdiCodeTags} />
-                </Icon>
-              </IconButton>
-              <Tooltip>View Source Directory</Tooltip>
-            </Wrapper>
-          {/if}
         {/if}
         <Wrapper>
           <IconButton href="https://discord.gg/aFzmkrmg9P">
@@ -197,7 +184,6 @@
     route?: string;
     shortcut?: string;
     indent: number;
-    nosource?: boolean;
     repos?: string[];
   };
   const sections: (
@@ -211,19 +197,16 @@
       name: 'Installation',
       route: '/INSTALL.md/',
       indent: 0,
-      nosource: true,
     },
     {
       name: 'Theming',
       route: '/THEMING.md/',
       indent: 0,
-      nosource: true,
     },
     {
       name: 'Migrating',
       route: '/MIGRATING.md/',
       indent: 0,
-      nosource: true,
     },
     {
       name: 'sep1',
