@@ -31,7 +31,7 @@
     type="radio"
     {...inputProps}
     {disabled}
-    value={valueKey === uninitializedValue ? value : valueKey}
+    value={isUninitializedValue(valueKey) ? value : valueKey}
     bind:group
     on:blur
     on:focus
@@ -44,7 +44,8 @@
   <div class="mdc-radio__ripple" />
 </div>
 
-<script>
+<script lang="ts">
+  import type { SMUIRadioInputAccessor } from '@smui/common';
   import { MDCRadioFoundation } from '@material/radio';
   import { onMount, getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
@@ -55,30 +56,36 @@
     prefixFilter,
     useActions,
     dispatch,
-  } from '@smui/common/internal.js';
+    ActionArray,
+  } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
-  let uninitializedValue = () => {};
+  interface UninitializedValue extends Function {}
+  let uninitializedValue: UninitializedValue = () => {};
+  function isUninitializedValue(value: any): value is UninitializedValue {
+    return value === uninitializedValue;
+  }
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
   export let style = '';
   export let disabled = false;
   export let touch = false;
-  export let group = null;
-  export let value = null;
-  export let valueKey = uninitializedValue;
-  export let input$use = [];
+  export let group: any | undefined = undefined;
+  export let value: any = null;
+  export let valueKey: UninitializedValue | string = uninitializedValue;
+  export let input$use: ActionArray = [];
   export let input$class = '';
 
-  let element;
-  let instance;
-  let internalClasses = {};
-  let internalStyles = {};
+  let element: HTMLDivElement;
+  let instance: MDCRadioFoundation;
+  let internalClasses: { [k: string]: boolean } = {};
+  let internalStyles: { [k: string]: string } = {};
   let rippleActive = false;
-  let inputProps = getContext('SMUI:generic:input:props') || {};
+  let inputProps =
+    getContext<{ id?: string } | undefined>('SMUI:generic:input:props') ?? {};
 
   onMount(() => {
     instance = new MDCRadioFoundation({
@@ -87,7 +94,7 @@
       setNativeControlDisabled: (value) => (disabled = value),
     });
 
-    const accessor = {
+    const accessor: SMUIRadioInputAccessor = {
       _smui_radio_accessor: true,
       get element() {
         return getElement();
@@ -112,30 +119,30 @@
       },
     };
 
-    dispatch(element, 'SMUI:generic:input:mount', accessor);
+    dispatch(element, 'SMUIGenericInput:mount', accessor);
 
     instance.init();
 
     return () => {
-      dispatch(element, 'SMUI:generic:input:unmount', accessor);
+      dispatch(element, 'SMUIGenericInput:unmount', accessor);
 
       instance.destroy();
     };
   });
 
-  function addClass(className) {
+  function addClass(className: string) {
     if (!internalClasses[className]) {
       internalClasses[className] = true;
     }
   }
 
-  function removeClass(className) {
+  function removeClass(className: string) {
     if (!(className in internalClasses) || internalClasses[className]) {
       internalClasses[className] = false;
     }
   }
 
-  function addStyle(name, value) {
+  function addStyle(name: string, value: string) {
     if (internalStyles[name] != value) {
       if (value === '' || value == null) {
         delete internalStyles[name];

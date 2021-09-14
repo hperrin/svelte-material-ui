@@ -2,19 +2,9 @@
 
 A Snackbar generator to programmatically create Snackbars on the fly.
 
-# Demo
+# Examples and Usage Information
 
-[See it in action.](https://sveltematerialui.com/demo/snackbars)
-
-[See the demo code.](/site/src/routes/demo/snackbars/)
-
-# Basic Usage
-
-todo...
-
-# Exports
-
-todo...
+https://sveltematerialui.com/demo/snackbars
 
 # More Information
 

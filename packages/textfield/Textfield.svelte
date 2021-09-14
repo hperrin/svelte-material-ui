@@ -24,33 +24,32 @@
       'mdc-text-field--no-label': noLabel || (label == null && !$$slots.label),
       'mdc-text-field--label-floating':
         focused || (value != null && value !== ''),
-      'mdc-text-field--with-leading-icon':
-        withLeadingIcon === uninitializedValue
-          ? $$slots.leadingIcon
-          : withLeadingIcon,
-      'mdc-text-field--with-trailing-icon':
-        withTrailingIcon === uninitializedValue
-          ? $$slots.trailingIcon
-          : withTrailingIcon,
+      'mdc-text-field--with-leading-icon': isUninitializedValue(withLeadingIcon)
+        ? $$slots.leadingIcon
+        : withLeadingIcon,
+      'mdc-text-field--with-trailing-icon': isUninitializedValue(
+        withTrailingIcon
+      )
+        ? $$slots.trailingIcon
+        : withTrailingIcon,
       'mdc-text-field--with-internal-counter':
         textarea && $$slots.internalCounter,
-      'mdc-text-field--invalid': invalid !== uninitializedValue && invalid,
+      'mdc-text-field--invalid': invalid,
       ...internalClasses,
     })}
     style={Object.entries(internalStyles)
       .map(([name, value]) => `${name}: ${value};`)
       .concat([style])
       .join(' ')}
-    for={/* suppress a11y warning, since this is wrapped */ null}
-    on:SMUI:textfield:leading-icon:mount={(event) =>
-      (leadingIcon = event.detail)}
-    on:SMUI:textfield:leading-icon:unmount={() => (leadingIcon = undefined)}
-    on:SMUI:textfield:trailing-icon:mount={(event) =>
+    for={/* suppress a11y warning, since this is wrapped */ undefined}
+    on:SMUITextfieldLeadingIcon:mount={(event) => (leadingIcon = event.detail)}
+    on:SMUITextfieldLeadingIcon:unmount={() => (leadingIcon = undefined)}
+    on:SMUITextfieldTrailingIcon:mount={(event) =>
       (trailingIcon = event.detail)}
-    on:SMUI:textfield:trailing-icon:unmount={() => (trailingIcon = undefined)}
-    on:SMUI:textfield:character-counter:mount={(event) =>
+    on:SMUITextfieldTrailingIcon:unmount={() => (trailingIcon = undefined)}
+    on:SMUITextfieldCharacterCounter:mount={(event) =>
       (characterCounter = event.detail)}
-    on:SMUI:textfield:character-counter:unmount={() =>
+    on:SMUITextfieldCharacterCounter:unmount={() =>
       (characterCounter = undefined)}
     {...exclude($$restProps, [
       'input$',
@@ -97,7 +96,7 @@
       <slot name="leadingIcon" />
     </ContextFragment>
     <slot />
-    {#if textarea}
+    {#if textarea && typeof value === 'string'}
       <span
         class={classMap({
           'mdc-text-field__resizer':
@@ -184,19 +183,18 @@
       'mdc-text-field--no-label': noLabel || !$$slots.label,
       'mdc-text-field--with-leading-icon': $$slots.leadingIcon,
       'mdc-text-field--with-trailing-icon': $$slots.trailingIcon,
-      'mdc-text-field--invalid': invalid !== uninitializedValue && invalid,
+      'mdc-text-field--invalid': invalid,
       ...internalClasses,
     })}
     style={Object.entries(internalStyles)
       .map(([name, value]) => `${name}: ${value};`)
       .concat([style])
       .join(' ')}
-    on:SMUI:textfield:leading-icon:mount={(event) =>
-      (leadingIcon = event.detail)}
-    on:SMUI:textfield:leading-icon:unmount={() => (leadingIcon = undefined)}
-    on:SMUI:textfield:trailing-icon:mount={(event) =>
+    on:SMUITextfieldLeadingIcon:mount={(event) => (leadingIcon = event.detail)}
+    on:SMUITextfieldLeadingIcon:unmount={() => (leadingIcon = undefined)}
+    on:SMUITextfieldTrailingIcon:mount={(event) =>
       (trailingIcon = event.detail)}
-    on:SMUI:textfield:trailing-icon:unmount={() => (trailingIcon = undefined)}
+    on:SMUITextfieldTrailingIcon:unmount={() => (trailingIcon = undefined)}
     {...exclude($$restProps, [
       'input$',
       'label$',
@@ -218,22 +216,29 @@
 {/if}
 {#if $$slots.helper}
   <HelperLine
-    on:SMUI:textfield:helper-text:id={(event) => (helperId = event.detail)}
-    on:SMUI:textfield:helper-text:mount={(event) => (helperText = event.detail)}
-    on:SMUI:textfield:helper-text:unmount={() => {
+    on:SMUITextfieldHelperText:id={(event) => (helperId = event.detail)}
+    on:SMUITextfieldHelperText:mount={(event) => (helperText = event.detail)}
+    on:SMUITextfieldHelperText:unmount={() => {
       helperId = undefined;
       helperText = undefined;
     }}
-    on:SMUI:textfield:character-counter:mount={(event) =>
+    on:SMUITextfieldCharacterCounter:mount={(event) =>
       (characterCounter = event.detail)}
-    on:SMUI:textfield:character-counter:unmount={() =>
+    on:SMUITextfieldCharacterCounter:unmount={() =>
       (characterCounter = undefined)}
     {...prefixFilter($$restProps, 'helperLine$')}
     ><slot name="helper" /></HelperLine
   >
 {/if}
 
-<script>
+<script lang="ts">
+  import type { AddLayoutListener, RemoveLayoutListener } from '@smui/common';
+  import type { FloatingLabelComponentDev } from '@smui/floating-label';
+  import type { LineRippleComponentDev } from '@smui/line-ripple';
+  import type { NotchedOutlineComponentDev } from '@smui/notched-outline';
+  import type MDCTextFieldIconFoundation from '@material/textfield/icon/foundation';
+  import type MDCTextFieldHelperTextFoundation from '@material/textfield/helper-text/foundation';
+  import type MDCTextFieldCharacterCounterFoundation from '@material/textfield/character-counter/foundation';
   import { MDCTextFieldFoundation } from '@material/textfield';
   import { events } from '@material/dom';
   import { onMount, onDestroy, getContext, tick } from 'svelte';
@@ -244,23 +249,30 @@
     exclude,
     prefixFilter,
     useActions,
-  } from '@smui/common/internal.js';
-  import ContextFragment from '@smui/common/ContextFragment.svelte';
+    ActionArray,
+  } from '@smui/common/internal';
+  import { ContextFragment } from '@smui/common';
   import Ripple from '@smui/ripple';
-  import FloatingLabel from '@smui/floating-label/FloatingLabel.svelte';
-  import LineRipple from '@smui/line-ripple/LineRipple.svelte';
-  import NotchedOutline from '@smui/notched-outline/NotchedOutline.svelte';
-  import HelperLine from './HelperLine.js';
-  import Prefix from './Prefix.js';
-  import Suffix from './Suffix.js';
+  import FloatingLabel from '@smui/floating-label';
+  import LineRipple from '@smui/line-ripple';
+  import NotchedOutline from '@smui/notched-outline';
+
+  import HelperLine from './HelperLine';
+  import Prefix from './Prefix';
+  import Suffix from './Suffix';
   import Input from './Input.svelte';
   import Textarea from './Textarea.svelte';
+
   const { applyPassive } = events;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
-  let uninitializedValue = () => {};
+  interface UninitializedValue extends Function {}
+  let uninitializedValue: UninitializedValue = () => {};
+  function isUninitializedValue(value: any): value is UninitializedValue {
+    return value === uninitializedValue;
+  }
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
   export let style = '';
@@ -268,45 +280,75 @@
   export let disabled = false;
   export let required = false;
   export let textarea = false;
-  export let variant = textarea ? 'outlined' : 'standard';
+  export let variant: 'standard' | 'filled' | 'outlined' = textarea
+    ? 'outlined'
+    : 'standard';
   export let noLabel = false;
-  export let label = null;
+  export let label: string | undefined = undefined;
   export let type = 'text';
-  export let value = uninitializedValue;
-  export let files = uninitializedValue;
+
+  // Some trickery to detect uninitialized values but also have the right types.
+  export let value:
+    | string
+    | number
+    | null
+    | undefined = (uninitializedValue as unknown) as undefined;
+  export let files: FileList | null = (uninitializedValue as unknown) as null;
+  const valued = !isUninitializedValue(value) || !isUninitializedValue(files);
+  if (isUninitializedValue(value)) {
+    value = undefined;
+  }
+  if (isUninitializedValue(files)) {
+    files = null;
+  }
+
+  export let invalid: boolean = (uninitializedValue as unknown) as boolean;
+  export let updateInvalid: boolean = isUninitializedValue(invalid);
+  if (isUninitializedValue(invalid)) {
+    invalid = false;
+  }
+  // Done with the trickery.
+
   export let dirty = false;
-  export let invalid = uninitializedValue;
-  export let prefix = null;
-  export let suffix = null;
-  export let updateInvalid = invalid === uninitializedValue;
-  export let validateOnValueChange = updateInvalid;
-  export let useNativeValidation = updateInvalid;
-  export let withLeadingIcon = uninitializedValue;
-  export let withTrailingIcon = uninitializedValue;
+  export let prefix: string | undefined = undefined;
+  export let suffix: string | undefined = undefined;
+  export let validateOnValueChange:
+    | UninitializedValue
+    | boolean = updateInvalid;
+  export let useNativeValidation: UninitializedValue | boolean = updateInvalid;
+  export let withLeadingIcon: UninitializedValue | boolean = uninitializedValue;
+  export let withTrailingIcon:
+    | UninitializedValue
+    | boolean = uninitializedValue;
 
   // Components
-  export let input = undefined;
-  export let floatingLabel = undefined;
-  export let lineRipple = undefined;
-  export let notchedOutline = undefined;
+  export let input: Input | Textarea | undefined = undefined;
+  export let floatingLabel: FloatingLabelComponentDev | undefined = undefined;
+  export let lineRipple: LineRippleComponentDev | undefined = undefined;
+  export let notchedOutline: NotchedOutlineComponentDev | undefined = undefined;
 
-  let element;
-  let instance;
-  let internalClasses = {};
-  let internalStyles = {};
-  let helperId;
+  let element: HTMLLabelElement | HTMLDivElement;
+  let instance: MDCTextFieldFoundation;
+  let internalClasses: { [k: string]: boolean } = {};
+  let internalStyles: { [k: string]: string } = {};
+  let helperId: string | undefined = undefined;
   let focused = false;
-  let addLayoutListener = getContext('SMUI:addLayoutListener');
-  let removeLayoutListener;
-  let initPromiseResolve;
-  let initPromise = new Promise((resolve) => (initPromiseResolve = resolve));
+  let addLayoutListener = getContext<AddLayoutListener | undefined>(
+    'SMUI:addLayoutListener'
+  );
+  let removeLayoutListener: RemoveLayoutListener | undefined;
+  let initPromiseResolve: (value: void) => void;
+  let initPromise = new Promise<void>(
+    (resolve) => (initPromiseResolve = resolve)
+  );
   // These are instances, not accessors.
-  let leadingIcon;
-  let trailingIcon;
-  let helperText;
-  let characterCounter;
+  let leadingIcon: MDCTextFieldIconFoundation | undefined = undefined;
+  let trailingIcon: MDCTextFieldIconFoundation | undefined = undefined;
+  let helperText: MDCTextFieldHelperTextFoundation | undefined = undefined;
+  let characterCounter:
+    | MDCTextFieldCharacterCounterFoundation
+    | undefined = undefined;
 
-  $: valued = value !== uninitializedValue || files !== uninitializedValue;
   $: inputElement = input && input.getElement();
 
   $: if (instance && instance.isValid() !== !invalid) {
@@ -322,14 +364,16 @@
     instance.getValidateOnValueChange() !== validateOnValueChange
   ) {
     instance.setValidateOnValueChange(
-      validateOnValueChange === uninitializedValue
+      isUninitializedValue(validateOnValueChange)
         ? false
         : validateOnValueChange
     );
   }
 
   $: if (instance) {
-    instance.setUseNativeValidation(useNativeValidation);
+    instance.setUseNativeValidation(
+      isUninitializedValue(useNativeValidation) ? true : useNativeValidation
+    );
   }
 
   $: if (instance) {
@@ -341,8 +385,9 @@
   $: if (instance && valued && previousValue !== value) {
     previousValue = value;
     // Check the data is flowing down.
-    if (instance.getValue() !== value) {
-      instance.setValue(value);
+    const stringValue = `${value}`;
+    if (instance.getValue() !== stringValue) {
+      instance.setValue(stringValue);
     }
   }
 
@@ -358,14 +403,14 @@
         removeClass,
         hasClass,
         registerTextFieldInteractionHandler: (evtType, handler) =>
-          getElement().addEventListener(evtType, handler),
+          getElement().addEventListener(evtType, handler as EventListener),
         deregisterTextFieldInteractionHandler: (evtType, handler) =>
-          getElement().removeEventListener(evtType, handler),
+          getElement().removeEventListener(evtType, handler as EventListener),
         registerValidationAttributeChangeHandler: (handler) => {
-          const getAttributesList = (mutationsList) => {
+          const getAttributesList = (mutationsList: MutationRecord[]) => {
             return mutationsList
               .map((mutation) => mutation.attributeName)
-              .filter((attributeName) => attributeName);
+              .filter((attributeName) => attributeName) as string[];
           };
           const observer = new MutationObserver((mutationsList) => {
             if (useNativeValidation) {
@@ -373,7 +418,9 @@
             }
           });
           const config = { attributes: true };
-          observer.observe(input.getElement(), config);
+          if (input) {
+            observer.observe(input.getElement(), config);
+          }
           return observer;
         },
         deregisterValidationAttributeChangeHandler: (observer) => {
@@ -381,21 +428,31 @@
         },
 
         // getInputAdapterMethods_
-        getNativeInput: () => input.getElement(),
+        getNativeInput: () => input?.getElement() ?? null,
         setInputAttr: (name, value) => {
-          input.addAttr(name, value);
+          input?.addAttr(name, value);
         },
         removeInputAttr: (name) => {
-          input.removeAttr(name);
+          input?.removeAttr(name);
         },
-        isFocused: () => document.activeElement === input.getElement(),
+        isFocused: () => document.activeElement === input?.getElement(),
         registerInputInteractionHandler: (evtType, handler) => {
-          input.getElement().addEventListener(evtType, handler, applyPassive());
+          input
+            ?.getElement()
+            .addEventListener(
+              evtType,
+              handler as EventListener,
+              applyPassive()
+            );
         },
         deregisterInputInteractionHandler: (evtType, handler) => {
           input
-            .getElement()
-            .removeEventListener(evtType, handler, applyPassive());
+            ?.getElement()
+            .removeEventListener(
+              evtType,
+              handler as EventListener,
+              applyPassive()
+            );
         },
 
         // getLabelAdapterMethods_
@@ -439,9 +496,17 @@
     );
 
     if (valued) {
+      if (input == null) {
+        throw new Error('SMUI Textfield initialized without Input component.');
+      }
       instance.init();
     } else {
       tick().then(() => {
+        if (input == null) {
+          throw new Error(
+            'SMUI Textfield initialized without Input component.'
+          );
+        }
         instance.init();
       });
     }
@@ -459,25 +524,25 @@
     }
   });
 
-  function hasClass(className) {
+  function hasClass(className: string) {
     return className in internalClasses
-      ? internalClasses[className]
+      ? internalClasses[className] ?? null
       : getElement().classList.contains(className);
   }
 
-  function addClass(className) {
+  function addClass(className: string) {
     if (!internalClasses[className]) {
       internalClasses[className] = true;
     }
   }
 
-  function removeClass(className) {
+  function removeClass(className: string) {
     if (!(className in internalClasses) || internalClasses[className]) {
       internalClasses[className] = false;
     }
   }
 
-  function addStyle(name, value) {
+  function addStyle(name: string, value: string) {
     if (internalStyles[name] != value) {
       if (value === '' || value == null) {
         delete internalStyles[name];
@@ -489,7 +554,7 @@
   }
 
   export function focus() {
-    input.focus();
+    input?.focus();
   }
 
   export function layout() {

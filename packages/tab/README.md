@@ -8,19 +8,9 @@ Tabs are navigation elements used to organize areas of an app.
 npm install --save-dev @smui/tab
 ```
 
-# Demo
+# Examples and Usage Information
 
-[See it in action.](https://sveltematerialui.com/demo/tabs)
-
-[See the demo code.](/site/src/routes/demo/tabs/)
-
-# Basic Usage
-
-todo...
-
-# Exports
-
-todo...
+https://sveltematerialui.com/demo/tabs
 
 # More Information
 

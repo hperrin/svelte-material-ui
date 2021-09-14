@@ -17,27 +17,31 @@
   {...$$restProps}><slot /></svelte:component
 >
 
-<script>
-  import { getContext } from 'svelte';
+<script lang="ts">
+  import { getContext, SvelteComponent } from 'svelte';
   import { get_current_component } from 'svelte/internal';
-  import { forwardEventsBuilder, classMap } from './internal.js';
+
+  import type { ActionArray } from './useActions';
+  import { forwardEventsBuilder, classMap } from './internal';
   import I from './I.svelte';
   import Svg from './Svg.svelte';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
   export let on = false;
 
-  let element;
+  let element: SvelteComponent;
 
-  export let component = I;
+  export let component: typeof SvelteComponent = I;
 
-  const context = getContext('SMUI:icon:context');
+  const context = getContext<string | undefined>('SMUI:icon:context');
 
-  export function getElement() {
+  export function getElement(): ReturnType<
+    InstanceType<typeof component>['getElement']
+  > {
     return element.getElement();
   }
 </script>

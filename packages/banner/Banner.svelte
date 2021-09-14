@@ -16,10 +16,8 @@
     .concat([style])
     .join(' ')}
   role="banner"
-  on:SMUI:banner:button:primaryActionClick={() =>
-    instance && instance.handlePrimaryActionClick()}
-  on:SMUI:banner:button:secondaryActionClick={() =>
-    instance && instance.handleSecondaryActionClick()}
+  on:SMUIBannerButton:primaryActionClick={handlePrimaryActionClick}
+  on:SMUIBannerButton:secondaryActionClick={handleSecondaryActionClick}
   {...exclude($$restProps, ['content$', 'textWrapper$', 'graphic$'])}
 >
   <Fixed bind:fixed {width}>
@@ -66,8 +64,9 @@
   </Fixed>
 </div>
 
-<script>
-  import { MDCBannerFoundation } from '@material/banner';
+<script lang="ts">
+  import type { AddLayoutListener, RemoveLayoutListener } from '@smui/common';
+  import { CloseReason, MDCBannerFoundation } from '@material/banner';
   import { focusTrap as domFocusTrap } from '@material/dom';
   import { onMount, onDestroy, getContext, setContext, tick } from 'svelte';
   import { get_current_component } from 'svelte/internal';
@@ -78,13 +77,16 @@
     prefixFilter,
     useActions,
     dispatch,
-  } from '@smui/common/internal.js';
+    ActionArray,
+  } from '@smui/common/internal';
+
   import Fixed from './Fixed.svelte';
+
   const { FocusTrap } = domFocusTrap;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
   export let style = '';
@@ -96,15 +98,17 @@
   export let textWrapper$class = '';
   export let graphic$class = '';
 
-  let element;
-  let instance;
-  let internalClasses = {};
-  let internalStyles = {};
-  let content;
-  let focusTrap;
-  let addLayoutListener = getContext('SMUI:addLayoutListener');
-  let removeLayoutListener;
-  let width;
+  let element: HTMLDivElement;
+  let instance: MDCBannerFoundation;
+  let internalClasses: { [k: string]: boolean } = {};
+  let internalStyles: { [k: string]: string } = {};
+  let content: HTMLDivElement;
+  let focusTrap: domFocusTrap.FocusTrap | undefined;
+  let addLayoutListener = getContext<AddLayoutListener | undefined>(
+    'SMUI:addLayoutListener'
+  );
+  let removeLayoutListener: RemoveLayoutListener | undefined;
+  let width: number | undefined = undefined;
 
   setContext('SMUI:label:context', 'banner');
   setContext('SMUI:icon:context', 'banner');
@@ -114,7 +118,7 @@
     if (open) {
       instance.open();
     } else {
-      instance.close();
+      instance.close(CloseReason.UNSPECIFIED);
     }
   }
 
@@ -158,10 +162,10 @@
       notifyOpening: () => {
         dispatch(getElement(), 'MDCBanner:opening', {});
       },
-      releaseFocus: () => focusTrap.releaseFocus(),
+      releaseFocus: () => focusTrap && focusTrap.releaseFocus(),
       removeClass,
       setStyleProperty: addStyle,
-      trapFocus: () => focusTrap.trapFocus(),
+      trapFocus: () => focusTrap && focusTrap.trapFocus(),
     });
 
     instance.init();
@@ -178,19 +182,19 @@
     }
   });
 
-  function addClass(className) {
+  function addClass(className: string) {
     if (!internalClasses[className]) {
       internalClasses[className] = true;
     }
   }
 
-  function removeClass(className) {
+  function removeClass(className: string) {
     if (!(className in internalClasses) || internalClasses[className]) {
       internalClasses[className] = false;
     }
   }
 
-  function addStyle(name, value) {
+  function addStyle(name: string, value: string) {
     if (internalStyles[name] != value) {
       if (value === '' || value == null) {
         delete internalStyles[name];
@@ -201,15 +205,26 @@
     }
   }
 
-  function getPrimaryActionEl() {
-    return element.querySelector('.mdc-banner__primary-action');
+  function getPrimaryActionEl(): HTMLElement | undefined {
+    return (
+      element.querySelector<HTMLElement>('.mdc-banner__primary-action') ??
+      undefined
+    );
+  }
+
+  function handlePrimaryActionClick() {
+    instance.handlePrimaryActionClick();
+  }
+
+  function handleSecondaryActionClick() {
+    instance.handleSecondaryActionClick();
   }
 
   export function isOpen() {
     return open;
   }
 
-  export function setOpen(value) {
+  export function setOpen(value: boolean) {
     open = value;
   }
 
@@ -222,7 +237,9 @@
         element.classList.remove('smui-banner--force-show');
       }
     }
-    instance.layout();
+    if (instance) {
+      instance.layout();
+    }
   }
 
   export function getElement() {

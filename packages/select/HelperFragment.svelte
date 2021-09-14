@@ -1,10 +1,10 @@
 <slot use={[...use, forwardEvents]} />
 
-<script>
+<script lang="ts">
   import { get_current_component } from 'svelte/internal';
-  import { forwardEventsBuilder } from '@smui/common/internal.js';
+  import { ActionArray, forwardEventsBuilder } from '@smui/common/internal';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  export let use = [];
+  export let use: ActionArray = [];
 </script>

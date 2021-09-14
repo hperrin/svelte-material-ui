@@ -8,31 +8,9 @@ Checkbox is used to provide the same functionality as `<input type="checkbox">`.
 npm install --save-dev @smui/checkbox
 ```
 
-# Demo
+# Examples and Usage Information
 
-[See it in action.](https://sveltematerialui.com/demo/checkbox)
-
-[See the demo code.](/site/src/routes/demo/checkbox/)
-
-# Whoa There, These Docs are Outdated
-
-The latest SMUI v3 had a lot of changes, and these docs haven't been caught up yet. You should check out the demo page's code to see the latest usage.
-
-# Basic Usage
-
-```svelte
-<FormField>
-  <Checkbox bind:checked={selected} />
-  <span slot="label">Check me.</span>
-</FormField>
-
-<script>
-  import Checkbox from '@smui/checkbox';
-  import FormField from '@smui/form-field';
-
-  let selected = false;
-</script>
-```
+https://sveltematerialui.com/demo/checkbox
 
 # Exports
 
@@ -45,7 +23,7 @@ A checkbox.
 - `use`: `[]` - An array of Svelte actions and/or arrays of an action and its options.
 - `class`: `''` - A CSS class string.
 - `disabled`: `false` - Whether the input is disabled.
-- `touch`: `false` - The checkbox will have a larger touch target.
+- `touch`: `false` - Increase the touch target.
 - `indeterminate`: `(uninitialised)` - Whether the state is indeterminate.
 - `group`: `(uninitialised)` - The selected values of a group of checkboxes as an array.
 - `checked`: `(uninitialised)` - A boolean, whether the checkbox is checked. This is used instead of `group` for a single checkbox.

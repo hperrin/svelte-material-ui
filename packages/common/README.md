@@ -10,11 +10,9 @@ You can use the elemental components to switch the HTML element that an SMUI com
 npm install --save-dev @smui/common
 ```
 
-# Demo
+# Examples and Usage Information
 
-[See it in action.](https://sveltematerialui.com/demo/common)
-
-[See the demo code.](/site/src/routes/demo/common/)
+https://sveltematerialui.com/demo/common
 
 # Exports
 
@@ -45,9 +43,9 @@ The common icon is used everywhere that exports an `Icon` component except for `
 
 # Other Components
 
-These components are not exported in the index file, but are available to be imported directly. They are generally used for simple components which only add a class to an element.
+These components are not exported in the index file, but are available to be imported elsewhere. They are generally used for simple components which only add a class to an element.
 
-## ClassAdder.svelte
+## ClassAdder
 
 A base component that adds a class to an element. The ClassAdder is used to provide simple components. It usually uses one of the elemental components listed below, but you can specify a different component for it to use. Every elemental component supports the `use` prop.
 
@@ -68,105 +66,109 @@ A fragment component (only contains a `<slot />`) used to define a Svelte contex
 
 # Elemental Components
 
-These components are used in SMUI components that take a `component` prop. They determine which HTML element will be used as the root element of the component.
+These components are used in SMUI components that take a `component` prop. They determine which HTML element will be used as the root element of the component. You can import them from `@smui/common/elements`.
 
 ### Props / Defaults (Common to all Elemental Components)
 
 - `use`: `[]` - An array of Svelte actions and/or arrays of an action and its options.
 
-## A.svelte
+## A
 
 An elemental component for the `a` tag.
 
-## Aside.svelte
+## Aside
 
 An elemental component for the `aside` tag.
 
-## Button.svelte
+## Button
 
 An elemental component for the `button` tag.
 
-## Div.svelte
+## Div
 
 An elemental component for the `div` tag.
 
-## Em.svelte
+## Em
 
 An elemental component for the `em` tag.
 
-## Footer.svelte
+## Footer
 
 An elemental component for the `footer` tag.
 
-## H1.svelte
+## H1
 
 An elemental component for the `h1` tag.
 
-## H2.svelte
+## H2
 
 An elemental component for the `h2` tag.
 
-## H3.svelte
+## H3
 
 An elemental component for the `h3` tag.
 
-## H4.svelte
+## H4
 
 An elemental component for the `h4` tag.
 
-## H5.svelte
+## H5
 
 An elemental component for the `h5` tag.
 
-## H6.svelte
+## H6
 
 An elemental component for the `h6` tag.
 
-## Header.svelte
+## Header
 
 An elemental component for the `header` tag.
 
-## Hr.svelte
+## Hr
 
 An elemental component for the `hr` tag.
 
-## I.svelte
+## I
 
 An elemental component for the `i` tag.
 
-## Img.svelte
+## Img
 
 An elemental component for the `img` tag.
 
-## Li.svelte
+## Li
 
 An elemental component for the `li` tag.
 
-## Main.svelte
+## Main
 
 An elemental component for the `main` tag.
 
-## Nav.svelte
+## Nav
 
 An elemental component for the `nav` tag.
 
-## Section.svelte
+## P
+
+An elemental component for the `p` tag.
+
+## Section
 
 An elemental component for the `section` tag.
 
-## Span.svelte
+## Span
 
 An elemental component for the `span` tag.
 
-## Strong.svelte
+## Strong
 
 An elemental component for the `strong` tag.
 
-## Svg.svelte
+## Svg
 
 An elemental component for the `svg` tag.
 
-## Ul.svelte
+## Ul
 
 An elemental component for the `ul` tag.
 
@@ -181,8 +183,8 @@ Helper utilities are exported from the `@smui/common/internal` endpoint. They ar
 Use this to build a ClassAdder component. ClassAdder components are useful for reducing the size of your bundle. If you have tons of simple components that just need to add classes/props or set a context, using ClassAdder components means there's only one "big" Svelte component in your bundle for all of these many tiny components.
 
 ```js
-import { classAdderBuilder } from '@smui/common/internal.js';
-import Div from '@smui/common/Div.svelte';
+import { classAdderBuilder } from '@smui/common/internal';
+import { Div } from '@smui/common/elements';
 
 export default classAdderBuilder({
   class: 'my-added-class',
@@ -213,21 +215,21 @@ Build a class string from a map of class names to conditions. This is useful whe
   I've got class.
 </SomeComponent>
 
-<script>
-  import { classAdderBuilder } from '@smui/common/internal.js';
+<script lang="ts">
+  import { classAdderBuilder } from '@smui/common/internal';
   import SomeComponent from './SomeComponent.svelte';
 
   export let condition = true;
 
-  let internalClasses = {};
+  let internalClasses: { [k: string]: boolean } = {};
 
-  export function addClass(className) {
+  export function addClass(className: string) {
     if (!internalClasses[className]) {
       internalClasses[className] = true;
     }
   }
 
-  export function removeClass(className) {
+  export function removeClass(className: string) {
     if (!(className in internalClasses) || internalClasses[className]) {
       internalClasses[className] = false;
     }
@@ -244,21 +246,21 @@ Dispatch a custom event. This differs from Svelte's component event system, beca
   bind:this={eventTarget}
   on:mouseover={emitEvent}
   on:click={emitCancelableEvent}
-  tabindex="0"
+  tabindex={0}
 />
 
-<script>
-  import { dispatch } from '@smui/common/internal.js';
+<script lang="ts">
+  import { dispatch } from '@smui/common/internal';
 
   let eventTarget;
 
-  function emitEvent(originalEvent) {
+  function emitEvent(originalEvent: Event) {
     dispatch(eventTarget, 'MyCustomEvent', { originalEvent });
 
     // You would access originalEvent with `event.detail.originalEvent`.
   }
 
-  function emitCancelableEvent(originalEvent) {
+  function emitCancelableEvent(originalEvent: Event) {
     const event = dispatch(
       eventTarget,
       'MyCustomEvent',
@@ -292,8 +294,8 @@ Exclude a set of properties from an object. It differs from normal `omit` functi
   </button>
 </div>
 
-<script>
-  import { exclude, prefixFilter } from '@smui/common/internal.js';
+<script lang="ts">
+  import { exclude, prefixFilter } from '@smui/common/internal';
 
   let className = '';
   export { className as class };
@@ -310,7 +312,7 @@ Exclude a set of properties from an object. It differs from normal `omit` functi
   Click Me Only Once
 </MyComponent>
 
-<script>
+<script lang="ts">
   import MyComponent from './MyComponent.svelte';
 
   let disabled = false;
@@ -331,8 +333,8 @@ In addition, a component that uses Svelte's built in event forwarding system can
   <slot />
 </div>
 
-<script>
-  import { forwardEventsBuilder } from '@smui/common/internal.js';
+<script lang="ts">
+  import { forwardEventsBuilder } from '@smui/common/internal';
   import { get_current_component } from 'svelte/internal';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
@@ -350,7 +352,7 @@ In addition, a component that uses Svelte's built in event forwarding system can
   Listen to my events!
 </MyComponent>
 
-<script>
+<script lang="ts">
   import MyComponent from './MyComponent.svelte';
 </script>
 ```
@@ -371,8 +373,8 @@ Filter an object for only properties with a certain prefix. It is usually used a
   </button>
 </div>
 
-<script>
-  import { exclude, prefixFilter } from '@smui/common/internal.js';
+<script lang="ts">
+  import { exclude, prefixFilter } from '@smui/common/internal';
 
   let className = '';
   export { className as class };
@@ -389,7 +391,7 @@ Filter an object for only properties with a certain prefix. It is usually used a
   Click Me Only Once
 </MyComponent>
 
-<script>
+<script lang="ts">
   import MyComponent from './MyComponent.svelte';
 
   let disabled = false;
@@ -406,10 +408,10 @@ An action that takes actions and runs them on the element. Used to allow actions
   <slot />
 </div>
 
-<script>
-  import { useActions } from '@smui/common/internal.js';
+<script lang="ts">
+  import { useActions, ActionArray } from '@smui/common/internal';
 
-  export let use = [];
+  export let use: ActionArray = [];
 </script>
 ```
 
@@ -420,7 +422,7 @@ An action that takes actions and runs them on the element. Used to allow actions
   I use two actions! And one has options!
 </MyComponent>
 
-<script>
+<script lang="ts">
   import MyComponent from './MyComponent.svelte';
   import SomeAction from './SomeAction.js';
   import SomeOtherAction from './SomeOtherAction.js';

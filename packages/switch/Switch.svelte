@@ -42,7 +42,7 @@
       {disabled}
       bind:checked={nativeChecked}
       aria-checked={nativeChecked ? 'true' : 'false'}
-      value={valueKey === uninitializedValue ? value : valueKey}
+      value={isUninitializedValue(valueKey) ? value : valueKey}
       on:blur
       on:focus
       {...nativeControlAttrs}
@@ -51,7 +51,8 @@
   </div>
 </div>
 
-<script>
+<script lang="ts">
+  import type { SMUISwitchInputAccessor } from '@smui/common';
   import { MDCSwitchFoundation } from '@material/switch';
   import { onMount, getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
@@ -62,41 +63,46 @@
     prefixFilter,
     useActions,
     dispatch,
-  } from '@smui/common/internal.js';
+    ActionArray,
+  } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
-  let uninitializedValue = () => {};
+  interface UninitializedValue extends Function {}
+  let uninitializedValue: UninitializedValue = () => {};
+  function isUninitializedValue(value: any): value is UninitializedValue {
+    return value === uninitializedValue;
+  }
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
   export let disabled = false;
-  export let color = 'secondary';
-  export let group = uninitializedValue;
-  export let checked = uninitializedValue;
-  export let value = null;
-  export let valueKey = uninitializedValue;
-  export let input$use = [];
+  export let color: 'primary' | 'secondary' = 'secondary';
+  export let group: UninitializedValue | any[] = uninitializedValue;
+  export let checked: UninitializedValue | boolean = uninitializedValue;
+  export let value: any = null;
+  export let valueKey: UninitializedValue | string = uninitializedValue;
+  export let input$use: ActionArray = [];
   export let input$class = '';
 
-  let element;
-  let instance;
-  let checkbox;
-  let internalClasses = {};
-  let thumbUnderlayClasses = {};
-  let nativeControlAttrs = {};
+  let element: HTMLDivElement;
+  let instance: MDCSwitchFoundation;
+  let checkbox: HTMLInputElement;
+  let internalClasses: { [k: string]: boolean } = {};
+  let thumbUnderlayClasses: { [k: string]: boolean } = {};
+  let nativeControlAttrs: { [k: string]: string | undefined } = {};
   let rippleActive = false;
-  let inputProps = getContext('SMUI:generic:input:props') || {};
-  let nativeChecked =
-    group === uninitializedValue
-      ? checked === uninitializedValue
-        ? false
-        : checked
-      : group.indexOf(value) !== -1;
+  let inputProps =
+    getContext<{ id?: string } | undefined>('SMUI:generic:input:props') ?? {};
+  let nativeChecked = isUninitializedValue(group)
+    ? isUninitializedValue(checked)
+      ? false
+      : checked
+    : group.indexOf(value) !== -1;
 
   let previousChecked = checked;
-  let previousGroup = group === uninitializedValue ? [] : [...group];
+  let previousGroup = isUninitializedValue(group) ? [] : [...group];
   let previousNativeChecked = nativeChecked;
   $: {
     // This is a substitute for an on:change listener that is
@@ -107,7 +113,7 @@
     let callHandleChange = false;
 
     // First check for group state.
-    if (group !== uninitializedValue) {
+    if (!isUninitializedValue(group)) {
       if (previousNativeChecked !== nativeChecked) {
         // The change needs to flow up.
         const idx = group.indexOf(value);
@@ -137,7 +143,7 @@
     }
 
     // Now check individual state.
-    if (checked === uninitializedValue) {
+    if (isUninitializedValue(checked)) {
       if (previousNativeChecked !== nativeChecked) {
         // The checkbox was clicked by the user.
         callHandleChange = true;
@@ -156,14 +162,14 @@
     }
 
     previousChecked = checked;
-    previousGroup = group === uninitializedValue ? [] : [...group];
+    previousGroup = isUninitializedValue(group) ? [] : [...group];
     previousNativeChecked = nativeChecked;
     if (callHandleChange && instance) {
       instance.handleChange({
-        target: {
+        target: ({
           checked: nativeChecked,
-        },
-      });
+        } as any) as EventTarget,
+      } as Event);
     }
   }
 
@@ -176,14 +182,14 @@
       setNativeControlAttr: addNativeControlAttr,
     });
 
-    const accessor = {
+    const accessor: SMUISwitchInputAccessor = {
       get element() {
         return getElement();
       },
       get checked() {
         return nativeChecked;
       },
-      set checked(checked) {
+      set checked(value) {
         if (nativeChecked !== value) {
           nativeChecked = value;
         }
@@ -198,36 +204,36 @@
       },
     };
 
-    dispatch(element, 'SMUI:generic:input:mount', accessor);
+    dispatch(element, 'SMUIGenericInput:mount', accessor);
 
     instance.init();
 
     return () => {
-      dispatch(element, 'SMUI:generic:input:unmount', accessor);
+      dispatch(element, 'SMUIGenericInput:unmount', accessor);
 
       instance.destroy();
     };
   });
 
-  function addClass(className) {
+  function addClass(className: string) {
     if (!internalClasses[className]) {
       internalClasses[className] = true;
     }
   }
 
-  function removeClass(className) {
+  function removeClass(className: string) {
     if (!(className in internalClasses) || internalClasses[className]) {
       internalClasses[className] = false;
     }
   }
 
-  function addThumbUnderlayClass(className) {
+  function addThumbUnderlayClass(className: string) {
     if (!thumbUnderlayClasses[className]) {
       thumbUnderlayClasses[className] = true;
     }
   }
 
-  function removeThumbUnderlayClass(className) {
+  function removeThumbUnderlayClass(className: string) {
     if (
       !(className in thumbUnderlayClasses) ||
       thumbUnderlayClasses[className]
@@ -236,7 +242,7 @@
     }
   }
 
-  function addNativeControlAttr(name, value) {
+  function addNativeControlAttr(name: string, value: string) {
     if (nativeControlAttrs[name] !== value) {
       nativeControlAttrs[name] = value;
     }

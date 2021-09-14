@@ -15,7 +15,7 @@
   <slot />
 {/if}
 
-<script>
+<script lang="ts">
   import { setContext } from 'svelte';
   import { writable } from 'svelte/store';
   import { get_current_component } from 'svelte/internal';
@@ -23,25 +23,26 @@
     forwardEventsBuilder,
     classMap,
     useActions,
-  } from '@smui/common/internal.js';
+    ActionArray,
+  } from '@smui/common/internal';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
   export let rich = false;
 
-  let element;
-  const anchor = writable(null);
-  const tooltip = writable(null);
+  let element: HTMLDivElement;
+  const anchor = writable<HTMLElement | undefined>(undefined);
+  const tooltip = writable<HTMLDivElement | undefined>(undefined);
 
   setContext('SMUI:tooltip:wrapper:anchor', anchor);
   setContext('SMUI:tooltip:wrapper:tooltip', tooltip);
   setContext('SMUI:tooltip:rich', rich);
 
   $: if ($tooltip && !$anchor) {
-    $anchor = $tooltip.previousElementSibling;
+    $anchor = $tooltip.previousElementSibling as HTMLElement;
   }
 
   export function getElement() {

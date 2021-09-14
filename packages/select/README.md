@@ -8,48 +8,9 @@ Select menus provide the user with a choice between multiple items.
 npm install --save-dev @smui/select
 ```
 
-# Demo
+# Examples and Usage Information
 
-[See it in action.](https://sveltematerialui.com/demo/select)
-
-[See the demo code.](/site/src/routes/demo/select/)
-
-# Whoa There, These Docs are Outdated
-
-The latest SMUI v3 had a lot of changes, and these docs haven't been caught up yet. You should check out the demo page's code to see the latest usage.
-
-# Basic Usage
-
-```svelte
-<Select
-  bind:value={fruitChoice}
-  label="Fruit"
-  anchor$class="select-width"
-  menu$class="select-width"
->
-  <Option value="" />
-  {#each fruits as fruit}
-    <Option value={fruit}>{fruit}</Option>
-  {/each}
-</Select>
-
-<script>
-  import Select, { Option } from '@smui/select';
-
-  let fruits = ['Apple', 'Orange', 'Banana', 'Mango'];
-  let fruitChoice = '';
-</script>
-
-<style>
-  * :global(.select-width) {
-    min-width: 200px;
-  }
-</style>
-```
-
-# Exports
-
-todo...
+https://sveltematerialui.com/demo/select
 
 # More Information
 

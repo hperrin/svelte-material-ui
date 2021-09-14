@@ -15,12 +15,12 @@
   role={rich && interactive ? 'dialog' : 'tooltip'}
   aria-hidden="true"
   {id}
-  tabindex={rich && persistent ? '-1' : null}
-  data-mdc-tooltip-persist={rich && persistent ? 'true' : null}
+  tabindex={rich && persistent ? -1 : undefined}
+  data-mdc-tooltip-persist={rich && persistent ? 'true' : undefined}
   data-mdc-tooltip-persistent={/* MDC uses this attr, but document the one above */ rich &&
   persistent
     ? 'true'
-    : null}
+    : undefined}
   on:transitionend={() => instance && instance.handleTransitionEnd()}
   {...internalAttrs}
   {...exclude($$restProps, ['surface$'])}
@@ -41,11 +41,13 @@
   </div>
 </div>
 
-<script context="module">
+<script context="module" lang="ts">
   let counter = 0;
 </script>
 
-<script>
+<script lang="ts">
+  import type { SpecificEventListener } from '@material/base/types';
+  import type { Writable } from 'svelte/store';
   import {
     MDCTooltipFoundation,
     AnchorBoundaryType,
@@ -61,42 +63,52 @@
     prefixFilter,
     useActions,
     dispatch,
-  } from '@smui/common/internal.js';
+    ActionArray,
+  } from '@smui/common/internal';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
   export let style = '';
   export let id = 'SMUI-tooltip-' + counter++;
   export let unbounded = false;
-  export let xPos = 'detected';
-  export let yPos = 'detected';
+  export let xPos: Lowercase<keyof typeof XPosition> = 'detected';
+  export let yPos: Lowercase<keyof typeof YPosition> = 'detected';
   export let persistent = false;
   export let interactive = persistent;
   export let surface$class = '';
   export let surface$style = '';
 
-  let element;
-  let instance;
-  let nonReactiveLocationStore = {
-    setParent(value) {
+  let element: HTMLDivElement;
+  let instance: MDCTooltipFoundation;
+  let nonReactiveLocationStore: {
+    readonly parent?: HTMLElement;
+    readonly nextSibling?: HTMLElement;
+    setParent(value: HTMLElement | undefined): void;
+    setNextSibling(value: HTMLElement | undefined): void;
+  } = {
+    setParent(value: HTMLElement | undefined) {
       Object.defineProperty(this, 'parent', { value });
     },
-    setNextSibling(value) {
+    setNextSibling(value: HTMLElement | undefined) {
       Object.defineProperty(this, 'nextSibling', { value });
     },
   };
-  let internalClasses = {};
-  let internalStyles = {};
-  let internalAttrs = {};
-  let surfaceStyles = {};
-  let anchor = getContext('SMUI:tooltip:wrapper:anchor');
-  let tooltip = getContext('SMUI:tooltip:wrapper:tooltip');
-  const rich = getContext('SMUI:tooltip:rich');
+  let internalClasses: { [k: string]: boolean } = {};
+  let internalStyles: { [k: string]: string } = {};
+  let internalAttrs: { [k: string]: string | undefined } = {};
+  let surfaceStyles: { [k: string]: string } = {};
+  let anchor = getContext<Writable<HTMLElement | undefined>>(
+    'SMUI:tooltip:wrapper:anchor'
+  );
+  let tooltip = getContext<Writable<HTMLDivElement | undefined>>(
+    'SMUI:tooltip:wrapper:tooltip'
+  );
+  const rich = getContext<boolean>('SMUI:tooltip:rich');
 
-  let previousAnchor = null;
+  let previousAnchor: HTMLElement | undefined = undefined;
   $: if (instance && previousAnchor !== $anchor) {
     if (previousAnchor) {
       destroy(previousAnchor);
@@ -117,8 +129,8 @@
 
   $: if (instance) {
     instance.setTooltipPosition({
-      xPos: XPosition[xPos.toUpperCase()],
-      yPos: YPosition[yPos.toUpperCase()],
+      xPos: XPosition[xPos.toUpperCase() as keyof typeof XPosition],
+      yPos: YPosition[yPos.toUpperCase() as keyof typeof YPosition],
     });
   }
 
@@ -163,11 +175,11 @@
         return $anchor ? $anchor.getBoundingClientRect() : null;
       },
       getParentBoundingRect: () => {
-        let parent = getElement().parentNode;
+        let parent = getElement().parentElement;
         if (!rich) {
           parent = document.body;
         }
-        return parent.getBoundingClientRect() || null;
+        return parent?.getBoundingClientRect() || null;
       },
       getAnchorAttribute: (attr) => {
         return $anchor ? $anchor.getAttribute(attr) : null;
@@ -213,8 +225,9 @@
       deregisterWindowEventHandler: (evt, handler) => {
         window.removeEventListener(
           evt,
-          handler,
-          evt === 'scroll' && { capture: true, passive: true }
+          handler as EventListener,
+          evt === 'scroll' &&
+            ({ capture: true, passive: true } as EventListenerOptions)
         );
       },
       notifyHidden: () => {
@@ -236,7 +249,8 @@
       !rich &&
       typeof document !== 'undefined' &&
       document.body === getElement().parentNode &&
-      nonReactiveLocationStore.parent.insertBefore
+      nonReactiveLocationStore.parent?.insertBefore &&
+      nonReactiveLocationStore.nextSibling
     ) {
       nonReactiveLocationStore.parent.insertBefore(
         getElement(),
@@ -245,7 +259,7 @@
     }
   });
 
-  function destroy(anchor) {
+  function destroy(anchor: HTMLElement) {
     anchor.removeEventListener('focusout', handleAnchorFocusOut);
     if (rich && persistent) {
       anchor.removeEventListener('click', handleAnchorActivate);
@@ -268,7 +282,7 @@
     instance.destroy();
   }
 
-  function init(anchor) {
+  function init(anchor: HTMLElement) {
     anchor.addEventListener('focusout', handleAnchorFocusOut);
     if (rich && persistent) {
       anchor.addEventListener('click', handleAnchorActivate);
@@ -294,25 +308,25 @@
     instance.init();
   }
 
-  function hasClass(className) {
+  function hasClass(className: string) {
     return className in internalClasses
       ? internalClasses[className]
       : getElement().classList.contains(className);
   }
 
-  function addClass(className) {
+  function addClass(className: string) {
     if (!internalClasses[className]) {
       internalClasses[className] = true;
     }
   }
 
-  function removeClass(className) {
+  function removeClass(className: string) {
     if (!(className in internalClasses) || internalClasses[className]) {
       internalClasses[className] = false;
     }
   }
 
-  function addStyle(name, value) {
+  function addStyle(name: string, value: string) {
     if (internalStyles[name] != value) {
       if (value === '' || value == null) {
         delete internalStyles[name];
@@ -323,7 +337,7 @@
     }
   }
 
-  function addSurfaceStyle(name, value) {
+  function addSurfaceStyle(name: string, value: string) {
     if (surfaceStyles[name] != value) {
       if (value === '' || value == null) {
         delete surfaceStyles[name];
@@ -334,34 +348,34 @@
     }
   }
 
-  function getAttr(name) {
+  function getAttr(name: string) {
     return name in internalAttrs
-      ? internalAttrs[name]
+      ? internalAttrs[name] ?? null
       : getElement().getAttribute(name);
   }
 
-  function addAttr(name, value) {
+  function addAttr(name: string, value: string) {
     if (internalAttrs[name] !== value) {
       internalAttrs[name] = value;
     }
   }
 
-  function handleAnchorFocusOut(event) {
+  function handleAnchorFocusOut(event: FocusEvent) {
     // The foundation only watches for blur, which
     // doesn't fire on all components you would
     // anchor a tooltip to (since it doesn't
     // bubble), so we handle focusout like a blur.
-    if (element.contains(event.relatedTarget)) {
+    if (element.contains(event.relatedTarget as Node | null)) {
       return;
     }
     instance && instance.hide();
   }
 
-  function handleAnchorActivate(event) {
+  function handleAnchorActivate(event: MouseEvent | KeyboardEvent) {
     if (
       event.type === 'keydown' &&
-      event.key !== 'Enter' &&
-      event.key !== ' '
+      (event as KeyboardEvent).key !== 'Enter' &&
+      (event as KeyboardEvent).key !== ' '
     ) {
       return;
     }
@@ -372,7 +386,7 @@
     instance && instance.handleAnchorMouseEnter();
   }
 
-  function handleAnchorFocus(event) {
+  function handleAnchorFocus(event: FocusEvent) {
     instance && instance.handleAnchorFocus(event);
   }
 
@@ -392,17 +406,31 @@
 
   function hoistToBody() {
     if ($anchor && document.body !== getElement().parentNode) {
-      nonReactiveLocationStore.setParent(getElement().parentNode);
-      nonReactiveLocationStore.setNextSibling(getElement().nextSibling);
+      nonReactiveLocationStore.setParent(
+        getElement().parentElement ?? undefined
+      );
+      nonReactiveLocationStore.setNextSibling(
+        (getElement().nextElementSibling as HTMLElement | null) ?? undefined
+      );
       document.body.appendChild(getElement());
     }
   }
 
-  export function attachScrollHandler(addEventListenerFn) {
+  export function attachScrollHandler(
+    addEventListenerFn: <K extends keyof GlobalEventHandlersEventMap>(
+      event: K,
+      handler: SpecificEventListener<K>
+    ) => void
+  ) {
     instance && instance.attachScrollHandler(addEventListenerFn);
   }
 
-  export function removeScrollHandler(removeEventHandlerFn) {
+  export function removeScrollHandler(
+    removeEventHandlerFn: <K extends keyof GlobalEventHandlersEventMap>(
+      event: K,
+      handler: SpecificEventListener<K>
+    ) => void
+  ) {
     instance && instance.removeScrollHandler(removeEventHandlerFn);
   }
 

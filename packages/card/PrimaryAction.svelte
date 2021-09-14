@@ -26,43 +26,44 @@
   <slot />
 </div>
 
-<script>
+<script lang="ts">
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
     classMap,
     useActions,
-  } from '@smui/common/internal.js';
+    ActionArray,
+  } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
   export let style = '';
   export let ripple = true;
-  export let color = null;
+  export let color: 'primary' | 'secondary' | undefined = undefined;
   export let padded = false;
-  export let tabindex = '0';
+  export let tabindex = 0;
 
-  let element;
-  let internalClasses = {};
-  let internalStyles = {};
+  let element: HTMLDivElement;
+  let internalClasses: { [k: string]: boolean } = {};
+  let internalStyles: { [k: string]: string } = {};
 
-  function addClass(className) {
+  function addClass(className: string) {
     if (!internalClasses[className]) {
       internalClasses[className] = true;
     }
   }
 
-  function removeClass(className) {
+  function removeClass(className: string) {
     if (!(className in internalClasses) || internalClasses[className]) {
       internalClasses[className] = false;
     }
   }
 
-  function addStyle(name, value) {
+  function addStyle(name: string, value: string) {
     if (internalStyles[name] != value) {
       if (value === '' || value == null) {
         delete internalStyles[name];

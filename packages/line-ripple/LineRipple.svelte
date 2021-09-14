@@ -15,7 +15,7 @@
   {...$$restProps}
 />
 
-<script>
+<script lang="ts">
   import { MDCLineRippleFoundation } from '@material/line-ripple';
   import { onMount } from 'svelte';
   import { get_current_component } from 'svelte/internal';
@@ -23,20 +23,21 @@
     forwardEventsBuilder,
     classMap,
     useActions,
-  } from '@smui/common/internal.js';
+    ActionArray,
+  } from '@smui/common/internal';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
   export let style = '';
   export let active = false;
 
-  let element;
-  let instance;
-  let internalClasses = {};
-  let internalStyles = {};
+  let element: HTMLDivElement;
+  let instance: MDCLineRippleFoundation;
+  let internalClasses: { [k: string]: boolean } = {};
+  let internalStyles: { [k: string]: string } = {};
 
   onMount(() => {
     instance = new MDCLineRippleFoundation({
@@ -57,25 +58,25 @@
     };
   });
 
-  function hasClass(className) {
+  function hasClass(className: string) {
     return className in internalClasses
       ? internalClasses[className]
       : getElement().classList.contains(className);
   }
 
-  function addClass(className) {
+  function addClass(className: string) {
     if (!internalClasses[className]) {
       internalClasses[className] = true;
     }
   }
 
-  function removeClass(className) {
+  function removeClass(className: string) {
     if (!(className in internalClasses) || internalClasses[className]) {
       internalClasses[className] = false;
     }
   }
 
-  function addStyle(name, value) {
+  function addStyle(name: string, value: string) {
     if (internalStyles[name] != value) {
       if (value === '' || value == null) {
         delete internalStyles[name];
@@ -94,7 +95,7 @@
     instance.deactivate();
   }
 
-  export function setRippleCenter(xCoordinate) {
+  export function setRippleCenter(xCoordinate: number) {
     instance.setRippleCenter(xCoordinate);
   }
 

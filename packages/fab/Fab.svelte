@@ -37,50 +37,54 @@
   <slot />{#if touch}<div class="mdc-fab__touch" />{/if}</svelte:component
 >
 
-<script>
+<script lang="ts">
+  import type { SMUIComponent } from '@smui/common';
   import { setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
-  import { forwardEventsBuilder, classMap } from '@smui/common/internal.js';
+  import {
+    forwardEventsBuilder,
+    classMap,
+    ActionArray,
+  } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
-  import A from '@smui/common/A.svelte';
-  import Button from '@smui/common/Button.svelte';
+  import { A, Button } from '@smui/common/elements';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
   export let style = '';
   export let ripple = true;
-  export let color = 'secondary';
+  export let color: 'primary' | 'secondary' = 'secondary';
   export let mini = false;
   export let exited = false;
   export let extended = false;
   export let touch = false;
-  export let href = null;
+  export let href: string | undefined = undefined;
 
-  let element;
-  let internalClasses = {};
-  let internalStyles = {};
+  let element: SMUIComponent;
+  let internalClasses: { [k: string]: boolean } = {};
+  let internalStyles: { [k: string]: string } = {};
 
-  export let component = href == null ? Button : A;
+  export let component: typeof SMUIComponent = href == null ? Button : A;
 
   setContext('SMUI:label:context', 'fab');
   setContext('SMUI:icon:context', 'fab');
 
-  function addClass(className) {
+  function addClass(className: string) {
     if (!internalClasses[className]) {
       internalClasses[className] = true;
     }
   }
 
-  function removeClass(className) {
+  function removeClass(className: string) {
     if (!(className in internalClasses) || internalClasses[className]) {
       internalClasses[className] = false;
     }
   }
 
-  function addStyle(name, value) {
+  function addStyle(name: string, value: string) {
     if (internalStyles[name] != value) {
       if (value === '' || value == null) {
         delete internalStyles[name];
@@ -91,7 +95,9 @@
     }
   }
 
-  export function getElement() {
+  export function getElement(): ReturnType<
+    InstanceType<typeof component>['getElement']
+  > {
     return element.getElement();
   }
 </script>

@@ -27,7 +27,7 @@
   {/if}
 </span>
 
-<script>
+<script lang="ts">
   import { onMount, getContext, tick } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {
@@ -35,46 +35,55 @@
     classMap,
     useActions,
     dispatch,
-  } from '@smui/common/internal.js';
+    ActionArray,
+  } from '@smui/common/internal';
+
+  import type { SMUIChipsPrimaryActionAccessor } from './Text.types';
   import Checkmark from './Checkmark.svelte';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
-  export let tabindex = getContext('SMUI:chips:chip:focusable') ? '0' : '-1';
+  export let tabindex = getContext<boolean>('SMUI:chips:chip:focusable')
+    ? 0
+    : -1;
 
-  let element;
-  let input;
-  let primaryAction;
-  let internalAttrs = {};
+  let element: HTMLSpanElement;
+  let input: Checkmark | undefined = undefined;
+  let primaryAction: HTMLSpanElement | undefined = undefined;
+  let internalAttrs: { [k: string]: string | undefined } = {};
 
-  const nonInteractive = getContext('SMUI:chips:nonInteractive');
-  const choice = getContext('SMUI:chips:choice');
-  const filter = getContext('SMUI:chips:filter');
-  const isSelected = getContext('SMUI:chips:chip:isSelected');
+  const nonInteractive = getContext<SvelteStore<boolean>>(
+    'SMUI:chips:nonInteractive'
+  );
+  const choice = getContext<SvelteStore<boolean>>('SMUI:chips:choice');
+  const filter = getContext<SvelteStore<boolean>>('SMUI:chips:filter');
+  const isSelected = getContext<SvelteStore<boolean>>(
+    'SMUI:chips:chip:isSelected'
+  );
 
   onMount(() => {
-    let accessor = {
+    let accessor: SMUIChipsPrimaryActionAccessor = {
       focus,
       addAttr,
     };
 
-    dispatch(getElement(), 'SMUI:chips:chip:primary-action:mount', accessor);
+    dispatch(getElement(), 'SMUIChipsChipPrimaryAction:mount', accessor);
 
     return () => {
-      dispatch(getElement(), 'SMUI:chips:chip:primary-action:unmount');
+      dispatch(getElement(), 'SMUIChipsChipPrimaryAction:unmount');
     };
   });
 
-  function addAttr(name, value) {
+  function addAttr(name: string, value: string) {
     if (internalAttrs[name] !== value) {
       internalAttrs[name] = value;
     }
   }
 
-  function waitForTabindex(fn) {
+  function waitForTabindex(fn: () => void) {
     if (internalAttrs['tabindex'] !== element.getAttribute('tabindex')) {
       tick().then(fn);
     } else {

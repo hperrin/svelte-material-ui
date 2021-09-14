@@ -7,16 +7,18 @@
 />
 <slot />
 
-<script>
+<script lang="ts">
   import { get_current_component } from 'svelte/internal';
-  import { forwardEventsBuilder, useActions } from './internal.js';
+
+  import type { ActionArray } from './useActions';
+  import { forwardEventsBuilder, useActions } from './internal';
 
   export let alt = '';
-  export let use = [];
+  export let use: ActionArray = [];
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  let element = null;
+  let element: HTMLImageElement;
 
   export function getElement() {
     return element;

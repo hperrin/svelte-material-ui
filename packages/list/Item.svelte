@@ -48,8 +48,8 @@
   {tabindex}
   on:click={action}
   on:keydown={handleKeydown}
-  on:SMUI:generic:input:mount={(event) => (input = event.detail)}
-  on:SMUI:generic:input:unmount={() => (input = undefined)}
+  on:SMUIGenericInput:mount={handleInputMount}
+  on:SMUIGenericInput:unmount={() => (input = undefined)}
   {href}
   {...internalAttrs}
   {...$$restProps}
@@ -57,32 +57,44 @@
   /></svelte:component
 >
 
-<script context="module">
+<script context="module" lang="ts">
   let counter = 0;
 </script>
 
-<script>
+<script lang="ts">
+  import type {
+    SMUICheckboxInputAccessor,
+    SMUIComponent,
+    SMUIGenericInputAccessor,
+    SMUIRadioInputAccessor,
+  } from '@smui/common';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
     classMap,
     dispatch,
-  } from '@smui/common/internal.js';
+    ActionArray,
+  } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
-  import A from '@smui/common/A.svelte';
-  import Span from '@smui/common/Span.svelte';
-  import Li from '@smui/common/Li.svelte';
+  import { A, Span, Li } from '@smui/common/elements';
+
+  import type { SMUIListItemAccessor } from './Item.types';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
-  let uninitializedValue = () => {};
+  interface UninitializedValue extends Function {}
+  let uninitializedValue: UninitializedValue = () => {};
+  function isUninitializedValue(value: any): value is UninitializedValue {
+    return value === uninitializedValue;
+  }
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
   export let style = '';
-  export let color = null;
-  export let nonInteractive = getContext('SMUI:list:nonInteractive');
+  export let color: 'primary' | 'secondary' | undefined = undefined;
+  export let nonInteractive: boolean =
+    getContext<boolean | undefined>('SMUI:list:nonInteractive') ?? false;
   setContext('SMUI:list:nonInteractive', undefined);
   export let ripple = !nonInteractive;
   export let activated = false;
@@ -90,29 +102,26 @@
   setContext('SMUI:list:item:role', undefined);
   export let selected = false;
   export let disabled = false;
-  let tabindexProp = uninitializedValue;
+  let tabindexProp: UninitializedValue | number = uninitializedValue;
   export { tabindexProp as tabindex };
   export let inputId = 'SMUI-form-field-list-' + counter++;
-  export let href = null;
+  export let href: string | undefined = undefined;
 
-  let element;
-  let internalClasses = {};
-  let internalStyles = {};
-  let internalAttrs = {};
-  let input;
-  let addTabindexIfNoItemsSelectedRaf;
-  let nav = getContext('SMUI:list:item:nav');
+  let element: SMUIComponent;
+  let internalClasses: { [k: string]: boolean } = {};
+  let internalStyles: { [k: string]: string } = {};
+  let internalAttrs: { [k: string]: string | undefined } = {};
+  let input: SMUICheckboxInputAccessor | SMUIRadioInputAccessor | undefined;
+  let addTabindexIfNoItemsSelectedRaf: number | undefined;
+  let nav = getContext<boolean | undefined>('SMUI:list:item:nav');
 
-  $: tabindex =
-    tabindexProp == uninitializedValue
-      ? (!nonInteractive &&
-          !disabled &&
-          (selected || (input && input.checked)) &&
-          '0') ||
-        '-1'
-      : tabindexProp;
+  $: tabindex = isUninitializedValue(tabindexProp)
+    ? !nonInteractive && !disabled && (selected || (input && input.checked))
+      ? 0
+      : -1
+    : tabindexProp;
 
-  export let component = nav ? (href ? A : Span) : Li;
+  export let component: typeof SMUIComponent = nav ? (href ? A : Span) : Li;
 
   setContext('SMUI:generic:input:props', { id: inputId });
   // Reset separator context, because we aren't directly under a list anymore.
@@ -145,7 +154,7 @@
       }
     }
 
-    const accessor = {
+    const accessor: SMUIListItemAccessor = {
       _smui_list_item_accessor: true,
       get element() {
         return getElement();
@@ -166,18 +175,18 @@
 
       // For inputs within item.
       get checked() {
-        return input && input.checked;
+        return (input && input.checked) ?? false;
       },
       set checked(value) {
         if (input) {
-          input.checked = value;
+          input.checked = !!value;
         }
       },
       get hasCheckbox() {
-        return !!(input && input._smui_checkbox_accessor);
+        return !!(input && '_smui_checkbox_accessor' in input);
       },
       get hasRadio() {
-        return !!(input && input._smui_radio_accessor);
+        return !!(input && '_smui_radio_accessor' in input);
       },
       activateRipple() {
         if (input) {
@@ -196,10 +205,10 @@
       },
     };
 
-    dispatch(element, 'SMUI:list:item:mount', accessor);
+    dispatch(element, 'SMUIListItem:mount', accessor);
 
     return () => {
-      dispatch(element, 'SMUI:list:item:unmount', accessor);
+      dispatch(element, 'SMUIListItem:unmount', accessor);
     };
   });
 
@@ -209,25 +218,25 @@
     }
   });
 
-  function hasClass(className) {
+  function hasClass(className: string) {
     return className in internalClasses
       ? internalClasses[className]
       : getElement().classList.contains(className);
   }
 
-  function addClass(className) {
+  function addClass(className: string) {
     if (!internalClasses[className]) {
       internalClasses[className] = true;
     }
   }
 
-  function removeClass(className) {
+  function removeClass(className: string) {
     if (!(className in internalClasses) || internalClasses[className]) {
       internalClasses[className] = false;
     }
   }
 
-  function addStyle(name, value) {
+  function addStyle(name: string, value: string) {
     if (internalStyles[name] != value) {
       if (value === '' || value == null) {
         delete internalStyles[name];
@@ -238,19 +247,19 @@
     }
   }
 
-  function getAttr(name) {
+  function getAttr(name: string) {
     return name in internalAttrs
-      ? internalAttrs[name]
+      ? internalAttrs[name] ?? null
       : getElement().getAttribute(name);
   }
 
-  function addAttr(name, value) {
+  function addAttr(name: string, value: string) {
     if (internalAttrs[name] !== value) {
       internalAttrs[name] = value;
     }
   }
 
-  function removeAttr(name) {
+  function removeAttr(name: string) {
     if (!(name in internalAttrs) || internalAttrs[name] != null) {
       internalAttrs[name] = undefined;
     }
@@ -259,37 +268,47 @@
   function addTabindexIfNoItemsSelected() {
     // Look through next siblings to see if none of them are selected.
     let noneSelected = true;
-    let el = element;
-    while (el.nextSibling) {
-      el = el.nextSibling;
+    let el = element.getElement();
+    while (el.nextElementSibling) {
+      el = el.nextElementSibling as HTMLElement;
       if (
         el.nodeType === 1 &&
-        el.classList.contains('mdc-deprecated-list-item') &&
-        el.attributes['tabindex'] &&
-        el.attributes['tabindex'].value === '0'
+        el.classList.contains('mdc-deprecated-list-item')
       ) {
-        noneSelected = false;
-        break;
+        const tabindexAttr = el.attributes.getNamedItem('tabindex');
+        if (tabindexAttr && tabindexAttr.value === '0') {
+          noneSelected = false;
+          break;
+        }
       }
     }
     if (noneSelected) {
       // This is the first element, and no other element is selected, so the
       // tabindex should be '0'.
-      tabindex = '0';
+      tabindex = 0;
     }
   }
 
-  function action(e) {
+  function action(e: Event) {
     if (!disabled) {
       dispatch(element, 'SMUI:action', e);
     }
   }
 
-  function handleKeydown(e) {
-    const isEnter = e.key === 'Enter' || e.keyCode === 13;
-    const isSpace = e.key === 'Space' || e.keyCode === 32;
+  function handleKeydown(e: KeyboardEvent) {
+    const isEnter = e.key === 'Enter';
+    const isSpace = e.key === 'Space';
     if (isEnter || isSpace) {
       action(e);
+    }
+  }
+
+  function handleInputMount(e: CustomEvent<SMUIGenericInputAccessor>) {
+    if (
+      '_smui_checkbox_accessor' in e.detail ||
+      '_smui_radio_accessor' in e.detail
+    ) {
+      input = e.detail;
     }
   }
 
@@ -300,13 +319,13 @@
       '.mdc-deprecated-list-item__primary-text'
     );
     if (primaryText) {
-      return primaryText.textContent;
+      return primaryText.textContent ?? '';
     }
     const text = element.querySelector('.mdc-deprecated-list-item__text');
     if (text) {
-      return text.textContent;
+      return text.textContent ?? '';
     }
-    return element.textContent;
+    return element.textContent ?? '';
   }
 
   export function getElement() {

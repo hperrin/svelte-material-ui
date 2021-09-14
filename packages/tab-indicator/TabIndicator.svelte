@@ -23,12 +23,12 @@
     style={Object.entries(contentStyles)
       .map(([name, value]) => `${name}: ${value};`)
       .join(' ')}
-    aria-hidden={type === 'icon' ? 'true' : null}
+    aria-hidden={type === 'icon' ? 'true' : undefined}
     {...prefixFilter($$restProps, 'content$')}><slot /></span
   >
 </span>
 
-<script>
+<script lang="ts">
   import {
     MDCFadingTabIndicatorFoundation,
     MDCSlidingTabIndicatorFoundation,
@@ -41,25 +41,28 @@
     exclude,
     prefixFilter,
     useActions,
-  } from '@smui/common/internal.js';
+    ActionArray,
+  } from '@smui/common/internal';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
   export let active = false;
-  export let type = 'underline';
-  export let transition = 'slide';
-  export let content$use = [];
+  export let type: 'underline' | 'icon' = 'underline';
+  export let transition: 'slide' | 'fade' = 'slide';
+  export let content$use: ActionArray = [];
   export let content$class = '';
 
-  let element;
-  let instance;
-  let content;
-  let internalClasses = {};
-  let contentStyles = {};
-  let changeSets = [];
+  let element: HTMLSpanElement;
+  let instance:
+    | MDCFadingTabIndicatorFoundation
+    | MDCSlidingTabIndicatorFoundation;
+  let content: HTMLSpanElement;
+  let internalClasses: { [k: string]: boolean } = {};
+  let contentStyles: { [k: string]: string } = {};
+  let changeSets: (() => void)[][] = [];
 
   let oldTransition = transition;
   $: if (oldTransition !== transition) {
@@ -74,7 +77,7 @@
   // Use sets of changes for DOM updates, to facilitate animations.
   $: if (changeSets.length) {
     requestAnimationFrame(() => {
-      const changeSet = changeSets.shift();
+      const changeSet = changeSets.shift() ?? [];
       changeSets = changeSets;
       for (const fn of changeSet) {
         fn();
@@ -99,18 +102,16 @@
         slide: MDCSlidingTabIndicatorFoundation,
       }[transition] || MDCSlidingTabIndicatorFoundation;
 
-    return Foundation
-      ? new Foundation({
-          addClass: (...props) => doChange(() => addClass(...props)),
-          removeClass: (...props) => doChange(() => removeClass(...props)),
-          computeContentClientRect,
-          setContentStyleProperty: (...props) =>
-            doChange(() => addContentStyle(...props)),
-        })
-      : undefined;
+    return new Foundation({
+      addClass: (...props) => doChange(() => addClass(...props)),
+      removeClass: (...props) => doChange(() => removeClass(...props)),
+      computeContentClientRect,
+      setContentStyleProperty: (...props) =>
+        doChange(() => addContentStyle(...props)),
+    });
   }
 
-  function doChange(fn) {
+  function doChange(fn: () => void) {
     if (changeSets.length) {
       changeSets[changeSets.length - 1].push(fn);
     } else {
@@ -118,19 +119,19 @@
     }
   }
 
-  function addClass(className) {
+  function addClass(className: string) {
     if (!internalClasses[className]) {
       internalClasses[className] = true;
     }
   }
 
-  function removeClass(className) {
+  function removeClass(className: string) {
     if (!(className in internalClasses) || internalClasses[className]) {
       internalClasses[className] = false;
     }
   }
 
-  function addContentStyle(name, value) {
+  function addContentStyle(name: string, value: string) {
     if (contentStyles[name] != value) {
       if (value === '' || value == null) {
         delete contentStyles[name];
@@ -141,7 +142,7 @@
     }
   }
 
-  export function activate(previousIndicatorClientRect) {
+  export function activate(previousIndicatorClientRect: DOMRect) {
     active = true;
     instance.activate(previousIndicatorClientRect);
   }

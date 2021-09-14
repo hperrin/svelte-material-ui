@@ -6,11 +6,9 @@ Tab indicators are visual indicators showing which tab in a set of tabs is activ
 
 Don't install or use this package directly. It's a dependency of the Tab package.
 
-# Demo
+# Examples and Usage Information
 
-[See it in action.](https://sveltematerialui.com/demo/tabs)
-
-[See the demo code.](/site/src/routes/demo/tabs/)
+https://sveltematerialui.com/demo/tabs
 
 # More Information
 

@@ -4,6 +4,7 @@
   "description": "Svelte Material UI - Common",
   "type": "module",
   "module": "index.js",
+  "types": "index.d.ts",
   "keywords": [
     "svelte",
     "svelte3",
@@ -14,6 +15,8 @@
     "sveltejs"
   ],
   "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "publishConfig": {
@@ -30,6 +33,10 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@material/dom": "^11.0.0",
-    "svelte": "^3.35.0"
+    "@tsconfig/svelte": "^2.0.1",
+    "sass": "^1.32.11",
+    "svelte": "^3.35.0",
+    "tslib": "^2.3.1",
+    "typescript": "^4.4.2"
   }
 }

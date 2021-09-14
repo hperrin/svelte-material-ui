@@ -15,7 +15,7 @@
   </InnerGrid>
 </div>
 
-<script>
+<script lang="ts">
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
@@ -23,18 +23,20 @@
     exclude,
     prefixFilter,
     useActions,
-  } from '@smui/common/internal.js';
+    ActionArray,
+  } from '@smui/common/internal';
+
   import InnerGrid from './InnerGrid.svelte';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
   export let fixedColumnWidth = false;
-  export let align = null;
+  export let align: 'left' | 'right' | undefined = undefined;
 
-  let element;
+  let element: HTMLDivElement;
 
   export function getElement() {
     return element;

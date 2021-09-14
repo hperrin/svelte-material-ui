@@ -18,12 +18,11 @@
     'mdc-select--filled': variant === 'filled',
     'mdc-select--outlined': variant === 'outlined',
     'smui-select--standard': variant === 'standard',
-    'mdc-select--with-leading-icon':
-      withLeadingIcon === uninitializedValue
-        ? $$slots.leadingIcon
-        : withLeadingIcon,
+    'mdc-select--with-leading-icon': isUninitializedValue(withLeadingIcon)
+      ? $$slots.leadingIcon
+      : withLeadingIcon,
     'mdc-select--no-label': noLabel || (label == null && !$$slots.label),
-    'mdc-select--invalid': invalid !== uninitializedValue && invalid,
+    'mdc-select--invalid': invalid,
     'mdc-select--activated': menuOpen,
     'mdc-data-table__pagination-rows-per-page-select':
       context === 'data-table:pagination',
@@ -33,8 +32,8 @@
     .map(([name, value]) => `${name}: ${value};`)
     .concat([style])
     .join(' ')}
-  on:SMUI:select:leading-icon:mount={(event) => (leadingIcon = event.detail)}
-  on:SMUI:select:leading-icon:unmount={() => (leadingIcon = undefined)}
+  on:SMUISelectLeadingIcon:mount={(event) => (leadingIcon = event.detail)}
+  on:SMUISelectLeadingIcon:unmount={() => (leadingIcon = undefined)}
   {...exclude($$restProps, [
     'input$',
     'anchor$',
@@ -65,8 +64,8 @@
       [anchor$class]: true,
       'mdc-select__anchor': true,
     })}
-    aria-required={required ? 'true' : null}
-    aria-disabled={disabled ? 'true' : null}
+    aria-required={required ? 'true' : undefined}
+    aria-disabled={disabled ? 'true' : undefined}
     aria-controls={helperId}
     aria-describedby={helperId}
     on:focus={() => instance && instance.handleFocus()}
@@ -196,16 +195,16 @@
       role="listbox"
       {wrapFocus}
       bind:selectedIndex
-      on:SMUI:list:mount={(event) => (list = event.detail)}
+      on:SMUIList:mount={(event) => (list = event.detail)}
       {...prefixFilter($$restProps, 'list$')}><slot /></List
     >
   </Menu>
 </div>
 {#if $$slots.helperText}
   <HelperText
-    on:SMUI:select:helper-text:id={(event) => (helperId = event.detail)}
-    on:SMUI:select:helper-text:mount={(event) => (helperText = event.detail)}
-    on:SMUI:select:helper-text:unmount={() => {
+    on:SMUISelectHelperText:id={(event) => (helperId = event.detail)}
+    on:SMUISelectHelperText:mount={(event) => (helperText = event.detail)}
+    on:SMUISelectHelperText:unmount={() => {
       helperId = undefined;
       helperText = undefined;
     }}
@@ -214,11 +213,19 @@
   >
 {/if}
 
-<script context="module">
+<script context="module" lang="ts">
   let counter = 0;
 </script>
 
-<script>
+<script lang="ts">
+  import type { AddLayoutListener, RemoveLayoutListener } from '@smui/common';
+  import type { Corner } from '@smui/menu-surface';
+  import type { SMUIListAccessor } from '@smui/list';
+  import type { FloatingLabelComponentDev } from '@smui/floating-label';
+  import type { LineRippleComponentDev } from '@smui/line-ripple';
+  import type { NotchedOutlineComponentDev } from '@smui/notched-outline';
+  import type MDCSelectIconFoundation from '@material/select/icon/foundation';
+  import type MDCSelectHelperTextFoundation from '@material/select/helper-text/foundation';
   import { MDCSelectFoundation } from '@material/select';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
   import { writable } from 'svelte/store';
@@ -230,73 +237,88 @@
     prefixFilter,
     useActions,
     dispatch,
-  } from '@smui/common/internal.js';
+    ActionArray,
+  } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
-  import Anchor from '@smui/menu-surface/Anchor.js';
-  import Menu from '@smui/menu/Menu.svelte';
-  import List from '@smui/list/List.svelte';
-  import FloatingLabel from '@smui/floating-label/FloatingLabel.svelte';
-  import LineRipple from '@smui/line-ripple/LineRipple.svelte';
-  import NotchedOutline from '@smui/notched-outline/NotchedOutline.svelte';
+  import Anchor from '@smui/menu-surface/Anchor';
+  import Menu from '@smui/menu';
+  import List from '@smui/list';
+  import FloatingLabel from '@smui/floating-label';
+  import LineRipple from '@smui/line-ripple';
+  import NotchedOutline from '@smui/notched-outline';
+
   import HelperText from './helper-text/HelperText.svelte';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
-  const uninitializedValue = () => {};
+  interface UninitializedValue extends Function {}
+  let uninitializedValue: UninitializedValue = () => {};
+  function isUninitializedValue(value: any): value is UninitializedValue {
+    return value === uninitializedValue;
+  }
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
   export let style = '';
   export let ripple = true;
   export let disabled = false;
-  export let variant = 'standard';
+  export let variant: 'standard' | 'filled' | 'outlined' = 'standard';
   export let noLabel = false;
-  export let label = null;
-  export let value = '';
-  export let key = (item) => item;
+  export let label: string | undefined = undefined;
+  export let value: any = '';
+  export let key: (item: any) => string = (item) => item;
   export let dirty = false;
-  export let invalid = uninitializedValue;
-  export let updateInvalid = invalid === uninitializedValue;
+
+  // Some trickery to detect uninitialized values but also have the right types.
+  export let invalid: boolean = (uninitializedValue as unknown) as boolean;
+  export let updateInvalid: boolean = isUninitializedValue(invalid);
+  if (isUninitializedValue(invalid)) {
+    invalid = false;
+  }
+  // Done with the trickery.
+
   export let required = false;
   export let inputId = 'SMUI-select-' + counter++;
   export let hiddenInput = false;
-  export let anchor$use = [];
+  export let anchor$use: ActionArray = [];
   export let anchor$class = '';
-  export let selectedTextContainer$use = [];
+  export let selectedTextContainer$use: ActionArray = [];
   export let selectedTextContainer$class = '';
-  export let selectedText$use = [];
+  export let selectedText$use: ActionArray = [];
   export let selectedText$class = '';
-  export let dropdownIcon$use = [];
+  export let dropdownIcon$use: ActionArray = [];
   export let dropdownIcon$class = '';
   export let menu$class = '';
-  export let withLeadingIcon = uninitializedValue;
+  export let withLeadingIcon: UninitializedValue | boolean = uninitializedValue;
 
-  let element;
-  let instance;
-  let internalClasses = {};
-  let internalStyles = {};
-  let selectAnchor;
-  let selectAnchorAttrs = {};
-  let selectText;
+  let element: HTMLDivElement;
+  let instance: MDCSelectFoundation;
+  let internalClasses: { [k: string]: boolean } = {};
+  let internalStyles: { [k: string]: string } = {};
+  let selectAnchor: HTMLDivElement;
+  let selectAnchorAttrs: { [k: string]: string | undefined } = {};
+  let selectText: HTMLSpanElement;
   let selectedIndex = -1;
-  let helperId;
-  let addLayoutListener = getContext('SMUI:addLayoutListener');
-  let removeLayoutListener;
+  let helperId: string | undefined = undefined;
+  let addLayoutListener = getContext<AddLayoutListener | undefined>(
+    'SMUI:addLayoutListener'
+  );
+  let removeLayoutListener: RemoveLayoutListener | undefined;
   let menuOpen = false;
-  let menuClasses = {};
-  let anchorElement;
-  let anchorCorner;
+  let menuClasses: { [k: string]: boolean } = {};
+  let anchorElement: Element | undefined = undefined;
+  let anchorCorner: Corner | undefined = undefined;
   let wrapFocus = false;
-  let list;
-  let context = getContext('SMUI:select:context');
+  let list: SMUIListAccessor;
+  let context = getContext<string | undefined>('SMUI:select:context');
   // These are instances, not accessors.
-  let leadingIcon;
-  let helperText;
+  let leadingIcon: MDCSelectIconFoundation | undefined = undefined;
+  let helperText: MDCSelectHelperTextFoundation | undefined = undefined;
 
   // Components
-  let floatingLabel;
-  let lineRipple;
-  let notchedOutline;
+  let floatingLabel: FloatingLabelComponentDev | undefined = undefined;
+  let lineRipple: LineRippleComponentDev | undefined = undefined;
+  let notchedOutline: NotchedOutlineComponentDev | undefined = undefined;
 
   setContext('SMUI:list:role', '');
   setContext('SMUI:list:nav', false);
@@ -354,7 +376,8 @@
     instance = new MDCSelectFoundation(
       {
         // getSelectAdapterMethods
-        getMenuItemAttr: (menuItem, attr) => menuItem.getAttribute(attr),
+        // getMenuItemAttr: (menuItem: Element, attr: string) =>
+        //   menuItem.getAttribute(attr),
         setSelectedText: (text) => {
           $selectedTextStore = text;
         },
@@ -456,25 +479,25 @@
     }
   });
 
-  function hasClass(className) {
+  function hasClass(className: string) {
     return className in internalClasses
       ? internalClasses[className]
       : getElement().classList.contains(className);
   }
 
-  function addClass(className) {
+  function addClass(className: string) {
     if (!internalClasses[className]) {
       internalClasses[className] = true;
     }
   }
 
-  function removeClass(className) {
+  function removeClass(className: string) {
     if (!(className in internalClasses) || internalClasses[className]) {
       internalClasses[className] = false;
     }
   }
 
-  function addStyle(name, value) {
+  function addStyle(name: string, value: string) {
     if (internalStyles[name] != value) {
       if (value === '' || value == null) {
         delete internalStyles[name];
@@ -485,31 +508,31 @@
     }
   }
 
-  function addMenuClass(className) {
+  function addMenuClass(className: string) {
     if (!menuClasses[className]) {
       menuClasses[className] = true;
     }
   }
 
-  function removeMenuClass(className) {
+  function removeMenuClass(className: string) {
     if (!(className in menuClasses) || menuClasses[className]) {
       menuClasses[className] = false;
     }
   }
 
-  function getSelectAnchorAttr(name) {
+  function getSelectAnchorAttr(name: string) {
     return name in selectAnchorAttrs
-      ? selectAnchorAttrs[name]
+      ? selectAnchorAttrs[name] ?? null
       : getElement().getAttribute(name);
   }
 
-  function addSelectAnchorAttr(name, value) {
+  function addSelectAnchorAttr(name: string, value: string) {
     if (selectAnchorAttrs[name] !== value) {
       selectAnchorAttrs[name] = value;
     }
   }
 
-  function removeSelectAnchorAttr(name) {
+  function removeSelectAnchorAttr(name: string) {
     if (!(name in selectAnchorAttrs) || selectAnchorAttrs[name] != null) {
       selectAnchorAttrs[name] = undefined;
     }
@@ -519,16 +542,20 @@
     return list.getOrderedList().map((accessor) => accessor.getValue());
   }
 
-  function getNormalizedXCoordinate(evt) {
-    const targetClientRect = evt.target.getBoundingClientRect();
+  function getNormalizedXCoordinate(
+    evt: (MouseEvent | TouchEvent) & {
+      currentTarget: EventTarget & HTMLDivElement;
+    }
+  ) {
+    const targetClientRect = evt.currentTarget.getBoundingClientRect();
     const xCoordinate = isTouchEvent(evt)
       ? evt.touches[0].clientX
       : evt.clientX;
     return xCoordinate - targetClientRect.left;
   }
 
-  function isTouchEvent(evt) {
-    return !!evt.touches;
+  function isTouchEvent(evt: MouseEvent | TouchEvent): evt is TouchEvent {
+    return 'touches' in evt;
   }
 
   export function focus() {

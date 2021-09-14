@@ -8,27 +8,9 @@ An interactive button or link.
 npm install --save-dev @smui/button
 ```
 
-# Demo
+# Examples and Usage Information
 
-[See it in action.](https://sveltematerialui.com/demo/button)
-
-[See the demo code.](/site/src/routes/demo/button/)
-
-# Basic Usage
-
-```svelte
-<Button on:click={doSomething}>
-  <Label>Do Something</Label>
-</Button>
-
-<script>
-  import Button, { Label } from '@smui/button';
-
-  function doSomething() {
-    alert('something');
-  }
-</script>
-```
+https://sveltematerialui.com/demo/button
 
 # Exports
 
@@ -44,8 +26,8 @@ A button.
 - `ripple`: `true` - Whether to implement a ripple for when the component is interacted with.
 - `color`: `'primary'` - The button's color. ('primary' or 'secondary')
 - `variant`: `'text'` - The button's style variant. ('text', 'raised', 'unelevated', or 'outlined')
-- `touch`: `false` - The button will have a larger touch target.
-- `href`: `null` - If the `href` property is set, the button will use an anchor element, instead of a button element.
+- `touch`: `false` - Increase the touch target.
+- `href`: `undefined` - If the `href` property is set, the button will use an anchor element, instead of a button element.
 - `action`: `'close'` - Used in the context of a dialog. This sets the button's action.
 - `default`: `false` - Used in the context of a dialog. This makes the button the default for the dialog.
 - `secondary`: `false` - Used in the context of a banner. This makes the button the secondary action for the banner.

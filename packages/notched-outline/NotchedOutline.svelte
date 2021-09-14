@@ -9,8 +9,8 @@
     'mdc-notched-outline--no-label': noLabel,
     ...internalClasses,
   })}
-  on:SMUI:floating-label:mount={(event) => (floatingLabel = event.detail)}
-  on:SMUI:floating-label:unmount={() => (floatingLabel = undefined)}
+  on:SMUIFloatingLabel:mount={(event) => (floatingLabel = event.detail)}
+  on:SMUIFloatingLabel:unmount={() => (floatingLabel = undefined)}
   {...$$restProps}
 >
   <div class="mdc-notched-outline__leading" />
@@ -27,7 +27,8 @@
   <div class="mdc-notched-outline__trailing" />
 </div>
 
-<script>
+<script lang="ts">
+  import type { SMUIFloatingLabelAccessor } from '@smui/floating-label';
   import { MDCNotchedOutlineFoundation } from '@material/notched-outline';
   import { onMount } from 'svelte';
   import { get_current_component } from 'svelte/internal';
@@ -35,27 +36,30 @@
     forwardEventsBuilder,
     classMap,
     useActions,
-  } from '@smui/common/internal.js';
+    ActionArray,
+  } from '@smui/common/internal';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
   export let notched = false;
   export let noLabel = false;
 
-  let element;
-  let instance;
-  let floatingLabel;
-  let internalClasses = {};
-  let notchStyles = {};
+  let element: HTMLDivElement;
+  let instance: MDCNotchedOutlineFoundation;
+  let floatingLabel: SMUIFloatingLabelAccessor | undefined;
+  let internalClasses: { [k: string]: boolean } = {};
+  let notchStyles: { [k: string]: string } = {};
 
   $: if (floatingLabel) {
     floatingLabel.addStyle('transition-duration', '0s');
     addClass('mdc-notched-outline--upgraded');
     requestAnimationFrame(() => {
-      floatingLabel.removeStyle('transition-duration');
+      if (floatingLabel) {
+        floatingLabel.removeStyle('transition-duration');
+      }
     });
   } else {
     removeClass('mdc-notched-outline--upgraded');
@@ -76,19 +80,19 @@
     };
   });
 
-  function addClass(className) {
+  function addClass(className: string) {
     if (!internalClasses[className]) {
       internalClasses[className] = true;
     }
   }
 
-  function removeClass(className) {
+  function removeClass(className: string) {
     if (!(className in internalClasses) || internalClasses[className]) {
       internalClasses[className] = false;
     }
   }
 
-  function addNotchStyle(name, value) {
+  function addNotchStyle(name: string, value: string) {
     if (notchStyles[name] != value) {
       if (value === '' || value == null) {
         delete notchStyles[name];
@@ -99,14 +103,14 @@
     }
   }
 
-  function removeNotchStyle(name) {
+  function removeNotchStyle(name: string) {
     if (name in notchStyles) {
       delete notchStyles[name];
       notchStyles = notchStyles;
     }
   }
 
-  export function notch(notchWidth) {
+  export function notch(notchWidth: number) {
     instance.notch(notchWidth);
   }
 

@@ -10,18 +10,19 @@
     ...internalClasses,
   })}
   on:click={(event) => header && notifyHeaderClick(event)}
-  on:SMUI:checkbox:mount={(event) => (checkbox = event.detail)}
-  on:SMUI:checkbox:unmount={() => (checkbox = undefined)}
-  aria-selected={checkbox ? (checkbox.checked ? 'true' : 'false') : null}
+  on:SMUICheckbox:mount={(event) => (checkbox = event.detail)}
+  on:SMUICheckbox:unmount={() => (checkbox = undefined)}
+  aria-selected={checkbox ? (checkbox.checked ? 'true' : 'false') : undefined}
   {...internalAttrs}
   {...$$restProps}><slot /></tr
 >
 
-<script context="module">
+<script context="module" lang="ts">
   let counter = 0;
 </script>
 
-<script>
+<script lang="ts">
+  import type { SMUICheckboxInputAccessor } from '@smui/common';
   import { onMount, getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {
@@ -29,75 +30,98 @@
     classMap,
     useActions,
     dispatch,
-  } from '@smui/common/internal.js';
+    ActionArray,
+  } from '@smui/common/internal';
+
+  import type { SMUIDataTableRowAccessor } from './Row.types';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
   export let rowId = 'SMUI-data-table-row-' + counter++;
 
-  let element;
-  let checkbox;
-  let internalClasses = {};
-  let internalAttrs = {};
-  let header = getContext('SMUI:data-table:row:header');
+  let element: HTMLTableRowElement;
+  let checkbox: SMUICheckboxInputAccessor | undefined = undefined;
+  let internalClasses: { [k: string]: boolean } = {};
+  let internalAttrs: { [k: string]: string | undefined } = {};
+  let header = getContext<boolean>('SMUI:data-table:row:header');
 
   onMount(() => {
-    const accessor = {
-      _smui_data_table_row_accessor: !header,
-      get element() {
-        return getElement();
-      },
-      get checkbox() {
-        return checkbox;
-      },
-      get rowId() {
-        return rowId;
-      },
-      get selected() {
-        return checkbox && checkbox.checked;
-      },
-      addClass,
-      removeClass,
-      getAttr,
-      addAttr,
-    };
+    const accessor: SMUIDataTableRowAccessor = header
+      ? {
+          _smui_data_table_row_accessor: false,
+          get element() {
+            return getElement();
+          },
+          get checkbox() {
+            return checkbox;
+          },
+          get rowId() {
+            return undefined;
+          },
+          get selected() {
+            return (checkbox && checkbox.checked) ?? false;
+          },
+          addClass,
+          removeClass,
+          getAttr,
+          addAttr,
+        }
+      : {
+          _smui_data_table_row_accessor: true,
+          get element() {
+            return getElement();
+          },
+          get checkbox() {
+            return checkbox;
+          },
+          get rowId() {
+            return rowId;
+          },
+          get selected() {
+            return (checkbox && checkbox.checked) ?? false;
+          },
+          addClass,
+          removeClass,
+          getAttr,
+          addAttr,
+        };
 
-    dispatch(getElement(), 'SMUI:data-table:row:mount', accessor);
+    dispatch(getElement(), 'SMUIDataTableRow:mount', accessor);
 
     return () => {
-      dispatch(getElement(), 'SMUI:data-table:row:unmount');
+      dispatch(getElement(), 'SMUIDataTableRow:unmount');
     };
   });
 
-  function addClass(className) {
+  function addClass(className: string) {
     if (!internalClasses[className]) {
       internalClasses[className] = true;
     }
   }
 
-  function removeClass(className) {
+  function removeClass(className: string) {
     if (!(className in internalClasses) || internalClasses[className]) {
       internalClasses[className] = false;
     }
   }
 
-  function getAttr(name) {
+  function getAttr(name: string) {
     return name in internalAttrs
-      ? internalAttrs[name]
+      ? internalAttrs[name] ?? null
       : getElement().getAttribute(name);
   }
 
-  function addAttr(name, value) {
+  function addAttr(name: string, value: string) {
     if (internalAttrs[name] !== value) {
       internalAttrs[name] = value;
     }
   }
 
-  function notifyHeaderClick(event) {
-    dispatch(getElement(), 'SMUI:data-table:header:click', event);
+  function notifyHeaderClick(event: MouseEvent) {
+    dispatch(getElement(), 'SMUIDataTableHeader:click', event);
   }
 
   export function getElement() {

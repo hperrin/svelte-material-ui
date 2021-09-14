@@ -8,31 +8,9 @@ Sliders are range selectors, providing the functionality of `<input type="range"
 npm install --save-dev @smui/slider
 ```
 
-# Demo
+# Examples and Usage Information
 
-[See it in action.](https://sveltematerialui.com/demo/slider)
-
-[See the demo code.](/site/src/routes/demo/slider/)
-
-# Whoa There, These Docs are Outdated
-
-The latest SMUI v3 had a lot of changes, and these docs haven't been caught up yet. You should check out the demo page's code to see the latest usage.
-
-# Basic Usage
-
-```svelte
-<Slider bind:value />
-
-<script>
-  import Slider from '@smui/slider';
-
-  let value = 0;
-</script>
-```
-
-# Exports
-
-todo...
+https://sveltematerialui.com/demo/slider
 
 # More Information
 

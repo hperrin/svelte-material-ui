@@ -14,24 +14,25 @@
   <slot />
 </section>
 
-<script>
+<script lang="ts">
   import { setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
     classMap,
     useActions,
-  } from '@smui/common/internal.js';
+    ActionArray,
+  } from '@smui/common/internal';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
-  export let align = 'start';
+  export let align: 'start' | 'end' = 'start';
   export let toolbar = false;
 
-  let element;
+  let element: HTMLElement;
 
   setContext(
     'SMUI:icon-button:context',

@@ -27,14 +27,14 @@
     .map(([name, value]) => `${name}: ${value};`)
     .concat([style])
     .join(' ')}
-  on:SMUI:top-app-bar:icon-button:nav={() =>
+  on:SMUITopAppBarIconButton:nav={() =>
     instance && instance.handleNavigationClick()}
   {...$$restProps}
 >
   <slot />
 </header>
 
-<script>
+<script lang="ts">
   import {
     MDCTopAppBarBaseFoundation,
     MDCTopAppBarFoundation,
@@ -43,38 +43,55 @@
   } from '@material/top-app-bar';
   import { onMount } from 'svelte';
   import { get_current_component } from 'svelte/internal';
-  import { readable } from 'svelte/store';
+  import { readable, Subscriber } from 'svelte/store';
   import {
     forwardEventsBuilder,
     classMap,
     useActions,
     dispatch,
-  } from '@smui/common/internal.js';
+    ActionArray,
+  } from '@smui/common/internal';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
-  let uninitializedValue = () => {};
+  interface UninitializedValue extends Function {}
+  let uninitializedValue: UninitializedValue = () => {};
+  function isUninitializedValue(value: any): value is UninitializedValue {
+    return value === uninitializedValue;
+  }
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
   export let style = '';
   export let variant = 'standard';
   export let color = 'primary';
-  export let collapsed = uninitializedValue;
-  export let prominent = false;
-  export let dense = false;
-  export let scrollTarget = null;
 
-  let element;
-  let instance;
-  let internalClasses = {};
-  let internalStyles = {};
-  const alwaysCollapsed = collapsed !== uninitializedValue && !!collapsed;
-  if (collapsed === uninitializedValue) {
+  // Some trickery to detect uninitialized values but also have the right types.
+  export let collapsed: boolean = (uninitializedValue as unknown) as boolean;
+  const alwaysCollapsed = !isUninitializedValue(collapsed) && !!collapsed;
+  if (isUninitializedValue(collapsed)) {
     collapsed = false;
   }
+  // Done with the trickery.
 
-  let propStoreSet;
+  export let prominent = false;
+  export let dense = false;
+  export let scrollTarget: HTMLElement | undefined = undefined;
+
+  let element: HTMLElement;
+  let instance:
+    | MDCTopAppBarBaseFoundation
+    | MDCShortTopAppBarFoundation
+    | MDCFixedTopAppBarFoundation
+    | MDCTopAppBarFoundation;
+  let internalClasses: { [k: string]: boolean } = {};
+  let internalStyles: { [k: string]: string } = {};
+
+  let propStoreSet: Subscriber<{
+    variant: string;
+    prominent: boolean;
+    dense: boolean;
+  }>;
   let propStore = readable({ variant, prominent, dense }, (set) => {
     propStoreSet = set;
   });
@@ -86,11 +103,11 @@
     });
   }
 
-  $: if (instance && variant === 'short') {
+  $: if (instance && variant === 'short' && 'setAlwaysCollapsed' in instance) {
     instance.setAlwaysCollapsed(alwaysCollapsed);
   }
 
-  let oldScrollTarget = null;
+  let oldScrollTarget: HTMLElement | undefined = undefined;
   $: if (oldScrollTarget !== scrollTarget) {
     if (oldScrollTarget) {
       oldScrollTarget.removeEventListener('scroll', handleTargetScroll);
@@ -142,25 +159,25 @@
     });
   }
 
-  function hasClass(className) {
+  function hasClass(className: string) {
     return className in internalClasses
       ? internalClasses[className]
       : getElement().classList.contains(className);
   }
 
-  function addClass(className) {
+  function addClass(className: string) {
     if (!internalClasses[className]) {
       internalClasses[className] = true;
     }
   }
 
-  function removeClass(className) {
+  function removeClass(className: string) {
     if (!(className in internalClasses) || internalClasses[className]) {
       internalClasses[className] = false;
     }
   }
 
-  function addStyle(name, value) {
+  function addStyle(name: string, value: string) {
     if (internalStyles[name] != value) {
       if (value === '' || value == null) {
         delete internalStyles[name];
@@ -175,7 +192,7 @@
     if (instance) {
       instance.handleTargetScroll();
       if (variant === 'short') {
-        collapsed = instance.isCollapsed;
+        collapsed = 'isCollapsed' in instance && instance.isCollapsed;
       }
     }
   }

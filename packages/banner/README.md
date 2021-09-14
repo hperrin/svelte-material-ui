@@ -10,19 +10,9 @@ Banners are persistent and non-modal, and they should be displayed at the top of
 npm install --save-dev @smui/banner
 ```
 
-# Demo
+# Examples and Usage Information
 
-[See it in action.](https://sveltematerialui.com/demo/banner)
-
-[See the demo code.](/site/src/routes/demo/banner/)
-
-# Basic Usage
-
-todo...
-
-# Exports
-
-todo...
+https://sveltematerialui.com/demo/banner
 
 # More Information
 

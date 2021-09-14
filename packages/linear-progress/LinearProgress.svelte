@@ -15,9 +15,9 @@
     .concat([style])
     .join(' ')}
   role="progressbar"
-  aria-valuemin="0"
-  aria-valuemax="1"
-  aria-valuenow={indeterminate ? null : `${progress.toLocaleString()}`}
+  aria-valuemin={0}
+  aria-valuemax={1}
+  aria-valuenow={indeterminate ? undefined : progress}
   on:transitionend={() => instance && instance.handleTransitionEnd()}
   {...internalAttrs}
   {...$$restProps}
@@ -44,36 +44,43 @@
   </div>
 </div>
 
-<script>
-  import { MDCLinearProgressFoundation } from '@material/linear-progress';
+<script lang="ts">
+  import type { Writable } from 'svelte/store';
+  import {
+    MDCLinearProgressFoundation,
+    MDCResizeObserver,
+  } from '@material/linear-progress';
   import { onMount, getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
     classMap,
     useActions,
-  } from '@smui/common/internal.js';
+    ActionArray,
+  } from '@smui/common/internal';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
   export let style = '';
   export let indeterminate = false;
   export let closed = false;
   export let progress = 0;
-  export let buffer = null;
+  export let buffer: number | undefined = undefined;
 
-  let element;
-  let instance;
-  let internalClasses = {};
-  let internalAttrs = {};
-  let internalStyles = {};
-  let bufferBarStyles = {};
-  let primaryBarStyles = {};
-  let context = getContext('SMUI:linear-progress:context');
-  let closedStore = getContext('SMUI:linear-progress:closed');
+  let element: HTMLDivElement;
+  let instance: MDCLinearProgressFoundation;
+  let internalClasses: { [k: string]: boolean } = {};
+  let internalAttrs: { [k: string]: string | undefined } = {};
+  let internalStyles: { [k: string]: string } = {};
+  let bufferBarStyles: { [k: string]: string } = {};
+  let primaryBarStyles: { [k: string]: string } = {};
+  let context = getContext<string | undefined>('SMUI:linear-progress:context');
+  let closedStore = getContext<Writable<boolean> | undefined>(
+    'SMUI:linear-progress:closed'
+  );
 
   $: if (closedStore) {
     $closedStore = closed;
@@ -119,7 +126,9 @@
       attachResizeObserver: (callback) => {
         const RO = window.ResizeObserver;
         if (RO) {
-          const ro = new RO(callback);
+          const ro = (new RO(
+            (callback as unknown) as ResizeObserverCallback
+          ) as unknown) as MDCResizeObserver;
           ro.observe(getElement());
           return ro;
         }
@@ -136,37 +145,37 @@
     };
   });
 
-  function hasClass(className) {
+  function hasClass(className: string) {
     return className in internalClasses
       ? internalClasses[className]
       : getElement().classList.contains(className);
   }
 
-  function addClass(className) {
+  function addClass(className: string) {
     if (!internalClasses[className]) {
       internalClasses[className] = true;
     }
   }
 
-  function removeClass(className) {
+  function removeClass(className: string) {
     if (!(className in internalClasses) || internalClasses[className]) {
       internalClasses[className] = false;
     }
   }
 
-  function addAttr(name, value) {
+  function addAttr(name: string, value: string) {
     if (internalAttrs[name] !== value) {
       internalAttrs[name] = value;
     }
   }
 
-  function removeAttr(name) {
+  function removeAttr(name: string) {
     if (!(name in internalAttrs) || internalAttrs[name] != null) {
       internalAttrs[name] = undefined;
     }
   }
 
-  function addStyle(name, value) {
+  function addStyle(name: string, value: string) {
     if (internalStyles[name] != value) {
       if (value === '' || value == null) {
         delete internalStyles[name];
@@ -177,7 +186,7 @@
     }
   }
 
-  function addBufferBarStyle(name, value) {
+  function addBufferBarStyle(name: string, value: string) {
     if (bufferBarStyles[name] != value) {
       if (value === '' || value == null) {
         delete bufferBarStyles[name];
@@ -188,7 +197,7 @@
     }
   }
 
-  function addPrimaryBarStyle(name, value) {
+  function addPrimaryBarStyle(name: string, value: string) {
     if (primaryBarStyles[name] != value) {
       if (value === '' || value == null) {
         delete primaryBarStyles[name];

@@ -6,7 +6,6 @@
     [className]: true,
     'mdc-text-field__input': true,
   })}
-  on:change={(e) => (type === 'file' || type === 'range') && valueUpdater(e)}
   on:input={(e) => type !== 'file' && valueUpdater(e)}
   on:change={changeHandler}
   {type}
@@ -16,33 +15,38 @@
   {...$$restProps}
 />
 
-<script>
+<script lang="ts">
   import { onMount } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
     classMap,
     useActions,
-  } from '@smui/common/internal.js';
+    ActionArray,
+  } from '@smui/common/internal';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
   export let type = 'text';
   // Always having a placeholder fixes Safari's baseline alignment.
   // See: https://github.com/philipwalton/flexbugs/issues/270
   export let placeholder = ' ';
-  export let value = '';
-  export let files = undefined;
+  export let value: string | number | null | undefined = '';
+  export let files: FileList | null = null;
   export let dirty = false;
   export let invalid = false;
   export let updateInvalid = true;
+  /** When the value of the input is "", set value prop to null. */
+  export let emptyValueNull = value === null;
+  /** When the value of the input is "", set value prop to undefined. */
+  export let emptyValueUndefined = value === undefined;
 
-  let element;
-  let internalAttrs = {};
-  let valueProp = {};
+  let element: HTMLInputElement;
+  let internalAttrs: { [k: string]: string | undefined } = {};
+  let valueProp: { value?: string | number } = {};
 
   $: if (type === 'file') {
     delete valueProp.value;
@@ -57,50 +61,67 @@
     }
   });
 
-  function toNumber(value) {
+  function toNumber(value: string) {
     if (value === '') {
       const nan = new Number(Number.NaN);
-      nan.length = 0;
-      return nan;
+      ((nan as unknown) as Array<any>).length = 0;
+      return nan as number;
     }
     return +value;
   }
 
-  function valueUpdater(e) {
+  function valueUpdater(
+    e: Event & { currentTarget: EventTarget & HTMLInputElement }
+  ) {
+    if (type === 'file') {
+      files = e.currentTarget.files;
+      return;
+    }
+    if (e.currentTarget.value === '' && emptyValueNull) {
+      value = null;
+      return;
+    }
+    if (e.currentTarget.value === '' && emptyValueUndefined) {
+      value = undefined;
+      return;
+    }
     switch (type) {
       case 'number':
       case 'range':
-        value = toNumber(e.target.value);
+        value = toNumber(e.currentTarget.value);
         break;
-      case 'file':
-        files = e.target.files;
       // Fall through.
       default:
-        value = e.target.value;
+        value = e.currentTarget.value;
         break;
     }
   }
 
-  function changeHandler(e) {
+  function changeHandler(
+    e: Event & { currentTarget: EventTarget & HTMLInputElement }
+  ) {
+    if (type === 'file' || type === 'range') {
+      valueUpdater(e);
+    }
     dirty = true;
     if (updateInvalid) {
       invalid = element.matches(':invalid');
     }
   }
 
-  export function getAttr(name) {
+  export function getAttr(name: string) {
     return name in internalAttrs
-      ? internalAttrs[name]
+      ? internalAttrs[name] ?? null
       : getElement().getAttribute(name);
   }
 
-  export function addAttr(name, value) {
+  export function addAttr(name: string, value: string) {
     if (internalAttrs[name] !== value) {
       internalAttrs[name] = value;
     }
   }
 
-  export function removeAttr(name) {
+  export function removeAttr(name: string) {
     if (!(name in internalAttrs) || internalAttrs[name] != null) {
       internalAttrs[name] = undefined;
     }

@@ -8,37 +8,9 @@ Lists are vertical content sections.
 npm install --save-dev @smui/list
 ```
 
-# Demo
+# Examples and Usage Information
 
-[See it in action.](https://sveltematerialui.com/demo/list)
-
-[See the demo code.](/site/src/routes/demo/list/)
-
-# Whoa There, These Docs are Outdated
-
-The latest SMUI v3 had a lot of changes, and these docs haven't been caught up yet. You should check out the demo page's code to see the latest usage.
-
-# Basic Usage
-
-```svelte
-<List>
-  {#each fruits as fruit}
-    <Item>
-      <Text>{fruit}</Text>
-    </Item>
-  {/each}
-</List>
-
-<script>
-  import List, { Item, Text } from '@smui/list';
-
-  let fruits = ['Apple', 'Orange', 'Banana', 'Mango'];
-</script>
-```
-
-# Exports
-
-todo...
+https://sveltematerialui.com/demo/list
 
 # More Information
 

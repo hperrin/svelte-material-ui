@@ -3,7 +3,7 @@
     bind:this={element}
     use:forwardEvents
     class="mdc-banner__fixed"
-    style={width == null ? null : `width: ${width}px;`}
+    style={width == null ? undefined : `width: ${width}px;`}
   >
     <slot />
   </div>
@@ -11,16 +11,16 @@
   <slot />
 {/if}
 
-<script>
+<script lang="ts">
   import { get_current_component } from 'svelte/internal';
-  import { forwardEventsBuilder } from '@smui/common/internal.js';
+  import { forwardEventsBuilder } from '@smui/common/internal';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
   export let fixed = false;
-  export let width = null;
+  export let width: number | undefined = undefined;
 
-  let element;
+  let element: HTMLDivElement;
 
   export function getElement() {
     return element;

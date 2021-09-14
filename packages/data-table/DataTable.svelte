@@ -8,15 +8,15 @@
     'mdc-data-table--sticky-header': stickyHeader,
     ...internalClasses,
   })}
-  on:SMUI:checkbox:mount={() => instance && postMount && instance.layout()}
-  on:SMUI:data-table:header:mount={(event) => (header = event.detail)}
-  on:SMUI:data-table:header:unmount={() => (header = undefined)}
-  on:SMUI:data-table:body:mount={(event) => (body = event.detail)}
-  on:SMUI:data-table:body:unmount={() => (body = undefined)}
-  on:SMUI:data-table:header:checkbox:change={() =>
+  on:SMUICheckbox:mount={() => instance && postMount && instance.layout()}
+  on:SMUIDataTableHeader:mount={(event) => (header = event.detail)}
+  on:SMUIDataTableHeader:unmount={() => (header = undefined)}
+  on:SMUIDataTableBody:mount={(event) => (body = event.detail)}
+  on:SMUIDataTableBody:unmount={() => (body = undefined)}
+  on:SMUIDataTableHeaderCheckbox:change={() =>
     instance && instance.handleHeaderRowCheckboxChange()}
-  on:SMUI:data-table:header:click={handleHeaderRowClick}
-  on:SMUI:data-table:body:checkbox:change={(event) =>
+  on:SMUIDataTableHeader:click={handleHeaderRowClick}
+  on:SMUIDataTableBodyCheckbox:change={(event) =>
     instance && instance.handleRowCheckboxChange(event)}
   {...exclude($$restProps, ['container$', 'table$'])}
 >
@@ -56,8 +56,13 @@
   <slot name="paginate" />
 </div>
 
-<script>
-  import { MDCDataTableFoundation } from '@material/data-table';
+<script lang="ts">
+  import type { AddLayoutListener, RemoveLayoutListener } from '@smui/common';
+  import {
+    MDCDataTableFoundation,
+    ProgressIndicatorStyles,
+    SortValue,
+  } from '@material/data-table';
   import { ponyfill } from '@material/dom';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
   import { writable } from 'svelte/store';
@@ -69,34 +74,44 @@
     prefixFilter,
     useActions,
     dispatch,
-  } from '@smui/common/internal.js';
+    ActionArray,
+  } from '@smui/common/internal';
+
+  import type { SMUIDataTableHeadAccessor } from './Head.types';
+  import type { SMUIDataTableBodyAccessor } from './Body.types';
+
   const { closest } = ponyfill;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
   export let stickyHeader = false;
   export let sortable = false;
-  export let sort = null;
-  export let sortDirection = 'ascending';
+  export let sort: string | null = null;
+  export let sortDirection: Lowercase<keyof typeof SortValue> = 'ascending';
   export let sortAscendingAriaLabel = 'sorted, ascending';
   export let sortDescendingAriaLabel = 'sorted, descending';
-  export let container$use = [];
+  export let container$use: ActionArray = [];
   export let container$class = '';
-  export let table$use = [];
+  export let table$use: ActionArray = [];
   export let table$class = '';
 
-  let element;
-  let instance;
-  let container;
-  let header;
-  let body;
-  let internalClasses = {};
-  let progressIndicatorStyles = {};
-  let addLayoutListener = getContext('SMUI:addLayoutListener');
-  let removeLayoutListener;
+  let element: HTMLDivElement;
+  let instance: MDCDataTableFoundation;
+  let container: HTMLDivElement;
+  let header: SMUIDataTableHeadAccessor | undefined = undefined;
+  let body: SMUIDataTableBodyAccessor | undefined = undefined;
+  let internalClasses: { [k: string]: boolean } = {};
+  let progressIndicatorStyles: ProgressIndicatorStyles = {
+    height: 'auto',
+    top: 'initial',
+  };
+  let addLayoutListener = getContext<AddLayoutListener | undefined>(
+    'SMUI:addLayoutListener'
+  );
+  let removeLayoutListener: RemoveLayoutListener | undefined;
   let postMount = false;
   let progressClosed = writable(false);
   let sortStore = writable(sort);
@@ -121,7 +136,7 @@
     removeLayoutListener = addLayoutListener(layout);
   }
 
-  let previousProgressClosed = null;
+  let previousProgressClosed: boolean | undefined = undefined;
   $: if (
     $$slots.progress &&
     instance &&
@@ -140,19 +155,19 @@
       addClass,
       removeClass,
       getHeaderCellElements: () =>
-        header.cells.map((accessor) => accessor.element),
-      getHeaderCellCount: () => header.cells.length,
+        header?.cells.map((accessor) => accessor.element) ?? [],
+      getHeaderCellCount: () => header?.cells.length ?? 0,
       getAttributeByHeaderCellIndex: (index, name) => {
-        return header.orderedCells[index].getAttr(name);
+        return header?.orderedCells[index].getAttr(name) ?? null;
       },
       setAttributeByHeaderCellIndex: (index, name, value) => {
-        header.orderedCells[index].addAttr(name, value);
+        header?.orderedCells[index].addAttr(name, value);
       },
       setClassNameByHeaderCellIndex: (index, className) => {
-        header.orderedCells[index].addClass(className);
+        header?.orderedCells[index].addClass(className);
       },
       removeClassNameByHeaderCellIndex: (index, className) => {
-        header.orderedCells[index].removeClass(className);
+        header?.orderedCells[index].removeClass(className);
       },
       notifySortAction: (data) => {
         sort = data.columnId;
@@ -173,27 +188,32 @@
         progressIndicatorStyles = styles;
       },
       addClassAtRowIndex: (rowIndex, className) => {
-        body.orderedRows[rowIndex].addClass(className);
+        body?.orderedRows[rowIndex].addClass(className);
       },
-      getRowCount: () => body.rows.length,
-      getRowElements: () => body.rows.map((accessor) => accessor.element),
-      getRowIdAtIndex: (rowIndex) => body.orderedRows[rowIndex].rowId,
+      getRowCount: () => body?.rows.length ?? 0,
+      getRowElements: () =>
+        body?.rows.map((accessor) => accessor.element) ?? [],
+      getRowIdAtIndex: (rowIndex) => body?.orderedRows[rowIndex].rowId ?? null,
       getRowIndexByChildElement: (el) => {
-        return body.orderedRows
-          .map((accessor) => accessor.element)
-          .indexOf(closest(el, '.mdc-data-table__row'));
+        return (
+          body?.orderedRows
+            .map((accessor) => accessor.element)
+            .indexOf(
+              closest(el, '.mdc-data-table__row') as HTMLTableRowElement
+            ) ?? -1
+        );
       },
       getSelectedRowCount: () =>
-        body.rows.filter((accessor) => accessor.selected).length,
+        body?.rows.filter((accessor) => accessor.selected).length ?? 0,
       isCheckboxAtRowIndexChecked: (rowIndex) => {
-        const checkbox = body.orderedRows[rowIndex].checkbox;
+        const checkbox = body?.orderedRows[rowIndex].checkbox;
         if (checkbox) {
           return checkbox.checked;
         }
         return false;
       },
       isHeaderRowCheckboxChecked: () => {
-        const checkbox = header.checkbox;
+        const checkbox = header?.checkbox;
         if (checkbox) {
           return checkbox.checked;
         }
@@ -203,13 +223,15 @@
         !!getElement().querySelector('.mdc-data-table__row-checkbox') ||
         !!getElement().querySelector('.mdc-data-table__header-row-checkbox'),
       notifyRowSelectionChanged: (data) => {
-        const row = body.orderedRows[data.rowIndex];
-        dispatch(getElement(), 'MDCDataTable:rowSelectionChanged', {
-          row: row.element,
-          rowId: row.rowId,
-          rowIndex: data.rowIndex,
-          selected: data.selected,
-        });
+        const row = body?.orderedRows[data.rowIndex];
+        if (row) {
+          dispatch(getElement(), 'MDCDataTable:rowSelectionChanged', {
+            row: row.element,
+            rowId: row.rowId,
+            rowIndex: data.rowIndex,
+            selected: data.selected,
+          });
+        }
       },
       notifySelectedAll: () => {
         setHeaderRowCheckboxIndeterminate(false);
@@ -226,20 +248,20 @@
         // Handled automatically.
       },
       removeClassAtRowIndex: (rowIndex, className) => {
-        body.orderedRows[rowIndex].removeClass(className);
+        body?.orderedRows[rowIndex].removeClass(className);
       },
       setAttributeAtRowIndex: (rowIndex, name, value) => {
-        body.orderedRows[rowIndex].addAttr(name, value);
+        body?.orderedRows[rowIndex].addAttr(name, value);
       },
       setHeaderRowCheckboxChecked: (checked) => {
-        const checkbox = header.checkbox;
+        const checkbox = header?.checkbox;
         if (checkbox) {
           checkbox.checked = checked;
         }
       },
       setHeaderRowCheckboxIndeterminate,
       setRowCheckboxCheckedAtIndex: (rowIndex, checked) => {
-        const checkbox = body.orderedRows[rowIndex].checkbox;
+        const checkbox = body?.orderedRows[rowIndex].checkbox;
         if (checkbox) {
           checkbox.checked = checked;
         }
@@ -266,40 +288,40 @@
     }
   });
 
-  function addClass(className) {
+  function addClass(className: string) {
     if (!internalClasses[className]) {
       internalClasses[className] = true;
     }
   }
 
-  function removeClass(className) {
+  function removeClass(className: string) {
     if (!(className in internalClasses) || internalClasses[className]) {
       internalClasses[className] = false;
     }
   }
 
-  function setHeaderRowCheckboxIndeterminate(indeterminate) {
-    const checkbox = header.checkbox;
+  function setHeaderRowCheckboxIndeterminate(indeterminate: boolean) {
+    const checkbox = header?.checkbox;
     if (checkbox) {
       checkbox.indeterminate = indeterminate;
     }
   }
 
-  function handleHeaderRowClick(event) {
-    if (!instance) {
+  function handleHeaderRowClick(event: CustomEvent<MouseEvent>) {
+    if (!instance || !event.detail.target) {
       return;
     }
 
     const headerCell = closest(
-      event.detail.target,
+      event.detail.target as Element,
       '.mdc-data-table__header-cell--with-sort'
-    );
+    ) as HTMLTableCellElement;
 
     if (!headerCell) {
       return;
     }
 
-    const orderedCells = header.orderedCells;
+    const orderedCells = header?.orderedCells ?? [];
 
     const columnIndex = orderedCells
       .map((accessor) => accessor.element)
@@ -307,7 +329,7 @@
     if (columnIndex === -1) {
       return;
     }
-    const columnId = orderedCells[columnIndex].columnId;
+    const columnId = orderedCells[columnIndex].columnId ?? null;
 
     instance.handleSortAction({ columnId, columnIndex, headerCell });
   }

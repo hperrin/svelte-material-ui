@@ -1,16 +1,16 @@
 <MenuSurface
   bind:this={element}
-  use={[forwardEvents, ...use]}
+  use={usePass}
   class={classMap({
     [className]: true,
     'mdc-menu': true,
   })}
   bind:open
-  on:SMUI:menu-surface:mount={handleMenuSurfaceAccessor}
-  on:SMUI:list:mount={handleListAccessor}
+  on:SMUIMenuSurface:mount={handleMenuSurfaceAccessor}
+  on:SMUIList:mount={handleListAccessor}
   on:MDCMenuSurface:opened={() =>
     instance && instance.handleMenuSurfaceOpened()}
-  on:keydown={(event) => instance && instance.handleKeydown(event)}
+  on:keydown={handleKeydown}
   on:MDCList:action={(event) =>
     instance &&
     instance.handleItemAction(
@@ -19,7 +19,12 @@
   {...$$restProps}><slot /></MenuSurface
 >
 
-<script>
+<script lang="ts">
+  import type { SMUIListAccessor } from '@smui/list';
+  import type {
+    MenuSurfaceComponentDev,
+    SMUIMenuSurfaceAccessor,
+  } from '@smui/menu-surface';
   import { MDCMenuFoundation, cssClasses } from '@material/menu';
   import { ponyfill } from '@material/dom';
   import { onMount } from 'svelte';
@@ -28,21 +33,26 @@
     forwardEventsBuilder,
     classMap,
     dispatch,
-  } from '@smui/common/internal.js';
-  import MenuSurface from '@smui/menu-surface/MenuSurface.svelte';
+    ActionArray,
+  } from '@smui/common/internal';
+  import MenuSurface from '@smui/menu-surface';
+
+  import type { DefaultFocusState } from './Menu.types';
+
   const { closest } = ponyfill;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  export let use = [];
+  export let use: ActionArray = [];
+  $: usePass = [forwardEvents, ...use] as ActionArray;
   let className = '';
   export { className as class };
   export let open = false;
 
-  let element;
-  let instance;
-  let menuSurfaceAccessor;
-  let listAccessor;
+  let element: MenuSurfaceComponentDev;
+  let instance: MDCMenuFoundation;
+  let menuSurfaceAccessor: SMUIMenuSurfaceAccessor;
+  let listAccessor: SMUIListAccessor;
 
   onMount(() => {
     instance = new MDCMenuFoundation({
@@ -74,7 +84,9 @@
         }),
       getMenuItemCount: () => listAccessor.items.length,
       focusItemAtIndex: (index) => listAccessor.focusItemAtIndex(index),
-      focusListRoot: () => listAccessor.element.focus(),
+      focusListRoot: () =>
+        'focus' in listAccessor.element &&
+        (listAccessor.element as HTMLInputElement).focus(),
       isSelectableItemAtIndex: (index) =>
         !!closest(
           listAccessor.getOrderedList()[index].element,
@@ -86,7 +98,7 @@
           orderedList[index].element,
           `.${cssClasses.MENU_SELECTION_GROUP}`
         );
-        const selectedItemEl = selectionGroupEl.querySelector(
+        const selectedItemEl = selectionGroupEl?.querySelector(
           `.${cssClasses.MENU_SELECTED_LIST_ITEM}`
         );
         return selectedItemEl
@@ -95,7 +107,7 @@
       },
     });
 
-    dispatch(element, 'SMUI:menu:mount', instance);
+    dispatch(element, 'SMUIMenu:mount', instance);
 
     instance.init();
 
@@ -104,13 +116,19 @@
     };
   });
 
-  function handleMenuSurfaceAccessor(event) {
+  function handleKeydown(event: Event) {
+    instance && instance.handleKeydown(event as KeyboardEvent);
+  }
+
+  function handleMenuSurfaceAccessor(
+    event: CustomEvent<SMUIMenuSurfaceAccessor>
+  ) {
     if (!menuSurfaceAccessor) {
       menuSurfaceAccessor = event.detail;
     }
   }
 
-  function handleListAccessor(event) {
+  function handleListAccessor(event: CustomEvent<SMUIListAccessor>) {
     if (!listAccessor) {
       listAccessor = event.detail;
     }
@@ -120,11 +138,11 @@
     return open;
   }
 
-  export function setOpen(value) {
+  export function setOpen(value: boolean) {
     open = value;
   }
 
-  export function setDefaultFocusState(focusState) {
+  export function setDefaultFocusState(focusState: DefaultFocusState) {
     instance.setDefaultFocusState(focusState);
   }
 

@@ -7,14 +7,15 @@
     'mdc-select__icon': true,
   })}
   {tabindex}
-  aria-hidden={tabindex === '-1' ? 'true' : 'false'}
-  aria-disabled={role === 'button' ? (disabled ? 'true' : 'false') : null}
+  aria-hidden={tabindex === -1 ? 'true' : 'false'}
+  aria-disabled={role === 'button' ? (disabled ? 'true' : 'false') : undefined}
   {role}
   {...internalAttrs}
-  {...$$restProps}><slot /></i
+  {...$$restProps}
+  >{#if content == null}<slot />{:else}{content}{/if}</i
 >
 
-<script>
+<script lang="ts">
   import { MDCSelectIconFoundation } from '@material/select/icon/foundation.js';
   import { onMount } from 'svelte';
   import { get_current_component } from 'svelte/internal';
@@ -23,20 +24,22 @@
     classMap,
     useActions,
     dispatch,
-  } from '@smui/common/internal.js';
+    ActionArray,
+  } from '@smui/common/internal';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
-  export let role = null;
-  export let tabindex = role === 'button' ? '0' : '-1';
+  export let role: string | undefined = undefined;
+  export let tabindex = role === 'button' ? 0 : -1;
   export let disabled = false;
 
-  let element;
-  let instance;
-  let internalAttrs = {};
+  let element: HTMLElement;
+  let instance: MDCSelectIconFoundation;
+  let internalAttrs: { [k: string]: string | undefined } = {};
+  let content: string | undefined = undefined;
 
   onMount(() => {
     instance = new MDCSelectIconFoundation({
@@ -53,30 +56,30 @@
       notifyIconAction: () => dispatch(getElement(), 'MDCSelect:icon'),
     });
 
-    dispatch(getElement(), 'SMUI:select:leading-icon:mount', instance);
+    dispatch(getElement(), 'SMUISelectLeadingIcon:mount', instance);
 
     instance.init();
 
     return () => {
-      dispatch(getElement(), 'SMUI:select:leading-icon:unmount', instance);
+      dispatch(getElement(), 'SMUISelectLeadingIcon:unmount', instance);
 
       instance.destroy();
     };
   });
 
-  function getAttr(name) {
+  function getAttr(name: string) {
     return name in internalAttrs
-      ? internalAttrs[name]
+      ? internalAttrs[name] ?? null
       : getElement().getAttribute(name);
   }
 
-  function addAttr(name, value) {
+  function addAttr(name: string, value: string) {
     if (internalAttrs[name] !== value) {
       internalAttrs[name] = value;
     }
   }
 
-  function removeAttr(name) {
+  function removeAttr(name: string) {
     if (!(name in internalAttrs) || internalAttrs[name] != null) {
       internalAttrs[name] = undefined;
     }

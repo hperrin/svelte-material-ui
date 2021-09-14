@@ -12,22 +12,23 @@
   <slot />
 </div>
 
-<script>
+<script lang="ts">
   import { get_current_component } from 'svelte/internal';
   import {
     forwardEventsBuilder,
     classMap,
     useActions,
-  } from '@smui/common/internal.js';
+    ActionArray,
+  } from '@smui/common/internal';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
-  export let variant = 'text';
+  export let variant: 'text' | 'raised' | 'unelevated' | 'outlined' = 'text';
 
-  let element;
+  let element: HTMLDivElement;
 
   export function getElement() {
     return element;

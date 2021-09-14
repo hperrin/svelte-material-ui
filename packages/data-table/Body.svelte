@@ -6,12 +6,12 @@
     [className]: true,
     'mdc-data-table__content': true,
   })}
-  on:SMUI:data-table:row:mount={handleRowMount}
-  on:SMUI:data-table:row:unmount={handleRowUnmount}
+  on:SMUIDataTableRow:mount={handleRowMount}
+  on:SMUIDataTableRow:unmount={handleRowUnmount}
   {...$$restProps}><slot /></tbody
 >
 
-<script>
+<script lang="ts">
   import { onMount, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {
@@ -19,22 +19,29 @@
     classMap,
     useActions,
     dispatch,
-  } from '@smui/common/internal.js';
+    ActionArray,
+  } from '@smui/common/internal';
+
+  import type { SMUIDataTableRowAccessor } from './Row.types';
+  import type { SMUIDataTableBodyAccessor } from './Body.types';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
 
-  let element;
-  let rows = [];
-  const rowAccessorMap = new WeakMap();
+  let element: HTMLTableSectionElement;
+  let rows: SMUIDataTableRowAccessor[] = [];
+  const rowAccessorMap = new WeakMap<
+    HTMLTableRowElement,
+    SMUIDataTableRowAccessor
+  >();
 
   setContext('SMUI:data-table:row:header', false);
 
   onMount(() => {
-    const accessor = {
+    const accessor: SMUIDataTableBodyAccessor = {
       get rows() {
         return rows;
       },
@@ -50,13 +57,13 @@
     };
   });
 
-  function handleRowMount(event) {
+  function handleRowMount(event: CustomEvent<SMUIDataTableRowAccessor>) {
     rows.push(event.detail);
     rowAccessorMap.set(event.detail.element, event.detail);
     event.stopPropagation();
   }
 
-  function handleRowUnmount(event) {
+  function handleRowUnmount(event: CustomEvent<SMUIDataTableRowAccessor>) {
     const idx = rows.indexOf(event.detail);
     if (idx !== -1) {
       rows.splice(idx, 1);
@@ -67,9 +74,15 @@
   }
 
   function getOrderedRows() {
-    return [...getElement().querySelectorAll('.mdc-data-table__row')]
+    return [
+      ...getElement().querySelectorAll<HTMLTableRowElement>(
+        '.mdc-data-table__row'
+      ),
+    ]
       .map((element) => rowAccessorMap.get(element))
-      .filter((accessor) => accessor && accessor._smui_data_table_row_accessor);
+      .filter(
+        (accessor) => accessor && accessor._smui_data_table_row_accessor
+      ) as SMUIDataTableRowAccessor[];
   }
 
   export function getElement() {

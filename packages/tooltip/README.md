@@ -8,19 +8,9 @@ Tooltips display informative content when a user hovers over or interacts with a
 npm install --save-dev @smui/tooltip
 ```
 
-# Demo
+# Examples and Usage Information
 
-[See it in action.](https://sveltematerialui.com/demo/tooltip)
-
-[See the demo code.](/site/src/routes/demo/tooltip/)
-
-# Basic Usage
-
-todo...
-
-# Exports
-
-todo...
+https://sveltematerialui.com/demo/tooltip
 
 # More Information
 

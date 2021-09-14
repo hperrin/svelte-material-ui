@@ -7,24 +7,26 @@
     'mdc-tab-bar': true,
   })}
   role="tablist"
-  on:SMUI:tab:mount={(event) => handleTabMount(event)}
-  on:SMUI:tab:unmount={(event) => handleTabUnmount(event)}
-  on:keydown={(event) => instance && instance.handleKeyDown(event)}
+  on:SMUITab:mount={handleTabMount}
+  on:SMUITab:unmount={handleTabUnmount}
   on:MDCTab:interacted={(event) =>
     instance && instance.handleTabInteraction(event)}
+  on:keydown={(event) => instance && instance.handleKeyDown(event)}
   {...exclude($$restProps, ['tabScroller$'])}
 >
   <TabScroller
     bind:this={tabScroller}
     {...prefixFilter($$restProps, 'tabScroller$')}
   >
-    {#each tabs as tab, i (key(tab))}
+    {#each tabs as tab (key(tab))}
       <slot {tab} />
     {/each}
   </TabScroller>
 </div>
 
-<script>
+<script lang="ts">
+  import type { SMUITabAccessor } from '@smui/tab';
+  import type { TabScrollerComponentDev } from '@smui/tab-scroller';
   import { MDCTabBarFoundation } from '@material/tab-bar';
   import { onMount, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
@@ -35,27 +37,31 @@
     prefixFilter,
     useActions,
     dispatch,
-  } from '@smui/common/internal.js';
-  import TabScroller from '@smui/tab-scroller/TabScroller.svelte';
+    ActionArray,
+  } from '@smui/common/internal';
+  import TabScroller from '@smui/tab-scroller';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
-  export let tabs = [];
-  export let key = (tab) => tab;
+  export let tabs: any[] = [];
+  export let key: (tab: any) => string | number = (tab) => tab;
   export let focusOnActivate = true;
   export let focusOnProgrammatic = false;
   export let useAutomaticActivation = true;
-  export let active = null;
+  export let active: any | undefined = undefined;
 
-  let element;
-  let instance;
-  let tabScroller;
+  let element: HTMLDivElement;
+  let instance: MDCTabBarFoundation;
+  let tabScroller: TabScrollerComponentDev;
   let activeIndex = tabs.indexOf(active);
-  let tabAccessorMap = {};
-  let tabAccessorWeakMap = new WeakMap();
+  let tabAccessorMap: {
+    [k: string]: SMUITabAccessor;
+    [k: number]: SMUITabAccessor;
+  } = {};
+  let tabAccessorWeakMap = new WeakMap<Object, SMUITabAccessor>();
   let skipFocus = false;
 
   setContext('SMUI:tab:focusOnActivate', focusOnActivate);
@@ -102,25 +108,30 @@
         instance.activateTab(index);
       },
       activateTabAtIndex: (index, clientRect) =>
-        getAccessor(tabs[index]).activate(clientRect, skipFocus),
-      deactivateTabAtIndex: (index) => getAccessor(tabs[index]).deactivate(),
-      focusTabAtIndex: (index) => getAccessor(tabs[index]).focus(),
+        getAccessor(tabs[index])?.activate(clientRect as DOMRect, skipFocus),
+      deactivateTabAtIndex: (index) => getAccessor(tabs[index])?.deactivate(),
+      focusTabAtIndex: (index) => getAccessor(tabs[index])?.focus(),
       getTabIndicatorClientRectAtIndex: (index) =>
-        getAccessor(tabs[index]).computeIndicatorClientRect(),
+        getAccessor(tabs[index])?.computeIndicatorClientRect() ?? new DOMRect(),
       getTabDimensionsAtIndex: (index) =>
-        getAccessor(tabs[index]).computeDimensions(),
+        getAccessor(tabs[index])?.computeDimensions() ?? {
+          rootLeft: 0,
+          rootRight: 0,
+          contentLeft: 0,
+          contentRight: 0,
+        },
       getPreviousActiveTabIndex: () => {
         for (let i = 0; i < tabs.length; i++) {
-          if (getAccessor(tabs[i]).active) {
+          if (getAccessor(tabs[i])?.active) {
             return i;
           }
         }
         return -1;
       },
       getFocusedTabIndex: () => {
-        const tabElements = tabs.map((tab) => getAccessor(tab).element);
+        const tabElements = tabs.map((tab) => getAccessor(tab)?.element);
         const activeElement = document.activeElement;
-        return tabElements.indexOf(activeElement);
+        return tabElements.indexOf(activeElement as HTMLElement);
       },
       getIndexOfTabById: (id) => tabs.indexOf(id),
       getTabListLength: () => tabs.length,
@@ -135,25 +146,25 @@
     };
   });
 
-  function handleTabMount(event) {
+  function handleTabMount(event: CustomEvent<SMUITabAccessor>) {
     const accessor = event.detail;
 
     addAccessor(accessor.tabId, accessor);
   }
 
-  function handleTabUnmount(event) {
+  function handleTabUnmount(event: CustomEvent<SMUITabAccessor>) {
     const accessor = event.detail;
 
     removeAccessor(accessor.tabId);
   }
 
-  function getAccessor(tabId) {
+  function getAccessor(tabId: any) {
     return tabId instanceof Object
       ? tabAccessorWeakMap.get(tabId)
       : tabAccessorMap[tabId];
   }
 
-  function addAccessor(tabId, accessor) {
+  function addAccessor(tabId: any, accessor: SMUITabAccessor) {
     if (tabId instanceof Object) {
       tabAccessorWeakMap.set(tabId, accessor);
       tabAccessorWeakMap = tabAccessorWeakMap;
@@ -163,7 +174,7 @@
     }
   }
 
-  function removeAccessor(tabId) {
+  function removeAccessor(tabId: any) {
     if (tabId instanceof Object) {
       tabAccessorWeakMap.delete(tabId);
       tabAccessorWeakMap = tabAccessorWeakMap;
@@ -173,7 +184,7 @@
     }
   }
 
-  export function scrollIntoView(index) {
+  export function scrollIntoView(index: number) {
     instance.scrollIntoView(index);
   }
 

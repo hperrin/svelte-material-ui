@@ -11,7 +11,7 @@
   {#if content == null}<slot />{:else}{content}{/if}
 </div>
 
-<script>
+<script lang="ts">
   import { MDCTextFieldCharacterCounterFoundation } from '@material/textfield/character-counter/foundation.js';
   import { onMount } from 'svelte';
   import { get_current_component } from 'svelte/internal';
@@ -20,17 +20,18 @@
     classMap,
     useActions,
     dispatch,
-  } from '@smui/common/internal.js';
+    ActionArray,
+  } from '@smui/common/internal';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
 
-  let element;
-  let instance;
-  let content = null;
+  let element: HTMLDivElement;
+  let instance: MDCTextFieldCharacterCounterFoundation;
+  let content: string | undefined = undefined;
 
   onMount(() => {
     instance = new MDCTextFieldCharacterCounterFoundation({
@@ -39,16 +40,12 @@
       },
     });
 
-    dispatch(getElement(), 'SMUI:textfield:character-counter:mount', instance);
+    dispatch(getElement(), 'SMUITextfieldCharacterCounter:mount', instance);
 
     instance.init();
 
     return () => {
-      dispatch(
-        getElement(),
-        'SMUI:textfield:character-counter:unmount',
-        instance
-      );
+      dispatch(getElement(), 'SMUITextfieldCharacterCounter:unmount', instance);
 
       instance.destroy();
     };

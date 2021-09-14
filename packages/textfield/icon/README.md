@@ -2,19 +2,9 @@
 
 Text field icons appear next to a text field.
 
-# Demo
+# Examples and Usage Information
 
-[See it in action.](https://sveltematerialui.com/demo/textfield)
-
-[See the demo code.](/site/src/routes/demo/textfield/)
-
-# Basic Usage
-
-todo...
-
-# Exports
-
-todo...
+https://sveltematerialui.com/demo/textfield
 
 # More Information
 

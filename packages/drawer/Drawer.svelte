@@ -17,7 +17,7 @@
   <slot />
 </aside>
 
-<script>
+<script lang="ts">
   import {
     MDCDismissibleDrawerFoundation,
     MDCModalDrawerFoundation,
@@ -30,24 +30,28 @@
     classMap,
     useActions,
     dispatch,
-  } from '@smui/common/internal.js';
+    ActionArray,
+  } from '@smui/common/internal';
   const { FocusTrap } = domFocusTrap;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  export let use = [];
+  export let use: ActionArray = [];
   let className = '';
   export { className as class };
-  export let variant = null;
+  export let variant: 'dismissible' | 'modal' | undefined = undefined;
   export let open = false;
   export let fixed = true;
 
-  let element;
-  let instance;
-  let internalClasses = {};
-  let previousFocus;
-  let focusTrap;
-  let scrim = false;
+  let element: HTMLElement;
+  let instance:
+    | MDCDismissibleDrawerFoundation
+    | MDCModalDrawerFoundation
+    | undefined = undefined;
+  let internalClasses: { [k: string]: boolean } = {};
+  let previousFocus: Element | null = null;
+  let focusTrap: domFocusTrap.FocusTrap;
+  let scrim: Element | false = false;
 
   setContext('SMUI:list:nav', true);
   setContext('SMUI:list:item:nav', true);
@@ -83,25 +87,27 @@
   onDestroy(() => {
     instance && instance.destroy();
     scrim &&
-      scrim.removeEventListener('SMUI:drawer:scrim:click', handleScrimClick);
+      scrim.removeEventListener('SMUIDrawerScrim:click', handleScrimClick);
   });
 
   function getInstance() {
     if (scrim) {
-      scrim.removeEventListener('SMUI:drawer:scrim:click', handleScrimClick);
+      scrim.removeEventListener('SMUIDrawerScrim:click', handleScrimClick);
     }
 
     if (variant === 'modal') {
-      scrim = element.parentNode.querySelector('.mdc-drawer-scrim');
+      scrim = element.parentNode?.querySelector('.mdc-drawer-scrim') ?? false;
       if (scrim) {
-        scrim.addEventListener('SMUI:drawer:scrim:click', handleScrimClick);
+        scrim.addEventListener('SMUIDrawerScrim:click', handleScrimClick);
       }
     }
 
-    const Foundation = {
-      dismissible: MDCDismissibleDrawerFoundation,
-      modal: MDCModalDrawerFoundation,
-    }[variant];
+    const Foundation =
+      variant === 'dismissible'
+        ? MDCDismissibleDrawerFoundation
+        : variant === 'modal'
+        ? MDCModalDrawerFoundation
+        : undefined;
 
     return Foundation
       ? new Foundation({
@@ -114,14 +120,14 @@
           restoreFocus: () => {
             if (
               previousFocus &&
-              previousFocus.focus &&
+              'focus' in previousFocus &&
               element.contains(document.activeElement)
             ) {
-              previousFocus.focus();
+              (previousFocus as HTMLInputElement).focus();
             }
           },
           focusActiveNavigationItem: () => {
-            const activeNavItemEl = element.querySelector(
+            const activeNavItemEl = element.querySelector<HTMLInputElement>(
               '.mdc-list-item--activated,.mdc-deprecated-list-item--activated'
             );
             if (activeNavItemEl) {
@@ -142,29 +148,29 @@
       : undefined;
   }
 
-  function hasClass(className) {
+  function hasClass(className: string) {
     return className in internalClasses
       ? internalClasses[className]
       : getElement().classList.contains(className);
   }
 
-  function addClass(className) {
+  function addClass(className: string) {
     if (!internalClasses[className]) {
       internalClasses[className] = true;
     }
   }
 
-  function removeClass(className) {
+  function removeClass(className: string) {
     if (!(className in internalClasses) || internalClasses[className]) {
       internalClasses[className] = false;
     }
   }
 
   function handleScrimClick() {
-    instance && instance.handleScrimClick();
+    instance && 'handleScrimClick' in instance && instance.handleScrimClick();
   }
 
-  export function setOpen(value) {
+  export function setOpen(value: boolean) {
     open = value;
   }
 
