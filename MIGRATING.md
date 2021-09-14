@@ -65,14 +65,14 @@ npm i -D sass
 SMUI 3 migrated to upstream MDC 10.0 from 4.0:
 https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#1000-2021-02-05
 
-There are [newly updated instructiong](SAPPER.md) for using SMUI in Sapper.
+There are [newly updated instructiong](/SAPPER.md) for using SMUI in Sapper.
 
 ## Breaking Changes
 
 ### Theming, Sass
 
 - MDC-Web migrated to the "@use" syntax, so mixins, functions, and variables are namespaced by the "@use" statement now instead of a prefix.
-- Theming has changed, so you'll need to update your "\_smui-theme.scss" file. Follow [this guide](THEMING.md).
+- Theming has changed, so you'll need to update your "\_smui-theme.scss" file. Follow [this guide](/THEMING.md).
 
 ### Components
 
