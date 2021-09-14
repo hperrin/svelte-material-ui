@@ -12,30 +12,19 @@ npm install --save-dev @smui/card
 npm install --save-dev smui-theme
 ```
 
-You will need to use the Easy Styling Method, and you will need to use one of these sets of prepare scripts.
+You need to use the Easy Styling Method. If you aren't using the default theme, you'll need one of these sets of prepare scripts.
 
-- For the Default Theme
-
-  ```
-  "prepare": "npm run vite-workaround",
-  "vite-workaround": "find node_modules/@material/ -name \"*.js.map\" -type f -delete"
-  ```
-
-- [Custom Theme](/THEMING.md), without Dark Mode
+- For the [Custom Theme](/THEMING.md), without Dark Mode
 
   ```
-  "prepare": "npm run vite-workaround && npm run smui-theme",
-  "vite-workaround": "find node_modules/@material/ -name \"*.js.map\" -type f -delete",
+  "prepare": "npm run smui-theme",
   "smui-theme": "smui-theme compile static/smui.css -i src/theme"
   ```
 
-- [Custom Theme](/THEMING.md), with Dark Mode
+- For the[Custom Theme](/THEMING.md), with Dark Mode
 
   ```
-  "prepare": "npm run vite-workaround && npm run smui-theme-light && npm run smui-theme-dark",
-  "vite-workaround": "find node_modules/@material/ -name \"*.js.map\" -type f -delete",
+  "prepare": "npm run smui-theme-light && npm run smui-theme-dark",
   "smui-theme-light": "smui-theme compile static/smui.css -i src/theme",
   "smui-theme-dark": "smui-theme compile static/smui-dark.css -i src/theme/dark"
   ```
-
-If you are on Windows, check out the [workaround script](https://github.com/hperrin/smui-example-sveltekit/blob/master/_helper/vite-workaround.js) and [how to use it](https://github.com/hperrin/smui-example-sveltekit/blob/master/package.json) in the [SvelteKit example repo](https://github.com/hperrin/smui-example-sveltekit) instead, because the `find` command in the `vite-workaround` scripts above won't work for you.
