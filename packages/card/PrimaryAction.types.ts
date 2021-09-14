@@ -9,7 +9,7 @@ export declare class PrimaryActionComponentDev extends Component {
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<HTMLDivElement>>,
-    keyof Component['$$prop_def']
+    'use' | 'class' | 'style' | 'ripple' | 'color' | 'padded' | 'tabindex'
   > &
     Component['$$prop_def'];
 }

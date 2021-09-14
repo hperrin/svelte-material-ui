@@ -14,7 +14,32 @@ export declare class TextfieldComponentDev extends Component {
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<HTMLLabelElement>>,
-    keyof Component['$$prop_def']
+    | 'use'
+    | 'class'
+    | 'style'
+    | 'ripple'
+    | 'disabled'
+    | 'required'
+    | 'textarea'
+    | 'variant'
+    | 'noLabel'
+    | 'label'
+    | 'type'
+    | 'value'
+    | 'files'
+    | 'invalid'
+    | 'updateInvalid'
+    | 'dirty'
+    | 'prefix'
+    | 'suffix'
+    | 'validateOnValueChange'
+    | 'useNativeValidation'
+    | 'withLeadingIcon'
+    | 'withTrailingIcon'
+    | 'input'
+    | 'floatingLabel'
+    | 'lineRipple'
+    | 'notchedOutline'
   > &
     {
       [k in keyof FloatingLabelComponentDev['$$prop_def'] as `label\$${k}`]?: FloatingLabelComponentDev['$$prop_def'][k];

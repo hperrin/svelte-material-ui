@@ -10,7 +10,7 @@ export declare class ButtonComponentDev extends SMUIComponent {
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<HTMLButtonElement>>,
-    keyof Component['$$prop_def']
+    'use'
   > &
     Component['$$prop_def'];
 }

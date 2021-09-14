@@ -8,9 +8,6 @@ export declare class LiComponentDev extends SMUIComponent {
    * Does not exist at runtime.
    * ### DO NOT USE!
    */
-  $$prop_def: Omit<
-    Partial<svelte.JSX.HTMLAttributes<HTMLLIElement>>,
-    keyof Component['$$prop_def']
-  > &
+  $$prop_def: Omit<Partial<svelte.JSX.HTMLAttributes<HTMLLIElement>>, 'use'> &
     Component['$$prop_def'];
 }

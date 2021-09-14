@@ -9,7 +9,13 @@ export declare class LinearProgressComponentDev extends Component {
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<HTMLDivElement>>,
-    keyof Component['$$prop_def']
+    | 'use'
+    | 'class'
+    | 'style'
+    | 'indeterminate'
+    | 'closed'
+    | 'progress'
+    | 'buffer'
   > &
     Component['$$prop_def'];
 }

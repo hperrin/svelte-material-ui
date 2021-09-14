@@ -9,7 +9,7 @@ export declare class HeadComponentDev extends Component {
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<HTMLTableSectionElement>>,
-    keyof Component['$$prop_def']
+    'use'
   > &
     Component['$$prop_def'];
 }

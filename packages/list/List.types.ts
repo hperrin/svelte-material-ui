@@ -13,7 +13,26 @@ export declare class ListComponentDev<
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<ReturnType<C['getElement']>>>,
-    keyof Component['$$prop_def']
+    | 'use'
+    | 'class'
+    | 'nonInteractive'
+    | 'dense'
+    | 'textualList'
+    | 'avatarList'
+    | 'iconList'
+    | 'imageList'
+    | 'thumbnailList'
+    | 'videoList'
+    | 'twoLine'
+    | 'threeLine'
+    | 'vertical'
+    | 'wrapFocus'
+    | 'singleSelection'
+    | 'selectedIndex'
+    | 'radioList'
+    | 'checkList'
+    | 'hasTypeahead'
+    | 'component'
   > &
     Component['$$prop_def'];
 }

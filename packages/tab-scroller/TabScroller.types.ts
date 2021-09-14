@@ -9,7 +9,7 @@ export declare class TabScrollerComponentDev extends Component {
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<HTMLDivElement>>,
-    keyof Component['$$prop_def']
+    'use' | 'class' | 'align'
   > &
     {
       [k in keyof Partial<

@@ -10,7 +10,14 @@ export declare class TabBarComponentDev extends Component {
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<HTMLDivElement>>,
-    keyof Component['$$prop_def']
+    | 'use'
+    | 'class'
+    | 'tabs'
+    | 'key'
+    | 'focusOnActivate'
+    | 'focusOnProgrammatic'
+    | 'useAutomaticActivation'
+    | 'active'
   > &
     {
       [k in keyof TabScrollerComponentDev['$$prop_def'] as `tabScroller\$${k}`]?: TabScrollerComponentDev['$$prop_def'][k];

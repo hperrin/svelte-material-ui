@@ -9,7 +9,7 @@ export declare class WrapperComponentDev extends Component {
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<HTMLDivElement>>,
-    keyof Component['$$prop_def']
+    'use' | 'class' | 'rich'
   > &
     Component['$$prop_def'];
 }

@@ -9,7 +9,14 @@ export declare class TextareaComponentDev extends Component {
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<HTMLTextAreaElement>>,
-    keyof Component['$$prop_def']
+    | 'use'
+    | 'class'
+    | 'style'
+    | 'value'
+    | 'dirty'
+    | 'invalid'
+    | 'updateInvalid'
+    | 'resizable'
   > &
     Component['$$prop_def'];
 }

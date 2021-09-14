@@ -30,6 +30,7 @@
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
+  // Remember to update types file if you add/remove/rename props.
   export let use: ActionArray = [];
   export let list$use: ActionArray = [];
   export let list$class = '';

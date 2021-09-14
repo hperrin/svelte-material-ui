@@ -9,7 +9,7 @@ export declare class TextComponentDev extends Component {
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<HTMLSpanElement>>,
-    keyof Component['$$prop_def']
+    'use' | 'class' | 'tabindex'
   > &
     Component['$$prop_def'];
 }

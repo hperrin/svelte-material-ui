@@ -10,7 +10,7 @@ export declare class PComponentDev extends SMUIComponent {
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<HTMLParagraphElement>>,
-    keyof Component['$$prop_def']
+    'use'
   > &
     Component['$$prop_def'];
 }

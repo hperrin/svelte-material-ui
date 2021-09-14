@@ -9,7 +9,14 @@ export declare class SnackbarComponentDev extends Component {
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<HTMLElement>>,
-    keyof Component['$$prop_def']
+    | 'use'
+    | 'class'
+    | 'variant'
+    | 'leading'
+    | 'timeoutMs'
+    | 'closeOnEscape'
+    | 'labelText'
+    | 'actionButtonText'
   > &
     {
       [k in keyof Partial<

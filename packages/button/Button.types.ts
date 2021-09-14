@@ -13,7 +13,18 @@ export declare class ButtonComponentDev<
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<ReturnType<C['getElement']>>>,
-    keyof Component['$$prop_def']
+    | 'use'
+    | 'class'
+    | 'style'
+    | 'ripple'
+    | 'color'
+    | 'variant'
+    | 'touch'
+    | 'href'
+    | 'action'
+    | 'defaultAction'
+    | 'secondary'
+    | 'component'
   > &
     Component['$$prop_def'];
 }

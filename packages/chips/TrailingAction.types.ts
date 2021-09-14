@@ -9,7 +9,7 @@ export declare class TrailingActionComponentDev extends Component {
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<HTMLButtonElement>>,
-    keyof Component['$$prop_def']
+    'use' | 'class' | 'style' | 'ripple' | 'touch' | 'nonNavigable'
   > &
     {
       [k in keyof Partial<

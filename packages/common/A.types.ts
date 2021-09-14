@@ -10,7 +10,7 @@ export declare class AComponentDev extends SMUIComponent {
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<HTMLAnchorElement>>,
-    keyof Component['$$prop_def']
+    'use' | 'href'
   > &
     Component['$$prop_def'];
 }

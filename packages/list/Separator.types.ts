@@ -13,7 +13,14 @@ export declare class SeparatorComponentDev<
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<ReturnType<C['getElement']>>>,
-    keyof Component['$$prop_def']
+    | 'use'
+    | 'class'
+    | 'padded'
+    | 'inset'
+    | 'insetLeading'
+    | 'insetTrailing'
+    | 'insetPadding'
+    | 'component'
   > &
     Component['$$prop_def'];
 }

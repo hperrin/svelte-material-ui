@@ -9,7 +9,14 @@ export declare class DataTableComponentDev extends Component {
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<HTMLDivElement>>,
-    keyof Component['$$prop_def']
+    | 'use'
+    | 'class'
+    | 'stickyHeader'
+    | 'sortable'
+    | 'sort'
+    | 'sortDirection'
+    | 'sortAscendingAriaLabel'
+    | 'sortDescendingAriaLabel'
   > &
     {
       [k in keyof Partial<

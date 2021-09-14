@@ -9,7 +9,16 @@ export declare class CheckboxComponentDev extends Component {
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<HTMLDivElement>>,
-    keyof Component['$$prop_def']
+    | 'use'
+    | 'class'
+    | 'style'
+    | 'disabled'
+    | 'touch'
+    | 'indeterminate'
+    | 'group'
+    | 'checked'
+    | 'value'
+    | 'valueKey'
   > &
     {
       [k in keyof Partial<

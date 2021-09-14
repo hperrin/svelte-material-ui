@@ -9,7 +9,7 @@ export declare class CircularProgressComponentDev extends Component {
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<HTMLDivElement>>,
-    keyof Component['$$prop_def']
+    'use' | 'class' | 'indeterminate' | 'closed' | 'progress' | 'fourColor'
   > &
     Component['$$prop_def'];
 }

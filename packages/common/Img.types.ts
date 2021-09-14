@@ -10,7 +10,7 @@ export declare class ImgComponentDev extends SMUIComponent {
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<HTMLImageElement>>,
-    keyof Component['$$prop_def']
+    'use' | 'alt'
   > &
     Component['$$prop_def'];
 }

@@ -9,7 +9,17 @@ export declare class InputComponentDev extends Component {
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<HTMLInputElement>>,
-    keyof Component['$$prop_def']
+    | 'use'
+    | 'class'
+    | 'type'
+    | 'placeholder'
+    | 'value'
+    | 'files'
+    | 'dirty'
+    | 'invalid'
+    | 'updateInvalid'
+    | 'emptyValueNull'
+    | 'emptyValueUndefined'
   > &
     Component['$$prop_def'];
 }

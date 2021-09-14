@@ -9,7 +9,7 @@ export declare class CardComponentDev extends Component {
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<HTMLDivElement>>,
-    keyof Component['$$prop_def']
+    'use' | 'class' | 'variant' | 'padded'
   > &
     Component['$$prop_def'];
 }

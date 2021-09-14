@@ -9,7 +9,7 @@ export declare class NotchedOutlineComponentDev extends Component {
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<HTMLDivElement>>,
-    keyof Component['$$prop_def']
+    'use' | 'class' | 'notched' | 'noLabel'
   > &
     Component['$$prop_def'];
 }

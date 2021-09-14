@@ -8,9 +8,6 @@ export declare class HrComponentDev extends SMUIComponent {
    * Does not exist at runtime.
    * ### DO NOT USE!
    */
-  $$prop_def: Omit<
-    Partial<svelte.JSX.HTMLAttributes<HTMLHRElement>>,
-    keyof Component['$$prop_def']
-  > &
+  $$prop_def: Omit<Partial<svelte.JSX.HTMLAttributes<HTMLHRElement>>, 'use'> &
     Component['$$prop_def'];
 }

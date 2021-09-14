@@ -13,7 +13,17 @@ export declare class FabComponentDev<
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<ReturnType<C['getElement']>>>,
-    keyof Component['$$prop_def']
+    | 'use'
+    | 'class'
+    | 'style'
+    | 'ripple'
+    | 'color'
+    | 'mini'
+    | 'exited'
+    | 'extended'
+    | 'touch'
+    | 'href'
+    | 'component'
   > &
     Component['$$prop_def'];
 }

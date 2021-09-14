@@ -9,7 +9,15 @@ export declare class TopAppBarComponentDev extends Component {
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<HTMLElement>>,
-    keyof Component['$$prop_def']
+    | 'use'
+    | 'class'
+    | 'style'
+    | 'variant'
+    | 'color'
+    | 'collapsed'
+    | 'prominent'
+    | 'dense'
+    | 'scrollTarget'
   > &
     Component['$$prop_def'];
 }

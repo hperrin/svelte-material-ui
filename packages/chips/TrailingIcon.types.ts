@@ -9,7 +9,7 @@ export declare class TrailingIconComponentDev extends Component {
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<HTMLElement>>,
-    keyof Component['$$prop_def']
+    'use' | 'class'
   > &
     Component['$$prop_def'];
 }

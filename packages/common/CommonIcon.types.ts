@@ -13,7 +13,7 @@ export declare class CommonIconComponentDev<
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<ReturnType<C['getElement']>>>,
-    keyof Component['$$prop_def']
+    'use' | 'class' | 'on' | 'component'
   > &
     Component['$$prop_def'];
 }

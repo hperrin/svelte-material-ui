@@ -8,9 +8,6 @@ export declare class SvgComponentDev extends SMUIComponent {
    * Does not exist at runtime.
    * ### DO NOT USE!
    */
-  $$prop_def: Omit<
-    Partial<svelte.JSX.HTMLAttributes<SVGSVGElement>>,
-    keyof Component['$$prop_def']
-  > &
+  $$prop_def: Omit<Partial<svelte.JSX.HTMLAttributes<SVGSVGElement>>, 'use'> &
     Component['$$prop_def'];
 }

@@ -9,7 +9,14 @@ export declare class RadioComponentDev extends Component {
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<HTMLDivElement>>,
-    keyof Component['$$prop_def']
+    | 'use'
+    | 'class'
+    | 'style'
+    | 'disabled'
+    | 'touch'
+    | 'group'
+    | 'value'
+    | 'valueKey'
   > &
     {
       [k in keyof Partial<

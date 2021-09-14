@@ -9,7 +9,15 @@ export declare class TooltipComponentDev extends Component {
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<HTMLDivElement>>,
-    keyof Component['$$prop_def']
+    | 'use'
+    | 'class'
+    | 'style'
+    | 'id'
+    | 'unbounded'
+    | 'xPos'
+    | 'yPos'
+    | 'persistent'
+    | 'interactive'
   > &
     {
       [k in keyof Partial<

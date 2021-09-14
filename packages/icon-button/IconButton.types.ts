@@ -13,7 +13,18 @@ export declare class IconButtonComponentDev<
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<ReturnType<C['getElement']>>>,
-    keyof Component['$$prop_def']
+    | 'use'
+    | 'class'
+    | 'style'
+    | 'ripple'
+    | 'color'
+    | 'toggle'
+    | 'pressed'
+    | 'ariaLabelOn'
+    | 'ariaLabelOff'
+    | 'href'
+    | 'action'
+    | 'component'
   > &
     Component['$$prop_def'];
 }

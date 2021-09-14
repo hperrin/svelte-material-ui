@@ -9,7 +9,19 @@ export declare class SliderComponentDev extends Component {
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<HTMLDivElement>>,
-    keyof Component['$$prop_def']
+    | 'use'
+    | 'class'
+    | 'disabled'
+    | 'range'
+    | 'discrete'
+    | 'tickMarks'
+    | 'step'
+    | 'min'
+    | 'max'
+    | 'value'
+    | 'start'
+    | 'end'
+    | 'valueToAriaValueTextFn'
   > &
     {
       [k in keyof Partial<

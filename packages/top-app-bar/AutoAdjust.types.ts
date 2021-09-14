@@ -13,7 +13,7 @@ export declare class AutoAdjustComponentDev<
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<ReturnType<C['getElement']>>>,
-    keyof Component['$$prop_def']
+    'use' | 'class' | 'topAppBar' | 'component'
   > &
     Component['$$prop_def'];
 }

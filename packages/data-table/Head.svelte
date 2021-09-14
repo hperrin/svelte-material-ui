@@ -25,6 +25,7 @@
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
+  // Remember to update types file if you add/remove/rename props.
   export let use: ActionArray = [];
 
   let element: HTMLTableSectionElement;

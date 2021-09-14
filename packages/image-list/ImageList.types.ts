@@ -9,7 +9,7 @@ export declare class ImageListComponentDev extends Component {
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<HTMLUListElement>>,
-    keyof Component['$$prop_def']
+    'use' | 'class' | 'masonry' | 'withTextProtection'
   > &
     Component['$$prop_def'];
 }

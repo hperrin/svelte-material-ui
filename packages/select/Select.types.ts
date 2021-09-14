@@ -15,7 +15,23 @@ export declare class SelectComponentDev extends Component {
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<HTMLDivElement>>,
-    keyof Component['$$prop_def']
+    | 'use'
+    | 'class'
+    | 'style'
+    | 'ripple'
+    | 'disabled'
+    | 'variant'
+    | 'noLabel'
+    | 'label'
+    | 'value'
+    | 'key'
+    | 'dirty'
+    | 'invalid'
+    | 'updateInvalid'
+    | 'required'
+    | 'inputId'
+    | 'hiddenInput'
+    | 'withLeadingIcon'
   > &
     {
       [k in keyof HelperTextComponentDev['$$prop_def'] as `helperText\$${k}`]?: HelperTextComponentDev['$$prop_def'][k];

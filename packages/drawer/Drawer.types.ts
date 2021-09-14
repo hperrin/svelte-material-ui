@@ -9,7 +9,7 @@ export declare class DrawerComponentDev extends Component {
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<HTMLElement>>,
-    keyof Component['$$prop_def']
+    'use' | 'class' | 'variant' | 'open' | 'fixed'
   > &
     Component['$$prop_def'];
 }

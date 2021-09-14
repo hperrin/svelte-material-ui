@@ -10,7 +10,7 @@ export declare class H6ComponentDev extends SMUIComponent {
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<HTMLHeadingElement>>,
-    keyof Component['$$prop_def']
+    'use'
   > &
     Component['$$prop_def'];
 }

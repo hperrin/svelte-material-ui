@@ -13,7 +13,15 @@ export declare class ChipComponentDev<
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<ReturnType<C['getElement']>>>,
-    keyof Component['$$prop_def']
+    | 'use'
+    | 'class'
+    | 'style'
+    | 'chip'
+    | 'ripple'
+    | 'touch'
+    | 'shouldRemoveOnTrailingIconClick'
+    | 'shouldFocusPrimaryActionOnClick'
+    | 'component'
   > &
     Component['$$prop_def'];
 }

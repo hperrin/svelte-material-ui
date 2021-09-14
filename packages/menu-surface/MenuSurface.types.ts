@@ -9,7 +9,20 @@ export declare class MenuSurfaceComponentDev extends Component {
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<HTMLDivElement>>,
-    keyof Component['$$prop_def']
+    | 'use'
+    | 'class'
+    | 'style'
+    | 'static'
+    | 'anchor'
+    | 'fixed'
+    | 'open'
+    | 'fullWidth'
+    | 'quickOpen'
+    | 'anchorElement'
+    | 'anchorCorner'
+    | 'anchorMargin'
+    | 'maxHeight'
+    | 'horizontallyCenteredOnViewport'
   > &
     Component['$$prop_def'];
 }

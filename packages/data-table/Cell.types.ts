@@ -9,7 +9,7 @@ export declare class CellComponentDev extends Component {
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<HTMLTableCellElement>>,
-    keyof Component['$$prop_def']
+    'use' | 'class' | 'numeric' | 'checkbox' | 'columnId' | 'sortable'
   > &
     Component['$$prop_def'];
 }

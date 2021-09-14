@@ -9,7 +9,15 @@ export declare class SetComponentDev extends Component {
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<HTMLDivElement>>,
-    keyof Component['$$prop_def']
+    | 'use'
+    | 'class'
+    | 'chips'
+    | 'key'
+    | 'selected'
+    | 'nonInteractive'
+    | 'choice'
+    | 'filter'
+    | 'input'
   > &
     Component['$$prop_def'];
 }

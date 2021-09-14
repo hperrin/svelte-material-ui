@@ -9,7 +9,7 @@ export declare class HelperTextComponentDev extends Component {
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<HTMLDivElement>>,
-    keyof Component['$$prop_def']
+    'use' | 'class' | 'id' | 'persistent' | 'validationMsg'
   > &
     Component['$$prop_def'];
 }

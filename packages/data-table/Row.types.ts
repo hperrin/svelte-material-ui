@@ -9,7 +9,7 @@ export declare class RowComponentDev extends Component {
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<HTMLTableRowElement>>,
-    keyof Component['$$prop_def']
+    'use' | 'class' | 'rowId'
   > &
     Component['$$prop_def'];
 }

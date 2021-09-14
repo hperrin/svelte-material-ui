@@ -256,6 +256,7 @@
     return value === uninitializedValue;
   }
 
+  // Remember to update types file if you add/remove/rename props.
   export let use: ActionArray = [];
   let className = '';
   export { className as class };
@@ -280,6 +281,7 @@
   export let required = false;
   export let inputId = 'SMUI-select-' + counter++;
   export let hiddenInput = false;
+  export let withLeadingIcon: UninitializedValue | boolean = uninitializedValue;
   export let anchor$use: ActionArray = [];
   export let anchor$class = '';
   export let selectedTextContainer$use: ActionArray = [];
@@ -289,7 +291,6 @@
   export let dropdownIcon$use: ActionArray = [];
   export let dropdownIcon$class = '';
   export let menu$class = '';
-  export let withLeadingIcon: UninitializedValue | boolean = uninitializedValue;
 
   let element: HTMLDivElement;
   let instance: MDCSelectFoundation;

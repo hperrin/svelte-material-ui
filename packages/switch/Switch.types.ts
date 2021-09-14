@@ -9,7 +9,14 @@ export declare class SwitchComponentDev extends Component {
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<HTMLDivElement>>,
-    keyof Component['$$prop_def']
+    | 'use'
+    | 'class'
+    | 'disabled'
+    | 'color'
+    | 'group'
+    | 'checked'
+    | 'value'
+    | 'valueKey'
   > &
     {
       [k in keyof Partial<

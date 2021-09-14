@@ -9,7 +9,7 @@ export declare class LabelComponentDev extends Component {
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<HTMLLabelElement>>,
-    keyof Component['$$prop_def']
+    'use' | 'class'
   > &
     Component['$$prop_def'];
 }

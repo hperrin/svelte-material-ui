@@ -13,8 +13,9 @@
   import type { ActionArray } from './useActions';
   import { forwardEventsBuilder, useActions } from './internal';
 
-  export let alt = '';
+  // Remember to update types file if you add/remove/rename props.
   export let use: ActionArray = [];
+  export let alt = '';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

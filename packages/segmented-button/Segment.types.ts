@@ -9,7 +9,7 @@ export declare class SegmentComponentDev extends Component {
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<HTMLButtonElement>>,
-    keyof Component['$$prop_def']
+    'use' | 'class' | 'style' | 'segment' | 'ripple' | 'touch'
   > &
     Component['$$prop_def'];
 }

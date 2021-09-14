@@ -12,8 +12,9 @@
   import type { ActionArray } from './useActions';
   import { forwardEventsBuilder, useActions } from './internal';
 
-  export let href = 'javascript:void(0);';
+  // Remember to update types file if you add/remove/rename props.
   export let use: ActionArray = [];
+  export let href = 'javascript:void(0);';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

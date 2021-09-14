@@ -13,7 +13,19 @@ export declare class ItemComponentDev<
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<ReturnType<C['getElement']>>>,
-    keyof Component['$$prop_def']
+    | 'use'
+    | 'class'
+    | 'style'
+    | 'color'
+    | 'nonInteractive'
+    | 'ripple'
+    | 'activated'
+    | 'role'
+    | 'selected'
+    | 'disabled'
+    | 'inputId'
+    | 'href'
+    | 'component'
   > &
     Component['$$prop_def'];
 }

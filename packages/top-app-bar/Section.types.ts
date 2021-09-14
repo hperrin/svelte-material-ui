@@ -9,7 +9,7 @@ export declare class SectionComponentDev extends Component {
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<HTMLElement>>,
-    keyof Component['$$prop_def']
+    'use' | 'class' | 'align' | 'toolbar'
   > &
     Component['$$prop_def'];
 }

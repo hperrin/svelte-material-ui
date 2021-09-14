@@ -9,7 +9,7 @@ export declare class BodyComponentDev extends Component {
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<HTMLTableSectionElement>>,
-    keyof Component['$$prop_def']
+    'use' | 'class'
   > &
     Component['$$prop_def'];
 }

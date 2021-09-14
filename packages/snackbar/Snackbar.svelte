@@ -55,6 +55,7 @@
     return value === uninitializedValue;
   }
 
+  // Remember to update types file if you add/remove/rename props.
   export let use: ActionArray = [];
   let className = '';
   export { className as class };
