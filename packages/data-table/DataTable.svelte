@@ -318,10 +318,12 @@
       '.mdc-data-table__header-cell--with-sort'
     ) as HTMLTableCellElement;
 
-    if (!headerCell) {
-      return;
+    if (headerCell) {
+      handleSortAction(headerCell);
     }
+  }
 
+  function handleSortAction(headerCell: HTMLTableCellElement) {
     const orderedCells = header?.orderedCells ?? [];
 
     const columnIndex = orderedCells

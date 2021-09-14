@@ -93,7 +93,7 @@
     dispatch(getElement(), 'SMUIDataTableRow:mount', accessor);
 
     return () => {
-      dispatch(getElement(), 'SMUIDataTableRow:unmount');
+      dispatch(getElement(), 'SMUIDataTableRow:unmount', accessor);
     };
   });
 

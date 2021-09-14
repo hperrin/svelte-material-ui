@@ -74,7 +74,7 @@
     dispatch(getElement(), 'SMUIChipsChipPrimaryAction:mount', accessor);
 
     return () => {
-      dispatch(getElement(), 'SMUIChipsChipPrimaryAction:unmount');
+      dispatch(getElement(), 'SMUIChipsChipPrimaryAction:unmount', accessor);
     };
   });
 

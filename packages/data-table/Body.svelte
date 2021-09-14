@@ -51,10 +51,10 @@
       },
     };
 
-    dispatch(getElement(), 'SMUI:data-table:body:mount', accessor);
+    dispatch(getElement(), 'SMUIDataTableBody:mount', accessor);
 
     return () => {
-      dispatch(getElement(), 'SMUI:data-table:body:unmount');
+      dispatch(getElement(), 'SMUIDataTableBody:unmount', accessor);
     };
   });
 

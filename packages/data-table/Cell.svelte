@@ -144,7 +144,7 @@
     dispatch(getElement(), 'SMUIDataTableCell:mount', accessor);
 
     return () => {
-      dispatch(getElement(), 'SMUIDataTableCell:unmount');
+      dispatch(getElement(), 'SMUIDataTableCell:unmount', accessor);
     };
   });
 

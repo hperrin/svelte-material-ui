@@ -106,7 +106,7 @@
     instance.init();
 
     return () => {
-      dispatch(getElement(), 'SMUIChipsChipTrailingAction:unmount');
+      dispatch(getElement(), 'SMUIChipsChipTrailingAction:unmount', accessor);
 
       instance.destroy();
     };
