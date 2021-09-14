@@ -1,4 +1,4 @@
-import type { SMUIComponent } from '../SMUIComponent.d';
+import type { SMUIComponent } from '../smui.d';
 
 export type ClassAdderInternals<T extends typeof SMUIComponent> = {
   component: T;

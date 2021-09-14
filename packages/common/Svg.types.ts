@@ -1,4 +1,4 @@
-import type { SMUIComponent } from './SMUIComponent.d';
+import type { SMUIComponent } from './smui.d';
 import type Component from './Svg.svelte';
 
 export declare class SvgComponentDev extends SMUIComponent {

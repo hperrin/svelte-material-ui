@@ -1,4 +1,4 @@
-import type { SMUIComponent } from './SMUIComponent';
+import type { SMUIComponent } from './smui.d';
 import type Component from './CommonLabel.svelte';
 import type { SpanComponentDev } from './Span.types';
 

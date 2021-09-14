@@ -11,6 +11,4 @@ const Icon = IconComponent as typeof CommonIconComponentDev;
 import ContextFragment from './ContextFragment.svelte';
 
 export { Label, Icon, ContextFragment };
-export * from './SMUIComponent.d';
-export * from './SMUIInputAccessors.d';
-export * from './LayoutListener.d';
+export * from './smui.d';

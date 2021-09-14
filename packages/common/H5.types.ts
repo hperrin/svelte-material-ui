@@ -1,4 +1,4 @@
-import type { SMUIComponent } from './SMUIComponent.d';
+import type { SMUIComponent } from './smui.d';
 import type Component from './H5.svelte';
 
 export declare class H5ComponentDev extends SMUIComponent {

@@ -1,4 +1,4 @@
-import type { SMUIComponent } from './SMUIComponent.d';
+import type { SMUIComponent } from './smui.d';
 import type Component from './H3.svelte';
 
 export declare class H3ComponentDev extends SMUIComponent {

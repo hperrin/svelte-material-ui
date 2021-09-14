@@ -3,7 +3,8 @@
   "version": "4.2.0",
   "description": "Svelte Material UI - Common",
   "type": "module",
-  "module": "index.ts",
+  "module": "index.js",
+  "types": "index.d.ts",
   "keywords": [
     "svelte",
     "svelte3",
@@ -14,6 +15,8 @@
     "sveltejs"
   ],
   "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "publishConfig": {

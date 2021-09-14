@@ -7,3 +7,7 @@ declare namespace svelte.JSX {
     ) => any;
   }
 }
+
+declare module '*.svelte' {
+  export { SvelteComponentDev as default } from 'svelte/internal';
+}

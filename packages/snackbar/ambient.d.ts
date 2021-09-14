@@ -5,3 +5,7 @@ declare namespace svelte.JSX {
     ['onMDCSnackbar:closed']?: (event: CustomEvent<any> & { target: T }) => any;
   }
 }
+
+declare module '*.svelte' {
+  export { SvelteComponentDev as default } from 'svelte/internal';
+}

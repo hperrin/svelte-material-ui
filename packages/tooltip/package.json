@@ -3,7 +3,8 @@
   "version": "4.2.0",
   "description": "Svelte Material UI - Tooltip",
   "type": "module",
-  "module": "index.ts",
+  "module": "index.js",
+  "types": "index.d.ts",
   "keywords": [
     "svelte",
     "svelte3",
@@ -14,7 +15,10 @@
     "sveltejs"
   ],
   "scripts": {
-    "prepare": "sass --no-source-map -I node_modules -I ../../node_modules _style.scss bare.css",
+    "build": "npm run build:js && npm run build:sass",
+    "build:js": "tsc",
+    "build:sass": "sass --no-source-map -I node_modules -I ../../node_modules _style.scss bare.css",
+    "prepare": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "publishConfig": {

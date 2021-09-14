@@ -1,6 +1,7 @@
 import type { ClassAdderInternals } from './ClassAdder/index.types';
-import ClassAdder, { internals } from './ClassAdder/index.svelte';
-import type { SMUIComponent } from './SMUIComponent';
+import ClassAdder from './ClassAdder/index.svelte';
+import { internals } from './ClassAdder/internals';
+import type { SMUIComponent } from './smui.d';
 
 const defaults = { ...internals };
 

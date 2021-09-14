@@ -1,4 +1,4 @@
-import type { SMUIComponent } from './SMUIComponent.d';
+import type { SMUIComponent } from './smui.d';
 import type Component from './Hr.svelte';
 
 export declare class HrComponentDev extends SMUIComponent {

@@ -12,25 +12,17 @@
 >
 
 <script context="module" lang="ts">
-  import type { SMUIComponent } from '../SMUIComponent.d';
-  import type { ClassAdderInternals } from './index.types';
-  import Div from '../Div.svelte';
-
-  export const internals: ClassAdderInternals<typeof Div> = {
-    component: Div,
-    class: '',
-    classMap: {},
-    contexts: {},
-    props: {},
-  };
+  import type { SMUIComponent } from '../smui.d';
 </script>
 
 <script lang="ts">
   import { onDestroy, getContext, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
+
+  import type { ActionArray } from '../useActions';
   import { forwardEventsBuilder } from '../forwardEventsBuilder';
   import { classMap } from '../classMap';
-  import type { ActionArray } from '../useActions';
+  import { internals } from './internals';
 
   export let use: ActionArray = [];
   let className = '';

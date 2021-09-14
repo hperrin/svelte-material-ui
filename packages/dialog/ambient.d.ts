@@ -7,3 +7,7 @@ declare namespace svelte.JSX {
     ['onMDCDialog:closed']?: (event: CustomEvent<any> & { target: T }) => any;
   }
 }
+
+declare module '*.svelte' {
+  export { SvelteComponentDev as default } from 'svelte/internal';
+}

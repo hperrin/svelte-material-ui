@@ -74,10 +74,7 @@
     </svelte:fragment>
   </Demo>
 
-  <Demo
-    component={Dispatch}
-    files={['common/_Dispatch.svelte', 'common/ambient.d.ts']}
-  >
+  <Demo component={Dispatch} file="common/_Dispatch.svelte">
     Dispatch
     <svelte:fragment slot="subtitle">
       Dispatch a custom event. This differs from Svelte's component event

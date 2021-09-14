@@ -1,4 +1,4 @@
-import type { SMUIComponent } from './SMUIComponent.d';
+import type { SMUIComponent } from './smui.d';
 import type Component from './Button.svelte';
 
 export declare class ButtonComponentDev extends SMUIComponent {

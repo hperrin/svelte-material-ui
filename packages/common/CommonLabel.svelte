@@ -22,7 +22,7 @@
 >
 
 <script type="ts">
-  import type { SMUIComponent } from './SMUIComponent';
+  import type { SMUIComponent } from './smui.d';
   import { getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
 

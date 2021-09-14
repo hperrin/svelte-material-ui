@@ -1,4 +1,4 @@
-import type { SMUIComponent } from './SMUIComponent';
+import type { SMUIComponent } from './smui.d';
 import type Component from './CommonIcon.svelte';
 import type { IComponentDev } from './I.types';
 

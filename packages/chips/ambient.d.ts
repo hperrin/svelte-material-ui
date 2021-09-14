@@ -16,3 +16,7 @@ declare namespace svelte.JSX {
     ['onMDCChip:navigation']?: (event: CustomEvent<any> & { target: T }) => any;
   }
 }
+
+declare module '*.svelte' {
+  export { SvelteComponentDev as default } from 'svelte/internal';
+}

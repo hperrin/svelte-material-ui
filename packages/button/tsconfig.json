@@ -3,8 +3,9 @@
 
   "compilerOptions": {
     "noImplicitAny": true,
-    "strict": true
+    "strict": true,
+    "declaration": true
   },
-  "include": ["**/*"],
+  "include": ["**/*.ts", "**/*.svelte"],
   "exclude": ["node_modules/*", "**/*.spec.ts"]
 }

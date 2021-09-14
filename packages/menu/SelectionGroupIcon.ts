@@ -1,4 +1,4 @@
-import type { SMUIComponent } from '../common/SMUIComponent';
+import type { SMUIComponent } from '@smui/common';
 import { classAdderBuilder } from '@smui/common/internal';
 import { Graphic } from '@smui/list';
 
