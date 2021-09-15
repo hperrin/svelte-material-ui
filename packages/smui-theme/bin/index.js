@@ -108,7 +108,7 @@ yargs(hideBin(process.argv))
           : path.resolve(argv.location);
 
         const themeSource = await fetch(
-          `https://raw.githubusercontent.com/hperrin/svelte-material-ui/master/site/src/theme/${
+          `https://raw.githubusercontent.com/hperrin/svelte-material-ui/master/packages/site/src/theme/${
             dark ? 'dark/' : ''
           }_smui-theme.scss`
         ).then((result) => result.text());
