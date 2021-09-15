@@ -1,6 +1,6 @@
 {
   "name": "@smui-extra/site",
-  "version": "5.0.0-beta.1",
+  "version": "5.0.0-beta.2",
   "description": "SMUI Website (You're not meant to install this.)",
   "type": "module",
   "scripts": {
@@ -82,7 +82,7 @@
     "mdsvex": "^0.9.0",
     "remark-slug": "^6.0.0",
     "sass": "^1.32.11",
-    "smui-theme": "^5.0.0-beta.1",
+    "smui-theme": "^5.0.0-beta.2",
     "svelte": "^3.35.0",
     "svelte-preprocess": "^4.9.2",
     "tinygesture": "^1.1.4",

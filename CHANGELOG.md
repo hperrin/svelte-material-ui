@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0-beta.2](https://github.com/hperrin/svelte-material-ui/compare/v5.0.0-beta.1...v5.0.0-beta.2) (2021-09-15)
+
+
+### Bug Fixes
+
+* smui-theme template 404 issue ([59a94b4](https://github.com/hperrin/svelte-material-ui/commit/59a94b411169a9f831936fb04404b9322814a0e0))
+
+
+
+
+
 # [5.0.0-beta.1](https://github.com/hperrin/svelte-material-ui/compare/v5.0.0-beta.0...v5.0.0-beta.1) (2021-09-14)
 
 
