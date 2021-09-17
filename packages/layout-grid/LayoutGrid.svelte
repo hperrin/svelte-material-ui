@@ -24,7 +24,7 @@
     prefixFilter,
     useActions,
     ActionArray,
-  } from '@smui/common/internal';
+  } from '@smui/common/internal/index.js';
 
   import InnerGrid from './InnerGrid.svelte';
 

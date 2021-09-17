@@ -66,9 +66,9 @@
     classMap,
     dispatch,
     ActionArray,
-  } from '@smui/common/internal';
+  } from '@smui/common/internal/index.js';
   import Ripple from '@smui/ripple';
-  import { Div } from '@smui/common/elements';
+  import { Div } from '@smui/common/elements/index.js';
 
   import type { SMUIChipsPrimaryActionAccessor } from './Text.types.js';
   import type { SMUIChipsTrailingActionAccessor } from './TrailingAction.types.js';

@@ -34,7 +34,7 @@
     classMap,
     dispatch,
     ActionArray,
-  } from '@smui/common/internal';
+  } from '@smui/common/internal/index.js';
   import MenuSurface from '@smui/menu-surface';
 
   import type { DefaultFocusState } from './Menu.types.js';

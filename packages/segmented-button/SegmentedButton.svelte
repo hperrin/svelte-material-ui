@@ -36,7 +36,7 @@
     useActions,
     dispatch,
     ActionArray,
-  } from '@smui/common/internal';
+  } from '@smui/common/internal/index.js';
   import { ContextFragment } from '@smui/common';
 
   import type { SMUISegmentedButtonSegmentAccessor } from './Segment.types.js';

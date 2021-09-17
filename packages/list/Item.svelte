@@ -75,9 +75,9 @@
     classMap,
     dispatch,
     ActionArray,
-  } from '@smui/common/internal';
+  } from '@smui/common/internal/index.js';
   import Ripple from '@smui/ripple';
-  import { A, Span, Li } from '@smui/common/elements';
+  import { A, Span, Li } from '@smui/common/elements/index.js';
 
   import type { SMUIListItemAccessor } from './Item.types.js';
 

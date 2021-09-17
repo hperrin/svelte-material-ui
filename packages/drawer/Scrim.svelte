@@ -21,8 +21,8 @@
     classMap,
     dispatch,
     ActionArray,
-  } from '@smui/common/internal';
-  import { Div } from '@smui/common/elements';
+  } from '@smui/common/internal/index.js';
+  import { Div } from '@smui/common/elements/index.js';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

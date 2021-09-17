@@ -40,7 +40,7 @@
     useActions,
     dispatch,
     ActionArray,
-  } from '@smui/common/internal';
+  } from '@smui/common/internal/index.js';
   import Ripple from '@smui/ripple';
 
   import type { SMUISegmentedButtonSegmentAccessor } from './Segment.types.js';

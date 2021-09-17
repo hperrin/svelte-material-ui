@@ -1,6 +1,6 @@
 import type { SMUIComponent } from '@smui/common';
 import type Component from './Chip.svelte';
-import type { DivComponentDev as DivElementComponentDev } from '@smui/common/elements';
+import type { DivComponentDev as DivElementComponentDev } from '@smui/common/elements/index.js';
 
 export declare class ChipComponentDev<
   C extends SMUIComponent = DivElementComponentDev

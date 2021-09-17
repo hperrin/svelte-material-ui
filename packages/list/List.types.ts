@@ -1,6 +1,6 @@
 import type { SMUIComponent } from '@smui/common';
 import type Component from './List.svelte';
-import type { UlComponentDev as UlElementComponentDev } from '@smui/common/elements';
+import type { UlComponentDev as UlElementComponentDev } from '@smui/common/elements/index.js';
 
 export declare class ListComponentDev<
   C extends SMUIComponent = UlElementComponentDev

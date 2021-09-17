@@ -36,7 +36,7 @@
     useActions,
     dispatch,
     ActionArray,
-  } from '@smui/common/internal';
+  } from '@smui/common/internal/index.js';
 
   import type { SMUIChipsPrimaryActionAccessor } from './Text.types.js';
   import Checkmark from './Checkmark.svelte';

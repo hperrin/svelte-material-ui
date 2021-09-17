@@ -18,8 +18,8 @@
     forwardEventsBuilder,
     classMap,
     ActionArray,
-  } from '@smui/common/internal';
-  import { Main } from '@smui/common/elements';
+  } from '@smui/common/internal/index.js';
+  import { Main } from '@smui/common/elements/index.js';
 
   import type TopAppBar from './TopAppBar.svelte';
 

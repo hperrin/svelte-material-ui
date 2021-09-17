@@ -1,6 +1,6 @@
 import type { SMUIComponent } from '@smui/common';
 import type Component from './AutoAdjust.svelte';
-import type { MainComponentDev as MainElementComponentDev } from '@smui/common/elements';
+import type { MainComponentDev as MainElementComponentDev } from '@smui/common/elements/index.js';
 
 export declare class AutoAdjustComponentDev<
   C extends SMUIComponent = MainElementComponentDev

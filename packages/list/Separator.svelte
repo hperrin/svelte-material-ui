@@ -23,8 +23,8 @@
     forwardEventsBuilder,
     classMap,
     ActionArray,
-  } from '@smui/common/internal';
-  import { Li, Hr } from '@smui/common/elements';
+  } from '@smui/common/internal/index.js';
+  import { Li, Hr } from '@smui/common/elements/index.js';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

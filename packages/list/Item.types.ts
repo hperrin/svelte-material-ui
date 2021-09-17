@@ -1,6 +1,6 @@
 import type { SMUIComponent } from '@smui/common';
 import type Component from './Item.svelte';
-import type { LiComponentDev as LiElementComponentDev } from '@smui/common/elements';
+import type { LiComponentDev as LiElementComponentDev } from '@smui/common/elements/index.js';
 
 export declare class ItemComponentDev<
   C extends SMUIComponent = LiElementComponentDev

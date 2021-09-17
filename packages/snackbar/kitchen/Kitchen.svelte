@@ -32,7 +32,7 @@
 
 <script lang="ts">
   import type { MDCSnackbarCloseEvent } from '@material/snackbar';
-  import { prefixFilter } from '@smui/common/internal';
+  import { prefixFilter } from '@smui/common/internal/index.js';
   import { Label } from '@smui/common';
   import Button from '@smui/button';
   import IconButton from '@smui/icon-button';

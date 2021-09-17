@@ -38,7 +38,7 @@
     useActions,
     dispatch,
     ActionArray,
-  } from '@smui/common/internal';
+  } from '@smui/common/internal/index.js';
   import TabScroller from '@smui/tab-scroller';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());

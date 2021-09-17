@@ -78,7 +78,7 @@
     useActions,
     dispatch,
     ActionArray,
-  } from '@smui/common/internal';
+  } from '@smui/common/internal/index.js';
 
   import Fixed from './Fixed.svelte';
 

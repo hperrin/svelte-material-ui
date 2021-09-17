@@ -1,7 +1,7 @@
 import type { TabIndicatorComponentDev } from '@smui/tab-indicator';
 import type { SMUIComponent } from '@smui/common';
 import type Component from './Tab.svelte';
-import type { ButtonComponentDev as ButtonElementComponentDev } from '@smui/common/elements';
+import type { ButtonComponentDev as ButtonElementComponentDev } from '@smui/common/elements/index.js';
 
 export declare class TabComponentDev<
   C extends SMUIComponent = ButtonElementComponentDev

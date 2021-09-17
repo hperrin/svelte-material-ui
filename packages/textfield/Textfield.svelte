@@ -250,7 +250,7 @@
     prefixFilter,
     useActions,
     ActionArray,
-  } from '@smui/common/internal';
+  } from '@smui/common/internal/index.js';
   import { ContextFragment } from '@smui/common';
   import Ripple from '@smui/ripple';
   import FloatingLabel from '@smui/floating-label';

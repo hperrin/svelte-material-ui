@@ -61,7 +61,7 @@
     prefixFilter,
     useActions,
     ActionArray,
-  } from '@smui/common/internal';
+  } from '@smui/common/internal/index.js';
   const { matches } = ponyfill;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());

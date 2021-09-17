@@ -57,8 +57,8 @@
     classMap,
     dispatch,
     ActionArray,
-  } from '@smui/common/internal';
-  import { Ul, Nav } from '@smui/common/elements';
+  } from '@smui/common/internal/index.js';
+  import { Ul, Nav } from '@smui/common/elements/index.js';
 
   import type { SMUIListAccessor } from './List.types.js';
   import type { SMUIListItemAccessor } from './Item.types.js';

@@ -49,7 +49,7 @@
     classMap,
     useActions,
     ActionArray,
-  } from '@smui/common/internal';
+  } from '@smui/common/internal/index.js';
   import { ContextFragment } from '@smui/common';
 
   import type { SMUIChipsChipAccessor } from './Chip.types.js';

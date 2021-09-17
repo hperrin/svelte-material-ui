@@ -1,5 +1,5 @@
 import type { SMUIComponent } from '@smui/common';
-import { classAdderBuilder } from '@smui/common/internal';
+import { classAdderBuilder } from '@smui/common/internal/index.js';
 import { Graphic } from '@smui/list';
 
 export default classAdderBuilder({

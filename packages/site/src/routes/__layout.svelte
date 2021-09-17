@@ -127,7 +127,6 @@
   import { page } from '$app/stores';
   import {
     mdiFileDocument,
-    mdiCodeTags,
     mdiDiscord,
     mdiTwitter,
     mdiGithub,

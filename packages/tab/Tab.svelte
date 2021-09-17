@@ -79,9 +79,9 @@
     useActions,
     dispatch,
     ActionArray,
-  } from '@smui/common/internal';
+  } from '@smui/common/internal/index.js';
   import Ripple from '@smui/ripple';
-  import { A, Button } from '@smui/common/elements';
+  import { A, Button } from '@smui/common/elements/index.js';
   import TabIndicator from '@smui/tab-indicator';
 
   import type { SMUITabAccessor } from './Tab.types.js';

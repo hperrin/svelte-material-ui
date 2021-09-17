@@ -13,7 +13,10 @@
   import { onMount, onDestroy } from 'svelte';
   import { getContext, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
-  import { ActionArray, forwardEventsBuilder } from '@smui/common/internal';
+  import {
+    ActionArray,
+    forwardEventsBuilder,
+  } from '@smui/common/internal/index.js';
   import { Item } from '@smui/list';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());

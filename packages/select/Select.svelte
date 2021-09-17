@@ -238,7 +238,7 @@
     useActions,
     dispatch,
     ActionArray,
-  } from '@smui/common/internal';
+  } from '@smui/common/internal/index.js';
   import Ripple from '@smui/ripple';
   import Anchor from '@smui/menu-surface/Anchor';
   import Menu from '@smui/menu';

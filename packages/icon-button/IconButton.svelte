@@ -68,9 +68,9 @@
     classMap,
     dispatch,
     ActionArray,
-  } from '@smui/common/internal';
+  } from '@smui/common/internal/index.js';
   import Ripple from '@smui/ripple';
-  import { A, Button } from '@smui/common/elements';
+  import { A, Button } from '@smui/common/elements/index.js';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
   interface UninitializedValue extends Function {}

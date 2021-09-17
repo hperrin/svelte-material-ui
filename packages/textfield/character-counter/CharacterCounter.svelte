@@ -21,7 +21,7 @@
     useActions,
     dispatch,
     ActionArray,
-  } from '@smui/common/internal';
+  } from '@smui/common/internal/index.js';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

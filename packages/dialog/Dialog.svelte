@@ -73,7 +73,7 @@
     useActions,
     dispatch,
     ActionArray,
-  } from '@smui/common/internal';
+  } from '@smui/common/internal/index.js';
   const { FocusTrap } = domFocusTrap;
   const { closest, matches } = ponyfill;
 
