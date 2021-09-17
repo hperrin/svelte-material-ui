@@ -19,7 +19,8 @@
     "lint": "prettier --ignore-path .gitignore --check --plugin-search-dir=. .",
     "format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. .",
     "pages": "npm run bootstrap && cd packages/site && npm run build && cd ../.. && git add -f packages/site/build && git commit -m 'chore: update built files' && git push origin $(git subtree split --prefix packages/site/build master):gh-pages --force && git reset --hard HEAD^",
-    "prepare": "smui-theme compile bare.css",
+    "prepare": "husky install && npm run build:css",
+    "build:css": "smui-theme compile bare.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "files": [

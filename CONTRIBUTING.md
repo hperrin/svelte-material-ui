@@ -12,12 +12,6 @@ The first step is to fork the repo. Once you've got your own fork, check it out 
 git clone git@github.com:yourusername/svelte-material-ui.git smui
 ```
 
-Now you'll need lerna to get going. You can install it globally or you can run it with `npx`. I'm going to assume you want to install it globally.
-
-```
-npm install -g lerna
-```
-
 Now let's get the repo set up for development.
 
 ```
@@ -27,18 +21,16 @@ npm i
 
 # This will take a while
 npm run bootstrap
-
-cd site
-npm i
 ```
 
-Now you're set up. If there are package-lock.json files updated after setting up, feel free to reset those changes. Run this in the site folder to start up the dev site.
+Now you're set up. If there are package-lock.json files updated after setting up, feel free to reset those changes. Run this to start up the dev site.
 
 ```
+cd packages/site
 npm run dev
 ```
 
-Once that starts, you should be able to see the site at http://localhost:5000 and the site will refresh automatically when you make a change.
+Once that starts, you should be able to see the site at http://localhost:3000/ and the site will refresh automatically when you make a change.
 
 ## Commiting Changes
 

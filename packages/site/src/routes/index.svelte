@@ -5,7 +5,7 @@
 <section>
   <div style="margin: 3em 0;">
     <h2 style="margin-bottom: 0;">Svelte Material UI</h2>
-    <p class="mdc-typography--subtitle1">Material UI Components for Svelte 3</p>
+    <p class="mdc-typography--subtitle1">Material UI Components for Svelte</p>
   </div>
 
   <div style="margin: 3em 0;">

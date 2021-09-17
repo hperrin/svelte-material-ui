@@ -1,5 +1,7 @@
 # Using SMUI in the Svelte REPL
 
+Note: The latest version of SMUI doesn't work in the REPL, because the REPL doesn't support TypeScript.
+
 Check out an [example REPL](https://svelte.dev/repl/aa857c3bb5eb478cbe6b1fd6c6da522a?version=3.37.0).
 
 SMUI components provide "bare.css" files to use in the REPL. In a `<svelte:head>` section, load from a CDN like UNPKG the CSS files for the fonts, for Material typography, and for SMUI:

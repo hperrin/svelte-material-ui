@@ -199,6 +199,11 @@
       indent: 0,
     },
     {
+      name: 'SvelteKit',
+      route: '/SVELTEKIT.md/',
+      indent: 1,
+    },
+    {
       name: 'Theming',
       route: '/THEMING.md/',
       indent: 0,

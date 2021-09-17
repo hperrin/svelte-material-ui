@@ -6,9 +6,10 @@ This doc contains information that will help you migrate your code from an older
 
 ## Breaking Changes
 
-- Events have been renamed from like "SMUI:component:sub-component:event" to "SMUIComponentSubComponent:event".
 - TypeScript!!! You don't need to use TypeScript, but you do need to use the [TypeScript preprocessor](https://github.com/sveltejs/svelte-preprocess) for Svelte.
+- Events have been renamed from like "SMUI:component:sub-component:event" to "SMUIComponentSubComponent:event".
 - Elemental components (from @smui/common) should be imported as named imports from `@smui/common/elements` instead, so that they have the right types.
+- The `/bare` import paths have been removed. (The default import path has been unstyled since v4.)
 
 # SMUI 4.0 -> SMUI 4.1
 

@@ -2,7 +2,7 @@
   <img src="packages/site/static/header-transparent.png" alt="Svelte Material UI" />
 </div>
 
-A library of Svelte 3 Material UI components, based on the [Material Design Components - Web](https://material.io/develop/web/).
+A library of Svelte Material UI components, based on [Material Design Components - Web](https://material.io/develop/web/).
 
 # Demos
 
@@ -31,7 +31,7 @@ Here are some features you should know about:
 
 # Installation
 
-To get started, check out the [installation docs](INSTALL.md).
+To get started, check out the [installation docs](INSTALL.md) or the [SvelteKit docs](SVELTEKIT.md).
 
 # Migration
 
@@ -40,6 +40,8 @@ Upgrading from an old version? Be sure to read the [migration doc](MIGRATING.md)
 Upgrading from v2? There are **lots** of changes listed in the [upgrade instructions](MIGRATING.md#smui-2---smui-3).
 
 Upgrading from v3? SMUI's styling method has been simplified. Check out the [upgrade instructions](MIGRATING.md#smui-3---smui-4).
+
+Upgrading from v4? SMUI now requires the [TypeScript preprocessor](https://github.com/sveltejs/svelte-preprocess). Check out the [upgrade instructions](MIGRATING.md#smui-4---smui-5).
 
 # Need Help?
 
@@ -104,10 +106,6 @@ Click a component/package below to go to the documentation. (Note that this docu
 <sub>† This is Sass based, and therefore doesn't require Svelte components. I've included a demo showing how you can use it.</sub>
 
 <sub>‡ This is not an MDC Web component. It is an addition that SMUI provides.</sub>
-
-# Support
-
-You can support my work on this project through my other project, [Tunnelgram](https://tunnelgram.com). I have a [Patreon](https://www.patreon.com/tunnelgram) set up for it. I started this project in order to Materialize Tunnelgram.
 
 # License
 
