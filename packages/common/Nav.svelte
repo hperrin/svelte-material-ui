@@ -10,7 +10,7 @@
 <script lang="ts">
   import { get_current_component } from 'svelte/internal';
 
-  import type { ActionArray } from './useActions';
+  import type { ActionArray } from './useActions.js';
   import { forwardEventsBuilder, useActions } from './internal';
 
   // Remember to update types file if you add/remove/rename props.

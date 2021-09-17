@@ -39,7 +39,7 @@
   } from '@smui/common/internal';
   import { ContextFragment } from '@smui/common';
 
-  import type { SMUISegmentedButtonSegmentAccessor } from './Segment.types';
+  import type { SMUISegmentedButtonSegmentAccessor } from './Segment.types.js';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

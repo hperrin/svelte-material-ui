@@ -22,8 +22,8 @@
     ActionArray,
   } from '@smui/common/internal';
 
-  import type { SMUIDataTableRowAccessor } from './Row.types';
-  import type { SMUIDataTableBodyAccessor } from './Body.types';
+  import type { SMUIDataTableRowAccessor } from './Row.types.js';
+  import type { SMUIDataTableBodyAccessor } from './Body.types.js';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

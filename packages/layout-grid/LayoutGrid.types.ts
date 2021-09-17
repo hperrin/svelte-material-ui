@@ -1,5 +1,5 @@
 import type Component from './LayoutGrid.svelte';
-import type { InnerGridComponentDev } from './InnerGrid.types';
+import type { InnerGridComponentDev } from './InnerGrid.types.js';
 
 export declare class LayoutGridComponentDev extends Component {
   /**

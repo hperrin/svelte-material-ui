@@ -79,7 +79,7 @@
   import Ripple from '@smui/ripple';
   import { A, Span, Li } from '@smui/common/elements';
 
-  import type { SMUIListItemAccessor } from './Item.types';
+  import type { SMUIListItemAccessor } from './Item.types.js';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
   interface UninitializedValue extends Function {}

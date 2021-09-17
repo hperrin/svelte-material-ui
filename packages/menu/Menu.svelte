@@ -37,7 +37,7 @@
   } from '@smui/common/internal';
   import MenuSurface from '@smui/menu-surface';
 
-  import type { DefaultFocusState } from './Menu.types';
+  import type { DefaultFocusState } from './Menu.types.js';
 
   const { closest } = ponyfill;
 

@@ -14,7 +14,7 @@ export declare class BodyComponentDev extends Component {
     Component['$$prop_def'];
 }
 
-import type { SMUIDataTableRowAccessor } from './Row.types';
+import type { SMUIDataTableRowAccessor } from './Row.types.js';
 
 export interface SMUIDataTableBodyAccessor {
   readonly rows: SMUIDataTableRowAccessor[];

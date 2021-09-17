@@ -49,7 +49,7 @@
     ActionArray,
   } from '@smui/common/internal';
 
-  import type { SMUIFloatingLabelAccessor } from './FloatingLabel.types';
+  import type { SMUIFloatingLabelAccessor } from './FloatingLabel.types.js';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

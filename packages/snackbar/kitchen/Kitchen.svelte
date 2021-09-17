@@ -37,9 +37,9 @@
   import Button from '@smui/button';
   import IconButton from '@smui/icon-button';
 
-  import type { ConfigAction, Config } from './Kitchen.types';
+  import type { ConfigAction, Config } from './Kitchen.types.js';
   import Snackbar from '../Snackbar.svelte';
-  import Actions from '../Actions';
+  import Actions from '../Actions.js';
 
   let element: Snackbar;
   let snackbars: Config[] = [];

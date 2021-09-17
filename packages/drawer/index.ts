@@ -1,15 +1,15 @@
 import Drawer from './Drawer.svelte';
-import type { DrawerComponentDev } from './Drawer.types';
-export * from './Drawer.types';
+import type { DrawerComponentDev } from './Drawer.types.js';
+export * from './Drawer.types.js';
 
-import AppContent from './AppContent';
-import Content from './Content';
-import Header from './Header';
-import Title from './Title';
-import Subtitle from './Subtitle';
+import AppContent from './AppContent.js';
+import Content from './Content.js';
+import Header from './Header.js';
+import Title from './Title.js';
+import Subtitle from './Subtitle.js';
 import ScrimComponent from './Scrim.svelte';
-import type { ScrimComponentDev } from './Scrim.types';
-export * from './Scrim.types';
+import type { ScrimComponentDev } from './Scrim.types.js';
+export * from './Scrim.types.js';
 const Scrim = ScrimComponent as typeof ScrimComponentDev;
 
 export default Drawer as typeof DrawerComponentDev;

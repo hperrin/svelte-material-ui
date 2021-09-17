@@ -19,10 +19,10 @@
   import { onDestroy, getContext, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
 
-  import type { ActionArray } from '../useActions';
-  import { forwardEventsBuilder } from '../forwardEventsBuilder';
-  import { classMap } from '../classMap';
-  import { internals } from './internals';
+  import type { ActionArray } from '../useActions.js';
+  import { forwardEventsBuilder } from '../forwardEventsBuilder.js';
+  import { classMap } from '../classMap.js';
+  import { internals } from './internals.js';
 
   export let use: ActionArray = [];
   let className = '';

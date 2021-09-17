@@ -1,15 +1,15 @@
 import Tooltip from './Tooltip.svelte';
-import type { TooltipComponentDev } from './Tooltip.types';
-export * from './Tooltip.types';
+import type { TooltipComponentDev } from './Tooltip.types.js';
+export * from './Tooltip.types.js';
 
 import WrapperComponent from './Wrapper.svelte';
-import type { WrapperComponentDev } from './Wrapper.types';
-export * from './Wrapper.types';
+import type { WrapperComponentDev } from './Wrapper.types.js';
+export * from './Wrapper.types.js';
 const Wrapper = WrapperComponent as typeof WrapperComponentDev;
-import Title from './Title';
-import Content from './Content';
-import Link from './Link';
-import RichActions from './RichActions';
+import Title from './Title.js';
+import Content from './Content.js';
+import Link from './Link.js';
+import RichActions from './RichActions.js';
 
 export default Tooltip as typeof TooltipComponentDev;
 

@@ -1,5 +1,5 @@
 import Radio from './Radio.svelte';
-import type { RadioComponentDev } from './Radio.types';
-export * from './Radio.types';
+import type { RadioComponentDev } from './Radio.types.js';
+export * from './Radio.types.js';
 
 export default Radio as typeof RadioComponentDev;

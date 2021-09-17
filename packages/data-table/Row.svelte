@@ -33,7 +33,7 @@
     ActionArray,
   } from '@smui/common/internal';
 
-  import type { SMUIDataTableRowAccessor } from './Row.types';
+  import type { SMUIDataTableRowAccessor } from './Row.types.js';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

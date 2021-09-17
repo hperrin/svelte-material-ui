@@ -75,7 +75,7 @@
     ActionArray,
   } from '@smui/common/internal';
 
-  import type { SMUIDataTableCellAccessor } from './Cell.types';
+  import type { SMUIDataTableCellAccessor } from './Cell.types.js';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

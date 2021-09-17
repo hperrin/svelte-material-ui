@@ -1,6 +1,6 @@
 import type { SMUIComponent } from './smui.d';
 import type Component from './CommonIcon.svelte';
-import type { IComponentDev } from './I.types';
+import type { IComponentDev } from './I.types.js';
 
 export declare class CommonIconComponentDev<
   C extends SMUIComponent = IComponentDev

@@ -60,8 +60,8 @@
   } from '@smui/common/internal';
   import { Ul, Nav } from '@smui/common/elements';
 
-  import type { SMUIListAccessor } from './List.types';
-  import type { SMUIListItemAccessor } from './Item.types';
+  import type { SMUIListAccessor } from './List.types.js';
+  import type { SMUIListItemAccessor } from './Item.types.js';
 
   const { closest, matches } = ponyfill;
 

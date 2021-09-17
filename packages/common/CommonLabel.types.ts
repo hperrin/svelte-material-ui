@@ -1,6 +1,6 @@
 import type { SMUIComponent } from './smui.d';
 import type Component from './CommonLabel.svelte';
-import type { SpanComponentDev } from './Span.types';
+import type { SpanComponentDev } from './Span.types.js';
 
 export declare class CommonLabelComponentDev<
   C extends SMUIComponent = SpanComponentDev

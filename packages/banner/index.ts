@@ -1,6 +1,6 @@
 import Banner from './Banner.svelte';
-import type { BannerComponentDev } from './Banner.types';
-export * from './Banner.types';
+import type { BannerComponentDev } from './Banner.types.js';
+export * from './Banner.types.js';
 
 import { Label, Icon } from '@smui/common';
 

@@ -1,6 +1,6 @@
 import Fab from './Fab.svelte';
-import type { FabComponentDev } from './Fab.types';
-export * from './Fab.types';
+import type { FabComponentDev } from './Fab.types.js';
+export * from './Fab.types.js';
 
 import { Label, Icon } from '@smui/common';
 

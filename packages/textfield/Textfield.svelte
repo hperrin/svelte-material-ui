@@ -257,9 +257,9 @@
   import LineRipple from '@smui/line-ripple';
   import NotchedOutline from '@smui/notched-outline';
 
-  import HelperLine from './HelperLine';
-  import Prefix from './Prefix';
-  import Suffix from './Suffix';
+  import HelperLine from './HelperLine.js';
+  import Prefix from './Prefix.js';
+  import Suffix from './Suffix.js';
   import Input from './Input.svelte';
   import Textarea from './Textarea.svelte';
 

@@ -77,8 +77,8 @@
     ActionArray,
   } from '@smui/common/internal';
 
-  import type { SMUIDataTableHeadAccessor } from './Head.types';
-  import type { SMUIDataTableBodyAccessor } from './Body.types';
+  import type { SMUIDataTableHeadAccessor } from './Head.types.js';
+  import type { SMUIDataTableBodyAccessor } from './Body.types.js';
 
   const { closest } = ponyfill;
 

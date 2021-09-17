@@ -38,7 +38,7 @@
     ActionArray,
   } from '@smui/common/internal';
 
-  import type { SMUIChipsPrimaryActionAccessor } from './Text.types';
+  import type { SMUIChipsPrimaryActionAccessor } from './Text.types.js';
   import Checkmark from './Checkmark.svelte';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());

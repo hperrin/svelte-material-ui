@@ -20,8 +20,8 @@
     ActionArray,
   } from '@smui/common/internal';
 
-  import type { SMUIDataTableCellAccessor } from './Cell.types';
-  import type { SMUIDataTableHeadAccessor } from './Head.types';
+  import type { SMUIDataTableCellAccessor } from './Cell.types.js';
+  import type { SMUIDataTableHeadAccessor } from './Head.types.js';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

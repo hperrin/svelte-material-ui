@@ -1,4 +1,4 @@
-export * from './Ripple';
-import Ripple from './Ripple';
+export * from './Ripple.js';
+import Ripple from './Ripple.js';
 
 export default Ripple;

@@ -2,8 +2,8 @@ import type { FloatingLabelComponentDev } from '@smui/floating-label';
 import type { NotchedOutlineComponentDev } from '@smui/notched-outline';
 import type { LineRippleComponentDev } from '@smui/line-ripple';
 import type Component from './Textfield.svelte';
-import type { InputComponentDev } from './Input.types';
-import type { TextareaComponentDev } from './Textarea.types';
+import type { InputComponentDev } from './Input.types.js';
+import type { TextareaComponentDev } from './Textarea.types.js';
 
 export declare class TextfieldComponentDev extends Component {
   /**

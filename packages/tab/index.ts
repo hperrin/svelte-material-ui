@@ -1,6 +1,6 @@
 import Tab from './Tab.svelte';
-import type { TabComponentDev } from './Tab.types';
-export * from './Tab.types';
+import type { TabComponentDev } from './Tab.types.js';
+export * from './Tab.types.js';
 
 import { Label, Icon } from '@smui/common';
 

@@ -54,7 +54,7 @@
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
 
-  import type { SMUIChipsTrailingActionAccessor } from './TrailingAction.types';
+  import type { SMUIChipsTrailingActionAccessor } from './TrailingAction.types.js';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

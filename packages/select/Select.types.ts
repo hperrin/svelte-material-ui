@@ -4,7 +4,7 @@ import type { LineRippleComponentDev } from '@smui/line-ripple';
 import type { MenuComponentDev } from '@smui/menu';
 import type { ListComponentDev } from '@smui/list';
 import type Component from './Select.svelte';
-import type { HelperTextComponentDev } from './helper-text/HelperText.types';
+import type { HelperTextComponentDev } from './helper-text/HelperText.types.js';
 
 export declare class SelectComponentDev extends Component {
   /**

@@ -1,7 +1,7 @@
 import type { ButtonComponentDev } from '@smui/button';
 import type { IconButtonComponentDev } from '@smui/icon-button';
 import type Component from './Kitchen.svelte';
-import type { SnackbarComponentDev } from '../Snackbar.types';
+import type { SnackbarComponentDev } from '../Snackbar.types.js';
 
 export declare class KitchenComponentDev extends Component {
   /**

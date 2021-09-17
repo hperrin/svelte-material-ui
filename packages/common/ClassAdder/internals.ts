@@ -1,6 +1,6 @@
-import type { ClassAdderInternals } from './index.types';
+import type { ClassAdderInternals } from './index.types.js';
 import Div from '../Div.svelte';
-import type { DivComponentDev } from '../Div.types';
+import type { DivComponentDev } from '../Div.types.js';
 
 export const internals: ClassAdderInternals<typeof DivComponentDev> = {
   component: Div as typeof DivComponentDev,

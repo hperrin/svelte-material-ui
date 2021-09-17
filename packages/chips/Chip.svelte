@@ -70,9 +70,9 @@
   import Ripple from '@smui/ripple';
   import { Div } from '@smui/common/elements';
 
-  import type { SMUIChipsPrimaryActionAccessor } from './Text.types';
-  import type { SMUIChipsTrailingActionAccessor } from './TrailingAction.types';
-  import type { SMUIChipsChipAccessor } from './Chip.types';
+  import type { SMUIChipsPrimaryActionAccessor } from './Text.types.js';
+  import type { SMUIChipsTrailingActionAccessor } from './TrailingAction.types.js';
+  import type { SMUIChipsChipAccessor } from './Chip.types.js';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

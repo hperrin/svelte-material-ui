@@ -37,7 +37,7 @@ export declare class ListComponentDev<
     Component['$$prop_def'];
 }
 
-import type { SMUIListItemAccessor } from './Item.types';
+import type { SMUIListItemAccessor } from './Item.types.js';
 
 export interface SMUIListAccessor {
   readonly element: Element;

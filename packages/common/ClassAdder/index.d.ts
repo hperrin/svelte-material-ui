@@ -1,5 +1,7 @@
+import type { SMUIComponent } from '../smui';
+
 declare module '*.svelte' {
-  export { SMUIComponent as default } from '../SMUIComponent';
-  export { ClassAdderInternals } from './index.types';
+  export default SMUIComponent;
+  export { ClassAdderInternals } from './index.types.js';
   export const internals: ClassAdderInternals;
 }

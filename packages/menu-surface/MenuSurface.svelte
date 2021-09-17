@@ -38,7 +38,7 @@
     ActionArray,
   } from '@smui/common/internal';
 
-  import { Corner, SMUIMenuSurfaceAccessor } from './MenuSurface.types';
+  import { Corner, SMUIMenuSurfaceAccessor } from './MenuSurface.types.js';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

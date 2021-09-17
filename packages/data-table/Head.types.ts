@@ -15,7 +15,7 @@ export declare class HeadComponentDev extends Component {
 }
 
 import type { SMUICheckboxInputAccessor } from '@smui/common';
-import type { SMUIDataTableCellAccessor } from './Cell.types';
+import type { SMUIDataTableCellAccessor } from './Cell.types.js';
 
 export interface SMUIDataTableHeadAccessor {
   readonly cells: SMUIDataTableCellAccessor[];

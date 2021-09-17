@@ -84,7 +84,7 @@
   import { A, Button } from '@smui/common/elements';
   import TabIndicator from '@smui/tab-indicator';
 
-  import type { SMUITabAccessor } from './Tab.types';
+  import type { SMUITabAccessor } from './Tab.types.js';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

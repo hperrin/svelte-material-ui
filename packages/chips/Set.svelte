@@ -52,7 +52,7 @@
   } from '@smui/common/internal';
   import { ContextFragment } from '@smui/common';
 
-  import type { SMUIChipsChipAccessor } from './Chip.types';
+  import type { SMUIChipsChipAccessor } from './Chip.types.js';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

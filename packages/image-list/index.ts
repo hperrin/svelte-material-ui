@@ -1,11 +1,11 @@
 import ImageList from './ImageList.svelte';
-import type { ImageListComponentDev } from './ImageList.types';
-export * from './ImageList.types';
+import type { ImageListComponentDev } from './ImageList.types.js';
+export * from './ImageList.types.js';
 
-import Item from './Item';
-import ImageAspectContainer from './ImageAspectContainer';
-import Image from './Image';
-import Supporting from './Supporting';
+import Item from './Item.js';
+import ImageAspectContainer from './ImageAspectContainer.js';
+import Image from './Image.js';
+import Supporting from './Supporting.js';
 import { Label } from '@smui/common';
 
 export default ImageList as typeof ImageListComponentDev;

@@ -1,12 +1,12 @@
 import Dialog from './Dialog.svelte';
-import type { DialogComponentDev } from './Dialog.types';
-export * from './Dialog.types';
+import type { DialogComponentDev } from './Dialog.types.js';
+export * from './Dialog.types.js';
 
-import Header from './Header';
-import Title from './Title';
-import Content from './Content';
-import Actions from './Actions';
-import InitialFocus from './InitialFocus';
+import Header from './Header.js';
+import Title from './Title.js';
+import Content from './Content.js';
+import Actions from './Actions.js';
+import InitialFocus from './InitialFocus.js';
 
 export default Dialog as typeof DialogComponentDev;
 

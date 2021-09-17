@@ -21,7 +21,7 @@
   import { getContext, SvelteComponent } from 'svelte';
   import { get_current_component } from 'svelte/internal';
 
-  import type { ActionArray } from './useActions';
+  import type { ActionArray } from './useActions.js';
   import { forwardEventsBuilder, classMap } from './internal';
   import I from './I.svelte';
   import Svg from './Svg.svelte';
