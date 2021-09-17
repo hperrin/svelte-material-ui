@@ -1,6 +1,6 @@
 {
   "name": "@smui/data-table",
-  "version": "5.0.0-beta.3",
+  "version": "5.0.0-beta.4",
   "description": "Svelte Material UI - Data Table",
   "type": "module",
   "module": "index.js",
@@ -37,10 +37,10 @@
   "dependencies": {
     "@material/data-table": "^11.0.0",
     "@material/dom": "^11.0.0",
-    "@smui/checkbox": "^5.0.0-beta.3",
-    "@smui/common": "^5.0.0-beta.3",
-    "@smui/icon-button": "^5.0.0-beta.3",
-    "@smui/ripple": "^5.0.0-beta.3",
+    "@smui/checkbox": "^5.0.0-beta.4",
+    "@smui/common": "^5.0.0-beta.4",
+    "@smui/icon-button": "^5.0.0-beta.4",
+    "@smui/ripple": "^5.0.0-beta.4",
     "svelte2tsx": "^0.4.6"
   },
   "devDependencies": {
