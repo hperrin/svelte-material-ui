@@ -40,7 +40,7 @@
     MDCChipSelectionEventDetail,
   } from '@material/chips/deprecated/chip/types';
   import { MDCChipSetFoundation } from '@material/chips/deprecated/chip-set/foundation.js';
-  import { announce } from '@material/dom/announce.js';
+  import domAnnounce from '@material/dom/announce.js';
   import { onMount, setContext } from 'svelte';
   import { writable } from 'svelte/store';
   import { get_current_component } from 'svelte/internal';
@@ -53,6 +53,8 @@
   import { ContextFragment } from '@smui/common';
 
   import type { SMUIChipsChipAccessor } from './Chip.types.js';
+
+  const { announce } = domAnnounce;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
