@@ -1,6 +1,6 @@
 {
   "name": "@smui/drawer",
-  "version": "5.0.0-beta.1",
+  "version": "5.0.0-beta.3",
   "description": "Svelte Material UI - Drawer",
   "type": "module",
   "module": "index.js",
@@ -37,7 +37,7 @@
   "dependencies": {
     "@material/dom": "^11.0.0",
     "@material/drawer": "^11.0.0",
-    "@smui/common": "^5.0.0-beta.1",
+    "@smui/common": "^5.0.0-beta.3",
     "svelte2tsx": "^0.4.6"
   },
   "devDependencies": {
