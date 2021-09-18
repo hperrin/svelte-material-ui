@@ -80,7 +80,7 @@
   import Card, { Content, Actions, ActionIcons } from '@smui/card';
   import IconButton, { Icon } from '@smui/icon-button';
   import Tooltip, { Wrapper } from '@smui/tooltip';
-  import Svg from '@smui/common/Svg.svelte';
+  import { Svg } from '@smui/common/elements';
 
   export let file: string | undefined = undefined;
   export let files: string[] = typeof file === 'string' ? [file] : [];
