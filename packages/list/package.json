@@ -1,6 +1,6 @@
 {
   "name": "@smui/list",
-  "version": "5.0.0-beta.4",
+  "version": "5.0.0-beta.5",
   "description": "Svelte Material UI - List",
   "type": "module",
   "module": "index.js",
@@ -38,8 +38,8 @@
     "@material/dom": "^11.0.0",
     "@material/feature-targeting": "^11.0.0",
     "@material/list": "^11.0.0",
-    "@smui/common": "^5.0.0-beta.4",
-    "@smui/ripple": "^5.0.0-beta.4",
+    "@smui/common": "^5.0.0-beta.5",
+    "@smui/ripple": "^5.0.0-beta.5",
     "svelte2tsx": "^0.4.6"
   },
   "devDependencies": {
