@@ -1,9 +1,9 @@
-import type { SMUIComponent } from '@smui/common';
+import type { SvelteComponentDev } from 'svelte/internal';
 import type Component from './Chip.svelte';
 import type { DivComponentDev as DivElementComponentDev } from '@smui/common/elements/index.js';
 
 export declare class ChipComponentDev<
-  C extends SMUIComponent = DivElementComponentDev
+  C extends SvelteComponentDev = DivElementComponentDev
 > extends Component {
   /**
    * @private

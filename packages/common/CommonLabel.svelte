@@ -22,13 +22,12 @@
 >
 
 <script type="ts">
-  import type { SMUIComponent } from './smui.d';
   import { getContext } from 'svelte';
-  import { get_current_component } from 'svelte/internal';
+  import { get_current_component, SvelteComponentDev } from 'svelte/internal';
 
-  import type { ActionArray } from './useActions.js';
-  import { forwardEventsBuilder, classMap } from './internal';
-  import Span from './Span.svelte';
+  import type { ActionArray } from './internal/useActions.js';
+  import { forwardEventsBuilder, classMap } from './internal/index.js';
+  import Span from './elements/Span.svelte';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
@@ -37,9 +36,9 @@
   let className = '';
   export { className as class };
 
-  let element: SMUIComponent;
+  let element: SvelteComponentDev;
 
-  export let component: typeof SMUIComponent = Span;
+  export let component: typeof SvelteComponentDev = Span;
 
   const context = getContext<string | undefined>('SMUI:label:context');
   const tabindex = getContext<number | undefined>('SMUI:label:tabindex');

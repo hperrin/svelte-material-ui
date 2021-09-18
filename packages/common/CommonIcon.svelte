@@ -21,10 +21,10 @@
   import { getContext, SvelteComponent } from 'svelte';
   import { get_current_component } from 'svelte/internal';
 
-  import type { ActionArray } from './useActions.js';
-  import { forwardEventsBuilder, classMap } from './internal';
-  import I from './I.svelte';
-  import Svg from './Svg.svelte';
+  import type { ActionArray } from './internal/useActions.js';
+  import { forwardEventsBuilder, classMap } from './internal/index.js';
+  import I from './elements/I.svelte';
+  import Svg from './elements/Svg.svelte';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

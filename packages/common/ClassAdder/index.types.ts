@@ -1,6 +1,6 @@
-import type { SMUIComponent } from '../smui.d';
+import type { SvelteComponentDev } from 'svelte/internal';
 
-export type ClassAdderInternals<T extends typeof SMUIComponent> = {
+export type ClassAdderInternals<T extends typeof SvelteComponentDev> = {
   component: T;
   class: string;
   /**

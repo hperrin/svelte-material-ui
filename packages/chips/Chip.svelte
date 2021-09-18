@@ -56,11 +56,10 @@
 </svelte:component>
 
 <script lang="ts">
-  import type { SMUIComponent } from '@smui/common';
   import { MDCChipFoundation } from '@material/chips/deprecated/chip/foundation.js';
   import { onMount, setContext, getContext } from 'svelte';
   import { writable } from 'svelte/store';
-  import { get_current_component } from 'svelte/internal';
+  import { get_current_component, SvelteComponentDev } from 'svelte/internal';
   import {
     forwardEventsBuilder,
     classMap,
@@ -88,7 +87,7 @@
   export let shouldRemoveOnTrailingIconClick = true;
   export let shouldFocusPrimaryActionOnClick = true;
 
-  let element: SMUIComponent;
+  let element: SvelteComponentDev;
   let instance: MDCChipFoundation;
   let internalClasses: { [k: string]: boolean } = {};
   let leadingIconClasses: { [k: string]: boolean } = {};
@@ -109,7 +108,7 @@
   const choice = getContext<SvelteStore<boolean>>('SMUI:chips:choice');
   const index = getContext<SvelteStore<number>>('SMUI:chips:chip:index');
 
-  export let component: typeof SMUIComponent = Div;
+  export let component: typeof SvelteComponentDev = Div;
 
   const shouldRemoveOnTrailingIconClickStore = writable(
     shouldRemoveOnTrailingIconClick
@@ -321,7 +320,7 @@
     instance.removeFocus();
   }
 
-  export function getElement() {
+  export function getElement(): Element {
     return element.getElement();
   }
 </script>

@@ -51,9 +51,8 @@
 >
 
 <script lang="ts">
-  import type { SMUIComponent } from '@smui/common';
   import { setContext, getContext } from 'svelte';
-  import { get_current_component } from 'svelte/internal';
+  import { get_current_component, SvelteComponentDev } from 'svelte/internal';
   import {
     forwardEventsBuilder,
     classMap,
@@ -79,12 +78,12 @@
   export let defaultAction = false;
   export let secondary = false;
 
-  let element: SMUIComponent;
+  let element: SvelteComponentDev;
   let internalClasses: { [k: string]: boolean } = {};
   let internalStyles: { [k: string]: string } = {};
   let context = getContext<string | undefined>('SMUI:button:context');
 
-  export let component: typeof SMUIComponent = href == null ? Button : A;
+  export let component: typeof SvelteComponentDev = href == null ? Button : A;
 
   $: actionProp =
     context === 'dialog:action' && action != null

@@ -48,7 +48,7 @@
   on:click={() => instance && instance.handleClick()}
   on:click={() =>
     context === 'top-app-bar:navigation' &&
-    dispatch(element, 'SMUITopAppBarIconButton:nav')}
+    dispatch(getElement(), 'SMUITopAppBarIconButton:nav')}
   {href}
   {...actionProp}
   {...internalAttrs}
@@ -56,13 +56,12 @@
 >
 
 <script lang="ts">
-  import type { SMUIComponent } from '@smui/common';
   import {
     MDCIconButtonToggleEventDetail,
     MDCIconButtonToggleFoundation,
   } from '@material/icon-button';
   import { onDestroy, getContext, setContext } from 'svelte';
-  import { get_current_component } from 'svelte/internal';
+  import { get_current_component, SvelteComponentDev } from 'svelte/internal';
   import {
     forwardEventsBuilder,
     classMap,
@@ -100,7 +99,7 @@
     | string
     | undefined = undefined;
 
-  let element: SMUIComponent;
+  let element: SvelteComponentDev;
   let instance: MDCIconButtonToggleFoundation | undefined;
   let internalClasses: { [k: string]: boolean } = {};
   let internalStyles: { [k: string]: string } = {};
@@ -108,7 +107,7 @@
   let context = getContext('SMUI:icon-button:context');
   let ariaDescribedby = getContext('SMUI:icon-button:aria-describedby');
 
-  export let component: typeof SMUIComponent = href == null ? Button : A;
+  export let component: typeof SvelteComponentDev = href == null ? Button : A;
 
   $: actionProp = (() => {
     if (context === 'data-table:pagination') {
@@ -214,7 +213,7 @@
     pressed = evtData.isOn;
   }
 
-  export function getElement() {
+  export function getElement(): Element {
     return element.getElement();
   }
 </script>

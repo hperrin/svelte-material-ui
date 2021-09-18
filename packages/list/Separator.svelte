@@ -16,9 +16,8 @@
 />
 
 <script lang="ts">
-  import type { SMUIComponent } from '@smui/common';
   import { getContext } from 'svelte';
-  import { get_current_component } from 'svelte/internal';
+  import { get_current_component, SvelteComponentDev } from 'svelte/internal';
   import {
     forwardEventsBuilder,
     classMap,
@@ -38,14 +37,14 @@
   export let insetTrailing = false;
   export let insetPadding = false;
 
-  let element: SMUIComponent;
+  let element: SvelteComponentDev;
   let nav = getContext<boolean | undefined>('SMUI:list:item:nav');
   let context = getContext<string | undefined>('SMUI:separator:context');
 
-  export let component: typeof SMUIComponent =
+  export let component: typeof SvelteComponentDev =
     nav || context !== 'list' ? Hr : Li;
 
-  export function getElement() {
+  export function getElement(): Element {
     return element.getElement();
   }
 </script>

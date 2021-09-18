@@ -66,11 +66,10 @@
 </svelte:component>
 
 <script lang="ts">
-  import type { SMUIComponent } from '@smui/common';
   import type { TabIndicatorComponentDev } from '@smui/tab-indicator';
   import { MDCTabFoundation } from '@material/tab';
   import { onMount, setContext, getContext } from 'svelte';
-  import { get_current_component } from 'svelte/internal';
+  import { get_current_component, SvelteComponentDev } from 'svelte/internal';
   import {
     forwardEventsBuilder,
     classMap,
@@ -103,7 +102,7 @@
   export let content$use: ActionArray = [];
   export let content$class = '';
 
-  let element: SMUIComponent;
+  let element: SvelteComponentDev;
   let instance: MDCTabFoundation;
   let content: HTMLSpanElement;
   let tabIndicator: TabIndicatorComponentDev;
@@ -114,7 +113,7 @@
   let active = tabId === getContext<any | undefined>('SMUI:tab:initialActive');
   let forceAccessible = false;
 
-  export let component: typeof SMUIComponent = href == null ? Button : A;
+  export let component: typeof SvelteComponentDev = href == null ? Button : A;
 
   setContext('SMUI:label:context', 'tab');
   setContext('SMUI:icon:context', 'tab');
@@ -234,7 +233,7 @@
     getElement().focus();
   }
 
-  export function getElement() {
+  export function getElement(): HTMLElement {
     return element.getElement();
   }
 </script>

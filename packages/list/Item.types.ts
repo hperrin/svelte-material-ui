@@ -1,9 +1,9 @@
-import type { SMUIComponent } from '@smui/common';
+import type { SvelteComponentDev } from 'svelte/internal';
 import type Component from './Item.svelte';
 import type { LiComponentDev as LiElementComponentDev } from '@smui/common/elements/index.js';
 
 export declare class ItemComponentDev<
-  C extends SMUIComponent = LiElementComponentDev
+  C extends SvelteComponentDev = LiElementComponentDev
 > extends Component {
   /**
    * @private

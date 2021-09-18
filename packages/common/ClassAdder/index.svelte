@@ -11,31 +11,27 @@
   {...$$restProps}><slot /></svelte:component
 >
 
-<script context="module" lang="ts">
-  import type { SMUIComponent } from '../smui.d';
-</script>
-
 <script lang="ts">
   import { onDestroy, getContext, setContext } from 'svelte';
-  import { get_current_component } from 'svelte/internal';
+  import { get_current_component, SvelteComponentDev } from 'svelte/internal';
 
-  import type { ActionArray } from '../useActions.js';
-  import { forwardEventsBuilder } from '../forwardEventsBuilder.js';
-  import { classMap } from '../classMap.js';
+  import type { ActionArray } from '../internal/useActions.js';
+  import { forwardEventsBuilder } from '../internal/forwardEventsBuilder.js';
+  import { classMap } from '../internal/classMap.js';
   import { internals } from './internals.js';
 
   export let use: ActionArray = [];
   let className = '';
   export { className as class };
 
-  let element: SMUIComponent;
+  let element: SvelteComponentDev;
   const smuiClass = internals.class;
   const smuiClassMap: { [k: string]: any } = {};
   const smuiClassUnsubscribes: (() => void)[] = [];
   const contexts = internals.contexts;
   const props = internals.props;
 
-  export let component: typeof SMUIComponent = internals.component;
+  export let component: typeof SvelteComponentDev = internals.component;
 
   Object.entries(internals.classMap).forEach(([name, context]) => {
     const store = getContext(context) as SvelteStore<any>;
@@ -63,7 +59,9 @@
     }
   });
 
-  export function getElement() {
+  export function getElement(): ReturnType<
+    InstanceType<typeof component>['getElement']
+  > {
     return element.getElement();
   }
 </script>

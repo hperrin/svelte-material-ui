@@ -1,9 +1,9 @@
-import type { SMUIComponent } from '@smui/common';
+import type { SvelteComponentDev } from 'svelte/internal';
 import type Component from './AutoAdjust.svelte';
 import type { MainComponentDev as MainElementComponentDev } from '@smui/common/elements/index.js';
 
 export declare class AutoAdjustComponentDev<
-  C extends SMUIComponent = MainElementComponentDev
+  C extends SvelteComponentDev = MainElementComponentDev
 > extends Component {
   /**
    * @private

@@ -1,9 +1,9 @@
-import type { SMUIComponent } from '@smui/common';
+import type { SvelteComponentDev } from 'svelte/internal';
 import type Component from './Button.svelte';
 import type { ButtonComponentDev as ButtonElementComponentDev } from '@smui/common/elements/index.js';
 
 export declare class ButtonComponentDev<
-  C extends SMUIComponent = ButtonElementComponentDev
+  C extends SvelteComponentDev = ButtonElementComponentDev
 > extends Component {
   /**
    * @private

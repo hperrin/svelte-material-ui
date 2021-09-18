@@ -12,8 +12,7 @@
 </svelte:component>
 
 <script lang="ts">
-  import type { SMUIComponent } from '@smui/common';
-  import { get_current_component } from 'svelte/internal';
+  import { get_current_component, SvelteComponentDev } from 'svelte/internal';
   import {
     forwardEventsBuilder,
     classMap,
@@ -31,9 +30,9 @@
   export { className as class };
   export let topAppBar: TopAppBar;
 
-  let element: SMUIComponent;
+  let element: SvelteComponentDev;
 
-  export let component: typeof SMUIComponent = Main;
+  export let component: typeof SvelteComponentDev = Main;
 
   $: propStore = topAppBar && topAppBar.getPropStore();
   $: adjustClass = (() => {
@@ -58,7 +57,7 @@
     return 'mdc-top-app-bar--fixed-adjust';
   })();
 
-  export function getElement() {
+  export function getElement(): Element {
     return element.getElement();
   }
 </script>

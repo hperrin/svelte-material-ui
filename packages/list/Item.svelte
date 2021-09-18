@@ -64,12 +64,11 @@
 <script lang="ts">
   import type {
     SMUICheckboxInputAccessor,
-    SMUIComponent,
     SMUIGenericInputAccessor,
     SMUIRadioInputAccessor,
   } from '@smui/common';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
-  import { get_current_component } from 'svelte/internal';
+  import { get_current_component, SvelteComponentDev } from 'svelte/internal';
   import {
     forwardEventsBuilder,
     classMap,
@@ -108,7 +107,7 @@
   export let inputId = 'SMUI-form-field-list-' + counter++;
   export let href: string | undefined = undefined;
 
-  let element: SMUIComponent;
+  let element: SvelteComponentDev;
   let internalClasses: { [k: string]: boolean } = {};
   let internalStyles: { [k: string]: string } = {};
   let internalAttrs: { [k: string]: string | undefined } = {};
@@ -122,7 +121,11 @@
       : -1
     : tabindexProp;
 
-  export let component: typeof SMUIComponent = nav ? (href ? A : Span) : Li;
+  export let component: typeof SvelteComponentDev = nav
+    ? href
+      ? A
+      : Span
+    : Li;
 
   setContext('SMUI:generic:input:props', { id: inputId });
   // Reset separator context, because we aren't directly under a list anymore.
@@ -206,10 +209,10 @@
       },
     };
 
-    dispatch(element, 'SMUIListItem:mount', accessor);
+    dispatch(getElement(), 'SMUIListItem:mount', accessor);
 
     return () => {
-      dispatch(element, 'SMUIListItem:unmount', accessor);
+      dispatch(getElement(), 'SMUIListItem:unmount', accessor);
     };
   });
 
@@ -292,7 +295,7 @@
 
   function action(e: Event) {
     if (!disabled) {
-      dispatch(element, 'SMUI:action', e);
+      dispatch(getElement(), 'SMUI:action', e);
     }
   }
 
@@ -329,7 +332,7 @@
     return element.textContent ?? '';
   }
 
-  export function getElement() {
+  export function getElement(): Element {
     return element.getElement();
   }
 </script>

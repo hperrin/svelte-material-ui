@@ -45,7 +45,7 @@
     }
   }
 
-  export function getElement() {
+  export function getElement(): Element {
     return element.getElement();
   }
 </script>

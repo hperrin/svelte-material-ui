@@ -78,7 +78,7 @@
           .map((accessor) => accessor.element)
           .indexOf(element),
       notifySelected: (evtData) =>
-        dispatch(element, 'MDCMenu:selected', {
+        dispatch(getElement(), 'MDCMenu:selected', {
           index: evtData.index,
           item: listAccessor.getOrderedList()[evtData.index].element,
         }),
@@ -107,7 +107,7 @@
       },
     });
 
-    dispatch(element, 'SMUIMenu:mount', instance);
+    dispatch(getElement(), 'SMUIMenu:mount', instance);
 
     instance.init();
 
@@ -146,7 +146,7 @@
     instance.setDefaultFocusState(focusState);
   }
 
-  export function getElement() {
+  export function getElement(): Element {
     return element.getElement();
   }
 </script>

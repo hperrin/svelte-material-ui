@@ -1,9 +1,9 @@
-import type { SMUIComponent } from '@smui/common';
+import type { SvelteComponentDev } from 'svelte/internal';
 import type Component from './Scrim.svelte';
 import type { DivComponentDev as DivElementComponentDev } from '@smui/common/elements/index.js';
 
 export declare class ScrimComponentDev<
-  C extends SMUIComponent = DivElementComponentDev
+  C extends SvelteComponentDev = DivElementComponentDev
 > extends Component {
   /**
    * @private

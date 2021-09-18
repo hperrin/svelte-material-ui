@@ -11,4 +11,4 @@ const Icon = IconComponent as typeof CommonIconComponentDev;
 import ContextFragment from './ContextFragment.svelte';
 
 export { Label, Icon, ContextFragment };
-export * from './smui.d';
+export * from './smui.types.js';

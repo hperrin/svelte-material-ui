@@ -1,9 +1,9 @@
-import type { SMUIComponent } from './smui.d';
+import type { SvelteComponentDev } from 'svelte/internal';
 import type Component from './CommonIcon.svelte';
-import type { IComponentDev } from './I.types.js';
+import type { IComponentDev } from './elements/I.types.js';
 
 export declare class CommonIconComponentDev<
-  C extends SMUIComponent = IComponentDev
+  C extends SvelteComponentDev = IComponentDev
 > extends Component {
   /**
    * @private

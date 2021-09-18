@@ -7,15 +7,14 @@
     'mdc-drawer-scrim': true,
     'smui-drawer-scrim__absolute': !fixed,
   })}
-  on:click={(event) => dispatch(element, 'SMUIDrawerScrim:click', event)}
+  on:click={(event) => dispatch(getElement(), 'SMUIDrawerScrim:click', event)}
   {...$$restProps}
 >
   <slot />
 </svelte:component>
 
 <script lang="ts">
-  import type { SMUIComponent } from '@smui/common';
-  import { get_current_component } from 'svelte/internal';
+  import { get_current_component, SvelteComponentDev } from 'svelte/internal';
   import {
     forwardEventsBuilder,
     classMap,
@@ -32,11 +31,11 @@
   export { className as class };
   export let fixed = true;
 
-  let element: SMUIComponent;
+  let element: SvelteComponentDev;
 
-  export let component: typeof SMUIComponent = Div;
+  export let component: typeof SvelteComponentDev = Div;
 
-  export function getElement() {
+  export function getElement(): Element {
     return element.getElement();
   }
 </script>

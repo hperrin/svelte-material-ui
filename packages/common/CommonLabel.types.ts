@@ -1,9 +1,9 @@
-import type { SMUIComponent } from './smui.d';
+import type { SvelteComponentDev } from 'svelte/internal';
 import type Component from './CommonLabel.svelte';
-import type { SpanComponentDev } from './Span.types.js';
+import type { SpanComponentDev } from './elements/Span.types.js';
 
 export declare class CommonLabelComponentDev<
-  C extends SMUIComponent = SpanComponentDev
+  C extends SvelteComponentDev = SpanComponentDev
 > extends Component {
   /**
    * @private

@@ -43,15 +43,11 @@
 </svelte:component>
 
 <script lang="ts">
-  import type {
-    AddLayoutListener,
-    RemoveLayoutListener,
-    SMUIComponent,
-  } from '@smui/common';
+  import type { AddLayoutListener, RemoveLayoutListener } from '@smui/common';
   import { MDCListFoundation } from '@material/list';
   import { ponyfill } from '@material/dom';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
-  import { get_current_component } from 'svelte/internal';
+  import { get_current_component, SvelteComponentDev } from 'svelte/internal';
   import {
     forwardEventsBuilder,
     classMap,
@@ -90,7 +86,7 @@
   export let checkList = false;
   export let hasTypeahead = false;
 
-  let element: SMUIComponent;
+  let element: SvelteComponentDev;
   let instance: MDCListFoundation;
   let items: SMUIListItemAccessor[] = [];
   let role = getContext<string | undefined>('SMUI:list:role');
@@ -104,7 +100,7 @@
   );
   let removeLayoutListener: RemoveLayoutListener | undefined;
 
-  export let component: typeof SMUIComponent = nav ? Nav : Ul;
+  export let component: typeof SvelteComponentDev = nav ? Nav : Ul;
 
   setContext('SMUI:list:nonInteractive', nonInteractive);
   setContext('SMUI:separator:context', 'list');
@@ -177,7 +173,7 @@
       listItemAtIndexHasClass,
       notifyAction: (index) => {
         selectedIndex = index;
-        dispatch(element, 'MDCList:action', { index });
+        dispatch(getElement(), 'MDCList:action', { index });
       },
       removeClassForElementIndex,
       setAttributeForElementIndex,
@@ -223,7 +219,7 @@
       getPrimaryTextAtIndex,
     };
 
-    dispatch(element, 'SMUIList:mount', accessor);
+    dispatch(getElement(), 'SMUIList:mount', accessor);
 
     instance.init();
 
@@ -358,7 +354,7 @@
     return instance.getSelectedIndex();
   }
 
-  export function getElement() {
+  export function getElement(): Element {
     return element.getElement();
   }
 </script>
