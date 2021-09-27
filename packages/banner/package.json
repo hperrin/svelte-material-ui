@@ -1,6 +1,6 @@
 {
   "name": "@smui/banner",
-  "version": "5.0.0-beta.5",
+  "version": "5.0.0-beta.6",
   "description": "Svelte Material UI - Banner",
   "type": "module",
   "module": "index.js",
@@ -36,7 +36,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@material/banner": "^11.0.0",
-    "@smui/common": "^5.0.0-beta.5",
+    "@smui/common": "^5.0.0-beta.6",
     "svelte2tsx": "^0.4.6"
   },
   "devDependencies": {

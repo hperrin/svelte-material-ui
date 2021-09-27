@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0-beta.6](https://github.com/hperrin/svelte-material-ui/compare/v5.0.0-beta.5...v5.0.0-beta.6) (2021-09-27)
+
+
+### Bug Fixes
+
+* forward blur and focus events from textfield ([0a9b508](https://github.com/hperrin/svelte-material-ui/commit/0a9b508bd5cdc1fa35afb06b2ade33f50f60d0ef)), closes [#328](https://github.com/hperrin/svelte-material-ui/issues/328)
+* incorrect import path for scss file in button ([126d764](https://github.com/hperrin/svelte-material-ui/commit/126d7646fd8ad5048a2bbad94eb0d921d5aef957))
+* internals causing issues being outside of class adder component ([1c29076](https://github.com/hperrin/svelte-material-ui/commit/1c290761fd60ff6880c133eeccf65101f9fb79f2)), closes [#329](https://github.com/hperrin/svelte-material-ui/issues/329)
+* lock sass to the last working minor release ([62d4895](https://github.com/hperrin/svelte-material-ui/commit/62d4895af8fe252c8ade2587845e92ced70d6d9c)), closes [#334](https://github.com/hperrin/svelte-material-ui/issues/334)
+
+
+
+
+
 # [5.0.0-beta.5](https://github.com/hperrin/svelte-material-ui/compare/v5.0.0-beta.4...v5.0.0-beta.5) (2021-09-18)
 
 
