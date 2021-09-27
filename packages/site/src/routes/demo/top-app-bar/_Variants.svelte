@@ -1,42 +1,57 @@
-<!-- Check out iframe.svelte too see how these work. -->
+<!-- Check out iframe/*.svelte too see how these work. -->
 <iframe
   class="top-app-bar-iframe"
-  src="/demo/top-app-bar/iframe"
+  src="/demo/top-app-bar/iframe/standard"
   title="standard"
 />
-<a style="display: none;" href="/demo/top-app-bar/iframe"
-  >helper needed for sapper export</a
+<a style="display: none;" href="/demo/top-app-bar/iframe/standard"
+  >helper needed for export</a
 >
 
 <iframe
   class="top-app-bar-iframe"
-  src="/demo/top-app-bar/iframe?style=fixed"
+  src="/demo/top-app-bar/iframe/fixed"
   title="fixed"
 />
+<a style="display: none;" href="/demo/top-app-bar/iframe/fixed"
+  >helper needed for export</a
+>
 
 <iframe
   class="top-app-bar-iframe"
-  src="/demo/top-app-bar/iframe?style=dense"
+  src="/demo/top-app-bar/iframe/dense"
   title="dense"
 />
+<a style="display: none;" href="/demo/top-app-bar/iframe/dense"
+  >helper needed for export</a
+>
 
 <iframe
   class="top-app-bar-iframe"
-  src="/demo/top-app-bar/iframe?style=prominent"
+  src="/demo/top-app-bar/iframe/prominent"
   title="prominent"
 />
+<a style="display: none;" href="/demo/top-app-bar/iframe/prominent"
+  >helper needed for export</a
+>
 
 <iframe
   class="top-app-bar-iframe"
-  src="/demo/top-app-bar/iframe?style=short"
+  src="/demo/top-app-bar/iframe/short"
   title="short"
 />
+<a style="display: none;" href="/demo/top-app-bar/iframe/short"
+  >helper needed for export</a
+>
 
 <iframe
   class="top-app-bar-iframe"
-  src="/demo/top-app-bar/iframe?style=short-closed"
+  src="/demo/top-app-bar/iframe/short-closed"
   title="short closed"
 />
+<a style="display: none;" href="/demo/top-app-bar/iframe/short-closed"
+  >helper needed for export</a
+>
 
 <style>
   .top-app-bar-iframe {

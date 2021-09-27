@@ -14,7 +14,17 @@
     </svelte:fragment>
   </Demo>
 
-  <Demo component={Variants} file="top-app-bar/iframe.svelte">
+  <Demo
+    component={Variants}
+    files={[
+      'top-app-bar/iframe/standard.svelte',
+      'top-app-bar/iframe/fixed.svelte',
+      'top-app-bar/iframe/dense.svelte',
+      'top-app-bar/iframe/prominent.svelte',
+      'top-app-bar/iframe/short.svelte',
+      'top-app-bar/iframe/short-closed.svelte',
+    ]}
+  >
     Page level top app bars
     <svelte:fragment slot="subtitle">
       These are displayed in iframes and the source viewer shows the iframe
