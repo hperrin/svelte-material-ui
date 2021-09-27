@@ -113,8 +113,8 @@
           {updateInvalid}
           on:blur={() => (focused = false)}
           on:focus={() => (focused = true)}
-          on:blur
-          on:focus
+          on:blur={(event) => dispatch(element, 'blur', event)}
+          on:focus={(event) => dispatch(element, 'focus', event)}
           aria-controls={helperId}
           aria-describedby={helperId}
           {...prefixFilter($$restProps, 'input$')}
@@ -138,8 +138,8 @@
         {updateInvalid}
         on:blur={() => (focused = false)}
         on:focus={() => (focused = true)}
-        on:blur
-        on:focus
+        on:blur={(event) => dispatch(element, 'blur', event)}
+        on:focus={(event) => dispatch(element, 'focus', event)}
         aria-controls={helperId}
         aria-describedby={helperId}
         {...noLabel && label != null ? { placeholder: label } : {}}
@@ -250,6 +250,7 @@
     prefixFilter,
     useActions,
     ActionArray,
+    dispatch,
   } from '@smui/common/internal/index.js';
   import { ContextFragment } from '@smui/common';
   import Ripple from '@smui/ripple';
@@ -289,12 +290,9 @@
   export let type = 'text';
 
   // Some trickery to detect uninitialized values but also have the right types.
-  export let value:
-    | string
-    | number
-    | null
-    | undefined = (uninitializedValue as unknown) as undefined;
-  export let files: FileList | null = (uninitializedValue as unknown) as null;
+  export let value: string | number | null | undefined =
+    uninitializedValue as unknown as undefined;
+  export let files: FileList | null = uninitializedValue as unknown as null;
   const valued = !isUninitializedValue(value) || !isUninitializedValue(files);
   if (isUninitializedValue(value)) {
     value = undefined;
@@ -303,7 +301,7 @@
     files = null;
   }
 
-  export let invalid: boolean = (uninitializedValue as unknown) as boolean;
+  export let invalid: boolean = uninitializedValue as unknown as boolean;
   export let updateInvalid: boolean = isUninitializedValue(invalid);
   if (isUninitializedValue(invalid)) {
     invalid = false;
@@ -313,14 +311,12 @@
   export let dirty = false;
   export let prefix: string | undefined = undefined;
   export let suffix: string | undefined = undefined;
-  export let validateOnValueChange:
-    | UninitializedValue
-    | boolean = updateInvalid;
+  export let validateOnValueChange: UninitializedValue | boolean =
+    updateInvalid;
   export let useNativeValidation: UninitializedValue | boolean = updateInvalid;
   export let withLeadingIcon: UninitializedValue | boolean = uninitializedValue;
-  export let withTrailingIcon:
-    | UninitializedValue
-    | boolean = uninitializedValue;
+  export let withTrailingIcon: UninitializedValue | boolean =
+    uninitializedValue;
 
   // Components
   export let input: Input | Textarea | undefined = undefined;
@@ -346,9 +342,8 @@
   let leadingIcon: MDCTextFieldIconFoundation | undefined = undefined;
   let trailingIcon: MDCTextFieldIconFoundation | undefined = undefined;
   let helperText: MDCTextFieldHelperTextFoundation | undefined = undefined;
-  let characterCounter:
-    | MDCTextFieldCharacterCounterFoundation
-    | undefined = undefined;
+  let characterCounter: MDCTextFieldCharacterCounterFoundation | undefined =
+    undefined;
 
   $: inputElement = input && input.getElement();
 

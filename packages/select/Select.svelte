@@ -271,7 +271,7 @@
   export let dirty = false;
 
   // Some trickery to detect uninitialized values but also have the right types.
-  export let invalid: boolean = (uninitializedValue as unknown) as boolean;
+  export let invalid: boolean = uninitializedValue as unknown as boolean;
   export let updateInvalid: boolean = isUninitializedValue(invalid);
   if (isUninitializedValue(invalid)) {
     invalid = false;

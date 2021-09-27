@@ -8,6 +8,8 @@
   })}
   style={`${resizable ? '' : 'resize: none; '}${style}`}
   on:change={changeHandler}
+  on:blur
+  on:focus
   bind:value
   {...internalAttrs}
   {...$$restProps}

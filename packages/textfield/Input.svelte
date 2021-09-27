@@ -8,6 +8,8 @@
   })}
   on:input={(e) => type !== 'file' && valueUpdater(e)}
   on:change={changeHandler}
+  on:blur
+  on:focus
   {type}
   {placeholder}
   {...valueProp}
@@ -65,7 +67,7 @@
   function toNumber(value: string) {
     if (value === '') {
       const nan = new Number(Number.NaN);
-      ((nan as unknown) as Array<any>).length = 0;
+      (nan as unknown as Array<any>).length = 0;
       return nan as number;
     }
     return +value;
