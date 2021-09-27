@@ -11,6 +11,20 @@
   {...$$restProps}><slot /></svelte:component
 >
 
+<script lang="ts" context="module">
+  import type { ClassAdderInternals } from './index.types.js';
+  import Div from '../elements/Div.svelte';
+  import type { DivComponentDev } from '../elements/Div.types.js';
+
+  export const internals: ClassAdderInternals<typeof DivComponentDev> = {
+    component: Div as typeof DivComponentDev,
+    class: '',
+    classMap: {},
+    contexts: {},
+    props: {},
+  };
+</script>
+
 <script lang="ts">
   import { onDestroy, getContext, setContext } from 'svelte';
   import { get_current_component, SvelteComponentDev } from 'svelte/internal';
@@ -18,7 +32,6 @@
   import type { ActionArray } from '../internal/useActions.js';
   import { forwardEventsBuilder } from '../internal/forwardEventsBuilder.js';
   import { classMap } from '../internal/classMap.js';
-  import { internals } from './internals.js';
 
   export let use: ActionArray = [];
   let className = '';
