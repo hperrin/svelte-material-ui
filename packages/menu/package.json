@@ -1,6 +1,6 @@
 {
   "name": "@smui/menu",
-  "version": "5.0.0-beta.6",
+  "version": "5.0.0-beta.7",
   "description": "Svelte Material UI - Menu",
   "type": "module",
   "module": "index.js",
@@ -37,9 +37,9 @@
   "dependencies": {
     "@material/dom": "^11.0.0",
     "@material/menu": "^11.0.0",
-    "@smui/common": "^5.0.0-beta.6",
-    "@smui/list": "^5.0.0-beta.6",
-    "@smui/menu-surface": "^5.0.0-beta.6",
+    "@smui/common": "^5.0.0-beta.7",
+    "@smui/list": "^5.0.0-beta.7",
+    "@smui/menu-surface": "^5.0.0-beta.7",
     "svelte2tsx": "^0.4.6"
   },
   "devDependencies": {
