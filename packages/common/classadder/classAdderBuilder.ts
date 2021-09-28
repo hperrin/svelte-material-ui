@@ -1,8 +1,8 @@
 import type { SvelteComponentDev } from 'svelte/internal';
 
-import type { ClassAdderInternals } from '../ClassAdder/index.types.js';
+import type { ClassAdderInternals } from './ClassAdder.types.js';
 // @ts-ignore: Internals is exported... argh.
-import ClassAdder, { internals } from '../ClassAdder/index.svelte';
+import ClassAdder, { internals } from './ClassAdder.svelte';
 
 const defaults = { ...internals };
 

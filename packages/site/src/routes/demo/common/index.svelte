@@ -47,23 +47,6 @@
 
   <h4>Helper Utilities</h4>
 
-  <Demo
-    component={ClassAdderBuilder}
-    files={[
-      'common/_ClassAdderBuilder.svelte',
-      'common/_ClassAdderBuilderComponent.ts',
-    ]}
-  >
-    Class Adder Builder
-    <svelte:fragment slot="subtitle">
-      Use this to build a ClassAdder component. ClassAdder components are useful
-      for reducing the size of your bundle. If you have tons of simple
-      components that just need to add classes/props or set a context, using
-      ClassAdder components means there's only one "big" Svelte component in
-      your bundle for all of these many tiny components.
-    </svelte:fragment>
-  </Demo>
-
   <Demo component={ClassMap} file="common/_ClassMap.svelte">
     Class Map
     <svelte:fragment slot="subtitle">
@@ -157,6 +140,25 @@
       until the ultimate component finally renders the DOM element.
     </svelte:fragment>
   </Demo>
+
+  <h4>Other Components</h4>
+
+  <Demo
+    component={ClassAdderBuilder}
+    files={[
+      'common/_ClassAdderBuilder.svelte',
+      'common/_ClassAdderBuilderComponent.ts',
+    ]}
+  >
+    Class Adder Builder
+    <svelte:fragment slot="subtitle">
+      Use this to build a ClassAdder component. ClassAdder components are useful
+      for reducing the size of your bundle. If you have tons of simple
+      components that just need to add classes/props or set a context, using
+      ClassAdder components means there's only one "big" Svelte component in
+      your bundle for all of these many tiny components.
+    </svelte:fragment>
+  </Demo>
 </section>
 
 <script lang="ts">
@@ -166,10 +168,10 @@
   import TargetingClasses from './_TargetingClasses.svelte';
   import EventsAndModifiers from './_EventsAndModifiers.svelte';
   import ElementalComponents from './_ElementalComponents.svelte';
-  import ClassAdderBuilder from './_ClassAdderBuilder.svelte';
   import ClassMap from './_ClassMap.svelte';
   import Dispatch from './_Dispatch.svelte';
   import ExcludeAndPrefixFilter from './_ExcludeAndPrefixFilter.svelte';
   import ForwardEventsBuilder from './_ForwardEventsBuilder.svelte';
   import UseActions from './_UseActions.svelte';
+  import ClassAdderBuilder from './_ClassAdderBuilder.svelte';
 </script>

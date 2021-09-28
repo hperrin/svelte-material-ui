@@ -41,29 +41,6 @@ The common icon is used everywhere that exports an `Icon` component except for `
 - `class`: `''` - A CSS class string.
 - `on`: `false` - Used in the context of an icon button toggle to denote the icon for when the button is on.
 
-# Other Components
-
-These components are not exported in the index file, but are available to be imported elsewhere. They are generally used for simple components which only add a class to an element.
-
-## ClassAdder
-
-A base component that adds a class to an element. The ClassAdder is used to provide simple components. It usually uses one of the elemental components listed below, but you can specify a different component for it to use. Every elemental component supports the `use` prop.
-
-### Props / Defaults
-
-- `component`: `(depends on context)` - The component to extend. Usually it is set to one of the elemental components below.
-- `use`: `[]` - An array of Svelte actions and/or arrays of an action and its options.
-- `class`: `''` - A CSS class string.
-
-## ContextFragment.svelte
-
-A fragment component (only contains a `<slot />`) used to define a Svelte context with a Svelte store.
-
-### Props / Defaults
-
-- `key`: `undefined` - The key of the Svelte context.
-- `value`: `undefined` - The value of the store contained in the Svelte context. The store will be updated when the value changes.
-
 # Elemental Components
 
 These components are used in SMUI components that take a `component` prop. They determine which HTML element will be used as the root element of the component. You can import them from `@smui/common/elements`.
@@ -178,28 +155,6 @@ Helper utilities are exported from the `@smui/common/internal` endpoint. They ar
 
 `classAdderBuilder` and `forwardEventsBuilder` use internal Svelte features. Since they depend on `svelte/internal`, you should consider use of them the same way you consider use of `svelte/internal` directly.
 
-## classAdderBuilder
-
-Use this to build a ClassAdder component. ClassAdder components are useful for reducing the size of your bundle. If you have tons of simple components that just need to add classes/props or set a context, using ClassAdder components means there's only one "big" Svelte component in your bundle for all of these many tiny components.
-
-```js
-import { classAdderBuilder } from '@smui/common/internal';
-import { Div } from '@smui/common/elements';
-
-export default classAdderBuilder({
-  class: 'my-added-class',
-  component: Div,
-});
-```
-
-### Props / Defaults
-
-- `component`: `null` - An elemental component.
-- `class`: `''` - The class to add.
-- `classMap`: `{}` - A map of classes to contexts. The context should resolve to a Svelte store, and the class will be added if the Svelte store's value is true.
-- `contexts`: `{}` - A map of contexts to values to set for them.
-- `props`: `{}` - A map of props to add to the element.
-
 ## classMap
 
 Build a class string from a map of class names to conditions. This is useful when you need to add classes to a component, since Svelte's "class:" directives don't work on components. (It's also useful for actions that take `addClass` and `removeClass` functions.)
@@ -216,7 +171,6 @@ Build a class string from a map of class names to conditions. This is useful whe
 </SomeComponent>
 
 <script lang="ts">
-  import { classAdderBuilder } from '@smui/common/internal';
   import SomeComponent from './SomeComponent.svelte';
 
   export let condition = true;
@@ -428,3 +382,48 @@ An action that takes actions and runs them on the element. Used to allow actions
   import SomeOtherAction from './SomeOtherAction.js';
 </script>
 ```
+
+# Other Components
+
+These components are not exported in the index file, but are available to be imported elsewhere. They are generally used for simple components which only add a class to an element.
+
+## ContextFragment.svelte
+
+A fragment component (only contains a `<slot />`) used to define a Svelte context with a Svelte store.
+
+### Props / Defaults
+
+- `key`: `undefined` - The key of the Svelte context.
+- `value`: `undefined` - The value of the store contained in the Svelte context. The store will be updated when the value changes.
+
+## classadder/ClassAdder.svelte
+
+A base component that adds a class to an element. The ClassAdder is used to provide simple components. It usually uses one of the elemental components listed above, but you can specify a different component for it to use. Every elemental component supports the `use` prop.
+
+### Props / Defaults
+
+- `component`: `(depends on context)` - The component to extend. Usually it is set to one of the elemental components below.
+- `use`: `[]` - An array of Svelte actions and/or arrays of an action and its options.
+- `class`: `''` - A CSS class string.
+
+## classAdderBuilder
+
+Use this to build a ClassAdder component. ClassAdder components are useful for reducing the size of your bundle. If you have tons of simple components that just need to add classes/props or set a context, using ClassAdder components means there's only one "big" Svelte component in your bundle for all of these many tiny components.
+
+```js
+import { classAdderBuilder } from '@smui/common/classadder';
+import { Div } from '@smui/common/elements';
+
+export default classAdderBuilder({
+  class: 'my-added-class',
+  component: Div,
+});
+```
+
+### Props / Defaults
+
+- `component`: `null` - An elemental component.
+- `class`: `''` - The class to add.
+- `classMap`: `{}` - A map of classes to contexts. The context should resolve to a Svelte store, and the class will be added if the Svelte store's value is true.
+- `contexts`: `{}` - A map of contexts to values to set for them.
+- `props`: `{}` - A map of props to add to the element.

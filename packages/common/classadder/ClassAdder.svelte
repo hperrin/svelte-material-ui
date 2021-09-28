@@ -12,7 +12,7 @@
 >
 
 <script lang="ts" context="module">
-  import type { ClassAdderInternals } from './index.types.js';
+  import type { ClassAdderInternals } from './ClassAdder.types.js';
   import Div from '../elements/Div.svelte';
   import type { DivComponentDev } from '../elements/Div.types.js';
 
