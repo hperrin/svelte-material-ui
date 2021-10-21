@@ -167,13 +167,17 @@
         return (listItem?.hasCheckbox && listItem.checked) ?? false;
       },
       isFocusInsideList: () =>
+        element != null &&
         getElement() !== document.activeElement &&
         getElement().contains(document.activeElement),
-      isRootFocused: () => document.activeElement === getElement(),
+      isRootFocused: () =>
+        element != null && document.activeElement === getElement(),
       listItemAtIndexHasClass,
       notifyAction: (index) => {
         selectedIndex = index;
-        dispatch(getElement(), 'MDCList:action', { index });
+        if (element != null) {
+          dispatch(getElement(), 'MDCList:action', { index });
+        }
       },
       removeClassForElementIndex,
       setAttributeForElementIndex,
@@ -270,6 +274,10 @@
   }
 
   function getOrderedList() {
+    if (element == null) {
+      return [];
+    }
+
     return [...getElement().children]
       .map((element) => itemAccessorMap.get(element))
       .filter(
