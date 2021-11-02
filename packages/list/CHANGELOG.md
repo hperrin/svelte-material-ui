@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0-beta.8](https://github.com/hperrin/svelte-material-ui/compare/v5.0.0-beta.7...v5.0.0-beta.8) (2021-11-02)
+
+
+### Bug Fixes
+
+* work around list foundation using setTimeout before accessing the adapter ([a72ee10](https://github.com/hperrin/svelte-material-ui/commit/a72ee10495f4525b6fe48aae81830754b74e6b40))
+
+
+
+
+
 # [5.0.0-beta.7](https://github.com/hperrin/svelte-material-ui/compare/v5.0.0-beta.6...v5.0.0-beta.7) (2021-09-28)
 
 
