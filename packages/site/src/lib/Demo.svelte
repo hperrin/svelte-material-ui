@@ -49,7 +49,7 @@
       {#each files as file}
         <Wrapper>
           <IconButton
-            href={`https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/${file}`}
+            href={`https://github.com/hperrin/svelte-material-ui/blob/master/packages/site/src/routes/demo/${file}`}
             target="_blank"
           >
             <Icon component={Svg} viewBox="0 0 24 24">
