@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0](https://github.com/hperrin/svelte-material-ui/compare/v5.0.0-beta.8...v5.0.0) (2021-11-10)
+
+
+### Features
+
+* let segmented button selection be controlled manually ([835ef80](https://github.com/hperrin/svelte-material-ui/commit/835ef80695baf3b7e05aa461bb334d1b35512601))
+
+
+
+
+
 # [5.0.0-beta.8](https://github.com/hperrin/svelte-material-ui/compare/v5.0.0-beta.7...v5.0.0-beta.8) (2021-11-02)
 
 **Note:** Version bump only for package @smui-extra/site
