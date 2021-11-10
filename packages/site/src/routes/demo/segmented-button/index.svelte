@@ -21,6 +21,13 @@
     Group Selection
   </Demo>
 
+  <Demo
+    component={ManualSelection}
+    file="segmented-button/_ManualSelection.svelte"
+  >
+    Manual Selection
+  </Demo>
+
   <Demo component={IconsKeys} file="segmented-button/_IconsKeys.svelte">
     Icons and Keyed Segments
   </Demo>
@@ -35,6 +42,7 @@
 
   import SingleSelection from './_SingleSelection.svelte';
   import GroupSelection from './_GroupSelection.svelte';
+  import ManualSelection from './_ManualSelection.svelte';
   import IconsKeys from './_IconsKeys.svelte';
   import Touch from './_Touch.svelte';
 </script>

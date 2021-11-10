@@ -80,7 +80,9 @@
       instance.unselectSegment(previousSelected);
     }
     previousSelected = selected;
-    instance.selectSegment(selected);
+    if (selected != null) {
+      instance.selectSegment(selected);
+    }
   }
   $: if (instance && !singleSelect) {
     const setSelected = new Set(selected);

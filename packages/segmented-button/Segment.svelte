@@ -13,6 +13,7 @@
     [className]: true,
     'mdc-segmented-button__segment': true,
     'mdc-segmented-button__segment--touch': touch,
+    'mdc-segmented-button__segment--selected': selected,
     ...internalClasses,
   })}
   style={Object.entries(internalStyles)
@@ -23,7 +24,10 @@
   aria-pressed={!singleSelect ? (selected ? 'true' : 'false') : undefined}
   aria-checked={singleSelect ? (selected ? 'true' : 'false') : undefined}
   on:click={(event) =>
-    !event.defaultPrevented && instance && instance.handleClick()}
+    !event.defaultPrevented &&
+    instance &&
+    !manualSelection &&
+    instance.handleClick()}
   {...internalAttrs}
   {...$$restProps}
   >{#if ripple}<div class="mdc-segmented-button__ripple" />{/if}<slot
@@ -46,6 +50,11 @@
   import type { SMUISegmentedButtonSegmentAccessor } from './Segment.types.js';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
+  interface UninitializedValue extends Function {}
+  let uninitializedValue: UninitializedValue = () => {};
+  function isUninitializedValue(value: any): value is UninitializedValue {
+    return value === uninitializedValue;
+  }
 
   // Remember to update types file if you add/remove/rename props.
   export let use: ActionArray = [];
@@ -56,16 +65,24 @@
   export { segmentId as segment };
   export let ripple = true;
   export let touch = false;
+  const initialSelectedStore = getContext<SvelteStore<boolean>>(
+    'SMUI:segmented-button:segment:initialSelected'
+  );
+
+  // Some trickery to detect uninitialized values but also have the right types.
+  /** You don't need to set this unless you are manually handling selection. */
+  export let selected: boolean = uninitializedValue as unknown as boolean;
+  let manualSelection: boolean = !isUninitializedValue(selected);
+  if (isUninitializedValue(selected)) {
+    selected = $initialSelectedStore;
+  }
+  // Done with the trickery.
 
   let element: HTMLButtonElement;
   let instance: MDCSegmentedButtonSegmentFoundation;
   let internalClasses: { [k: string]: boolean } = {};
   let internalStyles: { [k: string]: string } = {};
   let internalAttrs: { [k: string]: string | undefined } = {};
-  const initialSelectedStore = getContext<SvelteStore<boolean>>(
-    'SMUI:segmented-button:segment:initialSelected'
-  );
-  let selected = $initialSelectedStore;
   const singleSelect = getContext<SvelteStore<boolean>>(
     'SMUI:segmented-button:singleSelect'
   );

@@ -78,15 +78,15 @@
     "@smui/touch-target": "5.0.0-beta.8"
   },
   "devDependencies": {
-    "@commitlint/cli": "^13.1.0",
-    "@commitlint/config-conventional": "^13.1.0",
-    "husky": "^7.0.2",
+    "@commitlint/cli": "^14.1.0",
+    "@commitlint/config-conventional": "^14.1.0",
+    "husky": "^7.0.4",
     "lerna": "^4.0.0",
     "prettier": "~2.4.1",
     "prettier-plugin-svelte": "^2.4.0",
     "sass": "~1.39.2",
     "smui-theme": "file:packages/smui-theme",
     "svelte": "^3.35.0",
-    "svelte-check": "^2.2.6"
+    "svelte-check": "^2.2.8"
   }
 }
