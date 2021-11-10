@@ -12,7 +12,7 @@ npm install --save-dev @smui/form-field
 
 # Examples and Usage Information
 
-https://sveltematerialui.com/demo/radio
+https://sveltematerialui.com/demo/form-field
 
 # Exports
 
