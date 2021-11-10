@@ -31,7 +31,7 @@ Here are some features you should know about:
 
 # Installation
 
-To get started, check out the [installation docs](INSTALL.md) or the [SvelteKit docs](SVELTEKIT.md).
+To get started, check out the [installation docs](INSTALL.md) or the [SvelteKit docs](SVELTEKIT.md). You'll also need to install the [Svelte preprocessor](https://github.com/sveltejs/svelte-preprocess).
 
 # Migration
 
