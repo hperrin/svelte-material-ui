@@ -1,6 +1,6 @@
 # Theming SMUI
 
-## Theming with Sass
+## Theming with [Sass](/SASS.md)
 
 The `_smui-theme.scss` file is where you define Sass variables for your theme. You can check out the READMEs of the MDC-Web components to learn how to deeply style the components. The most important one (and probably the only one you want) is setting the [theme colors](https://github.com/material-components/material-components-web/tree/v11.0.0/packages/mdc-theme#color-scheme). For the Material color palette, you can @use ["@material/theme/color-palette"](https://github.com/material-components/material-components-web/blob/v11.0.0/packages/mdc-theme/_color-palette.scss). You might also want to style the [border radius variables](https://github.com/material-components/material-components-web/tree/v11.0.0/packages/mdc-shape#sass-variables).
 
@@ -11,13 +11,14 @@ Here is an example `_smui-theme.scss` file you can use as a starting point.
 
 $background: #fff;
 
-@use '@material/theme/index' as theme with (
-  $primary: color-palette.$purple-500,
-  $secondary: color-palette.$teal-600,
-  $surface: #fff,
-  $background: $background,
-  $error: #b00020,
-);
+@use '@material/theme/index' as theme with
+  (
+    $primary: color-palette.$purple-500,
+    $secondary: color-palette.$teal-600,
+    $surface: #fff,
+    $background: $background,
+    $error: #b00020
+  );
 
 html,
 body {
