@@ -208,6 +208,11 @@
       indent: 0,
     },
     {
+      name: 'Sass',
+      route: '/SASS.md/',
+      indent: 1,
+    },
+    {
       name: 'Migrating',
       route: '/MIGRATING.md/',
       indent: 0,

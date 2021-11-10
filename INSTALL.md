@@ -12,7 +12,7 @@ You can also [use SMUI in the Svelte REPL](/REPL.md).
 
 ## Importing Components
 
-**Please not that these imports will not work if you don't install a theme. See the default theme below.**
+**Please note that these imports require a theme. See the default or custom theme below.**
 
 You will always import Svelte components from the individual packages.
 
@@ -68,7 +68,7 @@ npm install --save svelte-material-ui
 <link rel="stylesheet" href="node_modules/svelte-material-ui/bare.css" />
 ```
 
-If that's not working (probably because your dependencies aren't copied to your build folder), you can also use a CDN. Just be sure you update the version here when you update to a new version of SMUI.
+If that's not working (probably because your dependencies aren't copied to your build folder), you can also use a CDN. Just be sure you update the version here when you update to a new version of SMUI. (This is already an outdated version, so update it now too.)
 
 ```html
 <link
