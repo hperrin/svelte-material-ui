@@ -22,7 +22,8 @@
     "pages:build": "cd packages/site && npm run build && cd ../..",
     "pages:push": "git add -f packages/site/build && git commit -m 'chore: update built files' && git push origin $(git subtree split --prefix packages/site/build master):gh-pages --force && git reset --hard HEAD^",
     "prepare": "husky install && npm run build:css",
-    "build:css": "smui-theme compile bare.css",
+    "build:css": "echo \"temporarily disabled for development\"",
+    "TEMP-DISABLED-build:css": "smui-theme compile bare.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "files": [
@@ -37,7 +38,7 @@
     "url": "https://github.com/hperrin/svelte-material-ui/issues"
   },
   "license": "Apache-2.0",
-  "temp-disabled-dependencies": {
+  "TEMP-DISABLED-dependencies": {
     "@smui/banner": "5.0.0",
     "@smui/button": "5.0.0",
     "@smui/card": "5.0.0",
@@ -77,6 +78,9 @@
     "@smui/top-app-bar": "5.0.0",
     "@smui/touch-target": "5.0.0"
   },
+  "TEMP-DISABLED-devDependencies": {
+    "smui-theme": "file:packages/smui-theme"
+  },
   "devDependencies": {
     "@commitlint/cli": "^14.1.0",
     "@commitlint/config-conventional": "^14.1.0",
@@ -85,7 +89,6 @@
     "prettier": "~2.4.1",
     "prettier-plugin-svelte": "^2.4.0",
     "sass": "^1.43.4",
-    "smui-theme": "file:packages/smui-theme",
     "svelte": "^3.35.0",
     "svelte-check": "^2.2.8"
   }

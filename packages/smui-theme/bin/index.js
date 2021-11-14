@@ -49,9 +49,11 @@ yargs(hideBin(process.argv))
 
       const result = sass.renderSync({
         // _index imports "smui-theme"
-        file: require.resolve(
-          'smui-theme/' + (argv.includes.length ? '_index.scss' : '_style.scss')
-        ),
+        file: path.resolve(
+          __dirname,
+          '..',
+          argv.includes.length ? '_index.scss' : '_style.scss'
+        ), // require.resolve('smui-theme/' + (argv.includes.length ? '_index.scss' : '_style.scss')),
         includePaths: [
           ...argv.includes,
           // Include the node_modules directory for MDC styles.
@@ -63,7 +65,8 @@ yargs(hideBin(process.argv))
           // Include the fallback directory, with no styles, for packages
           // that aren't installed
           path.resolve(
-            path.dirname(require.resolve('smui-theme/package.json')),
+            __dirname,
+            '..', // path.dirname(require.resolve('smui-theme/package.json')),
             'fallback'
           ),
         ],
