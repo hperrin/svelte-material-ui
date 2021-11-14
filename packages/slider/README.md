@@ -16,4 +16,4 @@ https://sveltematerialui.com/demo/slider
 
 See [Sliders](https://material.io/components/sliders) in the Material design spec.
 
-See [Slider](https://github.com/material-components/material-components-web/tree/v11.0.0/packages/mdc-slider) in MDC-Web for information about the upstream library's architecture.
+See [Slider](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-slider) in MDC-Web for information about the upstream library's architecture.

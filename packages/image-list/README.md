@@ -16,4 +16,4 @@ https://sveltematerialui.com/demo/image-list
 
 See [Image lists](https://material.io/components/image-lists) in the Material design spec.
 
-See [Image List](https://github.com/material-components/material-components-web/tree/v11.0.0/packages/mdc-image-list) in MDC-Web for information about the upstream library's architecture.
+See [Image List](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-image-list) in MDC-Web for information about the upstream library's architecture.

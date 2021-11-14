@@ -88,4 +88,4 @@ Equivalent to the [`ClassAdder` with `Div` common component](/packages/common/RE
 
 See [Cards](https://material.io/components/cards) in the Material design spec.
 
-See [Card](https://github.com/material-components/material-components-web/tree/v11.0.0/packages/mdc-card) in MDC-Web for information about the upstream library's architecture.
+See [Card](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-card) in MDC-Web for information about the upstream library's architecture.

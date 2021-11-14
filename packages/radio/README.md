@@ -40,4 +40,4 @@ A radio.
 
 See [Radio buttons](https://material.io/components/radio-buttons) in the Material design spec.
 
-See [Radio](https://github.com/material-components/material-components-web/tree/v11.0.0/packages/mdc-radio) in MDC-Web for information about the upstream library's architecture.
+See [Radio](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-radio) in MDC-Web for information about the upstream library's architecture.

@@ -16,4 +16,4 @@ https://sveltematerialui.com/demo/top-app-bar
 
 See [App bars: top](https://material.io/components/app-bars-top) in the Material design spec.
 
-See [Top App Bar](https://github.com/material-components/material-components-web/tree/v11.0.0/packages/mdc-top-app-bar) in MDC-Web for information about the upstream library's architecture.
+See [Top App Bar](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-top-app-bar) in MDC-Web for information about the upstream library's architecture.

@@ -44,4 +44,4 @@ See the [common icon readme](/packages/common/README.md#icon).
 
 # More Information
 
-See [Icon Button](https://github.com/material-components/material-components-web/tree/v11.0.0/packages/mdc-icon-button) in MDC-Web for information about the upstream library's architecture.
+See [Icon Button](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-icon-button) in MDC-Web for information about the upstream library's architecture.

@@ -16,4 +16,4 @@ https://sveltematerialui.com/demo/segmented-button
 
 See [Toggle button](https://material.io/components/buttons#toggle-button) in the Material design spec.
 
-See [Segmented Buttons](https://github.com/material-components/material-components-web/tree/v11.0.0/packages/mdc-segmented-button) in MDC-Web for information about the upstream library's architecture.
+See [Segmented Buttons](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-segmented-button) in MDC-Web for information about the upstream library's architecture.

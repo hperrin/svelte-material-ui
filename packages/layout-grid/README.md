@@ -55,4 +55,4 @@ An inner layout grid used for nesting. It is meant to be put directly under a ce
 
 See [Responsive layout grid](https://material.io/design/layout/responsive-layout-grid.html) in the Material design spec.
 
-See [Layout Grid](https://github.com/material-components/material-components-web/tree/v11.0.0/packages/mdc-layout-grid) in MDC-Web for information about the upstream library's architecture.
+See [Layout Grid](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-layout-grid) in MDC-Web for information about the upstream library's architecture.

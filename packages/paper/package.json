@@ -35,11 +35,11 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@material/elevation": "^12.0.0",
-    "@material/feature-targeting": "^12.0.0",
-    "@material/shape": "^12.0.0",
-    "@material/theme": "^12.0.0",
-    "@material/typography": "^12.0.0",
+    "@material/elevation": "^13.0.0",
+    "@material/feature-targeting": "^13.0.0",
+    "@material/shape": "^13.0.0",
+    "@material/theme": "^13.0.0",
+    "@material/typography": "^13.0.0",
     "@smui/common": "^5.0.0",
     "svelte2tsx": "^0.4.6"
   },
