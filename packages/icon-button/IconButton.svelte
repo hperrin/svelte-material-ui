@@ -21,6 +21,7 @@
     [className]: true,
     'mdc-icon-button': true,
     'mdc-icon-button--on': !isUninitializedValue(pressed) && pressed,
+    'mdc-icon-button--touch': touch,
     'mdc-card__action': context === 'card:action',
     'mdc-card__action--icon': context === 'card:action',
     'mdc-top-app-bar__navigation-icon': context === 'top-app-bar:navigation',
@@ -52,7 +53,11 @@
   {href}
   {...actionProp}
   {...internalAttrs}
-  {...$$restProps}><slot /></svelte:component
+  {...$$restProps}
+  ><div class="mdc-icon-button__ripple" />
+  <slot />{#if touch}<div
+      class="mdc-icon-button__touch"
+    />{/if}</svelte:component
 >
 
 <script lang="ts">
@@ -89,6 +94,7 @@
   export let pressed: UninitializedValue | boolean = uninitializedValue;
   export let ariaLabelOn: string | undefined = undefined;
   export let ariaLabelOff: string | undefined = undefined;
+  export let touch = false;
   export let href: string | undefined = undefined;
   export let action:
     | 'close'
