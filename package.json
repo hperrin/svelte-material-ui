@@ -84,7 +84,7 @@
     "lerna": "^4.0.0",
     "prettier": "~2.4.1",
     "prettier-plugin-svelte": "^2.4.0",
-    "sass": "~1.39.2",
+    "sass": "^1.43.4",
     "smui-theme": "file:packages/smui-theme",
     "svelte": "^3.35.0",
     "svelte-check": "^2.2.8"
