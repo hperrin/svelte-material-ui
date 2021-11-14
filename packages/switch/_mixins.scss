@@ -1,6 +1,6 @@
 @use '@material/feature-targeting/index' as feature-targeting;
 @use '@material/ripple/ripple-theme';
-@use '@material/switch/index' as switch;
+@use '@material/switch/deprecated/index' as switch;
 
 @mixin core-styles($query: feature-targeting.all()) {
   @include without-ripple($query);

@@ -35,8 +35,8 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@material/dom": "^11.0.0",
-    "@material/slider": "^11.0.0",
+    "@material/dom": "^12.0.0",
+    "@material/slider": "^12.0.0",
     "@smui/common": "^5.0.0",
     "@smui/ripple": "^5.0.0",
     "svelte2tsx": "^0.4.6"
