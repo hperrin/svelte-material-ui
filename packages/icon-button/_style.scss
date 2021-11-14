@@ -1,4 +1,4 @@
-@use '@material/icon-button/index' as icon-button;
+@use '@material/icon-button/icon-button';
 @use '@smui/ripple/style';
 
 @include icon-button.core-styles;

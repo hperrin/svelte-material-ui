@@ -1,3 +1,4 @@
+@use 'sass:math';
 @use '@material/select/select-theme';
 @use '@material/select/select-icon-theme';
 @use '@material/menu-surface/mixins' as menu-surface-mixins;
@@ -19,7 +20,7 @@
       @include rtl-mixins.reflexive-box(
         margin,
         left,
-        select-theme.$arrow-padding / 2
+        math.div(select-theme.$arrow-padding, 2)
       );
     }
 
@@ -130,7 +131,7 @@
   }
 }
 
-// See: https://github.com/material-components/material-components-web/blob/v10.0.0/packages/mdc-select/_select-theme.scss#L909
+// See: https://github.com/material-components/material-components-web/blob/v13.0.0/packages/mdc-select/_select-theme.scss#L951
 @mixin leading-icon-floating-label-position(
   $icon-size: select-icon-theme.$icon-size,
   $query: feature-targeting.all()
@@ -145,7 +146,7 @@
   }
 }
 
-// See: https://github.com/material-components/material-components-web/blob/v10.0.0/packages/mdc-select/_select-theme.scss#L993
+// See: https://github.com/material-components/material-components-web/blob/v13.0.0/packages/mdc-select/_select-theme.scss#L1038
 @mixin truncate-floating-label-max-width(
   $leading-icon-size,
   $dropdown-icon-size,
