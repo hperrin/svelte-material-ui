@@ -34,6 +34,9 @@ declare namespace svelte.JSX {
     ['onSMUIDataTableHeader:click']?: (
       event: CustomEvent<any> & { target: T }
     ) => any;
+    ['onSMUIDataTableRow:click']?: (
+      event: CustomEvent<any> & { target: T }
+    ) => any;
     ['onSMUIDataTableHeaderCheckbox:change']?: (
       event: CustomEvent<any> & { target: T }
     ) => any;

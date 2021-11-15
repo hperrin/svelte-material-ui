@@ -9,7 +9,8 @@
     'mdc-data-table__row--selected': !header && checkbox && checkbox.checked,
     ...internalClasses,
   })}
-  on:click={(event) => header && notifyHeaderClick(event)}
+  on:click={(event) =>
+    header ? notifyHeaderClick(event) : notifyRowClick(event)}
   on:SMUICheckbox:mount={(event) => (checkbox = event.detail)}
   on:SMUICheckbox:unmount={() => (checkbox = undefined)}
   aria-selected={checkbox ? (checkbox.checked ? 'true' : 'false') : undefined}
@@ -123,6 +124,13 @@
 
   function notifyHeaderClick(event: MouseEvent) {
     dispatch(getElement(), 'SMUIDataTableHeader:click', event);
+  }
+
+  function notifyRowClick(event: MouseEvent) {
+    dispatch(getElement(), 'SMUIDataTableRow:click', {
+      rowId,
+      target: event.target,
+    });
   }
 
   export function getElement() {

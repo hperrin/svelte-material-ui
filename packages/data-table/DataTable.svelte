@@ -16,6 +16,7 @@
   on:SMUIDataTableHeaderCheckbox:change={() =>
     instance && instance.handleHeaderRowCheckboxChange()}
   on:SMUIDataTableHeader:click={handleHeaderRowClick}
+  on:SMUIDataTableRow:click={handleRowClick}
   on:SMUIDataTableBodyCheckbox:change={(event) =>
     instance && instance.handleRowCheckboxChange(event)}
   {...exclude($$restProps, ['container$', 'table$'])}
@@ -242,6 +243,9 @@
         setHeaderRowCheckboxIndeterminate(false);
         dispatch(getElement(), 'MDCDataTable:unselectedAll');
       },
+      notifyRowClick: (detail) => {
+        dispatch(getElement(), 'MDCDataTable:rowClick', detail);
+      },
       registerHeaderRowCheckbox: () => {
         // Handled automatically.
       },
@@ -320,6 +324,23 @@
 
     if (headerCell) {
       handleSortAction(headerCell);
+    }
+  }
+
+  function handleRowClick(
+    event: CustomEvent<{ rowId: string; target: HTMLElement }>
+  ) {
+    if (!instance || !event.detail.target) {
+      return;
+    }
+
+    const row = closest(
+      event.detail.target as Element,
+      '.mdc-data-table__row'
+    ) as HTMLTableRowElement;
+
+    if (row && instance) {
+      instance.handleRowClick({ rowId: event.detail.rowId, row });
     }
   }
 
