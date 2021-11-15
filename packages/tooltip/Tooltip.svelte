@@ -250,7 +250,7 @@
       notifyHidden: () => {
         dispatch(getElement(), 'MDCTooltip:hidden');
       },
-      // TODO: figure out why MDC-Web included these functions, because they're entirely undocumented.
+      // TODO: figure out why MDC-Web included these caret functions, because they're entirely undocumented.
       getTooltipCaretBoundingRect: () => {
         const caret = getElement().querySelector<HTMLElement>(
           `.${CssClasses.TOOLTIP_CARET_TOP}`
@@ -260,8 +260,36 @@
         }
         return caret.getBoundingClientRect();
       },
-      setTooltipCaretStyle: () => undefined,
-      clearTooltipCaretStyles: () => undefined,
+      setTooltipCaretStyle: (propertyName, value) => {
+        const topCaret = getElement().querySelector<HTMLElement>(
+          `.${CssClasses.TOOLTIP_CARET_TOP}`
+        );
+        const bottomCaret = getElement().querySelector<HTMLElement>(
+          `.${CssClasses.TOOLTIP_CARET_BOTTOM}`
+        );
+
+        if (!topCaret || !bottomCaret) {
+          return;
+        }
+
+        topCaret.style.setProperty(propertyName, value);
+        bottomCaret.style.setProperty(propertyName, value);
+      },
+      clearTooltipCaretStyles: () => {
+        const topCaret = getElement().querySelector<HTMLElement>(
+          `.${CssClasses.TOOLTIP_CARET_TOP}`
+        );
+        const bottomCaret = getElement().querySelector<HTMLElement>(
+          `.${CssClasses.TOOLTIP_CARET_BOTTOM}`
+        );
+
+        if (!topCaret || !bottomCaret) {
+          return;
+        }
+        topCaret.removeAttribute('style');
+        bottomCaret.removeAttribute('style');
+      },
+      getActiveElement: () => document.activeElement,
     });
 
     $tooltip = element;
