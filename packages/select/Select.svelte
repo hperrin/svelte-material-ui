@@ -271,8 +271,9 @@
   export let dirty = false;
 
   // Some trickery to detect uninitialized values but also have the right types.
-  export let invalid: boolean = uninitializedValue as unknown as boolean;
-  export let updateInvalid: boolean = isUninitializedValue(invalid);
+  export let invalid = uninitializedValue as unknown as boolean;
+  export let updateInvalid = isUninitializedValue(invalid);
+  const useDefaultValidation = isUninitializedValue(invalid);
   if (isUninitializedValue(invalid)) {
     invalid = false;
   }
@@ -468,6 +469,7 @@
     selectedIndex = getMenuItemValues().indexOf(value);
 
     instance.init();
+    setUseDefaultValidation(useDefaultValidation);
 
     return () => {
       instance.destroy();
@@ -563,6 +565,9 @@
     return instance.getUseDefaultValidation();
   }
 
+  /**
+   * This is set to true automatically if you don't provide a `invalid` prop.
+   */
   export function setUseDefaultValidation(useDefaultValidation: boolean) {
     instance.setUseDefaultValidation(useDefaultValidation);
   }
