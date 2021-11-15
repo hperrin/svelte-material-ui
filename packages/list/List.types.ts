@@ -50,5 +50,6 @@ export interface SMUIListAccessor {
   removeClassForElementIndex(index: number, className: string): void;
   setAttributeForElementIndex(index: number, name: string, value: string): void;
   removeAttributeForElementIndex(index: number, name: string): void;
+  getAttributeFromElementIndex(index: number, name: string): string | null;
   getPrimaryTextAtIndex(index: number): string;
 }

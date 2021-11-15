@@ -25,9 +25,9 @@
       getListItemIndex(event.target)
     )}
   on:focusin={(event) =>
-    instance && instance.handleFocusIn(event, getListItemIndex(event.target))}
+    instance && instance.handleFocusIn(getListItemIndex(event.target))}
   on:focusout={(event) =>
-    instance && instance.handleFocusOut(event, getListItemIndex(event.target))}
+    instance && instance.handleFocusOut(getListItemIndex(event.target))}
   on:click={(event) =>
     instance &&
     instance.handleClick(
@@ -217,9 +217,9 @@
       focusItemAtIndex,
       addClassForElementIndex,
       removeClassForElementIndex,
-      // getAttributeForElementIndex,
       setAttributeForElementIndex,
       removeAttributeForElementIndex,
+      getAttributeFromElementIndex,
       getPrimaryTextAtIndex,
     };
 
@@ -307,11 +307,6 @@
     accessor && accessor.removeClass(className);
   }
 
-  // function getAttributeForElementIndex(index, name) {
-  //   const accessor = getOrderedList()[index];
-  //   accessor && accessor.getAttr(name, value);
-  // }
-
   function setAttributeForElementIndex(
     index: number,
     name: string,
@@ -324,6 +319,15 @@
   function removeAttributeForElementIndex(index: number, name: string) {
     const accessor = getOrderedList()[index];
     accessor && accessor.removeAttr(name);
+  }
+
+  function getAttributeFromElementIndex(index: number, name: string) {
+    const accessor = getOrderedList()[index];
+    if (accessor) {
+      return accessor.getAttr(name);
+    } else {
+      return null;
+    }
   }
 
   function getPrimaryTextAtIndex(index: number) {

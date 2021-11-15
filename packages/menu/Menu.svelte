@@ -68,6 +68,8 @@
       removeAttributeFromElementAtIndex: (index, attr) => {
         listAccessor.removeAttributeForElementIndex(index, attr);
       },
+      getAttributeFromElementAtIndex: (index, attr) =>
+        listAccessor.getAttributeFromElementIndex(index, attr),
       elementContainsClass: (element, className) =>
         element.classList.contains(className),
       closeSurface: (skipRestoreFocus) =>
