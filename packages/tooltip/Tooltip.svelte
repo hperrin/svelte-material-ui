@@ -21,6 +21,9 @@
   persistent
     ? 'true'
     : undefined}
+  data-hide-tooltip-from-screenreader={hideFromScreenreader
+    ? 'true'
+    : undefined}
   on:transitionend={() => instance && instance.handleTransitionEnd()}
   {...internalAttrs}
   {...exclude($$restProps, ['surface$'])}
@@ -79,6 +82,7 @@
   export let yPos: Lowercase<keyof typeof YPosition> = 'detected';
   export let persistent = false;
   export let interactive = persistent;
+  export let hideFromScreenreader = false;
   export let surface$class = '';
   export let surface$style = '';
 
