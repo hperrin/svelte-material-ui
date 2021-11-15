@@ -146,6 +146,10 @@
     instance.setDefaultFocusState(focusState);
   }
 
+  export function getSelectedIndex() {
+    return instance.getSelectedIndex();
+  }
+
   export function getElement(): Element {
     return element.getElement();
   }
