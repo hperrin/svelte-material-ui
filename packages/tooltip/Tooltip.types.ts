@@ -19,6 +19,8 @@ export declare class TooltipComponentDev extends Component {
     | 'persistent'
     | 'interactive'
     | 'hideFromScreenreader'
+    | 'showDelay'
+    | 'hideDelay'
   > & {
     [k in keyof Partial<
       svelte.JSX.HTMLAttributes<HTMLDivElement>

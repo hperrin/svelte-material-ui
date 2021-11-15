@@ -21,6 +21,7 @@
   persistent
     ? 'true'
     : undefined}
+  data-mdc-tooltip-has-caret={undefined}
   data-hide-tooltip-from-screenreader={hideFromScreenreader
     ? 'true'
     : undefined}
@@ -34,7 +35,7 @@
       'mdc-tooltip__surface': true,
       'mdc-tooltip__surface-animation': true,
     })}
-    style={Object.entries(surfaceStyles)
+    style={Object.entries(surfaceAnimationStyles)
       .map(([name, value]) => `${name}: ${value};`)
       .concat([surface$style])
       .join(' ')}
@@ -56,6 +57,7 @@
     AnchorBoundaryType,
     XPosition,
     YPosition,
+    CssClasses,
   } from '@material/tooltip';
   import { onMount, onDestroy, getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
@@ -83,6 +85,8 @@
   export let persistent = false;
   export let interactive = persistent;
   export let hideFromScreenreader = false;
+  export let showDelay: number | null | undefined = undefined;
+  export let hideDelay: number | null | undefined = undefined;
   export let surface$class = '';
   export let surface$style = '';
 
@@ -104,7 +108,7 @@
   let internalClasses: { [k: string]: boolean } = {};
   let internalStyles: { [k: string]: string } = {};
   let internalAttrs: { [k: string]: string | undefined } = {};
-  let surfaceStyles: { [k: string]: string } = {};
+  let surfaceAnimationStyles: { [k: string]: string } = {};
   let anchor = getContext<Writable<HTMLElement | undefined>>(
     'SMUI:tooltip:wrapper:anchor'
   );
@@ -139,6 +143,14 @@
     });
   }
 
+  $: if (instance && showDelay != null) {
+    instance.setShowDelay(showDelay);
+  }
+
+  $: if (instance && hideDelay != null) {
+    instance.setHideDelay(hideDelay);
+  }
+
   onMount(() => {
     instance = new MDCTooltipFoundation({
       getAttribute: getAttr,
@@ -157,7 +169,7 @@
         return style;
       },
       setStyleProperty: addStyle,
-      setSurfaceStyleProperty: addSurfaceStyle,
+      setSurfaceAnimationStyleProperty: addSurfaceAnimationStyle,
       getViewportWidth: () => window.innerWidth,
       getViewportHeight: () => window.innerHeight,
       getTooltipSize: () => {
@@ -238,6 +250,18 @@
       notifyHidden: () => {
         dispatch(getElement(), 'MDCTooltip:hidden');
       },
+      // TODO: figure out why MDC-Web included these functions, because they're entirely undocumented.
+      getTooltipCaretBoundingRect: () => {
+        const caret = getElement().querySelector<HTMLElement>(
+          `.${CssClasses.TOOLTIP_CARET_TOP}`
+        );
+        if (!caret) {
+          return null;
+        }
+        return caret.getBoundingClientRect();
+      },
+      setTooltipCaretStyle: () => undefined,
+      clearTooltipCaretStyles: () => undefined,
     });
 
     $tooltip = element;
@@ -342,13 +366,13 @@
     }
   }
 
-  function addSurfaceStyle(name: string, value: string) {
-    if (surfaceStyles[name] != value) {
+  function addSurfaceAnimationStyle(name: string, value: string) {
+    if (surfaceAnimationStyles[name] != value) {
       if (value === '' || value == null) {
-        delete surfaceStyles[name];
-        surfaceStyles = surfaceStyles;
+        delete surfaceAnimationStyles[name];
+        surfaceAnimationStyles = surfaceAnimationStyles;
       } else {
-        surfaceStyles[name] = value;
+        surfaceAnimationStyles[name] = value;
       }
     }
   }
