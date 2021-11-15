@@ -18,13 +18,12 @@ export declare class TooltipComponentDev extends Component {
     | 'yPos'
     | 'persistent'
     | 'interactive'
-  > &
-    {
-      [k in keyof Partial<
-        svelte.JSX.HTMLAttributes<HTMLDivElement>
-      > as `surface\$${k}`]?: Partial<
-        svelte.JSX.HTMLAttributes<HTMLDivElement>
-      >[k];
-    } &
-    Component['$$prop_def'];
+    | 'hideFromScreenreader'
+  > & {
+    [k in keyof Partial<
+      svelte.JSX.HTMLAttributes<HTMLDivElement>
+    > as `surface\$${k}`]?: Partial<
+      svelte.JSX.HTMLAttributes<HTMLDivElement>
+    >[k];
+  } & Component['$$prop_def'];
 }

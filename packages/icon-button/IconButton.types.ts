@@ -22,6 +22,7 @@ export declare class IconButtonComponentDev<
     | 'pressed'
     | 'ariaLabelOn'
     | 'ariaLabelOff'
+    | 'touch'
     | 'href'
     | 'action'
     | 'component'
