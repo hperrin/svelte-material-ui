@@ -1,59 +1,69 @@
-<div
+<button
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
+  use:Ripple={{
+    unbounded: true,
+    color,
+    active: rippleActive,
+    rippleElement,
+    disabled,
+    addClass,
+    removeClass,
+    // Don't need addStyle, since we don't set style prop.
+  }}
   class={classMap({
     [className]: true,
     'mdc-switch': true,
-    'mdc-switch--disabled': disabled,
-    'mdc-switch--checked': nativeChecked,
-    'smui-switch--color-primary': color === 'primary',
+    'mdc-switch--unselected': !selected,
+    'mdc-switch--selected': selected,
+    'mdc-switch--processing': processing,
+    'smui-switch--color-secondary': color === 'secondary',
     ...internalClasses,
   })}
-  {...exclude($$restProps, ['input$'])}
+  type="button"
+  role="switch"
+  aria-checked={selected ? 'true' : 'false'}
+  {disabled}
+  on:click={() => instance && instance.handleClick()}
+  {...inputProps}
+  {...exclude($$restProps, ['icons$'])}
 >
   <div class="mdc-switch__track" />
-  <div
-    use:Ripple={{
-      unbounded: true,
-      color,
-      active: rippleActive,
-      addClass: addThumbUnderlayClass,
-      removeClass: removeThumbUnderlayClass,
-      // Don't need addStyle, since we don't set style prop.
-      eventTarget: checkbox,
-    }}
-    class={classMap({
-      'mdc-switch__thumb-underlay': true,
-      ...thumbUnderlayClasses,
-    })}
-  >
-    <div class="mdc-switch__thumb" />
-    <input
-      bind:this={checkbox}
-      use:useActions={input$use}
-      class={classMap({
-        [input$class]: true,
-        'mdc-switch__native-control': true,
-      })}
-      type="checkbox"
-      role="switch"
-      {...inputProps}
-      {disabled}
-      bind:checked={nativeChecked}
-      aria-checked={nativeChecked ? 'true' : 'false'}
-      value={isUninitializedValue(valueKey) ? value : valueKey}
-      on:blur
-      on:focus
-      {...nativeControlAttrs}
-      {...prefixFilter($$restProps, 'input$')}
-    />
+  <div class="mdc-switch__handle-track">
+    <div class="mdc-switch__handle">
+      <div class="mdc-switch__shadow">
+        <div class="mdc-elevation-overlay" />
+      </div>
+      <div class="mdc-switch__ripple" bind:this={rippleElement} />
+      <div
+        use:useActions={icons$use}
+        class={classMap({
+          [icons$class]: true,
+          'mdc-switch__icons': true,
+        })}
+        {...prefixFilter($$restProps, 'icons$')}
+      >
+        <svg class="mdc-switch__icon mdc-switch__icon--on" viewBox="0 0 24 24">
+          <path
+            d="M19.69,5.23L8.96,15.96l-4.23-4.23L2.96,13.5l6,6L21.46,7L19.69,5.23z"
+          />
+        </svg>
+        <svg class="mdc-switch__icon mdc-switch__icon--off" viewBox="0 0 24 24">
+          <path d="M20 13H4v-2h16v2z" />
+        </svg>
+      </div>
+    </div>
   </div>
-</div>
+</button>
 
 <script lang="ts">
   import type { SMUISwitchInputAccessor } from '@smui/common';
-  import { MDCSwitchFoundation } from '@material/switch';
+  import {
+    MDCSwitchRenderFoundation,
+    MDCSwitchRenderAdapter,
+    MDCSwitchState,
+  } from '@material/switch';
   import { onMount, getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {
@@ -79,53 +89,70 @@
   let className = '';
   export { className as class };
   export let disabled = false;
-  export let color: 'primary' | 'secondary' = 'secondary';
+  export let color: 'primary' | 'secondary' = 'primary';
   export let group: UninitializedValue | any[] = uninitializedValue;
   export let checked: UninitializedValue | boolean = uninitializedValue;
   export let value: any = null;
-  export let valueKey: UninitializedValue | string = uninitializedValue;
-  export let input$use: ActionArray = [];
-  export let input$class = '';
+  /** This currently does nothing. */
+  export let processing = false;
+  export let icons$use: ActionArray = [];
+  export let icons$class = '';
 
-  let element: HTMLDivElement;
-  let instance: MDCSwitchFoundation;
-  let checkbox: HTMLInputElement;
+  let element: HTMLButtonElement;
+  let instance: MDCSwitchRenderFoundation;
   let internalClasses: { [k: string]: boolean } = {};
-  let thumbUnderlayClasses: { [k: string]: boolean } = {};
-  let nativeControlAttrs: { [k: string]: string | undefined } = {};
+  let rippleElement: HTMLDivElement;
   let rippleActive = false;
   let inputProps =
     getContext<{ id?: string } | undefined>('SMUI:generic:input:props') ?? {};
-  let nativeChecked = isUninitializedValue(group)
+  let selected = isUninitializedValue(group)
     ? isUninitializedValue(checked)
       ? false
       : checked
     : group.indexOf(value) !== -1;
+  let state = {
+    get disabled() {
+      return disabled;
+    },
+    set disabled(value: boolean) {
+      disabled = value;
+    },
+    get processing() {
+      return processing;
+    },
+    set processing(value: boolean) {
+      processing = value;
+    },
+    get selected() {
+      return selected;
+    },
+    set selected(value: boolean) {
+      selected = value;
+    },
+  } as MDCSwitchState;
 
   let previousChecked = checked;
   let previousGroup = isUninitializedValue(group) ? [] : [...group];
-  let previousNativeChecked = nativeChecked;
+  let previousSelected = selected;
   $: {
     // This is a substitute for an on:change listener that is
     // smarter about when it calls the instance's handler. I do
     // this so that a group of changes will only trigger one
     // handler call, since the handler will reset currently
     // running animations.
-    let callHandleChange = false;
 
     // First check for group state.
     if (!isUninitializedValue(group)) {
-      if (previousNativeChecked !== nativeChecked) {
+      if (previousSelected !== selected) {
         // The change needs to flow up.
         const idx = group.indexOf(value);
-        if (nativeChecked && idx === -1) {
+        if (selected && idx === -1) {
           group.push(value);
           group = group;
-        } else if (!nativeChecked && idx !== -1) {
+        } else if (!selected && idx !== -1) {
           group.splice(idx, 1);
           group = group;
         }
-        callHandleChange = true;
       } else {
         // Potential changes need to flow down.
         const idxPrev = previousGroup.indexOf(value);
@@ -133,66 +160,61 @@
 
         if (idxPrev > -1 && idx === -1) {
           // The checkbox was removed from the group.
-          nativeChecked = false;
-          callHandleChange = true;
+          state.selected = false;
         } else if (idx > -1 && idxPrev === -1) {
           // The checkbox was added to the group.
-          nativeChecked = true;
-          callHandleChange = true;
+          state.selected = true;
         }
       }
     }
 
     // Now check individual state.
     if (isUninitializedValue(checked)) {
-      if (previousNativeChecked !== nativeChecked) {
+      if (previousSelected !== selected) {
         // The checkbox was clicked by the user.
-        callHandleChange = true;
       }
-    } else if (checked !== nativeChecked) {
+    } else if (checked !== selected) {
       if (checked === previousChecked) {
         // The checkbox was clicked by the user
         // and the change needs to flow up.
-        checked = nativeChecked;
+        checked = selected;
       } else {
         // The checkbox was changed programmatically
         // and the change needs to flow down.
-        nativeChecked = checked;
+        state.selected = checked;
       }
-      callHandleChange = true;
     }
 
     previousChecked = checked;
     previousGroup = isUninitializedValue(group) ? [] : [...group];
-    previousNativeChecked = nativeChecked;
-    if (callHandleChange && instance) {
-      instance.handleChange({
-        target: ({
-          checked: nativeChecked,
-        } as any) as EventTarget,
-      } as Event);
-    }
+    previousSelected = selected;
   }
 
   onMount(() => {
-    instance = new MDCSwitchFoundation({
+    instance = new MDCSwitchRenderFoundation({
       addClass,
+      hasClass,
+      isDisabled: () => disabled,
       removeClass,
-      setNativeControlChecked: (checked) => (nativeChecked = checked),
-      setNativeControlDisabled: (disabledValue) => (disabled = disabledValue),
-      setNativeControlAttr: addNativeControlAttr,
-    });
+      setAriaChecked: () => {
+        // Handled automatically.
+      },
+      setDisabled: (value: boolean) => {
+        disabled = value;
+      },
+      state,
+    } as MDCSwitchRenderAdapter);
 
     const accessor: SMUISwitchInputAccessor = {
       get element() {
         return getElement();
       },
       get checked() {
-        return nativeChecked;
+        return selected;
       },
       set checked(value) {
-        if (nativeChecked !== value) {
-          nativeChecked = value;
+        if (selected !== value) {
+          state.selected = value;
         }
       },
       activateRipple() {
@@ -208,6 +230,7 @@
     dispatch(element, 'SMUIGenericInput:mount', accessor);
 
     instance.init();
+    instance.initFromDOM();
 
     return () => {
       dispatch(element, 'SMUIGenericInput:unmount', accessor);
@@ -215,6 +238,12 @@
       instance.destroy();
     };
   });
+
+  function hasClass(className: string) {
+    return className in internalClasses
+      ? internalClasses[className]
+      : getElement().classList.contains(className);
+  }
 
   function addClass(className: string) {
     if (!internalClasses[className]) {
@@ -225,27 +254,6 @@
   function removeClass(className: string) {
     if (!(className in internalClasses) || internalClasses[className]) {
       internalClasses[className] = false;
-    }
-  }
-
-  function addThumbUnderlayClass(className: string) {
-    if (!thumbUnderlayClasses[className]) {
-      thumbUnderlayClasses[className] = true;
-    }
-  }
-
-  function removeThumbUnderlayClass(className: string) {
-    if (
-      !(className in thumbUnderlayClasses) ||
-      thumbUnderlayClasses[className]
-    ) {
-      thumbUnderlayClasses[className] = false;
-    }
-  }
-
-  function addNativeControlAttr(name: string, value: string) {
-    if (nativeControlAttrs[name] !== value) {
-      nativeControlAttrs[name] = value;
     }
   }
 

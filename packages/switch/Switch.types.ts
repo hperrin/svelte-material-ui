@@ -8,7 +8,7 @@ export declare class SwitchComponentDev extends Component {
    * ### DO NOT USE!
    */
   $$prop_def: Omit<
-    Partial<svelte.JSX.HTMLAttributes<HTMLDivElement>>,
+    Partial<svelte.JSX.HTMLAttributes<HTMLButtonElement>>,
     | 'use'
     | 'class'
     | 'disabled'
@@ -16,19 +16,10 @@ export declare class SwitchComponentDev extends Component {
     | 'group'
     | 'checked'
     | 'value'
-    | 'valueKey'
-  > &
-    {
-      [k in keyof Partial<
-        svelte.JSX.HTMLAttributes<HTMLInputElement>
-      > as `input\$${k}`]?: Partial<
-        svelte.JSX.HTMLAttributes<HTMLInputElement>
-      >[k];
-    } & {
-      input$type?: never;
-      input$disabled?: never;
-      input$value?: never;
-      input$checked?: never;
-      input$group?: never;
-    } & Component['$$prop_def'];
+    | 'processing'
+  > & {
+    [k in keyof Partial<
+      svelte.JSX.HTMLAttributes<HTMLDivElement>
+    > as `icons\$${k}`]?: Partial<svelte.JSX.HTMLAttributes<HTMLDivElement>>[k];
+  } & Component['$$prop_def'];
 }

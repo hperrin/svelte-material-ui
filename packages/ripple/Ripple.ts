@@ -13,6 +13,7 @@ export type RippleProps = {
   color?: 'primary' | 'secondary';
   /** Whether the ripple is active. Leave null to determine automatically. */
   active?: boolean;
+  rippleElement?: HTMLElement;
   eventTarget?: HTMLElement;
   activeTarget?: HTMLElement;
   addClass?: (className: string) => void;
@@ -30,6 +31,7 @@ export default function Ripple(
     disabled = false,
     color,
     active,
+    rippleElement,
     eventTarget,
     activeTarget,
     addClass = (className) => node.classList.add(className),
@@ -77,7 +79,8 @@ export default function Ripple(
       instance = new MDCRippleFoundation({
         addClass,
         browserSupportsCssVars: () => util.supportsCssVariables(window),
-        computeBoundingRect: () => node.getBoundingClientRect(),
+        computeBoundingRect: () =>
+          (rippleElement || node).getBoundingClientRect(),
         containsEventTarget: (target) => node.contains(target as Node),
         deregisterDocumentInteractionHandler: (evtType, handler) =>
           document.documentElement.removeEventListener(
@@ -177,6 +180,7 @@ export default function Ripple(
         disabled,
         color,
         active,
+        rippleElement,
         eventTarget,
         activeTarget,
         addClass,
@@ -190,6 +194,7 @@ export default function Ripple(
         disabled: false,
         color: undefined,
         active: undefined,
+        rippleElement: undefined,
         eventTarget: undefined,
         activeTarget: undefined,
         addClass: (className) => node.classList.add(className),

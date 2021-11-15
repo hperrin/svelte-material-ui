@@ -9,8 +9,8 @@
 
   <Demo component={Simple} file="switch/_Simple.svelte" />
 
-  <Demo component={PrimaryColor} file="switch/_PrimaryColor.svelte">
-    Primary color
+  <Demo component={SecondaryColor} file="switch/_SecondaryColor.svelte">
+    Secondary color
   </Demo>
 
   <Demo component={Group} file="switch/_Group.svelte">Group switch</Demo>
@@ -20,6 +20,6 @@
   import Demo from '$lib/Demo.svelte';
 
   import Simple from './_Simple.svelte';
-  import PrimaryColor from './_PrimaryColor.svelte';
+  import SecondaryColor from './_SecondaryColor.svelte';
   import Group from './_Group.svelte';
 </script>

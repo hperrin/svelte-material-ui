@@ -7,6 +7,14 @@ This doc contains information that will help you migrate your code from an older
 SMUI 6 migrated to upstream MDC 13.0 from 11.0:
 https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#1300-2021-09-24
 
+## Changes
+
+### Components
+
+- Switch
+  - No longer needs `valueKey` prop.
+  - Default color is now "primary".
+
 # SMUI 4 -> SMUI 5
 
 ## Breaking Changes
@@ -45,7 +53,7 @@ You should update your MDC dependencies to 11.0 as well.
 
 ## New Features
 
-### Compoennts
+### Components
 
 - Banner
   - Add focus trap on the banner.

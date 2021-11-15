@@ -1,21 +1,39 @@
+@use 'sass:color';
 @use '@material/feature-targeting/index' as feature-targeting;
-@use '@material/ripple/ripple-theme';
-@use '@material/switch/deprecated/index' as switch;
+@use '@material/theme/theme-color';
+@use '@material/theme/index' as theme;
+@use '@material/switch/index' as switch;
+
+$_inverse-secondary: color.scale(
+  theme-color.prop-value(secondary),
+  $lightness: 75%
+);
+$_secondary-state-content: color.scale(
+  theme-color.prop-value(secondary),
+  $blackness: 50%
+);
 
 @mixin core-styles($query: feature-targeting.all()) {
-  @include without-ripple($query);
-  @include ripple($query);
-}
-
-@mixin without-ripple($query: feature-targeting.all()) {
-  .mdc-switch.smui-switch--color-primary {
-    @include switch.toggled-on-track-color(primary, $query);
-    @include switch.toggled-on-thumb-color(primary, $query);
-  }
-}
-
-@mixin ripple($query: feature-targeting.all()) {
-  .smui-switch--color-primary .mdc-switch__thumb-underlay {
-    @include ripple-theme.states(primary, false, $query);
+  .mdc-switch.smui-switch--color-secondary {
+    // See: https://github.com/material-components/material-components-web/blob/v13.0.0/packages/mdc-switch/_switch-theme.scss#L76
+    @include switch.theme(
+      (
+        disabled-selected-icon-color: on-secondary,
+        disabled-unselected-icon-color: on-secondary,
+        selected-focus-handle-color: $_secondary-state-content,
+        selected-focus-state-layer-color: secondary,
+        selected-focus-track-color: $_inverse-secondary,
+        selected-handle-color: secondary,
+        selected-hover-handle-color: $_secondary-state-content,
+        selected-hover-state-layer-color: secondary,
+        selected-hover-track-color: $_inverse-secondary,
+        selected-icon-color: on-secondary,
+        selected-pressed-handle-color: $_secondary-state-content,
+        selected-pressed-state-layer-color: secondary,
+        selected-pressed-track-color: $_inverse-secondary,
+        selected-track-color: $_inverse-secondary,
+        unselected-icon-color: on-secondary,
+      )
+    );
   }
 }
