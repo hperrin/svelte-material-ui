@@ -14,6 +14,8 @@
   </Demo>
 
   <Demo component={Group} file="switch/_Group.svelte">Group switch</Demo>
+
+  <Demo component={NoIcons} file="switch/_NoIcons.svelte">No icons</Demo>
 </section>
 
 <script lang="ts">
@@ -22,4 +24,5 @@
   import Simple from './_Simple.svelte';
   import SecondaryColor from './_SecondaryColor.svelte';
   import Group from './_Group.svelte';
+  import NoIcons from './_NoIcons.svelte';
 </script>

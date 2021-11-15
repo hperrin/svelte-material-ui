@@ -17,6 +17,7 @@ export declare class SwitchComponentDev extends Component {
     | 'checked'
     | 'value'
     | 'processing'
+    | 'icons'
   > & {
     [k in keyof Partial<
       svelte.JSX.HTMLAttributes<HTMLDivElement>
