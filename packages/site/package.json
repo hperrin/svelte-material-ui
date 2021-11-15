@@ -11,8 +11,8 @@
     "prepare": "npm run smui-theme-light && npm run smui-theme-dark && npm run site-light && npm run site-dark",
     "smui-theme-light": "smui-theme compile static/smui.css -s expanded -i src/theme  -i node_modules/",
     "smui-theme-dark": "smui-theme compile static/smui-dark.css -s expanded -i src/theme/dark  -i node_modules/",
-    "site-light": "sass --no-source-map -I src/theme -I node_modules -I ../../node_modules src/site.scss static/site.css",
-    "site-dark": "sass --no-source-map -I src/theme/dark -I node_modules -I ../../node_modules src/site.scss static/site-dark.css",
+    "site-light": "sass --no-source-map -I src/theme -I node_modules -I ../smui-theme/node_modules  -I ../../node_modules src/site.scss static/site.css",
+    "site-dark": "sass --no-source-map -I src/theme/dark -I node_modules -I ../smui-theme/node_modules  -I ../../node_modules src/site.scss static/site-dark.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "publishConfig": {

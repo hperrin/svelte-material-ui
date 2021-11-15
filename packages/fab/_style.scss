@@ -1,6 +1,5 @@
-@use '@material/fab/index' as fab;
-@use '@smui/ripple/style';
+@use '@material/fab/mdc-fab';
+@use '@smui/ripple/style' as ripple-style;
 @use './mixins';
 
-@include fab.core-styles;
 @include mixins.core-styles;

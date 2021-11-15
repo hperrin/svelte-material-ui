@@ -17,7 +17,7 @@
   "scripts": {
     "build": "npm run build:js && npm run build:sass",
     "build:js": "tsc",
-    "build:sass": "sass --no-source-map -I node_modules -I ../../node_modules _style.scss bare.css && sass --no-source-map -I node_modules -I ../../node_modules character-counter/_style.scss character-counter/bare.css && sass --no-source-map -I node_modules -I ../../node_modules helper-text/_style.scss helper-text/bare.css && sass --no-source-map -I node_modules -I ../../node_modules icon/_style.scss icon/bare.css",
+    "build:sass": "sass --no-source-map -I node_modules -I ../smui-theme/node_modules  -I ../../node_modules _style.scss bare.css && sass --no-source-map -I node_modules -I ../smui-theme/node_modules  -I ../../node_modules character-counter/_style.scss character-counter/bare.css && sass --no-source-map -I node_modules -I ../smui-theme/node_modules  -I ../../node_modules helper-text/_style.scss helper-text/bare.css && sass --no-source-map -I node_modules -I ../smui-theme/node_modules  -I ../../node_modules icon/_style.scss icon/bare.css",
     "clean": "git status --ignored -u --porcelain . | grep -v node_modules/ | grep -e '^!! ' | sed 's/^!! packages\\/[a-z-]*\\///g' | tr '\\n' ' ' | xargs rm",
     "prepare": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"

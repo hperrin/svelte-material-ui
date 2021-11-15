@@ -1,4 +1,2 @@
-@use '@material/checkbox/index' as checkbox;
+@use '@material/checkbox/mdc-checkbox';
 @use '@smui/ripple/style';
-
-@include checkbox.core-styles;

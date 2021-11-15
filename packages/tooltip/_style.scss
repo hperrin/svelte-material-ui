@@ -1,4 +1,4 @@
-@use '@material/tooltip/styles';
+@use '@material/tooltip/styles' as tooltip-styles;
 @use './mixins';
 
 @include mixins.core-styles;

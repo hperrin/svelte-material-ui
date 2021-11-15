@@ -1,5 +1,5 @@
-@use '@material/slider/styles';
-@use '@smui/ripple/style';
+@use '@material/slider/styles' as slider-styles;
+@use '@smui/ripple/style' as ripple-style;
 
 .mdc-slider {
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);

@@ -1,6 +1,5 @@
-@use '@material/list/index' as list;
-@use '@smui/ripple/style';
+@use '@material/list/mdc-list';
+@use '@smui/ripple/style' as ripple-style;
 @use './mixins';
 
-@include list.deprecated-core-styles;
 @include mixins.core-styles;

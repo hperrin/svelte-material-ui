@@ -1,9 +1,7 @@
-@use '@material/card/index' as card;
+@use '@material/card/mdc-card';
 @use '@smui/button/style' as button-style;
 @use '@smui/icon-button/style' as icon-button-style;
 @use '@smui/ripple/style' as ripple-style;
-
-@include card.core-styles;
 
 .smui-card--padded,
 .smui-card__content,

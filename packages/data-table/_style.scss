@@ -1,9 +1,9 @@
-@use '@material/data-table/data-table';
+// Select's styles must be emitted before datatable's due to equal specificity.
+// See: https://github.com/material-components/material-components-web/blob/v13.0.0/packages/material-components-web/material-components-web.scss
+@use '@smui/select/style' as select-style;
+@use '@material/data-table/mdc-data-table';
 @use '@smui/checkbox/style' as checkbox-style;
 @use '@smui/icon-button/style' as icon-button-style;
-
-@include data-table.core-styles;
-@include data-table.theme-baseline;
 
 // Unset overflow on sticker header tables, because it interferes.
 .mdc-data-table--sticky-header > .mdc-data-table__table-container {

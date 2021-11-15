@@ -1,6 +1,5 @@
-@use '@material/switch/deprecated/index' as switch;
-@use '@smui/ripple/style';
+@use '@material/switch/styles' as switch-styles;
+@use '@smui/ripple/style' as ripple-style;
 @use './mixins';
 
-@include switch.core-styles;
 @include mixins.core-styles;

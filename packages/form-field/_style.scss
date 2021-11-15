@@ -1,5 +1,4 @@
-@use '@material/form-field/index' as form-field;
+@use '@material/form-field/mdc-form-field';
 @use './mixins';
 
-@include form-field.core-styles;
 @include mixins.core-styles;

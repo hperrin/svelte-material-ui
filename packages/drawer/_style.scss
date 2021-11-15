@@ -1,8 +1,4 @@
-@use '@material/drawer/index' as drawer;
-
-@include drawer.core-styles;
-@include drawer.dismissible-core-styles;
-@include drawer.modal-core-styles;
+@use '@material/drawer/mdc-drawer';
 
 .mdc-drawer.smui-drawer__absolute,
 .mdc-drawer-scrim.smui-drawer-scrim__absolute {

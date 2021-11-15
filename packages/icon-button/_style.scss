@@ -1,7 +1,5 @@
-@use '@material/icon-button/icon-button';
-@use '@smui/ripple/style';
-
-@include icon-button.core-styles;
+@use '@material/icon-button/mdc-icon-button';
+@use '@smui/ripple/style' as ripple-style;
 
 // Prevent pointer giving focus inside.
 .mdc-icon-button svg {
