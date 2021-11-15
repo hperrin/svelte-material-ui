@@ -45,6 +45,7 @@
     ? { 'aria-checked': input && input.checked ? 'true' : 'false' }
     : {}}
   {...!nav ? { 'aria-disabled': disabled ? 'true' : 'false' } : {}}
+  data-menu-item-skip-restore-focus={skipRestoreFocus || undefined}
   {tabindex}
   on:click={action}
   on:keydown={handleKeydown}
@@ -102,6 +103,7 @@
   setContext('SMUI:list:item:role', undefined);
   export let selected = false;
   export let disabled = false;
+  export let skipRestoreFocus = false;
   let tabindexProp: UninitializedValue | number = uninitializedValue;
   export { tabindexProp as tabindex };
   export let inputId = 'SMUI-form-field-list-' + counter++;

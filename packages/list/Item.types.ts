@@ -23,6 +23,7 @@ export declare class ItemComponentDev<
     | 'role'
     | 'selected'
     | 'disabled'
+    | 'skipRestoreFocus'
     | 'inputId'
     | 'href'
     | 'component'

@@ -265,6 +265,10 @@
     return instance.setIsHoisted(isHoisted);
   }
 
+  export function isFixed() {
+    return instance.isFixed();
+  }
+
   export function getElement() {
     return element;
   }
