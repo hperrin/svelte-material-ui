@@ -362,6 +362,10 @@
     return instance.getSelectedIndex();
   }
 
+  export function getFocusedItemIndex() {
+    return instance.getFocusedItemIndex();
+  }
+
   export function getElement(): Element {
     return element.getElement();
   }

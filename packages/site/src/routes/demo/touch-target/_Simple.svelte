@@ -5,6 +5,11 @@
     </Button>
   </Wrapper>
   <Wrapper>
+    <IconButton on:click={() => clicked++} touch>
+      <Icon class="material-icons">favorite</Icon>
+    </IconButton>
+  </Wrapper>
+  <Wrapper>
     <Fab on:click={() => clicked++} mini touch>
       <Icon class="material-icons">favorite</Icon>
     </Fab>
@@ -33,6 +38,7 @@
 <script lang="ts">
   import Wrapper from '@smui/touch-target';
   import Button from '@smui/button';
+  import IconButton from '@smui/icon-button';
   import Fab from '@smui/fab';
   import Chip, { Set, Text } from '@smui/chips';
   import Checkbox from '@smui/checkbox';

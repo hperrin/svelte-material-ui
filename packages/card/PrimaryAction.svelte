@@ -23,6 +23,7 @@
   {tabindex}
   {...$$restProps}
 >
+  <div class="mdc-card__ripple" />
   <slot />
 </div>
 

@@ -14,6 +14,10 @@
   </Demo>
 
   <Demo component={Svgs} file="icon-button/_Svgs.svelte">Using SVGs</Demo>
+
+  <Demo component={Touch} file="icon-button/_Touch.svelte">
+    Increased touch target
+  </Demo>
 </section>
 
 <script lang="ts">
@@ -22,4 +26,5 @@
   import Simple from './_Simple.svelte';
   import Toggle from './_Toggle.svelte';
   import Svgs from './_Svgs.svelte';
+  import Touch from './_Touch.svelte';
 </script>
