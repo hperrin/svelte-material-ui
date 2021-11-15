@@ -306,7 +306,8 @@
     if (
       !rich &&
       typeof document !== 'undefined' &&
-      document.body === getElement().parentNode &&
+      document.body === getElement().parentElement &&
+      nonReactiveLocationStore.parent !== getElement().parentElement &&
       nonReactiveLocationStore.parent?.insertBefore &&
       nonReactiveLocationStore.nextSibling
     ) {
