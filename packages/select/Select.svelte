@@ -559,6 +559,14 @@
     return 'touches' in evt;
   }
 
+  export function getUseDefaultValidation() {
+    return instance.getUseDefaultValidation();
+  }
+
+  export function setUseDefaultValidation(useDefaultValidation: boolean) {
+    instance.setUseDefaultValidation(useDefaultValidation);
+  }
+
   export function focus() {
     selectAnchor.focus();
   }
