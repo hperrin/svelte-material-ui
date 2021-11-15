@@ -155,6 +155,7 @@
     instance = new MDCTooltipFoundation({
       getAttribute: getAttr,
       setAttribute: addAttr,
+      removeAttribute: removeAttr,
       addClass,
       hasClass,
       removeClass,
@@ -414,6 +415,12 @@
   function addAttr(name: string, value: string) {
     if (internalAttrs[name] !== value) {
       internalAttrs[name] = value;
+    }
+  }
+
+  function removeAttr(name: string) {
+    if (!(name in internalAttrs) || internalAttrs[name] != null) {
+      internalAttrs[name] = undefined;
     }
   }
 
