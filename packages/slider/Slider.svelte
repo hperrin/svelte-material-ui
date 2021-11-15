@@ -249,6 +249,46 @@
   );
   let removeLayoutListener: RemoveLayoutListener | undefined;
 
+  let previousMin = min;
+  $: if (min !== previousMin) {
+    if (instance) {
+      instance.setMin(min);
+    }
+    previousMin = min;
+  }
+
+  let previousMax = max;
+  $: if (max !== previousMax) {
+    if (instance) {
+      instance.setMax(max);
+    }
+    previousMax = max;
+  }
+
+  let previousStep = step;
+  $: if (step !== previousStep) {
+    if (instance) {
+      instance.setStep(step);
+    }
+    previousStep = step;
+  }
+
+  let previousDiscrete = discrete;
+  $: if (discrete !== previousDiscrete) {
+    if (instance) {
+      instance.setIsDiscrete(discrete);
+    }
+    previousDiscrete = discrete;
+  }
+
+  let previousTickMarks = tickMarks;
+  $: if (tickMarks !== previousTickMarks) {
+    if (instance) {
+      instance.setHasTickMarks(tickMarks);
+    }
+    previousTickMarks = tickMarks;
+  }
+
   if (tickMarks && step > 0) {
     const absMax = max + Math.abs(min);
     if (range && typeof start === 'number' && typeof end === 'number') {
