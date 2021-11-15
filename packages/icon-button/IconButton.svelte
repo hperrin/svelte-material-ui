@@ -22,6 +22,7 @@
     'mdc-icon-button': true,
     'mdc-icon-button--on': !isUninitializedValue(pressed) && pressed,
     'mdc-icon-button--touch': touch,
+    'mdc-icon-button--display-flex': displayFlex,
     'mdc-card__action': context === 'card:action',
     'mdc-card__action--icon': context === 'card:action',
     'mdc-top-app-bar__navigation-icon': context === 'top-app-bar:navigation',
@@ -95,6 +96,7 @@
   export let ariaLabelOn: string | undefined = undefined;
   export let ariaLabelOff: string | undefined = undefined;
   export let touch = false;
+  export let displayFlex = true;
   export let href: string | undefined = undefined;
   export let action:
     | 'close'
