@@ -1,10 +1,5 @@
-// TODO: check if this is still required
-// @use '@material/theme/theme-color';
-// @use '@material/snackbar/index' as snackbar with (
-//   $action-ink-color: theme-color.prop-value(primary)
-// );
-@use '@material/snackbar/mdc-snackbar';
-@use './mixins';
+@use '@material/theme/theme-color';
+@use '@material/snackbar/index' as snackbar with
+  ($action-ink-color: theme-color.prop-value(primary));
 
-// @include snackbar.core-styles;
-@include mixins.core-styles;
+@include snackbar.core-styles;

@@ -1,5 +1,8 @@
 @use '@material/icon-button/mdc-icon-button';
 @use '@smui/ripple/style' as ripple-style;
+@use './mixins' as mixins;
+
+@include mixins.core-styles;
 
 // Prevent pointer giving focus inside.
 .mdc-icon-button svg {

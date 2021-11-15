@@ -23,6 +23,8 @@
     'mdc-icon-button--on': !isUninitializedValue(pressed) && pressed,
     'mdc-icon-button--touch': touch,
     'mdc-icon-button--display-flex': displayFlex,
+    'smui-icon-button--size-button': size === 'button',
+    'mdc-icon-button--reduced-size': size === 'mini' || size === 'button',
     'mdc-card__action': context === 'card:action',
     'mdc-card__action--icon': context === 'card:action',
     'mdc-top-app-bar__navigation-icon': context === 'top-app-bar:navigation',
@@ -97,6 +99,7 @@
   export let ariaLabelOff: string | undefined = undefined;
   export let touch = false;
   export let displayFlex = true;
+  export let size: 'normal' | 'mini' | 'button' = 'normal';
   export let href: string | undefined = undefined;
   export let action:
     | 'close'

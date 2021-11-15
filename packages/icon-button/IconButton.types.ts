@@ -24,6 +24,7 @@ export declare class IconButtonComponentDev<
     | 'ariaLabelOff'
     | 'touch'
     | 'displayFlex'
+    | 'size'
     | 'href'
     | 'action'
     | 'component'
