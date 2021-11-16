@@ -3,8 +3,21 @@
   "version": "5.0.0",
   "description": "Svelte Material UI - Snackbar",
   "type": "module",
-  "module": "index.js",
-  "types": "index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": "./dist/index.js",
+    "./kitchen": "./dist/kitchen/index.js"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./src/*"
+      ],
+      "kitchen": [
+        "./src/kitchen/index.ts"
+      ]
+    }
+  },
   "keywords": [
     "svelte",
     "svelte3",
@@ -15,8 +28,9 @@
     "sveltejs"
   ],
   "scripts": {
-    "build": "npm run build:js && npm run build:sass",
-    "build:js": "tsc",
+    "build": "npm run build:js && npm run build:svelte && npm run build:sass",
+    "build:js": "tsc -p . --outDir dist/ --rootDir src/",
+    "build:svelte": "svelte-strip strip src/ dist",
     "build:sass": "sass --no-source-map -I node_modules -I ../smui-theme/node_modules  -I ../../node_modules _style.scss bare.css && sass --no-source-map -I node_modules -I ../smui-theme/node_modules  -I ../../node_modules kitchen/_style.scss kitchen/bare.css",
     "clean": "git status --ignored -u --porcelain . | grep -v node_modules/ | grep -e '^!! ' | sed 's/^!! packages\\/[a-z-]*\\///g' | tr '\\n' ' ' | xargs rm",
     "prepare": "npm run build",
@@ -47,6 +61,7 @@
   "devDependencies": {
     "@tsconfig/svelte": "^2.0.1",
     "sass": "^1.43.4",
+    "svelte-strip": "^1.0.0",
     "tslib": "^2.3.1",
     "typescript": "^4.4.4"
   }

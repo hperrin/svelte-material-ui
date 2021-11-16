@@ -3,8 +3,29 @@
   "version": "5.0.0",
   "description": "Svelte Material UI - Common",
   "type": "module",
-  "module": "index.js",
-  "types": "index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": "./dist/index.js",
+    "./classadder": "./dist/classadder/index.js",
+    "./elements": "./dist/elements/index.js",
+    "./internal": "./dist/internal/index.js"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./src/*"
+      ],
+      "classadder": [
+        "./src/classadder/index.ts"
+      ],
+      "elements": [
+        "./src/elements/index.ts"
+      ],
+      "internal": [
+        "./src/internal/index.ts"
+      ]
+    }
+  },
   "keywords": [
     "svelte",
     "svelte3",
@@ -15,7 +36,9 @@
     "sveltejs"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "npm run build:js && npm run build:svelte",
+    "build:js": "tsc -p . --outDir dist/ --rootDir src/",
+    "build:svelte": "svelte-strip strip src/ dist",
     "clean": "git status --ignored -u --porcelain . | grep -v node_modules/ | grep -e '^!! ' | sed 's/^!! packages\\/[a-z-]*\\///g' | tr '\\n' ' ' | xargs rm",
     "prepare": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -39,6 +62,7 @@
     "@tsconfig/svelte": "^2.0.1",
     "sass": "^1.43.4",
     "svelte": "^3.35.0",
+    "svelte-strip": "^1.0.0",
     "tslib": "^2.3.1",
     "typescript": "^4.4.4"
   },

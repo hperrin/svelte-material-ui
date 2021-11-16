@@ -6,6 +6,6 @@
     "strict": true,
     "declaration": true
   },
-  "include": ["**/*.ts", "**/*.svelte"],
+  "include": ["src/**/*.ts", "src/**/*.svelte"],
   "exclude": ["node_modules/*", "**/*.spec.ts"]
 }
