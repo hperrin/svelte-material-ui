@@ -1,6 +1,6 @@
 {
   "name": "@smui/form-field",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "Svelte Material UI - Form Field",
   "type": "module",
   "module": "index.js",
@@ -38,7 +38,7 @@
     "@material/feature-targeting": "^11.0.0",
     "@material/form-field": "^11.0.0",
     "@material/rtl": "^11.0.0",
-    "@smui/common": "^5.0.0",
+    "@smui/common": "^5.0.1",
     "svelte2tsx": "^0.4.6"
   },
   "devDependencies": {
