@@ -24,7 +24,7 @@
 
 <script lang="ts">
   import Textfield from '@smui/textfield';
-  import HelperText from '@smui/textfield/helper-text/index';
+  import HelperText from '@smui/textfield/helper-text';
 
   let valueA = '';
   let valueB = '';

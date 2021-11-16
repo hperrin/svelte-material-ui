@@ -43,8 +43,8 @@
 
 <script lang="ts">
   import Textfield from '@smui/textfield';
-  import HelperText from '@smui/textfield/helper-text/index';
-  import CharacterCounter from '@smui/textfield/character-counter/index';
+  import HelperText from '@smui/textfield/helper-text';
+  import CharacterCounter from '@smui/textfield/character-counter';
 
   let valueA = '';
   let valueB = '';

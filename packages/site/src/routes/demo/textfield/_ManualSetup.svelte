@@ -132,7 +132,7 @@
     TextareaComponentDev,
   } from '@smui/textfield';
   import Icon from '@smui/textfield/icon';
-  import HelperText from '@smui/textfield/helper-text/index';
+  import HelperText from '@smui/textfield/helper-text';
   import FloatingLabel, {
     FloatingLabelComponentDev,
   } from '@smui/floating-label';

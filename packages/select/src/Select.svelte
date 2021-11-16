@@ -240,7 +240,7 @@
     ActionArray,
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
-  import Anchor from '@smui/menu-surface/Anchor';
+  import { Anchor } from '@smui/menu-surface';
   import Menu from '@smui/menu';
   import List from '@smui/list';
   import FloatingLabel from '@smui/floating-label';

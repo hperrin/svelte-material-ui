@@ -7,6 +7,11 @@ This doc contains information that will help you migrate your code from an older
 SMUI 6 migrated to upstream MDC 13.0 from 11.0:
 https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#1300-2021-09-24
 
+## Breaking Changes
+
+- For `@smui/common`, `@smui/textfield`, `@smui/select`, and `@smui/snackbar`, if you ever import something like `@smui/snackbar/kitchen/index` or `@smui/textfield/helper-text/index`, you need to remove the `/index` from the end of that import. (This does not apply to Sass imports.)
+  - Here's a regex you can use in VS Code to search for these: @smui/(common|textfield|select|snackbar)/[\w-]+/index
+
 ## Changes
 
 ### Components
