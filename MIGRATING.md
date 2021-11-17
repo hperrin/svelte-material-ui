@@ -11,6 +11,7 @@ https://github.com/material-components/material-components-web/blob/master/CHANG
 
 - For `@smui/common`, `@smui/textfield`, `@smui/select`, and `@smui/snackbar`, if you ever import something like `@smui/snackbar/kitchen/index` or `@smui/textfield/helper-text/index`, you need to remove the `/index` from the end of that import. (This does not apply to Sass imports.)
   - Here's a regex you can use in VS Code to search for these: @smui/(common|textfield|select|snackbar)/[\w-]+/index
+- The '/styled' import endpoints have been removed. You will need to import the '/index' endpoint from Sass yourself if you were using the Advanced Styling Method.
 
 ## Changes
 

@@ -12,7 +12,7 @@ npm install --save-dev @smui/card
 npm install --save-dev smui-theme
 ```
 
-You need to use the [Easy Styling Method](/SASS.md#easy-styling-method). Create theme files with `smui-theme`.
+Create your theme files with `smui-theme`.
 
 ```sh
 npx smui-theme template src/theme

@@ -16,7 +16,7 @@ Here are some features you should know about:
 - You can add arbitrary attributes to all of the components and many of the elements within them.
 - You can add actions to the components with `use={[Action1, [Action2, action2Props], Action3]}`.
 - You can add props to lower components and elements with "$" props, like `input$maxlength="15"`.
-- **All** events are forwarded. This includes DOM events, MDC events, and custom events.
+- **All** events are forwarded. This includes DOM events, SMUI events, MDC events, and custom events.
   - You can add event modifiers with the `on:click$preventDefault$capture={handler}` syntax.
     - If you use Svelte's native `on:click|preventDefault={handler}` syntax, it will not compile. You have to use "$" instead of "|". (The extra S inside the | stands for SMUI.)
   - Supported modifiers are:
@@ -31,25 +31,23 @@ Here are some features you should know about:
 
 # Installation
 
-To get started, check out the [installation docs](INSTALL.md) or the [SvelteKit docs](SVELTEKIT.md). You'll also need to install the [Svelte preprocessor](https://github.com/sveltejs/svelte-preprocess).
+To get started, check out the [installation docs](INSTALL.md) or the [SvelteKit docs](SVELTEKIT.md).
 
 # Migration
 
 Upgrading from an old version? Be sure to read the [migration doc](MIGRATING.md).
 
-Upgrading from v2? There are **lots** of changes listed in the [upgrade instructions](MIGRATING.md#smui-2---smui-3).
+Upgrading from v5? If you're still using the advanced styling method, it's really time to switch to the easy styling method. '/styled' endpoints are no longer provided. Check out the [upgrade instructions](MIGRATING.md#smui-5---smui-6).
+
+Upgrading from v4? SMUI v5 requires the [TypeScript preprocessor](https://github.com/sveltejs/svelte-preprocess). SMUI v6 does not though, so if you upgrade straight to v6, don't worry. Check out the [upgrade instructions](MIGRATING.md#smui-4---smui-5).
 
 Upgrading from v3? SMUI's styling method has been simplified. Check out the [upgrade instructions](MIGRATING.md#smui-3---smui-4).
 
-Upgrading from v4? SMUI now requires the [TypeScript preprocessor](https://github.com/sveltejs/svelte-preprocess). Check out the [upgrade instructions](MIGRATING.md#smui-4---smui-5).
+Upgrading from v2? There are **lots** of changes listed in the [upgrade instructions](MIGRATING.md#smui-2---smui-3).
 
 # Need Help?
 
 If you need help using SMUI, join the new [Discord server](https://discord.gg/aFzmkrmg9P).
-
-# Get Typed!
-
-I'm super typed to announce, SMUI 5 introduces TypeScript support! All the benefits of TypeScript, all the beauty of SMUI!
 
 # Components
 

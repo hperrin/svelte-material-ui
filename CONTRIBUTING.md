@@ -30,7 +30,7 @@ cd packages/site
 npm run dev
 ```
 
-Once that starts, you should be able to see the site at http://localhost:3000/ and the site will refresh automatically when you make a change.
+Once that starts, you should be able to see the site at http://localhost:3000/ and the site will refresh automatically when you make a change. You will have to go into whichever package you're working on and run `npm run build` before you'll see the change.
 
 ## Commiting Changes
 

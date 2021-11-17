@@ -1,8 +1,44 @@
 # Theming SMUI
 
-## Theming with [Sass](/SASS.md)
+## Theming with Sass
 
-The `_smui-theme.scss` file is where you define Sass variables for your theme. You can check out the READMEs of the MDC-Web components to learn how to deeply style the components. The most important one (and probably the only one you want) is setting the [theme colors](https://github.com/material-components/material-components-web/tree/v11.0.0/packages/mdc-theme#color-scheme). For the Material color palette, you can @use ["@material/theme/color-palette"](https://github.com/material-components/material-components-web/blob/v11.0.0/packages/mdc-theme/_color-palette.scss). You might also want to style the [border radius variables](https://github.com/material-components/material-components-web/tree/v11.0.0/packages/mdc-shape#sass-variables).
+To create a custom Sass theme, install the SMUI Theme Builder.
+
+```sh
+npm install --save-dev smui-theme
+```
+
+You can use it to create your theme directory from a template. Adjust to your source directory if needed.
+
+```sh
+npx smui-theme template src/theme
+```
+
+This creates `_smui-theme.scss` files in `src/theme`. That is where you set the theme variables.
+
+### Building Your Theme
+
+In your package.json file, add this script in the "scripts" section, adjusting the source/destination files as needed.
+
+```
+"prepare": "smui-theme compile build/smui.css -i src/theme",
+```
+
+Or for dark mode.
+
+```
+"prepare": "npm run smui-theme-light && npm run smui-theme-dark",
+"smui-theme-light": "smui-theme compile build/smui.css -i src/theme",
+"smui-theme-dark": "smui-theme compile build/smui-dark.css -i src/theme/dark",
+```
+
+Now run `npm run prepare` to build the CSS file(s), then add it/them on your page.
+
+Note: The smui-theme compiler will only include the Sass for the packages installed when it is run. If you install a new SMUI package, you should run `npm run prepare` to rebuild the CSS.
+
+### Theme Variables
+
+You can check out the READMEs of the MDC-Web components to learn how to deeply style the components. The most important part (and probably the only one you want) is setting the [theme colors](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-theme#color-scheme). For the Material color palette, you can @use ["@material/theme/color-palette"](https://github.com/material-components/material-components-web/blob/v13.0.0/packages/mdc-theme/_color-palette.scss). You might also want to style the [border radius variables](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-shape#sass-variables).
 
 Here is an example `_smui-theme.scss` file you can use as a starting point.
 
@@ -60,11 +96,11 @@ If you use the bare CSS, you can set a subset of the theme options with CSS vari
   --mdc-theme-text-hint-on-light: rgba(0, 0, 0, 0.38);
   --mdc-theme-text-disabled-on-light: rgba(0, 0, 0, 0.38);
   --mdc-theme-text-icon-on-light: rgba(0, 0, 0, 0.38);
-  --mdc-theme-text-primary-on-dark: #fff;
-  --mdc-theme-text-secondary-on-dark: hsla(0, 0%, 100%, 0.7);
-  --mdc-theme-text-hint-on-dark: hsla(0, 0%, 100%, 0.5);
-  --mdc-theme-text-disabled-on-dark: hsla(0, 0%, 100%, 0.5);
-  --mdc-theme-text-icon-on-dark: hsla(0, 0%, 100%, 0.5);
+  --mdc-theme-text-primary-on-dark: white;
+  --mdc-theme-text-secondary-on-dark: rgba(255, 255, 255, 0.7);
+  --mdc-theme-text-hint-on-dark: rgba(255, 255, 255, 0.5);
+  --mdc-theme-text-disabled-on-dark: rgba(255, 255, 255, 0.5);
+  --mdc-theme-text-icon-on-dark: rgba(255, 255, 255, 0.5);
 }
 
 /* Layout grid spacing. */

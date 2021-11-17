@@ -36,7 +36,7 @@
           </Icon>
         </Title>
         <Content>
-          SMUI provides TypeScript Svelte components and actions for a wide
+          SMUI provides strictly typed Svelte components and actions for a wide
           variety of interface elements. SMUI also provides helper utilities for
           building custom and advanced UI components.
         </Content>
@@ -172,8 +172,8 @@
             <PrimaryText>Server Side Rendering</PrimaryText>
             <SecondaryText style="white-space: normal;">
               SMUI can be fully rendered on the server, meaning faster time to
-              first meaningful paint. SMUI fully supports Sapper. In fact, the
-              site you're looking at is a Sapper app.
+              first meaningful paint. SMUI fully supports SvelteKit. In fact,
+              the site you're looking at is a SvelteKit app.
             </SecondaryText>
           </Text>
         </Item>
@@ -229,7 +229,7 @@
             <SecondaryText style="white-space: normal;">
               With over <a
                 href="https://github.com/hperrin/svelte-material-ui/network/dependents?package_id=UGFja2FnZS01NTM5MDg5MDQ"
-                target="_blank">500 projects</a
+                target="_blank">800 projects</a
               > using SMUI components, it is the most popular Svelte UI library.
               For good reason, too. It is the most versatile and adaptable Svelte
               UI library, guaranteed.
