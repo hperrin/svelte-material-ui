@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0-beta.0](https://github.com/hperrin/svelte-material-ui/compare/v5.0.1...v6.0.0-beta.0) (2021-11-17)
+
+
+### Bug Fixes
+
+* get sass compiling in dev env for site with smui-theme ([08fd30f](https://github.com/hperrin/svelte-material-ui/commit/08fd30f2d39e135c30f06eac35e997208e7fa033))
+* update other packages, move svelte to peerDependencies ([2c1b137](https://github.com/hperrin/svelte-material-ui/commit/2c1b1370e10503110421bd66bcb31a81e57cf182))
+
+
+
+
+
 # [5.0.0](https://github.com/hperrin/svelte-material-ui/compare/v5.0.0-beta.8...v5.0.0) (2021-11-10)
 
 **Note:** Version bump only for package smui-theme

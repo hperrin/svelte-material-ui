@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0-beta.0](https://github.com/hperrin/svelte-material-ui/compare/v5.0.1...v6.0.0-beta.0) (2021-11-17)
+
+
+### Bug Fixes
+
+* get sass compiling for all packages ([6405961](https://github.com/hperrin/svelte-material-ui/commit/6405961324c340098f00b942ecbffe9071f0c01d))
+* migrate sass to compile with latest mdc-web ([e9c4a7f](https://github.com/hperrin/svelte-material-ui/commit/e9c4a7ff59d1c809b2153bf0a0b210f339cb121a))
+* rm deprecation warn by updating to material 12 + breaking changes ([e3e95e1](https://github.com/hperrin/svelte-material-ui/commit/e3e95e1c3e499e5332cac6d15790505db58d268d))
+* update other packages, move svelte to peerDependencies ([2c1b137](https://github.com/hperrin/svelte-material-ui/commit/2c1b1370e10503110421bd66bcb31a81e57cf182))
+* use mdc-web's sass imports and include sass from dev packages ([5ccdf53](https://github.com/hperrin/svelte-material-ui/commit/5ccdf532921d884aab71661c520c33b1b06ac7bd))
+
+
+### Features
+
+* add default on displayFlex prop to icon button for centering content ([fc81366](https://github.com/hperrin/svelte-material-ui/commit/fc81366da32e63b5dffe0c3f0fd20e60595dac71))
+* add ripple and touch elements to icon button ([f14c050](https://github.com/hperrin/svelte-material-ui/commit/f14c050c8e44df5b3196af64f5c292172ed46730))
+* mini and button sizes for icon button ([1e2c8d5](https://github.com/hperrin/svelte-material-ui/commit/1e2c8d55705ed26ec1e31c76e3f5245b6daad34a))
+* new package directory structure, include stripped svelte files so no preprocess needed ([382e78d](https://github.com/hperrin/svelte-material-ui/commit/382e78dc4d9b6ddfd7832bdfd90bad0cea402b1d))
+* remove styled endpoints and update readme and installation docs ([c8755d4](https://github.com/hperrin/svelte-material-ui/commit/c8755d41a24658b927089f8193d18b30df28e2a7))
+* rename MDC events to SMUI events ([55effc6](https://github.com/hperrin/svelte-material-ui/commit/55effc6e92e04cb6d27964e1bb30d4c507922e23))
+* upgrade mdc-web packages to v13 ([9f0457f](https://github.com/hperrin/svelte-material-ui/commit/9f0457f3bcd8c451c66392fc2a19bc60b5f1e958))
+
+
+### BREAKING CHANGES
+
+* No more styled endpoints, so the advanced styling
+method now requires that you import the Sass yourself.
+
+
+
+
+
 ## [5.0.1](https://github.com/hperrin/svelte-material-ui/compare/v5.0.0...v5.0.1) (2021-11-16)
 
 **Note:** Version bump only for package @smui/icon-button
