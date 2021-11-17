@@ -18,7 +18,7 @@
     "build": "npm run build:js && npm run build:svelte && npm run build:sass",
     "build:js": "tsc -p . --outDir dist/ --rootDir src/",
     "build:svelte": "svelte-strip strip src/ dist",
-    "build:sass": "sass --no-source-map -I node_modules -I ../smui-theme/node_modules  -I ../../node_modules _style.scss bare.css",
+    "build:sass": "sass --no-source-map -I node_modules -I ../smui-theme/node_modules -I ../../node_modules _style.scss bare.css",
     "clean": "git status --ignored -u --porcelain . | grep -v node_modules/ | grep -e '^!! ' | sed 's/^!! packages\\/[a-z-]*\\///g' | tr '\\n' ' ' | xargs rm",
     "prepare": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -41,13 +41,13 @@
     "@smui/common": "^6.0.0-beta.0",
     "@smui/list": "^6.0.0-beta.0",
     "@smui/menu-surface": "^6.0.0-beta.0",
-    "svelte2tsx": "^0.4.8"
+    "svelte2tsx": "^0.4.10"
   },
   "devDependencies": {
     "@tsconfig/svelte": "^2.0.1",
     "sass": "^1.43.4",
     "svelte-strip": "^1.0.0",
     "tslib": "^2.3.1",
-    "typescript": "^4.4.4"
+    "typescript": "~4.4.4"
   }
 }

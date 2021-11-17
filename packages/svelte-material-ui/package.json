@@ -1,0 +1,78 @@
+{
+  "name": "svelte-material-ui",
+  "version": "6.0.0-beta.0",
+  "description": "Svelte Material UI Components",
+  "keywords": [
+    "svelte",
+    "svelte3",
+    "material-ui",
+    "material-design",
+    "material",
+    "svelte-components",
+    "sveltejs"
+  ],
+  "scripts": {
+    "build": "smui-theme compile bare.css -i theme/ -i node_modules/",
+    "clean": "git status --ignored -u --porcelain . | grep -v node_modules/ | grep -e '^!! ' | sed 's/^!! packages\\/[a-z-]*\\///g' | tr '\\n' ' ' | xargs rm",
+    "prepare": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "files": [
+    "bare.css"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hperrin/svelte-material-ui.git"
+  },
+  "author": "Hunter Perrin <hperrin@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/hperrin/svelte-material-ui/issues"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@smui/banner": "6.0.0-beta.0",
+    "@smui/button": "6.0.0-beta.0",
+    "@smui/card": "6.0.0-beta.0",
+    "@smui/checkbox": "6.0.0-beta.0",
+    "@smui/chips": "6.0.0-beta.0",
+    "@smui/circular-progress": "6.0.0-beta.0",
+    "@smui/common": "6.0.0-beta.0",
+    "@smui/data-table": "6.0.0-beta.0",
+    "@smui/dialog": "6.0.0-beta.0",
+    "@smui/drawer": "6.0.0-beta.0",
+    "@smui/fab": "6.0.0-beta.0",
+    "@smui/floating-label": "6.0.0-beta.0",
+    "@smui/form-field": "6.0.0-beta.0",
+    "@smui/icon-button": "6.0.0-beta.0",
+    "@smui/image-list": "6.0.0-beta.0",
+    "@smui/layout-grid": "6.0.0-beta.0",
+    "@smui/line-ripple": "6.0.0-beta.0",
+    "@smui/linear-progress": "6.0.0-beta.0",
+    "@smui/list": "6.0.0-beta.0",
+    "@smui/menu": "6.0.0-beta.0",
+    "@smui/menu-surface": "6.0.0-beta.0",
+    "@smui/notched-outline": "6.0.0-beta.0",
+    "@smui/paper": "6.0.0-beta.0",
+    "@smui/radio": "6.0.0-beta.0",
+    "@smui/ripple": "6.0.0-beta.0",
+    "@smui/segmented-button": "6.0.0-beta.0",
+    "@smui/select": "6.0.0-beta.0",
+    "@smui/slider": "6.0.0-beta.0",
+    "@smui/snackbar": "6.0.0-beta.0",
+    "@smui/switch": "6.0.0-beta.0",
+    "@smui/tab": "6.0.0-beta.0",
+    "@smui/tab-bar": "6.0.0-beta.0",
+    "@smui/tab-indicator": "6.0.0-beta.0",
+    "@smui/tab-scroller": "6.0.0-beta.0",
+    "@smui/textfield": "6.0.0-beta.0",
+    "@smui/tooltip": "6.0.0-beta.0",
+    "@smui/top-app-bar": "6.0.0-beta.0",
+    "@smui/touch-target": "6.0.0-beta.0"
+  },
+  "devDependencies": {
+    "smui-theme": "6.0.0-beta.0"
+  }
+}
