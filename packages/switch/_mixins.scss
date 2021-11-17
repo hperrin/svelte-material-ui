@@ -4,6 +4,8 @@
 @use '@material/theme/index' as theme;
 @use '@material/switch/index' as switch;
 
+$margin: 14px !default;
+
 $_inverse-secondary: color.scale(
   theme-color.prop-value(secondary),
   $lightness: 75%
@@ -14,6 +16,10 @@ $_secondary-state-content: color.scale(
 );
 
 @mixin core-styles($query: feature-targeting.all()) {
+  .mdc-switch {
+    margin: $margin;
+  }
+
   .mdc-switch.smui-switch--color-secondary {
     // See: https://github.com/material-components/material-components-web/blob/v13.0.0/packages/mdc-switch/_switch-theme.scss#L76
     @include switch.theme(

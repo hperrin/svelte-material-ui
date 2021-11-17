@@ -1,5 +1,5 @@
 {#each options as option}
-  <div style="margin: 18px 0;">
+  <div>
     <FormField>
       <Switch
         bind:group={selected}

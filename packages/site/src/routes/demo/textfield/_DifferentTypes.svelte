@@ -20,7 +20,7 @@
     />
   </div>
 
-  <div>
+  <div class="hide-file-ui">
     <!--
       Note: the change and input events fire
       before the `files` prop is updated.
@@ -42,3 +42,14 @@
     alert('Selected ' + valueTypeFiles.length + ' file(s).');
   }
 </script>
+
+<style>
+  .hide-file-ui :global(input[type='file']::file-selector-button) {
+    display: none;
+  }
+
+  .hide-file-ui
+    :global(:not(.mdc-text-field--label-floating) input[type='file']) {
+    color: transparent;
+  }
+</style>

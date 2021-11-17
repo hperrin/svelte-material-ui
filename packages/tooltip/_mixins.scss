@@ -7,9 +7,6 @@ $rich-content-link-color: primary !default;
 
 @mixin core-styles($query: feature-targeting.all()) {
   .mdc-tooltip--rich {
-    // I don't know why MDC doesn't have this style.
-    display: none;
-
     @include tooltip-theme.rich-text-ink-color(
       on-surface,
       on-surface,

@@ -73,14 +73,6 @@ $paper-padding: 24px 16px !default;
   $query: feature-targeting.all()
 ) {
   @include shape.radius($radius, $rtl-reflexive, $query: $query);
-
-  // &.smui-paper--dense {
-  //   @include shape.radius(
-  //     $radius,
-  //     $rtl-reflexive,
-  //     $query: $query
-  //   );
-  // }
 }
 
 @mixin ink-color($color, $query: feature-targeting.all()) {

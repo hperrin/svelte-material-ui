@@ -166,7 +166,7 @@
   }
 }
 
-// See: https://github.com/material-components/material-components-web/blob/v10.0.0/packages/mdc-textfield/_mixins.scss#L1369
+// See: https://github.com/material-components/material-components-web/blob/v13.0.0/packages/mdc-textfield/_mixins.scss#L1374
 @mixin _baseline-center-aligned($query: feature-targeting.all()) {
   $feat-structure: feature-targeting.create-target($query, structure);
 
@@ -177,7 +177,7 @@
   }
 }
 
-// See: https://github.com/material-components/material-components-web/blob/v10.0.0/packages/mdc-textfield/_mixins.scss#L2265
+// See: https://github.com/material-components/material-components-web/blob/v13.0.0/packages/mdc-textfield/_mixins.scss#L2276
 @mixin _centered-affix-safari-support($query: feature-targeting.all()) {
   $feat-structure: feature-targeting.create-target($query, structure);
 
@@ -189,7 +189,7 @@
   }
 }
 
-// See: https://github.com/material-components/material-components-web/blob/v10.0.0/packages/mdc-textfield/_mixins.scss#L1865
+// See: https://github.com/material-components/material-components-web/blob/v13.0.0/packages/mdc-textfield/_mixins.scss#L1875
 @mixin _truncate-floating-label-max-width(
   $truncation,
   $query: feature-targeting.all()
@@ -200,7 +200,7 @@
   );
 }
 
-// See: https://github.com/material-components/material-components-web/blob/v10.0.0/packages/mdc-textfield/_mixins.scss#L1880
+// See: https://github.com/material-components/material-components-web/blob/v13.0.0/packages/mdc-textfield/_mixins.scss#L1890
 @mixin _truncate-floating-label-floated-max-width(
   $truncation,
   $query: feature-targeting.all()
