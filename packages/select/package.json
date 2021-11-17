@@ -1,6 +1,6 @@
 {
   "name": "@smui/select",
-  "version": "6.0.0-beta.1",
+  "version": "6.0.0-beta.2",
   "description": "Svelte Material UI - Select",
   "type": "module",
   "exports": {
@@ -58,14 +58,14 @@
     "@material/rtl": "^13.0.0",
     "@material/select": "^13.0.0",
     "@material/theme": "^13.0.0",
-    "@smui/common": "^6.0.0-beta.1",
-    "@smui/floating-label": "^6.0.0-beta.1",
-    "@smui/line-ripple": "^6.0.0-beta.1",
-    "@smui/list": "^6.0.0-beta.1",
-    "@smui/menu": "^6.0.0-beta.1",
-    "@smui/menu-surface": "^6.0.0-beta.1",
-    "@smui/notched-outline": "^6.0.0-beta.1",
-    "@smui/ripple": "^6.0.0-beta.1",
+    "@smui/common": "^6.0.0-beta.2",
+    "@smui/floating-label": "^6.0.0-beta.2",
+    "@smui/line-ripple": "^6.0.0-beta.2",
+    "@smui/list": "^6.0.0-beta.2",
+    "@smui/menu": "^6.0.0-beta.2",
+    "@smui/menu-surface": "^6.0.0-beta.2",
+    "@smui/notched-outline": "^6.0.0-beta.2",
+    "@smui/ripple": "^6.0.0-beta.2",
     "svelte2tsx": "^0.4.10"
   },
   "devDependencies": {

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0-beta.2](https://github.com/hperrin/svelte-material-ui/compare/v6.0.0-beta.1...v6.0.0-beta.2) (2021-11-17)
+
+
+### Bug Fixes
+
+* common doesn't have a default export ([a29127f](https://github.com/hperrin/svelte-material-ui/commit/a29127f6a93b64db03c3677275bacde6960595c3))
+
+
+
+
+
 # [6.0.0-beta.1](https://github.com/hperrin/svelte-material-ui/compare/v6.0.0-beta.0...v6.0.0-beta.1) (2021-11-17)
 
 
