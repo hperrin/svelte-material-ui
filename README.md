@@ -45,6 +45,13 @@ Upgrading from v3? SMUI's styling method has been simplified. Check out the [upg
 
 Upgrading from v2? There are **lots** of changes listed in the [upgrade instructions](MIGRATING.md#smui-2---smui-3).
 
+# Old Docs
+
+You can find older versions of the docs on their respective branch:
+
+- [v5 docs](https://github.com/hperrin/svelte-material-ui/tree/v5#readme)
+- [v4 docs](https://github.com/hperrin/svelte-material-ui/tree/v4#readme)
+
 # Need Help?
 
 If you need help using SMUI, join the new [Discord server](https://discord.gg/aFzmkrmg9P).
