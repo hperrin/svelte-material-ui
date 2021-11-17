@@ -54,8 +54,6 @@
   $: if (type === 'file') {
     delete valueProp.value;
     valueProp = valueProp;
-  } else {
-    valueProp.value = value == null ? '' : value;
   }
 
   onMount(() => {
