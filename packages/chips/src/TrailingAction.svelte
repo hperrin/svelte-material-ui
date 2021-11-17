@@ -86,11 +86,23 @@
       },
       getAttribute: getAttr,
       notifyInteraction: (trigger) =>
-        dispatch(getElement(), 'MDCChipTrailingAction:interaction', {
-          trigger,
-        }),
+        dispatch(
+          getElement(),
+          'SMUIChipTrailingAction:interaction',
+          {
+            trigger,
+          },
+          undefined,
+          true
+        ),
       notifyNavigation: (key) => {
-        dispatch(getElement(), 'MDCChipTrailingAction:navigation', { key });
+        dispatch(
+          getElement(),
+          'SMUIChipTrailingAction:navigation',
+          { key },
+          undefined,
+          true
+        );
       },
       setAttribute: addAttr,
     });

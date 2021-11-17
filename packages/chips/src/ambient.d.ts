@@ -12,8 +12,16 @@ declare namespace svelte.JSX {
     ['onMDCChip:interaction']?: (
       event: CustomEvent<any> & { target: T }
     ) => any;
+    ['onSMUIChip:interaction']?: (
+      event: CustomEvent<any> & { target: T }
+    ) => any;
     ['onMDCChip:selection']?: (event: CustomEvent<any> & { target: T }) => any;
+    ['onSMUIChip:selection']?: (event: CustomEvent<any> & { target: T }) => any;
     ['onMDCChip:removal']?: (event: CustomEvent<any> & { target: T }) => any;
+    ['onSMUIChip:removal']?: (event: CustomEvent<any> & { target: T }) => any;
     ['onMDCChip:navigation']?: (event: CustomEvent<any> & { target: T }) => any;
+    ['onSMUIChip:navigation']?: (
+      event: CustomEvent<any> & { target: T }
+    ) => any;
   }
 }

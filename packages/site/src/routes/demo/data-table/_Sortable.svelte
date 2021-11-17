@@ -2,7 +2,7 @@
   sortable
   bind:sort
   bind:sortDirection
-  on:MDCDataTable:sorted={handleSort}
+  on:SMUIDataTable:sorted={handleSort}
   table$aria-label="User list"
   style="width: 100%;"
 >

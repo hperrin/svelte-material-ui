@@ -1,7 +1,7 @@
 <Snackbar
   variant="stacked"
   bind:this={snackbar}
-  on:MDCSnackbar:closed={handleClosedStacked}
+  on:SMUISnackbar:closed={handleClosedStacked}
 >
   <Label>
     This is a stacked snackbar. Use it when you have really long text.

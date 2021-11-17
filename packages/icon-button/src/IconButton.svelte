@@ -151,7 +151,13 @@
         hasClass,
         notifyChange: (evtData) => {
           handleChange(evtData);
-          dispatch(getElement(), 'MDCIconButtonToggle:change', evtData);
+          dispatch(
+            getElement(),
+            'SMUIIconButtonToggle:change',
+            evtData,
+            undefined,
+            true
+          );
         },
         removeClass,
         getAttr,

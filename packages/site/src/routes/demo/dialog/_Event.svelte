@@ -2,7 +2,7 @@
   bind:open
   aria-labelledby="event-title"
   aria-describedby="event-content"
-  on:MDCDialog:closed={closeHandler}
+  on:SMUIDialog:closed={closeHandler}
 >
   <Title id="event-title">The Best Dog</Title>
   <Content id="event-content">

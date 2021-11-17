@@ -8,10 +8,10 @@
   bind:open
   on:SMUIMenuSurface:mount={handleMenuSurfaceAccessor}
   on:SMUIList:mount={handleListAccessor}
-  on:MDCMenuSurface:opened={() =>
+  on:SMUIMenuSurface:opened={() =>
     instance && instance.handleMenuSurfaceOpened()}
   on:keydown={handleKeydown}
-  on:MDCList:action={(event) =>
+  on:SMUIList:action={(event) =>
     instance &&
     instance.handleItemAction(
       listAccessor.getOrderedList()[event.detail.index].element
@@ -80,10 +80,16 @@
           .map((accessor) => accessor.element)
           .indexOf(element),
       notifySelected: (evtData) =>
-        dispatch(getElement(), 'MDCMenu:selected', {
-          index: evtData.index,
-          item: listAccessor.getOrderedList()[evtData.index].element,
-        }),
+        dispatch(
+          getElement(),
+          'SMUIMenu:selected',
+          {
+            index: evtData.index,
+            item: listAccessor.getOrderedList()[evtData.index].element,
+          },
+          undefined,
+          true
+        ),
       getMenuItemCount: () => listAccessor.items.length,
       focusItemAtIndex: (index) => listAccessor.focusItemAtIndex(index),
       focusListRoot: () =>

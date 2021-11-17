@@ -137,11 +137,11 @@
           },
           notifyClose: () => {
             open = false;
-            dispatch(element, 'MDCDrawer:closed');
+            dispatch(element, 'SMUIDrawer:closed', undefined, undefined, true);
           },
           notifyOpen: () => {
             open = true;
-            dispatch(element, 'MDCDrawer:opened');
+            dispatch(element, 'SMUIDrawer:opened', undefined, undefined, true);
           },
           trapFocus: () => focusTrap.trapFocus(),
           releaseFocus: () => focusTrap.releaseFocus(),

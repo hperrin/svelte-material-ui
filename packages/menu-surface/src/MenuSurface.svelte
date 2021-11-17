@@ -126,18 +126,30 @@
       notifyClose: () => {
         open = isStatic;
         if (!open) {
-          dispatch(element, 'MDCMenuSurface:closed');
+          dispatch(
+            element,
+            'SMUIMenuSurface:closed',
+            undefined,
+            undefined,
+            true
+          );
         }
       },
       notifyClosing: () => {
         open = isStatic;
         if (!open) {
-          dispatch(element, 'MDCMenuSurface:closing');
+          dispatch(
+            element,
+            'SMUIMenuSurface:closing',
+            undefined,
+            undefined,
+            true
+          );
         }
       },
       notifyOpen: () => {
         open = true;
-        dispatch(element, 'MDCMenuSurface:opened');
+        dispatch(element, 'SMUIMenuSurface:opened', undefined, undefined, true);
       },
       isElementInContainer: (el) => element.contains(el),
       isRtl: () =>

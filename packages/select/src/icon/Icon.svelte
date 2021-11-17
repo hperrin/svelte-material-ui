@@ -54,7 +54,8 @@
         getElement().addEventListener(evtType, handler),
       deregisterInteractionHandler: (evtType, handler) =>
         getElement().removeEventListener(evtType, handler),
-      notifyIconAction: () => dispatch(getElement(), 'MDCSelect:icon'),
+      notifyIconAction: () =>
+        dispatch(getElement(), 'SMUISelect:icon', undefined, undefined, true),
     });
 
     dispatch(getElement(), 'SMUISelectLeadingIcon:mount', instance);

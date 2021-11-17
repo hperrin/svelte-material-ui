@@ -27,7 +27,7 @@
     bind:open
     bind:centered
     bind:mobileStacked
-    on:MDCBanner:closed={handleBannerClosed}
+    on:SMUIBanner:closed={handleBannerClosed}
   >
     <Icon slot="icon" class="material-icons">favorite</Icon>
     <Label slot="label">This is a banner with an icon and some actions.</Label>

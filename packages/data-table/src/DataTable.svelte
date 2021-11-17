@@ -174,7 +174,7 @@
       notifySortAction: (data) => {
         sort = data.columnId;
         sortDirection = data.sortValue;
-        dispatch(getElement(), 'MDCDataTable:sorted', data);
+        dispatch(getElement(), 'SMUIDataTable:sorted', data, undefined, true);
       },
       getTableContainerHeight: () => container.getBoundingClientRect().height,
       getTableHeaderHeight: () => {
@@ -227,24 +227,48 @@
       notifyRowSelectionChanged: (data) => {
         const row = body?.orderedRows[data.rowIndex];
         if (row) {
-          dispatch(getElement(), 'MDCDataTable:rowSelectionChanged', {
-            row: row.element,
-            rowId: row.rowId,
-            rowIndex: data.rowIndex,
-            selected: data.selected,
-          });
+          dispatch(
+            getElement(),
+            'SMUIDataTable:rowSelectionChanged',
+            {
+              row: row.element,
+              rowId: row.rowId,
+              rowIndex: data.rowIndex,
+              selected: data.selected,
+            },
+            undefined,
+            true
+          );
         }
       },
       notifySelectedAll: () => {
         setHeaderRowCheckboxIndeterminate(false);
-        dispatch(getElement(), 'MDCDataTable:selectedAll');
+        dispatch(
+          getElement(),
+          'SMUIDataTable:selectedAll',
+          undefined,
+          undefined,
+          true
+        );
       },
       notifyUnselectedAll: () => {
         setHeaderRowCheckboxIndeterminate(false);
-        dispatch(getElement(), 'MDCDataTable:unselectedAll');
+        dispatch(
+          getElement(),
+          'SMUIDataTable:unselectedAll',
+          undefined,
+          undefined,
+          true
+        );
       },
       notifyRowClick: (detail) => {
-        dispatch(getElement(), 'MDCDataTable:rowClick', detail);
+        dispatch(
+          getElement(),
+          'SMUIDataTable:rowClick',
+          detail,
+          undefined,
+          true
+        );
       },
       registerHeaderRowCheckbox: () => {
         // Handled automatically.

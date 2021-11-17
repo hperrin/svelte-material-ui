@@ -3,7 +3,7 @@
   aria-labelledby="buttons-title"
   aria-describedby="buttons-content"
   autoStackButtons={false}
-  on:MDCDialog:closed={(e) => (buttoned = e.detail.action)}
+  on:SMUIDialog:closed={(e) => (buttoned = e.detail.action)}
 >
   <Title id="buttons-title">Use speed bost?</Title>
   <Content id="buttons-content">

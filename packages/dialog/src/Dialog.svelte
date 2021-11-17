@@ -20,9 +20,9 @@
   })}
   role="alertdialog"
   aria-modal="true"
-  on:MDCDialog:opening={handleDialogOpening}
-  on:MDCDialog:opened={handleDialogOpened}
-  on:MDCDialog:closed={handleDialogClosed}
+  on:SMUIDialog:opening={handleDialogOpening}
+  on:SMUIDialog:opened={handleDialogOpened}
+  on:SMUIDialog:closed={handleDialogClosed}
   on:click={(event) => instance && instance.handleClick(event)}
   on:keydown={(event) => instance && instance.handleKeydown(event)}
   {...exclude($$restProps, ['container$', 'surface$'])}
@@ -202,12 +202,26 @@
       isContentScrollable: () => util.isScrollable(getContentEl()),
       notifyClosed: (action) => {
         open = false;
-        dispatch(getElement(), 'MDCDialog:closed', action ? { action } : {});
+        dispatch(
+          getElement(),
+          'SMUIDialog:closed',
+          action ? { action } : {},
+          undefined,
+          true
+        );
       },
       notifyClosing: (action) =>
-        dispatch(getElement(), 'MDCDialog:closing', action ? { action } : {}),
-      notifyOpened: () => dispatch(getElement(), 'MDCDialog:opened', {}),
-      notifyOpening: () => dispatch(getElement(), 'MDCDialog:opening', {}),
+        dispatch(
+          getElement(),
+          'SMUIDialog:closing',
+          action ? { action } : {},
+          undefined,
+          true
+        ),
+      notifyOpened: () =>
+        dispatch(getElement(), 'SMUIDialog:opened', {}, undefined, true),
+      notifyOpening: () =>
+        dispatch(getElement(), 'SMUIDialog:opening', {}, undefined, true),
       releaseFocus: () => focusTrap.releaseFocus(),
       removeBodyClass: (className) => document.body.classList.remove(className),
       removeClass,

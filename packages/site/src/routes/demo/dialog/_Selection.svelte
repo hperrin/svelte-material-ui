@@ -3,7 +3,7 @@
   selection
   aria-labelledby="list-selection-title"
   aria-describedby="list-selection-content"
-  on:MDCDialog:closed={closeHandler}
+  on:SMUIDialog:closed={closeHandler}
 >
   <Title id="list-selection-title">Dialog Title</Title>
   <Content id="list-selection-content">

@@ -16,7 +16,7 @@ Here are some features you should know about:
 - You can add arbitrary attributes to all of the components and many of the elements within them.
 - You can add actions to the components with `use={[Action1, [Action2, action2Props], Action3]}`.
 - You can add props to lower components and elements with "$" props, like `input$maxlength="15"`.
-- **All** events are forwarded. This includes DOM events, SMUI events, MDC events, and custom events.
+- **All** events are forwarded. This includes DOM events, SMUI events, and custom events.
   - You can add event modifiers with the `on:click$preventDefault$capture={handler}` syntax.
     - If you use Svelte's native `on:click|preventDefault={handler}` syntax, it will not compile. You have to use "$" instead of "|". (The extra S inside the | stands for SMUI.)
   - Supported modifiers are:

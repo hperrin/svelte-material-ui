@@ -3,7 +3,7 @@
   fullscreen
   aria-labelledby="over-fullscreen-title"
   aria-describedby="over-fullscreen-content"
-  on:MDCDialog:closed={closeHandler}
+  on:SMUIDialog:closed={closeHandler}
 >
   <Header>
     <Title id="over-fullscreen-title">Terms and Conditions</Title>
@@ -32,7 +32,7 @@
     selection
     aria-labelledby="over-fullscreen-confirmation-title"
     aria-describedby="over-fullscreen-confirmation-content"
-    on:MDCDialog:closed={confirmationCloseHandler}
+    on:SMUIDialog:closed={confirmationCloseHandler}
   >
     <Header>
       <Title id="over-fullscreen-confirmation-title">Confirmation</Title>

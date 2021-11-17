@@ -62,7 +62,7 @@
           <IconButton
             toggle
             pressed={lightTheme}
-            on:MDCIconButtonToggle:change={switchTheme}
+            on:SMUIIconButtonToggle:change={switchTheme}
           >
             <Icon component={Svg} viewBox="0 0 24 24" on>
               <path fill="currentColor" d={mdiWeatherNight} />

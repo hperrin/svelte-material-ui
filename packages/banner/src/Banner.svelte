@@ -151,17 +151,29 @@
       },
       notifyClosed: (reason) => {
         open = false;
-        dispatch(getElement(), 'MDCBanner:closed', { reason });
+        dispatch(
+          getElement(),
+          'SMUIBanner:closed',
+          { reason },
+          undefined,
+          true
+        );
       },
       notifyClosing: (reason) => {
-        dispatch(getElement(), 'MDCBanner:closing', { reason });
+        dispatch(
+          getElement(),
+          'SMUIBanner:closing',
+          { reason },
+          undefined,
+          true
+        );
       },
       notifyOpened: () => {
         open = true;
-        dispatch(getElement(), 'MDCBanner:opened', {});
+        dispatch(getElement(), 'SMUIBanner:opened', {}, undefined, true);
       },
       notifyOpening: () => {
-        dispatch(getElement(), 'MDCBanner:opening', {});
+        dispatch(getElement(), 'SMUIBanner:opening', {}, undefined, true);
       },
       releaseFocus: () => focusTrap && focusTrap.releaseFocus(),
       removeClass,

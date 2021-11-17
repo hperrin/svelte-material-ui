@@ -184,11 +184,11 @@
     {anchorElement}
     {anchorCorner}
     bind:open={menuOpen}
-    on:MDCMenu:selected={(event) =>
+    on:SMUIMenu:selected={(event) =>
       instance && instance.handleMenuItemAction(event.detail.index)}
-    on:MDCMenuSurface:closing={() => instance && instance.handleMenuClosing()}
-    on:MDCMenuSurface:closed={() => instance && instance.handleMenuClosed()}
-    on:MDCMenuSurface:opened={() => instance && instance.handleMenuOpened()}
+    on:SMUIMenuSurface:closing={() => instance && instance.handleMenuClosing()}
+    on:SMUIMenuSurface:closed={() => instance && instance.handleMenuClosed()}
+    on:SMUIMenuSurface:opened={() => instance && instance.handleMenuOpened()}
     {...prefixFilter($$restProps, 'menu$')}
   >
     <List
@@ -436,10 +436,16 @@
           if (updateInvalid) {
             invalid = !instance.isValid();
           }
-          dispatch(getElement(), 'MDCSelect:change', {
-            value,
-            index: selectedIndex,
-          });
+          dispatch(
+            getElement(),
+            'SMUISelect:change',
+            {
+              value,
+              index: selectedIndex,
+            },
+            undefined,
+            true
+          );
         },
 
         // getOutlineAdapterMethods

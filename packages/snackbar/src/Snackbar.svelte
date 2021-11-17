@@ -9,7 +9,7 @@
     'mdc-snackbar--leading': leading,
     ...internalClasses,
   })}
-  on:MDCSnackbar:closed={handleClosed}
+  on:SMUISnackbar:closed={handleClosed}
   on:keydown={(event) => instance && instance.handleKeyDown(event)}
   {...exclude($$restProps, ['surface$'])}
 >
@@ -105,11 +105,37 @@
       addClass,
       announce: () => util.announce(getLabelElement()),
       notifyClosed: (reason) =>
-        dispatch(getElement(), 'MDCSnackbar:closed', reason ? { reason } : {}),
+        dispatch(
+          getElement(),
+          'SMUISnackbar:closed',
+          reason ? { reason } : {},
+          undefined,
+          true
+        ),
       notifyClosing: (reason) =>
-        dispatch(getElement(), 'MDCSnackbar:closing', reason ? { reason } : {}),
-      notifyOpened: () => dispatch(getElement(), 'MDCSnackbar:opened'),
-      notifyOpening: () => dispatch(getElement(), 'MDCSnackbar:opening'),
+        dispatch(
+          getElement(),
+          'SMUISnackbar:closing',
+          reason ? { reason } : {},
+          undefined,
+          true
+        ),
+      notifyOpened: () =>
+        dispatch(
+          getElement(),
+          'SMUISnackbar:opened',
+          undefined,
+          undefined,
+          true
+        ),
+      notifyOpening: () =>
+        dispatch(
+          getElement(),
+          'SMUISnackbar:opening',
+          undefined,
+          undefined,
+          true
+        ),
       removeClass,
     });
 

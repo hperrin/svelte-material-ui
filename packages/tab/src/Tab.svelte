@@ -138,7 +138,13 @@
         tabIndicator.activate(previousIndicatorClientRect),
       deactivateIndicator: () => tabIndicator.deactivate(),
       notifyInteracted: () =>
-        dispatch(getElement(), 'MDCTab:interacted', { tabId: tabId }),
+        dispatch(
+          getElement(),
+          'SMUITab:interacted',
+          { tabId: tabId },
+          undefined,
+          true
+        ),
       getOffsetLeft: () => getElement().offsetLeft,
       getOffsetWidth: () => getElement().offsetWidth,
       getContentOffsetLeft: () => content.offsetLeft,

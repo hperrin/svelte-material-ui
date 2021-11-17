@@ -1,7 +1,7 @@
 {#if config}
   <Snackbar
     bind:this={element}
-    on:MDCSnackbar:closed={handleClosed}
+    on:SMUISnackbar:closed={handleClosed}
     labelText={config.label}
     {...(config && config.props) || {}}
     {...prefixFilter($$restProps, 'snackbar$')}

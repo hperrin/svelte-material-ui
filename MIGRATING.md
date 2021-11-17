@@ -15,6 +15,8 @@ https://github.com/material-components/material-components-web/blob/master/CHANG
 
 ## Changes
 
+- MDC events are now dispatched with "SMUI" instead of "MDC" prefix. They are dispatched as both though, so your code shouldn't break. You should still update your code to use the new "SMUI" prefix anyway.
+
 ### Components
 
 - Switch

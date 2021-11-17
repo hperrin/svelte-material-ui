@@ -9,7 +9,7 @@
   role="tablist"
   on:SMUITab:mount={handleTabMount}
   on:SMUITab:unmount={handleTabUnmount}
-  on:MDCTab:interacted={(event) =>
+  on:SMUITab:interacted={(event) =>
     instance && instance.handleTabInteraction(event)}
   on:keydown={(event) => instance && instance.handleKeyDown(event)}
   {...exclude($$restProps, ['tabScroller$'])}
@@ -137,7 +137,13 @@
       getIndexOfTabById: (id) => tabs.indexOf(id),
       getTabListLength: () => tabs.length,
       notifyTabActivated: (index) =>
-        dispatch(getElement(), 'MDCTabBar:activated', { index }),
+        dispatch(
+          getElement(),
+          'SMUITabBar:activated',
+          { index },
+          undefined,
+          true
+        ),
     });
 
     instance.init();

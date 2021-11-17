@@ -27,7 +27,7 @@
     bind:open
     bind:centered
     bind:mobileStacked
-    on:MDCBanner:closed={handleBannerClosed}
+    on:SMUIBanner:closed={handleBannerClosed}
   >
     <Label slot="label">This is a banner with no icon and some actions.</Label>
     <svelte:fragment slot="actions">

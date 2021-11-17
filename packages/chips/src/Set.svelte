@@ -13,10 +13,10 @@
   role="grid"
   on:SMUIChipsChip:mount={handleChipMount}
   on:SMUIChipsChip:unmount={handleChipUnmount}
-  on:MDCChip:interaction={handleChipInteraction}
-  on:MDCChip:selection={handleChipSelection}
-  on:MDCChip:removal={handleChipRemoval}
-  on:MDCChip:navigation={handleChipNavigation}
+  on:SMUIChip:interaction={handleChipInteraction}
+  on:SMUIChip:selection={handleChipSelection}
+  on:SMUIChip:removal={handleChipRemoval}
+  on:SMUIChip:navigation={handleChipNavigation}
   {...$$restProps}
 >
   {#each chips as chip, i (key(chip))}

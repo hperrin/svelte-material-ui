@@ -60,7 +60,14 @@
         getElement().addEventListener(evtType, handler),
       deregisterInteractionHandler: (evtType, handler) =>
         getElement().removeEventListener(evtType, handler),
-      notifyIconAction: () => dispatch(getElement(), 'MDCTextField:icon'),
+      notifyIconAction: () =>
+        dispatch(
+          getElement(),
+          'SMUITextField:icon',
+          undefined,
+          undefined,
+          true
+        ),
     });
 
     dispatch(

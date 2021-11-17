@@ -32,9 +32,9 @@
   on:keydown={(event) => instance && instance.handleKeydown(event)}
   on:focusin={(event) => instance && instance.handleFocusIn(event)}
   on:focusout={(event) => instance && instance.handleFocusOut(event)}
-  on:MDCChipTrailingAction:interaction={() =>
+  on:SMUIChipTrailingAction:interaction={() =>
     instance && instance.handleTrailingActionInteraction()}
-  on:MDCChipTrailingAction:navigation={(event) =>
+  on:SMUIChipTrailingAction:navigation={(event) =>
     instance && instance.handleTrailingActionNavigation(event)}
   on:SMUIChipsChipPrimaryAction:mount={(event) =>
     (primaryActionAccessor = event.detail)}
@@ -191,23 +191,53 @@
         return false;
       },
       notifyInteraction: () =>
-        dispatch(getElement(), 'MDCChip:interaction', { chipId }),
+        dispatch(
+          getElement(),
+          'SMUIChip:interaction',
+          { chipId },
+          undefined,
+          true
+        ),
       notifyNavigation: (key, source) =>
-        dispatch(getElement(), 'MDCChip:navigation', { chipId, key, source }),
+        dispatch(
+          getElement(),
+          'SMUIChip:navigation',
+          { chipId, key, source },
+          undefined,
+          true
+        ),
       notifyRemoval: (removedAnnouncement) => {
-        dispatch(getElement(), 'MDCChip:removal', {
-          chipId,
-          removedAnnouncement,
-        });
+        dispatch(
+          getElement(),
+          'SMUIChip:removal',
+          {
+            chipId,
+            removedAnnouncement,
+          },
+          undefined,
+          true
+        );
       },
       notifySelection: (selected, shouldIgnore) =>
-        dispatch(getElement(), 'MDCChip:selection', {
-          chipId,
-          selected,
-          shouldIgnore,
-        }),
+        dispatch(
+          getElement(),
+          'SMUIChip:selection',
+          {
+            chipId,
+            selected,
+            shouldIgnore,
+          },
+          undefined,
+          true
+        ),
       notifyTrailingIconInteraction: () =>
-        dispatch(getElement(), 'MDCChip:trailingIconInteraction', { chipId }),
+        dispatch(
+          getElement(),
+          'SMUIChip:trailingIconInteraction',
+          { chipId },
+          undefined,
+          true
+        ),
       notifyEditStart: () => {
         /* Not Implemented. */
       },

@@ -6,5 +6,6 @@ declare namespace svelte.JSX {
     ['onSMUITab:mount']?: (event: CustomEvent<any> & { target: T }) => any;
     ['onSMUITab:unmount']?: (event: CustomEvent<any> & { target: T }) => any;
     ['onMDCTab:interacted']?: (event: CustomEvent<any> & { target: T }) => any;
+    ['onSMUITab:interacted']?: (event: CustomEvent<any> & { target: T }) => any;
   }
 }

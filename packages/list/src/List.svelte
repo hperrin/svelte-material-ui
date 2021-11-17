@@ -176,7 +176,7 @@
       notifyAction: (index) => {
         selectedIndex = index;
         if (element != null) {
-          dispatch(getElement(), 'MDCList:action', { index });
+          dispatch(getElement(), 'SMUIList:action', { index }, undefined, true);
         }
       },
       removeClassForElementIndex,

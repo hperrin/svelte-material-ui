@@ -1,4 +1,4 @@
-<Snackbar leading bind:this={snackbar} on:MDCSnackbar:closed={handleClosed}>
+<Snackbar leading bind:this={snackbar} on:SMUISnackbar:closed={handleClosed}>
   <Label>This is a leading snackbar.</Label>
   <Actions>
     <Button>Action</Button>

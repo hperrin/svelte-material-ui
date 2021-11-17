@@ -193,7 +193,7 @@ Build a class string from a map of class names to conditions. This is useful whe
 
 ## dispatch
 
-Dispatch a custom event. This differs from Svelte's component event system, because these events require a DOM element as a target, can bubble (and do by default), and are cancelable with `event.preventDefault()`. All SMUI/MDC events are dispatched with this instead of Svelte's `createEventDispatcher`.
+Dispatch a custom event. This differs from Svelte's component event system, because these events require a DOM element as a target, can bubble (and do by default), and are cancelable with `event.preventDefault()`. All SMUI events are dispatched with this instead of Svelte's `createEventDispatcher`.
 
 ```svelte
 <div

@@ -3,7 +3,7 @@
   fullscreen
   aria-labelledby="fullscreen-title"
   aria-describedby="fullscreen-content"
-  on:MDCDialog:closed={closeHandler}
+  on:SMUIDialog:closed={closeHandler}
 >
   <Header>
     <Title id="fullscreen-title">Terms and Conditions</Title>
