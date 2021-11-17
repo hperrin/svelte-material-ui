@@ -30,6 +30,6 @@
     the scope to anything under this component's
     elements. */
   * :global(.myClass) {
-    font-family: 'Roboto Mono', monospace !important;
+    font-style: italic;
   }
 </style>

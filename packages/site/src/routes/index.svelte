@@ -3,12 +3,14 @@
 </svelte:head>
 
 <section>
-  <div style="margin: 3em 0;">
+  <div style="margin: 3em 0 4em;">
     <h2 style="margin-bottom: 0;">Svelte Material UI</h2>
-    <p class="mdc-typography--subtitle1">Material UI Components for Svelte</p>
+    <p class="mdc-typography--subtitle1">
+      Material UI components for Svelte apps
+    </p>
   </div>
 
-  <div style="margin: 3em 0;">
+  <div style="margin: 4em 0;">
     <div class="boxes">
       <Paper color="primary" class="box">
         <Title
@@ -82,19 +84,23 @@
           </Icon>
         </Title>
         <Content>
-          Like MDC, SMUI is styled through Sass. SMUI supports all of the mixins
-          provided by Material Design Components for Web, and provides some
-          additional helpful mixins. You can customize the look of your UI with
-          just a few variables.
+          Like MDC-Web, SMUI is styled through Sass. SMUI supports all of the
+          mixins provided by Material Design Components for Web, and provides
+          some additional helpful mixins. You can customize the look of your UI
+          with <a
+            style="color: #fff;"
+            href="https://github.com/hperrin/svelte-material-ui/blob/master/packages/site/src/theme/_smui-theme.scss"
+            target="_blank">just a few variables</a
+          >.
         </Content>
       </Paper>
     </div>
 
-    <div style="margin: 6em 0 3em;">
+    <div style="margin: 6em 0 4em;">
       <h4>SMUI Features and Values</h4>
     </div>
 
-    <div style="margin: 3em 0;">
+    <div style="margin: 4em 0;">
       <List
         twoLine
         nonInteractive
@@ -281,7 +287,7 @@
     </div>
   </div>
 
-  <div style="margin: 3em 0;">
+  <div style="margin: 4em 0;">
     <p>
       [
       <a href="https://discord.gg/aFzmkrmg9P">Discord</a>
@@ -341,7 +347,7 @@
     position: absolute;
     right: calc(50% - 550px);
     top: -125px;
-    opacity: 0.4;
+    opacity: 0.2;
     height: 496px;
     width: 496px;
   }

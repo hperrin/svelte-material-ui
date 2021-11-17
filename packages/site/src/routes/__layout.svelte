@@ -78,6 +78,7 @@
   </TopAppBar>
   <div class="drawer-container">
     <Drawer
+      bind:this={drawer}
       variant={miniWindow ? 'modal' : undefined}
       bind:open={drawerOpen}
       class="demo-drawer mdc-theme--secondary-bg {miniWindow
@@ -123,8 +124,7 @@
 {/if}
 
 <script lang="ts">
-  import { onMount } from 'svelte';
-  import { page } from '$app/stores';
+  import { onDestroy, onMount } from 'svelte';
   import {
     mdiFileDocument,
     mdiDiscord,
@@ -133,9 +133,16 @@
     mdiWeatherSunny,
     mdiWeatherNight,
   } from '@mdi/js';
+  import TinyGesture from 'tinygesture';
+  import { page } from '$app/stores';
 
   import TopAppBar, { Row, Section, Title } from '@smui/top-app-bar';
-  import Drawer, { Content, Scrim, AppContent } from '@smui/drawer';
+  import Drawer, {
+    DrawerComponentDev,
+    Content,
+    Scrim,
+    AppContent,
+  } from '@smui/drawer';
   import IconButton from '@smui/icon-button';
   import List, { Item, Text, Separator, ItemComponentDev } from '@smui/list';
   import Tooltip, { Wrapper } from '@smui/tooltip';
@@ -144,9 +151,12 @@
 
   const iframe = $page.path.includes('/iframe');
 
+  let drawer: DrawerComponentDev;
   let mainContent: HTMLElement;
   let miniWindow = false;
   let drawerOpen = false;
+  let drawerGesture: TinyGesture;
+  let mainContentGesture: TinyGesture;
 
   let lightTheme =
     typeof window === 'undefined' ||
@@ -510,6 +520,35 @@
   }
 
   onMount(setMiniWindow);
+
+  onMount(() => {
+    if (mainContent) {
+      mainContentGesture = new TinyGesture(mainContent, {
+        mouseSupport: false,
+      });
+      mainContentGesture.on('swiperight', () => {
+        drawerOpen = true;
+      });
+    }
+
+    if (drawer) {
+      drawerGesture = new TinyGesture(drawer.getElement(), {
+        mouseSupport: false,
+      });
+      drawerGesture.on('swipeleft', () => {
+        drawerOpen = false;
+      });
+    }
+  });
+
+  onDestroy(() => {
+    if (mainContentGesture) {
+      mainContentGesture.destroy();
+    }
+    if (drawerGesture) {
+      drawerGesture.destroy();
+    }
+  });
 
   function routesEqual(a: string, b: string) {
     return (

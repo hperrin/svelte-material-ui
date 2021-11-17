@@ -23,6 +23,6 @@
 
 <style>
   * :global(.myClass) {
-    font-family: 'Roboto Mono', monospace !important;
+    font-style: italic;
   }
 </style>
