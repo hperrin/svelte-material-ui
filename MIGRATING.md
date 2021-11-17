@@ -88,7 +88,7 @@ npm i -D sass
 SMUI 3 migrated to upstream MDC 10.0 from 4.0:
 https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#1000-2021-02-05
 
-There are [newly updated instructiong](/SAPPER.md) for using SMUI in Sapper.
+There are newly updated instructiong for using SMUI in Sapper.
 
 ## Breaking Changes
 
