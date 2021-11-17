@@ -5,7 +5,11 @@
 <section>
   <h2>Cards</h2>
 
+  <h5>Installation</h5>
+
   <pre class="demo-spaced">npm i -D @smui/card</pre>
+
+  <h5>Demos</h5>
 
   <Demo component={Simple} file="card/_Simple.svelte" />
 

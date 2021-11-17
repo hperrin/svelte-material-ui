@@ -7,7 +7,11 @@
 <section>
   <h2>Banner</h2>
 
+  <h5>Installation</h5>
+
   <pre class="demo-spaced">npm i -D @smui/banner</pre>
+
+  <h5>Demos</h5>
 
   <Demo component="Shown above." file="banner/_Fixed.svelte" />
 

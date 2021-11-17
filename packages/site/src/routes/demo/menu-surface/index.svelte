@@ -5,7 +5,11 @@
 <section>
   <h2>Menu Surface</h2>
 
+  <h5>Installation</h5>
+
   <pre class="demo-spaced">npm i -D @smui/menu-surface</pre>
+
+  <h5>Demos</h5>
 
   <Demo component={Simple} file="menu-surface/_Simple.svelte" />
 

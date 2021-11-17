@@ -5,7 +5,11 @@
 <section>
   <h2>Radio</h2>
 
+  <h5>Installation</h5>
+
   <pre class="demo-spaced">npm i -D @smui/radio</pre>
+
+  <h5>Demos</h5>
 
   <Demo component={Simple} file="radio/_Simple.svelte" />
 

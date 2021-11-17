@@ -5,7 +5,11 @@
 <section>
   <h2>Drawers</h2>
 
+  <h5>Installation</h5>
+
   <pre class="demo-spaced">npm i -D @smui/drawer</pre>
+
+  <h5>Demos</h5>
 
   <Demo component={Permanent} file="drawer/_Permanent.svelte">
     A permanent drawer

@@ -5,7 +5,11 @@
 <section>
   <h2>Menu</h2>
 
+  <h5>Installation</h5>
+
   <pre class="demo-spaced">npm i -D @smui/menu</pre>
+
+  <h5>Demos</h5>
 
   <Demo component={Static} file="menu/_Static.svelte" />
 

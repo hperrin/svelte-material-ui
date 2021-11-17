@@ -5,7 +5,11 @@
 <section>
   <h2>Floating Action Button</h2>
 
+  <h5>Installation</h5>
+
   <pre class="demo-spaced">npm i -D @smui/fab</pre>
+
+  <h5>Demos</h5>
 
   <Demo component={Simple} file="fab/_Simple.svelte" />
 

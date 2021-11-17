@@ -6,7 +6,11 @@
   <h2>Common</h2>
   <p>A common Label and Icon, helper utilities, and elemental components.</p>
 
+  <h5>Installation</h5>
+
   <pre class="demo-spaced">npm i -D @smui/common</pre>
+
+  <h5>Demos</h5>
 
   <Demo component={CommonLabelIcon} file="common/_CommonLabelIcon.svelte">
     Common Label and Icon

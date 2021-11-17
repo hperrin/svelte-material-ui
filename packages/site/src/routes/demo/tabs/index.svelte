@@ -5,7 +5,11 @@
 <section>
   <h2>Tabs</h2>
 
+  <h5>Installation</h5>
+
   <pre class="demo-spaced">npm i -D @smui/tab @smui/tab-bar</pre>
+
+  <h5>Demos</h5>
 
   <Demo component={Simple} file="tabs/_Simple.svelte" />
 

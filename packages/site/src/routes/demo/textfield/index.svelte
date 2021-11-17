@@ -5,7 +5,11 @@
 <section>
   <h2>Text Field</h2>
 
+  <h5>Installation</h5>
+
   <pre class="demo-spaced">npm i -D @smui/textfield</pre>
+
+  <h5>Demos</h5>
 
   <Demo component={Showcase} file="textfield/_Showcase.svelte" />
 

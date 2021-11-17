@@ -5,7 +5,11 @@
 <section>
   <h2>Linear Progress</h2>
 
+  <h5>Installation</h5>
+
   <pre class="demo-spaced">npm i -D @smui/linear-progress</pre>
+
+  <h5>Demos</h5>
 
   <Demo component={Simple} file="linear-progress/_Simple.svelte" />
 

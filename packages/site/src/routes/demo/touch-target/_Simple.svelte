@@ -30,10 +30,13 @@
   <Wrapper>
     <Radio bind:group={selected} value={'off'} touch />
   </Wrapper>
+  <Wrapper>
+    <Switch bind:checked={switchChecked} />
+  </Wrapper>
 </div>
 
 <pre
-  class="status">Clicked: {clicked}, Checked: {checked}, Selected: {selected}</pre>
+  class="status">Clicked: {clicked}, Checked: {checked}, Selected: {selected}, Switched: {switchChecked}</pre>
 
 <script lang="ts">
   import Wrapper from '@smui/touch-target';
@@ -43,9 +46,11 @@
   import Chip, { Set, Text } from '@smui/chips';
   import Checkbox from '@smui/checkbox';
   import Radio from '@smui/radio';
+  import Switch from '@smui/switch';
   import { Label, Icon } from '@smui/common';
 
   let clicked = 0;
   let checked = false;
   let selected = 'on';
+  let switchChecked = false;
 </script>

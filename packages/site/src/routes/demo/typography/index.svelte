@@ -5,7 +5,11 @@
 <section>
   <h2>Typography</h2>
 
-  <pre class="demo-spaced">npm i -D @material/typography</pre>
+  <h5>Installation</h5>
+
+  <pre class="demo-spaced">npm i -D @material/typography@^13.0.0</pre>
+
+  <h5>Demos</h5>
 
   <Demo
     component={Typography}

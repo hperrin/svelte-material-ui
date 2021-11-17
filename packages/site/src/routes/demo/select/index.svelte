@@ -5,7 +5,11 @@
 <section>
   <h2>Select</h2>
 
+  <h5>Installation</h5>
+
   <pre class="demo-spaced">npm i -D @smui/select</pre>
+
+  <h5>Demos</h5>
 
   <Demo component={Showcase} file="select/_Showcase.svelte" />
 

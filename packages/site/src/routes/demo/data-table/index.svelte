@@ -5,7 +5,11 @@
 <section>
   <h2>Data Table</h2>
 
+  <h5>Installation</h5>
+
   <pre class="demo-spaced">npm i -D @smui/data-table</pre>
+
+  <h5>Demos</h5>
 
   <Demo component={Simple} file="data-table/_Simple.svelte" />
 

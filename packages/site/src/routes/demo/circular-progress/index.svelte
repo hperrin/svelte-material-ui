@@ -5,7 +5,11 @@
 <section>
   <h2>Circular Progress</h2>
 
+  <h5>Installation</h5>
+
   <pre class="demo-spaced">npm i -D @smui/circular-progress</pre>
+
+  <h5>Demos</h5>
 
   <Demo component={Simple} file="circular-progress/_Simple.svelte" />
 
