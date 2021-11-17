@@ -1,6 +1,6 @@
 {
   "name": "@smui/top-app-bar",
-  "version": "6.0.0-beta.0",
+  "version": "6.0.0-beta.1",
   "description": "Svelte Material UI - Top App Bar",
   "type": "module",
   "module": "dist/index.js",
@@ -38,7 +38,7 @@
   "dependencies": {
     "@material/feature-targeting": "^13.0.0",
     "@material/top-app-bar": "^13.0.0",
-    "@smui/common": "^6.0.0-beta.0",
+    "@smui/common": "^6.0.0-beta.1",
     "svelte2tsx": "^0.4.10"
   },
   "devDependencies": {
