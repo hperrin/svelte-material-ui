@@ -56,7 +56,6 @@
   },
   "license": "Apache-2.0",
   "devDependencies": {
-    "@tsconfig/svelte": "^2.0.1",
     "sass": "^1.43.4",
     "svelte-strip": "^1.0.0",
     "tslib": "^2.3.1",
@@ -64,6 +63,7 @@
   },
   "dependencies": {
     "@material/dom": "^13.0.0",
+    "@tsconfig/svelte": "^2.0.1",
     "svelte2tsx": "^0.4.10"
   }
 }
