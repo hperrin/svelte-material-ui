@@ -150,6 +150,8 @@
     // handler call, since the handler will reset currently
     // running animations.
 
+    let notifyChange = false;
+
     // First check for group state.
     if (!isUninitializedValue(group)) {
       if (previousSelected !== selected) {
@@ -162,6 +164,7 @@
           group.splice(idx, 1);
           group = group;
         }
+        notifyChange = true;
       } else {
         // Potential changes need to flow down.
         const idxPrev = previousGroup.indexOf(value);
@@ -181,12 +184,14 @@
     if (isUninitializedValue(checked)) {
       if (previousSelected !== selected) {
         // The checkbox was clicked by the user.
+        notifyChange = true;
       }
     } else if (checked !== selected) {
       if (checked === previousChecked) {
         // The checkbox was clicked by the user
         // and the change needs to flow up.
         checked = selected;
+        notifyChange = true;
       } else {
         // The checkbox was changed programmatically
         // and the change needs to flow down.
@@ -197,6 +202,9 @@
     previousChecked = checked;
     previousGroup = isUninitializedValue(group) ? [] : [...group];
     previousSelected = selected;
+    if (notifyChange && element) {
+      dispatch(element, 'SMUISwitch:change', { selected, value });
+    }
   }
 
   onMount(() => {
@@ -221,9 +229,15 @@
       get checked() {
         return selected;
       },
-      set checked(value) {
-        if (selected !== value) {
-          state.selected = value;
+      set checked(checked) {
+        if (selected !== checked) {
+          state.selected = checked;
+          if (element) {
+            dispatch(element, 'SMUISwitch:change', {
+              selected: checked,
+              value,
+            });
+          }
         }
       },
       activateRipple() {
