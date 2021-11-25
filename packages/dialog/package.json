@@ -1,6 +1,6 @@
 {
   "name": "@smui/dialog",
-  "version": "6.0.0-beta.3",
+  "version": "6.0.0-beta.4",
   "description": "Svelte Material UI - Dialog",
   "type": "module",
   "module": "dist/index.js",
@@ -39,7 +39,7 @@
     "@material/button": "^13.0.0",
     "@material/dialog": "^13.0.0",
     "@material/dom": "^13.0.0",
-    "@smui/common": "^6.0.0-beta.3",
+    "@smui/common": "^6.0.0-beta.4",
     "svelte2tsx": "^0.4.10"
   },
   "devDependencies": {

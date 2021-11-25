@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0-beta.4](https://github.com/hperrin/svelte-material-ui/compare/v6.0.0-beta.3...v6.0.0-beta.4) (2021-11-25)
+
+
+### Features
+
+* dispatch an event when the switch's value is changed ([087331b](https://github.com/hperrin/svelte-material-ui/commit/087331b9941ad1a568cb51054420cc67036900f7))
+
+
+
+
+
 # [6.0.0-beta.3](https://github.com/hperrin/svelte-material-ui/compare/v6.0.0-beta.2...v6.0.0-beta.3) (2021-11-24)
 
 
