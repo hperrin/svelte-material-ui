@@ -13,6 +13,11 @@ https://github.com/material-components/material-components-web/blob/master/CHANG
   - Here's a regex you can use in VS Code to search for these: @smui/(common|textfield|select|snackbar)/[\w-]+/index
 - The '/styled' import endpoints have been removed. You will need to import the '/index' endpoint from Sass yourself if you were using the Advanced Styling Method.
 
+### Components
+
+- Switch
+  - No longer emits "change" event, use "SMUISwitch:change" event instead.
+
 ## Changes
 
 - MDC events are now dispatched with "SMUI" instead of "MDC" prefix. They are dispatched as both though, so your code shouldn't break. You should still update your code to use the new "SMUI" prefix anyway.
