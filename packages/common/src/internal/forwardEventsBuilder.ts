@@ -39,7 +39,7 @@ export function forwardEventsBuilder(component: SvelteComponent) {
       );
     }
 
-    return (...args) => {
+    return () => {
       destructor();
     };
   };
