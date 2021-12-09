@@ -9,7 +9,13 @@ export declare class PaperComponentDev extends Component {
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<HTMLDivElement>>,
-    'use' | 'class' | 'square' | 'color' | 'elevation' | 'transition'
+    | 'use'
+    | 'class'
+    | 'variant'
+    | 'square'
+    | 'color'
+    | 'elevation'
+    | 'transition'
   > &
     Component['$$prop_def'];
 }

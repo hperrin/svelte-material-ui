@@ -12,11 +12,21 @@ $paper-padding: 24px 16px !default;
   $feat-structure: feature-targeting.create-target($query, structure);
 
   .smui-paper {
-    @include fill-color(surface, $query);
-    @include ink-color(on-surface, $query);
-    @include paper-elevation($query: $query);
-
     padding: $paper-padding;
+
+    &.smui-paper--raised,
+    &.smui-paper--unelevated {
+      @include fill-color(surface, $query);
+      @include ink-color(on-surface, $query);
+    }
+
+    &.smui-paper--raised {
+      @include paper-elevation($query: $query);
+    }
+
+    &.smui-paper--outlined {
+      @include outline-color(on-surface, $query);
+    }
 
     &.smui-paper--rounded {
       @include shape-radius(medium, $query: $query);
@@ -60,10 +70,19 @@ $paper-padding: 24px 16px !default;
   $query: feature-targeting.all()
 ) {
   .smui-paper.smui-paper--color-#{$name} {
-    @include paper-elevation($fill-color, $query: $query);
+    &.smui-paper--raised,
+    &.smui-paper--unelevated {
+      @include fill-color($fill-color, $query);
+      @include ink-color($ink-color, $query);
+    }
 
-    @include fill-color($fill-color, $query);
-    @include ink-color($ink-color, $query);
+    &.smui-paper--raised {
+      @include paper-elevation($fill-color, $query: $query);
+    }
+
+    &.smui-paper--outlined {
+      @include outline-color($fill-color, $query);
+    }
   }
 }
 
@@ -88,6 +107,17 @@ $paper-padding: 24px 16px !default;
 
   @include feature-targeting.targets($feat-color) {
     @include theme.property(background-color, $color);
+  }
+}
+
+@mixin outline-color($color, $query: feature-targeting.all()) {
+  $feat-color: feature-targeting.create-target($query, color);
+
+  border-width: 1px;
+  border-style: solid;
+
+  @include feature-targeting.targets($feat-color) {
+    @include theme.property(border-color, $color);
   }
 }
 

@@ -5,7 +5,11 @@
   class={classMap({
     [className]: true,
     'smui-paper': true,
-    ['smui-paper--elevation-z' + elevation]: elevation !== 0,
+    'smui-paper--raised': variant === 'raised',
+    'smui-paper--unelevated': variant === 'unelevated',
+    'smui-paper--outlined': variant === 'outlined',
+    ['smui-paper--elevation-z' + elevation]:
+      elevation !== 0 && variant === 'raised',
     'smui-paper--rounded': !square,
     ['smui-paper--color-' + color]: color !== 'default',
     'smui-paper-transition': transition,
@@ -30,6 +34,7 @@
   export let use: ActionArray = [];
   let className = '';
   export { className as class };
+  export let variant: 'raised' | 'unelevated' | 'outlined' = 'raised';
   export let square = false;
   export let color: 'default' | 'primary' | 'secondary' | string = 'default';
   export let elevation = 1;

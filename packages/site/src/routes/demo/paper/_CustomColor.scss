@@ -6,3 +6,7 @@
   theme.$green-800,
   theme.accessible-ink-color(theme.$green-800)
 );
+
+.custom-green {
+  color: theme.$green-800;
+}

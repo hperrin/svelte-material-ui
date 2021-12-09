@@ -57,7 +57,7 @@
 
 <style>
   .paper-container {
-    padding: 36px 18px;
+    padding: 72px 18px;
     background-color: var(--mdc-theme-background, #f8f8f8);
     border: 1px solid
       var(--mdc-theme-text-hint-on-background, rgba(0, 0, 0, 0.1));
