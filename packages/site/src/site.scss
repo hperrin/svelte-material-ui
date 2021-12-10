@@ -12,9 +12,11 @@
 @use './app';
 
 // Demo styles.
+@use './routes/demo/badge/_CustomColor.scss' as badge-custom-color;
 @use './routes/demo/button/_Notched.scss';
 @use './routes/demo/button/_Round.scss';
-@use './routes/demo/circular-progress/_Colored.scss' as circular-progress-colored;
+@use './routes/demo/circular-progress/_Colored.scss' as
+  circular-progress-colored;
 @use './routes/demo/circular-progress/_FourColor.scss';
 @use './routes/demo/elevation/_Elevation.scss';
 @use './routes/demo/elevation/_TransitionsAndColor.scss';
@@ -24,5 +26,5 @@
 @use './routes/demo/image-list/_Simple.scss';
 @use './routes/demo/linear-progress/_Colored.scss' as linear-progress-colored;
 @use './routes/demo/menu-surface/_ManualAnchor.scss';
-@use './routes/demo/paper/_CustomColor.scss';
+@use './routes/demo/paper/_CustomColor.scss' as paper-custom-color;
 @use './routes/demo/typography/_Typography.scss';

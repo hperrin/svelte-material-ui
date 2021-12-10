@@ -1,0 +1,181 @@
+@use 'sass:math';
+@use '@material/theme/index' as theme;
+@use '@material/feature-targeting/index' as feature-targeting;
+@use '@material/shape/index' as shape;
+@use '@material/rtl/rtl';
+@use '@material/typography/index' as typography;
+
+$minimum-size: 24px;
+$radius: $minimum-size;
+$font-size: math.div($minimum-size, 1.8);
+$padding: 4px;
+
+@mixin core-styles($query: feature-targeting.all()) {
+  $feat-color: feature-targeting.create-target($query, color);
+  $feat-animation: feature-targeting.create-target($query, animation);
+  $feat-structure: feature-targeting.create-target($query, structure);
+
+  .smui-badge {
+    @include height($minimum-size, $padding);
+    @include typography.typography(body1, $query: $query);
+
+    position: absolute;
+    font-size: $font-size;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    // Show above ripples.
+    z-index: 2;
+    // Disable interactions.
+    pointer-events: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    padding-left: $padding;
+    padding-right: $padding;
+
+    &.smui-badge--rounded {
+      @include shape-radius($radius, $query: $query);
+    }
+
+    &.smui-badge--align-top-start,
+    &.smui-badge--align-top-end {
+      &.smui-badge--position-inset,
+      &.smui-badge--position-middle {
+        top: 0;
+      }
+
+      &.smui-badge--position-outset {
+        bottom: 100%;
+      }
+    }
+
+    &.smui-badge--align-bottom-start,
+    &.smui-badge--align-bottom-end {
+      &.smui-badge--position-inset,
+      &.smui-badge--position-middle {
+        bottom: 0;
+      }
+
+      &.smui-badge--position-outset {
+        top: 100%;
+      }
+    }
+
+    &.smui-badge--align-top-end,
+    &.smui-badge--align-bottom-end {
+      &.smui-badge--position-inset {
+        @include rtl.reflexive-position(right, 0);
+      }
+
+      &.smui-badge--position-middle {
+        @include rtl.reflexive-position(right, 0);
+      }
+
+      &.smui-badge--position-outset {
+        @include rtl.reflexive-position(left, 100%);
+      }
+    }
+
+    &.smui-badge--align-top-start,
+    &.smui-badge--align-bottom-start {
+      &.smui-badge--position-inset {
+        @include rtl.reflexive-position(left, 0);
+      }
+
+      &.smui-badge--position-middle {
+        @include rtl.reflexive-position(left, 0);
+      }
+
+      &.smui-badge--position-outset {
+        @include rtl.reflexive-position(right, 100%);
+      }
+    }
+
+    &.smui-badge--align-top-start.smui-badge--position-middle {
+      transform-origin: center;
+      transform: translateX(-50%) translateY(-50%);
+
+      @include rtl.rtl {
+        transform: translateX(50%) translateY(-50%);
+      }
+    }
+
+    &.smui-badge--align-top-end.smui-badge--position-middle {
+      transform-origin: center;
+      transform: translateX(50%) translateY(-50%);
+
+      @include rtl.rtl {
+        transform: translateX(-50%) translateY(-50%);
+      }
+    }
+
+    &.smui-badge--align-bottom-start.smui-badge--position-middle {
+      transform-origin: center;
+      transform: translateX(-50%) translateY(50%);
+
+      @include rtl.rtl {
+        transform: translateX(50%) translateY(50%);
+      }
+    }
+
+    &.smui-badge--align-bottom-end.smui-badge--position-middle {
+      transform-origin: center;
+      transform: translateX(50%) translateY(50%);
+
+      @include rtl.rtl {
+        transform: translateX(-50%) translateY(50%);
+      }
+    }
+  }
+
+  @include badge-color(primary, primary, on-primary, $query);
+  @include badge-color(secondary, secondary, on-secondary, $query);
+}
+
+@mixin height($minimum-size, $padding, $query: feature-targeting.all()) {
+  $feat-structure: feature-targeting.create-target($query, structure);
+
+  @include feature-targeting.targets($feat-structure) {
+    @include theme.property(min-height, $minimum-size);
+    @include theme.property(min-width, $minimum-size - (2 * $padding));
+  }
+}
+
+@mixin badge-color(
+  $name,
+  $fill-color,
+  $ink-color,
+  $query: feature-targeting.all()
+) {
+  .smui-badge.smui-badge--color-#{$name} {
+    @include fill-color($fill-color, $query);
+    @include ink-color($ink-color, $query);
+  }
+}
+
+@mixin shape-radius(
+  $radius,
+  $rtl-reflexive: false,
+  $query: feature-targeting.all()
+) {
+  @include shape.radius($radius, $rtl-reflexive, $query: $query);
+}
+
+@mixin ink-color($color, $query: feature-targeting.all()) {
+  $feat-color: feature-targeting.create-target($query, color);
+
+  @include feature-targeting.targets($feat-color) {
+    @include theme.property(color, $color);
+  }
+}
+
+@mixin fill-color($color, $query: feature-targeting.all()) {
+  $feat-color: feature-targeting.create-target($query, color);
+
+  @include feature-targeting.targets($feat-color) {
+    @include theme.property(background-color, $color);
+  }
+}

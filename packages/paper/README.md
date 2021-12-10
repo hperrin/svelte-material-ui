@@ -22,6 +22,7 @@ A paper surface.
 
 - `use`: `[]` - An array of Svelte actions and/or arrays of an action and its options.
 - `class`: `''` - A CSS class string.
+- `variant`: `"raised"` - The paper's style variant. ('raised', 'unelevated', or 'outlined')
 - `square`: `false` - Whether the component has square or rounded corners.
 - `color`: `'default'` - The component's color. ('primary', 'secondary', 'default', or a custom color string defined with SASS)
 - `elevation`: `1` - The component's elevation. (integer between 0 and 24, inclusive)

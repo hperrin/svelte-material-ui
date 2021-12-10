@@ -227,6 +227,14 @@
       separator: true,
     },
     {
+      name: 'Badge',
+      route: '/demo/badge/',
+      indent: 0,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/badge',
+      ],
+    },
+    {
       name: 'Banner',
       route: '/demo/banner/',
       indent: 0,

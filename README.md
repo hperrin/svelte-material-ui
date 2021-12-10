@@ -60,6 +60,7 @@ If you need help using SMUI, join the new [Discord server](https://discord.gg/aF
 
 Click a component/package below to go to the documentation. (Note that this documentation is a work in progress. The demo code should be your main source of truth for how something works.)
 
+- [Badge](packages/badge/README.md)‡
 - [Banner](packages/banner/README.md)
 - [Button](packages/button/README.md)
   - [Floating Action Button](packages/fab/README.md)

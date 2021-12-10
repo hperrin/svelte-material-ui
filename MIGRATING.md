@@ -24,6 +24,10 @@ https://github.com/material-components/material-components-web/blob/master/CHANG
 
 ### Components
 
+- Badge
+  - A new component!
+- Paper
+  - New variants!
 - Switch
   - No longer needs `valueKey` prop.
   - Default color is now "primary".

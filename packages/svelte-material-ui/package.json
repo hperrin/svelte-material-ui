@@ -70,7 +70,8 @@
     "@smui/textfield": "^6.0.0-beta.4",
     "@smui/tooltip": "^6.0.0-beta.4",
     "@smui/top-app-bar": "^6.0.0-beta.4",
-    "@smui/touch-target": "^6.0.0-beta.4"
+    "@smui/touch-target": "^6.0.0-beta.4",
+    "@smui-extra/badge": "^6.0.0-beta.4"
   },
   "devDependencies": {
     "smui-theme": "^6.0.0-beta.4"
