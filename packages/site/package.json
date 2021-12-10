@@ -39,6 +39,7 @@
     "@material/top-app-bar": "^13.0.0",
     "@material/typography": "^13.0.0",
     "@mdi/js": "^6.5.95",
+    "@smui-extra/autocomplete": "^6.0.0-beta.5",
     "@smui-extra/badge": "^6.0.0-beta.5",
     "@smui/banner": "^6.0.0-beta.5",
     "@smui/button": "^6.0.0-beta.5",

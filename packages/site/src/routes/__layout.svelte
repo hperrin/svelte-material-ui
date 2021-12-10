@@ -324,6 +324,14 @@
       indent: 0,
     },
     {
+      name: 'Autocomplete',
+      route: '/demo/autocomplete/',
+      indent: 1,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/autocomplete',
+      ],
+    },
+    {
       name: 'Checkbox',
       route: '/demo/checkbox/',
       indent: 1,

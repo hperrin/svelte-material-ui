@@ -1,0 +1,45 @@
+{
+  "name": "@smui-extra/autocomplete",
+  "version": "6.0.0-beta.5",
+  "description": "Svelte Material UI - Autocomplete",
+  "keywords": [
+    "svelte",
+    "svelte3",
+    "material-ui",
+    "material-design",
+    "material",
+    "svelte-components",
+    "sveltejs"
+  ],
+  "scripts": {
+    "prepublishOnly": "echo \"$(npx glob '**/*' | sed 's/^/-I /' | paste -s -d ' ' -) --no-source-map _style.scss bare.css\" | xargs sass && echo \"$(npx glob '**/*' | sed 's/^/-I /' | paste -s -d ' ' -) --no-source-map helper-text/_style.scss helper-text/bare.css\" | xargs sass && echo \"$(npx glob '**/*' | sed 's/^/-I /' | paste -s -d ' ' -) --no-source-map icon/_style.scss icon/bare.css\" | xargs sass",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hperrin/svelte-material-ui.git"
+  },
+  "author": "Hunter Perrin <hperrin@gmail.com>",
+  "contributors": [
+    "Lorenzo Fiore <fiorelorenzo.fl@gmail.com> (https://github.com/fiorelorenzo/)"
+  ],
+  "bugs": {
+    "url": "https://github.com/hperrin/svelte-material-ui/issues"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@smui/common": "^6.0.0-beta.5",
+    "@smui/list": "^6.0.0-beta.5",
+    "@smui/menu": "^6.0.0-beta.5",
+    "@smui/menu-surface": "^6.0.0-beta.5",
+    "@smui/notched-outline": "^6.0.0-beta.5",
+    "@smui/textfield": "^6.0.0-beta.5"
+  },
+  "devDependencies": {
+    "glob-cmd": "0.0.7",
+    "sass": "^1.25.0"
+  }
+}

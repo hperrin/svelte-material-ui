@@ -209,6 +209,9 @@
       getValue() {
         return $$restProps.value;
       },
+
+      // For autocomplete
+      action,
     };
 
     dispatch(getElement(), 'SMUIListItem:mount', accessor);
@@ -295,7 +298,7 @@
     }
   }
 
-  function action(e: Event) {
+  export function action(e: Event) {
     if (!disabled) {
       dispatch(getElement(), 'SMUI:action', e);
     }

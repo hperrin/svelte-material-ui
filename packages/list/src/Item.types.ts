@@ -52,4 +52,7 @@ export interface SMUIListItemAccessor {
 
   // For select options.
   getValue(): any;
+
+  // For autocomplete.
+  action(e: Event): void;
 }
