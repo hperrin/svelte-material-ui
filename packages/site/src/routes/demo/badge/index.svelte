@@ -11,22 +11,22 @@
 
   <h5>Demos</h5>
 
-  <Demo component={Simple} file="paper/_Simple.svelte" />
+  <Demo component={Simple} file="badge/_Simple.svelte" />
 
-  <Demo component={Square} file="paper/_Square.svelte">Square badge</Demo>
+  <Demo component={Square} file="badge/_Square.svelte">Square badge</Demo>
 
-  <Demo component={SecondaryColor} file="paper/_SecondaryColor.svelte">
+  <Demo component={SecondaryColor} file="badge/_SecondaryColor.svelte">
     Secondary color
   </Demo>
 
   <Demo
     component={CustomColor}
-    files={['paper/_CustomColor.svelte', 'paper/_CustomColor.scss']}
+    files={['badge/_CustomColor.svelte', 'badge/_CustomColor.scss']}
   >
     Custom color
   </Demo>
 
-  <Demo component={PositionAlign} file="paper/_PositionAlign.svelte">
+  <Demo component={PositionAlign} file="badge/_PositionAlign.svelte">
     Positioning and Alignment
   </Demo>
 </section>
