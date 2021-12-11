@@ -73,6 +73,7 @@ Click a component/package below to go to the documentation. (Note that this docu
 - [Elevation](https://sveltematerialui.com/demo/elevation/)†
 - [Image List](packages/image-list/README.md)
 - Inputs and Controls
+  - [Autocomplete](packages/autocomplete/README.md)‡
   - [Checkbox](packages/checkbox/README.md)
   - [Chips](packages/chips/README.md)
   - [Floating Label](packages/floating-label/README.md)

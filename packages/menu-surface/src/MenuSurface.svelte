@@ -1,6 +1,6 @@
 <svelte:body
   on:click|capture={(event) =>
-    instance && open && instance.handleBodyClick(event)} />
+    instance && open && !managed && instance.handleBodyClick(event)} />
 
 <div
   bind:this={element}
@@ -52,6 +52,11 @@
   export let anchor = true;
   export let fixed = false;
   export let open = isStatic;
+  /**
+   * A managed menu surface means you completely control the open state. The
+   * component will never alter it on its own.
+   */
+  export let managed = false;
   export let fullWidth = false;
   export let quickOpen = false;
   export let anchorElement: Element | undefined = undefined;
@@ -124,7 +129,9 @@
       hasClass,
       hasAnchor: () => !!anchorElement,
       notifyClose: () => {
-        open = isStatic;
+        if (!managed) {
+          open = isStatic;
+        }
         if (!open) {
           dispatch(
             element,
@@ -136,7 +143,9 @@
         }
       },
       notifyClosing: () => {
-        open = isStatic;
+        if (!managed) {
+          open = isStatic;
+        }
         if (!open) {
           dispatch(
             element,
@@ -148,8 +157,18 @@
         }
       },
       notifyOpen: () => {
-        open = true;
-        dispatch(element, 'SMUIMenuSurface:opened', undefined, undefined, true);
+        if (!managed) {
+          open = true;
+        }
+        if (open) {
+          dispatch(
+            element,
+            'SMUIMenuSurface:opened',
+            undefined,
+            undefined,
+            true
+          );
+        }
       },
       isElementInContainer: (el) => element.contains(el),
       isRtl: () =>

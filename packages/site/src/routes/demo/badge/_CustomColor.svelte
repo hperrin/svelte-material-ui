@@ -1,7 +1,7 @@
 <div style="margin-top: 2em;">
   <Button style="position: relative;">
     <Label>Custom Color Badge</Label>
-    <Badge color="custom-green">12</Badge>
+    <Badge color="custom-green" aria-label="unread count">12</Badge>
   </Button>
 </div>
 

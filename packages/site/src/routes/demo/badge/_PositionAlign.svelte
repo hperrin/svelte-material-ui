@@ -1,7 +1,7 @@
 <div style="margin-top: 2em; text-align: center;">
   <IconButton style="position: relative;">
     <Icon class="material-icons">message</Icon>
-    <Badge {position} {align}>8</Badge>
+    <Badge {position} {align} aria-label="unread count">8</Badge>
   </IconButton>
 </div>
 

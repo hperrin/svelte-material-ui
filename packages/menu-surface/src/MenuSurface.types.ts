@@ -16,6 +16,7 @@ export declare class MenuSurfaceComponentDev extends Component {
     | 'anchor'
     | 'fixed'
     | 'open'
+    | 'managed'
     | 'fullWidth'
     | 'quickOpen'
     | 'anchorElement'
