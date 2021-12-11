@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0-beta.6](https://github.com/hperrin/svelte-material-ui/compare/v6.0.0-beta.5...v6.0.0-beta.6) (2021-12-11)
+
+
+### Bug Fixes
+
+* remove unused args on unsubscribe ([a7f2aca](https://github.com/hperrin/svelte-material-ui/commit/a7f2aca155c62a663c4a9e784279dbd7b9c39637))
+
+
+
+
+
 # [6.0.0-beta.5](https://github.com/hperrin/svelte-material-ui/compare/v6.0.0-beta.4...v6.0.0-beta.5) (2021-12-10)
 
 **Note:** Version bump only for package @smui/common

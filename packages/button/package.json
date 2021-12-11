@@ -1,6 +1,6 @@
 {
   "name": "@smui/button",
-  "version": "6.0.0-beta.5",
+  "version": "6.0.0-beta.6",
   "description": "Svelte Material UI - Button",
   "type": "module",
   "module": "dist/index.js",
@@ -41,8 +41,8 @@
     "@material/feature-targeting": "^13.0.0",
     "@material/ripple": "^13.0.0",
     "@material/theme": "^13.0.0",
-    "@smui/common": "^6.0.0-beta.5",
-    "@smui/ripple": "^6.0.0-beta.5",
+    "@smui/common": "^6.0.0-beta.6",
+    "@smui/ripple": "^6.0.0-beta.6",
     "svelte2tsx": "^0.4.11"
   },
   "devDependencies": {

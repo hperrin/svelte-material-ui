@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0-beta.6](https://github.com/hperrin/svelte-material-ui/compare/v6.0.0-beta.5...v6.0.0-beta.6) (2021-12-11)
+
+
+### Bug Fixes
+
+* migrate autocomplete to typescript and new features, also some fixes ([0107ca6](https://github.com/hperrin/svelte-material-ui/commit/0107ca6c8a01af66a69db74626e931afd598eff1))
+
+
+### Features
+
+* export action function ([9c0f9f5](https://github.com/hperrin/svelte-material-ui/commit/9c0f9f5762c39be67692f0891f6c3bd57fe57a3c))
+
+
+
+
+
 # [6.0.0-beta.5](https://github.com/hperrin/svelte-material-ui/compare/v6.0.0-beta.4...v6.0.0-beta.5) (2021-12-10)
 
 **Note:** Version bump only for package @smui/list
