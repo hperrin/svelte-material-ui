@@ -6,7 +6,7 @@
       bind:text={textStandard}
       class="demo-autocomplete-width"
     >
-      <Textfield bind:value={textStandard} />
+      <Textfield label="Fruit" bind:value={textStandard} />
     </Autocomplete>
 
     <pre class="status">Selected: {valueStandard || ''}</pre>
@@ -19,7 +19,7 @@
       bind:text={textFilled}
       class="demo-autocomplete-width"
     >
-      <Textfield bind:value={textFilled} variant="filled" />
+      <Textfield label="Fruit" bind:value={textFilled} variant="filled" />
     </Autocomplete>
 
     <pre class="status">Selected: {valueFilled || ''}</pre>
@@ -32,7 +32,7 @@
       bind:text={textOutlined}
       class="demo-autocomplete-width"
     >
-      <Textfield bind:value={textOutlined} variant="outlined" />
+      <Textfield label="Fruit" bind:value={textOutlined} variant="outlined" />
     </Autocomplete>
 
     <pre class="status">Selected: {valueOutlined || ''}</pre>

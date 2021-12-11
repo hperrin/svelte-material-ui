@@ -22,6 +22,7 @@
   >
     <slot>
       <Textfield
+        {label}
         bind:value={text}
         {...prefixFilter($$restProps, 'textfield$')}
       />
@@ -114,6 +115,7 @@
   export let getOptionLabel: (option: any) => string = (option: any) =>
     option == null ? '' : `${option}`;
   export let text = getOptionLabel(value);
+  export let label: string | undefined = undefined;
   export let toggle = false;
   export let combobox = false;
   export let clearOnBlur = !combobox;

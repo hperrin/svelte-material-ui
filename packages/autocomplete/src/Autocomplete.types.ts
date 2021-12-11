@@ -19,6 +19,7 @@ export declare class AutocompleteComponentDev extends Component {
     | 'getOptionDisabled'
     | 'getOptionLabel'
     | 'text'
+    | 'label'
     | 'toggle'
     | 'combobox'
     | 'clearOnBlur'
@@ -33,6 +34,7 @@ export declare class AutocompleteComponentDev extends Component {
   } & {
     [k in keyof ListComponentDev['$$prop_def'] as `list\$${k}`]?: ListComponentDev['$$prop_def'][k];
   } & {
+    textfield$label?: never;
     textfield$value?: never;
   } & Component['$$prop_def'];
 }
