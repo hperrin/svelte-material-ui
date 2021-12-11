@@ -134,6 +134,10 @@
     getElement().focus();
   }
 
+  export function blur() {
+    getElement().blur();
+  }
+
   export function getElement() {
     return element;
   }

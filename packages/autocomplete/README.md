@@ -1,6 +1,6 @@
 # Svelte Material UI - Autocomplete
 
-Autocompletes provide the user with suggestions wqhile tiping.
+Autocompletes provides the user with suggestions while typing. It also works as a combobox, where it will accept any input from the user.
 
 # Installation
 
@@ -8,25 +8,6 @@ Autocompletes provide the user with suggestions wqhile tiping.
 npm install --save-dev @smui-extra/autocomplete
 ```
 
-# Basic Usage
+# Examples and Usage Information
 
-```html
-<script>
-  import Autocomplete from '@smui/autocomplete';
-
-  let fruits = ['Apple', 'Orange', 'Banana', 'Mango'];
-  let fruitChoice = '';
-</script>
-
-<Autocomplete options="{fruits}" bind:value="{fruitChoice}" label="Fruit" />
-```
-
-# Demo
-
-_in action:_ https://sveltematerialui.com/demo/autocomplete
-
-_demo code:_ https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes/demo/autocomplete.svelte
-
-# Exports
-
-todo...
+https://sveltematerialui.com/demo/autocomplete

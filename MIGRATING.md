@@ -24,6 +24,8 @@ https://github.com/material-components/material-components-web/blob/master/CHANG
 
 ### Components
 
+- Autocomplete
+  - A new component! Huge shoutout to [Lorenzo Fiore](https://github.com/fiorelorenzo/) who originally authored the component!
 - Badge
   - A new component!
 - Paper

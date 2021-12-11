@@ -553,6 +553,10 @@
     input?.focus();
   }
 
+  export function blur() {
+    input?.blur();
+  }
+
   export function layout() {
     if (instance) {
       const openNotch = instance.shouldFloat;

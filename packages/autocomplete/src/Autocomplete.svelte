@@ -1,290 +1,52 @@
-<script>
-  import { exclude } from "@smui/common/exclude.js";
-  import { prefixFilter } from "@smui/common/prefixFilter.js";
-  import Textfield from "@smui/textfield";
-  import Menu from "@smui/menu";
-  import List, { Item, Text } from "@smui/list";
-  import { Anchor } from "@smui/menu-surface";
-  import { createEventDispatcher } from "svelte";
-
-  export let options = [];
-  export let value = undefined;
-  export let text = "";
-  export let getOptionDisabled = undefined;
-  export let getOptionLabel = (option) => option || "";
-  export let blurOnSelect = true;
-  export let clearOnBlur = undefined;
-  export let clearOnEscape = true;
-  export let toggle = false;
-  export let dirty = undefined;
-  export let invalid = undefined;
-  export let freeSolo = false;
-
-  export let menu$class = "";
-  export let menu$anchor = false;
-  export let menu$anchorCorner = "BOTTOM_LEFT";
-
-  const dispatch = createEventDispatcher();
-
-  let items = [];
-  let loading = false;
-  let error = false;
-  let menu;
-  let menuIsOpen;
-  let anchorElement;
-  let matches = [];
-  let focusedIndex = -1;
-  let activeItems;
-  let focusedItem;
-  let activeOptions = [];
-  let shouldClearOnBlur = true;
-
-  $: textfieldProps = exclude($$props, [
-    "menu$",
-    "list$",
-    "value",
-    "text",
-    "options",
-    "getOptionDisabled",
-    "getOptionLabel",
-    "blurOnSelect",
-    "clearOnBlur",
-    "clearOnEscape",
-    "toggle",
-    "dirty",
-    "invalid",
-    "freeSolo",
-    "search",
-    "getOptionSelected",
-  ]);
-
-  $: (async () => {
-    if (typeof options == "function") {
-      items = await options();
-    } else {
-      items = options || [];
-    }
-  })();
-
-  export let search = (allOptions, input) =>
-    allOptions.filter((item) =>
-      getOptionLabel(item).toLowerCase().includes(input.toLowerCase())
-    );
-
-  export let getOptionSelected = (option, currentValue) =>
-    option == currentValue;
-
-  $: if (freeSolo) {
-    value = text;
-  } else {
-    text = value ? getOptionLabel(value) : text;
-  }
-
-  $: clearOnBlur = clearOnBlur == undefined ? !freeSolo : clearOnBlur;
-
-  $: (async () => {
-    try {
-      loading = true;
-      matches = await search(items, text || "");
-      loading = false;
-      error = false;
-    } catch (err) {
-      loading = false;
-      error = true;
-      throw err;
-    }
-  })();
-
-  $: if (menu) {
-    activeItems = getActiveMenuItems();
-
-    if (focusedIndex != -1) {
-      focusedItem = activeItems.splice(focusedIndex, 1)[0];
-
-      if (focusedItem) {
-        addClass(focusedItem, "mdc-ripple-upgraded--background-focused");
-        focusedItem.scrollIntoView();
-      }
-    }
-
-    activeItems.forEach((item) => {
-      removeClass(item, "mdc-ripple-upgraded--background-focused");
-    });
-
-    menu.getItems().forEach((item) => {
-      item.setAttribute("tabindex", -1);
-    });
-  }
-
-  $: activeOptions = activeOptions.filter((el) => el);
-
-  export function blur() {
-    if (anchorElement) {
-      const inputEl = anchorElement.querySelector(
-        "input.mdc-text-field__input"
-      );
-
-      menu && menu.setOpen(false);
-      inputEl && inputEl.blur();
-    }
-  }
-
-  export function selectOption(option, shouldBlur = false) {
-    value = option;
-    text = getOptionLabel(option);
-    shouldBlur && blur();
-    dispatch("optionselected", option);
-  }
-
-  export function deselectOption(option, shouldBlur = false) {
-    value = undefined;
-    text = "";
-    shouldBlur && blur();
-    dispatch("optiondeselected", option);
-  }
-
-  export function toggleOption(option, shouldBlur = false) {
-    if (getOptionSelected(option, value)) {
-      deselectOption(option, shouldBlur);
-    } else {
-      selectOption(option, shouldBlur);
-    }
-  }
-
-  function getActiveMenuItems() {
-    const menuItems = menu ? menu.getItems() : undefined;
-    if (menuItems) {
-      return menuItems.filter((el) => !hasClass(el, "mdc-list-item--disabled"));
-    }
-  }
-
-  function handleTextfieldKeydown(e) {
-    if (e.keyCode == 40) {
-      e.preventDefault();
-
-      menu.setOpen(true);
-      if (focusedIndex == -1 || focusedIndex == activeItems.length) {
-        focusedIndex = 0;
-      } else {
-        focusedIndex++;
-      }
-    } else if (e.keyCode == 38) {
-      e.preventDefault();
-
-      menu.setOpen(true);
-      if (focusedIndex == -1 || focusedIndex == 0) {
-        focusedIndex = activeItems.length;
-      } else {
-        focusedIndex--;
-      }
-    } else if (e.keyCode == 27 && clearOnEscape) {
-      e.preventDefault();
-
-      // Clear on escape
-      value = undefined;
-      text = "";
-      focusedIndex = -1;
-    } else if (e.keyCode == 13) {
-      e.preventDefault();
-
-      if (focusedItem) {
-        activeOptions[focusedIndex].action(e);
-        focusedItem = undefined;
-        focusedIndex = -1;
-      }
-    }
-  }
-
-  function handleTextfieldBlur(e) {
-    focusedIndex = -1;
-    menu && menu.setOpen(false);
-
-    if (clearOnBlur && !value && shouldClearOnBlur) {
-      text = "";
-    }
-  }
-
-  function hasClass(element, className) {
-    return ` ${element.className} `.indexOf(` ${className} `) > -1;
-  }
-
-  function addClass(element, className) {
-    const arr = element.className.split(" ");
-    if (arr.indexOf(className) == -1) {
-      element.className += " " + className;
-    }
-  }
-
-  function removeClass(element, className) {
-    element.className = element.className.replace(className, "");
-  }
-</script>
-
-<style>
-  * :global(.smui-autocomplete-menu) {
-    width: 100%;
-  }
-</style>
-
-<div use:Anchor bind:this={anchorElement}>
+<div
+  bind:this={element}
+  use:Anchor
+  use:useActions={use}
+  use:forwardEvents
+  class={classMap({
+    [className]: true,
+    'smui-autocomplete': true,
+  })}
+  {...exclude($$restProps, ['menu$', 'textfield$', 'list$'])}
+>
   <div
-    on:focus|capture={() => {
-      if (!value && menu) {
-        menu.setOpen(true);
-      }
+    bind:this={inputContainer}
+    on:focusin={() => {
+      focused = true;
     }}
-    on:blur|capture={handleTextfieldBlur}
-    on:input|capture={() => {
-      value = undefined;
+    on:focusout={handleTextfieldBlur}
+    on:input={() => {
       focusedIndex = -1;
-      menu && menu.setOpen(true);
     }}
     on:keydown|capture={handleTextfieldKeydown}
-    on:click|capture={() => {
-      menu && menu.setOpen(true);
-    }}>
+  >
     <slot>
       <Textfield
-        bind:dirty
-        bind:invalid
         bind:value={text}
-        {...textfieldProps} />
+        {...prefixFilter($$restProps, 'textfield$')}
+      />
     </slot>
   </div>
   <Menu
-    class="smui-autocomplete-menu {menu$class}"
-    bind:this={menu}
-    bind:open={menuIsOpen}
+    class={classMap({
+      [menu$class]: true,
+      'smui-autocomplete__menu': true,
+    })}
+    managed
+    open={menuOpen}
+    bind:anchorElement={element}
     anchor={menu$anchor}
-    bind:anchorElement
     anchorCorner={menu$anchorCorner}
-    {...exclude(prefixFilter($$props, 'menu$'), [
-      'class',
-      'anchor',
-      'anchorCorner',
-    ])}>
-    <List {...prefixFilter($$props, 'list$')}>
+    on:SMUIList:mount={handleListAccessor}
+    {...prefixFilter($$restProps, 'menu$')}
+  >
+    <List {...prefixFilter($$restProps, 'list$')}>
       {#if loading}
         <Item disabled>
           <slot name="loading">
             <Text>Loading...</Text>
           </slot>
         </Item>
-      {:else if matches && matches.length > 0}
-        {#each matches as match, i}
-          <Item
-            bind:this={activeOptions[i]}
-            disabled={getOptionDisabled && getOptionDisabled(match)}
-            selected={getOptionSelected(match, value)}
-            on:mouseenter={() => {
-              focusedIndex = i;
-            }}
-            on:SMUI:action={(e) => (toggle ? toggleOption(match, blurOnSelect) : selectOption(match, blurOnSelect))}>
-            <slot name="match" {match}>
-              <Text>{getOptionLabel(match)}</Text>
-            </slot>
-          </Item>
-        {/each}
       {:else if error}
         <Item disabled>
           <slot name="error">
@@ -292,21 +54,338 @@
           </slot>
         </Item>
       {:else}
-        <Item
-          bind:this={activeOptions[0]}
-          on:mouseenter={() => {
-            shouldClearOnBlur = false;
-            focusedIndex = 0;
-          }}
-          on:mouseleave={() => {
-            shouldClearOnBlur = true;
-          }}
-          on:SMUI:action={async (e) => dispatch('no-matches-action', e)}>
-          <slot name="no-matches">
-            <Text>No matches found.</Text>
-          </slot>
-        </Item>
+        {#each matches as match, i}
+          <Item
+            disabled={getOptionDisabled(match)}
+            selected={match === value}
+            on:mouseenter={() => {
+              focusedIndex = i;
+            }}
+            on:SMUI:action={() =>
+              toggle ? toggleOption(match) : selectOption(match)}
+          >
+            <slot name="match" {match}>
+              <Text>{getOptionLabel(match)}</Text>
+            </slot>
+          </Item>
+        {:else}
+          <Item
+            disabled={noMatchesActionDisabled}
+            on:SMUI:action={(e) =>
+              dispatch(element, 'SMUIAutocomplete:noMatchesAction', e)}
+          >
+            <slot name="no-matches">
+              <Text>No matches found.</Text>
+            </slot>
+          </Item>
+        {/each}
       {/if}
     </List>
   </Menu>
 </div>
+
+<script lang="ts">
+  import type { SMUIListAccessor, SMUIListItemAccessor } from '@smui/list';
+  import type { MenuComponentDev } from '@smui/menu';
+  import { get_current_component } from 'svelte/internal';
+  import {
+    forwardEventsBuilder,
+    classMap,
+    exclude,
+    prefixFilter,
+    useActions,
+    ActionArray,
+    dispatch,
+  } from '@smui/common/internal';
+  import Textfield from '@smui/textfield';
+  import Menu from '@smui/menu';
+  import List, { Item, Text } from '@smui/list';
+  import { Anchor } from '@smui/menu-surface';
+
+  const forwardEvents = forwardEventsBuilder(get_current_component());
+
+  // Remember to update types file if you add/remove/rename props.
+  export let use: ActionArray = [];
+  let className = '';
+  export { className as class };
+  export let options: (() => Promise<any[]>) | any[] = [];
+  export let value: any = undefined;
+  export let getOptionDisabled: (option: any) => boolean = () => false;
+  export let getOptionLabel: (option: any) => string = (option: any) =>
+    option == null ? '' : `${option}`;
+  export let text = getOptionLabel(value);
+  export let toggle = false;
+  export let combobox = false;
+  export let clearOnBlur = !combobox;
+  export let selectOnExactMatch = true;
+  export let showMenuWithNoInput = true;
+  export let noMatchesActionDisabled = true;
+  export let search: (input: string) => Promise<any[] | false> = async (
+    input: string
+  ) => {
+    const linput = input.toLowerCase();
+    const fullOptions =
+      typeof options == 'function' ? await options() : options || [];
+
+    if (linput === '') {
+      return fullOptions;
+    }
+
+    const result = fullOptions.filter((item) =>
+      getOptionLabel(item).toLowerCase().includes(linput)
+    );
+    result.sort((a, b) => {
+      const aString = getOptionLabel(a).toLowerCase();
+      const bString = getOptionLabel(b).toLowerCase();
+      if (aString.startsWith(linput) && !bString.startsWith(linput)) {
+        return -1;
+      } else if (bString.startsWith(linput) && !aString.startsWith(linput)) {
+        return 1;
+      }
+      return 0;
+    });
+    return result;
+  };
+  export let menu$class = '';
+  export let menu$anchor = false;
+  export let menu$anchorCorner: MenuComponentDev['$$prop_def']['anchorCorner'] =
+    'BOTTOM_START';
+
+  let element: HTMLDivElement;
+  let inputContainer: HTMLDivElement;
+  let loading = false;
+  let error = false;
+  let focused = false;
+  let listAccessor: SMUIListAccessor;
+  let matches: any[] = [];
+  let focusedIndex = -1;
+  let focusedItem: SMUIListItemAccessor | undefined = undefined;
+
+  $: menuOpen =
+    focused &&
+    (text !== '' || showMenuWithNoInput) &&
+    (loading ||
+      (!combobox && !(matches.length === 1 && matches[0] === value)) ||
+      (combobox &&
+        !!matches.length &&
+        !(matches.length === 1 && matches[0] === value)));
+
+  let previousText: string | undefined = undefined;
+  $: if (previousText !== text) {
+    if (!combobox && value != null && getOptionLabel(value) !== text) {
+      deselectOption(value, false);
+    }
+
+    (async () => {
+      loading = true;
+      error = false;
+      try {
+        const searchResult = await search(text);
+        if (searchResult !== false) {
+          matches = searchResult;
+          if (selectOnExactMatch) {
+            const exactMatch = matches.find(
+              (match) => getOptionLabel(match) === text
+            );
+            if (exactMatch && value !== exactMatch) {
+              selectOption(exactMatch);
+            }
+          }
+        }
+      } catch (e: any) {
+        error = true;
+      }
+      loading = false;
+    })();
+
+    previousText = text;
+  }
+
+  let previousValue = value;
+  $: if (!combobox && previousValue !== value) {
+    // If the value changes from outside, update the text.
+    text = getOptionLabel(value);
+    previousValue = value;
+  } else if (combobox) {
+    // If the text changes, update value if we're a combobox.
+    value = text;
+  }
+
+  let previousFocusedIndex: number | undefined = undefined;
+  $: if (previousFocusedIndex !== focusedIndex) {
+    const activeItems = getActiveMenuItems();
+
+    if (focusedIndex === -1) {
+      focusedItem = undefined;
+    } else {
+      focusedItem = activeItems[focusedIndex];
+
+      if (focusedItem) {
+        focusedItem.activated = true;
+        if (!isInViewport(focusedItem.element)) {
+          focusedItem.element.scrollIntoView({
+            block: 'end',
+            inline: 'nearest',
+          });
+        }
+      }
+    }
+
+    activeItems.forEach((item, i) => {
+      if (i !== focusedIndex) {
+        item.activated = false;
+      }
+    });
+
+    if (listAccessor) {
+      listAccessor.getOrderedList().forEach((itemAccessor) => {
+        itemAccessor.tabindex = -1;
+      });
+    }
+
+    previousFocusedIndex = focusedIndex;
+  }
+
+  function handleListAccessor(event: CustomEvent<SMUIListAccessor>) {
+    if (!listAccessor) {
+      listAccessor = event.detail;
+    }
+  }
+
+  function selectOption(option: any, setText = true) {
+    if (setText) {
+      text = getOptionLabel(option);
+    }
+    value = option;
+    if (!setText) {
+      previousValue = option;
+    }
+    dispatch(element, 'SMUIAutocomplete:selected', option);
+  }
+
+  function deselectOption(option: any, setText = true) {
+    if (setText) {
+      text = '';
+    }
+    value = undefined;
+    if (!setText) {
+      previousValue = undefined;
+    }
+    dispatch(element, 'SMUIAutocomplete:deselected', option);
+  }
+
+  function toggleOption(option: any) {
+    if (option === value) {
+      deselectOption(option);
+    } else {
+      selectOption(option);
+    }
+  }
+
+  function isInViewport(elem: Element) {
+    var bounding = elem.getBoundingClientRect();
+    return (
+      bounding.top >= 0 &&
+      bounding.left >= 0 &&
+      bounding.bottom <=
+        (window.innerHeight || document.documentElement.clientHeight) &&
+      bounding.right <=
+        (window.innerWidth || document.documentElement.clientWidth)
+    );
+  }
+
+  function getActiveMenuItems() {
+    if (!listAccessor) {
+      return [];
+    }
+    return listAccessor
+      .getOrderedList()
+      .filter((itemAccessor) => !itemAccessor.disabled);
+  }
+
+  function handleTextfieldKeydown(e: KeyboardEvent) {
+    if (combobox && !matches.length) {
+      return;
+    }
+
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+
+      if (
+        focusedIndex === -1 ||
+        focusedIndex === getActiveMenuItems().length - 1
+      ) {
+        focusedIndex = 0;
+      } else {
+        focusedIndex++;
+      }
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+
+      if (focusedIndex === -1 || focusedIndex === 0) {
+        focusedIndex = getActiveMenuItems().length - 1;
+      } else {
+        focusedIndex--;
+      }
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+
+      const activeItems = getActiveMenuItems();
+
+      if (focusedItem) {
+        if (activeItems[focusedIndex]) {
+          activeItems[focusedIndex].action(e);
+        }
+        focusedIndex = -1;
+      }
+    }
+  }
+
+  async function handleTextfieldBlur(event: FocusEvent) {
+    // Check if the reason we're unfocusing is that the user clicked an item.
+    if (
+      event.relatedTarget &&
+      getActiveMenuItems()
+        .map((itemAccessor) => itemAccessor.element)
+        .indexOf(event.relatedTarget as Element) !== -1
+    ) {
+      return;
+    }
+
+    // Else, clear the currently focused item and mark as not focused.
+    focusedIndex = -1;
+    focused = false;
+
+    if (clearOnBlur && value == null) {
+      text = '';
+    }
+  }
+
+  export function focus() {
+    if (inputContainer) {
+      const inputEl = inputContainer.querySelector<HTMLInputElement>(
+        'input.mdc-text-field__input'
+      );
+
+      if (inputEl) {
+        inputEl.focus();
+      }
+    }
+  }
+
+  export function blur() {
+    if (inputContainer) {
+      const inputEl = inputContainer.querySelector<HTMLInputElement>(
+        'input.mdc-text-field__input'
+      );
+
+      if (inputEl) {
+        inputEl.blur();
+      }
+    }
+  }
+
+  export function getElement() {
+    return element;
+  }
+</script>

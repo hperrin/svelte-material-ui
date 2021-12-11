@@ -212,6 +212,21 @@
 
       // For autocomplete
       action,
+      get tabindex() {
+        return tabindex;
+      },
+      set tabindex(value: number) {
+        tabindexProp = value;
+      },
+      get disabled() {
+        return disabled;
+      },
+      get activated() {
+        return activated;
+      },
+      set activated(value: boolean) {
+        activated = value;
+      },
     };
 
     dispatch(getElement(), 'SMUIListItem:mount', accessor);
@@ -298,12 +313,6 @@
     }
   }
 
-  export function action(e: Event) {
-    if (!disabled) {
-      dispatch(getElement(), 'SMUI:action', e);
-    }
-  }
-
   function handleKeydown(e: KeyboardEvent) {
     const isEnter = e.key === 'Enter';
     const isSpace = e.key === 'Space';
@@ -318,6 +327,12 @@
       '_smui_radio_accessor' in e.detail
     ) {
       input = e.detail;
+    }
+  }
+
+  export function action(e: Event) {
+    if (!disabled) {
+      dispatch(getElement(), 'SMUI:action', e);
     }
   }
 

@@ -2,6 +2,9 @@
   "name": "@smui-extra/autocomplete",
   "version": "6.0.0-beta.5",
   "description": "Svelte Material UI - Autocomplete",
+  "type": "module",
+  "module": "dist/index.js",
+  "types": "src/index.ts",
   "keywords": [
     "svelte",
     "svelte3",
@@ -12,7 +15,12 @@
     "sveltejs"
   ],
   "scripts": {
-    "prepublishOnly": "echo \"$(npx glob '**/*' | sed 's/^/-I /' | paste -s -d ' ' -) --no-source-map _style.scss bare.css\" | xargs sass && echo \"$(npx glob '**/*' | sed 's/^/-I /' | paste -s -d ' ' -) --no-source-map helper-text/_style.scss helper-text/bare.css\" | xargs sass && echo \"$(npx glob '**/*' | sed 's/^/-I /' | paste -s -d ' ' -) --no-source-map icon/_style.scss icon/bare.css\" | xargs sass",
+    "build": "npm run build:js && npm run build:svelte && npm run build:sass",
+    "build:js": "tsc -p . --outDir dist/ --rootDir src/",
+    "build:svelte": "svelte-strip strip src/ dist",
+    "build:sass": "sass --no-source-map -I node_modules -I ../smui-theme/node_modules -I ../../node_modules _style.scss bare.css",
+    "clean": "git status --ignored -u --porcelain . | grep -v node_modules/ | grep -e '^!! ' | sed 's/^!! packages\\/[a-z-]*\\///g' | tr '\\n' ' ' | xargs rm",
+    "prepare": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "publishConfig": {
@@ -35,11 +43,14 @@
     "@smui/list": "^6.0.0-beta.5",
     "@smui/menu": "^6.0.0-beta.5",
     "@smui/menu-surface": "^6.0.0-beta.5",
-    "@smui/notched-outline": "^6.0.0-beta.5",
-    "@smui/textfield": "^6.0.0-beta.5"
+    "@smui/textfield": "^6.0.0-beta.5",
+    "svelte2tsx": "^0.4.11"
   },
   "devDependencies": {
-    "glob-cmd": "0.0.7",
-    "sass": "^1.25.0"
+    "@tsconfig/svelte": "^2.0.1",
+    "sass": "^1.44.0",
+    "svelte-strip": "^1.0.0",
+    "tslib": "^2.3.1",
+    "typescript": "^4.5.2"
   }
 }

@@ -1,0 +1,12 @@
+@use '@smui/textfield/style' as textfield-style;
+@use '@smui/menu-surface/style' as menu-surface-style;
+@use '@smui/menu/style' as menu-style;
+@use '@smui/list/style' as list-style;
+
+.smui-autocomplete {
+  display: inline-block;
+}
+
+.smui-autocomplete__menu {
+  min-width: 100%;
+}

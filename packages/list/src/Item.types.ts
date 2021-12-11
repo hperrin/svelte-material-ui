@@ -55,4 +55,7 @@ export interface SMUIListItemAccessor {
 
   // For autocomplete.
   action(e: Event): void;
+  tabindex: number;
+  readonly disabled: boolean;
+  activated: boolean;
 }
