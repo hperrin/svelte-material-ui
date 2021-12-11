@@ -8,7 +8,9 @@
   <Title id="mandatory-title">Webpage Troll</Title>
   <Content id="mandatory-content">
     Before you continue on this page, you must answer my riddle of age. When
-    Alice was six her brother was three, now Alice is 90, how old is he?
+    Alice was six her brother was half, now Alice is 90, you do the math.
+    <br /><br />
+    How old is Alice's brother now?
   </Content>
   <Actions>
     <Button on:click={() => (response = 'Wrong answer. Thrown in the lake.')}>
