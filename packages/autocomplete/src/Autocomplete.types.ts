@@ -20,6 +20,7 @@ export declare class AutocompleteComponentDev extends Component {
     | 'getOptionLabel'
     | 'text'
     | 'label'
+    | 'disabled'
     | 'toggle'
     | 'combobox'
     | 'clearOnBlur'

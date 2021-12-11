@@ -1,10 +1,9 @@
 <div class="columns margins">
   <div>
-    Standard:<br />
     <Autocomplete
       options={fruits}
       bind:value={valueStandard}
-      label="Fruit"
+      label="Standard"
       class="demo-autocomplete-width"
     />
 
@@ -12,12 +11,11 @@
   </div>
 
   <div>
-    Filled:<br />
     <Autocomplete
       options={fruits}
       textfield$variant="filled"
       bind:value={valueFilled}
-      label="Fruit"
+      label="Filled"
       class="demo-autocomplete-width"
     />
 
@@ -25,16 +23,49 @@
   </div>
 
   <div>
-    Outlined:<br />
     <Autocomplete
       options={fruits}
       textfield$variant="outlined"
       bind:value={valueOutlined}
-      label="Fruit"
+      label="Outlined"
       class="demo-autocomplete-width"
     />
 
     <pre class="status">Selected: {valueOutlined || ''}</pre>
+  </div>
+</div>
+
+<div>
+  Disabled:
+  <div class="columns margins">
+    <div>
+      <Autocomplete
+        options={fruits}
+        disabled
+        label="Standard"
+        class="demo-autocomplete-width"
+      />
+    </div>
+
+    <div>
+      <Autocomplete
+        options={fruits}
+        textfield$variant="filled"
+        disabled
+        label="Filled"
+        class="demo-autocomplete-width"
+      />
+    </div>
+
+    <div>
+      <Autocomplete
+        options={fruits}
+        textfield$variant="outlined"
+        disabled
+        label="Outlined"
+        class="demo-autocomplete-width"
+      />
+    </div>
   </div>
 </div>
 

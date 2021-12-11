@@ -3,7 +3,7 @@
 </svelte:head>
 
 <section>
-  <h2>Autocomplete</h2>
+  <h2>Auto<wbr />complete</h2>
 
   <h5>Installation</h5>
 
