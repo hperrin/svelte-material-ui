@@ -542,8 +542,14 @@
       mainContentGesture = new TinyGesture(mainContent, {
         mouseSupport: false,
       });
+      let touchStartX: number = 0;
+      mainContentGesture.on('panstart', () => {
+        touchStartX = mainContentGesture.touchStartX;
+      });
       mainContentGesture.on('swiperight', () => {
-        drawerOpen = true;
+        if (touchStartX <= 40) {
+          drawerOpen = true;
+        }
       });
     }
 
