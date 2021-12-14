@@ -1,3 +1,5 @@
+@use 'sass:math';
+@use '@material/animation/index' as animation;
 @use '@material/elevation/index' as elevation;
 @use '@material/theme/index' as theme;
 @use '@material/feature-targeting/index' as feature-targeting;
@@ -7,7 +9,9 @@
 $ripple-target: '.smui-accordion__header__ripple';
 $panel-padding: 16px 24px !default;
 $open-margin: 1rem;
+$extend-width: 10px;
 $transition-duration: 0.2s;
+$content-transition-duration: 0.3s;
 $divider-color-on-light-bg: rgba(0, 0, 0, 0.12) !default;
 $divider-color-on-dark-bg: rgba(255, 255, 255, 0.2) !default;
 
@@ -34,8 +38,25 @@ $divider-color-on-dark-bg: rgba(255, 255, 255, 0.2) !default;
       padding: 0;
       margin-top: 0;
       margin-bottom: 0;
-      transition: margin-top $transition-duration ease,
-        margin-bottom $transition-duration ease;
+      transition: animation.standard(margin-top, $transition-duration),
+        animation.standard(margin-bottom, $transition-duration);
+
+      &.smui-accordion__panel--extend {
+        // Adding width, left, and box-shadow to animate the scaling and
+        // elevation change as well.
+        transition: animation.standard(width, $transition-duration),
+          animation.standard(left, $transition-duration),
+          animation.standard(box-shadow, $transition-duration),
+          animation.standard(margin-top, $transition-duration),
+          animation.standard(margin-bottom, $transition-duration);
+        width: 100%;
+        left: 0;
+
+        &.smui-accordion__panel--open {
+          width: calc(100% + $extend-width);
+          left: math.div($extend-width, 2) * -1;
+        }
+      }
 
       &.smui-accordion__panel--raised,
       &.smui-paper--unelevated {
@@ -127,17 +148,26 @@ $divider-color-on-dark-bg: rgba(255, 255, 255, 0.2) !default;
         .smui-accordion__header__title {
           padding: $panel-padding;
           flex-grow: 1;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
 
           &.smui-accordion__header__title--with-description {
-            width: 30%;
+            flex-basis: 30%;
             max-width: 280px;
+            box-sizing: border-box;
+            padding-inline-end: 0;
           }
         }
 
         .smui-accordion__header__description {
           opacity: 0.48;
           padding: $panel-padding;
+          flex-basis: 0;
           flex-grow: 1;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
 
         .smui-accordion__header__icon {
@@ -146,6 +176,7 @@ $divider-color-on-dark-bg: rgba(255, 255, 255, 0.2) !default;
           margin: $panel-padding;
           margin-top: 0;
           margin-bottom: 0;
+          margin-inline-start: 0;
         }
 
         #{$ripple-target} {
@@ -174,17 +205,23 @@ $divider-color-on-dark-bg: rgba(255, 255, 255, 0.2) !default;
       }
 
       & > .smui-paper__content {
-        padding: $panel-padding;
         overflow: hidden;
-        transition: height $transition-duration ease,
-          padding $transition-duration ease;
-        box-sizing: content-box;
+        transition: animation.standard(height, $content-transition-duration),
+          animation.standard(padding, $content-transition-duration);
+        box-sizing: border-box;
         height: 0;
-      }
-
-      &:not(.smui-accordion__panel--open) > .smui-paper__content {
+        padding: $panel-padding;
         padding-top: 0;
         padding-bottom: 0;
+
+        &.smui-accordion__content--no-transition {
+          transition: none;
+        }
+
+        &.smui-accordion__content--force-open {
+          height: auto;
+          padding: $panel-padding;
+        }
       }
 
       &.smui-accordion__panel--open {
@@ -193,6 +230,7 @@ $divider-color-on-dark-bg: rgba(255, 255, 255, 0.2) !default;
 
         & > .smui-paper__content {
           height: auto;
+          padding: $panel-padding;
         }
       }
     }

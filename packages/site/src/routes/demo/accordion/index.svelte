@@ -21,10 +21,14 @@
   </Demo>
 
   <Demo component={Description} file="accordion/_Description.svelte">
-    Adding descriptions
+    Descriptions
   </Demo>
 
   <Demo component={Icon} file="accordion/_Icon.svelte">Toggle icons</Demo>
+
+  <Demo component={Extend} file="accordion/_Extend.svelte">
+    Extending panels
+  </Demo>
 
   <Demo component={PrimaryColor} file="accordion/_PrimaryColor.svelte">
     Primary color
@@ -48,6 +52,7 @@
 
   import Simple from './_Simple.svelte';
   import Multiple from './_Multiple.svelte';
+  import Extend from './_Extend.svelte';
   import Description from './_Description.svelte';
   import Icon from './_Icon.svelte';
   import PrimaryColor from './_PrimaryColor.svelte';
@@ -62,8 +67,7 @@
   }
 
   * :global(.smui-accordion) {
-    margin: 0 auto 24px;
-    max-width: 800px;
+    margin: 0 12px 24px;
   }
 
   * :global(.smui-accordion:last-child) {

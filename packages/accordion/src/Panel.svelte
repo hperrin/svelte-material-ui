@@ -7,8 +7,11 @@
     'smui-accordion__panel--open': open,
     'smui-accordion__panel--disabled': disabled,
     'smui-accordion__panel--raised': variant === 'raised',
-    ['smui-accordion__panel--elevation-z' + elevation]:
-      elevation !== 0 && variant === 'raised',
+    'smui-accordion__panel--extend': extend,
+    ['smui-accordion__panel--elevation-z' +
+    (extend && open ? extendedElevation : elevation)]:
+      (elevation !== 0 && variant === 'raised') ||
+      (extendedElevation !== 0 && variant === 'raised' && extend && open),
   })}
   {color}
   variant={variant === 'raised' ? 'unelevated' : variant}
@@ -42,6 +45,8 @@
   export let elevation = 1;
   export let open = false;
   export let disabled = false;
+  export let extend = false;
+  export let extendedElevation = 3;
 
   let element: PaperComponentDev;
   let accessor: SMUIAccordionPanelAccessor;
@@ -64,12 +69,14 @@
         // Calculate the height of the content and apply it. This lets the CSS
         // animation run properly.
         if (open) {
-          content.style.height = 'auto';
+          content.classList.add('smui-accordion__content--no-transition');
+          content.classList.add('smui-accordion__content--force-open');
           // Force a reflow to get the height.
           const { height } = content.getBoundingClientRect();
-          content.style.height = '';
+          content.classList.remove('smui-accordion__content--force-open');
           // Force another reflow to reset the height.
           content.getBoundingClientRect();
+          content.classList.remove('smui-accordion__content--no-transition');
           content.style.height = height + 'px';
           content.addEventListener(
             'transitionend',
@@ -81,7 +88,9 @@
             { once: true }
           );
         } else {
-          content.style.height = content.clientHeight + 'px';
+          content.style.height = content.getBoundingClientRect().height + 'px';
+          // Force a reflow.
+          content.getBoundingClientRect();
           requestAnimationFrame(() => {
             if (content) {
               content.style.height = '';

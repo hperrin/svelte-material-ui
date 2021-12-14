@@ -36,6 +36,7 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
+    "@material/animation": "^13.0.0",
     "@material/elevation": "^13.0.0",
     "@material/feature-targeting": "^13.0.0",
     "@material/ripple": "^13.0.0",
