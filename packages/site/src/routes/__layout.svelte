@@ -227,6 +227,14 @@
       separator: true,
     },
     {
+      name: 'Accordion',
+      route: '/demo/accordion/',
+      indent: 0,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/accordion',
+      ],
+    },
+    {
       name: 'Badge',
       route: '/demo/badge/',
       indent: 0,

@@ -1,0 +1,211 @@
+@use '@material/elevation/index' as elevation;
+@use '@material/theme/index' as theme;
+@use '@material/feature-targeting/index' as feature-targeting;
+@use '@material/typography/index' as typography;
+@use '@material/ripple/ripple' as ripple;
+
+$ripple-target: '.smui-accordion__header__ripple';
+$panel-padding: 16px 24px !default;
+$open-margin: 1rem;
+$transition-duration: 0.2s;
+$divider-color-on-light-bg: rgba(0, 0, 0, 0.12) !default;
+$divider-color-on-dark-bg: rgba(255, 255, 255, 0.2) !default;
+
+@mixin core-styles($query: feature-targeting.all()) {
+  $feat-color: feature-targeting.create-target($query, color);
+  $feat-animation: feature-targeting.create-target($query, animation);
+  $feat-structure: feature-targeting.create-target($query, structure);
+
+  @include ripple.common($query);
+
+  .smui-accordion {
+    display: block;
+    position: relative;
+    z-index: 0;
+
+    .smui-accordion__panel {
+      @include ripple.surface($query: $query, $ripple-target: $ripple-target);
+      @include ripple.radius-bounded(
+        $query: $query,
+        $ripple-target: $ripple-target
+      );
+
+      position: relative;
+      padding: 0;
+      margin-top: 0;
+      margin-bottom: 0;
+      transition: margin-top $transition-duration ease,
+        margin-bottom $transition-duration ease;
+
+      &.smui-accordion__panel--raised,
+      &.smui-paper--unelevated {
+        // Create a separator line.
+        border-top-width: 1px;
+        border-top-style: solid;
+        border-top-color: if(
+          theme.tone(theme.$background) == 'dark',
+          $divider-color-on-dark-bg,
+          $divider-color-on-light-bg
+        );
+      }
+
+      // The shadow needs to go on a :before element so it doesn't cover the
+      // previous panel.
+      // Credit: https://blog.dudak.me/2014/css-shadows-under-adjacent-elements/
+      &.smui-paper.smui-accordion__panel--raised {
+        z-index: auto;
+        will-change: auto;
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          z-index: -1;
+        }
+      }
+      &.smui-accordion__panel--raised {
+        @include panel-elevation($query: $query);
+
+        &.smui-paper--color-primary {
+          @include panel-elevation(primary, $query: $query);
+        }
+
+        &.smui-paper--color-secondary {
+          @include panel-elevation(secondary, $query: $query);
+        }
+      }
+
+      &.smui-accordion__panel--raised,
+      &.smui-paper--unelevated {
+        // Hide the separator line.
+
+        &:first-child {
+          border-top-width: 0;
+        }
+
+        &:last-child {
+          border-top-left-radius: 0;
+          border-top-right-radius: 0;
+        }
+
+        &.smui-accordion__panel--open,
+        &.smui-accordion__panel--open + .smui-accordion__panel {
+          border-top-width: 0;
+        }
+      }
+
+      // Hide top border on not first child outlined panels.
+      &.smui-paper--outlined {
+        &:nth-child(1n + 2) {
+          border-top-width: 0;
+        }
+
+        &.smui-accordion__panel--open,
+        &.smui-accordion__panel--open + .smui-accordion__panel {
+          border-top-width: 1px;
+        }
+      }
+
+      // Square off the corners of all but the first and last panels.
+      &:first-child:not(:last-child) {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+      &:not(:first-child, :last-child) {
+        border-radius: 0;
+      }
+
+      & > .smui-accordion__header {
+        @include typography.typography(body1);
+
+        display: flex;
+        cursor: pointer;
+
+        .smui-accordion__header__title {
+          padding: $panel-padding;
+          flex-grow: 1;
+
+          &.smui-accordion__header__title--with-description {
+            width: 30%;
+            max-width: 280px;
+          }
+        }
+
+        .smui-accordion__header__description {
+          opacity: 0.48;
+          padding: $panel-padding;
+          flex-grow: 1;
+        }
+
+        .smui-accordion__header__icon {
+          align-self: center;
+          flex-shrink: 1;
+          margin: $panel-padding;
+          margin-top: 0;
+          margin-bottom: 0;
+        }
+
+        #{$ripple-target} {
+          @include feature-targeting.targets($feat-structure) {
+            position: absolute;
+            // Ripple needs content-box as the box sizing and box-sizing: border-box
+            // is often set as a default, so we override that here.
+            box-sizing: content-box;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+          }
+        }
+      }
+
+      &.smui-accordion__panel--disabled {
+        & > .smui-accordion__header {
+          cursor: initial;
+        }
+
+        & > .smui-accordion__header,
+        & > .smui-paper__content {
+          opacity: 0.38;
+        }
+      }
+
+      & > .smui-paper__content {
+        padding: $panel-padding;
+        overflow: hidden;
+        transition: height $transition-duration ease,
+          padding $transition-duration ease;
+        box-sizing: content-box;
+        height: 0;
+      }
+
+      &:not(.smui-accordion__panel--open) > .smui-paper__content {
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+
+      &.smui-accordion__panel--open {
+        margin-top: $open-margin;
+        margin-bottom: $open-margin;
+
+        & > .smui-paper__content {
+          height: auto;
+        }
+      }
+    }
+  }
+}
+
+@mixin panel-elevation(
+  $color: elevation.$baseline-color,
+  $query: feature-targeting.all()
+) {
+  @for $i from 0 through 24 {
+    &.smui-accordion__panel--elevation-z#{$i}::before {
+      @include elevation.elevation($i, $color, $query: $query);
+    }
+  }
+}

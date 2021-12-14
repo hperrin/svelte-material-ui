@@ -48,3 +48,19 @@
   import CustomColor from './_CustomColor.svelte';
   import ElevationTransition from './_ElevationTransition.svelte';
 </script>
+
+<style>
+  * :global(.paper-container) {
+    padding: 24px;
+    background-color: var(--mdc-theme-background, #f8f8f8);
+  }
+
+  * :global(.smui-paper) {
+    margin: 0 auto 24px;
+    max-width: 800px;
+  }
+
+  * :global(.smui-paper:last-child) {
+    margin-bottom: 0;
+  }
+</style>
