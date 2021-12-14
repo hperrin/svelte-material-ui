@@ -4,13 +4,13 @@
 
 A library of Svelte Material UI components, based on [Material Design Components - Web](https://material.io/develop/web/).
 
-# Demos
+# Demos and Code Samples
 
 https://sveltematerialui.com
 
 # Features
 
-Here are some features you should know about:
+Here are some unique features that help SMUI stand out:
 
 - Full TypeScript support, including HTML attributes.
 - You can add arbitrary attributes to all of the components and many of the elements within them.
@@ -18,20 +18,17 @@ Here are some features you should know about:
 - You can add props to lower components and elements with "$" props, like `input$maxlength="15"`.
 - **All** events are forwarded. This includes DOM events, SMUI events, and custom events.
   - You can add event modifiers with the `on:click$preventDefault$capture={handler}` syntax.
-    - If you use Svelte's native `on:click|preventDefault={handler}` syntax, it will not compile. You have to use "$" instead of "|". (The extra S inside the | stands for SMUI.)
-  - Supported modifiers are:
-    - preventDefault
-    - stopPropagation
-    - passive
-    - nonpassive
-    - capture
-    - once
-- Labels and icons are named exports in the components that use them, or you can use the 'Label' and 'Icon' exports from '@smui/common'. (Except for chips labels and icons, textfield icons, and select icons, because they are special snowflakes.)
+    - You have to use "$" instead of "|" like in native Svelte. (The extra S inside the | stands for SMUI.)
+    - Supported modifiers are: preventDefault, stopPropagation, passive, nonpassive, capture, and once
 - SMUI [supports RTL languages](https://svelte.dev/repl/c2ff2d5dd5404eccb901ba04ef0161be?version=3.44.1).
 
 # Installation
 
 To get started, check out the [installation docs](INSTALL.md) or the [SvelteKit docs](SVELTEKIT.md).
+
+# Need Help?
+
+If you need help using SMUI, join the [Discord server](https://discord.gg/aFzmkrmg9P).
 
 # Migration
 
@@ -51,10 +48,6 @@ You can find older versions of the docs on their respective branch:
 
 - [v5 docs](https://github.com/hperrin/svelte-material-ui/tree/v5#readme)
 - [v4 docs](https://github.com/hperrin/svelte-material-ui/tree/v4#readme)
-
-# Need Help?
-
-If you need help using SMUI, join the new [Discord server](https://discord.gg/aFzmkrmg9P).
 
 # Components
 
@@ -114,6 +107,8 @@ Click a component/package below to go to the documentation. (Note that this docu
 <sub>† This is Sass based, and therefore doesn't require Svelte components. I've included a demo showing how you can use it.</sub>
 
 <sub>‡ This is not an MDC Web component. It is an addition that SMUI provides.</sub>
+
+- Labels and icons are named exports in the components that use them, or you can use the 'Label' and 'Icon' exports from '@smui/common'. (Except for chips labels and icons, textfield icons, and select icons, because they are special snowflakes.)
 
 # License
 

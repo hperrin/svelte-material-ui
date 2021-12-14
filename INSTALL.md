@@ -10,6 +10,10 @@ npm install --save-dev @smui/card
 
 You can also [use SMUI in the Svelte REPL](/REPL.md).
 
+## SvelteKit
+
+For SvelteKit, check out the [SvelteKit instructions](/SVELTEKIT.md). Otherwise, read on.
+
 ## Importing Components
 
 **Please note that these imports require a theme. See the default or custom theme below.**
@@ -44,7 +48,9 @@ If you want the Material Icon, Roboto, and Roboto Mono fonts, be sure to include
 />
 ```
 
-## Using the Default Theme
+## Installing a Theme
+
+### The Default Theme
 
 You can use the prebuilt "bare.css" file from the "svelte-material-ui" package. If you use this option you _can_ mostly customize your theme, but your [theming options](/THEMING.md#theming-the-bare-css) are more limited.
 
@@ -67,10 +73,6 @@ If that's not working (probably because your dependencies aren't copied to your 
 
 You can also use the "bare.css" files from the individual packages if you don't use many components and want smaller file sizes.
 
-## Using a Custom Theme
+### A Custom Theme
 
 Check out the [theming instructions](/THEMING.md) for setting up a custom theme.
-
-## SvelteKit
-
-For SvelteKit, check out the [SvelteKit instructions](/SVELTEKIT.md).

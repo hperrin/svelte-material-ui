@@ -24,7 +24,7 @@ In your package.json file, add this script in the "scripts" section, adjusting t
 "prepare": "smui-theme compile build/smui.css -i src/theme",
 ```
 
-Or for dark mode.
+Or for dark mode support.
 
 ```
 "prepare": "npm run smui-theme-light && npm run smui-theme-dark",
@@ -32,7 +32,28 @@ Or for dark mode.
 "smui-theme-dark": "smui-theme compile build/smui-dark.css -i src/theme/dark",
 ```
 
-Now run `npm run prepare` to build the CSS file(s), then add it/them on your page.
+Now run `npm run prepare` to build the CSS file(s), then add it/them on your page. Something like this, adjusting the paths as needed.
+
+```html
+<!-- SMUI Styles -->
+<link rel="stylesheet" href="/static/smui.css" />
+```
+
+Or for dark mode support.
+
+```html
+<!-- SMUI Styles -->
+<link
+  rel="stylesheet"
+  href="/static/smui.css"
+  media="(prefers-color-scheme: light)"
+/>
+<link
+  rel="stylesheet"
+  href="/static/smui-dark.css"
+  media="screen and (prefers-color-scheme: dark)"
+/>
+```
 
 Note: The smui-theme compiler will only include the Sass for the packages installed when it is run. If you install a new SMUI package, you should run `npm run prepare` to rebuild the CSS.
 
@@ -47,14 +68,13 @@ Here is an example `_smui-theme.scss` file you can use as a starting point.
 
 $background: #fff;
 
-@use '@material/theme/index' as theme with
-  (
-    $primary: color-palette.$purple-500,
-    $secondary: color-palette.$teal-600,
-    $surface: #fff,
-    $background: $background,
-    $error: #b00020
-  );
+@use '@material/theme/index' as theme with (
+  $primary: color-palette.$purple-500,
+  $secondary: color-palette.$teal-600,
+  $surface: #fff,
+  $background: $background,
+  $error: #b00020
+);
 
 html,
 body {

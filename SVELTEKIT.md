@@ -1,6 +1,6 @@
 # SvelteKit Installation
 
-Check out the [SvelteKit example repo](https://github.com/hperrin/smui-example-sveltekit).
+(You can also check out the [SvelteKit example repo](https://github.com/hperrin/smui-example-sveltekit).)
 
 You will need to install the packages you use individually as well as the theme package.
 
@@ -18,7 +18,7 @@ Create your theme files with `smui-theme`.
 npx smui-theme template src/theme
 ```
 
-You can [modify your theme variables](/THEMING.md) in the files now in `src/theme`.
+You can [modify your theme variables](/THEMING.md#theme-variables) in the files now in `src/theme`.
 
 You'll need one of these sets of prepare scripts in your `package.json` file.
 
@@ -29,7 +29,7 @@ You'll need one of these sets of prepare scripts in your `package.json` file.
   "smui-theme": "smui-theme compile static/smui.css -i src/theme"
   ```
 
-- With Dark Mode.
+- With Dark Mode support.
 
   ```
   "prepare": "npm run smui-theme-light && npm run smui-theme-dark",
@@ -57,14 +57,14 @@ Now in your `src/app.html` file, add the following to the `head` section:
 />
 ```
 
-And this for no Dark Mode support.
+And this for without Dark Mode support.
 
 ```html
 <!-- SMUI Styles -->
 <link rel="stylesheet" href="/smui.css" />
 ```
 
-Or this for Dark Mode.
+Or this for with Dark Mode support.
 
 ```html
 <!-- SMUI Styles -->
