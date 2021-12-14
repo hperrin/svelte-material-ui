@@ -1,6 +1,6 @@
 {
   "name": "@smui/menu-surface",
-  "version": "6.0.0-beta.6",
+  "version": "6.0.0-beta.7",
   "description": "Svelte Material UI - Menu Surface",
   "type": "module",
   "module": "dist/index.js",
@@ -38,7 +38,7 @@
   "dependencies": {
     "@material/animation": "^13.0.0",
     "@material/menu-surface": "^13.0.0",
-    "@smui/common": "^6.0.0-beta.6",
+    "@smui/common": "^6.0.0-beta.7",
     "svelte2tsx": "^0.4.11"
   },
   "devDependencies": {

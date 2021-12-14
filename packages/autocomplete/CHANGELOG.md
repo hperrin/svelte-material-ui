@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0-beta.7](https://github.com/hperrin/svelte-material-ui/compare/v6.0.0-beta.6...v6.0.0-beta.7) (2021-12-14)
+
+
+### Bug Fixes
+
+* add disabled prop in autocomplete ([6331151](https://github.com/hperrin/svelte-material-ui/commit/63311517dc3655e5dbd3b99c18d91376bd1b8e3a))
+* properly forward the label to the textfield in autocomplete ([8ffcab7](https://github.com/hperrin/svelte-material-ui/commit/8ffcab7671d0cd7f08106970d0875da389fbcd71))
+
+
+
+
+
 # [6.0.0-beta.6](https://github.com/hperrin/svelte-material-ui/compare/v6.0.0-beta.5...v6.0.0-beta.6) (2021-12-11)
 
 
