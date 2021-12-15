@@ -8,8 +8,7 @@
   </div>
   <div>
     <!--
-      Notice that for undefined, the input$input$emptyValueUndefined prop is
-      required.
+      Notice that for undefined, the input$emptyValueUndefined prop is required.
     -->
     <Textfield
       bind:value={valueUndefined}
