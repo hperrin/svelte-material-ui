@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0-beta.9](https://github.com/hperrin/svelte-material-ui/compare/v6.0.0-beta.8...v6.0.0-beta.9) (2021-12-15)
+
+
+### Bug Fixes
+
+* allow textfield to use undefined as value ([351acbb](https://github.com/hperrin/svelte-material-ui/commit/351acbb12b800b45e781a63fddf18648fc99ef73))
+
+
+
+
+
 # [6.0.0-beta.8](https://github.com/hperrin/svelte-material-ui/compare/v6.0.0-beta.7...v6.0.0-beta.8) (2021-12-14)
 
 
