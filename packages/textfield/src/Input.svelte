@@ -28,6 +28,11 @@
   } from '@smui/common/internal';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
+  interface UninitializedValue extends Function {}
+  let uninitializedValue: UninitializedValue = () => {};
+  function isUninitializedValue(value: any): value is UninitializedValue {
+    return value === uninitializedValue;
+  }
 
   // Remember to update types file if you add/remove/rename props.
   export let use: ActionArray = [];
@@ -37,15 +42,30 @@
   // Always having a placeholder fixes Safari's baseline alignment.
   // See: https://github.com/philipwalton/flexbugs/issues/270
   export let placeholder = ' ';
-  export let value: string | number | null | undefined = '';
+
+  // Some trickery to detect uninitialized values but also have the right types.
+  export let value: string | number | null | undefined =
+    uninitializedValue as unknown as undefined;
+  const valueUninitialized = isUninitializedValue(value);
+  if (valueUninitialized) {
+    value = '';
+  }
+  // Done with the trickery.
+
   export let files: FileList | null = null;
   export let dirty = false;
   export let invalid = false;
   export let updateInvalid = true;
   /** When the value of the input is "", set value prop to null. */
   export let emptyValueNull = value === null;
+  if (valueUninitialized && emptyValueNull) {
+    value = null;
+  }
   /** When the value of the input is "", set value prop to undefined. */
   export let emptyValueUndefined = value === undefined;
+  if (valueUninitialized && emptyValueUndefined) {
+    value = undefined;
+  }
 
   let element: HTMLInputElement;
   let internalAttrs: { [k: string]: string | undefined } = {};

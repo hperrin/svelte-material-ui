@@ -4,7 +4,6 @@
     bind:value
     showMenuWithNoInput={false}
     label="Fruit"
-    class="demo-autocomplete-width"
   >
     <Text
       slot="loading"
@@ -60,9 +59,3 @@
     );
   }
 </script>
-
-<style>
-  * :global(.demo-autocomplete-width) {
-    min-width: 200px;
-  }
-</style>

@@ -4,7 +4,6 @@
       options={fruits}
       bind:value={valueStandard}
       bind:text={textStandard}
-      class="demo-autocomplete-width"
     >
       <Textfield label="Fruit" bind:value={textStandard} />
     </Autocomplete>
@@ -17,7 +16,6 @@
       options={fruits}
       bind:value={valueFilled}
       bind:text={textFilled}
-      class="demo-autocomplete-width"
     >
       <Textfield label="Fruit" bind:value={textFilled} variant="filled" />
     </Autocomplete>
@@ -30,7 +28,6 @@
       options={fruits}
       bind:value={valueOutlined}
       bind:text={textOutlined}
-      class="demo-autocomplete-width"
     >
       <Textfield label="Fruit" bind:value={textOutlined} variant="outlined" />
     </Autocomplete>
@@ -52,26 +49,3 @@
   let valueOutlined: string | undefined = undefined;
   let textOutlined = '';
 </script>
-
-<style>
-  .margins {
-    margin: 18px 0 24px;
-  }
-
-  .columns {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-
-  .columns > * {
-    margin-left: 12px;
-  }
-  .columns > *:first-child {
-    margin-left: 0;
-  }
-
-  * :global(.demo-autocomplete-width) {
-    min-width: 200px;
-  }
-</style>

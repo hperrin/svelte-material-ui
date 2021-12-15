@@ -108,6 +108,10 @@
     Different input types
   </Demo>
 
+  <Demo component={NullAndUndefined} file="textfield/_NullAndUndefined.svelte">
+    Empty Value Meaning Null and Undefined
+  </Demo>
+
   <Demo component={ManualSetup} file="textfield/_ManualSetup.svelte">
     Manual setup
   </Demo>
@@ -146,6 +150,7 @@
   import FixedSizeTextarea from './_FixedSizeTextarea.svelte';
   import ElementsInLabel from './_ElementsInLabel.svelte';
   import DifferentTypes from './_DifferentTypes.svelte';
+  import NullAndUndefined from './_NullAndUndefined.svelte';
   import ManualSetup from './_ManualSetup.svelte';
   import Solo from './_Solo.svelte';
 </script>
@@ -158,12 +163,15 @@
   * :global(.columns) {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
   }
 
   * :global(.columns > *) {
     flex-basis: 0;
-    min-width: 218px;
+    min-width: 245px;
+    margin-right: 12px;
+  }
+  * :global(.columns > *:last-child) {
+    margin-right: 0;
   }
 
   * :global(.columns .mdc-text-field),

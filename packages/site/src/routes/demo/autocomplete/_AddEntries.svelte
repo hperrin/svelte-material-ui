@@ -11,7 +11,6 @@
       dialogOpen = true;
     }}
     label="Dialog"
-    class="demo-autocomplete-width"
   >
     <div slot="no-matches">
       <Text>Add item</Text>
@@ -91,9 +90,3 @@
     dialogOpen = false;
   }
 </script>
-
-<style>
-  * :global(.demo-autocomplete-width) {
-    min-width: 200px;
-  }
-</style>

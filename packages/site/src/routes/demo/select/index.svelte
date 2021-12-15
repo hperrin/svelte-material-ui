@@ -63,10 +63,11 @@
   * :global(.columns) {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
   }
 
   * :global(.columns > *) {
+    flex-basis: 0;
+    min-width: 245px;
     margin-right: 12px;
   }
   * :global(.columns > *:last-child) {

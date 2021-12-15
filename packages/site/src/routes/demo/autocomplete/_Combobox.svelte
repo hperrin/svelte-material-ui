@@ -1,11 +1,5 @@
 <div>
-  <Autocomplete
-    combobox
-    options={fruits}
-    bind:value
-    label="Fruit"
-    class="demo-autocomplete-width"
-  />
+  <Autocomplete combobox options={fruits} bind:value label="Fruit" />
   <pre class="status">Selected: {value || ''}</pre>
 </div>
 
@@ -25,9 +19,3 @@
   ];
   let value: string | undefined = undefined;
 </script>
-
-<style>
-  * :global(.demo-autocomplete-width) {
-    min-width: 200px;
-  }
-</style>

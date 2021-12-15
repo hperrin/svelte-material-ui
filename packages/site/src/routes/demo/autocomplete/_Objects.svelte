@@ -5,7 +5,6 @@
       option ? `${option.label} (${option.id})` : ''}
     bind:value
     label="Objects"
-    class="demo-autocomplete-width"
   />
 
   <pre class="status">Selected: {value ? JSON.stringify(value) : ''}</pre>
@@ -44,9 +43,3 @@
 
   let value: Item | undefined = undefined;
 </script>
-
-<style>
-  * :global(.demo-autocomplete-width) {
-    min-width: 200px;
-  }
-</style>

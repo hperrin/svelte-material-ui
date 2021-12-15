@@ -291,7 +291,9 @@
 
   // Some trickery to detect uninitialized values but also have the right types.
   export let value: string | number | null | undefined =
-    uninitializedValue as unknown as undefined;
+    $$restProps.input$emptyValueUndefined
+      ? undefined
+      : (uninitializedValue as unknown as undefined);
   export let files: FileList | null = uninitializedValue as unknown as null;
   const valued = !isUninitializedValue(value) || !isUninitializedValue(files);
   if (isUninitializedValue(value)) {

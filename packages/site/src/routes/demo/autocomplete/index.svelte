@@ -57,3 +57,28 @@
   import Async from './_Async.svelte';
   import Manual from './_Manual.svelte';
 </script>
+
+<style>
+  * :global(.margins) {
+    margin: 18px 0 24px;
+  }
+
+  * :global(.columns) {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  * :global(.columns > *) {
+    flex-basis: 0;
+    min-width: 245px;
+    margin-right: 12px;
+  }
+  * :global(.columns > *:last-child) {
+    margin-right: 0;
+  }
+
+  * :global(.columns .smui-autocomplete),
+  * :global(.columns .mdc-text-field) {
+    width: 218px;
+  }
+</style>
