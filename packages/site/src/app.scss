@@ -100,6 +100,13 @@ body,
   }
 }
 
+code {
+  background-color: theme.$secondary;
+  color: theme.$on-secondary;
+  border-radius: 4px;
+  padding: 0 2px;
+}
+
 section.markdown {
   h1 {
     @include typography.typography('headline2');

@@ -20,6 +20,8 @@ npx smui-theme template src/theme
 
 You can [modify your theme variables](/THEMING.md#theme-variables) in the files now in `src/theme`.
 
+## Theme Build Scripts
+
 You'll need one of these sets of prepare scripts in your `package.json` file.
 
 - Without Dark Mode support.
@@ -36,6 +38,8 @@ You'll need one of these sets of prepare scripts in your `package.json` file.
   "smui-theme-light": "smui-theme compile static/smui.css -i src/theme",
   "smui-theme-dark": "smui-theme compile static/smui-dark.css -i src/theme/dark"
   ```
+
+## Stylesheets
 
 Now in your `src/app.html` file, add the following to the `head` section:
 
@@ -75,3 +79,33 @@ Or this for with Dark Mode support.
   media="screen and (prefers-color-scheme: dark)"
 />
 ```
+
+## Required Vite Config
+
+Now you'll need to add one special config entry in your `svelte.config.js` file. In that file, within the "config" object, underneath the "kit" property, add the following "vite" config.
+
+```js
+// In this definition...
+const config = {
+  // ... ignore the stuff here
+
+  // Under this object...
+  kit: {
+    // ... ignore the stuff here
+
+    // Add this part. ---
+    vite: {
+      ssr: {
+        noExternal: [/^@smui(?:-extra)?\//],
+      },
+    },
+    // All done! ---
+  },
+};
+```
+
+If you don't add this config, you'll see errors like [`Unknown file extension ".svelte" for ...`](https://github.com/hperrin/svelte-material-ui/issues/375).
+
+## Finishing Up
+
+After that, run `npm run prepare` to build your CSS file, then you can run `npm run dev` to start developing. Happy coding!
