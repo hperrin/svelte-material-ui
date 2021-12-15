@@ -84,6 +84,13 @@ body,
   margin-bottom: 2.5em;
 }
 
+.highlight {
+  background-color: #282b2e;
+  color: #e0e2e4;
+  padding: 1em !important;
+  border-radius: 5px;
+}
+
 .status {
   max-width: 100%;
   font-size: 0.9em;
@@ -100,11 +107,11 @@ body,
   }
 }
 
-code {
-  background-color: theme.$secondary;
-  color: theme.$on-secondary;
+code:not([class]) {
+  background-color: #282b2e;
+  color: #e0e2e4;
   border-radius: 4px;
-  padding: 0 2px;
+  padding: 0 3px;
 }
 
 section.markdown {

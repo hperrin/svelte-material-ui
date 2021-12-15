@@ -82,6 +82,8 @@
     "@smui/touch-target": "^6.0.0-beta.8",
     "@sveltejs/adapter-static": "next",
     "@sveltejs/kit": "next",
+    "highlight.js": "^11.3.1",
+    "highlightjs-svelte": "^1.0.6",
     "mdsvex": "^0.9.8",
     "remark-slug": "^7.0.1",
     "sass": "^1.44.0",

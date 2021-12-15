@@ -1,10 +1,22 @@
 import staticAdapter from '@sveltejs/adapter-static';
 import preprocess from 'svelte-preprocess';
-import mdsvex from 'mdsvex';
+import { mdsvex } from 'mdsvex';
+import hljs from 'highlight.js';
+import hljs_svelte from 'highlightjs-svelte';
 import slug from 'remark-slug';
 import path from 'path';
 
 const { typescript } = preprocess;
+hljs_svelte(hljs);
+
+function highlighter(code, lang) {
+  return `<pre class="highlight"><code class="language-${
+    lang || 'plaintext'
+  }">${hljs
+    .highlight(code, { language: lang || 'plaintext' })
+    .value.replace(/\{/g, () => '&#123;')
+    .replace(/\}/g, () => '&#125;')}</code></pre>`;
+}
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -31,12 +43,10 @@ const config = {
   // options passed to svelte.preprocess (https://svelte.dev/docs#svelte_preprocess)
   preprocess: [
     typescript(),
-    mdsvex.mdsvex({
+    mdsvex({
       extensions: ['.svx', '.md'],
-      highlight: {
-        alias: { svelte: 'html' },
-      },
       remarkPlugins: [slug],
+      highlight: { highlighter },
     }),
   ],
 };

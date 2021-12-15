@@ -25,7 +25,7 @@
       <script
         src="https://emgithub.com/embed.js?target={encodeURIComponent(
           `https://github.com/hperrin/svelte-material-ui/blob/master/packages/site/src/routes/demo/${sourceFile}`
-        )}&style=github&showBorder=on&showLineNumbers=on&showFileMeta=on"
+        )}&style=obsidian&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on&fetchFromJsDelivr=on"
         rel="external"></script>
     {/if}
     {#if sourceHTML}
