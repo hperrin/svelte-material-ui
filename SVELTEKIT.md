@@ -96,7 +96,7 @@ const config = {
     // Add this part. ---
     vite: {
       ssr: {
-        noExternal: [/^@smui(?:-extra)?\//],
+        noExternal: [/^@material\//, /^@smui(?:-extra)?\//],
       },
     },
     // All done! ---
