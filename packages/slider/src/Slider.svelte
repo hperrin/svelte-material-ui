@@ -334,11 +334,22 @@
     if (previousValue !== value && typeof value === 'number') {
       instance.setValue(value);
     }
-    if (previousStart !== start && typeof start === 'number') {
-      instance.setValueStart(start);
-    }
-    if (previousEnd !== end && typeof end === 'number') {
-      instance.setValue(end);
+    if (previousStart !== start && typeof start === 'number' && previousEnd !== end && typeof end === 'number') {
+      // Prevent setting the start value temporary higher than the current end value.
+      if (start > previousEnd) {
+        instance.setValue(end);
+        instance.setValueStart(start);
+      } else {
+        instance.setValueStart(start);
+        instance.setValue(end);
+      }
+    } else {
+      if (previousStart !== start && typeof start === 'number') {
+        instance.setValueStart(start);
+      }
+      if (previousEnd !== end && typeof end === 'number') {
+        instance.setValue(end);
+      }
     }
     previousValue = value;
     previousStart = start;
