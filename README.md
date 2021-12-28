@@ -56,7 +56,8 @@ Click a component/package below to go to the documentation. (Note that this docu
 - [Accordion](packages/accordion/README.md)‡
 - [Badge](packages/badge/README.md)‡
 - [Banner](packages/banner/README.md)
-- [Button](packages/button/README.md)
+- Action Buttons
+  - [Button](packages/button/README.md)
   - [Floating Action Button](packages/fab/README.md)
   - [Icon Button](packages/icon-button/README.md)
 - [Card](packages/card/README.md)

@@ -1,9 +1,9 @@
 <svelte:head>
-  <title>Snackbars - SMUI</title>
+  <title>Snackbar - SMUI</title>
 </svelte:head>
 
 <section>
-  <h2>Snackbars</h2>
+  <h2>Snackbar</h2>
 
   <h5>Installation</h5>
 

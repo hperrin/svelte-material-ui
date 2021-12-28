@@ -251,9 +251,13 @@
       ],
     },
     {
+      name: 'Action Buttons',
+      indent: 0,
+    },
+    {
       name: 'Button',
       route: '/demo/button/',
-      indent: 0,
+      indent: 1,
       repos: [
         'https://github.com/hperrin/svelte-material-ui/tree/master/packages/button',
       ],

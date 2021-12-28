@@ -57,17 +57,17 @@
           </Icon>
         </Title>
         <Content>
-          SMUI is based on the awesome <a
+          Many SMUI components are based on <a
             style="color: #fff;"
             href="https://material.io/develop/web"
-            target="_blank">Material Design Component for Web</a
+            target="_blank">Material Design Components for Web</a
           >, by Google. It integrates these components using the
           <a
             style="color: #fff;"
             href="https://material.io/develop/web/guides/framework-integration"
             target="_blank">"Advanced Approach"</a
-          >, where the component Foundation does the business logic, and the
-          SMUI component handles DOM updates and data binding.
+          >, where the MDC Foundation does some business logic, and the SMUI
+          component handles DOM updates and data binding.
         </Content>
       </Paper>
       <Paper color="secondary" class="box">
