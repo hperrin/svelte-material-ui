@@ -10,7 +10,7 @@
   on:SMUIAccordionPanel:mount={handlePanelMount}
   on:SMUIAccordionPanel:unmount={handlePanelUnmount}
   on:SMUIAccordionPanel:activate={handlePanelActivate}
-  on:SMUIAccordionPanel:opened={handlePanelOpened}
+  on:SMUIAccordionPanel:opening={handlePanelOpening}
   {...$$restProps}
 >
   <slot />
@@ -82,7 +82,7 @@
     accessor.setOpen(!accessor.open);
   }
 
-  function handlePanelOpened(
+  function handlePanelOpening(
     event: CustomEvent<{ accessor: SMUIAccordionPanelAccessor }>
   ) {
     const { accessor } = event.detail;

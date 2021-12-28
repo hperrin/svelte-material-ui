@@ -12,7 +12,7 @@ declare namespace svelte.JSX {
     ['onSMUIAccordionPanel:activate']?: (
       event: CustomEvent<any> & { target: T }
     ) => any;
-    ['onSMUIAccordionPanel:opened']?: (
+    ['onSMUIAccordionPanel:opening']?: (
       event: CustomEvent<any> & { target: T }
     ) => any;
   }

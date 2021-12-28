@@ -84,6 +84,7 @@
               if (content) {
                 content.style.height = '';
               }
+              dispatch(getElement(), 'SMUIAccordionPanel:opened', { accessor });
             },
             { once: true }
           );
@@ -95,6 +96,7 @@
             if (content) {
               content.style.height = '';
             }
+            dispatch(getElement(), 'SMUIAccordionPanel:closed', { accessor });
           });
         }
 
@@ -105,7 +107,7 @@
 
     dispatch(
       getElement(),
-      open ? 'SMUIAccordionPanel:opened' : 'SMUIAccordionPanel:closed',
+      open ? 'SMUIAccordionPanel:opening' : 'SMUIAccordionPanel:closing',
       { accessor }
     );
   }
