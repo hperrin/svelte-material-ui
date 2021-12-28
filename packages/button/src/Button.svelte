@@ -96,6 +96,12 @@
   $: secondaryProp =
     context === 'banner' ? {} : { secondary: $$props.secondary };
 
+  let previousDisabled = $$restProps.disabled;
+  $: if (previousDisabled !== $$restProps.disabled) {
+    getElement().blur();
+    previousDisabled = $$restProps.disabled;
+  }
+
   setContext('SMUI:label:context', 'button');
   setContext('SMUI:icon:context', 'button');
 

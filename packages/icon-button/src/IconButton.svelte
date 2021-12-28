@@ -141,6 +141,15 @@
     }
   })();
 
+  let previousDisabled = $$restProps.disabled;
+  $: if (previousDisabled !== $$restProps.disabled) {
+    const elem = getElement() as HTMLButtonElement;
+    if ('blur' in elem) {
+      elem.blur();
+    }
+    previousDisabled = $$restProps.disabled;
+  }
+
   setContext('SMUI:icon:context', 'icon-button');
 
   let oldToggle: boolean | null = null;
