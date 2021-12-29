@@ -1,5 +1,7 @@
 <div style="min-width: 100px;">
-  <Button on:click={() => menu.setOpen(true)}>Open Menu</Button>
+  <Button on:click={() => menu.setOpen(true)}>
+    <Label>Open Menu</Label>
+  </Button>
   <Menu bind:this={menu}>
     <List>
       <SelectionGroup>
@@ -48,7 +50,7 @@
     SelectionGroupIcon,
   } from '@smui/menu';
   import List, { Item, Separator, Text } from '@smui/list';
-  import Button from '@smui/button';
+  import Button, { Label } from '@smui/button';
 
   let menu: MenuComponentDev;
   let clicked = 'nothing yet';

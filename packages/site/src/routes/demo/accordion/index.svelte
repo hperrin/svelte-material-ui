@@ -52,6 +52,10 @@
       can.
     </svelte:fragment>
   </Demo>
+
+  <Demo component={Complex} file="accordion/_Complex.svelte">
+    Complex content
+  </Demo>
 </section>
 
 <script lang="ts">
@@ -66,6 +70,7 @@
   import PrimaryColor from './_PrimaryColor.svelte';
   import SecondaryColor from './_SecondaryColor.svelte';
   import PaperProps from './_PaperProps.svelte';
+  import Complex from './_Complex.svelte';
 </script>
 
 <style>

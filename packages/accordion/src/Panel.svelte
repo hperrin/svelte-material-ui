@@ -5,6 +5,7 @@
     [className]: true,
     'smui-accordion__panel': true,
     'smui-accordion__panel--open': open,
+    'smui-accordion__panel--opened': opened,
     'smui-accordion__panel--disabled': disabled,
     'smui-accordion__panel--non-interactive': nonInteractive,
     'smui-accordion__panel--raised': variant === 'raised',
@@ -53,6 +54,7 @@
 
   let element: PaperComponentDev;
   let accessor: SMUIAccordionPanelAccessor;
+  let opened = open;
 
   const disabledStore = writable(disabled);
   $: $disabledStore = disabled;
@@ -90,6 +92,10 @@
               if (content) {
                 content.style.height = '';
               }
+
+              // Assign only when the panel is fully opened.
+              opened = true;
+
               dispatch(getElement(), 'SMUIAccordionPanel:opened', { accessor });
             },
             { once: true }
@@ -104,6 +110,9 @@
             }
             dispatch(getElement(), 'SMUIAccordionPanel:closed', { accessor });
           });
+
+          // Assign as soon as the panel is closing.
+          opened = false;
         }
 
         // Set the aria-hidden property.

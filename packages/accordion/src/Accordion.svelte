@@ -6,11 +6,14 @@
     [className]: true,
     'smui-accordion': true,
     'smui-accordion--multiple': multiple,
+    'smui-accordion--with-open-dialog': withOpenDialog,
   })}
   on:SMUIAccordionPanel:mount={handlePanelMount}
   on:SMUIAccordionPanel:unmount={handlePanelUnmount}
   on:SMUIAccordionPanel:activate={handlePanelActivate}
   on:SMUIAccordionPanel:opening={handlePanelOpening}
+  on:SMUIDialog:opening|capture={() => (withOpenDialog = true)}
+  on:SMUIDialog:closed|capture={() => (withOpenDialog = false)}
   {...$$restProps}
 >
   <slot />
@@ -37,6 +40,7 @@
 
   let element: HTMLDivElement;
   let panelAccessorSet = new Set<SMUIAccordionPanelAccessor>();
+  let withOpenDialog = false;
 
   function handlePanelMount(event: CustomEvent<SMUIAccordionPanelAccessor>) {
     const accessor = event.detail;

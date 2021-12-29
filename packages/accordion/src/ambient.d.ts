@@ -15,5 +15,7 @@ declare namespace svelte.JSX {
     ['onSMUIAccordionPanel:opening']?: (
       event: CustomEvent<any> & { target: T }
     ) => any;
+    ['onSMUIDialog:opening']?: (event: CustomEvent<any> & { target: T }) => any;
+    ['onSMUIDialog:closed']?: (event: CustomEvent<any> & { target: T }) => any;
   }
 }

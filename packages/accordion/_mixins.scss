@@ -27,6 +27,10 @@ $divider-color-on-dark-bg: rgba(255, 255, 255, 0.2) !default;
     position: relative;
     z-index: 0;
 
+    &.smui-accordion--with-open-dialog {
+      z-index: auto;
+    }
+
     .smui-accordion__panel {
       @include ripple.surface($query: $query, $ripple-target: $ripple-target);
       @include ripple.radius-bounded(
@@ -226,6 +230,10 @@ $divider-color-on-dark-bg: rgba(255, 255, 255, 0.2) !default;
           height: auto;
           padding: $panel-padding;
         }
+      }
+
+      &.smui-accordion__panel--opened > .smui-paper__content {
+        overflow: visible;
       }
 
       &.smui-accordion__panel--open {
