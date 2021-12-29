@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0-beta.11](https://github.com/hperrin/svelte-material-ui/compare/v6.0.0-beta.10...v6.0.0-beta.11) (2021-12-29)
+
+
+### Features
+
+* add non-interactive prop to accordion panels ([dbed3e7](https://github.com/hperrin/svelte-material-ui/commit/dbed3e77c64622bf2c37405f19814397b00b757c))
+
+
+
+
+
 # [6.0.0-beta.10](https://github.com/hperrin/svelte-material-ui/compare/v6.0.0-beta.9...v6.0.0-beta.10) (2021-12-28)
 
 **Note:** Version bump only for package @smui/ripple

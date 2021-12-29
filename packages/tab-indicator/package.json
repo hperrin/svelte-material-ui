@@ -1,6 +1,6 @@
 {
   "name": "@smui/tab-indicator",
-  "version": "6.0.0-beta.10",
+  "version": "6.0.0-beta.11",
   "description": "Svelte Material UI - Tab Indicator",
   "type": "module",
   "module": "dist/index.js",
@@ -37,7 +37,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@material/tab-indicator": "^13.0.0",
-    "@smui/common": "^6.0.0-beta.10",
+    "@smui/common": "^6.0.0-beta.11",
     "svelte2tsx": "^0.4.11"
   },
   "devDependencies": {
