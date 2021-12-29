@@ -19,7 +19,19 @@
 
   <Demo component={Group} file="switch/_Group.svelte">Group switch</Demo>
 
-  <Demo component={NoIcons} file="switch/_NoIcons.svelte">No icons</Demo>
+  <Demo component={NoIcons} file="switch/_NoIcons.svelte">
+    No icons
+    <svelte:fragment slot="subtitle">
+      Think about your <a
+        href="https://developer.chrome.com/blog/new-in-devtools-83/#vision-deficiencies"
+        target="_blank">color</a
+      >
+      <a
+        href="https://developer.mozilla.org/en-US/docs/Tools/Accessibility_inspector/Simulation"
+        target="_blank">blind</a
+      > users before you choose this.
+    </svelte:fragment>
+  </Demo>
 
   <Demo component={Events} file="switch/_Events.svelte">Events</Demo>
 </section>
