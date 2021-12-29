@@ -33,8 +33,8 @@
         </ul>
       </Content>
     </Panel>
-    <Panel disabled>
-      <Header>Panel 4 (disabled)</Header>
+    <Panel>
+      <Header>Panel 4</Header>
       <Content>The content for panel 4.</Content>
     </Panel>
   </Accordion>

@@ -62,6 +62,10 @@ export default function Ripple(
         removeClass('smui-ripple-surface--primary');
         removeClass('smui-ripple-surface--secondary');
       }
+    } else {
+      removeClass('mdc-ripple-surface');
+      removeClass('smui-ripple-surface--primary');
+      removeClass('smui-ripple-surface--secondary');
     }
 
     // Handle activation first.

@@ -10,7 +10,16 @@ export declare class PanelComponentDev extends Component {
    */
   $$prop_def: Omit<
     PaperComponentDev['$$prop_def'],
-    'use' | 'class' | 'variant' | 'color' | 'elevation' | 'open' | 'disabled'
+    | 'use'
+    | 'class'
+    | 'variant'
+    | 'color'
+    | 'elevation'
+    | 'open'
+    | 'disabled'
+    | 'nonInteractive'
+    | 'extend'
+    | 'extendedElevation'
   > &
     Component['$$prop_def'];
 }

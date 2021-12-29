@@ -20,6 +20,13 @@
     </svelte:fragment>
   </Demo>
 
+  <Demo
+    component={DisabledNonInteractive}
+    file="accordion/_DisabledNonInteractive.svelte"
+  >
+    Disabled and Non-Interactive Panels
+  </Demo>
+
   <Demo component={Description} file="accordion/_Description.svelte">
     Descriptions
   </Demo>
@@ -52,6 +59,7 @@
 
   import Simple from './_Simple.svelte';
   import Multiple from './_Multiple.svelte';
+  import DisabledNonInteractive from './_DisabledNonInteractive.svelte';
   import Extend from './_Extend.svelte';
   import Description from './_Description.svelte';
   import Icon from './_Icon.svelte';

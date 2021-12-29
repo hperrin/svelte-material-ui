@@ -143,6 +143,7 @@ $divider-color-on-dark-bg: rgba(255, 255, 255, 0.2) !default;
         @include typography.typography(body1);
 
         display: flex;
+        flex-wrap: wrap;
         cursor: pointer;
 
         .smui-accordion__header__title {
@@ -193,11 +194,14 @@ $divider-color-on-dark-bg: rgba(255, 255, 255, 0.2) !default;
         }
       }
 
-      &.smui-accordion__panel--disabled {
+      &.smui-accordion__panel--disabled,
+      &.smui-accordion__panel--non-interactive {
         & > .smui-accordion__header {
           cursor: initial;
         }
+      }
 
+      &.smui-accordion__panel--disabled {
         & > .smui-accordion__header,
         & > .smui-paper__content {
           opacity: 0.38;
@@ -227,6 +231,14 @@ $divider-color-on-dark-bg: rgba(255, 255, 255, 0.2) !default;
       &.smui-accordion__panel--open {
         margin-top: $open-margin;
         margin-bottom: $open-margin;
+
+        &:first-child {
+          margin-top: 0;
+        }
+
+        &:last-child {
+          margin-bottom: 0;
+        }
 
         & > .smui-paper__content {
           height: auto;

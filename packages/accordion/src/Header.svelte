@@ -5,8 +5,8 @@
   use:Ripple={{
     ripple,
     unbounded: false,
-    surface: true,
-    disabled: $disabled,
+    surface: !$nonInteractive,
+    disabled: $disabled || $nonInteractive,
     addClass,
     removeClass,
     addStyle,
@@ -21,13 +21,15 @@
     .concat([style])
     .join(' ')}
   role="button"
-  tabindex="0"
+  tabindex={$nonInteractive ? -1 : 0}
   aria-expanded={$open ? 'true' : 'false'}
   on:click={handleClick}
   on:keydown={handleKeyDown}
   {...$$restProps}
 >
-  <div class="smui-accordion__header__ripple" />
+  {#if ripple}
+    <div class="smui-accordion__header__ripple" />
+  {/if}
   <div
     class={classMap({
       'smui-accordion__header__title': true,
@@ -75,6 +77,9 @@
 
   const disabled = getContext<SvelteStore<boolean>>(
     'SMUI:accordion:panel:disabled'
+  );
+  const nonInteractive = getContext<SvelteStore<boolean>>(
+    'SMUI:accordion:panel:nonInteractive'
   );
   const open = getContext<SvelteStore<boolean>>('SMUI:accordion:panel:open');
 

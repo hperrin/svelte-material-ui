@@ -6,6 +6,7 @@
     'smui-accordion__panel': true,
     'smui-accordion__panel--open': open,
     'smui-accordion__panel--disabled': disabled,
+    'smui-accordion__panel--non-interactive': nonInteractive,
     'smui-accordion__panel--raised': variant === 'raised',
     'smui-accordion__panel--extend': extend,
     ['smui-accordion__panel--elevation-z' +
@@ -36,6 +37,7 @@
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
+  // Remember to update types file if you add/remove/rename props.
   export let use: ActionArray = [];
   $: usePass = [forwardEvents, ...use] as ActionArray;
   let className = '';
@@ -45,6 +47,7 @@
   export let elevation = 1;
   export let open = false;
   export let disabled = false;
+  export let nonInteractive = false;
   export let extend = false;
   export let extendedElevation = 3;
 
@@ -54,6 +57,9 @@
   const disabledStore = writable(disabled);
   $: $disabledStore = disabled;
   setContext('SMUI:accordion:panel:disabled', disabledStore);
+  const nonInteractiveStore = writable(nonInteractive);
+  $: $nonInteractiveStore = nonInteractive;
+  setContext('SMUI:accordion:panel:nonInteractive', nonInteractiveStore);
   const openStore = writable(open);
   $: $openStore = open;
   setContext('SMUI:accordion:panel:open', openStore);
@@ -138,7 +144,7 @@
   function handleHeaderActivate(event: CustomEvent) {
     event.stopPropagation();
 
-    if (disabled) {
+    if (disabled || nonInteractive) {
       return;
     }
 
