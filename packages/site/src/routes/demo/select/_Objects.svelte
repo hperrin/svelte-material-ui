@@ -1,29 +1,27 @@
 <div class="columns margins">
   <div>
     <!--
-      Note: you need to provide a function
-      as `key` that returns a unique string
+      Note: you need to provide a function as `key` that returns a unique string
       for each option.
+
+      It *must* be a string. (Hence the `${fruit.id}` part.)
     -->
-    <Select
-      key={(fruit) => (fruit && fruit.label) || ''}
-      bind:value={valueA}
-      label="Standard"
-    >
+    <Select key={(fruit) => `${fruit.id}`} bind:value={valueA} label="Standard">
       <Option value={null} />
       {#each fruits as fruit (fruit.label)}
         <Option value={fruit}>{fruit.label}</Option>
       {/each}
     </Select>
 
-    <pre
-      class="status">Selected: {valueA ? valueA.label : 'None'}, Price: {valueA ?  valueA.price : '-'}¢</pre>
+    <pre class="status">Selected: {valueA
+        ? valueA.label
+        : 'None'}, Price: {valueA ? valueA.price : '-'}¢</pre>
   </div>
 
   <div>
     <Select
       variant="filled"
-      key={(fruit) => (fruit && fruit.label) || ''}
+      key={(fruit) => `${fruit.id}`}
       bind:value={valueB}
       label="Filled"
     >
@@ -33,14 +31,15 @@
       {/each}
     </Select>
 
-    <pre
-      class="status">Selected: {valueB ? valueB.label : 'None'}, Price: {valueB ?  valueB.price : '-'}¢</pre>
+    <pre class="status">Selected: {valueB
+        ? valueB.label
+        : 'None'}, Price: {valueB ? valueB.price : '-'}¢</pre>
   </div>
 
   <div>
     <Select
       variant="outlined"
-      key={(fruit) => (fruit && fruit.label) || ''}
+      key={(fruit) => `${fruit.id}`}
       bind:value={valueC}
       label="Outlined"
     >
@@ -50,20 +49,21 @@
       {/each}
     </Select>
 
-    <pre
-      class="status">Selected: {valueC ? valueC.label : 'None'}, Price: {valueC ?  valueC.price : '-'}¢</pre>
+    <pre class="status">Selected: {valueC
+        ? valueC.label
+        : 'None'}, Price: {valueC ? valueC.price : '-'}¢</pre>
   </div>
 </div>
 
 <script lang="ts">
   import Select, { Option } from '@smui/select';
 
-  type Fruit = { label: string; price: number };
+  type Fruit = { id: number; label: string; price: number };
   let fruits: Fruit[] = [
-    { label: 'Apple', price: 35 },
-    { label: 'Orange', price: 38 },
-    { label: 'Banana', price: 28 },
-    { label: 'Mango', price: 25 },
+    { id: 1, label: 'Apple', price: 35 },
+    { id: 2, label: 'Orange', price: 38 },
+    { id: 3, label: 'Banana', price: 28 },
+    { id: 4, label: 'Mango', price: 25 },
   ];
 
   let valueA: Fruit | undefined = undefined;
