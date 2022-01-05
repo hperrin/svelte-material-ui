@@ -27,7 +27,7 @@
 
 <script lang="ts">
   import { MDCMenuSurfaceFoundation } from '@material/menu-surface';
-  import { getCorrectPropertyName } from '@material/animation/util.js';
+  import animationUtil from '@material/animation/util.js';
   import { onMount, onDestroy, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {
@@ -39,6 +39,8 @@
   } from '@smui/common/internal';
 
   import { Corner, SMUIMenuSurfaceAccessor } from './MenuSurface.types.js';
+
+  const { getCorrectPropertyName } = animationUtil;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
