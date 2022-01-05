@@ -80,6 +80,15 @@ Or this for with Dark Mode support.
 />
 ```
 
+<small>
+  <i style="font-size: 1em;" class="material-icons">info</i>
+  Note: There used to be a Vite config step at this point, because SMUI was packaged incorrectly. It is now packaged correctly, so that's no longer required.
+</small>
+
 ## Finishing Up
 
 After that, run `npm run prepare` to build your CSS file, then you can run `npm run dev` to start developing. Happy coding!
+
+## Adding More SMUI Packages
+
+Whenever you add a new SMUI package, run `npm run prepare` again to rebuild your CSS file with the new component's styles included.
