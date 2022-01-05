@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0-beta.13](https://github.com/hperrin/svelte-material-ui/compare/v6.0.0-beta.12...v6.0.0-beta.13) (2022-01-05)
+
+
+### Bug Fixes
+
+* import everything from material correctly. replace announce function with own implementation ([7ac0383](https://github.com/hperrin/svelte-material-ui/commit/7ac0383ebe384332a7666a451caa6209a1af0da9))
+* import from commonjs util file in material animation ([85aabaa](https://github.com/hperrin/svelte-material-ui/commit/85aabaa7617c702573bd53f89e2d782e6be9a6e1))
+
+
+
+
+
 # [6.0.0-beta.12](https://github.com/hperrin/svelte-material-ui/compare/v6.0.0-beta.11...v6.0.0-beta.12) (2022-01-05)
 
 

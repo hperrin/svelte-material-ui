@@ -1,6 +1,6 @@
 {
   "name": "@smui-extra/badge",
-  "version": "6.0.0-beta.12",
+  "version": "6.0.0-beta.13",
   "description": "Svelte Material UI - Badge",
   "type": "module",
   "main": "dist/index.js",
@@ -43,7 +43,7 @@
     "@material/shape": "^13.0.0",
     "@material/theme": "^13.0.0",
     "@material/typography": "^13.0.0",
-    "@smui/common": "^6.0.0-beta.12",
+    "@smui/common": "^6.0.0-beta.13",
     "svelte2tsx": "^0.4.11"
   },
   "devDependencies": {
