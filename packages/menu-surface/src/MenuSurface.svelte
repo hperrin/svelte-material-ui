@@ -27,7 +27,6 @@
 
 <script lang="ts">
   import { MDCMenuSurfaceFoundation } from '@material/menu-surface';
-  import animationUtil from '@material/animation/util.js';
   import { onMount, onDestroy, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {
@@ -39,8 +38,6 @@
   } from '@smui/common/internal';
 
   import { Corner, SMUIMenuSurfaceAccessor } from './MenuSurface.types.js';
-
-  const { getCorrectPropertyName } = animationUtil;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
@@ -176,11 +173,7 @@
       isRtl: () =>
         getComputedStyle(element).getPropertyValue('direction') === 'rtl',
       setTransformOrigin: (origin) => {
-        const propertyName = `${getCorrectPropertyName(
-          window,
-          'transform'
-        )}-origin`;
-        internalStyles[propertyName] = origin;
+        internalStyles['transform-origin'] = origin;
       },
 
       isFocused: () => document.activeElement === element,

@@ -40,7 +40,7 @@
 </button>
 
 <script lang="ts">
-  import { MDCChipTrailingActionFoundation } from '@material/chips/deprecated/trailingaction/foundation.js';
+  import { deprecated } from '@material/chips';
   import { onMount, tick } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import {
@@ -56,6 +56,8 @@
 
   import type { SMUIChipsTrailingActionAccessor } from './TrailingAction.types.js';
 
+  const { MDCChipTrailingActionFoundation } = deprecated;
+
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
   // Remember to update types file if you add/remove/rename props.
@@ -70,7 +72,7 @@
   export let icon$class = '';
 
   let element: HTMLButtonElement;
-  let instance: MDCChipTrailingActionFoundation;
+  let instance: deprecated.MDCChipTrailingActionFoundation;
   let internalClasses: { [k: string]: boolean } = {};
   let internalStyles: { [k: string]: string } = {};
   let internalAttrs: { [k: string]: string | undefined } = {};

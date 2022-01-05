@@ -383,6 +383,28 @@ An action that takes actions and runs them on the element. Used to allow actions
 </script>
 ```
 
+## announce
+
+A function that announces a string of text to users who are using a screen reader.
+
+```svelte
+<!--
+  Note that this is not the proper way to annotate a button for screen readers.
+  It's just an example.
+-->
+<Button
+  on:focus={() =>
+    announce("Don't push this button!", { priority: 'assertive' })}
+  style="background-color: red; color: white; transform: scale(2);"
+>
+  Big Red Button
+</Button>
+
+<script lang="ts">
+  import { announce } from '@smui/common/internal';
+</script>
+```
+
 # Other Components
 
 These components are not exported in the index file, but are available to be imported elsewhere. They are generally used for simple components which only add a class to an element.

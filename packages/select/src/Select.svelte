@@ -224,8 +224,10 @@
   import type { FloatingLabelComponentDev } from '@smui/floating-label';
   import type { LineRippleComponentDev } from '@smui/line-ripple';
   import type { NotchedOutlineComponentDev } from '@smui/notched-outline';
-  import type MDCSelectIconFoundation from '@material/select/icon/foundation';
-  import type MDCSelectHelperTextFoundation from '@material/select/helper-text/foundation';
+  import type {
+    MDCSelectIconFoundation,
+    MDCSelectHelperTextFoundation,
+  } from '@material/select';
   import { MDCSelectFoundation } from '@material/select';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
   import { writable } from 'svelte/store';

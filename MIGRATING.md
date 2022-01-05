@@ -31,6 +31,8 @@ https://github.com/material-components/material-components-web/blob/master/CHANG
   - A new component! Huge shoutout to [Lorenzo Fiore](https://github.com/fiorelorenzo/) who originally authored the component!
 - Badge
   - A new component!
+- Common
+  - New announce function in the "internal" export.
 - Paper
   - New variants!
 - Switch

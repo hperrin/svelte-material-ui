@@ -236,9 +236,11 @@
   import type { FloatingLabelComponentDev } from '@smui/floating-label';
   import type { LineRippleComponentDev } from '@smui/line-ripple';
   import type { NotchedOutlineComponentDev } from '@smui/notched-outline';
-  import type MDCTextFieldIconFoundation from '@material/textfield/icon/foundation';
-  import type MDCTextFieldHelperTextFoundation from '@material/textfield/helper-text/foundation';
-  import type MDCTextFieldCharacterCounterFoundation from '@material/textfield/character-counter/foundation';
+  import type {
+    MDCTextFieldIconFoundation,
+    MDCTextFieldHelperTextFoundation,
+    MDCTextFieldCharacterCounterFoundation,
+  } from '@material/textfield';
   import { MDCTextFieldFoundation } from '@material/textfield';
   import { events } from '@material/dom';
   import { onMount, onDestroy, getContext, tick } from 'svelte';

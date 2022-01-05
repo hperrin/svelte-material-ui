@@ -145,6 +145,14 @@
     </svelte:fragment>
   </Demo>
 
+  <Demo component={Announce} file="common/_Announce.svelte">
+    Announce
+    <svelte:fragment slot="subtitle">
+      A function that announces a string of text to users who are using a screen
+      reader.
+    </svelte:fragment>
+  </Demo>
+
   <h4>Other Components</h4>
 
   <Demo
@@ -177,5 +185,6 @@
   import ExcludeAndPrefixFilter from './_ExcludeAndPrefixFilter.svelte';
   import ForwardEventsBuilder from './_ForwardEventsBuilder.svelte';
   import UseActions from './_UseActions.svelte';
+  import Announce from './_Announce.svelte';
   import ClassAdderBuilder from './_ClassAdderBuilder.svelte';
 </script>

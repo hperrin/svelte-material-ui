@@ -56,7 +56,7 @@
 </svelte:component>
 
 <script lang="ts">
-  import { MDCChipFoundation } from '@material/chips/deprecated/chip/foundation.js';
+  import { deprecated } from '@material/chips';
   import { onMount, setContext, getContext } from 'svelte';
   import { writable } from 'svelte/store';
   import { get_current_component, SvelteComponentDev } from 'svelte/internal';
@@ -73,6 +73,8 @@
   import type { SMUIChipsTrailingActionAccessor } from './TrailingAction.types.js';
   import type { SMUIChipsChipAccessor } from './Chip.types.js';
 
+  const { MDCChipFoundation } = deprecated;
+
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
   // Remember to update types file if you add/remove/rename props.
@@ -88,7 +90,7 @@
   export let shouldFocusPrimaryActionOnClick = true;
 
   let element: SvelteComponentDev;
-  let instance: MDCChipFoundation;
+  let instance: deprecated.MDCChipFoundation;
   let internalClasses: { [k: string]: boolean } = {};
   let leadingIconClasses: { [k: string]: boolean } = {};
   let internalStyles: { [k: string]: string } = {};

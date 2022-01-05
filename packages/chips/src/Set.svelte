@@ -39,12 +39,12 @@
     MDCChipSelectionEvent,
     MDCChipSelectionEventDetail,
   } from '@material/chips/deprecated/chip/types';
-  import { MDCChipSetFoundation } from '@material/chips/deprecated/chip-set/foundation.js';
-  import { announce } from '@material/dom/announce.js';
+  import { deprecated } from '@material/chips';
   import { onMount, setContext } from 'svelte';
   import { writable } from 'svelte/store';
   import { get_current_component } from 'svelte/internal';
   import {
+    announce,
     forwardEventsBuilder,
     classMap,
     useActions,
@@ -53,6 +53,8 @@
   import { ContextFragment } from '@smui/common';
 
   import type { SMUIChipsChipAccessor } from './Chip.types.js';
+
+  const { MDCChipSetFoundation } = deprecated;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
@@ -69,7 +71,7 @@
   export let input = false;
 
   let element: HTMLDivElement;
-  let instance: MDCChipSetFoundation;
+  let instance: deprecated.MDCChipSetFoundation;
   let chipAccessorMap: {
     [k: string]: SMUIChipsChipAccessor;
     [k: number]: SMUIChipsChipAccessor;
@@ -131,9 +133,7 @@
 
   onMount(() => {
     instance = new MDCChipSetFoundation({
-      announceMessage: (message) => {
-        announce(message);
-      },
+      announceMessage: announce,
       focusChipPrimaryActionAtIndex: (index) => {
         getAccessor(chips[index])?.focusPrimaryAction();
       },
