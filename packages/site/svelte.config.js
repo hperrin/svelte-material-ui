@@ -30,7 +30,7 @@ const config = {
 
     vite: {
       ssr: {
-        noExternal: ['tinygesture', /^@material\//, /^@smui(?:-extra)?\//],
+        noExternal: ['tinygesture'],
       },
       resolve: {
         alias: {

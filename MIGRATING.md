@@ -21,6 +21,7 @@ https://github.com/material-components/material-components-web/blob/master/CHANG
 ## Changes
 
 - MDC events are now dispatched with "SMUI" instead of "MDC" prefix. They are dispatched as both though, so your code shouldn't break. You should still update your code to use the new "SMUI" prefix anyway.
+- There's no longer any required Vite config. Big thanks to [Ben McCann](https://github.com/benmccann) for [clearing up my misconceptions and helping me fix the package.json files](https://github.com/hperrin/svelte-material-ui/issues/375#issuecomment-994227865).
 
 ### Components
 

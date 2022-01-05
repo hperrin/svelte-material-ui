@@ -80,32 +80,6 @@ Or this for with Dark Mode support.
 />
 ```
 
-## Required Vite Config
-
-Now you'll need to add one special config entry in your `svelte.config.js` file. In that file, within the "config" object, underneath the "kit" property, add the following "vite" config.
-
-```js
-// In this definition...
-const config = {
-  // ... ignore the stuff here
-
-  // Under this object...
-  kit: {
-    // ... ignore the stuff here
-
-    // Add this part. ---
-    vite: {
-      ssr: {
-        noExternal: [/^@material\//, /^@smui(?:-extra)?\//],
-      },
-    },
-    // All done! ---
-  },
-};
-```
-
-If you don't add this config, you'll see errors like [`Unknown file extension ".svelte" for ...`](https://github.com/hperrin/svelte-material-ui/issues/375).
-
 ## Finishing Up
 
 After that, run `npm run prepare` to build your CSS file, then you can run `npm run dev` to start developing. Happy coding!
