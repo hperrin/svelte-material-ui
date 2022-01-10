@@ -4,11 +4,15 @@
       Note: you need to provide a function as `key` that returns a unique string
       for each option.
 
-      It *must* be a string. (Hence the `${fruit && fruit.id}` part. That
-      returns a string for the numberic `id` field and the `null` value even.)
+      It *must* be a string. (Hence the `${(fruit && fruit.id) || ''}` part.
+      That returns a string for the numberic `id` field and the `null` and
+      `undefined` values even.) If the string is empty (""), the label will stop
+      floating when that option is selected and the component is unfocused.
+      Therefore, the option for that value shouldn't have any text, or the
+      floating label will overlap it.
     -->
     <Select
-      key={(fruit) => `${fruit && fruit.id}`}
+      key={(fruit) => `${(fruit && fruit.id) || ''}`}
       bind:value={valueA}
       label="Standard"
     >
@@ -26,7 +30,7 @@
   <div>
     <Select
       variant="filled"
-      key={(fruit) => `${fruit && fruit.id}`}
+      key={(fruit) => `${(fruit && fruit.id) || ''}`}
       bind:value={valueB}
       label="Filled"
     >
@@ -44,7 +48,7 @@
   <div>
     <Select
       variant="outlined"
-      key={(fruit) => `${fruit && fruit.id}`}
+      key={(fruit) => `${(fruit && fruit.id) || ''}`}
       bind:value={valueC}
       label="Outlined"
     >
