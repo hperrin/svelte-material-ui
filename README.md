@@ -49,6 +49,29 @@ You can find older versions of the docs on their respective branch:
 - [v5 docs](https://github.com/hperrin/svelte-material-ui/tree/v5#readme)
 - [v4 docs](https://github.com/hperrin/svelte-material-ui/tree/v4#readme)
 
+# Icons
+
+You can include icons in a number of ways, but the easiest is the [Material Icon Font](https://developers.google.com/fonts/docs/material_icons). This will give you the standard set of Material Icons, available with the CSS class "material-icons".
+
+```html
+<link
+  href="https://fonts.googleapis.com/icon?family=Material+Icons"
+  rel="stylesheet"
+/>
+```
+
+However, there are two downsides. First is that all icons are downloaded, no matter which ones you use, so the size over the wire will almost certainly be more than necessary. Second is that it _only_ includes the Material Icons from Google.
+
+Another option is the [Material Design Icons library](https://materialdesignicons.com/). See the "Using SVGs" demo on the [Icon Button demo page](https://sveltematerialui.com/demo/icon-button) for instructions to use icons from the `@mdi/js` package (or any other SVG icons).
+
+You can even use them in data URLs: [![](data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiICB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCI+CiAgIDxwYXRoIGZpbGw9IiMwMDAwMDAiIGQ9Ik0xMSwyM0EyLDIgMCAwLDEgOSwyMVYxOUgxNVYyMUEyLDIgMCAwLDEgMTMsMjNIMTFNMTIsMUMxMi43MSwxIDEzLjM5LDEuMDkgMTQuMDUsMS4yNkMxNS4yMiwyLjgzIDE2LDUuNzEgMTYsOUMxNiwxMS4yOCAxNS42MiwxMy4zNyAxNSwxNkEyLDIgMCAwLDEgMTMsMThIMTFBMiwyIDAgMCwxIDksMTZDOC4zOCwxMy4zNyA4LDExLjI4IDgsOUM4LDUuNzEgOC43OCwyLjgzIDkuOTUsMS4yNkMxMC42MSwxLjA5IDExLjI5LDEgMTIsMU0yMCw4QzIwLDExLjE4IDE4LjE1LDE1LjkyIDE1LjQ2LDE3LjIxQzE2LjQxLDE1LjM5IDE3LDExLjgzIDE3LDlDMTcsNi4xNyAxNi40MSwzLjYxIDE1LjQ2LDEuNzlDMTguMTUsMy4wOCAyMCw0LjgyIDIwLDhNNCw4QzQsNC44MiA1Ljg1LDMuMDggOC41NCwxLjc5QzcuNTksMy42MSA3LDYuMTcgNyw5QzcsMTEuODMgNy41OSwxNS4zOSA4LjU0LDE3LjIxQzUuODUsMTUuOTIgNCwxMS4xOCA0LDhaIiAvPgo8L3N2Zz4=)](https://www.youtube.com/watch?v=vo9Fja5x04o)
+
+1. [Find your icon](https://materialdesignicons.com/) and click "View SVG" under the code menu.
+2. Click the "SVG File" tab and copy the full SVG document.
+3. [Base64 encode](https://www.base64encode.org/) the document.
+4. Format the URL like this `data:image/svg+xml;base64,encodedcontent`, replacing "encodedcontent" with the Base64 results.
+5. Now you have an image URL you can use in an "img" tag src attribute or anywhere else you put an image URL (like `background-image: url();`).
+
 # Components
 
 Click a component/package below to go to the documentation. (Note that this documentation is a work in progress. The demo code should be your main source of truth for how something works.)
