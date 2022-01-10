@@ -4,9 +4,14 @@
       Note: you need to provide a function as `key` that returns a unique string
       for each option.
 
-      It *must* be a string. (Hence the `${fruit.id}` part.)
+      It *must* be a string. (Hence the `${fruit && fruit.id}` part. That
+      returns a string for the numberic `id` field and the `null` value even.)
     -->
-    <Select key={(fruit) => `${fruit.id}`} bind:value={valueA} label="Standard">
+    <Select
+      key={(fruit) => `${fruit && fruit.id}`}
+      bind:value={valueA}
+      label="Standard"
+    >
       <Option value={null} />
       {#each fruits as fruit (fruit.label)}
         <Option value={fruit}>{fruit.label}</Option>
@@ -21,7 +26,7 @@
   <div>
     <Select
       variant="filled"
-      key={(fruit) => `${fruit.id}`}
+      key={(fruit) => `${fruit && fruit.id}`}
       bind:value={valueB}
       label="Filled"
     >
@@ -39,7 +44,7 @@
   <div>
     <Select
       variant="outlined"
-      key={(fruit) => `${fruit.id}`}
+      key={(fruit) => `${fruit && fruit.id}`}
       bind:value={valueC}
       label="Outlined"
     >
