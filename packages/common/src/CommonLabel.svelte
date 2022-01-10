@@ -21,7 +21,7 @@
   {...$$restProps}><slot /></svelte:component
 >
 
-<script type="ts">
+<script lang="ts">
   import { getContext } from 'svelte';
   import { get_current_component, SvelteComponentDev } from 'svelte/internal';
 

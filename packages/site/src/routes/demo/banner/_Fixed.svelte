@@ -6,7 +6,7 @@
   <Button slot="actions">I Know It</Button>
 </Banner>
 
-<script type="ts">
+<script lang="ts">
   import Banner, { Label } from '@smui/banner';
   import Button from '@smui/button';
 </script>

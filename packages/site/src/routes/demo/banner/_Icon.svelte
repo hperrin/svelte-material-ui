@@ -45,7 +45,7 @@
   </div>
 </div>
 
-<script type="ts">
+<script lang="ts">
   import Banner, { Label, Icon, CloseReason } from '@smui/banner';
   import Button from '@smui/button';
   import TopAppBar, { Row, Section, Title } from '@smui/top-app-bar';
