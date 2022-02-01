@@ -149,7 +149,7 @@
   import { Icon } from '@smui/common';
   import { A, Svg } from '@smui/common/elements';
 
-  const iframe = $page.path.includes('/iframe');
+  const iframe = $page.url.pathname.includes('/iframe');
 
   let drawer: DrawerComponentDev;
   let mainContent: HTMLElement;
@@ -534,17 +534,17 @@
 
   $: activeSection = sections.find(
     (section) =>
-      'route' in section && routesEqual(section.route ?? '', $page.path)
+      'route' in section && routesEqual(section.route ?? '', $page.url.pathname)
   ) as DemoSection | undefined;
   let previousPagePath: string | undefined = undefined;
-  $: if (mainContent && previousPagePath !== $page.path) {
+  $: if (mainContent && previousPagePath !== $page.url.pathname) {
     drawerOpen = false;
     const hashEl =
       window.location.hash &&
       document.querySelector<HTMLElement>(window.location.hash);
     const top = (hashEl && hashEl.offsetTop) || 0;
     mainContent.scrollTop = top;
-    previousPagePath = $page.path;
+    previousPagePath = $page.url.pathname;
   }
 
   onMount(setMiniWindow);

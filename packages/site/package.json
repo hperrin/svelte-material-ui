@@ -4,7 +4,7 @@
   "description": "SMUI Website (You're not meant to install this.)",
   "type": "module",
   "scripts": {
-    "dev": "svelte-kit dev",
+    "dev": "NODE_OPTIONS=\"--experimental-json-modules\" svelte-kit dev",
     "build": "svelte-kit build",
     "clean": "test -d .svelte-kit && rm -r .svelte-kit || true",
     "preview": "svelte-kit preview",
@@ -80,18 +80,18 @@
     "@smui/tooltip": "^6.0.0-beta.13",
     "@smui/top-app-bar": "^6.0.0-beta.13",
     "@smui/touch-target": "^6.0.0-beta.13",
-    "@sveltejs/adapter-static": "next",
-    "@sveltejs/kit": "next",
-    "highlight.js": "^11.3.1",
+    "@sveltejs/adapter-static": "^1.0.0-next.26",
+    "@sveltejs/kit": "^1.0.0-next.250",
+    "highlight.js": "^11.4.0",
     "highlightjs-svelte": "^1.0.6",
     "mdsvex": "^0.9.8",
     "remark-slug": "^7.0.1",
-    "sass": "^1.44.0",
+    "sass": "^1.49.0",
     "smui-theme": "^6.0.0-beta.13",
-    "svelte-preprocess": "^4.9.8",
+    "svelte-preprocess": "^4.10.2",
     "tinygesture": "^1.1.4",
     "tslib": "^2.3.1",
-    "typescript": "^4.5.2",
-    "vite": "^2.6.14"
+    "typescript": "^4.5.5",
+    "vite": "^2.7.13"
   }
 }

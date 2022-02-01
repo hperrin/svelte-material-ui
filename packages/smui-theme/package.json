@@ -72,8 +72,8 @@
     "@smui/touch-target": "^6.0.0-beta.13"
   },
   "dependencies": {
-    "node-fetch": "^2.6.1",
-    "sass": "^1.44.0",
-    "yargs": "^16.2.0"
+    "node-fetch": "^2.6.7",
+    "sass": "^1.49.0",
+    "yargs": "^17.3.1"
   }
 }

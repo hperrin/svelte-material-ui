@@ -33,14 +33,14 @@
   },
   "license": "Apache-2.0",
   "devDependencies": {
-    "@commitlint/cli": "^15.0.0",
-    "@commitlint/config-conventional": "^15.0.0",
+    "@commitlint/cli": "^16.1.0",
+    "@commitlint/config-conventional": "^16.0.0",
     "husky": "^7.0.4",
     "lerna": "^4.0.0",
     "prettier": "~2.5.1",
-    "prettier-plugin-svelte": "^2.5.1",
-    "sass": "^1.44.0",
-    "svelte": "^3.44.2",
-    "svelte-check": "^2.2.10"
+    "prettier-plugin-svelte": "^2.6.0",
+    "sass": "^1.49.0",
+    "svelte": "^3.46.3",
+    "svelte-check": "^2.3.0"
   }
 }
