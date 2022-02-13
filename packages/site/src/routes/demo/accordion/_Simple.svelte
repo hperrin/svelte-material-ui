@@ -37,8 +37,8 @@
       <Header>Panel 4</Header>
       <Content>
         If you like this component, you can thank <a
-          href="https://github.com/SlickNicky10"
-          target="_blank">SlickNicky</a
+          href="https://github.com/NickantX"
+          target="_blank">nick</a
         > who pushed me to make it. He was right, accordions are awesome! :D
       </Content>
     </Panel>
