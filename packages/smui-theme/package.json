@@ -30,6 +30,7 @@
   },
   "license": "Apache-2.0",
   "devDependencies": {
+    "@material/theme": "^13.0.0",
     "@smui-extra/accordion": "^6.0.0-beta.14",
     "@smui-extra/autocomplete": "^6.0.0-beta.14",
     "@smui-extra/badge": "^6.0.0-beta.14",

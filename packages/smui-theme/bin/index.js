@@ -58,9 +58,17 @@ yargs(hideBin(process.argv))
           ...argv.includes,
           // Include the node_modules directory for MDC styles.
           path.resolve(
-            path.dirname(require.resolve('@material/dom/package.json')),
+            path.dirname(require.resolve('@material/theme/package.json')),
             '..',
             '..'
+          ),
+          // Hack to enable Sass lookup with PNPM.
+          path.resolve(
+            path.dirname(require.resolve('@material/theme/package.json')),
+            '..',
+            '..',
+            '.pnpm',
+            'node_modules'
           ),
           // Include the fallback directory, with no styles, for packages
           // that aren't installed
