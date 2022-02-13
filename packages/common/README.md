@@ -113,6 +113,10 @@ An elemental component for the `i` tag.
 
 An elemental component for the `img` tag.
 
+## Label
+
+An elemental component for the `label` tag.
+
 ## Li
 
 An elemental component for the `li` tag.

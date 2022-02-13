@@ -94,6 +94,12 @@ export * from './Img.types.js';
 const Img = ImgComponent as typeof ImgComponentDev;
 export { Img };
 
+import LabelComponent from './Label.svelte';
+import type { LabelComponentDev } from './Label.types.js';
+export * from './Label.types.js';
+const Label = LabelComponent as typeof LabelComponentDev;
+export { Label };
+
 import LiComponent from './Li.svelte';
 import type { LiComponentDev } from './Li.types.js';
 export * from './Li.types.js';

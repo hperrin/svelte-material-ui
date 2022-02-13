@@ -1,11 +1,12 @@
-<img
+<label
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  {alt}
+  for={forId}
   {...$$restProps}
-/>
-<slot />
+>
+  <slot />
+</label>
 
 <script lang="ts">
   import { get_current_component } from 'svelte/internal';
@@ -15,11 +16,12 @@
 
   // Remember to update types file if you add/remove/rename props.
   export let use: ActionArray = [];
-  export let alt: string | undefined = undefined;
+  let forId: string | undefined = undefined;
+  export { forId as for };
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  let element: HTMLImageElement;
+  let element: HTMLLabelElement;
 
   export function getElement() {
     return element;
