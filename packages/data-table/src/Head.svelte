@@ -10,14 +10,14 @@
 >
 
 <script lang="ts">
-  import type { SMUICheckboxInputAccessor } from '@smui/common';
   import { onMount, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
+  import type { SMUICheckboxInputAccessor } from '@smui/common';
+  import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
     useActions,
     dispatch,
-    ActionArray,
   } from '@smui/common/internal';
 
   import type { SMUIDataTableCellAccessor } from './Cell.types.js';

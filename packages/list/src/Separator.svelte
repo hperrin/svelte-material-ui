@@ -17,12 +17,10 @@
 
 <script lang="ts">
   import { getContext } from 'svelte';
-  import { get_current_component, SvelteComponentDev } from 'svelte/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    ActionArray,
-  } from '@smui/common/internal';
+  import type { SvelteComponentDev } from 'svelte/internal';
+  import { get_current_component } from 'svelte/internal';
+  import type { ActionArray } from '@smui/common/internal';
+  import { forwardEventsBuilder, classMap } from '@smui/common/internal';
   import { Li, Hr } from '@smui/common/elements';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());

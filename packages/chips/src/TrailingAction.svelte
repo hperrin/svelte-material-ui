@@ -43,6 +43,7 @@
   import { deprecated } from '@material/chips';
   import { onMount, tick } from 'svelte';
   import { get_current_component } from 'svelte/internal';
+  import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
     classMap,
@@ -50,7 +51,6 @@
     prefixFilter,
     useActions,
     dispatch,
-    ActionArray,
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
 

@@ -19,11 +19,11 @@
   import { setContext } from 'svelte';
   import { writable } from 'svelte/store';
   import { get_current_component } from 'svelte/internal';
+  import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
     classMap,
     useActions,
-    ActionArray,
   } from '@smui/common/internal';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());

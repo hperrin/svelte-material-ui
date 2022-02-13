@@ -27,7 +27,8 @@
 
 <script lang="ts">
   import { onDestroy, getContext, setContext } from 'svelte';
-  import { get_current_component, SvelteComponentDev } from 'svelte/internal';
+  import type { SvelteComponentDev } from 'svelte/internal';
+  import { get_current_component } from 'svelte/internal';
 
   import type { ActionArray } from '../internal/useActions.js';
   import { forwardEventsBuilder } from '../internal/forwardEventsBuilder.js';

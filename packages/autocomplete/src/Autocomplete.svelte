@@ -87,20 +87,20 @@
 </div>
 
 <script lang="ts">
-  import type { SMUIListAccessor, SMUIListItemAccessor } from '@smui/list';
-  import type { MenuComponentDev } from '@smui/menu';
   import { get_current_component } from 'svelte/internal';
+  import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
     classMap,
     exclude,
     prefixFilter,
     useActions,
-    ActionArray,
     dispatch,
   } from '@smui/common/internal';
   import Textfield from '@smui/textfield';
+  import type { MenuComponentDev } from '@smui/menu';
   import Menu from '@smui/menu';
+  import type { SMUIListAccessor, SMUIListItemAccessor } from '@smui/list';
   import List, { Item, Text } from '@smui/list';
   import { Anchor } from '@smui/menu-surface';
 

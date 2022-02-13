@@ -22,16 +22,16 @@
 >
 
 <script lang="ts">
-  import type { PaperComponentDev } from '@smui/paper';
   import { onMount, setContext } from 'svelte';
   import { writable } from 'svelte/store';
   import { get_current_component } from 'svelte/internal';
+  import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
     classMap,
     dispatch,
-    ActionArray,
   } from '@smui/common/internal';
+  import type { PaperComponentDev } from '@smui/paper';
   import Paper from '@smui/paper';
 
   import type { SMUIAccordionPanelAccessor } from './Panel.types.js';

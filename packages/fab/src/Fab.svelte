@@ -39,12 +39,10 @@
 
 <script lang="ts">
   import { setContext } from 'svelte';
-  import { get_current_component, SvelteComponentDev } from 'svelte/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    ActionArray,
-  } from '@smui/common/internal';
+  import type { SvelteComponentDev } from 'svelte/internal';
+  import { get_current_component } from 'svelte/internal';
+  import type { ActionArray } from '@smui/common/internal';
+  import { forwardEventsBuilder, classMap } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
   import { A, Button } from '@smui/common/elements';
 

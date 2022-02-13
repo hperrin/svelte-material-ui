@@ -14,12 +14,13 @@
 </svelte:component>
 
 <script lang="ts">
-  import { get_current_component, SvelteComponentDev } from 'svelte/internal';
+  import type { SvelteComponentDev } from 'svelte/internal';
+  import { get_current_component } from 'svelte/internal';
+  import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
     classMap,
     dispatch,
-    ActionArray,
   } from '@smui/common/internal';
   import { Div } from '@smui/common/elements';
 

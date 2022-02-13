@@ -62,10 +62,11 @@
 </div>
 
 <script lang="ts">
-  import type { SMUICheckboxInputAccessor } from '@smui/common';
   import { MDCCheckboxFoundation } from '@material/checkbox';
   import { onMount, getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
+  import type { SMUICheckboxInputAccessor } from '@smui/common';
+  import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
     classMap,
@@ -73,7 +74,6 @@
     prefixFilter,
     useActions,
     dispatch,
-    ActionArray,
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
 

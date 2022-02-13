@@ -43,13 +43,14 @@
   } from '@material/top-app-bar';
   import { onMount } from 'svelte';
   import { get_current_component } from 'svelte/internal';
-  import { readable, Subscriber } from 'svelte/store';
+  import type { Subscriber } from 'svelte/store';
+  import { readable } from 'svelte/store';
+  import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
     classMap,
     useActions,
     dispatch,
-    ActionArray,
   } from '@smui/common/internal';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());

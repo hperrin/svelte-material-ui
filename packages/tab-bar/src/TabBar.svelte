@@ -25,11 +25,10 @@
 </div>
 
 <script lang="ts">
-  import type { SMUITabAccessor } from '@smui/tab';
-  import type { TabScrollerComponentDev } from '@smui/tab-scroller';
   import { MDCTabBarFoundation } from '@material/tab-bar';
   import { onMount, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
+  import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
     classMap,
@@ -37,8 +36,9 @@
     prefixFilter,
     useActions,
     dispatch,
-    ActionArray,
   } from '@smui/common/internal';
+  import type { SMUITabAccessor } from '@smui/tab';
+  import type { TabScrollerComponentDev } from '@smui/tab-scroller';
   import TabScroller from '@smui/tab-scroller';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());

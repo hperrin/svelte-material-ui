@@ -20,21 +20,21 @@
 >
 
 <script lang="ts">
+  import { MDCMenuFoundation, cssClasses } from '@material/menu';
+  import { ponyfill } from '@material/dom';
+  import { onMount } from 'svelte';
+  import { get_current_component } from 'svelte/internal';
+  import type { ActionArray } from '@smui/common/internal';
+  import {
+    forwardEventsBuilder,
+    classMap,
+    dispatch,
+  } from '@smui/common/internal';
   import type { SMUIListAccessor } from '@smui/list';
   import type {
     MenuSurfaceComponentDev,
     SMUIMenuSurfaceAccessor,
   } from '@smui/menu-surface';
-  import { MDCMenuFoundation, cssClasses } from '@material/menu';
-  import { ponyfill } from '@material/dom';
-  import { onMount } from 'svelte';
-  import { get_current_component } from 'svelte/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    dispatch,
-    ActionArray,
-  } from '@smui/common/internal';
   import MenuSurface from '@smui/menu-surface';
 
   import type { DefaultFocusState } from './Menu.types.js';

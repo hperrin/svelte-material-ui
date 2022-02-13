@@ -41,12 +41,12 @@
   import { MDCFloatingLabelFoundation } from '@material/floating-label';
   import { onMount, getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
+  import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
     classMap,
     useActions,
     dispatch,
-    ActionArray,
   } from '@smui/common/internal';
 
   import type { SMUIFloatingLabelAccessor } from './FloatingLabel.types.js';

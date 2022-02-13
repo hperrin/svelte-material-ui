@@ -12,12 +12,10 @@
 </svelte:component>
 
 <script lang="ts">
-  import { get_current_component, SvelteComponentDev } from 'svelte/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    ActionArray,
-  } from '@smui/common/internal';
+  import type { SvelteComponentDev } from 'svelte/internal';
+  import { get_current_component } from 'svelte/internal';
+  import type { ActionArray } from '@smui/common/internal';
+  import { forwardEventsBuilder, classMap } from '@smui/common/internal';
   import { Main } from '@smui/common/elements';
 
   import type TopAppBar from './TopAppBar.svelte';

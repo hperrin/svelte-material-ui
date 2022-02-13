@@ -8,12 +8,13 @@
 >
 
 <script lang="ts">
-  import type { ItemComponentDev } from '@smui/list';
-  import type { Writable } from 'svelte/store';
   import { onMount, onDestroy } from 'svelte';
   import { getContext, setContext } from 'svelte';
+  import type { Writable } from 'svelte/store';
   import { get_current_component } from 'svelte/internal';
-  import { ActionArray, forwardEventsBuilder } from '@smui/common/internal';
+  import type { ActionArray } from '@smui/common/internal';
+  import { forwardEventsBuilder } from '@smui/common/internal';
+  import type { ItemComponentDev } from '@smui/list';
   import { Item } from '@smui/list';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());

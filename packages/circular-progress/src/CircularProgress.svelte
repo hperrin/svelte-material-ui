@@ -112,11 +112,11 @@
   import { MDCCircularProgressFoundation } from '@material/circular-progress';
   import { onMount } from 'svelte';
   import { get_current_component } from 'svelte/internal';
+  import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
     classMap,
     useActions,
-    ActionArray,
   } from '@smui/common/internal';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());

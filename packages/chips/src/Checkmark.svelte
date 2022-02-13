@@ -18,7 +18,8 @@
 </span>
 
 <script lang="ts">
-  import { ActionArray, classMap, useActions } from '@smui/common/internal';
+  import type { ActionArray } from '@smui/common/internal';
+  import { classMap, useActions } from '@smui/common/internal';
 
   // Remember to update types file if you add/remove/rename props.
   export let use: ActionArray = [];

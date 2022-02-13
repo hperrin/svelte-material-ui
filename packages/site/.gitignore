@@ -3,6 +3,9 @@ node_modules
 /build
 /.svelte-kit
 /package
+.env
+.env.*
+!.env.example
 /static/smui.css
 /static/smui-dark.css
 /static/site.css

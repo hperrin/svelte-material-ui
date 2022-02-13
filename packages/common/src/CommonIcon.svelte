@@ -18,7 +18,8 @@
 >
 
 <script lang="ts">
-  import { getContext, SvelteComponent } from 'svelte';
+  import type { SvelteComponent } from 'svelte';
+  import { getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
 
   import type { ActionArray } from './internal/useActions.js';

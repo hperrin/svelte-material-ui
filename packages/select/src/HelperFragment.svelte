@@ -2,7 +2,8 @@
 
 <script lang="ts">
   import { get_current_component } from 'svelte/internal';
-  import { ActionArray, forwardEventsBuilder } from '@smui/common/internal';
+  import type { ActionArray } from '@smui/common/internal';
+  import { forwardEventsBuilder } from '@smui/common/internal';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

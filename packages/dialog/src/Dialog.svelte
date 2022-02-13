@@ -59,12 +59,14 @@
 <slot name="over" />
 
 <script lang="ts">
-  import type { AddLayoutListener, RemoveLayoutListener } from '@smui/common';
   import { MDCDialogFoundation, util } from '@material/dialog';
   import { focusTrap as domFocusTrap, ponyfill } from '@material/dom';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
-  import { Writable, writable } from 'svelte/store';
+  import type { Writable } from 'svelte/store';
+  import { writable } from 'svelte/store';
   import { get_current_component } from 'svelte/internal';
+  import type { AddLayoutListener, RemoveLayoutListener } from '@smui/common';
+  import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
     classMap,
@@ -72,7 +74,6 @@
     prefixFilter,
     useActions,
     dispatch,
-    ActionArray,
   } from '@smui/common/internal';
   const { FocusTrap } = domFocusTrap;
   const { closest, matches } = ponyfill;

@@ -65,11 +65,12 @@
 </div>
 
 <script lang="ts">
-  import type { AddLayoutListener, RemoveLayoutListener } from '@smui/common';
   import { CloseReason, MDCBannerFoundation } from '@material/banner';
   import { focusTrap as domFocusTrap } from '@material/dom';
   import { onMount, onDestroy, getContext, setContext, tick } from 'svelte';
   import { get_current_component } from 'svelte/internal';
+  import type { AddLayoutListener, RemoveLayoutListener } from '@smui/common';
+  import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
     classMap,
@@ -77,7 +78,6 @@
     prefixFilter,
     useActions,
     dispatch,
-    ActionArray,
   } from '@smui/common/internal';
 
   import Fixed from './Fixed.svelte';

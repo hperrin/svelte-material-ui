@@ -51,7 +51,6 @@
 
 <script lang="ts">
   import type { SpecificEventListener } from '@material/base/types';
-  import type { Writable } from 'svelte/store';
   import {
     MDCTooltipFoundation,
     AnchorBoundaryType,
@@ -60,7 +59,9 @@
     CssClasses,
   } from '@material/tooltip';
   import { onMount, onDestroy, getContext } from 'svelte';
+  import type { Writable } from 'svelte/store';
   import { get_current_component } from 'svelte/internal';
+  import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
     classMap,
@@ -68,7 +69,6 @@
     prefixFilter,
     useActions,
     dispatch,
-    ActionArray,
   } from '@smui/common/internal';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());

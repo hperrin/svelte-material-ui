@@ -232,10 +232,6 @@
 {/if}
 
 <script lang="ts">
-  import type { AddLayoutListener, RemoveLayoutListener } from '@smui/common';
-  import type { FloatingLabelComponentDev } from '@smui/floating-label';
-  import type { LineRippleComponentDev } from '@smui/line-ripple';
-  import type { NotchedOutlineComponentDev } from '@smui/notched-outline';
   import type {
     MDCTextFieldIconFoundation,
     MDCTextFieldHelperTextFoundation,
@@ -245,19 +241,23 @@
   import { events } from '@material/dom';
   import { onMount, onDestroy, getContext, tick } from 'svelte';
   import { get_current_component } from 'svelte/internal';
+  import type { AddLayoutListener, RemoveLayoutListener } from '@smui/common';
+  import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
     classMap,
     exclude,
     prefixFilter,
     useActions,
-    ActionArray,
     dispatch,
   } from '@smui/common/internal';
   import { ContextFragment } from '@smui/common';
   import Ripple from '@smui/ripple';
+  import type { FloatingLabelComponentDev } from '@smui/floating-label';
   import FloatingLabel from '@smui/floating-label';
+  import type { LineRippleComponentDev } from '@smui/line-ripple';
   import LineRipple from '@smui/line-ripple';
+  import type { NotchedOutlineComponentDev } from '@smui/notched-outline';
   import NotchedOutline from '@smui/notched-outline';
 
   import HelperLine from './HelperLine.js';

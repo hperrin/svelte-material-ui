@@ -66,14 +66,15 @@
 </button>
 
 <script lang="ts">
-  import type { SMUISwitchInputAccessor } from '@smui/common';
-  import {
-    MDCSwitchRenderFoundation,
+  import type {
     MDCSwitchRenderAdapter,
     MDCSwitchState,
   } from '@material/switch';
+  import { MDCSwitchRenderFoundation } from '@material/switch';
   import { onMount, getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
+  import type { SMUISwitchInputAccessor } from '@smui/common';
+  import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
     classMap,
@@ -81,7 +82,6 @@
     prefixFilter,
     useActions,
     dispatch,
-    ActionArray,
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
 

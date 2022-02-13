@@ -58,16 +58,17 @@
 </div>
 
 <script lang="ts">
-  import type { AddLayoutListener, RemoveLayoutListener } from '@smui/common';
-  import {
-    MDCDataTableFoundation,
+  import type {
     ProgressIndicatorStyles,
     SortValue,
   } from '@material/data-table';
+  import { MDCDataTableFoundation } from '@material/data-table';
   import { ponyfill } from '@material/dom';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
   import { writable } from 'svelte/store';
   import { get_current_component } from 'svelte/internal';
+  import type { AddLayoutListener, RemoveLayoutListener } from '@smui/common';
+  import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
     classMap,
@@ -75,7 +76,6 @@
     prefixFilter,
     useActions,
     dispatch,
-    ActionArray,
   } from '@smui/common/internal';
 
   import type { SMUIDataTableHeadAccessor } from './Head.types.js';

@@ -188,10 +188,11 @@
 </div>
 
 <script lang="ts">
-  import type { AddLayoutListener, RemoveLayoutListener } from '@smui/common';
   import { MDCSliderFoundation, Thumb, TickMark } from '@material/slider';
   import { onMount, onDestroy, getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
+  import type { AddLayoutListener, RemoveLayoutListener } from '@smui/common';
+  import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
     classMap,
@@ -199,7 +200,6 @@
     prefixFilter,
     useActions,
     dispatch,
-    ActionArray,
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
 

@@ -30,12 +30,12 @@
   import { onMount, setContext } from 'svelte';
   import { writable } from 'svelte/store';
   import { get_current_component } from 'svelte/internal';
+  import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
     classMap,
     useActions,
     dispatch,
-    ActionArray,
   } from '@smui/common/internal';
   import { ContextFragment } from '@smui/common';
 

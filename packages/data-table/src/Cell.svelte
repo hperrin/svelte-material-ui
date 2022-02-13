@@ -64,15 +64,15 @@
 
 <script lang="ts">
   import type { SortValue } from '@material/data-table';
-  import type { Writable } from 'svelte/store';
   import { onMount, getContext, setContext } from 'svelte';
+  import type { Writable } from 'svelte/store';
   import { get_current_component } from 'svelte/internal';
+  import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
     classMap,
     useActions,
     dispatch,
-    ActionArray,
   } from '@smui/common/internal';
 
   import type { SMUIDataTableCellAccessor } from './Cell.types.js';

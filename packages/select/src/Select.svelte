@@ -218,12 +218,6 @@
 </script>
 
 <script lang="ts">
-  import type { AddLayoutListener, RemoveLayoutListener } from '@smui/common';
-  import type { Corner } from '@smui/menu-surface';
-  import type { SMUIListAccessor } from '@smui/list';
-  import type { FloatingLabelComponentDev } from '@smui/floating-label';
-  import type { LineRippleComponentDev } from '@smui/line-ripple';
-  import type { NotchedOutlineComponentDev } from '@smui/notched-outline';
   import type {
     MDCSelectIconFoundation,
     MDCSelectHelperTextFoundation,
@@ -232,6 +226,8 @@
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
   import { writable } from 'svelte/store';
   import { get_current_component } from 'svelte/internal';
+  import type { AddLayoutListener, RemoveLayoutListener } from '@smui/common';
+  import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
     classMap,
@@ -239,14 +235,18 @@
     prefixFilter,
     useActions,
     dispatch,
-    ActionArray,
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
+  import type { Corner } from '@smui/menu-surface';
   import { Anchor } from '@smui/menu-surface';
   import Menu from '@smui/menu';
+  import type { SMUIListAccessor } from '@smui/list';
   import List from '@smui/list';
+  import type { FloatingLabelComponentDev } from '@smui/floating-label';
   import FloatingLabel from '@smui/floating-label';
+  import type { LineRippleComponentDev } from '@smui/line-ripple';
   import LineRipple from '@smui/line-ripple';
+  import type { NotchedOutlineComponentDev } from '@smui/notched-outline';
   import NotchedOutline from '@smui/notched-outline';
 
   import HelperText from './helper-text/HelperText.svelte';

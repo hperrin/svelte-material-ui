@@ -14,12 +14,12 @@
 <script lang="ts">
   import { onMount, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
+  import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
     classMap,
     useActions,
     dispatch,
-    ActionArray,
   } from '@smui/common/internal';
 
   import type { SMUIDataTableRowAccessor } from './Row.types.js';

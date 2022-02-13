@@ -37,6 +37,7 @@
   import { ponyfill } from '@material/dom';
   import { onMount, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
+  import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
     classMap,
@@ -44,7 +45,6 @@
     prefixFilter,
     useActions,
     dispatch,
-    ActionArray,
   } from '@smui/common/internal';
   const { closest } = ponyfill;
 

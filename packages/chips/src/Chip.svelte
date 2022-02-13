@@ -59,12 +59,13 @@
   import { deprecated } from '@material/chips';
   import { onMount, setContext, getContext } from 'svelte';
   import { writable } from 'svelte/store';
-  import { get_current_component, SvelteComponentDev } from 'svelte/internal';
+  import type { SvelteComponentDev } from 'svelte/internal';
+  import { get_current_component } from 'svelte/internal';
+  import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
     classMap,
     dispatch,
-    ActionArray,
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
   import { Div } from '@smui/common/elements';

@@ -63,18 +63,19 @@
 </script>
 
 <script lang="ts">
+  import { onMount, onDestroy, getContext, setContext } from 'svelte';
+  import type { SvelteComponentDev } from 'svelte/internal';
+  import { get_current_component } from 'svelte/internal';
   import type {
     SMUICheckboxInputAccessor,
     SMUIGenericInputAccessor,
     SMUIRadioInputAccessor,
   } from '@smui/common';
-  import { onMount, onDestroy, getContext, setContext } from 'svelte';
-  import { get_current_component, SvelteComponentDev } from 'svelte/internal';
+  import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
     classMap,
     dispatch,
-    ActionArray,
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
   import { A, Span, Li } from '@smui/common/elements';

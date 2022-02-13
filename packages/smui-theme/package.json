@@ -73,7 +73,7 @@
   },
   "dependencies": {
     "node-fetch": "^2.6.7",
-    "sass": "^1.49.0",
+    "sass": "^1.49.7",
     "yargs": "^17.3.1"
   }
 }

@@ -23,15 +23,15 @@
 </script>
 
 <script lang="ts">
-  import type { SMUICheckboxInputAccessor } from '@smui/common';
   import { onMount, getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
+  import type { SMUICheckboxInputAccessor } from '@smui/common';
+  import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
     classMap,
     useActions,
     dispatch,
-    ActionArray,
   } from '@smui/common/internal';
 
   import type { SMUIDataTableRowAccessor } from './Row.types.js';

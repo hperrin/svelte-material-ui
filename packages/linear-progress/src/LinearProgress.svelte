@@ -45,18 +45,16 @@
 </div>
 
 <script lang="ts">
-  import type { Writable } from 'svelte/store';
-  import {
-    MDCLinearProgressFoundation,
-    MDCResizeObserver,
-  } from '@material/linear-progress';
+  import type { MDCResizeObserver } from '@material/linear-progress';
+  import { MDCLinearProgressFoundation } from '@material/linear-progress';
   import { onMount, getContext } from 'svelte';
+  import type { Writable } from 'svelte/store';
   import { get_current_component } from 'svelte/internal';
+  import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
     classMap,
     useActions,
-    ActionArray,
   } from '@smui/common/internal';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());

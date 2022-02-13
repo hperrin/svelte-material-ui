@@ -43,16 +43,17 @@
 </svelte:component>
 
 <script lang="ts">
-  import type { AddLayoutListener, RemoveLayoutListener } from '@smui/common';
   import { MDCListFoundation } from '@material/list';
   import { ponyfill } from '@material/dom';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
-  import { get_current_component, SvelteComponentDev } from 'svelte/internal';
+  import type { SvelteComponentDev } from 'svelte/internal';
+  import { get_current_component } from 'svelte/internal';
+  import type { AddLayoutListener, RemoveLayoutListener } from '@smui/common';
+  import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
     classMap,
     dispatch,
-    ActionArray,
   } from '@smui/common/internal';
   import { Ul, Nav } from '@smui/common/elements';
 

@@ -80,18 +80,18 @@
     "@smui/tooltip": "^6.0.0-beta.13",
     "@smui/top-app-bar": "^6.0.0-beta.13",
     "@smui/touch-target": "^6.0.0-beta.13",
-    "@sveltejs/adapter-static": "^1.0.0-next.26",
-    "@sveltejs/kit": "^1.0.0-next.250",
+    "@sveltejs/adapter-static": "^1.0.0-next.28",
+    "@sveltejs/kit": "^1.0.0-next.265",
     "highlight.js": "^11.4.0",
     "highlightjs-svelte": "^1.0.6",
-    "mdsvex": "^0.9.8",
+    "mdsvex": "^0.10.5",
     "remark-slug": "^7.0.1",
-    "sass": "^1.49.0",
+    "sass": "^1.49.7",
     "smui-theme": "^6.0.0-beta.13",
-    "svelte-preprocess": "^4.10.2",
+    "svelte-preprocess": "^4.10.3",
     "tinygesture": "^1.1.4",
     "tslib": "^2.3.1",
     "typescript": "^4.5.5",
-    "vite": "^2.7.13"
+    "vite": "^2.8.0"
   }
 }

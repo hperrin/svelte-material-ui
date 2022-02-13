@@ -29,15 +29,16 @@
   import { MDCMenuSurfaceFoundation } from '@material/menu-surface';
   import { onMount, onDestroy, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
+  import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
     classMap,
     useActions,
     dispatch,
-    ActionArray,
   } from '@smui/common/internal';
 
-  import { Corner, SMUIMenuSurfaceAccessor } from './MenuSurface.types.js';
+  import type { SMUIMenuSurfaceAccessor } from './MenuSurface.types.js';
+  import { Corner } from './MenuSurface.types.js';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

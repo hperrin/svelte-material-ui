@@ -26,17 +26,17 @@
 </script>
 
 <script lang="ts">
-  import type { SMUIGenericInputAccessor } from '@smui/common';
   import { MDCFormFieldFoundation } from '@material/form-field';
   import { onMount, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
+  import type { SMUIGenericInputAccessor } from '@smui/common';
+  import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
     classMap,
     exclude,
     prefixFilter,
     useActions,
-    ActionArray,
   } from '@smui/common/internal';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());

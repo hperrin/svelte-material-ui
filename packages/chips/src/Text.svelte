@@ -30,12 +30,12 @@
 <script lang="ts">
   import { onMount, getContext, tick } from 'svelte';
   import { get_current_component } from 'svelte/internal';
+  import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
     classMap,
     useActions,
     dispatch,
-    ActionArray,
   } from '@smui/common/internal';
 
   import type { SMUIChipsPrimaryActionAccessor } from './Text.types.js';

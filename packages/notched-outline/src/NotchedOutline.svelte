@@ -28,16 +28,16 @@
 </div>
 
 <script lang="ts">
-  import type { SMUIFloatingLabelAccessor } from '@smui/floating-label';
   import { MDCNotchedOutlineFoundation } from '@material/notched-outline';
   import { onMount } from 'svelte';
   import { get_current_component } from 'svelte/internal';
+  import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
     classMap,
     useActions,
-    ActionArray,
   } from '@smui/common/internal';
+  import type { SMUIFloatingLabelAccessor } from '@smui/floating-label';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

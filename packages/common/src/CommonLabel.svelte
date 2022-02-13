@@ -23,7 +23,8 @@
 
 <script lang="ts">
   import { getContext } from 'svelte';
-  import { get_current_component, SvelteComponentDev } from 'svelte/internal';
+  import type { SvelteComponentDev } from 'svelte/internal';
+  import { get_current_component } from 'svelte/internal';
 
   import type { ActionArray } from './internal/useActions.js';
   import { forwardEventsBuilder, classMap } from './internal/index.js';

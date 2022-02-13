@@ -64,17 +64,16 @@
 >
 
 <script lang="ts">
-  import {
-    MDCIconButtonToggleEventDetail,
-    MDCIconButtonToggleFoundation,
-  } from '@material/icon-button';
+  import type { MDCIconButtonToggleEventDetail } from '@material/icon-button';
+  import { MDCIconButtonToggleFoundation } from '@material/icon-button';
   import { onDestroy, getContext, setContext } from 'svelte';
-  import { get_current_component, SvelteComponentDev } from 'svelte/internal';
+  import type { SvelteComponentDev } from 'svelte/internal';
+  import { get_current_component } from 'svelte/internal';
+  import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
     classMap,
     dispatch,
-    ActionArray,
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
   import { A, Button } from '@smui/common/elements';
