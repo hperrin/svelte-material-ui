@@ -31,7 +31,7 @@
   aria-selected={active ? 'true' : 'false'}
   tabindex={active || forceAccessible ? '0' : '-1'}
   {href}
-  on:click={() => instance && instance.handleClick()}
+  on:click={handleClick}
   {...internalAttrs}
   {...exclude($$restProps, ['content$', 'tabIndicator$'])}
 >
@@ -66,10 +66,11 @@
 </svelte:component>
 
 <script lang="ts">
-  import type { TabIndicatorComponentDev } from '@smui/tab-indicator';
   import { MDCTabFoundation } from '@material/tab';
   import { onMount, setContext, getContext } from 'svelte';
-  import { get_current_component, SvelteComponentDev } from 'svelte/internal';
+  import type { SvelteComponentDev } from 'svelte/internal';
+  import { get_current_component } from 'svelte/internal';
+  import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
     classMap,
@@ -77,13 +78,13 @@
     prefixFilter,
     useActions,
     dispatch,
-    ActionArray,
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
   import { A, Button } from '@smui/common/elements';
+  import type { TabIndicatorComponentDev } from '@smui/tab-indicator';
   import TabIndicator from '@smui/tab-indicator';
 
-  import type { SMUITabAccessor } from './Tab.types.js';
+  import type { SMUITabAccessor } from './Tab.types';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
@@ -180,6 +181,12 @@
       instance.destroy();
     };
   });
+
+  function handleClick(event: PointerEvent) {
+    if (!event.defaultPrevented) {
+      instance?.handleClick();
+    }
+  }
 
   function hasClass(className: string) {
     return className in internalClasses
