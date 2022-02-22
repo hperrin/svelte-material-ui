@@ -183,8 +183,9 @@
       },
       restoreFocus: () => {
         if (
-          element.contains(document.activeElement) &&
+          (!element || element.contains(document.activeElement)) &&
           previousFocus &&
+          document.contains(previousFocus) &&
           'focus' in previousFocus
         ) {
           (previousFocus as HTMLInputElement).focus();
