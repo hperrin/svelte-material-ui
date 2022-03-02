@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0-beta.15](https://github.com/hperrin/svelte-material-ui/compare/v6.0.0-beta.14...v6.0.0-beta.15) (2022-03-02)
+
+
+### Bug Fixes
+
+* error when menu is destructed while it's open ([de95905](https://github.com/hperrin/svelte-material-ui/commit/de959053e17b1ca7daa4704afa3fd81af436daa9))
+
+
+
+
+
 # [6.0.0-beta.14](https://github.com/hperrin/svelte-material-ui/compare/v6.0.0-beta.13...v6.0.0-beta.14) (2022-02-13)
 
 

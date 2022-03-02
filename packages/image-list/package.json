@@ -1,6 +1,6 @@
 {
   "name": "@smui/image-list",
-  "version": "6.0.0-beta.14",
+  "version": "6.0.0-beta.15",
   "description": "Svelte Material UI - Image List",
   "type": "module",
   "main": "dist/index.js",
@@ -39,7 +39,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@material/image-list": "^13.0.0",
-    "@smui/common": "^6.0.0-beta.14",
+    "@smui/common": "^6.0.0-beta.15",
     "svelte2tsx": "^0.4.14"
   },
   "devDependencies": {
