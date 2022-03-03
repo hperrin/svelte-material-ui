@@ -1,4 +1,47 @@
 <svelte:window on:resize={setMiniWindow} />
+
+<svelte:head>
+  {#if lightTheme === true}
+    <!-- SMUI Styles -->
+    <link rel="stylesheet" href="{assets}/smui.css" />
+
+    <!-- Site Styles -->
+    <link rel="stylesheet" href="{assets}/site.css" />
+  {:else if lightTheme === false}
+    <!-- SMUI Styles -->
+    <link rel="stylesheet" href="{assets}/smui.css" />
+    <link rel="stylesheet" href="{assets}/smui-dark.css" media="screen" />
+
+    <!-- Site Styles -->
+    <link rel="stylesheet" href="{assets}/site.css" />
+    <link rel="stylesheet" href="{assets}/site-dark.css" media="screen" />
+  {:else}
+    <!-- SMUI Styles -->
+    <link
+      rel="stylesheet"
+      href="{assets}/smui.css"
+      media="(prefers-color-scheme: light)"
+    />
+    <link
+      rel="stylesheet"
+      href="{assets}/smui-dark.css"
+      media="screen and (prefers-color-scheme: dark)"
+    />
+
+    <!-- Site Styles -->
+    <link
+      rel="stylesheet"
+      href="{assets}/site.css"
+      media="(prefers-color-scheme: light)"
+    />
+    <link
+      rel="stylesheet"
+      href="{assets}/site-dark.css"
+      media="screen and (prefers-color-scheme: dark)"
+    />
+  {/if}
+</svelte:head>
+
 {#if iframe}
   <slot />
 {:else}
@@ -62,7 +105,7 @@
           <IconButton
             toggle
             pressed={lightTheme}
-            on:SMUIIconButtonToggle:change={switchTheme}
+            on:SMUIIconButtonToggle:change={() => (lightTheme = !lightTheme)}
           >
             <Icon component={Svg} viewBox="0 0 24 24" on>
               <path fill="currentColor" d={mdiWeatherNight} />
@@ -134,6 +177,7 @@
     mdiWeatherNight,
   } from '@mdi/js';
   import TinyGesture from 'tinygesture';
+  import { assets } from '$app/paths';
   import { page } from '$app/stores';
 
   import TopAppBar, { Row, Section, Title } from '@smui/top-app-bar';
@@ -155,34 +199,7 @@
   let drawerGesture: TinyGesture;
   let mainContentGesture: TinyGesture;
 
-  let lightTheme =
-    typeof window === 'undefined' ||
-    window.matchMedia('(prefers-color-scheme: light)').matches;
-  function switchTheme() {
-    lightTheme = !lightTheme;
-
-    let themeLink = document.head.querySelector<HTMLLinkElement>('#theme');
-    if (!themeLink) {
-      themeLink = document.createElement('link');
-      themeLink.rel = 'stylesheet';
-      themeLink.id = 'theme';
-    }
-    themeLink.href = `/smui${lightTheme ? '' : '-dark'}.css`;
-    document.head
-      .querySelector<HTMLLinkElement>('link[href="/smui-dark.css"]')
-      ?.insertAdjacentElement('afterend', themeLink);
-
-    let siteLink = document.head.querySelector<HTMLLinkElement>('#site');
-    if (!siteLink) {
-      siteLink = document.createElement('link');
-      siteLink.rel = 'stylesheet';
-      siteLink.id = 'site';
-    }
-    siteLink.href = `/site${lightTheme ? '' : '-dark'}.css`;
-    document.head
-      .querySelector<HTMLLinkElement>('link[href="/site-dark.css"]')
-      ?.insertAdjacentElement('afterend', siteLink);
-  }
+  let lightTheme: boolean;
 
   type DemoSection = {
     component?: ItemComponentDev;
@@ -570,6 +587,8 @@
         drawerOpen = false;
       });
     }
+
+    lightTheme = window.matchMedia('(prefers-color-scheme: light)').matches;
   });
 
   onDestroy(() => {
