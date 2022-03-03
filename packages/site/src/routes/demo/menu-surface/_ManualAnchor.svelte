@@ -34,10 +34,8 @@
 </div>
 
 <script lang="ts">
-  import MenuSurface, {
-    Anchor,
-    MenuSurfaceComponentDev,
-  } from '@smui/menu-surface';
+  import type { MenuSurfaceComponentDev } from '@smui/menu-surface';
+  import MenuSurface, { Anchor } from '@smui/menu-surface';
   import ImageList, {
     Item as ImageListItem,
     ImageAspectContainer,

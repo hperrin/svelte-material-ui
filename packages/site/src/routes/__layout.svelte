@@ -137,14 +137,11 @@
   import { page } from '$app/stores';
 
   import TopAppBar, { Row, Section, Title } from '@smui/top-app-bar';
-  import Drawer, {
-    DrawerComponentDev,
-    Content,
-    Scrim,
-    AppContent,
-  } from '@smui/drawer';
+  import type { DrawerComponentDev } from '@smui/drawer';
+  import Drawer, { Content, Scrim, AppContent } from '@smui/drawer';
   import IconButton from '@smui/icon-button';
-  import List, { Item, Text, Separator, ItemComponentDev } from '@smui/list';
+  import type { ItemComponentDev } from '@smui/list';
+  import List, { Item, Text, Separator } from '@smui/list';
   import Tooltip, { Wrapper } from '@smui/tooltip';
   import { Icon } from '@smui/common';
   import { A, Svg } from '@smui/common/elements';

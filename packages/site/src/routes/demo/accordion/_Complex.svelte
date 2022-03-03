@@ -63,7 +63,8 @@
   import Accordion, { Panel, Header, Content } from '@smui-extra/accordion';
   import Button, { Label } from '@smui/button';
   import Tooltip, { Wrapper } from '@smui/tooltip';
-  import Menu, { MenuComponentDev } from '@smui/menu';
+  import type { MenuComponentDev } from '@smui/menu';
+  import Menu from '@smui/menu';
   import List, { Item, Text } from '@smui/list';
   import Dialog, {
     Title,

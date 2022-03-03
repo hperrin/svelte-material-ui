@@ -14,7 +14,8 @@
 </div>
 
 <script lang="ts">
-  import MenuSurface, { MenuSurfaceComponentDev } from '@smui/menu-surface';
+  import type { MenuSurfaceComponentDev } from '@smui/menu-surface';
+  import MenuSurface from '@smui/menu-surface';
   import Textfield from '@smui/textfield';
   import Button from '@smui/button';
 

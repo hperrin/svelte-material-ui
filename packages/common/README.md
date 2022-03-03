@@ -367,7 +367,8 @@ An action that takes actions and runs them on the element. Used to allow actions
 </div>
 
 <script lang="ts">
-  import { useActions, ActionArray } from '@smui/common/internal';
+  import type { ActionArray } from '@smui/common/internal';
+  import { useActions } from '@smui/common/internal';
 
   export let use: ActionArray = [];
 </script>

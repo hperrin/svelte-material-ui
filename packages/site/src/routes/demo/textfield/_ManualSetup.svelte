@@ -125,21 +125,19 @@
 </div>
 
 <script lang="ts">
-  import Textfield, {
-    Input,
+  import type {
     InputComponentDev,
-    Textarea,
     TextareaComponentDev,
   } from '@smui/textfield';
+  import Textfield, { Input, Textarea } from '@smui/textfield';
   import Icon from '@smui/textfield/icon';
   import HelperText from '@smui/textfield/helper-text';
-  import FloatingLabel, {
-    FloatingLabelComponentDev,
-  } from '@smui/floating-label';
-  import LineRipple, { LineRippleComponentDev } from '@smui/line-ripple';
-  import NotchedOutline, {
-    NotchedOutlineComponentDev,
-  } from '@smui/notched-outline';
+  import type { FloatingLabelComponentDev } from '@smui/floating-label';
+  import FloatingLabel from '@smui/floating-label';
+  import type { LineRippleComponentDev } from '@smui/line-ripple';
+  import LineRipple from '@smui/line-ripple';
+  import type { NotchedOutlineComponentDev } from '@smui/notched-outline';
+  import NotchedOutline from '@smui/notched-outline';
 
   // Manual Setup requires passing the lower components up to the Textfield
   let valueA = '';

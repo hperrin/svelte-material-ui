@@ -12,11 +12,8 @@
 </Button>
 
 <script lang="ts">
-  import Snackbar, {
-    Actions,
-    Label,
-    SnackbarComponentDev,
-  } from '@smui/snackbar';
+  import type { SnackbarComponentDev } from '@smui/snackbar';
+  import Snackbar, { Actions, Label } from '@smui/snackbar';
   import Button from '@smui/button';
   import IconButton from '@smui/icon-button';
   import Textfield from '@smui/textfield';

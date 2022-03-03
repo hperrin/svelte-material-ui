@@ -57,7 +57,8 @@
 <pre class="status">Clicked: {clicked}</pre>
 
 <script lang="ts">
-  import Menu, { MenuComponentDev } from '@smui/menu';
+  import type { MenuComponentDev } from '@smui/menu';
+  import Menu from '@smui/menu';
   import { Anchor } from '@smui/menu-surface';
   import List, {
     Item,

@@ -60,7 +60,8 @@
 
 <script lang="ts">
   import Button, { Group, GroupItem, Label, Icon } from '@smui/button';
-  import Menu, { MenuComponentDev } from '@smui/menu';
+  import type { MenuComponentDev } from '@smui/menu';
+  import Menu from '@smui/menu';
   import List, { Item, Separator, Text } from '@smui/list';
 
   let clicked = 0;

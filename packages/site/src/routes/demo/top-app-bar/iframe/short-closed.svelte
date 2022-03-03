@@ -22,12 +22,12 @@
 </AutoAdjust>
 
 <script lang="ts">
+  import type { TopAppBarComponentDev } from '@smui/top-app-bar';
   import TopAppBar, {
     Row,
     Section,
     Title,
     AutoAdjust,
-    TopAppBarComponentDev,
   } from '@smui/top-app-bar';
   import IconButton from '@smui/icon-button';
   import LoremIpsum from '$lib/LoremIpsum.svelte';

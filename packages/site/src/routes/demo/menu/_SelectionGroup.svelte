@@ -44,11 +44,8 @@
 <pre class="status">Clicked: {clicked}</pre>
 
 <script lang="ts">
-  import Menu, {
-    MenuComponentDev,
-    SelectionGroup,
-    SelectionGroupIcon,
-  } from '@smui/menu';
+  import type { MenuComponentDev } from '@smui/menu';
+  import Menu, { SelectionGroup, SelectionGroupIcon } from '@smui/menu';
   import List, { Item, Separator, Text } from '@smui/list';
   import Button, { Label } from '@smui/button';
 
