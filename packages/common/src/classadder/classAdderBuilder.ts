@@ -19,5 +19,5 @@ export function classAdderBuilder<T extends typeof SvelteComponentDev>(
       Object.assign(internals, defaults, props);
       return (target as any)[prop];
     },
-  }) as T;
+  }) as unknown as T;
 }
