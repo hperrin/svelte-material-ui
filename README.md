@@ -88,7 +88,7 @@ Click a component/package below to go to the documentation. (Note that this docu
 - [Data Table](packages/data-table/README.md)
 - [Dialog](packages/dialog/README.md)
 - [Drawer](packages/drawer/README.md)
-- [Elevation](https://sveltematerialui.com/demo/elevation/)†
+- [Elevation](https://sveltematerialui.com/demo/elevation)†
 - [Image List](packages/image-list/README.md)
 - Inputs and Controls
   - [Autocomplete](packages/autocomplete/README.md)‡
@@ -126,7 +126,7 @@ Click a component/package below to go to the documentation. (Note that this docu
 - [Tooltip](packages/tooltip/README.md)
 - [Top App Bar](packages/top-app-bar/README.md)
 - [Touch Target](packages/touch-target/README.md)
-- [Typography](https://sveltematerialui.com/demo/typography/)†
+- [Typography](https://sveltematerialui.com/demo/typography)†
 
 <sub>† This is Sass based, and therefore doesn't require Svelte components. I've included a demo showing how you can use it.</sub>
 
