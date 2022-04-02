@@ -13,6 +13,7 @@
   {type}
   {placeholder}
   {...valueProp}
+  {...titleProp}
   {...internalAttrs}
   {...$$restProps}
 />
@@ -76,6 +77,15 @@
     valueProp = valueProp;
   } else {
     valueProp.value = value == null ? '' : value;
+  }
+
+  let titleProp: { title?: string | undefined } = {};
+
+  $: if (type === 'file') {
+    delete titleProp.title;
+    titleProp = titleProp;
+  } else {
+    titleProp.title = value == null ? '' : String(value);
   }
 
   onMount(() => {
