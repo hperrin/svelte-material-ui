@@ -33,6 +33,10 @@ const config = {
   kit: {
     adapter: staticAdapter(),
 
+    prerender: {
+      default: true,
+    },
+
     vite: {
       ssr: {
         noExternal: ['tinygesture'],
