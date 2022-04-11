@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0-beta.16](https://github.com/hperrin/svelte-material-ui/compare/v6.0.0-beta.15...v6.0.0-beta.16) (2022-04-11)
+
+
+### Bug Fixes
+
+* svelte check script ([9936200](https://github.com/hperrin/svelte-material-ui/commit/9936200e87b3c298979148eeb60bebadbe1096ca))
+
+
+
+
+
 # [6.0.0-beta.15](https://github.com/hperrin/svelte-material-ui/compare/v6.0.0-beta.14...v6.0.0-beta.15) (2022-03-02)
 
 
