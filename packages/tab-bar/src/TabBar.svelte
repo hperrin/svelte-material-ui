@@ -41,27 +41,29 @@
   import type { TabScrollerComponentDev } from '@smui/tab-scroller';
   import TabScroller from '@smui/tab-scroller';
 
+  type PrimitiveKey = string | number;
+  type TabKey = $$Generic<Object | PrimitiveKey>;
+  interface $$Slots {
+    default: { tab: TabKey };
+  }
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
   // Remember to update types file if you add/remove/rename props.
   export let use: ActionArray = [];
   let className = '';
   export { className as class };
-  export let tabs: any[] = [];
-  export let key: (tab: any) => string | number = (tab) => tab;
+  export let tabs: TabKey[] = [];
+  export let key: (tab: TabKey) => PrimitiveKey = (tab) => tab as PrimitiveKey;
   export let focusOnActivate = true;
   export let focusOnProgrammatic = false;
   export let useAutomaticActivation = true;
-  export let active: any | undefined = undefined;
+  export let active: TabKey | undefined = undefined;
 
   let element: HTMLDivElement;
   let instance: MDCTabBarFoundation;
   let tabScroller: TabScrollerComponentDev;
-  let activeIndex = tabs.indexOf(active);
-  let tabAccessorMap: {
-    [k: string]: SMUITabAccessor;
-    [k: number]: SMUITabAccessor;
-  } = {};
+  let activeIndex = tabs.indexOf(active!);
+  let tabAccessorMap: Record<PrimitiveKey, SMUITabAccessor> = {};
   let tabAccessorWeakMap = new WeakMap<Object, SMUITabAccessor>();
   let skipFocus = false;
 
@@ -69,7 +71,7 @@
   setContext('SMUI:tab:initialActive', active);
 
   $: if (active !== tabs[activeIndex]) {
-    activeIndex = tabs.indexOf(active);
+    activeIndex = tabs.indexOf(active!);
     if (instance) {
       skipFocus = !focusOnProgrammatic;
       instance.activateTab(activeIndex);
@@ -82,7 +84,7 @@
     const accessor =
       tabs[0] instanceof Object
         ? tabAccessorWeakMap.get(tabs[0])
-        : tabAccessorMap[tabs[0]];
+        : tabAccessorMap[tabs[0] as PrimitiveKey];
 
     if (accessor) {
       accessor.forceAccessible(activeIndex === -1);
@@ -134,7 +136,7 @@
         const activeElement = document.activeElement;
         return tabElements.indexOf(activeElement as HTMLElement);
       },
-      getIndexOfTabById: (id) => tabs.indexOf(id),
+      getIndexOfTabById: (id) => tabs.indexOf(id as TabKey),
       getTabListLength: () => tabs.length,
       notifyTabActivated: (index) =>
         dispatch(
