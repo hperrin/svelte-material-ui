@@ -40,6 +40,14 @@
       media="screen and (prefers-color-scheme: dark)"
     />
   {/if}
+
+  {#if !iframe}
+    <!-- It Matters -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/itmatters@1.0.1/index.css"
+    />
+  {/if}
 </svelte:head>
 
 {#if iframe}
