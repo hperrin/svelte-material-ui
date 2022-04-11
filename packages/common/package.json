@@ -13,9 +13,6 @@
   },
   "typesVersions": {
     "*": {
-      "*": [
-        "./src/*"
-      ],
       "classadder": [
         "./src/classadder/index.ts"
       ],
@@ -24,6 +21,9 @@
       ],
       "internal": [
         "./src/internal/index.ts"
+      ],
+      "*": [
+        "./src/*"
       ]
     }
   },
