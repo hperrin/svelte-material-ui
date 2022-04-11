@@ -22,19 +22,19 @@ You can [modify your theme variables](/THEMING.md#theme-variables) in the files 
 
 ## Theme Build Scripts
 
-You'll need one of these sets of prepare scripts in your `package.json` file.
+You'll need one of these sets of prepare scripts in your `package.json` file. Note that SvelteKit already provides a "prepare" script, so you'll need to modify it to look like below.
 
 - Without Dark Mode support.
 
   ```
-  "prepare": "npm run smui-theme",
+  "prepare": "svelte-kit sync && npm run smui-theme",
   "smui-theme": "smui-theme compile static/smui.css -i src/theme"
   ```
 
 - With Dark Mode support.
 
   ```
-  "prepare": "npm run smui-theme-light && npm run smui-theme-dark",
+  "prepare": "svelte-kit sync && npm run smui-theme-light && npm run smui-theme-dark",
   "smui-theme-light": "smui-theme compile static/smui.css -i src/theme",
   "smui-theme-dark": "smui-theme compile static/smui-dark.css -i src/theme/dark"
   ```
