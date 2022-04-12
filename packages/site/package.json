@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "svelte-kit dev",
-    "build": "svelte-kit build",
+    "build": "svelte-kit build && npm run rename-md",
+    "rename-md": "cd build && mv INSTALL.mdindex.html INSTALL.md.html && mv MIGRATING.mdindex.html MIGRATING.md.html && mv REPL.mdindex.html REPL.md.html && mv SVELTEKIT.mdindex.html SVELTEKIT.md.html && mv THEMING.mdindex.html THEMING.md.html && cd ..",
     "package": "svelte-kit package",
     "preview": "svelte-kit preview",
     "prepare": "svelte-kit sync && npm run smui-theme-light && npm run smui-theme-dark && npm run site-light && npm run site-dark",

@@ -226,22 +226,22 @@
   )[] = [
     {
       name: 'Installation',
-      route: '/INSTALL.md/',
+      route: '/INSTALL.md',
       indent: 0,
     },
     {
       name: 'SvelteKit',
-      route: '/SVELTEKIT.md/',
+      route: '/SVELTEKIT.md',
       indent: 1,
     },
     {
       name: 'Theming',
-      route: '/THEMING.md/',
+      route: '/THEMING.md',
       indent: 0,
     },
     {
       name: 'Migrating',
-      route: '/MIGRATING.md/',
+      route: '/MIGRATING.md',
       indent: 0,
     },
     {

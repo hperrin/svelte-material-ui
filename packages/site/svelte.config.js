@@ -37,6 +37,8 @@ const config = {
       default: true,
     },
 
+    trailingSlash: 'always',
+
     vite: {
       ssr: {
         noExternal: ['tinygesture'],
