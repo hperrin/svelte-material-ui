@@ -9,6 +9,7 @@
   }}
   use:useActions={use}
   use:forwardEvents
+  type="button"
   class={classMap({
     [className]: true,
     'mdc-deprecated-chip-trailing-action': true,
