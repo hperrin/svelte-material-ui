@@ -10,6 +10,7 @@ npm install --save-dev @smui/card
 # etc...
 
 npm install --save-dev smui-theme
+npm install --save-dev @material/theme
 ```
 
 Create your theme files with `smui-theme`.
