@@ -94,7 +94,7 @@
               }
 
               // Assign only when the panel is fully opened.
-              opened = true;
+              opened = open;
 
               dispatch(getElement(), 'SMUIAccordionPanel:opened', { accessor });
             },
