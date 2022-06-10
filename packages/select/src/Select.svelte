@@ -1,5 +1,6 @@
 <div
   bind:this={element}
+  bind:clientWidth
   use:Ripple={{
     ripple: variant === 'filled',
     unbounded: false,
@@ -174,6 +175,7 @@
   </div>
 
   <Menu
+    style="min-width: {clientWidth ?? 0}px;"
     class={classMap({
       [menu$class]: true,
       'mdc-select__menu': true,
@@ -295,6 +297,7 @@
   export let dropdownIcon$class = '';
   export let menu$class = '';
 
+  let clientWidth: number | undefined;
   let element: HTMLDivElement;
   let instance: MDCSelectFoundation;
   let internalClasses: { [k: string]: boolean } = {};
