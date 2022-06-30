@@ -43,6 +43,9 @@
   let withOpenDialog = false;
 
   function handlePanelMount(event: CustomEvent<SMUIAccordionPanelAccessor>) {
+    // To make nested accordions work, ensure event sender is a direct child of this accordion
+    if(event.target.parentNode != element) return;
+    
     const accessor = event.detail;
 
     event.stopPropagation();
@@ -61,6 +64,9 @@
   }
 
   function handlePanelUnmount(event: CustomEvent<SMUIAccordionPanelAccessor>) {
+    // To make nested accordions work, ensure event sender is a direct child of this accordion
+    if(event.target.parentNode != element) return;
+    
     const accessor = event.detail;
 
     event.stopPropagation();
@@ -71,6 +77,9 @@
   function handlePanelActivate(
     event: CustomEvent<{ accessor: SMUIAccordionPanelAccessor }>
   ) {
+    // To make nested accordions work, ensure event sender is a direct child of this accordion
+    if(event.target.parentNode != element) return;
+    
     const { accessor } = event.detail;
 
     if (!multiple && !accessor.open) {
@@ -89,6 +98,9 @@
   function handlePanelOpening(
     event: CustomEvent<{ accessor: SMUIAccordionPanelAccessor }>
   ) {
+    // To make nested accordions work, ensure event sender is a direct child of this accordion
+    if(event.target.parentNode != element) return;
+    
     const { accessor } = event.detail;
 
     if (!multiple) {
