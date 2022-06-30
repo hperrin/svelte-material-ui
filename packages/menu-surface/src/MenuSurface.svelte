@@ -220,7 +220,7 @@
           'bottom' in position ? `${position.bottom}px` : '';
       },
       setMaxHeight: (height) => {
-        internalStyles.maxHeight = height;
+        internalStyles["max-height"] = height;
       },
     });
 
