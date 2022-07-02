@@ -54,13 +54,19 @@
       bind:this={input}
       data-smui="true"
       type="text"
-      style="display:none;"
+      style="width: 100%;height: 100%;position: absolute;opacity: 0;"
       {required}
       {disabled}
       {value}
       {...prefixFilter($$restProps, 'input$')}
     />
   {/if}
+  <style>
+    input[data-smui="true"]:focus-visible {
+      outline: none;
+      caret-color: transparent;
+    }
+  </style>
   <div
     bind:this={selectAnchor}
     use:useActions={anchor$use}
