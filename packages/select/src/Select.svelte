@@ -341,7 +341,7 @@
 
   // If items array changes, reset value
   let items_previous: any[] = [];
-  $: if (items !== items_previous) {
+  $: if (JSON.stringify(items) !== JSON.stringify(items_previous)) {
     // Reset select value
     value = '';
 
