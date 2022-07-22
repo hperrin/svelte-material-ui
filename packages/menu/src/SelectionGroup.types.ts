@@ -7,13 +7,11 @@ export declare class SelectionGroupComponentDev extends Component {
    * Does not exist at runtime.
    * ### DO NOT USE!
    */
-  $$prop_def: Omit<Partial<svelte.JSX.HTMLAttributes<HTMLLIElement>>, 'use'> &
-    {
-      [k in keyof Partial<
-        svelte.JSX.HTMLAttributes<HTMLUListElement>
-      > as `list\$${k}`]?: Partial<
-        svelte.JSX.HTMLAttributes<HTMLUListElement>
-      >[k];
-    } &
-    Component['$$prop_def'];
+  $$prop_def: Omit<Partial<svelte.JSX.HTMLAttributes<HTMLLIElement>>, 'use'> & {
+    [k in keyof Partial<
+      svelte.JSX.HTMLAttributes<HTMLUListElement>
+    > as `list\$${k}`]?: Partial<
+      svelte.JSX.HTMLAttributes<HTMLUListElement>
+    >[k];
+  } & Component['$$prop_def'];
 }

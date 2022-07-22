@@ -6,7 +6,8 @@ import Content from './Content.js';
 import PrimaryActionComponent from './PrimaryAction.svelte';
 import type { PrimaryActionComponentDev } from './PrimaryAction.types.js';
 export * from './PrimaryAction.types.js';
-const PrimaryAction = PrimaryActionComponent as typeof PrimaryActionComponentDev;
+const PrimaryAction =
+  PrimaryActionComponent as typeof PrimaryActionComponentDev;
 import MediaComponent from './Media.svelte';
 import type { MediaComponentDev } from './Media.types.js';
 export * from './Media.types.js';

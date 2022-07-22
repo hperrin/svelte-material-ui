@@ -16,8 +16,10 @@
   </Segment>
 </SegmentedButton>
 
-<pre
-  class="status">Selected: {choices.filter(choice => choice.selected).map(choice => choice.name).join(', ')}</pre>
+<pre class="status">Selected: {choices
+    .filter((choice) => choice.selected)
+    .map((choice) => choice.name)
+    .join(', ')}</pre>
 
 <script lang="ts">
   import SegmentedButton, { Segment, Label } from '@smui/segmented-button';

@@ -1,7 +1,7 @@
 import type { TabScrollerComponentDev } from '@smui/tab-scroller';
 import type Component from './TabBar.svelte';
 
-export declare class TabBarComponentDev<T> extends Component<T> {
+export declare class TabBarComponentDev extends Component {
   /**
    * @private
    * For type checking capabilities only.
@@ -18,9 +18,7 @@ export declare class TabBarComponentDev<T> extends Component<T> {
     | 'focusOnProgrammatic'
     | 'useAutomaticActivation'
     | 'active'
-  > &
-    {
-      [k in keyof TabScrollerComponentDev['$$prop_def'] as `tabScroller\$${k}`]?: TabScrollerComponentDev['$$prop_def'][k];
-    } &
-    Component<T>['$$prop_def'];
+  > & {
+    [k in keyof TabScrollerComponentDev['$$prop_def'] as `tabScroller\$${k}`]?: TabScrollerComponentDev['$$prop_def'][k];
+  } & Component['$$prop_def'];
 }

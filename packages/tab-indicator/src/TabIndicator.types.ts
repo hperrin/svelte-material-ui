@@ -10,13 +10,11 @@ export declare class TabIndicatorComponentDev extends Component {
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<HTMLSpanElement>>,
     'use' | 'class' | 'active' | 'type' | 'transition'
-  > &
-    {
-      [k in keyof Partial<
-        svelte.JSX.HTMLAttributes<HTMLSpanElement>
-      > as `content\$${k}`]?: Partial<
-        svelte.JSX.HTMLAttributes<HTMLSpanElement>
-      >[k];
-    } &
-    Component['$$prop_def'];
+  > & {
+    [k in keyof Partial<
+      svelte.JSX.HTMLAttributes<HTMLSpanElement>
+    > as `content\$${k}`]?: Partial<
+      svelte.JSX.HTMLAttributes<HTMLSpanElement>
+    >[k];
+  } & Component['$$prop_def'];
 }

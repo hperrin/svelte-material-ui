@@ -52,8 +52,11 @@
   </SegmentedButton>
 </div>
 
-<pre
-  class="status">Aligned: {align.name}, Format: {format.length ? format.map(f => f.name).join(' & ') : 'None'}, {actions.map(({name, count}) => `${name}s: ${count}`).join(', ')}</pre>
+<pre class="status">Aligned: {align.name}, Format: {format.length
+    ? format.map((f) => f.name).join(' & ')
+    : 'None'}, {actions
+    .map(({ name, count }) => `${name}s: ${count}`)
+    .join(', ')}</pre>
 
 <script lang="ts">
   import SegmentedButton, {

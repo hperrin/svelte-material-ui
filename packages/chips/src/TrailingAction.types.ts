@@ -10,15 +10,11 @@ export declare class TrailingActionComponentDev extends Component {
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<HTMLButtonElement>>,
     'use' | 'class' | 'style' | 'ripple' | 'touch' | 'nonNavigable'
-  > &
-    {
-      [k in keyof Partial<
-        svelte.JSX.HTMLAttributes<HTMLSpanElement>
-      > as `icon\$${k}`]?: Partial<
-        svelte.JSX.HTMLAttributes<HTMLSpanElement>
-      >[k];
-    } &
-    Component['$$prop_def'];
+  > & {
+    [k in keyof Partial<
+      svelte.JSX.HTMLAttributes<HTMLSpanElement>
+    > as `icon\$${k}`]?: Partial<svelte.JSX.HTMLAttributes<HTMLSpanElement>>[k];
+  } & Component['$$prop_def'];
 }
 
 export interface SMUIChipsTrailingActionAccessor {

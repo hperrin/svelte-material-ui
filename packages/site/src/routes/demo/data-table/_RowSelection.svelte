@@ -27,8 +27,9 @@
   </Body>
 </DataTable>
 
-<pre
-  class="status">Selected: {selected.map(option => option.name).join(', ')}</pre>
+<pre class="status">Selected: {selected
+    .map((option) => option.name)
+    .join(', ')}</pre>
 <pre class="status">Total: {selectedPrice}</pre>
 
 <script lang="ts">

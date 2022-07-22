@@ -17,20 +17,17 @@ export declare class DialogComponentDev extends Component {
     | 'scrimClickAction'
     | 'autoStackButtons'
     | 'fullscreen'
-  > &
-    {
-      [k in keyof Partial<
-        svelte.JSX.HTMLAttributes<HTMLDivElement>
-      > as `container\$${k}`]?: Partial<
-        svelte.JSX.HTMLAttributes<HTMLDivElement>
-      >[k];
-    } &
-    {
-      [k in keyof Partial<
-        svelte.JSX.HTMLAttributes<HTMLDivElement>
-      > as `surface\$${k}`]?: Partial<
-        svelte.JSX.HTMLAttributes<HTMLDivElement>
-      >[k];
-    } &
-    Component['$$prop_def'];
+  > & {
+    [k in keyof Partial<
+      svelte.JSX.HTMLAttributes<HTMLDivElement>
+    > as `container\$${k}`]?: Partial<
+      svelte.JSX.HTMLAttributes<HTMLDivElement>
+    >[k];
+  } & {
+    [k in keyof Partial<
+      svelte.JSX.HTMLAttributes<HTMLDivElement>
+    > as `surface\$${k}`]?: Partial<
+      svelte.JSX.HTMLAttributes<HTMLDivElement>
+    >[k];
+  } & Component['$$prop_def'];
 }

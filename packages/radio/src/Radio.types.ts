@@ -17,18 +17,17 @@ export declare class RadioComponentDev extends Component {
     | 'group'
     | 'value'
     | 'valueKey'
-  > &
-    {
-      [k in keyof Partial<
-        svelte.JSX.HTMLAttributes<HTMLInputElement>
-      > as `input\$${k}`]?: Partial<
-        svelte.JSX.HTMLAttributes<HTMLInputElement>
-      >[k];
-    } & {
-      input$type?: never;
-      input$disabled?: never;
-      input$value?: never;
-      input$checked?: never;
-      input$group?: never;
-    } & Component['$$prop_def'];
+  > & {
+    [k in keyof Partial<
+      svelte.JSX.HTMLAttributes<HTMLInputElement>
+    > as `input\$${k}`]?: Partial<
+      svelte.JSX.HTMLAttributes<HTMLInputElement>
+    >[k];
+  } & {
+    input$type?: never;
+    input$disabled?: never;
+    input$value?: never;
+    input$checked?: never;
+    input$group?: never;
+  } & Component['$$prop_def'];
 }

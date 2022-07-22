@@ -21,7 +21,8 @@ const TrailingIcon = TrailingIconComponent as typeof TrailingIconComponentDev;
 import TrailingActionComponent from './TrailingAction.svelte';
 import type { TrailingActionComponentDev } from './TrailingAction.types.js';
 export * from './TrailingAction.types.js';
-const TrailingAction = TrailingActionComponent as typeof TrailingActionComponentDev;
+const TrailingAction =
+  TrailingActionComponent as typeof TrailingActionComponentDev;
 
 export default Chip as typeof ChipComponentDev;
 

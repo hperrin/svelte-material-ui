@@ -7,9 +7,11 @@ import {
 } from 'svelte/internal';
 
 // Match old modifiers. (only works on DOM events)
-const oldModifierRegex = /^[a-z]+(?::(?:preventDefault|stopPropagation|passive|nonpassive|capture|once|self))+$/;
+const oldModifierRegex =
+  /^[a-z]+(?::(?:preventDefault|stopPropagation|passive|nonpassive|capture|once|self))+$/;
 // Match new modifiers.
-const newModifierRegex = /^[^$]+(?:\$(?:preventDefault|stopPropagation|passive|nonpassive|capture|once|self))+$/;
+const newModifierRegex =
+  /^[^$]+(?:\$(?:preventDefault|stopPropagation|passive|nonpassive|capture|once|self))+$/;
 
 export function forwardEventsBuilder(component: SvelteComponent) {
   // This is our pseudo $on function. It is defined on component mount.

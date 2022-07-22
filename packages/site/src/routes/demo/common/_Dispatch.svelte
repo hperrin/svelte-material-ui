@@ -13,8 +13,8 @@
 
 <Button on:click={dispatchEvent}>Dispatch Event</Button>
 
-<pre
-  class="status">Caught Event Detail: {event && JSON.stringify(event.detail)}</pre>
+<pre class="status">Caught Event Detail: {event &&
+    JSON.stringify(event.detail)}</pre>
 
 <script lang="ts">
   import { dispatch } from '@smui/common/internal';

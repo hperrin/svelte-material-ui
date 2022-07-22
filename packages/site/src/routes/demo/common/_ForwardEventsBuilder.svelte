@@ -7,8 +7,9 @@
   Click me, key press me, focus me, blur me, use me however you want.
 </MyComponent>
 
-<pre
-  class="status">Clicked: {clicked}, Key Pressed: {key === ' ' ? 'Space' : key}, Focused: {focused}</pre>
+<pre class="status">Clicked: {clicked}, Key Pressed: {key === ' '
+    ? 'Space'
+    : key}, Focused: {focused}</pre>
 
 <script lang="ts">
   import MyComponent from './_ForwardEventsBuilderComponent.svelte';
@@ -17,7 +18,7 @@
   let key = 'None';
   let focused = false;
 
-  const handleKeyPress = (((event: KeyboardEvent) => {
+  const handleKeyPress = ((event: KeyboardEvent) => {
     key = event.key;
-  }) as unknown) as (event: CustomEvent) => void;
+  }) as unknown as (event: CustomEvent) => void;
 </script>

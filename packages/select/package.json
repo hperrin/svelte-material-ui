@@ -67,13 +67,13 @@
     "@smui/menu-surface": "^6.0.0-beta.16",
     "@smui/notched-outline": "^6.0.0-beta.16",
     "@smui/ripple": "^6.0.0-beta.16",
-    "svelte2tsx": "^0.5.8"
+    "svelte2tsx": "^0.5.12"
   },
   "devDependencies": {
     "@tsconfig/svelte": "^3.0.0",
-    "sass": "^1.50.0",
+    "sass": "^1.53.0",
     "svelte-strip": "^1.0.1",
-    "tslib": "^2.3.1",
-    "typescript": "^4.6.3"
+    "tslib": "^2.4.0",
+    "typescript": "^4.7.4"
   }
 }

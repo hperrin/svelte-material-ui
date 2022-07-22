@@ -17,13 +17,11 @@ export declare class SnackbarComponentDev extends Component {
     | 'closeOnEscape'
     | 'labelText'
     | 'actionButtonText'
-  > &
-    {
-      [k in keyof Partial<
-        svelte.JSX.HTMLAttributes<HTMLDivElement>
-      > as `surface\$${k}`]?: Partial<
-        svelte.JSX.HTMLAttributes<HTMLDivElement>
-      >[k];
-    } &
-    Component['$$prop_def'];
+  > & {
+    [k in keyof Partial<
+      svelte.JSX.HTMLAttributes<HTMLDivElement>
+    > as `surface\$${k}`]?: Partial<
+      svelte.JSX.HTMLAttributes<HTMLDivElement>
+    >[k];
+  } & Component['$$prop_def'];
 }

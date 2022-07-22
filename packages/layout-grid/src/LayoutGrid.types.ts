@@ -11,9 +11,7 @@ export declare class LayoutGridComponentDev extends Component {
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<HTMLDivElement>>,
     'use' | 'class' | 'fixedColumnWidth' | 'align'
-  > &
-    {
-      [k in keyof InnerGridComponentDev['$$prop_def'] as `innerGrid\$${k}`]?: InnerGridComponentDev['$$prop_def'][k];
-    } &
-    Component['$$prop_def'];
+  > & {
+    [k in keyof InnerGridComponentDev['$$prop_def'] as `innerGrid\$${k}`]?: InnerGridComponentDev['$$prop_def'][k];
+  } & Component['$$prop_def'];
 }

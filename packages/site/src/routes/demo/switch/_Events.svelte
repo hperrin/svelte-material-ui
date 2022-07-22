@@ -10,8 +10,9 @@
   (Notice that this doesn't fire an event.)
 </div>
 
-<pre
-  class="status">Checked: {checked}, Event: {event ? JSON.stringify(event.detail) : 'None yet.'}</pre>
+<pre class="status">Checked: {checked}, Event: {event
+    ? JSON.stringify(event.detail)
+    : 'None yet.'}</pre>
 
 <script lang="ts">
   import Switch from '@smui/switch';
