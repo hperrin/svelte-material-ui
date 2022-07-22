@@ -5,3 +5,7 @@ package-lock.json
 dist
 .svelte-kit
 /.github
+/packages/site/static/smui.css
+/packages/site/static/smui-dark.css
+/packages/site/static/site.css
+/packages/site/static/site-dark.css

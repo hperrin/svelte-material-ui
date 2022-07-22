@@ -88,7 +88,7 @@
         <Wrapper>
           <IconButton href="https://discord.gg/aFzmkrmg9P">
             <Icon component={Svg} viewBox="0 0 24 24">
-              <path fill="currentColor" d={mdiDiscord} />
+              <path fill="currentColor" d={siDiscord.path} />
             </Icon>
           </IconButton>
           <Tooltip>Join the Discord Server</Tooltip>
@@ -96,7 +96,7 @@
         <Wrapper>
           <IconButton href="https://twitter.com/SciActive">
             <Icon component={Svg} viewBox="0 0 24 24">
-              <path fill="currentColor" d={mdiTwitter} />
+              <path fill="currentColor" d={siTwitter.path} />
             </Icon>
           </IconButton>
           <Tooltip>Hunter Perrin (SMUI Author) on Twitter</Tooltip>
@@ -104,7 +104,7 @@
         <Wrapper>
           <IconButton href="https://github.com/hperrin/svelte-material-ui">
             <Icon component={Svg} viewBox="0 0 24 24">
-              <path fill="currentColor" d={mdiGithub} />
+              <path fill="currentColor" d={siGithub.path} />
             </Icon>
           </IconButton>
           <Tooltip>SMUI on GitHub</Tooltip>
@@ -176,14 +176,8 @@
 
 <script lang="ts">
   import { onDestroy, onMount } from 'svelte';
-  import {
-    mdiFileDocument,
-    mdiDiscord,
-    mdiTwitter,
-    mdiGithub,
-    mdiWeatherSunny,
-    mdiWeatherNight,
-  } from '@mdi/js';
+  import { mdiFileDocument, mdiWeatherSunny, mdiWeatherNight } from '@mdi/js';
+  import { siDiscord, siTwitter, siGithub } from 'simple-icons/icons';
   import TinyGesture from 'tinygesture';
   import { assets } from '$app/paths';
   import { page } from '$app/stores';

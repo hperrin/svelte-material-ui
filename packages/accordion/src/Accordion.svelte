@@ -43,9 +43,17 @@
   let withOpenDialog = false;
 
   function handlePanelMount(event: CustomEvent<SMUIAccordionPanelAccessor>) {
-    // To make nested accordions work, ensure event sender is a direct child of this accordion
-    if(event.target.parentNode != element) return;
-    
+    // To make nested accordions work, ensure event sender is a direct child of
+    // this accordion.
+    if (
+      event.target &&
+      'parentNode' in event.target &&
+      (event.target as Element).parentNode != element
+    ) {
+      // TODO: debug why "as Element" is necessary.
+      return;
+    }
+
     const accessor = event.detail;
 
     event.stopPropagation();
@@ -64,10 +72,12 @@
   }
 
   function handlePanelUnmount(event: CustomEvent<SMUIAccordionPanelAccessor>) {
-    // To make nested accordions work, ensure event sender is a direct child of this accordion
-    if(event.target.parentNode != element) return;
-    
     const accessor = event.detail;
+
+    // Nested check.
+    if (!panelAccessorSet.has(accessor)) {
+      return;
+    }
 
     event.stopPropagation();
 
@@ -77,10 +87,12 @@
   function handlePanelActivate(
     event: CustomEvent<{ accessor: SMUIAccordionPanelAccessor }>
   ) {
-    // To make nested accordions work, ensure event sender is a direct child of this accordion
-    if(event.target.parentNode != element) return;
-    
     const { accessor } = event.detail;
+
+    // Nested check.
+    if (!panelAccessorSet.has(accessor)) {
+      return;
+    }
 
     if (!multiple && !accessor.open) {
       const currentOpen = Array.from(panelAccessorSet).find(
@@ -98,10 +110,12 @@
   function handlePanelOpening(
     event: CustomEvent<{ accessor: SMUIAccordionPanelAccessor }>
   ) {
-    // To make nested accordions work, ensure event sender is a direct child of this accordion
-    if(event.target.parentNode != element) return;
-    
     const { accessor } = event.detail;
+
+    // Nested check.
+    if (!panelAccessorSet.has(accessor)) {
+      return;
+    }
 
     if (!multiple) {
       const otherOpen = Array.from(panelAccessorSet).filter(
