@@ -99,7 +99,7 @@
     instance.setFixedPosition(fixed);
   }
 
-  $: if (instance && maxHeight > 0) {
+  $: if (instance) {
     instance.setMaxHeight(maxHeight);
   }
 
@@ -220,7 +220,7 @@
           'bottom' in position ? `${position.bottom}px` : '';
       },
       setMaxHeight: (height) => {
-        internalStyles["max-height"] = height;
+        internalStyles['max-height'] = height;
       },
     });
 
