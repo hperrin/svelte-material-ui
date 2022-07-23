@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0](https://github.com/hperrin/svelte-material-ui/compare/v6.0.0-beta.16...v6.0.0) (2022-07-23)
+
+
+### Bug Fixes
+
+* add type="button" on chip action to prevent form submit ([29d91ed](https://github.com/hperrin/svelte-material-ui/commit/29d91edd6586d3856d92350706b090101d35dbe3))
+* resolved "max height" typo in menu-surface ([b5f334f](https://github.com/hperrin/svelte-material-ui/commit/b5f334f47a9cbefc1a1cf6ef00f30e02dff6dc7a))
+* set accordion opened state based on open value ([8f939b3](https://github.com/hperrin/svelte-material-ui/commit/8f939b3ec666e5cb27fddf329cd5d15193912b64))
+* set menu surface max height if it changes to zero after initialization ([563163a](https://github.com/hperrin/svelte-material-ui/commit/563163a45bc45d2d0c640d1f3ede32de38e2da5b))
+* update sveltekit and fix package.json ([9dfb3d0](https://github.com/hperrin/svelte-material-ui/commit/9dfb3d03209d62c9a9febf49fff884df3ba96964)), closes [#425](https://github.com/hperrin/svelte-material-ui/issues/425)
+* upgrade packages and fix issues with new versions ([67f45cc](https://github.com/hperrin/svelte-material-ui/commit/67f45cc6bd628bd772c8717d20c0699be08e5d0d))
+
+
+### Features
+
+* add demo code to illustrate how to have multiple snackbar colours ([bf9f0bc](https://github.com/hperrin/svelte-material-ui/commit/bf9f0bc90feca37bb75dc2fa1a149b3501d8b4b3))
+* cancel tab click if event.defaultPrevented ([4f0c60a](https://github.com/hperrin/svelte-material-ui/commit/4f0c60a86f9cb64f2631b7e7462451024558c346))
+
+
+
+
+
 # [6.0.0-beta.16](https://github.com/hperrin/svelte-material-ui/compare/v6.0.0-beta.15...v6.0.0-beta.16) (2022-04-11)
 
 
