@@ -25,6 +25,13 @@
     Using dynamic text
   </Demo>
 
+  <Demo
+    component={Colors}
+    files={['snackbar/_Colors.svelte', 'snackbar/_Colors.scss']}
+  >
+    Colored snackbars
+  </Demo>
+
   <Demo component={Kitchen} file="snackbar/_Kitchen.svelte">
     The "Kitchen" Snackbar generator
   </Demo>
@@ -37,5 +44,6 @@
   import LeadingWithAction from './_LeadingWithAction.svelte';
   import StackedWithAction from './_StackedWithAction.svelte';
   import DynamicText from './_DynamicText.svelte';
+  import Colors from './_Colors.svelte';
   import Kitchen from './_Kitchen.svelte';
 </script>
