@@ -31,7 +31,8 @@
   aria-selected={active ? 'true' : 'false'}
   tabindex={active || forceAccessible ? '0' : '-1'}
   {href}
-  on:click={() => instance && instance.handleClick()}
+  on:click={(event) =>
+    !event.defaultPrevented && instance && instance.handleClick()}
   {...internalAttrs}
   {...exclude($$restProps, ['content$', 'tabIndicator$'])}
 >
