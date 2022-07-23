@@ -31,7 +31,8 @@
   aria-selected={active ? 'true' : 'false'}
   tabindex={active || forceAccessible ? '0' : '-1'}
   {href}
-  on:click={handleClick}
+  on:click={(event) =>
+    !event.defaultPrevented && instance && instance.handleClick()}
   {...internalAttrs}
   {...exclude($$restProps, ['content$', 'tabIndicator$'])}
 >
@@ -84,7 +85,7 @@
   import type { TabIndicatorComponentDev } from '@smui/tab-indicator';
   import TabIndicator from '@smui/tab-indicator';
 
-  import type { SMUITabAccessor } from './Tab.types';
+  import type { SMUITabAccessor } from './Tab.types.js';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
@@ -181,12 +182,6 @@
       instance.destroy();
     };
   });
-
-  function handleClick(event: PointerEvent) {
-    if (!event.defaultPrevented) {
-      instance?.handleClick();
-    }
-  }
 
   function hasClass(className: string) {
     return className in internalClasses
