@@ -5,8 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev",
-    "build": "vite build && npm run rename-md",
-    "rename-md": "cd build && mv INSTALL.mdindex.html INSTALL.md.html && mv MIGRATING.mdindex.html MIGRATING.md.html && mv REPL.mdindex.html REPL.md.html && mv SVELTEKIT.mdindex.html SVELTEKIT.md.html && mv THEMING.mdindex.html THEMING.md.html && cd ..",
+    "build": "vite build",
     "package": "svelte-kit package",
     "preview": "vite preview",
     "prepare": "svelte-kit sync && npm run smui-theme-light && npm run smui-theme-dark && npm run site-light && npm run site-dark",
@@ -87,7 +86,7 @@
     "highlight.js": "^11.6.0",
     "highlightjs-svelte": "^1.0.6",
     "mdsvex": "^0.10.6",
-    "remark-slug": "^7.0.1",
+    "rehype-slug": "^5.0.1",
     "sass": "^1.54.0",
     "simple-icons": "^7.4.0",
     "smui-theme": "^6.0.0-beta.16",

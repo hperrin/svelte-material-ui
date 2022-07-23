@@ -3,7 +3,7 @@ import preprocess from 'svelte-preprocess';
 import { mdsvex } from 'mdsvex';
 import hljs from 'highlight.js';
 import hljs_svelte from 'highlightjs-svelte';
-import slug from 'remark-slug';
+import slug from 'rehype-slug';
 
 hljs_svelte(hljs);
 
@@ -24,7 +24,7 @@ const config = {
     preprocess(),
     mdsvex({
       extensions: ['.svx', '.md'],
-      remarkPlugins: [slug],
+      rehypePlugins: [slug],
       highlight: { highlighter },
     }),
   ],
@@ -36,7 +36,7 @@ const config = {
       default: true,
     },
 
-    trailingSlash: 'always',
+    trailingSlash: 'ignore',
   },
 };
 
