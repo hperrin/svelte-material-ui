@@ -43,19 +43,9 @@
   let withOpenDialog = false;
 
   function handlePanelMount(event: CustomEvent<SMUIAccordionPanelAccessor>) {
-    // To make nested accordions work, ensure event sender is a direct child of
-    // this accordion.
-    if (
-      event.target &&
-      'parentNode' in event.target &&
-      (event.target as Element).parentNode != element
-    ) {
-      // TODO: debug why "as Element" is necessary.
-      return;
-    }
-
     const accessor = event.detail;
 
+    // Stop propagation so accordion's above this one don't receive the event.
     event.stopPropagation();
 
     if (!multiple && accessor.open) {
@@ -79,6 +69,7 @@
       return;
     }
 
+    // Stop propagation so accordion's above this one don't receive the event.
     event.stopPropagation();
 
     panelAccessorSet.delete(accessor);

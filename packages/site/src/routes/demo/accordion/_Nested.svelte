@@ -4,11 +4,11 @@
       <Header>Panel 1</Header>
       <Content>
         <Accordion>
-          <Panel>
+          <Panel color="secondary">
             <Header>Panel 1.1</Header>
             <Content>The content for panel 1.1.</Content>
           </Panel>
-          <Panel>
+          <Panel color="secondary">
             <Header>Panel 1.2</Header>
             <Content>The content for panel 1.2.</Content>
           </Panel>
@@ -19,11 +19,11 @@
       <Header>Panel 2</Header>
       <Content>
         <Accordion>
-          <Panel>
+          <Panel color="secondary">
             <Header>Panel 2.1</Header>
             <Content>The content for panel 2.1.</Content>
           </Panel>
-          <Panel>
+          <Panel color="secondary">
             <Header>Panel 2.2</Header>
             <Content>The content for panel 2.2.</Content>
           </Panel>

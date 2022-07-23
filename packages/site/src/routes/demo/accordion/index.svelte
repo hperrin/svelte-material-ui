@@ -71,7 +71,7 @@
   import Icon from './_Icon.svelte';
   import PrimaryColor from './_PrimaryColor.svelte';
   import SecondaryColor from './_SecondaryColor.svelte';
-  import Nested from '../layout-grid/_Nested.svelte';
+  import Nested from './_Nested.svelte';
   import PaperProps from './_PaperProps.svelte';
   import Complex from './_Complex.svelte';
 </script>
