@@ -1,0 +1,13 @@
+// Add the below to your _smui-theme.scss file
+
+.success .mdc-snackbar__surface {
+  background-color: green;
+}
+
+.warning .mdc-snackbar__surface {
+  background-color: orange;
+}
+
+.error .mdc-snackbar__surface {
+  background-color: red;
+}
