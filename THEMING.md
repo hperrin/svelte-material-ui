@@ -36,21 +36,17 @@ Now run `npm run prepare` to build the CSS file(s), then add it/them on your pag
 
 ```html
 <!-- SMUI Styles -->
-<link rel="stylesheet" href="smui.css" />
+<link rel="stylesheet" href="/smui.css" />
 ```
 
 Or for dark mode support.
 
 ```html
 <!-- SMUI Styles -->
+<link rel="stylesheet" href="/smui.css" media="(prefers-color-scheme: light)" />
 <link
   rel="stylesheet"
-  href="smui.css"
-  media="(prefers-color-scheme: light)"
-/>
-<link
-  rel="stylesheet"
-  href="smui-dark.css"
+  href="/smui-dark.css"
   media="screen and (prefers-color-scheme: dark)"
 />
 ```
