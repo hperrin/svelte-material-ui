@@ -25,7 +25,10 @@
     Using dynamic text
   </Demo>
 
-  <Demo component={Colors} file="snackbar/_Colors.svelte">
+  <Demo
+    component={Colors}
+    files={['snackbar/_Colors.svelte', 'snackbar/_Colors.scss']}
+  >
     Colored snackbars
   </Demo>
 

@@ -1,13 +1,26 @@
-// Add the below to your _smui-theme.scss file
+// See https://github.com/material-components/material-components-web/blob/v13.0.0/packages/mdc-snackbar/
+@use '@material/snackbar/mixins';
+// See https://github.com/material-components/material-components-web/blob/v13.0.0/packages/mdc-theme/
+@use '@material/theme/color-palette';
+@use '@material/theme/theme-color';
 
-.success .mdc-snackbar__surface {
-  background-color: green;
+.mdc-snackbar.demo-success {
+  @include mixins.fill-color(color-palette.$green-500);
+  @include mixins.label-ink-color(
+    theme-color.accessible-ink-color(color-palette.$green-500)
+  );
 }
 
-.warning .mdc-snackbar__surface {
-  background-color: orange;
+.mdc-snackbar.demo-warning {
+  @include mixins.fill-color(color-palette.$orange-500);
+  @include mixins.label-ink-color(
+    theme-color.accessible-ink-color(color-palette.$orange-500)
+  );
 }
 
-.error .mdc-snackbar__surface {
-  background-color: red;
+.mdc-snackbar.demo-error {
+  @include mixins.fill-color(color-palette.$red-500);
+  @include mixins.label-ink-color(
+    theme-color.accessible-ink-color(color-palette.$red-500)
+  );
 }
