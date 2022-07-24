@@ -34,8 +34,16 @@
   export let square = false;
   export let color: 'primary' | 'secondary' | string = 'primary';
   export let position: 'inset' | 'middle' | 'outset' = 'middle';
-  export let align: 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' =
-    'top-end';
+  export let align:
+    | 'top-start'
+    | 'top-middle'
+    | 'top-end'
+    | 'middle-start'
+    | 'middle-middle'
+    | 'middle-end'
+    | 'bottom-start'
+    | 'bottom-middle'
+    | 'bottom-end' = 'top-end';
 
   let element: HTMLSpanElement;
 

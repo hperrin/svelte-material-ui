@@ -41,6 +41,7 @@ $padding: 4px;
     }
 
     &.smui-badge--align-top-start,
+    &.smui-badge--align-top-middle,
     &.smui-badge--align-top-end {
       &.smui-badge--position-inset,
       &.smui-badge--position-middle {
@@ -53,6 +54,7 @@ $padding: 4px;
     }
 
     &.smui-badge--align-bottom-start,
+    &.smui-badge--align-bottom-middle,
     &.smui-badge--align-bottom-end {
       &.smui-badge--position-inset,
       &.smui-badge--position-middle {
@@ -65,6 +67,7 @@ $padding: 4px;
     }
 
     &.smui-badge--align-top-end,
+    &.smui-badge--align-middle-end,
     &.smui-badge--align-bottom-end {
       &.smui-badge--position-inset {
         @include rtl.reflexive-position(right, 0);
@@ -80,6 +83,7 @@ $padding: 4px;
     }
 
     &.smui-badge--align-top-start,
+    &.smui-badge--align-middle-start,
     &.smui-badge--align-bottom-start {
       &.smui-badge--position-inset {
         @include rtl.reflexive-position(left, 0);
@@ -103,6 +107,15 @@ $padding: 4px;
       }
     }
 
+    &.smui-badge--align-top-middle.smui-badge--position-middle {
+      transform-origin: center;
+      transform: translateY(-50%);
+
+      @include rtl.rtl {
+        transform: translateY(-50%);
+      }
+    }
+
     &.smui-badge--align-top-end.smui-badge--position-middle {
       transform-origin: center;
       transform: translateX(50%) translateY(-50%);
@@ -112,12 +125,39 @@ $padding: 4px;
       }
     }
 
+    &.smui-badge--align-middle-start.smui-badge--position-middle {
+      transform-origin: center;
+      transform: translateX(-50%);
+
+      @include rtl.rtl {
+        transform: translateX(50%);
+      }
+    }
+
+    &.smui-badge--align-middle-end.smui-badge--position-middle {
+      transform-origin: center;
+      transform: translateX(50%);
+
+      @include rtl.rtl {
+        transform: translateX(-50%);
+      }
+    }
+
     &.smui-badge--align-bottom-start.smui-badge--position-middle {
       transform-origin: center;
       transform: translateX(-50%) translateY(50%);
 
       @include rtl.rtl {
         transform: translateX(50%) translateY(50%);
+      }
+    }
+
+    &.smui-badge--align-bottom-middle.smui-badge--position-middle {
+      transform-origin: center;
+      transform: translateY(50%);
+
+      @include rtl.rtl {
+        transform: translateY(50%);
       }
     }
 
