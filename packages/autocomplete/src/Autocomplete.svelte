@@ -124,6 +124,7 @@
   export let selectOnExactMatch = true;
   export let showMenuWithNoInput = true;
   export let noMatchesActionDisabled = true;
+  export let resetTextWhenSelected = false;
   export let search: (input: string) => Promise<any[] | false> = async (
     input: string
   ) => {
@@ -164,6 +165,7 @@
   let matches: any[] = [];
   let focusedIndex = -1;
   let focusedItem: SMUIListItemAccessor | undefined = undefined;
+  let resetText: boolean = false;
 
   $: menuOpen =
     focused &&
@@ -202,6 +204,10 @@
       loading = false;
     })();
 
+    if (resetText) {
+      text = '';
+      resetText = false;
+    }
     previousText = text;
   }
 
@@ -210,6 +216,9 @@
     // If the value changes from outside, update the text.
     text = getOptionLabel(value);
     previousValue = value;
+    if (resetTextWhenSelected) {
+      resetText = true; // We will set text = '' in the reactive block `$: if (previousText !== text)`
+    }
   } else if (combobox) {
     // If the text changes, update value if we're a combobox.
     value = text;
