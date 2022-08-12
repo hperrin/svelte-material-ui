@@ -35,11 +35,19 @@
       'smui-autocomplete__menu': true,
     })}
     managed
-    open={menuOpen}
+    bind:open={menuOpen}
     bind:anchorElement={element}
     anchor={menu$anchor}
     anchorCorner={menu$anchorCorner}
     on:SMUIList:mount={handleListAccessor}
+    on:SMUIMenu:closedProgrammatically={() => {
+      if (resetTextWhenSelected) {
+        text = '';
+        focus();
+      } else {
+        hideMenu = true;
+      }
+    }}
     {...prefixFilter($$restProps, 'menu$')}
   >
     <List {...prefixFilter($$restProps, 'list$')}>
@@ -165,10 +173,12 @@
   let matches: any[] = [];
   let focusedIndex = -1;
   let focusedItem: SMUIListItemAccessor | undefined = undefined;
-  let resetText: boolean = false;
+  let itemHasBeenSelected: boolean = false;
+  let hideMenu: boolean = false;
 
   $: menuOpen =
     focused &&
+    !hideMenu &&
     (text !== '' || showMenuWithNoInput) &&
     (loading ||
       (!combobox && !(matches.length === 1 && matches[0] === value)) ||
@@ -178,6 +188,9 @@
 
   let previousText: string | undefined = undefined;
   $: if (previousText !== text) {
+    if (!itemHasBeenSelected) {
+      hideMenu = false;
+    }
     if (!combobox && value != null && getOptionLabel(value) !== text) {
       deselectOption(value, false);
     }
@@ -204,9 +217,12 @@
       loading = false;
     })();
 
-    if (resetText) {
-      text = '';
-      resetText = false;
+    if (itemHasBeenSelected) {
+      if (resetTextWhenSelected) {
+        text = '';
+        focus();
+      }
+      itemHasBeenSelected = false;
     }
     previousText = text;
   }
@@ -216,8 +232,9 @@
     // If the value changes from outside, update the text.
     text = getOptionLabel(value);
     previousValue = value;
-    if (resetTextWhenSelected) {
-      resetText = true; // We will set text = '' in the reactive block `$: if (previousText !== text)`
+    itemHasBeenSelected = true;
+    if (!resetTextWhenSelected) {
+      hideMenu = true;
     }
   } else if (combobox) {
     // If the text changes, update value if we're a combobox.

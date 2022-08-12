@@ -72,8 +72,10 @@
         listAccessor.getAttributeFromElementIndex(index, attr),
       elementContainsClass: (element, className) =>
         element.classList.contains(className),
-      closeSurface: (skipRestoreFocus) =>
-        menuSurfaceAccessor.closeProgrammatic(skipRestoreFocus),
+      closeSurface: (skipRestoreFocus) => {
+        menuSurfaceAccessor.closeProgrammatic(skipRestoreFocus);
+        dispatch(getElement(), 'SMUIMenu:closedProgrammatically', {});
+      },
       getElementIndex: (element) =>
         listAccessor
           .getOrderedList()
