@@ -134,9 +134,10 @@
   }
 
   onMount(() => {
-    focusTrap = new FocusTrap(element, {
-      initialFocusEl: getPrimaryActionEl(),
-    });
+    let initialFocusEl = getPrimaryActionEl();
+    if (initialFocusEl) {
+      focusTrap = new FocusTrap(element, { initialFocusEl });
+    }
 
     instance = new MDCBannerFoundation({
       addClass,
