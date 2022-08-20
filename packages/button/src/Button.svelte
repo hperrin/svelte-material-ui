@@ -1,5 +1,6 @@
 <svelte:component
   this={component}
+  {tag}
   bind:this={element}
   use={[
     [
@@ -60,8 +61,8 @@
     classMap,
     dispatch,
   } from '@smui/common/internal';
+  import { Element } from '@smui/common';
   import Ripple from '@smui/ripple';
-  import { A, Button } from '@smui/common/elements';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
@@ -84,7 +85,9 @@
   let internalStyles: { [k: string]: string } = {};
   let context = getContext<string | undefined>('SMUI:button:context');
 
-  export let component: typeof SvelteComponentDev = href == null ? Button : A;
+  export let component: typeof SvelteComponentDev = Element;
+  export let tag =
+    component === Element ? (href == null ? 'button' : 'a') : null;
 
   $: actionProp =
     context === 'dialog:action' && action != null

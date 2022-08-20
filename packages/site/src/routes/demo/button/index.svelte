@@ -46,6 +46,10 @@
   >
     Creating notched buttons with Sass
   </Demo>
+
+  <Demo component={CustomTag} file="button/_CustomTag.svelte"
+    >Custom HTML tag</Demo
+  >
 </section>
 
 <script lang="ts">
@@ -61,6 +65,7 @@
   import SplitButtons from './_SplitButtons.svelte';
   import Round from './_Round.svelte';
   import Notched from './_Notched.svelte';
+  import CustomTag from './_CustomTag.svelte';
 </script>
 
 <style>
