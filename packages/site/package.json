@@ -6,9 +6,10 @@
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
-    "package": "svelte-kit package",
     "preview": "vite preview",
-    "prepare": "svelte-kit sync && npm run smui-theme-light && npm run smui-theme-dark && npm run site-light && npm run site-dark",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+    "prepare": "npm run smui-theme-light && npm run smui-theme-dark && npm run site-light && npm run site-dark",
     "smui-theme-light": "smui-theme compile static/smui.css -s expanded -i src/theme -i node_modules/",
     "smui-theme-dark": "smui-theme compile static/smui-dark.css -s expanded -i src/theme/dark -i node_modules/",
     "site-light": "sass --no-source-map -I src/theme -I node_modules -I ../smui-theme/node_modules -I ../../node_modules src/site.scss static/site.css",
@@ -81,19 +82,19 @@
     "@smui/tooltip": "^6.0.0",
     "@smui/top-app-bar": "^6.0.0",
     "@smui/touch-target": "^6.0.0",
-    "@sveltejs/adapter-static": "^1.0.0-next.38",
-    "@sveltejs/kit": "^1.0.0-next.392",
+    "@sveltejs/adapter-static": "^1.0.0-next.39",
+    "@sveltejs/kit": "^1.0.0-next.428",
     "highlight.js": "^11.6.0",
     "highlightjs-svelte": "^1.0.6",
     "mdsvex": "^0.10.6",
     "rehype-slug": "^5.0.1",
     "sass": "^1.54.0",
-    "simple-icons": "^7.4.0",
+    "simple-icons": "^7.7.0",
     "smui-theme": "^6.0.0",
     "svelte-preprocess": "^4.10.7",
     "tinygesture": "^2.0.0",
     "tslib": "^2.4.0",
     "typescript": "^4.7.4",
-    "vite": "^3.0.2"
+    "vite": "^3.0.9"
   }
 }
