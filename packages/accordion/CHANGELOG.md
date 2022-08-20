@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.1.0](https://github.com/hperrin/svelte-material-ui/compare/v6.0.0...v6.1.0) (2022-08-20)
+
+
+### Bug Fixes
+
+* wrong border radius on last accordion panel ([026d423](https://github.com/hperrin/svelte-material-ui/commit/026d423d180c4fcaa50ac13d24b4e5d794b143bf))
+
+
+
+
+
 # [6.0.0](https://github.com/hperrin/svelte-material-ui/compare/v6.0.0-beta.16...v6.0.0) (2022-07-23)
 
 
