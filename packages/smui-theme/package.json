@@ -1,6 +1,6 @@
 {
   "name": "smui-theme",
-  "version": "6.1.0",
+  "version": "6.1.1",
   "description": "Svelte Material UI - Theme Builder",
   "bin": {
     "smui-theme": "smui-theme"
@@ -30,7 +30,7 @@
   },
   "license": "Apache-2.0",
   "devDependencies": {
-    "@smui-extra/accordion": "^6.1.0",
+    "@smui-extra/accordion": "^6.1.1",
     "@smui-extra/autocomplete": "^6.1.0",
     "@smui-extra/badge": "^6.1.0",
     "@smui/banner": "^6.1.0",

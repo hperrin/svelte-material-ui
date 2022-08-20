@@ -1,6 +1,6 @@
 {
   "name": "@smui-extra/accordion",
-  "version": "6.1.0",
+  "version": "6.1.1",
   "description": "Svelte Material UI - Accordion",
   "type": "module",
   "main": "dist/index.js",
