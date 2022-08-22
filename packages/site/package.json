@@ -1,6 +1,6 @@
 {
   "name": "@smui-extra/site",
-  "version": "6.1.1",
+  "version": "6.1.2",
   "description": "SMUI Website (You're not meant to install this.)",
   "type": "module",
   "scripts": {
@@ -69,7 +69,7 @@
     "@smui/paper": "^6.1.0",
     "@smui/radio": "^6.1.0",
     "@smui/ripple": "^6.1.0",
-    "@smui/segmented-button": "^6.1.0",
+    "@smui/segmented-button": "^6.1.2",
     "@smui/select": "^6.1.0",
     "@smui/slider": "^6.1.0",
     "@smui/snackbar": "^6.1.0",
@@ -90,7 +90,7 @@
     "rehype-slug": "^5.0.1",
     "sass": "^1.54.0",
     "simple-icons": "^7.7.0",
-    "smui-theme": "^6.1.1",
+    "smui-theme": "^6.1.2",
     "svelte-preprocess": "^4.10.7",
     "tinygesture": "^2.0.0",
     "tslib": "^2.4.0",

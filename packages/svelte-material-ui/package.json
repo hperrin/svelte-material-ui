@@ -1,6 +1,6 @@
 {
   "name": "svelte-material-ui",
-  "version": "6.1.1",
+  "version": "6.1.2",
   "description": "Svelte Material UI Components",
   "keywords": [
     "svelte",
@@ -61,7 +61,7 @@
     "@smui/paper": "^6.1.0",
     "@smui/radio": "^6.1.0",
     "@smui/ripple": "^6.1.0",
-    "@smui/segmented-button": "^6.1.0",
+    "@smui/segmented-button": "^6.1.2",
     "@smui/select": "^6.1.0",
     "@smui/slider": "^6.1.0",
     "@smui/snackbar": "^6.1.0",
@@ -76,6 +76,6 @@
     "@smui/touch-target": "^6.1.0"
   },
   "devDependencies": {
-    "smui-theme": "^6.1.1"
+    "smui-theme": "^6.1.2"
   }
 }
