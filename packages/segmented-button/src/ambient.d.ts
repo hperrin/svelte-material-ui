@@ -12,3 +12,7 @@ declare namespace svelte.JSX {
     ['onselected']?: (event: CustomEvent<any> & { target: T }) => any;
   }
 }
+
+declare module '@material/segmented-button/dist/mdc.segmentedButton.js' {
+  export * from '@material/segmented-button';
+}

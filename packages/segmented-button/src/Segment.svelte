@@ -35,7 +35,7 @@
 >
 
 <script lang="ts">
-  import { MDCSegmentedButtonSegmentFoundation } from '@material/segmented-button';
+  import { MDCSegmentedButtonSegmentFoundation } from '@material/segmented-button/dist/mdc.segmentedButton.js';
   import { onMount, getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import type { ActionArray } from '@smui/common/internal';
