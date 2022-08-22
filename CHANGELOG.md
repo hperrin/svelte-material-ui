@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.1.3](https://github.com/hperrin/svelte-material-ui/compare/v6.1.2...v6.1.3) (2022-08-22)
+
+
+### Bug Fixes
+
+* workaround for upstream segmented button bad package.json ([3c73693](https://github.com/hperrin/svelte-material-ui/commit/3c736938a4574b56f2ec78509391e6bbb317f4f0))
+
+
+
+
+
 ## [6.1.2](https://github.com/hperrin/svelte-material-ui/compare/v6.1.1...v6.1.2) (2022-08-22)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "smui-theme",
-  "version": "6.1.2",
+  "version": "6.1.3",
   "description": "Svelte Material UI - Theme Builder",
   "bin": {
     "smui-theme": "smui-theme"
@@ -57,7 +57,7 @@
     "@smui/paper": "^6.1.0",
     "@smui/radio": "^6.1.0",
     "@smui/ripple": "^6.1.0",
-    "@smui/segmented-button": "^6.1.2",
+    "@smui/segmented-button": "^6.1.3",
     "@smui/select": "^6.1.0",
     "@smui/slider": "^6.1.0",
     "@smui/snackbar": "^6.1.0",
