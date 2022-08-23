@@ -1,8 +1,8 @@
 <div style="margin-top: 2em; text-align: center;">
-  <IconButton style="position: relative;">
-    <Icon class="material-icons">message</Icon>
+  <Button style="position: relative;">
+    <Label>Button</Label>
     <Badge {position} {align} aria-label="unread count">8</Badge>
-  </IconButton>
+  </Button>
 </div>
 
 <div style="margin-top: 2em;">
@@ -18,10 +18,22 @@
 </div>
 
 <div style="margin-top: 2em;">
-  Alignment:
-  {#each alignments as alignment}
+  Y Alignment:
+  {#each alignmentsY as alignment}
     <FormField>
-      <Radio bind:group={align} value={alignment} />
+      <Radio bind:group={alignY} value={alignment} />
+      <span slot="label">
+        {alignment}
+      </span>
+    </FormField>
+  {/each}
+</div>
+
+<div style="margin-top: 2em;">
+  X Alignment:
+  {#each alignmentsX as alignment}
+    <FormField>
+      <Radio bind:group={alignX} value={alignment} />
       <span slot="label">
         {alignment}
       </span>
@@ -31,14 +43,16 @@
 
 <script lang="ts">
   import Badge from '@smui-extra/badge';
-  import IconButton, { Icon } from '@smui/icon-button';
+  import Button, { Label } from '@smui/button';
   import Radio from '@smui/radio';
   import FormField from '@smui/form-field';
 
   let position: 'inset' | 'middle' | 'outset' = 'middle';
-  let align: 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' =
-    'top-end';
+  let alignY: 'top' | 'middle' | 'bottom' = 'top';
+  let alignX: 'start' | 'middle' | 'end' = 'end';
+  $: align = `${alignY}-${alignX}`;
 
   const positions = ['inset', 'middle', 'outset'];
-  const alignments = ['top-start', 'top-end', 'bottom-start', 'bottom-end'];
+  const alignmentsY = ['top', 'middle', 'bottom'];
+  const alignmentsX = ['start', 'middle', 'end'];
 </script>

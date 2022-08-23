@@ -1,11 +1,11 @@
 <svelte:head>
-  <title>REPL - SMUI</title>
+  <title>Theming - SMUI</title>
 </svelte:head>
 
 <section class="markdown">
-  <Repl />
+  <Theming />
 </section>
 
 <script lang="ts">
-  import Repl from '../../../../REPL.md';
+  import Theming from '../../../../../THEMING.md';
 </script>

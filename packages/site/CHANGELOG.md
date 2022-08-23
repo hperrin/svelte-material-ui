@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.1.3](https://github.com/hperrin/svelte-material-ui/compare/v6.1.2...v6.1.3) (2022-08-22)
+
+**Note:** Version bump only for package @smui-extra/site
+
+
+
+
+
+## [6.1.2](https://github.com/hperrin/svelte-material-ui/compare/v6.1.1...v6.1.2) (2022-08-22)
+
+**Note:** Version bump only for package @smui-extra/site
+
+
+
+
+
+## [6.1.1](https://github.com/hperrin/svelte-material-ui/compare/v6.1.0...v6.1.1) (2022-08-20)
+
+**Note:** Version bump only for package @smui-extra/site
+
+
+
+
+
+# [6.1.0](https://github.com/hperrin/svelte-material-ui/compare/v6.0.0...v6.1.0) (2022-08-20)
+
+
+### Features
+
+* add middle alignments for badges ([9431254](https://github.com/hperrin/svelte-material-ui/commit/9431254242f2adeead131544c1763e06c6d0b301))
+
+
+
+
+
 # [6.0.0](https://github.com/hperrin/svelte-material-ui/compare/v6.0.0-beta.16...v6.0.0) (2022-07-23)
 
 

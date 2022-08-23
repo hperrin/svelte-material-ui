@@ -7,5 +7,5 @@
 </section>
 
 <script lang="ts">
-  import Migrating from '../../../../MIGRATING.md';
+  import Migrating from '../../../../../MIGRATING.md';
 </script>
