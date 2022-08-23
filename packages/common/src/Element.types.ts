@@ -1,79 +1,83 @@
 import type Component from './Element.svelte';
+import type { SmuiComponentDev } from './smui.types.js';
 
 export declare class ElementComponentDev<
-  T extends
-    | 'a' // HTMLAnchorElement
-    | 'area' // HTMLAreaElement
-    | 'audio' // HTMLAudioElement
-    | 'br' // HTMLBRElement
-    | 'base' // HTMLBaseElement
-    | 'body' // HTMLBodyElement
-    | 'button' // HTMLButtonElement
-    | 'canvas' // HTMLCanvasElement
-    | 'dl' // HTMLDListElement
-    | 'data' // HTMLDataElement
-    | 'datalist' // HTMLDataListElement
-    | 'dialog' // HTMLDialogElement
-    | 'div' // HTMLDivElement
-    | 'embed' // HTMLEmbedElement
-    | 'fieldset' // HTMLFieldSetElement
-    | 'form' // HTMLFormElement
-    | 'hr' // HTMLHRElement
-    | 'head' // HTMLHeadElement
-    | 'h1' // HTMLHeadingElement
-    | 'h2' // HTMLHeadingElement
-    | 'h3' // HTMLHeadingElement
-    | 'h4' // HTMLHeadingElement
-    | 'h5' // HTMLHeadingElement
-    | 'h6' // HTMLHeadingElement
-    | 'html' // HTMLHtmlElement
-    | 'iframe' // HTMLIFrameElement
-    | 'img' // HTMLImageElement
-    | 'input' // HTMLInputElement
-    | 'li' // HTMLLIElement
-    | 'label' // HTMLLabelElement
-    | 'legend' // HTMLLegendElement
-    | 'link' // HTMLLinkElement
-    | 'map' // HTMLMapElement
-    | 'meta' // HTMLMetaElement
-    | 'meter' // HTMLMeterElement
-    | 'ins' // HTMLModElement
-    | 'del' // HTMLModElement
-    | 'ol' // HTMLOListElement
-    | 'object' // HTMLObjectElement
-    | 'optgroup' // HTMLOptGroupElement
-    | 'option' // HTMLOptionElement
-    | 'output' // HTMLOutputElement
-    | 'p' // HTMLParagraphElement
-    | 'picture' // HTMLPictureElement
-    | 'pre' // HTMLPreElement
-    | 'progress' // HTMLProgressElement
-    | 'blockquote' // HTMLQuoteElement
-    | 'q' // HTMLQuoteElement
-    | 'script' // HTMLScriptElement
-    | 'select' // HTMLSelectElement
-    | 'source' // HTMLSourceElement
-    | 'span' // HTMLSpanElement
-    | 'style' // HTMLStyleElement
-    | 'caption' // HTMLTableCaptionElement
-    | 'th' // HTMLTableCellElement
-    | 'td' // HTMLTableCellElement
-    | 'col' // HTMLTableColElement
-    | 'colgroup' // HTMLTableColElement
-    | 'table' // HTMLTableElement
-    | 'tr' // HTMLTableRowElement
-    | 'tfoot' // HTMLTableSectionElement
-    | 'thead' // HTMLTableSectionElement
-    | 'tbody' // HTMLTableSectionElement
-    | 'template' // HTMLTemplateElement
-    | 'textarea' // HTMLTextAreaElement
-    | 'time' // HTMLTimeElement
-    | 'title' // HTMLTitleElement
-    | 'track' // HTMLTrackElement
-    | 'ul' // HTMLUListElement
-    | 'video' // HTMLVideoElement
-    | string = 'div'
-> extends Component {
+    T extends
+      | 'a' // HTMLAnchorElement
+      | 'area' // HTMLAreaElement
+      | 'audio' // HTMLAudioElement
+      | 'br' // HTMLBRElement
+      | 'base' // HTMLBaseElement
+      | 'body' // HTMLBodyElement
+      | 'button' // HTMLButtonElement
+      | 'canvas' // HTMLCanvasElement
+      | 'dl' // HTMLDListElement
+      | 'data' // HTMLDataElement
+      | 'datalist' // HTMLDataListElement
+      | 'dialog' // HTMLDialogElement
+      | 'div' // HTMLDivElement
+      | 'embed' // HTMLEmbedElement
+      | 'fieldset' // HTMLFieldSetElement
+      | 'form' // HTMLFormElement
+      | 'hr' // HTMLHRElement
+      | 'head' // HTMLHeadElement
+      | 'h1' // HTMLHeadingElement
+      | 'h2' // HTMLHeadingElement
+      | 'h3' // HTMLHeadingElement
+      | 'h4' // HTMLHeadingElement
+      | 'h5' // HTMLHeadingElement
+      | 'h6' // HTMLHeadingElement
+      | 'html' // HTMLHtmlElement
+      | 'iframe' // HTMLIFrameElement
+      | 'img' // HTMLImageElement
+      | 'input' // HTMLInputElement
+      | 'li' // HTMLLIElement
+      | 'label' // HTMLLabelElement
+      | 'legend' // HTMLLegendElement
+      | 'link' // HTMLLinkElement
+      | 'map' // HTMLMapElement
+      | 'meta' // HTMLMetaElement
+      | 'meter' // HTMLMeterElement
+      | 'ins' // HTMLModElement
+      | 'del' // HTMLModElement
+      | 'ol' // HTMLOListElement
+      | 'object' // HTMLObjectElement
+      | 'optgroup' // HTMLOptGroupElement
+      | 'option' // HTMLOptionElement
+      | 'output' // HTMLOutputElement
+      | 'p' // HTMLParagraphElement
+      | 'picture' // HTMLPictureElement
+      | 'pre' // HTMLPreElement
+      | 'progress' // HTMLProgressElement
+      | 'blockquote' // HTMLQuoteElement
+      | 'q' // HTMLQuoteElement
+      | 'script' // HTMLScriptElement
+      | 'select' // HTMLSelectElement
+      | 'source' // HTMLSourceElement
+      | 'span' // HTMLSpanElement
+      | 'style' // HTMLStyleElement
+      | 'caption' // HTMLTableCaptionElement
+      | 'th' // HTMLTableCellElement
+      | 'td' // HTMLTableCellElement
+      | 'col' // HTMLTableColElement
+      | 'colgroup' // HTMLTableColElement
+      | 'table' // HTMLTableElement
+      | 'tr' // HTMLTableRowElement
+      | 'tfoot' // HTMLTableSectionElement
+      | 'thead' // HTMLTableSectionElement
+      | 'tbody' // HTMLTableSectionElement
+      | 'template' // HTMLTemplateElement
+      | 'textarea' // HTMLTextAreaElement
+      | 'time' // HTMLTimeElement
+      | 'title' // HTMLTitleElement
+      | 'track' // HTMLTrackElement
+      | 'ul' // HTMLUListElement
+      | 'video' // HTMLVideoElement
+      | string = 'div'
+  >
+  extends Component
+  implements SmuiComponentDev
+{
   /**
    * @private
    * For type checking capabilities only.
@@ -229,7 +233,7 @@ export declare class ElementComponentDev<
     'use' | 'tag'
   > &
     Component['$$prop_def'] & {
-      tag: T;
+      tag?: T;
     };
 
   getElement(): T extends 'a'

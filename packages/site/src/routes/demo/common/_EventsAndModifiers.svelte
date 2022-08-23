@@ -48,13 +48,13 @@
 <br /> <br />
 
 <div>
-  <A
+  <Button
     href="http://example.com"
     on:click$preventDefault={() =>
       console.log("You tried to go, but didn't make it.")}
   >
-    A Link, with Default Prevented
-  </A>
+    <Label>A Link, with Default Prevented</Label>
+  </Button>
 </div>
 
 <br /> <br />
@@ -69,7 +69,6 @@
 
 <script lang="ts">
   import Button, { Label } from '@smui/button';
-  import { A } from '@smui/common/elements';
 
   let eventOutput: HTMLDivElement;
   let eventPhaseOutput: HTMLDivElement;

@@ -1,6 +1,10 @@
+import type { SmuiComponentDev } from '@smui/common';
 import type Component from './Graphic.svelte';
 
-export declare class GraphicComponentDev extends Component {
+export declare class GraphicComponentDev
+  extends Component
+  implements SmuiComponentDev
+{
   /**
    * @private
    * For type checking capabilities only.
@@ -12,4 +16,6 @@ export declare class GraphicComponentDev extends Component {
     'use' | 'class'
   > &
     Component['$$prop_def'];
+
+  getElement(): ReturnType<Component['getElement']>;
 }

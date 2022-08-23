@@ -1,5 +1,6 @@
 <svelte:component
   this={component}
+  {tag}
   bind:this={element}
   use={[forwardEvents, ...use]}
   class={classMap({
@@ -45,8 +46,8 @@
 <script lang="ts">
   import { MDCListFoundation } from '@material/list';
   import { ponyfill } from '@material/dom';
+  import type { ComponentType } from 'svelte';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
-  import type { SvelteComponentDev } from 'svelte/internal';
   import { get_current_component } from 'svelte/internal';
   import type { AddLayoutListener, RemoveLayoutListener } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
@@ -55,7 +56,8 @@
     classMap,
     dispatch,
   } from '@smui/common/internal';
-  import { Ul, Nav } from '@smui/common/elements';
+  import type { SmuiComponentDev } from '@smui/common';
+  import { Element } from '@smui/common';
 
   import type { SMUIListAccessor } from './List.types.js';
   import type { SMUIListItemAccessor } from './Item.types.js';
@@ -87,7 +89,7 @@
   export let checkList = false;
   export let hasTypeahead = false;
 
-  let element: SvelteComponentDev;
+  let element: SmuiComponentDev;
   let instance: MDCListFoundation;
   let items: SMUIListItemAccessor[] = [];
   let role = getContext<string | undefined>('SMUI:list:role');
@@ -101,7 +103,8 @@
   );
   let removeLayoutListener: RemoveLayoutListener | undefined;
 
-  export let component: typeof SvelteComponentDev = nav ? Nav : Ul;
+  export let component: ComponentType<SmuiComponentDev> = Element;
+  export let tag = component === Element ? (nav ? 'nav' : 'ul') : null;
 
   setContext('SMUI:list:nonInteractive', nonInteractive);
   setContext('SMUI:separator:context', 'list');

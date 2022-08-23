@@ -1,6 +1,10 @@
+import type { SmuiComponentDev } from '@smui/common';
 import type Component from './HelperText.svelte';
 
-export declare class HelperTextComponentDev extends Component {
+export declare class HelperTextComponentDev
+  extends Component
+  implements SmuiComponentDev
+{
   /**
    * @private
    * For type checking capabilities only.
@@ -12,4 +16,6 @@ export declare class HelperTextComponentDev extends Component {
     'use' | 'class' | 'id' | 'persistent' | 'validationMsg'
   > &
     Component['$$prop_def'];
+
+  getElement(): ReturnType<Component['getElement']>;
 }

@@ -1,10 +1,13 @@
-import type { SvelteComponentDev } from 'svelte/internal';
+import type { SmuiComponentDev, ElementComponentDev } from '@smui/common';
 import type Component from './List.svelte';
-import type { UlComponentDev as UlElementComponentDev } from '@smui/common/elements';
 
 export declare class ListComponentDev<
-  C extends SvelteComponentDev = UlElementComponentDev
-> extends Component {
+    T extends string = 'ul',
+    C extends SmuiComponentDev = ElementComponentDev<T>
+  >
+  extends Component
+  implements SmuiComponentDev
+{
   /**
    * @private
    * For type checking capabilities only.
@@ -33,8 +36,11 @@ export declare class ListComponentDev<
     | 'checkList'
     | 'hasTypeahead'
     | 'component'
+    | 'tag'
   > &
     Component['$$prop_def'];
+
+  getElement(): ReturnType<C['getElement']>;
 }
 
 import type { SMUIListItemAccessor } from './Item.types.js';

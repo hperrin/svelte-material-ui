@@ -1,6 +1,10 @@
+import type { SmuiComponentDev } from '@smui/common';
 import type Component from './Tooltip.svelte';
 
-export declare class TooltipComponentDev extends Component {
+export declare class TooltipComponentDev
+  extends Component
+  implements SmuiComponentDev
+{
   /**
    * @private
    * For type checking capabilities only.
@@ -28,4 +32,6 @@ export declare class TooltipComponentDev extends Component {
       svelte.JSX.HTMLAttributes<HTMLDivElement>
     >[k];
   } & Component['$$prop_def'];
+
+  getElement(): ReturnType<Component['getElement']>;
 }

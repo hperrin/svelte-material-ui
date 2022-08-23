@@ -1,6 +1,10 @@
+import type { SmuiComponentDev } from '@smui/common';
 import type Component from './DataTable.svelte';
 
-export declare class DataTableComponentDev extends Component {
+export declare class DataTableComponentDev
+  extends Component
+  implements SmuiComponentDev
+{
   /**
    * @private
    * For type checking capabilities only.
@@ -30,6 +34,8 @@ export declare class DataTableComponentDev extends Component {
       svelte.JSX.HTMLAttributes<HTMLTableElement>
     >[k];
   } & Component['$$prop_def'];
+
+  getElement(): ReturnType<Component['getElement']>;
 }
 
 export { SortValue } from '@material/data-table';

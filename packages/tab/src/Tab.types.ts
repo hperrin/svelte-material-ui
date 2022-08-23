@@ -1,11 +1,14 @@
-import type { SvelteComponentDev } from 'svelte/internal';
+import type { SmuiComponentDev, ElementComponentDev } from '@smui/common';
 import type { TabIndicatorComponentDev } from '@smui/tab-indicator';
 import type Component from './Tab.svelte';
-import type { ButtonComponentDev as ButtonElementComponentDev } from '@smui/common/elements';
 
 export declare class TabComponentDev<
-  C extends SvelteComponentDev = ButtonElementComponentDev
-> extends Component {
+    T extends string = 'button',
+    C extends SmuiComponentDev = ElementComponentDev<T>
+  >
+  extends Component
+  implements SmuiComponentDev
+{
   /**
    * @private
    * For type checking capabilities only.
@@ -24,6 +27,7 @@ export declare class TabComponentDev<
     | 'indicatorSpanOnlyContent'
     | 'href'
     | 'component'
+    | 'tag'
   > & {
     [k in keyof Partial<
       svelte.JSX.HTMLAttributes<HTMLSpanElement>
@@ -33,6 +37,8 @@ export declare class TabComponentDev<
   } & {
     [k in keyof TabIndicatorComponentDev['$$prop_def'] as `tabIndicator\$${k}`]?: TabIndicatorComponentDev['$$prop_def'][k];
   } & Component['$$prop_def'];
+
+  getElement(): ReturnType<C['getElement']>;
 }
 
 import type { MDCTabDimensions } from '@material/tab';

@@ -1,5 +1,6 @@
 <svelte:component
   this={component}
+  {tag}
   bind:this={element}
   use={[
     ...(nonInteractive
@@ -63,8 +64,8 @@
 </script>
 
 <script lang="ts">
+  import type { ComponentType } from 'svelte';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
-  import type { SvelteComponentDev } from 'svelte/internal';
   import { get_current_component } from 'svelte/internal';
   import type {
     SMUICheckboxInputAccessor,
@@ -78,7 +79,8 @@
     dispatch,
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
-  import { A, Span, Li } from '@smui/common/elements';
+  import type { SmuiComponentDev } from '@smui/common';
+  import { Element } from '@smui/common';
 
   import type { SMUIListItemAccessor } from './Item.types.js';
 
@@ -110,7 +112,7 @@
   export let inputId = 'SMUI-form-field-list-' + counter++;
   export let href: string | undefined = undefined;
 
-  let element: SvelteComponentDev;
+  let element: SmuiComponentDev;
   let internalClasses: { [k: string]: boolean } = {};
   let internalStyles: { [k: string]: string } = {};
   let internalAttrs: { [k: string]: string | undefined } = {};
@@ -124,11 +126,9 @@
       : -1
     : tabindexProp;
 
-  export let component: typeof SvelteComponentDev = nav
-    ? href
-      ? A
-      : Span
-    : Li;
+  export let component: ComponentType<SmuiComponentDev> = Element;
+  export let tag =
+    component === Element ? (nav ? (href ? 'a' : 'span') : 'li') : null;
 
   setContext('SMUI:generic:input:props', { id: inputId });
   // Reset separator context, because we aren't directly under a list anymore.

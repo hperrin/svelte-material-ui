@@ -1,6 +1,10 @@
+import type { SmuiComponentDev } from '@smui/common';
 import type Component from './ImageList.svelte';
 
-export declare class ImageListComponentDev extends Component {
+export declare class ImageListComponentDev
+  extends Component
+  implements SmuiComponentDev
+{
   /**
    * @private
    * For type checking capabilities only.
@@ -12,4 +16,6 @@ export declare class ImageListComponentDev extends Component {
     'use' | 'class' | 'masonry' | 'withTextProtection'
   > &
     Component['$$prop_def'];
+
+  getElement(): ReturnType<Component['getElement']>;
 }

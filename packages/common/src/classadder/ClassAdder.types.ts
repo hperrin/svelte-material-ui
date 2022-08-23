@@ -1,7 +1,16 @@
-import type { SvelteComponentDev } from 'svelte/internal';
+import type { ComponentType } from 'svelte';
 
-export type ClassAdderInternals<T extends typeof SvelteComponentDev> = {
-  component: T;
+import type { SmuiComponentDev } from '../smui.types.js';
+import type { ElementComponentDev } from '../Element.types.js';
+
+export type ClassAdderInternals<
+  T extends string = 'div',
+  C extends ComponentType<SmuiComponentDev> = ComponentType<
+    ElementComponentDev<T>
+  >
+> = {
+  component: C;
+  tag: T;
   class: string;
   /**
    * Map of name to context name. The context should resolve to a Svelte store,

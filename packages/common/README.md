@@ -1,8 +1,6 @@
 # Svelte Material UI - Common Components
 
-Common Label and Icon components, elemental components, and helper utilities.
-
-You can use the elemental components to switch the HTML element that an SMUI component with a `component` prop uses.
+Common Label and Icon components, Element component, and helper utilities.
 
 # Installation
 
@@ -41,117 +39,14 @@ The common icon is used everywhere that exports an `Icon` component except for `
 - `class`: `''` - A CSS class string.
 - `on`: `false` - Used in the context of an icon button toggle to denote the icon for when the button is on.
 
-# Elemental Components
+## Element
 
-These components are used in SMUI components that take a `component` prop. They determine which HTML element will be used as the root element of the component. You can import them from `@smui/common/elements`.
+A dynamic element component.
 
-### Props / Defaults (Common to all Elemental Components)
+### Props / Defaults
 
 - `use`: `[]` - An array of Svelte actions and/or arrays of an action and its options.
-
-## A
-
-An elemental component for the `a` tag.
-
-## Aside
-
-An elemental component for the `aside` tag.
-
-## Button
-
-An elemental component for the `button` tag.
-
-## Div
-
-An elemental component for the `div` tag.
-
-## Em
-
-An elemental component for the `em` tag.
-
-## Footer
-
-An elemental component for the `footer` tag.
-
-## H1
-
-An elemental component for the `h1` tag.
-
-## H2
-
-An elemental component for the `h2` tag.
-
-## H3
-
-An elemental component for the `h3` tag.
-
-## H4
-
-An elemental component for the `h4` tag.
-
-## H5
-
-An elemental component for the `h5` tag.
-
-## H6
-
-An elemental component for the `h6` tag.
-
-## Header
-
-An elemental component for the `header` tag.
-
-## Hr
-
-An elemental component for the `hr` tag.
-
-## I
-
-An elemental component for the `i` tag.
-
-## Img
-
-An elemental component for the `img` tag.
-
-## Label
-
-An elemental component for the `label` tag.
-
-## Li
-
-An elemental component for the `li` tag.
-
-## Main
-
-An elemental component for the `main` tag.
-
-## Nav
-
-An elemental component for the `nav` tag.
-
-## P
-
-An elemental component for the `p` tag.
-
-## Section
-
-An elemental component for the `section` tag.
-
-## Span
-
-An elemental component for the `span` tag.
-
-## Strong
-
-An elemental component for the `strong` tag.
-
-## Svg
-
-An elemental component for the `svg` tag.
-
-## Ul
-
-An elemental component for the `ul` tag.
+- `tag`: `'div'` - An HTML tag name to use as the element.
 
 # Helper Utilities
 
@@ -425,31 +320,44 @@ A fragment component (only contains a `<slot />`) used to define a Svelte contex
 
 ## classadder/ClassAdder.svelte
 
-A base component that adds a class to an element. The ClassAdder is used to provide simple components. It usually uses one of the elemental components listed above, but you can specify a different component for it to use. Every elemental component supports the `use` prop.
+A base component that adds a class to an element. The ClassAdder is used to provide simple components. It usually uses the `Element` component shown above, but you can specify a different component for it to use.
 
 ### Props / Defaults
 
-- `component`: `(depends on context)` - The component to extend. Usually it is set to one of the elemental components below.
+- `component`: `(depends on context)` - The component to extend. Usually it is set to `Element`.
+- `tag`: `(depends on context)` - The HTML tag name `Element` will use.
 - `use`: `[]` - An array of Svelte actions and/or arrays of an action and its options.
 - `class`: `''` - A CSS class string.
 
 ## classAdderBuilder
 
-Use this to build a ClassAdder component. ClassAdder components are useful for reducing the size of your bundle. If you have tons of simple components that just need to add classes/props or set a context, using ClassAdder components means there's only one "big" Svelte component in your bundle for all of these many tiny components.
+Use this to build a ClassAdder component. ClassAdder components are useful for reducing the size of your bundle. If you have tons of simple components that just need to add classes/props or set a context, using ClassAdder components means there's only one actual Svelte component in your bundle for all of these many tiny components.
 
 ```js
 import { classAdderBuilder } from '@smui/common/classadder';
-import { Div } from '@smui/common/elements';
 
 export default classAdderBuilder({
   class: 'my-added-class',
-  component: Div,
+  tag: 'div',
+});
+```
+
+You can also supply a component that implements the `SmuiComponentDev` interface.
+
+```js
+import { classAdderBuilder } from '@smui/common/classadder';
+import Button from '@smui/button';
+
+export default classAdderBuilder({
+  class: 'my-added-class',
+  component: Button,
 });
 ```
 
 ### Props / Defaults
 
-- `component`: `null` - An elemental component.
+- `component`: `Element` - An SMUI compatible component.
+- `tag`: `'div'` - An HTML tag name. (Only means anything for the `Element` component.)
 - `class`: `''` - The class to add.
 - `classMap`: `{}` - A map of classes to contexts. The context should resolve to a Svelte store, and the class will be added if the Svelte store's value is true.
 - `contexts`: `{}` - A map of contexts to values to set for them.

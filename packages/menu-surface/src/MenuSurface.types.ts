@@ -1,6 +1,10 @@
+import type { SmuiComponentDev } from '@smui/common';
 import type Component from './MenuSurface.svelte';
 
-export declare class MenuSurfaceComponentDev extends Component {
+export declare class MenuSurfaceComponentDev
+  extends Component
+  implements SmuiComponentDev
+{
   /**
    * @private
    * For type checking capabilities only.
@@ -26,6 +30,8 @@ export declare class MenuSurfaceComponentDev extends Component {
     | 'horizontallyCenteredOnViewport'
   > &
     Component['$$prop_def'];
+
+  getElement(): ReturnType<Component['getElement']>;
 }
 
 import { Corner } from '@material/menu-surface';

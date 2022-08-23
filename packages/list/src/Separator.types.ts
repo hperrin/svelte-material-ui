@@ -1,10 +1,13 @@
-import type { SvelteComponentDev } from 'svelte/internal';
+import type { SmuiComponentDev, ElementComponentDev } from '@smui/common';
 import type Component from './Separator.svelte';
-import type { LiComponentDev as LiElementComponentDev } from '@smui/common/elements';
 
 export declare class SeparatorComponentDev<
-  C extends SvelteComponentDev = LiElementComponentDev
-> extends Component {
+    T extends string = 'li',
+    C extends SmuiComponentDev = ElementComponentDev<T>
+  >
+  extends Component
+  implements SmuiComponentDev
+{
   /**
    * @private
    * For type checking capabilities only.
@@ -21,6 +24,9 @@ export declare class SeparatorComponentDev<
     | 'insetTrailing'
     | 'insetPadding'
     | 'component'
+    | 'tag'
   > &
     Component['$$prop_def'];
+
+  getElement(): ReturnType<C['getElement']>;
 }

@@ -1,3 +1,9 @@
+import type { SvelteComponentDev } from 'svelte/internal';
+
+export interface SmuiComponentDev extends SvelteComponentDev {
+  getElement(): HTMLElement;
+}
+
 // Layout listeners.
 
 export type RemoveLayoutListener = () => void;

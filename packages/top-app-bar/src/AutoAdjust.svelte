@@ -1,5 +1,6 @@
 <svelte:component
   this={component}
+  {tag}
   bind:this={element}
   use={[forwardEvents, ...use]}
   class={classMap({
@@ -12,11 +13,12 @@
 </svelte:component>
 
 <script lang="ts">
-  import type { SvelteComponentDev } from 'svelte/internal';
+  import type { ComponentType } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import type { ActionArray } from '@smui/common/internal';
   import { forwardEventsBuilder, classMap } from '@smui/common/internal';
-  import { Main } from '@smui/common/elements';
+  import type { SmuiComponentDev } from '@smui/common';
+  import { Element } from '@smui/common';
 
   import type TopAppBar from './TopAppBar.svelte';
 
@@ -28,9 +30,10 @@
   export { className as class };
   export let topAppBar: TopAppBar;
 
-  let element: SvelteComponentDev;
+  let element: SmuiComponentDev;
 
-  export let component: typeof SvelteComponentDev = Main;
+  export let component: ComponentType<SmuiComponentDev> = Element;
+  export let tag = component === Element ? 'main' : null;
 
   $: propStore = topAppBar && topAppBar.getPropStore();
   $: adjustClass = (() => {

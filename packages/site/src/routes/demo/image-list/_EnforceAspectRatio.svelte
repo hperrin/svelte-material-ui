@@ -3,7 +3,7 @@
     <Item>
       <ImageAspectContainer>
         <Image
-          component={Div}
+          tag="div"
           style="background-image: url(https://place-hold.it/190x{getUnevenImageSize(
             i,
             190,
@@ -26,7 +26,6 @@
     Supporting,
     Label,
   } from '@smui/image-list';
-  import { Div } from '@smui/common/elements';
 
   function getUnevenImageSize(
     counter: number,

@@ -1,10 +1,13 @@
-import type { SvelteComponentDev } from 'svelte/internal';
+import type { SmuiComponentDev, ElementComponentDev } from '@smui/common';
 import type Component from './Fab.svelte';
-import type { ButtonComponentDev as ButtonElementComponentDev } from '@smui/common/elements';
 
 export declare class FabComponentDev<
-  C extends SvelteComponentDev = ButtonElementComponentDev
-> extends Component {
+    T extends string = 'button',
+    C extends SmuiComponentDev = ElementComponentDev<T>
+  >
+  extends Component
+  implements SmuiComponentDev
+{
   /**
    * @private
    * For type checking capabilities only.
@@ -24,6 +27,9 @@ export declare class FabComponentDev<
     | 'touch'
     | 'href'
     | 'component'
+    | 'tag'
   > &
     Component['$$prop_def'];
+
+  getElement(): ReturnType<C['getElement']>;
 }

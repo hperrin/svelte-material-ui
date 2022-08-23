@@ -1,5 +1,6 @@
 <svelte:component
   this={component}
+  {tag}
   bind:this={element}
   use={[
     [
@@ -57,9 +58,9 @@
 
 <script lang="ts">
   import { deprecated } from '@material/chips';
+  import type { ComponentType } from 'svelte';
   import { onMount, setContext, getContext } from 'svelte';
   import { writable } from 'svelte/store';
-  import type { SvelteComponentDev } from 'svelte/internal';
   import { get_current_component } from 'svelte/internal';
   import type { ActionArray } from '@smui/common/internal';
   import {
@@ -68,7 +69,8 @@
     dispatch,
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
-  import { Div } from '@smui/common/elements';
+  import type { SmuiComponentDev } from '@smui/common';
+  import { Element } from '@smui/common';
 
   import type { SMUIChipsPrimaryActionAccessor } from './Text.types.js';
   import type { SMUIChipsTrailingActionAccessor } from './TrailingAction.types.js';
@@ -90,7 +92,7 @@
   export let shouldRemoveOnTrailingIconClick = true;
   export let shouldFocusPrimaryActionOnClick = true;
 
-  let element: SvelteComponentDev;
+  let element: SmuiComponentDev;
   let instance: deprecated.MDCChipFoundation;
   let internalClasses: { [k: string]: boolean } = {};
   let leadingIconClasses: { [k: string]: boolean } = {};
@@ -109,7 +111,8 @@
   const choice = getContext<SvelteStore<boolean>>('SMUI:chips:choice');
   const index = getContext<SvelteStore<number>>('SMUI:chips:chip:index');
 
-  export let component: typeof SvelteComponentDev = Div;
+  export let component: ComponentType<SmuiComponentDev> = Element;
+  export let tag = component === Element ? 'div' : null;
 
   const shouldRemoveOnTrailingIconClickStore = writable(
     shouldRemoveOnTrailingIconClick

@@ -1,10 +1,13 @@
-import type { SvelteComponentDev } from 'svelte/internal';
+import type { SmuiComponentDev, ElementComponentDev } from '@smui/common';
 import type Component from './Chip.svelte';
-import type { DivComponentDev as DivElementComponentDev } from '@smui/common/elements';
 
 export declare class ChipComponentDev<
-  C extends SvelteComponentDev = DivElementComponentDev
-> extends Component {
+    T extends string = 'div',
+    C extends SmuiComponentDev = ElementComponentDev<T>
+  >
+  extends Component
+  implements SmuiComponentDev
+{
   /**
    * @private
    * For type checking capabilities only.
@@ -22,8 +25,11 @@ export declare class ChipComponentDev<
     | 'shouldRemoveOnTrailingIconClick'
     | 'shouldFocusPrimaryActionOnClick'
     | 'component'
+    | 'tag'
   > &
     Component['$$prop_def'];
+
+  getElement(): ReturnType<C['getElement']>;
 }
 
 export interface SMUIChipsChipAccessor {

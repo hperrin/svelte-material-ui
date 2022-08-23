@@ -1,7 +1,6 @@
 import { classAdderBuilder } from '@smui/common/classadder';
-import { Div } from '@smui/common/elements';
 
-export default classAdderBuilder({
+export default classAdderBuilder<string>({
   class: 'mdc-touch-target-wrapper',
-  component: Div,
+  tag: 'div',
 });

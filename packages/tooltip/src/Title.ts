@@ -1,7 +1,6 @@
 import { classAdderBuilder } from '@smui/common/classadder';
-import { H2 } from '@smui/common/elements';
 
-export default classAdderBuilder({
+export default classAdderBuilder<string>({
   class: 'mdc-tooltip__title',
-  component: H2,
+  tag: 'h2',
 });

@@ -63,7 +63,7 @@
           >
         {/if}
         <Title
-          component={A}
+          tag="a"
           href="/"
           on:click={() => (activeSection = undefined)}
           class="mdc-theme--primary"
@@ -77,7 +77,7 @@
           {#each activeSection.repos || [] as repo}
             <Wrapper>
               <IconButton href={repo} target="_blank">
-                <Icon component={Svg} viewBox="0 0 24 24">
+                <Icon tag="svg" viewBox="0 0 24 24">
                   <path fill="currentColor" d={mdiFileDocument} />
                 </Icon>
               </IconButton>
@@ -87,7 +87,7 @@
         {/if}
         <Wrapper>
           <IconButton href="https://discord.gg/aFzmkrmg9P">
-            <Icon component={Svg} viewBox="0 0 24 24">
+            <Icon tag="svg" viewBox="0 0 24 24">
               <path fill="currentColor" d={siDiscord.path} />
             </Icon>
           </IconButton>
@@ -95,7 +95,7 @@
         </Wrapper>
         <Wrapper>
           <IconButton href="https://twitter.com/SciActive">
-            <Icon component={Svg} viewBox="0 0 24 24">
+            <Icon tag="svg" viewBox="0 0 24 24">
               <path fill="currentColor" d={siTwitter.path} />
             </Icon>
           </IconButton>
@@ -103,7 +103,7 @@
         </Wrapper>
         <Wrapper>
           <IconButton href="https://github.com/hperrin/svelte-material-ui">
-            <Icon component={Svg} viewBox="0 0 24 24">
+            <Icon tag="svg" viewBox="0 0 24 24">
               <path fill="currentColor" d={siGithub.path} />
             </Icon>
           </IconButton>
@@ -115,10 +115,10 @@
             pressed={lightTheme}
             on:SMUIIconButtonToggle:change={() => (lightTheme = !lightTheme)}
           >
-            <Icon component={Svg} viewBox="0 0 24 24" on>
+            <Icon tag="svg" viewBox="0 0 24 24" on>
               <path fill="currentColor" d={mdiWeatherNight} />
             </Icon>
-            <Icon component={Svg} viewBox="0 0 24 24">
+            <Icon tag="svg" viewBox="0 0 24 24">
               <path fill="currentColor" d={mdiWeatherSunny} />
             </Icon>
           </IconButton>
@@ -190,7 +190,6 @@
   import List, { Item, Text, Separator } from '@smui/list';
   import Tooltip, { Wrapper } from '@smui/tooltip';
   import { Icon } from '@smui/common';
-  import { A, Svg } from '@smui/common/elements';
 
   const iframe = $page.url.pathname.includes('/iframe');
 

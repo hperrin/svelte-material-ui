@@ -1,6 +1,10 @@
+import type { SmuiComponentDev } from '@smui/common';
 import type Component from './SelectionGroup.svelte';
 
-export declare class SelectionGroupComponentDev extends Component {
+export declare class SelectionGroupComponentDev
+  extends Component
+  implements SmuiComponentDev
+{
   /**
    * @private
    * For type checking capabilities only.
@@ -14,4 +18,6 @@ export declare class SelectionGroupComponentDev extends Component {
       svelte.JSX.HTMLAttributes<HTMLUListElement>
     >[k];
   } & Component['$$prop_def'];
+
+  getElement(): ReturnType<Component['getElement']>;
 }

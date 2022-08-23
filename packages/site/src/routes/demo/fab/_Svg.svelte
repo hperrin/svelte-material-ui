@@ -6,7 +6,7 @@
       is particularly small. This embiggens it.
     -->
     <Fab on:click={() => clicked++}>
-      <Icon component={Svg} viewBox="2 2 20 20">
+      <Icon tag="svg" viewBox="2 2 20 20">
         <path fill="currentColor" d={mdiPlus} />
       </Icon>
     </Fab>
@@ -17,7 +17,6 @@
 
 <script lang="ts">
   import Fab, { Icon } from '@smui/fab';
-  import { Svg } from '@smui/common/elements';
   import { mdiPlus } from '@mdi/js';
 
   let clicked = 0;

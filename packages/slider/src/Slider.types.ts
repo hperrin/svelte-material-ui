@@ -1,6 +1,10 @@
+import type { SmuiComponentDev } from '@smui/common';
 import type Component from './Slider.svelte';
 
-export declare class SliderComponentDev extends Component {
+export declare class SliderComponentDev
+  extends Component
+  implements SmuiComponentDev
+{
   /**
    * @private
    * For type checking capabilities only.
@@ -38,4 +42,6 @@ export declare class SliderComponentDev extends Component {
     input$checked?: never;
     input$group?: never;
   } & Component['$$prop_def'];
+
+  getElement(): ReturnType<Component['getElement']>;
 }

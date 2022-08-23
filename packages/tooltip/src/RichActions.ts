@@ -1,9 +1,8 @@
 import { classAdderBuilder } from '@smui/common/classadder';
-import { Div } from '@smui/common/elements';
 
-export default classAdderBuilder({
+export default classAdderBuilder<string>({
   class: 'mdc-tooltip--rich-actions',
-  component: Div,
+  tag: 'div',
   contexts: {
     'SMUI:button:context': 'tooltip:rich-actions',
   },

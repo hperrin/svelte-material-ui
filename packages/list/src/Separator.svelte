@@ -1,5 +1,6 @@
 <svelte:component
   this={component}
+  {tag}
   bind:this={element}
   use={[forwardEvents, ...use]}
   class={classMap({
@@ -16,12 +17,13 @@
 />
 
 <script lang="ts">
+  import type { ComponentType } from 'svelte';
   import { getContext } from 'svelte';
-  import type { SvelteComponentDev } from 'svelte/internal';
   import { get_current_component } from 'svelte/internal';
   import type { ActionArray } from '@smui/common/internal';
   import { forwardEventsBuilder, classMap } from '@smui/common/internal';
-  import { Li, Hr } from '@smui/common/elements';
+  import type { SmuiComponentDev } from '@smui/common';
+  import { Element } from '@smui/common';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
@@ -35,12 +37,13 @@
   export let insetTrailing = false;
   export let insetPadding = false;
 
-  let element: SvelteComponentDev;
+  let element: SmuiComponentDev;
   let nav = getContext<boolean | undefined>('SMUI:list:item:nav');
   let context = getContext<string | undefined>('SMUI:separator:context');
 
-  export let component: typeof SvelteComponentDev =
-    nav || context !== 'list' ? Hr : Li;
+  export let component: ComponentType<SmuiComponentDev> = Element;
+  export let tag =
+    component === Element ? (nav || context !== 'list' ? 'hr' : 'li') : null;
 
   export function getElement(): Element {
     return element.getElement();

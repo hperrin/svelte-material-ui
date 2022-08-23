@@ -1,6 +1,10 @@
+import type { SmuiComponentDev } from '@smui/common';
 import type Component from './LinearProgress.svelte';
 
-export declare class LinearProgressComponentDev extends Component {
+export declare class LinearProgressComponentDev
+  extends Component
+  implements SmuiComponentDev
+{
   /**
    * @private
    * For type checking capabilities only.
@@ -18,4 +22,6 @@ export declare class LinearProgressComponentDev extends Component {
     | 'buffer'
   > &
     Component['$$prop_def'];
+
+  getElement(): ReturnType<Component['getElement']>;
 }

@@ -1,6 +1,10 @@
+import type { SmuiComponentDev } from '@smui/common';
 import type Component from './Cell.svelte';
 
-export declare class CellComponentDev extends Component {
+export declare class CellComponentDev
+  extends Component
+  implements SmuiComponentDev
+{
   /**
    * @private
    * For type checking capabilities only.
@@ -12,4 +16,6 @@ export declare class CellComponentDev extends Component {
     'use' | 'class' | 'align' | 'order' | 'span' | 'spanDevices'
   > &
     Component['$$prop_def'];
+
+  getElement(): ReturnType<Component['getElement']>;
 }

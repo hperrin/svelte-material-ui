@@ -2,6 +2,12 @@
 
 This doc contains information that will help you migrate your code from an older version of SMUI to a newer one. Things that you will need to change in your existing code will be written here. It would also be helpful to check the MDC changelog if the upstream MDC versions has changed between SMUI versions.
 
+# SMUI 6 -> SMUI 7
+
+## Breaking Changes
+
+- The `@smui/common/elements` components are gone. It is replaced with the `Element` component exported from `@smui/common`. It takes a `tag` prop and creates an element dynamically with that tag name.
+
 # SMUI 5 -> SMUI 6
 
 SMUI 6 migrated to upstream MDC 13.0 from 11.0:

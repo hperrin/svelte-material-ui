@@ -1,10 +1,14 @@
-import type { SvelteComponentDev } from 'svelte/internal';
+import type { SmuiComponentDev } from './smui.types.js';
+import type { ElementComponentDev } from './Element.types.js';
 import type Component from './CommonLabel.svelte';
-import type { SpanComponentDev } from './elements/Span.types.js';
 
 export declare class CommonLabelComponentDev<
-  C extends SvelteComponentDev = SpanComponentDev
-> extends Component {
+    T extends string = 'span',
+    C extends SmuiComponentDev = ElementComponentDev<T>
+  >
+  extends Component
+  implements SmuiComponentDev
+{
   /**
    * @private
    * For type checking capabilities only.
@@ -13,7 +17,9 @@ export declare class CommonLabelComponentDev<
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<ReturnType<C['getElement']>>>,
-    'use' | 'class' | 'component'
+    'use' | 'class' | 'component' | 'tag'
   > &
     Component['$$prop_def'];
+
+  getElement(): ReturnType<C['getElement']>;
 }

@@ -1,6 +1,10 @@
+import type { SmuiComponentDev } from '@smui/common';
 import type Component from './Textarea.svelte';
 
-export declare class TextareaComponentDev extends Component {
+export declare class TextareaComponentDev
+  extends Component
+  implements SmuiComponentDev
+{
   /**
    * @private
    * For type checking capabilities only.
@@ -19,4 +23,6 @@ export declare class TextareaComponentDev extends Component {
     | 'resizable'
   > &
     Component['$$prop_def'];
+
+  getElement(): ReturnType<Component['getElement']>;
 }

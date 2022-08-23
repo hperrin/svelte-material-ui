@@ -1,5 +1,6 @@
 <svelte:component
   this={component}
+  {tag}
   bind:this={element}
   use={[forwardEvents, ...use]}
   class={classMap({
@@ -22,13 +23,14 @@
 >
 
 <script lang="ts">
+  import type { ComponentType } from 'svelte';
   import { getContext } from 'svelte';
-  import type { SvelteComponentDev } from 'svelte/internal';
   import { get_current_component } from 'svelte/internal';
 
   import type { ActionArray } from './internal/useActions.js';
   import { forwardEventsBuilder, classMap } from './internal/index.js';
-  import Span from './elements/Span.svelte';
+  import type { SmuiComponentDev } from './smui.types.js';
+  import { Element } from './index.js';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
@@ -37,9 +39,10 @@
   let className = '';
   export { className as class };
 
-  let element: SvelteComponentDev;
+  let element: SmuiComponentDev;
 
-  export let component: typeof SvelteComponentDev = Span;
+  export let component: ComponentType<SmuiComponentDev> = Element;
+  export let tag = component === Element ? 'span' : null;
 
   const context = getContext<string | undefined>('SMUI:label:context');
   const tabindex = getContext<number | undefined>('SMUI:label:tabindex');

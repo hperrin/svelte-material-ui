@@ -1,5 +1,6 @@
 <svelte:component
   this={component}
+  {tag}
   bind:this={element}
   use={[
     [
@@ -68,8 +69,8 @@
 
 <script lang="ts">
   import { MDCTabFoundation } from '@material/tab';
+  import type { ComponentType } from 'svelte';
   import { onMount, setContext, getContext } from 'svelte';
-  import type { SvelteComponentDev } from 'svelte/internal';
   import { get_current_component } from 'svelte/internal';
   import type { ActionArray } from '@smui/common/internal';
   import {
@@ -81,7 +82,8 @@
     dispatch,
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
-  import { A, Button } from '@smui/common/elements';
+  import type { SmuiComponentDev } from '@smui/common';
+  import { Element } from '@smui/common';
   import type { TabIndicatorComponentDev } from '@smui/tab-indicator';
   import TabIndicator from '@smui/tab-indicator';
 
@@ -104,7 +106,7 @@
   export let content$use: ActionArray = [];
   export let content$class = '';
 
-  let element: SvelteComponentDev;
+  let element: SmuiComponentDev;
   let instance: MDCTabFoundation;
   let content: HTMLSpanElement;
   let tabIndicator: TabIndicatorComponentDev;
@@ -115,7 +117,9 @@
   let active = tabId === getContext<any | undefined>('SMUI:tab:initialActive');
   let forceAccessible = false;
 
-  export let component: typeof SvelteComponentDev = href == null ? Button : A;
+  export let component: ComponentType<SmuiComponentDev> = Element;
+  export let tag =
+    component === Element ? (href == null ? 'button' : 'a') : null;
 
   setContext('SMUI:label:context', 'tab');
   setContext('SMUI:icon:context', 'tab');

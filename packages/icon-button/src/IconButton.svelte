@@ -1,5 +1,6 @@
 <svelte:component
   this={component}
+  {tag}
   bind:this={element}
   use={[
     [
@@ -66,8 +67,8 @@
 <script lang="ts">
   import type { MDCIconButtonToggleEventDetail } from '@material/icon-button';
   import { MDCIconButtonToggleFoundation } from '@material/icon-button';
+  import type { ComponentType } from 'svelte';
   import { onDestroy, getContext, setContext } from 'svelte';
-  import type { SvelteComponentDev } from 'svelte/internal';
   import { get_current_component } from 'svelte/internal';
   import type { ActionArray } from '@smui/common/internal';
   import {
@@ -76,7 +77,8 @@
     dispatch,
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
-  import { A, Button } from '@smui/common/elements';
+  import type { SmuiComponentDev } from '@smui/common';
+  import { Element } from '@smui/common';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
   interface UninitializedValue extends Function {}
@@ -109,7 +111,7 @@
     | string
     | undefined = undefined;
 
-  let element: SvelteComponentDev;
+  let element: SmuiComponentDev;
   let instance: MDCIconButtonToggleFoundation | undefined;
   let internalClasses: { [k: string]: boolean } = {};
   let internalStyles: { [k: string]: string } = {};
@@ -117,7 +119,9 @@
   let context = getContext('SMUI:icon-button:context');
   let ariaDescribedby = getContext('SMUI:icon-button:aria-describedby');
 
-  export let component: typeof SvelteComponentDev = href == null ? Button : A;
+  export let component: ComponentType<SmuiComponentDev> = Element;
+  export let tag =
+    component === Element ? (href == null ? 'button' : 'a') : null;
 
   $: actionProp = (() => {
     if (context === 'data-table:pagination') {

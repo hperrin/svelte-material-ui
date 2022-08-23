@@ -1,5 +1,6 @@
 <svelte:component
   this={component}
+  {tag}
   bind:this={element}
   use={[
     [
@@ -38,13 +39,14 @@
 >
 
 <script lang="ts">
+  import type { ComponentType } from 'svelte';
   import { setContext } from 'svelte';
-  import type { SvelteComponentDev } from 'svelte/internal';
   import { get_current_component } from 'svelte/internal';
   import type { ActionArray } from '@smui/common/internal';
   import { forwardEventsBuilder, classMap } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
-  import { A, Button } from '@smui/common/elements';
+  import type { SmuiComponentDev } from '@smui/common';
+  import { Element } from '@smui/common';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
@@ -61,11 +63,13 @@
   export let touch = false;
   export let href: string | undefined = undefined;
 
-  let element: SvelteComponentDev;
+  let element: SmuiComponentDev;
   let internalClasses: { [k: string]: boolean } = {};
   let internalStyles: { [k: string]: string } = {};
 
-  export let component: typeof SvelteComponentDev = href == null ? Button : A;
+  export let component: ComponentType<SmuiComponentDev> = Element;
+  export let tag =
+    component === Element ? (href == null ? 'button' : 'a') : null;
 
   setContext('SMUI:label:context', 'fab');
   setContext('SMUI:icon:context', 'fab');

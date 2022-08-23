@@ -1,10 +1,13 @@
-import type { SvelteComponentDev } from 'svelte/internal';
+import type { SmuiComponentDev, ElementComponentDev } from '@smui/common';
 import type Component from './Scrim.svelte';
-import type { DivComponentDev as DivElementComponentDev } from '@smui/common/elements';
 
 export declare class ScrimComponentDev<
-  C extends SvelteComponentDev = DivElementComponentDev
-> extends Component {
+    T extends string = 'div',
+    C extends SmuiComponentDev = ElementComponentDev<T>
+  >
+  extends Component
+  implements SmuiComponentDev
+{
   /**
    * @private
    * For type checking capabilities only.
@@ -13,7 +16,9 @@ export declare class ScrimComponentDev<
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<ReturnType<C['getElement']>>>,
-    'use' | 'class' | 'fixed' | 'component'
+    'use' | 'class' | 'fixed' | 'component' | 'tag'
   > &
     Component['$$prop_def'];
+
+  getElement(): ReturnType<C['getElement']>;
 }

@@ -1,10 +1,14 @@
-import type { SvelteComponentDev } from 'svelte/internal';
+import type { SmuiComponentDev } from './smui.types.js';
+import type { ElementComponentDev } from './Element.types.js';
 import type Component from './CommonIcon.svelte';
-import type { IComponentDev } from './elements/I.types.js';
 
 export declare class CommonIconComponentDev<
-  C extends SvelteComponentDev = IComponentDev
-> extends Component {
+    T extends string = 'i',
+    C extends SmuiComponentDev = ElementComponentDev<T>
+  >
+  extends Component
+  implements SmuiComponentDev
+{
   /**
    * @private
    * For type checking capabilities only.
@@ -13,7 +17,9 @@ export declare class CommonIconComponentDev<
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<ReturnType<C['getElement']>>>,
-    'use' | 'class' | 'on' | 'component'
+    'use' | 'class' | 'on' | 'component' | 'tag'
   > &
     Component['$$prop_def'];
+
+  getElement(): ReturnType<C['getElement']>;
 }

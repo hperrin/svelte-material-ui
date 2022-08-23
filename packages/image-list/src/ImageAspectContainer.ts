@@ -1,7 +1,6 @@
 import { classAdderBuilder } from '@smui/common/classadder';
-import { Div } from '@smui/common/elements';
 
-export default classAdderBuilder({
+export default classAdderBuilder<string>({
   class: 'mdc-image-list__image-aspect-container',
-  component: Div,
+  tag: 'div',
 });

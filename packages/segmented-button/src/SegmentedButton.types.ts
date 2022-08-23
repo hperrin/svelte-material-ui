@@ -1,6 +1,10 @@
+import type { SmuiComponentDev } from '@smui/common';
 import type Component from './SegmentedButton.svelte';
 
-export declare class SegmentedButtonComponentDev extends Component {
+export declare class SegmentedButtonComponentDev
+  extends Component
+  implements SmuiComponentDev
+{
   /**
    * @private
    * For type checking capabilities only.
@@ -12,4 +16,6 @@ export declare class SegmentedButtonComponentDev extends Component {
     'use' | 'class' | 'segments' | 'key' | 'singleSelect' | 'selected'
   > &
     Component['$$prop_def'];
+
+  getElement(): ReturnType<Component['getElement']>;
 }

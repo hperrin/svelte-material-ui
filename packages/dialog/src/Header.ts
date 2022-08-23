@@ -1,9 +1,8 @@
 import { classAdderBuilder } from '@smui/common/classadder';
-import { Div } from '@smui/common/elements';
 
-export default classAdderBuilder({
+export default classAdderBuilder<string>({
   class: 'mdc-dialog__header',
-  component: Div,
+  tag: 'div',
   contexts: {
     'SMUI:icon-button:context': 'dialog:header',
   },

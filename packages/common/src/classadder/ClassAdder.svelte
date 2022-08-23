@@ -1,5 +1,6 @@
 <svelte:component
   this={component}
+  {tag}
   bind:this={element}
   use={[forwardEvents, ...use]}
   class={classMap({
@@ -13,11 +14,11 @@
 
 <script lang="ts" context="module">
   import type { ClassAdderInternals } from './ClassAdder.types.js';
-  import Div from '../elements/Div.svelte';
-  import type { DivComponentDev } from '../elements/Div.types.js';
+  import { Element } from '../index.js';
 
-  export const internals: ClassAdderInternals<typeof DivComponentDev> = {
-    component: Div as typeof DivComponentDev,
+  export const internals: ClassAdderInternals = {
+    component: Element,
+    tag: 'div',
     class: '',
     classMap: {},
     contexts: {},
@@ -26,10 +27,11 @@
 </script>
 
 <script lang="ts">
+  import type { ComponentType } from 'svelte';
   import { onDestroy, getContext, setContext } from 'svelte';
-  import type { SvelteComponentDev } from 'svelte/internal';
   import { get_current_component } from 'svelte/internal';
 
+  import type { SmuiComponentDev } from '../smui.types.js';
   import type { ActionArray } from '../internal/useActions.js';
   import { forwardEventsBuilder } from '../internal/forwardEventsBuilder.js';
   import { classMap } from '../internal/classMap.js';
@@ -38,14 +40,15 @@
   let className = '';
   export { className as class };
 
-  let element: SvelteComponentDev;
+  let element: SmuiComponentDev;
   const smuiClass = internals.class;
   const smuiClassMap: { [k: string]: any } = {};
   const smuiClassUnsubscribes: (() => void)[] = [];
   const contexts = internals.contexts;
   const props = internals.props;
 
-  export let component: typeof SvelteComponentDev = internals.component;
+  export let component: ComponentType<SmuiComponentDev> = internals.component;
+  export let tag = component === Element ? internals.tag : null;
 
   Object.entries(internals.classMap).forEach(([name, context]) => {
     const store = getContext(context) as SvelteStore<any>;

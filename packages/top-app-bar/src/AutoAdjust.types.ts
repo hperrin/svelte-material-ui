@@ -1,10 +1,13 @@
-import type { SvelteComponentDev } from 'svelte/internal';
+import type { SmuiComponentDev, ElementComponentDev } from '@smui/common';
 import type Component from './AutoAdjust.svelte';
-import type { MainComponentDev as MainElementComponentDev } from '@smui/common/elements';
 
 export declare class AutoAdjustComponentDev<
-  C extends SvelteComponentDev = MainElementComponentDev
-> extends Component {
+    T extends string = 'main',
+    C extends SmuiComponentDev = ElementComponentDev<T>
+  >
+  extends Component
+  implements SmuiComponentDev
+{
   /**
    * @private
    * For type checking capabilities only.
@@ -13,7 +16,9 @@ export declare class AutoAdjustComponentDev<
    */
   $$prop_def: Omit<
     Partial<svelte.JSX.HTMLAttributes<ReturnType<C['getElement']>>>,
-    'use' | 'class' | 'topAppBar' | 'component'
+    'use' | 'class' | 'topAppBar' | 'component' | 'tag'
   > &
     Component['$$prop_def'];
+
+  getElement(): ReturnType<C['getElement']>;
 }

@@ -42,7 +42,7 @@
         </Item>
 
         <Separator />
-        <Subheader component={H6}>Labels</Subheader>
+        <Subheader tag="h6">Labels</Subheader>
         <Item
           href="javascript:void(0)"
           on:click={() => setActive('Family')}
@@ -98,7 +98,6 @@
   } from '@smui/drawer';
   import Button, { Label } from '@smui/button';
   import List, { Item, Text, Graphic, Separator, Subheader } from '@smui/list';
-  import { H6 } from '@smui/common/elements';
 
   let open = false;
   let active = 'Inbox';

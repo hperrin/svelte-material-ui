@@ -20,6 +20,14 @@
     </svelte:fragment>
   </Demo>
 
+  <Demo component={Element} file="common/_Element.svelte">
+    Element Component
+    <svelte:fragment slot="subtitle">
+      Many SMUI components let you customize which DOM element is used to render
+      them. This is done with the Element component.
+    </svelte:fragment>
+  </Demo>
+
   <h4>Common Features and Use Patterns</h4>
 
   <Demo component={TargetingClasses} file="common/_TargetingClasses.svelte">
@@ -35,17 +43,6 @@
     <svelte:fragment slot="subtitle">
       SMUI supports listening to <strong>all</strong> events. You can also use modifiers
       with the "$" syntax.
-    </svelte:fragment>
-  </Demo>
-
-  <Demo
-    component={ElementalComponents}
-    file="common/_ElementalComponents.svelte"
-  >
-    Elemental Components
-    <svelte:fragment slot="subtitle">
-      Many SMUI components let you customize which DOM element is used to render
-      them.
     </svelte:fragment>
   </Demo>
 
@@ -167,7 +164,7 @@
       Use this to build a ClassAdder component. ClassAdder components are useful
       for reducing the size of your bundle. If you have tons of simple
       components that just need to add classes/props or set a context, using
-      ClassAdder components means there's only one "big" Svelte component in
+      ClassAdder components means there's only one actual Svelte component in
       your bundle for all of these many tiny components.
     </svelte:fragment>
   </Demo>
@@ -177,9 +174,9 @@
   import Demo from '$lib/Demo.svelte';
 
   import CommonLabelIcon from './_CommonLabelIcon.svelte';
+  import Element from './_Element.svelte';
   import TargetingClasses from './_TargetingClasses.svelte';
   import EventsAndModifiers from './_EventsAndModifiers.svelte';
-  import ElementalComponents from './_ElementalComponents.svelte';
   import ClassMap from './_ClassMap.svelte';
   import Dispatch from './_Dispatch.svelte';
   import ExcludeAndPrefixFilter from './_ExcludeAndPrefixFilter.svelte';

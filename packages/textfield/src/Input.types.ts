@@ -1,6 +1,10 @@
+import type { SmuiComponentDev } from '@smui/common';
 import type Component from './Input.svelte';
 
-export declare class InputComponentDev extends Component {
+export declare class InputComponentDev
+  extends Component
+  implements SmuiComponentDev
+{
   /**
    * @private
    * For type checking capabilities only.
@@ -22,4 +26,6 @@ export declare class InputComponentDev extends Component {
     | 'emptyValueUndefined'
   > &
     Component['$$prop_def'];
+
+  getElement(): ReturnType<Component['getElement']>;
 }

@@ -7,11 +7,7 @@
 >
   <Wrapper>
     <Segment {segment} touch title={segment.name}>
-      <Icon
-        component={Svg}
-        style="width: 1em; height: auto;"
-        viewBox="0 0 24 24"
-      >
+      <Icon tag="svg" style="width: 1em; height: auto;" viewBox="0 0 24 24">
         <path fill="currentColor" d={segment.icon} />
       </Icon>
     </Segment>
@@ -23,7 +19,6 @@
 <script lang="ts">
   import SegmentedButton, { Segment, Icon } from '@smui/segmented-button';
   import Wrapper from '@smui/touch-target';
-  import { Svg } from '@smui/common/elements';
   import {
     mdiFormatAlignLeft,
     mdiFormatAlignCenter,

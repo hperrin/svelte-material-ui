@@ -1,6 +1,10 @@
+import type { SmuiComponentDev } from '@smui/common';
 import type Component from './TopAppBar.svelte';
 
-export declare class TopAppBarComponentDev extends Component {
+export declare class TopAppBarComponentDev
+  extends Component
+  implements SmuiComponentDev
+{
   /**
    * @private
    * For type checking capabilities only.
@@ -20,4 +24,6 @@ export declare class TopAppBarComponentDev extends Component {
     | 'scrollTarget'
   > &
     Component['$$prop_def'];
+
+  getElement(): ReturnType<Component['getElement']>;
 }

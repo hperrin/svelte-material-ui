@@ -8,16 +8,12 @@
     "./package.json": "./package.json",
     ".": "./dist/index.js",
     "./classadder": "./dist/classadder/index.js",
-    "./elements": "./dist/elements/index.js",
     "./internal": "./dist/internal/index.js"
   },
   "typesVersions": {
     "*": {
       "classadder": [
         "./src/classadder/index.ts"
-      ],
-      "elements": [
-        "./src/elements/index.ts"
       ],
       "internal": [
         "./src/internal/index.ts"

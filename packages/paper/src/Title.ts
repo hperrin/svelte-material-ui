@@ -1,7 +1,6 @@
 import { classAdderBuilder } from '@smui/common/classadder';
-import { H5 } from '@smui/common/elements';
 
-export default classAdderBuilder({
+export default classAdderBuilder<string>({
   class: 'smui-paper__title',
-  component: H5,
+  tag: 'h5',
 });

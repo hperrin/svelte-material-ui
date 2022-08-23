@@ -7,11 +7,7 @@
     key={(segment) => segment.name}
   >
     <Segment {segment} title={segment.name}>
-      <Icon
-        component={Svg}
-        style="width: 1em; height: auto;"
-        viewBox="0 0 24 24"
-      >
+      <Icon tag="svg" style="width: 1em; height: auto;" viewBox="0 0 24 24">
         <path fill="currentColor" d={segment.icon} />
       </Icon>
     </Segment>
@@ -23,11 +19,7 @@
     key={(segment) => segment.name}
   >
     <Segment {segment} title={segment.name}>
-      <Icon
-        component={Svg}
-        style="width: 1em; height: auto;"
-        viewBox="0 0 24 24"
-      >
+      <Icon tag="svg" style="width: 1em; height: auto;" viewBox="0 0 24 24">
         <path fill="currentColor" d={segment.icon} />
       </Icon>
     </Segment>
@@ -40,11 +32,7 @@
         actions = actions;
       }}
     >
-      <Icon
-        component={Svg}
-        style="width: 1em; height: auto;"
-        viewBox="0 0 24 24"
-      >
+      <Icon tag="svg" style="width: 1em; height: auto;" viewBox="0 0 24 24">
         <path fill="currentColor" d={segment.icon} />
       </Icon>
       <Label>{segment.name}</Label>
@@ -64,7 +52,6 @@
     Icon,
     Label,
   } from '@smui/segmented-button';
-  import { Svg } from '@smui/common/elements';
   import {
     mdiFormatAlignLeft,
     mdiFormatAlignCenter,

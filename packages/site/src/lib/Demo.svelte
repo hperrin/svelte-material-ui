@@ -52,7 +52,7 @@
             href={`https://github.com/hperrin/svelte-material-ui/blob/master/packages/site/src/routes/demo/${file}`}
             target="_blank"
           >
-            <Icon component={Svg} viewBox="0 0 24 24">
+            <Icon tag="svg" viewBox="0 0 24 24">
               <path fill="currentColor" d={mdiGithub} />
             </Icon>
           </IconButton>
@@ -61,10 +61,10 @@
       {/each}
       <Wrapper>
         <IconButton toggle bind:pressed={show}>
-          <Icon component={Svg} viewBox="0 0 24 24" on>
+          <Icon tag="svg" viewBox="0 0 24 24" on>
             <path fill="currentColor" d={mdiCodeTagsCheck} />
           </Icon>
-          <Icon component={Svg} viewBox="0 0 24 24">
+          <Icon tag="svg" viewBox="0 0 24 24">
             <path fill="currentColor" d={mdiCodeTags} />
           </Icon>
         </IconButton>
@@ -75,16 +75,15 @@
 </Card>
 
 <script lang="ts">
-  import type { SvelteComponent } from 'svelte';
+  import type { SvelteComponentDev } from 'svelte/internal';
   import { mdiGithub, mdiCodeTags, mdiCodeTagsCheck } from '@mdi/js';
   import Card, { Content, Actions, ActionIcons } from '@smui/card';
   import IconButton, { Icon } from '@smui/icon-button';
   import Tooltip, { Wrapper } from '@smui/tooltip';
-  import { Svg } from '@smui/common/elements';
 
   export let file: string | undefined = undefined;
   export let files: string[] = typeof file === 'string' ? [file] : [];
-  export let component: typeof SvelteComponent | string;
+  export let component: typeof SvelteComponentDev | string;
 
   let sourceContainer: HTMLDivElement | undefined = undefined;
   let show = false;

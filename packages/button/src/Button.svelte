@@ -52,8 +52,8 @@
 >
 
 <script lang="ts">
+  import type { ComponentType } from 'svelte';
   import { setContext, getContext } from 'svelte';
-  import type { SvelteComponentDev } from 'svelte/internal';
   import { get_current_component } from 'svelte/internal';
   import type { ActionArray } from '@smui/common/internal';
   import {
@@ -61,8 +61,9 @@
     classMap,
     dispatch,
   } from '@smui/common/internal';
-  import { Element } from '@smui/common';
   import Ripple from '@smui/ripple';
+  import type { SmuiComponentDev } from '@smui/common';
+  import { Element } from '@smui/common';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
@@ -80,12 +81,12 @@
   export let defaultAction = false;
   export let secondary = false;
 
-  let element: SvelteComponentDev;
+  let element: SmuiComponentDev;
   let internalClasses: { [k: string]: boolean } = {};
   let internalStyles: { [k: string]: string } = {};
   let context = getContext<string | undefined>('SMUI:button:context');
 
-  export let component: typeof SvelteComponentDev = Element;
+  export let component: ComponentType<SmuiComponentDev> = Element;
   export let tag =
     component === Element ? (href == null ? 'button' : 'a') : null;
 

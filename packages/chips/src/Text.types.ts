@@ -1,6 +1,10 @@
+import type { SmuiComponentDev } from '@smui/common';
 import type Component from './Text.svelte';
 
-export declare class TextComponentDev extends Component {
+export declare class TextComponentDev
+  extends Component
+  implements SmuiComponentDev
+{
   /**
    * @private
    * For type checking capabilities only.
@@ -12,6 +16,8 @@ export declare class TextComponentDev extends Component {
     'use' | 'class' | 'tabindex'
   > &
     Component['$$prop_def'];
+
+  getElement(): ReturnType<Component['getElement']>;
 }
 
 export interface SMUIChipsPrimaryActionAccessor {

@@ -1,5 +1,6 @@
 <svelte:component
   this={component}
+  {tag}
   bind:this={element}
   use={[forwardEvents, ...use]}
   class={classMap({
@@ -13,19 +14,19 @@
     'mdc-segmented-button__icon': context === 'segmented-button',
   })}
   aria-hidden="true"
-  {...component === Svg ? { focusable: 'false', tabindex: '-1' } : {}}
+  {...tag === 'svg' ? { focusable: 'false', tabindex: '-1' } : {}}
   {...$$restProps}><slot /></svelte:component
 >
 
 <script lang="ts">
-  import type { SvelteComponent } from 'svelte';
+  import type { ComponentType } from 'svelte';
   import { getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
 
   import type { ActionArray } from './internal/useActions.js';
   import { forwardEventsBuilder, classMap } from './internal/index.js';
-  import I from './elements/I.svelte';
-  import Svg from './elements/Svg.svelte';
+  import type { SmuiComponentDev } from './smui.types.js';
+  import { Element } from './index.js';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
@@ -35,9 +36,10 @@
   export { className as class };
   export let on = false;
 
-  let element: SvelteComponent;
+  let element: SmuiComponentDev;
 
-  export let component: typeof SvelteComponent = I;
+  export let component: ComponentType<SmuiComponentDev> = Element;
+  export let tag = component === Element ? 'svg' : null;
 
   const context = getContext<string | undefined>('SMUI:icon:context');
 

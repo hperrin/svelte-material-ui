@@ -1,6 +1,10 @@
+import type { SmuiComponentDev } from '@smui/common';
 import type Component from './CircularProgress.svelte';
 
-export declare class CircularProgressComponentDev extends Component {
+export declare class CircularProgressComponentDev
+  extends Component
+  implements SmuiComponentDev
+{
   /**
    * @private
    * For type checking capabilities only.
@@ -12,4 +16,6 @@ export declare class CircularProgressComponentDev extends Component {
     'use' | 'class' | 'indeterminate' | 'closed' | 'progress' | 'fourColor'
   > &
     Component['$$prop_def'];
+
+  getElement(): ReturnType<Component['getElement']>;
 }
