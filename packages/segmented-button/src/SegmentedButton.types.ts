@@ -1,9 +1,10 @@
-import type { SmuiComponentDev } from '@smui/common';
+import type { ComponentProps } from 'svelte';
+import type { SmuiComponent } from '@smui/common';
 import type Component from './SegmentedButton.svelte';
 
 export declare class SegmentedButtonComponentDev
   extends Component
-  implements SmuiComponentDev
+  implements SmuiComponent
 {
   /**
    * @private
@@ -15,7 +16,7 @@ export declare class SegmentedButtonComponentDev
     Partial<svelte.JSX.HTMLAttributes<HTMLDivElement>>,
     'use' | 'class' | 'segments' | 'key' | 'singleSelect' | 'selected'
   > &
-    Component['$$prop_def'];
+    ComponentProps<Component>;
 
   getElement(): ReturnType<Component['getElement']>;
 }

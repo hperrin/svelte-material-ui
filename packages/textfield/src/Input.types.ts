@@ -1,9 +1,10 @@
-import type { SmuiComponentDev } from '@smui/common';
+import type { ComponentProps } from 'svelte';
+import type { SmuiComponent } from '@smui/common';
 import type Component from './Input.svelte';
 
 export declare class InputComponentDev
   extends Component
-  implements SmuiComponentDev
+  implements SmuiComponent
 {
   /**
    * @private
@@ -25,7 +26,7 @@ export declare class InputComponentDev
     | 'emptyValueNull'
     | 'emptyValueUndefined'
   > &
-    Component['$$prop_def'];
+    ComponentProps<Component>;
 
   getElement(): ReturnType<Component['getElement']>;
 }

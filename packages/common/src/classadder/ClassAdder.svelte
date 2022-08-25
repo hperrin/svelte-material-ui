@@ -31,7 +31,7 @@
   import { onDestroy, getContext, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
 
-  import type { SmuiComponentDev } from '../smui.types.js';
+  import type { SmuiComponent } from '../smui.types.js';
   import type { ActionArray } from '../internal/useActions.js';
   import { forwardEventsBuilder } from '../internal/forwardEventsBuilder.js';
   import { classMap } from '../internal/classMap.js';
@@ -40,14 +40,14 @@
   let className = '';
   export { className as class };
 
-  let element: SmuiComponentDev;
+  let element: SmuiComponent;
   const smuiClass = internals.class;
   const smuiClassMap: { [k: string]: any } = {};
   const smuiClassUnsubscribes: (() => void)[] = [];
   const contexts = internals.contexts;
   const props = internals.props;
 
-  export let component: ComponentType<SmuiComponentDev> = internals.component;
+  export let component: ComponentType<SmuiComponent> = internals.component;
   export let tag = component === Element ? internals.tag : null;
 
   Object.entries(internals.classMap).forEach(([name, context]) => {

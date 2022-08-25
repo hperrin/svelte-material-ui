@@ -1,6 +1,6 @@
-import type { SvelteComponentDev } from 'svelte/internal';
+import type { SvelteComponentTyped } from 'svelte/internal';
 
-export interface SmuiComponentDev extends SvelteComponentDev {
+export interface SmuiComponent extends SvelteComponentTyped {
   getElement(): HTMLElement;
 }
 

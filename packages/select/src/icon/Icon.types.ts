@@ -1,9 +1,10 @@
-import type { SmuiComponentDev } from '@smui/common';
+import type { ComponentProps } from 'svelte';
+import type { SmuiComponent } from '@smui/common';
 import type Component from './Icon.svelte';
 
 export declare class IconComponentDev
   extends Component
-  implements SmuiComponentDev
+  implements SmuiComponent
 {
   /**
    * @private
@@ -15,7 +16,7 @@ export declare class IconComponentDev
     Partial<svelte.JSX.HTMLAttributes<HTMLElement>>,
     'use' | 'class' | 'role' | 'tabindex' | 'disabled'
   > &
-    Component['$$prop_def'];
+    ComponentProps<Component>;
 
   getElement(): ReturnType<Component['getElement']>;
 }

@@ -1,9 +1,10 @@
-import type { SmuiComponentDev } from '@smui/common';
+import type { ComponentProps } from 'svelte';
+import type { SmuiComponent } from '@smui/common';
 import type Component from './Badge.svelte';
 
 export declare class BadgeComponentDev
   extends Component
-  implements SmuiComponentDev
+  implements SmuiComponent
 {
   /**
    * @private
@@ -15,7 +16,7 @@ export declare class BadgeComponentDev
     Partial<svelte.JSX.HTMLAttributes<HTMLSpanElement>>,
     'use' | 'class' | 'square' | 'color' | 'position' | 'align'
   > &
-    Component['$$prop_def'];
+    ComponentProps<Component>;
 
   getElement(): ReturnType<Component['getElement']>;
 }

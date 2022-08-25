@@ -17,7 +17,7 @@
   import { get_current_component } from 'svelte/internal';
   import type { ActionArray } from '@smui/common/internal';
   import { forwardEventsBuilder, classMap } from '@smui/common/internal';
-  import type { SmuiComponentDev } from '@smui/common';
+  import type { SmuiComponent } from '@smui/common';
   import { Element } from '@smui/common';
 
   import type TopAppBar from './TopAppBar.svelte';
@@ -30,9 +30,9 @@
   export { className as class };
   export let topAppBar: TopAppBar;
 
-  let element: SmuiComponentDev;
+  let element: SmuiComponent;
 
-  export let component: ComponentType<SmuiComponentDev> = Element;
+  export let component: ComponentType<SmuiComponent> = Element;
   export let tag = component === Element ? 'main' : null;
 
   $: propStore = topAppBar && topAppBar.getPropStore();

@@ -1,9 +1,10 @@
-import type { SmuiComponentDev } from '@smui/common';
+import type { ComponentProps } from 'svelte';
+import type { SmuiComponent } from '@smui/common';
 import type Component from './Switch.svelte';
 
 export declare class SwitchComponentDev
   extends Component
-  implements SmuiComponentDev
+  implements SmuiComponent
 {
   /**
    * @private
@@ -26,7 +27,7 @@ export declare class SwitchComponentDev
     [k in keyof Partial<
       svelte.JSX.HTMLAttributes<HTMLDivElement>
     > as `icons\$${k}`]?: Partial<svelte.JSX.HTMLAttributes<HTMLDivElement>>[k];
-  } & Component['$$prop_def'];
+  } & ComponentProps<Component>;
 
   getElement(): ReturnType<Component['getElement']>;
 }

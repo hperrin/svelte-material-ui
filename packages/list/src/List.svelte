@@ -56,7 +56,7 @@
     classMap,
     dispatch,
   } from '@smui/common/internal';
-  import type { SmuiComponentDev } from '@smui/common';
+  import type { SmuiComponent } from '@smui/common';
   import { Element } from '@smui/common';
 
   import type { SMUIListAccessor } from './List.types.js';
@@ -89,7 +89,7 @@
   export let checkList = false;
   export let hasTypeahead = false;
 
-  let element: SmuiComponentDev;
+  let element: SmuiComponent;
   let instance: MDCListFoundation;
   let items: SMUIListItemAccessor[] = [];
   let role = getContext<string | undefined>('SMUI:list:role');
@@ -103,7 +103,7 @@
   );
   let removeLayoutListener: RemoveLayoutListener | undefined;
 
-  export let component: ComponentType<SmuiComponentDev> = Element;
+  export let component: ComponentType<SmuiComponent> = Element;
   export let tag = component === Element ? (nav ? 'nav' : 'ul') : null;
 
   setContext('SMUI:list:nonInteractive', nonInteractive);

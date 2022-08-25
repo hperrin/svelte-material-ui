@@ -1,9 +1,10 @@
-import type { SmuiComponentDev } from '@smui/common';
+import type { ComponentProps } from 'svelte';
+import type { SmuiComponent } from '@smui/common';
 import type Component from './Label.svelte';
 
 export declare class LabelComponentDev
   extends Component
-  implements SmuiComponentDev
+  implements SmuiComponent
 {
   /**
    * @private
@@ -15,7 +16,7 @@ export declare class LabelComponentDev
     Partial<svelte.JSX.HTMLAttributes<HTMLLabelElement>>,
     'use' | 'class'
   > &
-    Component['$$prop_def'];
+    ComponentProps<Component>;
 
   getElement(): ReturnType<Component['getElement']>;
 }

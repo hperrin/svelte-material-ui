@@ -69,7 +69,7 @@
     dispatch,
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
-  import type { SmuiComponentDev } from '@smui/common';
+  import type { SmuiComponent } from '@smui/common';
   import { Element } from '@smui/common';
 
   import type { SMUIChipsPrimaryActionAccessor } from './Text.types.js';
@@ -92,7 +92,7 @@
   export let shouldRemoveOnTrailingIconClick = true;
   export let shouldFocusPrimaryActionOnClick = true;
 
-  let element: SmuiComponentDev;
+  let element: SmuiComponent;
   let instance: deprecated.MDCChipFoundation;
   let internalClasses: { [k: string]: boolean } = {};
   let leadingIconClasses: { [k: string]: boolean } = {};
@@ -111,7 +111,7 @@
   const choice = getContext<SvelteStore<boolean>>('SMUI:chips:choice');
   const index = getContext<SvelteStore<number>>('SMUI:chips:chip:index');
 
-  export let component: ComponentType<SmuiComponentDev> = Element;
+  export let component: ComponentType<SmuiComponent> = Element;
   export let tag = component === Element ? 'div' : null;
 
   const shouldRemoveOnTrailingIconClickStore = writable(

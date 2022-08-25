@@ -1,4 +1,5 @@
-import type { SmuiComponentDev } from '@smui/common';
+import type { ComponentProps } from 'svelte';
+import type { SmuiComponent } from '@smui/common';
 import type { FloatingLabelComponentDev } from '@smui/floating-label';
 import type { NotchedOutlineComponentDev } from '@smui/notched-outline';
 import type { LineRippleComponentDev } from '@smui/line-ripple';
@@ -8,7 +9,7 @@ import type Component from './Textfield.svelte';
 
 export declare class TextfieldComponentDev
   extends Component
-  implements SmuiComponentDev
+  implements SmuiComponent
 {
   /**
    * @private
@@ -71,7 +72,7 @@ export declare class TextfieldComponentDev
     input$updateInvalid?: never;
     'input$aria-controls'?: never;
     'input$aria-describedby'?: never;
-  } & Component['$$prop_def'];
+  } & ComponentProps<Component>;
 
   getElement(): ReturnType<Component['getElement']>;
 }

@@ -1,9 +1,10 @@
-import type { SmuiComponentDev } from '@smui/common';
+import type { ComponentProps } from 'svelte';
+import type { SmuiComponent } from '@smui/common';
 import type Component from './FloatingLabel.svelte';
 
 export declare class FloatingLabelComponentDev
   extends Component
-  implements SmuiComponentDev
+  implements SmuiComponent
 {
   /**
    * @private
@@ -14,7 +15,7 @@ export declare class FloatingLabelComponentDev
   $$prop_def: Partial<
     svelte.JSX.HTMLAttributes<HTMLSpanElement & HTMLLabelElement>
   > &
-    Component['$$prop_def'];
+    ComponentProps<Component>;
 
   getElement(): ReturnType<Component['getElement']>;
 }

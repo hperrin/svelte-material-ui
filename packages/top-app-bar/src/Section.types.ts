@@ -1,9 +1,10 @@
-import type { SmuiComponentDev } from '@smui/common';
+import type { ComponentProps } from 'svelte';
+import type { SmuiComponent } from '@smui/common';
 import type Component from './Section.svelte';
 
 export declare class SectionComponentDev
   extends Component
-  implements SmuiComponentDev
+  implements SmuiComponent
 {
   /**
    * @private
@@ -15,7 +16,7 @@ export declare class SectionComponentDev
     Partial<svelte.JSX.HTMLAttributes<HTMLElement>>,
     'use' | 'class' | 'align' | 'toolbar'
   > &
-    Component['$$prop_def'];
+    ComponentProps<Component>;
 
   getElement(): ReturnType<Component['getElement']>;
 }

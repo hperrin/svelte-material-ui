@@ -1,11 +1,12 @@
 export { DefaultFocusState } from '@material/menu';
-import type { SmuiComponentDev } from '@smui/common';
+import type { ComponentProps } from 'svelte';
+import type { SmuiComponent } from '@smui/common';
 import type { ItemComponentDev } from '@smui/list';
 import type Component from './Option.svelte';
 
 export declare class OptionComponentDev
   extends Component
-  implements SmuiComponentDev
+  implements SmuiComponent
 {
   /**
    * @private
@@ -14,7 +15,7 @@ export declare class OptionComponentDev
    * ### DO NOT USE!
    */
   $$prop_def: Omit<ItemComponentDev['$$prop_def'], 'value'> &
-    Component['$$prop_def'];
+    ComponentProps<Component>;
 
   getElement(): ReturnType<Component['getElement']>;
 }

@@ -1,3 +1,5 @@
+import type { ComponentType } from 'svelte';
+
 import Drawer from './Drawer.svelte';
 import type { DrawerComponentDev } from './Drawer.types.js';
 export * from './Drawer.types.js';
@@ -10,8 +12,8 @@ import Subtitle from './Subtitle.js';
 import ScrimComponent from './Scrim.svelte';
 import type { ScrimComponentDev } from './Scrim.types.js';
 export * from './Scrim.types.js';
-const Scrim = ScrimComponent as typeof ScrimComponentDev;
+const Scrim = ScrimComponent as ComponentType<ScrimComponentDev>;
 
-export default Drawer as typeof DrawerComponentDev;
+export default Drawer as ComponentType<DrawerComponentDev>;
 
 export { AppContent, Content, Header, Title, Subtitle, Scrim };

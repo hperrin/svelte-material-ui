@@ -1,9 +1,10 @@
-import type { SmuiComponentDev } from '@smui/common';
+import type { ComponentProps } from 'svelte';
+import type { SmuiComponent } from '@smui/common';
 import type Component from './PrimaryAction.svelte';
 
 export declare class PrimaryActionComponentDev
   extends Component
-  implements SmuiComponentDev
+  implements SmuiComponent
 {
   /**
    * @private
@@ -15,7 +16,7 @@ export declare class PrimaryActionComponentDev
     Partial<svelte.JSX.HTMLAttributes<HTMLDivElement>>,
     'use' | 'class' | 'style' | 'ripple' | 'color' | 'padded' | 'tabindex'
   > &
-    Component['$$prop_def'];
+    ComponentProps<Component>;
 
   getElement(): ReturnType<Component['getElement']>;
 }

@@ -1,12 +1,15 @@
-import type { SmuiComponentDev, ElementComponentDev } from '@smui/common';
+import type { ComponentProps, ComponentType } from 'svelte';
+import type { SmuiComponent, ElementComponentDev } from '@smui/common';
 import type Component from './Fab.svelte';
 
 export declare class FabComponentDev<
     T extends string = 'button',
-    C extends SmuiComponentDev = ElementComponentDev<T>
+    C extends ComponentType<SmuiComponent> = ComponentType<
+      ElementComponentDev<T>
+    >
   >
   extends Component
-  implements SmuiComponentDev
+  implements SmuiComponent
 {
   /**
    * @private
@@ -15,7 +18,9 @@ export declare class FabComponentDev<
    * ### DO NOT USE!
    */
   $$prop_def: Omit<
-    Partial<svelte.JSX.HTMLAttributes<ReturnType<C['getElement']>>>,
+    Partial<
+      svelte.JSX.HTMLAttributes<ReturnType<InstanceType<C>['getElement']>>
+    >,
     | 'use'
     | 'class'
     | 'style'
@@ -29,7 +34,7 @@ export declare class FabComponentDev<
     | 'component'
     | 'tag'
   > &
-    Component['$$prop_def'];
+    ComponentProps<Component>;
 
-  getElement(): ReturnType<C['getElement']>;
+  getElement(): ReturnType<InstanceType<C>['getElement']>;
 }

@@ -1,9 +1,10 @@
-import type { SmuiComponentDev } from '@smui/common';
+import type { ComponentProps } from 'svelte';
+import type { SmuiComponent } from '@smui/common';
 import type Component from './TabIndicator.svelte';
 
 export declare class TabIndicatorComponentDev
   extends Component
-  implements SmuiComponentDev
+  implements SmuiComponent
 {
   /**
    * @private
@@ -20,7 +21,7 @@ export declare class TabIndicatorComponentDev
     > as `content\$${k}`]?: Partial<
       svelte.JSX.HTMLAttributes<HTMLSpanElement>
     >[k];
-  } & Component['$$prop_def'];
+  } & ComponentProps<Component>;
 
   getElement(): ReturnType<Component['getElement']>;
 }

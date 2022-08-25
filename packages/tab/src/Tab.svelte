@@ -82,7 +82,7 @@
     dispatch,
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
-  import type { SmuiComponentDev } from '@smui/common';
+  import type { SmuiComponent } from '@smui/common';
   import { Element } from '@smui/common';
   import type { TabIndicatorComponentDev } from '@smui/tab-indicator';
   import TabIndicator from '@smui/tab-indicator';
@@ -106,7 +106,7 @@
   export let content$use: ActionArray = [];
   export let content$class = '';
 
-  let element: SmuiComponentDev;
+  let element: SmuiComponent;
   let instance: MDCTabFoundation;
   let content: HTMLSpanElement;
   let tabIndicator: TabIndicatorComponentDev;
@@ -117,7 +117,7 @@
   let active = tabId === getContext<any | undefined>('SMUI:tab:initialActive');
   let forceAccessible = false;
 
-  export let component: ComponentType<SmuiComponentDev> = Element;
+  export let component: ComponentType<SmuiComponent> = Element;
   export let tag =
     component === Element ? (href == null ? 'button' : 'a') : null;
 

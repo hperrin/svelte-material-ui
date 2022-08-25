@@ -77,7 +77,7 @@
     dispatch,
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
-  import type { SmuiComponentDev } from '@smui/common';
+  import type { SmuiComponent } from '@smui/common';
   import { Element } from '@smui/common';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
@@ -111,7 +111,7 @@
     | string
     | undefined = undefined;
 
-  let element: SmuiComponentDev;
+  let element: SmuiComponent;
   let instance: MDCIconButtonToggleFoundation | undefined;
   let internalClasses: { [k: string]: boolean } = {};
   let internalStyles: { [k: string]: string } = {};
@@ -119,7 +119,7 @@
   let context = getContext('SMUI:icon-button:context');
   let ariaDescribedby = getContext('SMUI:icon-button:aria-describedby');
 
-  export let component: ComponentType<SmuiComponentDev> = Element;
+  export let component: ComponentType<SmuiComponent> = Element;
   export let tag =
     component === Element ? (href == null ? 'button' : 'a') : null;
 

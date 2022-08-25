@@ -46,6 +46,7 @@
   interface $$Slots {
     default: { tab: TabKey };
   }
+
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
   // Remember to update types file if you add/remove/rename props.

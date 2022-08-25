@@ -50,7 +50,16 @@
   let position: 'inset' | 'middle' | 'outset' = 'middle';
   let alignY: 'top' | 'middle' | 'bottom' = 'top';
   let alignX: 'start' | 'middle' | 'end' = 'end';
-  $: align = `${alignY}-${alignX}`;
+  $: align = `${alignY}-${alignX}` as
+    | 'top-start'
+    | 'top-middle'
+    | 'top-end'
+    | 'middle-start'
+    | 'middle-middle'
+    | 'middle-end'
+    | 'bottom-start'
+    | 'bottom-middle'
+    | 'bottom-end';
 
   const positions = ['inset', 'middle', 'outset'];
   const alignmentsY = ['top', 'middle', 'bottom'];

@@ -23,7 +23,7 @@
     classMap,
     dispatch,
   } from '@smui/common/internal';
-  import type { SmuiComponentDev } from '@smui/common';
+  import type { SmuiComponent } from '@smui/common';
   import { Element } from '@smui/common';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
@@ -34,9 +34,9 @@
   export { className as class };
   export let fixed = true;
 
-  let element: SmuiComponentDev;
+  let element: SmuiComponent;
 
-  export let component: ComponentType<SmuiComponentDev> = Element;
+  export let component: ComponentType<SmuiComponent> = Element;
   export let tag = component === Element ? 'div' : null;
 
   export function getElement(): Element {

@@ -1,5 +1,6 @@
+import type { ComponentProps } from 'svelte';
 import type Component from './Element.svelte';
-import type { SmuiComponentDev } from './smui.types.js';
+import type { SmuiComponent } from './smui.types.js';
 
 export declare class ElementComponentDev<
     T extends
@@ -76,7 +77,7 @@ export declare class ElementComponentDev<
       | string = 'div'
   >
   extends Component
-  implements SmuiComponentDev
+  implements SmuiComponent
 {
   /**
    * @private
@@ -232,11 +233,11 @@ export declare class ElementComponentDev<
     >,
     'use' | 'tag'
   > &
-    Component['$$prop_def'] & {
+    ComponentProps<Component> & {
       tag?: T;
     };
 
-  getElement(): T extends 'a'
+  get getElement(): () => T extends 'a'
     ? HTMLAnchorElement
     : T extends 'area'
     ? HTMLAreaElement

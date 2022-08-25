@@ -1,9 +1,10 @@
-import type { SmuiComponentDev } from '@smui/common';
+import type { ComponentProps } from 'svelte';
+import type { SmuiComponent } from '@smui/common';
 import type Component from './NotchedOutline.svelte';
 
 export declare class NotchedOutlineComponentDev
   extends Component
-  implements SmuiComponentDev
+  implements SmuiComponent
 {
   /**
    * @private
@@ -15,7 +16,7 @@ export declare class NotchedOutlineComponentDev
     Partial<svelte.JSX.HTMLAttributes<HTMLDivElement>>,
     'use' | 'class' | 'notched' | 'noLabel'
   > &
-    Component['$$prop_def'];
+    ComponentProps<Component>;
 
   getElement(): ReturnType<Component['getElement']>;
 }

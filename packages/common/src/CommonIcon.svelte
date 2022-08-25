@@ -25,7 +25,7 @@
 
   import type { ActionArray } from './internal/useActions.js';
   import { forwardEventsBuilder, classMap } from './internal/index.js';
-  import type { SmuiComponentDev } from './smui.types.js';
+  import type { SmuiComponent } from './smui.types.js';
   import { Element } from './index.js';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
@@ -36,9 +36,9 @@
   export { className as class };
   export let on = false;
 
-  let element: SmuiComponentDev;
+  let element: SmuiComponent;
 
-  export let component: ComponentType<SmuiComponentDev> = Element;
+  export let component: ComponentType<SmuiComponent> = Element;
   export let tag = component === Element ? 'svg' : null;
 
   const context = getContext<string | undefined>('SMUI:icon:context');

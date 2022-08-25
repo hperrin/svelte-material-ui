@@ -1,4 +1,5 @@
-import type { SmuiComponentDev } from '@smui/common';
+import type { ComponentProps } from 'svelte';
+import type { SmuiComponent } from '@smui/common';
 import type { MenuComponentDev } from '@smui/menu';
 import type { TextfieldComponentDev } from '@smui/textfield';
 import type { ListComponentDev } from '@smui/list';
@@ -6,7 +7,7 @@ import type Component from './Autocomplete.svelte';
 
 export declare class AutocompleteComponentDev
   extends Component
-  implements SmuiComponentDev
+  implements SmuiComponent
 {
   /**
    * @private
@@ -41,7 +42,7 @@ export declare class AutocompleteComponentDev
   } & {
     textfield$label?: never;
     textfield$value?: never;
-  } & Component['$$prop_def'];
+  } & ComponentProps<Component>;
 
   getElement(): ReturnType<Component['getElement']>;
 }

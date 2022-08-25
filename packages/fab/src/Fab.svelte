@@ -45,7 +45,7 @@
   import type { ActionArray } from '@smui/common/internal';
   import { forwardEventsBuilder, classMap } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
-  import type { SmuiComponentDev } from '@smui/common';
+  import type { SmuiComponent } from '@smui/common';
   import { Element } from '@smui/common';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
@@ -63,11 +63,11 @@
   export let touch = false;
   export let href: string | undefined = undefined;
 
-  let element: SmuiComponentDev;
+  let element: SmuiComponent;
   let internalClasses: { [k: string]: boolean } = {};
   let internalStyles: { [k: string]: string } = {};
 
-  export let component: ComponentType<SmuiComponentDev> = Element;
+  export let component: ComponentType<SmuiComponent> = Element;
   export let tag =
     component === Element ? (href == null ? 'button' : 'a') : null;
 

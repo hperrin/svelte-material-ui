@@ -1,10 +1,11 @@
-import type { SmuiComponentDev } from '@smui/common';
+import type { ComponentProps } from 'svelte';
+import type { SmuiComponent } from '@smui/common';
 import type { InnerGridComponentDev } from './InnerGrid.types.js';
 import type Component from './LayoutGrid.svelte';
 
 export declare class LayoutGridComponentDev
   extends Component
-  implements SmuiComponentDev
+  implements SmuiComponent
 {
   /**
    * @private
@@ -17,7 +18,7 @@ export declare class LayoutGridComponentDev
     'use' | 'class' | 'fixedColumnWidth' | 'align'
   > & {
     [k in keyof InnerGridComponentDev['$$prop_def'] as `innerGrid\$${k}`]?: InnerGridComponentDev['$$prop_def'][k];
-  } & Component['$$prop_def'];
+  } & ComponentProps<Component>;
 
   getElement(): ReturnType<Component['getElement']>;
 }

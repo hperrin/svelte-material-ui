@@ -1,12 +1,15 @@
-import type { SmuiComponentDev, ElementComponentDev } from '@smui/common';
+import type { ComponentProps, ComponentType } from 'svelte';
+import type { SmuiComponent, ElementComponentDev } from '@smui/common';
 import type Component from './List.svelte';
 
 export declare class ListComponentDev<
     T extends string = 'ul',
-    C extends SmuiComponentDev = ElementComponentDev<T>
+    C extends ComponentType<SmuiComponent> = ComponentType<
+      ElementComponentDev<T>
+    >
   >
   extends Component
-  implements SmuiComponentDev
+  implements SmuiComponent
 {
   /**
    * @private
@@ -15,7 +18,9 @@ export declare class ListComponentDev<
    * ### DO NOT USE!
    */
   $$prop_def: Omit<
-    Partial<svelte.JSX.HTMLAttributes<ReturnType<C['getElement']>>>,
+    Partial<
+      svelte.JSX.HTMLAttributes<ReturnType<InstanceType<C>['getElement']>>
+    >,
     | 'use'
     | 'class'
     | 'nonInteractive'
@@ -38,9 +43,9 @@ export declare class ListComponentDev<
     | 'component'
     | 'tag'
   > &
-    Component['$$prop_def'];
+    ComponentProps<Component>;
 
-  getElement(): ReturnType<C['getElement']>;
+  getElement(): ReturnType<InstanceType<C>['getElement']>;
 }
 
 import type { SMUIListItemAccessor } from './Item.types.js';

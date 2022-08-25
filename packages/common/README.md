@@ -342,7 +342,7 @@ export default classAdderBuilder({
 });
 ```
 
-You can also supply a component that implements the `SmuiComponentDev` interface.
+You can also supply a component that implements the `SmuiComponent` interface.
 
 ```js
 import { classAdderBuilder } from '@smui/common/classadder';

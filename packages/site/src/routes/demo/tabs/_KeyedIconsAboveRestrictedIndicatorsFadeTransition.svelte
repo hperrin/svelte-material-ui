@@ -1,5 +1,5 @@
 <div>
-  <TabBar {tabs} let:tab key={(tab) => tab.k} bind:active>
+  <TabBar {tabs} let:tab {key} bind:active>
     <Tab
       {tab}
       stacked={true}
@@ -18,7 +18,14 @@
   import Tab, { Icon, Label } from '@smui/tab';
   import TabBar from '@smui/tab-bar';
 
-  let tabs = [
+  type TabEntry = {
+    k: number;
+    icon: string;
+    label: string;
+  };
+  const key = (tab: TabEntry) => tab.k;
+
+  let tabs: TabEntry[] = [
     {
       k: 1,
       icon: 'code',

@@ -62,7 +62,7 @@
     dispatch,
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
-  import type { SmuiComponentDev } from '@smui/common';
+  import type { SmuiComponent } from '@smui/common';
   import { Element } from '@smui/common';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
@@ -81,12 +81,12 @@
   export let defaultAction = false;
   export let secondary = false;
 
-  let element: SmuiComponentDev;
+  let element: SmuiComponent;
   let internalClasses: { [k: string]: boolean } = {};
   let internalStyles: { [k: string]: string } = {};
   let context = getContext<string | undefined>('SMUI:button:context');
 
-  export let component: ComponentType<SmuiComponentDev> = Element;
+  export let component: SmuiComponent = Element;
   export let tag =
     component === Element ? (href == null ? 'button' : 'a') : null;
 

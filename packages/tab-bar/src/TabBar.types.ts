@@ -1,10 +1,11 @@
-import type { SmuiComponentDev } from '@smui/common';
+import type { ComponentProps } from 'svelte';
+import type { SmuiComponent } from '@smui/common';
 import type { TabScrollerComponentDev } from '@smui/tab-scroller';
 import type Component from './TabBar.svelte';
 
-export declare class TabBarComponentDev
-  extends Component
-  implements SmuiComponentDev
+export declare class TabBarComponentDev<T>
+  extends Component<T>
+  implements SmuiComponent
 {
   /**
    * @private
@@ -24,7 +25,21 @@ export declare class TabBarComponentDev
     | 'active'
   > & {
     [k in keyof TabScrollerComponentDev['$$prop_def'] as `tabScroller\$${k}`]?: TabScrollerComponentDev['$$prop_def'][k];
-  } & Component['$$prop_def'];
+  } & ComponentProps<Component<T>>;
+  /**
+   * @private
+   * For type checking capabilities only.
+   * Does not exist at runtime.
+   * ### DO NOT USE!
+   */
+  $$events_def: Component<T>['$$events_def'];
+  /**
+   * @private
+   * For type checking capabilities only.
+   * Does not exist at runtime.
+   * ### DO NOT USE!
+   */
+  $$slot_def: Component<T>['$$slot_def'];
 
-  getElement(): ReturnType<Component['getElement']>;
+  getElement(): ReturnType<Component<T>['getElement']>;
 }
