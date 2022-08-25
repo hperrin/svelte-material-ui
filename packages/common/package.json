@@ -37,6 +37,7 @@
     "build:js": "tsc -p . --outDir dist/ --rootDir src/",
     "build:svelte": "svelte-strip strip src/ dist",
     "clean": "git status --ignored -u --porcelain . | grep -v node_modules/ | grep -e '^!! ' | sed 's/^!! packages\\/[a-z-]*\\///g' | tr '\\n' ' ' | xargs rm",
+    "check": "npx svelte-check --ignore dist",
     "prepare": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -54,6 +55,7 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "sass": "^1.54.0",
+    "svelte-check": "^2.8.1",
     "svelte-strip": "^1.0.1",
     "tslib": "^2.4.0",
     "typescript": "^4.7.4"

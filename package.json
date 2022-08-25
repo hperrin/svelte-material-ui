@@ -13,7 +13,7 @@
   ],
   "scripts": {
     "bootstrap": "lerna bootstrap --hoist --nohoist \"@tsconfig/svelte\"",
-    "check": "lerna exec 'svelte-check --ignore \"dist\"'",
+    "check": "lerna run check",
     "clean": "lerna run clean",
     "lint": "prettier --check --plugin-search-dir=. .",
     "format": "prettier --write --plugin-search-dir=. .",
@@ -44,7 +44,6 @@
     "prettier": "~2.7.1",
     "prettier-plugin-svelte": "^2.7.0",
     "sass": "^1.54.0",
-    "svelte": "^3.49.0",
-    "svelte-check": "^2.8.0"
+    "svelte": "^3.49.0"
   }
 }
