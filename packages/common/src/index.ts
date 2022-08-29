@@ -1,19 +1,12 @@
-import LabelComponent from './CommonLabel.svelte';
-import type { CommonLabelComponentDev } from './CommonLabel.types.js';
+import Label from './CommonLabel.svelte';
 export * from './CommonLabel.types.js';
-const Label = LabelComponent as ComponentType<CommonLabelComponentDev>;
 
-import IconComponent from './CommonIcon.svelte';
-import type { CommonIconComponentDev } from './CommonIcon.types.js';
+import Icon from './CommonIcon.svelte';
 export * from './CommonIcon.types.js';
-const Icon = IconComponent as ComponentType<CommonIconComponentDev>;
 
-import ElementComponent from './Element.svelte';
-import type { ElementComponentDev } from './Element.types.js';
-export * from './Element.types.js';
-const Element = ElementComponent as ComponentType<ElementComponentDev>;
+import SmuiElement from './SmuiElement.svelte';
 
 import ContextFragment from './ContextFragment.svelte';
 
-export { Label, Icon, Element, ContextFragment };
+export { Label, Icon, SmuiElement, ContextFragment };
 export * from './smui.types.js';

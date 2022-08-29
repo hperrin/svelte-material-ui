@@ -1,7 +1,6 @@
 import type { ComponentType } from 'svelte';
 
 import Button from './Button.svelte';
-import type { ButtonComponentDev } from './Button.types.js';
 export * from './Button.types.js';
 
 import GroupComponent from './Group.svelte';
@@ -11,6 +10,6 @@ const Group = GroupComponent as ComponentType<GroupComponentDev>;
 import GroupItem from './GroupItem.js';
 import { Label, Icon } from '@smui/common';
 
-export default Button as ComponentType<ButtonComponentDev>;
+export default Button;
 
 export { Group, GroupItem, Label, Icon };

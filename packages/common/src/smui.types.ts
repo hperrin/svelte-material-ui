@@ -1,7 +1,14 @@
 import type { SvelteComponentTyped } from 'svelte/internal';
 
-export interface SmuiComponent extends SvelteComponentTyped {
-  getElement(): HTMLElement;
+export type SmuiElementTagNameMap = Omit<
+  SVGElementTagNameMap,
+  keyof HTMLElementTagNameMap
+> &
+  HTMLElementTagNameMap;
+
+export interface SmuiComponent<T extends keyof SmuiElementTagNameMap>
+  extends SvelteComponentTyped {
+  getElement(): SmuiElementTagNameMap[T];
 }
 
 // Layout listeners.

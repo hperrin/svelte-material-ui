@@ -14,10 +14,10 @@
 
 <script lang="ts" context="module">
   import type { ClassAdderInternals } from './ClassAdder.types.js';
-  import { Element } from '../index.js';
+  import { SmuiElement } from '../index.js';
 
   export const internals: ClassAdderInternals = {
-    component: Element,
+    component: SmuiElement as ClassAdderInternals['component'],
     tag: 'div',
     class: '',
     classMap: {},
@@ -31,24 +31,42 @@
   import { onDestroy, getContext, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
 
-  import type { SmuiComponent } from '../smui.types.js';
+  import type { SmuiComponent, SmuiElementTagNameMap } from '../smui.types.js';
   import type { ActionArray } from '../internal/useActions.js';
   import { forwardEventsBuilder } from '../internal/forwardEventsBuilder.js';
   import { classMap } from '../internal/classMap.js';
+
+  type TagName = $$Generic<keyof SmuiElementTagNameMap>;
+  type Component = $$Generic<SmuiComponent<TagName>>;
+  type OwnProps = {
+    use?: ActionArray;
+    class?: string;
+    component?: ComponentType<Component>;
+    tag?: TagName;
+  };
+  type $$Props = {
+    [P in Exclude<
+      keyof svelteHTML.IntrinsicElements[TagName],
+      keyof OwnProps
+    >]?: svelteHTML.IntrinsicElements[TagName][P];
+  } & OwnProps;
 
   export let use: ActionArray = [];
   let className = '';
   export { className as class };
 
-  let element: SmuiComponent;
+  let element: Component;
   const smuiClass = internals.class;
   const smuiClassMap: { [k: string]: any } = {};
   const smuiClassUnsubscribes: (() => void)[] = [];
   const contexts = internals.contexts;
   const props = internals.props;
 
-  export let component: ComponentType<SmuiComponent> = internals.component;
-  export let tag = component === Element ? internals.tag : null;
+  export let component: ComponentType<Component> =
+    internals.component as ComponentType<Component>;
+  export let tag: TagName | undefined = (
+    component === SmuiElement ? internals.tag : undefined
+  ) as TagName | undefined;
 
   Object.entries(internals.classMap).forEach(([name, context]) => {
     const store = getContext(context) as SvelteStore<any>;
@@ -76,9 +94,7 @@
     }
   });
 
-  export function getElement(): ReturnType<
-    InstanceType<typeof component>['getElement']
-  > {
+  export function getElement() {
     return element.getElement();
   }
 </script>

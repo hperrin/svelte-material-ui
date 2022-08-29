@@ -9,6 +9,10 @@
     <Label>Em Tag</Label>
   </Button>
 
+  <Button tag="input" autoplay bind:this={btn} />
+
+  <SmuiElement tag="img" colspan={5} />
+
   <ul>
     <Button
       tag="li"
@@ -34,11 +38,20 @@
 <pre class="status">Clicked: {clicked}</pre>
 
 <script lang="ts">
-  import Button, { Label } from '@smui/button';
+  import Button, { ButtonComponentDev, Label } from '@smui/button';
+  import type { ComponentType } from 'svelte';
+  import type { SmuiComponent } from '@smui/common';
+  import { SmuiElement } from '@smui/common';
 
   let clicked = 0;
 
+  let btn: ButtonComponentDev<'input'>;
+  let btn2: Button<'img', SmuiElement<'img'>>;
+  let sel2: SmuiElement<'img'>;
+
   function handleClick(event: CustomEvent | KeyboardEvent) {
+    const el = btn.getElement();
+    const el2 = sel2.getElement();
     event = event as KeyboardEvent;
     if (event.key === 'Enter') {
       clicked++;

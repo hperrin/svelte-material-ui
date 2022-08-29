@@ -63,11 +63,31 @@
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
   import type { SmuiComponent } from '@smui/common';
-  import { Element } from '@smui/common';
+  import { SmuiElement } from '@smui/common';
+
+  type TagName = $$Generic<
+    keyof HTMLElementTagNameMap | keyof SVGElementTagNameMap
+  >;
+  type Component = $$Generic<SmuiComponent<TagName>>;
+  type $$Props = svelteHTML.IntrinsicElements[TagName] & {
+    use?: ActionArray;
+    class?: string;
+    style?: string;
+    ripple?: boolean;
+    color?: 'primary' | 'secondary';
+    variant?: 'text' | 'raised' | 'unelevated' | 'outlined';
+    touch?: boolean;
+    href?: string | undefined;
+    action?: string;
+    defaultAction?: boolean;
+    secondary?: boolean;
+    component?: ComponentType<Component>;
+    tag?: TagName;
+  };
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  // Remember to update types file if you add/remove/rename props.
+  // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
   let className = '';
   export { className as class };
@@ -81,14 +101,16 @@
   export let defaultAction = false;
   export let secondary = false;
 
-  let element: SmuiComponent;
+  let element: Component;
   let internalClasses: { [k: string]: boolean } = {};
   let internalStyles: { [k: string]: string } = {};
   let context = getContext<string | undefined>('SMUI:button:context');
 
-  export let component: SmuiComponent = Element;
-  export let tag =
-    component === Element ? (href == null ? 'button' : 'a') : null;
+  export let component: ComponentType<Component> =
+    SmuiElement as ComponentType<Component>;
+  export let tag: TagName | undefined = (
+    component === SmuiElement ? (href == null ? 'button' : 'a') : undefined
+  ) as TagName | undefined;
 
   $: actionProp =
     context === 'dialog:action' && action != null
@@ -144,9 +166,7 @@
     }
   }
 
-  export function getElement(): ReturnType<
-    InstanceType<typeof component>['getElement']
-  > {
+  export function getElement() {
     return element.getElement();
   }
 </script>
