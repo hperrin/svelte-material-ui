@@ -43,7 +43,7 @@
     }
   }
 
-  export function getElement(): Element {
+  export function getElement(): ReturnType<ItemComponentDev['getElement']> {
     return element.getElement();
   }
 </script>

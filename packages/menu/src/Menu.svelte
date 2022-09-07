@@ -158,7 +158,9 @@
     return instance.getSelectedIndex();
   }
 
-  export function getElement(): Element {
+  export function getElement(): ReturnType<
+    MenuSurfaceComponentDev['getElement']
+  > {
     return element.getElement();
   }
 </script>
