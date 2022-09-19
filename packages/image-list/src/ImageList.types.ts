@@ -1,11 +1,7 @@
 import type { ComponentProps } from 'svelte';
-import type { SmuiComponent } from '@smui/common';
 import type Component from './ImageList.svelte';
 
-export declare class ImageListComponentDev
-  extends Component
-  implements SmuiComponent
-{
+export declare class ImageListComponentDev extends Component {
   /**
    * @private
    * For type checking capabilities only.
@@ -17,6 +13,4 @@ export declare class ImageListComponentDev
     'use' | 'class' | 'masonry' | 'withTextProtection'
   > &
     ComponentProps<Component>;
-
-  getElement(): ReturnType<Component['getElement']>;
 }

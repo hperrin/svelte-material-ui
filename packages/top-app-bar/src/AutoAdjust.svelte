@@ -18,7 +18,7 @@
   import type { ActionArray } from '@smui/common/internal';
   import { forwardEventsBuilder, classMap } from '@smui/common/internal';
   import type { SmuiComponent } from '@smui/common';
-  import { Element } from '@smui/common';
+  import { SmuiElement } from '@smui/common';
 
   import type TopAppBar from './TopAppBar.svelte';
 
@@ -32,8 +32,8 @@
 
   let element: SmuiComponent;
 
-  export let component: ComponentType<SmuiComponent> = Element;
-  export let tag = component === Element ? 'main' : null;
+  export let component: ComponentType<SmuiComponent> = SmuiElement;
+  export let tag = component === SmuiElement ? 'main' : null;
 
   $: propStore = topAppBar && topAppBar.getPropStore();
   $: adjustClass = (() => {
@@ -58,7 +58,7 @@
     return 'mdc-top-app-bar--fixed-adjust';
   })();
 
-  export function getElement(): Element {
+  export function getElement(): HTMLElement {
     return element.getElement();
   }
 </script>

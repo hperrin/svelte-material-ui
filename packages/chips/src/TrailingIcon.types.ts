@@ -1,11 +1,7 @@
 import type { ComponentProps } from 'svelte';
-import type { SmuiComponent } from '@smui/common';
 import type Component from './TrailingIcon.svelte';
 
-export declare class TrailingIconComponentDev
-  extends Component
-  implements SmuiComponent
-{
+export declare class TrailingIconComponentDev extends Component {
   /**
    * @private
    * For type checking capabilities only.
@@ -17,6 +13,4 @@ export declare class TrailingIconComponentDev
     'use' | 'class'
   > &
     ComponentProps<Component>;
-
-  getElement(): ReturnType<Component['getElement']>;
 }

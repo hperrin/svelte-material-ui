@@ -70,7 +70,7 @@
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
   import type { SmuiComponent } from '@smui/common';
-  import { Element } from '@smui/common';
+  import { SmuiElement } from '@smui/common';
 
   import type { SMUIChipsPrimaryActionAccessor } from './Text.types.js';
   import type { SMUIChipsTrailingActionAccessor } from './TrailingAction.types.js';
@@ -111,8 +111,8 @@
   const choice = getContext<SvelteStore<boolean>>('SMUI:chips:choice');
   const index = getContext<SvelteStore<number>>('SMUI:chips:chip:index');
 
-  export let component: ComponentType<SmuiComponent> = Element;
-  export let tag = component === Element ? 'div' : null;
+  export let component: ComponentType<SmuiComponent> = SmuiElement;
+  export let tag = component === SmuiElement ? 'div' : null;
 
   const shouldRemoveOnTrailingIconClickStore = writable(
     shouldRemoveOnTrailingIconClick
@@ -354,7 +354,7 @@
     instance.removeFocus();
   }
 
-  export function getElement(): Element {
+  export function getElement(): HTMLElement {
     return element.getElement();
   }
 </script>

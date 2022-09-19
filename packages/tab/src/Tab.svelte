@@ -83,7 +83,7 @@
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
   import type { SmuiComponent } from '@smui/common';
-  import { Element } from '@smui/common';
+  import { SmuiElement } from '@smui/common';
   import type { TabIndicatorComponentDev } from '@smui/tab-indicator';
   import TabIndicator from '@smui/tab-indicator';
 
@@ -117,9 +117,9 @@
   let active = tabId === getContext<any | undefined>('SMUI:tab:initialActive');
   let forceAccessible = false;
 
-  export let component: ComponentType<SmuiComponent> = Element;
+  export let component: ComponentType<SmuiComponent> = SmuiElement;
   export let tag =
-    component === Element ? (href == null ? 'button' : 'a') : null;
+    component === SmuiElement ? (href == null ? 'button' : 'a') : null;
 
   setContext('SMUI:label:context', 'tab');
   setContext('SMUI:icon:context', 'tab');

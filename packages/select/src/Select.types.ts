@@ -1,5 +1,4 @@
 import type { ComponentProps } from 'svelte';
-import type { SmuiComponent } from '@smui/common';
 import type { FloatingLabelComponentDev } from '@smui/floating-label';
 import type { NotchedOutlineComponentDev } from '@smui/notched-outline';
 import type { LineRippleComponentDev } from '@smui/line-ripple';
@@ -8,10 +7,7 @@ import type { ListComponentDev } from '@smui/list';
 import type { HelperTextComponentDev } from './helper-text/HelperText.types.js';
 import type Component from './Select.svelte';
 
-export declare class SelectComponentDev
-  extends Component
-  implements SmuiComponent
-{
+export declare class SelectComponentDev extends Component {
   /**
    * @private
    * For type checking capabilities only.
@@ -84,6 +80,4 @@ export declare class SelectComponentDev
     input$required?: never;
     input$value?: never;
   } & ComponentProps<Component>;
-
-  getElement(): ReturnType<Component['getElement']>;
 }

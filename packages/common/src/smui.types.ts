@@ -1,15 +1,25 @@
-import type { SvelteComponentTyped } from 'svelte/internal';
+import type { SvelteComponentTyped, SvelteComponentDev } from 'svelte/internal';
+import type SmuiElement from './SmuiElement.svelte';
 
-export type SmuiElementTagNameMap = Omit<
-  SVGElementTagNameMap,
-  keyof HTMLElementTagNameMap
-> &
-  HTMLElementTagNameMap;
+export type SmuiElementTagNameMap = HTMLElementTagNameMap;
 
-export interface SmuiComponent<T extends keyof SmuiElementTagNameMap>
+export interface SmuiComponentTyped<T extends keyof SmuiElementTagNameMap>
   extends SvelteComponentTyped {
   getElement(): SmuiElementTagNameMap[T];
 }
+
+/**
+ * You must implement a `getElement()` function that returns an `HTMLElement`.
+ */
+export interface SmuiComponentDev extends SvelteComponentDev {
+  // This doesn't work. It should. Grr.
+  // getElement(): HTMLElement;
+}
+
+export type SmuiComponent<T extends keyof SmuiElementTagNameMap = 'div'> =
+  SmuiElement extends SvelteComponentTyped
+    ? SmuiComponentTyped<T>
+    : SmuiComponentDev;
 
 // Layout listeners.
 

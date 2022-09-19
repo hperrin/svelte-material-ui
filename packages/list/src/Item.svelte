@@ -80,7 +80,7 @@
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
   import type { SmuiComponent } from '@smui/common';
-  import { Element } from '@smui/common';
+  import { SmuiElement } from '@smui/common';
 
   import type { SMUIListItemAccessor } from './Item.types.js';
 
@@ -126,9 +126,9 @@
       : -1
     : tabindexProp;
 
-  export let component: ComponentType<SmuiComponent> = Element;
+  export let component: ComponentType<SmuiComponent> = SmuiElement;
   export let tag =
-    component === Element ? (nav ? (href ? 'a' : 'span') : 'li') : null;
+    component === SmuiElement ? (nav ? (href ? 'a' : 'span') : 'li') : null;
 
   setContext('SMUI:generic:input:props', { id: inputId });
   // Reset separator context, because we aren't directly under a list anymore.
@@ -353,7 +353,7 @@
     return element.textContent ?? '';
   }
 
-  export function getElement(): Element {
+  export function getElement(): HTMLElement {
     return element.getElement();
   }
 </script>

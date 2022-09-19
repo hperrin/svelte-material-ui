@@ -1,11 +1,7 @@
 import type { ComponentProps } from 'svelte';
-import type { SmuiComponent } from '@smui/common';
 import type Component from './LineRipple.svelte';
 
-export declare class LineRippleComponentDev
-  extends Component
-  implements SmuiComponent
-{
+export declare class LineRippleComponentDev extends Component {
   /**
    * @private
    * For type checking capabilities only.
@@ -17,6 +13,4 @@ export declare class LineRippleComponentDev
     'use' | 'class' | 'style' | 'active'
   > &
     ComponentProps<Component>;
-
-  getElement(): ReturnType<Component['getElement']>;
 }

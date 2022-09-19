@@ -23,7 +23,7 @@
   import type { ActionArray } from '@smui/common/internal';
   import { forwardEventsBuilder, classMap } from '@smui/common/internal';
   import type { SmuiComponent } from '@smui/common';
-  import { Element } from '@smui/common';
+  import { SmuiElement } from '@smui/common';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
@@ -41,11 +41,15 @@
   let nav = getContext<boolean | undefined>('SMUI:list:item:nav');
   let context = getContext<string | undefined>('SMUI:separator:context');
 
-  export let component: ComponentType<SmuiComponent> = Element;
+  export let component: ComponentType<SmuiComponent> = SmuiElement;
   export let tag =
-    component === Element ? (nav || context !== 'list' ? 'hr' : 'li') : null;
+    component === SmuiElement
+      ? nav || context !== 'list'
+        ? 'hr'
+        : 'li'
+      : null;
 
-  export function getElement(): Element {
+  export function getElement(): HTMLElement {
     return element.getElement();
   }
 </script>

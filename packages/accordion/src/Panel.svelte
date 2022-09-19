@@ -171,7 +171,7 @@
     open = value;
   }
 
-  export function getElement(): Element {
+  export function getElement(): ReturnType<PaperComponentDev['getElement']> {
     return element.getElement();
   }
 </script>

@@ -82,7 +82,7 @@
     snackbars = snackbars;
   }
 
-  export function getElement(): Element {
+  export function getElement(): ReturnType<Snackbar['getElement']> {
     return element.getElement();
   }
 </script>

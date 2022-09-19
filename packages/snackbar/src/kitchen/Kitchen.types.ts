@@ -1,14 +1,10 @@
 import type { ComponentProps } from 'svelte';
-import type { SmuiComponent } from '@smui/common';
 import type { ButtonComponentDev } from '@smui/button';
 import type { IconButtonComponentDev } from '@smui/icon-button';
 import type { SnackbarComponentDev } from '../Snackbar.types.js';
 import type Component from './Kitchen.svelte';
 
-export declare class KitchenComponentDev
-  extends Component
-  implements SmuiComponent
-{
+export declare class KitchenComponentDev extends Component {
   /**
    * @private
    * For type checking capabilities only.
@@ -22,8 +18,6 @@ export declare class KitchenComponentDev
   } & {
     [k in keyof IconButtonComponentDev['$$prop_def'] as `dismiss\$${k}`]?: IconButtonComponentDev['$$prop_def'][k];
   } & ComponentProps<Component>;
-
-  getElement(): ReturnType<Component['getElement']>;
 }
 
 import type { MDCSnackbarCloseEvent } from '@material/snackbar';

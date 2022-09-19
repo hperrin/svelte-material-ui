@@ -1,12 +1,10 @@
 import type { ComponentProps } from 'svelte';
-import type { SmuiComponent } from '@smui/common';
 import type { TabScrollerComponentDev } from '@smui/tab-scroller';
 import type Component from './TabBar.svelte';
 
-export declare class TabBarComponentDev<T>
-  extends Component<T>
-  implements SmuiComponent
-{
+export declare class TabBarComponentDev<
+  T extends Object | string | number
+> extends Component<T> {
   /**
    * @private
    * For type checking capabilities only.
@@ -40,6 +38,4 @@ export declare class TabBarComponentDev<T>
    * ### DO NOT USE!
    */
   $$slot_def: Component<T>['$$slot_def'];
-
-  getElement(): ReturnType<Component<T>['getElement']>;
 }

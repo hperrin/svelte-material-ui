@@ -1,11 +1,7 @@
 import type { ComponentProps } from 'svelte';
-import type { SmuiComponent } from '@smui/common';
 import type Component from './Radio.svelte';
 
-export declare class RadioComponentDev
-  extends Component
-  implements SmuiComponent
-{
+export declare class RadioComponentDev extends Component {
   /**
    * @private
    * For type checking capabilities only.
@@ -35,6 +31,4 @@ export declare class RadioComponentDev
     input$checked?: never;
     input$group?: never;
   } & ComponentProps<Component>;
-
-  getElement(): ReturnType<Component['getElement']>;
 }

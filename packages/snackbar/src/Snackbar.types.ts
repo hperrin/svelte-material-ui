@@ -1,11 +1,7 @@
 import type { ComponentProps } from 'svelte';
-import type { SmuiComponent } from '@smui/common';
 import type Component from './Snackbar.svelte';
 
-export declare class SnackbarComponentDev
-  extends Component
-  implements SmuiComponent
-{
+export declare class SnackbarComponentDev extends Component {
   /**
    * @private
    * For type checking capabilities only.
@@ -29,6 +25,4 @@ export declare class SnackbarComponentDev
       svelte.JSX.HTMLAttributes<HTMLDivElement>
     >[k];
   } & ComponentProps<Component>;
-
-  getElement(): ReturnType<Component['getElement']>;
 }

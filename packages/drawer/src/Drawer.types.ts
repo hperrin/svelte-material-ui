@@ -1,11 +1,7 @@
 import type { ComponentProps } from 'svelte';
-import type { SmuiComponent } from '@smui/common';
 import type Component from './Drawer.svelte';
 
-export declare class DrawerComponentDev
-  extends Component
-  implements SmuiComponent
-{
+export declare class DrawerComponentDev extends Component {
   /**
    * @private
    * For type checking capabilities only.
@@ -17,6 +13,4 @@ export declare class DrawerComponentDev
     'use' | 'class' | 'variant' | 'open' | 'fixed'
   > &
     ComponentProps<Component>;
-
-  getElement(): ReturnType<Component['getElement']>;
 }

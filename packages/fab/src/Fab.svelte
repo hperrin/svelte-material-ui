@@ -46,7 +46,7 @@
   import { forwardEventsBuilder, classMap } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
   import type { SmuiComponent } from '@smui/common';
-  import { Element } from '@smui/common';
+  import { SmuiElement } from '@smui/common';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
@@ -67,9 +67,9 @@
   let internalClasses: { [k: string]: boolean } = {};
   let internalStyles: { [k: string]: string } = {};
 
-  export let component: ComponentType<SmuiComponent> = Element;
+  export let component: ComponentType<SmuiComponent> = SmuiElement;
   export let tag =
-    component === Element ? (href == null ? 'button' : 'a') : null;
+    component === SmuiElement ? (href == null ? 'button' : 'a') : null;
 
   setContext('SMUI:label:context', 'fab');
   setContext('SMUI:icon:context', 'fab');

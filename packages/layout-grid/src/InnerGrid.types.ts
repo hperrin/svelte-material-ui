@@ -1,11 +1,7 @@
 import type { ComponentProps } from 'svelte';
-import type { SmuiComponent } from '@smui/common';
 import type Component from './InnerGrid.svelte';
 
-export declare class InnerGridComponentDev
-  extends Component
-  implements SmuiComponent
-{
+export declare class InnerGridComponentDev extends Component {
   /**
    * @private
    * For type checking capabilities only.
@@ -17,6 +13,4 @@ export declare class InnerGridComponentDev
     'use' | 'class'
   > &
     ComponentProps<Component>;
-
-  getElement(): ReturnType<Component['getElement']>;
 }

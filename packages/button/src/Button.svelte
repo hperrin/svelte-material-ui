@@ -125,7 +125,10 @@
 
   let previousDisabled = $$restProps.disabled;
   $: if (previousDisabled !== $$restProps.disabled) {
-    getElement().blur();
+    const el = getElement();
+    if ('blur' in el) {
+      (el as HTMLButtonElement).blur();
+    }
     previousDisabled = $$restProps.disabled;
   }
 
@@ -166,7 +169,11 @@
     }
   }
 
+<<<<<<< HEAD
   export function getElement() {
+=======
+  export function getElement(): HTMLElement {
+>>>>>>> v7
     return element.getElement();
   }
 </script>

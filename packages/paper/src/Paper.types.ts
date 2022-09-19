@@ -1,11 +1,7 @@
 import type { ComponentProps } from 'svelte';
-import type { SmuiComponent } from '@smui/common';
 import type Component from './Paper.svelte';
 
-export declare class PaperComponentDev
-  extends Component
-  implements SmuiComponent
-{
+export declare class PaperComponentDev extends Component {
   /**
    * @private
    * For type checking capabilities only.
@@ -23,6 +19,4 @@ export declare class PaperComponentDev
     | 'transition'
   > &
     ComponentProps<Component>;
-
-  getElement(): ReturnType<Component['getElement']>;
 }

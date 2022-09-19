@@ -20,11 +20,11 @@
     </svelte:fragment>
   </Demo>
 
-  <Demo component={Element} file="common/_Element.svelte">
-    Element Component
+  <Demo component={SmuiElement} file="common/_SmuiElement.svelte">
+    SmuiElement Component
     <svelte:fragment slot="subtitle">
       Many SMUI components let you customize which DOM element is used to render
-      them. This is done with the Element component.
+      them. This is done with the SmuiElement component.
     </svelte:fragment>
   </Demo>
 
@@ -174,7 +174,7 @@
   import Demo from '$lib/Demo.svelte';
 
   import CommonLabelIcon from './_CommonLabelIcon.svelte';
-  import Element from './_Element.svelte';
+  import SmuiElement from './_SmuiElement.svelte';
   import TargetingClasses from './_TargetingClasses.svelte';
   import EventsAndModifiers from './_EventsAndModifiers.svelte';
   import ClassMap from './_ClassMap.svelte';

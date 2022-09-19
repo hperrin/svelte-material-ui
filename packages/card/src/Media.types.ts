@@ -1,11 +1,7 @@
 import type { ComponentProps } from 'svelte';
-import type { SmuiComponent } from '@smui/common';
 import type Component from './Media.svelte';
 
-export declare class MediaComponentDev
-  extends Component
-  implements SmuiComponent
-{
+export declare class MediaComponentDev extends Component {
   /**
    * @private
    * For type checking capabilities only.
@@ -17,6 +13,4 @@ export declare class MediaComponentDev
     'use' | 'class' | 'aspectRatio'
   > &
     ComponentProps<Component>;
-
-  getElement(): ReturnType<Component['getElement']>;
 }

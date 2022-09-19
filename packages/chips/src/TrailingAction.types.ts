@@ -1,11 +1,7 @@
 import type { ComponentProps } from 'svelte';
-import type { SmuiComponent } from '@smui/common';
 import type Component from './TrailingAction.svelte';
 
-export declare class TrailingActionComponentDev
-  extends Component
-  implements SmuiComponent
-{
+export declare class TrailingActionComponentDev extends Component {
   /**
    * @private
    * For type checking capabilities only.
@@ -20,8 +16,6 @@ export declare class TrailingActionComponentDev
       svelte.JSX.HTMLAttributes<HTMLSpanElement>
     > as `icon\$${k}`]?: Partial<svelte.JSX.HTMLAttributes<HTMLSpanElement>>[k];
   } & ComponentProps<Component>;
-
-  getElement(): ReturnType<Component['getElement']>;
 }
 
 export interface SMUIChipsTrailingActionAccessor {

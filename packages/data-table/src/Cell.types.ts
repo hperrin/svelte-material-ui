@@ -1,11 +1,7 @@
 import type { ComponentProps } from 'svelte';
-import type { SmuiComponent } from '@smui/common';
 import type Component from './Cell.svelte';
 
-export declare class CellComponentDev
-  extends Component
-  implements SmuiComponent
-{
+export declare class CellComponentDev extends Component {
   /**
    * @private
    * For type checking capabilities only.
@@ -17,8 +13,6 @@ export declare class CellComponentDev
     'use' | 'class' | 'numeric' | 'checkbox' | 'columnId' | 'sortable'
   > &
     ComponentProps<Component>;
-
-  getElement(): ReturnType<Component['getElement']>;
 }
 
 interface SMUIDataTableHeaderCellAccessor {

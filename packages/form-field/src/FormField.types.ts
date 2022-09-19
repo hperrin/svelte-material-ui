@@ -1,11 +1,7 @@
 import type { ComponentProps } from 'svelte';
-import type { SmuiComponent } from '@smui/common';
 import type Component from './FormField.svelte';
 
-export declare class FormFieldComponentDev
-  extends Component
-  implements SmuiComponent
-{
+export declare class FormFieldComponentDev extends Component {
   /**
    * @private
    * For type checking capabilities only.
@@ -22,6 +18,4 @@ export declare class FormFieldComponentDev
       svelte.JSX.HTMLAttributes<HTMLLabelElement>
     >[k];
   } & ComponentProps<Component>;
-
-  getElement(): ReturnType<Component['getElement']>;
 }

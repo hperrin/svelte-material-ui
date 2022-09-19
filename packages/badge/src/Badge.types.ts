@@ -1,11 +1,7 @@
 import type { ComponentProps } from 'svelte';
-import type { SmuiComponent } from '@smui/common';
 import type Component from './Badge.svelte';
 
-export declare class BadgeComponentDev
-  extends Component
-  implements SmuiComponent
-{
+export declare class BadgeComponentDev extends Component {
   /**
    * @private
    * For type checking capabilities only.
@@ -17,6 +13,4 @@ export declare class BadgeComponentDev
     'use' | 'class' | 'square' | 'color' | 'position' | 'align'
   > &
     ComponentProps<Component>;
-
-  getElement(): ReturnType<Component['getElement']>;
 }

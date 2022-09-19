@@ -1,11 +1,7 @@
 import type { ComponentProps } from 'svelte';
-import type { SmuiComponent } from '@smui/common';
 import type Component from './Set.svelte';
 
-export declare class SetComponentDev
-  extends Component
-  implements SmuiComponent
-{
+export declare class SetComponentDev extends Component {
   /**
    * @private
    * For type checking capabilities only.
@@ -25,6 +21,4 @@ export declare class SetComponentDev
     | 'input'
   > &
     ComponentProps<Component>;
-
-  getElement(): ReturnType<Component['getElement']>;
 }

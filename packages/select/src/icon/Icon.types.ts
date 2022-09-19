@@ -1,11 +1,7 @@
 import type { ComponentProps } from 'svelte';
-import type { SmuiComponent } from '@smui/common';
 import type Component from './Icon.svelte';
 
-export declare class IconComponentDev
-  extends Component
-  implements SmuiComponent
-{
+export declare class IconComponentDev extends Component {
   /**
    * @private
    * For type checking capabilities only.
@@ -17,6 +13,4 @@ export declare class IconComponentDev
     'use' | 'class' | 'role' | 'tabindex' | 'disabled'
   > &
     ComponentProps<Component>;
-
-  getElement(): ReturnType<Component['getElement']>;
 }

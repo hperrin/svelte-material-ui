@@ -1,11 +1,7 @@
 import type { ComponentProps } from 'svelte';
-import type { SmuiComponent } from '@smui/common';
 import type Component from './Header.svelte';
 
-export declare class HeaderComponentDev
-  extends Component
-  implements SmuiComponent
-{
+export declare class HeaderComponentDev extends Component {
   /**
    * @private
    * For type checking capabilities only.
@@ -17,6 +13,4 @@ export declare class HeaderComponentDev
     'use' | 'class' | 'style' | 'ripple'
   > &
     ComponentProps<Component>;
-
-  getElement(): ReturnType<Component['getElement']>;
 }

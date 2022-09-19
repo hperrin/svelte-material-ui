@@ -1,11 +1,7 @@
 import type { ComponentProps } from 'svelte';
-import type { SmuiComponent } from '@smui/common';
 import type Component from './Row.svelte';
 
-export declare class RowComponentDev
-  extends Component
-  implements SmuiComponent
-{
+export declare class RowComponentDev extends Component {
   /**
    * @private
    * For type checking capabilities only.
@@ -17,8 +13,6 @@ export declare class RowComponentDev
     'use' | 'class' | 'rowId'
   > &
     ComponentProps<Component>;
-
-  getElement(): ReturnType<Component['getElement']>;
 }
 
 import type { SMUICheckboxInputAccessor } from '@smui/common';

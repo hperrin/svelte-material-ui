@@ -78,7 +78,7 @@
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
   import type { SmuiComponent } from '@smui/common';
-  import { Element } from '@smui/common';
+  import { SmuiElement } from '@smui/common';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
   interface UninitializedValue extends Function {}
@@ -119,9 +119,9 @@
   let context = getContext('SMUI:icon-button:context');
   let ariaDescribedby = getContext('SMUI:icon-button:aria-describedby');
 
-  export let component: ComponentType<SmuiComponent> = Element;
+  export let component: ComponentType<SmuiComponent> = SmuiElement;
   export let tag =
-    component === Element ? (href == null ? 'button' : 'a') : null;
+    component === SmuiElement ? (href == null ? 'button' : 'a') : null;
 
   $: actionProp = (() => {
     if (context === 'data-table:pagination') {
@@ -242,7 +242,7 @@
     pressed = evtData.isOn;
   }
 
-  export function getElement(): Element {
+  export function getElement(): HTMLElement {
     return element.getElement();
   }
 </script>
