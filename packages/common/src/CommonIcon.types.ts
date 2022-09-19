@@ -1,17 +1,14 @@
 import type { ComponentProps, ComponentType } from 'svelte';
 import type { SmuiComponent } from './smui.types.js';
-import type { ElementComponentDev } from './Element.types.js';
+import type { SmuiElementComponentDev } from './SmuiElement.types.js';
 import type Component from './CommonIcon.svelte';
 
 export declare class CommonIconComponentDev<
-    T extends string = 'i',
-    C extends ComponentType<SmuiComponent> = ComponentType<
-      ElementComponentDev<T>
-    >
+  T extends string = 'i',
+  C extends ComponentType<SmuiComponent> = ComponentType<
+    SmuiElementComponentDev<T>
   >
-  extends Component
-  implements SmuiComponent
-{
+> extends Component {
   /**
    * @private
    * For type checking capabilities only.
@@ -25,6 +22,4 @@ export declare class CommonIconComponentDev<
     'use' | 'class' | 'on' | 'component' | 'tag'
   > &
     ComponentProps<Component>;
-
-  getElement(): ReturnType<InstanceType<C>['getElement']>;
 }

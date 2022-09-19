@@ -14,10 +14,10 @@
 
 <script lang="ts" context="module">
   import type { ClassAdderInternals } from './ClassAdder.types.js';
-  import { Element } from '../index.js';
+  import { SmuiElement } from '../index.js';
 
   export const internals: ClassAdderInternals = {
-    component: Element,
+    component: SmuiElement,
     tag: 'div',
     class: '',
     classMap: {},
@@ -48,7 +48,7 @@
   const props = internals.props;
 
   export let component: ComponentType<SmuiComponent> = internals.component;
-  export let tag = component === Element ? internals.tag : null;
+  export let tag = component === SmuiElement ? internals.tag : null;
 
   Object.entries(internals.classMap).forEach(([name, context]) => {
     const store = getContext(context) as SvelteStore<any>;

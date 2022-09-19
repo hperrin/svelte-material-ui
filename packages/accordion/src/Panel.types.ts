@@ -1,12 +1,8 @@
 import type { ComponentProps } from 'svelte';
-import type { SmuiComponent } from '@smui/common';
 import type { PaperComponentDev } from '@smui/paper';
 import type Component from './Panel.svelte';
 
-export declare class PanelComponentDev
-  extends Component
-  implements SmuiComponent
-{
+export declare class PanelComponentDev extends Component {
   /**
    * @private
    * For type checking capabilities only.
@@ -27,8 +23,6 @@ export declare class PanelComponentDev
     | 'extendedElevation'
   > &
     ComponentProps<Component>;
-
-  getElement(): ReturnType<Component['getElement']>;
 }
 
 export interface SMUIAccordionPanelAccessor {

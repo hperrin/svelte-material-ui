@@ -1,11 +1,7 @@
 import type { ComponentProps } from 'svelte';
-import type { SmuiComponent } from '@smui/common';
 import type Component from './TabScroller.svelte';
 
-export declare class TabScrollerComponentDev
-  extends Component
-  implements SmuiComponent
-{
+export declare class TabScrollerComponentDev extends Component {
   /**
    * @private
    * For type checking capabilities only.
@@ -28,6 +24,4 @@ export declare class TabScrollerComponentDev
       svelte.JSX.HTMLAttributes<HTMLDivElement>
     >[k];
   } & ComponentProps<Component>;
-
-  getElement(): ReturnType<Component['getElement']>;
 }

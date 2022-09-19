@@ -1,11 +1,7 @@
 import type { ComponentProps } from 'svelte';
-import type { SmuiComponent } from '@smui/common';
 import type Component from './Wrapper.svelte';
 
-export declare class WrapperComponentDev
-  extends Component
-  implements SmuiComponent
-{
+export declare class WrapperComponentDev extends Component {
   /**
    * @private
    * For type checking capabilities only.
@@ -17,6 +13,4 @@ export declare class WrapperComponentDev
     'use' | 'class' | 'rich'
   > &
     ComponentProps<Component>;
-
-  getElement(): ReturnType<Component['getElement']>;
 }

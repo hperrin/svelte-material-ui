@@ -1,11 +1,7 @@
 import type { ComponentProps } from 'svelte';
-import type { SmuiComponent } from '@smui/common';
 import type Component from './Group.svelte';
 
-export declare class GroupComponentDev
-  extends Component
-  implements SmuiComponent
-{
+export declare class GroupComponentDev extends Component {
   /**
    * @private
    * For type checking capabilities only.
@@ -17,6 +13,4 @@ export declare class GroupComponentDev
     'use' | 'class' | 'variant'
   > &
     ComponentProps<Component>;
-
-  getElement(): ReturnType<Component['getElement']>;
 }

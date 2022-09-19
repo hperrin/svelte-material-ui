@@ -63,7 +63,7 @@
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
   import type { SmuiComponent } from '@smui/common';
-  import { Element } from '@smui/common';
+  import { SmuiElement } from '@smui/common';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
@@ -86,9 +86,9 @@
   let internalStyles: { [k: string]: string } = {};
   let context = getContext<string | undefined>('SMUI:button:context');
 
-  export let component: SmuiComponent = Element;
+  export let component: ComponentType<SmuiComponent> = SmuiElement;
   export let tag =
-    component === Element ? (href == null ? 'button' : 'a') : null;
+    component === SmuiElement ? (href == null ? 'button' : 'a') : null;
 
   $: actionProp =
     context === 'dialog:action' && action != null
@@ -103,7 +103,10 @@
 
   let previousDisabled = $$restProps.disabled;
   $: if (previousDisabled !== $$restProps.disabled) {
-    getElement().blur();
+    const el = getElement();
+    if ('blur' in el) {
+      (el as HTMLButtonElement).blur();
+    }
     previousDisabled = $$restProps.disabled;
   }
 
@@ -144,9 +147,7 @@
     }
   }
 
-  export function getElement(): ReturnType<
-    InstanceType<typeof component>['getElement']
-  > {
+  export function getElement(): HTMLElement {
     return element.getElement();
   }
 </script>

@@ -24,7 +24,7 @@
     dispatch,
   } from '@smui/common/internal';
   import type { SmuiComponent } from '@smui/common';
-  import { Element } from '@smui/common';
+  import { SmuiElement } from '@smui/common';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
@@ -36,10 +36,10 @@
 
   let element: SmuiComponent;
 
-  export let component: ComponentType<SmuiComponent> = Element;
-  export let tag = component === Element ? 'div' : null;
+  export let component: ComponentType<SmuiComponent> = SmuiElement;
+  export let tag = component === SmuiElement ? 'div' : null;
 
-  export function getElement(): Element {
+  export function getElement(): HTMLElement {
     return element.getElement();
   }
 </script>

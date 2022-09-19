@@ -1,11 +1,7 @@
 import type { ComponentProps } from 'svelte';
-import type { SmuiComponent } from '@smui/common';
 import type Component from './FloatingLabel.svelte';
 
-export declare class FloatingLabelComponentDev
-  extends Component
-  implements SmuiComponent
-{
+export declare class FloatingLabelComponentDev extends Component {
   /**
    * @private
    * For type checking capabilities only.
@@ -16,8 +12,6 @@ export declare class FloatingLabelComponentDev
     svelte.JSX.HTMLAttributes<HTMLSpanElement & HTMLLabelElement>
   > &
     ComponentProps<Component>;
-
-  getElement(): ReturnType<Component['getElement']>;
 }
 
 export interface SMUIFloatingLabelAccessor {

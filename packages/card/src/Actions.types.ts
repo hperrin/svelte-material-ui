@@ -1,11 +1,7 @@
 import type { ComponentProps } from 'svelte';
-import type { SmuiComponent } from '@smui/common';
 import type Component from './Actions.svelte';
 
-export declare class ActionsComponentDev
-  extends Component
-  implements SmuiComponent
-{
+export declare class ActionsComponentDev extends Component {
   /**
    * @private
    * For type checking capabilities only.
@@ -17,6 +13,4 @@ export declare class ActionsComponentDev
     'use' | 'class' | 'fullBleed'
   > &
     ComponentProps<Component>;
-
-  getElement(): ReturnType<Component['getElement']>;
 }

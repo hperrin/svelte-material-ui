@@ -1,11 +1,7 @@
 import type { ComponentProps } from 'svelte';
-import type { SmuiComponent } from '@smui/common';
 import type Component from './Checkbox.svelte';
 
-export declare class CheckboxComponentDev
-  extends Component
-  implements SmuiComponent
-{
+export declare class CheckboxComponentDev extends Component {
   /**
    * @private
    * For type checking capabilities only.
@@ -37,6 +33,4 @@ export declare class CheckboxComponentDev
     input$checked?: never;
     input$group?: never;
   } & ComponentProps<Component>;
-
-  getElement(): ReturnType<Component['getElement']>;
 }

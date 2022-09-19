@@ -1,11 +1,7 @@
 import type { ComponentProps } from 'svelte';
-import type { SmuiComponent } from '@smui/common';
 import type Component from './Banner.svelte';
 
-export declare class BannerComponentDev
-  extends Component
-  implements SmuiComponent
-{
+export declare class BannerComponentDev extends Component {
   /**
    * @private
    * For type checking capabilities only.
@@ -34,8 +30,6 @@ export declare class BannerComponentDev
       svelte.JSX.HTMLAttributes<HTMLDivElement>
     >[k];
   } & ComponentProps<Component>;
-
-  getElement(): ReturnType<Component['getElement']>;
 }
 
 export { CloseReason } from '@material/banner';

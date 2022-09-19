@@ -57,7 +57,7 @@
     dispatch,
   } from '@smui/common/internal';
   import type { SmuiComponent } from '@smui/common';
-  import { Element } from '@smui/common';
+  import { SmuiElement } from '@smui/common';
 
   import type { SMUIListAccessor } from './List.types.js';
   import type { SMUIListItemAccessor } from './Item.types.js';
@@ -103,8 +103,8 @@
   );
   let removeLayoutListener: RemoveLayoutListener | undefined;
 
-  export let component: ComponentType<SmuiComponent> = Element;
-  export let tag = component === Element ? (nav ? 'nav' : 'ul') : null;
+  export let component: ComponentType<SmuiComponent> = SmuiElement;
+  export let tag = component === SmuiElement ? (nav ? 'nav' : 'ul') : null;
 
   setContext('SMUI:list:nonInteractive', nonInteractive);
   setContext('SMUI:separator:context', 'list');
@@ -374,7 +374,7 @@
     return instance.getFocusedItemIndex();
   }
 
-  export function getElement(): Element {
+  export function getElement(): HTMLElement {
     return element.getElement();
   }
 </script>

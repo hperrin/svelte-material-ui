@@ -1,11 +1,7 @@
 import type { ComponentProps } from 'svelte';
-import type { SmuiComponent } from '@smui/common';
 import type Component from './Pagination.svelte';
 
-export declare class PaginationComponentDev
-  extends Component
-  implements SmuiComponent
-{
+export declare class PaginationComponentDev extends Component {
   /**
    * @private
    * For type checking capabilities only.
@@ -22,6 +18,4 @@ export declare class PaginationComponentDev
       svelte.JSX.HTMLAttributes<HTMLDivElement>
     >[k];
   } & ComponentProps<Component>;
-
-  getElement(): ReturnType<Component['getElement']>;
 }

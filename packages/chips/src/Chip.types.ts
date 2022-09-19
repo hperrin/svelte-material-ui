@@ -1,16 +1,13 @@
 import type { ComponentProps, ComponentType } from 'svelte';
-import type { SmuiComponent, ElementComponentDev } from '@smui/common';
+import type { SmuiComponent, SmuiElementComponentDev } from '@smui/common';
 import type Component from './Chip.svelte';
 
 export declare class ChipComponentDev<
-    T extends string = 'div',
-    C extends ComponentType<SmuiComponent> = ComponentType<
-      ElementComponentDev<T>
-    >
+  T extends string = 'div',
+  C extends ComponentType<SmuiComponent> = ComponentType<
+    SmuiElementComponentDev<T>
   >
-  extends Component
-  implements SmuiComponent
-{
+> extends Component {
   /**
    * @private
    * For type checking capabilities only.
@@ -33,8 +30,6 @@ export declare class ChipComponentDev<
     | 'tag'
   > &
     ComponentProps<Component>;
-
-  getElement(): ReturnType<InstanceType<C>['getElement']>;
 }
 
 export interface SMUIChipsChipAccessor {

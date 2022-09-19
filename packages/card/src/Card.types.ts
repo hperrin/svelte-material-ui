@@ -1,11 +1,7 @@
 import type { ComponentProps } from 'svelte';
-import type { SmuiComponent } from '@smui/common';
 import type Component from './Card.svelte';
 
-export declare class CardComponentDev
-  extends Component
-  implements SmuiComponent
-{
+export declare class CardComponentDev extends Component {
   /**
    * @private
    * For type checking capabilities only.
@@ -17,6 +13,4 @@ export declare class CardComponentDev
     'use' | 'class' | 'variant' | 'padded'
   > &
     ComponentProps<Component>;
-
-  getElement(): ReturnType<Component['getElement']>;
 }

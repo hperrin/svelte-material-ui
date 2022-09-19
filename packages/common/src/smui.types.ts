@@ -1,8 +1,21 @@
-import type { SvelteComponentTyped } from 'svelte/internal';
+import type { SvelteComponentTyped, SvelteComponentDev } from 'svelte/internal';
+import type SmuiElement from './SmuiElement.svelte';
 
-export interface SmuiComponent extends SvelteComponentTyped {
-  getElement(): HTMLElement;
+export interface SmuiComponentTyped extends SvelteComponentTyped {
+  get getElement(): () => () => HTMLElement;
 }
+
+/**
+ * You must implement a `getElement()` function that returns an `HTMLElement`.
+ */
+export interface SmuiComponentDev extends SvelteComponentDev {
+  // This doesn't work. It should. Grr.
+  // getElement(): HTMLElement;
+}
+
+export type SmuiComponent = SmuiElement extends SmuiComponentTyped
+  ? SmuiComponentTyped
+  : SmuiComponentDev;
 
 // Layout listeners.
 

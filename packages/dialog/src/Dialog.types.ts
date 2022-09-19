@@ -1,11 +1,7 @@
 import type { ComponentProps } from 'svelte';
-import type { SmuiComponent } from '@smui/common';
 import type Component from './Dialog.svelte';
 
-export declare class DialogComponentDev
-  extends Component
-  implements SmuiComponent
-{
+export declare class DialogComponentDev extends Component {
   /**
    * @private
    * For type checking capabilities only.
@@ -35,6 +31,4 @@ export declare class DialogComponentDev
       svelte.JSX.HTMLAttributes<HTMLDivElement>
     >[k];
   } & ComponentProps<Component>;
-
-  getElement(): ReturnType<Component['getElement']>;
 }

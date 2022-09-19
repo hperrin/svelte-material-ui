@@ -1,11 +1,7 @@
 import type { ComponentProps } from 'svelte';
-import type { SmuiComponent } from '@smui/common';
 import type Component from './PrimaryAction.svelte';
 
-export declare class PrimaryActionComponentDev
-  extends Component
-  implements SmuiComponent
-{
+export declare class PrimaryActionComponentDev extends Component {
   /**
    * @private
    * For type checking capabilities only.
@@ -17,6 +13,4 @@ export declare class PrimaryActionComponentDev
     'use' | 'class' | 'style' | 'ripple' | 'color' | 'padded' | 'tabindex'
   > &
     ComponentProps<Component>;
-
-  getElement(): ReturnType<Component['getElement']>;
 }
