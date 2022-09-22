@@ -62,7 +62,6 @@
   },
   "dependencies": {
     "@material/dom": "^13.0.0",
-    "@tsconfig/svelte": "^3.0.0",
-    "svelte2tsx": "^0.5.12"
+    "@tsconfig/svelte": "^3.0.0"
   }
 }

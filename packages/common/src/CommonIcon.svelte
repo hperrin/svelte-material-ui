@@ -19,22 +19,22 @@
 >
 
 <script lang="ts">
-  import type { ComponentType } from 'svelte';
+  import type { ComponentType, SvelteComponent } from 'svelte';
   import { getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
 
   import type { ActionArray } from './internal/useActions.js';
   import { forwardEventsBuilder, classMap } from './internal/index.js';
-  import type { SmuiComponent, SmuiElementTagNameMap } from './smui.types.js';
+  import type { SmuiElementTagNameMap } from './smui.types.js';
   import { SmuiElement } from './index.js';
 
   type TagName = $$Generic<keyof SmuiElementTagNameMap>;
-  type Component = $$Generic<SmuiComponent<TagName>>;
+  type Component = $$Generic<ComponentType<SvelteComponent>>;
   type OwnProps = {
     use?: ActionArray;
     class?: string;
     on?: boolean;
-    component?: ComponentType<Component>;
+    component?: Component;
     tag?: TagName;
   };
   type $$Props = {
@@ -52,12 +52,11 @@
   export { className as class };
   export let on = false;
 
-  let element: Component;
+  let element: SvelteComponent;
 
-  export let component: ComponentType<Component> =
-    SmuiElement as ComponentType<Component>;
+  export let component: Component = SmuiElement as unknown as Component;
   export let tag: TagName | undefined = (
-    component === SmuiElement ? 'svg' : undefined
+    component === (SmuiElement as unknown as Component) ? 'svg' : undefined
   ) as TagName | undefined;
 
   const context = getContext<string | undefined>('SMUI:icon:context');

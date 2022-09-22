@@ -52,7 +52,7 @@
 >
 
 <script lang="ts">
-  import type { ComponentType } from 'svelte';
+  import type { ComponentType, SvelteComponent } from 'svelte';
   import { setContext, getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import type { ActionArray } from '@smui/common/internal';
@@ -62,14 +62,12 @@
     dispatch,
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
-  import type { SmuiComponent } from '@smui/common';
+  import type { SmuiElementTagNameMap } from '@smui/common';
   import { SmuiElement } from '@smui/common';
 
-  type TagName = $$Generic<
-    keyof HTMLElementTagNameMap | keyof SVGElementTagNameMap
-  >;
-  type Component = $$Generic<SmuiComponent<TagName>>;
-  type $$Props = svelteHTML.IntrinsicElements[TagName] & {
+  type TagName = $$Generic<keyof SmuiElementTagNameMap>;
+  type Component = $$Generic<ComponentType<SvelteComponent>>;
+  type OwnProps = {
     use?: ActionArray;
     class?: string;
     style?: string;
@@ -81,9 +79,15 @@
     action?: string;
     defaultAction?: boolean;
     secondary?: boolean;
-    component?: ComponentType<Component>;
+    component?: Component;
     tag?: TagName;
   };
+  type $$Props = {
+    [P in Exclude<
+      keyof svelteHTML.IntrinsicElements[TagName],
+      keyof OwnProps
+    >]?: svelteHTML.IntrinsicElements[TagName][P];
+  } & OwnProps;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
@@ -101,15 +105,18 @@
   export let defaultAction = false;
   export let secondary = false;
 
-  let element: Component;
+  let element: SvelteComponent;
   let internalClasses: { [k: string]: boolean } = {};
   let internalStyles: { [k: string]: string } = {};
   let context = getContext<string | undefined>('SMUI:button:context');
 
-  export let component: ComponentType<Component> =
-    SmuiElement as ComponentType<Component>;
+  export let component: Component = SmuiElement as unknown as Component;
   export let tag: TagName | undefined = (
-    component === SmuiElement ? (href == null ? 'button' : 'a') : undefined
+    component === (SmuiElement as unknown as Component)
+      ? href == null
+        ? 'button'
+        : 'a'
+      : undefined
   ) as TagName | undefined;
 
   $: actionProp =
@@ -169,11 +176,7 @@
     }
   }
 
-<<<<<<< HEAD
   export function getElement() {
-=======
-  export function getElement(): HTMLElement {
->>>>>>> v7
     return element.getElement();
   }
 </script>

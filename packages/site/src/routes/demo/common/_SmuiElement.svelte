@@ -25,14 +25,13 @@
   import { SmuiElement } from '@smui/common';
   import Button, { Label } from '@smui/button';
 
-  import type { ButtonComponentDev } from '@smui/button';
   import { onMount } from 'svelte';
 
   /*
-  You might wonder why you can't use `ButtonComponentDev<'p'>` instead. It is
+  You might wonder why you can't use `Button<'p'>` instead. It is
   because of this: https://github.com/sveltejs/rfcs/pull/38#issuecomment-1230881785
   */
-  let PButton: ButtonComponentDev;
+  let PButton: InstanceType<typeof Button>;
   let PButtonElement: HTMLParagraphElement;
 
   onMount(() => {

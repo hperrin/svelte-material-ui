@@ -21,6 +21,18 @@
     useActions,
   } from '@smui/common/internal';
 
+  type OwnProps = {
+    use?: ActionArray;
+    class?: string;
+    variant?: 'text' | 'raised' | 'unelevated' | 'outlined';
+  };
+  type $$Props = {
+    [P in Exclude<
+      keyof svelteHTML.IntrinsicElements['div'],
+      keyof OwnProps
+    >]?: svelteHTML.IntrinsicElements['div'][P];
+  } & OwnProps;
+
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
   // Remember to update types file if you add/remove/rename props.

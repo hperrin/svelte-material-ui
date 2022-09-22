@@ -45,8 +45,7 @@
     "@material/ripple": "^13.0.0",
     "@material/theme": "^13.0.0",
     "@smui/common": "^6.1.0",
-    "@smui/ripple": "^6.1.0",
-    "svelte2tsx": "^0.5.12"
+    "@smui/ripple": "^6.1.0"
   },
   "devDependencies": {
     "@tsconfig/svelte": "^3.0.0",
