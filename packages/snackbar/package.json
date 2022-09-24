@@ -7,6 +7,7 @@
   "exports": {
     "./package.json": "./package.json",
     ".": "./dist/index.js",
+    "./bare.css": "./bare.css",
     "./kitchen": "./dist/kitchen/index.js"
   },
   "typesVersions": {
