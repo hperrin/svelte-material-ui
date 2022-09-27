@@ -1,6 +1,6 @@
 {
   "name": "@smui/select",
-  "version": "6.1.4",
+  "version": "6.2.0",
   "description": "Svelte Material UI - Select",
   "type": "module",
   "svelte": "./dist/index.js",
@@ -63,7 +63,7 @@
     "@smui/floating-label": "^6.1.4",
     "@smui/line-ripple": "^6.1.4",
     "@smui/list": "^6.1.4",
-    "@smui/menu": "^6.1.4",
+    "@smui/menu": "^6.2.0",
     "@smui/menu-surface": "^6.1.4",
     "@smui/notched-outline": "^6.1.4",
     "@smui/ripple": "^6.1.4",

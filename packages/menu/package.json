@@ -1,6 +1,6 @@
 {
   "name": "@smui/menu",
-  "version": "6.1.4",
+  "version": "6.2.0",
   "description": "Svelte Material UI - Menu",
   "type": "module",
   "main": "dist/index.js",

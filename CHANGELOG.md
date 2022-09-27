@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.2.0](https://github.com/hperrin/svelte-material-ui/compare/v6.1.4...v6.2.0) (2022-09-27)
+
+
+### Features
+
+* add a getMenuSurface function to Menu ([38e7927](https://github.com/hperrin/svelte-material-ui/commit/38e792791b7ed0443fb200d419b3972a259df1ca))
+
+
+
+
+
 ## [6.1.4](https://github.com/hperrin/svelte-material-ui/compare/v6.1.3...v6.1.4) (2022-09-27)
 
 

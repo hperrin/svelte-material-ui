@@ -1,6 +1,6 @@
 {
   "name": "svelte-material-ui",
-  "version": "6.1.4",
+  "version": "6.2.0",
   "description": "Svelte Material UI Components",
   "keywords": [
     "svelte",
@@ -34,7 +34,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@smui-extra/accordion": "^6.1.4",
-    "@smui-extra/autocomplete": "^6.1.4",
+    "@smui-extra/autocomplete": "^6.2.0",
     "@smui-extra/badge": "^6.1.4",
     "@smui/banner": "^6.1.4",
     "@smui/button": "^6.1.4",
@@ -43,7 +43,7 @@
     "@smui/chips": "^6.1.4",
     "@smui/circular-progress": "^6.1.4",
     "@smui/common": "^6.1.4",
-    "@smui/data-table": "^6.1.4",
+    "@smui/data-table": "^6.2.0",
     "@smui/dialog": "^6.1.4",
     "@smui/drawer": "^6.1.4",
     "@smui/fab": "^6.1.4",
@@ -55,14 +55,14 @@
     "@smui/line-ripple": "^6.1.4",
     "@smui/linear-progress": "^6.1.4",
     "@smui/list": "^6.1.4",
-    "@smui/menu": "^6.1.4",
+    "@smui/menu": "^6.2.0",
     "@smui/menu-surface": "^6.1.4",
     "@smui/notched-outline": "^6.1.4",
     "@smui/paper": "^6.1.4",
     "@smui/radio": "^6.1.4",
     "@smui/ripple": "^6.1.4",
     "@smui/segmented-button": "^6.1.4",
-    "@smui/select": "^6.1.4",
+    "@smui/select": "^6.2.0",
     "@smui/slider": "^6.1.4",
     "@smui/snackbar": "^6.1.4",
     "@smui/switch": "^6.1.4",
@@ -76,6 +76,6 @@
     "@smui/touch-target": "^6.1.4"
   },
   "devDependencies": {
-    "smui-theme": "^6.1.4"
+    "smui-theme": "^6.2.0"
   }
 }

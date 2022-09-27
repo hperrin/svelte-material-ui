@@ -1,6 +1,6 @@
 {
   "name": "@smui/data-table",
-  "version": "6.1.4",
+  "version": "6.2.0",
   "description": "Svelte Material UI - Data Table",
   "type": "module",
   "main": "dist/index.js",
@@ -44,7 +44,7 @@
     "@smui/common": "^6.1.4",
     "@smui/icon-button": "^6.1.4",
     "@smui/ripple": "^6.1.4",
-    "@smui/select": "^6.1.4",
+    "@smui/select": "^6.2.0",
     "svelte2tsx": "^0.5.12"
   },
   "devDependencies": {

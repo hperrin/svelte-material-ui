@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.2.0](https://github.com/hperrin/svelte-material-ui/compare/v6.1.4...v6.2.0) (2022-09-27)
+
+**Note:** Version bump only for package @smui/data-table
+
+
+
+
+
 ## [6.1.4](https://github.com/hperrin/svelte-material-ui/compare/v6.1.3...v6.1.4) (2022-09-27)
 
 
