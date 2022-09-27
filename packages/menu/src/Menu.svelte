@@ -158,6 +158,11 @@
     return instance.getSelectedIndex();
   }
 
+  // TODO: add a demo showing how to use this
+  export function getMenuSurface() {
+    return element;
+  }
+
   export function getElement(): Element {
     return element.getElement();
   }
