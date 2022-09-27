@@ -1,6 +1,6 @@
 {
   "name": "@smui-extra/autocomplete",
-  "version": "6.1.0",
+  "version": "6.1.4",
   "description": "Svelte Material UI - Autocomplete",
   "type": "module",
   "main": "dist/index.js",
@@ -41,11 +41,11 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@smui/common": "^6.1.0",
-    "@smui/list": "^6.1.0",
-    "@smui/menu": "^6.1.0",
-    "@smui/menu-surface": "^6.1.0",
-    "@smui/textfield": "^6.1.0",
+    "@smui/common": "^6.1.4",
+    "@smui/list": "^6.1.4",
+    "@smui/menu": "^6.1.4",
+    "@smui/menu-surface": "^6.1.4",
+    "@smui/textfield": "^6.1.4",
     "svelte2tsx": "^0.5.12"
   },
   "devDependencies": {
