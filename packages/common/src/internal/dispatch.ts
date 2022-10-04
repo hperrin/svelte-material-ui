@@ -27,4 +27,5 @@ export function dispatch<T extends any = any>(
     }
     return event;
   }
+  return undefined;
 }
