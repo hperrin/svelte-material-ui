@@ -67,7 +67,12 @@
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
   import { writable } from 'svelte/store';
   import { get_current_component } from 'svelte/internal';
-  import type { AddLayoutListener, RemoveLayoutListener } from '@smui/common';
+  import type {
+    AddLayoutListener,
+    RemoveLayoutListener,
+    SmuiAttrs,
+    SmuiElementPropMap,
+  } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
@@ -83,9 +88,30 @@
 
   const { closest } = ponyfill;
 
+  type OwnProps = {
+    use?: ActionArray;
+    class?: string;
+    stickyHeader?: boolean;
+    sortable?: boolean;
+    sort?: string | null;
+    sortDirection?: Lowercase<keyof typeof SortValue>;
+    sortAscendingAriaLabel?: string;
+    sortDescendingAriaLabel?: string;
+    container$use?: ActionArray;
+    container$class?: string;
+    table$use?: ActionArray;
+    table$class?: string;
+  };
+  type $$Props = OwnProps &
+    SmuiAttrs<'div', OwnProps> & {
+      [k in keyof SmuiElementPropMap['div'] as `container\$${k}`]?: SmuiElementPropMap['div'][k];
+    } & {
+      [k in keyof SmuiElementPropMap['table'] as `table\$${k}`]?: SmuiElementPropMap['table'][k];
+    };
+
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  // Remember to update types file if you add/remove/rename props.
+  // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
   let className = '';
   export { className as class };

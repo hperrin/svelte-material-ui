@@ -69,7 +69,12 @@
   import { focusTrap as domFocusTrap } from '@material/dom';
   import { onMount, onDestroy, getContext, setContext, tick } from 'svelte';
   import { get_current_component } from 'svelte/internal';
-  import type { AddLayoutListener, RemoveLayoutListener } from '@smui/common';
+  import type {
+    AddLayoutListener,
+    RemoveLayoutListener,
+    SmuiAttrs,
+    SmuiElementPropMap,
+  } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
@@ -84,9 +89,30 @@
 
   const { FocusTrap } = domFocusTrap;
 
+  type OwnProps = {
+    use?: ActionArray;
+    class?: string;
+    style?: string;
+    open?: boolean;
+    centered?: boolean;
+    fixed?: boolean;
+    mobileStacked?: boolean;
+    content$class?: string;
+    textWrapper$class?: string;
+    graphic$class?: string;
+  };
+  type $$Props = OwnProps &
+    SmuiAttrs<'div', OwnProps> & {
+      [k in keyof SmuiElementPropMap['div'] as `content\$${k}`]?: SmuiElementPropMap['div'][k];
+    } & {
+      [k in keyof SmuiElementPropMap['div'] as `textWrapper\$${k}`]?: SmuiElementPropMap['div'][k];
+    } & {
+      [k in keyof SmuiElementPropMap['div'] as `graphic\$${k}`]?: SmuiElementPropMap['div'][k];
+    };
+
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  // Remember to update types file if you add/remove/rename props.
+  // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
   let className = '';
   export { className as class };

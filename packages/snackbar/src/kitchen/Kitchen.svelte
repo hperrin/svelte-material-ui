@@ -41,6 +41,22 @@
   import Snackbar from '../Snackbar.svelte';
   import Actions from '../Actions.js';
 
+  type $$Props = {
+    [k in keyof Snackbar['$$prop_def'] as `snackbar\$${k}`]?: Snackbar['$$prop_def'][k];
+  } & {
+    [k in keyof InstanceType<
+      typeof Button
+    >['$$prop_def'] as `action\$${k}`]?: InstanceType<
+      typeof Button
+    >['$$prop_def'][k];
+  } & {
+    [k in keyof InstanceType<
+      typeof IconButton
+    >['$$prop_def'] as `dismiss\$${k}`]?: InstanceType<
+      typeof IconButton
+    >['$$prop_def'][k];
+  };
+
   let element: Snackbar;
   let snackbars: Config[] = [];
   let config: Config | undefined = undefined;
@@ -82,7 +98,7 @@
     snackbars = snackbars;
   }
 
-  export function getElement(): ReturnType<Snackbar['getElement']> {
+  export function getElement() {
     return element.getElement();
   }
 </script>

@@ -28,15 +28,15 @@
     .concat([style])
     .join(' ')}
   role="row"
-  on:transitionend={(event) => instance && instance.handleTransitionEnd(event)}
-  on:click={() => instance && instance.handleClick()}
-  on:keydown={(event) => instance && instance.handleKeydown(event)}
-  on:focusin={(event) => instance && instance.handleFocusIn(event)}
-  on:focusout={(event) => instance && instance.handleFocusOut(event)}
-  on:SMUIChipTrailingAction:interaction={() =>
-    instance && instance.handleTrailingActionInteraction()}
-  on:SMUIChipTrailingAction:navigation={(event) =>
-    instance && instance.handleTrailingActionNavigation(event)}
+  on:transitionend={instance && instance.handleTransitionEnd.bind(instance)}
+  on:click={instance && instance.handleClick.bind(instance)}
+  on:keydown={instance && instance.handleKeydown.bind(instance)}
+  on:focusin={instance && instance.handleFocusIn.bind(instance)}
+  on:focusout={instance && instance.handleFocusOut.bind(instance)}
+  on:SMUIChipTrailingAction:interaction={instance &&
+    instance.handleTrailingActionInteraction.bind(instance)}
+  on:SMUIChipTrailingAction:navigation={instance &&
+    instance.handleTrailingActionNavigation.bind(instance)}
   on:SMUIChipsChipPrimaryAction:mount={(event) =>
     (primaryActionAccessor = event.detail)}
   on:SMUIChipsChipPrimaryAction:unmount={() =>
@@ -58,7 +58,7 @@
 
 <script lang="ts">
   import { deprecated } from '@material/chips';
-  import type { ComponentType } from 'svelte';
+  import type { ComponentType, SvelteComponent } from 'svelte';
   import { onMount, setContext, getContext } from 'svelte';
   import { writable } from 'svelte/store';
   import { get_current_component } from 'svelte/internal';
@@ -69,7 +69,7 @@
     dispatch,
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
-  import type { SmuiComponent } from '@smui/common';
+  import type { SmuiElementMap, SmuiAttrs } from '@smui/common';
   import { SmuiElement } from '@smui/common';
 
   import type { SMUIChipsPrimaryActionAccessor } from './Text.types.js';
@@ -78,9 +78,25 @@
 
   const { MDCChipFoundation } = deprecated;
 
+  type TagName = $$Generic<keyof SmuiElementMap>;
+  type Component = $$Generic<ComponentType<SvelteComponent>>;
+  type OwnProps = {
+    use?: ActionArray;
+    class?: string;
+    style?: string;
+    chip: any;
+    ripple?: boolean;
+    touch?: boolean;
+    shouldRemoveOnTrailingIconClick?: boolean;
+    shouldFocusPrimaryActionOnClick?: boolean;
+    component?: Component;
+    tag?: TagName;
+  };
+  type $$Props = OwnProps & SmuiAttrs<keyof SmuiElementMap, OwnProps>;
+
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  // Remember to update types file if you add/remove/rename props.
+  // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
   let className = '';
   export { className as class };
@@ -92,7 +108,7 @@
   export let shouldRemoveOnTrailingIconClick = true;
   export let shouldFocusPrimaryActionOnClick = true;
 
-  let element: SmuiComponent;
+  let element: SvelteComponent;
   let instance: deprecated.MDCChipFoundation;
   let internalClasses: { [k: string]: boolean } = {};
   let leadingIconClasses: { [k: string]: boolean } = {};
@@ -111,8 +127,10 @@
   const choice = getContext<SvelteStore<boolean>>('SMUI:chips:choice');
   const index = getContext<SvelteStore<number>>('SMUI:chips:chip:index');
 
-  export let component: ComponentType<SmuiComponent> = SmuiElement;
-  export let tag = component === SmuiElement ? 'div' : null;
+  export let component: Component = SmuiElement as unknown as Component;
+  export let tag: TagName | undefined = (
+    component === (SmuiElement as unknown as Component) ? 'div' : undefined
+  ) as TagName | undefined;
 
   const shouldRemoveOnTrailingIconClickStore = writable(
     shouldRemoveOnTrailingIconClick

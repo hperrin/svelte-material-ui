@@ -18,23 +18,10 @@
     'smui-list--three-line': threeLine && !twoLine,
   })}
   {role}
-  on:keydown={(event) =>
-    instance &&
-    instance.handleKeydown(
-      event,
-      event.target.classList.contains('mdc-deprecated-list-item'),
-      getListItemIndex(event.target)
-    )}
-  on:focusin={(event) =>
-    instance && instance.handleFocusIn(getListItemIndex(event.target))}
-  on:focusout={(event) =>
-    instance && instance.handleFocusOut(getListItemIndex(event.target))}
-  on:click={(event) =>
-    instance &&
-    instance.handleClick(
-      getListItemIndex(event.target),
-      !matches(event.target, 'input[type="checkbox"], input[type="radio"]')
-    )}
+  on:keydown={handleKeydown}
+  on:focusin={handleFocusin}
+  on:focusout={handleFocusout}
+  on:click={handleClick}
   on:SMUIListItem:mount={handleItemMount}
   on:SMUIListItem:unmount={handleItemUnmount}
   on:SMUI:action={handleAction}
@@ -46,7 +33,7 @@
 <script lang="ts">
   import { MDCListFoundation } from '@material/list';
   import { ponyfill } from '@material/dom';
-  import type { ComponentType } from 'svelte';
+  import type { ComponentType, SvelteComponent } from 'svelte';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import type { AddLayoutListener, RemoveLayoutListener } from '@smui/common';
@@ -56,7 +43,7 @@
     classMap,
     dispatch,
   } from '@smui/common/internal';
-  import type { SmuiComponent } from '@smui/common';
+  import type { SmuiElementMap, SmuiAttrs } from '@smui/common';
   import { SmuiElement } from '@smui/common';
 
   import type { SMUIListAccessor } from './List.types.js';
@@ -64,9 +51,36 @@
 
   const { closest, matches } = ponyfill;
 
+  type TagName = $$Generic<keyof SmuiElementMap>;
+  type Component = $$Generic<ComponentType<SvelteComponent>>;
+  type OwnProps = {
+    use?: ActionArray;
+    class?: string;
+    nonInteractive?: boolean;
+    dense?: boolean;
+    textualList?: boolean;
+    avatarList?: boolean;
+    iconList?: boolean;
+    imageList?: boolean;
+    thumbnailList?: boolean;
+    videoList?: boolean;
+    twoLine?: boolean;
+    threeLine?: boolean;
+    vertical?: boolean;
+    wrapFocus?: boolean;
+    singleSelection?: boolean;
+    selectedIndex?: number;
+    radioList?: boolean;
+    checkList?: boolean;
+    hasTypeahead?: boolean;
+    component?: Component;
+    tag?: TagName;
+  };
+  type $$Props = OwnProps & SmuiAttrs<keyof SmuiElementMap, OwnProps>;
+
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  // Remember to update types file if you add/remove/rename props.
+  // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
   let className = '';
   export { className as class };
@@ -89,7 +103,7 @@
   export let checkList = false;
   export let hasTypeahead = false;
 
-  let element: SmuiComponent;
+  let element: SvelteComponent;
   let instance: MDCListFoundation;
   let items: SMUIListItemAccessor[] = [];
   let role = getContext<string | undefined>('SMUI:list:role');
@@ -103,8 +117,14 @@
   );
   let removeLayoutListener: RemoveLayoutListener | undefined;
 
-  export let component: ComponentType<SmuiComponent> = SmuiElement;
-  export let tag = component === SmuiElement ? (nav ? 'nav' : 'ul') : null;
+  export let component: Component = SmuiElement as unknown as Component;
+  export let tag: TagName | undefined = (
+    component === (SmuiElement as unknown as Component)
+      ? nav
+        ? 'nav'
+        : 'ul'
+      : undefined
+  ) as TagName | undefined;
 
   setContext('SMUI:list:nonInteractive', nonInteractive);
   setContext('SMUI:separator:context', 'list');
@@ -259,6 +279,42 @@
       itemAccessorMap.delete(event.detail.element);
     }
     event.stopPropagation();
+  }
+
+  function handleKeydown(event: KeyboardEvent) {
+    if (instance && event.target) {
+      instance.handleKeydown(
+        event,
+        (event.target as Element).classList.contains(
+          'mdc-deprecated-list-item'
+        ),
+        getListItemIndex(event.target as Element)
+      );
+    }
+  }
+
+  function handleFocusin(event: FocusEvent) {
+    if (instance && event.target) {
+      instance.handleFocusIn(getListItemIndex(event.target as Element));
+    }
+  }
+
+  function handleFocusout(event: FocusEvent) {
+    if (instance && event.target) {
+      instance.handleFocusOut(getListItemIndex(event.target as Element));
+    }
+  }
+
+  function handleClick(event: MouseEvent) {
+    if (instance && event.target) {
+      instance.handleClick(
+        getListItemIndex(event.target as Element),
+        !matches(
+          event.target as Element,
+          'input[type="checkbox"], input[type="radio"]'
+        )
+      );
+    }
   }
 
   function handleAction(event: Event) {

@@ -3,8 +3,7 @@
   on:orientationchange={() => open && instance && instance.layout()}
 />
 <svelte:body
-  on:keydown={(event) =>
-    open && instance && instance.handleDocumentKeydown(event)} />
+  on:keydown={instance && instance.handleDocumentKeydown.bind(instance)} />
 
 <div
   bind:this={element}
@@ -23,8 +22,8 @@
   on:SMUIDialog:opening={handleDialogOpening}
   on:SMUIDialog:opened={handleDialogOpened}
   on:SMUIDialog:closed={handleDialogClosed}
-  on:click={(event) => instance && instance.handleClick(event)}
-  on:keydown={(event) => instance && instance.handleKeydown(event)}
+  on:click={instance && instance.handleClick.bind(instance)}
+  on:keydown={instance && instance.handleKeydown.bind(instance)}
   {...exclude($$restProps, ['container$', 'surface$'])}
 >
   <div
@@ -65,7 +64,12 @@
   import type { Writable } from 'svelte/store';
   import { writable } from 'svelte/store';
   import { get_current_component } from 'svelte/internal';
-  import type { AddLayoutListener, RemoveLayoutListener } from '@smui/common';
+  import type {
+    AddLayoutListener,
+    RemoveLayoutListener,
+    SmuiAttrs,
+    SmuiElementPropMap,
+  } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
@@ -75,12 +79,32 @@
     useActions,
     dispatch,
   } from '@smui/common/internal';
+
   const { FocusTrap } = domFocusTrap;
   const { closest, matches } = ponyfill;
 
+  type OwnProps = {
+    use?: ActionArray;
+    class?: string;
+    open?: boolean;
+    selection?: boolean;
+    escapeKeyAction?: string;
+    scrimClickAction?: string;
+    autoStackButtons?: boolean;
+    fullscreen?: boolean;
+    container$class?: string;
+    surface$class?: string;
+  };
+  type $$Props = OwnProps &
+    SmuiAttrs<'div', OwnProps> & {
+      [k in keyof SmuiElementPropMap['div'] as `container\$${k}`]?: SmuiElementPropMap['div'][k];
+    } & {
+      [k in keyof SmuiElementPropMap['div'] as `surface\$${k}`]?: SmuiElementPropMap['div'][k];
+    };
+
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  // Remember to update types file if you add/remove/rename props.
+  // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
   let className = '';
   export { className as class };

@@ -30,6 +30,7 @@
 <script lang="ts">
   import { onMount, getContext, tick } from 'svelte';
   import { get_current_component } from 'svelte/internal';
+  import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
@@ -38,12 +39,19 @@
     dispatch,
   } from '@smui/common/internal';
 
+  type OwnProps = {
+    use?: ActionArray;
+    class?: string;
+    tabindex?: number;
+  };
+  type $$Props = OwnProps & SmuiAttrs<'span', OwnProps>;
+
   import type { SMUIChipsPrimaryActionAccessor } from './Text.types.js';
   import Checkmark from './Checkmark.svelte';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  // Remember to update types file if you add/remove/rename props.
+  // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
   let className = '';
   export { className as class };

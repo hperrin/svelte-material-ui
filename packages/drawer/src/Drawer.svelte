@@ -10,8 +10,8 @@
     'smui-drawer__absolute': variant === 'modal' && !fixed,
     ...internalClasses,
   })}
-  on:keydown={(event) => instance && instance.handleKeydown(event)}
-  on:transitionend={(event) => instance && instance.handleTransitionEnd(event)}
+  on:keydown={instance && instance.handleKeydown.bind(instance)}
+  on:transitionend={instance && instance.handleTransitionEnd.bind(instance)}
   {...$$restProps}
 >
   <slot />
@@ -25,6 +25,7 @@
   import { focusTrap as domFocusTrap } from '@material/dom';
   import { onMount, onDestroy, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
+  import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
@@ -32,11 +33,21 @@
     useActions,
     dispatch,
   } from '@smui/common/internal';
+
   const { FocusTrap } = domFocusTrap;
+
+  type OwnProps = {
+    use?: ActionArray;
+    class?: string;
+    variant?: 'dismissible' | 'modal' | undefined;
+    open?: boolean;
+    fixed?: boolean;
+  };
+  type $$Props = OwnProps & SmuiAttrs<'aside', OwnProps>;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  // Remember to update types file if you add/remove/rename props.
+  // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
   let className = '';
   export { className as class };

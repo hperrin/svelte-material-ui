@@ -88,6 +88,7 @@
 
 <script lang="ts">
   import { get_current_component } from 'svelte/internal';
+  import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
@@ -98,15 +99,52 @@
     dispatch,
   } from '@smui/common/internal';
   import Textfield from '@smui/textfield';
-  import type { MenuComponentDev } from '@smui/menu';
   import Menu from '@smui/menu';
   import type { SMUIListAccessor, SMUIListItemAccessor } from '@smui/list';
   import List, { Item, Text } from '@smui/list';
   import { Anchor } from '@smui/menu-surface';
 
+  type OwnProps = {
+    use?: ActionArray;
+    class?: string;
+    variant?: 'text' | 'raised' | 'unelevated' | 'outlined';
+    options?: (() => Promise<any[]>) | any[];
+    value?: any;
+    getOptionDisabled?: (option: any) => boolean;
+    getOptionLabel?: (option: any) => string;
+    text?: string;
+    label?: string | undefined;
+    disabled?: boolean;
+    toggle?: boolean;
+    combobox?: boolean;
+    clearOnBlur?: boolean;
+    selectOnExactMatch?: boolean;
+    showMenuWithNoInput?: boolean;
+    noMatchesActionDisabled?: boolean;
+    search?: (input: string) => Promise<any[] | false>;
+    menu$class?: string;
+    menu$anchor?: boolean;
+    menu$anchorCorner?: Menu['$$prop_def']['anchorCorner'];
+  };
+  type $$Props = OwnProps &
+    SmuiAttrs<'div', OwnProps> & {
+      [k in keyof Menu['$$prop_def'] as `menu\$${k}`]?: Menu['$$prop_def'][k];
+    } & {
+      [k in keyof Textfield['$$prop_def'] as `textfield\$${k}`]?: Textfield['$$prop_def'][k];
+    } & {
+      [k in keyof InstanceType<
+        typeof List
+      >['$$prop_def'] as `list\$${k}`]?: InstanceType<
+        typeof List
+      >['$$prop_def'][k];
+    } & {
+      textfield$label?: never;
+      textfield$value?: never;
+    };
+
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  // Remember to update types file if you add/remove/rename props.
+  // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
   let className = '';
   export { className as class };
@@ -152,7 +190,7 @@
   };
   export let menu$class = '';
   export let menu$anchor = false;
-  export let menu$anchorCorner: MenuComponentDev['$$prop_def']['anchorCorner'] =
+  export let menu$anchorCorner: Menu['$$prop_def']['anchorCorner'] =
     'BOTTOM_START';
 
   let element: HTMLDivElement;

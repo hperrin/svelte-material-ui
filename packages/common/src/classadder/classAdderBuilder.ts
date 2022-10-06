@@ -1,14 +1,13 @@
 import type { ComponentType, SvelteComponent } from 'svelte';
 
-import type { SmuiElementTagNameMap } from '../smui.types.js';
+import type { SmuiElementMap } from '../smui.types.js';
 import type { ClassAdderInternals } from './ClassAdder.types.js';
-// @ts-ignore: Internals is exported... argh.
 import ClassAdder, { internals } from './ClassAdder.svelte';
 
 const defaults = { ...internals };
 
 export function classAdderBuilder<
-  T extends keyof SmuiElementTagNameMap = 'div',
+  T extends keyof SmuiElementMap = 'div',
   C extends ComponentType<SvelteComponent> = ComponentType<SvelteComponent>
 >(props: Partial<ClassAdderInternals<T, C>>): C {
   return new Proxy(ClassAdder, {
@@ -21,5 +20,5 @@ export function classAdderBuilder<
       Object.assign(internals, defaults, props);
       return (target as any)[prop];
     },
-  }) as C;
+  }) as unknown as C;
 }

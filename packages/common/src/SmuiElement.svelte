@@ -21,25 +21,20 @@
 
   import type { ActionArray } from './internal/useActions.js';
   import { forwardEventsBuilder, useActions } from './internal/index.js';
-  import type { SmuiElementTagNameMap } from './smui.types.js';
+  import type { SmuiElementMap, SmuiAttrs } from './smui.types.js';
 
-  type TagName = $$Generic<keyof SmuiElementTagNameMap>;
+  type TagName = $$Generic<keyof SmuiElementMap>;
   type OwnProps = {
     use?: ActionArray;
     tag: TagName;
   };
-  type $$Props = {
-    [P in Exclude<
-      keyof svelteHTML.IntrinsicElements[TagName],
-      keyof OwnProps
-    >]?: svelteHTML.IntrinsicElements[TagName][P];
-  } & OwnProps;
+  type $$Props = OwnProps & SmuiAttrs<keyof SmuiElementMap, OwnProps>;
   // Why doesn't this work?
   // Partial<
   //   Omit<svelteHTML.IntrinsicElements[TagName], keyof OwnProps>
   // >
 
-  // Remember to update types file if you add/remove/rename props.
+  // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
   export let tag: TagName;
 
@@ -63,9 +58,9 @@
       'wbr',
     ].indexOf(tag) > -1;
 
-  let element: SmuiElementTagNameMap[TagName];
+  let element: SmuiElementMap[TagName];
 
-  export function getElement(): SmuiElementTagNameMap[TagName] {
+  export function getElement(): SmuiElementMap[TagName] {
     return element;
   }
 </script>

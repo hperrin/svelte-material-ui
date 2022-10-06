@@ -1,34 +1,3 @@
-import type { ComponentProps } from 'svelte';
-import type Component from './MenuSurface.svelte';
-
-export declare class MenuSurfaceComponentDev extends Component {
-  /**
-   * @private
-   * For type checking capabilities only.
-   * Does not exist at runtime.
-   * ### DO NOT USE!
-   */
-  $$prop_def: Omit<
-    Partial<svelte.JSX.HTMLAttributes<HTMLDivElement>>,
-    | 'use'
-    | 'class'
-    | 'style'
-    | 'static'
-    | 'anchor'
-    | 'fixed'
-    | 'open'
-    | 'managed'
-    | 'fullWidth'
-    | 'quickOpen'
-    | 'anchorElement'
-    | 'anchorCorner'
-    | 'anchorMargin'
-    | 'maxHeight'
-    | 'horizontallyCenteredOnViewport'
-  > &
-    ComponentProps<Component>;
-}
-
 import { Corner } from '@material/menu-surface';
 
 export { Corner };

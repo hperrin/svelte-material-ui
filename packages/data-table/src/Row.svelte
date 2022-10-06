@@ -25,7 +25,7 @@
 <script lang="ts">
   import { onMount, getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
-  import type { SMUICheckboxInputAccessor } from '@smui/common';
+  import type { SmuiAttrs, SMUICheckboxInputAccessor } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
@@ -36,9 +36,16 @@
 
   import type { SMUIDataTableRowAccessor } from './Row.types.js';
 
+  type OwnProps = {
+    use?: ActionArray;
+    class?: string;
+    rowId?: string;
+  };
+  type $$Props = OwnProps & SmuiAttrs<'tr', OwnProps>;
+
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  // Remember to update types file if you add/remove/rename props.
+  // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
   let className = '';
   export { className as class };

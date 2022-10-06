@@ -17,6 +17,7 @@
 <script lang="ts">
   import { setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
+  import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
@@ -24,9 +25,17 @@
     useActions,
   } from '@smui/common/internal';
 
+  type OwnProps = {
+    use?: ActionArray;
+    class?: string;
+    align?: 'start' | 'end';
+    toolbar?: boolean;
+  };
+  type $$Props = OwnProps & SmuiAttrs<'section', OwnProps>;
+
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  // Remember to update types file if you add/remove/rename props.
+  // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
   let className = '';
   export { className as class };

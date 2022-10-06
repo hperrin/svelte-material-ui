@@ -21,8 +21,8 @@
     .join(' ')}
   aria-hidden={nonNavigable ? 'true' : undefined}
   tabindex="-1"
-  on:click={(event) => instance && instance.handleClick(event)}
-  on:keydown={(event) => instance && instance.handleKeydown(event)}
+  on:click={instance && instance.handleClick.bind(instance)}
+  on:keydown={instance && instance.handleKeydown.bind(instance)}
   {...internalAttrs}
   {...exclude($$restProps, ['icon$'])}
 >
@@ -44,6 +44,7 @@
   import { deprecated } from '@material/chips';
   import { onMount, tick } from 'svelte';
   import { get_current_component } from 'svelte/internal';
+  import type { SmuiAttrs, SmuiElementPropMap } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
@@ -59,9 +60,24 @@
 
   const { MDCChipTrailingActionFoundation } = deprecated;
 
+  type OwnProps = {
+    use?: ActionArray;
+    class?: string;
+    style?: string;
+    ripple?: boolean;
+    touch?: boolean;
+    nonNavigable?: boolean;
+    icon$use?: ActionArray;
+    icon$class?: string;
+  };
+  type $$Props = OwnProps &
+    SmuiAttrs<'button', OwnProps> & {
+      [k in keyof SmuiElementPropMap['span'] as `icon\$${k}`]?: SmuiElementPropMap['span'][k];
+    };
+
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  // Remember to update types file if you add/remove/rename props.
+  // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
   let className = '';
   export { className as class };

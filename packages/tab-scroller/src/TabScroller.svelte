@@ -54,6 +54,7 @@
   import { ponyfill } from '@material/dom';
   import { onMount } from 'svelte';
   import { get_current_component } from 'svelte/internal';
+  import type { SmuiAttrs, SmuiElementPropMap } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
@@ -62,11 +63,28 @@
     prefixFilter,
     useActions,
   } from '@smui/common/internal';
+
   const { matches } = ponyfill;
+
+  type OwnProps = {
+    use?: ActionArray;
+    class?: string;
+    align?: 'start' | 'end' | 'center' | undefined;
+    scrollArea$use?: ActionArray;
+    scrollArea$class?: string;
+    scrollContent$use?: ActionArray;
+    scrollContent$class?: string;
+  };
+  type $$Props = OwnProps &
+    SmuiAttrs<'div', OwnProps> & {
+      [k in keyof SmuiElementPropMap['div'] as `scrollArea\$${k}`]?: SmuiElementPropMap['div'][k];
+    } & {
+      [k in keyof SmuiElementPropMap['div'] as `scrollContent\$${k}`]?: SmuiElementPropMap['div'][k];
+    };
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  // Remember to update types file if you add/remove/rename props.
+  // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
   let className = '';
   export { className as class };

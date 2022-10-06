@@ -14,12 +14,11 @@
 </div>
 
 <script lang="ts">
-  import type { MenuSurfaceComponentDev } from '@smui/menu-surface';
   import MenuSurface from '@smui/menu-surface';
   import Textfield from '@smui/textfield';
   import Button from '@smui/button';
 
-  let surface: MenuSurfaceComponentDev;
+  let surface: MenuSurface;
   let name = '';
   let email = '';
 </script>

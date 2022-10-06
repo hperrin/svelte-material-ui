@@ -45,6 +45,7 @@
   import { get_current_component } from 'svelte/internal';
   import type { Subscriber } from 'svelte/store';
   import { readable } from 'svelte/store';
+  import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
@@ -53,6 +54,19 @@
     dispatch,
   } from '@smui/common/internal';
 
+  type OwnProps = {
+    use?: ActionArray;
+    class?: string;
+    style?: string;
+    variant?: 'short' | 'fixed' | 'static' | 'standard';
+    color?: 'primary' | 'secondary';
+    collapsed?: boolean;
+    prominent?: boolean;
+    dense?: boolean;
+    scrollTarget?: HTMLElement | undefined;
+  };
+  type $$Props = OwnProps & SmuiAttrs<'header', OwnProps>;
+
   const forwardEvents = forwardEventsBuilder(get_current_component());
   interface UninitializedValue extends Function {}
   let uninitializedValue: UninitializedValue = () => {};
@@ -60,13 +74,13 @@
     return value === uninitializedValue;
   }
 
-  // Remember to update types file if you add/remove/rename props.
+  // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
   let className = '';
   export { className as class };
   export let style = '';
-  export let variant = 'standard';
-  export let color = 'primary';
+  export let variant: 'short' | 'fixed' | 'static' | 'standard' = 'standard';
+  export let color: 'primary' | 'secondary' = 'primary';
 
   // Some trickery to detect uninitialized values but also have the right types.
   export let collapsed: boolean = uninitializedValue as unknown as boolean;
@@ -90,7 +104,7 @@
   let internalStyles: { [k: string]: string } = {};
 
   let propStoreSet: Subscriber<{
-    variant: string;
+    variant: 'short' | 'fixed' | 'static' | 'standard';
     prominent: boolean;
     dense: boolean;
   }>;
@@ -145,6 +159,7 @@
         static: MDCTopAppBarBaseFoundation,
         short: MDCShortTopAppBarFoundation,
         fixed: MDCFixedTopAppBarFoundation,
+        standard: MDCTopAppBarFoundation,
       }[variant] || MDCTopAppBarFoundation;
 
     return new Foundation({

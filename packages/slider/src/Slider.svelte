@@ -191,7 +191,12 @@
   import { MDCSliderFoundation, Thumb, TickMark } from '@material/slider';
   import { onMount, onDestroy, getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
-  import type { AddLayoutListener, RemoveLayoutListener } from '@smui/common';
+  import type {
+    AddLayoutListener,
+    RemoveLayoutListener,
+    SmuiAttrs,
+    SmuiElementPropMap,
+  } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
@@ -203,9 +208,39 @@
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
 
+  type OwnProps = {
+    use?: ActionArray;
+    class?: string;
+    disabled?: boolean;
+    range?: boolean;
+    discrete?: boolean;
+    tickMarks?: boolean;
+    step?: number;
+    min?: number;
+    max?: number;
+    value?: number | undefined;
+    start?: number | undefined;
+    end?: number | undefined;
+    valueToAriaValueTextFn?: (value: number) => string;
+    input$class?: string;
+  };
+  type $$Props = OwnProps &
+    SmuiAttrs<'div', OwnProps> & {
+      [k in keyof SmuiElementPropMap['input'] as `input\$${k}`]?: SmuiElementPropMap['input'][k];
+    } & {
+      input$type?: never;
+      input$disabled?: never;
+      input$step?: never;
+      input$min?: never;
+      input$max?: never;
+      input$value?: never;
+      input$checked?: never;
+      input$group?: never;
+    };
+
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  // Remember to update types file if you add/remove/rename props.
+  // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
   let className = '';
   export { className as class };

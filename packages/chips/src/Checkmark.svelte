@@ -18,10 +18,17 @@
 </span>
 
 <script lang="ts">
+  import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, useActions } from '@smui/common/internal';
 
-  // Remember to update types file if you add/remove/rename props.
+  type OwnProps = {
+    use?: ActionArray;
+    class?: string;
+  };
+  type $$Props = OwnProps & SmuiAttrs<'span', OwnProps>;
+
+  // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
   let className = '';
   export { className as class };

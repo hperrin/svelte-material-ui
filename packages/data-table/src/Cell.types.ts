@@ -1,20 +1,3 @@
-import type { ComponentProps } from 'svelte';
-import type Component from './Cell.svelte';
-
-export declare class CellComponentDev extends Component {
-  /**
-   * @private
-   * For type checking capabilities only.
-   * Does not exist at runtime.
-   * ### DO NOT USE!
-   */
-  $$prop_def: Omit<
-    Partial<svelte.JSX.HTMLAttributes<HTMLTableCellElement>>,
-    'use' | 'class' | 'numeric' | 'checkbox' | 'columnId' | 'sortable'
-  > &
-    ComponentProps<Component>;
-}
-
 interface SMUIDataTableHeaderCellAccessor {
   _smui_data_table_header_cell_accessor: true;
   readonly columnId: string;

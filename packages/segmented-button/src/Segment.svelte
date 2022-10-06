@@ -38,6 +38,7 @@
   import { MDCSegmentedButtonSegmentFoundation } from '@material/segmented-button/dist/mdc.segmentedButton.js';
   import { onMount, getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
+  import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
@@ -49,6 +50,17 @@
 
   import type { SMUISegmentedButtonSegmentAccessor } from './Segment.types.js';
 
+  type OwnProps = {
+    use?: ActionArray;
+    class?: string;
+    style?: string;
+    segment: any;
+    ripple?: boolean;
+    touch?: boolean;
+    selected?: boolean;
+  };
+  type $$Props = OwnProps & SmuiAttrs<'button', OwnProps>;
+
   const forwardEvents = forwardEventsBuilder(get_current_component());
   interface UninitializedValue extends Function {}
   let uninitializedValue: UninitializedValue = () => {};
@@ -56,7 +68,7 @@
     return value === uninitializedValue;
   }
 
-  // Remember to update types file if you add/remove/rename props.
+  // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
   let className = '';
   export { className as class };

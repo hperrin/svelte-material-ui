@@ -31,15 +31,21 @@
     dispatch,
   } from '@smui/common/internal';
   import type { SMUIListAccessor } from '@smui/list';
-  import type {
-    MenuSurfaceComponentDev,
-    SMUIMenuSurfaceAccessor,
-  } from '@smui/menu-surface';
+  import type { SMUIMenuSurfaceAccessor } from '@smui/menu-surface';
   import MenuSurface from '@smui/menu-surface';
 
   import type { DefaultFocusState } from './Menu.types.js';
 
   const { closest } = ponyfill;
+
+  type OwnProps = {
+    use?: ActionArray;
+    class?: string;
+    open?: boolean;
+  };
+  type $$Props = {
+    [k in keyof MenuSurface['$$prop_def']]?: MenuSurface['$$prop_def'][k];
+  } & OwnProps;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
@@ -49,7 +55,7 @@
   export { className as class };
   export let open = false;
 
-  let element: MenuSurfaceComponentDev;
+  let element: MenuSurface;
   let instance: MDCMenuFoundation;
   let menuSurfaceAccessor: SMUIMenuSurfaceAccessor;
   let listAccessor: SMUIListAccessor;
@@ -158,9 +164,7 @@
     return instance.getSelectedIndex();
   }
 
-  export function getElement(): ReturnType<
-    MenuSurfaceComponentDev['getElement']
-  > {
+  export function getElement() {
     return element.getElement();
   }
 </script>

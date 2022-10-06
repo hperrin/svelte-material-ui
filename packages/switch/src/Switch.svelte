@@ -73,7 +73,11 @@
   import { MDCSwitchRenderFoundation } from '@material/switch';
   import { onMount, getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
-  import type { SMUISwitchInputAccessor } from '@smui/common';
+  import type {
+    SmuiAttrs,
+    SmuiElementPropMap,
+    SMUISwitchInputAccessor,
+  } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
@@ -85,6 +89,25 @@
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
 
+  type OwnProps = {
+    use?: ActionArray;
+    class?: string;
+    disabled?: boolean;
+    color?: 'primary' | 'secondary';
+    group?: any[];
+    checked?: boolean;
+    value?: any;
+    /** This currently does nothing. */
+    processing?: boolean;
+    icons?: boolean;
+    icons$use?: ActionArray;
+    icons$class?: string;
+  };
+  type $$Props = OwnProps &
+    SmuiAttrs<'button', OwnProps> & {
+      [k in keyof SmuiElementPropMap['div'] as `icons\$${k}`]?: SmuiElementPropMap['div'][k];
+    };
+
   const forwardEvents = forwardEventsBuilder(get_current_component());
   interface UninitializedValue extends Function {}
   let uninitializedValue: UninitializedValue = () => {};
@@ -92,7 +115,7 @@
     return value === uninitializedValue;
   }
 
-  // Remember to update types file if you add/remove/rename props.
+  // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
   let className = '';
   export { className as class };

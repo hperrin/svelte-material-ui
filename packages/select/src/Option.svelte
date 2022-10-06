@@ -14,8 +14,19 @@
   import { get_current_component } from 'svelte/internal';
   import type { ActionArray } from '@smui/common/internal';
   import { forwardEventsBuilder } from '@smui/common/internal';
-  import type { ItemComponentDev } from '@smui/list';
   import { Item } from '@smui/list';
+
+  type OwnProps = {
+    use?: ActionArray;
+    class?: string;
+    value?: any;
+  };
+  type $$Props = {
+    [P in Exclude<
+      keyof InstanceType<typeof Item>['$$prop_def'],
+      keyof OwnProps
+    >]?: InstanceType<typeof Item>['$$prop_def'][P];
+  } & OwnProps;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
@@ -25,7 +36,7 @@
   export { className as class };
   export let value: any = '';
 
-  let element: ItemComponentDev;
+  let element: InstanceType<typeof Item>;
   const selectedText = getContext<Writable<string>>('SMUI:select:selectedText');
   const selectedValue = getContext<SvelteStore<any>>('SMUI:select:value');
 
@@ -43,7 +54,7 @@
     }
   }
 
-  export function getElement(): ReturnType<ItemComponentDev['getElement']> {
+  export function getElement() {
     return element.getElement();
   }
 </script>

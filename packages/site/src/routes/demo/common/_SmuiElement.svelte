@@ -30,6 +30,9 @@
   /*
   You might wonder why you can't use `Button<'p'>` instead. It is
   because of this: https://github.com/sveltejs/rfcs/pull/38#issuecomment-1230881785
+
+  The `InstanceType<typeof ` part is only needed for components that take tag
+  names and components (or any other type generics).
   */
   let PButton: InstanceType<typeof Button>;
   let PButtonElement: HTMLParagraphElement;

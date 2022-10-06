@@ -29,7 +29,11 @@
   import { MDCFormFieldFoundation } from '@material/form-field';
   import { onMount, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
-  import type { SMUIGenericInputAccessor } from '@smui/common';
+  import type {
+    SmuiAttrs,
+    SmuiElementPropMap,
+    SMUIGenericInputAccessor,
+  } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
@@ -39,9 +43,22 @@
     useActions,
   } from '@smui/common/internal';
 
+  type OwnProps = {
+    use?: ActionArray;
+    class?: string;
+    align?: 'start' | 'end';
+    noWrap?: boolean;
+    inputId?: string;
+    label$use?: ActionArray;
+  };
+  type $$Props = OwnProps &
+    SmuiAttrs<'div', OwnProps> & {
+      [k in keyof SmuiElementPropMap['label'] as `label\$${k}`]?: SmuiElementPropMap['label'];
+    };
+
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  // Remember to update types file if you add/remove/rename props.
+  // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
   let className = '';
   export { className as class };

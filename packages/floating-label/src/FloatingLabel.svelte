@@ -41,6 +41,7 @@
   import { MDCFloatingLabelFoundation } from '@material/floating-label';
   import { onMount, getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
+  import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
@@ -50,6 +51,19 @@
   } from '@smui/common/internal';
 
   import type { SMUIFloatingLabelAccessor } from './FloatingLabel.types.js';
+
+  type OwnProps = {
+    use?: ActionArray;
+    class?: string;
+    style?: string;
+    for?: string | undefined;
+    floatAbove?: boolean;
+    required?: boolean;
+    wrapped?: boolean;
+  };
+  type $$Props = OwnProps &
+    SmuiAttrs<'span', OwnProps> &
+    SmuiAttrs<'label', OwnProps>;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

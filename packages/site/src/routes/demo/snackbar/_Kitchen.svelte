@@ -10,11 +10,10 @@
 </script>
 
 <script lang="ts">
-  import type { KitchenComponentDev } from '@smui/snackbar/kitchen';
   import Kitchen from '@smui/snackbar/kitchen';
   import Button, { Label } from '@smui/button';
 
-  let kitchen: KitchenComponentDev;
+  let kitchen: Kitchen;
   let reason = 'nothing yet';
   let action = 'nothing yet';
 

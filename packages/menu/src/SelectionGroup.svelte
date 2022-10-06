@@ -19,6 +19,7 @@
 <script lang="ts">
   import { setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
+  import type { SmuiAttrs, SmuiElementPropMap } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
@@ -28,9 +29,19 @@
     useActions,
   } from '@smui/common/internal';
 
+  type OwnProps = {
+    use?: ActionArray;
+    list$use?: ActionArray;
+    list$class?: string;
+  };
+  type $$Props = OwnProps &
+    SmuiAttrs<'li', OwnProps> & {
+      [k in keyof SmuiElementPropMap['ul'] as `list\$${k}`]?: SmuiElementPropMap['ul'][k];
+    };
+
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  // Remember to update types file if you add/remove/rename props.
+  // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
   export let list$use: ActionArray = [];
   export let list$class = '';

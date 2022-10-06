@@ -10,7 +10,7 @@
     ...internalClasses,
   })}
   on:SMUISnackbar:closed={handleClosed}
-  on:keydown={(event) => instance && instance.handleKeyDown(event)}
+  on:keydown={instance && instance.handleKeyDown.bind(instance)}
   {...exclude($$restProps, ['surface$'])}
 >
   <div
@@ -37,6 +37,7 @@
   import { ponyfill } from '@material/dom';
   import { onMount, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
+  import type { SmuiAttrs, SmuiElementPropMap } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
@@ -46,7 +47,25 @@
     useActions,
     dispatch,
   } from '@smui/common/internal';
+
   const { closest } = ponyfill;
+
+  type OwnProps = {
+    use?: ActionArray;
+    class?: string;
+    variant?: string;
+    leading?: boolean;
+    timeoutMs?: number;
+    closeOnEscape?: boolean;
+    labelText?: string;
+    actionButtonText?: string;
+    surface$class?: string;
+    surface$use?: ActionArray;
+  };
+  type $$Props = OwnProps &
+    SmuiAttrs<'aside', OwnProps> & {
+      [k in keyof SmuiElementPropMap['div'] as `surface\$${k}`]?: SmuiElementPropMap['div'][k];
+    };
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
   interface UninitializedValue extends Function {}
@@ -55,7 +74,7 @@
     return value === uninitializedValue;
   }
 
-  // Remember to update types file if you add/remove/rename props.
+  // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
   let className = '';
   export { className as class };

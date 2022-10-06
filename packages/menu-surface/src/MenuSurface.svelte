@@ -1,6 +1,4 @@
-<svelte:body
-  on:click|capture={(event) =>
-    instance && open && !managed && instance.handleBodyClick(event)} />
+<svelte:body on:click|capture={handleBodyClick} />
 
 <div
   bind:this={element}
@@ -19,7 +17,7 @@
     .map(([name, value]) => `${name}: ${value};`)
     .concat([style])
     .join(' ')}
-  on:keydown={(event) => instance && instance.handleKeydown(event)}
+  on:keydown={instance && instance.handleKeydown.bind(instance)}
   {...$$restProps}
 >
   <slot />
@@ -29,6 +27,7 @@
   import { MDCMenuSurfaceFoundation } from '@material/menu-surface';
   import { onMount, onDestroy, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
+  import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
@@ -40,9 +39,28 @@
   import type { SMUIMenuSurfaceAccessor } from './MenuSurface.types.js';
   import { Corner } from './MenuSurface.types.js';
 
+  type OwnProps = {
+    use?: ActionArray;
+    class?: string;
+    style?: string;
+    static?: boolean;
+    anchor?: boolean;
+    fixed?: boolean;
+    open?: boolean;
+    managed?: boolean;
+    fullWidth?: boolean;
+    quickOpen?: boolean;
+    anchorElement?: Element | undefined;
+    anchorCorner?: Corner | keyof typeof Corner | undefined;
+    anchorMargin?: { top: number; right: number; bottom: number; left: number };
+    maxHeight?: number;
+    horizontallyCenteredOnViewport?: boolean;
+  };
+  type $$Props = OwnProps & SmuiAttrs<'div', OwnProps>;
+
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  // Remember to update types file if you add/remove/rename props.
+  // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
   let className = '';
   export { className as class };
@@ -275,6 +293,12 @@
   function closeProgrammatic(skipRestoreFocus?: boolean) {
     instance.close(skipRestoreFocus);
     open = false;
+  }
+
+  function handleBodyClick(event: MouseEvent) {
+    if (instance && open && !managed) {
+      instance.handleBodyClick(event);
+    }
   }
 
   export function isOpen() {

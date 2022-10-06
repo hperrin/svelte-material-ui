@@ -76,7 +76,7 @@
         instance.handleClick(getNormalizedXCoordinate(event));
       }
     }}
-    on:keydown={(event) => instance && instance.handleKeydown(event)}
+    on:keydown={instance && instance.handleKeydown.bind(instance)}
     on:focus
     on:blur
     {...selectAnchorAttrs}
@@ -226,7 +226,12 @@
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
   import { writable } from 'svelte/store';
   import { get_current_component } from 'svelte/internal';
-  import type { AddLayoutListener, RemoveLayoutListener } from '@smui/common';
+  import type {
+    AddLayoutListener,
+    RemoveLayoutListener,
+    SmuiAttrs,
+    SmuiElementPropMap,
+  } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
@@ -242,14 +247,72 @@
   import Menu from '@smui/menu';
   import type { SMUIListAccessor } from '@smui/list';
   import List from '@smui/list';
-  import type { FloatingLabelComponentDev } from '@smui/floating-label';
   import FloatingLabel from '@smui/floating-label';
-  import type { LineRippleComponentDev } from '@smui/line-ripple';
   import LineRipple from '@smui/line-ripple';
-  import type { NotchedOutlineComponentDev } from '@smui/notched-outline';
   import NotchedOutline from '@smui/notched-outline';
 
   import HelperText from './helper-text/HelperText.svelte';
+
+  type OwnProps = {
+    use?: ActionArray;
+    class?: string;
+    style?: string;
+    ripple?: boolean;
+    disabled?: boolean;
+    variant?: 'standard' | 'filled' | 'outlined';
+    noLabel?: boolean;
+    label?: string | undefined;
+    value?: any;
+    key?: (item: any) => string;
+    dirty?: boolean;
+    invalid?: boolean;
+    updateInvalid?: boolean;
+    required?: boolean;
+    inputId?: string;
+    hiddenInput?: boolean;
+    withLeadingIcon?: boolean;
+    anchor$use?: ActionArray;
+    anchor$class?: string;
+    selectedTextContainer$use?: ActionArray;
+    selectedTextContainer$class?: string;
+    selectedText$use?: ActionArray;
+    selectedText$class?: string;
+    dropdownIcon$use?: ActionArray;
+    dropdownIcon$class?: string;
+    menu$class?: string;
+  };
+  type $$Props = OwnProps &
+    SmuiAttrs<'div', OwnProps> & {
+      [k in keyof HelperText['$$prop_def'] as `helperText\$${k}`]?: HelperText['$$prop_def'][k];
+    } & {
+      [k in keyof SmuiElementPropMap['input'] as `input\$${k}`]?: SmuiElementPropMap['input'][k];
+    } & {
+      [k in keyof SmuiElementPropMap['div'] as `anchor\$${k}`]?: SmuiElementPropMap['div'][k];
+    } & {
+      [k in keyof FloatingLabel['$$prop_def'] as `label\$${k}`]?: FloatingLabel['$$prop_def'][k];
+    } & {
+      [k in keyof NotchedOutline['$$prop_def'] as `outline\$${k}`]?: NotchedOutline['$$prop_def'][k];
+    } & {
+      [k in keyof SmuiElementPropMap['span'] as `selectedTextContainer\$${k}`]?: SmuiElementPropMap['span'][k];
+    } & {
+      [k in keyof SmuiElementPropMap['span'] as `selectedText\$${k}`]?: SmuiElementPropMap['span'][k];
+    } & {
+      [k in keyof SmuiElementPropMap['span'] as `dropdownIcon\$${k}`]?: SmuiElementPropMap['span'][k];
+    } & {
+      [k in keyof LineRipple['$$prop_def'] as `ripple\$${k}`]?: LineRipple['$$prop_def'][k];
+    } & {
+      [k in keyof Menu['$$prop_def'] as `menu\$${k}`]?: Menu['$$prop_def'][k];
+    } & {
+      [k in keyof InstanceType<
+        typeof List
+      >['$$prop_def'] as `list\$${k}`]?: InstanceType<
+        typeof List
+      >['$$prop_def'][k];
+    } & {
+      input$disabled?: never;
+      input$required?: never;
+      input$value?: never;
+    };
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
   interface UninitializedValue extends Function {}
@@ -258,7 +321,7 @@
     return value === uninitializedValue;
   }
 
-  // Remember to update types file if you add/remove/rename props.
+  // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
   let className = '';
   export { className as class };
@@ -320,9 +383,9 @@
   let helperText: MDCSelectHelperTextFoundation | undefined = undefined;
 
   // Components
-  let floatingLabel: FloatingLabelComponentDev | undefined = undefined;
-  let lineRipple: LineRippleComponentDev | undefined = undefined;
-  let notchedOutline: NotchedOutlineComponentDev | undefined = undefined;
+  let floatingLabel: FloatingLabel | undefined = undefined;
+  let lineRipple: LineRipple | undefined = undefined;
+  let notchedOutline: NotchedOutline | undefined = undefined;
 
   setContext('SMUI:list:role', '');
   setContext('SMUI:list:nav', false);

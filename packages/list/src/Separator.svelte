@@ -17,17 +17,32 @@
 />
 
 <script lang="ts">
-  import type { ComponentType } from 'svelte';
+  import type { ComponentType, SvelteComponent } from 'svelte';
   import { getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import type { ActionArray } from '@smui/common/internal';
   import { forwardEventsBuilder, classMap } from '@smui/common/internal';
-  import type { SmuiComponent } from '@smui/common';
+  import type { SmuiElementMap, SmuiAttrs } from '@smui/common';
   import { SmuiElement } from '@smui/common';
+
+  type TagName = $$Generic<keyof SmuiElementMap>;
+  type Component = $$Generic<ComponentType<SvelteComponent>>;
+  type OwnProps = {
+    use?: ActionArray;
+    class?: string;
+    padded?: boolean;
+    inset?: boolean;
+    insetLeading?: boolean;
+    insetTrailing?: boolean;
+    insetPadding?: boolean;
+    component?: Component;
+    tag?: TagName;
+  };
+  type $$Props = OwnProps & SmuiAttrs<keyof SmuiElementMap, OwnProps>;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  // Remember to update types file if you add/remove/rename props.
+  // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
   let className = '';
   export { className as class };
@@ -37,17 +52,18 @@
   export let insetTrailing = false;
   export let insetPadding = false;
 
-  let element: SmuiComponent;
+  let element: SvelteComponent;
   let nav = getContext<boolean | undefined>('SMUI:list:item:nav');
   let context = getContext<string | undefined>('SMUI:separator:context');
 
-  export let component: ComponentType<SmuiComponent> = SmuiElement;
-  export let tag =
-    component === SmuiElement
+  export let component: Component = SmuiElement as unknown as Component;
+  export let tag: TagName | undefined = (
+    component === (SmuiElement as unknown as Component)
       ? nav || context !== 'list'
         ? 'hr'
         : 'li'
-      : null;
+      : undefined
+  ) as TagName | undefined;
 
   export function getElement(): HTMLElement {
     return element.getElement();

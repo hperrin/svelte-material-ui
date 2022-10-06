@@ -32,7 +32,7 @@
         <Label>Username</Label>
         <IconButton class="material-icons">arrow_upward</IconButton>
       </Cell>
-      <Cell columnId="email" l>
+      <Cell columnId="email">
         <Label>Email</Label>
         <IconButton class="material-icons">arrow_upward</IconButton>
       </Cell>

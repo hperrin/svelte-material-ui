@@ -1,9 +1,9 @@
 import type { ComponentType, SvelteComponent } from 'svelte';
 
-import type { SmuiElementTagNameMap } from '../smui.types.js';
+import type { SmuiElementMap } from '../smui.types.js';
 
 export type ClassAdderInternals<
-  T extends keyof SmuiElementTagNameMap = 'div',
+  T extends keyof SmuiElementMap = 'div',
   C extends ComponentType<SvelteComponent> = ComponentType<SvelteComponent>
 > = {
   component: C;

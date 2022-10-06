@@ -32,8 +32,7 @@
   aria-selected={active ? 'true' : 'false'}
   tabindex={active || forceAccessible ? '0' : '-1'}
   {href}
-  on:click={(event) =>
-    !event.defaultPrevented && instance && instance.handleClick()}
+  on:click={handleClick}
   {...internalAttrs}
   {...exclude($$restProps, ['content$', 'tabIndicator$'])}
 >
@@ -69,7 +68,7 @@
 
 <script lang="ts">
   import { MDCTabFoundation } from '@material/tab';
-  import type { ComponentType } from 'svelte';
+  import type { ComponentType, SvelteComponent } from 'svelte';
   import { onMount, setContext, getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import type { ActionArray } from '@smui/common/internal';
@@ -82,16 +81,43 @@
     dispatch,
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
-  import type { SmuiComponent } from '@smui/common';
+  import type {
+    SmuiElementMap,
+    SmuiElementPropMap,
+    SmuiAttrs,
+  } from '@smui/common';
   import { SmuiElement } from '@smui/common';
-  import type { TabIndicatorComponentDev } from '@smui/tab-indicator';
   import TabIndicator from '@smui/tab-indicator';
 
   import type { SMUITabAccessor } from './Tab.types.js';
 
+  type TagName = $$Generic<keyof SmuiElementMap>;
+  type Component = $$Generic<ComponentType<SvelteComponent>>;
+  type OwnProps = {
+    use?: ActionArray;
+    class?: string;
+    style?: string;
+    tab: any;
+    ripple?: boolean;
+    stacked?: boolean;
+    minWidth?: boolean;
+    indicatorSpanOnlyContent?: boolean;
+    href?: string | undefined;
+    content$use?: ActionArray;
+    content$class?: string;
+    component?: Component;
+    tag?: TagName;
+  };
+  type $$Props = OwnProps &
+    SmuiAttrs<keyof SmuiElementMap, OwnProps> & {
+      [k in keyof SmuiElementPropMap['span'] as `content\$${k}`]?: SmuiElementPropMap['span'][k];
+    } & {
+      [k in keyof TabIndicator['$$prop_def'] as `tabIndicator\$${k}`]?: TabIndicator['$$prop_def'][k];
+    };
+
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  // Remember to update types file if you add/remove/rename props.
+  // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
   let className = '';
   export { className as class };
@@ -106,10 +132,10 @@
   export let content$use: ActionArray = [];
   export let content$class = '';
 
-  let element: SmuiComponent;
+  let element: SvelteComponent;
   let instance: MDCTabFoundation;
   let content: HTMLSpanElement;
-  let tabIndicator: TabIndicatorComponentDev;
+  let tabIndicator: TabIndicator;
   let internalClasses: { [k: string]: boolean } = {};
   let internalStyles: { [k: string]: string } = {};
   let internalAttrs: { [k: string]: string | undefined } = {};
@@ -117,9 +143,14 @@
   let active = tabId === getContext<any | undefined>('SMUI:tab:initialActive');
   let forceAccessible = false;
 
-  export let component: ComponentType<SmuiComponent> = SmuiElement;
-  export let tag =
-    component === SmuiElement ? (href == null ? 'button' : 'a') : null;
+  export let component: Component = SmuiElement as unknown as Component;
+  export let tag: TagName | undefined = (
+    component === (SmuiElement as unknown as Component)
+      ? href == null
+        ? 'button'
+        : 'a'
+      : undefined
+  ) as TagName | undefined;
 
   setContext('SMUI:label:context', 'tab');
   setContext('SMUI:icon:context', 'tab');
@@ -219,6 +250,12 @@
   function addAttr(name: string, value: string) {
     if (internalAttrs[name] !== value) {
       internalAttrs[name] = value;
+    }
+  }
+
+  function handleClick(event: MouseEvent) {
+    if (!event.defaultPrevented && instance) {
+      instance.handleClick();
     }
   }
 

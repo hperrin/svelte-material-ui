@@ -31,14 +31,32 @@
     classMap,
     dispatch,
   } from '@smui/common/internal';
-  import type { PaperComponentDev } from '@smui/paper';
   import Paper from '@smui/paper';
 
   import type { SMUIAccordionPanelAccessor } from './Panel.types.js';
 
+  type OwnProps = {
+    use?: ActionArray;
+    class?: string;
+    variant?: 'raised' | 'unelevated' | 'outlined';
+    color?: 'default' | 'primary' | 'secondary' | string;
+    elevation?: number;
+    open?: boolean;
+    disabled?: boolean;
+    nonInteractive?: boolean;
+    extend?: boolean;
+    extendedElevation?: number;
+  };
+  type $$Props = {
+    [P in Exclude<
+      keyof Paper['$$prop_def'],
+      keyof OwnProps
+    >]?: Paper['$$prop_def'][P];
+  } & OwnProps;
+
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  // Remember to update types file if you add/remove/rename props.
+  // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
   $: usePass = [forwardEvents, ...use] as ActionArray;
   let className = '';
@@ -52,7 +70,7 @@
   export let extend = false;
   export let extendedElevation = 3;
 
-  let element: PaperComponentDev;
+  let element: Paper;
   let accessor: SMUIAccordionPanelAccessor;
   let opened = open;
 
@@ -171,7 +189,7 @@
     open = value;
   }
 
-  export function getElement(): ReturnType<PaperComponentDev['getElement']> {
+  export function getElement() {
     return element.getElement();
   }
 </script>

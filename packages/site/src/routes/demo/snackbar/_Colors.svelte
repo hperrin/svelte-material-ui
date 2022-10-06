@@ -39,12 +39,11 @@
 </Button>
 
 <script lang="ts">
-  import type { SnackbarComponentDev } from '@smui/snackbar';
   import Snackbar, { Label, Actions } from '@smui/snackbar';
   import IconButton from '@smui/icon-button';
   import Button from '@smui/button';
 
-  let snackbarSuccess: SnackbarComponentDev;
-  let snackbarWarning: SnackbarComponentDev;
-  let snackbarError: SnackbarComponentDev;
+  let snackbarSuccess: Snackbar;
+  let snackbarWarning: Snackbar;
+  let snackbarError: Snackbar;
 </script>

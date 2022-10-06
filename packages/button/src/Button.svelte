@@ -62,10 +62,10 @@
     dispatch,
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
-  import type { SmuiElementTagNameMap } from '@smui/common';
+  import type { SmuiElementMap, SmuiAttrs } from '@smui/common';
   import { SmuiElement } from '@smui/common';
 
-  type TagName = $$Generic<keyof SmuiElementTagNameMap>;
+  type TagName = $$Generic<keyof SmuiElementMap>;
   type Component = $$Generic<ComponentType<SvelteComponent>>;
   type OwnProps = {
     use?: ActionArray;
@@ -82,12 +82,7 @@
     component?: Component;
     tag?: TagName;
   };
-  type $$Props = {
-    [P in Exclude<
-      keyof svelteHTML.IntrinsicElements[TagName],
-      keyof OwnProps
-    >]?: svelteHTML.IntrinsicElements[TagName][P];
-  } & OwnProps;
+  type $$Props = OwnProps & SmuiAttrs<keyof SmuiElementMap, OwnProps>;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
@@ -176,7 +171,7 @@
     }
   }
 
-  export function getElement() {
+  export function getElement(): HTMLElement {
     return element.getElement();
   }
 </script>

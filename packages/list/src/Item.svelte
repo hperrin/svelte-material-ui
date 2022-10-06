@@ -64,7 +64,7 @@
 </script>
 
 <script lang="ts">
-  import type { ComponentType } from 'svelte';
+  import type { ComponentType, SvelteComponent } from 'svelte';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import type {
@@ -79,10 +79,32 @@
     dispatch,
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
-  import type { SmuiComponent } from '@smui/common';
+  import type { SmuiElementMap, SmuiAttrs } from '@smui/common';
   import { SmuiElement } from '@smui/common';
 
   import type { SMUIListItemAccessor } from './Item.types.js';
+
+  type TagName = $$Generic<keyof SmuiElementMap>;
+  type Component = $$Generic<ComponentType<SvelteComponent>>;
+  type OwnProps = {
+    use?: ActionArray;
+    class?: string;
+    style?: string;
+    color?: 'primary' | 'secondary' | undefined;
+    nonInteractive?: boolean;
+    ripple?: boolean;
+    activated?: boolean;
+    role?: string;
+    selected?: boolean;
+    disabled?: boolean;
+    skipRestoreFocus?: boolean;
+    tabindex?: number;
+    inputId?: string;
+    href?: string | undefined;
+    component?: Component;
+    tag?: TagName;
+  };
+  type $$Props = OwnProps & SmuiAttrs<keyof SmuiElementMap, OwnProps>;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
   interface UninitializedValue extends Function {}
@@ -91,7 +113,7 @@
     return value === uninitializedValue;
   }
 
-  // Remember to update types file if you add/remove/rename props.
+  // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
   let className = '';
   export { className as class };
@@ -102,7 +124,7 @@
   setContext('SMUI:list:nonInteractive', undefined);
   export let ripple = !nonInteractive;
   export let activated = false;
-  export let role = getContext('SMUI:list:item:role');
+  export let role: string = getContext('SMUI:list:item:role');
   setContext('SMUI:list:item:role', undefined);
   export let selected = false;
   export let disabled = false;
@@ -112,7 +134,7 @@
   export let inputId = 'SMUI-form-field-list-' + counter++;
   export let href: string | undefined = undefined;
 
-  let element: SmuiComponent;
+  let element: SvelteComponent;
   let internalClasses: { [k: string]: boolean } = {};
   let internalStyles: { [k: string]: string } = {};
   let internalAttrs: { [k: string]: string | undefined } = {};
@@ -126,9 +148,16 @@
       : -1
     : tabindexProp;
 
-  export let component: ComponentType<SmuiComponent> = SmuiElement;
-  export let tag =
-    component === SmuiElement ? (nav ? (href ? 'a' : 'span') : 'li') : null;
+  export let component: Component = SmuiElement as unknown as Component;
+  export let tag: TagName | undefined = (
+    component === (SmuiElement as unknown as Component)
+      ? nav
+        ? href
+          ? 'a'
+          : 'span'
+        : 'li'
+      : undefined
+  ) as TagName | undefined;
 
   setContext('SMUI:generic:input:props', { id: inputId });
   // Reset separator context, because we aren't directly under a list anymore.

@@ -8,8 +8,8 @@
     'mdc-segmented-button--single-select': singleSelect,
   })}
   role={singleSelect ? 'radiogroup' : 'group'}
-  on:SMUISegmentedButtonSegment:mount={(event) => handleSegmentMount(event)}
-  on:SMUISegmentedButtonSegment:unmount={(event) => handleSegmentUnmount(event)}
+  on:SMUISegmentedButtonSegment:mount={handleSegmentMount}
+  on:SMUISegmentedButtonSegment:unmount={handleSegmentUnmount}
   on:selected={(event) => instance && instance.handleSelected(event.detail)}
   {...$$restProps}
 >
@@ -30,6 +30,7 @@
   import { onMount, setContext } from 'svelte';
   import { writable } from 'svelte/store';
   import { get_current_component } from 'svelte/internal';
+  import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
@@ -41,9 +42,19 @@
 
   import type { SMUISegmentedButtonSegmentAccessor } from './Segment.types.js';
 
+  type OwnProps = {
+    use?: ActionArray;
+    class?: string;
+    segments?: any[];
+    key?: (segment: any) => string | number;
+    singleSelect?: boolean;
+    selected?: any | any[];
+  };
+  type $$Props = OwnProps & SmuiAttrs<'div', OwnProps>;
+
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  // Remember to update types file if you add/remove/rename props.
+  // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
   let className = '';
   export { className as class };

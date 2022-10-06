@@ -67,6 +67,7 @@
   import { onMount, getContext, setContext } from 'svelte';
   import type { Writable } from 'svelte/store';
   import { get_current_component } from 'svelte/internal';
+  import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
@@ -77,11 +78,23 @@
 
   import type { SMUIDataTableCellAccessor } from './Cell.types.js';
 
+  type OwnProps = {
+    use?: ActionArray;
+    class?: string;
+    numeric?: boolean;
+    checkbox?: boolean;
+    columnId?: string;
+    sortable?: boolean;
+  };
+  type $$Props = OwnProps &
+    SmuiAttrs<'th', OwnProps> &
+    SmuiAttrs<'td', OwnProps>;
+
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
   let header = getContext<boolean>('SMUI:data-table:row:header');
 
-  // Remember to update types file if you add/remove/rename props.
+  // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
   let className = '';
   export { className as class };

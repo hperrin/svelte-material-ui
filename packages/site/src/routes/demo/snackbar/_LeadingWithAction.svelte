@@ -12,11 +12,10 @@
 <pre class="status">Closed Reason: {reason}</pre>
 
 <script lang="ts">
-  import type { SnackbarComponentDev } from '@smui/snackbar';
   import Snackbar, { Actions, Label } from '@smui/snackbar';
   import Button from '@smui/button';
 
-  let snackbar: SnackbarComponentDev;
+  let snackbar: Snackbar;
   let reason = 'nothing yet';
 
   function handleClosed(e: CustomEvent<{ reason: string | undefined }>) {

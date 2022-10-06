@@ -48,7 +48,11 @@
   import { MDCRadioFoundation } from '@material/radio';
   import { onMount, getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
-  import type { SMUIRadioInputAccessor } from '@smui/common';
+  import type {
+    SmuiAttrs,
+    SmuiElementPropMap,
+    SMUIRadioInputAccessor,
+  } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
@@ -60,6 +64,29 @@
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
 
+  type OwnProps = {
+    use?: ActionArray;
+    class?: string;
+    style?: string;
+    disabled?: boolean;
+    touch?: boolean;
+    group?: any | undefined;
+    value?: any;
+    valueKey?: string;
+    input$use?: ActionArray;
+    input$class?: string;
+  };
+  type $$Props = OwnProps &
+    SmuiAttrs<'div', OwnProps> & {
+      [k in keyof SmuiElementPropMap['input'] as `input\$${k}`]?: SmuiElementPropMap['input'][k];
+    } & {
+      input$type?: never;
+      input$disabled?: never;
+      input$value?: never;
+      input$checked?: never;
+      input$group?: never;
+    };
+
   const forwardEvents = forwardEventsBuilder(get_current_component());
   interface UninitializedValue extends Function {}
   let uninitializedValue: UninitializedValue = () => {};
@@ -67,7 +94,7 @@
     return value === uninitializedValue;
   }
 
-  // Remember to update types file if you add/remove/rename props.
+  // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
   let className = '';
   export { className as class };

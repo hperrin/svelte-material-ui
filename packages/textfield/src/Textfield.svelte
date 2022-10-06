@@ -241,7 +241,12 @@
   import { events } from '@material/dom';
   import { onMount, onDestroy, getContext, tick } from 'svelte';
   import { get_current_component } from 'svelte/internal';
-  import type { AddLayoutListener, RemoveLayoutListener } from '@smui/common';
+  import type {
+    AddLayoutListener,
+    RemoveLayoutListener,
+    SmuiAttrs,
+    SmuiElementPropMap,
+  } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
@@ -253,11 +258,8 @@
   } from '@smui/common/internal';
   import { ContextFragment } from '@smui/common';
   import Ripple from '@smui/ripple';
-  import type { FloatingLabelComponentDev } from '@smui/floating-label';
   import FloatingLabel from '@smui/floating-label';
-  import type { LineRippleComponentDev } from '@smui/line-ripple';
   import LineRipple from '@smui/line-ripple';
-  import type { NotchedOutlineComponentDev } from '@smui/notched-outline';
   import NotchedOutline from '@smui/notched-outline';
 
   import HelperLine from './HelperLine.js';
@@ -268,6 +270,61 @@
 
   const { applyPassive } = events;
 
+  type OwnProps = {
+    use?: ActionArray;
+    class?: string;
+    style?: string;
+    ripple?: boolean;
+    disabled?: boolean;
+    required?: boolean;
+    textarea?: boolean;
+    variant?: 'standard' | 'filled' | 'outlined';
+    noLabel?: boolean;
+    label?: string | undefined;
+    type?: string;
+    value?: string | number | null | undefined;
+    files?: FileList | null;
+    invalid?: boolean;
+    updateInvalid?: boolean;
+    dirty?: boolean;
+    prefix?: string | undefined;
+    suffix?: string | undefined;
+    validateOnValueChange?: boolean;
+    useNativeValidation?: boolean;
+    withLeadingIcon?: boolean;
+    withTrailingIcon?: boolean;
+    input?: Input | Textarea | undefined;
+    floatingLabel?: FloatingLabel | undefined;
+    lineRipple?: LineRipple | undefined;
+    notchedOutline?: NotchedOutline | undefined;
+  };
+  type $$Props = OwnProps &
+    SmuiAttrs<'label', OwnProps> &
+    SmuiAttrs<'div', OwnProps> & {
+      [k in keyof FloatingLabel['$$prop_def'] as `label\$${k}`]?: FloatingLabel['$$prop_def'][k];
+    } & {
+      [k in keyof NotchedOutline['$$prop_def'] as `outline\$${k}`]?: NotchedOutline['$$prop_def'][k];
+    } & {
+      [k in keyof LineRipple['$$prop_def'] as `ripple\$${k}`]?: LineRipple['$$prop_def'][k];
+    } & {
+      [k in keyof SmuiElementPropMap['div'] as `helperLine\$${k}`]?: SmuiElementPropMap['div'][k];
+    } & {
+      [k in keyof Input['$$prop_def'] as `input\$${k}`]?: Input['$$prop_def'][k];
+    } & {
+      [k in keyof Textarea['$$prop_def'] as `input\$${k}`]?: Textarea['$$prop_def'][k];
+    } & {
+      input$type?: never;
+      input$disabled?: never;
+      input$required?: never;
+      input$value?: never;
+      input$files?: never;
+      input$dirty?: never;
+      input$invalid?: never;
+      input$updateInvalid?: never;
+      'input$aria-controls'?: never;
+      'input$aria-describedby'?: never;
+    };
+
   const forwardEvents = forwardEventsBuilder(get_current_component());
   interface UninitializedValue extends Function {}
   let uninitializedValue: UninitializedValue = () => {};
@@ -275,7 +332,7 @@
     return value === uninitializedValue;
   }
 
-  // Remember to update types file if you add/remove/rename props.
+  // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
   let className = '';
   export { className as class };
@@ -324,9 +381,9 @@
 
   // Components
   export let input: Input | Textarea | undefined = undefined;
-  export let floatingLabel: FloatingLabelComponentDev | undefined = undefined;
-  export let lineRipple: LineRippleComponentDev | undefined = undefined;
-  export let notchedOutline: NotchedOutlineComponentDev | undefined = undefined;
+  export let floatingLabel: FloatingLabel | undefined = undefined;
+  export let lineRipple: LineRipple | undefined = undefined;
+  export let notchedOutline: NotchedOutline | undefined = undefined;
 
   let element: HTMLLabelElement | HTMLDivElement;
   let instance: MDCTextFieldFoundation;

@@ -43,6 +43,7 @@
   import { onMount, setContext } from 'svelte';
   import { writable } from 'svelte/store';
   import { get_current_component } from 'svelte/internal';
+  import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
     announce,
@@ -56,9 +57,22 @@
 
   const { MDCChipSetFoundation } = deprecated;
 
+  type OwnProps = {
+    use?: ActionArray;
+    class?: string;
+    chips?: any[];
+    key?: (chip: any) => string | number;
+    selected?: any[] | any | undefined;
+    nonInteractive?: boolean;
+    choice?: boolean;
+    filter?: boolean;
+    input?: boolean;
+  };
+  type $$Props = OwnProps & SmuiAttrs<'div', OwnProps>;
+
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  // Remember to update types file if you add/remove/rename props.
+  // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
   let className = '';
   export { className as class };

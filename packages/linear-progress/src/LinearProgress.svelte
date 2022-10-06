@@ -50,6 +50,7 @@
   import { onMount, getContext } from 'svelte';
   import type { Writable } from 'svelte/store';
   import { get_current_component } from 'svelte/internal';
+  import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
@@ -57,9 +58,20 @@
     useActions,
   } from '@smui/common/internal';
 
+  type OwnProps = {
+    use?: ActionArray;
+    class?: string;
+    style?: string;
+    indeterminate?: boolean;
+    closed?: boolean;
+    progress?: number;
+    buffer?: number | undefined;
+  };
+  type $$Props = OwnProps & SmuiAttrs<'div', OwnProps>;
+
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  // Remember to update types file if you add/remove/rename props.
+  // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
   let className = '';
   export { className as class };

@@ -183,17 +183,15 @@
   import { page } from '$app/stores';
 
   import TopAppBar, { Row, Section, Title } from '@smui/top-app-bar';
-  import type { DrawerComponentDev } from '@smui/drawer';
   import Drawer, { Content, Scrim, AppContent } from '@smui/drawer';
   import IconButton from '@smui/icon-button';
-  import type { ItemComponentDev } from '@smui/list';
   import List, { Item, Text, Separator } from '@smui/list';
   import Tooltip, { Wrapper } from '@smui/tooltip';
   import { Icon } from '@smui/common';
 
   const iframe = $page.url.pathname.includes('/iframe');
 
-  let drawer: DrawerComponentDev;
+  let drawer: Drawer;
   let mainContent: HTMLElement;
   let miniWindow = false;
   let drawerOpen = false;
@@ -203,7 +201,7 @@
   let lightTheme: boolean;
 
   type DemoSection = {
-    component?: ItemComponentDev;
+    component?: InstanceType<typeof Item>;
     name: string;
     route?: string;
     shortcut?: string;

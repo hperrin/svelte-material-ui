@@ -17,11 +17,10 @@
 </Button>
 
 <script lang="ts">
-  import type { SnackbarComponentDev } from '@smui/snackbar';
   import Snackbar, { Actions, Label } from '@smui/snackbar';
   import Button from '@smui/button';
   import IconButton from '@smui/icon-button';
 
-  let snackbarWithClose: SnackbarComponentDev;
-  let snackbarWithoutClose: SnackbarComponentDev;
+  let snackbarWithClose: Snackbar;
+  let snackbarWithoutClose: Snackbar;
 </script>

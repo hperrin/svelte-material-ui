@@ -125,38 +125,31 @@
 </div>
 
 <script lang="ts">
-  import type {
-    InputComponentDev,
-    TextareaComponentDev,
-  } from '@smui/textfield';
   import Textfield, { Input, Textarea } from '@smui/textfield';
   import Icon from '@smui/textfield/icon';
   import HelperText from '@smui/textfield/helper-text';
-  import type { FloatingLabelComponentDev } from '@smui/floating-label';
   import FloatingLabel from '@smui/floating-label';
-  import type { LineRippleComponentDev } from '@smui/line-ripple';
   import LineRipple from '@smui/line-ripple';
-  import type { NotchedOutlineComponentDev } from '@smui/notched-outline';
   import NotchedOutline from '@smui/notched-outline';
 
   // Manual Setup requires passing the lower components up to the Textfield
   let valueA = '';
-  let inputA: InputComponentDev;
-  let floatingLabelA: FloatingLabelComponentDev;
-  let lineRippleA: LineRippleComponentDev;
+  let inputA: Input;
+  let floatingLabelA: FloatingLabel;
+  let lineRippleA: LineRipple;
 
   let valueB = '';
-  let inputB: InputComponentDev;
-  let floatingLabelB: FloatingLabelComponentDev;
-  let lineRippleB: LineRippleComponentDev;
+  let inputB: Input;
+  let floatingLabelB: FloatingLabel;
+  let lineRippleB: LineRipple;
 
   let valueC = '';
-  let inputC: InputComponentDev;
-  let notchedOutlineC: NotchedOutlineComponentDev;
-  let floatingLabelC: FloatingLabelComponentDev;
+  let inputC: Input;
+  let notchedOutlineC: NotchedOutline;
+  let floatingLabelC: FloatingLabel;
 
   let valueD = '';
-  let inputD: TextareaComponentDev;
-  let notchedOutlineD: NotchedOutlineComponentDev;
-  let floatingLabelD: FloatingLabelComponentDev;
+  let inputD: Textarea;
+  let notchedOutlineD: NotchedOutline;
+  let floatingLabelD: FloatingLabel;
 </script>

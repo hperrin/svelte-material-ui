@@ -25,12 +25,11 @@
 <pre class="status">Action: {action}</pre>
 
 <script lang="ts">
-  import type { SnackbarComponentDev } from '@smui/snackbar';
   import Snackbar, { Actions, Label } from '@smui/snackbar';
   import Button from '@smui/button';
   import IconButton from '@smui/icon-button';
 
-  let snackbar: SnackbarComponentDev;
+  let snackbar: Snackbar;
   let reason = 'nothing yet';
   let action = 'nothing yet';
 

@@ -27,7 +27,6 @@
 </AutoAdjust>
 
 <script lang="ts">
-  import type { TopAppBarComponentDev } from '@smui/top-app-bar';
   import TopAppBar, {
     Row,
     Section,
@@ -37,7 +36,7 @@
   import IconButton from '@smui/icon-button';
   import LoremIpsum from '$lib/LoremIpsum.svelte';
 
-  let topAppBar: TopAppBarComponentDev;
+  let topAppBar: TopAppBar;
 </script>
 
 <style>

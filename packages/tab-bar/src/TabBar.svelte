@@ -9,9 +9,9 @@
   role="tablist"
   on:SMUITab:mount={handleTabMount}
   on:SMUITab:unmount={handleTabUnmount}
-  on:SMUITab:interacted={(event) =>
-    instance && instance.handleTabInteraction(event)}
-  on:keydown={(event) => instance && instance.handleKeyDown(event)}
+  on:SMUITab:interacted={instance &&
+    instance.handleTabInteraction.bind(instance)}
+  on:keydown={instance && instance.handleKeyDown.bind(instance)}
   {...exclude($$restProps, ['tabScroller$'])}
 >
   <TabScroller
@@ -28,6 +28,7 @@
   import { MDCTabBarFoundation } from '@material/tab-bar';
   import { onMount, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
+  import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
     forwardEventsBuilder,
@@ -38,7 +39,6 @@
     dispatch,
   } from '@smui/common/internal';
   import type { SMUITabAccessor } from '@smui/tab';
-  import type { TabScrollerComponentDev } from '@smui/tab-scroller';
   import TabScroller from '@smui/tab-scroller';
 
   type PrimitiveKey = string | number;
@@ -46,10 +46,24 @@
   interface $$Slots {
     default: { tab: TabKey };
   }
+  type OwnProps = {
+    use?: ActionArray;
+    class?: string;
+    tabs?: TabKey[];
+    key?: (tab: TabKey) => PrimitiveKey;
+    focusOnActivate?: boolean;
+    focusOnProgrammatic?: boolean;
+    useAutomaticActivation?: boolean;
+    active?: TabKey | undefined;
+  };
+  type $$Props = OwnProps &
+    SmuiAttrs<'div', OwnProps> & {
+      [k in keyof TabScroller['$$prop_def'] as `tabScroller\$${k}`]?: TabScroller['$$prop_def'][k];
+    };
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
-  // Remember to update types file if you add/remove/rename props.
+  // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
   let className = '';
   export { className as class };
@@ -62,7 +76,7 @@
 
   let element: HTMLDivElement;
   let instance: MDCTabBarFoundation;
-  let tabScroller: TabScrollerComponentDev;
+  let tabScroller: TabScroller;
   let activeIndex = tabs.indexOf(active!);
   let tabAccessorMap: Record<PrimitiveKey, SMUITabAccessor> = {};
   let tabAccessorWeakMap = new WeakMap<Object, SMUITabAccessor>();
