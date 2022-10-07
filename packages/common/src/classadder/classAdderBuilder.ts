@@ -2,6 +2,7 @@ import type { ComponentType, SvelteComponent } from 'svelte';
 
 import type { SmuiElementMap } from '../smui.types.js';
 import type { ClassAdderInternals } from './ClassAdder.types.js';
+// @ts-ignore: Internals is exported... argh.
 import ClassAdder, { internals } from './ClassAdder.svelte';
 
 const defaults = { ...internals };
