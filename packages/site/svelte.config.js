@@ -32,10 +32,6 @@ const config = {
   kit: {
     adapter: staticAdapter(),
 
-    prerender: {
-      default: true,
-    },
-
     trailingSlash: 'ignore',
   },
 };
