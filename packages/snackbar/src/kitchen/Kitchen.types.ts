@@ -8,7 +8,7 @@ export interface ConfigAction {
 }
 
 export type Config = {
-  props?: Snackbar['$$prop_def'];
+  props?: Omit<Snackbar['$$prop_def'], 'slot'>;
   onClose?: (e: MDCSnackbarCloseEvent) => void;
   onDismiss?: (e: MouseEvent) => void;
   actions?: ConfigAction[];

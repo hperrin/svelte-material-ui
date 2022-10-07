@@ -9,6 +9,14 @@ export type SmuiAttrs<
 } & SvelteAttrs &
   DataAttrs;
 
+export type SmuiSvgAttrs<OwnProps extends Object> = {
+  [P in keyof Omit<
+    svelte.JSX.SVGProps<SVGSVGElement>,
+    keyof OwnProps
+  >]?: svelte.JSX.SVGProps<SVGSVGElement>[P];
+} & SvelteAttrs &
+  DataAttrs;
+
 export type SvelteAttrs = {
   'sveltekit:noscroll'?: true | undefined | null;
   'sveltekit:prefetch'?: true | undefined | null;
@@ -173,8 +181,6 @@ export interface SmuiElementMap {
   // frameset: HTMLElementTagNameMap['frameset'];
   // marquee: HTMLElementTagNameMap['marquee'];
   template: HTMLElementTagNameMap['template'];
-
-  svg: SVGSVGElement;
 }
 
 export interface SmuiElementPropMap {
@@ -295,6 +301,4 @@ export interface SmuiElementPropMap {
   // frameset: svelte.JSX.HTMLProps<HTMLElementTagNameMap['frameset']>;
   // marquee: svelte.JSX.HTMLProps<HTMLElementTagNameMap['marquee']>;
   template: svelte.JSX.HTMLProps<HTMLElementTagNameMap['template']>;
-
-  svg: svelte.JSX.SVGProps<SVGSVGElement>;
 }

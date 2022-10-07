@@ -123,7 +123,6 @@
       {...prefixFilter($$restProps, 'selectedTextContainer$')}
     >
       <span
-        bind:this={selectText}
         use:useActions={selectedText$use}
         id={inputId + '-smui-selected-text'}
         class={classMap({
@@ -364,7 +363,6 @@
   let internalStyles: { [k: string]: string } = {};
   let selectAnchor: HTMLDivElement;
   let selectAnchorAttrs: { [k: string]: string | undefined } = {};
-  let selectText: HTMLSpanElement;
   let selectedIndex = -1;
   let helperId: string | undefined = undefined;
   let addLayoutListener = getContext<AddLayoutListener | undefined>(

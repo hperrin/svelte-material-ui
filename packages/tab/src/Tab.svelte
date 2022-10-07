@@ -85,6 +85,7 @@
     SmuiElementMap,
     SmuiElementPropMap,
     SmuiAttrs,
+    SmuiSvgAttrs,
   } from '@smui/common';
   import { SmuiElement } from '@smui/common';
   import TabIndicator from '@smui/tab-indicator';
@@ -109,7 +110,7 @@
     tag?: TagName;
   };
   type $$Props = OwnProps &
-    SmuiAttrs<keyof SmuiElementMap, OwnProps> & {
+    (SmuiAttrs<keyof SmuiElementMap, OwnProps> | SmuiSvgAttrs<OwnProps>) & {
       [k in keyof SmuiElementPropMap['span'] as `content\$${k}`]?: SmuiElementPropMap['span'][k];
     } & {
       [k in keyof TabIndicator['$$prop_def'] as `tabIndicator\$${k}`]?: TabIndicator['$$prop_def'][k];

@@ -52,7 +52,7 @@
             href={`https://github.com/hperrin/svelte-material-ui/blob/master/packages/site/src/routes/demo/${file}`}
             target="_blank"
           >
-            <Icon tag="svg" viewBox="0 0 24 24">
+            <Icon component={Svg} viewBox="0 0 24 24">
               <path fill="currentColor" d={mdiGithub} />
             </Icon>
           </IconButton>
@@ -61,10 +61,10 @@
       {/each}
       <Wrapper>
         <IconButton toggle bind:pressed={show}>
-          <Icon tag="svg" viewBox="0 0 24 24" on>
+          <Icon component={Svg} viewBox="0 0 24 24" on>
             <path fill="currentColor" d={mdiCodeTagsCheck} />
           </Icon>
-          <Icon tag="svg" viewBox="0 0 24 24">
+          <Icon component={Svg} viewBox="0 0 24 24">
             <path fill="currentColor" d={mdiCodeTags} />
           </Icon>
         </IconButton>
@@ -80,6 +80,7 @@
   import Card, { Content, Actions, ActionIcons } from '@smui/card';
   import IconButton, { Icon } from '@smui/icon-button';
   import Tooltip, { Wrapper } from '@smui/tooltip';
+  import { Svg } from '@smui/common';
 
   export let file: string | undefined = undefined;
   export let files: string[] = typeof file === 'string' ? [file] : [];

@@ -22,7 +22,7 @@
   import { get_current_component } from 'svelte/internal';
   import type { ActionArray } from '@smui/common/internal';
   import { forwardEventsBuilder, classMap } from '@smui/common/internal';
-  import type { SmuiElementMap, SmuiAttrs } from '@smui/common';
+  import type { SmuiElementMap, SmuiAttrs, SmuiSvgAttrs } from '@smui/common';
   import { SmuiElement } from '@smui/common';
 
   type TagName = $$Generic<keyof SmuiElementMap>;
@@ -38,7 +38,8 @@
     component?: Component;
     tag?: TagName;
   };
-  type $$Props = OwnProps & SmuiAttrs<keyof SmuiElementMap, OwnProps>;
+  type $$Props = OwnProps &
+    (SmuiAttrs<keyof SmuiElementMap, OwnProps> | SmuiSvgAttrs<OwnProps>);
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

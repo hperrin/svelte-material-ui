@@ -29,7 +29,11 @@
 
   import type { ActionArray } from './internal/useActions.js';
   import { forwardEventsBuilder, classMap } from './internal/index.js';
-  import type { SmuiElementMap, SmuiAttrs } from './smui.types.js';
+  import type {
+    SmuiElementMap,
+    SmuiAttrs,
+    SmuiSvgAttrs,
+  } from './smui.types.js';
   import { SmuiElement } from './index.js';
 
   type TagName = $$Generic<keyof SmuiElementMap>;
@@ -40,7 +44,8 @@
     component?: Component;
     tag?: TagName;
   };
-  type $$Props = OwnProps & SmuiAttrs<keyof SmuiElementMap, OwnProps>;
+  type $$Props = OwnProps &
+    (SmuiAttrs<keyof SmuiElementMap, OwnProps> | SmuiSvgAttrs<OwnProps>);
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

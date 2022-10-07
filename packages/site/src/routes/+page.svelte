@@ -17,7 +17,11 @@
           style="display: flex; justify-content: space-between; align-items: center;"
         >
           <span>Svelte</span>
-          <Icon tag="svg" style="width: 1em; height: auto;" viewBox="0 0 24 24">
+          <Icon
+            component={Svg}
+            style="width: 1em; height: auto;"
+            viewBox="0 0 24 24"
+          >
             <path fill="currentColor" d={siSvelte.path} />
           </Icon>
         </Title>
@@ -32,7 +36,11 @@
           style="display: flex; justify-content: space-between; align-items: center;"
         >
           <span>Material.io</span>
-          <Icon tag="svg" style="width: 1em; height: auto;" viewBox="0 0 24 24">
+          <Icon
+            component={Svg}
+            style="width: 1em; height: auto;"
+            viewBox="0 0 24 24"
+          >
             <path fill="currentColor" d={siMaterialdesign.path} />
           </Icon>
         </Title>
@@ -55,7 +63,11 @@
           style="display: flex; justify-content: space-between; align-items: center;"
         >
           <span>Sass</span>
-          <Icon tag="svg" style="width: 1em; height: auto;" viewBox="0 0 24 24">
+          <Icon
+            component={Svg}
+            style="width: 1em; height: auto;"
+            viewBox="0 0 24 24"
+          >
             <path fill="currentColor" d={siSass.path} />
           </Icon>
         </Title>
@@ -85,7 +97,7 @@
         <Item style="height: auto; min-height: 64px;">
           <Graphic style="height: auto; width: auto;">
             <Icon
-              tag="svg"
+              component={Svg}
               style="width: 40px; height: 40px;"
               viewBox="0 0 24 24"
             >
@@ -104,7 +116,7 @@
         <Item style="height: auto; min-height: 64px;">
           <Graphic style="height: auto; width: auto;">
             <Icon
-              tag="svg"
+              component={Svg}
               style="width: 40px; height: 40px;"
               viewBox="0 0 24 24"
             >
@@ -124,7 +136,7 @@
         <Item style="height: auto; min-height: 64px;">
           <Graphic style="height: auto; width: auto;">
             <Icon
-              tag="svg"
+              component={Svg}
               style="width: 40px; height: 40px;"
               viewBox="0 0 24 24"
             >
@@ -143,7 +155,7 @@
         <Item style="height: auto; min-height: 64px;">
           <Graphic style="height: auto; width: auto;">
             <Icon
-              tag="svg"
+              component={Svg}
               style="width: 40px; height: 40px;"
               viewBox="0 0 24 24"
             >
@@ -162,7 +174,7 @@
         <Item style="height: auto; min-height: 64px;">
           <Graphic style="height: auto; width: auto;">
             <Icon
-              tag="svg"
+              component={Svg}
               style="width: 40px; height: 40px;"
               viewBox="0 0 24 24"
             >
@@ -181,7 +193,7 @@
         <Item style="height: auto; min-height: 64px;">
           <Graphic style="height: auto; width: auto;">
             <Icon
-              tag="svg"
+              component={Svg}
               style="width: 40px; height: 40px;"
               viewBox="0 0 24 24"
             >
@@ -199,7 +211,7 @@
         <Item style="height: auto; min-height: 64px;">
           <Graphic style="height: auto; width: auto;">
             <Icon
-              tag="svg"
+              component={Svg}
               style="width: 40px; height: 40px;"
               viewBox="0 0 24 24"
             >
@@ -221,7 +233,7 @@
         <Item style="height: auto; min-height: 64px;">
           <Graphic style="height: auto; width: auto;">
             <Icon
-              tag="svg"
+              component={Svg}
               style="width: 40px; height: 40px;"
               viewBox="0 0 24 24"
             >
@@ -244,7 +256,7 @@
         <Item style="height: auto; min-height: 64px;">
           <Graphic style="height: auto; width: auto;">
             <Icon
-              tag="svg"
+              component={Svg}
               style="width: 40px; height: 40px;"
               viewBox="0 0 24 24"
             >
@@ -299,7 +311,7 @@
     PrimaryText,
     SecondaryText,
   } from '@smui/list';
-  import { Icon } from '@smui/common';
+  import { Icon, Svg } from '@smui/common';
 </script>
 
 <style>

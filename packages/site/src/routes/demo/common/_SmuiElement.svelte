@@ -43,5 +43,6 @@
     of this: https://github.com/sveltejs/rfcs/pull/38#issuecomment-1230881785
     */
     PButtonElement = PButton.getElement() as HTMLParagraphElement;
+    console.log(PButtonElement);
   });
 </script>

@@ -62,7 +62,7 @@
     dispatch,
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
-  import type { SmuiElementMap, SmuiAttrs } from '@smui/common';
+  import type { SmuiElementMap, SmuiAttrs, SmuiSvgAttrs } from '@smui/common';
   import { SmuiElement } from '@smui/common';
 
   type TagName = $$Generic<keyof SmuiElementMap>;
@@ -82,7 +82,8 @@
     component?: Component;
     tag?: TagName;
   };
-  type $$Props = OwnProps & SmuiAttrs<keyof SmuiElementMap, OwnProps>;
+  type $$Props = OwnProps &
+    (SmuiAttrs<keyof SmuiElementMap, OwnProps> | SmuiSvgAttrs<OwnProps>);
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

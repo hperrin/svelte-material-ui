@@ -39,14 +39,22 @@ The common icon is used everywhere that exports an `Icon` component except for `
 - `class`: `''` - A CSS class string.
 - `on`: `false` - Used in the context of an icon button toggle to denote the icon for when the button is on.
 
-## Element
+## SmuiElement
 
-A dynamic element component.
+A dynamic HTML element component.
 
 ### Props / Defaults
 
 - `use`: `[]` - An array of Svelte actions and/or arrays of an action and its options.
 - `tag`: `'div'` - An HTML tag name to use as the element.
+
+## Svg
+
+An SVG tag component. This is separated from the `SmuiElement` component, because it returns a `SVGSVGElement` object, which does not implement the `HTMLElement` interface.
+
+### Props / Defaults
+
+- `use`: `[]` - An array of Svelte actions and/or arrays of an action and its options.
 
 # Helper Utilities
 

@@ -4,7 +4,7 @@ import { cubicInOut } from 'svelte/easing';
 
 export default function Pannable(node: HTMLElement) {
   const gesture = new TinyGesture(node);
-  let animationFrame = null;
+  let animationFrame: number | null = null;
   const preventDefault = (event: Event) => {
     event.preventDefault();
   };
@@ -50,9 +50,11 @@ export default function Pannable(node: HTMLElement) {
   });
 
   gesture.on('panend', () => {
-    window.cancelAnimationFrame(animationFrame);
+    if (animationFrame != null) {
+      window.cancelAnimationFrame(animationFrame);
+    }
     animationFrame = null;
-    node.style.transform = null;
+    node.style.transform = '';
     left.set(0);
     top.set(0);
     node.style.opacity = '1';
@@ -63,7 +65,9 @@ export default function Pannable(node: HTMLElement) {
       node.removeEventListener('touchstart', preventDefault, {
         passive: false,
       } as EventListenerOptions);
-      window.cancelAnimationFrame(animationFrame);
+      if (animationFrame != null) {
+        window.cancelAnimationFrame(animationFrame);
+      }
       leftUnsub();
       topUnsub();
       gesture.destroy();

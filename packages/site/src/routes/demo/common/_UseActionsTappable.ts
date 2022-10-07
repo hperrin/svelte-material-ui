@@ -20,14 +20,14 @@ export default function Tappable(
     if (!pressed) {
       node.style.transform = 'perspective(1000px) translate3d(0, 0, 100px)';
       clearTimeout(tapTimeout);
-      tapTimeout = setTimeout(() => (node.style.transform = null), 300);
+      tapTimeout = setTimeout(() => (node.style.transform = ''), 300);
     }
     pressed = false;
   });
   gesture.on('doubletap', () => {
     node.style.transform = 'perspective(1000px) translate3d(0, 0, 400px)';
     clearTimeout(tapTimeout);
-    tapTimeout = setTimeout(() => (node.style.transform = null), 300);
+    tapTimeout = setTimeout(() => (node.style.transform = ''), 300);
   });
   gesture.on('longpress', () => {
     pressed = true;
@@ -38,8 +38,8 @@ export default function Tappable(
 
   gesture.on('panend', () => {
     pressTimeout = setTimeout(() => {
-      node.style.backgroundColor = null;
-      node.style.color = null;
+      node.style.backgroundColor = '';
+      node.style.color = '';
     }, 300);
   });
 

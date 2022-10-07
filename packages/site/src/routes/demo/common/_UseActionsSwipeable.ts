@@ -16,22 +16,22 @@ export default function Swipeable(node: HTMLElement) {
   gesture.on('swiperight', () => {
     node.style.transform = 'perspective(1000px) translate3d(2000px, 0, 0)';
     clearTimeout(timeout);
-    setTimeout(() => (node.style.transform = null), 1000);
+    setTimeout(() => (node.style.transform = ''), 1000);
   });
   gesture.on('swipeleft', () => {
     node.style.transform = 'perspective(1000px) translate3d(-2000px, 0, 0)';
     clearTimeout(timeout);
-    setTimeout(() => (node.style.transform = null), 1000);
+    setTimeout(() => (node.style.transform = ''), 1000);
   });
   gesture.on('swipeup', () => {
     node.style.transform = 'perspective(1000px) translate3d(0, -2000px, 0)';
     clearTimeout(timeout);
-    setTimeout(() => (node.style.transform = null), 1000);
+    setTimeout(() => (node.style.transform = ''), 1000);
   });
   gesture.on('swipedown', () => {
     node.style.transform = 'perspective(1000px) translate3d(0, 2000px, 0)';
     clearTimeout(timeout);
-    setTimeout(() => (node.style.transform = null), 1000);
+    setTimeout(() => (node.style.transform = ''), 1000);
   });
 
   return {

@@ -14,7 +14,7 @@
     'mdc-segmented-button__icon': context === 'segmented-button',
   })}
   aria-hidden="true"
-  {...tag === 'svg' ? { focusable: 'false', tabindex: '-1' } : {}}
+  {...svg ? { focusable: 'false', tabindex: '-1' } : {}}
   {...$$restProps}><slot /></svelte:component
 >
 
@@ -25,8 +25,12 @@
 
   import type { ActionArray } from './internal/useActions.js';
   import { forwardEventsBuilder, classMap } from './internal/index.js';
-  import type { SmuiElementMap, SmuiAttrs } from './smui.types.js';
-  import { SmuiElement } from './index.js';
+  import type {
+    SmuiElementMap,
+    SmuiAttrs,
+    SmuiSvgAttrs,
+  } from './smui.types.js';
+  import { SmuiElement, Svg } from './index.js';
 
   type TagName = $$Generic<keyof SmuiElementMap>;
   type Component = $$Generic<ComponentType<SvelteComponent>>;
@@ -37,7 +41,8 @@
     component?: Component;
     tag?: TagName;
   };
-  type $$Props = OwnProps & SmuiAttrs<keyof SmuiElementMap, OwnProps>;
+  type $$Props = OwnProps &
+    (SmuiAttrs<keyof SmuiElementMap, OwnProps> | SmuiSvgAttrs<OwnProps>);
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
@@ -54,6 +59,7 @@
     component === (SmuiElement as unknown as Component) ? 'svg' : undefined
   ) as TagName | undefined;
 
+  const svg = component === (Svg as unknown as Component);
   const context = getContext<string | undefined>('SMUI:icon:context');
 
   export function getElement(): HTMLElement {
