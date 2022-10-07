@@ -136,7 +136,8 @@
         ? 'demo-drawer-adjust'
         : 'hide-initial-small'}"
     >
-      <Content>
+      <!-- 22px padding to offset the space taken by Glory to Ukraine message -->
+      <Content style="padding-bottom: 22px;">
         <List>
           {#each sections as section (section.name)}
             {#if 'separator' in section}
