@@ -1,6 +1,6 @@
 {
   "name": "@smui/fab",
-  "version": "6.1.0",
+  "version": "6.1.4",
   "description": "Svelte Material UI - Floating Action Button",
   "type": "module",
   "main": "dist/index.js",
@@ -41,15 +41,15 @@
   "dependencies": {
     "@material/fab": "^13.0.0",
     "@material/feature-targeting": "^13.0.0",
-    "@smui/common": "^6.1.0",
-    "@smui/ripple": "^6.1.0",
+    "@smui/common": "^6.1.4",
+    "@smui/ripple": "^6.1.4",
     "svelte2tsx": "^0.5.12"
   },
   "devDependencies": {
     "@tsconfig/svelte": "^3.0.0",
     "sass": "^1.54.0",
     "svelte-check": "^2.8.1",
-    "svelte-strip": "^1.0.1",
+    "svelte-strip": "^1.0.2",
     "tslib": "^2.4.0",
     "typescript": "^4.7.4"
   }
