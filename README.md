@@ -34,6 +34,8 @@ If you need help using SMUI, join the [Discord server](https://discord.gg/aFzmkr
 
 Upgrading from an old version? Be sure to read the [migration doc](MIGRATING.md).
 
+Upgrading from v6? No more elemental components; you can now use the "tag" prop for HTML elements or the "Svg" component. No more "ComponentDev" types; components can now be used as their type. Check out the [upgrade instructions](MIGRATING.md#smui-6---smui-7).
+
 Upgrading from v5? If you're still using the advanced styling method, it's really time to switch to the easy styling method. '/styled' endpoints are no longer provided. Check out the [upgrade instructions](MIGRATING.md#smui-5---smui-6).
 
 Upgrading from v4? SMUI v5 requires the [TypeScript preprocessor](https://github.com/sveltejs/svelte-preprocess). SMUI v6 does not though, so if you upgrade straight to v6, don't worry. Check out the [upgrade instructions](MIGRATING.md#smui-4---smui-5).
@@ -46,6 +48,7 @@ Upgrading from v2? There are **lots** of changes listed in the [upgrade instruct
 
 You can find older versions of the docs on their respective branch:
 
+- [v6 docs](https://github.com/hperrin/svelte-material-ui/tree/v6#readme)
 - [v5 docs](https://github.com/hperrin/svelte-material-ui/tree/v5#readme)
 - [v4 docs](https://github.com/hperrin/svelte-material-ui/tree/v4#readme)
 
