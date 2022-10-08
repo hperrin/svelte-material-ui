@@ -56,7 +56,7 @@
 
   export let component: Component = SmuiElement as unknown as Component;
   export let tag: TagName | undefined = (
-    component === (SmuiElement as unknown as Component) ? 'svg' : undefined
+    component === (SmuiElement as unknown as Component) ? 'i' : undefined
   ) as TagName | undefined;
 
   const svg = component === (Svg as unknown as Component);
