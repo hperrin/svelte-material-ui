@@ -1,10 +1,17 @@
 @use '@material/feature-targeting/index' as feature-targeting;
 @use '@material/icon-button/icon-button-theme';
 
+$mini-icon-height: 24px !default;
+$mini-height: 40px !default;
 $button-icon-height: 18px !default;
 $button-height: 36px !default;
 
 @mixin core-styles($query: feature-targeting.all()) {
+  .mdc-icon-button.smui-icon-button--size-mini {
+    @include icon-button-theme.icon-size($mini-icon-height);
+    @include icon-button-theme.size($mini-height);
+  }
+
   .mdc-icon-button.smui-icon-button--size-button {
     @include icon-button-theme.icon-size($button-icon-height);
     @include icon-button-theme.size($button-height);

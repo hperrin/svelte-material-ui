@@ -10,14 +10,14 @@
     <Icon component={Svg} viewBox="0 0 24 24">
       <path fill="currentColor" d={mdiWrench} />
     </Icon>
-  </IconButton> (disabled)
+  </IconButton>&nbsp;(disabled)
 </div>
 <div style="display: flex; align-items: center;">
   <IconButton on:click={() => clicked++} ripple={false}>
     <Icon component={Svg} viewBox="0 0 24 24">
       <path fill="currentColor" d={mdiCurrencyUsd} />
     </Icon>
-  </IconButton> (no ripple)
+  </IconButton>&nbsp;(no ripple)
 </div>
 
 <pre class="status">Clicked: {clicked}</pre>

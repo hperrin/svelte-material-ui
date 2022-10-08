@@ -10,6 +10,8 @@
     <Icon class="material-icons">alarm_off</Icon>
   </IconButton>
 
+  &nbsp;
+
   <!-- Note: this doesn't fire the MDCIconButtonToggle:change event. -->
   <Button on:click={() => (initialOn = !initialOn)}>
     <Label>Toggle Programmatically</Label>
@@ -24,8 +26,7 @@
   >
     <Icon class="material-icons" on>bookmark</Icon>
     <Icon class="material-icons">bookmark_border</Icon>
-  </IconButton>
-  <div>Using events instead of bound variables.</div>
+  </IconButton>&nbsp;Using events instead of bound variables.
 </div>
 
 <pre class="status">Clicked: {toggleClicked}</pre>

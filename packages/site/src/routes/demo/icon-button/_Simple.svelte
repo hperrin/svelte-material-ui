@@ -6,12 +6,12 @@
 <div style="display: flex; align-items: center;">
   <IconButton class="material-icons" on:click={() => clicked++} disabled
     >search</IconButton
-  > (disabled)
+  >&nbsp;(disabled)
 </div>
 <div style="display: flex; align-items: center;">
   <IconButton class="material-icons" on:click={() => clicked++} ripple={false}
     >add_shopping_cart</IconButton
-  > (no ripple)
+  >&nbsp;(no ripple)
 </div>
 
 <pre class="status">Clicked: {clicked}</pre>

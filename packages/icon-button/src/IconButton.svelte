@@ -25,6 +25,7 @@
     'mdc-icon-button--touch': touch,
     'mdc-icon-button--display-flex': displayFlex,
     'smui-icon-button--size-button': size === 'button',
+    'smui-icon-button--size-mini': size === 'mini',
     'mdc-icon-button--reduced-size': size === 'mini' || size === 'button',
     'mdc-card__action': context === 'card:action',
     'mdc-card__action--icon': context === 'card:action',
