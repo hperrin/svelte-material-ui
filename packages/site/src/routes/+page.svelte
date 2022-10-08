@@ -223,7 +223,7 @@
             <SecondaryText style="white-space: normal;">
               With over <a
                 href="https://github.com/hperrin/svelte-material-ui/network/dependents?package_id=UGFja2FnZS01NTM5MDg5MDQ"
-                target="_blank">1200 projects</a
+                target="_blank">1700 projects</a
               > using SMUI components, it is the most popular Svelte UI library.
               For good reason, too. It is the most versatile and adaptable Svelte
               UI library, guaranteed.
