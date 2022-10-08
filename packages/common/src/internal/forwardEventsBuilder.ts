@@ -104,7 +104,10 @@ export function forwardEventsBuilder(component: SvelteComponent) {
           once?: true;
           preventDefault?: true;
           stopPropagation?: true;
-        } = Object.fromEntries(parts.slice(1).map((mod) => [mod, true]));
+        } = parts.slice(1).reduce((obj, mod) => {
+          obj[mod] = true;
+          return obj;
+        }, {} as { [k: string]: boolean });
         if (eventOptions.passive) {
           options = options || ({} as AddEventListenerOptions);
           options.passive = true;
