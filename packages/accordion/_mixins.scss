@@ -198,6 +198,7 @@ $divider-color-on-dark-bg: rgba(255, 255, 255, 0.2) !default;
             height: 100%;
             overflow: hidden;
             z-index: 0;
+            pointer-events: none;
           }
         }
       }
