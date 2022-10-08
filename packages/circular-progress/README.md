@@ -31,4 +31,4 @@ A Circular Progress component.
 
 See [Progress indicators](https://material.io/components/progress-indicators) in the Material design spec.
 
-See [Circular Progress](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-circular-progress) in MDC-Web for information about the upstream library's architecture.
+See [Circular Progress](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-circular-progress) in MDC-Web for information about the upstream library's architecture.

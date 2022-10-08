@@ -19,7 +19,7 @@ SMUI components provide "bare.css" files to use in the REPL. In a `<svelte:head>
   <!-- Material Typography -->
   <link
     rel="stylesheet"
-    href="https://unpkg.com/@material/typography@13.0.0/dist/mdc.typography.css"
+    href="https://unpkg.com/@material/typography@14.0.0/dist/mdc.typography.css"
   />
 
   <!-- SMUI -->

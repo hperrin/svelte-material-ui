@@ -7,7 +7,7 @@
 
   <h5>Installation</h5>
 
-  <pre class="demo-spaced">npm i -D @material/elevation@^13.0.0</pre>
+  <pre class="demo-spaced">npm i -D @material/elevation@^14.0.0</pre>
 
   <h5>Demos</h5>
 

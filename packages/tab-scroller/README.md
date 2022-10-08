@@ -14,4 +14,4 @@ https://sveltematerialui.com/demo/tabs
 
 See [Tabs](https://material.io/components/tabs) in the Material design spec.
 
-See [Tab Scroller](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-tab-scroller) in MDC-Web for information about the upstream library's architecture.
+See [Tab Scroller](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-tab-scroller) in MDC-Web for information about the upstream library's architecture.

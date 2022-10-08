@@ -55,7 +55,7 @@ Note: The smui-theme compiler will only include the Sass for the packages instal
 
 ### Theme Variables
 
-You can check out the READMEs of the MDC-Web components to learn how to deeply style the components. The most important part (and probably the only one you want) is setting the [theme colors](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-theme#color-scheme). For the Material color palette, you can @use ["@material/theme/color-palette"](https://github.com/material-components/material-components-web/blob/v13.0.0/packages/mdc-theme/_color-palette.scss). You might also want to style the [border radius variables](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-shape#sass-variables).
+You can check out the READMEs of the MDC-Web components to learn how to deeply style the components. The most important part (and probably the only one you want) is setting the [theme colors](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-theme#color-scheme). For the Material color palette, you can @use ["@material/theme/color-palette"](https://github.com/material-components/material-components-web/blob/v14.0.0/packages/mdc-theme/_color-palette.scss). You might also want to style the [border radius variables](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-shape#sass-variables).
 
 Here is an example `_smui-theme.scss` file you can use as a starting point.
 

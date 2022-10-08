@@ -10,4 +10,4 @@ https://sveltematerialui.com/demo/select
 
 See [Dropdown menu](https://material.io/components/menus#dropdown-menu) in the Material design spec.
 
-See [Select Icon](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-select/icon) in MDC-Web for information about the upstream library's architecture.
+See [Select Icon](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-select/icon) in MDC-Web for information about the upstream library's architecture.

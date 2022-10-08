@@ -40,4 +40,4 @@ A switch.
 
 See [Switches](https://material.io/components/switches) in the Material design spec.
 
-See [Switch](https://github.com/material-components/material-components-web/tree/v13.0.0/packages/mdc-switch) in MDC-Web for information about the upstream library's architecture.
+See [Switch](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-switch) in MDC-Web for information about the upstream library's architecture.
