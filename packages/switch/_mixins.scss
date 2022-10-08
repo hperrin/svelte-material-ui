@@ -21,7 +21,7 @@ $_secondary-state-content: color.scale(
   }
 
   .mdc-switch.smui-switch--color-secondary {
-    // See: https://github.com/material-components/material-components-web/blob/v13.0.0/packages/mdc-switch/_switch-theme.scss#L76
+    // See: https://github.com/material-components/material-components-web/blob/v14.0.0/packages/mdc-switch/_switch-theme.scss#L76
     @include switch.theme(
       (
         disabled-selected-icon-color: on-secondary,
