@@ -32,7 +32,7 @@
     Portal
     <svelte:fragment slot="subtitle">
       Using a svelte-portal to show a menu in a place where it normally couldn't
-      go.
+      go (due to DOM restrictions, hidden overflow, etc.).
     </svelte:fragment>
   </Demo>
 
