@@ -28,6 +28,14 @@
     </svelte:fragment>
   </Demo>
 
+  <Demo component={Svg} file="common/_Svg.svelte">
+    Svg Component
+    <svelte:fragment slot="subtitle">
+      In the SMUI components that let you customize which DOM element is used to
+      render them, you can also use the Svg component to render an SVG.
+    </svelte:fragment>
+  </Demo>
+
   <h4>Common Features and Use Patterns</h4>
 
   <Demo component={TargetingClasses} file="common/_TargetingClasses.svelte">
@@ -175,6 +183,7 @@
 
   import CommonLabelIcon from './_CommonLabelIcon.svelte';
   import SmuiElement from './_SmuiElement.svelte';
+  import Svg from './_Svg.svelte';
   import TargetingClasses from './_TargetingClasses.svelte';
   import EventsAndModifiers from './_EventsAndModifiers.svelte';
   import ClassMap from './_ClassMap.svelte';
