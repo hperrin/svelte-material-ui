@@ -27,6 +27,13 @@
 
   <Demo component={Range} file="slider/_Range.svelte">Range slider</Demo>
 
+  <Demo component={MinRange} file="slider/_MinRange.svelte">
+    Min range slider
+    <svelte:fragment slot="subtitle">
+      Limit the range the user can select to a minimum value.
+    </svelte:fragment>
+  </Demo>
+
   <Demo component={DiscreteRange} file="slider/_DiscreteRange.svelte">
     Discrete range slider with tick marks
   </Demo>
@@ -42,6 +49,7 @@
   import Discrete from './_Discrete.svelte';
   import TickMarks from './_TickMarks.svelte';
   import Range from './_Range.svelte';
+  import MinRange from './_MinRange.svelte';
   import DiscreteRange from './_DiscreteRange.svelte';
   import Disabled from './_Disabled.svelte';
 </script>

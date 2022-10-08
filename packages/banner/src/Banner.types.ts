@@ -1,1 +1,1 @@
-export { CloseReason } from '@material/banner';
+export { Action, CloseReason } from '@material/banner';

@@ -69,6 +69,7 @@
     vertical?: boolean;
     wrapFocus?: boolean;
     singleSelection?: boolean;
+    disabledItemsFocusable?: boolean;
     selectedIndex?: number;
     radioList?: boolean;
     checkList?: boolean;
@@ -99,6 +100,7 @@
   export let wrapFocus: boolean =
     getContext<boolean | undefined>('SMUI:list:wrapFocus') ?? false;
   export let singleSelection = false;
+  export let disabledItemsFocusable = false;
   export let selectedIndex = -1;
   export let radioList = false;
   export let checkList = false;
@@ -162,6 +164,10 @@
     instance.setSingleSelection(singleSelection);
   }
 
+  $: if (instance) {
+    instance.setDisabledItemsFocusable(disabledItemsFocusable);
+  }
+
   $: if (instance && singleSelection && getSelectedIndex() !== selectedIndex) {
     instance.setSelectedIndex(selectedIndex);
   }
@@ -202,6 +208,13 @@
         selectedIndex = index;
         if (element != null) {
           dispatch(getElement(), 'SMUIList:action', { index }, undefined, true);
+        }
+      },
+      notifySelectionChange: (changedIndices: number[]) => {
+        if (element != null) {
+          dispatch(getElement(), 'SMUIList:selectionChange', {
+            changedIndices,
+          });
         }
       },
       removeClassForElementIndex,
@@ -251,6 +264,7 @@
     dispatch(getElement(), 'SMUIList:mount', accessor);
 
     instance.init();
+    instance.layout();
 
     return () => {
       instance.destroy();
@@ -313,18 +327,26 @@
         !matches(
           event.target as Element,
           'input[type="checkbox"], input[type="radio"]'
-        )
+        ),
+        event
       );
     }
   }
 
-  function handleAction(event: Event) {
+  function handleAction(event: CustomEvent<MouseEvent | KeyboardEvent>) {
     if (radioList || checkList) {
       const index = getListItemIndex(event.target as Element);
       if (index !== -1) {
         const item = getOrderedList()[index];
         if (item && ((radioList && !item.checked) || checkList)) {
-          item.checked = !item.checked;
+          if (
+            !matches(
+              event.detail.target as Element,
+              'input[type="checkbox"], input[type="radio"]'
+            )
+          ) {
+            item.checked = !item.checked;
+          }
           item.activateRipple();
           window.requestAnimationFrame(() => {
             item.deactivateRipple();

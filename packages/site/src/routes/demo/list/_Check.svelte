@@ -1,5 +1,9 @@
 <div>
-  <List class="demo-list" checkList>
+  <List
+    class="demo-list"
+    checkList
+    on:SMUIList:selectionChange={(event) => (changeEvent = event)}
+  >
     <Item>
       <Label>Bruce Willis</Label>
       <Meta>
@@ -35,11 +39,16 @@
 
 <pre class="status">Selected: {selected.join(', ')}</pre>
 
+<pre class="status">Change Event Detail: {changeEvent
+    ? JSON.stringify(changeEvent.detail)
+    : 'No change yet.'}</pre>
+
 <script lang="ts">
   import List, { Item, Meta, Label } from '@smui/list';
   import Checkbox from '@smui/checkbox';
 
   let selected = ['Tom Hanks'];
+  let changeEvent: CustomEvent<{ changedIndices: number[] }> | null;
 </script>
 
 <style>

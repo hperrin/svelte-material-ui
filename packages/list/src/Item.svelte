@@ -25,7 +25,8 @@
   ]}
   class={classMap({
     [className]: true,
-    'mdc-deprecated-list-item': true,
+    'mdc-deprecated-list-item': !wrapper,
+    'mdc-deprecated-list-item__wrapper': wrapper,
     'mdc-deprecated-list-item--activated': activated,
     'mdc-deprecated-list-item--selected': selected,
     'mdc-deprecated-list-item--disabled': disabled,
@@ -38,7 +39,7 @@
     .concat([style])
     .join(' ')}
   {...nav && activated ? { 'aria-current': 'page' } : {}}
-  {...!nav ? { role } : {}}
+  {...!nav || wrapper ? { role } : {}}
   {...!nav && role === 'option'
     ? { 'aria-selected': selected ? 'true' : 'false' }
     : {}}
@@ -93,6 +94,7 @@
     color?: 'primary' | 'secondary' | undefined;
     nonInteractive?: boolean;
     ripple?: boolean;
+    wrapper?: boolean;
     activated?: boolean;
     role?: string;
     selected?: boolean;
@@ -127,8 +129,11 @@
     getContext<boolean | undefined>('SMUI:list:nonInteractive') ?? false;
   setContext('SMUI:list:nonInteractive', undefined);
   export let ripple = !nonInteractive;
+  export let wrapper = false;
   export let activated = false;
-  export let role: string = getContext('SMUI:list:item:role');
+  export let role: string = wrapper
+    ? 'presentation'
+    : getContext('SMUI:list:item:role');
   setContext('SMUI:list:item:role', undefined);
   export let selected = false;
   export let disabled = false;

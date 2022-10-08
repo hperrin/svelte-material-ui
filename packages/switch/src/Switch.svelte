@@ -63,6 +63,11 @@
       {/if}
     </div>
   </div>
+  {#if focusRing}
+    <div class="mdc-switch__focus-ring-wrapper">
+      <div class="mdc-switch__focus-ring" />
+    </div>
+  {/if}
 </button>
 
 <script lang="ts">
@@ -93,6 +98,7 @@
     use?: ActionArray;
     class?: string;
     disabled?: boolean;
+    focusRing?: boolean;
     color?: 'primary' | 'secondary';
     group?: any[];
     checked?: boolean;
@@ -120,6 +126,7 @@
   let className = '';
   export { className as class };
   export let disabled = false;
+  export let focusRing = false;
   export let color: 'primary' | 'secondary' = 'primary';
   export let group: UninitializedValue | any[] = uninitializedValue;
   export let checked: UninitializedValue | boolean = uninitializedValue;

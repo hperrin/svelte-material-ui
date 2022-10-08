@@ -34,7 +34,9 @@
     'mdc-data-table__pagination-button': context === 'data-table:pagination',
     'mdc-data-table__sort-icon-button':
       context === 'data-table:sortable-header-cell',
-    'mdc-dialog__close': context === 'dialog:header' && action === 'close',
+    'mdc-dialog__close':
+      (context === 'dialog:header' || context === 'dialog:sheet') &&
+      action === 'close',
     ...internalClasses,
   })}
   style={Object.entries(internalStyles)
@@ -172,7 +174,7 @@
         default:
           return { 'data-action': 'true' };
       }
-    } else if (context === 'dialog:header') {
+    } else if (context === 'dialog:header' || context === 'dialog:sheet') {
       return { 'data-mdc-dialog-action': action };
     } else {
       return { action };

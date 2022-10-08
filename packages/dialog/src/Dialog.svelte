@@ -14,6 +14,8 @@
     'mdc-dialog': true,
     'mdc-dialog--stacked': !autoStackButtons,
     'mdc-dialog--fullscreen': fullscreen,
+    'mdc-dialog--sheet': sheet,
+    'mdc-dialog--no-content-padding': noContentPadding,
     'smui-dialog--selection': selection,
     ...internalClasses,
   })}
@@ -92,6 +94,14 @@
     scrimClickAction?: string;
     autoStackButtons?: boolean;
     fullscreen?: boolean;
+    /**
+     * Floating sheets are dialogs with a close icon button. Clicking the close
+     * icon button closes the sheet. Having the close icon button is mutually
+     * exclusive with having action bar buttons (e.g. cancel and OK buttons).
+     * The icon button is absolutely positioned.
+     */
+    sheet?: boolean;
+    noContentPadding?: boolean;
     container$class?: string;
     surface$class?: string;
   };
@@ -114,6 +124,8 @@
   export let scrimClickAction = 'close';
   export let autoStackButtons = true;
   export let fullscreen = false;
+  export let sheet = false;
+  export let noContentPadding = false;
   export let container$class = '';
   export let surface$class = '';
 
@@ -150,6 +162,9 @@
   setContext('SMUI:dialog:selection', selection);
   setContext('SMUI:dialog:aboveFullscreen', aboveFullscreen || fullscreen);
   setContext('SMUI:dialog:aboveFullscreenShown', aboveFullscreenShown);
+  if (sheet) {
+    setContext('SMUI:icon-button:context', 'dialog:sheet');
+  }
 
   $: if (instance && instance.getEscapeKeyAction() !== escapeKeyAction) {
     instance.setEscapeKeyAction(escapeKeyAction);

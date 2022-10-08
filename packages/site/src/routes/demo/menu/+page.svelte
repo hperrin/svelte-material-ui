@@ -28,6 +28,14 @@
     Selection groups
   </Demo>
 
+  <Demo component={Portal} file="menu/_Portal.svelte">
+    Portal
+    <svelte:fragment slot="subtitle">
+      Using a svelte-portal to show a menu in a place where it normally couldn't
+      go.
+    </svelte:fragment>
+  </Demo>
+
   <div style="padding-top: 200px;">Long div for scrolling...</div>
 </section>
 
@@ -38,4 +46,5 @@
   import Anchored from './_Anchored.svelte';
   import TwoLineManunalAnchor from './_TwoLineManunalAnchor.svelte';
   import SelectionGroup from './_SelectionGroup.svelte';
+  import Portal from './_Portal.svelte';
 </script>

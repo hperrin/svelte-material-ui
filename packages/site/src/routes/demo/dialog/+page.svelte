@@ -58,6 +58,15 @@
     </svelte:fragment>
   </Demo>
 
+  <Demo component={Sheet} file="dialog/_Sheet.svelte">
+    Floating sheet dialog
+    <svelte:fragment slot="subtitle">
+      Floating sheets are dialogs with a close icon button. Having the close
+      icon button is mutually exclusive with having action bar buttons (e.g.
+      cancel and OK buttons). The icon button is absolutely positioned.
+    </svelte:fragment>
+  </Demo>
+
   <Demo component={ManyActions} file="dialog/_ManyActions.svelte">
     Too many action buttons for one line
     <svelte:fragment slot="subtitle">
@@ -80,5 +89,6 @@
   import LargeScroll from './_LargeScroll.svelte';
   import Fullscreen from './_Fullscreen.svelte';
   import OverFullscreen from './_OverFullscreen.svelte';
+  import Sheet from './_Sheet.svelte';
   import ManyActions from './_ManyActions.svelte';
 </script>

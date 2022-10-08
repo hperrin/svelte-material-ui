@@ -94,6 +94,7 @@
     class?: string;
     style?: string;
     open?: boolean;
+    autoClose?: false;
     centered?: boolean;
     fixed?: boolean;
     mobileStacked?: boolean;
@@ -118,6 +119,7 @@
   export { className as class };
   export let style = '';
   export let open = false;
+  export let autoClose = true;
   export let centered = false;
   export let fixed = false;
   export let mobileStacked = false;
@@ -202,6 +204,9 @@
       notifyOpening: () => {
         dispatch(getElement(), 'SMUIBanner:opening', {}, undefined, true);
       },
+      notifyActionClicked: (action) => {
+        dispatch(getElement(), 'SMUIBanner:actionClicked', { action });
+      },
       releaseFocus: () => focusTrap && focusTrap.releaseFocus(),
       removeClass,
       setStyleProperty: addStyle,
@@ -253,11 +258,11 @@
   }
 
   function handlePrimaryActionClick() {
-    instance.handlePrimaryActionClick();
+    instance.handlePrimaryActionClick(!autoClose);
   }
 
   function handleSecondaryActionClick() {
-    instance.handleSecondaryActionClick();
+    instance.handleSecondaryActionClick(!autoClose);
   }
 
   export function isOpen() {

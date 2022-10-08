@@ -14,6 +14,7 @@
     .filter(([name, value]) => name !== '' && value)
     .map(([name]) => name)
     .join(' ')}
+  {...range ? { 'data-min-range': `${minRange}` } : {}}
   {...exclude($$restProps, ['input$'])}
 >
   {#if range}
@@ -218,10 +219,12 @@
     step?: number;
     min?: number;
     max?: number;
+    minRange?: number;
     value?: number | undefined;
     start?: number | undefined;
     end?: number | undefined;
-    valueToAriaValueTextFn?: (value: number) => string;
+    valueToAriaValueTextFn?: (value: number, thumb: Thumb) => string;
+    hideFocusStylesForPointerEvents?: boolean;
     input$class?: string;
   };
   type $$Props = OwnProps &
@@ -251,11 +254,14 @@
   export let step = 1;
   export let min = 0;
   export let max = 100;
+  export let minRange = 0;
   export let value: number | undefined = undefined;
   export let start: number | undefined = undefined;
   export let end: number | undefined = undefined;
-  export let valueToAriaValueTextFn: (value: number) => string = (value) =>
-    `${value}`;
+  export let valueToAriaValueTextFn: (value: number, thumb: Thumb) => string = (
+    value
+  ) => `${value}`;
+  export let hideFocusStylesForPointerEvents = false;
   export let input$class = '';
 
   let element: HTMLDivElement;
@@ -419,6 +425,8 @@
       isInputFocused: (thumb) =>
         (range && thumb === Thumb.START ? inputStart : input) ===
         document.activeElement,
+      shouldHideFocusStylesForPointerEvents: () =>
+        hideFocusStylesForPointerEvents,
       getThumbKnobWidth: (thumb) =>
         (
           (range && thumb === Thumb.START ? thumbKnobStart : thumbKnob) ??
@@ -429,6 +437,13 @@
           (range && thumb === Thumb.START ? thumbStart : thumbEl) ?? thumbEl
         ).getBoundingClientRect(),
       getBoundingClientRect: () => getElement().getBoundingClientRect(),
+      getValueIndicatorContainerWidth: (thumb: Thumb) => {
+        return (
+          (range && thumb === Thumb.START ? thumbStart : thumbEl) ?? thumbEl
+        )
+          .querySelector<HTMLElement>(`.mdc-slider__value-indicator-container`)!
+          .getBoundingClientRect().width;
+      },
       isRTL: () => getComputedStyle(getElement()).direction === 'rtl',
       setThumbStyleProperty: addThumbStyle,
       removeThumbStyleProperty: removeThumbStyle,

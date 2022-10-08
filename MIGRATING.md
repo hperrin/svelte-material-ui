@@ -4,11 +4,39 @@ This doc contains information that will help you migrate your code from an older
 
 # SMUI 6 -> SMUI 7
 
+SMUI 7 migrated to upstream MDC 14.0 from 13.0:
+https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#1400-2022-04-27
+
 ## Breaking Changes
 
 - The `@smui/common/elements` components are gone. They are replaced with the `SmuiElement` component exported from `@smui/common`. It takes a `tag` prop and creates an element dynamically with that tag name. There's also a `Svg` component exported from `@smui/common` if you need an svg.
 - The "\*ComponentDev" types (like `MenuComponentDev`) are gone. You can now use the component as its type. Components that can take a `component` or `tag` prop (like `Button`) have required generic arguments that you can get around by using "InstanceType", like `let button: InstanceType<typeof Button>;`.
 - If you're using `classAdderBuilder`, you need to use `keyof SmuiElementMap` instead of `string` as its generic argument.
+
+## Changes
+
+### Components
+
+- Banner
+  - New `autoClose` prop.
+  - New `SMUIBanner:actionClicked` event. It is fired when an action is clicked and `autoClose` is `false`.
+- Dialog
+  - New `sheet` prop.
+  - New `noContentPadding` prop.
+- FAB
+  - New `focusRing` prop. Use this to support rendering focused FABs in High Contrast Mode.
+- List
+  - New `disabledItemsFocusable` prop.
+  - New `wrapper` prop on Item. This should be used for items that only act as the container of a nested list.
+- Menu Surface
+  - New `SMUIMenuSurface:opening` event.
+  - New `openBottomBias` prop.
+- Slider
+  - `valueToAriaValueTextFn` now gets a `thumb` argument.
+  - New `hideFocusStylesForPointerEvents` prop. Comes from [upstream](https://github.com/material-components/material-components-web/commit/ec54d904621360bcb27e6d3cd1f33112e2a54aac).
+  - New `minRange` prop to limit selectable range.
+- Switch
+  - New `focusRing` prop. Use this to support rendering focused switches in High Contrast Mode.
 
 # SMUI 5 -> SMUI 6
 

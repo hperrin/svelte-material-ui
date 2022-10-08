@@ -72,7 +72,7 @@
     "@smui/touch-target": "^6.1.4"
   },
   "dependencies": {
-    "@material/theme": "^13.0.0",
+    "@material/theme": "^14.0.0",
     "node-fetch": "^2.6.7",
     "sass": "^1.54.0",
     "yargs": "^17.5.1"

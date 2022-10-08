@@ -39,7 +39,7 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@material/segmented-button": "^13.0.0",
+    "@material/segmented-button": "^14.0.0",
     "@smui/common": "^6.1.4",
     "@smui/ripple": "^6.1.4",
     "svelte2tsx": "^0.5.12"

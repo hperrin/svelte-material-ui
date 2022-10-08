@@ -31,10 +31,17 @@
 
   <Demo component={Groups} file="list/_Groups.svelte">A list group</Demo>
 
+  <Demo component={MultiLevel} file="list/_MultiLevel.svelte">
+    A multi-level list
+  </Demo>
+
   <Demo component={Radio} file="list/_Radio.svelte">A radio list</Demo>
 
   <Demo component={Check} file="list/_Check.svelte">
     A check list with trailing checkboxes
+    <svelte:fragment slot="subtitle">
+      Also, this uses the selection change event. Try CTRL+A and shift clicking.
+    </svelte:fragment>
   </Demo>
 </section>
 
@@ -47,6 +54,7 @@
   import TwoLineSelection from './_TwoLineSelection.svelte';
   import ThreeLine from './_ThreeLine.svelte';
   import Groups from './_Groups.svelte';
+  import MultiLevel from './_MultiLevel.svelte';
   import Radio from './_Radio.svelte';
   import Check from './_Check.svelte';
 </script>

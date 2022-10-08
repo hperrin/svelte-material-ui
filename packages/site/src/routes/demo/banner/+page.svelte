@@ -18,6 +18,10 @@
   <Demo component={General} file="banner/_General.svelte">Banner options</Demo>
 
   <Demo component={Icon} file="banner/_Icon.svelte">Banner with icon</Demo>
+
+  <Demo component={DisableAutoClose} file="banner/_DisableAutoClose.svelte">
+    Disable auto close
+  </Demo>
 </section>
 
 <script lang="ts">
@@ -26,6 +30,7 @@
   import Fixed from './_Fixed.svelte';
   import General from './_General.svelte';
   import Icon from './_Icon.svelte';
+  import DisableAutoClose from './_DisableAutoClose.svelte';
 </script>
 
 <style>

@@ -55,6 +55,14 @@
     anchorMargin?: { top: number; right: number; bottom: number; left: number };
     maxHeight?: number;
     horizontallyCenteredOnViewport?: boolean;
+    /**
+     * Set to a positive integer to influence the menu to preferentially open
+     * below the anchor instead of above.
+     *
+     * A value of `x` simulates an extra `x` pixels of available space below the
+     * menu during positioning calculations.
+     */
+    openBottomBias?: number;
   };
   type $$Props = OwnProps & SmuiAttrs<'div', OwnProps>;
 
@@ -82,6 +90,7 @@
   export let anchorMargin = { top: 0, right: 0, bottom: 0, left: 0 };
   export let maxHeight = 0;
   export let horizontallyCenteredOnViewport = false;
+  export let openBottomBias = 0;
 
   let element: HTMLDivElement;
   let instance: MDCMenuSurfaceFoundation;
@@ -140,6 +149,10 @@
     instance.setAnchorMargin(anchorMargin);
   }
 
+  $: if (instance) {
+    instance.setOpenBottomBias(openBottomBias);
+  }
+
   onMount(() => {
     instance = new MDCMenuSurfaceFoundation({
       addClass,
@@ -188,6 +201,17 @@
           );
         }
       },
+      notifyOpening: () => {
+        if (!open) {
+          dispatch(
+            element,
+            'SMUIMenuSurface:opening',
+            undefined,
+            undefined,
+            true
+          );
+        }
+      },
       isElementInContainer: (el) => element.contains(el),
       isRtl: () =>
         getComputedStyle(element).getPropertyValue('direction') === 'rtl',
@@ -209,7 +233,6 @@
           (previousFocus as HTMLInputElement).focus();
         }
       },
-
       getInnerDimensions: () => {
         return {
           width: element.offsetWidth,

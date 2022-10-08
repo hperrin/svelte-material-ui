@@ -35,6 +35,7 @@
   {href}
   {...$$restProps}
   ><div class="mdc-fab__ripple" />
+  {#if focusRing}<div class="mdc-fab__focus-ring" />{/if}
   <slot />{#if touch}<div class="mdc-fab__touch" />{/if}</svelte:component
 >
 
@@ -55,6 +56,7 @@
     class?: string;
     style?: string;
     ripple?: boolean;
+    focusRing?: boolean;
     color?: 'primary' | 'secondary';
     mini?: boolean;
     exited?: boolean;
@@ -75,6 +77,7 @@
   export { className as class };
   export let style = '';
   export let ripple = true;
+  export let focusRing = false;
   export let color: 'primary' | 'secondary' = 'secondary';
   export let mini = false;
   export let exited = false;
