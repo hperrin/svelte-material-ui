@@ -328,12 +328,12 @@ A fragment component (only contains a `<slot />`) used to define a Svelte contex
 
 ## classadder/ClassAdder.svelte
 
-A base component that adds a class to an element. The ClassAdder is used to provide simple components. It usually uses the `Element` component shown above, but you can specify a different component for it to use.
+A base component that adds a class to an element. The ClassAdder is used to provide simple components. It usually uses the `SmuiElement` component shown above, but you can specify a different component for it to use.
 
 ### Props / Defaults
 
-- `component`: `(depends on context)` - The component to extend. Usually it is set to `Element`.
-- `tag`: `(depends on context)` - The HTML tag name `Element` will use.
+- `component`: `(depends on context)` - The component to extend. Usually it is set to `SmuiElement`.
+- `tag`: `(depends on context)` - The HTML tag name `SmuiElement` will use.
 - `use`: `[]` - An array of Svelte actions and/or arrays of an action and its options.
 - `class`: `''` - A CSS class string.
 
@@ -364,8 +364,8 @@ export default classAdderBuilder({
 
 ### Props / Defaults
 
-- `component`: `Element` - An SMUI compatible component.
-- `tag`: `'div'` - An HTML tag name. (Only means anything for the `Element` component.)
+- `component`: `SmuiElement` - An SMUI compatible component.
+- `tag`: `'div'` - An HTML tag name. (Only means anything for the `SmuiElement` component.)
 - `class`: `''` - The class to add.
 - `classMap`: `{}` - A map of classes to contexts. The context should resolve to a Svelte store, and the class will be added if the Svelte store's value is true.
 - `contexts`: `{}` - A map of contexts to values to set for them.
