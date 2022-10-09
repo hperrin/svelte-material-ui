@@ -1,5 +1,6 @@
 <div
   bind:this={element}
+  bind:clientWidth
   use:Ripple={{
     ripple: variant === 'filled',
     unbounded: false,
@@ -50,13 +51,22 @@
 >
   {#if hiddenInput}
     <input
-      type="hidden"
+      bind:this={input}
+      data-smui="true"
+      type="text"
+      style="width: 100%;height: 100%;position: absolute;opacity: 0;"
       {required}
       {disabled}
       {value}
       {...prefixFilter($$restProps, 'input$')}
     />
   {/if}
+  <style>
+    input[data-smui="true"]:focus-visible {
+      outline: none;
+      caret-color: transparent;
+    }
+  </style>
   <div
     bind:this={selectAnchor}
     use:useActions={anchor$use}
@@ -174,6 +184,7 @@
   </div>
 
   <Menu
+    style="min-width: {clientWidth ?? 0}px;"
     class={classMap({
       [menu$class]: true,
       'mdc-select__menu': true,
@@ -196,7 +207,17 @@
       {wrapFocus}
       bind:selectedIndex
       on:SMUIList:mount={(event) => (list = event.detail)}
-      {...prefixFilter($$restProps, 'list$')}><slot /></List
+      {...prefixFilter($$restProps, 'list$')}>
+        {#if items}
+          {#each items as item}
+            {#if item.name && item.value}
+              <Option value={item.value}>{item.name}</Option>
+            {:else}
+              <Option value={item}>{item}</Option>
+            {/if}
+          {/each}
+        {/if}
+      </List
     >
   </Menu>
 </div>
@@ -222,6 +243,7 @@
     MDCSelectIconFoundation,
     MDCSelectHelperTextFoundation,
   } from '@material/select';
+  import Option from './Option.svelte';
   import { MDCSelectFoundation } from '@material/select';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
   import { writable } from 'svelte/store';
@@ -250,6 +272,7 @@
   import NotchedOutline from '@smui/notched-outline';
 
   import HelperText from './helper-text/HelperText.svelte';
+  import Item from '@smui/list/src/Item.svelte';
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
   interface UninitializedValue extends Function {}
@@ -257,6 +280,8 @@
   function isUninitializedValue(value: any): value is UninitializedValue {
     return value === uninitializedValue;
   }
+
+  export let input: any;
 
   // Remember to update types file if you add/remove/rename props.
   export let use: ActionArray = [];
@@ -294,6 +319,9 @@
   export let dropdownIcon$use: ActionArray = [];
   export let dropdownIcon$class = '';
   export let menu$class = '';
+  export let items: any[] = [];
+
+  let clientWidth;
 
   let element: HTMLDivElement;
   let instance: MDCSelectFoundation;
@@ -303,6 +331,37 @@
   let selectAnchorAttrs: { [k: string]: string | undefined } = {};
   let selectText: HTMLSpanElement;
   let selectedIndex = -1;
+
+  // Set initial value on select that is already set (for form validation libs)
+  var didInputInitial = false;
+  $: if(input && !didInputInitial) {
+    didInputInitial = true;
+    value = input.value;
+  }
+
+  // If items array changes, reset value
+  let items_previous: any[] = [];
+  $: if (JSON.stringify(items) !== JSON.stringify(items_previous)) {
+    // Reset select value
+    value = '';
+
+    // Set previous items for comparison
+    items_previous = items;
+
+    // Trigger events
+    dispatch(getElement(), 'SMUISelect:change', {
+      value,
+      index: selectedIndex,
+    }, undefined, true);
+    // Trigger event for hidden input, as well
+    if(input) {
+      dispatch(input, 'SMUISelect:change', {
+        value,
+        index: selectedIndex,
+      }, undefined, true);
+    }
+  }
+
   let helperId: string | undefined = undefined;
   let addLayoutListener = getContext<AddLayoutListener | undefined>(
     'SMUI:addLayoutListener'
@@ -412,7 +471,10 @@
           // Don't update the instance again.
           previousSelectedIndex = index;
           selectedIndex = index;
-          value = getMenuItemValues()[selectedIndex];
+          
+          // Set the value without setting to "undefined"
+          var val = getMenuItemValues()[selectedIndex];
+          value = val ? val : '';
         },
         focusMenuItemAtIndex: (index) => {
           list.focusItemAtIndex(index);
@@ -448,6 +510,14 @@
             undefined,
             true
           );
+
+          // Trigger event for hidden input, as well
+          if(input) {
+            dispatch(input, 'SMUISelect:change', {
+              value,
+              index: selectedIndex,
+            }, undefined, true);
+          }
         },
 
         // getOutlineAdapterMethods
