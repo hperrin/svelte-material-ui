@@ -22,6 +22,8 @@ https://github.com/material-components/material-components-web/blob/master/CHANG
 - Banner
   - New `autoClose` prop.
   - New `SMUIBanner:actionClicked` event. It is fired when an action is clicked and `autoClose` is `false`.
+- Bottom App Bar
+  - A new component!
 - Dialog
   - New `sheet` prop.
   - New `noContentPadding` prop.

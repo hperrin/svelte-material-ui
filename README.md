@@ -82,6 +82,7 @@ Click a component/package below to go to the documentation. (Note that this docu
 - [Accordion](packages/accordion/README.md)‡
 - [Badge](packages/badge/README.md)‡
 - [Banner](packages/banner/README.md)
+- [Bottom App Bar](packages/bottom-app-bar/README.md)‡
 - Action Buttons
   - [Button](packages/button/README.md)
   - [Floating Action Button](packages/fab/README.md)
@@ -133,7 +134,7 @@ Click a component/package below to go to the documentation. (Note that this docu
 
 <sub>† This is Sass based, and therefore doesn't require Svelte components. I've included a demo showing how you can use it.</sub>
 
-<sub>‡ This is not an MDC Web component. It is an addition that SMUI provides.</sub>
+<sub>‡ This is not an MDC-Web component (upstream library). It is an addition that SMUI provides.</sub>
 
 - Labels and icons are named exports in the components that use them, or you can use the 'Label' and 'Icon' exports from '@smui/common'. (Except for chips labels and icons, textfield icons, and select icons, because they are special snowflakes.)
 

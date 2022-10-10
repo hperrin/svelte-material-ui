@@ -1,0 +1,147 @@
+@use 'sass:math';
+@use '@material/theme/index' as theme;
+@use '@material/feature-targeting/index' as feature-targeting;
+
+// Default styles
+$section-height: 56px !default;
+$section-padding-vertical: 16px !default;
+$section-padding-horizontal: 16px !default;
+$fab-diameter: 56px !default;
+$inset-fab-padding: 8px !default;
+$acceleration-curve-timing-function: cubic-bezier(0.4, 0, 1, 1) !default;
+
+@mixin core-styles($query: feature-targeting.all()) {
+  $feat-color: feature-targeting.create-target($query, color);
+  $feat-structure: feature-targeting.create-target($query, structure);
+
+  .smui-bottom-app-bar {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+
+    &.smui-bottom-app-bar--fixed {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+
+    & > .smui-bottom-app-bar__section {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      padding: $section-padding-vertical $section-padding-horizontal;
+      height: $section-height;
+      box-sizing: border-box;
+      flex-grow: 1;
+      flex-basis: 0;
+      overflow: visible;
+
+      .mdc-icon-button {
+        margin-top: -12px;
+      }
+
+      .mdc-fab {
+        margin-top: -1 *
+          ($section-padding-vertical + math.div($fab-diameter, 2));
+        // transform: translateY(-50%);
+      }
+
+      &:first-child {
+        justify-content: start;
+
+        .mdc-icon-button:first-child {
+          margin-inline-start: -12px;
+        }
+      }
+
+      &:last-child {
+        justify-content: end;
+
+        .mdc-icon-button:last-child {
+          margin-inline-end: -12px;
+        }
+      }
+
+      &.smui-paper.smui-bottom-app-bar__section--fab-inset {
+        @include inset-color(theme.$primary, 50%, $query);
+
+        &:first-child {
+          @include inset-color(
+            theme.$primary,
+            $section-padding-horizontal + $inset-fab-padding +
+              math.div($fab-diameter, 2),
+            $query
+          );
+
+          .mdc-fab {
+            margin-inline-start: $inset-fab-padding;
+          }
+        }
+
+        &:last-child {
+          @include inset-color(
+            theme.$primary,
+            calc(
+              100% -
+                (
+                  $section-padding-horizontal + $inset-fab-padding +
+                    math.div($fab-diameter, 2)
+                )
+            ),
+            $query
+          );
+
+          .mdc-fab {
+            margin-inline-end: $inset-fab-padding;
+          }
+        }
+
+        &.smui-paper--color-secondary {
+          @include inset-color(theme.$secondary, 50%, $query);
+
+          &:first-child {
+            @include inset-color(
+              theme.$secondary,
+              $section-padding-horizontal + $inset-fab-padding +
+                math.div($fab-diameter, 2),
+              $query
+            );
+          }
+
+          &:last-child {
+            @include inset-color(
+              theme.$secondary,
+              calc(
+                100% -
+                  (
+                    $section-padding-horizontal + $inset-fab-padding +
+                      math.div($fab-diameter, 2)
+                  )
+              ),
+              $query
+            );
+          }
+        }
+      }
+    }
+  }
+
+  .smui-bottom-app-bar--fixed-adjust {
+    padding-bottom: $section-height;
+  }
+}
+
+@mixin inset-color($color, $xpos, $query: feature-targeting.all()) {
+  $feat-color: feature-targeting.create-target($query, color);
+
+  @include feature-targeting.targets($feat-color) {
+    background: radial-gradient(
+      ($fab-diameter + ($inset-fab-padding * 2))
+        ($fab-diameter + ($inset-fab-padding * 2)) at $xpos 0,
+      rgba(0, 0, 0, 0)
+        ((math.div($fab-diameter, 2) + $inset-fab-padding) * 0.99),
+      $color ((math.div($fab-diameter, 2) + $inset-fab-padding) * 1.01)
+    );
+  }
+}

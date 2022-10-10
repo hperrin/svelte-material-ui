@@ -21,12 +21,12 @@
   <Demo
     component={Variants}
     files={[
-      'top-app-bar/iframe/standard.svelte',
-      'top-app-bar/iframe/fixed.svelte',
-      'top-app-bar/iframe/dense.svelte',
-      'top-app-bar/iframe/prominent.svelte',
-      'top-app-bar/iframe/short.svelte',
-      'top-app-bar/iframe/short-closed.svelte',
+      'top-app-bar/iframe/standard/+page.svelte',
+      'top-app-bar/iframe/fixed/+page.svelte',
+      'top-app-bar/iframe/dense/+page.svelte',
+      'top-app-bar/iframe/prominent/+page.svelte',
+      'top-app-bar/iframe/short/+page.svelte',
+      'top-app-bar/iframe/short-closed/+page.svelte',
     ]}
   >
     Page level top app bars

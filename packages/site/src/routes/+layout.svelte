@@ -265,6 +265,14 @@
       ],
     },
     {
+      name: 'Bottom App Bar',
+      route: '/demo/bottom-app-bar/',
+      indent: 0,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/bottom-app-bar',
+      ],
+    },
+    {
       name: 'Action Buttons',
       indent: 0,
     },
