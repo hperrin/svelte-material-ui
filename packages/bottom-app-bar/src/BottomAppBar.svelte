@@ -156,7 +156,7 @@
     // but the current scroll of the bottom app bar should stay in the same
     // position.
     if (!isCurrentlyBeingResized) {
-      currentAppBarOffsetBottom += diff;
+      currentAppBarOffsetBottom -= diff;
 
       if (currentAppBarOffsetBottom > 0) {
         currentAppBarOffsetBottom = 0;
