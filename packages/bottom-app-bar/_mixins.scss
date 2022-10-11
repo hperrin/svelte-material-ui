@@ -18,8 +18,10 @@ $acceleration-curve-timing-function: cubic-bezier(0.4, 0, 1, 1) !default;
     display: flex;
     flex-direction: row;
     width: 100%;
+    --smui-bottom-app-bar--fab-offset: 0px;
 
-    &.smui-bottom-app-bar--fixed {
+    &.smui-bottom-app-bar--fixed,
+    &.smui-bottom-app-bar--standard {
       position: fixed;
       bottom: 0;
       left: 0;
@@ -42,9 +44,11 @@ $acceleration-curve-timing-function: cubic-bezier(0.4, 0, 1, 1) !default;
       }
 
       .mdc-fab {
-        margin-top: -1 *
-          ($section-padding-vertical + math.div($fab-diameter, 2));
-        // transform: translateY(-50%);
+        position: relative;
+        top: calc(
+          var(--smui-bottom-app-bar--fab-offset, 0px) -
+            ($section-padding-vertical + math.div($fab-diameter, 2))
+        );
       }
 
       &:first-child {
@@ -138,7 +142,8 @@ $acceleration-curve-timing-function: cubic-bezier(0.4, 0, 1, 1) !default;
   @include feature-targeting.targets($feat-color) {
     background: radial-gradient(
       ($fab-diameter + ($inset-fab-padding * 2))
-        ($fab-diameter + ($inset-fab-padding * 2)) at $xpos 0,
+        ($fab-diameter + ($inset-fab-padding * 2)) at $xpos
+        var(--smui-bottom-app-bar--fab-offset, 0px),
       rgba(0, 0, 0, 0)
         ((math.div($fab-diameter, 2) + $inset-fab-padding) * 0.99),
       $color ((math.div($fab-diameter, 2) + $inset-fab-padding) * 1.01)

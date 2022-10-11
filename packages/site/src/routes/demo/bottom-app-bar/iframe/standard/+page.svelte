@@ -1,5 +1,5 @@
 <AutoAdjust {bottomAppBar}>
-  <h5>Inset FAB</h5>
+  <h5>Standard</h5>
 
   <LoremIpsum />
   <img
@@ -13,11 +13,6 @@
   <Section>
     <IconButton class="material-icons">menu</IconButton>
   </Section>
-  <Section fabInset>
-    <Fab aria-label="New item">
-      <Icon class="material-icons">add</Icon>
-    </Fab>
-  </Section>
   <Section>
     <IconButton class="material-icons" aria-label="Search">search</IconButton>
     <IconButton class="material-icons" aria-label="More">more_vert</IconButton>
@@ -30,7 +25,6 @@
     AutoAdjust,
   } from '@smui-extra/bottom-app-bar';
   import IconButton from '@smui/icon-button';
-  import Fab, { Icon } from '@smui/fab';
   import LoremIpsum from '$lib/LoremIpsum.svelte';
 
   let bottomAppBar: BottomAppBar;

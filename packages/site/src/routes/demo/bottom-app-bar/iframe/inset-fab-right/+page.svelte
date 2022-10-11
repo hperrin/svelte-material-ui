@@ -9,7 +9,7 @@
   />
 </AutoAdjust>
 
-<BottomAppBar bind:this={bottomAppBar} variant="fixed">
+<BottomAppBar bind:this={bottomAppBar}>
   <Section>
     <IconButton class="material-icons" aria-label="Archive">archive</IconButton>
     <IconButton class="material-icons" aria-label="Mark unread">mail</IconButton

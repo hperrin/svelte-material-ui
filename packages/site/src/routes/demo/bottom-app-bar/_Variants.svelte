@@ -1,6 +1,15 @@
 <!-- Check out iframe/*.svelte too see how these work. -->
 <iframe
   class="bottom-app-bar-iframe"
+  src="/demo/bottom-app-bar/iframe/standard"
+  title="standard"
+/>
+<a style="display: none;" href="/demo/bottom-app-bar/iframe/standard"
+  >helper needed for export</a
+>
+
+<iframe
+  class="bottom-app-bar-iframe"
   src="/demo/bottom-app-bar/iframe/fixed"
   title="fixed"
 />
