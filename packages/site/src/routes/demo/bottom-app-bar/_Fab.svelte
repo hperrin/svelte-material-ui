@@ -120,6 +120,7 @@
   }
 
   .flexor {
+    overflow: hidden;
     display: inline-flex;
     flex-direction: column;
   }
