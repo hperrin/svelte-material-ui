@@ -7,7 +7,7 @@
 
   <h5>Installation</h5>
 
-  <pre class="demo-spaced">npm i -D @smui/bottom-app-bar</pre>
+  <pre class="demo-spaced">npm i -D @smui-extra/bottom-app-bar</pre>
 
   <h5>Demos</h5>
 
@@ -20,7 +20,10 @@
 
   <Demo
     component={Variants}
-    files={['bottom-app-bar/iframe/fixed/+page.svelte']}
+    files={[
+      'bottom-app-bar/iframe/standard/+page.svelte',
+      'bottom-app-bar/iframe/fixed/+page.svelte',
+    ]}
   >
     Page level bottom app bars
     <svelte:fragment slot="subtitle">

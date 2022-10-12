@@ -51,7 +51,11 @@
 
   $: propStore = bottomAppBar && bottomAppBar.getPropStore();
   $: adjustClass = (() => {
-    if (!propStore || $propStore.variant === 'static') {
+    if (
+      !propStore ||
+      $propStore.variant === 'standard' ||
+      $propStore.variant === 'static'
+    ) {
       return '';
     }
 

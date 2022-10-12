@@ -32,6 +32,7 @@ $acceleration-curve-timing-function: cubic-bezier(0.4, 0, 1, 1) !default;
       display: flex;
       flex-direction: row;
       justify-content: center;
+      position: relative;
       padding: $section-padding-vertical $section-padding-horizontal;
       height: $section-height;
       box-sizing: border-box;
@@ -133,6 +134,61 @@ $acceleration-curve-timing-function: cubic-bezier(0.4, 0, 1, 1) !default;
 
   .smui-bottom-app-bar--fixed-adjust {
     padding-bottom: $section-height;
+  }
+
+  /*
+  "What the fuck is this nonsense?" (I hear you asking after reading the
+  following styles.)
+  
+  That's a great question.
+
+  In Google Chrome (the worst browser now that IE is dead), the background style
+  on the bar sections doesn't get applied, so the bar is... just transparent.
+  Super weird. BUUUT, if an animation runs inside the bar (like a ripple on
+  button click), the background is rendered again.
+
+  "Well why not just run the animation once on component load?"
+
+  Also a great quesiton.
+
+  Even if the background is rendered, if it is scrolled *down* to below the
+  fold, then scrolled back into view, it will be transparent again.
+
+  "Won't this have an impact on power consumption/battery life?"
+
+  Yes.
+  */
+  @supports (-webkit-appearance: none) and (not (overflow: -webkit-marquee)) and
+    (not (-moz-appearance: none)) {
+    // ^ That supports query makes this only apply to Chromium based
+    // browsers. (Chrome, Edge, Brave, etc.)
+    .smui-bottom-app-bar.smui-bottom-app-bar--standard
+      > .smui-bottom-app-bar__section::after,
+    .smui-bottom-app-bar.smui-bottom-app-bar--fixed
+      > .smui-bottom-app-bar__section::after {
+      display: block;
+      content: ' ';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      height: 10px;
+      width: 10px;
+      pointer-events: none;
+      background-color: #000;
+      opacity: 0;
+      animation: 60s linear 0s infinite chrome-fix;
+    }
+    @keyframes chrome-fix {
+      0% {
+        bottom: 0;
+      }
+      50% {
+        bottom: $section-height - 10px;
+      }
+      100% {
+        bottom: 0px;
+      }
+    }
   }
 }
 

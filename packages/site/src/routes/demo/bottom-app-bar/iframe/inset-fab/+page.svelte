@@ -38,7 +38,7 @@
 
 <style>
   /* Hide everything above this component. */
-  :global(app),
+  :global(#smui-app),
   :global(body),
   :global(html) {
     display: block !important;
