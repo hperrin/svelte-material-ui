@@ -1,14 +1,10 @@
 {
-  "version": "6.2.0",
+  "version": "7.0.0-beta.0",
   "command": {
     "version": {
-      "allowBranch": [
-        "master"
-      ],
+      "allowBranch": ["master"],
       "conventionalCommits": true
     }
   },
-  "packages": [
-    "packages/*"
-  ]
+  "packages": ["packages/*"]
 }
