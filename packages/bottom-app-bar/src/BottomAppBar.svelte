@@ -20,7 +20,7 @@
 </div>
 
 <script lang="ts">
-  import { setContext } from 'svelte';
+  import { afterUpdate, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import type { Subscriber } from 'svelte/store';
   import { readable, writable } from 'svelte/store';
@@ -55,19 +55,38 @@
 
   let internalStyles: { [k: string]: string } = {};
   const colorStore = writable(color);
+  let withFab = false;
+  let adjustOffset = 0;
   $: $colorStore = color;
   setContext('SMUI:bottom-app-bar:color', colorStore);
   let propStoreSet: Subscriber<{
+    withFab: boolean;
+    adjustOffset: number;
     variant: 'fixed' | 'static' | 'standard';
   }>;
-  let propStore = readable({ variant }, (set) => {
-    propStoreSet = set;
-  });
+  let propStore = readable(
+    {
+      withFab,
+      adjustOffset,
+      variant,
+    },
+    (set) => {
+      propStoreSet = set;
+    }
+  );
   $: if (propStoreSet) {
     propStoreSet({
+      withFab,
+      adjustOffset,
       variant,
     });
   }
+
+  afterUpdate(() => {
+    if (variant === 'standard' || variant === 'fixed') {
+      withFab = element.querySelector<HTMLDivElement>('.mdc-fab') != null;
+    }
+  });
 
   function addStyle(name: string, value: string) {
     if (internalStyles[name] != value) {
@@ -136,6 +155,7 @@
     } else if (oldVariant === 'standard') {
       addStyle('bottom', '');
       addStyle('--smui-bottom-app-bar--fab-offset', '0px');
+      adjustOffset = 0;
     }
     oldVariant = variant;
   }
@@ -232,6 +252,10 @@
       let offset = currentAppBarOffsetBottom;
       addStyle('--smui-bottom-app-bar--fab-offset', offset * 0.75 + 'px');
       addStyle('bottom', offset + 'px');
+      adjustOffset = offset;
+      if (withFab) {
+        adjustOffset -= +offset * 0.75;
+      }
     }
   }
 

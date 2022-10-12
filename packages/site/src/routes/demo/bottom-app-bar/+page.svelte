@@ -47,6 +47,18 @@
       inset.
     </svelte:fragment>
   </Demo>
+
+  <Demo
+    component={Snackbar}
+    files={['bottom-app-bar/iframe/snackbar/+page.svelte']}
+  >
+    Snackbar positioning
+    <svelte:fragment slot="subtitle">
+      The snackbar is positioned above the bottom app bar. Note: to follow
+      scrolling adjustments with the "standard" variant, this requires the
+      AutoAdjust component.
+    </svelte:fragment>
+  </Demo>
 </section>
 
 <script lang="ts">
@@ -56,4 +68,5 @@
   import Variants from './_Variants.svelte';
   import Fab from './_Fab.svelte';
   import InsetFab from './_InsetFab.svelte';
+  import Snackbar from './_Snackbar.svelte';
 </script>

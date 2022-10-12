@@ -136,6 +136,26 @@ $acceleration-curve-timing-function: cubic-bezier(0.4, 0, 1, 1) !default;
     padding-bottom: $section-height;
   }
 
+  .smui-bottom-app-bar--fixed-adjust,
+  .smui-bottom-app-bar--standard-adjust {
+    .mdc-snackbar {
+      transform: translateY(
+        calc((-1 * $section-height) - var(--smui-bottom-app-bar--fab-offset, 0))
+      );
+    }
+
+    &.smui-bottom-app-bar--with-fab {
+      .mdc-snackbar {
+        transform: translateY(
+          calc(
+            (-1 * ($section-height + math.div($fab-diameter, 2))) -
+              var(--smui-bottom-app-bar--fab-offset, 0)
+          )
+        );
+      }
+    }
+  }
+
   /*
   "What the fuck is this nonsense?" (I hear you asking after reading the
   following styles.)

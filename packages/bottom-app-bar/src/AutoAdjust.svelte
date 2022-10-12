@@ -7,6 +7,10 @@
     [className]: true,
     [adjustClass]: true,
   })}
+  style={Object.entries(internalStyles)
+    .map(([name, value]) => `${name}: ${value};`)
+    .concat([style])
+    .join(' ')}
   {...$$restProps}
 >
   <slot />
@@ -25,6 +29,7 @@
   type OwnProps = {
     use?: ActionArray;
     class?: string;
+    style?: string;
     bottomAppBar: BottomAppBar;
     component?: Component;
     tag?: TagName;
@@ -40,6 +45,7 @@
   export let use: ActionArray = [];
   let className = '';
   export { className as class };
+  export let style = '';
   export let bottomAppBar: BottomAppBar;
 
   let element: SvelteComponent;
@@ -49,18 +55,33 @@
     component === (SmuiElement as unknown as Component) ? 'main' : undefined
   ) as TagName | undefined;
 
+  let internalStyles: { [k: string]: string } = {};
   $: propStore = bottomAppBar && bottomAppBar.getPropStore();
   $: adjustClass = (() => {
-    if (
-      !propStore ||
-      $propStore.variant === 'standard' ||
-      $propStore.variant === 'static'
-    ) {
+    if (!propStore || $propStore.variant === 'static') {
       return '';
     }
 
-    return 'smui-bottom-app-bar--fixed-adjust';
+    addStyle(
+      '--smui-bottom-app-bar--fab-offset',
+      $propStore.adjustOffset + 'px'
+    );
+
+    return `smui-bottom-app-bar--${$propStore.variant}-adjust ${
+      $propStore.withFab ? 'smui-bottom-app-bar--with-fab' : ''
+    }`;
   })();
+
+  function addStyle(name: string, value: string) {
+    if (internalStyles[name] != value) {
+      if (value === '' || value == null) {
+        delete internalStyles[name];
+        internalStyles = internalStyles;
+      } else {
+        internalStyles[name] = value;
+      }
+    }
+  }
 
   export function getElement(): HTMLElement {
     return element.getElement();
