@@ -86,6 +86,20 @@ a:visited {
 }
 ```
 
+### Customizing Further
+
+If you'd like to customize the styles even further, you can set additional variables in other MDC or SMUI components. Some notable ones are the [shape variables](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-shape#sass-variables) and the [typography variables](https://github.com/material-components/material-components-web/blob/v14.0.0/packages/mdc-typography/_typography.scss#L93). You can add them to your `_smui-theme.scss` file. For example, you can remove rounded corners in SMUI by setting the shape variables.
+
+```scss
+@use '@material/shape/index' as shape with (
+  $small-component-radius: 0,
+  $medium-component-radius: 0,
+  $large-component-radius: 0
+);
+```
+
+Just make sure that you put that directly after the `@use '@material/theme/index'` block. All `@use` statements in a file must precede any styles in Sass. Also, remember to include it in both your light and dark theme files if you're using both.
+
 ## Theming the Bare CSS
 
 If you use the bare CSS, you can set a subset of the theme options with CSS variables. Note that not all of the colors in SMUI read from CSS variables, so some parts will still use the colors defined in the original Sass compile. Below is a copy of the variables from the CSS on the SMUI website. You can use this as a starting point for your own theme.
