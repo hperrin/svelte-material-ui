@@ -27,14 +27,14 @@ You'll need one of these sets of prepare scripts in your `package.json` file. No
 - Without Dark Mode support.
 
   ```
-  "prepare": "svelte-kit sync && npm run smui-theme",
+  "prepare": "npm run smui-theme",
   "smui-theme": "smui-theme compile static/smui.css -i src/theme"
   ```
 
 - With Dark Mode support.
 
   ```
-  "prepare": "svelte-kit sync && npm run smui-theme-light && npm run smui-theme-dark",
+  "prepare": "npm run smui-theme-light && npm run smui-theme-dark",
   "smui-theme-light": "smui-theme compile static/smui.css -i src/theme",
   "smui-theme-dark": "smui-theme compile static/smui-dark.css -i src/theme/dark"
   ```
