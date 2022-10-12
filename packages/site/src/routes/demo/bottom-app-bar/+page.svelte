@@ -9,6 +9,13 @@
 
   <pre class="demo-spaced">npm i -D @smui-extra/bottom-app-bar</pre>
 
+  <h5>Use</h5>
+
+  <p>
+    Please note that the Material spec states "Bottom app bars should be used
+    for mobile devices only".
+  </p>
+
   <h5>Demos</h5>
 
   <Demo component={Static} file="bottom-app-bar/_Static.svelte">
