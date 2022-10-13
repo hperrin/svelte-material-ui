@@ -42,14 +42,15 @@
 
 <style>
   /* Reset some of the demo app styles that interfere. */
+  :global(body),
   :global(html) {
     height: auto;
     width: auto;
     position: static;
   }
-  :global(#sapper),
-  :global(body) {
+  :global(#smui-app) {
     display: block;
     height: auto;
+    overflow: auto;
   }
 </style>
