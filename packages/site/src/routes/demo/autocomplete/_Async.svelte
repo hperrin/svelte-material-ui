@@ -46,9 +46,10 @@
     // Pretend to be loading something...
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
+    // This means the function was called again, so we should cancel.
     if (myCounter !== counter) {
-      // This means the function was called again, so we should cancel.
-      // This is how you tell Autocomplete to cancel this search. It won't
+      // `return false` (or, more accurately, resolving the Promise object to
+      // `false`) is how you tell Autocomplete to cancel this search. It won't
       // replace the results of any subsequent search that has already finished.
       return false;
     }
