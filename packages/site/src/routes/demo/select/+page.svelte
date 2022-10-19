@@ -13,6 +13,14 @@
 
   <Demo component={Showcase} file="select/_Showcase.svelte" />
 
+  <Demo component={Keys} file="select/_Keys.svelte">
+    Using Keys
+    <svelte:fragment slot="subtitle">
+      If your options aren't strings, you must provide a <code>key</code> function
+      that converts them to unique strings, or the label may misbehave.
+    </svelte:fragment>
+  </Demo>
+
   <Demo component={Standard} file="select/_Standard.svelte">Standard</Demo>
 
   <Demo component={Filled} file="select/_Filled.svelte">Filled</Demo>
@@ -36,14 +44,13 @@
   <Demo component={ConditionalIcon} file="select/_ConditionalIcon.svelte">
     Conditional icon
   </Demo>
-
-  <Demo component={Objects} file="select/_Objects.svelte">Using Objects</Demo>
 </section>
 
 <script lang="ts">
   import Demo from '$lib/Demo.svelte';
 
   import Showcase from './_Showcase.svelte';
+  import Keys from './_Keys.svelte';
   import Standard from './_Standard.svelte';
   import Filled from './_Filled.svelte';
   import Outlined from './_Outlined.svelte';
@@ -52,7 +59,6 @@
   import Required from './_Required.svelte';
   import Disabled from './_Disabled.svelte';
   import ConditionalIcon from './_ConditionalIcon.svelte';
-  import Objects from './_Objects.svelte';
 </script>
 
 <style>
