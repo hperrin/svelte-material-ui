@@ -30,7 +30,7 @@
     SmuiAttrs,
     SmuiSvgAttrs,
   } from './smui.types.js';
-  import { SmuiElement, Svg } from './index.js';
+  import { SmuiElement, Svg } from './index';
 
   type TagName = $$Generic<keyof SmuiElementMap>;
   type Component = $$Generic<ComponentType<SvelteComponent>>;
