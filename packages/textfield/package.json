@@ -14,16 +14,16 @@
   "typesVersions": {
     "*": {
       "*": [
-        "./src/*"
+        "./dist/*"
       ],
       "character-counter": [
-        "./src/character-counter/index.ts"
+        "./dist/character-counter/index.d.ts"
       ],
       "helper-text": [
-        "./src/helper-text/index.ts"
+        "./dist/helper-text/index.d.ts"
       ],
       "icon": [
-        "./src/icon/index.ts"
+        "./dist/icon/index.d.ts"
       ]
     }
   },

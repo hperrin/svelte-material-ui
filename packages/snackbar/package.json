@@ -12,10 +12,10 @@
   "typesVersions": {
     "*": {
       "*": [
-        "./src/*"
+        "./dist/*"
       ],
       "kitchen": [
-        "./src/kitchen/index.ts"
+        "./dist/kitchen/index.d.ts"
       ]
     }
   },

@@ -13,13 +13,13 @@
   "typesVersions": {
     "*": {
       "classadder": [
-        "./src/classadder/index.ts"
+        "./dist/classadder/index.d.ts"
       ],
       "internal": [
-        "./src/internal/index.ts"
+        "./dist/internal/index.d.ts"
       ],
       "*": [
-        "./src/*"
+        "./dist/*"
       ]
     }
   },

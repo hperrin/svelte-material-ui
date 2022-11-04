@@ -6,7 +6,7 @@
   "main": "dist/index.js",
   "module": "dist/index.js",
   "svelte": "dist/index.js",
-  "types": "src/index.ts",
+  "types": "dist/index.d.ts",
   "keywords": [
     "svelte",
     "svelte3",
