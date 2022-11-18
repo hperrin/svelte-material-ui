@@ -1,3 +1,5 @@
 node_modules
 bare.css
 /packages/*/dist
+# lerna doesn't look at package-locks iirc
+**/*/package-lock.json
