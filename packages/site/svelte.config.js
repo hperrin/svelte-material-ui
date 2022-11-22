@@ -31,8 +31,6 @@ const config = {
 
   kit: {
     adapter: staticAdapter(),
-
-    trailingSlash: 'ignore',
   },
 };
 
