@@ -3,19 +3,19 @@
   "version": "7.0.0-beta.0",
   "description": "Svelte Material UI - Snackbar",
   "type": "module",
-  "svelte": "./dist/index.js",
+  "svelte": "./package/index.js",
   "exports": {
     "./package.json": "./package.json",
-    ".": "./dist/index.js",
-    "./kitchen": "./dist/kitchen/index.js"
+    ".": "./package/index.js",
+    "./kitchen": "./package/kitchen/index.js"
   },
   "typesVersions": {
     "*": {
       "*": [
-        "./dist/*"
+        "./package/*"
       ],
       "kitchen": [
-        "./dist/kitchen/index.d.ts"
+        "./package/kitchen/index.d.ts"
       ]
     }
   },
@@ -29,12 +29,11 @@
     "sveltejs"
   ],
   "scripts": {
-    "build": "npm run build:js && npm run build:svelte && npm run build:sass",
-    "build:js": "tsc -p . --outDir dist/ --rootDir src/",
-    "build:svelte": "svelte-strip strip src/ dist",
+    "build": "npm run build:svelte && npm run build:sass",
+    "build:svelte": "svelte-package",
     "build:sass": "sass --no-source-map -I node_modules -I ../smui-theme/node_modules -I ../../node_modules _style.scss bare.css && sass --no-source-map -I node_modules -I ../smui-theme/node_modules -I ../../node_modules kitchen/_style.scss kitchen/bare.css",
     "clean": "git status --ignored -u --porcelain . | grep -v node_modules/ | grep -e '^!! ' | sed 's/^!! packages\\/[a-z-]*\\///g' | tr '\\n' ' ' | xargs rm",
-    "check": "npx svelte-check --ignore dist",
+    "check": "npx svelte-check --ignore package",
     "prepare": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -64,7 +63,6 @@
     "@tsconfig/svelte": "^3.0.0",
     "sass": "^1.54.0",
     "svelte-check": "^2.8.1",
-    "svelte-strip": "^1.0.2",
     "tslib": "^2.4.0",
     "typescript": "^4.7.4"
   }

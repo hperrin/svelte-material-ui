@@ -3,23 +3,23 @@
   "version": "7.0.0-beta.0",
   "description": "Svelte Material UI - Common",
   "type": "module",
-  "svelte": "./dist/index.js",
+  "svelte": "./package/index.js",
   "exports": {
     "./package.json": "./package.json",
-    ".": "./dist/index.js",
-    "./classadder": "./dist/classadder/index.js",
-    "./internal": "./dist/internal/index.js"
+    ".": "./package/index.js",
+    "./classadder": "./package/classadder/index.js",
+    "./internal": "./package/internal/index.js"
   },
   "typesVersions": {
     "*": {
       "classadder": [
-        "./dist/classadder/index.d.ts"
+        "./package/classadder/index.d.ts"
       ],
       "internal": [
-        "./dist/internal/index.d.ts"
+        "./package/internal/index.d.ts"
       ],
       "*": [
-        "./dist/*"
+        "./package/*"
       ]
     }
   },
@@ -33,11 +33,9 @@
     "sveltejs"
   ],
   "scripts": {
-    "build": "npm run build:js && npm run build:svelte",
-    "build:js": "tsc -p . --outDir dist/ --rootDir src/",
-    "build:svelte": "svelte-strip strip src/ dist",
+    "build": "svelte-package",
     "clean": "git status --ignored -u --porcelain . | grep -v node_modules/ | grep -e '^!! ' | sed 's/^!! packages\\/[a-z-]*\\///g' | tr '\\n' ' ' | xargs rm",
-    "check": "npx svelte-check --ignore dist",
+    "check": "npx svelte-check --ignore package",
     "prepare": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -56,7 +54,6 @@
   "devDependencies": {
     "sass": "^1.54.0",
     "svelte-check": "^2.8.1",
-    "svelte-strip": "^1.0.2",
     "tslib": "^2.4.0",
     "typescript": "^4.7.4"
   },

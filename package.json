@@ -38,12 +38,15 @@
   "devDependencies": {
     "@commitlint/cli": "^17.0.3",
     "@commitlint/config-conventional": "^17.0.3",
+    "@sveltejs/adapter-auto": "next",
+    "@sveltejs/package": "^1.0.0-next.6",
     "husky": "^8.0.1",
     "lerna": "^5.2.0",
     "lint-staged": "^13.0.3",
     "prettier": "~2.7.1",
     "prettier-plugin-svelte": "^2.7.0",
     "sass": "^1.54.0",
-    "svelte": "^3.49.0"
+    "svelte": "^3.49.0",
+	"svelte-preprocess": "^4.10.6"
   }
 }

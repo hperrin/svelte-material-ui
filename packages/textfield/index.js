@@ -1,3 +1,3 @@
-export * from './dist/index.js';
-import defaultExport from './dist/index.js';
+export * from './package/index.js';
+import defaultExport from './package/index.js';
 export default defaultExport;

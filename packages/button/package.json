@@ -3,10 +3,10 @@
   "version": "7.0.0-beta.0",
   "description": "Svelte Material UI - Button",
   "type": "module",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
-  "svelte": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "package/index.js",
+  "module": "package/index.js",
+  "svelte": "package/index.js",
+  "types": "package/index.d.ts",
   "keywords": [
     "svelte",
     "svelte3",
@@ -17,12 +17,11 @@
     "sveltejs"
   ],
   "scripts": {
-    "build": "npm run build:js && npm run build:svelte && npm run build:sass",
-    "build:js": "tsc -p . --outDir dist/ --rootDir src/",
-    "build:svelte": "svelte-strip strip src/ dist",
+    "build": "npm run build:svelte && npm run build:sass",
+    "build:svelte": "svelte-package",
     "build:sass": "sass --no-source-map -I node_modules -I ../smui-theme/node_modules -I ../../node_modules _style.scss bare.css",
     "clean": "git status --ignored -u --porcelain . | grep -v node_modules/ | grep -e '^!! ' | sed 's/^!! packages\\/[a-z-]*\\///g' | tr '\\n' ' ' | xargs rm",
-    "check": "npx svelte-check --ignore dist",
+    "check": "npx svelte-check --ignore package",
     "prepare": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -52,7 +51,6 @@
     "@tsconfig/svelte": "^3.0.0",
     "sass": "^1.54.0",
     "svelte-check": "^2.8.1",
-    "svelte-strip": "^1.0.2",
     "tslib": "^2.4.0",
     "typescript": "^4.7.4"
   }
