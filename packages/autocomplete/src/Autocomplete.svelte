@@ -21,11 +21,12 @@
     on:keydown|capture={handleTextfieldKeydown}
   >
     <slot>
-      <Textfield
+      <Textfield     
         {label}
         {disabled}
         bind:value={text}
         {...prefixFilter($$restProps, 'textfield$')}
+        style={fullWidth ? 'width: 100%' : ''}
       />
     </slot>
   </div>
@@ -162,6 +163,7 @@
   export let selectOnExactMatch = true;
   export let showMenuWithNoInput = true;
   export let noMatchesActionDisabled = true;
+  export let fullWidth: boolean = false;
   export let search: (input: string) => Promise<any[] | false> = async (
     input: string
   ) => {
