@@ -27,7 +27,7 @@ export default function Pannable(node: HTMLElement) {
 
   node.style.transition =
     (node.style.transition ? node.style.transition + ', ' : '') +
-    'opacity ease .3s';
+    'opacity .3s ease';
 
   node.addEventListener('touchstart', preventDefault, { passive: false });
 

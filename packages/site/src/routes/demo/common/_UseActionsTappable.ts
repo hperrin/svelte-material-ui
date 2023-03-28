@@ -14,15 +14,15 @@ export default function Tappable(
 
   node.style.transition =
     (node.style.transition ? node.style.transition + ', ' : '') +
-    'background-color ease 0.3s, color ease 0.3s';
+    'background-color .3s ease, color .3s ease';
 
   gesture.on('tap', () => {
-    if (!pressed) {
-      node.style.transform = 'perspective(1000px) translate3d(0, 0, 100px)';
-      clearTimeout(tapTimeout);
-      tapTimeout = setTimeout(() => (node.style.transform = ''), 300);
+    if (pressed) {
+      return;
     }
-    pressed = false;
+    node.style.transform = 'perspective(1000px) translate3d(0, 0, 100px)';
+    clearTimeout(tapTimeout);
+    tapTimeout = setTimeout(() => (node.style.transform = ''), 300);
   });
   gesture.on('doubletap', () => {
     node.style.transform = 'perspective(1000px) translate3d(0, 0, 400px)';
@@ -37,10 +37,16 @@ export default function Tappable(
   });
 
   gesture.on('panend', () => {
-    pressTimeout = setTimeout(() => {
-      node.style.backgroundColor = '';
-      node.style.color = '';
-    }, 300);
+    if (pressed) {
+      pressTimeout = setTimeout(() => {
+        node.style.backgroundColor = '';
+        node.style.color = '';
+      }, 300);
+
+      setTimeout(() => {
+        pressed = false;
+      }, 0);
+    }
   });
 
   return {

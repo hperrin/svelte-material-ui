@@ -9,7 +9,7 @@ export default function Swipeable(node: HTMLElement) {
 
   node.style.transition =
     (node.style.transition ? node.style.transition + ', ' : '') +
-    'transform ease 0.3s';
+    'transform .3s ease';
 
   node.addEventListener('touchstart', preventDefault, { passive: false });
 
