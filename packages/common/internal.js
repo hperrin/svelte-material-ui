@@ -1,1 +1,1 @@
-export * from './dist/internal/index.js';
+export * from './package/internal/index.js';

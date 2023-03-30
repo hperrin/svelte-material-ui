@@ -1,3 +1,3 @@
-export * from '../dist/character-counter/index.js';
-import defaultExport from '../dist/character-counter/index.js';
+export * from '../package/character-counter/index.js';
+import defaultExport from '../package/character-counter/index.js';
 export default defaultExport;

@@ -1,1 +1,1 @@
-export * from './dist/classadder/index.js';
+export * from './package/classadder/index.js';
