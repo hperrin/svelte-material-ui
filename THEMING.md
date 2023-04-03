@@ -100,6 +100,14 @@ If you'd like to customize the styles even further, you can set additional varia
 
 Just make sure that you put that directly after the `@use '@material/theme/index'` block. All `@use` statements in a file must precede any styles in Sass. Also, remember to include it in both your light and dark theme files if you're using both.
 
+### Adding Classes and Variables
+
+If you want to use MDC's classes and variables (like `var(--mdc-theme-primary)` and `class="mdc-theme--primary-bg"`), you can add the following line somewhere in your Sass files. A great place to add it is in your `_smui-theme.scss` file.
+
+```scss
+@use '@material/theme/styles';
+```
+
 ## Theming the Bare CSS
 
 If you use the bare CSS, you can set a subset of the theme options with CSS variables. Note that not all of the colors in SMUI read from CSS variables, so some parts will still use the colors defined in the original Sass compile. Below is a copy of the variables from the CSS on the SMUI website. You can use this as a starting point for your own theme.
@@ -145,12 +153,4 @@ If you use the bare CSS, you can set a subset of the theme options with CSS vari
   --mdc-layout-grid-gutter-phone: 16px;
   --mdc-layout-grid-column-width-phone: 72px;
 }
-```
-
-## Adding Classes and Variables
-
-If you want to use MDC's classes and variables (like `var(--mdc-theme-primary)` and `class="mdc-theme--primary-bg"`), you can add the following line somewhere in your Sass files. A great place to add it is in your `_smui-theme.scss` file.
-
-```sass
-@use '@material/theme/styles';
 ```

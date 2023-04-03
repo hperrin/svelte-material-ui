@@ -46,14 +46,14 @@
     "@material/theme": "^14.0.0",
     "@smui/common": "^7.0.0-beta.0",
     "@smui/ripple": "^7.0.0-beta.0",
-    "svelte2tsx": "^0.5.12"
+    "svelte2tsx": "^0.6.10"
   },
   "devDependencies": {
-    "@tsconfig/svelte": "^3.0.0",
-    "sass": "^1.54.0",
-    "svelte-check": "^2.8.1",
-    "svelte-strip": "^1.0.2",
-    "tslib": "^2.4.0",
-    "typescript": "^4.7.4"
+    "@tsconfig/svelte": "^4.0.1",
+    "sass": "^1.60.0",
+    "svelte-check": "^3.1.4",
+    "svelte-strip": "^2.0.0",
+    "tslib": "^2.5.0",
+    "typescript": "^5.0.3"
   }
 }
