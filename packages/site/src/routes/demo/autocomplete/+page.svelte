@@ -33,6 +33,13 @@
     Adding entries
   </Demo>
 
+  <Demo component={AddToList} file="autocomplete/_AddToList.svelte">
+    Add entries to a list
+    <svelte:fragment slot="subtitle">
+      Leave the menu open and don't fill the textbox upon selection.
+    </svelte:fragment>
+  </Demo>
+
   <Demo component={Async} file="autocomplete/_Async.svelte">
     Async options loading
     <svelte:fragment slot="subtitle">
@@ -54,6 +61,7 @@
   import Combobox from './_Combobox.svelte';
   import Objects from './_Objects.svelte';
   import AddEntries from './_AddEntries.svelte';
+  import AddToList from './_AddToList.svelte';
   import Async from './_Async.svelte';
   import Manual from './_Manual.svelte';
 </script>

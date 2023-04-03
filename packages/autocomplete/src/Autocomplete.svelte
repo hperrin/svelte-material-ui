@@ -35,7 +35,7 @@
       'smui-autocomplete__menu': true,
     })}
     managed
-    open={menuOpen}
+    bind:open={menuOpen}
     bind:anchorElement={element}
     anchor={menu$anchor}
     anchorCorner={menu$anchorCorner}
@@ -212,35 +212,21 @@
         !!matches.length &&
         !(matches.length === 1 && matches[0] === value)));
 
-  let previousText: string | undefined = undefined;
+  let previousText = text;
   $: if (previousText !== text) {
     if (!combobox && value != null && getOptionLabel(value) !== text) {
       deselectOption(value, false);
     }
 
-    (async () => {
-      loading = true;
-      error = false;
-      try {
-        const searchResult = await search(text);
-        if (searchResult !== false) {
-          matches = searchResult;
-          if (selectOnExactMatch) {
-            const exactMatch = matches.find(
-              (match) => getOptionLabel(match) === text
-            );
-            if (exactMatch && value !== exactMatch) {
-              selectOption(exactMatch);
-            }
-          }
-        }
-      } catch (e: any) {
-        error = true;
-      }
-      loading = false;
-    })();
+    performSearch();
 
     previousText = text;
+  }
+
+  $: if (options) {
+    // Set search results on init and refresh search results when `options` is
+    // changed.
+    performSearch();
   }
 
   let previousValue = value;
@@ -248,9 +234,14 @@
     // If the value changes from outside, update the text.
     text = getOptionLabel(value);
     previousValue = value;
-  } else if (combobox) {
-    // If the text changes, update value if we're a combobox.
+  } else if (combobox && previousValue !== value) {
+    // An update came from the outside.
+    text = value;
+    previousValue = value;
+  } else if (combobox && value !== text) {
+    // An update came from the user.
     value = text;
+    previousValue = value;
   }
 
   let previousFocusedIndex: number | undefined = undefined;
@@ -288,6 +279,28 @@
     previousFocusedIndex = focusedIndex;
   }
 
+  async function performSearch() {
+    loading = true;
+    error = false;
+    try {
+      const searchResult = await search(text);
+      if (searchResult !== false) {
+        matches = searchResult;
+        if (selectOnExactMatch) {
+          const exactMatch = matches.find(
+            (match) => getOptionLabel(match) === text
+          );
+          if (exactMatch && value !== exactMatch) {
+            selectOption(exactMatch);
+          }
+        }
+      }
+    } catch (e: any) {
+      error = true;
+    }
+    loading = false;
+  }
+
   function handleListAccessor(event: CustomEvent<SMUIListAccessor>) {
     if (!listAccessor) {
       listAccessor = event.detail;
@@ -295,6 +308,15 @@
   }
 
   function selectOption(option: any, setText = true) {
+    const event = dispatch(element, 'SMUIAutocomplete:selected', option, {
+      bubbles: true,
+      cancelable: true,
+    });
+
+    if (event.defaultPrevented) {
+      return;
+    }
+
     if (setText) {
       text = getOptionLabel(option);
     }
@@ -302,10 +324,18 @@
     if (!setText) {
       previousValue = option;
     }
-    dispatch(element, 'SMUIAutocomplete:selected', option);
   }
 
   function deselectOption(option: any, setText = true) {
+    const event = dispatch(element, 'SMUIAutocomplete:deselected', option, {
+      bubbles: true,
+      cancelable: true,
+    });
+
+    if (event.defaultPrevented) {
+      return;
+    }
+
     if (setText) {
       text = '';
     }
@@ -313,7 +343,6 @@
     if (!setText) {
       previousValue = undefined;
     }
-    dispatch(element, 'SMUIAutocomplete:deselected', option);
   }
 
   function toggleOption(option: any) {
