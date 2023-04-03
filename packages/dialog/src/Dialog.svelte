@@ -334,7 +334,7 @@
 
   function getDefaultButtonEl() {
     return element.querySelector<HTMLButtonElement>(
-      '[data-mdc-dialog-button-default'
+      '[data-mdc-dialog-button-default]'
     );
   }
 
