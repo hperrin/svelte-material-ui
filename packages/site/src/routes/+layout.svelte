@@ -94,12 +94,12 @@
           <Tooltip>Join the Discord Server</Tooltip>
         </Wrapper>
         <Wrapper>
-          <IconButton href="https://twitter.com/SciActive">
+          <IconButton href="https://port87.social/@hperrin">
             <Icon component={Svg} viewBox="0 0 24 24">
-              <path fill="currentColor" d={siTwitter.path} />
+              <path fill="currentColor" d={siMastodon.path} />
             </Icon>
           </IconButton>
-          <Tooltip>Hunter Perrin (SMUI Author) on Twitter</Tooltip>
+          <Tooltip>Hunter Perrin (SMUI Author) on Mastodon</Tooltip>
         </Wrapper>
         <Wrapper>
           <IconButton href="https://github.com/hperrin/svelte-material-ui">
@@ -178,7 +178,7 @@
 <script lang="ts">
   import { onDestroy, onMount } from 'svelte';
   import { mdiFileDocument, mdiWeatherSunny, mdiWeatherNight } from '@mdi/js';
-  import { siDiscord, siTwitter, siGithub } from 'simple-icons/icons';
+  import { siDiscord, siMastodon, siGithub } from 'simple-icons/icons';
   import TinyGesture from 'tinygesture';
   import { assets } from '$app/paths';
   import { page } from '$app/stores';
