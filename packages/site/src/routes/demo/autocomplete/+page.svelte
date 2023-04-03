@@ -48,6 +48,10 @@
     </svelte:fragment>
   </Demo>
 
+  <Demo component={FullWidth} file="autocomplete/_FullWidth.svelte">
+    Full width
+  </Demo>
+
   <Demo component={Manual} file="autocomplete/_Manual.svelte">
     Manual setup
   </Demo>
@@ -63,6 +67,7 @@
   import AddEntries from './_AddEntries.svelte';
   import AddToList from './_AddToList.svelte';
   import Async from './_Async.svelte';
+  import FullWidth from './_FullWidth.svelte';
   import Manual from './_Manual.svelte';
 </script>
 
