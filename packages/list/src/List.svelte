@@ -368,13 +368,6 @@
       ) as SMUIListItemAccessor[];
   }
 
-  function focusItemAtIndex(index: number) {
-    const accessor = getOrderedList()[index];
-    accessor &&
-      'focus' in accessor.element &&
-      (accessor.element as HTMLInputElement).focus();
-  }
-
   function listItemAtIndexHasClass(index: number, className: string) {
     const accessor = getOrderedList()[index];
     return (accessor && accessor.hasClass(className)) ?? false;
@@ -451,6 +444,13 @@
 
   export function getFocusedItemIndex() {
     return instance.getFocusedItemIndex();
+  }
+
+  export function focusItemAtIndex(index: number) {
+    const accessor = getOrderedList()[index];
+    accessor &&
+      'focus' in accessor.element &&
+      (accessor.element as HTMLInputElement).focus();
   }
 
   export function getElement(): HTMLElement {
