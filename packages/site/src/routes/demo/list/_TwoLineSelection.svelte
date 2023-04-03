@@ -1,16 +1,17 @@
 <div>
   <List
     class="demo-list"
+    bind:this={list}
     twoLine
     avatarList
     singleSelection
     bind:selectedIndex={selectionIndex}
   >
-    {#each options as item}
+    {#each options as item, i}
       <Item
-        on:SMUI:action={() => (selection = item.name)}
+        on:SMUI:action={() => console.log('Item selected:', item)}
         disabled={item.disabled}
-        selected={selection === item.name}
+        selected={selectionIndex === i}
       >
         <Graphic
           style="background-image: url(https://place-hold.it/40x40?text={item.name
@@ -28,8 +29,26 @@
   </List>
 </div>
 
-<pre
-  class="status">Selected: {selection}, value of selectedIndex: {selectionIndex}</pre>
+<pre class="status">Selected: {selectionIndex} - {options[selectionIndex]
+    .name}</pre>
+
+<div style="margin-top: 1em;">
+  <div>Programmatically select:</div>
+  {#each options as option, i}
+    <Button on:click={() => (selectionIndex = i)}>
+      <Label>{option.name}</Label>
+    </Button>
+  {/each}
+</div>
+
+<div style="margin-top: 1em;">
+  <div>Programmatically focus:</div>
+  {#each options as option, i}
+    <Button on:click={() => list.focusItemAtIndex(i)}>
+      <Label>{option.name}</Label>
+    </Button>
+  {/each}
+</div>
 
 <script lang="ts">
   import List, {
@@ -40,6 +59,9 @@
     PrimaryText,
     SecondaryText,
   } from '@smui/list';
+  import Button, { Label } from '@smui/button';
+
+  let list: InstanceType<typeof List>;
 
   let options = [
     {
@@ -63,10 +85,9 @@
       disabled: false,
     },
   ];
-  let selection = 'Stephen Hawking';
-  // This value is updated when the component is initialized, based on the
-  // selected Item's `selected` prop.
-  let selectionIndex: number | undefined = undefined;
+  // If this is not set, it is updated when the component is initialized, based
+  // on the selected Item's `selected` prop.
+  let selectionIndex = 3;
 </script>
 
 <style>
