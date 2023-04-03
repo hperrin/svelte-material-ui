@@ -35,6 +35,7 @@ https://github.com/material-components/material-components-web/blob/master/CHANG
 - List
   - New `disabledItemsFocusable` prop.
   - New `wrapper` prop on Item. This should be used for items that only act as the container of a nested list.
+  - New `focusItemAtIndex` function.
 - Menu
   - New `SMUIMenu:closedProgrammatically` event.
 - Menu Surface
