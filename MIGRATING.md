@@ -15,6 +15,7 @@ https://github.com/material-components/material-components-web/blob/master/CHANG
 - The "\*ComponentDev" types (like `MenuComponentDev`) are gone. You can now use the component as its type. Components that can take a `component` or `tag` prop (like `Button`) have required generic arguments that you can get around by using "InstanceType", like `let button: InstanceType<typeof Button>;`.
 - If you're using `classAdderBuilder`, you need to use `keyof SmuiElementMap` instead of `string` as its generic argument.
 - The `dispatch` function in `@smui/common` will now throw an error if either the `Event` object is not available or the `element` is not provided.
+- The `Input` component from the `@smui/textfield` now sets `value` to `Number.NaN` when the input is empty.
 
 ## Changes
 
