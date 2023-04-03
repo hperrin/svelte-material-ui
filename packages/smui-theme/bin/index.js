@@ -4,6 +4,7 @@ const sass = require('sass');
 const fetch = require('node-fetch');
 const yargs = require('yargs/yargs');
 const { hideBin } = require('yargs/helpers');
+const HttpsProxyAgent = require('https-proxy-agent');
 
 yargs(hideBin(process.argv))
   .command(
@@ -113,7 +114,12 @@ yargs(hideBin(process.argv))
         const themeSource = await fetch(
           `https://raw.githubusercontent.com/hperrin/svelte-material-ui/master/packages/site/src/theme/${
             dark ? 'dark/' : ''
-          }_smui-theme.scss`
+          }_smui-theme.scss`,
+          {
+            agent: process.env['https_proxy']
+              ? new HttpsProxyAgent(process.env['https_proxy'])
+              : undefined,
+          }
         ).then((result) => result.text());
 
         if (!themeSource) {
