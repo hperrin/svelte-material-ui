@@ -80,7 +80,7 @@
         element.classList.contains(className),
       closeSurface: (skipRestoreFocus) => {
         menuSurfaceAccessor.closeProgrammatic(skipRestoreFocus);
-        dispatch(getElement(), 'SMUIMenu:closedProgrammatically', {});
+        dispatch(getElement(), 'SMUIMenu:closedProgrammatically');
       },
       getElementIndex: (element) =>
         listAccessor

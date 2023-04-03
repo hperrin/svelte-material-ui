@@ -40,14 +40,6 @@
     anchor={menu$anchor}
     anchorCorner={menu$anchorCorner}
     on:SMUIList:mount={handleListAccessor}
-    on:SMUIMenu:closedProgrammatically={() => {
-      if (resetTextWhenSelected) {
-        text = '';
-        focus();
-      } else {
-        hideMenu = true;
-      }
-    }}
     {...prefixFilter($$restProps, 'menu$')}
   >
     <List {...prefixFilter($$restProps, 'list$')}>
@@ -170,7 +162,6 @@
   export let selectOnExactMatch = true;
   export let showMenuWithNoInput = true;
   export let noMatchesActionDisabled = true;
-  export let resetTextWhenSelected = false;
   export let search: (input: string) => Promise<any[] | false> = async (
     input: string
   ) => {
@@ -211,12 +202,9 @@
   let matches: any[] = [];
   let focusedIndex = -1;
   let focusedItem: SMUIListItemAccessor | undefined = undefined;
-  let itemHasBeenSelected: boolean = false;
-  let hideMenu: boolean = false;
 
   $: menuOpen =
     focused &&
-    !hideMenu &&
     (text !== '' || showMenuWithNoInput) &&
     (loading ||
       (!combobox && !(matches.length === 1 && matches[0] === value)) ||
@@ -224,45 +212,21 @@
         !!matches.length &&
         !(matches.length === 1 && matches[0] === value)));
 
-  let previousText: string | undefined = undefined;
+  let previousText = text;
   $: if (previousText !== text) {
-    if (!itemHasBeenSelected) {
-      hideMenu = false;
-    }
     if (!combobox && value != null && getOptionLabel(value) !== text) {
       deselectOption(value, false);
     }
 
-    (async () => {
-      loading = true;
-      error = false;
-      try {
-        const searchResult = await search(text);
-        if (searchResult !== false) {
-          matches = searchResult;
-          if (selectOnExactMatch) {
-            const exactMatch = matches.find(
-              (match) => getOptionLabel(match) === text
-            );
-            if (exactMatch && value !== exactMatch) {
-              selectOption(exactMatch);
-            }
-          }
-        }
-      } catch (e: any) {
-        error = true;
-      }
-      loading = false;
-    })();
+    performSearch();
 
-    if (itemHasBeenSelected) {
-      if (resetTextWhenSelected) {
-        text = '';
-        focus();
-      }
-      itemHasBeenSelected = false;
-    }
     previousText = text;
+  }
+
+  $: if (options) {
+    // Set search results on init and refresh search results when `options` is
+    // changed.
+    performSearch();
   }
 
   let previousValue = value;
@@ -270,13 +234,14 @@
     // If the value changes from outside, update the text.
     text = getOptionLabel(value);
     previousValue = value;
-    itemHasBeenSelected = true;
-    if (!resetTextWhenSelected) {
-      hideMenu = true;
-    }
-  } else if (combobox) {
-    // If the text changes, update value if we're a combobox.
+  } else if (combobox && previousValue !== value) {
+    // An update came from the outside.
+    text = value;
+    previousValue = value;
+  } else if (combobox && value !== text) {
+    // An update came from the user.
     value = text;
+    previousValue = value;
   }
 
   let previousFocusedIndex: number | undefined = undefined;
@@ -314,6 +279,28 @@
     previousFocusedIndex = focusedIndex;
   }
 
+  async function performSearch() {
+    loading = true;
+    error = false;
+    try {
+      const searchResult = await search(text);
+      if (searchResult !== false) {
+        matches = searchResult;
+        if (selectOnExactMatch) {
+          const exactMatch = matches.find(
+            (match) => getOptionLabel(match) === text
+          );
+          if (exactMatch && value !== exactMatch) {
+            selectOption(exactMatch);
+          }
+        }
+      }
+    } catch (e: any) {
+      error = true;
+    }
+    loading = false;
+  }
+
   function handleListAccessor(event: CustomEvent<SMUIListAccessor>) {
     if (!listAccessor) {
       listAccessor = event.detail;
@@ -321,6 +308,15 @@
   }
 
   function selectOption(option: any, setText = true) {
+    const event = dispatch(element, 'SMUIAutocomplete:selected', option, {
+      bubbles: true,
+      cancelable: true,
+    });
+
+    if (event.defaultPrevented) {
+      return;
+    }
+
     if (setText) {
       text = getOptionLabel(option);
     }
@@ -328,10 +324,18 @@
     if (!setText) {
       previousValue = option;
     }
-    dispatch(element, 'SMUIAutocomplete:selected', option);
   }
 
   function deselectOption(option: any, setText = true) {
+    const event = dispatch(element, 'SMUIAutocomplete:deselected', option, {
+      bubbles: true,
+      cancelable: true,
+    });
+
+    if (event.defaultPrevented) {
+      return;
+    }
+
     if (setText) {
       text = '';
     }
@@ -339,7 +343,6 @@
     if (!setText) {
       previousValue = undefined;
     }
-    dispatch(element, 'SMUIAutocomplete:deselected', option);
   }
 
   function toggleOption(option: any) {

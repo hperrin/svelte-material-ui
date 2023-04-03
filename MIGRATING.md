@@ -14,11 +14,14 @@ https://github.com/material-components/material-components-web/blob/master/CHANG
   - Internally, they are replaced with the `SmuiElement` component exported from `@smui/common`. It takes a `tag` prop and creates an element dynamically with that tag name. You shouldn't ever need to use `SmuiElement` directly.
 - The "\*ComponentDev" types (like `MenuComponentDev`) are gone. You can now use the component as its type. Components that can take a `component` or `tag` prop (like `Button`) have required generic arguments that you can get around by using "InstanceType", like `let button: InstanceType<typeof Button>;`.
 - If you're using `classAdderBuilder`, you need to use `keyof SmuiElementMap` instead of `string` as its generic argument.
+- The `dispatch` function in `@smui/common` will now throw an error if either the `Event` object is not available or the `element` is not provided.
 
 ## Changes
 
 ### Components
 
+- Autocomplete
+  - The `SMUIAutocomplete:selected` event is now cancelable.
 - Banner
   - New `autoClose` prop.
   - New `SMUIBanner:actionClicked` event. It is fired when an action is clicked and `autoClose` is `false`.
@@ -32,6 +35,8 @@ https://github.com/material-components/material-components-web/blob/master/CHANG
 - List
   - New `disabledItemsFocusable` prop.
   - New `wrapper` prop on Item. This should be used for items that only act as the container of a nested list.
+- Menu
+  - New `SMUIMenu:closedProgrammatically` event.
 - Menu Surface
   - New `SMUIMenuSurface:opening` event.
   - New `openBottomBias` prop.
