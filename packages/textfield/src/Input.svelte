@@ -104,9 +104,7 @@
 
   function toNumber(value: string) {
     if (value === '') {
-      const nan = new Number(Number.NaN);
-      (nan as unknown as Array<any>).length = 0;
-      return nan as number;
+      return NaN;
     }
     return +value;
   }
