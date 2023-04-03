@@ -12,6 +12,52 @@ npm install --save-dev @smui/tab
 
 https://sveltematerialui.com/demo/tabs
 
+[See it in action.](https://sveltematerialui.com/demo/tabs)
+
+[See the demo code.](/site/src/routes/demo/tabs/)
+
+# Basic Usage
+
+Use if/else conditional constructs to display tab content, eg:
+
+```javascript
+<script>
+ import TabBar from '@smui/tab-bar';
+ import Tab from '@smui/tab';
+ import Paper, { Subtitle } from '@smui/paper';
+ let active = 'Home';
+</script>
+<TabBar tabs={['Home', 'Merchandise', 'About Us']} let:tab bind:active>
+    <!-- Note: the `tab` property is required! -->
+    <Tab {tab} tabIndicator$transition="fade">
+      <Label>{tab}</Label>
+    </Tab>
+  </TabBar>
+{#if active ==="Home"}
+	<Paper class="paper-demo">
+		<Title>Paper</Title>
+		<Subtitle>This is a sheet of paper.</Subtitle>
+		<Content>Home Content.</Content>
+	</Paper>
+{:else if active ==="Merchandise"}
+	<Paper class="paper-demo">
+		<Title>Paper</Title>
+		<Subtitle>This is a sheet of paper.</Subtitle>
+		<Content>Merchandise content.</Content>
+	</Paper>
+ {:else if active ==="About Us"}
+	<Paper class="paper-demo">
+		<Title>Paper</Title>
+		<Subtitle>This is a sheet of paper.</Subtitle>
+		<Content>About Content.</Content>
+	</Paper>
+{/if}
+```
+
+# Exports
+
+todo...
+
 # More Information
 
 See [Tabs](https://material.io/components/tabs) in the Material design spec.
