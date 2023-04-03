@@ -146,3 +146,11 @@ If you use the bare CSS, you can set a subset of the theme options with CSS vari
   --mdc-layout-grid-column-width-phone: 72px;
 }
 ```
+
+## Adding Classes and Variables
+
+If you want to use MDC's classes and variables (like `var(--mdc-theme-primary)` and `class="mdc-theme--primary-bg"`), you can add the following line somewhere in your Sass files. A great place to add it is in your `_smui-theme.scss` file.
+
+```sass
+@use '@material/theme/styles';
+```
