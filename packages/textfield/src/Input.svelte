@@ -104,7 +104,7 @@
 
   function toNumber(value: string) {
     if (value === '') {
-      return NaN;
+      return Number.NaN;
     }
     return +value;
   }

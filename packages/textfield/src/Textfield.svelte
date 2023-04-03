@@ -66,7 +66,10 @@
       {#if !noLabel && (label != null || $$slots.label)}
         <FloatingLabel
           bind:this={floatingLabel}
-          floatAbove={focused || (value != null && value !== '')}
+          floatAbove={focused ||
+            (value != null &&
+              value !== '' &&
+              (typeof value !== 'number' || !isNaN(value)))}
           {required}
           wrapped
           {...prefixFilter($$restProps, 'label$')}
@@ -83,7 +86,10 @@
         {#if !noLabel && (label != null || $$slots.label)}
           <FloatingLabel
             bind:this={floatingLabel}
-            floatAbove={focused || (value != null && value !== '')}
+            floatAbove={focused ||
+              (value != null &&
+                value !== '' &&
+                (typeof value !== 'number' || !isNaN(value)))}
             {required}
             wrapped
             {...prefixFilter($$restProps, 'label$')}
