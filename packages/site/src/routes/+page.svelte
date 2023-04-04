@@ -47,7 +47,7 @@
         <Content>
           Many SMUI components are based on <a
             style="color: #fff;"
-            href="https://material.io/develop/web"
+            href="https://github.com/material-components/material-components-web"
             target="_blank">Material Design Components for Web</a
           >, by Google. It integrates these components using the
           <a
@@ -223,7 +223,7 @@
             <SecondaryText style="white-space: normal;">
               With over <a
                 href="https://github.com/hperrin/svelte-material-ui/network/dependents?package_id=UGFja2FnZS01NTM5MDg5MDQ"
-                target="_blank">1700 projects</a
+                target="_blank">2200 projects</a
               > using SMUI components, it is the most popular Svelte UI library.
               For good reason, too. It is the most versatile and adaptable Svelte
               UI library, guaranteed.
@@ -285,7 +285,7 @@
       <a href="https://github.com/hperrin/svelte-material-ui/issues"
         >Issue Tracker</a
       >
-      | &copy; 2022 Hunter Perrin ]
+      | &copy; 2019-2023 Hunter Perrin ]
     </p>
   </div>
 </section>

@@ -2,6 +2,8 @@
 
 ## Theming with Sass
 
+If you're going to theme with Sass, reading an [introduction to Sass](https://sass-lang.com/guide) would be helpful. Hoever, you don't need to know much about Sass to make basic themes for SMUI.
+
 To create a custom Sass theme, install the SMUI Theme Builder.
 
 ```sh
@@ -14,17 +16,11 @@ You can use it to create your theme directory from a template. Adjust to your so
 npx smui-theme template src/theme
 ```
 
-This creates `_smui-theme.scss` files in `src/theme`. That is where you set the theme variables.
+This creates a `_smui-theme.scss` file in `src/theme` for light mode and an alternative `_smui-theme.scss` file in `src/theme/dark` for dark mode. That is where you set the theme variables.
 
 ### Building Your Theme
 
 In your package.json file, add this script in the "scripts" section, adjusting the source/destination files as needed.
-
-```
-"prepare": "smui-theme compile build/smui.css -i src/theme",
-```
-
-Or for dark mode support.
 
 ```
 "prepare": "npm run smui-theme-light && npm run smui-theme-dark",
@@ -32,14 +28,13 @@ Or for dark mode support.
 "smui-theme-dark": "smui-theme compile build/smui-dark.css -i src/theme/dark",
 ```
 
-Now run `npm run prepare` to build the CSS file(s), then add it/them on your page. Something like this, adjusting the paths as needed.
+Or if you don't need dark mode support.
 
-```html
-<!-- SMUI Styles -->
-<link rel="stylesheet" href="/smui.css" />
+```
+"prepare": "smui-theme compile build/smui.css -i src/theme",
 ```
 
-Or for dark mode support.
+Now run `npm run prepare` to build the CSS file(s), then add them on your page. Something like this, adjusting the paths as needed.
 
 ```html
 <!-- SMUI Styles -->
@@ -51,11 +46,20 @@ Or for dark mode support.
 />
 ```
 
-Note: The smui-theme compiler will only include the Sass for the packages installed when it is run. If you install a new SMUI package, you should run `npm run prepare` to rebuild the CSS.
+Or if you don't need dark mode support.
+
+```html
+<!-- SMUI Styles -->
+<link rel="stylesheet" href="/smui.css" />
+```
+
+Important: The smui-theme compiler will only include the Sass for the packages installed when it is run. If you install a new SMUI package, you should run `npm run prepare` to rebuild the CSS.
 
 ### Theme Variables
 
-You can check out the READMEs of [the MDC-Web components](https://github.com/material-components/material-components-web/tree/v14.0.0/packages) to learn how to deeply style the components. The most important part (and probably the only one you want) is setting the [theme colors](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-theme#color-scheme). For the Material color palette, you can @use ["@material/theme/color-palette"](https://github.com/material-components/material-components-web/blob/v14.0.0/packages/mdc-theme/_color-palette.scss). You might also want to style the [border radius variables](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-shape#sass-variables).
+The most important part of theming (and probably the only one you want) is setting the [theme colors](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-theme#color-scheme). For the Material color palette, you can @use ["@material/theme/color-palette"](https://github.com/material-components/material-components-web/blob/v14.0.0/packages/mdc-theme/_color-palette.scss). You might also want to style the [border radius variables](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-shape#sass-variables).
+
+To learn how to deeply style the individual components, you can check out the READMEs of [the MDC-Web components](https://github.com/material-components/material-components-web/tree/v14.0.0/packages). If you need more help, check out the [theming guide](https://m2.material.io/develop/web/theming/theming-guide) on the MDC-Web website. SMUI uses all the styles from MDC-Web, so everything regarding Sass and CSS from that guide should work with SMUI.
 
 Here is an example `_smui-theme.scss` file you can use as a starting point.
 
@@ -102,11 +106,15 @@ Just make sure that you put that directly after the `@use '@material/theme/index
 
 ### Adding Classes and Variables
 
-If you want to use MDC's classes and variables (like `var(--mdc-theme-primary)` and `class="mdc-theme--primary-bg"`), you can add the following line somewhere in your Sass files. A great place to add it is in your `_smui-theme.scss` file.
+If you want to use MDC's classes and variables (like `var(--mdc-theme-primary)` and `class="mdc-theme--primary-bg"`), you can add the following line somewhere in your Sass files. A great place to add it is in your `_smui-theme.scss` files.
 
 ```scss
 @use '@material/theme/styles';
 ```
+
+## Adding Material Typography
+
+You can [add Material typography](/TYPOGRAPHY.md) as the default for your app.
 
 ## Theming the Bare CSS
 

@@ -241,35 +241,20 @@
       separator: true,
     },
     {
+      name: 'Introduction',
+      route: '/demo/introduction/',
+      indent: 0,
+    },
+    {
+      name: 'sep2',
+      separator: true,
+    },
+    {
       name: 'Accordion',
       route: '/demo/accordion/',
       indent: 0,
       repos: [
         'https://github.com/hperrin/svelte-material-ui/tree/master/packages/accordion',
-      ],
-    },
-    {
-      name: 'Badge',
-      route: '/demo/badge/',
-      indent: 0,
-      repos: [
-        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/badge',
-      ],
-    },
-    {
-      name: 'Banner',
-      route: '/demo/banner/',
-      indent: 0,
-      repos: [
-        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/banner',
-      ],
-    },
-    {
-      name: 'Bottom App Bar',
-      route: '/demo/bottom-app-bar/',
-      indent: 0,
-      repos: [
-        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/bottom-app-bar',
       ],
     },
     {
@@ -298,6 +283,42 @@
       indent: 1,
       repos: [
         'https://github.com/hperrin/svelte-material-ui/tree/master/packages/icon-button',
+      ],
+    },
+    {
+      name: 'App Bars',
+      indent: 0,
+    },
+    {
+      name: 'Bottom App Bar',
+      route: '/demo/bottom-app-bar/',
+      indent: 1,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/bottom-app-bar',
+      ],
+    },
+    {
+      name: 'Top App Bar',
+      route: '/demo/top-app-bar/',
+      indent: 1,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/top-app-bar',
+      ],
+    },
+    {
+      name: 'Badge',
+      route: '/demo/badge/',
+      indent: 0,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/badge',
+      ],
+    },
+    {
+      name: 'Banner',
+      route: '/demo/banner/',
+      indent: 0,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/banner',
       ],
     },
     {
@@ -529,14 +550,6 @@
       indent: 0,
       repos: [
         'https://github.com/hperrin/svelte-material-ui/tree/master/packages/tooltip',
-      ],
-    },
-    {
-      name: 'Top App Bar',
-      route: '/demo/top-app-bar/',
-      indent: 0,
-      repos: [
-        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/top-app-bar',
       ],
     },
     {

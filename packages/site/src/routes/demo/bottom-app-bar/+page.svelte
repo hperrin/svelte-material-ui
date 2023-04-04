@@ -50,7 +50,7 @@
   >
     Inset FAB
     <svelte:fragment slot="subtitle">
-      This is displayed in an iframe so that content will appear behind the
+      These are displayed in iframes so that content will appear behind the
       inset.
     </svelte:fragment>
   </Demo>

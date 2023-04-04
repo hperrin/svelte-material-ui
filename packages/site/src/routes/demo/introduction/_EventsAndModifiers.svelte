@@ -48,6 +48,11 @@
 <br /> <br />
 
 <div>
+  Standard events can be modified, like blocking navigation on the click event
+  of a link.
+</div>
+
+<div>
   <Button
     href="http://example.com"
     on:click$preventDefault={() =>
@@ -58,6 +63,11 @@
 </div>
 
 <br /> <br />
+
+<div>
+  TypeScript event types can be tricky with SMUI components. This example shows
+  you how to get them right.
+</div>
 
 <div>
   <Button on:mousedown$preventDefault={handleTypedEvent}>

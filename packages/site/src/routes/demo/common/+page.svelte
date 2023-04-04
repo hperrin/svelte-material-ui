@@ -36,24 +36,6 @@
     </svelte:fragment>
   </Demo>
 
-  <h4>Common Features and Use Patterns</h4>
-
-  <Demo component={TargetingClasses} file="common/_TargetingClasses.svelte">
-    Targeting Classes
-    <svelte:fragment slot="subtitle">
-      Because Svelte limits your CSS to <em>only</em> the current component, you
-      need to use a ":global" selector to target SMUI elements.
-    </svelte:fragment>
-  </Demo>
-
-  <Demo component={EventsAndModifiers} file="common/_EventsAndModifiers.svelte">
-    Events and Modifiers
-    <svelte:fragment slot="subtitle">
-      SMUI supports listening to <strong>all</strong> events. You can also use modifiers
-      with the "$" syntax.
-    </svelte:fragment>
-  </Demo>
-
   <h4>Helper Utilities</h4>
 
   <Demo component={ClassMap} file="common/_ClassMap.svelte">
@@ -184,8 +166,6 @@
   import CommonLabelIcon from './_CommonLabelIcon.svelte';
   import SmuiElement from './_SmuiElement.svelte';
   import Svg from './_Svg.svelte';
-  import TargetingClasses from './_TargetingClasses.svelte';
-  import EventsAndModifiers from './_EventsAndModifiers.svelte';
   import ClassMap from './_ClassMap.svelte';
   import Dispatch from './_Dispatch.svelte';
   import ExcludeAndPrefixFilter from './_ExcludeAndPrefixFilter.svelte';
