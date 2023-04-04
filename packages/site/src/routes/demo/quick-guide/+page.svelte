@@ -1,9 +1,9 @@
 <svelte:head>
-  <title>Introduction - SMUI</title>
+  <title>Quick Guide - SMUI</title>
 </svelte:head>
 
 <section>
-  <h2>Introduction</h2>
+  <h2>Quick Guide</h2>
   <p>
     Some helpful guides for common use patterns in SMUI that are different than
     standard Svelte.
@@ -11,7 +11,7 @@
 
   <Demo
     component={TargetingClasses}
-    file="introduction/_TargetingClasses.svelte"
+    file="quick-guide/_TargetingClasses.svelte"
   >
     Targeting Classes
     <svelte:fragment slot="subtitle">
@@ -22,7 +22,7 @@
 
   <Demo
     component={EventsAndModifiers}
-    file="introduction/_EventsAndModifiers.svelte"
+    file="quick-guide/_EventsAndModifiers.svelte"
   >
     Events and Modifiers
     <svelte:fragment slot="subtitle">
@@ -30,11 +30,23 @@
       with the "$" syntax.
     </svelte:fragment>
   </Demo>
+
+  <Demo
+    component={InnerElementProps}
+    file="quick-guide/_InnerElementProps.svelte"
+  >
+    Inner element props
+    <svelte:fragment slot="subtitle">
+      Many SMUI components have inner elements that can take props with a
+      prefix, like "input$" or "icon$".
+    </svelte:fragment>
+  </Demo>
 </section>
 
 <script lang="ts">
   import Demo from '$lib/Demo.svelte';
 
-  import TargetingClasses from '../introduction/_TargetingClasses.svelte';
-  import EventsAndModifiers from '../introduction/_EventsAndModifiers.svelte';
+  import TargetingClasses from './_TargetingClasses.svelte';
+  import EventsAndModifiers from './_EventsAndModifiers.svelte';
+  import InnerElementProps from './_InnerElementProps.svelte';
 </script>

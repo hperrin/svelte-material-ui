@@ -4,6 +4,7 @@
     on:mousedown={addEvent}
     on:mouseup={addEvent}
     on:mouseover={addEvent}
+    on:mousemove={addEvent}
     on:mouseout={addEvent}
     on:keypress={addEvent}
     on:keydown={addEvent}
@@ -12,6 +13,10 @@
     on:blur={addEvent}
     on:animationstart={addEvent}
     on:animationend={addEvent}
+    on:touchstart={addEvent}
+    on:touchend={addEvent}
+    on:touchmove={addEvent}
+    on:touchcancel={addEvent}
   >
     <Label>This Button has Event Listeners</Label>
   </Button>
@@ -19,7 +24,7 @@
 
 <div class="event-output" bind:this={eventOutput}>
   {#each events as event}
-    <p>Caught {event.type}</p>
+    <p>Caught {event}</p>
   {:else}
     <p>No events yet.</p>
   {/each}
@@ -82,11 +87,22 @@
 
   let eventOutput: HTMLDivElement;
   let eventPhaseOutput: HTMLDivElement;
-  let events: Event[] = [];
+  let events: string[] = [];
   let eventPhases: [Event, string][] = [];
 
   function addEvent(event: Event) {
-    events.push(event);
+    if (
+      events.length &&
+      (events[events.length - 1] === event.type ||
+        events[events.length - 1].startsWith(event.type))
+    ) {
+      const current = parseInt(events[events.length - 1].replace(/\D/g, ''));
+      events[events.length - 1] = `${event.type} ×${
+        isNaN(current) ? 2 : current + 1
+      }`;
+    } else {
+      events.push(event.type);
+    }
     events = events;
     requestAnimationFrame(() => {
       eventOutput.scrollTop = eventOutput.scrollHeight;

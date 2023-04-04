@@ -241,8 +241,8 @@
       separator: true,
     },
     {
-      name: 'Introduction',
-      route: '/demo/introduction/',
+      name: 'Quick Guide',
+      route: '/demo/quick-guide/',
       indent: 0,
     },
     {
