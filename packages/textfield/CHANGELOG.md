@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.0.0-beta.1](https://github.com/hperrin/svelte-material-ui/compare/v7.0.0-beta.0...v7.0.0-beta.1) (2023-04-04)
+
+
+### Bug Fixes
+
+* check for NaN value when floating the label in text field ([d64bec0](https://github.com/hperrin/svelte-material-ui/commit/d64bec03d824f9b9ea9239dc0d4925197d317dd3))
+* many type issues ([d5ade30](https://github.com/hperrin/svelte-material-ui/commit/d5ade309eebf9bc5c17826730e691077f495cda8)), closes [#527](https://github.com/hperrin/svelte-material-ui/issues/527)
+* update packages and fix issues ([13050de](https://github.com/hperrin/svelte-material-ui/commit/13050deacb8a40d679db9ad92ca88c3a0b436b47))
+
+
+
+
+
 # [7.0.0-beta.0](https://github.com/hperrin/svelte-material-ui/compare/v6.2.0...v7.0.0-beta.0) (2022-10-12)
 
 ### Features
