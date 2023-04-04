@@ -2,9 +2,9 @@
   <img src="packages/site/static/header-transparent.png" alt="Svelte Material UI" />
 </div>
 
-A library of Svelte Material UI components, based on [Material Design Components - Web](https://material.io/develop/web/).
+A library of Svelte Material UI components, based on [Material Design Components - Web](https://github.com/material-components/material-components-web).
 
-# Demos and Code Samples
+# Demos, Code Samples, and Guides
 
 https://sveltematerialui.com
 
@@ -65,11 +65,13 @@ You can include icons in a number of ways, but the easiest is the [Material Icon
 
 However, there are two downsides. First is that all icons are downloaded, no matter which ones you use, so the size over the wire will almost certainly be more than necessary. Second is that it _only_ includes the Material Icons from Google.
 
-Another option is the [Material Design Icons library](https://materialdesignicons.com/). See the "Using SVGs" demo on the [Icon Button demo page](https://sveltematerialui.com/demo/icon-button) for instructions to use icons from the `@mdi/js` package (or any other SVG icons).
+Another option is the [Material Design Icons library](https://pictogrammers.com/library/mdi/). See the "Using SVGs" demo on the [Icon Button demo page](https://sveltematerialui.com/demo/icon-button) for instructions to use icons from the `@mdi/js` package (or any other SVG icons).
 
 You can even use them in data URLs: [![](data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiICB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCI+CiAgIDxwYXRoIGZpbGw9IiMwMDAwMDAiIGQ9Ik0xMSwyM0EyLDIgMCAwLDEgOSwyMVYxOUgxNVYyMUEyLDIgMCAwLDEgMTMsMjNIMTFNMTIsMUMxMi43MSwxIDEzLjM5LDEuMDkgMTQuMDUsMS4yNkMxNS4yMiwyLjgzIDE2LDUuNzEgMTYsOUMxNiwxMS4yOCAxNS42MiwxMy4zNyAxNSwxNkEyLDIgMCAwLDEgMTMsMThIMTFBMiwyIDAgMCwxIDksMTZDOC4zOCwxMy4zNyA4LDExLjI4IDgsOUM4LDUuNzEgOC43OCwyLjgzIDkuOTUsMS4yNkMxMC42MSwxLjA5IDExLjI5LDEgMTIsMU0yMCw4QzIwLDExLjE4IDE4LjE1LDE1LjkyIDE1LjQ2LDE3LjIxQzE2LjQxLDE1LjM5IDE3LDExLjgzIDE3LDlDMTcsNi4xNyAxNi40MSwzLjYxIDE1LjQ2LDEuNzlDMTguMTUsMy4wOCAyMCw0LjgyIDIwLDhNNCw4QzQsNC44MiA1Ljg1LDMuMDggOC41NCwxLjc5QzcuNTksMy42MSA3LDYuMTcgNyw5QzcsMTEuODMgNy41OSwxNS4zOSA4LjU0LDE3LjIxQzUuODUsMTUuOTIgNCwxMS4xOCA0LDhaIiAvPgo8L3N2Zz4=)](https://www.youtube.com/watch?v=vo9Fja5x04o)
 
-1. [Find your icon](https://materialdesignicons.com/) and click "View SVG" under the code menu.
+To get a data URL for the icon:
+
+1. [Find your icon](https://pictogrammers.com/library/mdi/) and click "View SVG" under the code menu.
 2. Click the "SVG File" tab and copy the full SVG document.
 3. [Base64 encode](https://www.base64encode.org/) the document.
 4. Format the URL like this `data:image/svg+xml;base64,encodedcontent`, replacing "encodedcontent" with the Base64 results.
@@ -80,13 +82,15 @@ You can even use them in data URLs: [![](data:image/svg+xml;base64,PD94bWwgdmVyc
 Click a component/package below to go to the documentation. (Note that this documentation is a work in progress. The demo code should be your main source of truth for how something works.)
 
 - [Accordion](packages/accordion/README.md)‡
-- [Badge](packages/badge/README.md)‡
-- [Banner](packages/banner/README.md)
-- [Bottom App Bar](packages/bottom-app-bar/README.md)‡
 - Action Buttons
   - [Button](packages/button/README.md)
   - [Floating Action Button](packages/fab/README.md)
   - [Icon Button](packages/icon-button/README.md)
+- App Bars
+  - [Bottom App Bar](packages/bottom-app-bar/README.md)‡
+  - [Top App Bar](packages/top-app-bar/README.md)
+- [Badge](packages/badge/README.md)‡
+- [Banner](packages/banner/README.md)
 - [Card](packages/card/README.md)
 - [Common](packages/common/README.md)
 - [Data Table](packages/data-table/README.md)
@@ -128,7 +132,6 @@ Click a component/package below to go to the documentation. (Note that this docu
   - [Tab](packages/tab/README.md)
   - [Tab Bar](packages/tab-bar/README.md)
 - [Tooltip](packages/tooltip/README.md)
-- [Top App Bar](packages/top-app-bar/README.md)
 - [Touch Target](packages/touch-target/README.md)
 - [Typography](https://sveltematerialui.com/demo/typography/)†
 
@@ -140,7 +143,7 @@ Click a component/package below to go to the documentation. (Note that this docu
 
 # License
 
-Copyright 2020-2021 Hunter Perrin
+Copyright 2019-2023 Hunter Perrin
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
