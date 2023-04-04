@@ -19,7 +19,7 @@
     "format": "prettier --write --plugin-search-dir=. .",
     "pages": "npm run bootstrap && npm run pages:build && npm run pages:push",
     "pages:build": "cd packages/site && npm run build && cd ../..",
-    "pages:push": "git add -f packages/site/build && git commit -m 'chore: update built files' && git push origin $(git subtree split --prefix packages/site/build master):gh-pages --force && git reset --hard HEAD^",
+    "pages:push": "git add -f packages/site/build && git commit -m 'chore: update built files' && git push origin $(git subtree split --prefix packages/site/build master):refs/heads/gh-pages --force && git reset --hard HEAD^",
     "prepare": "husky install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
