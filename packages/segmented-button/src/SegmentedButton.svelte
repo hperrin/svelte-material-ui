@@ -10,7 +10,7 @@
   role={singleSelect ? 'radiogroup' : 'group'}
   on:SMUISegmentedButtonSegment:mount={handleSegmentMount}
   on:SMUISegmentedButtonSegment:unmount={handleSegmentUnmount}
-  on:selected={(event) => instance && instance.handleSelected(event.detail)}
+  on:selected={handleSelected}
   {...$$restProps}
 >
   {#each segments as segment, i (key(segment))}
@@ -26,7 +26,8 @@
 </div>
 
 <script lang="ts">
-  import { MDCSegmentedButtonFoundation } from '@material/segmented-button/dist/mdc.segmentedButton.js';
+  import type { SegmentDetail } from '@material/segmented-button';
+  import { MDCSegmentedButtonFoundation } from '@material/segmented-button';
   import { onMount, setContext } from 'svelte';
   import { writable } from 'svelte/store';
   import { get_current_component } from 'svelte/internal';
@@ -171,6 +172,12 @@
     const accessor = event.detail;
 
     removeAccessor(accessor.segmentId);
+  }
+
+  function handleSelected(event: CustomEvent<SegmentDetail>) {
+    if (instance) {
+      instance.handleSelected(event.detail);
+    }
   }
 
   function getAccessor(segmentId: any) {

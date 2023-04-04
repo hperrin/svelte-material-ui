@@ -9,16 +9,15 @@
     ...internalClasses,
   })}
   on:SMUICheckbox:mount={() => instance && postMount && instance.layout()}
-  on:SMUIDataTableHeader:mount={(event) => (header = event.detail)}
+  on:SMUIDataTableHeader:mount={handleHeaderMount}
   on:SMUIDataTableHeader:unmount={() => (header = undefined)}
-  on:SMUIDataTableBody:mount={(event) => (body = event.detail)}
+  on:SMUIDataTableBody:mount={handleBodyMount}
   on:SMUIDataTableBody:unmount={() => (body = undefined)}
   on:SMUIDataTableHeaderCheckbox:change={() =>
     instance && instance.handleHeaderRowCheckboxChange()}
   on:SMUIDataTableHeader:click={handleHeaderRowClick}
   on:SMUIDataTableRow:click={handleRowClick}
-  on:SMUIDataTableBodyCheckbox:change={(event) =>
-    instance && instance.handleRowCheckboxChange(event)}
+  on:SMUIDataTableBodyCheckbox:change={handleBodyCheckboxChange}
   {...exclude($$restProps, ['container$', 'table$'])}
 >
   <div
@@ -342,6 +341,20 @@
       removeLayoutListener();
     }
   });
+
+  function handleHeaderMount(event: CustomEvent<SMUIDataTableHeadAccessor>) {
+    header = event.detail;
+  }
+
+  function handleBodyMount(event: CustomEvent<SMUIDataTableBodyAccessor>) {
+    body = event.detail;
+  }
+
+  function handleBodyCheckboxChange(event: Event) {
+    if (instance) {
+      instance.handleRowCheckboxChange(event);
+    }
+  }
 
   function addClass(className: string) {
     if (!internalClasses[className]) {

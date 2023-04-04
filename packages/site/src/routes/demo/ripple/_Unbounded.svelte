@@ -19,6 +19,7 @@
       },
     }}
     tabindex="0"
+    role="button"
     class="unbounded {Object.keys(rippleClasses).join(' ')}"
   >
     D
@@ -44,6 +45,7 @@
       },
     }}
     tabindex="0"
+    role="button"
     class="unbounded {Object.keys(primaryRippleClasses).join(' ')}"
   >
     P
@@ -69,6 +71,7 @@
       },
     }}
     tabindex="0"
+    role="button"
     class="unbounded {Object.keys(secondaryRippleClasses).join(' ')}"
   >
     S

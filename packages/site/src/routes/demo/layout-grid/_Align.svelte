@@ -1,6 +1,5 @@
 <LayoutGrid
   align="right"
-  fixedColumnWidth
   style="border: 1px solid var(--mdc-theme-secondary, #333);"
 >
   <Cell span={1}>

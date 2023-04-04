@@ -65,7 +65,7 @@
 </script>
 
 <script lang="ts">
-  import type { ComponentType, SvelteComponent } from 'svelte';
+  import type { SvelteComponent } from 'svelte';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import type {
@@ -86,7 +86,7 @@
   import type { SMUIListItemAccessor } from './Item.types.js';
 
   type TagName = $$Generic<keyof SmuiElementMap>;
-  type Component = $$Generic<ComponentType<SvelteComponent>>;
+  type Component = $$Generic<typeof SvelteComponent>;
   type OwnProps = {
     use?: ActionArray;
     class?: string;

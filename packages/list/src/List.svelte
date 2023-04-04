@@ -33,7 +33,7 @@
 <script lang="ts">
   import { MDCListFoundation } from '@material/list';
   import { ponyfill } from '@material/dom';
-  import type { ComponentType, SvelteComponent } from 'svelte';
+  import type { SvelteComponent } from 'svelte';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import type { AddLayoutListener, RemoveLayoutListener } from '@smui/common';
@@ -52,7 +52,7 @@
   const { closest, matches } = ponyfill;
 
   type TagName = $$Generic<keyof SmuiElementMap>;
-  type Component = $$Generic<ComponentType<SvelteComponent>>;
+  type Component = $$Generic<typeof SvelteComponent>;
   type OwnProps = {
     use?: ActionArray;
     class?: string;

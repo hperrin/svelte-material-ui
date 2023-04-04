@@ -32,7 +32,7 @@
     .map(([name, value]) => `${name}: ${value};`)
     .concat([style])
     .join(' ')}
-  on:SMUISelectLeadingIcon:mount={(event) => (leadingIcon = event.detail)}
+  on:SMUISelectLeadingIcon:mount={handleLeadingIconMount}
   on:SMUISelectLeadingIcon:unmount={() => (leadingIcon = undefined)}
   {...exclude($$restProps, [
     'input$',
@@ -550,6 +550,10 @@
       removeLayoutListener();
     }
   });
+
+  function handleLeadingIconMount(event: CustomEvent<MDCSelectIconFoundation>) {
+    leadingIcon = event.detail;
+  }
 
   function hasClass(className: string) {
     return className in internalClasses

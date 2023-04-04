@@ -9,7 +9,7 @@
     'mdc-notched-outline--no-label': noLabel,
     ...internalClasses,
   })}
-  on:SMUIFloatingLabel:mount={(event) => (floatingLabel = event.detail)}
+  on:SMUIFloatingLabel:mount={handleFloatingLabelMount}
   on:SMUIFloatingLabel:unmount={() => (floatingLabel = undefined)}
   {...$$restProps}
 >
@@ -89,6 +89,12 @@
       instance.destroy();
     };
   });
+
+  function handleFloatingLabelMount(
+    event: CustomEvent<SMUIFloatingLabelAccessor>
+  ) {
+    floatingLabel = event.detail;
+  }
 
   function addClass(className: string) {
     if (!internalClasses[className]) {

@@ -1,4 +1,4 @@
-<p
+<div
   use:Ripple={{ surface: true, active }}
   on:mousedown|capture={() => (active = true)}
   on:mouseup|capture={() => (active = false)}
@@ -6,10 +6,10 @@
     (active = e.code === 'Space' || e.code === 'Enter')}
   on:keyup|capture={() => (active = false)}
   tabindex="0"
+  role="button"
 >
-  Keyboard activation on a non-button non-link element. (Focus and press
-  space/enter.)
-</p>
+  Keyboard activation on an arbitrary element. (Focus and press space/enter.)
+</div>
 
 <script lang="ts">
   import Ripple from '@smui/ripple';
@@ -18,7 +18,7 @@
 </script>
 
 <style>
-  p {
+  div {
     padding: 10px;
     border-radius: 5px;
   }

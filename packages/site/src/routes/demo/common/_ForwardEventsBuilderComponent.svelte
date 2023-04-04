@@ -1,4 +1,4 @@
-<div use:forwardEvents tabindex="0">
+<div use:forwardEvents tabindex="0" role="button">
   <slot />
 </div>
 

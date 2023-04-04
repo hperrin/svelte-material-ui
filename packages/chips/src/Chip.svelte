@@ -58,7 +58,7 @@
 
 <script lang="ts">
   import { deprecated } from '@material/chips';
-  import type { ComponentType, SvelteComponent } from 'svelte';
+  import type { SvelteComponent } from 'svelte';
   import { onMount, setContext, getContext } from 'svelte';
   import { writable } from 'svelte/store';
   import { get_current_component } from 'svelte/internal';
@@ -79,7 +79,7 @@
   const { MDCChipFoundation } = deprecated;
 
   type TagName = $$Generic<keyof SmuiElementMap>;
-  type Component = $$Generic<ComponentType<SvelteComponent>>;
+  type Component = $$Generic<typeof SvelteComponent>;
   type OwnProps = {
     use?: ActionArray;
     class?: string;

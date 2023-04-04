@@ -8,7 +8,7 @@
     'mdc-form-field--align-end': align === 'end',
     'mdc-form-field--nowrap': noWrap,
   })}
-  on:SMUIGenericInput:mount={(event) => (input = event.detail)}
+  on:SMUIGenericInput:mount={handleInputMount}
   on:SMUIGenericInput:unmount={() => (input = undefined)}
   {...exclude($$restProps, ['label$'])}
 >
@@ -100,6 +100,10 @@
       instance.destroy();
     };
   });
+
+  function handleInputMount(event: CustomEvent<SMUIGenericInputAccessor>) {
+    input = event.detail;
+  }
 
   export function getElement() {
     return element;

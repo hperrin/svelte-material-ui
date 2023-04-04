@@ -6,10 +6,9 @@
     [className]: true,
     'mdc-select__icon': true,
   })}
-  {tabindex}
   aria-hidden={tabindex === -1 ? 'true' : 'false'}
   aria-disabled={role === 'button' ? (disabled ? 'true' : 'false') : undefined}
-  {role}
+  {...roleProps}
   {...internalAttrs}
   {...$$restProps}
   >{#if content == null}<slot />{:else}{content}{/if}</i
@@ -51,6 +50,11 @@
   let instance: MDCSelectIconFoundation;
   let internalAttrs: { [k: string]: string | undefined } = {};
   let content: string | undefined = undefined;
+
+  $: roleProps = {
+    role,
+    tabindex,
+  };
 
   onMount(() => {
     instance = new MDCSelectIconFoundation({

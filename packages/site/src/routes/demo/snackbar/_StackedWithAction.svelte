@@ -17,7 +17,7 @@
   </Actions>
 </Snackbar>
 
-<Button on:click={() => snackbar.open()}>
+<Button on:click={() => typeof snackbar.open === 'function' && snackbar.open()}>
   <Label>Open Snackbar</Label>
 </Button>
 

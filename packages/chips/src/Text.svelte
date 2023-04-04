@@ -16,11 +16,10 @@
         [className]: true,
         'mdc-chip__primary-action': true,
       })}
-      role={$filter ? 'checkbox' : $choice ? 'radio' : 'button'}
       {...$filter || $choice
         ? { 'aria-selected': $isSelected ? 'true' : 'false' }
         : {}}
-      {tabindex}
+      {...roleProps}
       {...internalAttrs}
       {...$$restProps}><span class="mdc-chip__text"><slot /></span></span
     >
@@ -72,6 +71,11 @@
   const isSelected = getContext<SvelteStore<boolean>>(
     'SMUI:chips:chip:isSelected'
   );
+
+  $: roleProps = {
+    role: $filter ? 'checkbox' : $choice ? 'radio' : 'button',
+    tabindex,
+  };
 
   onMount(() => {
     let accessor: SMUIChipsPrimaryActionAccessor = {

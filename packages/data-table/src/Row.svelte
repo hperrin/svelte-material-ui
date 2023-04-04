@@ -11,7 +11,7 @@
   })}
   on:click={(event) =>
     header ? notifyHeaderClick(event) : notifyRowClick(event)}
-  on:SMUICheckbox:mount={(event) => (checkbox = event.detail)}
+  on:SMUICheckbox:mount={handleCheckboxMount}
   on:SMUICheckbox:unmount={() => (checkbox = undefined)}
   aria-selected={checkbox ? (checkbox.checked ? 'true' : 'false') : undefined}
   {...internalAttrs}
@@ -104,6 +104,10 @@
       dispatch(getElement(), 'SMUIDataTableRow:unmount', accessor);
     };
   });
+
+  function handleCheckboxMount(event: CustomEvent<SMUICheckboxInputAccessor>) {
+    checkbox = event.detail;
+  }
 
   function addClass(className: string) {
     if (!internalClasses[className]) {

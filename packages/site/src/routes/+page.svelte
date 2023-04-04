@@ -302,7 +302,7 @@
     mdiClipboardCheck,
     mdiLanguageTypescript,
   } from '@mdi/js';
-  import { siMaterialdesign, siSvelte, siSass } from 'simple-icons/icons';
+  import { siMaterialdesign, siSvelte, siSass } from 'simple-icons';
   import Paper, { Title, Content } from '@smui/paper';
   import List, {
     Item,

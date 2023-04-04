@@ -21,6 +21,7 @@
     .concat([style])
     .join(' ')}
   {tabindex}
+  role="button"
   {...$$restProps}
 >
   <div class="mdc-card__ripple" />

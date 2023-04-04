@@ -46,7 +46,7 @@
                 'mdc-banner__graphic': true,
               })}
               role="img"
-              alt=""
+              {...altProp}
               {...prefixFilter($$restProps, 'graphic$')}
             >
               <slot name="icon" />
@@ -138,6 +138,10 @@
   );
   let removeLayoutListener: RemoveLayoutListener | undefined;
   let width: number | undefined = undefined;
+
+  // This is for a div that uses the role of "img". TS doesn't like it directly
+  // on the element.
+  const altProp = { alt: '' };
 
   setContext('SMUI:label:context', 'banner');
   setContext('SMUI:icon:context', 'banner');

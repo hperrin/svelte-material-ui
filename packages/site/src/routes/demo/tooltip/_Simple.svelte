@@ -40,7 +40,7 @@
   </Wrapper>
 
   <Wrapper>
-    <span tabindex="0">I'm a span element.</span>
+    <span tabindex="0" role="button">I'm a span element.</span>
     <!--
       For tooltips on things that don't have a
       visually declared boundary, like plain text,
@@ -53,8 +53,9 @@
 
 <Wrapper>
   <div
-    tabindex="0"
     style="background-color: var(--mdc-theme-secondary); color: var(--mdc-theme-on-secondary); padding: 10px;"
+    tabindex="0"
+    role="button"
   >
     I'm a div element.
   </div>

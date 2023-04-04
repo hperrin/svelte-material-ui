@@ -42,13 +42,11 @@
       .concat([style])
       .join(' ')}
     for={/* suppress a11y warning, since this is wrapped */ undefined}
-    on:SMUITextfieldLeadingIcon:mount={(event) => (leadingIcon = event.detail)}
+    on:SMUITextfieldLeadingIcon:mount={handleLeadingIconMount}
     on:SMUITextfieldLeadingIcon:unmount={() => (leadingIcon = undefined)}
-    on:SMUITextfieldTrailingIcon:mount={(event) =>
-      (trailingIcon = event.detail)}
+    on:SMUITextfieldTrailingIcon:mount={handleTrailingIconMount}
     on:SMUITextfieldTrailingIcon:unmount={() => (trailingIcon = undefined)}
-    on:SMUITextfieldCharacterCounter:mount={(event) =>
-      (characterCounter = event.detail)}
+    on:SMUITextfieldCharacterCounter:mount={handleCharacterCounterMount}
     on:SMUITextfieldCharacterCounter:unmount={() =>
       (characterCounter = undefined)}
     {...exclude($$restProps, [
@@ -196,10 +194,9 @@
       .map(([name, value]) => `${name}: ${value};`)
       .concat([style])
       .join(' ')}
-    on:SMUITextfieldLeadingIcon:mount={(event) => (leadingIcon = event.detail)}
+    on:SMUITextfieldLeadingIcon:mount={handleLeadingIconMount}
     on:SMUITextfieldLeadingIcon:unmount={() => (leadingIcon = undefined)}
-    on:SMUITextfieldTrailingIcon:mount={(event) =>
-      (trailingIcon = event.detail)}
+    on:SMUITextfieldTrailingIcon:mount={handleTrailingIconMount}
     on:SMUITextfieldTrailingIcon:unmount={() => (trailingIcon = undefined)}
     {...exclude($$restProps, [
       'input$',
@@ -222,14 +219,13 @@
 {/if}
 {#if $$slots.helper}
   <HelperLine
-    on:SMUITextfieldHelperText:id={(event) => (helperId = event.detail)}
-    on:SMUITextfieldHelperText:mount={(event) => (helperText = event.detail)}
+    on:SMUITextfieldHelperText:id={handleHelperTextId}
+    on:SMUITextfieldHelperText:mount={handleHelperTextMount}
     on:SMUITextfieldHelperText:unmount={() => {
       helperId = undefined;
       helperText = undefined;
     }}
-    on:SMUITextfieldCharacterCounter:mount={(event) =>
-      (characterCounter = event.detail)}
+    on:SMUITextfieldCharacterCounter:mount={handleCharacterCounterMount}
     on:SMUITextfieldCharacterCounter:unmount={() =>
       (characterCounter = undefined)}
     {...prefixFilter($$restProps, 'helperLine$')}
@@ -586,6 +582,34 @@
       removeLayoutListener();
     }
   });
+
+  function handleLeadingIconMount(
+    event: CustomEvent<MDCTextFieldIconFoundation>
+  ) {
+    leadingIcon = event.detail;
+  }
+
+  function handleTrailingIconMount(
+    event: CustomEvent<MDCTextFieldIconFoundation>
+  ) {
+    trailingIcon = event.detail;
+  }
+
+  function handleCharacterCounterMount(
+    event: CustomEvent<MDCTextFieldCharacterCounterFoundation>
+  ) {
+    characterCounter = event.detail;
+  }
+
+  function handleHelperTextId(event: CustomEvent<string>) {
+    helperId = event.detail;
+  }
+
+  function handleHelperTextMount(
+    event: CustomEvent<MDCTextFieldHelperTextFoundation>
+  ) {
+    helperText = event.detail;
+  }
 
   function hasClass(className: string) {
     return className in internalClasses

@@ -8,10 +8,9 @@
     'mdc-text-field__icon--leading': leading,
     'mdc-text-field__icon--trailing': !leading,
   })}
-  {tabindex}
   aria-hidden={tabindex === -1 ? 'true' : 'false'}
   aria-disabled={role === 'button' ? (disabled ? 'true' : 'false') : undefined}
-  {role}
+  {...roleProps}
   {...internalAttrs}
   {...$$restProps}
   >{#if content == null}<slot />{:else}{content}{/if}</i
@@ -57,6 +56,11 @@
   );
   const leading = $leadingStore;
   let content: string | undefined = undefined;
+
+  $: roleProps = {
+    role,
+    tabindex,
+  };
 
   onMount(() => {
     instance = new MDCTextFieldIconFoundation({

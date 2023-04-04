@@ -19,7 +19,7 @@
 >
 
 <script lang="ts">
-  import type { ComponentType, SvelteComponent } from 'svelte';
+  import type { SvelteComponent } from 'svelte';
   import { getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
 
@@ -33,7 +33,7 @@
   import { SmuiElement, Svg } from './index.js';
 
   type TagName = $$Generic<keyof SmuiElementMap>;
-  type Component = $$Generic<ComponentType<SvelteComponent>>;
+  type Component = $$Generic<typeof SvelteComponent>;
   type OwnProps = {
     use?: ActionArray;
     class?: string;

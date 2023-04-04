@@ -7,6 +7,7 @@
     'mdc-tab-bar': true,
   })}
   role="tablist"
+  {tabindex}
   on:SMUITab:mount={handleTabMount}
   on:SMUITab:unmount={handleTabUnmount}
   on:SMUITab:interacted={instance &&
@@ -55,6 +56,7 @@
     focusOnProgrammatic?: boolean;
     useAutomaticActivation?: boolean;
     active?: TabKey | undefined;
+    tabindex?: number;
   };
   type $$Props = OwnProps &
     SmuiAttrs<'div', OwnProps> & {
@@ -73,6 +75,7 @@
   export let focusOnProgrammatic = false;
   export let useAutomaticActivation = true;
   export let active: TabKey | undefined = undefined;
+  export let tabindex = 0;
 
   let element: HTMLDivElement;
   let instance: MDCTabBarFoundation;

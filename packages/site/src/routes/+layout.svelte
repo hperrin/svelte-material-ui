@@ -178,7 +178,7 @@
 <script lang="ts">
   import { onDestroy, onMount } from 'svelte';
   import { mdiFileDocument, mdiWeatherSunny, mdiWeatherNight } from '@mdi/js';
-  import { siDiscord, siMastodon, siGithub } from 'simple-icons/icons';
+  import { siDiscord, siMastodon, siGithub } from 'simple-icons';
   import TinyGesture from 'tinygesture';
   import { assets } from '$app/paths';
   import { page } from '$app/stores';

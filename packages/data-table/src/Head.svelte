@@ -2,7 +2,7 @@
   bind:this={element}
   use:useActions={use}
   use:forwardEvents
-  on:SMUICheckbox:mount={(event) => (checkbox = event.detail)}
+  on:SMUICheckbox:mount={handleCheckboxMount}
   on:SMUICheckbox:unmount={() => (checkbox = undefined)}
   on:SMUIDataTableCell:mount={handleCellMount}
   on:SMUIDataTableCell:unmount={handleCellUnmount}
@@ -62,6 +62,10 @@
       dispatch(getElement(), 'SMUIDataTableHeader:unmount', accessor);
     };
   });
+
+  function handleCheckboxMount(event: CustomEvent<SMUICheckboxInputAccessor>) {
+    checkbox = event.detail;
+  }
 
   function handleCellMount(event: CustomEvent<SMUIDataTableCellAccessor>) {
     cells.push(event.detail);

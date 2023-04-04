@@ -12,10 +12,8 @@
     .map(([name, value]) => `${name}: ${value};`)
     .concat([style])
     .join(' ')}
-  role={rich && interactive ? 'dialog' : 'tooltip'}
   aria-hidden="true"
   {id}
-  tabindex={rich && persistent ? -1 : undefined}
   data-mdc-tooltip-persist={rich && persistent ? 'true' : undefined}
   data-mdc-tooltip-persistent={/* MDC uses this attr, but document the one above */ rich &&
   persistent
@@ -26,6 +24,7 @@
     ? 'true'
     : undefined}
   on:transitionend={() => instance && instance.handleTransitionEnd()}
+  {...roleProps}
   {...internalAttrs}
   {...exclude($$restProps, ['surface$'])}
 >
@@ -138,6 +137,11 @@
     'SMUI:tooltip:wrapper:tooltip'
   );
   const rich = getContext<boolean>('SMUI:tooltip:rich');
+
+  $: roleProps = {
+    role: rich && interactive ? 'dialog' : 'tooltip',
+    tabindex: rich && persistent ? -1 : undefined,
+  };
 
   let previousAnchor: HTMLElement | undefined = undefined;
   $: if (instance && previousAnchor !== $anchor) {

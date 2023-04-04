@@ -27,7 +27,13 @@
 
   <Demo component={Align} file="layout-grid/_Align.svelte">Align</Demo>
 
-  <Demo component={Nested} file="layout-grid/_Nested.svelte">Nested</Demo>
+  <Demo component={Nested} file="layout-grid/_Nested.svelte">
+    Nested
+    <svelte:fragment slot="subtitle">
+      Only use this if you must because it doesn't align well at some
+      resolutions.
+    </svelte:fragment>
+  </Demo>
 </section>
 
 <script lang="ts">

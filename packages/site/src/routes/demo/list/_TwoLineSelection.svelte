@@ -5,11 +5,11 @@
     twoLine
     avatarList
     singleSelection
-    bind:selectedIndex={selectionIndex}
+    selectedIndex={selectionIndex}
   >
     {#each options as item, i}
       <Item
-        on:SMUI:action={() => console.log('Item selected:', item)}
+        on:SMUI:action={() => (selectionIndex = i)}
         disabled={item.disabled}
         selected={selectionIndex === i}
       >
@@ -85,8 +85,6 @@
       disabled: false,
     },
   ];
-  // If this is not set, it is updated when the component is initialized, based
-  // on the selected Item's `selected` prop.
   let selectionIndex = 3;
 </script>
 

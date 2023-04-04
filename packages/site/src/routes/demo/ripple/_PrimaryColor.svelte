@@ -1,13 +1,17 @@
-<p use:Ripple={{ surface: true, color: 'primary' }} tabindex="0">
+<div
+  use:Ripple={{ surface: true, color: 'primary' }}
+  tabindex="0"
+  role="button"
+>
   Primary color.
-</p>
+</div>
 
 <script lang="ts">
   import Ripple from '@smui/ripple';
 </script>
 
 <style>
-  p {
+  div {
     padding: 10px;
     border-radius: 5px;
   }
