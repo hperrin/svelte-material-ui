@@ -17,7 +17,7 @@
   import { SmuiElement } from '../index.js';
 
   export const internals: ClassAdderInternals = {
-    component: SmuiElement as ClassAdderInternals['component'],
+    component: SmuiElement as typeof SvelteComponent,
     tag: 'div',
     class: '',
     classMap: {},
