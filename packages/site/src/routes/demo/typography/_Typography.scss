@@ -17,12 +17,13 @@
 //   mdc-typography--body1
 
 // Import the mixins.
-@use '@material/typography/index' as typography;
+@use '@material/typography/mixins' as typography;
 
 //
 // Some defaults that may be helpful to you.
 // If you just want to use these, and not the classes, you can instead just
-// @use '@material/typography/index' as typography, and your CSS file will be smaller.
+// @use '@material/typography/mixins' as typography, and your CSS file will be
+// smaller.
 //
 html {
   @include typography.typography('body1');

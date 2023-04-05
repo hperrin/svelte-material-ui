@@ -8,5 +8,9 @@ node_modules
 !.env.example
 /static/smui.css
 /static/smui-dark.css
+/static/smui-fixation.css
+/static/smui-fixation-dark.css
 /static/site.css
 /static/site-dark.css
+/static/site-fixation.css
+/static/site-fixation-dark.css

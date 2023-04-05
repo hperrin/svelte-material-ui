@@ -1,7 +1,7 @@
-@use '@material/circular-progress/index' as circular-progress;
-@use '@material/theme/index' as theme;
+@use '@material/circular-progress/mixins' as circular-progress;
+@use '@material/theme/color-palette';
 
 .my-colored-circle {
-  @include circular-progress.color(theme.$green-500);
-  @include circular-progress.track-color(theme.$green-900);
+  @include circular-progress.color(color-palette.$green-500);
+  @include circular-progress.track-color(color-palette.$green-900);
 }

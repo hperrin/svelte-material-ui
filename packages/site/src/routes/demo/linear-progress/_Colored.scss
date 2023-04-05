@@ -1,7 +1,7 @@
-@use '@material/linear-progress/index' as linear-progress;
-@use '@material/theme/index' as theme;
+@use '@material/linear-progress/mixins' as linear-progress;
+@use '@material/theme/color-palette';
 
 .my-colored-bar {
-  @include linear-progress.bar-color(theme.$green-500);
-  @include linear-progress.buffer-color(theme.$green-100);
+  @include linear-progress.bar-color(color-palette.$green-500);
+  @include linear-progress.buffer-color(color-palette.$green-100);
 }

@@ -2,7 +2,7 @@
 @use 'smui-theme';
 
 // Elevation and theme mixins.
-@use '@material/elevation/index' as elevation;
+@use '@material/elevation/mixins' as elevation;
 @use '@material/theme/index' as theme;
 
 .my-primary {

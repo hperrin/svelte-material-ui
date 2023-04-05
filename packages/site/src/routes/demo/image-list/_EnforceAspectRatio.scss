@@ -1,4 +1,4 @@
-@use '@material/image-list/index' as image-list;
+@use '@material/image-list/mixins' as image-list;
 
 .my-image-list-enforce-ratio {
   @include image-list.standard-columns(5);

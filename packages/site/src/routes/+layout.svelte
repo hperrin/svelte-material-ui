@@ -1,27 +1,57 @@
 <svelte:window on:resize={setMiniWindow} />
 
 <svelte:head>
-  {#if lightTheme === true}
+  <!-- SMUI Styles -->
+  <link rel="stylesheet" href="{assets}/smui.css" />
+
+  <!-- Site Styles -->
+  <link rel="stylesheet" href="{assets}/site.css" />
+
+  {#if fixationTheme}
     <!-- SMUI Styles -->
-    <link rel="stylesheet" href="{assets}/smui.css" />
+    <link rel="stylesheet" href="{assets}/smui-fixation.css" />
 
     <!-- Site Styles -->
-    <link rel="stylesheet" href="{assets}/site.css" />
+    <link rel="stylesheet" href="{assets}/site-fixation.css" />
+
+    {#if lightTheme === false}
+      <!-- SMUI Styles -->
+      <link rel="stylesheet" href="{assets}/smui-fixation.css" />
+      <link
+        rel="stylesheet"
+        href="{assets}/smui-fixation-dark.css"
+        media="screen"
+      />
+      <!-- Site Styles -->
+      <link rel="stylesheet" href="{assets}/site-fixation.css" />
+      <link
+        rel="stylesheet"
+        href="{assets}/site-fixation-dark.css"
+        media="screen"
+      />
+    {:else if lightTheme !== true}
+      <!-- SMUI Styles -->
+      <link
+        rel="stylesheet"
+        href="{assets}/smui-fixation-dark.css"
+        media="screen and (prefers-color-scheme: dark)"
+      />
+
+      <!-- Site Styles -->
+      <link
+        rel="stylesheet"
+        href="{assets}/site-fixation-dark.css"
+        media="screen and (prefers-color-scheme: dark)"
+      />
+    {/if}
   {:else if lightTheme === false}
     <!-- SMUI Styles -->
-    <link rel="stylesheet" href="{assets}/smui.css" />
     <link rel="stylesheet" href="{assets}/smui-dark.css" media="screen" />
 
     <!-- Site Styles -->
-    <link rel="stylesheet" href="{assets}/site.css" />
     <link rel="stylesheet" href="{assets}/site-dark.css" media="screen" />
-  {:else}
+  {:else if lightTheme !== true}
     <!-- SMUI Styles -->
-    <link
-      rel="stylesheet"
-      href="{assets}/smui.css"
-      media="(prefers-color-scheme: light)"
-    />
     <link
       rel="stylesheet"
       href="{assets}/smui-dark.css"
@@ -29,11 +59,6 @@
     />
 
     <!-- Site Styles -->
-    <link
-      rel="stylesheet"
-      href="{assets}/site.css"
-      media="(prefers-color-scheme: light)"
-    />
     <link
       rel="stylesheet"
       href="{assets}/site-dark.css"
@@ -66,25 +91,32 @@
           tag="a"
           href="/"
           on:click={() => (activeSection = undefined)}
-          class="mdc-theme--primary"
+          class="mdc-theme--on-surface"
           style={miniWindow ? 'padding-left: 0;' : ''}
         >
           {miniWindow ? 'SMUI' : 'Svelte Material UI'}
         </Title>
       </Section>
       <Section align="end" toolbar style="color: var(--mdc-on-surface, #000);">
-        {#if activeSection}
-          {#each activeSection.repos || [] as repo}
-            <Wrapper>
-              <IconButton href={repo} target="_blank">
-                <Icon component={Svg} viewBox="0 0 24 24">
-                  <path fill="currentColor" d={mdiFileDocument} />
-                </Icon>
-              </IconButton>
-              <Tooltip>View Docs: {repo.split('/').slice(-1)[0]}</Tooltip>
-            </Wrapper>
-          {/each}
-        {/if}
+        {#each (activeSection && activeSection.repos) || [] as repo}
+          <Wrapper>
+            <IconButton href={repo} target="_blank">
+              <Icon component={Svg} viewBox="0 0 24 24">
+                <path fill="currentColor" d={mdiFileDocument} />
+              </Icon>
+            </IconButton>
+            <Tooltip>View Docs: {repo.split('/').slice(-1)[0]}</Tooltip>
+          </Wrapper>
+        {:else}
+          <Wrapper>
+            <IconButton href="https://github.com/hperrin/svelte-material-ui">
+              <Icon component={Svg} viewBox="0 0 24 24">
+                <path fill="currentColor" d={siGithub.path} />
+              </Icon>
+            </IconButton>
+            <Tooltip>SMUI on GitHub</Tooltip>
+          </Wrapper>
+        {/each}
         <Wrapper>
           <IconButton href="https://discord.gg/aFzmkrmg9P">
             <Icon component={Svg} viewBox="0 0 24 24">
@@ -102,12 +134,24 @@
           <Tooltip>Hunter Perrin (SMUI Author) on Mastodon</Tooltip>
         </Wrapper>
         <Wrapper>
-          <IconButton href="https://github.com/hperrin/svelte-material-ui">
+          <IconButton
+            toggle
+            pressed={fixationTheme}
+            on:SMUIIconButtonToggle:change={() =>
+              (fixationTheme = !fixationTheme)}
+          >
+            <Icon component={Svg} viewBox="0 0 24 24" on>
+              <path fill="currentColor" d={siSvelte.path} />
+            </Icon>
             <Icon component={Svg} viewBox="0 0 24 24">
-              <path fill="currentColor" d={siGithub.path} />
+              <path fill="currentColor" d={mdiFormatPaint} />
             </Icon>
           </IconButton>
-          <Tooltip>SMUI on GitHub</Tooltip>
+          <Tooltip
+            >{fixationTheme
+              ? 'Go back to the Svelte theme'
+              : 'Check out a custom theme'}</Tooltip
+          >
         </Wrapper>
         <Wrapper>
           <IconButton
@@ -177,8 +221,13 @@
 
 <script lang="ts">
   import { onDestroy, onMount } from 'svelte';
-  import { mdiFileDocument, mdiWeatherSunny, mdiWeatherNight } from '@mdi/js';
-  import { siDiscord, siMastodon, siGithub } from 'simple-icons';
+  import {
+    mdiFileDocument,
+    mdiFormatPaint,
+    mdiWeatherSunny,
+    mdiWeatherNight,
+  } from '@mdi/js';
+  import { siDiscord, siMastodon, siGithub, siSvelte } from 'simple-icons';
   import TinyGesture from 'tinygesture';
   import { assets } from '$app/paths';
   import { page } from '$app/stores';
@@ -200,6 +249,7 @@
   let mainContentGesture: TinyGesture;
 
   let lightTheme: boolean;
+  let fixationTheme = false;
 
   type DemoSection = {
     component?: InstanceType<typeof Item>;

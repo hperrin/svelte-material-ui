@@ -1,26 +1,26 @@
 // See https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-snackbar
-@use '@material/snackbar/mixins';
+@use '@material/snackbar/mixins' as snackbar;
 // See https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-theme
 @use '@material/theme/color-palette';
 @use '@material/theme/theme-color';
 
 .mdc-snackbar.demo-success {
-  @include mixins.fill-color(color-palette.$green-500);
-  @include mixins.label-ink-color(
+  @include snackbar.fill-color(color-palette.$green-500);
+  @include snackbar.label-ink-color(
     theme-color.accessible-ink-color(color-palette.$green-500)
   );
 }
 
 .mdc-snackbar.demo-warning {
-  @include mixins.fill-color(color-palette.$orange-500);
-  @include mixins.label-ink-color(
+  @include snackbar.fill-color(color-palette.$orange-500);
+  @include snackbar.label-ink-color(
     theme-color.accessible-ink-color(color-palette.$orange-500)
   );
 }
 
 .mdc-snackbar.demo-error {
-  @include mixins.fill-color(color-palette.$red-500);
-  @include mixins.label-ink-color(
+  @include snackbar.fill-color(color-palette.$red-500);
+  @include snackbar.label-ink-color(
     theme-color.accessible-ink-color(color-palette.$red-500)
   );
 }
