@@ -1,6 +1,7 @@
 @use '@material/feature-targeting/feature-targeting';
 @use '@material/ripple/index' as ripple;
 @use '@material/button/index' as mdc-button;
+@use '@material/shape/index' as shape;
 @use '@material/theme/theme-color';
 @use '@material/elevation/mixins' as mdc-elevation;
 
@@ -90,6 +91,7 @@ $ripple-target: '.mdc-button__ripple';
     }
 
     &.smui-button__group--raised {
+      @include shape.radius(small, false, $query: $query);
       @include mdc-elevation.elevation(2, $query: $query);
     }
 

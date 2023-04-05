@@ -43,6 +43,7 @@
     "@material/elevation": "^14.0.0",
     "@material/feature-targeting": "^14.0.0",
     "@material/ripple": "^14.0.0",
+    "@material/shape": "^14.0.0",
     "@material/theme": "^14.0.0",
     "@smui/common": "^7.0.0-beta.1",
     "@smui/ripple": "^7.0.0-beta.1",
