@@ -5,6 +5,7 @@
 @use '@material/feature-targeting/index' as feature-targeting;
 @use '@material/typography/index' as typography;
 @use '@material/ripple/ripple' as ripple;
+@use '@smui/paper/mixins' as paper;
 
 $ripple-target: '.smui-accordion__header__ripple';
 $panel-padding: 16px 24px !default;
@@ -134,16 +135,24 @@ $divider-color-on-dark-bg: rgba(255, 255, 255, 0.2) !default;
         }
       }
 
+      // Round the corners of the shadow pseudo-element too.
+      &.smui-paper--rounded::before {
+        @include paper.shape-radius(medium, $query: $query);
+      }
+
       // Square off the corners of all but the first and last panels.
-      &:first-child:not(:last-child) {
+      &:first-child:not(:last-child),
+      &:first-child:not(:last-child)::before {
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
       }
-      &:last-child:not(:first-child) {
+      &:last-child:not(:first-child),
+      &:last-child:not(:first-child)::before {
         border-top-left-radius: 0;
         border-top-right-radius: 0;
       }
-      &:not(:first-child, :last-child) {
+      &:not(:first-child, :last-child),
+      &:not(:first-child, :last-child)::before {
         border-radius: 0;
       }
 
