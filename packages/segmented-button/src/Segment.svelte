@@ -59,7 +59,7 @@
     touch?: boolean;
     selected?: boolean;
   };
-  type $$Props = OwnProps & SmuiAttrs<'button', OwnProps>;
+  type $$Props = OwnProps & SmuiAttrs<'button', OwnProps, 'getElement'>;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
   interface UninitializedValue extends Function {}

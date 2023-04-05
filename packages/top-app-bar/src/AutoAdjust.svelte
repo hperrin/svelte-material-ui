@@ -30,7 +30,10 @@
     tag?: TagName;
   };
   type $$Props = OwnProps &
-    (SmuiAttrs<keyof SmuiElementMap, OwnProps> | SmuiSvgAttrs<OwnProps>);
+    (
+      | SmuiAttrs<keyof SmuiElementMap, OwnProps, 'getElement'>
+      | SmuiSvgAttrs<OwnProps, 'getElement'>
+    );
 
   import type TopAppBar from './TopAppBar.svelte';
 

@@ -31,7 +31,7 @@
     align?: 'start' | 'end';
     toolbar?: boolean;
   };
-  type $$Props = OwnProps & SmuiAttrs<'section', OwnProps>;
+  type $$Props = OwnProps & SmuiAttrs<'section', OwnProps, 'getElement'>;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

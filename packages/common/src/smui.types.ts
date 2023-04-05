@@ -1,18 +1,22 @@
 export type SmuiAttrs<
   T extends keyof SmuiElementPropMap,
-  OwnProps extends Object
+  OwnProps extends Object,
+  RestOmmissions extends string
 > = {
   [P in keyof Omit<
     SmuiElementPropMap[T],
-    keyof OwnProps
+    keyof OwnProps | RestOmmissions
   >]?: SmuiElementPropMap[T][P];
 } & SvelteAttrs &
   DataAttrs;
 
-export type SmuiSvgAttrs<OwnProps extends Object> = {
+export type SmuiSvgAttrs<
+  OwnProps extends Object,
+  RestOmmissions extends string
+> = {
   [P in keyof Omit<
     svelte.JSX.SVGProps<SVGSVGElement>,
-    keyof OwnProps
+    keyof OwnProps | RestOmmissions
   >]?: svelte.JSX.SVGProps<SVGSVGElement>[P];
 } & SvelteAttrs &
   DataAttrs;

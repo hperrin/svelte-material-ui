@@ -87,8 +87,8 @@
     sortable?: boolean;
   };
   type $$Props = OwnProps &
-    SmuiAttrs<'th', OwnProps> &
-    SmuiAttrs<'td', OwnProps>;
+    SmuiAttrs<'th', OwnProps, 'getElement'> &
+    SmuiAttrs<'td', OwnProps, 'getElement'>;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

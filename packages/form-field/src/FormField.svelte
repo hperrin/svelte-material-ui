@@ -52,7 +52,7 @@
     label$use?: ActionArray;
   };
   type $$Props = OwnProps &
-    SmuiAttrs<'div', OwnProps> & {
+    SmuiAttrs<'div', OwnProps, 'getElement'> & {
       [k in keyof SmuiElementPropMap['label'] as `label\$${k}`]?: SmuiElementPropMap['label'];
     };
 

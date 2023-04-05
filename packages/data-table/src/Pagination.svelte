@@ -54,7 +54,7 @@
     trailing$class?: string;
   };
   type $$Props = OwnProps &
-    SmuiAttrs<'div', OwnProps> & {
+    SmuiAttrs<'div', OwnProps, 'getElement'> & {
       [k in keyof SmuiElementPropMap['div'] as `trailing\$${k}`]?: SmuiElementPropMap['div'][k];
     };
 

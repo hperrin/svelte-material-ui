@@ -36,7 +36,7 @@
     align?: 'left' | 'right' | undefined;
   };
   type $$Props = OwnProps &
-    SmuiAttrs<'div', OwnProps> & {
+    SmuiAttrs<'div', OwnProps, 'getElement'> & {
       [k in keyof InnerGrid['$$prop_def'] as `innerGrid\$${k}`]?: InnerGrid['$$prop_def'][k];
     };
 

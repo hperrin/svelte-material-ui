@@ -12,7 +12,7 @@
   type OwnProps = {
     use?: ActionArray;
   };
-  type $$Props = OwnProps & SmuiSvgAttrs<OwnProps>;
+  type $$Props = OwnProps & SmuiSvgAttrs<OwnProps, 'getElement'>;
 
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];

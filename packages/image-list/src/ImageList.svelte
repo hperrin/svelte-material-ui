@@ -30,7 +30,7 @@
     masonry?: boolean;
     withTextProtection?: boolean;
   };
-  type $$Props = OwnProps & SmuiAttrs<'ul', OwnProps>;
+  type $$Props = OwnProps & SmuiAttrs<'ul', OwnProps, 'getElement'>;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

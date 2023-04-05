@@ -110,7 +110,17 @@
     tag?: TagName;
   };
   type $$Props = OwnProps &
-    (SmuiAttrs<keyof SmuiElementMap, OwnProps> | SmuiSvgAttrs<OwnProps>) & {
+    (
+      | SmuiAttrs<
+          keyof SmuiElementMap,
+          OwnProps,
+          'activate' | 'deactivate' | 'focus' | 'getElement'
+        >
+      | SmuiSvgAttrs<
+          OwnProps,
+          'activate' | 'deactivate' | 'focus' | 'getElement  '
+        >
+    ) & {
       [k in keyof SmuiElementPropMap['span'] as `content\$${k}`]?: SmuiElementPropMap['span'][k];
     } & {
       [k in keyof TabIndicator['$$prop_def'] as `tabIndicator\$${k}`]?: TabIndicator['$$prop_def'][k];

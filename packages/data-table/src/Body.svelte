@@ -30,7 +30,7 @@
     use?: ActionArray;
     class?: string;
   };
-  type $$Props = OwnProps & SmuiAttrs<'tbody', OwnProps>;
+  type $$Props = OwnProps & SmuiAttrs<'tbody', OwnProps, 'getElement'>;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

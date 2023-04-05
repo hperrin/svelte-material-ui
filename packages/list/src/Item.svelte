@@ -107,7 +107,14 @@
     tag?: TagName;
   };
   type $$Props = OwnProps &
-    (SmuiAttrs<keyof SmuiElementMap, OwnProps> | SmuiSvgAttrs<OwnProps>) & {
+    (
+      | SmuiAttrs<
+          keyof SmuiElementMap,
+          OwnProps,
+          'action' | 'getPrimaryText' | 'getElement'
+        >
+      | SmuiSvgAttrs<OwnProps, 'action' | 'getPrimaryText' | 'getElement  '>
+    ) & {
       value?: any;
       'data-value'?: any;
     };

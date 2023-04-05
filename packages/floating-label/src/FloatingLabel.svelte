@@ -62,8 +62,16 @@
     wrapped?: boolean;
   };
   type $$Props = OwnProps &
-    SmuiAttrs<'span', OwnProps> &
-    SmuiAttrs<'label', OwnProps>;
+    SmuiAttrs<
+      'span',
+      OwnProps,
+      'shake' | 'float' | 'setRequired' | 'getWidth' | 'getElement'
+    > &
+    SmuiAttrs<
+      'label',
+      OwnProps,
+      'shake' | 'float' | 'setRequired' | 'getWidth' | 'getElement'
+    >;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

@@ -26,7 +26,7 @@
     use?: ActionArray;
     class?: string;
   };
-  type $$Props = OwnProps & SmuiAttrs<'span', OwnProps>;
+  type $$Props = OwnProps & SmuiAttrs<'span', OwnProps, 'getElement'>;
 
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];

@@ -39,7 +39,8 @@
     color?: 'default' | 'primary' | 'secondary' | string;
     variant?: 'fixed' | 'static' | 'standard';
   };
-  type $$Props = OwnProps & SmuiAttrs<'div', OwnProps>;
+  type $$Props = OwnProps &
+    SmuiAttrs<'div', OwnProps, 'getPropStore' | 'getElement'>;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

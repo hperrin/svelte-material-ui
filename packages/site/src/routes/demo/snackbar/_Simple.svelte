@@ -9,17 +9,10 @@
   <Label>This is a snackbar.</Label>
 </Snackbar>
 
-<Button
-  on:click={() =>
-    typeof snackbarWithClose.open === 'function' && snackbarWithClose.open()}
->
+<Button on:click={() => snackbarWithClose.open()}>
   <Label>Open Snackbar With Dismiss</Label>
 </Button>
-<Button
-  on:click={() =>
-    typeof snackbarWithoutClose.open === 'function' &&
-    snackbarWithoutClose.open()}
->
+<Button on:click={() => snackbarWithoutClose.open()}>
   <Label>Open Snackbar Without Dismiss</Label>
 </Button>
 

@@ -127,7 +127,7 @@
     menu$anchorCorner?: Menu['$$prop_def']['anchorCorner'];
   };
   type $$Props = OwnProps &
-    SmuiAttrs<'div', OwnProps> & {
+    SmuiAttrs<'div', OwnProps, 'focus' | 'blur' | 'getElement'> & {
       [k in keyof Menu['$$prop_def'] as `menu\$${k}`]?: Menu['$$prop_def'][k];
     } & {
       [k in keyof Textfield['$$prop_def'] as `textfield\$${k}`]?: Textfield['$$prop_def'][k];

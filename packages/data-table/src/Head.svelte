@@ -26,7 +26,7 @@
   type OwnProps = {
     use?: ActionArray;
   };
-  type $$Props = OwnProps & SmuiAttrs<'thead', OwnProps>;
+  type $$Props = OwnProps & SmuiAttrs<'thead', OwnProps, 'getElement'>;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

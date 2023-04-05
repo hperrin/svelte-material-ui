@@ -78,7 +78,29 @@
     tag?: TagName;
   };
   type $$Props = OwnProps &
-    (SmuiAttrs<keyof SmuiElementMap, OwnProps> | SmuiSvgAttrs<OwnProps>);
+    (
+      | SmuiAttrs<
+          keyof SmuiElementMap,
+          OwnProps,
+          | 'layout'
+          | 'setEnabled'
+          | 'getTypeaheadInProgress'
+          | 'getSelectedIndex'
+          | 'getFocusedItemIndex'
+          | 'focusItemAtIndex'
+          | 'getElement'
+        >
+      | SmuiSvgAttrs<
+          OwnProps,
+          | 'layout'
+          | 'setEnabled'
+          | 'getTypeaheadInProgress'
+          | 'getSelectedIndex'
+          | 'getFocusedItemIndex'
+          | 'focusItemAtIndex'
+          | 'getElement  '
+        >
+    );
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

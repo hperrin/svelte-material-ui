@@ -7,7 +7,7 @@
 
 <Textfield bind:value={text} label="Dynamic Text" required />
 
-<Button on:click={() => typeof snackbar.open === 'function' && snackbar.open()}>
+<Button on:click={() => snackbar.open()}>
   <Label>Open Snackbar</Label>
 </Button>
 

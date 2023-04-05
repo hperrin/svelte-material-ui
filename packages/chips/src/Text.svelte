@@ -43,7 +43,8 @@
     class?: string;
     tabindex?: number;
   };
-  type $$Props = OwnProps & SmuiAttrs<'span', OwnProps>;
+  type $$Props = OwnProps &
+    SmuiAttrs<'span', OwnProps, 'focus' | 'getInput' | 'getElement'>;
 
   import type { SMUIChipsPrimaryActionAccessor } from './Text.types.js';
   import Checkmark from './Checkmark.svelte';

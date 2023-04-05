@@ -43,7 +43,8 @@
     open?: boolean;
     fixed?: boolean;
   };
-  type $$Props = OwnProps & SmuiAttrs<'aside', OwnProps>;
+  type $$Props = OwnProps &
+    SmuiAttrs<'aside', OwnProps, 'setOpen' | 'isOpen' | 'getElement'>;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

@@ -44,7 +44,8 @@
     component?: Component;
     tag?: TagName;
   };
-  type $$Props = OwnProps & SmuiAttrs<keyof SmuiElementMap, OwnProps>;
+  type $$Props = OwnProps &
+    SmuiAttrs<keyof SmuiElementMap, OwnProps, 'getElement'>;
 
   export let use: ActionArray = [];
   let className = '';

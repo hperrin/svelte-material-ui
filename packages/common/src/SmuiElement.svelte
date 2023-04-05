@@ -28,7 +28,8 @@
     use?: ActionArray;
     tag: TagName;
   };
-  type $$Props = OwnProps & SmuiAttrs<keyof SmuiElementMap, OwnProps>;
+  type $$Props = OwnProps &
+    SmuiAttrs<keyof SmuiElementMap, OwnProps, 'getElement'>;
   // Why doesn't this work?
   // Partial<
   //   Omit<svelteHTML.IntrinsicElements[TagName], keyof OwnProps>

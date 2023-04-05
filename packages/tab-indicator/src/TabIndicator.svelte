@@ -55,7 +55,11 @@
     content$class?: string;
   };
   type $$Props = OwnProps &
-    SmuiAttrs<'span', OwnProps> & {
+    SmuiAttrs<
+      'span',
+      OwnProps,
+      'activate' | 'deactivate' | 'computeContentClientRect' | 'getElement'
+    > & {
       [k in keyof SmuiElementPropMap['span'] as `content\$${k}`]?: SmuiElementPropMap['span'][k];
     };
 

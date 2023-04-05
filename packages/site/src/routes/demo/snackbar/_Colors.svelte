@@ -26,24 +26,15 @@
   </Actions>
 </Snackbar>
 
-<Button
-  on:click={() =>
-    typeof snackbarSuccess.open === 'function' && snackbarSuccess.open()}
->
+<Button on:click={() => snackbarSuccess.open()}>
   <Label>Open Success Snackbar</Label>
 </Button>
 
-<Button
-  on:click={() =>
-    typeof snackbarWarning.open === 'function' && snackbarWarning.open()}
->
+<Button on:click={() => snackbarWarning.open()}>
   <Label>Open Warning Snackbar</Label>
 </Button>
 
-<Button
-  on:click={() =>
-    typeof snackbarError.open === 'function' && snackbarError.open()}
->
+<Button on:click={() => snackbarError.open()}>
   <Label>Open Error Snackbar</Label>
 </Button>
 

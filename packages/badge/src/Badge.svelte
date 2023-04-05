@@ -43,7 +43,7 @@
       | 'bottom-middle'
       | 'bottom-end';
   };
-  type $$Props = OwnProps & SmuiAttrs<'span', OwnProps>;
+  type $$Props = OwnProps & SmuiAttrs<'span', OwnProps, 'getElement'>;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

@@ -28,7 +28,7 @@
     class?: string;
     fullBleed?: boolean;
   };
-  type $$Props = OwnProps & SmuiAttrs<'div', OwnProps>;
+  type $$Props = OwnProps & SmuiAttrs<'div', OwnProps, 'getElement'>;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

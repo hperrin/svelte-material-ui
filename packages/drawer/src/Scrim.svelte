@@ -36,7 +36,10 @@
     tag?: TagName;
   };
   type $$Props = OwnProps &
-    (SmuiAttrs<keyof SmuiElementMap, OwnProps> | SmuiSvgAttrs<OwnProps>);
+    (
+      | SmuiAttrs<keyof SmuiElementMap, OwnProps, 'getElement'>
+      | SmuiSvgAttrs<OwnProps, 'getElement'>
+    );
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

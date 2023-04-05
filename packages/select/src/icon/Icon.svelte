@@ -34,7 +34,7 @@
     tabindex?: number;
     disabled?: boolean;
   };
-  type $$Props = OwnProps & SmuiAttrs<'i', OwnProps>;
+  type $$Props = OwnProps & SmuiAttrs<'i', OwnProps, 'getElement'>;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

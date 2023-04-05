@@ -64,7 +64,17 @@
      */
     openBottomBias?: number;
   };
-  type $$Props = OwnProps & SmuiAttrs<'div', OwnProps>;
+  type $$Props = OwnProps &
+    SmuiAttrs<
+      'div',
+      OwnProps,
+      | 'isOpen'
+      | 'setOpen'
+      | 'setAbsolutePosition'
+      | 'setIsHoisted'
+      | 'isFixed'
+      | 'getElement'
+    >;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

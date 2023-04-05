@@ -67,7 +67,7 @@
     progress?: number;
     buffer?: number | undefined;
   };
-  type $$Props = OwnProps & SmuiAttrs<'div', OwnProps>;
+  type $$Props = OwnProps & SmuiAttrs<'div', OwnProps, 'getElement'>;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

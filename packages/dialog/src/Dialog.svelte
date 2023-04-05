@@ -3,7 +3,8 @@
   on:orientationchange={() => open && instance && instance.layout()}
 />
 <svelte:body
-  on:keydown={instance && instance.handleDocumentKeydown.bind(instance)} />
+  on:keydown={instance && instance.handleDocumentKeydown.bind(instance)}
+/>
 
 <div
   bind:this={element}
@@ -106,7 +107,11 @@
     surface$class?: string;
   };
   type $$Props = OwnProps &
-    SmuiAttrs<'div', OwnProps> & {
+    SmuiAttrs<
+      'div',
+      OwnProps,
+      'isOpen' | 'setOpen' | 'layout' | 'getElement'
+    > & {
       [k in keyof SmuiElementPropMap['div'] as `container\$${k}`]?: SmuiElementPropMap['div'][k];
     } & {
       [k in keyof SmuiElementPropMap['div'] as `surface\$${k}`]?: SmuiElementPropMap['div'][k];

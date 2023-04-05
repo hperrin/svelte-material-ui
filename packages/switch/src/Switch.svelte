@@ -110,7 +110,7 @@
     icons$class?: string;
   };
   type $$Props = OwnProps &
-    SmuiAttrs<'button', OwnProps> & {
+    SmuiAttrs<'button', OwnProps, 'getId' | 'getElement'> & {
       [k in keyof SmuiElementPropMap['div'] as `icons\$${k}`]?: SmuiElementPropMap['div'][k];
     };
 

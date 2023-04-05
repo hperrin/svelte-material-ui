@@ -67,12 +67,7 @@
     waiting = true;
   }
 
-  $: if (
-    element &&
-    waiting &&
-    !element.isOpen() &&
-    typeof element.open === 'function'
-  ) {
+  $: if (element && waiting && !element.isOpen()) {
     element.open();
     waiting = false;
   }
