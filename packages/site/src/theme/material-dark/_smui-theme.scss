@@ -1,0 +1,10 @@
+@use '@material/theme/index' as theme with (
+  $surface: #222222,
+  $background: #000000
+);
+
+html,
+body {
+  background-color: theme.$background;
+  color: theme.$on-surface;
+}

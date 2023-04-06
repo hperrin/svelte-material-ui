@@ -7,40 +7,38 @@
   <!-- Site Styles -->
   <link rel="stylesheet" href="{assets}/site.css" />
 
-  {#if fixationTheme}
+  {#if theme}
     <!-- SMUI Styles -->
-    <link rel="stylesheet" href="{assets}/smui-fixation.css" />
+    <link rel="stylesheet" href="{assets}/smui-{theme}.css" />
 
     <!-- Site Styles -->
-    <link rel="stylesheet" href="{assets}/site-fixation.css" />
+    <link rel="stylesheet" href="{assets}/site-{theme}.css" />
 
     {#if lightTheme === false}
       <!-- SMUI Styles -->
-      <link rel="stylesheet" href="{assets}/smui-fixation.css" />
       <link
         rel="stylesheet"
-        href="{assets}/smui-fixation-dark.css"
+        href="{assets}/smui-{theme}-dark.css"
         media="screen"
       />
       <!-- Site Styles -->
-      <link rel="stylesheet" href="{assets}/site-fixation.css" />
       <link
         rel="stylesheet"
-        href="{assets}/site-fixation-dark.css"
+        href="{assets}/site-{theme}-dark.css"
         media="screen"
       />
     {:else if lightTheme !== true}
       <!-- SMUI Styles -->
       <link
         rel="stylesheet"
-        href="{assets}/smui-fixation-dark.css"
+        href="{assets}/smui-{theme}-dark.css"
         media="screen and (prefers-color-scheme: dark)"
       />
 
       <!-- Site Styles -->
       <link
         rel="stylesheet"
-        href="{assets}/site-fixation-dark.css"
+        href="{assets}/site-{theme}-dark.css"
         media="screen and (prefers-color-scheme: dark)"
       />
     {/if}
@@ -133,41 +131,78 @@
           </IconButton>
           <Tooltip>Hunter Perrin (SMUI Author) on Mastodon</Tooltip>
         </Wrapper>
-        <Wrapper>
-          <IconButton
-            toggle
-            pressed={fixationTheme}
-            on:SMUIIconButtonToggle:change={() =>
-              (fixationTheme = !fixationTheme)}
-          >
-            <Icon component={Svg} viewBox="0 0 24 24" on>
-              <path fill="currentColor" d={siSvelte.path} />
-            </Icon>
-            <Icon component={Svg} viewBox="0 0 24 24">
-              <path fill="currentColor" d={mdiFormatPaint} />
-            </Icon>
-          </IconButton>
-          <Tooltip
-            >{fixationTheme
-              ? 'Go back to the Svelte theme'
-              : 'Check out a custom theme'}</Tooltip
-          >
-        </Wrapper>
-        <Wrapper>
-          <IconButton
-            toggle
-            pressed={lightTheme}
-            on:SMUIIconButtonToggle:change={() => (lightTheme = !lightTheme)}
-          >
-            <Icon component={Svg} viewBox="0 0 24 24" on>
-              <path fill="currentColor" d={mdiWeatherNight} />
-            </Icon>
-            <Icon component={Svg} viewBox="0 0 24 24">
-              <path fill="currentColor" d={mdiWeatherSunny} />
-            </Icon>
-          </IconButton>
-          <Tooltip>{lightTheme ? 'Lights off' : 'Lights on'}</Tooltip>
-        </Wrapper>
+        <div style="display: inline-block;">
+          <Wrapper>
+            <IconButton on:click={() => themeMenu.setOpen(true)}>
+              <Icon component={Svg} viewBox="0 0 24 24">
+                <path fill="currentColor" d={mdiPalette} />
+              </Icon>
+            </IconButton>
+            <Tooltip>Pick a theme.</Tooltip>
+          </Wrapper>
+          <Menu bind:this={themeMenu}>
+            <List>
+              <SelectionGroup>
+                <Item
+                  on:SMUI:action={() => (lightTheme = null)}
+                  selected={lightTheme == null}
+                >
+                  <SelectionGroupIcon>
+                    <i class="material-icons">check</i>
+                  </SelectionGroupIcon>
+                  <Text>Follow System</Text>
+                </Item>
+                {#each [{ label: 'Light', value: true }, { label: 'Dark', value: false }] as item}
+                  <Item
+                    on:SMUI:action={() => (lightTheme = item.value)}
+                    selected={lightTheme === item.value}
+                  >
+                    <SelectionGroupIcon>
+                      <i class="material-icons">check</i>
+                    </SelectionGroupIcon>
+                    <Text>{item.label}</Text>
+                  </Item>
+                {/each}
+              </SelectionGroup>
+              <Separator />
+              <SelectionGroup>
+                <Item
+                  on:SMUI:action={() => (theme = null)}
+                  selected={theme == null}
+                >
+                  <SelectionGroupIcon>
+                    <i class="material-icons">check</i>
+                  </SelectionGroupIcon>
+                  <Text>Svelte</Text>
+                </Item>
+                {#each themes as item}
+                  <Item
+                    on:SMUI:action={() => (theme = item.value)}
+                    selected={theme === item.value}
+                  >
+                    <SelectionGroupIcon>
+                      <i class="material-icons">check</i>
+                    </SelectionGroupIcon>
+                    <Text>{item.label}</Text>
+                  </Item>
+                {/each}
+              </SelectionGroup>
+              <Separator />
+              <Item tag="a" href="/THEMING.md" style="color: inherit;">
+                <Text>Learn about theming</Text>
+              </Item>
+              <Item
+                tag="a"
+                href="https://github.com/hperrin/svelte-material-ui/tree/master/packages/site/src/theme"
+                target="_blank"
+                rel="noreferrer noorigin"
+                style="color: inherit;"
+              >
+                <Text>See the theme source</Text>
+              </Item>
+            </List>
+          </Menu>
+        </div>
       </Section>
     </Row>
   </TopAppBar>
@@ -221,13 +256,8 @@
 
 <script lang="ts">
   import { onDestroy, onMount } from 'svelte';
-  import {
-    mdiFileDocument,
-    mdiFormatPaint,
-    mdiWeatherSunny,
-    mdiWeatherNight,
-  } from '@mdi/js';
-  import { siDiscord, siMastodon, siGithub, siSvelte } from 'simple-icons';
+  import { mdiFileDocument, mdiPalette } from '@mdi/js';
+  import { siDiscord, siMastodon, siGithub } from 'simple-icons';
   import TinyGesture from 'tinygesture';
   import { assets } from '$app/paths';
   import { page } from '$app/stores';
@@ -235,6 +265,7 @@
   import TopAppBar, { Row, Section, Title } from '@smui/top-app-bar';
   import Drawer, { Content, Scrim, AppContent } from '@smui/drawer';
   import IconButton from '@smui/icon-button';
+  import Menu, { SelectionGroup, SelectionGroupIcon } from '@smui/menu';
   import List, { Item, Text, Separator } from '@smui/list';
   import Tooltip, { Wrapper } from '@smui/tooltip';
   import { Icon, Svg } from '@smui/common';
@@ -248,8 +279,15 @@
   let drawerGesture: TinyGesture;
   let mainContentGesture: TinyGesture;
 
-  let lightTheme: boolean;
-  let fixationTheme = false;
+  const themes = [
+    { label: 'Material', value: 'material' },
+    { label: 'Fixation', value: 'fixation' },
+    { label: 'Metro', value: 'metro' },
+    { label: 'Unity', value: 'unity' },
+  ];
+  let themeMenu: Menu;
+  let lightTheme: boolean | null = null;
+  let theme: string | null = null;
 
   type DemoSection = {
     component?: InstanceType<typeof Item>;

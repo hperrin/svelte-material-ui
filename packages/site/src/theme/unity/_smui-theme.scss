@@ -1,0 +1,52 @@
+@use 'sass:color';
+
+@use '@material/theme/index' as theme with (
+  $primary: #e95420,
+  $secondary: #77216f,
+  $surface: #f2f1f0,
+  $background: #ffffff,
+  $error: #5e2750
+);
+
+// Use custom fonts.
+@use '@material/typography' with (
+  $font-family: unquote('"Ubuntu", sans-serif'),
+  $styles-headline1: (
+    font-family: unquote('"Ubuntu", sans-serif'),
+    font-weight: 300,
+  ),
+  $styles-headline2: (
+    font-family: unquote('"Ubuntu", sans-serif'),
+    font-weight: 300,
+  ),
+  $styles-headline3: (
+    font-family: unquote('"Ubuntu", sans-serif'),
+    font-weight: 300,
+  ),
+  $styles-headline4: (
+    font-family: unquote('"Ubuntu", sans-serif'),
+    font-weight: 300,
+  )
+);
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Roboto:wght@300;400;500;700&family=Ubuntu+Mono&family=Ubuntu:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+html,
+body {
+  background-color: theme.$background;
+  color: theme.$on-surface;
+}
+
+// Be more specific than the _Typography.scss file.
+html code,
+html pre {
+  font-family: 'Ubuntu Mono', monospace;
+}
+
+// Color scheme: https://coolors.co/f6f7eb-e94f37-393e41-3f88c5-44bba4
+a {
+  color: #3f88c5;
+}
+a:visited {
+  color: #44bba4;
+}

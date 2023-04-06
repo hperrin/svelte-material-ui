@@ -1,0 +1,92 @@
+@use 'sass:color';
+
+@use '@material/theme/index' as theme with (
+  $primary: #008299,
+  $secondary: #8c0095,
+  $surface: #000000,
+  $background: #222222,
+  $error: #ac193d
+);
+
+// Elevation shadow color. (Since surface is #000.)
+@use '@material/elevation/index' as elevation with (
+  $baseline-color: #333333
+);
+
+// Sharp corners.
+@use '@material/shape/index' as shape with (
+  $small-component-radius: 0,
+  $medium-component-radius: 0,
+  $large-component-radius: 0
+);
+
+// Use custom fonts.
+@use '@material/typography' with (
+  $font-family: unquote('"Selawik", "Segoe UI", sans-serif'),
+  $styles-headline1: (
+    font-family: unquote('"Selawik Light", "Segoe UI", sans-serif'),
+  ),
+  $styles-headline2: (
+    font-family: unquote('"Selawik Light", "Segoe UI", sans-serif'),
+  ),
+  $styles-headline3: (
+    font-family: unquote('"Selawik Light", "Segoe UI", sans-serif'),
+  ),
+  $styles-headline4: (
+    font-family: unquote('"Selawik Light", "Segoe UI", sans-serif'),
+  ),
+  $styles-button: (
+    text-transform: none,
+  )
+);
+
+@font-face {
+  font-family: 'Selawik';
+  src: url('/Selawik_Release/selawk.woff2') format('woff2'),
+    url('/Selawik_Release/selawk.woff') format('woff'),
+    url('/Selawik_Release/selawk.eot') format('eot'),
+    url('/Selawik_Release/selawk.ttf') format('ttf');
+}
+
+@font-face {
+  font-family: 'Selawik Light';
+  src: url('/Selawik_Release/selawkl.woff2') format('woff2'),
+    url('/Selawik_Release/selawkl.woff') format('woff'),
+    url('/Selawik_Release/selawkl.eot') format('eot'),
+    url('/Selawik_Release/selawkl.ttf') format('ttf');
+}
+
+@font-face {
+  font-family: 'Selawik Bold';
+  src: url('/Selawik_Release/selawkb.woff2') format('woff2'),
+    url('/Selawik_Release/selawkb.woff') format('woff'),
+    url('/Selawik_Release/selawkb.eot') format('eot'),
+    url('/Selawik_Release/selawkb.ttf') format('ttf');
+}
+
+html,
+body {
+  background-color: theme.$background;
+  color: theme.$on-surface;
+}
+
+// Be more specific than the _Typography.scss file.
+html code,
+html pre {
+  font-family: 'Courier New', Courier, monospace;
+}
+
+// Be more specific than the _Typography.scss file.
+html b,
+html strong {
+  font-family: 'Selawik Bold', 'Segoe UI', sans-serif;
+  font-weight: bold;
+}
+
+// Color scheme: https://coolors.co/f6f7eb-e94f37-393e41-3f88c5-44bba4
+a {
+  color: #3f88c5;
+}
+a:visited {
+  color: #44bba4;
+}
