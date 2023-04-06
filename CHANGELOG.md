@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.0.0-beta.2](https://github.com/hperrin/svelte-material-ui/compare/v7.0.0-beta.1...v7.0.0-beta.2) (2023-04-06)
+
+
+### Bug Fixes
+
+* exported type of ClassAdder component ([7f35915](https://github.com/hperrin/svelte-material-ui/commit/7f35915ca257ddbbcebe4f610e1f8474bb6d6429))
+* never confuse an exported function type with an html attr type ([d00860a](https://github.com/hperrin/svelte-material-ui/commit/d00860ac03a2c660819079bb7bb11c945d580c30)), closes [#575](https://github.com/hperrin/svelte-material-ui/issues/575)
+* rounded corners on shadow of accordion panels ([5b4a9ff](https://github.com/hperrin/svelte-material-ui/commit/5b4a9ffd124c706382cad873345958b2e944d727))
+* rounded corners on shadow of button group ([dd3c405](https://github.com/hperrin/svelte-material-ui/commit/dd3c405cfb8f9e96f3678a9eac0f810728aad148))
+
+
+
+
+
 # [7.0.0-beta.1](https://github.com/hperrin/svelte-material-ui/compare/v7.0.0-beta.0...v7.0.0-beta.1) (2023-04-04)
 
 
