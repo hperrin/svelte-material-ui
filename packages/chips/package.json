@@ -1,6 +1,6 @@
 {
   "name": "@smui/chips",
-  "version": "7.0.0-beta.2",
+  "version": "7.0.0-beta.3",
   "description": "Svelte Material UI - Chips",
   "type": "module",
   "main": "dist/index.js",
@@ -42,8 +42,8 @@
     "@material/chips": "^14.0.0",
     "@material/dom": "^14.0.0",
     "@material/rtl": "^14.0.0",
-    "@smui/common": "^7.0.0-beta.2",
-    "@smui/ripple": "^7.0.0-beta.2",
+    "@smui/common": "^7.0.0-beta.3",
+    "@smui/ripple": "^7.0.0-beta.3",
     "svelte2tsx": "^0.6.10"
   },
   "devDependencies": {
