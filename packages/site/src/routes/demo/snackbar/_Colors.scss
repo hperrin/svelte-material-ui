@@ -1,3 +1,5 @@
+// Make sure SMUI's import happens first, since it specifies variables.
+@use '@smui/snackbar/style' as smui-snackabar;
 // See https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-snackbar
 @use '@material/snackbar/mixins' as snackbar;
 // See https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-theme
