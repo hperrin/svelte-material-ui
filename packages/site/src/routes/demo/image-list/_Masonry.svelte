@@ -2,12 +2,12 @@
   {#each Array(15) as _unused, i}
     <Item>
       <Image
-        src="https://place-hold.it/190x{getUnevenImageSize(
+        src="https://placehold.co/190x{getUnevenImageSize(
           i,
           107,
           200,
           Math.abs
-        )}?text=190x{getUnevenImageSize(i, 107, 200, Math.abs)}&fontsize=23"
+        )}?text=190x{getUnevenImageSize(i, 107, 200, Math.abs)}"
         alt="Image {i + 1}"
       />
       <Supporting>

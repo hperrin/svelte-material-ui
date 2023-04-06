@@ -126,6 +126,6 @@
 
 <style>
   * :global(.card-media-16x9) {
-    background-image: url(https://place-hold.it/320x180?text=16x9&fontsize=23);
+    background-image: url(https://placehold.co/320x180?text=16x9);
   }
 </style>

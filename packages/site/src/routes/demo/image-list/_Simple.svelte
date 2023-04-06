@@ -3,7 +3,7 @@
     <Item>
       <ImageAspectContainer>
         <Image
-          src="https://place-hold.it/190x190?text=square&fontsize=23"
+          src="https://placehold.co/190x190?text=square"
           alt="Image {i + 1}"
         />
       </ImageAspectContainer>

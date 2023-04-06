@@ -4,11 +4,11 @@
       <ImageAspectContainer>
         <Image
           tag="div"
-          style="background-image: url(https://place-hold.it/190x{getUnevenImageSize(
+          style="background-image: url(https://placehold.co/190x{getUnevenImageSize(
             i,
             190,
             10
-          )}?text=190x{getUnevenImageSize(i, 190, 10)}&fontsize=23);"
+          )}?text=190x{getUnevenImageSize(i, 190, 10)});"
         />
       </ImageAspectContainer>
       <Supporting>
