@@ -7,6 +7,10 @@ This doc contains information that will help you migrate your code from an older
 SMUI 7 migrated to upstream MDC 14.0 from 13.0:
 https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#1400-2022-04-27
 
+## Themes
+
+I spent a day [flexing every graphic design muscle in my body](https://i.kym-cdn.com/entries/icons/original/000/018/929/graphic_design_is_my_passion.png), and made some THEMES! SMUI 7 can now be styled with a custom theme, the default theme, or [brand spanking new premade themes](https://sveltematerialui.com/INSTALL.md#a-premade-theme). This makes it much easier to get started with SMUI.
+
 ## Breaking Changes
 
 - The `@smui/common/elements` components are gone. Just set the `tag` prop on components now (like `<Button tag="div">`).

@@ -138,7 +138,7 @@
                 <path fill="currentColor" d={mdiPalette} />
               </Icon>
             </IconButton>
-            <Tooltip>Pick a theme.</Tooltip>
+            <Tooltip>Pick a theme or toggle dark mode.</Tooltip>
           </Wrapper>
           <Menu bind:this={themeMenu}>
             <List>

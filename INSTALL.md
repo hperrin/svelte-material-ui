@@ -50,6 +50,10 @@ If you want the Material Icon, Roboto, and Roboto Mono fonts, be sure to include
 
 ## Installing a Theme
 
+### A Custom Theme
+
+Check out the [theming instructions](/THEMING.md) for setting up a custom theme.
+
 ### The Default Theme
 
 You can use the prebuilt "bare.css" file from the "svelte-material-ui" package. If you use this option you _can_ mostly customize your theme, but your [theming options](/THEMING.md#theming-the-bare-css) are more limited.
@@ -59,12 +63,14 @@ npm install --save svelte-material-ui
 ```
 
 ```html
+<!-- SMUI Styles -->
 <link rel="stylesheet" href="node_modules/svelte-material-ui/bare.css" />
 ```
 
 If that's not working (probably because your dependencies aren't copied to your build folder), you can also use a CDN. Just be sure you update the version here when you update to a new version of SMUI. (This may already be an outdated version, so update it now too.)
 
 ```html
+<!-- SMUI Styles -->
 <link
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/svelte-material-ui@6.0.0/bare.min.css"
@@ -73,6 +79,51 @@ If that's not working (probably because your dependencies aren't copied to your 
 
 You can also use the "bare.css" files from the individual packages if you don't use many components and want smaller file sizes.
 
-### A Custom Theme
+### A Premade Theme
 
-Check out the [theming instructions](/THEMING.md) for setting up a custom theme.
+There are some premade themes as well in the "svelte-material-ui" package, including dark mode versions. These are the same themes that appear on the demo site. You won't find the CSS in the repo, because they're not git tracked, but here's a list.
+
+- `themes/svelte.css`
+- `themes/svelte-dark.css`
+- `themes/material.css`
+- `themes/material-dark.css`
+- `themes/fixation.css`
+- `themes/fixation-dark.css`
+- `themes/metro.css`
+- `themes/metro-dark.css`
+- `themes/unity.css`
+- `themes/unity-dark.css`
+
+```sh
+npm install --save svelte-material-ui
+```
+
+```html
+<!-- SMUI Styles -->
+<link
+  rel="stylesheet"
+  href="node_modules/svelte-material-ui/themes/svelte.css"
+  media="(prefers-color-scheme: light)"
+/>
+<link
+  rel="stylesheet"
+  href="node_modules/svelte-material-ui/themes/svelte-dark.css"
+  media="screen and (prefers-color-scheme: dark)"
+/>
+```
+
+Or with a CDN. Remember to update the version!
+
+```html
+<!-- SMUI Styles -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/svelte-material-ui@6.0.0/themes/svelte.min.css"
+  media="(prefers-color-scheme: light)"
+/>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/svelte-material-ui@6.0.0/themes/svelte-dark.min.css"
+  media="screen and (prefers-color-scheme: dark)"
+/>
+```

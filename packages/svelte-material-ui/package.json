@@ -12,13 +12,25 @@
     "sveltejs"
   ],
   "scripts": {
-    "build": "smui-theme compile bare.css -i theme/ -i node_modules/",
+    "build": "npm run build-bare && npm run build-svelte-light && npm run build-svelte-dark && npm run build-fixation-light && npm run build-fixation-dark && npm run build-material-light && npm run build-material-dark && npm run build-metro-light && npm run build-metro-dark && npm run build-unity-light && npm run build-unity-dark",
+    "build-bare": "smui-theme compile bare.css -i theme/ -i node_modules/",
+    "build-svelte-light": "smui-theme compile themes/svelte.css -s expanded -i ../site/src/theme -i node_modules/",
+    "build-svelte-dark": "smui-theme compile themes/svelte-dark.css -s expanded -i ../site/src/theme/dark -i node_modules/",
+    "build-fixation-light": "smui-theme compile themes/fixation.css -s expanded -i ../site/src/theme/fixation -i node_modules/",
+    "build-fixation-dark": "smui-theme compile themes/fixation-dark.css -s expanded -i ../site/src/theme/fixation-dark -i node_modules/",
+    "build-material-light": "smui-theme compile themes/material.css -s expanded -i ../site/src/theme/material -i node_modules/",
+    "build-material-dark": "smui-theme compile themes/material-dark.css -s expanded -i ../site/src/theme/material-dark -i node_modules/",
+    "build-metro-light": "smui-theme compile themes/metro.css -s expanded -i ../site/src/theme/metro -i node_modules/",
+    "build-metro-dark": "smui-theme compile themes/metro-dark.css -s expanded -i ../site/src/theme/metro-dark -i node_modules/",
+    "build-unity-light": "smui-theme compile themes/unity.css -s expanded -i ../site/src/theme/unity -i node_modules/",
+    "build-unity-dark": "smui-theme compile themes/unity-dark.css -s expanded -i ../site/src/theme/unity-dark -i node_modules/",
     "clean": "git status --ignored -u --porcelain . | grep -v node_modules/ | grep -e '^!! ' | sed 's/^!! packages\\/[a-z-]*\\///g' | tr '\\n' ' ' | xargs rm",
     "prepare": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "files": [
-    "bare.css"
+    "bare.css",
+    "themes"
   ],
   "publishConfig": {
     "access": "public"
