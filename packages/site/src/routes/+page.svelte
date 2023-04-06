@@ -247,7 +247,7 @@
               component and many internal elements within them. SMUI forwards
               all events from every component, and supports event modifiers,
               including passive. SMUI works in the Svelte REPL, meaning you can <a
-                href="https://svelte.dev/repl/aa857c3bb5eb478cbe6b1fd6c6da522a?version=3.51.0"
+                href="https://svelte.dev/repl/aa857c3bb5eb478cbe6b1fd6c6da522a"
                 target="_blank">play with it right now</a
               >.
             </SecondaryText>

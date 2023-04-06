@@ -20,7 +20,7 @@ Here are some unique features that help SMUI stand out:
   - You can add event modifiers with the `on:click$preventDefault$capture={handler}` syntax.
     - You have to use "$" instead of "|" like in native Svelte. (The extra S inside the | stands for SMUI.)
     - Supported modifiers are: preventDefault, stopPropagation, passive, nonpassive, capture, and once
-- SMUI [supports RTL languages](https://svelte.dev/repl/c2ff2d5dd5404eccb901ba04ef0161be?version=3.51.0).
+- SMUI [supports RTL languages](https://svelte.dev/repl/c2ff2d5dd5404eccb901ba04ef0161be).
 
 # Installation
 
