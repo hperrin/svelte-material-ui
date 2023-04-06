@@ -9,3 +9,9 @@
 <script lang="ts">
   import Repl from '../../../../../REPL.md';
 </script>
+
+<style>
+  .markdown :global(pre.highlight) {
+    overflow-x: auto;
+  }
+</style>

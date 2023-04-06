@@ -9,3 +9,9 @@
 <script lang="ts">
   import Typography from '../../../../../TYPOGRAPHY.md';
 </script>
+
+<style>
+  .markdown :global(pre.highlight) {
+    overflow-x: auto;
+  }
+</style>
