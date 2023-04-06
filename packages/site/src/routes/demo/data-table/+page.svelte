@@ -20,7 +20,7 @@
     Progress indicator
   </Demo>
 
-  <Demo component={StickyHeader} file="data-table/iframe.svelte">
+  <Demo component={StickyHeader} file="data-table/iframe/+page.svelte">
     Sticky header
     <svelte:fragment slot="subtitle">
       This is displayed in an iframe and the source viewer shows the iframe
