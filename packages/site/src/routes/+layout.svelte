@@ -670,7 +670,7 @@
     previousPagePath = $page.url.pathname;
   }
 
-  onMount(setMiniWindow);
+  onMount(() => setTimeout(setMiniWindow, 0));
 
   onMount(() => {
     if (mainContent) {

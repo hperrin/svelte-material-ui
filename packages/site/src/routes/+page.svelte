@@ -89,13 +89,9 @@
     </div>
 
     <div style="margin: 4em 0;">
-      <List
-        twoLine
-        nonInteractive
-        style="border: 1px solid var(--mdc-theme-text-hint-on-background, rgba(0, 0, 0, 0.1));"
-      >
-        <Item style="height: auto; min-height: 64px;">
-          <Graphic style="height: auto; width: auto;">
+      <List twoLine nonInteractive class="feature-list">
+        <Item>
+          <Graphic>
             <Icon
               component={Svg}
               style="width: 40px; height: 40px;"
@@ -106,15 +102,15 @@
           </Graphic>
           <Text>
             <PrimaryText>Fully, Strictly Typed</PrimaryText>
-            <SecondaryText style="white-space: normal;">
+            <SecondaryText>
               SMUI is strictly typed with TypeScript. This not only helps catch
               bugs early, it helps while developing as every property is
               autocompleted by modern IDEs.
             </SecondaryText>
           </Text>
         </Item>
-        <Item style="height: auto; min-height: 64px;">
-          <Graphic style="height: auto; width: auto;">
+        <Item>
+          <Graphic>
             <Icon
               component={Svg}
               style="width: 40px; height: 40px;"
@@ -125,7 +121,7 @@
           </Graphic>
           <Text>
             <PrimaryText>Accessible by Default</PrimaryText>
-            <SecondaryText style="white-space: normal;">
+            <SecondaryText>
               SMUI automatically adds appropriate ARIA attributes to components
               to provide accessibility to screen readers. SMUI is also fully
               keyboard accessible, meaning motor impaired users can easily use
@@ -133,8 +129,8 @@
             </SecondaryText>
           </Text>
         </Item>
-        <Item style="height: auto; min-height: 64px;">
-          <Graphic style="height: auto; width: auto;">
+        <Item>
+          <Graphic>
             <Icon
               component={Svg}
               style="width: 40px; height: 40px;"
@@ -145,15 +141,15 @@
           </Graphic>
           <Text>
             <PrimaryText>Touch Friendly</PrimaryText>
-            <SecondaryText style="white-space: normal;">
+            <SecondaryText>
               SMUI provides increased touch targets to allow ease of use on
               mobile devices, conforming to the Material Spec requirement of
               minimum 48px x 48px touch targets.
             </SecondaryText>
           </Text>
         </Item>
-        <Item style="height: auto; min-height: 64px;">
-          <Graphic style="height: auto; width: auto;">
+        <Item>
+          <Graphic>
             <Icon
               component={Svg}
               style="width: 40px; height: 40px;"
@@ -164,15 +160,15 @@
           </Graphic>
           <Text>
             <PrimaryText>Server Side Rendering</PrimaryText>
-            <SecondaryText style="white-space: normal;">
+            <SecondaryText>
               SMUI can be fully rendered on the server, meaning faster time to
               first meaningful paint. SMUI fully supports SvelteKit. In fact,
               the site you're looking at is a SvelteKit app.
             </SecondaryText>
           </Text>
         </Item>
-        <Item style="height: auto; min-height: 64px;">
-          <Graphic style="height: auto; width: auto;">
+        <Item>
+          <Graphic>
             <Icon
               component={Svg}
               style="width: 40px; height: 40px;"
@@ -183,15 +179,15 @@
           </Graphic>
           <Text>
             <PrimaryText>Fully Themable</PrimaryText>
-            <SecondaryText style="white-space: normal;">
+            <SecondaryText>
               Components are themable using Sass variables, provided by MDC-Web.
               Everything from their shape, color, density, borders, interaction
               states, and more is themable.
             </SecondaryText>
           </Text>
         </Item>
-        <Item style="height: auto; min-height: 64px;">
-          <Graphic style="height: auto; width: auto;">
+        <Item>
+          <Graphic>
             <Icon
               component={Svg}
               style="width: 40px; height: 40px;"
@@ -202,14 +198,14 @@
           </Graphic>
           <Text>
             <PrimaryText>RTL Support</PrimaryText>
-            <SecondaryText style="white-space: normal;">
+            <SecondaryText>
               SMUI is RTL aware, and components will adapt their design to suit
               the language of the user.
             </SecondaryText>
           </Text>
         </Item>
-        <Item style="height: auto; min-height: 64px;">
-          <Graphic style="height: auto; width: auto;">
+        <Item>
+          <Graphic>
             <Icon
               component={Svg}
               style="width: 40px; height: 40px;"
@@ -220,7 +216,7 @@
           </Graphic>
           <Text>
             <PrimaryText>Widely Used, a Growing Community</PrimaryText>
-            <SecondaryText style="white-space: normal;">
+            <SecondaryText>
               With over <a
                 href="https://github.com/hperrin/svelte-material-ui/network/dependents?package_id=UGFja2FnZS01NTM5MDg5MDQ"
                 target="_blank">2200 projects</a
@@ -230,8 +226,8 @@
             </SecondaryText>
           </Text>
         </Item>
-        <Item style="height: auto; min-height: 64px;">
-          <Graphic style="height: auto; width: auto;">
+        <Item>
+          <Graphic>
             <Icon
               component={Svg}
               style="width: 40px; height: 40px;"
@@ -242,7 +238,7 @@
           </Graphic>
           <Text>
             <PrimaryText>Adaptable, Versatile</PrimaryText>
-            <SecondaryText style="white-space: normal;">
+            <SecondaryText>
               SMUI supports adding arbitrary attributes and actions to every
               component and many internal elements within them. SMUI forwards
               all events from every component, and supports event modifiers,
@@ -253,8 +249,8 @@
             </SecondaryText>
           </Text>
         </Item>
-        <Item style="height: auto; min-height: 64px;">
-          <Graphic style="height: auto; width: auto;">
+        <Item>
+          <Graphic>
             <Icon
               component={Svg}
               style="width: 40px; height: 40px;"
@@ -265,7 +261,7 @@
           </Graphic>
           <Text>
             <PrimaryText>Material Design Compliant</PrimaryText>
-            <SecondaryText style="white-space: normal;">
+            <SecondaryText>
               Every SMUI component fully follows the Material Design
               specification. You can build up-to-spec UIs with SMUI.
             </SecondaryText>
@@ -349,7 +345,32 @@
     flex-basis: 0;
   }
 
-  @media (max-width: 460px) {
+  * :global(.feature-list) {
+    border: 1px solid
+      var(--mdc-theme-text-hint-on-background, rgba(0, 0, 0, 0.1));
+    padding: 1em;
+  }
+
+  * :global(.feature-list .mdc-deprecated-list-item) {
+    height: auto;
+    min-height: 64px;
+    margin-bottom: 1em;
+  }
+
+  * :global(.feature-list .mdc-deprecated-list-item:last-child) {
+    margin-bottom: 0;
+  }
+
+  * :global(.feature-list .mdc-deprecated-list-item__graphic) {
+    height: auto;
+    width: auto;
+  }
+
+  * :global(.feature-list .mdc-deprecated-list-item__secondary-text) {
+    white-space: normal;
+  }
+
+  @media (max-width: 767px) {
     section {
       padding: 16px;
     }
@@ -361,7 +382,9 @@
       height: 276px;
       width: 276px;
     }
+  }
 
+  @media (max-width: 1023px) {
     .boxes {
       flex-direction: column;
     }
