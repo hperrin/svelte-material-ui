@@ -27,7 +27,10 @@
 
 <script lang="ts">
   import type { SegmentDetail } from '@material/segmented-button';
-  import { MDCSegmentedButtonFoundation } from '@material/segmented-button';
+  import type { MDCSegmentedButtonFoundation as MDCSegmentedButtonFoundationType } from '@material/segmented-button';
+  // TODO: Remove this when MDC's segmented button is fixed.
+  // @ts-ignore
+  import { MDCSegmentedButtonFoundation } from '@material/segmented-button/dist/mdc.segmentedButton.js';
   import { onMount, setContext } from 'svelte';
   import { writable } from 'svelte/store';
   import { get_current_component } from 'svelte/internal';
@@ -125,31 +128,34 @@
   }
 
   onMount(() => {
-    instance = new MDCSegmentedButtonFoundation({
-      hasClass: (className) => {
-        return getElement().classList.contains(className);
-      },
-      getSegments: () => {
-        return segments.map((segment, index) => ({
-          index,
-          selected: singleSelect
-            ? selected === segment
-            : selected.indexOf(segment) !== -1,
-          // segmentId: segment, // Not necessarily a string.
-        }));
-      },
-      selectSegment,
-      unselectSegment,
-      notifySelectedChange: (detail) => {
-        if (detail.selected) {
-          selectSegment(detail.index);
-        } else {
-          unselectSegment(detail.index);
-        }
+    instance =
+      new (MDCSegmentedButtonFoundation as typeof MDCSegmentedButtonFoundationType)(
+        {
+          hasClass: (className) => {
+            return getElement().classList.contains(className);
+          },
+          getSegments: () => {
+            return segments.map((segment, index) => ({
+              index,
+              selected: singleSelect
+                ? selected === segment
+                : selected.indexOf(segment) !== -1,
+              // segmentId: segment, // Not necessarily a string.
+            }));
+          },
+          selectSegment,
+          unselectSegment,
+          notifySelectedChange: (detail) => {
+            if (detail.selected) {
+              selectSegment(detail.index);
+            } else {
+              unselectSegment(detail.index);
+            }
 
-        dispatch(getElement(), 'change', detail);
-      },
-    });
+            dispatch(getElement(), 'change', detail);
+          },
+        }
+      );
 
     instance.init();
 
