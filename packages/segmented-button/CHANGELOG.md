@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.0.0-beta.4](https://github.com/hperrin/svelte-material-ui/compare/v7.0.0-beta.3...v7.0.0-beta.4) (2023-04-24)
+
+
+### Bug Fixes
+
+* issue with bad package.json of MDC segmented button ([51d4a1c](https://github.com/hperrin/svelte-material-ui/commit/51d4a1c396d5f7dc6923ea8a6ed8c62d359bea65)), closes [#500](https://github.com/hperrin/svelte-material-ui/issues/500)
+
+
+
+
+
 # [7.0.0-beta.3](https://github.com/hperrin/svelte-material-ui/compare/v7.0.0-beta.2...v7.0.0-beta.3) (2023-04-06)
 
 **Note:** Version bump only for package @smui/segmented-button

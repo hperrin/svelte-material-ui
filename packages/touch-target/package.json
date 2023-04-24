@@ -1,6 +1,6 @@
 {
   "name": "@smui/touch-target",
-  "version": "7.0.0-beta.3",
+  "version": "7.0.0-beta.4",
   "description": "Svelte Material UI - Touch Target",
   "type": "module",
   "main": "dist/index.js",
@@ -40,7 +40,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@material/touch-target": "^14.0.0",
-    "@smui/common": "^7.0.0-beta.3",
+    "@smui/common": "^7.0.0-beta.4",
     "svelte2tsx": "^0.6.10"
   },
   "devDependencies": {
