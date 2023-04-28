@@ -66,7 +66,7 @@
 
 <script lang="ts">
   import type { SvelteComponent } from 'svelte';
-  import { onMount, onDestroy, getContext, setContext } from 'svelte';
+  import { onMount, onDestroy, getContext, setContext, tick } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import type {
     SMUICheckboxInputAccessor,
@@ -179,7 +179,7 @@
   // Reset separator context, because we aren't directly under a list anymore.
   setContext('SMUI:separator:context', undefined);
 
-  onMount(() => {
+  onMount(async () => {
     // Tabindex needs to be '0' if this is the first non-disabled list item, and
     // no other item is selected.
 
@@ -200,6 +200,7 @@
       if (first) {
         // This is first, so now set up a check that no other items are
         // selected.
+        await tick();
         addTabindexIfNoItemsSelectedRaf = window.requestAnimationFrame(
           addTabindexIfNoItemsSelected
         );
