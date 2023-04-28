@@ -336,6 +336,10 @@
   }
 
   function addTabindexIfNoItemsSelected() {
+    if (!element) {
+      return;
+    }
+
     // Look through next siblings to see if none of them are selected.
     let noneSelected = true;
     let el = element.getElement();
