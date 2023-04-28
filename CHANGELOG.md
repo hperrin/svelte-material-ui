@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.0.0-beta.5](https://github.com/hperrin/svelte-material-ui/compare/v7.0.0-beta.4...v7.0.0-beta.5) (2023-04-28)
+
+
+### Bug Fixes
+
+* add a svelte tick before attempting to add tabindex to list element ([859a230](https://github.com/hperrin/svelte-material-ui/commit/859a23074a73aa0bbf20cf6c7a093c906e76f82e))
+* list item can crash if element.getElement is undefined ([d617f97](https://github.com/hperrin/svelte-material-ui/commit/d617f9727ab23fdf7662659e2332534d8009ee26))
+
+
+
+
+
 # [7.0.0-beta.4](https://github.com/hperrin/svelte-material-ui/compare/v7.0.0-beta.3...v7.0.0-beta.4) (2023-04-24)
 
 
