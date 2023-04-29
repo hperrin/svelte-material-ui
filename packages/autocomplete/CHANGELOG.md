@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.0.0-beta.8](https://github.com/hperrin/svelte-material-ui/compare/v7.0.0-beta.7...v7.0.0-beta.8) (2023-04-29)
+
+
+### Bug Fixes
+
+* autocomplete can set text to a non-string value ([b4f9fa7](https://github.com/hperrin/svelte-material-ui/commit/b4f9fa7544523a2230e75d2a60d11170235c632d))
+
+
+
+
+
 # [7.0.0-beta.7](https://github.com/hperrin/svelte-material-ui/compare/v7.0.0-beta.6...v7.0.0-beta.7) (2023-04-29)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@smui/switch",
-  "version": "7.0.0-beta.7",
+  "version": "7.0.0-beta.8",
   "description": "Svelte Material UI - Switch",
   "type": "module",
   "main": "dist/index.js",
@@ -42,8 +42,8 @@
     "@material/feature-targeting": "^14.0.0",
     "@material/switch": "^14.0.0",
     "@material/theme": "^14.0.0",
-    "@smui/common": "^7.0.0-beta.7",
-    "@smui/ripple": "^7.0.0-beta.7",
+    "@smui/common": "^7.0.0-beta.8",
+    "@smui/ripple": "^7.0.0-beta.8",
     "svelte2tsx": "^0.6.10"
   },
   "devDependencies": {
