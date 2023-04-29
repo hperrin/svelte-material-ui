@@ -230,13 +230,9 @@
   }
 
   let previousValue = value;
-  $: if (!combobox && previousValue !== value) {
+  $: if (previousValue !== value) {
     // If the value changes from outside, update the text.
     text = getOptionLabel(value);
-    previousValue = value;
-  } else if (combobox && previousValue !== value) {
-    // An update came from the outside.
-    text = value;
     previousValue = value;
   } else if (combobox && value !== text) {
     // An update came from the user.
