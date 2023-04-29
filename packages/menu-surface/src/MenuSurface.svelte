@@ -63,6 +63,11 @@
      * menu during positioning calculations.
      */
     openBottomBias?: number;
+    /**
+     * Set this to true to never restore focus to the previously focused element
+     * when the menu is closed.
+     */
+    neverRestoreFocus?: boolean;
   };
   type $$Props = OwnProps &
     SmuiAttrs<
@@ -101,6 +106,7 @@
   export let maxHeight = 0;
   export let horizontallyCenteredOnViewport = false;
   export let openBottomBias = 0;
+  export let neverRestoreFocus = false;
 
   let element: HTMLDivElement;
   let instance: MDCMenuSurfaceFoundation;
@@ -235,6 +241,7 @@
       },
       restoreFocus: () => {
         if (
+          !neverRestoreFocus &&
           (!element || element.contains(document.activeElement)) &&
           previousFocus &&
           document.contains(previousFocus) &&

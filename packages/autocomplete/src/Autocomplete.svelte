@@ -35,7 +35,14 @@
       'smui-autocomplete__menu': true,
     })}
     managed
-    bind:open={menuOpen}
+    neverRestoreFocus
+    open={focused &&
+      (text !== '' || showMenuWithNoInput) &&
+      (loading ||
+        (!combobox && !(matches.length === 1 && matches[0] === value)) ||
+        (combobox &&
+          !!matches.length &&
+          !(matches.length === 1 && matches[0] === value)))}
     bind:anchorElement={element}
     anchor={menu$anchor}
     anchorCorner={menu$anchorCorner}
@@ -203,24 +210,17 @@
   let focusedIndex = -1;
   let focusedItem: SMUIListItemAccessor | undefined = undefined;
 
-  $: menuOpen =
-    focused &&
-    (text !== '' || showMenuWithNoInput) &&
-    (loading ||
-      (!combobox && !(matches.length === 1 && matches[0] === value)) ||
-      (combobox &&
-        !!matches.length &&
-        !(matches.length === 1 && matches[0] === value)));
-
   let previousText = text;
   $: if (previousText !== text) {
     if (!combobox && value != null && getOptionLabel(value) !== text) {
       deselectOption(value, false);
     }
 
-    performSearch();
-
-    previousText = text;
+    // Only when we're focused do we need to perform a search.
+    if (focused) {
+      performSearch();
+      previousText = text;
+    }
   }
 
   $: if (options) {
@@ -420,10 +420,20 @@
         .map((itemAccessor) => itemAccessor.element)
         .indexOf(event.relatedTarget as Element) !== -1
     ) {
+      // Wait until the item is selected.
+      element.addEventListener(
+        'SMUIAutocomplete:selected',
+        () => {
+          // Then clear the focus.
+          focusedIndex = -1;
+          focused = false;
+        },
+        { once: true }
+      );
       return;
     }
 
-    // Else, clear the currently focused item and mark as not focused.
+    // Clear the focus and input.
     focusedIndex = -1;
     focused = false;
 
