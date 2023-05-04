@@ -68,7 +68,7 @@
     <!-- It Matters -->
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/itmatters@1.0.1/index.css"
+      href="https://cdn.jsdelivr.net/npm/itmatters@2.0.1/index.css"
     />
   {/if}
 </svelte:head>
@@ -215,8 +215,8 @@
         ? 'demo-drawer-adjust'
         : 'hide-initial-small'}"
     >
-      <!-- 22px padding to offset the space taken by Glory to Ukraine message -->
-      <Content style="padding-bottom: 22px;">
+      <!-- 44px padding to offset the space taken by Glory to Ukraine and Trans Rights messages -->
+      <Content style="padding-bottom: 44px;">
         <List>
           {#each sections as section (section.name)}
             {#if 'separator' in section}
