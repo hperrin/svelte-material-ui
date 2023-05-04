@@ -12,7 +12,7 @@
     "sveltejs"
   ],
   "scripts": {
-    "build": "npm run build-bare && npm run build-svelte-light && npm run build-svelte-dark && npm run build-fixation-light && npm run build-fixation-dark && npm run build-material-light && npm run build-material-dark && npm run build-metro-light && npm run build-metro-dark && npm run build-unity-light && npm run build-unity-dark",
+    "build": "mkdir themes || true && npm run build-bare && npm run build-svelte-light && npm run build-svelte-dark && npm run build-fixation-light && npm run build-fixation-dark && npm run build-material-light && npm run build-material-dark && npm run build-metro-light && npm run build-metro-dark && npm run build-unity-light && npm run build-unity-dark",
     "build-bare": "smui-theme compile bare.css -i theme/ -i node_modules/",
     "build-svelte-light": "smui-theme compile themes/svelte.css -s expanded -i ../site/src/theme -i node_modules/",
     "build-svelte-dark": "smui-theme compile themes/svelte-dark.css -s expanded -i ../site/src/theme/dark -i node_modules/",
