@@ -10,6 +10,7 @@
     'smui-drawer__absolute': variant === 'modal' && !fixed,
     ...internalClasses,
   })}
+  {...variant === 'dismissible' ? { 'aria-hidden': !open } : {}}
   on:keydown={instance && instance.handleKeydown.bind(instance)}
   on:transitionend={instance && instance.handleTransitionEnd.bind(instance)}
   {...$$restProps}
