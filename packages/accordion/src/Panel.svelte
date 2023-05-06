@@ -153,11 +153,12 @@
       setOpen,
     };
 
-    // Set the ari-hidden property on content children.
+    // Set the aria-hidden property on content children.
     Array.from(getElement().children).forEach((child) => {
       if (child.classList.contains('smui-paper__content')) {
         const content = child as HTMLDivElement;
         content.setAttribute('aria-hidden', open ? 'false' : 'true');
+        content.setAttribute('role', 'region');
       }
     });
 

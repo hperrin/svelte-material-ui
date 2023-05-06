@@ -9,7 +9,7 @@
     'mdc-circular-progress--closed': closed,
     ...internalClasses,
   })}
-  role="progressbar"
+  aria-busy={(progress > 0 && progress < 1) || indeterminate}
   aria-valuemin={0}
   aria-valuemax={1}
   aria-valuenow={indeterminate ? undefined : progress}
