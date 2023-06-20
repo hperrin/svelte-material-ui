@@ -2,6 +2,8 @@
 
 You will need to install the packages you use individually as well as the theme package.
 
+Note: After you install a new package, you will need to restart SvelteKit.
+
 ```sh
 npm install --save-dev @smui/button
 npm install --save-dev @smui/card
