@@ -74,8 +74,8 @@
   "dependencies": {
     "@material/theme": "^14.0.0",
     "https-proxy-agent": "^5.0.1",
-    "node-fetch": "^2.6.9",
-    "sass": "^1.60.0",
-    "yargs": "^17.7.1"
+    "node-fetch": "^2.6.11",
+    "sass": "^1.63.4",
+    "yargs": "^17.7.2"
   }
 }

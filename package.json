@@ -15,9 +15,11 @@
     "bootstrap": "lerna bootstrap --hoist --nohoist \"@tsconfig/svelte\"",
     "check": "lerna run check",
     "clean": "lerna run clean",
+    "build": "lerna run build",
     "lint": "prettier --check --plugin-search-dir=. .",
     "format": "prettier --write --plugin-search-dir=. .",
-    "pages": "npm run bootstrap && npm run pages:build && npm run pages:push",
+    "postinstall": "lerna run build",
+    "pages": "npm run build && npm run pages:build && npm run pages:push",
     "pages:build": "cd packages/site && npm run build && cd ../..",
     "pages:push": "git add -f packages/site/build && git commit -m 'chore: update built files' && git push origin $(git subtree split --prefix packages/site/build master):refs/heads/gh-pages --force && git reset --hard HEAD^",
     "prepare": "husky install",
@@ -35,15 +37,18 @@
     "url": "https://github.com/hperrin/svelte-material-ui/issues"
   },
   "license": "Apache-2.0",
+  "workspaces": [
+    "packages/*"
+  ],
   "devDependencies": {
-    "@commitlint/cli": "^17.5.1",
-    "@commitlint/config-conventional": "^17.4.4",
+    "@commitlint/cli": "^17.6.5",
+    "@commitlint/config-conventional": "^17.6.5",
     "husky": "^8.0.3",
-    "lerna": "^6.6.1",
-    "lint-staged": "^13.2.0",
-    "prettier": "~2.8.7",
-    "prettier-plugin-svelte": "^2.10.0",
-    "sass": "^1.60.0",
-    "svelte": "^3.58.0"
+    "lerna": "^7.0.2",
+    "lint-staged": "^13.2.2",
+    "prettier": "~2.8.8",
+    "prettier-plugin-svelte": "^2.10.1",
+    "sass": "^1.63.4",
+    "svelte": "^3.59.1"
   }
 }

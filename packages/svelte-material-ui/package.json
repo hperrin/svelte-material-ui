@@ -25,7 +25,7 @@
     "build-unity-light": "smui-theme compile themes/unity.css -s expanded -i ../site/src/theme/unity -i node_modules/",
     "build-unity-dark": "smui-theme compile themes/unity-dark.css -s expanded -i ../site/src/theme/unity-dark -i node_modules/",
     "clean": "git status --ignored -u --porcelain . | grep -v node_modules/ | grep -e '^!! ' | sed 's/^!! packages\\/[a-z-]*\\///g' | tr '\\n' ' ' | xargs rm",
-    "prepare": "npm run build",
+    "prepublish": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "files": [
