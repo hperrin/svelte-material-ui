@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.0.0-beta.9](https://github.com/hperrin/svelte-material-ui/compare/v7.0.0-beta.8...v7.0.0-beta.9) (2023-06-20)
+
+
+### Bug Fixes
+
+* svelte-material-ui package build after clean checkout ([4d2e835](https://github.com/hperrin/svelte-material-ui/commit/4d2e835092e71f9cf2a8a3207c69a05dc0046b9e))
+
+
+
+
+
 # [7.0.0-beta.8](https://github.com/hperrin/svelte-material-ui/compare/v7.0.0-beta.7...v7.0.0-beta.8) (2023-04-29)
 
 **Note:** Version bump only for package svelte-material-ui
