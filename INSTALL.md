@@ -31,20 +31,14 @@ You will always import Svelte components from the individual packages.
 If you want the Material Icon, Roboto, and Roboto Mono fonts, be sure to include these stylesheets (or include them from a package).
 
 ```html
-<!-- Material Icons -->
+<!-- Hint where we get fonts from. -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<!-- Material Icons, Roboto, and Roboto Mono fonts -->
 <link
+  href="https://fonts.googleapis.com/css2?family=Material+Icons&Roboto+Mono:ital@0;1&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
   rel="stylesheet"
-  href="https://fonts.googleapis.com/icon?family=Material+Icons"
-/>
-<!-- Roboto -->
-<link
-  rel="stylesheet"
-  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700"
-/>
-<!-- Roboto Mono -->
-<link
-  rel="stylesheet"
-  href="https://fonts.googleapis.com/css?family=Roboto+Mono"
 />
 ```
 

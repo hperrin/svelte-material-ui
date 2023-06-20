@@ -67,20 +67,14 @@ Or, without Dark Mode support.
 Material uses the Roboto fonts, so include those as well. If you'd like to use the Material Icons font, include that as well.
 
 ```html
-<!-- Material Icons -->
+<!-- Hint where we get fonts from. -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<!-- Material Icons, Roboto, and Roboto Mono fonts -->
 <link
+  href="https://fonts.googleapis.com/css2?family=Material+Icons&Roboto+Mono:ital@0;1&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
   rel="stylesheet"
-  href="https://fonts.googleapis.com/icon?family=Material+Icons"
-/>
-<!-- Roboto -->
-<link
-  rel="stylesheet"
-  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700"
-/>
-<!-- Roboto Mono -->
-<link
-  rel="stylesheet"
-  href="https://fonts.googleapis.com/css?family=Roboto+Mono"
 />
 ```
 
