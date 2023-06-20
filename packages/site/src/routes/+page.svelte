@@ -3,7 +3,7 @@
 </svelte:head>
 
 <section>
-  <div style="margin: 3em 0 4em;">
+  <div style="margin: 5em 0 6em;">
     <h2 style="margin-bottom: 0;">Svelte Material UI</h2>
     <p class="mdc-typography--subtitle1">
       Material UI components for Svelte apps
@@ -84,190 +84,192 @@
       </Paper>
     </div>
 
-    <div style="margin: 6em 0 4em;">
-      <h4>SMUI Features and Values</h4>
-    </div>
+    <div class="features-list">
+      <Paper variant="outlined" color="primary">
+        <div style="width: 40px;">
+          <Icon
+            component={Svg}
+            style="width: 40px; height: 40px;"
+            viewBox="0 0 24 24"
+          >
+            <path fill="currentColor" d={mdiLanguageTypescript} />
+          </Icon>
+        </div>
+        <div style="flex-grow: 1;">
+          <Title>Fully, Strictly Typed</Title>
+          <Content>
+            SMUI is strictly typed with TypeScript. This not only helps catch
+            bugs early, it helps while developing as every property is
+            autocompleted by modern IDEs.
+          </Content>
+        </div>
+      </Paper>
 
-    <div style="margin: 4em 0;">
-      <List twoLine nonInteractive class="feature-list">
-        <Item>
-          <Graphic>
-            <Icon
-              component={Svg}
-              style="width: 40px; height: 40px;"
-              viewBox="0 0 24 24"
-            >
-              <path fill="currentColor" d={mdiLanguageTypescript} />
-            </Icon>
-          </Graphic>
-          <Text>
-            <PrimaryText>Fully, Strictly Typed</PrimaryText>
-            <SecondaryText>
-              SMUI is strictly typed with TypeScript. This not only helps catch
-              bugs early, it helps while developing as every property is
-              autocompleted by modern IDEs.
-            </SecondaryText>
-          </Text>
-        </Item>
-        <Item>
-          <Graphic>
-            <Icon
-              component={Svg}
-              style="width: 40px; height: 40px;"
-              viewBox="0 0 24 24"
-            >
-              <path fill="currentColor" d={mdiHuman} />
-            </Icon>
-          </Graphic>
-          <Text>
-            <PrimaryText>Accessible by Default</PrimaryText>
-            <SecondaryText>
-              SMUI automatically adds appropriate ARIA attributes to components
-              to provide accessibility to screen readers. SMUI is also fully
-              keyboard accessible, meaning motor impaired users can easily use
-              SMUI components.
-            </SecondaryText>
-          </Text>
-        </Item>
-        <Item>
-          <Graphic>
-            <Icon
-              component={Svg}
-              style="width: 40px; height: 40px;"
-              viewBox="0 0 24 24"
-            >
-              <path fill="currentColor" d={mdiGestureTap} />
-            </Icon>
-          </Graphic>
-          <Text>
-            <PrimaryText>Touch Friendly</PrimaryText>
-            <SecondaryText>
-              SMUI provides increased touch targets to allow ease of use on
-              mobile devices, conforming to the Material Spec requirement of
-              minimum 48px x 48px touch targets.
-            </SecondaryText>
-          </Text>
-        </Item>
-        <Item>
-          <Graphic>
-            <Icon
-              component={Svg}
-              style="width: 40px; height: 40px;"
-              viewBox="0 0 24 24"
-            >
-              <path fill="currentColor" d={mdiMonitorScreenshot} />
-            </Icon>
-          </Graphic>
-          <Text>
-            <PrimaryText>Server Side Rendering</PrimaryText>
-            <SecondaryText>
-              SMUI can be fully rendered on the server, meaning faster time to
-              first meaningful paint. SMUI fully supports SvelteKit. In fact,
-              the site you're looking at is a SvelteKit app.
-            </SecondaryText>
-          </Text>
-        </Item>
-        <Item>
-          <Graphic>
-            <Icon
-              component={Svg}
-              style="width: 40px; height: 40px;"
-              viewBox="0 0 24 24"
-            >
-              <path fill="currentColor" d={mdiPalette} />
-            </Icon>
-          </Graphic>
-          <Text>
-            <PrimaryText>Fully Themable</PrimaryText>
-            <SecondaryText>
-              Components are themable using Sass variables, provided by MDC-Web.
-              Everything from their shape, color, density, borders, interaction
-              states, and more is themable.
-            </SecondaryText>
-          </Text>
-        </Item>
-        <Item>
-          <Graphic>
-            <Icon
-              component={Svg}
-              style="width: 40px; height: 40px;"
-              viewBox="0 0 24 24"
-            >
-              <path fill="currentColor" d={mdiCommentArrowLeft} />
-            </Icon>
-          </Graphic>
-          <Text>
-            <PrimaryText>RTL Support</PrimaryText>
-            <SecondaryText>
-              SMUI is RTL aware, and components will adapt their design to suit
-              the language of the user.
-            </SecondaryText>
-          </Text>
-        </Item>
-        <Item>
-          <Graphic>
-            <Icon
-              component={Svg}
-              style="width: 40px; height: 40px;"
-              viewBox="0 0 24 24"
-            >
-              <path fill="currentColor" d={mdiAccountGroup} />
-            </Icon>
-          </Graphic>
-          <Text>
-            <PrimaryText>Widely Used, a Growing Community</PrimaryText>
-            <SecondaryText>
-              With over <a
-                href="https://github.com/hperrin/svelte-material-ui/network/dependents?package_id=UGFja2FnZS01NTM5MDg5MDQ"
-                target="_blank">2200 projects</a
-              > using SMUI components, it is the most popular Svelte UI library.
-              For good reason, too. It is the most versatile and adaptable Svelte
-              UI library, guaranteed.
-            </SecondaryText>
-          </Text>
-        </Item>
-        <Item>
-          <Graphic>
-            <Icon
-              component={Svg}
-              style="width: 40px; height: 40px;"
-              viewBox="0 0 24 24"
-            >
-              <path fill="currentColor" d={mdiRotateRightVariant} />
-            </Icon>
-          </Graphic>
-          <Text>
-            <PrimaryText>Adaptable, Versatile</PrimaryText>
-            <SecondaryText>
-              SMUI supports adding arbitrary attributes and actions to every
-              component and many internal elements within them. SMUI forwards
-              all events from every component, and supports event modifiers,
-              including passive. SMUI works in the Svelte REPL, meaning you can <a
-                href="https://svelte.dev/repl/aa857c3bb5eb478cbe6b1fd6c6da522a"
-                target="_blank">play with it right now</a
-              >.
-            </SecondaryText>
-          </Text>
-        </Item>
-        <Item>
-          <Graphic>
-            <Icon
-              component={Svg}
-              style="width: 40px; height: 40px;"
-              viewBox="0 0 24 24"
-            >
-              <path fill="currentColor" d={mdiClipboardCheck} />
-            </Icon>
-          </Graphic>
-          <Text>
-            <PrimaryText>Material Design Compliant</PrimaryText>
-            <SecondaryText>
-              Every SMUI component fully follows the Material Design
-              specification. You can build up-to-spec UIs with SMUI.
-            </SecondaryText>
-          </Text>
-        </Item>
-      </List>
+      <Paper variant="outlined" color="secondary">
+        <div style="width: 40px;">
+          <Icon
+            component={Svg}
+            style="width: 40px; height: 40px;"
+            viewBox="0 0 24 24"
+          >
+            <path fill="currentColor" d={mdiHuman} />
+          </Icon>
+        </div>
+        <div style="flex-grow: 1;">
+          <Title>Accessible by Default</Title>
+          <Content>
+            SMUI automatically adds appropriate ARIA attributes to components to
+            provide accessibility to screen readers. SMUI is also fully keyboard
+            accessible, meaning motor impaired users can easily use SMUI
+            components.
+          </Content>
+        </div>
+      </Paper>
+
+      <Paper variant="outlined" color="primary">
+        <div style="width: 40px;">
+          <Icon
+            component={Svg}
+            style="width: 40px; height: 40px;"
+            viewBox="0 0 24 24"
+          >
+            <path fill="currentColor" d={mdiGestureTap} />
+          </Icon>
+        </div>
+        <div style="flex-grow: 1;">
+          <Title>Touch Friendly</Title>
+          <Content>
+            SMUI provides increased touch targets to allow ease of use on mobile
+            devices, conforming to the Material Spec requirement of minimum 48px
+            x 48px touch targets.
+          </Content>
+        </div>
+      </Paper>
+
+      <Paper variant="outlined" color="secondary">
+        <div style="width: 40px;">
+          <Icon
+            component={Svg}
+            style="width: 40px; height: 40px;"
+            viewBox="0 0 24 24"
+          >
+            <path fill="currentColor" d={mdiMonitorScreenshot} />
+          </Icon>
+        </div>
+        <div style="flex-grow: 1;">
+          <Title>Server Side Rendering</Title>
+          <Content>
+            SMUI can be fully rendered on the server, meaning faster time to
+            first meaningful paint. SMUI fully supports SvelteKit. In fact, the
+            site you're looking at is a SvelteKit app.
+          </Content>
+        </div>
+      </Paper>
+
+      <Paper variant="outlined" color="primary">
+        <div style="width: 40px;">
+          <Icon
+            component={Svg}
+            style="width: 40px; height: 40px;"
+            viewBox="0 0 24 24"
+          >
+            <path fill="currentColor" d={mdiPalette} />
+          </Icon>
+        </div>
+        <div style="flex-grow: 1;">
+          <Title>Fully Themable</Title>
+          <Content>
+            Components are themable using Sass variables, provided by MDC-Web.
+            Everything from their shape, color, density, borders, interaction
+            states, and more is themable.
+          </Content>
+        </div>
+      </Paper>
+
+      <Paper variant="outlined" color="secondary">
+        <div style="width: 40px;">
+          <Icon
+            component={Svg}
+            style="width: 40px; height: 40px;"
+            viewBox="0 0 24 24"
+          >
+            <path fill="currentColor" d={mdiCommentArrowLeft} />
+          </Icon>
+        </div>
+        <div style="flex-grow: 1;">
+          <Title>RTL/Internationalization Support</Title>
+          <Content>
+            SMUI is RTL aware, and components will adapt their design to suit
+            the language of the user.
+          </Content>
+        </div>
+      </Paper>
+
+      <Paper variant="outlined" color="primary">
+        <div style="width: 40px;">
+          <Icon
+            component={Svg}
+            style="width: 40px; height: 40px;"
+            viewBox="0 0 24 24"
+          >
+            <path fill="currentColor" d={mdiAccountGroup} />
+          </Icon>
+        </div>
+        <div style="flex-grow: 1;">
+          <Title>Widely Used, a Growing Community</Title>
+          <Content>
+            With over <a
+              href="https://github.com/hperrin/svelte-material-ui/network/dependents?package_id=UGFja2FnZS01NTM5MDg5MDQ"
+              target="_blank">2400 projects</a
+            > using SMUI components, it is the most popular Svelte UI library. For
+            good reason, too. It is the most versatile and adaptable Svelte UI library,
+            guaranteed.
+          </Content>
+        </div>
+      </Paper>
+
+      <Paper variant="outlined" color="secondary">
+        <div style="width: 40px;">
+          <Icon
+            component={Svg}
+            style="width: 40px; height: 40px;"
+            viewBox="0 0 24 24"
+          >
+            <path fill="currentColor" d={mdiRotateRightVariant} />
+          </Icon>
+        </div>
+        <div style="flex-grow: 1;">
+          <Title>Adaptable, Versatile</Title>
+          <Content>
+            SMUI supports adding arbitrary attributes and actions to every
+            component and many internal elements within them. SMUI forwards all
+            events from every component, and supports event modifiers, including
+            passive. SMUI works in the Svelte REPL, meaning you can <a
+              href="https://svelte.dev/repl/aa857c3bb5eb478cbe6b1fd6c6da522a"
+              target="_blank">play with it right now</a
+            >.
+          </Content>
+        </div>
+      </Paper>
+
+      <Paper variant="outlined" color="primary">
+        <div style="width: 40px;">
+          <Icon
+            component={Svg}
+            style="width: 40px; height: 40px;"
+            viewBox="0 0 24 24"
+          >
+            <path fill="currentColor" d={mdiClipboardCheck} />
+          </Icon>
+        </div>
+        <div style="flex-grow: 1;">
+          <Title>Material Design Compliant</Title>
+          <Content>
+            Every SMUI component fully follows the Material Design
+            specification. You can build up-to-spec UIs with SMUI.
+          </Content>
+        </div>
+      </Paper>
     </div>
   </div>
 
@@ -300,13 +302,6 @@
   } from '@mdi/js';
   import { siMaterialdesign, siSvelte, siSass } from 'simple-icons';
   import Paper, { Title, Content } from '@smui/paper';
-  import List, {
-    Item,
-    Graphic,
-    Text,
-    PrimaryText,
-    SecondaryText,
-  } from '@smui/list';
   import { Icon, Svg } from '@smui/common';
 </script>
 
@@ -345,29 +340,18 @@
     flex-basis: 0;
   }
 
-  * :global(.feature-list) {
-    border: 1px solid
-      var(--mdc-theme-text-hint-on-background, rgba(0, 0, 0, 0.1));
-    padding: 1em;
+  .features-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    margin-top: 8em;
   }
 
-  * :global(.feature-list .mdc-deprecated-list-item) {
-    height: auto;
-    min-height: 64px;
-    margin-bottom: 1em;
-  }
-
-  * :global(.feature-list .mdc-deprecated-list-item:last-child) {
-    margin-bottom: 0;
-  }
-
-  * :global(.feature-list .mdc-deprecated-list-item__graphic) {
-    height: auto;
-    width: auto;
-  }
-
-  * :global(.feature-list .mdc-deprecated-list-item__secondary-text) {
-    white-space: normal;
+  .features-list > :global(*) {
+    display: flex;
+    justify-content: space-between;
+    gap: 1em;
+    align-items: center;
   }
 
   @media (max-width: 767px) {
