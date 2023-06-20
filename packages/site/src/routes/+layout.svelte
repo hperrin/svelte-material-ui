@@ -97,49 +97,50 @@
       </Section>
       <Section align="end" toolbar style="color: var(--mdc-on-surface, #000);">
         {#each (activeSection && activeSection.repos) || [] as repo}
-          <Wrapper>
-            <IconButton href={repo} target="_blank">
-              <Icon component={Svg} viewBox="0 0 24 24">
-                <path fill="currentColor" d={mdiFileDocument} />
-              </Icon>
-            </IconButton>
-            <Tooltip>View Docs: {repo.split('/').slice(-1)[0]}</Tooltip>
-          </Wrapper>
+          <IconButton
+            href={repo}
+            target="_blank"
+            title="View Docs: {repo.split('/').slice(-1)[0]}"
+          >
+            <Icon component={Svg} viewBox="0 0 24 24">
+              <path fill="currentColor" d={mdiFileDocument} />
+            </Icon>
+          </IconButton>
         {:else}
-          <Wrapper>
-            <IconButton href="https://github.com/hperrin/svelte-material-ui">
-              <Icon component={Svg} viewBox="0 0 24 24">
-                <path fill="currentColor" d={siGithub.path} />
-              </Icon>
-            </IconButton>
-            <Tooltip>SMUI on GitHub</Tooltip>
-          </Wrapper>
+          <IconButton
+            href="https://github.com/hperrin/svelte-material-ui"
+            title="SMUI on GitHub"
+          >
+            <Icon component={Svg} viewBox="0 0 24 24">
+              <path fill="currentColor" d={siGithub.path} />
+            </Icon>
+          </IconButton>
         {/each}
-        <Wrapper>
-          <IconButton href="https://discord.gg/aFzmkrmg9P">
-            <Icon component={Svg} viewBox="0 0 24 24">
-              <path fill="currentColor" d={siDiscord.path} />
-            </Icon>
-          </IconButton>
-          <Tooltip>Join the Discord Server</Tooltip>
-        </Wrapper>
-        <Wrapper>
-          <IconButton href="https://port87.social/@hperrin">
-            <Icon component={Svg} viewBox="0 0 24 24">
-              <path fill="currentColor" d={siMastodon.path} />
-            </Icon>
-          </IconButton>
-          <Tooltip>Hunter Perrin (SMUI Author) on Mastodon</Tooltip>
-        </Wrapper>
+        <IconButton
+          href="https://discord.gg/aFzmkrmg9P"
+          title="Join the Discord Server"
+        >
+          <Icon component={Svg} viewBox="0 0 24 24">
+            <path fill="currentColor" d={siDiscord.path} />
+          </Icon>
+        </IconButton>
+        <IconButton
+          href="https://port87.social/@hperrin"
+          title="Hunter Perrin (SMUI Author) on Mastodon"
+        >
+          <Icon component={Svg} viewBox="0 0 24 24">
+            <path fill="currentColor" d={siMastodon.path} />
+          </Icon>
+        </IconButton>
         <div style="display: inline-block;">
-          <Wrapper>
-            <IconButton on:click={() => themeMenu.setOpen(true)}>
-              <Icon component={Svg} viewBox="0 0 24 24">
-                <path fill="currentColor" d={mdiPalette} />
-              </Icon>
-            </IconButton>
-            <Tooltip>Pick a theme or toggle dark mode.</Tooltip>
-          </Wrapper>
+          <IconButton
+            on:click={() => themeMenu.setOpen(true)}
+            title="Pick a theme or toggle dark mode."
+          >
+            <Icon component={Svg} viewBox="0 0 24 24">
+              <path fill="currentColor" d={mdiPalette} />
+            </Icon>
+          </IconButton>
           <Menu bind:this={themeMenu}>
             <List>
               <SelectionGroup>
@@ -696,8 +697,6 @@
         drawerOpen = false;
       });
     }
-
-    lightTheme = window.matchMedia('(prefers-color-scheme: light)').matches;
   });
 
   onDestroy(() => {

@@ -61,13 +61,13 @@ npm install --save svelte-material-ui
 <link rel="stylesheet" href="node_modules/svelte-material-ui/bare.css" />
 ```
 
-If that's not working (probably because your dependencies aren't copied to your build folder), you can also use a CDN. Just be sure you update the version here when you update to a new version of SMUI. (This may already be an outdated version, so update it now too.)
+If that's not working (probably because your dependencies aren't copied to your build folder), you can also use a CDN. Just be sure you update the version here when you update to a new version of SMUI. **This is already an outdated version, so update it now too.**
 
 ```html
 <!-- SMUI Styles -->
 <link
   rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/svelte-material-ui@6.0.0/bare.min.css"
+  href="https://cdn.jsdelivr.net/npm/svelte-material-ui@7.0.0/bare.min.css"
 />
 ```
 
@@ -75,7 +75,7 @@ You can also use the "bare.css" files from the individual packages if you don't 
 
 ### A Premade Theme
 
-There are some premade themes as well in the "svelte-material-ui" package, including dark mode versions. These are the same themes that appear on the demo site. You won't find the CSS in the repo, because they're not git tracked, but here's a list.
+There are some premade themes as well in the "svelte-material-ui" package, including dark mode versions. These are the same themes that appear on the [demo site](https://sveltematerialui.com/). You won't find the CSS in the repo, because they're not git tracked, but here's a list.
 
 - `themes/svelte.css`
 - `themes/svelte-dark.css`
@@ -106,18 +106,18 @@ npm install --save svelte-material-ui
 />
 ```
 
-Or with a CDN. Remember to update the version!
+Or with a CDN. **Remember to update the version!**
 
 ```html
 <!-- SMUI Styles -->
 <link
   rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/svelte-material-ui@6.0.0/themes/svelte.min.css"
+  href="https://cdn.jsdelivr.net/npm/svelte-material-ui@7.0.0/themes/svelte.min.css"
   media="(prefers-color-scheme: light)"
 />
 <link
   rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/svelte-material-ui@6.0.0/themes/svelte-dark.min.css"
+  href="https://cdn.jsdelivr.net/npm/svelte-material-ui@7.0.0/themes/svelte-dark.min.css"
   media="screen and (prefers-color-scheme: dark)"
 />
 ```
