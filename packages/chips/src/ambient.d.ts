@@ -1,26 +1,30 @@
 /// <reference types="svelte" />
 /// <reference types="svelte2tsx/svelte-jsx" />
 
-declare namespace svelte.JSX {
-  interface HTMLProps<T extends EventTarget> extends HTMLAttributes<T> {
-    ['onSMUIChipsChip:mount']?: (
+declare namespace svelteHTML {
+  interface HTMLAttributes<T> {
+    ['on:SMUIChipsChip:mount']?: (
       event: CustomEvent<any> & { target: T }
     ) => any;
-    ['onSMUIChipsChip:unmount']?: (
+    ['on:SMUIChipsChip:unmount']?: (
       event: CustomEvent<any> & { target: T }
     ) => any;
-    ['onMDCChip:interaction']?: (
+    ['on:MDCChip:interaction']?: (
       event: CustomEvent<any> & { target: T }
     ) => any;
-    ['onSMUIChip:interaction']?: (
+    ['on:SMUIChip:interaction']?: (
       event: CustomEvent<any> & { target: T }
     ) => any;
-    ['onMDCChip:selection']?: (event: CustomEvent<any> & { target: T }) => any;
-    ['onSMUIChip:selection']?: (event: CustomEvent<any> & { target: T }) => any;
-    ['onMDCChip:removal']?: (event: CustomEvent<any> & { target: T }) => any;
-    ['onSMUIChip:removal']?: (event: CustomEvent<any> & { target: T }) => any;
-    ['onMDCChip:navigation']?: (event: CustomEvent<any> & { target: T }) => any;
-    ['onSMUIChip:navigation']?: (
+    ['on:MDCChip:selection']?: (event: CustomEvent<any> & { target: T }) => any;
+    ['on:SMUIChip:selection']?: (
+      event: CustomEvent<any> & { target: T }
+    ) => any;
+    ['on:MDCChip:removal']?: (event: CustomEvent<any> & { target: T }) => any;
+    ['on:SMUIChip:removal']?: (event: CustomEvent<any> & { target: T }) => any;
+    ['on:MDCChip:navigation']?: (
+      event: CustomEvent<any> & { target: T }
+    ) => any;
+    ['on:SMUIChip:navigation']?: (
       event: CustomEvent<any> & { target: T }
     ) => any;
   }

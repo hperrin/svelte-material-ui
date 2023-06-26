@@ -1,12 +1,12 @@
 /// <reference types="svelte" />
 /// <reference types="svelte2tsx/svelte-jsx" />
 
-declare namespace svelte.JSX {
-  interface HTMLProps<T extends EventTarget> extends HTMLAttributes<T> {
-    ['onSMUIGenericInput:mount']?: (
+declare namespace svelteHTML {
+  interface HTMLAttributes<T> {
+    ['on:SMUIGenericInput:mount']?: (
       event: CustomEvent<any> & { target: T }
     ) => any;
-    ['onSMUIGenericInput:unmount']?: (
+    ['on:SMUIGenericInput:unmount']?: (
       event: CustomEvent<any> & { target: T }
     ) => any;
   }

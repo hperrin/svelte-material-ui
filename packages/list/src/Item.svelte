@@ -80,13 +80,15 @@
     dispatch,
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
-  import type { SmuiElementMap, SmuiAttrs, SmuiSvgAttrs } from '@smui/common';
+  import type {
+    SmuiElementPropMap,
+    SmuiAttrs,
+    SmuiSvgAttrs,
+  } from '@smui/common';
   import { SmuiElement } from '@smui/common';
 
   import type { SMUIListItemAccessor } from './Item.types.js';
 
-  type TagName = $$Generic<keyof SmuiElementMap>;
-  type Component = $$Generic<typeof SvelteComponent>;
   type OwnProps = {
     use?: ActionArray;
     class?: string;
@@ -103,13 +105,13 @@
     tabindex?: number;
     inputId?: string;
     href?: string | undefined;
-    component?: Component;
-    tag?: TagName;
+    component?: typeof SvelteComponent;
+    tag?: keyof SmuiElementPropMap;
   };
   type $$Props = OwnProps &
     (
       | SmuiAttrs<
-          keyof SmuiElementMap,
+          keyof SmuiElementPropMap,
           OwnProps,
           'action' | 'getPrimaryText' | 'getElement'
         >
@@ -164,16 +166,15 @@
       : -1
     : tabindexProp;
 
-  export let component: Component = SmuiElement as unknown as Component;
-  export let tag: TagName | undefined = (
-    component === (SmuiElement as unknown as Component)
+  export let component: typeof SvelteComponent = SmuiElement;
+  export let tag: keyof SmuiElementPropMap | undefined =
+    component === SmuiElement
       ? nav
         ? href
           ? 'a'
           : 'span'
         : 'li'
-      : undefined
-  ) as TagName | undefined;
+      : undefined;
 
   setContext('SMUI:generic:input:props', { id: inputId });
   // Reset separator context, because we aren't directly under a list anymore.

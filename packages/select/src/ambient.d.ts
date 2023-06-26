@@ -1,12 +1,12 @@
 /// <reference types="svelte" />
 /// <reference types="svelte2tsx/svelte-jsx" />
 
-declare namespace svelte.JSX {
-  interface HTMLProps<T extends EventTarget> extends HTMLAttributes<T> {
-    ['onSMUISelectLeadingIcon:mount']?: (
+declare namespace svelteHTML {
+  interface HTMLAttributes<T> {
+    ['on:SMUISelectLeadingIcon:mount']?: (
       event: CustomEvent<any> & { target: T }
     ) => any;
-    ['onSMUISelectLeadingIcon:unmount']?: (
+    ['on:SMUISelectLeadingIcon:unmount']?: (
       event: CustomEvent<any> & { target: T }
     ) => any;
   }

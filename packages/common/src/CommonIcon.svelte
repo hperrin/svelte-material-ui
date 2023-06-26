@@ -26,24 +26,22 @@
   import type { ActionArray } from './internal/useActions.js';
   import { forwardEventsBuilder, classMap } from './internal/index.js';
   import type {
-    SmuiElementMap,
+    SmuiElementPropMap,
     SmuiAttrs,
     SmuiSvgAttrs,
   } from './smui.types.js';
   import { SmuiElement, Svg } from './index.js';
 
-  type TagName = $$Generic<keyof SmuiElementMap>;
-  type Component = $$Generic<typeof SvelteComponent>;
   type OwnProps = {
     use?: ActionArray;
     class?: string;
     on?: boolean;
-    component?: Component;
-    tag?: TagName;
+    component?: typeof SvelteComponent;
+    tag?: keyof SmuiElementPropMap;
   };
   type $$Props = OwnProps &
     (
-      | SmuiAttrs<keyof SmuiElementMap, OwnProps, 'getElement'>
+      | SmuiAttrs<keyof SmuiElementPropMap, OwnProps, 'getElement'>
       | SmuiSvgAttrs<OwnProps, 'getElement'>
     );
 
@@ -57,12 +55,11 @@
 
   let element: SvelteComponent;
 
-  export let component: Component = SmuiElement as unknown as Component;
-  export let tag: TagName | undefined = (
-    component === (SmuiElement as unknown as Component) ? 'i' : undefined
-  ) as TagName | undefined;
+  export let component: typeof SvelteComponent = SmuiElement;
+  export let tag: keyof SmuiElementPropMap | undefined =
+    component === SmuiElement ? 'i' : undefined;
 
-  const svg = component === (Svg as unknown as Component);
+  const svg = component === Svg;
   const context = getContext<string | undefined>('SMUI:icon:context');
 
   export function getElement(): HTMLElement {

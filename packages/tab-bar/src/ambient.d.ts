@@ -1,11 +1,13 @@
 /// <reference types="svelte" />
 /// <reference types="svelte2tsx/svelte-jsx" />
 
-declare namespace svelte.JSX {
-  interface HTMLProps<T extends EventTarget> extends HTMLAttributes<T> {
-    ['onSMUITab:mount']?: (event: CustomEvent<any> & { target: T }) => any;
-    ['onSMUITab:unmount']?: (event: CustomEvent<any> & { target: T }) => any;
-    ['onMDCTab:interacted']?: (event: CustomEvent<any> & { target: T }) => any;
-    ['onSMUITab:interacted']?: (event: CustomEvent<any> & { target: T }) => any;
+declare namespace svelteHTML {
+  interface HTMLAttributes<T> {
+    ['on:SMUITab:mount']?: (event: CustomEvent<any> & { target: T }) => any;
+    ['on:SMUITab:unmount']?: (event: CustomEvent<any> & { target: T }) => any;
+    ['on:MDCTab:interacted']?: (event: CustomEvent<any> & { target: T }) => any;
+    ['on:SMUITab:interacted']?: (
+      event: CustomEvent<any> & { target: T }
+    ) => any;
   }
 }

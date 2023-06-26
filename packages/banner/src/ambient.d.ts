@@ -1,12 +1,12 @@
 /// <reference types="svelte" />
 /// <reference types="svelte2tsx/svelte-jsx" />
 
-declare namespace svelte.JSX {
-  interface HTMLProps<T extends EventTarget> extends HTMLAttributes<T> {
-    ['onSMUIBannerButton:primaryActionClick']?: (
+declare namespace svelteHTML {
+  interface HTMLAttributes<T> {
+    ['on:SMUIBannerButton:primaryActionClick']?: (
       event: CustomEvent<any> & { target: T }
     ) => any;
-    ['onSMUIBannerButton:secondaryActionClick']?: (
+    ['on:SMUIBannerButton:secondaryActionClick']?: (
       event: CustomEvent<any> & { target: T }
     ) => any;
   }

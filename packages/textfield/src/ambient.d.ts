@@ -1,24 +1,24 @@
 /// <reference types="svelte" />
 /// <reference types="svelte2tsx/svelte-jsx" />
 
-declare namespace svelte.JSX {
-  interface HTMLProps<T extends EventTarget> extends HTMLAttributes<T> {
-    ['onSMUITextfieldLeadingIcon:mount']?: (
+declare namespace svelteHTML {
+  interface HTMLAttributes<T> {
+    ['on:SMUITextfieldLeadingIcon:mount']?: (
       event: CustomEvent<any> & { target: T }
     ) => any;
-    ['onSMUITextfieldLeadingIcon:unmount']?: (
+    ['on:SMUITextfieldLeadingIcon:unmount']?: (
       event: CustomEvent<any> & { target: T }
     ) => any;
-    ['onSMUITextfieldTrailingIcon:mount']?: (
+    ['on:SMUITextfieldTrailingIcon:mount']?: (
       event: CustomEvent<any> & { target: T }
     ) => any;
-    ['onSMUITextfieldTrailingIcon:unmount']?: (
+    ['on:SMUITextfieldTrailingIcon:unmount']?: (
       event: CustomEvent<any> & { target: T }
     ) => any;
-    ['onSMUITextfieldCharacterCounter:mount']?: (
+    ['on:SMUITextfieldCharacterCounter:mount']?: (
       event: CustomEvent<any> & { target: T }
     ) => any;
-    ['onSMUITextfieldCharacterCounter:unmount']?: (
+    ['on:SMUITextfieldCharacterCounter:unmount']?: (
       event: CustomEvent<any> & { target: T }
     ) => any;
   }

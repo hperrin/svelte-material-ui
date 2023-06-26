@@ -1,4 +1,5 @@
 import type { SvelteComponent } from 'svelte';
+// @ts-ignore Using Svelte internal.
 import {
   bubble,
   listen,

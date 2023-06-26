@@ -37,12 +37,10 @@
     instance.handleTrailingActionInteraction.bind(instance)}
   on:SMUIChipTrailingAction:navigation={instance &&
     instance.handleTrailingActionNavigation.bind(instance)}
-  on:SMUIChipsChipPrimaryAction:mount={(event) =>
-    (primaryActionAccessor = event.detail)}
+  on:SMUIChipsChipPrimaryAction:mount={handleSMUIChipsChipPrimaryAction}
   on:SMUIChipsChipPrimaryAction:unmount={() =>
     (primaryActionAccessor = undefined)}
-  on:SMUIChipsChipTrailingAction:mount={(event) =>
-    (trailingActionAccessor = event.detail)}
+  on:SMUIChipsChipTrailingAction:mount={handleSMUIChipsChipTrailingAction}
   on:SMUIChipsChipTrailingAction:unmount={() =>
     (trailingActionAccessor = undefined)}
   {...$$restProps}
@@ -69,7 +67,11 @@
     dispatch,
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
-  import type { SmuiElementMap, SmuiAttrs, SmuiSvgAttrs } from '@smui/common';
+  import type {
+    SmuiElementPropMap,
+    SmuiAttrs,
+    SmuiSvgAttrs,
+  } from '@smui/common';
   import { SmuiElement } from '@smui/common';
 
   import type { SMUIChipsPrimaryActionAccessor } from './Text.types.js';
@@ -78,8 +80,6 @@
 
   const { MDCChipFoundation } = deprecated;
 
-  type TagName = $$Generic<keyof SmuiElementMap>;
-  type Component = $$Generic<typeof SvelteComponent>;
   type OwnProps = {
     use?: ActionArray;
     class?: string;
@@ -89,12 +89,12 @@
     touch?: boolean;
     shouldRemoveOnTrailingIconClick?: boolean;
     shouldFocusPrimaryActionOnClick?: boolean;
-    component?: Component;
-    tag?: TagName;
+    component?: typeof SvelteComponent;
+    tag?: keyof SmuiElementPropMap;
   };
   type $$Props = OwnProps &
     (
-      | SmuiAttrs<keyof SmuiElementMap, OwnProps, 'getElement'>
+      | SmuiAttrs<keyof SmuiElementPropMap, OwnProps, 'getElement'>
       | SmuiSvgAttrs<OwnProps, 'getElement'>
     );
 
@@ -131,10 +131,9 @@
   const choice = getContext<SvelteStore<boolean>>('SMUI:chips:choice');
   const index = getContext<SvelteStore<number>>('SMUI:chips:chip:index');
 
-  export let component: Component = SmuiElement as unknown as Component;
-  export let tag: TagName | undefined = (
-    component === (SmuiElement as unknown as Component) ? 'div' : undefined
-  ) as TagName | undefined;
+  export let component: typeof SvelteComponent = SmuiElement;
+  export let tag: keyof SmuiElementPropMap | undefined =
+    component === SmuiElement ? 'div' : undefined;
 
   const shouldRemoveOnTrailingIconClickStore = writable(
     shouldRemoveOnTrailingIconClick
@@ -308,6 +307,18 @@
       instance.destroy();
     };
   });
+
+  function handleSMUIChipsChipPrimaryAction(
+    event: CustomEvent<SMUIChipsPrimaryActionAccessor>
+  ) {
+    primaryActionAccessor = event.detail;
+  }
+
+  function handleSMUIChipsChipTrailingAction(
+    event: CustomEvent<SMUIChipsTrailingActionAccessor>
+  ) {
+    trailingActionAccessor = event.detail;
+  }
 
   function hasClass(className: string) {
     return className in internalClasses

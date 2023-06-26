@@ -1,21 +1,23 @@
 /// <reference types="svelte" />
 /// <reference types="svelte2tsx/svelte-jsx" />
 
-declare namespace svelte.JSX {
-  interface HTMLProps<T extends EventTarget> extends HTMLAttributes<T> {
-    ['onSMUIAccordionPanel:mount']?: (
+declare namespace svelteHTML {
+  interface HTMLAttributes<T> {
+    ['on:SMUIAccordionPanel:mount']?: (
       event: CustomEvent<any> & { target: T }
     ) => any;
-    ['onSMUIAccordionPanel:unmount']?: (
+    ['on:SMUIAccordionPanel:unmount']?: (
       event: CustomEvent<any> & { target: T }
     ) => any;
-    ['onSMUIAccordionPanel:activate']?: (
+    ['on:SMUIAccordionPanel:activate']?: (
       event: CustomEvent<any> & { target: T }
     ) => any;
-    ['onSMUIAccordionPanel:opening']?: (
+    ['on:SMUIAccordionPanel:opening']?: (
       event: CustomEvent<any> & { target: T }
     ) => any;
-    ['onSMUIDialog:opening']?: (event: CustomEvent<any> & { target: T }) => any;
-    ['onSMUIDialog:closed']?: (event: CustomEvent<any> & { target: T }) => any;
+    ['on:SMUIDialog:opening']?: (
+      event: CustomEvent<any> & { target: T }
+    ) => any;
+    ['on:SMUIDialog:closed']?: (event: CustomEvent<any> & { target: T }) => any;
   }
 }

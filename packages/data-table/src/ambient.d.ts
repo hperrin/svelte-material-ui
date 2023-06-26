@@ -1,46 +1,48 @@
 /// <reference types="svelte" />
 /// <reference types="svelte2tsx/svelte-jsx" />
 
-declare namespace svelte.JSX {
-  interface HTMLProps<T extends EventTarget> extends HTMLAttributes<T> {
-    ['onSMUICheckbox:mount']?: (event: CustomEvent<any> & { target: T }) => any;
-    ['onSMUICheckbox:unmount']?: (
+declare namespace svelteHTML {
+  interface HTMLAttributes<T> {
+    ['on:SMUICheckbox:mount']?: (
       event: CustomEvent<any> & { target: T }
     ) => any;
-    ['onSMUIDataTableRow:mount']?: (
+    ['on:SMUICheckbox:unmount']?: (
       event: CustomEvent<any> & { target: T }
     ) => any;
-    ['onSMUIDataTableRow:unmount']?: (
+    ['on:SMUIDataTableRow:mount']?: (
       event: CustomEvent<any> & { target: T }
     ) => any;
-    ['onSMUIDataTableCell:mount']?: (
+    ['on:SMUIDataTableRow:unmount']?: (
       event: CustomEvent<any> & { target: T }
     ) => any;
-    ['onSMUIDataTableCell:unmount']?: (
+    ['on:SMUIDataTableCell:mount']?: (
       event: CustomEvent<any> & { target: T }
     ) => any;
-    ['onSMUIDataTableHeader:mount']?: (
+    ['on:SMUIDataTableCell:unmount']?: (
       event: CustomEvent<any> & { target: T }
     ) => any;
-    ['onSMUIDataTableHeader:unmount']?: (
+    ['on:SMUIDataTableHeader:mount']?: (
       event: CustomEvent<any> & { target: T }
     ) => any;
-    ['onSMUIDataTableBody:mount']?: (
+    ['on:SMUIDataTableHeader:unmount']?: (
       event: CustomEvent<any> & { target: T }
     ) => any;
-    ['onSMUIDataTableBody:unmount']?: (
+    ['on:SMUIDataTableBody:mount']?: (
       event: CustomEvent<any> & { target: T }
     ) => any;
-    ['onSMUIDataTableHeader:click']?: (
+    ['on:SMUIDataTableBody:unmount']?: (
       event: CustomEvent<any> & { target: T }
     ) => any;
-    ['onSMUIDataTableRow:click']?: (
+    ['on:SMUIDataTableHeader:click']?: (
       event: CustomEvent<any> & { target: T }
     ) => any;
-    ['onSMUIDataTableHeaderCheckbox:change']?: (
+    ['on:SMUIDataTableRow:click']?: (
       event: CustomEvent<any> & { target: T }
     ) => any;
-    ['onSMUIDataTableBodyCheckbox:change']?: (
+    ['on:SMUIDataTableHeaderCheckbox:change']?: (
+      event: CustomEvent<any> & { target: T }
+    ) => any;
+    ['on:SMUIDataTableBodyCheckbox:change']?: (
       event: CustomEvent<any> & { target: T }
     ) => any;
   }

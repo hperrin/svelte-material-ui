@@ -25,7 +25,7 @@
   </TabScroller>
 </div>
 
-<script lang="ts">
+<script lang="ts" generics="TabKey extends Object | string | number">
   import { MDCTabBarFoundation } from '@material/tab-bar';
   import { onMount, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
@@ -43,7 +43,6 @@
   import TabScroller from '@smui/tab-scroller';
 
   type PrimitiveKey = string | number;
-  type TabKey = $$Generic<Object | PrimitiveKey>;
   interface $$Slots {
     default: { tab: TabKey };
   }

@@ -17,21 +17,23 @@
   import { get_current_component } from 'svelte/internal';
   import type { ActionArray } from '@smui/common/internal';
   import { forwardEventsBuilder, classMap } from '@smui/common/internal';
-  import type { SmuiElementMap, SmuiAttrs, SmuiSvgAttrs } from '@smui/common';
+  import type {
+    SmuiElementPropMap,
+    SmuiAttrs,
+    SmuiSvgAttrs,
+  } from '@smui/common';
   import { SmuiElement } from '@smui/common';
 
-  type TagName = $$Generic<keyof SmuiElementMap>;
-  type Component = $$Generic<typeof SvelteComponent>;
   type OwnProps = {
     use?: ActionArray;
     class?: string;
     topAppBar: TopAppBar;
-    component?: Component;
-    tag?: TagName;
+    component?: typeof SvelteComponent;
+    tag?: keyof SmuiElementPropMap;
   };
   type $$Props = OwnProps &
     (
-      | SmuiAttrs<keyof SmuiElementMap, OwnProps, 'getElement'>
+      | SmuiAttrs<keyof SmuiElementPropMap, OwnProps, 'getElement'>
       | SmuiSvgAttrs<OwnProps, 'getElement'>
     );
 
@@ -47,10 +49,9 @@
 
   let element: SvelteComponent;
 
-  export let component: Component = SmuiElement as unknown as Component;
-  export let tag: TagName | undefined = (
-    component === (SmuiElement as unknown as Component) ? 'main' : undefined
-  ) as TagName | undefined;
+  export let component: typeof SvelteComponent = SmuiElement;
+  export let tag: keyof SmuiElementPropMap | undefined =
+    component === SmuiElement ? 'main' : undefined;
 
   $: propStore = topAppBar && topAppBar.getPropStore();
   $: adjustClass = (() => {

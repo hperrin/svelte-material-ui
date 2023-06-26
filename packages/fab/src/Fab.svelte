@@ -46,11 +46,13 @@
   import type { ActionArray } from '@smui/common/internal';
   import { forwardEventsBuilder, classMap } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
-  import type { SmuiElementMap, SmuiAttrs, SmuiSvgAttrs } from '@smui/common';
+  import type {
+    SmuiElementPropMap,
+    SmuiAttrs,
+    SmuiSvgAttrs,
+  } from '@smui/common';
   import { SmuiElement } from '@smui/common';
 
-  type TagName = $$Generic<keyof SmuiElementMap>;
-  type Component = $$Generic<typeof SvelteComponent>;
   type OwnProps = {
     use?: ActionArray;
     class?: string;
@@ -63,12 +65,12 @@
     extended?: boolean;
     touch?: boolean;
     href?: string | undefined;
-    component?: Component;
-    tag?: TagName;
+    component?: typeof SvelteComponent;
+    tag?: keyof SmuiElementPropMap;
   };
   type $$Props = OwnProps &
     (
-      | SmuiAttrs<keyof SmuiElementMap, OwnProps, 'getElement'>
+      | SmuiAttrs<keyof SmuiElementPropMap, OwnProps, 'getElement'>
       | SmuiSvgAttrs<OwnProps, 'getElement'>
     );
 
@@ -92,14 +94,9 @@
   let internalClasses: { [k: string]: boolean } = {};
   let internalStyles: { [k: string]: string } = {};
 
-  export let component: Component = SmuiElement as unknown as Component;
-  export let tag: TagName | undefined = (
-    component === (SmuiElement as unknown as Component)
-      ? href == null
-        ? 'button'
-        : 'a'
-      : undefined
-  ) as TagName | undefined;
+  export let component: typeof SvelteComponent = SmuiElement;
+  export let tag: keyof SmuiElementPropMap | undefined =
+    component === SmuiElement ? (href == null ? 'button' : 'a') : undefined;
 
   setContext('SMUI:label:context', 'fab');
   setContext('SMUI:icon:context', 'fab');

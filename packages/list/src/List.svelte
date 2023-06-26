@@ -43,7 +43,11 @@
     classMap,
     dispatch,
   } from '@smui/common/internal';
-  import type { SmuiElementMap, SmuiAttrs, SmuiSvgAttrs } from '@smui/common';
+  import type {
+    SmuiElementPropMap,
+    SmuiAttrs,
+    SmuiSvgAttrs,
+  } from '@smui/common';
   import { SmuiElement } from '@smui/common';
 
   import type { SMUIListAccessor } from './List.types.js';
@@ -51,8 +55,6 @@
 
   const { closest, matches } = ponyfill;
 
-  type TagName = $$Generic<keyof SmuiElementMap>;
-  type Component = $$Generic<typeof SvelteComponent>;
   type OwnProps = {
     use?: ActionArray;
     class?: string;
@@ -74,13 +76,13 @@
     radioList?: boolean;
     checkList?: boolean;
     hasTypeahead?: boolean;
-    component?: Component;
-    tag?: TagName;
+    component?: typeof SvelteComponent;
+    tag?: keyof SmuiElementPropMap;
   };
   type $$Props = OwnProps &
     (
       | SmuiAttrs<
-          keyof SmuiElementMap,
+          keyof SmuiElementPropMap,
           OwnProps,
           | 'layout'
           | 'setEnabled'
@@ -142,14 +144,9 @@
   );
   let removeLayoutListener: RemoveLayoutListener | undefined;
 
-  export let component: Component = SmuiElement as unknown as Component;
-  export let tag: TagName | undefined = (
-    component === (SmuiElement as unknown as Component)
-      ? nav
-        ? 'nav'
-        : 'ul'
-      : undefined
-  ) as TagName | undefined;
+  export let component: typeof SvelteComponent = SmuiElement;
+  export let tag: keyof SmuiElementPropMap | undefined =
+    component === SmuiElement ? (nav ? 'nav' : 'ul') : undefined;
 
   setContext('SMUI:list:nonInteractive', nonInteractive);
   setContext('SMUI:separator:context', 'list');

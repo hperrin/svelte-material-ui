@@ -1,13 +1,15 @@
 /// <reference types="svelte" />
 /// <reference types="svelte2tsx/svelte-jsx" />
 
-declare namespace svelte.JSX {
-  interface HTMLProps<T extends EventTarget> extends HTMLAttributes<T> {
-    ['onMDCDialog:opening']?: (event: CustomEvent<any> & { target: T }) => any;
-    ['onSMUIDialog:opening']?: (event: CustomEvent<any> & { target: T }) => any;
-    ['onMDCDialog:opened']?: (event: CustomEvent<any> & { target: T }) => any;
-    ['onSMUIDialog:opened']?: (event: CustomEvent<any> & { target: T }) => any;
-    ['onMDCDialog:closed']?: (event: CustomEvent<any> & { target: T }) => any;
-    ['onSMUIDialog:closed']?: (event: CustomEvent<any> & { target: T }) => any;
+declare namespace svelteHTML {
+  interface HTMLAttributes<T> {
+    ['on:MDCDialog:opening']?: (event: CustomEvent<any> & { target: T }) => any;
+    ['on:SMUIDialog:opening']?: (
+      event: CustomEvent<any> & { target: T }
+    ) => any;
+    ['on:MDCDialog:opened']?: (event: CustomEvent<any> & { target: T }) => any;
+    ['on:SMUIDialog:opened']?: (event: CustomEvent<any> & { target: T }) => any;
+    ['on:MDCDialog:closed']?: (event: CustomEvent<any> & { target: T }) => any;
+    ['on:SMUIDialog:closed']?: (event: CustomEvent<any> & { target: T }) => any;
   }
 }

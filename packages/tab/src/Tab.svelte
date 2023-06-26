@@ -82,7 +82,6 @@
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
   import type {
-    SmuiElementMap,
     SmuiElementPropMap,
     SmuiAttrs,
     SmuiSvgAttrs,
@@ -92,8 +91,6 @@
 
   import type { SMUITabAccessor } from './Tab.types.js';
 
-  type TagName = $$Generic<keyof SmuiElementMap>;
-  type Component = $$Generic<typeof SvelteComponent>;
   type OwnProps = {
     use?: ActionArray;
     class?: string;
@@ -106,13 +103,13 @@
     href?: string | undefined;
     content$use?: ActionArray;
     content$class?: string;
-    component?: Component;
-    tag?: TagName;
+    component?: typeof SvelteComponent;
+    tag?: keyof SmuiElementPropMap;
   };
   type $$Props = OwnProps &
     (
       | SmuiAttrs<
-          keyof SmuiElementMap,
+          keyof SmuiElementPropMap,
           OwnProps,
           'activate' | 'deactivate' | 'focus' | 'getElement'
         >
@@ -154,14 +151,9 @@
   let active = tabId === getContext<any | undefined>('SMUI:tab:initialActive');
   let forceAccessible = false;
 
-  export let component: Component = SmuiElement as unknown as Component;
-  export let tag: TagName | undefined = (
-    component === (SmuiElement as unknown as Component)
-      ? href == null
-        ? 'button'
-        : 'a'
-      : undefined
-  ) as TagName | undefined;
+  export let component: typeof SvelteComponent = SmuiElement;
+  export let tag: keyof SmuiElementPropMap | undefined =
+    component === SmuiElement ? (href == null ? 'button' : 'a') : undefined;
 
   setContext('SMUI:label:context', 'tab');
   setContext('SMUI:icon:context', 'tab');

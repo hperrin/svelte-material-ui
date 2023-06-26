@@ -1,15 +1,15 @@
 /// <reference types="svelte" />
 /// <reference types="svelte2tsx/svelte-jsx" />
 
-declare namespace svelte.JSX {
-  interface HTMLProps<T extends EventTarget> extends HTMLAttributes<T> {
-    ['onSMUISegmentedButtonSegment:mount']?: (
+declare namespace svelteHTML {
+  interface HTMLAttributes<T> {
+    ['on:SMUISegmentedButtonSegment:mount']?: (
       event: CustomEvent<any> & { target: T }
     ) => any;
-    ['onSMUISegmentedButtonSegment:unmount']?: (
+    ['on:SMUISegmentedButtonSegment:unmount']?: (
       event: CustomEvent<any> & { target: T }
     ) => any;
-    ['onselected']?: (event: CustomEvent<any> & { target: T }) => any;
+    ['on:selected']?: (event: CustomEvent<any> & { target: T }) => any;
   }
 }
 

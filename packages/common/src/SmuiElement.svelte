@@ -16,20 +16,18 @@
   >
 {/if}
 
-<script lang="ts">
+<script lang="ts" generics="TagName extends keyof SmuiElementMap">
   import { get_current_component } from 'svelte/internal';
 
   import type { ActionArray } from './internal/useActions.js';
   import { forwardEventsBuilder, useActions } from './internal/index.js';
   import type { SmuiElementMap, SmuiAttrs } from './smui.types.js';
 
-  type TagName = $$Generic<keyof SmuiElementMap>;
   type OwnProps = {
     use?: ActionArray;
     tag: TagName;
   };
-  type $$Props = OwnProps &
-    SmuiAttrs<keyof SmuiElementMap, OwnProps, 'getElement'>;
+  type $$Props = OwnProps & SmuiAttrs<TagName, OwnProps, 'getElement'>;
   // Why doesn't this work?
   // Partial<
   //   Omit<svelteHTML.IntrinsicElements[TagName], keyof OwnProps>
