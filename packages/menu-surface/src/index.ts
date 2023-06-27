@@ -1,4 +1,4 @@
-import './ambient';
+/// <reference types="./ambient-menu-surface" />
 
 import MenuSurface from './MenuSurface.svelte';
 export * from './MenuSurface.types.js';

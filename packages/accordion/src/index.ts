@@ -1,4 +1,4 @@
-import './ambient';
+/// <reference types="./ambient-accordion" />
 
 import Accordion from './Accordion.svelte';
 

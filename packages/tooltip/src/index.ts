@@ -1,4 +1,4 @@
-import './ambient';
+/// <reference types="./ambient-tooltip" />
 
 import Tooltip from './Tooltip.svelte';
 

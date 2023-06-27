@@ -1,4 +1,4 @@
-import './ambient';
+/// <reference types="./ambient-autocomplete" />
 
 import Autocomplete from './Autocomplete.svelte';
 

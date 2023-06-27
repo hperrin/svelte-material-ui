@@ -1,4 +1,4 @@
-import './ambient';
+/// <reference types="./ambient-badge" />
 
 import Badge from './Badge.svelte';
 

@@ -1,4 +1,4 @@
-import './ambient';
+/// <reference types="./ambient-tab-scroller" />
 
 import TabScroller from './TabScroller.svelte';
 

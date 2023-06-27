@@ -1,4 +1,4 @@
-import './ambient';
+/// <reference types="./ambient-button" />
 
 import Button from './Button.svelte';
 

@@ -1,4 +1,4 @@
-import './ambient';
+/// <reference types="./ambient-switch" />
 
 import Switch from './Switch.svelte';
 

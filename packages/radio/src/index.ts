@@ -1,4 +1,4 @@
-import './ambient';
+/// <reference types="./ambient-radio" />
 
 import Radio from './Radio.svelte';
 

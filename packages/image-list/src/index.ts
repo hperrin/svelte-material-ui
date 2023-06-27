@@ -1,4 +1,4 @@
-import './ambient';
+/// <reference types="./ambient-image-list" />
 
 import ImageList from './ImageList.svelte';
 

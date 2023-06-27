@@ -1,4 +1,4 @@
-import './ambient';
+/// <reference types="./ambient-drawer" />
 
 import Drawer from './Drawer.svelte';
 

@@ -1,4 +1,4 @@
-import './ambient';
+/// <reference types="./ambient-tab-bar" />
 
 import TabBar from './TabBar.svelte';
 

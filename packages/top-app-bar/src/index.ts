@@ -1,4 +1,4 @@
-import './ambient';
+/// <reference types="./ambient-top-app-bar" />
 
 import TopAppBar from './TopAppBar.svelte';
 

@@ -1,4 +1,4 @@
-import './ambient';
+/// <reference types="./ambient-tab" />
 
 import Tab from './Tab.svelte';
 export * from './Tab.types.js';

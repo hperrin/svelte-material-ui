@@ -1,4 +1,4 @@
-import './ambient';
+/// <reference types="./ambient-menu" />
 
 import Menu from './Menu.svelte';
 export * from './Menu.types.js';

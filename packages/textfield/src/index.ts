@@ -1,4 +1,4 @@
-import './ambient';
+/// <reference types="./ambient-textfield" />
 
 import Textfield from './Textfield.svelte';
 

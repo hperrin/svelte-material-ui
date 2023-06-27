@@ -1,4 +1,4 @@
-import './ambient';
+/// <reference types="./ambient-icon-button" />
 
 import IconButton from './IconButton.svelte';
 

@@ -1,4 +1,4 @@
-import './ambient';
+/// <reference types="./ambient-snackbar" />
 
 import Snackbar from './Snackbar.svelte';
 

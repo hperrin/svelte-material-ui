@@ -1,4 +1,4 @@
-import './ambient';
+/// <reference types="./ambient-list" />
 
 import List from './List.svelte';
 export * from './List.types.js';

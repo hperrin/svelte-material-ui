@@ -1,4 +1,4 @@
-import './ambient';
+/// <reference types="./ambient-data-table" />
 
 import DataTable from './DataTable.svelte';
 export * from './DataTable.types.js';

@@ -1,4 +1,4 @@
-import './ambient';
+/// <reference types="./ambient-layout-grid" />
 
 import LayoutGrid from './LayoutGrid.svelte';
 

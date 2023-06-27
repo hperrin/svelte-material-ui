@@ -1,4 +1,4 @@
-import './ambient';
+/// <reference types="./ambient-banner" />
 
 import Banner from './Banner.svelte';
 export * from './Banner.types.js';

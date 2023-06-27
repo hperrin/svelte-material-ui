@@ -1,4 +1,4 @@
-import './ambient';
+/// <reference types="./ambient-paper" />
 
 import Paper from './Paper.svelte';
 

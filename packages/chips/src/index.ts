@@ -1,4 +1,4 @@
-import './ambient';
+/// <reference types="./ambient-chips" />
 
 import Chip from './Chip.svelte';
 export * from './Chip.types.js';

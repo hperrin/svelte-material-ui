@@ -1,4 +1,4 @@
-import './ambient';
+/// <reference types="./ambient-fab" />
 
 import Fab from './Fab.svelte';
 

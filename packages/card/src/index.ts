@@ -1,4 +1,4 @@
-import './ambient';
+/// <reference types="./ambient-card" />
 
 import Card from './Card.svelte';
 

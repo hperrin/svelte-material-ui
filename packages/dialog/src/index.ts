@@ -1,4 +1,4 @@
-import './ambient';
+/// <reference types="./ambient-dialog" />
 
 import Dialog from './Dialog.svelte';
 

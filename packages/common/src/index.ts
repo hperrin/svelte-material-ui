@@ -1,4 +1,4 @@
-import './ambient';
+/// <reference types="./ambient-common" />
 
 import Label from './CommonLabel.svelte';
 

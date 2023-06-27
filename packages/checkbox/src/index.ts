@@ -1,4 +1,4 @@
-import './ambient';
+/// <reference types="./ambient-checkbox" />
 
 import Checkbox from './Checkbox.svelte';
 

@@ -1,4 +1,4 @@
-import './ambient';
+/// <reference types="./ambient-segmented-button" />
 
 import SegmentedButton from './SegmentedButton.svelte';
 
