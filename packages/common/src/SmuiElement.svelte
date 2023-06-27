@@ -28,10 +28,6 @@
     tag: TagName;
   };
   type $$Props = OwnProps & SmuiAttrs<TagName, OwnProps, 'getElement'>;
-  // Why doesn't this work?
-  // Partial<
-  //   Omit<svelteHTML.IntrinsicElements[TagName], keyof OwnProps>
-  // >
 
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];

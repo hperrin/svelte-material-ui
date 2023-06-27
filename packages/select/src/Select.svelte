@@ -310,11 +310,7 @@
     } & {
       [k in keyof Menu['$$prop_def'] as `menu\$${k}`]?: Menu['$$prop_def'][k];
     } & {
-      [k in keyof InstanceType<
-        typeof List
-      >['$$prop_def'] as `list\$${k}`]?: InstanceType<
-        typeof List
-      >['$$prop_def'][k];
+      [k in keyof List['$$prop_def'] as `list\$${k}`]?: List['$$prop_def'][k];
     } & {
       input$disabled?: never;
       input$required?: never;

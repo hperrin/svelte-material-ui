@@ -23,9 +23,9 @@
   };
   type $$Props = {
     [P in Exclude<
-      keyof InstanceType<typeof Item>['$$prop_def'],
+      keyof Item['$$prop_def'],
       keyof OwnProps
-    >]?: InstanceType<typeof Item>['$$prop_def'][P];
+    >]?: Item['$$prop_def'][P];
   } & OwnProps;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
@@ -36,7 +36,7 @@
   export { className as class };
   export let value: any = '';
 
-  let element: InstanceType<typeof Item>;
+  let element: Item;
   const selectedText = getContext<Writable<string>>('SMUI:select:selectedText');
   const selectedValue = getContext<SvelteStore<any>>('SMUI:select:value');
 

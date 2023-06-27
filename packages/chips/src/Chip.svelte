@@ -54,7 +54,7 @@
   {/if}
 </svelte:component>
 
-<script lang="ts">
+<script lang="ts" generics="TagName extends keyof SmuiElementPropMap = 'div'">
   import { deprecated } from '@material/chips';
   import type { SvelteComponent } from 'svelte';
   import { onMount, setContext, getContext } from 'svelte';
@@ -68,6 +68,7 @@
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
   import type {
+    SmuiElementMap,
     SmuiElementPropMap,
     SmuiAttrs,
     SmuiSvgAttrs,
@@ -90,11 +91,11 @@
     shouldRemoveOnTrailingIconClick?: boolean;
     shouldFocusPrimaryActionOnClick?: boolean;
     component?: typeof SvelteComponent;
-    tag?: keyof SmuiElementPropMap;
+    tag?: TagName;
   };
   type $$Props = OwnProps &
     (
-      | SmuiAttrs<keyof SmuiElementPropMap, OwnProps, 'getElement'>
+      | SmuiAttrs<TagName, OwnProps, 'getElement'>
       | SmuiSvgAttrs<OwnProps, 'getElement'>
     );
 
@@ -132,8 +133,8 @@
   const index = getContext<SvelteStore<number>>('SMUI:chips:chip:index');
 
   export let component: typeof SvelteComponent = SmuiElement;
-  export let tag: keyof SmuiElementPropMap | undefined =
-    component === SmuiElement ? 'div' : undefined;
+  export let tag: TagName | undefined =
+    component === SmuiElement ? ('div' as TagName) : undefined;
 
   const shouldRemoveOnTrailingIconClickStore = writable(
     shouldRemoveOnTrailingIconClick
@@ -387,7 +388,7 @@
     instance.removeFocus();
   }
 
-  export function getElement(): HTMLElement {
+  export function getElement(): SmuiElementMap[TagName] {
     return element.getElement();
   }
 </script>

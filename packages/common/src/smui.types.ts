@@ -54,24 +54,24 @@ export type SmuiAttrs<
   T extends keyof SmuiElementPropMap,
   OwnProps extends Object,
   RestOmmissions extends string
-> = {
-  [P in keyof Omit<
-    SmuiElementPropMap[T],
-    keyof OwnProps | RestOmmissions
-  >]?: SmuiElementPropMap[T][P];
-} & SvelteAttrs &
-  DataAttrs;
+> = Omit<
+  {
+    [P in keyof SmuiElementPropMap[T]]?: SmuiElementPropMap[T][P];
+  } & SvelteAttrs &
+    DataAttrs,
+  keyof OwnProps | RestOmmissions
+>;
 
 export type SmuiSvgAttrs<
   OwnProps extends Object,
   RestOmmissions extends string
-> = {
-  [P in keyof Omit<
-    SVGAttributes<SVGSVGElement>,
-    keyof OwnProps | RestOmmissions
-  >]?: SVGAttributes<SVGSVGElement>[P];
-} & SvelteAttrs &
-  DataAttrs;
+> = Omit<
+  {
+    [P in keyof SVGAttributes<SVGSVGElement>]?: SVGAttributes<SVGSVGElement>[P];
+  } & SvelteAttrs &
+    DataAttrs,
+  keyof OwnProps | RestOmmissions
+>;
 
 export type SvelteAttrs = {
   'sveltekit:noscroll'?: true | undefined | null;

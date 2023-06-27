@@ -64,7 +64,7 @@
   let counter = 0;
 </script>
 
-<script lang="ts">
+<script lang="ts" generics="TagName extends keyof SmuiElementPropMap = 'li'">
   import type { SvelteComponent } from 'svelte';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
@@ -81,6 +81,7 @@
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
   import type {
+    SmuiElementMap,
     SmuiElementPropMap,
     SmuiAttrs,
     SmuiSvgAttrs,
@@ -106,15 +107,11 @@
     inputId?: string;
     href?: string | undefined;
     component?: typeof SvelteComponent;
-    tag?: keyof SmuiElementPropMap;
+    tag?: TagName;
   };
   type $$Props = OwnProps &
     (
-      | SmuiAttrs<
-          keyof SmuiElementPropMap,
-          OwnProps,
-          'action' | 'getPrimaryText' | 'getElement'
-        >
+      | SmuiAttrs<TagName, OwnProps, 'action' | 'getPrimaryText' | 'getElement'>
       | SmuiSvgAttrs<OwnProps, 'action' | 'getPrimaryText' | 'getElement  '>
     ) & {
       value?: any;
@@ -167,13 +164,9 @@
     : tabindexProp;
 
   export let component: typeof SvelteComponent = SmuiElement;
-  export let tag: keyof SmuiElementPropMap | undefined =
+  export let tag: TagName | undefined =
     component === SmuiElement
-      ? nav
-        ? href
-          ? 'a'
-          : 'span'
-        : 'li'
+      ? ((nav ? (href ? 'a' : 'span') : 'li') as TagName)
       : undefined;
 
   setContext('SMUI:generic:input:props', { id: inputId });
@@ -398,7 +391,7 @@
     return element.textContent ?? '';
   }
 
-  export function getElement(): HTMLElement {
+  export function getElement(): SmuiElementMap[TagName] {
     return element.getElement();
   }
 </script>

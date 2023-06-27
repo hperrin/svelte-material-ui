@@ -104,7 +104,7 @@
 
   let menu: Menu;
   let subMenu: Menu;
-  let anchor: InstanceType<typeof Item>;
+  let anchor: Item;
   let anchorElement: HTMLElement;
   let anchorClasses: { [k: string]: boolean } = {};
   let clicked = 'nothing yet';

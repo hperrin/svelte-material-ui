@@ -61,7 +61,7 @@
   } from '@smui/list';
   import Button, { Label } from '@smui/button';
 
-  let list: InstanceType<typeof List>;
+  let list: List;
 
   let options = [
     {

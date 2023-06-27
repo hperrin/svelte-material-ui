@@ -14,7 +14,7 @@
   <slot />
 </svelte:component>
 
-<script lang="ts">
+<script lang="ts" generics="TagName extends keyof SmuiElementPropMap = 'div'">
   import type { SvelteComponent } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import type { ActionArray } from '@smui/common/internal';
@@ -24,6 +24,7 @@
     dispatch,
   } from '@smui/common/internal';
   import type {
+    SmuiElementMap,
     SmuiElementPropMap,
     SmuiAttrs,
     SmuiSvgAttrs,
@@ -35,11 +36,11 @@
     class?: string;
     fixed?: boolean;
     component?: typeof SvelteComponent;
-    tag?: keyof SmuiElementPropMap;
+    tag?: TagName;
   };
   type $$Props = OwnProps &
     (
-      | SmuiAttrs<keyof SmuiElementPropMap, OwnProps, 'getElement'>
+      | SmuiAttrs<TagName, OwnProps, 'getElement'>
       | SmuiSvgAttrs<OwnProps, 'getElement'>
     );
 
@@ -54,14 +55,14 @@
   let element: SvelteComponent;
 
   export let component: typeof SvelteComponent = SmuiElement;
-  export let tag: keyof SmuiElementPropMap | undefined =
-    component === SmuiElement ? 'div' : undefined;
+  export let tag: TagName | undefined =
+    component === SmuiElement ? ('div' as TagName) : undefined;
 
   function handleClick(event: MouseEvent) {
     dispatch(getElement(), 'SMUIDrawerScrim:click', event);
   }
 
-  export function getElement(): HTMLElement {
+  export function getElement(): SmuiElementMap[TagName] {
     return element.getElement();
   }
 </script>

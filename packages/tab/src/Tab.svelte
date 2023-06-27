@@ -66,7 +66,10 @@
   <span class="mdc-tab__ripple" />
 </svelte:component>
 
-<script lang="ts">
+<script
+  lang="ts"
+  generics="TagName extends keyof SmuiElementPropMap = 'button'"
+>
   import { MDCTabFoundation } from '@material/tab';
   import type { SvelteComponent } from 'svelte';
   import { onMount, setContext, getContext } from 'svelte';
@@ -82,6 +85,7 @@
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
   import type {
+    SmuiElementMap,
     SmuiElementPropMap,
     SmuiAttrs,
     SmuiSvgAttrs,
@@ -104,12 +108,12 @@
     content$use?: ActionArray;
     content$class?: string;
     component?: typeof SvelteComponent;
-    tag?: keyof SmuiElementPropMap;
+    tag?: TagName;
   };
   type $$Props = OwnProps &
     (
       | SmuiAttrs<
-          keyof SmuiElementPropMap,
+          TagName,
           OwnProps,
           'activate' | 'deactivate' | 'focus' | 'getElement'
         >
@@ -152,8 +156,10 @@
   let forceAccessible = false;
 
   export let component: typeof SvelteComponent = SmuiElement;
-  export let tag: keyof SmuiElementPropMap | undefined =
-    component === SmuiElement ? (href == null ? 'button' : 'a') : undefined;
+  export let tag: TagName | undefined =
+    component === SmuiElement
+      ? ((href == null ? 'button' : 'a') as TagName)
+      : undefined;
 
   setContext('SMUI:label:context', 'tab');
   setContext('SMUI:icon:context', 'tab');
@@ -285,7 +291,7 @@
     getElement().focus();
   }
 
-  export function getElement(): HTMLElement {
+  export function getElement(): SmuiElementMap[TagName] {
     return element.getElement();
   }
 </script>

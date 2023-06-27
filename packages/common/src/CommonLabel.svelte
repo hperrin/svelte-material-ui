@@ -22,7 +22,7 @@
   {...$$restProps}><slot /></svelte:component
 >
 
-<script lang="ts">
+<script lang="ts" generics="TagName extends keyof SmuiElementPropMap = 'span'">
   import type { SvelteComponent } from 'svelte';
   import { getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
@@ -30,6 +30,7 @@
   import type { ActionArray } from './internal/useActions.js';
   import { forwardEventsBuilder, classMap } from './internal/index.js';
   import type {
+    SmuiElementMap,
     SmuiElementPropMap,
     SmuiAttrs,
     SmuiSvgAttrs,
@@ -40,11 +41,11 @@
     use?: ActionArray;
     class?: string;
     component?: typeof SvelteComponent;
-    tag?: keyof SmuiElementPropMap;
+    tag?: TagName;
   };
   type $$Props = OwnProps &
     (
-      | SmuiAttrs<keyof SmuiElementPropMap, OwnProps, 'getElement'>
+      | SmuiAttrs<TagName, OwnProps, 'getElement'>
       | SmuiSvgAttrs<OwnProps, 'getElement'>
     );
 
@@ -58,13 +59,13 @@
   let element: SvelteComponent;
 
   export let component: typeof SvelteComponent = SmuiElement;
-  export let tag: keyof SmuiElementPropMap | undefined =
-    component === SmuiElement ? 'span' : undefined;
+  export let tag: TagName | undefined =
+    component === SmuiElement ? ('span' as TagName) : undefined;
 
   const context = getContext<string | undefined>('SMUI:label:context');
   const tabindex = getContext<number | undefined>('SMUI:label:tabindex');
 
-  export function getElement(): HTMLElement {
+  export function getElement(): SmuiElementMap[TagName] {
     return element.getElement();
   }
 </script>

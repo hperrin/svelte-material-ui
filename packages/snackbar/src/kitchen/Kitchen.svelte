@@ -44,17 +44,9 @@
   type $$Props = {
     [k in keyof Snackbar['$$prop_def'] as `snackbar\$${k}`]?: Snackbar['$$prop_def'][k];
   } & {
-    [k in keyof InstanceType<
-      typeof Button
-    >['$$prop_def'] as `action\$${k}`]?: InstanceType<
-      typeof Button
-    >['$$prop_def'][k];
+    [k in keyof Button['$$prop_def'] as `action\$${k}`]?: Button['$$prop_def'][k];
   } & {
-    [k in keyof InstanceType<
-      typeof IconButton
-    >['$$prop_def'] as `dismiss\$${k}`]?: InstanceType<
-      typeof IconButton
-    >['$$prop_def'][k];
+    [k in keyof IconButton['$$prop_def'] as `dismiss\$${k}`]?: IconButton['$$prop_def'][k];
   };
 
   let element: Snackbar;

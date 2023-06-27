@@ -291,7 +291,7 @@
   let theme: string | null = null;
 
   type DemoSection = {
-    component?: InstanceType<typeof Item>;
+    component?: Item;
     name: string;
     route?: string;
     shortcut?: string;

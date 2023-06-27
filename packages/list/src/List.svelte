@@ -30,7 +30,7 @@
   <slot />
 </svelte:component>
 
-<script lang="ts">
+<script lang="ts" generics="TagName extends keyof SmuiElementPropMap = 'ul'">
   import { MDCListFoundation } from '@material/list';
   import { ponyfill } from '@material/dom';
   import type { SvelteComponent } from 'svelte';
@@ -44,6 +44,7 @@
     dispatch,
   } from '@smui/common/internal';
   import type {
+    SmuiElementMap,
     SmuiElementPropMap,
     SmuiAttrs,
     SmuiSvgAttrs,
@@ -77,12 +78,12 @@
     checkList?: boolean;
     hasTypeahead?: boolean;
     component?: typeof SvelteComponent;
-    tag?: keyof SmuiElementPropMap;
+    tag?: TagName;
   };
   type $$Props = OwnProps &
     (
       | SmuiAttrs<
-          keyof SmuiElementPropMap,
+          TagName,
           OwnProps,
           | 'layout'
           | 'setEnabled'
@@ -145,8 +146,8 @@
   let removeLayoutListener: RemoveLayoutListener | undefined;
 
   export let component: typeof SvelteComponent = SmuiElement;
-  export let tag: keyof SmuiElementPropMap | undefined =
-    component === SmuiElement ? (nav ? 'nav' : 'ul') : undefined;
+  export let tag: TagName | undefined =
+    component === SmuiElement ? ((nav ? 'nav' : 'ul') as TagName) : undefined;
 
   setContext('SMUI:list:nonInteractive', nonInteractive);
   setContext('SMUI:separator:context', 'list');
@@ -472,7 +473,7 @@
       (accessor.element as HTMLInputElement).focus();
   }
 
-  export function getElement(): HTMLElement {
+  export function getElement(): SmuiElementMap[TagName] {
     return element.getElement();
   }
 </script>

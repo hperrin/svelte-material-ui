@@ -39,7 +39,10 @@
   <slot />{#if touch}<div class="mdc-fab__touch" />{/if}</svelte:component
 >
 
-<script lang="ts">
+<script
+  lang="ts"
+  generics="TagName extends keyof SmuiElementPropMap = 'button'"
+>
   import type { SvelteComponent } from 'svelte';
   import { setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
@@ -47,6 +50,7 @@
   import { forwardEventsBuilder, classMap } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
   import type {
+    SmuiElementMap,
     SmuiElementPropMap,
     SmuiAttrs,
     SmuiSvgAttrs,
@@ -66,11 +70,11 @@
     touch?: boolean;
     href?: string | undefined;
     component?: typeof SvelteComponent;
-    tag?: keyof SmuiElementPropMap;
+    tag?: TagName;
   };
   type $$Props = OwnProps &
     (
-      | SmuiAttrs<keyof SmuiElementPropMap, OwnProps, 'getElement'>
+      | SmuiAttrs<TagName, OwnProps, 'getElement'>
       | SmuiSvgAttrs<OwnProps, 'getElement'>
     );
 
@@ -95,8 +99,10 @@
   let internalStyles: { [k: string]: string } = {};
 
   export let component: typeof SvelteComponent = SmuiElement;
-  export let tag: keyof SmuiElementPropMap | undefined =
-    component === SmuiElement ? (href == null ? 'button' : 'a') : undefined;
+  export let tag: TagName | undefined =
+    component === SmuiElement
+      ? ((href == null ? 'button' : 'a') as TagName)
+      : undefined;
 
   setContext('SMUI:label:context', 'fab');
   setContext('SMUI:icon:context', 'fab');
@@ -124,7 +130,7 @@
     }
   }
 
-  export function getElement(): HTMLElement {
+  export function getElement(): SmuiElementMap[TagName] {
     return element.getElement();
   }
 </script>

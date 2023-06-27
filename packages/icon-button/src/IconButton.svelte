@@ -67,7 +67,10 @@
     />{/if}</svelte:component
 >
 
-<script lang="ts">
+<script
+  lang="ts"
+  generics="TagName extends keyof SmuiElementPropMap = 'button'"
+>
   import type { MDCIconButtonToggleEventDetail } from '@material/icon-button';
   import { MDCIconButtonToggleFoundation } from '@material/icon-button';
   import type { SvelteComponent } from 'svelte';
@@ -81,6 +84,7 @@
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
   import type {
+    SmuiElementMap,
     SmuiElementPropMap,
     SmuiAttrs,
     SmuiSvgAttrs,
@@ -110,11 +114,11 @@
       | string
       | undefined;
     component?: typeof SvelteComponent;
-    tag?: keyof SmuiElementPropMap;
+    tag?: TagName;
   };
   type $$Props = OwnProps &
     (
-      | SmuiAttrs<keyof SmuiElementPropMap, OwnProps, 'getElement'>
+      | SmuiAttrs<TagName, OwnProps, 'getElement'>
       | SmuiSvgAttrs<OwnProps, 'getElement'>
     );
 
@@ -158,8 +162,10 @@
   let ariaDescribedby = getContext('SMUI:icon-button:aria-describedby');
 
   export let component: typeof SvelteComponent = SmuiElement;
-  export let tag: keyof SmuiElementPropMap | undefined =
-    component === SmuiElement ? (href == null ? 'button' : 'a') : undefined;
+  export let tag: TagName | undefined =
+    component === SmuiElement
+      ? ((href == null ? 'button' : 'a') as TagName)
+      : undefined;
 
   $: actionProp = (() => {
     if (context === 'data-table:pagination') {
@@ -280,7 +286,7 @@
     pressed = evtData.isOn;
   }
 
-  export function getElement(): HTMLElement {
+  export function getElement(): SmuiElementMap[TagName] {
     return element.getElement();
   }
 </script>

@@ -139,11 +139,7 @@
     } & {
       [k in keyof Textfield['$$prop_def'] as `textfield\$${k}`]?: Textfield['$$prop_def'][k];
     } & {
-      [k in keyof InstanceType<
-        typeof List
-      >['$$prop_def'] as `list\$${k}`]?: InstanceType<
-        typeof List
-      >['$$prop_def'][k];
+      [k in keyof List['$$prop_def'] as `list\$${k}`]?: List['$$prop_def'][k];
     } & {
       textfield$label?: never;
       textfield$value?: never;
