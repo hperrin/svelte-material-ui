@@ -16,6 +16,7 @@
 </div>
 
 <script lang="ts">
+  import type { ComponentProps } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
@@ -37,7 +38,7 @@
   };
   type $$Props = OwnProps &
     SmuiAttrs<'div', OwnProps, 'getElement'> & {
-      [k in keyof InnerGrid['$$prop_def'] as `innerGrid\$${k}`]?: InnerGrid['$$prop_def'][k];
+      [k in keyof ComponentProps<InnerGrid> as `innerGrid\$${k}`]?: ComponentProps<InnerGrid>[k];
     };
 
   const forwardEvents = forwardEventsBuilder(get_current_component());

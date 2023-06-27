@@ -13,6 +13,7 @@
 >
 
 <script lang="ts">
+  import type { ComponentProps } from 'svelte';
   import { getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import type { ActionArray } from '@smui/common/internal';
@@ -26,9 +27,9 @@
   };
   type $$Props = {
     [P in Exclude<
-      keyof Paper['$$prop_def'],
+      keyof ComponentProps<Paper>,
       keyof OwnProps
-    >]?: Paper['$$prop_def'][P];
+    >]?: ComponentProps<Paper>[P];
   } & OwnProps & {
       color?: never;
       variant?: never;

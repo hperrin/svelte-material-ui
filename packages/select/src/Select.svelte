@@ -222,6 +222,7 @@
     MDCSelectHelperTextFoundation,
   } from '@material/select';
   import { MDCSelectFoundation } from '@material/select';
+  import type { ComponentProps } from 'svelte';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
   import { writable } from 'svelte/store';
   import { get_current_component } from 'svelte/internal';
@@ -290,15 +291,15 @@
       | 'layout'
       | 'getElement'
     > & {
-      [k in keyof HelperText['$$prop_def'] as `helperText\$${k}`]?: HelperText['$$prop_def'][k];
+      [k in keyof ComponentProps<HelperText> as `helperText\$${k}`]?: ComponentProps<HelperText>[k];
     } & {
       [k in keyof SmuiElementPropMap['input'] as `input\$${k}`]?: SmuiElementPropMap['input'][k];
     } & {
       [k in keyof SmuiElementPropMap['div'] as `anchor\$${k}`]?: SmuiElementPropMap['div'][k];
     } & {
-      [k in keyof FloatingLabel['$$prop_def'] as `label\$${k}`]?: FloatingLabel['$$prop_def'][k];
+      [k in keyof ComponentProps<FloatingLabel> as `label\$${k}`]?: ComponentProps<FloatingLabel>[k];
     } & {
-      [k in keyof NotchedOutline['$$prop_def'] as `outline\$${k}`]?: NotchedOutline['$$prop_def'][k];
+      [k in keyof ComponentProps<NotchedOutline> as `outline\$${k}`]?: ComponentProps<NotchedOutline>[k];
     } & {
       [k in keyof SmuiElementPropMap['span'] as `selectedTextContainer\$${k}`]?: SmuiElementPropMap['span'][k];
     } & {
@@ -306,11 +307,11 @@
     } & {
       [k in keyof SmuiElementPropMap['span'] as `dropdownIcon\$${k}`]?: SmuiElementPropMap['span'][k];
     } & {
-      [k in keyof LineRipple['$$prop_def'] as `ripple\$${k}`]?: LineRipple['$$prop_def'][k];
+      [k in keyof ComponentProps<LineRipple> as `ripple\$${k}`]?: ComponentProps<LineRipple>[k];
     } & {
-      [k in keyof Menu['$$prop_def'] as `menu\$${k}`]?: Menu['$$prop_def'][k];
+      [k in keyof ComponentProps<Menu> as `menu\$${k}`]?: ComponentProps<Menu>[k];
     } & {
-      [k in keyof List['$$prop_def'] as `list\$${k}`]?: List['$$prop_def'][k];
+      [k in keyof ComponentProps<List> as `list\$${k}`]?: ComponentProps<List>[k];
     } & {
       input$disabled?: never;
       input$required?: never;

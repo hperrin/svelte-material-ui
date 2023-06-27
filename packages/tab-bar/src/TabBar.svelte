@@ -27,6 +27,7 @@
 
 <script lang="ts" generics="TabKey extends Object | string | number">
   import { MDCTabBarFoundation } from '@material/tab-bar';
+  import type { ComponentProps } from 'svelte';
   import { onMount, setContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import type { SmuiAttrs } from '@smui/common';
@@ -59,7 +60,7 @@
   };
   type $$Props = OwnProps &
     SmuiAttrs<'div', OwnProps, 'scrollIntoView' | 'getElement'> & {
-      [k in keyof TabScroller['$$prop_def'] as `tabScroller\$${k}`]?: TabScroller['$$prop_def'][k];
+      [k in keyof ComponentProps<TabScroller> as `tabScroller\$${k}`]?: ComponentProps<TabScroller>[k];
     };
 
   const forwardEvents = forwardEventsBuilder(get_current_component());

@@ -94,6 +94,7 @@
 </div>
 
 <script lang="ts">
+  import type { ComponentProps } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
@@ -131,15 +132,15 @@
     search?: (input: string) => Promise<any[] | false>;
     menu$class?: string;
     menu$anchor?: boolean;
-    menu$anchorCorner?: Menu['$$prop_def']['anchorCorner'];
+    menu$anchorCorner?: ComponentProps<Menu>['anchorCorner'];
   };
   type $$Props = OwnProps &
     SmuiAttrs<'div', OwnProps, 'focus' | 'blur' | 'getElement'> & {
-      [k in keyof Menu['$$prop_def'] as `menu\$${k}`]?: Menu['$$prop_def'][k];
+      [k in keyof ComponentProps<Menu> as `menu\$${k}`]?: ComponentProps<Menu>[k];
     } & {
-      [k in keyof Textfield['$$prop_def'] as `textfield\$${k}`]?: Textfield['$$prop_def'][k];
+      [k in keyof ComponentProps<Textfield> as `textfield\$${k}`]?: ComponentProps<Textfield>[k];
     } & {
-      [k in keyof List['$$prop_def'] as `list\$${k}`]?: List['$$prop_def'][k];
+      [k in keyof ComponentProps<List> as `list\$${k}`]?: ComponentProps<List>[k];
     } & {
       textfield$label?: never;
       textfield$value?: never;
@@ -193,7 +194,7 @@
   };
   export let menu$class = '';
   export let menu$anchor = false;
-  export let menu$anchorCorner: Menu['$$prop_def']['anchorCorner'] =
+  export let menu$anchorCorner: ComponentProps<Menu>['anchorCorner'] =
     'BOTTOM_START';
 
   let element: HTMLDivElement;

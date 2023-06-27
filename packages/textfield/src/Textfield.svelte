@@ -241,6 +241,7 @@
   } from '@material/textfield';
   import { MDCTextFieldFoundation } from '@material/textfield';
   import { events } from '@material/dom';
+  import type { ComponentProps } from 'svelte';
   import { onMount, onDestroy, getContext, tick } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import type {
@@ -303,17 +304,17 @@
   type $$Props = OwnProps &
     SmuiAttrs<'label', OwnProps, 'focus' | 'blur' | 'layout' | 'getElement'> &
     SmuiAttrs<'div', OwnProps, 'focus' | 'blur' | 'layout' | 'getElement'> & {
-      [k in keyof FloatingLabel['$$prop_def'] as `label\$${k}`]?: FloatingLabel['$$prop_def'][k];
+      [k in keyof ComponentProps<FloatingLabel> as `label\$${k}`]?: ComponentProps<FloatingLabel>[k];
     } & {
-      [k in keyof NotchedOutline['$$prop_def'] as `outline\$${k}`]?: NotchedOutline['$$prop_def'][k];
+      [k in keyof ComponentProps<NotchedOutline> as `outline\$${k}`]?: ComponentProps<NotchedOutline>[k];
     } & {
-      [k in keyof LineRipple['$$prop_def'] as `ripple\$${k}`]?: LineRipple['$$prop_def'][k];
+      [k in keyof ComponentProps<LineRipple> as `ripple\$${k}`]?: ComponentProps<LineRipple>[k];
     } & {
       [k in keyof SmuiElementPropMap['div'] as `helperLine\$${k}`]?: SmuiElementPropMap['div'][k];
     } & {
-      [k in keyof Input['$$prop_def'] as `input\$${k}`]?: Input['$$prop_def'][k];
+      [k in keyof ComponentProps<Input> as `input\$${k}`]?: ComponentProps<Input>[k];
     } & {
-      [k in keyof Textarea['$$prop_def'] as `input\$${k}`]?: Textarea['$$prop_def'][k];
+      [k in keyof ComponentProps<Textarea> as `input\$${k}`]?: ComponentProps<Textarea>[k];
     } & {
       input$type?: never;
       input$disabled?: never;

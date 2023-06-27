@@ -71,7 +71,7 @@
   generics="TagName extends keyof SmuiElementPropMap = 'button'"
 >
   import { MDCTabFoundation } from '@material/tab';
-  import type { SvelteComponent } from 'svelte';
+  import type { SvelteComponent, ComponentProps } from 'svelte';
   import { onMount, setContext, getContext } from 'svelte';
   import { get_current_component } from 'svelte/internal';
   import type { ActionArray } from '@smui/common/internal';
@@ -124,7 +124,7 @@
     ) & {
       [k in keyof SmuiElementPropMap['span'] as `content\$${k}`]?: SmuiElementPropMap['span'][k];
     } & {
-      [k in keyof TabIndicator['$$prop_def'] as `tabIndicator\$${k}`]?: TabIndicator['$$prop_def'][k];
+      [k in keyof ComponentProps<TabIndicator> as `tabIndicator\$${k}`]?: ComponentProps<TabIndicator>[k];
     };
 
   const forwardEvents = forwardEventsBuilder(get_current_component());

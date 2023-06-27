@@ -22,6 +22,7 @@
 >
 
 <script lang="ts">
+  import type { ComponentProps } from 'svelte';
   import { onMount, setContext } from 'svelte';
   import { writable } from 'svelte/store';
   import { get_current_component } from 'svelte/internal';
@@ -49,9 +50,9 @@
   };
   type $$Props = {
     [P in Exclude<
-      keyof Paper['$$prop_def'],
+      keyof ComponentProps<Paper>,
       keyof OwnProps
-    >]?: Paper['$$prop_def'][P];
+    >]?: ComponentProps<Paper>[P];
   } & OwnProps;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());

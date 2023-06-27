@@ -8,8 +8,8 @@
 >
 
 <script lang="ts">
-  import { onMount, onDestroy } from 'svelte';
-  import { getContext, setContext } from 'svelte';
+  import type { ComponentProps } from 'svelte';
+  import { onMount, onDestroy, getContext, setContext } from 'svelte';
   import type { Writable } from 'svelte/store';
   import { get_current_component } from 'svelte/internal';
   import type { ActionArray } from '@smui/common/internal';
@@ -23,9 +23,9 @@
   };
   type $$Props = {
     [P in Exclude<
-      keyof Item['$$prop_def'],
+      keyof ComponentProps<Item>,
       keyof OwnProps
-    >]?: Item['$$prop_def'][P];
+    >]?: ComponentProps<Item>[P];
   } & OwnProps;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());

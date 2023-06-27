@@ -32,6 +32,7 @@
 
 <script lang="ts">
   import type { MDCSnackbarCloseEvent } from '@material/snackbar';
+  import type { ComponentProps } from 'svelte';
   import { prefixFilter } from '@smui/common/internal';
   import { Label } from '@smui/common';
   import Button from '@smui/button';
@@ -42,11 +43,11 @@
   import Actions from '../Actions.js';
 
   type $$Props = {
-    [k in keyof Snackbar['$$prop_def'] as `snackbar\$${k}`]?: Snackbar['$$prop_def'][k];
+    [k in keyof ComponentProps<Snackbar> as `snackbar\$${k}`]?: ComponentProps<Snackbar>[k];
   } & {
-    [k in keyof Button['$$prop_def'] as `action\$${k}`]?: Button['$$prop_def'][k];
+    [k in keyof ComponentProps<Button> as `action\$${k}`]?: ComponentProps<Button>[k];
   } & {
-    [k in keyof IconButton['$$prop_def'] as `dismiss\$${k}`]?: IconButton['$$prop_def'][k];
+    [k in keyof ComponentProps<IconButton> as `dismiss\$${k}`]?: ComponentProps<IconButton>[k];
   };
 
   let element: Snackbar;

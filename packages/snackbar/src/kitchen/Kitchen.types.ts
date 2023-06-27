@@ -1,4 +1,6 @@
 import type { MDCSnackbarCloseEvent } from '@material/snackbar';
+import type { ComponentProps } from 'svelte';
+
 import type Snackbar from '../Snackbar.svelte';
 
 export interface ConfigAction {
@@ -8,7 +10,7 @@ export interface ConfigAction {
 }
 
 export type Config = {
-  props?: Omit<Snackbar['$$prop_def'], 'slot'>;
+  props?: Omit<ComponentProps<Snackbar>, 'slot'>;
   onClose?: (e: MDCSnackbarCloseEvent) => void;
   onDismiss?: (e: MouseEvent) => void;
   actions?: ConfigAction[];

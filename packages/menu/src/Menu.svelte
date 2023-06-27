@@ -20,6 +20,7 @@
 >
 
 <script lang="ts">
+  import type { ComponentProps } from 'svelte';
   import { MDCMenuFoundation, cssClasses } from '@material/menu';
   import { ponyfill } from '@material/dom';
   import { onMount } from 'svelte';
@@ -44,7 +45,7 @@
     open?: boolean;
   };
   type $$Props = {
-    [k in keyof MenuSurface['$$prop_def']]?: MenuSurface['$$prop_def'][k];
+    [k in keyof ComponentProps<MenuSurface>]?: ComponentProps<MenuSurface>[k];
   } & OwnProps;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
