@@ -12,7 +12,7 @@
     <Button action="none">
       <Label>None of Them</Label>
     </Button>
-    <Button action="all" default>
+    <Button action="all" defaultAction>
       <Label>All of Them</Label>
     </Button>
   </Actions>
