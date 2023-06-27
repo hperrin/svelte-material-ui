@@ -1,3 +1,5 @@
+import './ambient';
+
 import Tooltip from './Tooltip.svelte';
 
 import Wrapper from './Wrapper.svelte';

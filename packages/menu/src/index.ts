@@ -1,3 +1,5 @@
+import './ambient';
+
 import Menu from './Menu.svelte';
 export * from './Menu.types.js';
 

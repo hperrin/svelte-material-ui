@@ -1,3 +1,5 @@
+import './ambient';
+
 import DataTable from './DataTable.svelte';
 export * from './DataTable.types.js';
 

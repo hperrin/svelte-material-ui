@@ -1,3 +1,5 @@
+import './ambient';
+
 import Tab from './Tab.svelte';
 export * from './Tab.types.js';
 

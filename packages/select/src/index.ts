@@ -1,3 +1,5 @@
+import './ambient';
+
 import Select from './Select.svelte';
 
 import Option from './Option.svelte';

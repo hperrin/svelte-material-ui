@@ -1,3 +1,5 @@
+import './ambient';
+
 import BottomAppBar from './BottomAppBar.svelte';
 
 import AutoAdjust from './AutoAdjust.svelte';

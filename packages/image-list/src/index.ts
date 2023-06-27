@@ -1,3 +1,5 @@
+import './ambient';
+
 import ImageList from './ImageList.svelte';
 
 import Item from './Item.js';

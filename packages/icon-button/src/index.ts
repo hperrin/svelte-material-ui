@@ -1,3 +1,5 @@
+import './ambient';
+
 import IconButton from './IconButton.svelte';
 
 import { Icon } from '@smui/common';

@@ -1,3 +1,5 @@
+import './ambient';
+
 import MenuSurface from './MenuSurface.svelte';
 export * from './MenuSurface.types.js';
 

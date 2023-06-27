@@ -1,3 +1,5 @@
+import './ambient';
+
 import List from './List.svelte';
 export * from './List.types.js';
 

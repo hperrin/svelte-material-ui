@@ -1,3 +1,5 @@
+import './ambient';
+
 import Fab from './Fab.svelte';
 
 import { Label, Icon } from '@smui/common';

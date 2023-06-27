@@ -1,3 +1,5 @@
+import './ambient';
+
 import FloatingLabel from './FloatingLabel.svelte';
 export * from './FloatingLabel.types.js';
 

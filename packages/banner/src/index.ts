@@ -1,3 +1,5 @@
+import './ambient';
+
 import Banner from './Banner.svelte';
 export * from './Banner.types.js';
 

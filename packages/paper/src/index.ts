@@ -1,3 +1,5 @@
+import './ambient';
+
 import Paper from './Paper.svelte';
 
 import Content from './Content.js';
