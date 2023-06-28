@@ -77,6 +77,7 @@
   } from '@material/switch';
   import { MDCSwitchRenderFoundation } from '@material/switch';
   import { onMount, getContext } from 'svelte';
+  // @ts-ignore Need to use internal Svelte function
   import { get_current_component } from 'svelte/internal';
   import type {
     SmuiAttrs,

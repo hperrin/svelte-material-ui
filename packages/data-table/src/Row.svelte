@@ -24,6 +24,7 @@
 
 <script lang="ts">
   import { onMount, getContext } from 'svelte';
+  // @ts-ignore Need to use internal Svelte function
   import { get_current_component } from 'svelte/internal';
   import type { SmuiAttrs, SMUICheckboxInputAccessor } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';

@@ -17,6 +17,7 @@
 {/if}
 
 <script lang="ts" generics="TagName extends keyof SmuiElementMap">
+  // @ts-ignore Need to use internal Svelte function
   import { get_current_component } from 'svelte/internal';
 
   import type { ActionArray } from './internal/useActions.js';

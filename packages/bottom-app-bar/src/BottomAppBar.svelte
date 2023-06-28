@@ -21,6 +21,7 @@
 
 <script lang="ts">
   import { afterUpdate, setContext } from 'svelte';
+  // @ts-ignore Need to use internal Svelte function
   import { get_current_component } from 'svelte/internal';
   import type { Subscriber } from 'svelte/store';
   import { readable, writable } from 'svelte/store';

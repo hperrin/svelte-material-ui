@@ -34,6 +34,7 @@
     MDCSlidingTabIndicatorFoundation,
   } from '@material/tab-indicator';
   import { onMount } from 'svelte';
+  // @ts-ignore Need to use internal Svelte function
   import { get_current_component } from 'svelte/internal';
   import type { SmuiAttrs, SmuiElementPropMap } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';

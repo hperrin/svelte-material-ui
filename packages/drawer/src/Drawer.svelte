@@ -24,6 +24,7 @@
   } from '@material/drawer';
   import { focusTrap as domFocusTrap } from '@material/dom';
   import { onMount, onDestroy, setContext } from 'svelte';
+  // @ts-ignore Need to use internal Svelte function
   import { get_current_component } from 'svelte/internal';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';

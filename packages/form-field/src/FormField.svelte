@@ -28,6 +28,7 @@
 <script lang="ts">
   import { MDCFormFieldFoundation } from '@material/form-field';
   import { onMount, setContext } from 'svelte';
+  // @ts-ignore Need to use internal Svelte function
   import { get_current_component } from 'svelte/internal';
   import type {
     SmuiAttrs,

@@ -18,6 +18,7 @@
 <script lang="ts">
   import { MDCLineRippleFoundation } from '@material/line-ripple';
   import { onMount } from 'svelte';
+  // @ts-ignore Need to use internal Svelte function
   import { get_current_component } from 'svelte/internal';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';

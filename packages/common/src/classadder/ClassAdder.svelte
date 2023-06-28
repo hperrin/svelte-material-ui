@@ -29,6 +29,7 @@
 <script lang="ts">
   import type { SvelteComponent } from 'svelte';
   import { onDestroy, getContext, setContext } from 'svelte';
+  // @ts-ignore Need to use internal Svelte function
   import { get_current_component } from 'svelte/internal';
 
   import type { SmuiElementPropMap, SmuiAttrs } from '../smui.types.js';

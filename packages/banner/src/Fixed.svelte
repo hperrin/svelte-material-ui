@@ -12,6 +12,7 @@
 {/if}
 
 <script lang="ts">
+  // @ts-ignore Need to use internal Svelte function
   import { get_current_component } from 'svelte/internal';
   import { forwardEventsBuilder } from '@smui/common/internal';
 

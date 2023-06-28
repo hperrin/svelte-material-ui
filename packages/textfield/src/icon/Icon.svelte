@@ -19,6 +19,7 @@
 <script lang="ts">
   import { MDCTextFieldIconFoundation } from '@material/textfield';
   import { onMount, getContext } from 'svelte';
+  // @ts-ignore Need to use internal Svelte function
   import { get_current_component } from 'svelte/internal';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';

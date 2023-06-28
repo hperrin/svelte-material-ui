@@ -42,6 +42,7 @@
     MDCShortTopAppBarFoundation,
   } from '@material/top-app-bar';
   import { onMount } from 'svelte';
+  // @ts-ignore Need to use internal Svelte function
   import { get_current_component } from 'svelte/internal';
   import type { Subscriber } from 'svelte/store';
   import { readable } from 'svelte/store';

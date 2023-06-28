@@ -59,6 +59,7 @@
   } from '@material/tooltip';
   import { onMount, onDestroy, getContext } from 'svelte';
   import type { Writable } from 'svelte/store';
+  // @ts-ignore Need to use internal Svelte function
   import { get_current_component } from 'svelte/internal';
   import type { SmuiAttrs, SmuiElementPropMap } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';

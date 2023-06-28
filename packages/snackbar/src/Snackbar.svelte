@@ -36,6 +36,7 @@
   import { MDCSnackbarFoundation, util } from '@material/snackbar';
   import { ponyfill } from '@material/dom';
   import { onMount, setContext } from 'svelte';
+  // @ts-ignore Need to use internal Svelte function
   import { get_current_component } from 'svelte/internal';
   import type { SmuiAttrs, SmuiElementPropMap } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';

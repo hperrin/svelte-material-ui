@@ -68,6 +68,7 @@
   import { CloseReason, MDCBannerFoundation } from '@material/banner';
   import { focusTrap as domFocusTrap } from '@material/dom';
   import { onMount, onDestroy, getContext, setContext, tick } from 'svelte';
+  // @ts-ignore Need to use internal Svelte function
   import { get_current_component } from 'svelte/internal';
   import type {
     AddLayoutListener,

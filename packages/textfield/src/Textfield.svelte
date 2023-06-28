@@ -243,6 +243,7 @@
   import { events } from '@material/dom';
   import type { ComponentProps } from 'svelte';
   import { onMount, onDestroy, getContext, tick } from 'svelte';
+  // @ts-ignore Need to use internal Svelte function
   import { get_current_component } from 'svelte/internal';
   import type {
     AddLayoutListener,
