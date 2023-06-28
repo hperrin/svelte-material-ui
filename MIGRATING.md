@@ -13,6 +13,7 @@ I spent a day [flexing every graphic design muscle in my body](https://i.kym-cdn
 
 ## Breaking Changes
 
+- SMUI 7 (after v7.0.0-beta.9) is no longer compatible with Svelte 3. It now requires Svelte 4.
 - The `@smui/common/elements` components are gone. Just set the `tag` prop on components now (like `<Button tag="div">`).
   - There's also a `Svg` component exported from `@smui/common` if you need an svg. You can't use `tag="svg"`, you have to use `component={Svg}`. (Why? It's a different DOM interface and has different props.)
   - Internally, they are replaced with the `SmuiElement` component exported from `@smui/common`. It takes a `tag` prop and creates an element dynamically with that tag name. You shouldn't ever need to use `SmuiElement` directly.
