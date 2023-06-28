@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.0.0-beta.10](https://github.com/hperrin/svelte-material-ui/compare/v7.0.0-beta.9...v7.0.0-beta.10) (2023-06-28)
+
+
+### Bug Fixes
+
+* suppress typescript issues with importing svelte internals ([985183c](https://github.com/hperrin/svelte-material-ui/commit/985183ce19213580be9dafd249deefcc82dc3679))
+
+
+### Features
+
+* migration to Svelte 4 in components ([51d2411](https://github.com/hperrin/svelte-material-ui/commit/51d2411a5630ca5511ad9e79a2f333339998f939))
+* use new generics definitions for better typing of components with tag prop ([4476f3a](https://github.com/hperrin/svelte-material-ui/commit/4476f3ab3b77df32b53b610c4ce2ecdc3b0fcd96))
+
+
+
+
+
 # [7.0.0-beta.9](https://github.com/hperrin/svelte-material-ui/compare/v7.0.0-beta.8...v7.0.0-beta.9) (2023-06-20)
 
 **Note:** Version bump only for package @smui-extra/site

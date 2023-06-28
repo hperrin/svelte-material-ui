@@ -1,6 +1,6 @@
 {
   "name": "@smui/ripple",
-  "version": "7.0.0-beta.9",
+  "version": "7.0.0-beta.10",
   "description": "Svelte Material UI - Ripple",
   "type": "module",
   "main": "dist/index.js",
@@ -41,7 +41,7 @@
   "dependencies": {
     "@material/dom": "^14.0.0",
     "@material/ripple": "^14.0.0",
-    "@smui/common": "^7.0.0-beta.9",
+    "@smui/common": "^7.0.0-beta.10",
     "svelte2tsx": "^0.6.15"
   },
   "devDependencies": {
