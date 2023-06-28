@@ -30,7 +30,7 @@
   import type { MDCSegmentedButtonFoundation as MDCSegmentedButtonFoundationType } from '@material/segmented-button';
   // TODO: Remove this when MDC's segmented button is fixed.
   // @ts-ignore
-  import { MDCSegmentedButtonFoundation } from '@material/segmented-button/dist/mdc.segmentedButton.js';
+  import { MDCSegmentedButtonFoundation } from '@material/segmented-button/index.js';
   import { onMount, setContext } from 'svelte';
   import { writable } from 'svelte/store';
   // @ts-ignore Need to use internal Svelte function

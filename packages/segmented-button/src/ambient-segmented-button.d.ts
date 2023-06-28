@@ -13,6 +13,7 @@ declare namespace svelteHTML {
   }
 }
 
-declare module '@material/segmented-button/dist/mdc.segmentedButton.js' {
+// TODO: Remove this when MDC's segmented button is fixed.
+declare module '@material/segmented-button/index.js' {
   export * from '@material/segmented-button';
 }
