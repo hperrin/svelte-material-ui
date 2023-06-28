@@ -1,11 +1,4 @@
 import type { SvelteComponent } from 'svelte';
-// @ts-ignore Using Svelte internal.
-import {
-  bubble,
-  listen,
-  prevent_default,
-  stop_propagation,
-} from 'svelte/internal';
 
 // Match old modifiers. (only works on DOM events)
 const oldModifierRegex =
@@ -47,9 +40,13 @@ export function forwardEventsBuilder(component: SvelteComponent) {
     };
   };
 
-  function forward(e: Event) {
+  function bubble(e: Event) {
     // Internally bubble the event up from Svelte components.
-    bubble(component, e);
+    const callbacks = component.$$.callbacks[e.type];
+    if (callbacks) {
+      // @ts-ignore
+      callbacks.slice().forEach((fn) => fn.call(this, e));
+    }
   }
 
   return (node: HTMLElement | SVGElement) => {
@@ -92,10 +89,13 @@ export function forwardEventsBuilder(component: SvelteComponent) {
         // Supported modifiers:
         // - preventDefault
         // - stopPropagation
+        // - stopImmediatePropagation
         // - passive
         // - nonpassive
         // - capture
         // - once
+        // - self
+        // - trusted
         const parts = eventType.split(oldModifierMatch ? ':' : '$');
         eventType = parts[0];
         const eventOptions: {
@@ -105,6 +105,9 @@ export function forwardEventsBuilder(component: SvelteComponent) {
           once?: true;
           preventDefault?: true;
           stopPropagation?: true;
+          stopImmediatePropagation?: true;
+          self?: true;
+          trusted?: true;
         } = parts.slice(1).reduce((obj, mod) => {
           obj[mod] = true;
           return obj;
@@ -131,6 +134,15 @@ export function forwardEventsBuilder(component: SvelteComponent) {
         if (eventOptions.stopPropagation) {
           handler = stop_propagation(handler);
         }
+        if (eventOptions.stopImmediatePropagation) {
+          handler = stop_immediate_propagation(handler);
+        }
+        if (eventOptions.self) {
+          handler = self_event(node, handler);
+        }
+        if (eventOptions.trusted) {
+          handler = trusted_event(handler);
+        }
       }
 
       // Listen for the event directly, with the given options.
@@ -147,7 +159,7 @@ export function forwardEventsBuilder(component: SvelteComponent) {
 
       // Forward the event from Svelte.
       if (!(eventType in forwardDestructors)) {
-        forwardDestructors[eventType] = listen(node, eventType, forward);
+        forwardDestructors[eventType] = listen(node, eventType, bubble);
       }
 
       return destructor;
@@ -172,4 +184,61 @@ export function forwardEventsBuilder(component: SvelteComponent) {
       },
     };
   };
+}
+
+function listen(
+  node: Node,
+  event: string,
+  handler: EventListenerOrEventListenerObject,
+  options?: boolean | AddEventListenerOptions
+) {
+  node.addEventListener(event, handler, options);
+  return () => node.removeEventListener(event, handler, options);
+}
+
+function prevent_default<T extends Function>(fn: T): T {
+  return function (event: Event) {
+    event.preventDefault();
+    // @ts-ignore
+    return fn.call(this, event);
+  } as unknown as T;
+}
+
+function stop_propagation<T extends Function>(fn: T): T {
+  return function (event: Event) {
+    event.stopPropagation();
+    // @ts-ignore
+    return fn.call(this, event);
+  } as unknown as T;
+}
+
+function stop_immediate_propagation<T extends Function>(fn: T): T {
+  return function (event: Event) {
+    event.stopImmediatePropagation();
+    // @ts-ignore
+    return fn.call(this, event);
+  } as unknown as T;
+}
+
+function self_event<T extends Function>(
+  node: HTMLElement | SVGElement,
+  fn: T
+): T {
+  return function (event: Event) {
+    if (event.target !== node) {
+      return;
+    }
+    // @ts-ignore
+    return fn.call(this, event);
+  } as unknown as T;
+}
+
+function trusted_event<T extends Function>(fn: T): T {
+  return function (event: Event) {
+    if (!event.isTrusted) {
+      return;
+    }
+    // @ts-ignore
+    return fn.call(this, event);
+  } as unknown as T;
 }
