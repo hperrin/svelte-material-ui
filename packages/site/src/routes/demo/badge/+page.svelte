@@ -23,7 +23,7 @@
     component={CustomColor}
     files={['badge/_CustomColor.svelte', 'badge/_CustomColor.scss']}
   >
-    Custom color
+    Colored (using Sass mixins)
   </Demo>
 
   <Demo component={PositionAlign} file="badge/_PositionAlign.svelte">

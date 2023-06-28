@@ -1,0 +1,20 @@
+@use '@material/radio/mixins' as radio;
+@use '@material/theme/color-palette';
+
+.my-colored-radio {
+  @include radio.checked-stroke-color(color-palette.$green-600);
+  @include radio.ink-color(color-palette.$green-600);
+  @include radio.disabled-checked-stroke-color(color-palette.$green-900);
+  @include radio.disabled-ink-color(color-palette.$green-900);
+  @include radio.focus-indicator-color(color-palette.$green-100);
+}
+
+.my-fully-colored-radio {
+  @include radio.unchecked-stroke-color(color-palette.$green-600);
+  @include radio.checked-stroke-color(color-palette.$green-600);
+  @include radio.ink-color(color-palette.$green-600);
+  @include radio.disabled-unchecked-stroke-color(color-palette.$green-900);
+  @include radio.disabled-checked-stroke-color(color-palette.$green-900);
+  @include radio.disabled-ink-color(color-palette.$green-900);
+  @include radio.focus-indicator-color(color-palette.$green-100);
+}

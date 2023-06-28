@@ -2,6 +2,6 @@
 @use '@material/theme/color-palette';
 
 .my-colored-circle {
-  @include circular-progress.color(color-palette.$green-500);
+  @include circular-progress.color(color-palette.$green-600);
   @include circular-progress.track-color(color-palette.$green-900);
 }

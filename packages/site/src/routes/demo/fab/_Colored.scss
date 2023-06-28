@@ -1,0 +1,6 @@
+@use '@material/fab/mixins' as fab;
+@use '@material/theme/color-palette';
+
+.my-colored-fab {
+  @include fab.accessible(color-palette.$green-600);
+}

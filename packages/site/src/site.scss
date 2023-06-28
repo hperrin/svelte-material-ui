@@ -13,13 +13,17 @@
 
 // Demo styles.
 @use './routes/demo/badge/_CustomColor.scss' as badge-custom-color;
+@use './routes/demo/button/_Colored.scss' as button-colored;
 @use './routes/demo/button/_Notched.scss';
 @use './routes/demo/button/_Round.scss';
+@use './routes/demo/checkbox/_Colored.scss' as checkbox-colored;
 @use './routes/demo/circular-progress/_Colored.scss' as
   circular-progress-colored;
 @use './routes/demo/circular-progress/_FourColor.scss';
 @use './routes/demo/elevation/_Elevation.scss';
 @use './routes/demo/elevation/_TransitionsAndColor.scss';
+@use './routes/demo/fab/_Colored.scss' as fab-colored;
+@use './routes/demo/icon-button/_Colored.scss' as icon-button-colored;
 @use './routes/demo/image-list/_EnforceAspectRatio.scss';
 @use './routes/demo/image-list/_FourByFive.scss';
 @use './routes/demo/image-list/_Masonry.scss';
@@ -27,5 +31,7 @@
 @use './routes/demo/linear-progress/_Colored.scss' as linear-progress-colored;
 @use './routes/demo/menu-surface/_ManualAnchor.scss';
 @use './routes/demo/paper/_CustomColor.scss' as paper-custom-color;
+@use './routes/demo/radio/_Colored.scss' as radio-colored;
 @use './routes/demo/snackbar/_Colors.scss';
+@use './routes/demo/switch/_Colored.scss' as switch-colored;
 @use './routes/demo/typography/_Typography.scss';

@@ -26,6 +26,13 @@
   <Demo component={Sizes} file="icon-button/_Sizes.svelte">
     Different sizes
   </Demo>
+
+  <Demo
+    component={Colored}
+    files={['icon-button/_Colored.svelte', 'icon-button/_Colored.scss']}
+  >
+    Colored (using Sass mixins)
+  </Demo>
 </section>
 
 <script lang="ts">
@@ -36,4 +43,5 @@
   import Svgs from './_Svgs.svelte';
   import Touch from './_Touch.svelte';
   import Sizes from './_Sizes.svelte';
+  import Colored from './_Colored.svelte';
 </script>

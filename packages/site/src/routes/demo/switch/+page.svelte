@@ -34,6 +34,13 @@
   </Demo>
 
   <Demo component={Events} file="switch/_Events.svelte">Events</Demo>
+
+  <Demo
+    component={Colored}
+    files={['switch/_Colored.svelte', 'switch/_Colored.scss']}
+  >
+    Colored (using Sass mixins)
+  </Demo>
 </section>
 
 <script lang="ts">
@@ -44,4 +51,5 @@
   import Group from './_Group.svelte';
   import NoIcons from './_NoIcons.svelte';
   import Events from './_Events.svelte';
+  import Colored from './_Colored.svelte';
 </script>

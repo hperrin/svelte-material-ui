@@ -4,10 +4,10 @@
 
 @include paper.paper-color(
   custom-green,
-  color-palette.$green-800,
-  theme-color.accessible-ink-color(color-palette.$green-800)
+  color-palette.$green-600,
+  theme-color.accessible-ink-color(color-palette.$green-600)
 );
 
 .custom-green {
-  color: color-palette.$green-800;
+  color: color-palette.$green-600;
 }

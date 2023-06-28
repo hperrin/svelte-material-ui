@@ -27,7 +27,7 @@
     component={CustomColor}
     files={['paper/_CustomColor.svelte', 'paper/_CustomColor.scss']}
   >
-    Custom color
+    Colored (using Sass mixins)
   </Demo>
 
   <Demo

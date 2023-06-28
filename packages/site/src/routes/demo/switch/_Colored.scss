@@ -1,0 +1,71 @@
+@use 'sass:color';
+@use '@material/switch' as switch;
+@use '@material/theme/color-palette';
+
+$base-color: color-palette.$green-600;
+$on-base-color: color-palette.$green-200;
+$inverse-color: color.scale($base-color, $lightness: 75%);
+$color-state-content: color.scale($base-color, $blackness: 50%);
+
+$disabled-base-color: color-palette.$green-900;
+$disabled-inverse-color: color.scale($disabled-base-color, $lightness: 75%);
+
+.my-colored-switch {
+  @include switch.theme(
+    (
+      selected-focus-handle-color: $color-state-content,
+      selected-focus-state-layer-color: $base-color,
+      selected-focus-track-color: $inverse-color,
+      selected-handle-color: $base-color,
+      selected-hover-handle-color: $color-state-content,
+      selected-hover-state-layer-color: $base-color,
+      selected-hover-track-color: $inverse-color,
+      selected-icon-color: $on-base-color,
+      selected-pressed-handle-color: $color-state-content,
+      selected-pressed-state-layer-color: $base-color,
+      selected-pressed-track-color: $inverse-color,
+      selected-track-color: $inverse-color,
+
+      disabled-selected-handle-color: $disabled-base-color,
+      disabled-selected-track-color: $disabled-inverse-color,
+    )
+  );
+}
+
+.my-fully-colored-switch {
+  @include switch.theme(
+    (
+      selected-focus-handle-color: $color-state-content,
+      selected-focus-state-layer-color: $base-color,
+      selected-focus-track-color: $inverse-color,
+      selected-handle-color: $base-color,
+      selected-hover-handle-color: $color-state-content,
+      selected-hover-state-layer-color: $base-color,
+      selected-hover-track-color: $inverse-color,
+      selected-icon-color: $on-base-color,
+      selected-pressed-handle-color: $color-state-content,
+      selected-pressed-state-layer-color: $base-color,
+      selected-pressed-track-color: $inverse-color,
+      selected-track-color: $inverse-color,
+
+      disabled-selected-handle-color: $disabled-base-color,
+      disabled-selected-track-color: $disabled-inverse-color,
+
+      unselected-focus-handle-color: $color-state-content,
+      unselected-focus-state-layer-color: $on-base-color,
+      unselected-focus-track-color: $inverse-color,
+      unselected-handle-color: $base-color,
+      unselected-hover-handle-color: $color-state-content,
+      unselected-hover-state-layer-color: $on-base-color,
+      unselected-hover-track-color: $inverse-color,
+      unselected-icon-color: $on-base-color,
+      unselected-pressed-handle-color: $color-state-content,
+      unselected-pressed-state-layer-color: $on-base-color,
+      unselected-pressed-track-color: $inverse-color,
+      unselected-track-color: $inverse-color,
+
+      disabled-unselected-handle-color: $disabled-base-color,
+      disabled-unselected-track-color: $disabled-inverse-color,
+    )
+  );
+}

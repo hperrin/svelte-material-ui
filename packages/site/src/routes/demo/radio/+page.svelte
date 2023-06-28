@@ -16,6 +16,13 @@
   <Demo component={Touch} file="radio/_Touch.svelte">
     Increased touch target
   </Demo>
+
+  <Demo
+    component={Colored}
+    files={['radio/_Colored.svelte', 'radio/_Colored.scss']}
+  >
+    Colored (using Sass mixins)
+  </Demo>
 </section>
 
 <script lang="ts">
@@ -23,4 +30,5 @@
 
   import Simple from './_Simple.svelte';
   import Touch from './_Touch.svelte';
+  import Colored from './_Colored.svelte';
 </script>

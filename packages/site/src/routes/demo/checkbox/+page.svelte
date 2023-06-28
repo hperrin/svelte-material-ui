@@ -22,6 +22,13 @@
   <Demo component={Indeterminate} file="checkbox/_Indeterminate.svelte">
     Indeterminate
   </Demo>
+
+  <Demo
+    component={Colored}
+    files={['checkbox/_Colored.svelte', 'checkbox/_Colored.scss']}
+  >
+    Colored (using Sass mixins)
+  </Demo>
 </section>
 
 <script lang="ts">
@@ -31,4 +38,5 @@
   import Touch from './_Touch.svelte';
   import Group from './_Group.svelte';
   import Indeterminate from './_Indeterminate.svelte';
+  import Colored from './_Colored.svelte';
 </script>

@@ -1,0 +1,7 @@
+@use '@material/icon-button/mixins' as icon-button;
+@use '@material/theme/color-palette';
+
+.my-colored-icon-button {
+  @include icon-button.ink-color(color-palette.$green-600);
+  @include icon-button.disabled-ink-color(color-palette.$green-900);
+}

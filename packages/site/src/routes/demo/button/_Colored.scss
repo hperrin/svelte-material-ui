@@ -1,0 +1,16 @@
+@use '@material/button/mixins' as button;
+@use '@material/theme/color-palette';
+
+.my-colored-button {
+  &.mdc-button {
+    @include button.ink-color(color-palette.$green-600);
+  }
+  &.mdc-button--unelevated,
+  &.mdc-button--raised {
+    @include button.filled-accessible(color-palette.$green-600);
+  }
+  &.mdc-button--outlined {
+    @include button.outline-color(color-palette.$green-600);
+    @include button.ink-color(color-palette.$green-600);
+  }
+}

@@ -34,6 +34,13 @@
   </Demo>
 
   <Demo
+    component={Colored}
+    files={['button/_Colored.svelte', 'button/_Colored.scss']}
+  >
+    Colored (using Sass mixins)
+  </Demo>
+
+  <Demo
     component={Round}
     files={['button/_Round.svelte', 'button/_Round.scss']}
   >
@@ -63,6 +70,7 @@
   import Link from './_Link.svelte';
   import Groups from './_Groups.svelte';
   import SplitButtons from './_SplitButtons.svelte';
+  import Colored from './_Colored.svelte';
   import Round from './_Round.svelte';
   import Notched from './_Notched.svelte';
   import CustomTag from './_CustomTag.svelte';

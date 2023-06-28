@@ -1,0 +1,38 @@
+@use '@material/checkbox/mixins' as checkbox;
+@use '@material/theme/color-palette';
+
+.my-colored-checkbox {
+  --mdc-checkbox-checked-color: #{color-palette.$green-600};
+
+  @include checkbox.container-colors(
+    $marked-stroke-color: color-palette.$green-600,
+    $marked-fill-color: color-palette.$green-600
+  );
+  @include checkbox.disabled-container-colors(
+    $marked-stroke-color: color-palette.$green-900,
+    $marked-fill-color: color-palette.$green-900
+  );
+  @include checkbox.ink-color(color-palette.$green-100);
+  @include checkbox.disabled-ink-color(color-palette.$green-400);
+  @include checkbox.focus-indicator-color(color-palette.$green-100);
+}
+
+.my-fully-colored-checkbox {
+  --mdc-checkbox-checked-color: #{color-palette.$green-600};
+
+  @include checkbox.container-colors(
+    $unmarked-stroke-color: color-palette.$green-600,
+    $unmarked-fill-color: transparent,
+    $marked-stroke-color: color-palette.$green-600,
+    $marked-fill-color: color-palette.$green-600
+  );
+  @include checkbox.disabled-container-colors(
+    $unmarked-stroke-color: color-palette.$green-900,
+    $unmarked-fill-color: transparent,
+    $marked-stroke-color: color-palette.$green-900,
+    $marked-fill-color: color-palette.$green-900
+  );
+  @include checkbox.ink-color(color-palette.$green-100);
+  @include checkbox.disabled-ink-color(color-palette.$green-400);
+  @include checkbox.focus-indicator-color(color-palette.$green-100);
+}

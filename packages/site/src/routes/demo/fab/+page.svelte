@@ -28,6 +28,13 @@
   <Demo component={Link} file="fab/_Link.svelte">Link</Demo>
 
   <Demo component={Svg} file="fab/_Svg.svelte">Svg</Demo>
+
+  <Demo
+    component={Colored}
+    files={['fab/_Colored.svelte', 'fab/_Colored.scss']}
+  >
+    Colored (using Sass mixins)
+  </Demo>
 </section>
 
 <script lang="ts">
@@ -41,6 +48,7 @@
   import NoRipple from './_NoRipple.svelte';
   import Link from './_Link.svelte';
   import Svg from './_Svg.svelte';
+  import Colored from './_Colored.svelte';
 </script>
 
 <style>
