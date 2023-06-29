@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.0.0-beta.12](https://github.com/hperrin/svelte-material-ui/compare/v7.0.0-beta.11...v7.0.0-beta.12) (2023-06-29)
+
+
+### Bug Fixes
+
+* rewrite google's imports to work in sveltekit ([cf99c9e](https://github.com/hperrin/svelte-material-ui/commit/cf99c9e391086e0e41a0c713cf2cc252c8df00f8))
+
+
+
+
+
 # [7.0.0-beta.11](https://github.com/hperrin/svelte-material-ui/compare/v7.0.0-beta.10...v7.0.0-beta.11) (2023-06-29)
 
 
