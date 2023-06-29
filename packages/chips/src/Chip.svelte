@@ -54,7 +54,7 @@
   {/if}
 </svelte:component>
 
-<script lang="ts" generics="TagName extends keyof SmuiElementPropMap = 'div'">
+<script lang="ts" generics="TagName extends SmuiEveryElement = 'div'">
   import { deprecated } from '@material/chips';
   import type { SvelteComponent } from 'svelte';
   import { onMount, setContext, getContext } from 'svelte';
@@ -70,9 +70,8 @@
   import Ripple from '@smui/ripple';
   import type {
     SmuiElementMap,
-    SmuiElementPropMap,
+    SmuiEveryElement,
     SmuiAttrs,
-    SmuiSvgAttrs,
   } from '@smui/common';
   import { SmuiElement } from '@smui/common';
 
@@ -94,11 +93,7 @@
     component?: typeof SvelteComponent;
     tag?: TagName;
   };
-  type $$Props = OwnProps &
-    (
-      | SmuiAttrs<TagName, OwnProps, 'getElement'>
-      | SmuiSvgAttrs<OwnProps, 'getElement'>
-    );
+  type $$Props = OwnProps & SmuiAttrs<TagName, OwnProps, 'getElement'>;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
@@ -134,8 +129,8 @@
   const index = getContext<SvelteStore<number>>('SMUI:chips:chip:index');
 
   export let component: typeof SvelteComponent = SmuiElement;
-  export let tag: TagName | undefined =
-    component === SmuiElement ? ('div' as TagName) : undefined;
+  export let tag: SmuiEveryElement | undefined =
+    component === SmuiElement ? 'div' : undefined;
 
   const shouldRemoveOnTrailingIconClickStore = writable(
     shouldRemoveOnTrailingIconClick

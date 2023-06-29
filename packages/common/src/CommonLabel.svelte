@@ -22,7 +22,7 @@
   {...$$restProps}><slot /></svelte:component
 >
 
-<script lang="ts" generics="TagName extends keyof SmuiElementPropMap = 'span'">
+<script lang="ts" generics="TagName extends SmuiEveryElement = 'span'">
   import type { SvelteComponent } from 'svelte';
   import { getContext } from 'svelte';
   // @ts-ignore Need to use internal Svelte function
@@ -32,9 +32,8 @@
   import { forwardEventsBuilder, classMap } from './internal/index.js';
   import type {
     SmuiElementMap,
-    SmuiElementPropMap,
+    SmuiEveryElement,
     SmuiAttrs,
-    SmuiSvgAttrs,
   } from './smui.types.js';
   import { SmuiElement } from './index.js';
 
@@ -44,11 +43,7 @@
     component?: typeof SvelteComponent;
     tag?: TagName;
   };
-  type $$Props = OwnProps &
-    (
-      | SmuiAttrs<TagName, OwnProps, 'getElement'>
-      | SmuiSvgAttrs<OwnProps, 'getElement'>
-    );
+  type $$Props = OwnProps & SmuiAttrs<TagName, OwnProps, 'getElement'>;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
@@ -60,8 +55,8 @@
   let element: SvelteComponent;
 
   export let component: typeof SvelteComponent = SmuiElement;
-  export let tag: TagName | undefined =
-    component === SmuiElement ? ('span' as TagName) : undefined;
+  export let tag: SmuiEveryElement | undefined =
+    component === SmuiElement ? 'span' : undefined;
 
   const context = getContext<string | undefined>('SMUI:label:context');
   const tabindex = getContext<number | undefined>('SMUI:label:tabindex');

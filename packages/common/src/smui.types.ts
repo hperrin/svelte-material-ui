@@ -50,6 +50,9 @@ import type {
   SVGAttributes,
 } from 'svelte/elements';
 
+export type SmuiEveryElement = keyof SmuiElementPropMap;
+export type SmuiHTMLElement = keyof Omit<SmuiElementPropMap, 'svg'>;
+
 export type SmuiAttrs<
   T extends keyof SmuiElementPropMap,
   OwnProps extends Object,
@@ -57,17 +60,6 @@ export type SmuiAttrs<
 > = Omit<
   {
     [P in keyof SmuiElementPropMap[T]]?: SmuiElementPropMap[T][P];
-  } & SvelteAttrs &
-    DataAttrs,
-  keyof OwnProps | RestOmmissions
->;
-
-export type SmuiSvgAttrs<
-  OwnProps extends Object,
-  RestOmmissions extends string
-> = Omit<
-  {
-    [P in keyof SVGAttributes<SVGSVGElement>]?: SVGAttributes<SVGSVGElement>[P];
   } & SvelteAttrs &
     DataAttrs,
   keyof OwnProps | RestOmmissions
@@ -218,6 +210,7 @@ export interface SmuiElementMap {
   sub: HTMLElement;
   summary: HTMLElement;
   sup: HTMLElement;
+  svg: SVGSVGElement;
   table: HTMLTableElement;
   template: HTMLTemplateElement;
   tbody: HTMLTableSectionElement;
@@ -337,6 +330,7 @@ export interface SmuiElementPropMap {
   sub: HTMLAttributes<HTMLElement>;
   summary: HTMLAttributes<HTMLElement>;
   sup: HTMLAttributes<HTMLElement>;
+  svg: SVGAttributes<SVGSVGElement>;
   table: HTMLTableAttributes;
   template: HTMLAttributes<HTMLTemplateElement>;
   tbody: HTMLAttributes<HTMLTableSectionElement>;

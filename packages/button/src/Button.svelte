@@ -53,7 +53,7 @@
 
 <script
   lang="ts"
-  generics="TagName extends keyof SmuiElementPropMap = 'button'"
+  generics="Href extends string | undefined = undefined, TagName extends SmuiEveryElement = Href extends string ? 'a' : 'button'"
 >
   import type { SvelteComponent } from 'svelte';
   import { setContext, getContext } from 'svelte';
@@ -68,9 +68,8 @@
   import Ripple from '@smui/ripple';
   import type {
     SmuiElementMap,
-    SmuiElementPropMap,
+    SmuiEveryElement,
     SmuiAttrs,
-    SmuiSvgAttrs,
   } from '@smui/common';
   import { SmuiElement } from '@smui/common';
 
@@ -82,18 +81,14 @@
     color?: 'primary' | 'secondary';
     variant?: 'text' | 'raised' | 'unelevated' | 'outlined';
     touch?: boolean;
-    href?: string | undefined;
+    href?: Href;
     action?: string;
     defaultAction?: boolean;
     secondary?: boolean;
     component?: typeof SvelteComponent;
     tag?: TagName;
   };
-  type $$Props = OwnProps &
-    (
-      | SmuiAttrs<TagName, OwnProps, 'getElement'>
-      | SmuiSvgAttrs<OwnProps, 'getElement'>
-    );
+  type $$Props = OwnProps & SmuiAttrs<TagName, OwnProps, 'getElement'>;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
@@ -117,10 +112,8 @@
   let context = getContext<string | undefined>('SMUI:button:context');
 
   export let component: typeof SvelteComponent = SmuiElement;
-  export let tag: TagName | undefined =
-    component === SmuiElement
-      ? ((href == null ? 'button' : 'a') as TagName)
-      : undefined;
+  export let tag: SmuiEveryElement | undefined =
+    component === SmuiElement ? (href == null ? 'button' : 'a') : undefined;
 
   $: actionProp =
     context === 'dialog:action' && action != null

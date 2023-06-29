@@ -30,7 +30,7 @@
   <slot />
 </svelte:component>
 
-<script lang="ts" generics="TagName extends keyof SmuiElementPropMap = 'ul'">
+<script lang="ts" generics="TagName extends SmuiEveryElement = 'ul'">
   import { MDCListFoundation } from '@material/list';
   import { ponyfill } from '@material/dom';
   import type { SvelteComponent } from 'svelte';
@@ -46,9 +46,8 @@
   } from '@smui/common/internal';
   import type {
     SmuiElementMap,
-    SmuiElementPropMap,
+    SmuiEveryElement,
     SmuiAttrs,
-    SmuiSvgAttrs,
   } from '@smui/common';
   import { SmuiElement } from '@smui/common';
 
@@ -135,8 +134,8 @@
   let removeLayoutListener: RemoveLayoutListener | undefined;
 
   export let component: typeof SvelteComponent = SmuiElement;
-  export let tag: TagName | undefined =
-    component === SmuiElement ? ((nav ? 'nav' : 'ul') as TagName) : undefined;
+  export let tag: SmuiEveryElement | undefined =
+    component === SmuiElement ? (nav ? 'nav' : 'ul') : undefined;
 
   setContext('SMUI:list:nonInteractive', nonInteractive);
   setContext('SMUI:separator:context', 'list');

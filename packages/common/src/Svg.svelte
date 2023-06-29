@@ -8,12 +8,18 @@
 
   import type { ActionArray } from './internal/useActions.js';
   import { forwardEventsBuilder, useActions } from './internal/index.js';
-  import type { SmuiSvgAttrs } from './smui.types.js';
+  import type { SmuiAttrs } from './smui.types.js';
+
+  if (console && console.warn) {
+    console.warn(
+      'The @smui/common Svg component is deprecated. You can use `tag="svg"` now.'
+    );
+  }
 
   type OwnProps = {
     use?: ActionArray;
   };
-  type $$Props = OwnProps & SmuiSvgAttrs<OwnProps, 'getElement'>;
+  type $$Props = OwnProps & SmuiAttrs<'svg', OwnProps, 'getElement'>;
 
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];

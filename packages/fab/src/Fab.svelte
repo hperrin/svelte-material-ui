@@ -41,7 +41,7 @@
 
 <script
   lang="ts"
-  generics="TagName extends keyof SmuiElementPropMap = 'button'"
+  generics="Href extends string | undefined = undefined, TagName extends SmuiEveryElement = Href extends string ? 'a' : 'button'"
 >
   import type { SvelteComponent } from 'svelte';
   import { setContext } from 'svelte';
@@ -52,9 +52,8 @@
   import Ripple from '@smui/ripple';
   import type {
     SmuiElementMap,
-    SmuiElementPropMap,
+    SmuiEveryElement,
     SmuiAttrs,
-    SmuiSvgAttrs,
   } from '@smui/common';
   import { SmuiElement } from '@smui/common';
 
@@ -69,15 +68,11 @@
     exited?: boolean;
     extended?: boolean;
     touch?: boolean;
-    href?: string | undefined;
+    href?: Href;
     component?: typeof SvelteComponent;
     tag?: TagName;
   };
-  type $$Props = OwnProps &
-    (
-      | SmuiAttrs<TagName, OwnProps, 'getElement'>
-      | SmuiSvgAttrs<OwnProps, 'getElement'>
-    );
+  type $$Props = OwnProps & SmuiAttrs<TagName, OwnProps, 'getElement'>;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
@@ -100,10 +95,8 @@
   let internalStyles: { [k: string]: string } = {};
 
   export let component: typeof SvelteComponent = SmuiElement;
-  export let tag: TagName | undefined =
-    component === SmuiElement
-      ? ((href == null ? 'button' : 'a') as TagName)
-      : undefined;
+  export let tag: SmuiEveryElement | undefined =
+    component === SmuiElement ? (href == null ? 'button' : 'a') : undefined;
 
   setContext('SMUI:label:context', 'fab');
   setContext('SMUI:icon:context', 'fab');

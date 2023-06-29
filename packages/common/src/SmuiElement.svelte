@@ -1,4 +1,11 @@
-{#if selfClosing}
+{#if tag === 'svg'}
+  <svg
+    bind:this={element}
+    use:useActions={use}
+    use:forwardEvents
+    {...$$restProps}><slot /></svg
+  >
+{:else if selfClosing}
   <svelte:element
     this={tag}
     bind:this={element}
@@ -16,13 +23,17 @@
   >
 {/if}
 
-<script lang="ts" generics="TagName extends keyof SmuiElementMap">
+<script lang="ts" generics="TagName extends SmuiEveryElement">
   // @ts-ignore Need to use internal Svelte function
   import { get_current_component } from 'svelte/internal';
 
   import type { ActionArray } from './internal/useActions.js';
   import { forwardEventsBuilder, useActions } from './internal/index.js';
-  import type { SmuiElementMap, SmuiAttrs } from './smui.types.js';
+  import type {
+    SmuiAttrs,
+    SmuiElementMap,
+    SmuiEveryElement,
+  } from './smui.types.js';
 
   type OwnProps = {
     use?: ActionArray;
@@ -32,7 +43,7 @@
 
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
-  export let tag: TagName;
+  export let tag: SmuiEveryElement;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 
@@ -54,9 +65,9 @@
       'wbr',
     ].indexOf(tag) > -1;
 
-  let element: SmuiElementMap[TagName];
+  let element: SmuiElementMap[SmuiEveryElement];
 
   export function getElement(): SmuiElementMap[TagName] {
-    return element;
+    return element as SmuiElementMap[TagName];
   }
 </script>

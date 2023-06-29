@@ -29,10 +29,10 @@
   </Demo>
 
   <Demo component={Svg} file="common/_Svg.svelte">
-    Svg Component
+    Svg Elements
     <svelte:fragment slot="subtitle">
       In the SMUI components that let you customize which DOM element is used to
-      render them, you can also use the Svg component to render an SVG.
+      render them, you can use the "svg" tag to render an SVG.
     </svelte:fragment>
   </Demo>
 

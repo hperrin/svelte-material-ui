@@ -69,7 +69,7 @@
 
 <script
   lang="ts"
-  generics="TagName extends keyof SmuiElementPropMap = 'button'"
+  generics="Href extends string | undefined = undefined, TagName extends SmuiEveryElement = Href extends string ? 'a' : 'button'"
 >
   import type { MDCIconButtonToggleEventDetail } from '@material/icon-button';
   import { MDCIconButtonToggleFoundation } from '@material/icon-button';
@@ -86,9 +86,8 @@
   import Ripple from '@smui/ripple';
   import type {
     SmuiElementMap,
-    SmuiElementPropMap,
+    SmuiEveryElement,
     SmuiAttrs,
-    SmuiSvgAttrs,
   } from '@smui/common';
   import { SmuiElement } from '@smui/common';
 
@@ -105,7 +104,7 @@
     touch?: boolean;
     displayFlex?: boolean;
     size?: 'normal' | 'mini' | 'button';
-    href?: string | undefined;
+    href?: Href;
     action?:
       | 'close'
       | 'first-page'
@@ -117,11 +116,7 @@
     component?: typeof SvelteComponent;
     tag?: TagName;
   };
-  type $$Props = OwnProps &
-    (
-      | SmuiAttrs<TagName, OwnProps, 'getElement'>
-      | SmuiSvgAttrs<OwnProps, 'getElement'>
-    );
+  type $$Props = OwnProps & SmuiAttrs<TagName, OwnProps, 'getElement'>;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
   interface UninitializedValue extends Function {}
@@ -163,10 +158,8 @@
   let ariaDescribedby = getContext('SMUI:icon-button:aria-describedby');
 
   export let component: typeof SvelteComponent = SmuiElement;
-  export let tag: TagName | undefined =
-    component === SmuiElement
-      ? ((href == null ? 'button' : 'a') as TagName)
-      : undefined;
+  export let tag: SmuiEveryElement | undefined =
+    component === SmuiElement ? (href == null ? 'button' : 'a') : undefined;
 
   $: actionProp = (() => {
     if (context === 'data-table:pagination') {

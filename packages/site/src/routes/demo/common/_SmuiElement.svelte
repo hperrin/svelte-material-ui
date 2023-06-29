@@ -28,8 +28,8 @@
   import { onMount } from 'svelte';
 
   // When you change the tag, you can use the generic type argument to get the
-  // right element from `getElement`.
-  let PButton: Button<'p'>;
+  // right element from `getElement`. The first arg for Button is "href".
+  let PButton: Button<undefined, 'p'>;
   let PButtonElement: HTMLParagraphElement;
 
   onMount(() => {

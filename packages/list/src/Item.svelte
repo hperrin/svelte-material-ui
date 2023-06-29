@@ -64,7 +64,10 @@
   let counter = 0;
 </script>
 
-<script lang="ts" generics="TagName extends keyof SmuiElementPropMap = 'li'">
+<script
+  lang="ts"
+  generics="Href extends string | undefined = undefined, TagName extends SmuiEveryElement = Href extends string ? 'a' : 'li'"
+>
   import type { SvelteComponent } from 'svelte';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
   // @ts-ignore Need to use internal Svelte function
@@ -83,9 +86,8 @@
   import Ripple from '@smui/ripple';
   import type {
     SmuiElementMap,
-    SmuiElementPropMap,
+    SmuiEveryElement,
     SmuiAttrs,
-    SmuiSvgAttrs,
   } from '@smui/common';
   import { SmuiElement } from '@smui/common';
 
@@ -106,15 +108,12 @@
     skipRestoreFocus?: boolean;
     tabindex?: number;
     inputId?: string;
-    href?: string | undefined;
+    href?: Href;
     component?: typeof SvelteComponent;
     tag?: TagName;
   };
   type $$Props = OwnProps &
-    (
-      | SmuiAttrs<TagName, OwnProps, 'action' | 'getPrimaryText' | 'getElement'>
-      | SmuiSvgAttrs<OwnProps, 'action' | 'getPrimaryText' | 'getElement  '>
-    ) & {
+    SmuiAttrs<TagName, OwnProps, 'action' | 'getPrimaryText' | 'getElement'> & {
       value?: any;
       'data-value'?: any;
     };
@@ -165,9 +164,13 @@
     : tabindexProp;
 
   export let component: typeof SvelteComponent = SmuiElement;
-  export let tag: TagName | undefined =
+  export let tag: SmuiEveryElement | undefined =
     component === SmuiElement
-      ? ((nav ? (href ? 'a' : 'span') : 'li') as TagName)
+      ? nav
+        ? href
+          ? 'a'
+          : 'span'
+        : 'li'
       : undefined;
 
   setContext('SMUI:generic:input:props', { id: inputId });

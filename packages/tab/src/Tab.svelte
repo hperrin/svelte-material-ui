@@ -68,7 +68,7 @@
 
 <script
   lang="ts"
-  generics="TagName extends keyof SmuiElementPropMap = 'button'"
+  generics="Href extends string | undefined = undefined, TagName extends SmuiHTMLElement = Href extends string ? 'a' : 'button'"
 >
   import { MDCTabFoundation } from '@material/tab';
   import type { SvelteComponent, ComponentProps } from 'svelte';
@@ -86,10 +86,10 @@
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
   import type {
+    SmuiHTMLElement,
     SmuiElementMap,
     SmuiElementPropMap,
     SmuiAttrs,
-    SmuiSvgAttrs,
   } from '@smui/common';
   import { SmuiElement } from '@smui/common';
   import TabIndicator from '@smui/tab-indicator';
@@ -105,24 +105,18 @@
     stacked?: boolean;
     minWidth?: boolean;
     indicatorSpanOnlyContent?: boolean;
-    href?: string | undefined;
+    href?: Href;
     content$use?: ActionArray;
     content$class?: string;
     component?: typeof SvelteComponent;
     tag?: TagName;
   };
   type $$Props = OwnProps &
-    (
-      | SmuiAttrs<
-          TagName,
-          OwnProps,
-          'activate' | 'deactivate' | 'focus' | 'getElement'
-        >
-      | SmuiSvgAttrs<
-          OwnProps,
-          'activate' | 'deactivate' | 'focus' | 'getElement  '
-        >
-    ) & {
+    SmuiAttrs<
+      TagName,
+      OwnProps,
+      'activate' | 'deactivate' | 'focus' | 'getElement'
+    > & {
       [k in keyof SmuiElementPropMap['span'] as `content\$${k}`]?: SmuiElementPropMap['span'][k];
     } & {
       [k in keyof ComponentProps<TabIndicator> as `tabIndicator\$${k}`]?: ComponentProps<TabIndicator>[k];
@@ -157,10 +151,8 @@
   let forceAccessible = false;
 
   export let component: typeof SvelteComponent = SmuiElement;
-  export let tag: TagName | undefined =
-    component === SmuiElement
-      ? ((href == null ? 'button' : 'a') as TagName)
-      : undefined;
+  export let tag: SmuiHTMLElement | undefined =
+    component === SmuiElement ? (href == null ? 'button' : 'a') : undefined;
 
   setContext('SMUI:label:context', 'tab');
   setContext('SMUI:icon:context', 'tab');

@@ -102,7 +102,7 @@
             target="_blank"
             title="View Docs: {repo.split('/').slice(-1)[0]}"
           >
-            <Icon component={Svg} viewBox="0 0 24 24">
+            <Icon tag="svg" viewBox="0 0 24 24">
               <path fill="currentColor" d={mdiFileDocument} />
             </Icon>
           </IconButton>
@@ -111,7 +111,7 @@
             href="https://github.com/hperrin/svelte-material-ui"
             title="SMUI on GitHub"
           >
-            <Icon component={Svg} viewBox="0 0 24 24">
+            <Icon tag="svg" viewBox="0 0 24 24">
               <path fill="currentColor" d={siGithub.path} />
             </Icon>
           </IconButton>
@@ -120,7 +120,7 @@
           href="https://discord.gg/aFzmkrmg9P"
           title="Join the Discord Server"
         >
-          <Icon component={Svg} viewBox="0 0 24 24">
+          <Icon tag="svg" viewBox="0 0 24 24">
             <path fill="currentColor" d={siDiscord.path} />
           </Icon>
         </IconButton>
@@ -128,7 +128,7 @@
           href="https://port87.social/@hperrin"
           title="Hunter Perrin (SMUI Author) on Mastodon"
         >
-          <Icon component={Svg} viewBox="0 0 24 24">
+          <Icon tag="svg" viewBox="0 0 24 24">
             <path fill="currentColor" d={siMastodon.path} />
           </Icon>
         </IconButton>
@@ -137,7 +137,7 @@
             on:click={() => themeMenu.setOpen(true)}
             title="Pick a theme or toggle dark mode."
           >
-            <Icon component={Svg} viewBox="0 0 24 24">
+            <Icon tag="svg" viewBox="0 0 24 24">
               <path fill="currentColor" d={mdiPalette} />
             </Icon>
           </IconButton>
@@ -268,8 +268,7 @@
   import IconButton from '@smui/icon-button';
   import Menu, { SelectionGroup, SelectionGroupIcon } from '@smui/menu';
   import List, { Item, Text, Separator } from '@smui/list';
-  import Tooltip, { Wrapper } from '@smui/tooltip';
-  import { Icon, Svg } from '@smui/common';
+  import { Icon } from '@smui/common';
 
   const iframe = $page.url.pathname.includes('/iframe');
 
@@ -291,7 +290,7 @@
   let theme: string | null = null;
 
   type DemoSection = {
-    component?: Item;
+    component?: Item<string>; // Items always have href.
     name: string;
     route?: string;
     shortcut?: string;

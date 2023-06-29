@@ -1,21 +1,8 @@
-<!--
-  Why is this a different component than SmuiElement?
-
-  Two reasons:
-
-  1. The SmuiElement component returns an HTMLElement type from `getElement`,
-     and an SVG does not implement that interface.
-  2. The SmuiElement component expects HTML attributes, while the Svg component
-     expects SVG attributes.
-
-  When you use the Svg component, you are effectively creating a namespace
-  boundary between HTML and SVG.
--->
-
 <div
   style="display: flex; justify-content: center; align-items: center; height: 140px;"
 >
-  <Svg
+  <SmuiElement
+    tag="svg"
     style="width: 100px; height: 100px;"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 300 300"
@@ -108,12 +95,12 @@
       xmlns:xlink="http://www.w3.org/1999/xlink"
     />
     <use xlink:href="#SVG" xmlns:xlink="http://www.w3.org/1999/xlink" />
-  </Svg>
+  </SmuiElement>
 </div>
 
 <div style="display: flex; align-items: center;">
   <IconButton on:click={() => clicked++}>
-    <Icon component={Svg} viewBox="0 0 24 24">
+    <Icon tag="svg" viewBox="0 0 24 24">
       <path fill="currentColor" d={mdiAccount} />
     </Icon>
   </IconButton>
@@ -122,9 +109,9 @@
 <pre class="status">Clicked: {clicked}</pre>
 
 <script lang="ts">
-  import { mdiImage, mdiAccount } from '@mdi/js';
+  import { mdiAccount } from '@mdi/js';
   import IconButton, { Icon } from '@smui/icon-button';
-  import { Svg } from '@smui/common';
+  import { SmuiElement } from '@smui/common';
 
   let clicked = 0;
 </script>
