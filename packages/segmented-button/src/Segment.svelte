@@ -36,6 +36,7 @@
 
 <script lang="ts">
   // TODO: Remove this when MDC's segmented button is fixed.
+  // TODO: Also remove @material/base and @material/ripple from the package.json
   // @ts-ignore
   import { MDCSegmentedButtonSegmentFoundation } from './mdc-segmented-button/index.js';
   import { onMount, getContext } from 'svelte';

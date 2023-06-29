@@ -21,13 +21,13 @@
  * THE SOFTWARE.
  */
 
-import { MDCComponent } from '@material/base/component';
-import type { SpecificEventListener } from '@material/base/types';
-import type { MDCRippleAdapter } from '@material/ripple/adapter';
-import { MDCRipple } from '@material/ripple/component';
-import type { MDCRippleFactory } from '@material/ripple/component';
-import { MDCRippleFoundation } from '@material/ripple/foundation';
-import type { MDCRippleCapableSurface } from '@material/ripple/types';
+import { MDCComponent } from '@material/base';
+import type { SpecificEventListener } from '@material/base';
+import type { MDCRippleAdapter } from '@material/ripple';
+import { MDCRipple } from '@material/ripple';
+import type { MDCRippleFactory } from '@material/ripple';
+import { MDCRippleFoundation } from '@material/ripple';
+import type { MDCRippleCapableSurface } from '@material/ripple';
 
 import type { SegmentDetail } from '../types';
 

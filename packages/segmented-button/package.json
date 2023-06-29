@@ -39,6 +39,8 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
+    "@material/base": "^14.0.0",
+    "@material/ripple": "^14.0.0",
     "@material/segmented-button": "^14.0.0",
     "@smui/common": "^7.0.0-beta.11",
     "@smui/ripple": "^7.0.0-beta.11",
