@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.0.0-beta.13](https://github.com/hperrin/svelte-material-ui/compare/v7.0.0-beta.12...v7.0.0-beta.13) (2023-06-29)
+
+
+### Bug Fixes
+
+* rework tag prop to allow svg, simplify prop types to fix ts error ([d1610c8](https://github.com/hperrin/svelte-material-ui/commit/d1610c8ebc1f8df2653770f45c43ac93ef78e4df))
+
+
+
+
+
 # [7.0.0-beta.12](https://github.com/hperrin/svelte-material-ui/compare/v7.0.0-beta.11...v7.0.0-beta.12) (2023-06-29)
 
 **Note:** Version bump only for package @smui/fab

@@ -1,6 +1,6 @@
 {
   "name": "@smui-extra/bottom-app-bar",
-  "version": "7.0.0-beta.12",
+  "version": "7.0.0-beta.13",
   "description": "Svelte Material UI - Bottom App Bar",
   "type": "module",
   "main": "dist/index.js",
@@ -41,8 +41,8 @@
   "dependencies": {
     "@material/feature-targeting": "^14.0.0",
     "@material/theme": "^14.0.0",
-    "@smui/common": "^7.0.0-beta.12",
-    "@smui/paper": "^7.0.0-beta.12",
+    "@smui/common": "^7.0.0-beta.13",
+    "@smui/paper": "^7.0.0-beta.13",
     "svelte2tsx": "^0.6.15"
   },
   "devDependencies": {
