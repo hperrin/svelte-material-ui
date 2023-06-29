@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.0.0-beta.11](https://github.com/hperrin/svelte-material-ui/compare/v7.0.0-beta.10...v7.0.0-beta.11) (2023-06-29)
+
+
+### Bug Fixes
+
+* if Google's not gonna fix it, I'll fix it myself ([e5d8a80](https://github.com/hperrin/svelte-material-ui/commit/e5d8a80ea741e5bc37db0f8543cc0485de69e295))
+
+
+
+
+
 # [7.0.0-beta.10](https://github.com/hperrin/svelte-material-ui/compare/v7.0.0-beta.9...v7.0.0-beta.10) (2023-06-28)
 
 
