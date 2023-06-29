@@ -12,8 +12,3 @@ declare namespace svelteHTML {
     ['on:selected']?: (event: CustomEvent<any> & { target: T }) => any;
   }
 }
-
-// TODO: Remove this when MDC's segmented button is fixed.
-declare module '@material/segmented-button/index.js' {
-  export * from '@material/segmented-button';
-}

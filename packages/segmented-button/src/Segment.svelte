@@ -35,10 +35,9 @@
 >
 
 <script lang="ts">
-  import type { MDCSegmentedButtonSegmentFoundation as MDCSegmentedButtonSegmentFoundationType } from '@material/segmented-button';
   // TODO: Remove this when MDC's segmented button is fixed.
   // @ts-ignore
-  import { MDCSegmentedButtonSegmentFoundation } from '@material/segmented-button/index.js';
+  import { MDCSegmentedButtonSegmentFoundation } from './mdc-segmented-button/index.js';
   import { onMount, getContext } from 'svelte';
   // @ts-ignore Need to use internal Svelte function
   import { get_current_component } from 'svelte/internal';
@@ -121,31 +120,28 @@
   }
 
   onMount(() => {
-    instance =
-      new (MDCSegmentedButtonSegmentFoundation as typeof MDCSegmentedButtonSegmentFoundationType)(
-        {
-          isSingleSelect: () => {
-            return $singleSelect;
-          },
-          getAttr,
-          setAttr: addAttr,
-          addClass,
-          removeClass,
-          hasClass,
-          notifySelectedChange: (value) => {
-            selected = value;
+    instance = new MDCSegmentedButtonSegmentFoundation({
+      isSingleSelect: () => {
+        return $singleSelect;
+      },
+      getAttr,
+      setAttr: addAttr,
+      addClass,
+      removeClass,
+      hasClass,
+      notifySelectedChange: (value) => {
+        selected = value;
 
-            dispatch(getElement(), 'selected', {
-              index: $index,
-              selected,
-              segmentId,
-            });
-          },
-          getRootBoundingClientRect: () => {
-            return getElement().getBoundingClientRect();
-          },
-        }
-      );
+        dispatch(getElement(), 'selected', {
+          index: $index,
+          selected,
+          segmentId,
+        });
+      },
+      getRootBoundingClientRect: () => {
+        return getElement().getBoundingClientRect();
+      },
+    });
 
     const accessor: SMUISegmentedButtonSegmentAccessor = {
       segmentId,
