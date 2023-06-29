@@ -24,8 +24,8 @@
   </Demo>
 
   <Demo
-    component={CustomColor}
-    files={['paper/_CustomColor.svelte', 'paper/_CustomColor.scss']}
+    component={Colored}
+    files={['paper/_Colored.svelte', 'paper/_Colored.scss']}
   >
     Colored (using Sass mixins)
   </Demo>
@@ -45,7 +45,7 @@
   import Square from './_Square.svelte';
   import PrimaryColor from './_PrimaryColor.svelte';
   import SecondaryColor from './_SecondaryColor.svelte';
-  import CustomColor from './_CustomColor.svelte';
+  import Colored from './_Colored.svelte';
   import ElevationTransition from './_ElevationTransition.svelte';
 </script>
 

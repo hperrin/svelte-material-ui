@@ -20,8 +20,8 @@
   </Demo>
 
   <Demo
-    component={CustomColor}
-    files={['badge/_CustomColor.svelte', 'badge/_CustomColor.scss']}
+    component={Colored}
+    files={['badge/_Colored.svelte', 'badge/_Colored.scss']}
   >
     Colored (using Sass mixins)
   </Demo>
@@ -37,6 +37,6 @@
   import Simple from './_Simple.svelte';
   import Square from './_Square.svelte';
   import SecondaryColor from './_SecondaryColor.svelte';
-  import CustomColor from './_CustomColor.svelte';
+  import Colored from './_Colored.svelte';
   import PositionAlign from './_PositionAlign.svelte';
 </script>

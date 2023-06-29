@@ -13,4 +13,6 @@
     @include button.outline-color(color-palette.$green-600);
     @include button.ink-color(color-palette.$green-600);
   }
+
+  @include button.ripple-states(color-palette.$green-600);
 }

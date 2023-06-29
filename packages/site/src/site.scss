@@ -12,7 +12,7 @@
 @use './app';
 
 // Demo styles.
-@use './routes/demo/badge/_CustomColor.scss' as badge-custom-color;
+@use './routes/demo/badge/_Colored.scss' as badge-custom-color;
 @use './routes/demo/button/_Colored.scss' as button-colored;
 @use './routes/demo/button/_Notched.scss';
 @use './routes/demo/button/_Round.scss';
@@ -30,7 +30,7 @@
 @use './routes/demo/image-list/_Simple.scss';
 @use './routes/demo/linear-progress/_Colored.scss' as linear-progress-colored;
 @use './routes/demo/menu-surface/_ManualAnchor.scss';
-@use './routes/demo/paper/_CustomColor.scss' as paper-custom-color;
+@use './routes/demo/paper/_Colored.scss' as paper-custom-color;
 @use './routes/demo/radio/_Colored.scss' as radio-colored;
 @use './routes/demo/snackbar/_Colors.scss';
 @use './routes/demo/switch/_Colored.scss' as switch-colored;
