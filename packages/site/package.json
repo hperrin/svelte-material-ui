@@ -7,7 +7,7 @@
     "dev": "vite dev",
     "build": "npm run theme && vite build",
     "preview": "vite preview",
-    "prepublish": "npm run build",
+    "prepublish": "npm run theme",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
     "theme": "npm run theme-smui && npm run theme-fixation && npm run theme-material && npm run theme-metro && npm run theme-unity",
@@ -42,6 +42,14 @@
   "publishConfig": {
     "access": "public"
   },
+  "files": [
+    "src",
+    "static",
+    "CHANGELOG.md",
+    "svelte.config.js",
+    "tsconfig.json",
+    "vite.config.js"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hperrin/svelte-material-ui.git"
