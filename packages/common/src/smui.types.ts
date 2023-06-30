@@ -13,30 +13,30 @@ import type {
   HTMLDetailsAttributes,
   HTMLDelAttributes,
   HTMLDialogAttributes,
-  HTMLEmbedAttributes,
+  // HTMLEmbedAttributes,
   HTMLFieldsetAttributes,
   HTMLFormAttributes,
-  HTMLHtmlAttributes,
-  HTMLIframeAttributes,
+  // HTMLHtmlAttributes,
+  // HTMLIframeAttributes,
   HTMLImgAttributes,
   HTMLInsAttributes,
   HTMLInputAttributes,
   HTMLLabelAttributes,
   HTMLLiAttributes,
-  HTMLLinkAttributes,
+  // HTMLLinkAttributes,
   HTMLMapAttributes,
-  HTMLMenuAttributes,
-  HTMLMetaAttributes,
+  // HTMLMenuAttributes,
+  // HTMLMetaAttributes,
   HTMLMeterAttributes,
   HTMLQuoteAttributes,
-  HTMLObjectAttributes,
+  // HTMLObjectAttributes,
   HTMLOlAttributes,
   HTMLOptgroupAttributes,
   HTMLOptionAttributes,
   HTMLOutputAttributes,
   HTMLProgressAttributes,
-  HTMLSlotAttributes,
-  HTMLScriptAttributes,
+  // HTMLSlotAttributes,
+  // HTMLScriptAttributes,
   HTMLSelectAttributes,
   HTMLSourceAttributes,
   HTMLStyleAttributes,
@@ -50,26 +50,13 @@ import type {
   SVGAttributes,
 } from 'svelte/elements';
 
-export type SmuiEveryElement = keyof SmuiElementPropMap;
-export type SmuiHTMLElement = keyof Omit<SmuiElementPropMap, 'svg'>;
+export type SmuiEveryElement = keyof SmuiElementMap;
+export type SmuiHTMLElement = keyof Omit<SmuiElementMap, 'svg'>;
 
 export type SmuiAttrs<
-  T extends keyof SmuiElementPropMap,
-  OwnProps extends Object,
-  RestOmmissions extends string
-> = Omit<
-  {
-    [P in keyof SmuiElementPropMap[T]]?: SmuiElementPropMap[T][P];
-  } & SvelteAttrs &
-    DataAttrs,
-  keyof OwnProps | RestOmmissions
->;
-
-export type SvelteAttrs = {
-  'sveltekit:noscroll'?: true | undefined | null;
-  'sveltekit:prefetch'?: true | undefined | null;
-  'sveltekit:reload'?: true | undefined | null;
-};
+  T extends SmuiEveryElement,
+  E extends string
+> = SmuiElementPropMap<E>[T] & DataAttrs;
 
 export type DataAttrs = {
   [k: `data-${string}`]: any;
@@ -123,9 +110,9 @@ export interface SmuiElementMap {
   base: HTMLBaseElement;
   bdi: HTMLElement;
   bdo: HTMLElement;
-  big: HTMLElement;
+  // big: HTMLElement;
   blockquote: HTMLQuoteElement;
-  body: HTMLBodyElement;
+  // body: HTMLBodyElement;
   br: HTMLBRElement;
   button: HTMLButtonElement;
   canvas: HTMLCanvasElement;
@@ -145,7 +132,7 @@ export interface SmuiElementMap {
   dl: HTMLDListElement;
   dt: HTMLElement;
   em: HTMLElement;
-  embed: HTMLEmbedElement;
+  // embed: HTMLEmbedElement;
   fieldset: HTMLFieldSetElement;
   figcaption: HTMLElement;
   figure: HTMLElement;
@@ -161,9 +148,9 @@ export interface SmuiElementMap {
   header: HTMLElement;
   hgroup: HTMLElement;
   hr: HTMLHRElement;
-  html: HTMLHtmlElement;
+  // html: HTMLHtmlElement;
   i: HTMLElement;
-  iframe: HTMLIFrameElement;
+  // iframe: HTMLIFrameElement;
   img: HTMLImageElement;
   input: HTMLInputElement;
   ins: HTMLModElement;
@@ -172,17 +159,17 @@ export interface SmuiElementMap {
   label: HTMLLabelElement;
   legend: HTMLLegendElement;
   li: HTMLLIElement;
-  link: HTMLLinkElement;
+  // link: HTMLLinkElement;
   main: HTMLElement;
   map: HTMLMapElement;
   mark: HTMLElement;
-  menu: HTMLMenuElement;
-  menuitem: HTMLElement;
-  meta: HTMLMetaElement;
+  // menu: HTMLMenuElement;
+  // menuitem: HTMLElement;
+  // meta: HTMLMetaElement;
   meter: HTMLMeterElement;
   nav: HTMLElement;
-  noscript: HTMLElement;
-  object: HTMLObjectElement;
+  // noscript: HTMLElement;
+  // object: HTMLObjectElement;
   ol: HTMLOListElement;
   optgroup: HTMLOptGroupElement;
   option: HTMLOptionElement;
@@ -196,10 +183,10 @@ export interface SmuiElementMap {
   rp: HTMLElement;
   rt: HTMLElement;
   ruby: HTMLElement;
-  s: HTMLElement;
+  // s: HTMLElement;
   samp: HTMLElement;
-  slot: HTMLSlotElement;
-  script: HTMLScriptElement;
+  // slot: HTMLSlotElement;
+  // script: HTMLScriptElement;
   section: HTMLElement;
   select: HTMLSelectElement;
   small: HTMLElement;
@@ -212,7 +199,7 @@ export interface SmuiElementMap {
   sup: HTMLElement;
   svg: SVGSVGElement;
   table: HTMLTableElement;
-  template: HTMLTemplateElement;
+  // template: HTMLTemplateElement;
   tbody: HTMLTableSectionElement;
   td: HTMLTableCellElement;
   textarea: HTMLTextAreaElement;
@@ -220,10 +207,10 @@ export interface SmuiElementMap {
   th: HTMLTableCellElement;
   thead: HTMLTableSectionElement;
   time: HTMLTimeElement;
-  title: HTMLTitleElement;
+  // title: HTMLTitleElement;
   tr: HTMLTableRowElement;
   track: HTMLTrackElement;
-  u: HTMLElement;
+  // u: HTMLElement;
   ul: HTMLUListElement;
   var: HTMLElement;
   video: HTMLVideoElement;
@@ -231,122 +218,140 @@ export interface SmuiElementMap {
   // webview: HTMLWebViewElement;
 }
 
-export interface SmuiElementPropMap {
-  a: HTMLAnchorAttributes;
-  abbr: HTMLAttributes<HTMLElement>;
-  address: HTMLAttributes<HTMLElement>;
-  area: HTMLAreaAttributes;
-  article: HTMLAttributes<HTMLElement>;
-  aside: HTMLAttributes<HTMLElement>;
-  audio: HTMLAudioAttributes;
-  b: HTMLAttributes<HTMLElement>;
-  base: HTMLBaseAttributes;
-  bdi: HTMLAttributes<HTMLElement>;
-  bdo: HTMLAttributes<HTMLElement>;
-  big: HTMLAttributes<HTMLElement>;
-  blockquote: HTMLBlockquoteAttributes;
-  body: HTMLAttributes<HTMLBodyElement>;
-  br: HTMLAttributes<HTMLBRElement>;
-  button: HTMLButtonAttributes;
-  canvas: HTMLCanvasAttributes;
-  caption: HTMLAttributes<HTMLElement>;
-  cite: HTMLAttributes<HTMLElement>;
-  code: HTMLAttributes<HTMLElement>;
-  col: HTMLColAttributes;
-  colgroup: HTMLColgroupAttributes;
-  data: HTMLDataAttributes;
-  datalist: HTMLAttributes<HTMLDataListElement>;
-  dd: HTMLAttributes<HTMLElement>;
-  del: HTMLDelAttributes;
-  details: HTMLDetailsAttributes;
-  dfn: HTMLAttributes<HTMLElement>;
-  dialog: HTMLDialogAttributes;
-  div: HTMLAttributes<HTMLDivElement>;
-  dl: HTMLAttributes<HTMLDListElement>;
-  dt: HTMLAttributes<HTMLElement>;
-  em: HTMLAttributes<HTMLElement>;
-  embed: HTMLEmbedAttributes;
-  fieldset: HTMLFieldsetAttributes;
-  figcaption: HTMLAttributes<HTMLElement>;
-  figure: HTMLAttributes<HTMLElement>;
-  footer: HTMLAttributes<HTMLElement>;
-  form: HTMLFormAttributes;
-  h1: HTMLAttributes<HTMLHeadingElement>;
-  h2: HTMLAttributes<HTMLHeadingElement>;
-  h3: HTMLAttributes<HTMLHeadingElement>;
-  h4: HTMLAttributes<HTMLHeadingElement>;
-  h5: HTMLAttributes<HTMLHeadingElement>;
-  h6: HTMLAttributes<HTMLHeadingElement>;
-  head: HTMLAttributes<HTMLElement>;
-  header: HTMLAttributes<HTMLElement>;
-  hgroup: HTMLAttributes<HTMLElement>;
-  hr: HTMLAttributes<HTMLHRElement>;
-  html: HTMLHtmlAttributes;
-  i: HTMLAttributes<HTMLElement>;
-  iframe: HTMLIframeAttributes;
-  img: HTMLImgAttributes;
-  input: HTMLInputAttributes;
-  ins: HTMLInsAttributes;
-  kbd: HTMLAttributes<HTMLElement>;
-  // keygen: HTMLKeygenAttributes;
-  label: HTMLLabelAttributes;
-  legend: HTMLAttributes<HTMLLegendElement>;
-  li: HTMLLiAttributes;
-  link: HTMLLinkAttributes;
-  main: HTMLAttributes<HTMLElement>;
-  map: HTMLMapAttributes;
-  mark: HTMLAttributes<HTMLElement>;
-  menu: HTMLMenuAttributes;
-  menuitem: HTMLAttributes<HTMLElement>;
-  meta: HTMLMetaAttributes;
-  meter: HTMLMeterAttributes;
-  nav: HTMLAttributes<HTMLElement>;
-  noscript: HTMLAttributes<HTMLElement>;
-  object: HTMLObjectAttributes;
-  ol: HTMLOlAttributes;
-  optgroup: HTMLOptgroupAttributes;
-  option: HTMLOptionAttributes;
-  output: HTMLOutputAttributes;
-  p: HTMLAttributes<HTMLParagraphElement>;
-  // param: HTMLParamAttributes;
-  picture: HTMLAttributes<HTMLElement>;
-  pre: HTMLAttributes<HTMLPreElement>;
-  progress: HTMLProgressAttributes;
-  q: HTMLQuoteAttributes;
-  rp: HTMLAttributes<HTMLElement>;
-  rt: HTMLAttributes<HTMLElement>;
-  ruby: HTMLAttributes<HTMLElement>;
-  s: HTMLAttributes<HTMLElement>;
-  samp: HTMLAttributes<HTMLElement>;
-  slot: HTMLSlotAttributes;
-  script: HTMLScriptAttributes;
-  section: HTMLAttributes<HTMLElement>;
-  select: HTMLSelectAttributes;
-  small: HTMLAttributes<HTMLElement>;
-  source: HTMLSourceAttributes;
-  span: HTMLAttributes<HTMLSpanElement>;
-  strong: HTMLAttributes<HTMLElement>;
-  style: HTMLStyleAttributes;
-  sub: HTMLAttributes<HTMLElement>;
-  summary: HTMLAttributes<HTMLElement>;
-  sup: HTMLAttributes<HTMLElement>;
-  svg: SVGAttributes<SVGSVGElement>;
-  table: HTMLTableAttributes;
-  template: HTMLAttributes<HTMLTemplateElement>;
-  tbody: HTMLAttributes<HTMLTableSectionElement>;
-  td: HTMLTdAttributes;
-  textarea: HTMLTextareaAttributes;
-  tfoot: HTMLAttributes<HTMLTableSectionElement>;
-  th: HTMLThAttributes;
-  thead: HTMLAttributes<HTMLTableSectionElement>;
-  time: HTMLTimeAttributes;
-  title: HTMLAttributes<HTMLTitleElement>;
-  tr: HTMLAttributes<HTMLTableRowElement>;
-  track: HTMLTrackAttributes;
-  u: HTMLAttributes<HTMLElement>;
-  ul: HTMLAttributes<HTMLUListElement>;
-  var: HTMLAttributes<HTMLElement>;
-  video: HTMLVideoAttributes;
-  wbr: HTMLAttributes<HTMLElement>;
-  // webview: HTMLWebViewAttributes;
+type HTMLElementAttributes = HTMLAttributes<HTMLElement>;
+type HTMLHeadingAttributes = HTMLAttributes<HTMLHeadingElement>;
+// type HTMLBodyAttributes = HTMLAttributes<HTMLBodyElement>;
+type HTMLBRAttributes = HTMLAttributes<HTMLBRElement>;
+type HTMLDataListAttributes = HTMLAttributes<HTMLDataListElement>;
+type HTMLDivAttributes = HTMLAttributes<HTMLDivElement>;
+type HTMLDListAttributes = HTMLAttributes<HTMLDListElement>;
+type HTMLHRAttributes = HTMLAttributes<HTMLHRElement>;
+type HTMLLegendAttributes = HTMLAttributes<HTMLLegendElement>;
+type HTMLParagraphAttributes = HTMLAttributes<HTMLParagraphElement>;
+type HTMLPreAttributes = HTMLAttributes<HTMLPreElement>;
+type HTMLSpanAttributes = HTMLAttributes<HTMLSpanElement>;
+// type HTMLTemplateAttributes = HTMLAttributes<HTMLTemplateElement>;
+type HTMLTableSectionAttributes = HTMLAttributes<HTMLTableSectionElement>;
+// type HTMLTitleAttributes = HTMLAttributes<HTMLTitleElement>;
+type HTMLTableRowAttributes = HTMLAttributes<HTMLTableRowElement>;
+type HTMLUListAttributes = HTMLAttributes<HTMLUListElement>;
+
+export interface SmuiElementPropMap<E extends string = ''> {
+  a: Omit<HTMLAnchorAttributes, E>;
+  abbr: Omit<HTMLElementAttributes, E>;
+  address: Omit<HTMLElementAttributes, E>;
+  area: Omit<HTMLAreaAttributes, E>;
+  article: Omit<HTMLElementAttributes, E>;
+  aside: Omit<HTMLElementAttributes, E>;
+  audio: Omit<HTMLAudioAttributes, E>;
+  b: Omit<HTMLElementAttributes, E>;
+  base: Omit<HTMLBaseAttributes, E>;
+  bdi: Omit<HTMLElementAttributes, E>;
+  bdo: Omit<HTMLElementAttributes, E>;
+  // big: Omit<HTMLElementAttributes, E>;
+  blockquote: Omit<HTMLBlockquoteAttributes, E>;
+  // body: Omit<HTMLBodyAttributes, E>;
+  br: Omit<HTMLBRAttributes, E>;
+  button: Omit<HTMLButtonAttributes, E>;
+  canvas: Omit<HTMLCanvasAttributes, E>;
+  caption: Omit<HTMLElementAttributes, E>;
+  cite: Omit<HTMLElementAttributes, E>;
+  code: Omit<HTMLElementAttributes, E>;
+  col: Omit<HTMLColAttributes, E>;
+  colgroup: Omit<HTMLColgroupAttributes, E>;
+  data: Omit<HTMLDataAttributes, E>;
+  datalist: Omit<HTMLDataListAttributes, E>;
+  dd: Omit<HTMLElementAttributes, E>;
+  del: Omit<HTMLDelAttributes, E>;
+  details: Omit<HTMLDetailsAttributes, E>;
+  dfn: Omit<HTMLElementAttributes, E>;
+  dialog: Omit<HTMLDialogAttributes, E>;
+  div: Omit<HTMLDivAttributes, E>;
+  dl: Omit<HTMLDListAttributes, E>;
+  dt: Omit<HTMLElementAttributes, E>;
+  em: Omit<HTMLElementAttributes, E>;
+  // embed: Omit<HTMLEmbedAttributes, E>;
+  fieldset: Omit<HTMLFieldsetAttributes, E>;
+  figcaption: Omit<HTMLElementAttributes, E>;
+  figure: Omit<HTMLElementAttributes, E>;
+  footer: Omit<HTMLElementAttributes, E>;
+  form: Omit<HTMLFormAttributes, E>;
+  h1: Omit<HTMLHeadingAttributes, E>;
+  h2: Omit<HTMLHeadingAttributes, E>;
+  h3: Omit<HTMLHeadingAttributes, E>;
+  h4: Omit<HTMLHeadingAttributes, E>;
+  h5: Omit<HTMLHeadingAttributes, E>;
+  h6: Omit<HTMLHeadingAttributes, E>;
+  head: Omit<HTMLElementAttributes, E>;
+  header: Omit<HTMLElementAttributes, E>;
+  hgroup: Omit<HTMLElementAttributes, E>;
+  hr: Omit<HTMLHRAttributes, E>;
+  // html: Omit<HTMLHtmlAttributes, E>;
+  i: Omit<HTMLElementAttributes, E>;
+  // iframe: Omit<HTMLIframeAttributes, E>;
+  img: Omit<HTMLImgAttributes, E>;
+  input: Omit<HTMLInputAttributes, E>;
+  ins: Omit<HTMLInsAttributes, E>;
+  kbd: Omit<HTMLElementAttributes, E>;
+  // keygen: Omit<HTMLKeygenAttributes, E>;
+  label: Omit<HTMLLabelAttributes, E>;
+  legend: Omit<HTMLLegendAttributes, E>;
+  li: Omit<HTMLLiAttributes, E>;
+  // link: Omit<HTMLLinkAttributes, E>;
+  main: Omit<HTMLElementAttributes, E>;
+  map: Omit<HTMLMapAttributes, E>;
+  mark: Omit<HTMLElementAttributes, E>;
+  // menu: Omit<HTMLMenuAttributes, E>;
+  // menuitem: Omit<HTMLElementAttributes, E>;
+  // meta: Omit<HTMLMetaAttributes, E>;
+  meter: Omit<HTMLMeterAttributes, E>;
+  nav: Omit<HTMLElementAttributes, E>;
+  // noscript: Omit<HTMLElementAttributes, E>;
+  // object: Omit<HTMLObjectAttributes, E>;
+  ol: Omit<HTMLOlAttributes, E>;
+  optgroup: Omit<HTMLOptgroupAttributes, E>;
+  option: Omit<HTMLOptionAttributes, E>;
+  output: Omit<HTMLOutputAttributes, E>;
+  p: Omit<HTMLParagraphAttributes, E>;
+  // param: Omit<HTMLParamAttributes, E>;
+  picture: Omit<HTMLElementAttributes, E>;
+  pre: Omit<HTMLPreAttributes, E>;
+  progress: Omit<HTMLProgressAttributes, E>;
+  q: Omit<HTMLQuoteAttributes, E>;
+  rp: Omit<HTMLElementAttributes, E>;
+  rt: Omit<HTMLElementAttributes, E>;
+  ruby: Omit<HTMLElementAttributes, E>;
+  // s: Omit<HTMLElementAttributes, E>;
+  samp: Omit<HTMLElementAttributes, E>;
+  // slot: Omit<HTMLSlotAttributes, E>;
+  // script: Omit<HTMLScriptAttributes, E>;
+  section: Omit<HTMLElementAttributes, E>;
+  select: Omit<HTMLSelectAttributes, E>;
+  small: Omit<HTMLElementAttributes, E>;
+  source: Omit<HTMLSourceAttributes, E>;
+  span: Omit<HTMLSpanAttributes, E>;
+  strong: Omit<HTMLElementAttributes, E>;
+  style: Omit<HTMLStyleAttributes, E>;
+  sub: Omit<HTMLElementAttributes, E>;
+  summary: Omit<HTMLElementAttributes, E>;
+  sup: Omit<HTMLElementAttributes, E>;
+  svg: Omit<SVGAttributes<SVGSVGElement>, E>;
+  table: Omit<HTMLTableAttributes, E>;
+  // template: Omit<HTMLTemplateAttributes, E>;
+  tbody: Omit<HTMLTableSectionAttributes, E>;
+  td: Omit<HTMLTdAttributes, E>;
+  textarea: Omit<HTMLTextareaAttributes, E>;
+  tfoot: Omit<HTMLTableSectionAttributes, E>;
+  th: Omit<HTMLThAttributes, E>;
+  thead: Omit<HTMLTableSectionAttributes, E>;
+  time: Omit<HTMLTimeAttributes, E>;
+  // title: Omit<HTMLTitleAttributes, E>;
+  tr: Omit<HTMLTableRowAttributes, E>;
+  track: Omit<HTMLTrackAttributes, E>;
+  // u: Omit<HTMLElementAttributes, E>;
+  ul: Omit<HTMLUListAttributes, E>;
+  var: Omit<HTMLElementAttributes, E>;
+  video: Omit<HTMLVideoAttributes, E>;
+  wbr: Omit<HTMLElementAttributes, E>;
+  // webview: Omit<HTMLWebViewAttributes, E>;
 }

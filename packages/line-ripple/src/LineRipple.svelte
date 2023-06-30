@@ -34,12 +34,7 @@
     style?: string;
     active?: boolean;
   };
-  type $$Props = OwnProps &
-    SmuiAttrs<
-      'div',
-      OwnProps,
-      'activate' | 'deactivate' | 'setRippleCenter' | 'getElement'
-    >;
+  type $$Props = OwnProps & SmuiAttrs<'div', keyof OwnProps>;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

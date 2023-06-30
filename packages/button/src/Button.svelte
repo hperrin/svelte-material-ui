@@ -88,7 +88,7 @@
     component?: typeof SvelteComponent;
     tag?: TagName;
   };
-  type $$Props = OwnProps & SmuiAttrs<TagName, OwnProps, 'getElement'>;
+  type $$Props = OwnProps & SmuiAttrs<TagName, keyof OwnProps>;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

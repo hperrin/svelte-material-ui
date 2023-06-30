@@ -87,9 +87,9 @@
     columnId?: string;
     sortable?: boolean;
   };
-  type $$Props = OwnProps &
-    SmuiAttrs<'th', OwnProps, 'getElement'> &
-    SmuiAttrs<'td', OwnProps, 'getElement'>;
+  type $$Props = SmuiAttrs<'th', keyof OwnProps> &
+    SmuiAttrs<'td', keyof OwnProps> &
+    OwnProps;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

@@ -37,12 +37,7 @@
     updateInvalid?: boolean;
     resizable?: boolean;
   };
-  type $$Props = OwnProps &
-    SmuiAttrs<
-      'textarea',
-      OwnProps,
-      'getAttr' | 'addAttr' | 'removeAttr' | 'focus' | 'blur' | 'getElement'
-    >;
+  type $$Props = OwnProps & SmuiAttrs<'textarea', keyof OwnProps>;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

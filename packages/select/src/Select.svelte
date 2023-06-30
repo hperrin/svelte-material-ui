@@ -283,15 +283,7 @@
     menu$class?: string;
   };
   type $$Props = OwnProps &
-    SmuiAttrs<
-      'div',
-      OwnProps,
-      | 'getUseDefaultValidation'
-      | 'setUseDefaultValidation'
-      | 'focus'
-      | 'layout'
-      | 'getElement'
-    > & {
+    SmuiAttrs<'div', keyof OwnProps> & {
       [k in keyof ComponentProps<HelperText> as `helperText\$${k}`]?: ComponentProps<HelperText>[k];
     } & {
       [k in keyof SmuiElementPropMap['input'] as `input\$${k}`]?: SmuiElementPropMap['input'][k];

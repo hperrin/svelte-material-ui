@@ -26,7 +26,7 @@
     use?: ActionArray;
     class?: string;
   };
-  type $$Props = OwnProps & SmuiAttrs<'label', OwnProps, 'getElement'>;
+  type $$Props = OwnProps & SmuiAttrs<'label', keyof OwnProps>;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

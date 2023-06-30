@@ -60,7 +60,7 @@
     tabindex?: number;
   };
   type $$Props = OwnProps &
-    SmuiAttrs<'div', OwnProps, 'scrollIntoView' | 'getElement'> & {
+    SmuiAttrs<'div', keyof OwnProps> & {
       [k in keyof ComponentProps<TabScroller> as `tabScroller\$${k}`]?: ComponentProps<TabScroller>[k];
     };
 

@@ -36,7 +36,7 @@
     list$class?: string;
   };
   type $$Props = OwnProps &
-    SmuiAttrs<'li', OwnProps, 'getElement'> & {
+    SmuiAttrs<'li', keyof OwnProps> & {
       [k in keyof SmuiElementPropMap['ul'] as `list\$${k}`]?: SmuiElementPropMap['ul'][k];
     };
 

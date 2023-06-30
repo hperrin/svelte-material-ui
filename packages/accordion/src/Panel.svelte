@@ -49,12 +49,7 @@
     extend?: boolean;
     extendedElevation?: number;
   };
-  type $$Props = {
-    [P in Exclude<
-      keyof ComponentProps<Paper>,
-      keyof OwnProps
-    >]?: ComponentProps<Paper>[P];
-  } & OwnProps;
+  type $$Props = OwnProps & Omit<ComponentProps<Paper>, keyof OwnProps>;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

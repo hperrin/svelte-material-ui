@@ -66,8 +66,7 @@
     dense?: boolean;
     scrollTarget?: HTMLElement | undefined;
   };
-  type $$Props = OwnProps &
-    SmuiAttrs<'header', OwnProps, 'getPropStore' | 'getElement'>;
+  type $$Props = OwnProps & SmuiAttrs<'header', keyof OwnProps>;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
   interface UninitializedValue extends Function {}

@@ -104,11 +104,7 @@
     graphic$class?: string;
   };
   type $$Props = OwnProps &
-    SmuiAttrs<
-      'div',
-      OwnProps,
-      'isOpen' | 'setOpen' | 'layout' | 'getElement'
-    > & {
+    SmuiAttrs<'div', keyof OwnProps> & {
       [k in keyof SmuiElementPropMap['div'] as `content\$${k}`]?: SmuiElementPropMap['div'][k];
     } & {
       [k in keyof SmuiElementPropMap['div'] as `textWrapper\$${k}`]?: SmuiElementPropMap['div'][k];

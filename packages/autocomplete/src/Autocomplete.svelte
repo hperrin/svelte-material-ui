@@ -136,7 +136,7 @@
     menu$anchorCorner?: ComponentProps<Menu>['anchorCorner'];
   };
   type $$Props = OwnProps &
-    SmuiAttrs<'div', OwnProps, 'focus' | 'blur' | 'getElement'> & {
+    SmuiAttrs<'div', keyof OwnProps> & {
       [k in keyof ComponentProps<Menu> as `menu\$${k}`]?: ComponentProps<Menu>[k];
     } & {
       [k in keyof ComponentProps<Textfield> as `textfield\$${k}`]?: ComponentProps<Textfield>[k];

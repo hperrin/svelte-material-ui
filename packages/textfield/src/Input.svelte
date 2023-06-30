@@ -44,12 +44,7 @@
     /** When the value of the input is "", set value prop to undefined. */
     emptyValueUndefined?: boolean;
   };
-  type $$Props = OwnProps &
-    SmuiAttrs<
-      'input',
-      OwnProps,
-      'getAttr' | 'addAttr' | 'removeAttr' | 'focus' | 'blur' | 'getElement'
-    >;
+  type $$Props = OwnProps & SmuiAttrs<'input', keyof OwnProps>;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
   interface UninitializedValue extends Function {}

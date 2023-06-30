@@ -29,7 +29,7 @@
     use?: ActionArray;
     class?: string;
   };
-  type $$Props = OwnProps & SmuiAttrs<'i', OwnProps, 'getElement'>;
+  type $$Props = OwnProps & SmuiAttrs<'i', keyof OwnProps>;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

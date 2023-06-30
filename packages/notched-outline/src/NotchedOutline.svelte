@@ -47,8 +47,7 @@
     notched?: boolean;
     noLabel?: boolean;
   };
-  type $$Props = OwnProps &
-    SmuiAttrs<'div', OwnProps, 'notch' | 'closeNotch' | 'getElement'>;
+  type $$Props = OwnProps & SmuiAttrs<'div', keyof OwnProps>;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

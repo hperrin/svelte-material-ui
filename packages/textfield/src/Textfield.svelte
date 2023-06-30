@@ -303,8 +303,8 @@
     notchedOutline?: NotchedOutline | undefined;
   };
   type $$Props = OwnProps &
-    SmuiAttrs<'label', OwnProps, 'focus' | 'blur' | 'layout' | 'getElement'> &
-    SmuiAttrs<'div', OwnProps, 'focus' | 'blur' | 'layout' | 'getElement'> & {
+    SmuiAttrs<'label', keyof OwnProps> &
+    SmuiAttrs<'div', keyof OwnProps> & {
       [k in keyof ComponentProps<FloatingLabel> as `label\$${k}`]?: ComponentProps<FloatingLabel>[k];
     } & {
       [k in keyof ComponentProps<NotchedOutline> as `outline\$${k}`]?: ComponentProps<NotchedOutline>[k];

@@ -42,7 +42,7 @@
     class?: string;
     rowId?: string;
   };
-  type $$Props = OwnProps & SmuiAttrs<'tr', OwnProps, 'getElement'>;
+  type $$Props = OwnProps & SmuiAttrs<'tr', keyof OwnProps>;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

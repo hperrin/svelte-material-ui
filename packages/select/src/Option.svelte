@@ -22,12 +22,7 @@
     class?: string;
     value?: any;
   };
-  type $$Props = {
-    [P in Exclude<
-      keyof ComponentProps<Item>,
-      keyof OwnProps
-    >]?: ComponentProps<Item>[P];
-  } & OwnProps;
+  type $$Props = OwnProps & Omit<ComponentProps<Item>, keyof OwnProps>;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

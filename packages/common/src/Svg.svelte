@@ -19,7 +19,7 @@
   type OwnProps = {
     use?: ActionArray;
   };
-  type $$Props = OwnProps & SmuiAttrs<'svg', OwnProps, 'getElement'>;
+  type $$Props = OwnProps & SmuiAttrs<'svg', keyof OwnProps>;
 
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];

@@ -38,7 +38,7 @@
     align?: 'left' | 'right' | undefined;
   };
   type $$Props = OwnProps &
-    SmuiAttrs<'div', OwnProps, 'getElement'> & {
+    SmuiAttrs<'div', keyof OwnProps> & {
       [k in keyof ComponentProps<InnerGrid> as `innerGrid\$${k}`]?: ComponentProps<InnerGrid>[k];
     };
 

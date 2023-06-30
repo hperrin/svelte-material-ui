@@ -229,7 +229,7 @@
     input$class?: string;
   };
   type $$Props = OwnProps &
-    SmuiAttrs<'div', OwnProps, 'layout' | 'getId' | 'getElement'> & {
+    SmuiAttrs<'div', keyof OwnProps> & {
       [k in keyof SmuiElementPropMap['input'] as `input\$${k}`]?: SmuiElementPropMap['input'][k];
     } & {
       input$type?: never;

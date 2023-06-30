@@ -39,7 +39,7 @@
     use?: ActionArray;
     tag: TagName;
   };
-  type $$Props = OwnProps & SmuiAttrs<TagName, OwnProps, 'getElement'>;
+  type $$Props = OwnProps & SmuiAttrs<TagName, keyof OwnProps>;
 
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];

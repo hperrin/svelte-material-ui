@@ -43,7 +43,7 @@
       phone?: number;
     };
   };
-  type $$Props = OwnProps & SmuiAttrs<'div', OwnProps, 'getElement'>;
+  type $$Props = OwnProps & SmuiAttrs<'div', keyof OwnProps>;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

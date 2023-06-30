@@ -112,11 +112,7 @@
     tag?: TagName;
   };
   type $$Props = OwnProps &
-    SmuiAttrs<
-      TagName,
-      OwnProps,
-      'activate' | 'deactivate' | 'focus' | 'getElement'
-    > & {
+    SmuiAttrs<TagName, keyof OwnProps> & {
       [k in keyof SmuiElementPropMap['span'] as `content\$${k}`]?: SmuiElementPropMap['span'][k];
     } & {
       [k in keyof ComponentProps<TabIndicator> as `tabIndicator\$${k}`]?: ComponentProps<TabIndicator>[k];

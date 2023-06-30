@@ -72,11 +72,7 @@
     icon$class?: string;
   };
   type $$Props = OwnProps &
-    SmuiAttrs<
-      'button',
-      OwnProps,
-      'isNavigable' | 'focus' | 'removeFocus' | 'getElement'
-    > & {
+    SmuiAttrs<'button', keyof OwnProps> & {
       [k in keyof SmuiElementPropMap['span'] as `icon\$${k}`]?: SmuiElementPropMap['span'][k];
     };
 

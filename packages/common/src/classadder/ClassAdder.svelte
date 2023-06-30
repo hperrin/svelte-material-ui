@@ -32,7 +32,11 @@
   // @ts-ignore Need to use internal Svelte function
   import { get_current_component } from 'svelte/internal';
 
-  import type { SmuiElementPropMap, SmuiAttrs } from '../smui.types.js';
+  import type {
+    SmuiElementPropMap,
+    SmuiEveryElement,
+    SmuiAttrs,
+  } from '../smui.types.js';
   import type { ActionArray } from '../internal/useActions.js';
   import { forwardEventsBuilder } from '../internal/forwardEventsBuilder.js';
   import { classMap } from '../internal/classMap.js';
@@ -43,8 +47,7 @@
     component?: typeof SvelteComponent;
     tag?: keyof SmuiElementPropMap;
   };
-  type $$Props = OwnProps &
-    SmuiAttrs<keyof SmuiElementPropMap, OwnProps, 'getElement'>;
+  type $$Props = OwnProps & SmuiAttrs<SmuiEveryElement, keyof OwnProps>;
 
   export let use: ActionArray = [];
   let className = '';

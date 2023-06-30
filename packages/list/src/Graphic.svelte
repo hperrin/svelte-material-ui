@@ -26,7 +26,7 @@
     use?: ActionArray;
     class?: string;
   };
-  type $$Props = OwnProps & SmuiAttrs<'span', OwnProps, 'getElement'>;
+  type $$Props = OwnProps & SmuiAttrs<'span', keyof OwnProps>;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

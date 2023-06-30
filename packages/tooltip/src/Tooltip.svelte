@@ -89,11 +89,7 @@
     surface$style?: string;
   };
   type $$Props = OwnProps &
-    SmuiAttrs<
-      'div',
-      OwnProps,
-      'attachScrollHandler' | 'removeScrollHandler' | 'getElement'
-    > & {
+    SmuiAttrs<'div', keyof OwnProps> & {
       [k in keyof SmuiElementPropMap['div'] as `surface\$${k}`]?: SmuiElementPropMap['div'][k];
     };
 

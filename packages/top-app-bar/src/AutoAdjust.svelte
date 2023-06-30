@@ -32,7 +32,7 @@
     component?: typeof SvelteComponent;
     tag?: TagName;
   };
-  type $$Props = OwnProps & SmuiAttrs<TagName, OwnProps, 'getElement'>;
+  type $$Props = OwnProps & SmuiAttrs<TagName, keyof OwnProps>;
 
   import type TopAppBar from './TopAppBar.svelte';
 

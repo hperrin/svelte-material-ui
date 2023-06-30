@@ -64,17 +64,7 @@
     surface$use?: ActionArray;
   };
   type $$Props = OwnProps &
-    SmuiAttrs<
-      'aside',
-      OwnProps,
-      | 'open'
-      | 'forceOpen'
-      | 'close'
-      | 'isOpen'
-      | 'getLabelElement'
-      | 'getActionButtonElement'
-      | 'getElement'
-    > & {
+    SmuiAttrs<'aside', keyof OwnProps> & {
       [k in keyof SmuiElementPropMap['div'] as `surface\$${k}`]?: SmuiElementPropMap['div'][k];
     };
 

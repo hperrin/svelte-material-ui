@@ -45,9 +45,7 @@
     class?: string;
     open?: boolean;
   };
-  type $$Props = {
-    [k in keyof ComponentProps<MenuSurface>]?: ComponentProps<MenuSurface>[k];
-  } & OwnProps;
+  type $$Props = OwnProps & Omit<ComponentProps<MenuSurface>, keyof OwnProps>;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

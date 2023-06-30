@@ -103,7 +103,7 @@
     table$class?: string;
   };
   type $$Props = OwnProps &
-    SmuiAttrs<'div', OwnProps, 'layout' | 'getElement'> & {
+    SmuiAttrs<'div', keyof OwnProps> & {
       [k in keyof SmuiElementPropMap['div'] as `container\$${k}`]?: SmuiElementPropMap['div'][k];
     } & {
       [k in keyof SmuiElementPropMap['table'] as `table\$${k}`]?: SmuiElementPropMap['table'][k];

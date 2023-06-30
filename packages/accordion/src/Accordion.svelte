@@ -35,7 +35,7 @@
     class?: string;
     multiple?: boolean;
   };
-  type $$Props = OwnProps & SmuiAttrs<'div', OwnProps, 'getElement'>;
+  type $$Props = OwnProps & SmuiAttrs<'div', keyof OwnProps>;
 
   import type { SMUIAccordionPanelAccessor } from './Panel.types.js';
 

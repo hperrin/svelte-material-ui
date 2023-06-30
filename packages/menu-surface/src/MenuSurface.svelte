@@ -70,17 +70,7 @@
      */
     neverRestoreFocus?: boolean;
   };
-  type $$Props = OwnProps &
-    SmuiAttrs<
-      'div',
-      OwnProps,
-      | 'isOpen'
-      | 'setOpen'
-      | 'setAbsolutePosition'
-      | 'setIsHoisted'
-      | 'isFixed'
-      | 'getElement'
-    >;
+  type $$Props = OwnProps & SmuiAttrs<'div', keyof OwnProps>;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

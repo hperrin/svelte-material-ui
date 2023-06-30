@@ -77,15 +77,7 @@
     scrollContent$class?: string;
   };
   type $$Props = OwnProps &
-    SmuiAttrs<
-      'div',
-      OwnProps,
-      | 'getScrollPosition'
-      | 'getScrollContentWidth'
-      | 'incrementScroll'
-      | 'scrollTo'
-      | 'getElement'
-    > & {
+    SmuiAttrs<'div', keyof OwnProps> & {
       [k in keyof SmuiElementPropMap['div'] as `scrollArea\$${k}`]?: SmuiElementPropMap['div'][k];
     } & {
       [k in keyof SmuiElementPropMap['div'] as `scrollContent\$${k}`]?: SmuiElementPropMap['div'][k];

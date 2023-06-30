@@ -40,8 +40,7 @@
     color?: 'default' | 'primary' | 'secondary' | string;
     variant?: 'fixed' | 'static' | 'standard';
   };
-  type $$Props = OwnProps &
-    SmuiAttrs<'div', OwnProps, 'getPropStore' | 'getElement'>;
+  type $$Props = OwnProps & SmuiAttrs<'div', keyof OwnProps>;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

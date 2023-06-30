@@ -32,7 +32,7 @@
     align?: 'start' | 'end';
     toolbar?: boolean;
   };
-  type $$Props = OwnProps & SmuiAttrs<'section', OwnProps, 'getElement'>;
+  type $$Props = OwnProps & SmuiAttrs<'section', keyof OwnProps>;
 
   const forwardEvents = forwardEventsBuilder(get_current_component());
 

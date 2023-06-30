@@ -112,8 +112,8 @@
     component?: typeof SvelteComponent;
     tag?: TagName;
   };
-  type $$Props = OwnProps &
-    SmuiAttrs<TagName, OwnProps, 'action' | 'getPrimaryText' | 'getElement'> & {
+  type $$Props = SmuiAttrs<TagName, keyof OwnProps> &
+    OwnProps & {
       value?: any;
       'data-value'?: any;
     };
