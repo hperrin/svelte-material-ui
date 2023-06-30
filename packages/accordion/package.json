@@ -1,6 +1,6 @@
 {
   "name": "@smui-extra/accordion",
-  "version": "7.0.0-beta.13",
+  "version": "7.0.0-beta.14",
   "description": "Svelte Material UI - Accordion",
   "type": "module",
   "main": "dist/index.js",
@@ -45,9 +45,9 @@
     "@material/ripple": "^14.0.0",
     "@material/theme": "^14.0.0",
     "@material/typography": "^14.0.0",
-    "@smui/common": "^7.0.0-beta.13",
-    "@smui/paper": "^7.0.0-beta.13",
-    "@smui/ripple": "^7.0.0-beta.13",
+    "@smui/common": "^7.0.0-beta.14",
+    "@smui/paper": "^7.0.0-beta.14",
+    "@smui/ripple": "^7.0.0-beta.14",
     "svelte2tsx": "^0.6.15"
   },
   "devDependencies": {
