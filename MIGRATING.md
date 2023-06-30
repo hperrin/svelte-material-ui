@@ -17,7 +17,7 @@ I spent a day [flexing every graphic design muscle in my body](https://i.kym-cdn
 - If you had started using `component={Svg}`, you need to use `tag="svg"` after v7.0.0-beta.12.
 - The `@smui/common/elements` components are gone. Just set the `tag` prop on components now (like `<Button tag="div">`).
   - Internally, they are replaced with the `SmuiElement` component exported from `@smui/common`. It takes a `tag` prop and creates an element dynamically with that tag name. You shouldn't ever need to use `SmuiElement` directly.
-- The "\*ComponentDev" types (like `MenuComponentDev`) are gone. You can now use the component as its type. Components that can take a `component` or `tag` prop (like `Button`) have required generic arguments that you can get around by using "InstanceType", like `let button: InstanceType<typeof Button>;`.
+- The "\*ComponentDev" types (like `MenuComponentDev`) are gone. You can now use the component as its type. Components that can take a `component` or `tag` prop (like `Button`) have required generic arguments that you can use to tell it which tag you're using.
 - If you're using `classAdderBuilder`, you need to use `keyof SmuiElementMap` instead of `string` as its generic argument.
 - The `dispatch` function in `@smui/common` will now throw an error if either the `Event` object is not available or the `element` is not provided.
 - The `Input` component from the `@smui/textfield` now sets `value` to `Number.NaN` when the input is empty.
