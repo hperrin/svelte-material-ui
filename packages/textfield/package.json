@@ -9,7 +9,8 @@
     ".": "./dist/index.js",
     "./character-counter": "./dist/character-counter/index.js",
     "./helper-text": "./dist/helper-text/index.js",
-    "./icon": "./dist/icon/index.js"
+    "./icon": "./dist/icon/index.js",
+    "./bare.css": "./bare.css"
   },
   "typesVersions": {
     "*": {
