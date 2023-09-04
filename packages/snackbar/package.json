@@ -15,7 +15,10 @@
         "./src/*"
       ],
       "kitchen": [
-        "./src/kitchen/index.ts"
+        "./src/kitchen/index.d.ts"
+      ],
+      ".": [
+        "./src/index.d.js"
       ]
     }
   },

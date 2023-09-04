@@ -12,14 +12,17 @@
   },
   "typesVersions": {
     "*": {
-      "classadder": [
-        "./src/classadder/index.ts"
-      ],
-      "internal": [
-        "./src/internal/index.ts"
-      ],
       "*": [
         "./src/*"
+      ],
+      "classadder": [
+        "./src/classadder/index.d.ts"
+      ],
+      "internal": [
+        "./src/internal/index.d.ts"
+      ],
+      ".": [
+        "./src/index.d.js"
       ]
     }
   },

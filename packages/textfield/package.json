@@ -17,13 +17,16 @@
         "./src/*"
       ],
       "character-counter": [
-        "./src/character-counter/index.ts"
+        "./src/character-counter/index.d.ts"
       ],
       "helper-text": [
-        "./src/helper-text/index.ts"
+        "./src/helper-text/index.d.ts"
       ],
       "icon": [
-        "./src/icon/index.ts"
+        "./src/icon/index.d.ts"
+      ],
+      ".": [
+        "./src/index.d.js"
       ]
     }
   },
