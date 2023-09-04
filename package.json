@@ -18,7 +18,7 @@
     "build": "lerna run build",
     "lint": "prettier --check --plugin-search-dir=. .",
     "format": "prettier --write --plugin-search-dir=. .",
-    "postinstall": "lerna run build",
+    "postinstall": "lerna run --ignore \"@smui-extra/site\" build",
     "pages": "npm run build && npm run pages:build && npm run pages:push",
     "pages:build": "cd packages/site && npm run build && cd ../..",
     "pages:push": "git add -f packages/site/build && git commit -m 'chore: update built files' && git push origin $(git subtree split --prefix packages/site/build master):refs/heads/gh-pages --force && git reset --hard HEAD^",
@@ -41,14 +41,14 @@
     "packages/*"
   ],
   "devDependencies": {
-    "@commitlint/cli": "^17.6.5",
-    "@commitlint/config-conventional": "^17.6.5",
+    "@commitlint/cli": "^17.7.1",
+    "@commitlint/config-conventional": "^17.7.0",
     "husky": "^8.0.3",
-    "lerna": "^7.0.2",
-    "lint-staged": "^13.2.2",
-    "prettier": "~2.8.8",
+    "lerna": "^7.2.0",
+    "lint-staged": "^14.0.1",
+    "prettier": "^2.8.8",
     "prettier-plugin-svelte": "^2.10.1",
-    "sass": "^1.63.4",
-    "svelte": "^3.59.1"
+    "sass": "^1.66.1",
+    "svelte": "^4.2.0"
   }
 }
