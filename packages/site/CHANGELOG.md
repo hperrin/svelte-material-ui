@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.0.0-beta.15](https://github.com/hperrin/svelte-material-ui/compare/v7.0.0-beta.14...v7.0.0-beta.15) (2023-09-04)
+
+
+### Bug Fixes
+
+* add declaration files to work around rollup typescript resolving modules to the src directory ([b09a46b](https://github.com/hperrin/svelte-material-ui/commit/b09a46bee31ee7f85d89ea97788dd0b174d35028)), closes [#556](https://github.com/hperrin/svelte-material-ui/issues/556)
+
+
+
+
+
 # [7.0.0-beta.14](https://github.com/hperrin/svelte-material-ui/compare/v7.0.0-beta.13...v7.0.0-beta.14) (2023-06-30)
 
 **Note:** Version bump only for package @smui-extra/site

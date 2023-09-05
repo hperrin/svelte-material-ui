@@ -1,6 +1,6 @@
 {
   "name": "@smui/select",
-  "version": "7.0.0-beta.14",
+  "version": "7.0.0-beta.15",
   "description": "Svelte Material UI - Select",
   "type": "module",
   "svelte": "./dist/index.js",
@@ -16,10 +16,13 @@
         "./src/*"
       ],
       "helper-text": [
-        "./src/helper-text/index.ts"
+        "./src/helper-text/index.d.ts"
       ],
       "icon": [
-        "./src/icon/index.ts"
+        "./src/icon/index.d.ts"
+      ],
+      ".": [
+        "./src/index.d.js"
       ]
     }
   },
@@ -60,22 +63,22 @@
     "@material/rtl": "^14.0.0",
     "@material/select": "^14.0.0",
     "@material/theme": "^14.0.0",
-    "@smui/common": "^7.0.0-beta.14",
-    "@smui/floating-label": "^7.0.0-beta.14",
-    "@smui/line-ripple": "^7.0.0-beta.14",
-    "@smui/list": "^7.0.0-beta.14",
-    "@smui/menu": "^7.0.0-beta.14",
-    "@smui/menu-surface": "^7.0.0-beta.14",
-    "@smui/notched-outline": "^7.0.0-beta.14",
-    "@smui/ripple": "^7.0.0-beta.14",
-    "svelte2tsx": "^0.6.15"
+    "@smui/common": "^7.0.0-beta.15",
+    "@smui/floating-label": "^7.0.0-beta.15",
+    "@smui/line-ripple": "^7.0.0-beta.15",
+    "@smui/list": "^7.0.0-beta.15",
+    "@smui/menu": "^7.0.0-beta.15",
+    "@smui/menu-surface": "^7.0.0-beta.15",
+    "@smui/notched-outline": "^7.0.0-beta.15",
+    "@smui/ripple": "^7.0.0-beta.15",
+    "svelte2tsx": "^0.6.21"
   },
   "devDependencies": {
-    "@tsconfig/svelte": "^4.0.1",
-    "sass": "^1.63.4",
-    "svelte-check": "^3.4.3",
-    "svelte-strip": "^2.0.0",
-    "tslib": "^2.5.3",
-    "typescript": "^5.1.3"
+    "@tsconfig/svelte": "^5.0.2",
+    "sass": "^1.66.1",
+    "svelte-check": "^3.5.1",
+    "svelte-strip": "^3.0.1",
+    "tslib": "^2.6.2",
+    "typescript": "^5.2.2"
   }
 }
