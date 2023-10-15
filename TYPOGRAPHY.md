@@ -1,4 +1,4 @@
-# Material Typoography
+# Material Typography
 
 If you'd like to style your entire app using Material's typography, you can add Sass like this to your `_smui-theme.scss` files.
 
