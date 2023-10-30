@@ -16,8 +16,12 @@
   <Demo component={Keys} file="select/_Keys.svelte">
     Using Keys
     <svelte:fragment slot="subtitle">
-      If your options aren't strings, you must provide a <code>key</code> function
-      that converts them to unique strings, or the label may misbehave.
+      If your options aren't strings, you must provide a <code>key</code>
+      function that converts them to unique strings, or the label may misbehave.
+      <br />
+      The only exception to this is if the text is non-empty while the value is empty.
+      In this case, due to a limitation in <code>@material/select</code>, the
+      label will float over the selected text.
     </svelte:fragment>
   </Demo>
 
@@ -53,6 +57,18 @@
   <Demo component={ConditionalIcon} file="select/_ConditionalIcon.svelte">
     Conditional icon
   </Demo>
+
+  <Demo component={DefaultValue} file="select/_DefaultValue.svelte">
+    Default Values
+    <svelte:fragment slot="subtitle">
+      Due to a limitation of <code>@material/select</code>, the floating label
+      will display incorrectly if the selected option has <code>value=""</code>
+      but its label is non-empty.
+      <br />
+      In the case where you need a default value, set it to a non-empty string like
+      in the second example below.
+    </svelte:fragment>
+  </Demo>
 </section>
 
 <script lang="ts">
@@ -69,6 +85,7 @@
   import Required from './_Required.svelte';
   import Disabled from './_Disabled.svelte';
   import ConditionalIcon from './_ConditionalIcon.svelte';
+  import DefaultValue from './_DefaultValue.svelte';
 </script>
 
 <style>
