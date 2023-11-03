@@ -63,7 +63,7 @@
           </slot>
         </Item>
       {:else}
-        {#each matches as match, i}
+        {#each matchesToDisplay as match, i}
           <Item
             disabled={getOptionDisabled(match)}
             selected={match === value}
@@ -193,6 +193,7 @@
     });
     return result;
   };
+  export let maxOptionsToDisplay = 0;
   export let menu$class = '';
   export let menu$anchor = false;
   export let menu$anchorCorner: ComponentProps<Menu>['anchorCorner'] =
@@ -205,6 +206,8 @@
   let focused = false;
   let listAccessor: SMUIListAccessor;
   let matches: any[] = [];
+  $: matchesToDisplay =
+    maxOptionsToDisplay > 0 ? matches.slice(0, maxOptionsToDisplay) : matches;
   let focusedIndex = -1;
   let focusedItem: SMUIListItemAccessor | undefined = undefined;
 

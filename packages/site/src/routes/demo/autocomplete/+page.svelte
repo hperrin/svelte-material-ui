@@ -9,6 +9,16 @@
 
   <pre class="demo-spaced">npm i -D @smui-extra/autocomplete</pre>
 
+  <h5>Performance</h5>
+
+  <p>
+    When dealing with long lists (&gt;50 elements), the creation of the DOM
+    elements inside the list starts to become a bottleneck. In this case, you
+    may want to use the <code>maxOptionsToDisplay</code> option. This option limits
+    the number of list items that can be rendered at a time. When set to 0 (default),
+    every item will be rendered.
+  </p>
+
   <h5>Demos</h5>
 
   <Demo component={Simple} file="autocomplete/_Simple.svelte" />
