@@ -558,14 +558,16 @@
 
     if (valued) {
       if (input == null) {
-        throw new Error('SMUI Textfield initialized without Input component.');
+        throw new Error(
+          'SMUI Textfield must be initialized with either a non-undefined initial value or an Input component.'
+        );
       }
       instance.init();
     } else {
       tick().then(() => {
         if (input == null) {
           throw new Error(
-            'SMUI Textfield initialized without Input component.'
+            'SMUI Textfield must be initialized with either a non-undefined initial value or an Input component.'
           );
         }
         instance.init();
