@@ -23,7 +23,7 @@
       'smui-text-field--standard': variant === 'standard' && !textarea,
       'mdc-text-field--no-label': noLabel || (label == null && !$$slots.label),
       'mdc-text-field--label-floating':
-        focused || (value != null && value !== ''),
+        focused || chromeAutofilled || (value != null && value !== ''),
       'mdc-text-field--with-leading-icon': isUninitializedValue(withLeadingIcon)
         ? $$slots.leadingIcon
         : withLeadingIcon,
@@ -64,7 +64,7 @@
       {#if !noLabel && (label != null || $$slots.label)}
         <FloatingLabel
           bind:this={floatingLabel}
-          floatAbove={focused ||
+          floatAbove={focused || chromeAutofilled ||
             (value != null &&
               value !== '' &&
               (typeof value !== 'number' || !isNaN(value)))}
@@ -84,7 +84,7 @@
         {#if !noLabel && (label != null || $$slots.label)}
           <FloatingLabel
             bind:this={floatingLabel}
-            floatAbove={focused ||
+            floatAbove={focused || chromeAutofilled ||
               (value != null &&
                 value !== '' &&
                 (typeof value !== 'number' || !isNaN(value)))}
@@ -410,6 +410,10 @@
   let characterCounter: MDCTextFieldCharacterCounterFoundation | undefined =
     undefined;
 
+  let chromeAutofilled: boolean = false;
+  let chromeAutofilledFirstCheckInterval: NodeJS.Timer;
+  let chromeAutofilledSecondCheckInterval: NodeJS.Timer;
+
   $: inputElement = input && input.getElement();
 
   $: if (instance && instance.isValid() !== !invalid) {
@@ -556,6 +560,33 @@
       }
     );
 
+
+    const chromeAutofilledSecondCheck = () => {
+			chromeAutofilledSecondCheckInterval = setInterval(() => {
+				if (inputElement && !inputElement.matches(':-internal-autofill-selected')) {
+					chromeAutofilled = false;
+					clearInterval(chromeAutofilledSecondCheckInterval);
+				}
+			}, 100);
+		};
+
+		const chromeAutofilledFirstCheck = () => {
+			chromeAutofilledFirstCheckInterval = setInterval(() => {
+				if (inputElement && inputElement.matches(':-internal-autofill-selected')) {
+					chromeAutofilled = true;
+          instance.notchOutline(true);
+					clearInterval(chromeAutofilledFirstCheckInterval);
+					chromeAutofilledSecondCheck();
+				}
+			}, 100);
+
+			setTimeout(() => {
+				clearInterval(chromeAutofilledFirstCheckInterval);
+			}, 1000);
+		};
+
+		chromeAutofilledFirstCheck();
+
     if (valued) {
       if (input == null) {
         throw new Error(
@@ -578,6 +609,8 @@
 
     return () => {
       instance.destroy();
+      clearInterval(chromeAutofilledFirstCheckInterval);
+      clearInterval(chromeAutofilledSecondCheckInterval);
     };
   });
 
