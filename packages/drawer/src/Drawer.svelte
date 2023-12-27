@@ -119,8 +119,8 @@
       variant === 'dismissible'
         ? MDCDismissibleDrawerFoundation
         : variant === 'modal'
-        ? MDCModalDrawerFoundation
-        : undefined;
+          ? MDCModalDrawerFoundation
+          : undefined;
 
     return Foundation
       ? new Foundation({
@@ -141,7 +141,7 @@
           },
           focusActiveNavigationItem: () => {
             const activeNavItemEl = element.querySelector<HTMLInputElement>(
-              '.mdc-list-item--activated,.mdc-deprecated-list-item--activated'
+              '.mdc-list-item--activated,.mdc-deprecated-list-item--activated',
             );
             if (activeNavItemEl) {
               activeNavItemEl.focus();

@@ -95,7 +95,7 @@
   let initialSelected = chips.map(
     (chipId) =>
       (choice && selected === chipId) ||
-      (filter && selected.indexOf(chipId) !== -1)
+      (filter && selected.indexOf(chipId) !== -1),
   );
 
   const nonInteractiveStore = writable(nonInteractive);
@@ -192,7 +192,7 @@
 
           getAccessor(chips[index])?.setSelectedFromChipSet(
             selectedValue,
-            shouldNotifyClients
+            shouldNotifyClients,
           );
         }
       },

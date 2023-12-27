@@ -14,7 +14,7 @@
   on:SMUIList:action={(event) =>
     instance &&
     instance.handleItemAction(
-      listAccessor.getOrderedList()[event.detail.index].element
+      listAccessor.getOrderedList()[event.detail.index].element,
     )}
   {...$$restProps}><slot /></MenuSurface
 >
@@ -96,7 +96,7 @@
             item: listAccessor.getOrderedList()[evtData.index].element,
           },
           undefined,
-          true
+          true,
         ),
       getMenuItemCount: () => listAccessor.items.length,
       focusItemAtIndex: (index) => listAccessor.focusItemAtIndex(index),
@@ -106,16 +106,16 @@
       isSelectableItemAtIndex: (index) =>
         !!closest(
           listAccessor.getOrderedList()[index].element,
-          `.${cssClasses.MENU_SELECTION_GROUP}`
+          `.${cssClasses.MENU_SELECTION_GROUP}`,
         ),
       getSelectedSiblingOfItemAtIndex: (index) => {
         const orderedList = listAccessor.getOrderedList();
         const selectionGroupEl = closest(
           orderedList[index].element,
-          `.${cssClasses.MENU_SELECTION_GROUP}`
+          `.${cssClasses.MENU_SELECTION_GROUP}`,
         );
         const selectedItemEl = selectionGroupEl?.querySelector(
-          `.${cssClasses.MENU_SELECTED_LIST_ITEM}`
+          `.${cssClasses.MENU_SELECTED_LIST_ITEM}`,
         );
         return selectedItemEl
           ? orderedList.map((item) => item.element).indexOf(selectedItemEl)
@@ -137,7 +137,7 @@
   }
 
   function handleMenuSurfaceAccessor(
-    event: CustomEvent<SMUIMenuSurfaceAccessor>
+    event: CustomEvent<SMUIMenuSurfaceAccessor>,
   ) {
     if (!menuSurfaceAccessor) {
       menuSurfaceAccessor = event.detail;

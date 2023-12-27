@@ -7,13 +7,13 @@
  */
 export function announce(
   message: string,
-  options: { priority?: 'polite' | 'assertive'; ownerDocument?: Document } = {}
+  options: { priority?: 'polite' | 'assertive'; ownerDocument?: Document } = {},
 ) {
   const priority = options.priority || 'polite';
   const ownerDocument = options.ownerDocument || document;
 
   const previousElements = ownerDocument.querySelectorAll(
-    '[data-smui-dom-announce]'
+    '[data-smui-dom-announce]',
   );
   if (previousElements.length) {
     previousElements.forEach((el) => {

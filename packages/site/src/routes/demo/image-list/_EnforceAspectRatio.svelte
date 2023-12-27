@@ -7,7 +7,7 @@
           style="background-image: url(https://placehold.co/190x{getUnevenImageSize(
             i,
             190,
-            10
+            10,
           )}?text=190x{getUnevenImageSize(i, 190, 10)});"
         />
       </ImageAspectContainer>
@@ -31,7 +31,7 @@
     counter: number,
     base: number,
     variance: number,
-    preAdd = (num: number) => num
+    preAdd = (num: number) => num,
   ) {
     const mid = (counter % 2 ? Math.cos : Math.sin)(counter) * variance;
     return base + Math.floor(preAdd(mid));

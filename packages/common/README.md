@@ -129,7 +129,7 @@ Dispatch a custom event. This differs from Svelte's component event system, beca
       {
         bubbles: true,
         cancelable: true,
-      }
+      },
     );
 
     if (!event.defaultPrevented) {

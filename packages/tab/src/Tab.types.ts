@@ -10,7 +10,7 @@ export interface SMUITabAccessor {
   focus(): void;
   activate(
     previousIndicatorClientRect: DOMRect | undefined,
-    skipFocus: boolean
+    skipFocus: boolean,
   ): void;
   deactivate(): void;
 }

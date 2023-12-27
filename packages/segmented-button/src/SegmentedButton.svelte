@@ -80,7 +80,7 @@
   let initialSelected = segments.map(
     (segmentId) =>
       (singleSelect && selected === segmentId) ||
-      (!singleSelect && selected.indexOf(segmentId) !== -1)
+      (!singleSelect && selected.indexOf(segmentId) !== -1),
   );
 
   setContext('SMUI:icon:context', 'segmented-button');
@@ -162,7 +162,7 @@
   });
 
   function handleSegmentMount(
-    event: CustomEvent<SMUISegmentedButtonSegmentAccessor>
+    event: CustomEvent<SMUISegmentedButtonSegmentAccessor>,
   ) {
     const accessor = event.detail;
 
@@ -170,7 +170,7 @@
   }
 
   function handleSegmentUnmount(
-    event: CustomEvent<SMUISegmentedButtonSegmentAccessor>
+    event: CustomEvent<SMUISegmentedButtonSegmentAccessor>,
   ) {
     const accessor = event.detail;
 
@@ -191,7 +191,7 @@
 
   function addAccessor(
     segmentId: any,
-    accessor: SMUISegmentedButtonSegmentAccessor
+    accessor: SMUISegmentedButtonSegmentAccessor,
   ) {
     if (segmentId instanceof Object) {
       segmentAccessorWeakMap.set(segmentId, accessor);

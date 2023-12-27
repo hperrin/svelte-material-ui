@@ -12,7 +12,7 @@
 
   if (console && console.warn) {
     console.warn(
-      'The @smui/common Svg component is deprecated. You can use `tag="svg"` now.'
+      'The @smui/common Svg component is deprecated. You can use `tag="svg"` now.',
     );
   }
 

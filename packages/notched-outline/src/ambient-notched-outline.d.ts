@@ -4,10 +4,10 @@
 declare namespace svelteHTML {
   interface HTMLAttributes<T> {
     ['on:SMUIFloatingLabel:mount']?: (
-      event: CustomEvent<any> & { target: T }
+      event: CustomEvent<any> & { target: T },
     ) => any;
     ['on:SMUIFloatingLabel:unmount']?: (
-      event: CustomEvent<any> & { target: T }
+      event: CustomEvent<any> & { target: T },
     ) => any;
   }
 }

@@ -200,7 +200,7 @@
         // This is first, so now set up a check that no other items are
         // selected.
         addTabindexIfNoItemsSelectedRaf = window.requestAnimationFrame(() =>
-          addTabindexIfNoItemsSelected(el)
+          addTabindexIfNoItemsSelected(el),
         );
       }
     }
@@ -384,7 +384,7 @@
     const element = getElement();
 
     const primaryText = element.querySelector(
-      '.mdc-deprecated-list-item__primary-text'
+      '.mdc-deprecated-list-item__primary-text',
     );
     if (primaryText) {
       return primaryText.textContent ?? '';

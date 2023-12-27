@@ -260,7 +260,7 @@
   export let start: number | undefined = undefined;
   export let end: number | undefined = undefined;
   export let valueToAriaValueTextFn: (value: number, thumb: Thumb) => string = (
-    value
+    value,
   ) => `${value}`;
   export let hideFocusStylesForPointerEvents = false;
   export let input$class = '';
@@ -287,7 +287,7 @@
   let inputProps =
     getContext<{ id?: string } | undefined>('SMUI:generic:input:props') ?? {};
   let addLayoutListener = getContext<AddLayoutListener | undefined>(
-    'SMUI:addLayoutListener'
+    'SMUI:addLayoutListener',
   );
   let removeLayoutListener: RemoveLayoutListener | undefined;
 
@@ -339,7 +339,7 @@
       currentTickMarks = [
         ...Array(absStart / step).map(() => TickMark.INACTIVE),
         ...Array(
-          absMax / step - absStart / step - (absMax - absEnd) / step + 1
+          absMax / step - absStart / step - (absMax - absEnd) / step + 1,
         ).map(() => TickMark.ACTIVE),
         ...Array((absMax - absEnd) / step).map(() => TickMark.INACTIVE),
       ];
@@ -465,7 +465,7 @@
           'SMUISlider:change',
           { value, thumb },
           undefined,
-          true
+          true,
         );
       },
       emitInputEvent: (value, thumb) => {
@@ -474,7 +474,7 @@
           'SMUISlider:input',
           { value, thumb },
           undefined,
-          true
+          true,
         );
       },
       emitDragStartEvent: (_, thumb) => {
@@ -516,7 +516,7 @@
       registerInputEventHandler: (thumb, evtType, handler) => {
         (range && thumb === Thumb.START ? inputStart : input)?.addEventListener(
           evtType,
-          handler
+          handler,
         );
       },
       deregisterInputEventHandler: (thumb, evtType, handler) => {

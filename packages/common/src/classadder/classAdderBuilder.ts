@@ -9,7 +9,7 @@ const defaults = { ...internals };
 
 export function classAdderBuilder<
   T extends SmuiEveryElement = 'div',
-  C extends typeof SvelteComponent = ComponentType<SvelteComponent>
+  C extends typeof SvelteComponent = ComponentType<SvelteComponent>,
 >(props: Partial<ClassAdderInternals<T, C>>): C {
   return new Proxy(ClassAdder, {
     construct: function (target, args) {

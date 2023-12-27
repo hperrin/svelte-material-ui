@@ -113,7 +113,7 @@
             trigger,
           },
           undefined,
-          true
+          true,
         ),
       notifyNavigation: (key) => {
         dispatch(
@@ -121,7 +121,7 @@
           'SMUIChipTrailingAction:navigation',
           { key },
           undefined,
-          true
+          true,
         );
       },
       setAttribute: addAttr,

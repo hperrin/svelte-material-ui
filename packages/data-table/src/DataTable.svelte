@@ -137,7 +137,7 @@
     top: 'initial',
   };
   let addLayoutListener = getContext<AddLayoutListener | undefined>(
-    'SMUI:addLayoutListener'
+    'SMUI:addLayoutListener',
   );
   let removeLayoutListener: RemoveLayoutListener | undefined;
   let postMount = false;
@@ -154,7 +154,7 @@
   setContext('SMUI:data-table:sortAscendingAriaLabel', sortAscendingAriaLabel);
   setContext(
     'SMUI:data-table:sortDescendingAriaLabel',
-    sortDescendingAriaLabel
+    sortDescendingAriaLabel,
   );
 
   $: $sortStore = sort;
@@ -205,7 +205,7 @@
       getTableContainerHeight: () => container.getBoundingClientRect().height,
       getTableHeaderHeight: () => {
         const tableHeader = getElement().querySelector(
-          '.mdc-data-table__header-row'
+          '.mdc-data-table__header-row',
         );
         if (!tableHeader) {
           throw new Error('MDCDataTable: Table header element not found.');
@@ -227,7 +227,7 @@
           body?.orderedRows
             .map((accessor) => accessor.element)
             .indexOf(
-              closest(el, '.mdc-data-table__row') as HTMLTableRowElement
+              closest(el, '.mdc-data-table__row') as HTMLTableRowElement,
             ) ?? -1
         );
       },
@@ -263,7 +263,7 @@
               selected: data.selected,
             },
             undefined,
-            true
+            true,
           );
         }
       },
@@ -274,7 +274,7 @@
           'SMUIDataTable:selectedAll',
           undefined,
           undefined,
-          true
+          true,
         );
       },
       notifyUnselectedAll: () => {
@@ -284,7 +284,7 @@
           'SMUIDataTable:unselectedAll',
           undefined,
           undefined,
-          true
+          true,
         );
       },
       notifyRowClick: (detail) => {
@@ -293,7 +293,7 @@
           'SMUIDataTable:rowClick',
           detail,
           undefined,
-          true
+          true,
         );
       },
       registerHeaderRowCheckbox: () => {
@@ -383,7 +383,7 @@
 
     const headerCell = closest(
       event.detail.target as Element,
-      '.mdc-data-table__header-cell--with-sort'
+      '.mdc-data-table__header-cell--with-sort',
     ) as HTMLTableCellElement;
 
     if (headerCell) {
@@ -392,7 +392,7 @@
   }
 
   function handleRowClick(
-    event: CustomEvent<{ rowId: string; target: HTMLElement }>
+    event: CustomEvent<{ rowId: string; target: HTMLElement }>,
   ) {
     if (!instance || !event.detail.target) {
       return;
@@ -400,7 +400,7 @@
 
     const row = closest(
       event.detail.target as Element,
-      '.mdc-data-table__row'
+      '.mdc-data-table__row',
     ) as HTMLTableRowElement;
 
     if (row && instance) {

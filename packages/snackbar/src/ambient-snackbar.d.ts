@@ -4,10 +4,10 @@
 declare namespace svelteHTML {
   interface HTMLAttributes<T> {
     ['on:MDCSnackbar:closed']?: (
-      event: CustomEvent<any> & { target: T }
+      event: CustomEvent<any> & { target: T },
     ) => any;
     ['on:SMUISnackbar:closed']?: (
-      event: CustomEvent<any> & { target: T }
+      event: CustomEvent<any> & { target: T },
     ) => any;
   }
 }

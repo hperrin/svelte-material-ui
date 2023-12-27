@@ -5,7 +5,7 @@ export default function Tappable(
   options: {
     bgColor: string;
     color: string;
-  }
+  },
 ) {
   const gesture = new TinyGesture(node);
   let tapTimeout: NodeJS.Timeout;

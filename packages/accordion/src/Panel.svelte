@@ -113,7 +113,7 @@
 
               dispatch(getElement(), 'SMUIAccordionPanel:opened', { accessor });
             },
-            { once: true }
+            { once: true },
           );
         } else {
           content.style.height = content.getBoundingClientRect().height + 'px';
@@ -138,7 +138,7 @@
     dispatch(
       getElement(),
       open ? 'SMUIAccordionPanel:opening' : 'SMUIAccordionPanel:closing',
-      { accessor }
+      { accessor },
     );
   }
 

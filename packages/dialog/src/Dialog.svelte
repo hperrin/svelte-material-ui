@@ -137,14 +137,14 @@
   let focusTrap: domFocusTrap.FocusTrap;
   let actionButtonsReversed = writable(false);
   let aboveFullscreen = getContext<boolean | undefined>(
-    'SMUI:dialog:aboveFullscreen'
+    'SMUI:dialog:aboveFullscreen',
   );
   let aboveFullscreenShown =
     getContext<Writable<boolean> | undefined>(
-      'SMUI:dialog:aboveFullscreenShown'
+      'SMUI:dialog:aboveFullscreenShown',
     ) ?? writable(false);
   let addLayoutListener = getContext<AddLayoutListener | undefined>(
-    'SMUI:addLayoutListener'
+    'SMUI:addLayoutListener',
   );
   let removeLayoutListener: RemoveLayoutListener | undefined;
   let layoutListeners: (() => void)[] = [];
@@ -235,7 +235,7 @@
         }
         const element = closest(
           evt.target as Element,
-          '[data-mdc-dialog-action]'
+          '[data-mdc-dialog-action]',
         );
         return element && element.getAttribute('data-mdc-dialog-action');
       },
@@ -249,7 +249,7 @@
           'SMUIDialog:closed',
           action ? { action } : {},
           undefined,
-          true
+          true,
         );
       },
       notifyClosing: (action) =>
@@ -258,7 +258,7 @@
           'SMUIDialog:closing',
           action ? { action } : {},
           undefined,
-          true
+          true,
         ),
       notifyOpened: () =>
         dispatch(getElement(), 'SMUIDialog:opened', {}, undefined, true),
@@ -330,13 +330,13 @@
 
   function getButtonEls() {
     return [].slice.call(
-      element.querySelectorAll<HTMLButtonElement>('.mdc-dialog__button')
+      element.querySelectorAll<HTMLButtonElement>('.mdc-dialog__button'),
     ) as HTMLButtonElement[];
   }
 
   function getDefaultButtonEl() {
     return element.querySelector<HTMLButtonElement>(
-      '[data-mdc-dialog-button-default]'
+      '[data-mdc-dialog-button-default]',
     );
   }
 
@@ -346,7 +346,7 @@
 
   function getInitialFocusEl() {
     return element.querySelector<HTMLElement>(
-      '[data-mdc-dialog-initial-focus]'
+      '[data-mdc-dialog-initial-focus]',
     );
   }
 

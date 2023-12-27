@@ -12,7 +12,7 @@
       Object.entries(spanDevices).map(([device, span]) => [
         `mdc-layout-grid__cell--span-${span}-${device}`,
         true,
-      ])
+      ]),
     ),
   })}
   {...$$restProps}

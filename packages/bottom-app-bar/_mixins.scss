@@ -148,8 +148,10 @@ $acceleration-curve-timing-function: cubic-bezier(0.4, 0, 1, 1) !default;
       .mdc-snackbar {
         transform: translateY(
           calc(
-            (-1 * ($section-height + math.div($fab-diameter, 2))) -
-              var(--smui-bottom-app-bar--fab-offset, 0)
+            (-1 * ($section-height + math.div($fab-diameter, 2))) - var(
+                --smui-bottom-app-bar--fab-offset,
+                0
+              )
           )
         );
       }

@@ -38,11 +38,11 @@ export default function Ripple(
     removeClass = (className) => node.classList.remove(className),
     addStyle = (name, value) => node.style.setProperty(name, value),
     initPromise = Promise.resolve(),
-  }: RippleProps = {}
+  }: RippleProps = {},
 ) {
   let instance: MDCRippleFoundation | undefined;
   let addLayoutListener = getContext<AddLayoutListener | undefined>(
-    'SMUI:addLayoutListener'
+    'SMUI:addLayoutListener',
   );
   let removeLayoutListener: RemoveLayoutListener | undefined;
   let oldActive = active;
@@ -90,13 +90,13 @@ export default function Ripple(
           document.documentElement.removeEventListener(
             evtType,
             handler,
-            applyPassive()
+            applyPassive(),
           ),
         deregisterInteractionHandler: (evtType, handler) =>
           (eventTarget || node).removeEventListener(
             evtType,
             handler,
-            applyPassive()
+            applyPassive(),
           ),
         deregisterResizeHandler: (handler) =>
           window.removeEventListener('resize', handler),
@@ -112,13 +112,13 @@ export default function Ripple(
           document.documentElement.addEventListener(
             evtType,
             handler,
-            applyPassive()
+            applyPassive(),
           ),
         registerInteractionHandler: (evtType, handler) =>
           (eventTarget || node).addEventListener(
             evtType,
             handler,
-            applyPassive()
+            applyPassive(),
           ),
         registerResizeHandler: (handler) =>
           window.addEventListener('resize', handler),

@@ -53,7 +53,7 @@
   let instance: MDCTextFieldIconFoundation;
   let internalAttrs: { [k: string]: string | undefined } = {};
   const leadingStore = getContext<SvelteStore<boolean>>(
-    'SMUI:textfield:icon:leading'
+    'SMUI:textfield:icon:leading',
   );
   const leading = $leadingStore;
   let content: string | undefined = undefined;
@@ -81,7 +81,7 @@
           'SMUITextField:icon',
           undefined,
           undefined,
-          true
+          true,
         ),
     });
 
@@ -90,7 +90,7 @@
       leading
         ? 'SMUITextfieldLeadingIcon:mount'
         : 'SMUITextfieldTrailingIcon:mount',
-      instance
+      instance,
     );
 
     instance.init();
@@ -101,7 +101,7 @@
         leading
           ? 'SMUITextfieldLeadingIcon:unmount'
           : 'SMUITextfieldTrailingIcon:unmount',
-        instance
+        instance,
       );
 
       instance.destroy();

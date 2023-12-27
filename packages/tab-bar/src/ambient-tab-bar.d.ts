@@ -7,7 +7,7 @@ declare namespace svelteHTML {
     ['on:SMUITab:unmount']?: (event: CustomEvent<any> & { target: T }) => any;
     ['on:MDCTab:interacted']?: (event: CustomEvent<any> & { target: T }) => any;
     ['on:SMUITab:interacted']?: (
-      event: CustomEvent<any> & { target: T }
+      event: CustomEvent<any> & { target: T },
     ) => any;
   }
 }

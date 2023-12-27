@@ -4,10 +4,10 @@
 declare namespace svelteHTML {
   interface HTMLAttributes<T> {
     ['on:SMUIBannerButton:primaryActionClick']?: (
-      event: CustomEvent<any> & { target: T }
+      event: CustomEvent<any> & { target: T },
     ) => any;
     ['on:SMUIBannerButton:secondaryActionClick']?: (
-      event: CustomEvent<any> & { target: T }
+      event: CustomEvent<any> & { target: T },
     ) => any;
   }
 }

@@ -130,7 +130,7 @@
           'SMUISnackbar:closed',
           reason ? { reason } : {},
           undefined,
-          true
+          true,
         ),
       notifyClosing: (reason) =>
         dispatch(
@@ -138,7 +138,7 @@
           'SMUISnackbar:closing',
           reason ? { reason } : {},
           undefined,
-          true
+          true,
         ),
       notifyOpened: () =>
         dispatch(
@@ -146,7 +146,7 @@
           'SMUISnackbar:opened',
           undefined,
           undefined,
-          true
+          true,
         ),
       notifyOpening: () =>
         dispatch(
@@ -154,7 +154,7 @@
           'SMUISnackbar:opening',
           undefined,
           undefined,
-          true
+          true,
         ),
       removeClass,
     });

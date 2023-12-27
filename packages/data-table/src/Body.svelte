@@ -85,12 +85,12 @@
   function getOrderedRows() {
     return [
       ...getElement().querySelectorAll<HTMLTableRowElement>(
-        '.mdc-data-table__row'
+        '.mdc-data-table__row',
       ),
     ]
       .map((element) => rowAccessorMap.get(element))
       .filter(
-        (accessor) => accessor && accessor._smui_data_table_row_accessor
+        (accessor) => accessor && accessor._smui_data_table_row_accessor,
       ) as SMUIDataTableRowAccessor[];
   }
 

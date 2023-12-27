@@ -35,7 +35,7 @@
         // This is the eventInit object.
         bubbles: true, // this is the default when no eventInit object is provided.
         cancelable: true, // you can make it cancelable like this.
-      }
+      },
     );
   }
 </script>

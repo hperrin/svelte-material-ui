@@ -115,7 +115,7 @@
   let leadingIconClasses: { [k: string]: boolean } = {};
   let internalStyles: { [k: string]: string } = {};
   const initialSelectedStore = getContext<SvelteStore<boolean>>(
-    'SMUI:chips:chip:initialSelected'
+    'SMUI:chips:chip:initialSelected',
   );
   let selected = $initialSelectedStore;
   let primaryActionAccessor: SMUIChipsPrimaryActionAccessor | undefined =
@@ -123,7 +123,7 @@
   let trailingActionAccessor: SMUIChipsTrailingActionAccessor | undefined =
     undefined;
   const nonInteractive = getContext<SvelteStore<boolean>>(
-    'SMUI:chips:nonInteractive'
+    'SMUI:chips:nonInteractive',
   );
   const choice = getContext<SvelteStore<boolean>>('SMUI:chips:choice');
   const index = getContext<SvelteStore<number>>('SMUI:chips:chip:index');
@@ -134,12 +134,12 @@
     component === SmuiElement ? 'div' : undefined;
 
   const shouldRemoveOnTrailingIconClickStore = writable(
-    shouldRemoveOnTrailingIconClick
+    shouldRemoveOnTrailingIconClick,
   );
   $: $shouldRemoveOnTrailingIconClickStore = shouldRemoveOnTrailingIconClick;
   setContext(
     'SMUI:chips:chip:shouldRemoveOnTrailingIconClick',
-    shouldRemoveOnTrailingIconClickStore
+    shouldRemoveOnTrailingIconClickStore,
   );
   const isSelectedStore = writable(selected);
   $: $isSelectedStore = selected;
@@ -149,12 +149,12 @@
   setContext('SMUI:chips:chip:leadingIconClasses', leadingIconClassesStore);
   setContext(
     'SMUI:chips:chip:focusable',
-    ($choice && selected) || $index === 0
+    ($choice && selected) || $index === 0,
   );
 
   if (!chipId) {
     throw new Error(
-      'The chip property is required! It should be passed down from the Set to the Chip.'
+      'The chip property is required! It should be passed down from the Set to the Chip.',
     );
   }
 
@@ -164,13 +164,13 @@
       shouldRemoveOnTrailingIconClick
   ) {
     instance.setShouldRemoveOnTrailingIconClick(
-      shouldRemoveOnTrailingIconClick
+      shouldRemoveOnTrailingIconClick,
     );
   }
 
   $: if (instance) {
     instance.setShouldFocusPrimaryActionOnClick(
-      shouldFocusPrimaryActionOnClick
+      shouldFocusPrimaryActionOnClick,
     );
   }
 
@@ -221,7 +221,7 @@
           'SMUIChip:interaction',
           { chipId },
           undefined,
-          true
+          true,
         ),
       notifyNavigation: (key, source) =>
         dispatch(
@@ -229,7 +229,7 @@
           'SMUIChip:navigation',
           { chipId, key, source },
           undefined,
-          true
+          true,
         ),
       notifyRemoval: (removedAnnouncement) => {
         dispatch(
@@ -240,7 +240,7 @@
             removedAnnouncement,
           },
           undefined,
-          true
+          true,
         );
       },
       notifySelection: (selected, shouldIgnore) =>
@@ -253,7 +253,7 @@
             shouldIgnore,
           },
           undefined,
-          true
+          true,
         ),
       notifyTrailingIconInteraction: () =>
         dispatch(
@@ -261,7 +261,7 @@
           'SMUIChip:trailingIconInteraction',
           { chipId },
           undefined,
-          true
+          true,
         ),
       notifyEditStart: () => {
         /* Not Implemented. */
@@ -307,13 +307,13 @@
   });
 
   function handleSMUIChipsChipPrimaryAction(
-    event: CustomEvent<SMUIChipsPrimaryActionAccessor>
+    event: CustomEvent<SMUIChipsPrimaryActionAccessor>,
   ) {
     primaryActionAccessor = event.detail;
   }
 
   function handleSMUIChipsChipTrailingAction(
-    event: CustomEvent<SMUIChipsTrailingActionAccessor>
+    event: CustomEvent<SMUIChipsTrailingActionAccessor>,
   ) {
     trailingActionAccessor = event.detail;
   }
@@ -367,7 +367,7 @@
 
   function setSelectedFromChipSet(
     value: boolean,
-    shouldNotifyClients: boolean
+    shouldNotifyClients: boolean,
   ) {
     selected = value;
     instance.setSelectedFromChipSet(selected, shouldNotifyClients);

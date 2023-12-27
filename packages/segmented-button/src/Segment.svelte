@@ -82,7 +82,7 @@
   export let ripple = true;
   export let touch = false;
   const initialSelectedStore = getContext<SvelteStore<boolean>>(
-    'SMUI:segmented-button:segment:initialSelected'
+    'SMUI:segmented-button:segment:initialSelected',
   );
 
   // Some trickery to detect uninitialized values but also have the right types.
@@ -100,15 +100,15 @@
   let internalStyles: { [k: string]: string } = {};
   let internalAttrs: { [k: string]: string | undefined } = {};
   const singleSelect = getContext<SvelteStore<boolean>>(
-    'SMUI:segmented-button:singleSelect'
+    'SMUI:segmented-button:singleSelect',
   );
   const index = getContext<SvelteStore<number>>(
-    'SMUI:segmented-button:segment:index'
+    'SMUI:segmented-button:segment:index',
   );
 
   if (!segmentId) {
     throw new Error(
-      'The segment property is required! It should be passed down from the SegmentedButton to the Segment.'
+      'The segment property is required! It should be passed down from the SegmentedButton to the Segment.',
     );
   }
 

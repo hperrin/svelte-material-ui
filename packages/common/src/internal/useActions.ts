@@ -5,7 +5,7 @@ export type SvelteActionReturnType<P> = {
 
 export type SvelteHTMLActionType<P> = (
   node: HTMLElement,
-  params?: P
+  params?: P,
 ) => SvelteActionReturnType<P>;
 
 export type HTMLActionEntry<P extends any = any> =
@@ -16,7 +16,7 @@ export type HTMLActionArray = HTMLActionEntry[];
 
 export type SvelteSVGActionType<P> = (
   node: SVGElement,
-  params?: P
+  params?: P,
 ) => SvelteActionReturnType<P>;
 
 export type SVGActionEntry<P extends any = any> =
@@ -29,7 +29,7 @@ export type ActionArray = HTMLActionArray | SVGActionArray;
 
 export function useActions(
   node: HTMLElement | SVGElement,
-  actions: ActionArray
+  actions: ActionArray,
 ) {
   let actionReturns: SvelteActionReturnType<any>[] = [];
 
@@ -39,7 +39,7 @@ export function useActions(
       const action = Array.isArray(actionEntry) ? actionEntry[0] : actionEntry;
       if (Array.isArray(actionEntry) && actionEntry.length > 1) {
         actionReturns.push(
-          action(node as HTMLElement & SVGElement, actionEntry[1])
+          action(node as HTMLElement & SVGElement, actionEntry[1]),
         );
       } else {
         actionReturns.push(action(node as HTMLElement & SVGElement));

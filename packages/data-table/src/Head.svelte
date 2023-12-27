@@ -87,12 +87,13 @@
   function getOrderedCells() {
     return [
       ...getElement().querySelectorAll<HTMLTableCellElement>(
-        '.mdc-data-table__header-cell'
+        '.mdc-data-table__header-cell',
       ),
     ]
       .map((element) => cellAccessorMap.get(element))
       .filter(
-        (accessor) => accessor && accessor._smui_data_table_header_cell_accessor
+        (accessor) =>
+          accessor && accessor._smui_data_table_header_cell_accessor,
       ) as SMUIDataTableCellAccessor[];
   }
 

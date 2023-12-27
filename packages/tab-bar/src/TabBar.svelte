@@ -163,7 +163,7 @@
           'SMUITabBar:activated',
           { index },
           undefined,
-          true
+          true,
         ),
     });
 

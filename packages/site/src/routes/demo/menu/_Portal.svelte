@@ -174,7 +174,7 @@
             focusEl.focus();
           }
         },
-        { once: true }
+        { once: true },
       );
       subMenu.setOpen(true);
     });

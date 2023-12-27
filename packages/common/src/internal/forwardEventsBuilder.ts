@@ -31,7 +31,7 @@ export function forwardEventsBuilder(component: SvelteComponent) {
         'Event modifiers in SMUI now use "$" instead of ":", so that ' +
           'all events can be bound with modifiers. Please update your ' +
           'event binding: ',
-        eventType
+        eventType,
       );
     }
 
@@ -73,14 +73,14 @@ export function forwardEventsBuilder(component: SvelteComponent) {
               : newEventTypeParts[i]
                   .split('-')
                   .map(
-                    (value) => value.slice(0, 1).toUpperCase() + value.slice(1)
+                    (value) => value.slice(0, 1).toUpperCase() + value.slice(1),
                   )
                   .join('');
         }
         console.warn(
           `The event ${eventType.split('$')[0]} has been renamed to ${
             newEventType.split('$')[0]
-          }.`
+          }.`,
         );
         eventType = newEventType;
       }
@@ -108,10 +108,13 @@ export function forwardEventsBuilder(component: SvelteComponent) {
           stopImmediatePropagation?: true;
           self?: true;
           trusted?: true;
-        } = parts.slice(1).reduce((obj, mod) => {
-          obj[mod] = true;
-          return obj;
-        }, {} as { [k: string]: boolean });
+        } = parts.slice(1).reduce(
+          (obj, mod) => {
+            obj[mod] = true;
+            return obj;
+          },
+          {} as { [k: string]: boolean },
+        );
         if (eventOptions.passive) {
           options = options || ({} as AddEventListenerOptions);
           options.passive = true;
@@ -190,7 +193,7 @@ function listen(
   node: Node,
   event: string,
   handler: EventListenerOrEventListenerObject,
-  options?: boolean | AddEventListenerOptions
+  options?: boolean | AddEventListenerOptions,
 ) {
   node.addEventListener(event, handler, options);
   return () => node.removeEventListener(event, handler, options);
@@ -222,7 +225,7 @@ function stop_immediate_propagation<T extends Function>(fn: T): T {
 
 function self_event<T extends Function>(
   node: HTMLElement | SVGElement,
-  fn: T
+  fn: T,
 ): T {
   return function (event: Event) {
     if (event.target !== node) {

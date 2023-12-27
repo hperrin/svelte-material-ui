@@ -115,10 +115,10 @@
   let nav = getContext<boolean | undefined>('SMUI:list:nav');
   const itemAccessorMap = new WeakMap<Element, SMUIListItemAccessor>();
   let selectionDialog = getContext<boolean | undefined>(
-    'SMUI:dialog:selection'
+    'SMUI:dialog:selection',
   );
   let addLayoutListener = getContext<AddLayoutListener | undefined>(
-    'SMUI:addLayoutListener'
+    'SMUI:addLayoutListener',
   );
   let removeLayoutListener: RemoveLayoutListener | undefined;
 
@@ -227,7 +227,7 @@
           listItem.element.querySelectorAll(selector),
           (el: HTMLButtonElement | HTMLAnchorElement) => {
             el.setAttribute('tabindex', tabIndexValue);
-          }
+          },
         );
       },
     });
@@ -246,7 +246,7 @@
         return instance.typeaheadMatchItem(
           nextChar,
           startingIndex,
-          /** skipFocus */ true
+          /** skipFocus */ true,
         );
       },
       getOrderedList,
@@ -299,9 +299,9 @@
       instance.handleKeydown(
         event,
         (event.target as Element).classList.contains(
-          'mdc-deprecated-list-item'
+          'mdc-deprecated-list-item',
         ),
-        getListItemIndex(event.target as Element)
+        getListItemIndex(event.target as Element),
       );
     }
   }
@@ -324,9 +324,9 @@
         getListItemIndex(event.target as Element),
         !matches(
           event.target as Element,
-          'input[type="checkbox"], input[type="radio"]'
+          'input[type="checkbox"], input[type="radio"]',
         ),
-        event
+        event,
       );
     }
   }
@@ -340,7 +340,7 @@
           if (
             !matches(
               event.detail.target as Element,
-              'input[type="checkbox"], input[type="radio"]'
+              'input[type="checkbox"], input[type="radio"]',
             )
           ) {
             item.checked = !item.checked;
@@ -362,7 +362,7 @@
     return [...getElement().children]
       .map((element) => itemAccessorMap.get(element))
       .filter(
-        (accessor) => accessor && accessor._smui_list_item_accessor
+        (accessor) => accessor && accessor._smui_list_item_accessor,
       ) as SMUIListItemAccessor[];
   }
 
@@ -384,7 +384,7 @@
   function setAttributeForElementIndex(
     index: number,
     name: string,
-    value: string
+    value: string,
   ) {
     const accessor = getOrderedList()[index];
     accessor && accessor.addAttr(name, value);
@@ -412,7 +412,7 @@
   function getListItemIndex(element: Element) {
     const nearestParent = closest(
       element,
-      '.mdc-deprecated-list-item, .mdc-deprecated-list'
+      '.mdc-deprecated-list-item, .mdc-deprecated-list',
     );
 
     // Get the index of the element if it is a list item.

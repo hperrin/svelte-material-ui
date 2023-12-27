@@ -59,7 +59,7 @@
 
     if (!multiple && accessor.open) {
       const currentOpen = Array.from(panelAccessorSet).find(
-        (accessor) => accessor.open
+        (accessor) => accessor.open,
       );
 
       if (currentOpen) {
@@ -85,7 +85,7 @@
   }
 
   function handlePanelActivate(
-    event: CustomEvent<{ accessor: SMUIAccordionPanelAccessor }>
+    event: CustomEvent<{ accessor: SMUIAccordionPanelAccessor }>,
   ) {
     const { accessor } = event.detail;
 
@@ -96,7 +96,7 @@
 
     if (!multiple && !accessor.open) {
       const currentOpen = Array.from(panelAccessorSet).find(
-        (accessor) => accessor.open
+        (accessor) => accessor.open,
       );
 
       if (currentOpen) {
@@ -108,7 +108,7 @@
   }
 
   function handlePanelOpening(
-    event: CustomEvent<{ accessor: SMUIAccordionPanelAccessor }>
+    event: CustomEvent<{ accessor: SMUIAccordionPanelAccessor }>,
   ) {
     const { accessor } = event.detail;
 
@@ -119,7 +119,7 @@
 
     if (!multiple) {
       const otherOpen = Array.from(panelAccessorSet).filter(
-        (checkAccessor) => checkAccessor !== accessor && checkAccessor.open
+        (checkAccessor) => checkAccessor !== accessor && checkAccessor.open,
       );
 
       otherOpen.forEach((accessor) => accessor.setOpen(false));

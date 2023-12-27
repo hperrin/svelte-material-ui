@@ -4,7 +4,7 @@ export function dispatch<T extends any = any>(
   detail?: T,
   eventInit: EventInit = { bubbles: true },
   /** This is an internal thing used by SMUI to duplicate some SMUI events as MDC events. */
-  duplicateEventForMDC = false
+  duplicateEventForMDC = false,
 ) {
   if (typeof Event === 'undefined') {
     throw new Error('Event not defined.');
@@ -23,7 +23,7 @@ export function dispatch<T extends any = any>(
       {
         ...eventInit,
         detail,
-      }
+      },
     );
     element?.dispatchEvent(duplicateEvent);
     if (duplicateEvent.defaultPrevented) {

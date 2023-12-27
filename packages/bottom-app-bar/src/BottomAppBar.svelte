@@ -73,7 +73,7 @@
     },
     (set) => {
       propStoreSet = set;
-    }
+    },
   );
   $: if (propStoreSet) {
     propStoreSet({

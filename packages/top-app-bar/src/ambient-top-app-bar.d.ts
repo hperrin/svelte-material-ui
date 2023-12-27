@@ -4,7 +4,7 @@
 declare namespace svelteHTML {
   interface HTMLAttributes<T> {
     ['on:SMUITopAppBarIconButton:nav']?: (
-      event: CustomEvent<any> & { target: T }
+      event: CustomEvent<any> & { target: T },
     ) => any;
   }
 }

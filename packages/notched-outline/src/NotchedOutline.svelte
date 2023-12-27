@@ -92,7 +92,7 @@
   });
 
   function handleFloatingLabelMount(
-    event: CustomEvent<SMUIFloatingLabelAccessor>
+    event: CustomEvent<SMUIFloatingLabelAccessor>,
   ) {
     floatingLabel = event.detail;
   }

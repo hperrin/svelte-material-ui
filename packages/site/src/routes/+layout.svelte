@@ -229,8 +229,8 @@
                 href={'route' in section
                   ? section.route
                   : 'shortcut' in section
-                  ? section.shortcut
-                  : undefined}
+                    ? section.shortcut
+                    : undefined}
                 activated={section === activeSection}
                 style={section.indent
                   ? 'margin-left: ' + section.indent * 25 + 'px;'
@@ -657,7 +657,8 @@
 
   $: activeSection = sections.find(
     (section) =>
-      'route' in section && routesEqual(section.route ?? '', $page.url.pathname)
+      'route' in section &&
+      routesEqual(section.route ?? '', $page.url.pathname),
   ) as DemoSection | undefined;
   let previousPagePath: string | undefined = undefined;
   $: if (mainContent && previousPagePath !== $page.url.pathname) {

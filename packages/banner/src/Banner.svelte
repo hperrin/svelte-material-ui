@@ -135,7 +135,7 @@
   let content: HTMLDivElement;
   let focusTrap: domFocusTrap.FocusTrap | undefined;
   let addLayoutListener = getContext<AddLayoutListener | undefined>(
-    'SMUI:addLayoutListener'
+    'SMUI:addLayoutListener',
   );
   let removeLayoutListener: RemoveLayoutListener | undefined;
   let width: number | undefined = undefined;
@@ -190,7 +190,7 @@
           'SMUIBanner:closed',
           { reason },
           undefined,
-          true
+          true,
         );
       },
       notifyClosing: (reason) => {
@@ -199,7 +199,7 @@
           'SMUIBanner:closing',
           { reason },
           undefined,
-          true
+          true,
         );
       },
       notifyOpened: () => {

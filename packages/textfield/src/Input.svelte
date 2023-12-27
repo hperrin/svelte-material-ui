@@ -111,7 +111,7 @@
   }
 
   function valueUpdater(
-    e: Event & { currentTarget: EventTarget & HTMLInputElement }
+    e: Event & { currentTarget: EventTarget & HTMLInputElement },
   ) {
     if (type === 'file') {
       files = e.currentTarget.files;
@@ -138,7 +138,7 @@
   }
 
   function changeHandler(
-    e: Event & { currentTarget: EventTarget & HTMLInputElement }
+    e: Event & { currentTarget: EventTarget & HTMLInputElement },
   ) {
     if (type === 'file' || type === 'range') {
       valueUpdater(e);

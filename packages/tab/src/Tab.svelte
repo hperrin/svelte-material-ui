@@ -156,7 +156,7 @@
 
   if (!tabId) {
     throw new Error(
-      'The tab property is required! It should be passed down from the TabBar to the Tab.'
+      'The tab property is required! It should be passed down from the TabBar to the Tab.',
     );
   }
 
@@ -179,7 +179,7 @@
           'SMUITab:interacted',
           { tabId: tabId },
           undefined,
-          true
+          true,
         ),
       getOffsetLeft: () => getElement().offsetLeft,
       getOffsetWidth: () => getElement().offsetWidth,
@@ -260,7 +260,7 @@
 
   export function activate(
     previousIndicatorClientRect: DOMRect | undefined,
-    skipFocus: boolean
+    skipFocus: boolean,
   ) {
     active = true;
     if (skipFocus) {

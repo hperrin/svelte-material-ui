@@ -55,7 +55,7 @@ export type SmuiHTMLElement = keyof Omit<SmuiElementMap, 'svg'>;
 
 export type SmuiAttrs<
   T extends SmuiEveryElement,
-  E extends string
+  E extends string,
 > = SmuiElementPropMap<E>[T] & DataAttrs;
 
 export type DataAttrs = {

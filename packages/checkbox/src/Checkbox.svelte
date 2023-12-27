@@ -145,7 +145,7 @@
     : group.indexOf(value) !== -1;
   let context = getContext<string | undefined>('SMUI:checkbox:context');
   let dataTableHeader = getContext<boolean | undefined>(
-    'SMUI:data-table:row:header'
+    'SMUI:data-table:row:header',
   );
 
   let previousChecked = checked;

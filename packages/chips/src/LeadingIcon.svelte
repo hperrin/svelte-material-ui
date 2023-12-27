@@ -39,10 +39,10 @@
 
   const filter = getContext<SvelteStore<boolean>>('SMUI:chips:filter');
   const isSelected = getContext<SvelteStore<boolean>>(
-    'SMUI:chips:chip:isSelected'
+    'SMUI:chips:chip:isSelected',
   );
   const leadingIconClasses = getContext<SvelteStore<{ [k: string]: boolean }>>(
-    'SMUI:chips:chip:leadingIconClasses'
+    'SMUI:chips:chip:leadingIconClasses',
   );
 
   let element: HTMLElement;

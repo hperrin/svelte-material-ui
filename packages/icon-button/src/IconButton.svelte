@@ -207,7 +207,7 @@
             'SMUIIconButtonToggle:change',
             evtData,
             undefined,
-            true
+            true,
           );
         },
         removeClass,

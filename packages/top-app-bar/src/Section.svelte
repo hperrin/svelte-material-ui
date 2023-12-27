@@ -47,11 +47,11 @@
 
   setContext(
     'SMUI:icon-button:context',
-    toolbar ? 'top-app-bar:action' : 'top-app-bar:navigation'
+    toolbar ? 'top-app-bar:action' : 'top-app-bar:navigation',
   );
   setContext(
     'SMUI:button:context',
-    toolbar ? 'top-app-bar:action' : 'top-app-bar:navigation'
+    toolbar ? 'top-app-bar:action' : 'top-app-bar:navigation',
   );
 
   export function getElement() {

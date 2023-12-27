@@ -38,7 +38,7 @@
 
   $: selectedPrice = selected.reduce(
     (total, option) => option.price + total,
-    0
+    0,
   );
 
   let options = [

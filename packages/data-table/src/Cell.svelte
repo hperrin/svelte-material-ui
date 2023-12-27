@@ -111,13 +111,13 @@
   let internalAttrs: { [k: string]: string | undefined } = {};
   let sort = getContext<Writable<string | null>>('SMUI:data-table:sort');
   let sortDirection = getContext<Writable<SortValue>>(
-    'SMUI:data-table:sortDirection'
+    'SMUI:data-table:sortDirection',
   );
   let sortAscendingAriaLabel = getContext<string>(
-    'SMUI:data-table:sortAscendingAriaLabel'
+    'SMUI:data-table:sortAscendingAriaLabel',
   );
   let sortDescendingAriaLabel = getContext<string>(
-    'SMUI:data-table:sortDescendingAriaLabel'
+    'SMUI:data-table:sortDescendingAriaLabel',
   );
 
   if (sortable) {

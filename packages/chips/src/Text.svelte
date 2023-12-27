@@ -65,12 +65,12 @@
   let internalAttrs: { [k: string]: string | undefined } = {};
 
   const nonInteractive = getContext<SvelteStore<boolean>>(
-    'SMUI:chips:nonInteractive'
+    'SMUI:chips:nonInteractive',
   );
   const choice = getContext<SvelteStore<boolean>>('SMUI:chips:choice');
   const filter = getContext<SvelteStore<boolean>>('SMUI:chips:filter');
   const isSelected = getContext<SvelteStore<boolean>>(
-    'SMUI:chips:chip:isSelected'
+    'SMUI:chips:chip:isSelected',
   );
 
   $: roleProps = {

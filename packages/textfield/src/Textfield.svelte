@@ -28,7 +28,7 @@
         ? $$slots.leadingIcon
         : withLeadingIcon,
       'mdc-text-field--with-trailing-icon': isUninitializedValue(
-        withTrailingIcon
+        withTrailingIcon,
       )
         ? $$slots.trailingIcon
         : withTrailingIcon,
@@ -396,12 +396,12 @@
   let helperId: string | undefined = undefined;
   let focused = false;
   let addLayoutListener = getContext<AddLayoutListener | undefined>(
-    'SMUI:addLayoutListener'
+    'SMUI:addLayoutListener',
   );
   let removeLayoutListener: RemoveLayoutListener | undefined;
   let initPromiseResolve: (value: void) => void;
   let initPromise = new Promise<void>(
-    (resolve) => (initPromiseResolve = resolve)
+    (resolve) => (initPromiseResolve = resolve),
   );
   // These are instances, not accessors.
   let leadingIcon: MDCTextFieldIconFoundation | undefined = undefined;
@@ -427,13 +427,13 @@
     instance.setValidateOnValueChange(
       isUninitializedValue(validateOnValueChange)
         ? false
-        : validateOnValueChange
+        : validateOnValueChange,
     );
   }
 
   $: if (instance) {
     instance.setUseNativeValidation(
-      isUninitializedValue(useNativeValidation) ? true : useNativeValidation
+      isUninitializedValue(useNativeValidation) ? true : useNativeValidation,
     );
   }
 
@@ -503,7 +503,7 @@
             .addEventListener(
               evtType,
               handler as EventListener,
-              applyPassive()
+              applyPassive(),
             );
         },
         deregisterInputInteractionHandler: (evtType, handler) => {
@@ -512,7 +512,7 @@
             .removeEventListener(
               evtType,
               handler as EventListener,
-              applyPassive()
+              applyPassive(),
             );
         },
 
@@ -553,13 +553,13 @@
         get trailingIcon() {
           return trailingIcon;
         },
-      }
+      },
     );
 
     if (valued) {
       if (input == null) {
         throw new Error(
-          'SMUI Textfield must be initialized with either a non-undefined initial value or an Input component.'
+          'SMUI Textfield must be initialized with either a non-undefined initial value or an Input component.',
         );
       }
       instance.init();
@@ -567,7 +567,7 @@
       tick().then(() => {
         if (input == null) {
           throw new Error(
-            'SMUI Textfield must be initialized with either a non-undefined initial value or an Input component.'
+            'SMUI Textfield must be initialized with either a non-undefined initial value or an Input component.',
           );
         }
         instance.init();
@@ -588,19 +588,19 @@
   });
 
   function handleLeadingIconMount(
-    event: CustomEvent<MDCTextFieldIconFoundation>
+    event: CustomEvent<MDCTextFieldIconFoundation>,
   ) {
     leadingIcon = event.detail;
   }
 
   function handleTrailingIconMount(
-    event: CustomEvent<MDCTextFieldIconFoundation>
+    event: CustomEvent<MDCTextFieldIconFoundation>,
   ) {
     trailingIcon = event.detail;
   }
 
   function handleCharacterCounterMount(
-    event: CustomEvent<MDCTextFieldCharacterCounterFoundation>
+    event: CustomEvent<MDCTextFieldCharacterCounterFoundation>,
   ) {
     characterCounter = event.detail;
   }
@@ -610,7 +610,7 @@
   }
 
   function handleHelperTextMount(
-    event: CustomEvent<MDCTextFieldHelperTextFoundation>
+    event: CustomEvent<MDCTextFieldHelperTextFoundation>,
   ) {
     helperText = event.detail;
   }

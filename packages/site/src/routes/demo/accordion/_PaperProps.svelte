@@ -83,8 +83,9 @@
 
 <style>
   *
-    :global(.demo-small-titles
-      .smui-accordion__header__title--with-description) {
+    :global(
+      .demo-small-titles .smui-accordion__header__title--with-description
+    ) {
     flex-basis: 20% !important;
     max-width: 200px !important;
   }

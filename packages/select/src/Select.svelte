@@ -364,7 +364,7 @@
   let selectedIndex = -1;
   let helperId: string | undefined = undefined;
   let addLayoutListener = getContext<AddLayoutListener | undefined>(
-    'SMUI:addLayoutListener'
+    'SMUI:addLayoutListener',
   );
   let removeLayoutListener: RemoveLayoutListener | undefined;
   let menuOpen = false;
@@ -405,7 +405,7 @@
       instance.setSelectedIndex(
         selectedIndex,
         /* closeMenu */ false,
-        /* skipNotify */ true
+        /* skipNotify */ true,
       );
     } else {
       const values = getMenuItemValues();
@@ -505,7 +505,7 @@
               index: selectedIndex,
             },
             undefined,
-            true
+            true,
           );
         },
 
@@ -530,7 +530,7 @@
         get leadingIcon() {
           return leadingIcon;
         },
-      }
+      },
     );
 
     selectedIndex = getMenuItemValues().indexOf(value);
@@ -619,7 +619,7 @@
   function getNormalizedXCoordinate(
     evt: (MouseEvent | TouchEvent) & {
       currentTarget: EventTarget & HTMLDivElement;
-    }
+    },
   ) {
     const targetClientRect = evt.currentTarget.getBoundingClientRect();
     const xCoordinate = isTouchEvent(evt)

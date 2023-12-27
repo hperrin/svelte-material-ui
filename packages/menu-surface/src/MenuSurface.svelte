@@ -139,7 +139,7 @@
 
   $: if (instance) {
     instance.setIsHorizontallyCenteredOnViewport(
-      horizontallyCenteredOnViewport
+      horizontallyCenteredOnViewport,
     );
   }
 
@@ -176,7 +176,7 @@
             'SMUIMenuSurface:closed',
             undefined,
             undefined,
-            true
+            true,
           );
         }
       },
@@ -190,7 +190,7 @@
             'SMUIMenuSurface:closing',
             undefined,
             undefined,
-            true
+            true,
           );
         }
       },
@@ -204,7 +204,7 @@
             'SMUIMenuSurface:opened',
             undefined,
             undefined,
-            true
+            true,
           );
         }
       },
@@ -215,7 +215,7 @@
             'SMUIMenuSurface:opening',
             undefined,
             undefined,
-            true
+            true,
           );
         }
       },

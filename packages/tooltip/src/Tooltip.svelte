@@ -132,10 +132,10 @@
   let internalAttrs: { [k: string]: string | undefined } = {};
   let surfaceAnimationStyles: { [k: string]: string } = {};
   let anchor = getContext<Writable<HTMLElement | undefined>>(
-    'SMUI:tooltip:wrapper:anchor'
+    'SMUI:tooltip:wrapper:anchor',
   );
   let tooltip = getContext<Writable<HTMLDivElement | undefined>>(
-    'SMUI:tooltip:wrapper:tooltip'
+    'SMUI:tooltip:wrapper:tooltip',
   );
   const rich = getContext<boolean>('SMUI:tooltip:rich');
 
@@ -159,7 +159,7 @@
 
   $: if (instance) {
     instance.setAnchorBoundaryType(
-      AnchorBoundaryType[unbounded ? 'UNBOUNDED' : 'BOUNDED']
+      AnchorBoundaryType[unbounded ? 'UNBOUNDED' : 'BOUNDED'],
     );
   }
 
@@ -264,7 +264,7 @@
         window.addEventListener(
           evt,
           handler,
-          evt === 'scroll' && { capture: true, passive: true }
+          evt === 'scroll' && { capture: true, passive: true },
         );
       },
       deregisterWindowEventHandler: (evt, handler) => {
@@ -272,7 +272,7 @@
           evt,
           handler as EventListener,
           evt === 'scroll' &&
-            ({ capture: true, passive: true } as EventListenerOptions)
+            ({ capture: true, passive: true } as EventListenerOptions),
         );
       },
       notifyHidden: () => {
@@ -281,13 +281,13 @@
           'SMUITooltip:hidden',
           undefined,
           undefined,
-          true
+          true,
         );
       },
       // TODO: figure out why MDC-Web included these caret functions, because they're entirely undocumented.
       getTooltipCaretBoundingRect: () => {
         const caret = getElement().querySelector<HTMLElement>(
-          `.${CssClasses.TOOLTIP_CARET_TOP}`
+          `.${CssClasses.TOOLTIP_CARET_TOP}`,
         );
         if (!caret) {
           return null;
@@ -296,10 +296,10 @@
       },
       setTooltipCaretStyle: (propertyName, value) => {
         const topCaret = getElement().querySelector<HTMLElement>(
-          `.${CssClasses.TOOLTIP_CARET_TOP}`
+          `.${CssClasses.TOOLTIP_CARET_TOP}`,
         );
         const bottomCaret = getElement().querySelector<HTMLElement>(
-          `.${CssClasses.TOOLTIP_CARET_BOTTOM}`
+          `.${CssClasses.TOOLTIP_CARET_BOTTOM}`,
         );
 
         if (!topCaret || !bottomCaret) {
@@ -311,10 +311,10 @@
       },
       clearTooltipCaretStyles: () => {
         const topCaret = getElement().querySelector<HTMLElement>(
-          `.${CssClasses.TOOLTIP_CARET_TOP}`
+          `.${CssClasses.TOOLTIP_CARET_TOP}`,
         );
         const bottomCaret = getElement().querySelector<HTMLElement>(
-          `.${CssClasses.TOOLTIP_CARET_BOTTOM}`
+          `.${CssClasses.TOOLTIP_CARET_BOTTOM}`,
         );
 
         if (!topCaret || !bottomCaret) {
@@ -346,7 +346,7 @@
     ) {
       nonReactiveLocationStore.parent.insertBefore(
         getElement(),
-        nonReactiveLocationStore.nextSibling
+        nonReactiveLocationStore.nextSibling,
       );
     }
   });
@@ -505,10 +505,10 @@
   function hoistToBody() {
     if ($anchor && document.body !== getElement().parentNode) {
       nonReactiveLocationStore.setParent(
-        getElement().parentElement ?? undefined
+        getElement().parentElement ?? undefined,
       );
       nonReactiveLocationStore.setNextSibling(
-        (getElement().nextElementSibling as HTMLElement | null) ?? undefined
+        (getElement().nextElementSibling as HTMLElement | null) ?? undefined,
       );
       document.body.appendChild(getElement());
     }
@@ -517,8 +517,8 @@
   export function attachScrollHandler(
     addEventListenerFn: <K extends keyof GlobalEventHandlersEventMap>(
       event: K,
-      handler: SpecificEventListener<K>
-    ) => void
+      handler: SpecificEventListener<K>,
+    ) => void,
   ) {
     instance && instance.attachScrollHandler(addEventListenerFn);
   }
@@ -526,8 +526,8 @@
   export function removeScrollHandler(
     removeEventHandlerFn: <K extends keyof GlobalEventHandlersEventMap>(
       event: K,
-      handler: SpecificEventListener<K>
-    ) => void
+      handler: SpecificEventListener<K>,
+    ) => void,
   ) {
     instance && instance.removeScrollHandler(removeEventHandlerFn);
   }

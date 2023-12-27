@@ -8,7 +8,7 @@ export default function Anchor(
   {
     addClass = (className) => node.classList.add(className),
     removeClass = (className) => node.classList.remove(className),
-  }: AnchorProps = {}
+  }: AnchorProps = {},
 ) {
   addClass('mdc-menu-surface--anchor');
 

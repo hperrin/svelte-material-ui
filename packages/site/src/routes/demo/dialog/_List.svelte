@@ -26,8 +26,8 @@
 <pre class="status">Clicked: {clicked}{clicked === 69
     ? ', nice'
     : clicked === 42
-    ? ', the answer to life, the universe, and everything'
-    : ''}</pre>
+      ? ', the answer to life, the universe, and everything'
+      : ''}</pre>
 
 <script lang="ts">
   import Dialog, { Title, Content } from '@smui/dialog';

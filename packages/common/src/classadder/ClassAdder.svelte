@@ -71,7 +71,7 @@
       smuiClassUnsubscribes.push(
         store.subscribe((value) => {
           smuiClassMap[name] = value;
-        })
+        }),
       );
     }
   });

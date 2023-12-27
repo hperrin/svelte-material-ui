@@ -6,7 +6,7 @@ export default function GroupItem(
   }: {
     addClass?: (className: string) => void;
     removeClass?: (className: string) => void;
-  } = {}
+  } = {},
 ) {
   addClass('smui-button__group-item');
 

@@ -86,10 +86,10 @@
   let internalStyles: { [k: string]: string } = {};
 
   const disabled = getContext<SvelteStore<boolean>>(
-    'SMUI:accordion:panel:disabled'
+    'SMUI:accordion:panel:disabled',
   );
   const nonInteractive = getContext<SvelteStore<boolean>>(
-    'SMUI:accordion:panel:nonInteractive'
+    'SMUI:accordion:panel:nonInteractive',
   );
   const open = getContext<SvelteStore<boolean>>('SMUI:accordion:panel:open');
 

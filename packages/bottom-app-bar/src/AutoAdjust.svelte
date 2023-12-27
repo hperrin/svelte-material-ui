@@ -66,7 +66,7 @@
 
     addStyle(
       '--smui-bottom-app-bar--fab-offset',
-      $propStore.adjustOffset + 'px'
+      $propStore.adjustOffset + 'px',
     );
 
     return `smui-bottom-app-bar--${$propStore.variant}-adjust ${

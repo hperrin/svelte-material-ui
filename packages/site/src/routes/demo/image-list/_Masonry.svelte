@@ -6,7 +6,7 @@
           i,
           107,
           200,
-          Math.abs
+          Math.abs,
         )}?text=190x{getUnevenImageSize(i, 107, 200, Math.abs)}"
         alt="Image {i + 1}"
       />
@@ -24,7 +24,7 @@
     counter: number,
     base: number,
     variance: number,
-    preAdd = (num: number) => num
+    preAdd = (num: number) => num,
   ) {
     const mid = (counter % 2 ? Math.cos : Math.sin)(counter) * variance;
     return base + Math.floor(preAdd(mid));

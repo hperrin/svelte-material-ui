@@ -168,7 +168,7 @@
   export let showMenuWithNoInput = true;
   export let noMatchesActionDisabled = true;
   export let search: (input: string) => Promise<any[] | false> = async (
-    input: string
+    input: string,
   ) => {
     const linput = input.toLowerCase();
     const fullOptions =
@@ -179,7 +179,7 @@
     }
 
     const result = fullOptions.filter((item) =>
-      getOptionLabel(item).toLowerCase().includes(linput)
+      getOptionLabel(item).toLowerCase().includes(linput),
     );
     result.sort((a, b) => {
       const aString = getOptionLabel(a).toLowerCase();
@@ -282,7 +282,7 @@
         matches = searchResult;
         if (selectOnExactMatch) {
           const exactMatch = matches.find(
-            (match) => getOptionLabel(match) === text
+            (match) => getOptionLabel(match) === text,
           );
           if (exactMatch && value !== exactMatch) {
             selectOption(exactMatch);
@@ -422,7 +422,7 @@
           focusedIndex = -1;
           focused = false;
         },
-        { once: true }
+        { once: true },
       );
       return;
     }
@@ -439,7 +439,7 @@
   export function focus() {
     if (inputContainer) {
       const inputEl = inputContainer.querySelector<HTMLInputElement>(
-        'input.mdc-text-field__input'
+        'input.mdc-text-field__input',
       );
 
       if (inputEl) {
@@ -451,7 +451,7 @@
   export function blur() {
     if (inputContainer) {
       const inputEl = inputContainer.querySelector<HTMLInputElement>(
-        'input.mdc-text-field__input'
+        'input.mdc-text-field__input',
       );
 
       if (inputEl) {

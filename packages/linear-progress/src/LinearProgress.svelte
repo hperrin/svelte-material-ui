@@ -91,7 +91,7 @@
   let primaryBarStyles: { [k: string]: string } = {};
   let context = getContext<string | undefined>('SMUI:linear-progress:context');
   let closedStore = getContext<Writable<boolean> | undefined>(
-    'SMUI:linear-progress:closed'
+    'SMUI:linear-progress:closed',
   );
 
   $: if (closedStore) {
@@ -139,7 +139,7 @@
         const RO = window.ResizeObserver;
         if (RO) {
           const ro = new RO(
-            callback as unknown as ResizeObserverCallback
+            callback as unknown as ResizeObserverCallback,
           ) as unknown as MDCResizeObserver;
           ro.observe(getElement());
           return ro;

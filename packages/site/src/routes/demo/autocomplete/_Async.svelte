@@ -56,7 +56,7 @@
 
     // Return a list of matches.
     return fruits.filter((item) =>
-      item.toLowerCase().includes(input.toLowerCase())
+      item.toLowerCase().includes(input.toLowerCase()),
     );
   }
 </script>

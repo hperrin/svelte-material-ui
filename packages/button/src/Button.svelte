@@ -168,7 +168,7 @@
         getElement(),
         secondary
           ? 'SMUIBannerButton:secondaryActionClick'
-          : 'SMUIBannerButton:primaryActionClick'
+          : 'SMUIBannerButton:primaryActionClick',
       );
     }
   }
