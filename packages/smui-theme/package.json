@@ -75,7 +75,7 @@
     "@material/theme": "^14.0.0",
     "https-proxy-agent": "^7.0.2",
     "node-fetch": "^2.7.0",
-    "sass": "^1.66.1",
+    "sass": "^1.69.5",
     "yargs": "^17.7.2"
   }
 }
