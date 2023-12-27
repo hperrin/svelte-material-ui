@@ -75,7 +75,7 @@
 </Card>
 
 <script lang="ts">
-  import type { SvelteComponentDev } from 'svelte/internal';
+  import type { ComponentType, SvelteComponent } from 'svelte';
   import { mdiGithub, mdiCodeTags, mdiCodeTagsCheck } from '@mdi/js';
   import Card, { Content, Actions, ActionIcons } from '@smui/card';
   import IconButton, { Icon } from '@smui/icon-button';
@@ -83,7 +83,7 @@
 
   export let file: string | undefined = undefined;
   export let files: string[] = typeof file === 'string' ? [file] : [];
-  export let component: typeof SvelteComponentDev | string;
+  export let component: ComponentType<SvelteComponent> | string;
 
   let sourceContainer: HTMLDivElement | undefined = undefined;
   let show = false;

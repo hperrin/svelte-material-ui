@@ -5,10 +5,22 @@
   "type": "module",
   "svelte": "./dist/index.js",
   "exports": {
-    "./package.json": "./package.json",
-    ".": "./dist/index.js",
-    "./classadder": "./dist/classadder/index.js",
-    "./internal": "./dist/internal/index.js"
+    "./package.json": {
+      "types": "./package.json",
+      "svelte": "./package.json"
+    },
+    ".": {
+      "types": "./src/index.d.ts",
+      "svelte": "./dist/index.js"
+    },
+    "./classadder": {
+      "types": "./src/classadder/index.d.ts",
+      "svelte": "./dist/classadder/index.js"
+    },
+    "./internal": {
+      "types": "./src/internal/index.d.ts",
+      "svelte": "./dist/internal/index.js"
+    }
   },
   "typesVersions": {
     "*": {
@@ -22,7 +34,7 @@
         "./src/internal/index.d.ts"
       ],
       ".": [
-        "./src/index.d.js"
+        "./src/index.d.ts"
       ]
     }
   },

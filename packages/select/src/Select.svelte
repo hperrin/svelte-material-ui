@@ -66,8 +66,11 @@
     })}
     aria-required={required ? 'true' : undefined}
     aria-disabled={disabled ? 'true' : undefined}
-    aria-controls={helperId}
+    aria-controls={menuId}
+    aria-expanded={menuOpen ? 'true' : 'false'}
     aria-describedby={helperId}
+    role="combobox"
+    tabindex="0"
     on:focus={() => instance && instance.handleFocus()}
     on:blur={() => instance && instance.handleBlur()}
     on:click={(event) => {
@@ -178,6 +181,7 @@
       'mdc-select__menu': true,
       ...menuClasses,
     })}
+    id={menuId}
     fullWidth
     anchor={false}
     {anchorElement}
@@ -362,6 +366,7 @@
   let selectAnchor: HTMLDivElement;
   let selectAnchorAttrs: { [k: string]: string | undefined } = {};
   let selectedIndex = -1;
+  let menuId: string = $$restProps['menu$id'] ?? inputId + '-menu';
   let helperId: string | undefined = undefined;
   let addLayoutListener = getContext<AddLayoutListener | undefined>(
     'SMUI:addLayoutListener',

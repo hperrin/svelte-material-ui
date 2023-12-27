@@ -5,5 +5,5 @@ import { Graphic } from '@smui/list';
 
 export default classAdderBuilder<keyof SmuiElementMap, typeof SvelteComponent>({
   class: 'mdc-menu__selection-group-icon',
-  component: Graphic,
+  component: Graphic as typeof SvelteComponent,
 });

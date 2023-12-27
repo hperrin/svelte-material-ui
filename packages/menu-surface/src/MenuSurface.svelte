@@ -17,6 +17,7 @@
     .map(([name, value]) => `${name}: ${value};`)
     .concat([style])
     .join(' ')}
+  role="dialog"
   on:keydown={instance && instance.handleKeydown.bind(instance)}
   {...$$restProps}
 >

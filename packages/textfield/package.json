@@ -5,11 +5,26 @@
   "type": "module",
   "svelte": "./dist/index.js",
   "exports": {
-    "./package.json": "./package.json",
-    ".": "./dist/index.js",
-    "./character-counter": "./dist/character-counter/index.js",
-    "./helper-text": "./dist/helper-text/index.js",
-    "./icon": "./dist/icon/index.js"
+    "./package.json": {
+      "types": "./package.json",
+      "svelte": "./package.json"
+    },
+    ".": {
+      "types": "./src/index.d.ts",
+      "svelte": "./dist/index.js"
+    },
+    "./character-counter": {
+      "types": "./src/character-counter/index.d.ts",
+      "svelte": "./dist/character-counter/index.js"
+    },
+    "./helper-text": {
+      "types": "./src/helper-text/index.d.ts",
+      "svelte": "./dist/helper-text/index.js"
+    },
+    "./icon": {
+      "types": "./src/icon/index.d.ts",
+      "svelte": "./dist/icon/index.js"
+    }
   },
   "typesVersions": {
     "*": {
@@ -26,7 +41,7 @@
         "./src/icon/index.d.ts"
       ],
       ".": [
-        "./src/index.d.js"
+        "./src/index.d.ts"
       ]
     }
   },

@@ -5,9 +5,18 @@
   "type": "module",
   "svelte": "./dist/index.js",
   "exports": {
-    "./package.json": "./package.json",
-    ".": "./dist/index.js",
-    "./kitchen": "./dist/kitchen/index.js"
+    "./package.json": {
+      "types": "./package.json",
+      "svelte": "./package.json"
+    },
+    ".": {
+      "types": "./src/index.d.ts",
+      "svelte": "./dist/index.js"
+    },
+    "./kitchen": {
+      "types": "./src/kitchen/index.d.ts",
+      "svelte": "./dist/kitchen/index.js"
+    }
   },
   "typesVersions": {
     "*": {
@@ -18,7 +27,7 @@
         "./src/kitchen/index.d.ts"
       ],
       ".": [
-        "./src/index.d.js"
+        "./src/index.d.ts"
       ]
     }
   },

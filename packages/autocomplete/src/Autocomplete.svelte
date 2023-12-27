@@ -11,6 +11,10 @@
 >
   <div
     bind:this={inputContainer}
+    aria-controls={menuId}
+    aria-expanded={menuOpen ? 'true' : 'false'}
+    role="combobox"
+    tabindex="0"
     on:focusin={() => {
       focused = true;
     }}
@@ -34,15 +38,10 @@
       [menu$class]: true,
       'smui-autocomplete__menu': true,
     })}
+    id={menuId}
     managed
     neverRestoreFocus
-    open={focused &&
-      (text !== '' || showMenuWithNoInput) &&
-      (loading ||
-        (!combobox && !(matches.length === 1 && matches[0] === value)) ||
-        (combobox &&
-          !!matches.length &&
-          !(matches.length === 1 && matches[0] === value)))}
+    open={menuOpen}
     bind:anchorElement={element}
     anchor={menu$anchor}
     anchorCorner={menu$anchorCorner}
@@ -92,6 +91,10 @@
     </List>
   </Menu>
 </div>
+
+<script context="module" lang="ts">
+  let counter = 0;
+</script>
 
 <script lang="ts">
   import type { ComponentProps } from 'svelte';
@@ -207,6 +210,17 @@
   let matches: any[] = [];
   let focusedIndex = -1;
   let focusedItem: SMUIListItemAccessor | undefined = undefined;
+  let menuId: string =
+    $$restProps['menu$id'] ?? 'SMUI-autocomplete-' + counter++ + '-menu';
+
+  $: menuOpen =
+    focused &&
+    (text !== '' || showMenuWithNoInput) &&
+    (loading ||
+      (!combobox && !(matches.length === 1 && matches[0] === value)) ||
+      (combobox &&
+        !!matches.length &&
+        !(matches.length === 1 && matches[0] === value)));
 
   let previousText = text;
   $: if (previousText !== text) {
