@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.0.0-beta.16](https://github.com/hperrin/svelte-material-ui/compare/v7.0.0-beta.15...v7.0.0-beta.16) (2023-12-27)
+
+
+### Bug Fixes
+
+* allow changing the element for the snackbar close button in kitchen ([fcaff7c](https://github.com/hperrin/svelte-material-ui/commit/fcaff7cc5fa9dcbea2ea79e17b49eb9ac604e7e7))
+* typescript and accessibility issues with menus and select inputs ([5b4794f](https://github.com/hperrin/svelte-material-ui/commit/5b4794f57e590d0f6ee33f0936124dc0e425e2a6))
+
+
+
+
+
 # [7.0.0-beta.15](https://github.com/hperrin/svelte-material-ui/compare/v7.0.0-beta.14...v7.0.0-beta.15) (2023-09-04)
 
 

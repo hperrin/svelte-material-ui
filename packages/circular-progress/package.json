@@ -1,6 +1,6 @@
 {
   "name": "@smui/circular-progress",
-  "version": "7.0.0-beta.15",
+  "version": "7.0.0-beta.16",
   "description": "Svelte Material UI - Circular Progress",
   "type": "module",
   "main": "dist/index.js",
@@ -40,7 +40,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@material/circular-progress": "^14.0.0",
-    "@smui/common": "^7.0.0-beta.15",
+    "@smui/common": "^7.0.0-beta.16",
     "svelte2tsx": "^0.6.27"
   },
   "devDependencies": {
