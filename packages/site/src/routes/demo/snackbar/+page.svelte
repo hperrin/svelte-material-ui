@@ -35,6 +35,10 @@
   <Demo component={Kitchen} file="snackbar/_Kitchen.svelte">
     The "Kitchen" Snackbar generator
   </Demo>
+
+  <Demo component={KitchenSvg} file="snackbar/_KitchenSvg.svelte">
+    Kitchen, with an SVG dismiss button
+  </Demo>
 </section>
 
 <script lang="ts">
@@ -46,4 +50,5 @@
   import DynamicText from './_DynamicText.svelte';
   import Colors from './_Colors.svelte';
   import Kitchen from './_Kitchen.svelte';
+  import KitchenSvg from './_KitchenSvg.svelte';
 </script>
