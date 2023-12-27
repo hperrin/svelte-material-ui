@@ -30,6 +30,10 @@
     </svelte:fragment>
   </Demo>
 
+  <Demo component={Invalid} file="select/_Invalid.svelte">
+    Dynamic Invalid State
+  </Demo>
+
   <Demo component={Standard} file="select/_Standard.svelte">Standard</Demo>
 
   <Demo component={Filled} file="select/_Filled.svelte">Filled</Demo>
@@ -61,6 +65,7 @@
   import Showcase from './_Showcase.svelte';
   import Keys from './_Keys.svelte';
   import Forms from './_Forms.svelte';
+  import Invalid from './_Invalid.svelte';
   import Standard from './_Standard.svelte';
   import Filled from './_Filled.svelte';
   import Outlined from './_Outlined.svelte';
