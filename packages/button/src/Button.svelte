@@ -111,7 +111,8 @@
   let internalStyles: { [k: string]: string } = {};
   let context = getContext<string | undefined>('SMUI:button:context');
 
-  export let component: typeof SvelteComponent = SmuiElement;
+  export let component: typeof SvelteComponent =
+    SmuiElement as typeof SvelteComponent;
   export let tag: SmuiEveryElement | undefined =
     component === SmuiElement ? (href == null ? 'button' : 'a') : undefined;
 

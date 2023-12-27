@@ -146,7 +146,8 @@
   let active = tabId === getContext<any | undefined>('SMUI:tab:initialActive');
   let forceAccessible = false;
 
-  export let component: typeof SvelteComponent = SmuiElement;
+  export let component: typeof SvelteComponent =
+    SmuiElement as typeof SvelteComponent;
   export let tag: SmuiHTMLElement | undefined =
     component === SmuiElement ? (href == null ? 'button' : 'a') : undefined;
 

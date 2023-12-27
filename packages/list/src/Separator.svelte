@@ -59,7 +59,8 @@
   let nav = getContext<boolean | undefined>('SMUI:list:item:nav');
   let context = getContext<string | undefined>('SMUI:separator:context');
 
-  export let component: typeof SvelteComponent = SmuiElement;
+  export let component: typeof SvelteComponent =
+    SmuiElement as typeof SvelteComponent;
   export let tag: SmuiEveryElement | undefined =
     component === SmuiElement
       ? nav || context !== 'list'

@@ -122,7 +122,8 @@
   );
   let removeLayoutListener: RemoveLayoutListener | undefined;
 
-  export let component: typeof SvelteComponent = SmuiElement;
+  export let component: typeof SvelteComponent =
+    SmuiElement as typeof SvelteComponent;
   export let tag: SmuiEveryElement | undefined =
     component === SmuiElement ? (nav ? 'nav' : 'ul') : undefined;
 

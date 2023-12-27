@@ -157,7 +157,8 @@
   let context = getContext('SMUI:icon-button:context');
   let ariaDescribedby = getContext('SMUI:icon-button:aria-describedby');
 
-  export let component: typeof SvelteComponent = SmuiElement;
+  export let component: typeof SvelteComponent =
+    SmuiElement as typeof SvelteComponent;
   export let tag: SmuiEveryElement | undefined =
     component === SmuiElement ? (href == null ? 'button' : 'a') : undefined;
 

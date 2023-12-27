@@ -94,7 +94,8 @@
   let internalClasses: { [k: string]: boolean } = {};
   let internalStyles: { [k: string]: string } = {};
 
-  export let component: typeof SvelteComponent = SmuiElement;
+  export let component: typeof SvelteComponent =
+    SmuiElement as typeof SvelteComponent;
   export let tag: SmuiEveryElement | undefined =
     component === SmuiElement ? (href == null ? 'button' : 'a') : undefined;
 

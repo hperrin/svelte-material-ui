@@ -46,7 +46,8 @@
 
   let element: SvelteComponent;
 
-  export let component: typeof SvelteComponent = SmuiElement;
+  export let component: typeof SvelteComponent =
+    SmuiElement as typeof SvelteComponent;
   export let tag: SmuiEveryElement | undefined =
     component === SmuiElement ? 'main' : undefined;
 
