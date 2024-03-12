@@ -6,6 +6,16 @@
   "main": "dist/index.js",
   "module": "dist/index.js",
   "svelte": "dist/index.js",
+  "exports": {
+    "./package.json": {
+      "types": "./package.json",
+      "svelte": "./package.json"
+    },
+    ".": {
+      "types": "./src/index.d.ts",
+      "svelte": "./dist/index.js"
+    }
+  },
   "types": "src/index.d.ts",
   "keywords": [
     "svelte",
