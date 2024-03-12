@@ -53,7 +53,7 @@ Or if you don't need dark mode support.
 <link rel="stylesheet" href="/smui.css" />
 ```
 
-Important: The smui-theme compiler will only include the Sass for the packages installed when it is run. If you install a new SMUI package, you should run `npm run prepare` to rebuild the CSS.
+**Important: The smui-theme compiler will only include the Sass for the packages installed when it is run. If you install a new SMUI package, you should run `npm run prepare` to rebuild the CSS.**
 
 ### Theme Variables
 
