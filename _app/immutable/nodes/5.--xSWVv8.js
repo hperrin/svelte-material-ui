@@ -1,0 +1,29 @@
+import{s as w,n as q}from"../chunks/scheduler.Y0SF-lgF.js";import{S as P,i as S,g as m,s as f,h as j,E as d,c as v,k as C,a as l,f as t,r as E,x as H,j as I,u as $,v as R,d as U,t as N,w as B}from"../chunks/index.NFc0pX0t.js";function z(M){let a,o="Using SMUI in the Svelte REPL",e,p,n='Check out an <a href="https://svelte.dev/repl/aa857c3bb5eb478cbe6b1fd6c6da522a" rel="nofollow">example REPL</a>.',i,h,k="SMUI components provide “bare.css” files to use in the REPL. In a <code>&lt;svelte:head&gt;</code> section, load from a CDN like UNPKG the CSS files for the fonts, for Material typography, and for SMUI:",y,r,L=`<code class="language-svelte"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">svelte:head</span>&gt;</span>
+  </span><span class="hljs-comment">&lt;!-- Fonts --&gt;</span><span class="language-xml">
+  <span class="hljs-tag">&lt;<span class="hljs-name">link</span>
+    <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span>
+    <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://fonts.googleapis.com/icon?family=Material+Icons&quot;</span>
+  /&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">link</span>
+    <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span>
+    <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700&quot;</span>
+  /&gt;</span>
+
+  </span><span class="hljs-comment">&lt;!-- Material Typography --&gt;</span><span class="language-xml">
+  <span class="hljs-tag">&lt;<span class="hljs-name">link</span>
+    <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span>
+    <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://unpkg.com/@material/typography@14.0.0/dist/mdc.typography.css&quot;</span>
+  /&gt;</span>
+
+  </span><span class="hljs-comment">&lt;!-- SMUI --&gt;</span><span class="language-xml">
+  <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://unpkg.com/svelte-material-ui/bare.css&quot;</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">svelte:head</span>&gt;</span></span></code>`,_,u,T="Now load the Components, from within a <code>&lt;script&gt;</code> section, and you can use them:",x,g,b=`<code class="language-svelte"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Button</span> <span class="hljs-attr">on:click</span>=</span></span><span class="language-javascript">{<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">alert</span>(<span class="hljs-string">&#39;See, I told you.&#39;</span>)}</span><span class="language-xml"><span class="hljs-tag">&gt;</span>This is a button!<span class="hljs-tag">&lt;/<span class="hljs-name">Button</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">Card</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;width: 360px; margin: 2em auto;&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">Content</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;mdc-typography--body2&quot;</span>&gt;</span>This is a card!<span class="hljs-tag">&lt;/<span class="hljs-name">Content</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">Card</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span></span><span class="language-javascript">
+  <span class="hljs-keyword">import</span> <span class="hljs-title class_">Button</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#39;@smui/button&#39;</span>;
+  <span class="hljs-keyword">import</span> <span class="hljs-title class_">Card</span>, { <span class="hljs-title class_">Content</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#39;@smui/card&#39;</span>;
+</span><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span></code>`;return{c(){a=m("h1"),a.textContent=o,e=f(),p=m("p"),p.innerHTML=n,i=f(),h=m("p"),h.innerHTML=k,y=f(),r=m("pre"),r.innerHTML=L,_=f(),u=m("p"),u.innerHTML=T,x=f(),g=m("pre"),g.innerHTML=b,this.h()},l(s){a=j(s,"H1",{id:!0,"data-svelte-h":!0}),d(a)!=="svelte-2nm58b"&&(a.textContent=o),e=v(s),p=j(s,"P",{"data-svelte-h":!0}),d(p)!=="svelte-k27ykv"&&(p.innerHTML=n),i=v(s),h=j(s,"P",{"data-svelte-h":!0}),d(h)!=="svelte-ywpe7t"&&(h.innerHTML=k),y=v(s),r=j(s,"PRE",{class:!0,"data-svelte-h":!0}),d(r)!=="svelte-1yr2z0v"&&(r.innerHTML=L),_=v(s),u=j(s,"P",{"data-svelte-h":!0}),d(u)!=="svelte-g99th6"&&(u.innerHTML=T),x=v(s),g=j(s,"PRE",{class:!0,"data-svelte-h":!0}),d(g)!=="svelte-1to15cw"&&(g.innerHTML=b),this.h()},h(){C(a,"id","using-smui-in-the-svelte-repl"),C(r,"class","highlight"),C(g,"class","highlight")},m(s,c){l(s,a,c),l(s,e,c),l(s,p,c),l(s,i,c),l(s,h,c),l(s,y,c),l(s,r,c),l(s,_,c),l(s,u,c),l(s,x,c),l(s,g,c)},p:q,i:q,o:q,d(s){s&&(t(a),t(e),t(p),t(i),t(h),t(y),t(r),t(_),t(u),t(x),t(g))}}}class D extends P{constructor(a){super(),S(this,a,null,z,w,{})}}function F(M){let a,o,e,p;return e=new D({}),{c(){a=f(),o=m("section"),E(e.$$.fragment),this.h()},l(n){H("svelte-cit14p",document.head).forEach(t),a=v(n),o=j(n,"SECTION",{class:!0});var h=I(o);$(e.$$.fragment,h),h.forEach(t),this.h()},h(){document.title="REPL - SMUI",C(o,"class","markdown svelte-1xoo2bu")},m(n,i){l(n,a,i),l(n,o,i),R(e,o,null),p=!0},p:q,i(n){p||(U(e.$$.fragment,n),p=!0)},o(n){N(e.$$.fragment,n),p=!1},d(n){n&&(t(a),t(o)),B(e)}}}class O extends P{constructor(a){super(),S(this,a,null,F,w,{})}}export{O as component};
