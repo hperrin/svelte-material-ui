@@ -13,6 +13,7 @@ I spent a day [flexing every graphic design muscle in my body](https://i.kym-cdn
 
 ## Breaking Changes
 
+- Tooling now **must** be Svelte-aware. This means adding conditional export names to Rollup and Webpack config. See installation docs.
 - SMUI 7 (after v7.0.0-beta.9) is no longer compatible with Svelte 3. It now requires Svelte 4.
 - If you had started using `component={Svg}`, you need to use `tag="svg"` after v7.0.0-beta.12.
 - The `@smui/common/elements` components are gone. Just set the `tag` prop on components now (like `<Button tag="div">`).
