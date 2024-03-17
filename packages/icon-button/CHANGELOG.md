@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.0.0-beta.18](https://github.com/hperrin/svelte-material-ui/compare/v7.0.0-beta.17...v7.0.0-beta.18) (2024-03-17)
+
+
+### Bug Fixes
+
+* rare typerror in buttons ssr ([b8760f8](https://github.com/hperrin/svelte-material-ui/commit/b8760f8ac50d8720f99a891baee4f441a815bd2e))
+
+
+
+
+
 # [7.0.0-beta.17](https://github.com/hperrin/svelte-material-ui/compare/v7.0.0-beta.16...v7.0.0-beta.17) (2024-03-13)
 
 **Note:** Version bump only for package @smui/icon-button
