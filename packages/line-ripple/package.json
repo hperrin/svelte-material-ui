@@ -51,14 +51,14 @@
   "dependencies": {
     "@material/line-ripple": "^14.0.0",
     "@smui/common": "^7.0.0-beta.18",
-    "svelte2tsx": "^0.6.27"
+    "svelte2tsx": "^0.7.8"
   },
   "devDependencies": {
-    "@tsconfig/svelte": "^5.0.2",
-    "sass": "^1.69.5",
-    "svelte-check": "^3.6.2",
+    "@tsconfig/svelte": "^5.0.4",
+    "sass": "^1.76.0",
+    "svelte-check": "^3.7.1",
     "svelte-strip": "^3.1.1",
     "tslib": "^2.6.2",
-    "typescript": "^5.3.3"
+    "typescript": "^5.4.5"
   }
 }
