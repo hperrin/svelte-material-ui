@@ -39,6 +39,10 @@ To get started, check out the [installation docs](INSTALL.md) or the [SvelteKit 
 
 If you need help installing or using SMUI, join the [Discord server](https://discord.gg/aFzmkrmg9P).
 
+# Svelte 5
+
+SMUI v7 works with Svelte 4 only, due to the way it handles events. SMUI v8 is in development, and will work with Svelte 5 (and not Svelte 4).
+
 # Migration
 
 Upgrading from an old version? Be sure to read the [migration doc](MIGRATING.md).
