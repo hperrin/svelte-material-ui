@@ -47,7 +47,7 @@ SMUI v7 works with Svelte 4 only, due to the way it handles events. SMUI v8 is i
 
 Upgrading from an old version? Be sure to read the [migration doc](MIGRATING.md).
 
-Upgrading from v6? You need Svelte 4. No more elemental components; you can now use the "tag" prop for HTML elements or the "Svg" component. No more "ComponentDev" types; components can now be used as their type. Check out the [upgrade instructions](MIGRATING.md#smui-6---smui-7).
+Upgrading from v6? You need Svelte 4. No more elemental components; you can now use the "tag" prop to change the element. No more "ComponentDev" types; components can now be used as their type. Check out the [upgrade instructions](MIGRATING.md#smui-6---smui-7).
 
 Upgrading from v5? If you're still using the advanced styling method, it's really time to switch to the easy styling method. '/styled' endpoints are no longer provided. Check out the [upgrade instructions](MIGRATING.md#smui-5---smui-6).
 
