@@ -1,6 +1,6 @@
 {
   "name": "@smui/paper",
-  "version": "7.0.0-beta.18",
+  "version": "7.0.0",
   "description": "Svelte Material UI - Paper",
   "type": "module",
   "main": "dist/index.js",
@@ -54,7 +54,7 @@
     "@material/shape": "^14.0.0",
     "@material/theme": "^14.0.0",
     "@material/typography": "^14.0.0",
-    "@smui/common": "^7.0.0-beta.18",
+    "@smui/common": "^7.0.0",
     "svelte2tsx": "^0.7.8"
   },
   "devDependencies": {
