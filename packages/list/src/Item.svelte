@@ -20,7 +20,6 @@
             },
           ],
         ]),
-    forwardEvents,
     ...use,
   ]}
   class={classMap({
@@ -49,14 +48,26 @@
   {...!nav ? { 'aria-disabled': disabled ? 'true' : 'false' } : {}}
   data-menu-item-skip-restore-focus={skipRestoreFocus || undefined}
   {tabindex}
-  on:click={action}
-  on:keydown={handleKeydown}
-  on:SMUIGenericInput:mount={handleInputMount}
-  on:SMUIGenericInput:unmount={() => (input = undefined)}
   {href}
   {...internalAttrs}
   {...$$restProps}
-  >{#if ripple}<span class="mdc-deprecated-list-item__ripple" />{/if}<slot
+  onclick={(e: MouseEvent) => {
+    action(e);
+    $$restProps.onclick?.(e);
+  }}
+  onkeydown={(e: KeyboardEvent) => {
+    handleKeydown(e);
+    $$restProps.onkeydown?.(e);
+  }}
+  onSMUIGenericInputMount={(e: CustomEvent) => {
+    handleInputMount(e);
+    $$restProps.onSMUIGenericInputMount?.(e);
+  }}
+  onSMUIGenericInputUnmount={(e: CustomEvent) => {
+    input = undefined;
+    $$restProps.onSMUIGenericInputUnmount?.(e);
+  }}
+  >{#if ripple}<span class="mdc-deprecated-list-item__ripple"></span>{/if}<slot
   /></svelte:component
 >
 
@@ -70,19 +81,13 @@
 >
   import type { SvelteComponent } from 'svelte';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type {
     SMUICheckboxInputAccessor,
     SMUIGenericInputAccessor,
     SMUIRadioInputAccessor,
   } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    dispatch,
-  } from '@smui/common/internal';
+  import { classMap, dispatch } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
   import type {
     SmuiElementMap,
@@ -118,7 +123,6 @@
       'data-value'?: any;
     };
 
-  const forwardEvents = forwardEventsBuilder(get_current_component());
   interface UninitializedValue extends Function {}
   let uninitializedValue: UninitializedValue = () => {};
   function isUninitializedValue(value: any): value is UninitializedValue {
@@ -274,10 +278,10 @@
       },
     };
 
-    dispatch(getElement(), 'SMUIListItem:mount', accessor);
+    dispatch(getElement(), 'SMUIListItemMount', accessor);
 
     return () => {
-      dispatch(getElement(), 'SMUIListItem:unmount', accessor);
+      dispatch(getElement(), 'SMUIListItemUnmount', accessor);
     };
   });
 
@@ -376,7 +380,7 @@
 
   export function action(e: Event) {
     if (!disabled) {
-      dispatch(getElement(), 'SMUI:action', e);
+      dispatch(getElement(), 'SMUIAction', e);
     }
   }
 

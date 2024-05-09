@@ -1,7 +1,6 @@
 <div
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
     [className]: true,
     'mdc-linear-progress': true,
@@ -18,9 +17,14 @@
   aria-valuemin={0}
   aria-valuemax={1}
   aria-valuenow={indeterminate ? undefined : progress}
-  on:transitionend={() => instance && instance.handleTransitionEnd()}
   {...internalAttrs}
   {...$$restProps}
+  ontransitionend={(e) => {
+    if (instance) {
+      instance.handleTransitionEnd();
+    }
+    $$restProps.ontransitionend?.(e);
+  }}
 >
   <div class="mdc-linear-progress__buffer">
     <div
@@ -28,8 +32,8 @@
       style={Object.entries(bufferBarStyles)
         .map(([name, value]) => `${name}: ${value};`)
         .join(' ')}
-    />
-    <div class="mdc-linear-progress__buffer-dots" />
+    ></div>
+    <div class="mdc-linear-progress__buffer-dots"></div>
   </div>
   <div
     class="mdc-linear-progress__bar mdc-linear-progress__primary-bar"
@@ -37,10 +41,10 @@
       .map(([name, value]) => `${name}: ${value};`)
       .join(' ')}
   >
-    <span class="mdc-linear-progress__bar-inner" />
+    <span class="mdc-linear-progress__bar-inner"></span>
   </div>
   <div class="mdc-linear-progress__bar mdc-linear-progress__secondary-bar">
-    <span class="mdc-linear-progress__bar-inner" />
+    <span class="mdc-linear-progress__bar-inner"></span>
   </div>
 </div>
 
@@ -49,15 +53,9 @@
   import { MDCLinearProgressFoundation } from '@material/linear-progress';
   import { onMount, getContext } from 'svelte';
   import type { Writable } from 'svelte/store';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    useActions,
-  } from '@smui/common/internal';
+  import { classMap, useActions } from '@smui/common/internal';
 
   type OwnProps = {
     use?: ActionArray;
@@ -69,8 +67,6 @@
     buffer?: number | undefined;
   };
   type $$Props = OwnProps & SmuiAttrs<'div', keyof OwnProps>;
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];

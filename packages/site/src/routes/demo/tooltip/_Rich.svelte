@@ -4,7 +4,7 @@
     creates a DOM element.
   -->
   <Wrapper rich>
-    <Button on:click={() => clicked++} touch>
+    <Button onclick={() => clicked++} touch>
       <Label>Rich Tooltip</Label>
     </Button>
     <!--
@@ -20,7 +20,7 @@
   </Wrapper>
 
   <Wrapper rich>
-    <Button on:click={() => clicked++} touch>
+    <Button onclick={() => clicked++} touch>
       <Label>Interactive Rich Tooltip</Label>
     </Button>
     <Tooltip interactive>
@@ -32,7 +32,7 @@
         > and actions.
       </Content>
       <RichActions>
-        <Button on:click={() => clicked++}><Label>Action</Label></Button>
+        <Button onclick={() => clicked++}><Label>Action</Label></Button>
       </RichActions>
     </Tooltip>
   </Wrapper>

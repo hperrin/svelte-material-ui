@@ -7,7 +7,6 @@
     removeClass,
     addStyle,
   }}
-  use:forwardEvents
   use:useActions={use}
   class={classMap({
     [className]: true,
@@ -23,15 +22,18 @@
   role={singleSelect ? 'radio' : undefined}
   aria-pressed={!singleSelect ? (selected ? 'true' : 'false') : undefined}
   aria-checked={singleSelect ? (selected ? 'true' : 'false') : undefined}
-  on:click={(event) =>
-    !event.defaultPrevented &&
-    instance &&
-    !manualSelection &&
-    instance.handleClick()}
   {...internalAttrs}
   {...$$restProps}
-  >{#if ripple}<div class="mdc-segmented-button__ripple" />{/if}<slot
-  />{#if touch}<div class="mdc-segmented-button__segment__touch" />{/if}</button
+  onclick={(e) => {
+    $$restProps.onclick?.(e);
+    if (!e.defaultPrevented && instance && !manualSelection) {
+      instance.handleClick();
+    }
+  }}
+  >{#if ripple}<div class="mdc-segmented-button__ripple"></div>{/if}<slot
+  />{#if touch}<div
+      class="mdc-segmented-button__segment__touch"
+    ></div>{/if}</button
 >
 
 <script lang="ts">
@@ -40,16 +42,9 @@
   // @ts-ignore
   import { MDCSegmentedButtonSegmentFoundation } from './mdc-segmented-button/index.js';
   import { onMount, getContext } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    useActions,
-    dispatch,
-  } from '@smui/common/internal';
+  import { classMap, useActions, dispatch } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
 
   import type { SMUISegmentedButtonSegmentAccessor } from './Segment.types.js';
@@ -65,7 +60,6 @@
   };
   type $$Props = OwnProps & SmuiAttrs<'button', keyof OwnProps>;
 
-  const forwardEvents = forwardEventsBuilder(get_current_component());
   interface UninitializedValue extends Function {}
   let uninitializedValue: UninitializedValue = () => {};
   function isUninitializedValue(value: any): value is UninitializedValue {
@@ -156,12 +150,12 @@
       },
     };
 
-    dispatch(getElement(), 'SMUISegmentedButtonSegment:mount', accessor);
+    dispatch(getElement(), 'SMUISegmentedButtonSegmentMount', accessor);
 
     instance.init();
 
     return () => {
-      dispatch(getElement(), 'SMUISegmentedButtonSegment:unmount', accessor);
+      dispatch(getElement(), 'SMUISegmentedButtonSegmentUnmount', accessor);
 
       instance.destroy();
     };

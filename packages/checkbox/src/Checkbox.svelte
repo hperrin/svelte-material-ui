@@ -1,7 +1,6 @@
 <div
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   use:Ripple={{
     unbounded: true,
     addClass,
@@ -25,8 +24,13 @@
     .map(([name, value]) => `${name}: ${value};`)
     .concat([style])
     .join(' ')}
-  on:animationend={() => instance && instance.handleAnimationEnd()}
   {...exclude($$restProps, ['input$'])}
+  onanimationend={(e) => {
+    if (instance) {
+      instance.handleAnimationEnd();
+    }
+    $$restProps.onanimationend?.(e);
+  }}
 >
   <input
     bind:this={checkbox}
@@ -43,10 +47,16 @@
     data-indeterminate={!isUninitializedValue(indeterminate) && indeterminate
       ? 'true'
       : undefined}
-    on:blur
-    on:focus
     {...nativeControlAttrs}
     {...prefixFilter($$restProps, 'input$')}
+    onblur={(e) => {
+      dispatch(element, 'blur', e);
+      $$restProps.input$onblur?.(e);
+    }}
+    onfocus={(e) => {
+      dispatch(element, 'focus', e);
+      $$restProps.input$onfocus?.(e);
+    }}
   />
   <div class="mdc-checkbox__background">
     <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
@@ -56,16 +66,14 @@
         d="M1.73,12.91 8.1,19.28 22.79,4.59"
       />
     </svg>
-    <div class="mdc-checkbox__mixedmark" />
+    <div class="mdc-checkbox__mixedmark"></div>
   </div>
-  <div class="mdc-checkbox__ripple" />
+  <div class="mdc-checkbox__ripple"></div>
 </div>
 
 <script lang="ts">
   import { MDCCheckboxFoundation } from '@material/checkbox';
   import { onMount, getContext } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type {
     SmuiAttrs,
     SmuiElementPropMap,
@@ -73,7 +81,6 @@
   } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
-    forwardEventsBuilder,
     classMap,
     exclude,
     prefixFilter,
@@ -107,7 +114,6 @@
       input$group?: never;
     };
 
-  const forwardEvents = forwardEventsBuilder(get_current_component());
   interface UninitializedValue extends Function {}
   let uninitializedValue: UninitializedValue = () => {};
   function isUninitializedValue(value: any): value is UninitializedValue {
@@ -152,7 +158,7 @@
   let previousGroup = isUninitializedValue(group) ? [] : [...group];
   let previousNativeChecked = nativeChecked;
   $: {
-    // This is a substitute for an on:change listener that is
+    // This is a substitute for an onchange listener that is
     // smarter about when it calls the instance's handler. I do
     // this so that a group of changes will only trigger one
     // handler call, since the handler will reset currently
@@ -285,14 +291,14 @@
       },
     };
 
-    dispatch(element, 'SMUIGenericInput:mount', accessor);
-    dispatch(element, 'SMUICheckbox:mount', accessor);
+    dispatch(element, 'SMUIGenericInputMount', accessor);
+    dispatch(element, 'SMUICheckboxMount', accessor);
 
     instance.init();
 
     return () => {
-      dispatch(element, 'SMUIGenericInput:unmount', accessor);
-      dispatch(element, 'SMUICheckbox:unmount', accessor);
+      dispatch(element, 'SMUIGenericInputUnmount', accessor);
+      dispatch(element, 'SMUICheckboxUnmount', accessor);
 
       instance.destroy();
     };

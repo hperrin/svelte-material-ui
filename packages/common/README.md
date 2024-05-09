@@ -105,8 +105,8 @@ Dispatch a custom event. This differs from Svelte's component event system, beca
 ```svelte
 <div
   bind:this={eventTarget}
-  on:mouseover={emitEvent}
-  on:click={emitCancelableEvent}
+  onmouseover={emitEvent}
+  onclick={emitCancelableEvent}
   tabindex={0}
 />
 
@@ -147,7 +147,6 @@ Exclude a set of properties from an object. It differs from normal `omit` functi
 <!-- MyComponent.svelte -->
 <div class="my-component {className}" {...exclude($$restProps, ['button$'])}>
   <button
-    on:click
     class="button {button$class}"
     {...prefixFilter($$restProps, 'button$')}
   >
@@ -168,7 +167,7 @@ Exclude a set of properties from an object. It differs from normal `omit` functi
 <MyComponent
   class="my-class"
   button$disabled={disabled}
-  on:click={() => (disabled = true)}
+  button$onclick={() => (disabled = true)}
 >
   Click Me Only Once
 </MyComponent>
@@ -205,10 +204,10 @@ In addition, a component that uses Svelte's built in event forwarding system can
 
 ```svelte
 <MyComponent
-  on:click={() => console.log('Click!')}
-  on:mouseover={() => console.log('Mouseover!')}
-  on:touchstart$passive={() => console.log("Touchstart, and it's passive!")}
-  on:keypress$preventDefault$stopPropagation={() =>
+  onclick={() => console.log('Click!')}
+  onmouseover={() => console.log('Mouseover!')}
+  ontouchstart$passive={() => console.log("Touchstart, and it's passive!")}
+  onkeypress$preventDefault$stopPropagation={() =>
     console.log('No key presses!')}
 >
   Listen to my events!
@@ -227,7 +226,6 @@ Filter an object for only properties with a certain prefix. It is usually used a
 <!-- MyComponent.svelte -->
 <div class="my-component {className}" {...exclude($$restProps, ['button$'])}>
   <button
-    on:click
     class="button {button$class}"
     {...prefixFilter($$restProps, 'button$')}
   >
@@ -248,7 +246,7 @@ Filter an object for only properties with a certain prefix. It is usually used a
 <MyComponent
   class="my-class"
   button$disabled={disabled}
-  on:click={() => (disabled = true)}
+  button$onclick={() => (disabled = true)}
 >
   Click Me Only Once
 </MyComponent>
@@ -302,8 +300,7 @@ A function that announces a string of text to users who are using a screen reade
   It's just an example.
 -->
 <Button
-  on:focus={() =>
-    announce("Don't push this button!", { priority: 'assertive' })}
+  onfocus={() => announce("Don't push this button!", { priority: 'assertive' })}
   style="background-color: red; color: white; transform: scale(2);"
 >
   Big Red Button

@@ -1,7 +1,7 @@
 <div class="card-display">
   <div class="card-container">
     <Card>
-      <PrimaryAction on:click={() => clicked++}>
+      <PrimaryAction onclick={() => clicked++}>
         <Media class="card-media-16x9" aspectRatio="16x9">
           <MediaContent>
             <div
@@ -22,16 +22,16 @@
       </PrimaryAction>
       <Actions>
         <ActionButtons>
-          <Button on:click={() => clicked++}>
+          <Button onclick={() => clicked++}>
             <Label>Action</Label>
           </Button>
-          <Button on:click={() => clicked++}>
+          <Button onclick={() => clicked++}>
             <Label>Another</Label>
           </Button>
         </ActionButtons>
         <ActionIcons>
           <IconButton
-            on:click={() => clicked++}
+            onclick={() => clicked++}
             toggle
             aria-label="Add to favorites"
             title="Add to favorites"
@@ -41,12 +41,12 @@
           </IconButton>
           <IconButton
             class="material-icons"
-            on:click={() => clicked++}
+            onclick={() => clicked++}
             title="Share">share</IconButton
           >
           <IconButton
             class="material-icons"
-            on:click={() => clicked++}
+            onclick={() => clicked++}
             title="More options">more_vert</IconButton
           >
         </ActionIcons>
@@ -56,7 +56,7 @@
 
   <div class="card-container">
     <Card>
-      <PrimaryAction on:click={() => clicked++}>
+      <PrimaryAction onclick={() => clicked++}>
         <Media class="card-media-16x9" aspectRatio="16x9" />
         <Content class="mdc-typography--body2">
           <h2 class="mdc-typography--headline6" style="margin: 0;">
@@ -73,16 +73,16 @@
       </PrimaryAction>
       <Actions>
         <ActionButtons>
-          <Button on:click={() => clicked++}>
+          <Button onclick={() => clicked++}>
             <Label>Action</Label>
           </Button>
-          <Button on:click={() => clicked++}>
+          <Button onclick={() => clicked++}>
             <Label>Another</Label>
           </Button>
         </ActionButtons>
         <ActionIcons>
           <IconButton
-            on:click={() => clicked++}
+            onclick={() => clicked++}
             toggle
             aria-label="Add to favorites"
             title="Add to favorites"
@@ -92,12 +92,12 @@
           </IconButton>
           <IconButton
             class="material-icons"
-            on:click={() => clicked++}
+            onclick={() => clicked++}
             title="Share">share</IconButton
           >
           <IconButton
             class="material-icons"
-            on:click={() => clicked++}
+            onclick={() => clicked++}
             title="More options">more_vert</IconButton
           >
         </ActionIcons>

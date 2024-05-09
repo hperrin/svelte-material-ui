@@ -8,7 +8,6 @@
     addStyle,
   }}
   use:useActions={use}
-  use:forwardEvents
   type="button"
   class={classMap({
     [className]: true,
@@ -21,14 +20,24 @@
     .join(' ')}
   aria-hidden={nonNavigable ? 'true' : undefined}
   tabindex="-1"
-  on:click={instance && instance.handleClick.bind(instance)}
-  on:keydown={instance && instance.handleKeydown.bind(instance)}
   {...internalAttrs}
   {...exclude($$restProps, ['icon$'])}
+  onclick={(e) => {
+    if (instance) {
+      instance.handleClick(e);
+    }
+    $$restProps.onclick?.(e);
+  }}
+  onkeydown={(e) => {
+    if (instance) {
+      instance.handleKeydown(e);
+    }
+    $$restProps.onkeydown?.(e);
+  }}
 >
-  <span class="mdc-deprecated-chip-trailing-action__ripple" />
+  <span class="mdc-deprecated-chip-trailing-action__ripple"></span>
   {#if touch}
-    <span class="mdc-deprecated-chip-trailing-action__touch" />
+    <span class="mdc-deprecated-chip-trailing-action__touch"></span>
   {/if}
   <span
     use:useActions={icon$use}
@@ -43,12 +52,9 @@
 <script lang="ts">
   import { deprecated } from '@material/chips';
   import { onMount, tick } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type { SmuiAttrs, SmuiElementPropMap } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
-    forwardEventsBuilder,
     classMap,
     exclude,
     prefixFilter,
@@ -75,8 +81,6 @@
     SmuiAttrs<'button', keyof OwnProps> & {
       [k in keyof SmuiElementPropMap['span'] as `icon\$${k}`]?: SmuiElementPropMap['span'][k];
     };
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
@@ -108,7 +112,7 @@
       notifyInteraction: (trigger) =>
         dispatch(
           getElement(),
-          'SMUIChipTrailingAction:interaction',
+          'SMUIChipTrailingActionInteraction',
           {
             trigger,
           },
@@ -118,7 +122,7 @@
       notifyNavigation: (key) => {
         dispatch(
           getElement(),
-          'SMUIChipTrailingAction:navigation',
+          'SMUIChipTrailingActionNavigation',
           { key },
           undefined,
           true,
@@ -133,12 +137,12 @@
       removeFocus,
     };
 
-    dispatch(getElement(), 'SMUIChipsChipTrailingAction:mount', accessor);
+    dispatch(getElement(), 'SMUIChipTrailingActionMount', accessor);
 
     instance.init();
 
     return () => {
-      dispatch(getElement(), 'SMUIChipsChipTrailingAction:unmount', accessor);
+      dispatch(getElement(), 'SMUIChipTrailingActionUnmount', accessor);
 
       instance.destroy();
     };

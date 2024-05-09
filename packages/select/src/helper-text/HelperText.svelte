@@ -1,7 +1,6 @@
 <div
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
     [className]: true,
     'mdc-select-helper-text': true,
@@ -24,16 +23,9 @@
 <script lang="ts">
   import { MDCSelectHelperTextFoundation } from '@material/select';
   import { onMount } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    useActions,
-    dispatch,
-  } from '@smui/common/internal';
+  import { classMap, useActions, dispatch } from '@smui/common/internal';
 
   type OwnProps = {
     use?: ActionArray;
@@ -43,8 +35,6 @@
     validationMsg?: boolean;
   };
   type $$Props = OwnProps & SmuiAttrs<'div', keyof OwnProps>;
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
@@ -74,14 +64,14 @@
     });
 
     if (id.startsWith('SMUI-select-helper-text-')) {
-      dispatch(getElement(), 'SMUISelectHelperText:id', id);
+      dispatch(getElement(), 'SMUISelectHelperTextId', id);
     }
-    dispatch(getElement(), 'SMUISelectHelperText:mount', instance);
+    dispatch(getElement(), 'SMUISelectHelperTextMount', instance);
 
     instance.init();
 
     return () => {
-      dispatch(getElement(), 'SMUISelectHelperText:unmount', instance);
+      dispatch(getElement(), 'SMUISelectHelperTextUnmount', instance);
 
       instance.destroy();
     };

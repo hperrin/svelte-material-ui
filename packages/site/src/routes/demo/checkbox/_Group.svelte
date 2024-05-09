@@ -15,7 +15,7 @@
 
 <div style="margin-top: 1em;">
   <Button
-    on:click={() => {
+    onclick={() => {
       const idx = selected.indexOf('Doc');
       if (idx > -1) {
         selected.splice(idx, 1);

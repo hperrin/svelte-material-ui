@@ -1,4 +1,4 @@
-<IconButton class="material-icons" on:click={() => clicked++} touch
+<IconButton class="material-icons" onclick={() => clicked++} touch
   >build</IconButton
 >
 

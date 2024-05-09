@@ -8,7 +8,7 @@
     </FormField>
   </div>
 
-  <Button on:click={() => snackbar.open()}>
+  <Button onclick={() => snackbar.open()}>
     <Label>Open Snackbar</Label>
   </Button>
 

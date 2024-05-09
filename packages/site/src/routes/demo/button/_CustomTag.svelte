@@ -1,8 +1,8 @@
 <div>
   <Button
     tag="em"
-    on:click={() => clicked++}
-    on:keypress={handleClick}
+    onclick={() => clicked++}
+    onkeypress={handleClick}
     tabindex={0}
     role="button"
   >
@@ -12,8 +12,8 @@
   <ul>
     <Button
       tag="li"
-      on:click={() => clicked++}
-      on:keypress={handleClick}
+      onclick={() => clicked++}
+      onkeypress={handleClick}
       tabindex={0}
       role="button"
     >
@@ -21,8 +21,8 @@
     </Button>
     <Button
       tag="li"
-      on:click={() => clicked++}
-      on:keypress={handleClick}
+      onclick={() => clicked++}
+      onkeypress={handleClick}
       tabindex={0}
       role="button"
     >

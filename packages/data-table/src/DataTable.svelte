@@ -1,24 +1,53 @@
 <div
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
     [className]: true,
     'mdc-data-table': true,
     'mdc-data-table--sticky-header': stickyHeader,
     ...internalClasses,
   })}
-  on:SMUICheckbox:mount={() => instance && postMount && instance.layout()}
-  on:SMUIDataTableHeader:mount={handleHeaderMount}
-  on:SMUIDataTableHeader:unmount={() => (header = undefined)}
-  on:SMUIDataTableBody:mount={handleBodyMount}
-  on:SMUIDataTableBody:unmount={() => (body = undefined)}
-  on:SMUIDataTableHeaderCheckbox:change={() =>
-    instance && instance.handleHeaderRowCheckboxChange()}
-  on:SMUIDataTableHeader:click={handleHeaderRowClick}
-  on:SMUIDataTableRow:click={handleRowClick}
-  on:SMUIDataTableBodyCheckbox:change={handleBodyCheckboxChange}
   {...exclude($$restProps, ['container$', 'table$'])}
+  onSMUICheckboxMount={(e) => {
+    if (instance && postMount) {
+      instance.layout();
+    }
+    $$restProps.onSMUICheckboxMount?.(e);
+  }}
+  onSMUIDataTableHeaderMount={(e) => {
+    handleHeaderMount(e);
+    $$restProps.onSMUIDataTableHeaderMount?.(e);
+  }}
+  onSMUIDataTableHeaderUnmount={(e) => {
+    header = undefined;
+    $$restProps.onSMUIDataTableHeaderUnmount?.(e);
+  }}
+  onSMUIDataTableBodyMount={(e) => {
+    handleBodyMount(e);
+    $$restProps.onSMUIDataTableBodyMount?.(e);
+  }}
+  onSMUIDataTableBodyUnmount={(e) => {
+    body = undefined;
+    $$restProps.onSMUIDataTableBodyUnmount?.(e);
+  }}
+  onSMUIDataTableHeaderCheckboxChange={(e) => {
+    if (instance) {
+      instance.handleHeaderRowCheckboxChange();
+    }
+    $$restProps.onSMUIDataTableHeaderCheckboxChange?.(e);
+  }}
+  onSMUIDataTableHeaderClick={(e) => {
+    handleHeaderRowClick(e);
+    $$restProps.onSMUIDataTableHeaderClick?.(e);
+  }}
+  onSMUIDataTableRowClick={(e) => {
+    handleRowClick(e);
+    $$restProps.onSMUIDataTableRowClick?.(e);
+  }}
+  onSMUIDataTableBodyCheckboxChange={(e) => {
+    handleBodyCheckboxChange(e);
+    $$restProps.onSMUIDataTableBodyCheckboxChange?.(e);
+  }}
 >
   <div
     bind:this={container}
@@ -48,7 +77,7 @@
         .map(([name, value]) => `${name}: ${value};`)
         .join(' ')}
     >
-      <div class="mdc-data-table__scrim" />
+      <div class="mdc-data-table__scrim"></div>
       <slot name="progress" />
     </div>
   {/if}
@@ -65,8 +94,6 @@
   import { ponyfill } from '@material/dom';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
   import { writable } from 'svelte/store';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type {
     AddLayoutListener,
     RemoveLayoutListener,
@@ -75,7 +102,6 @@
   } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
-    forwardEventsBuilder,
     classMap,
     exclude,
     prefixFilter,
@@ -108,8 +134,6 @@
     } & {
       [k in keyof SmuiElementPropMap['table'] as `table\$${k}`]?: SmuiElementPropMap['table'][k];
     };
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
@@ -200,7 +224,7 @@
       notifySortAction: (data) => {
         sort = data.columnId;
         sortDirection = data.sortValue;
-        dispatch(getElement(), 'SMUIDataTable:sorted', data, undefined, true);
+        dispatch(getElement(), 'SMUIDataTableSorted', data, undefined, true);
       },
       getTableContainerHeight: () => container.getBoundingClientRect().height,
       getTableHeaderHeight: () => {
@@ -255,7 +279,7 @@
         if (row) {
           dispatch(
             getElement(),
-            'SMUIDataTable:rowSelectionChanged',
+            'SMUIDataTableSelectionChanged',
             {
               row: row.element,
               rowId: row.rowId,
@@ -271,7 +295,7 @@
         setHeaderRowCheckboxIndeterminate(false);
         dispatch(
           getElement(),
-          'SMUIDataTable:selectedAll',
+          'SMUIDataTableSelectedAll',
           undefined,
           undefined,
           true,
@@ -281,7 +305,7 @@
         setHeaderRowCheckboxIndeterminate(false);
         dispatch(
           getElement(),
-          'SMUIDataTable:unselectedAll',
+          'SMUIDataTableUnselectedAll',
           undefined,
           undefined,
           true,
@@ -290,7 +314,7 @@
       notifyRowClick: (detail) => {
         dispatch(
           getElement(),
-          'SMUIDataTable:rowClick',
+          'SMUIDataTableClickRow',
           detail,
           undefined,
           true,

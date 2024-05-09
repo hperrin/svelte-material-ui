@@ -1,6 +1,6 @@
 <Paper
   bind:this={element}
-  use={usePass}
+  {use}
   class={classMap({
     [className]: true,
     'smui-accordion__panel': true,
@@ -17,22 +17,19 @@
   })}
   {color}
   variant={variant === 'raised' ? 'unelevated' : variant}
-  on:SMUIAccordionHeader:activate={handleHeaderActivate}
-  {...$$restProps}><slot /></Paper
+  {...$$restProps}
+  onSMUIAccordionHeaderActivate={(e) => {
+    handleHeaderActivate(e);
+    $$restProps.onSMUIAccordionHeaderActivate?.(e);
+  }}><slot /></Paper
 >
 
 <script lang="ts">
   import type { ComponentProps } from 'svelte';
   import { onMount, setContext } from 'svelte';
   import { writable } from 'svelte/store';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type { ActionArray } from '@smui/common/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    dispatch,
-  } from '@smui/common/internal';
+  import { classMap, dispatch } from '@smui/common/internal';
   import Paper from '@smui/paper';
 
   import type { SMUIAccordionPanelAccessor } from './Panel.types.js';
@@ -51,11 +48,8 @@
   };
   type $$Props = OwnProps & Omit<ComponentProps<Paper>, keyof OwnProps>;
 
-  const forwardEvents = forwardEventsBuilder(get_current_component());
-
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
-  $: usePass = [forwardEvents, ...use] as ActionArray;
   let className = '';
   export { className as class };
   export let variant: 'raised' | 'unelevated' | 'outlined' = 'raised';
@@ -111,7 +105,7 @@
               // Assign only when the panel is fully opened.
               opened = open;
 
-              dispatch(getElement(), 'SMUIAccordionPanel:opened', { accessor });
+              dispatch(getElement(), 'SMUIAccordionPanelOpened', { accessor });
             },
             { once: true },
           );
@@ -123,7 +117,7 @@
             if (content) {
               content.style.height = '';
             }
-            dispatch(getElement(), 'SMUIAccordionPanel:closed', { accessor });
+            dispatch(getElement(), 'SMUIAccordionPanelClosed', { accessor });
           });
 
           // Assign as soon as the panel is closing.
@@ -137,7 +131,7 @@
 
     dispatch(
       getElement(),
-      open ? 'SMUIAccordionPanel:opening' : 'SMUIAccordionPanel:closing',
+      open ? 'SMUIAccordionPanelOpening' : 'SMUIAccordionPanelClosing',
       { accessor },
     );
   }
@@ -158,10 +152,10 @@
       }
     });
 
-    dispatch(getElement(), 'SMUIAccordionPanel:mount', accessor);
+    dispatch(getElement(), 'SMUIAccordionPanelMount', accessor);
 
     return () => {
-      dispatch(getElement(), 'SMUIAccordionPanel:unmount', accessor);
+      dispatch(getElement(), 'SMUIAccordionPanelUnmount', accessor);
     };
   });
 
@@ -172,7 +166,7 @@
       return;
     }
 
-    dispatch(getElement(), 'SMUIAccordionPanel:activate', {
+    dispatch(getElement(), 'SMUIAccordionPanelActivate', {
       accessor,
       event,
     });

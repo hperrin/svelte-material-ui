@@ -2,39 +2,37 @@
   <Group>
     <Subheader>Actors</Subheader>
     <List class="demo-list">
-      <Item on:SMUI:action={() => (clicked = 'Bruce Willis')}>
+      <Item onSMUIAction={() => (clicked = 'Bruce Willis')}>
         <Text>Bruce Willis</Text>
       </Item>
-      <Item on:SMUI:action={() => (clicked = 'Tom Hanks')}>
+      <Item onSMUIAction={() => (clicked = 'Tom Hanks')}>
         <Text>Tom Hanks</Text>
       </Item>
-      <Item on:SMUI:action={() => (clicked = 'Jack Nicholson')}>
+      <Item onSMUIAction={() => (clicked = 'Jack Nicholson')}>
         <Text>Jack Nicholson</Text>
       </Item>
-      <Item on:SMUI:action={() => (clicked = 'Leonardo DiCaprio')}>
+      <Item onSMUIAction={() => (clicked = 'Leonardo DiCaprio')}>
         <Text>Leonardo DiCaprio</Text>
       </Item>
-      <Item on:SMUI:action={() => (clicked = 'Matt Damon')}>
+      <Item onSMUIAction={() => (clicked = 'Matt Damon')}>
         <Text>Matt Damon</Text>
       </Item>
     </List>
     <Subheader>Books</Subheader>
     <List class="demo-list">
-      <Item on:SMUI:action={() => (clicked = 'To Kill a Mockingbird')}>
+      <Item onSMUIAction={() => (clicked = 'To Kill a Mockingbird')}>
         <Text>To Kill a Mockingbird</Text>
       </Item>
-      <Item on:SMUI:action={() => (clicked = 'The Great Gatsby')}>
+      <Item onSMUIAction={() => (clicked = 'The Great Gatsby')}>
         <Text>The Great Gatsby</Text>
       </Item>
-      <Item on:SMUI:action={() => (clicked = '1984')}>
+      <Item onSMUIAction={() => (clicked = '1984')}>
         <Text>1984</Text>
       </Item>
-      <Item on:SMUI:action={() => (clicked = 'Catch-22')}>
+      <Item onSMUIAction={() => (clicked = 'Catch-22')}>
         <Text>Catch-22</Text>
       </Item>
-      <Item
-        on:SMUI:action={() => (clicked = "Alice's Adventures in Wonderland")}
-      >
+      <Item onSMUIAction={() => (clicked = "Alice's Adventures in Wonderland")}>
         <Text>Alice's Adventures in Wonderland</Text>
       </Item>
     </List>

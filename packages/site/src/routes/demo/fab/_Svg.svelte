@@ -5,7 +5,7 @@
       viewBox="0 0 24 24" because the mdiPlus icon
       is particularly small. This embiggens it.
     -->
-    <Fab on:click={() => clicked++}>
+    <Fab onclick={() => clicked++}>
       <Icon tag="svg" viewBox="2 2 20 20">
         <path fill="currentColor" d={mdiPlus} />
       </Icon>

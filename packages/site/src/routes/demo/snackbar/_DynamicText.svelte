@@ -7,7 +7,7 @@
 
 <Textfield bind:value={text} label="Dynamic Text" required />
 
-<Button on:click={() => snackbar.open()}>
+<Button onclick={() => snackbar.open()}>
   <Label>Open Snackbar</Label>
 </Button>
 

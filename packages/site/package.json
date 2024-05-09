@@ -123,7 +123,7 @@
     "sass": "^1.76.0",
     "simple-icons": "^10.4.0",
     "smui-theme": "^7.0.0",
-    "svelte": "^4.2.15",
+    "svelte": "^5.0.0-next.123",
     "svelte-check": "^3.7.1",
     "svelte-portal": "^2.2.1",
     "svelte-preprocess": "^5.1.4",

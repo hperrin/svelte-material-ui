@@ -8,7 +8,6 @@
     addStyle,
   }}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
     [className]: true,
     'mdc-radio': true,
@@ -33,22 +32,26 @@
     {disabled}
     value={isUninitializedValue(valueKey) ? value : valueKey}
     bind:group
-    on:blur
-    on:focus
     {...prefixFilter($$restProps, 'input$')}
+    onblur={(e) => {
+      dispatch(element, 'blur', e);
+      $$restProps.input$onblur?.(e);
+    }}
+    onfocus={(e) => {
+      dispatch(element, 'focus', e);
+      $$restProps.input$onfocus?.(e);
+    }}
   />
   <div class="mdc-radio__background">
-    <div class="mdc-radio__outer-circle" />
-    <div class="mdc-radio__inner-circle" />
+    <div class="mdc-radio__outer-circle"></div>
+    <div class="mdc-radio__inner-circle"></div>
   </div>
-  <div class="mdc-radio__ripple" />
+  <div class="mdc-radio__ripple"></div>
 </div>
 
 <script lang="ts">
   import { MDCRadioFoundation } from '@material/radio';
   import { onMount, getContext } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type {
     SmuiAttrs,
     SmuiElementPropMap,
@@ -56,7 +59,6 @@
   } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
-    forwardEventsBuilder,
     classMap,
     exclude,
     prefixFilter,
@@ -88,7 +90,6 @@
       input$group?: never;
     };
 
-  const forwardEvents = forwardEventsBuilder(get_current_component());
   interface UninitializedValue extends Function {}
   let uninitializedValue: UninitializedValue = () => {};
   function isUninitializedValue(value: any): value is UninitializedValue {
@@ -148,12 +149,12 @@
       },
     };
 
-    dispatch(element, 'SMUIGenericInput:mount', accessor);
+    dispatch(element, 'SMUIGenericInputMount', accessor);
 
     instance.init();
 
     return () => {
-      dispatch(element, 'SMUIGenericInput:unmount', accessor);
+      dispatch(element, 'SMUIGenericInputUnmount', accessor);
 
       instance.destroy();
     };

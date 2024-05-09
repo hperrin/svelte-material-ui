@@ -2,7 +2,7 @@
   this={component}
   {tag}
   bind:this={element}
-  use={[forwardEvents, ...use]}
+  {use}
   class={classMap({
     [className]: true,
     [adjustClass]: true,
@@ -18,10 +18,8 @@
 
 <script lang="ts" generics="TagName extends SmuiEveryElement = 'main'">
   import type { SvelteComponent } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type { ActionArray } from '@smui/common/internal';
-  import { forwardEventsBuilder, classMap } from '@smui/common/internal';
+  import { classMap } from '@smui/common/internal';
   import type {
     SmuiElementMap,
     SmuiEveryElement,
@@ -40,8 +38,6 @@
   type $$Props = OwnProps & SmuiAttrs<TagName, keyof OwnProps>;
 
   import type BottomAppBar from './BottomAppBar.svelte';
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];

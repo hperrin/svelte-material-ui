@@ -1,4 +1,4 @@
-import type { ComponentType, SvelteComponent } from 'svelte';
+import type { SvelteComponent } from 'svelte';
 
 import type { SmuiEveryElement } from '../smui.types.js';
 import type { ClassAdderInternals } from './ClassAdder.types.js';
@@ -9,7 +9,7 @@ const defaults = { ...internals };
 
 export function classAdderBuilder<
   T extends SmuiEveryElement = 'div',
-  C extends typeof SvelteComponent = ComponentType<SvelteComponent>,
+  C extends typeof SvelteComponent = typeof SvelteComponent,
 >(props: Partial<ClassAdderInternals<T, C>>): C {
   return new Proxy(ClassAdder, {
     construct: function (target, args) {

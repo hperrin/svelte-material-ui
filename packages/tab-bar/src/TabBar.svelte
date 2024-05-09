@@ -1,19 +1,33 @@
 <div
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
     [className]: true,
     'mdc-tab-bar': true,
   })}
   role="tablist"
   {tabindex}
-  on:SMUITab:mount={handleTabMount}
-  on:SMUITab:unmount={handleTabUnmount}
-  on:SMUITab:interacted={instance &&
-    instance.handleTabInteraction.bind(instance)}
-  on:keydown={instance && instance.handleKeyDown.bind(instance)}
   {...exclude($$restProps, ['tabScroller$'])}
+  onkeydown={(e) => {
+    if (instance) {
+      instance.handleKeyDown.bind(instance);
+    }
+    $$restProps.onkeydown?.(e);
+  }}
+  onSMUITabInteracted={(e) => {
+    if (instance) {
+      instance.handleTabInteraction.bind(instance);
+    }
+    $$restProps.onSMUITabInteracted?.(e);
+  }}
+  onSMUITabMount={(e) => {
+    handleTabMount(e);
+    $$restProps.onSMUITabMount?.(e);
+  }}
+  onSMUITabUnmount={(e) => {
+    handleTabUnmount(e);
+    $$restProps.onSMUITabUnmount?.(e);
+  }}
 >
   <TabScroller
     bind:this={tabScroller}
@@ -29,12 +43,9 @@
   import { MDCTabBarFoundation } from '@material/tab-bar';
   import type { ComponentProps } from 'svelte';
   import { onMount, setContext } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
-    forwardEventsBuilder,
     classMap,
     exclude,
     prefixFilter,
@@ -63,8 +74,6 @@
     SmuiAttrs<'div', keyof OwnProps> & {
       [k in keyof ComponentProps<TabScroller> as `tabScroller\$${k}`]?: ComponentProps<TabScroller>[k];
     };
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
@@ -160,7 +169,7 @@
       notifyTabActivated: (index) =>
         dispatch(
           getElement(),
-          'SMUITabBar:activated',
+          'SMUITabBarActivated',
           { index },
           undefined,
           true,

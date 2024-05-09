@@ -1,16 +1,21 @@
 <div
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
     [className]: true,
     'mdc-form-field': true,
     'mdc-form-field--align-end': align === 'end',
     'mdc-form-field--nowrap': noWrap,
   })}
-  on:SMUIGenericInput:mount={handleInputMount}
-  on:SMUIGenericInput:unmount={() => (input = undefined)}
   {...exclude($$restProps, ['label$'])}
+  onSMUIGenericInputMount={(e) => {
+    handleInputMount(e);
+    $$restProps.onSMUIGenericInputMount?.(e);
+  }}
+  onSMUIGenericInputUnmount={(e) => {
+    input = undefined;
+    $$restProps.onSMUIGenericInputUnmount?.(e);
+  }}
 >
   <slot />
   <label
@@ -28,8 +33,6 @@
 <script lang="ts">
   import { MDCFormFieldFoundation } from '@material/form-field';
   import { onMount, setContext } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type {
     SmuiAttrs,
     SmuiElementPropMap,
@@ -37,7 +40,6 @@
   } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
-    forwardEventsBuilder,
     classMap,
     exclude,
     prefixFilter,
@@ -56,8 +58,6 @@
     SmuiAttrs<'div', keyof OwnProps> & {
       [k in keyof SmuiElementPropMap['label'] as `label\$${k}`]?: SmuiElementPropMap['label'];
     };
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];

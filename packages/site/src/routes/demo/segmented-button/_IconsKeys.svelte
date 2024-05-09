@@ -27,7 +27,7 @@
   <SegmentedButton segments={actions} let:segment>
     <Segment
       {segment}
-      on:click$preventDefault={() => {
+      onclick$preventDefault={() => {
         segment.count++;
         actions = actions;
       }}

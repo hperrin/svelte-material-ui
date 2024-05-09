@@ -12,7 +12,7 @@
   <p>No wonder.</p>
 {/if}
 
-<div><Button on:click={() => (value = 100)}>Maximum Wonder!</Button></div>
+<div><Button onclick={() => (value = 100)}>Maximum Wonder!</Button></div>
 
 <pre class="status">Value: {value}</pre>
 

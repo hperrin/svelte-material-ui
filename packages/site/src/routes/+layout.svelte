@@ -1,4 +1,4 @@
-<svelte:window on:resize={setMiniWindow} />
+<svelte:window onresize={setMiniWindow} />
 
 <svelte:head>
   <!-- SMUI Styles -->
@@ -82,13 +82,13 @@
         {#if miniWindow}
           <IconButton
             class="material-icons"
-            on:click={() => (drawerOpen = !drawerOpen)}>menu</IconButton
+            onclick={() => (drawerOpen = !drawerOpen)}>menu</IconButton
           >
         {/if}
         <Title
           tag="a"
           href="/"
-          on:click={() => (activeSection = undefined)}
+          onclick={() => (activeSection = undefined)}
           class="mdc-theme--on-surface"
           style={miniWindow ? 'padding-left: 0;' : ''}
         >
@@ -134,7 +134,7 @@
         </IconButton>
         <div style="display: inline-block;">
           <IconButton
-            on:click={() => themeMenu.setOpen(true)}
+            onclick={() => themeMenu.setOpen(true)}
             title="Pick a theme or toggle dark mode."
           >
             <Icon tag="svg" viewBox="0 0 24 24">
@@ -145,7 +145,7 @@
             <List>
               <SelectionGroup>
                 <Item
-                  on:SMUI:action={() => (lightTheme = null)}
+                  onSMUIAction={() => (lightTheme = null)}
                   selected={lightTheme == null}
                 >
                   <SelectionGroupIcon>
@@ -155,7 +155,7 @@
                 </Item>
                 {#each [{ label: 'Light', value: true }, { label: 'Dark', value: false }] as item}
                   <Item
-                    on:SMUI:action={() => (lightTheme = item.value)}
+                    onSMUIAction={() => (lightTheme = item.value)}
                     selected={lightTheme === item.value}
                   >
                     <SelectionGroupIcon>
@@ -168,7 +168,7 @@
               <Separator />
               <SelectionGroup>
                 <Item
-                  on:SMUI:action={() => (theme = null)}
+                  onSMUIAction={() => (theme = null)}
                   selected={theme == null}
                 >
                   <SelectionGroupIcon>
@@ -178,7 +178,7 @@
                 </Item>
                 {#each themes as item}
                   <Item
-                    on:SMUI:action={() => (theme = item.value)}
+                    onSMUIAction={() => (theme = item.value)}
                     selected={theme === item.value}
                   >
                     <SelectionGroupIcon>

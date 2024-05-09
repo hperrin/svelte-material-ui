@@ -74,10 +74,10 @@
 </div>
 
 <div>
-  <Button on:click={() => (showLeadingIcons = !showLeadingIcons)}>
+  <Button onclick={() => (showLeadingIcons = !showLeadingIcons)}>
     Toggle Leading Icons
   </Button>
-  <Button on:click={() => (showTrailingIcons = !showTrailingIcons)}>
+  <Button onclick={() => (showTrailingIcons = !showTrailingIcons)}>
     Toggle Trailing Icons
   </Button>
 </div>

@@ -1,16 +1,15 @@
 <svelte:window
-  on:resize={() =>
+  onresize={() =>
     variant !== 'short' &&
     variant !== 'fixed' &&
     instance &&
     instance.handleWindowResize()}
-  on:scroll={() => scrollTarget == null && handleTargetScroll()}
+  onscroll={() => scrollTarget == null && handleTargetScroll()}
 />
 
 <header
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
     [className]: true,
     'mdc-top-app-bar': true,
@@ -27,9 +26,13 @@
     .map(([name, value]) => `${name}: ${value};`)
     .concat([style])
     .join(' ')}
-  on:SMUITopAppBarIconButton:nav={() =>
-    instance && instance.handleNavigationClick()}
   {...$$restProps}
+  onSMUITopAppBarIconButtonNav={(e) => {
+    if (instance) {
+      instance.handleNavigationClick();
+    }
+    $$restProps.onSMUITopAppBarIconButtonNav?.(e);
+  }}
 >
   <slot />
 </header>
@@ -42,18 +45,11 @@
     MDCShortTopAppBarFoundation,
   } from '@material/top-app-bar';
   import { onMount } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type { Subscriber } from 'svelte/store';
   import { readable } from 'svelte/store';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    useActions,
-    dispatch,
-  } from '@smui/common/internal';
+  import { classMap, useActions, dispatch } from '@smui/common/internal';
 
   type OwnProps = {
     use?: ActionArray;
@@ -68,7 +64,6 @@
   };
   type $$Props = OwnProps & SmuiAttrs<'header', keyof OwnProps>;
 
-  const forwardEvents = forwardEventsBuilder(get_current_component());
   interface UninitializedValue extends Function {}
   let uninitializedValue: UninitializedValue = () => {};
   function isUninitializedValue(value: any): value is UninitializedValue {
@@ -170,7 +165,7 @@
       setStyle: addStyle,
       getTopAppBarHeight: () => element.clientHeight,
       notifyNavigationIconClicked: () =>
-        dispatch(element, 'SMUITopAppBar:nav', undefined, undefined, true),
+        dispatch(element, 'SMUITopAppBarNav', undefined, undefined, true),
       getViewportScrollY: () =>
         scrollTarget == null ? window.pageYOffset : scrollTarget.scrollTop,
       getTotalActionItems: () =>

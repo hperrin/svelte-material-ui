@@ -6,7 +6,7 @@
     bind:value
     bind:text
     noMatchesActionDisabled={false}
-    on:SMUIAutocomplete:noMatchesAction={() => {
+    onSMUIAutocompleteNoMatchesAction={() => {
       newLabel = text;
       dialogOpen = true;
     }}
@@ -33,7 +33,7 @@
       <Button>
         <Label>Cancel</Label>
       </Button>
-      <Button on:click={addObject}>
+      <Button onclick={addObject}>
         <Label>Add</Label>
       </Button>
     </Actions>

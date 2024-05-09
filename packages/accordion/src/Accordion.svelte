@@ -1,34 +1,45 @@
 <div
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
     [className]: true,
     'smui-accordion': true,
     'smui-accordion--multiple': multiple,
     'smui-accordion--with-open-dialog': withOpenDialog,
   })}
-  on:SMUIAccordionPanel:mount={handlePanelMount}
-  on:SMUIAccordionPanel:unmount={handlePanelUnmount}
-  on:SMUIAccordionPanel:activate={handlePanelActivate}
-  on:SMUIAccordionPanel:opening={handlePanelOpening}
-  on:SMUIDialog:opening|capture={() => (withOpenDialog = true)}
-  on:SMUIDialog:closed|capture={() => (withOpenDialog = false)}
   {...$$restProps}
+  onSMUIAccordionPanelMount={(e) => {
+    handlePanelMount(e);
+    $$restProps.onSMUIAccordionPanelMount?.(e);
+  }}
+  onSMUIAccordionPanelUnmount={(e) => {
+    handlePanelUnmount(e);
+    $$restProps.onSMUIAccordionPanelUnmount?.(e);
+  }}
+  onSMUIAccordionPanelActivate={(e) => {
+    handlePanelActivate(e);
+    $$restProps.onSMUIAccordionPanelActivate?.(e);
+  }}
+  onSMUIAccordionPanelOpening={(e) => {
+    handlePanelOpening(e);
+    $$restProps.onSMUIAccordionPanelOpening?.(e);
+  }}
+  onSMUIDialogOpeningcapture={(e) => {
+    withOpenDialog = true;
+    $$restProps.onSMUIDialogOpeningcapture?.(e);
+  }}
+  onSMUIDialogClosedcapture={(e) => {
+    withOpenDialog = false;
+    $$restProps.onSMUIDialogClosedcapture?.(e);
+  }}
 >
   <slot />
 </div>
 
 <script lang="ts">
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    useActions,
-  } from '@smui/common/internal';
+  import { classMap, useActions } from '@smui/common/internal';
 
   type OwnProps = {
     use?: ActionArray;
@@ -38,8 +49,6 @@
   type $$Props = OwnProps & SmuiAttrs<'div', keyof OwnProps>;
 
   import type { SMUIAccordionPanelAccessor } from './Panel.types.js';
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];

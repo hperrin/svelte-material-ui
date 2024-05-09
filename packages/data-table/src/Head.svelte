@@ -1,25 +1,30 @@
 <thead
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
-  on:SMUICheckbox:mount={handleCheckboxMount}
-  on:SMUICheckbox:unmount={() => (checkbox = undefined)}
-  on:SMUIDataTableCell:mount={handleCellMount}
-  on:SMUIDataTableCell:unmount={handleCellUnmount}
-  {...$$restProps}><slot /></thead
+  {...$$restProps}
+  onSMUICheckboxMount={(e) => {
+    handleCheckboxMount(e);
+    $$restProps.onSMUICheckboxMount?.(e);
+  }}
+  onSMUICheckboxUnmount={(e) => {
+    checkbox = undefined;
+    $$restProps.onSMUICheckboxUnmount?.(e);
+  }}
+  onSMUIDataTableCellMount={(e) => {
+    handleCellMount(e);
+    $$restProps.onSMUIDataTableCellMount?.(e);
+  }}
+  onSMUIDataTableCellUnmount={(e) => {
+    handleCellUnmount(e);
+    $$restProps.onSMUIDataTableCellUnmount?.(e);
+  }}><slot /></thead
 >
 
 <script lang="ts">
   import { onMount, setContext } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type { SmuiAttrs, SMUICheckboxInputAccessor } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
-  import {
-    forwardEventsBuilder,
-    useActions,
-    dispatch,
-  } from '@smui/common/internal';
+  import { useActions, dispatch } from '@smui/common/internal';
 
   import type { SMUIDataTableCellAccessor } from './Cell.types.js';
   import type { SMUIDataTableHeadAccessor } from './Head.types.js';
@@ -28,8 +33,6 @@
     use?: ActionArray;
   };
   type $$Props = OwnProps & SmuiAttrs<'thead', keyof OwnProps>;
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
@@ -57,10 +60,10 @@
       },
     };
 
-    dispatch(getElement(), 'SMUIDataTableHeader:mount', accessor);
+    dispatch(getElement(), 'SMUIDataTableHeaderMount', accessor);
 
     return () => {
-      dispatch(getElement(), 'SMUIDataTableHeader:unmount', accessor);
+      dispatch(getElement(), 'SMUIDataTableHeaderUnmount', accessor);
     };
   });
 

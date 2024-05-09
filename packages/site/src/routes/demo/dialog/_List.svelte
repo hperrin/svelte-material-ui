@@ -9,7 +9,7 @@
     <List>
       {#each [...Array(100)].map((_v, i) => i + 1) as item}
         <Item
-          on:click={() => {
+          onclick={() => {
             clicked = item;
             open = false;
           }}
@@ -21,7 +21,7 @@
   </Content>
 </Dialog>
 
-<Button on:click={() => (open = true)}><Label>Open Dialog</Label></Button>
+<Button onclick={() => (open = true)}><Label>Open Dialog</Label></Button>
 
 <pre class="status">Clicked: {clicked}{clicked === 69
     ? ', nice'

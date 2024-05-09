@@ -13,13 +13,13 @@
           This panel has really cool content!
           <Wrapper>
             <div style="display: inline-block;">
-              <Button on:click={() => menu.setOpen(true)}>
+              <Button onclick={() => menu.setOpen(true)}>
                 <Label>Really?</Label>
               </Button>
               <Menu bind:this={menu}>
                 <List>
                   <Item
-                    on:SMUI:action={() => {
+                    onSMUIAction={() => {
                       dialogOpen = true;
                     }}
                   >

@@ -1,7 +1,6 @@
 <tr
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
     [className]: true,
     'mdc-data-table__header-row': header,
@@ -9,13 +8,25 @@
     'mdc-data-table__row--selected': !header && checkbox && checkbox.checked,
     ...internalClasses,
   })}
-  on:click={(event) =>
-    header ? notifyHeaderClick(event) : notifyRowClick(event)}
-  on:SMUICheckbox:mount={handleCheckboxMount}
-  on:SMUICheckbox:unmount={() => (checkbox = undefined)}
   aria-selected={checkbox ? (checkbox.checked ? 'true' : 'false') : undefined}
   {...internalAttrs}
-  {...$$restProps}><slot /></tr
+  {...$$restProps}
+  onclick={(e) => {
+    if (header) {
+      notifyHeaderClick(e);
+    } else {
+      notifyRowClick(e);
+    }
+    $$restProps.onclick?.(e);
+  }}
+  onSMUICheckboxMount={(e) => {
+    handleCheckboxMount(e);
+    $$restProps.onSMUICheckboxMount?.(e);
+  }}
+  onSMUICheckboxUnmount={(e) => {
+    checkbox = undefined;
+    $$restProps.onSMUICheckboxUnmount?.(e);
+  }}><slot /></tr
 >
 
 <script context="module" lang="ts">
@@ -24,16 +35,9 @@
 
 <script lang="ts">
   import { onMount, getContext } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type { SmuiAttrs, SMUICheckboxInputAccessor } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    useActions,
-    dispatch,
-  } from '@smui/common/internal';
+  import { classMap, useActions, dispatch } from '@smui/common/internal';
 
   import type { SMUIDataTableRowAccessor } from './Row.types.js';
 
@@ -43,8 +47,6 @@
     rowId?: string;
   };
   type $$Props = OwnProps & SmuiAttrs<'tr', keyof OwnProps>;
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
@@ -99,10 +101,10 @@
           addAttr,
         };
 
-    dispatch(getElement(), 'SMUIDataTableRow:mount', accessor);
+    dispatch(getElement(), 'SMUIDataTableRowMount', accessor);
 
     return () => {
-      dispatch(getElement(), 'SMUIDataTableRow:unmount', accessor);
+      dispatch(getElement(), 'SMUIDataTableRowUnmount', accessor);
     };
   });
 
@@ -135,11 +137,11 @@
   }
 
   function notifyHeaderClick(event: MouseEvent) {
-    dispatch(getElement(), 'SMUIDataTableHeader:click', event);
+    dispatch(getElement(), 'SMUIDataTableHeaderClick', event);
   }
 
   function notifyRowClick(event: MouseEvent) {
-    dispatch(getElement(), 'SMUIDataTableRow:click', {
+    dispatch(getElement(), 'SMUIDataTableRowClick', {
       rowId,
       target: event.target,
     });

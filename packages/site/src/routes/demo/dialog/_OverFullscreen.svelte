@@ -3,14 +3,14 @@
   fullscreen
   aria-labelledby="over-fullscreen-title"
   aria-describedby="over-fullscreen-content"
-  on:SMUIDialog:closed={closeHandler}
+  onSMUIDialogClosed={closeHandler}
 >
   <Header>
     <Title id="over-fullscreen-title">Terms and Conditions</Title>
     <IconButton action="close" class="material-icons">close</IconButton>
   </Header>
   <Content id="over-fullscreen-content">
-    <Button on:click={() => (subOpen = true)}>
+    <Button onclick={() => (subOpen = true)}>
       <Label>Open Confirmation Dialog</Label>
     </Button>
     {#each Array(3) as _item}
@@ -32,7 +32,7 @@
     selection
     aria-labelledby="over-fullscreen-confirmation-title"
     aria-describedby="over-fullscreen-confirmation-content"
-    on:SMUIDialog:closed={confirmationCloseHandler}
+    onSMUIDialogClosed={confirmationCloseHandler}
   >
     <Header>
       <Title id="over-fullscreen-confirmation-title">Confirmation</Title>
@@ -64,7 +64,7 @@
   </Dialog>
 </Dialog>
 
-<Button on:click={() => (open = true)}>
+<Button onclick={() => (open = true)}>
   <Label>Open Dialog</Label>
 </Button>
 

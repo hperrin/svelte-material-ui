@@ -1,9 +1,8 @@
-<svelte:window on:resize={layout} />
+<svelte:window onresize={layout} />
 
 <div
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
     [className]: true,
     'mdc-banner': true,
@@ -16,9 +15,15 @@
     .concat([style])
     .join(' ')}
   role="banner"
-  on:SMUIBannerButton:primaryActionClick={handlePrimaryActionClick}
-  on:SMUIBannerButton:secondaryActionClick={handleSecondaryActionClick}
   {...exclude($$restProps, ['content$', 'textWrapper$', 'graphic$'])}
+  onSMUIBannerButtonPrimaryActionClick={(e) => {
+    handlePrimaryActionClick();
+    $$restProps.onSMUIBannerButtonPrimaryActionClick?.(e);
+  }}
+  onSMUIBannerButtonSecondaryActionClick={(e) => {
+    handleSecondaryActionClick();
+    $$restProps.onSMUIBannerButtonSecondaryActionClick?.(e);
+  }}
 >
   <Fixed bind:fixed {width}>
     <div
@@ -68,8 +73,6 @@
   import { CloseReason, MDCBannerFoundation } from '@material/banner';
   import { focusTrap as domFocusTrap } from '@material/dom';
   import { onMount, onDestroy, getContext, setContext, tick } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type {
     AddLayoutListener,
     RemoveLayoutListener,
@@ -78,7 +81,6 @@
   } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
-    forwardEventsBuilder,
     classMap,
     exclude,
     prefixFilter,
@@ -111,8 +113,6 @@
     } & {
       [k in keyof SmuiElementPropMap['div'] as `graphic\$${k}`]?: SmuiElementPropMap['div'][k];
     };
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
@@ -185,18 +185,12 @@
       },
       notifyClosed: (reason) => {
         open = false;
-        dispatch(
-          getElement(),
-          'SMUIBanner:closed',
-          { reason },
-          undefined,
-          true,
-        );
+        dispatch(getElement(), 'SMUIBannerClosed', { reason }, undefined, true);
       },
       notifyClosing: (reason) => {
         dispatch(
           getElement(),
-          'SMUIBanner:closing',
+          'SMUIBannerClosing',
           { reason },
           undefined,
           true,
@@ -204,13 +198,13 @@
       },
       notifyOpened: () => {
         open = true;
-        dispatch(getElement(), 'SMUIBanner:opened', {}, undefined, true);
+        dispatch(getElement(), 'SMUIBannerOpened', {}, undefined, true);
       },
       notifyOpening: () => {
-        dispatch(getElement(), 'SMUIBanner:opening', {}, undefined, true);
+        dispatch(getElement(), 'SMUIBannerOpening', {}, undefined, true);
       },
       notifyActionClicked: (action) => {
-        dispatch(getElement(), 'SMUIBanner:actionClicked', { action });
+        dispatch(getElement(), 'SMUIBannerActionClicked', { action });
       },
       releaseFocus: () => focusTrap && focusTrap.releaseFocus(),
       removeClass,

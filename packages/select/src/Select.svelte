@@ -9,7 +9,6 @@
   }}
   use:Anchor={{ addClass, removeClass }}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
     [className]: true,
     'mdc-select': true,
@@ -32,8 +31,6 @@
     .map(([name, value]) => `${name}: ${value};`)
     .concat([style])
     .join(' ')}
-  on:SMUISelectLeadingIcon:mount={handleLeadingIconMount}
-  on:SMUISelectLeadingIcon:unmount={() => (leadingIcon = undefined)}
   {...exclude($$restProps, [
     'input$',
     'anchor$',
@@ -47,6 +44,14 @@
     'list$',
     'helperText$',
   ])}
+  onSMUISelectLeadingIconMount={(e) => {
+    handleLeadingIconMount(e);
+    $$restProps.onSMUISelectLeadingIconMount?.(e);
+  }}
+  onSMUISelectLeadingIconUnmount={(e) => {
+    leadingIcon = undefined;
+    $$restProps.onSMUISelectLeadingIconUnmount?.(e);
+  }}
 >
   {#if hiddenInput}
     <input
@@ -71,22 +76,38 @@
     aria-describedby={helperId}
     role="combobox"
     tabindex="0"
-    on:focus={() => instance && instance.handleFocus()}
-    on:blur={() => instance && instance.handleBlur()}
-    on:click={(event) => {
-      selectAnchor.focus();
-      if (instance) {
-        instance.handleClick(getNormalizedXCoordinate(event));
-      }
-    }}
-    on:keydown={instance && instance.handleKeydown.bind(instance)}
-    on:focus
-    on:blur
     {...selectAnchorAttrs}
     {...prefixFilter($$restProps, 'anchor$')}
+    onclick={(e) => {
+      selectAnchor.focus();
+      if (instance) {
+        instance.handleClick(getNormalizedXCoordinate(e));
+      }
+      $$restProps.anchor$onclick?.(e);
+    }}
+    onkeydown={(e) => {
+      if (instance) {
+        instance.handleKeydown.bind(instance);
+      }
+      $$restProps.onkeydown?.(e);
+    }}
+    onblur={(e) => {
+      if (instance) {
+        instance.handleBlur();
+      }
+      dispatch(element, 'blur', e);
+      $$restProps.anchor$onblur?.(e);
+    }}
+    onfocus={(e) => {
+      if (instance) {
+        instance.handleFocus();
+      }
+      dispatch(element, 'focus', e);
+      $$restProps.anchor$onfocus?.(e);
+    }}
   >
     {#if variant === 'filled'}
-      <span class="mdc-select__ripple" />
+      <span class="mdc-select__ripple"></span>
     {/if}
     {#if variant !== 'outlined' && !noLabel && (label != null || $$slots.label)}
       <FloatingLabel
@@ -187,32 +208,60 @@
     {anchorElement}
     {anchorCorner}
     bind:open={menuOpen}
-    on:SMUIMenu:selected={(event) =>
-      instance && instance.handleMenuItemAction(event.detail.index)}
-    on:SMUIMenuSurface:closing={() => instance && instance.handleMenuClosing()}
-    on:SMUIMenuSurface:closed={() => instance && instance.handleMenuClosed()}
-    on:SMUIMenuSurface:opened={() => instance && instance.handleMenuOpened()}
     {...prefixFilter($$restProps, 'menu$')}
+    onSMUIMenuSelected={(e) => {
+      if (instance) {
+        instance.handleMenuItemAction(e.detail.index);
+      }
+      $$restProps.onSMUIMenuSelected?.(e);
+    }}
+    onSMUIMenuSurfaceClosing={(e) => {
+      if (instance) {
+        instance.handleMenuClosing();
+      }
+      $$restProps.onSMUIMenuSurfaceClosing?.(e);
+    }}
+    onSMUIMenuSurfaceClosed={(e) => {
+      if (instance) {
+        instance.handleMenuClosed();
+      }
+      $$restProps.onSMUIMenuSurfaceClosed?.(e);
+    }}
+    onSMUIMenuSurfaceOpened={(e) => {
+      if (instance) {
+        instance.handleMenuOpened();
+      }
+      $$restProps.onSMUIMenuSurfaceOpened?.(e);
+    }}
   >
     <List
       role="listbox"
       {wrapFocus}
       bind:selectedIndex
-      on:SMUIList:mount={(event) => (list = event.detail)}
-      {...prefixFilter($$restProps, 'list$')}><slot /></List
+      {...prefixFilter($$restProps, 'list$')}
+      onSMUIListMount={(e) => {
+        list = e.detail;
+        $$restProps.list$onSMUIListMount?.(e);
+      }}><slot /></List
     >
   </Menu>
 </div>
 {#if $$slots.helperText}
   <HelperText
-    on:SMUISelectHelperText:id={(event) => (helperId = event.detail)}
-    on:SMUISelectHelperText:mount={(event) => (helperText = event.detail)}
-    on:SMUISelectHelperText:unmount={() => {
+    {...prefixFilter($$restProps, 'helperText$')}
+    onSMUISelectHelperTextId={(e) => {
+      helperId = e.detail;
+      $$restProps.helperText$onSMUISelectHelperTextId?.(e);
+    }}
+    onSMUISelectHelperTextMount={(e) => {
+      helperText = e.detail;
+      $$restProps.helperText$onSMUISelectHelperTextMount?.(e);
+    }}
+    onSMUISelectHelperTextUnmount={(e) => {
       helperId = undefined;
       helperText = undefined;
-    }}
-    {...prefixFilter($$restProps, 'helperText$')}
-    ><slot name="helperText" /></HelperText
+      $$restProps.helperText$onSMUISelectHelperTextUnmount?.(e);
+    }}><slot name="helperText" /></HelperText
   >
 {/if}
 
@@ -229,8 +278,6 @@
   import type { ComponentProps } from 'svelte';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
   import { writable } from 'svelte/store';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type {
     AddLayoutListener,
     RemoveLayoutListener,
@@ -239,7 +286,6 @@
   } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
-    forwardEventsBuilder,
     classMap,
     exclude,
     prefixFilter,
@@ -315,7 +361,6 @@
       input$value?: never;
     };
 
-  const forwardEvents = forwardEventsBuilder(get_current_component());
   interface UninitializedValue extends Function {}
   let uninitializedValue: UninitializedValue = () => {};
   function isUninitializedValue(value: any): value is UninitializedValue {
@@ -504,7 +549,7 @@
           }
           dispatch(
             getElement(),
-            'SMUISelect:change',
+            'SMUISelectChange',
             {
               value,
               index: selectedIndex,

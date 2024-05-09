@@ -2,7 +2,7 @@
   <List
     class="demo-list"
     checkList
-    on:SMUIList:selectionChange={(event) => (changeEvent = event)}
+    onSMUIListSelectionChange={(event) => (changeEvent = event)}
   >
     <Item>
       <Label>Bruce Willis</Label>

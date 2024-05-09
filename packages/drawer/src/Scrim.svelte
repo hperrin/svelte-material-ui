@@ -2,28 +2,25 @@
   this={component}
   {tag}
   bind:this={element}
-  use={[forwardEvents, ...use]}
+  {use}
   class={classMap({
     [className]: true,
     'mdc-drawer-scrim': true,
     'smui-drawer-scrim__absolute': !fixed,
   })}
-  on:click={handleClick}
   {...$$restProps}
+  onclick={(e: MouseEvent) => {
+    handleClick(e);
+    $$restProps.onclick?.(e);
+  }}
 >
   <slot />
 </svelte:component>
 
 <script lang="ts" generics="TagName extends SmuiEveryElement = 'div'">
   import type { SvelteComponent } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type { ActionArray } from '@smui/common/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    dispatch,
-  } from '@smui/common/internal';
+  import { classMap, dispatch } from '@smui/common/internal';
   import type {
     SmuiElementMap,
     SmuiEveryElement,
@@ -40,8 +37,6 @@
   };
   type $$Props = OwnProps & SmuiAttrs<TagName, keyof OwnProps>;
 
-  const forwardEvents = forwardEventsBuilder(get_current_component());
-
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
   let className = '';
@@ -56,7 +51,7 @@
     component === SmuiElement ? 'div' : undefined;
 
   function handleClick(event: MouseEvent) {
-    dispatch(getElement(), 'SMUIDrawerScrim:click', event);
+    dispatch(getElement(), 'SMUIDrawerScrimClick', event);
   }
 
   export function getElement(): SmuiElementMap[TagName] {

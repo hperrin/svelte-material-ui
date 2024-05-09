@@ -1,7 +1,6 @@
 <i
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
     [className]: true,
     'mdc-select__icon': true,
@@ -17,16 +16,9 @@
 <script lang="ts">
   import { MDCSelectIconFoundation } from '@material/select';
   import { onMount } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    useActions,
-    dispatch,
-  } from '@smui/common/internal';
+  import { classMap, useActions, dispatch } from '@smui/common/internal';
 
   type OwnProps = {
     use?: ActionArray;
@@ -36,8 +28,6 @@
     disabled?: boolean;
   };
   type $$Props = OwnProps & SmuiAttrs<'i', keyof OwnProps>;
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
@@ -70,15 +60,15 @@
       deregisterInteractionHandler: (evtType, handler) =>
         getElement().removeEventListener(evtType, handler),
       notifyIconAction: () =>
-        dispatch(getElement(), 'SMUISelect:icon', undefined, undefined, true),
+        dispatch(getElement(), 'SMUISelectIcon', undefined, undefined, true),
     });
 
-    dispatch(getElement(), 'SMUISelectLeadingIcon:mount', instance);
+    dispatch(getElement(), 'SMUISelectLeadingIconMount', instance);
 
     instance.init();
 
     return () => {
-      dispatch(getElement(), 'SMUISelectLeadingIcon:unmount', instance);
+      dispatch(getElement(), 'SMUISelectLeadingIconUnmount', instance);
 
       instance.destroy();
     };

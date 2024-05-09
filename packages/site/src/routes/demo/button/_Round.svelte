@@ -1,22 +1,22 @@
-<Button on:click={() => clicked++} variant="raised" class="button-shaped-round">
+<Button onclick={() => clicked++} variant="raised" class="button-shaped-round">
   <Label>Raised</Label>
 </Button>
 <Button
-  on:click={() => clicked++}
+  onclick={() => clicked++}
   variant="unelevated"
   class="button-shaped-round"
 >
   <Label>Unelevated</Label>
 </Button>
 <Button
-  on:click={() => clicked++}
+  onclick={() => clicked++}
   variant="outlined"
   class="button-shaped-round"
 >
   <Label>Outlined</Label>
 </Button>
 <Button
-  on:click={() => clicked++}
+  onclick={() => clicked++}
   variant="unelevated"
   class="button-shaped-round"
 >
@@ -24,7 +24,7 @@
   <Label>Icon</Label>
 </Button>
 <Button
-  on:click={() => clicked++}
+  onclick={() => clicked++}
   variant="outlined"
   class="button-shaped-round"
 >

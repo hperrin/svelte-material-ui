@@ -99,7 +99,7 @@
 </div>
 
 <div style="display: flex; align-items: center;">
-  <IconButton on:click={() => clicked++}>
+  <IconButton onclick={() => clicked++}>
     <Icon tag="svg" viewBox="0 0 24 24">
       <path fill="currentColor" d={mdiAccount} />
     </Icon>

@@ -1,20 +1,20 @@
 <div style="min-width: 100px;">
-  <Button on:click={() => menu.setOpen(true)}>
+  <Button onclick={() => menu.setOpen(true)}>
     <Label>Open Menu</Label>
   </Button>
   <Menu bind:this={menu}>
     <List>
-      <Item on:SMUI:action={() => (clicked = 'Cut')}>
+      <Item onSMUIAction={() => (clicked = 'Cut')}>
         <Text>Cut</Text>
       </Item>
-      <Item on:SMUI:action={() => (clicked = 'Copy')}>
+      <Item onSMUIAction={() => (clicked = 'Copy')}>
         <Text>Copy</Text>
       </Item>
-      <Item on:SMUI:action={() => (clicked = 'Paste')}>
+      <Item onSMUIAction={() => (clicked = 'Paste')}>
         <Text>Paste</Text>
       </Item>
       <Separator />
-      <Item on:SMUI:action={() => (clicked = 'Delete')}>
+      <Item onSMUIAction={() => (clicked = 'Delete')}>
         <Text>Delete</Text>
       </Item>
     </List>

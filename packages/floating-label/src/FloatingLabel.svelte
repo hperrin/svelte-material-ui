@@ -2,7 +2,6 @@
   <span
     bind:this={element}
     use:useActions={use}
-    use:forwardEvents
     class={classMap({
       [className]: true,
       'mdc-floating-label': true,
@@ -20,7 +19,6 @@
   <label
     bind:this={element}
     use:useActions={use}
-    use:forwardEvents
     class={classMap({
       [className]: true,
       'mdc-floating-label': true,
@@ -40,16 +38,9 @@
 <script lang="ts">
   import { MDCFloatingLabelFoundation } from '@material/floating-label';
   import { onMount, getContext } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    useActions,
-    dispatch,
-  } from '@smui/common/internal';
+  import { classMap, useActions, dispatch } from '@smui/common/internal';
 
   import type { SMUIFloatingLabelAccessor } from './FloatingLabel.types.js';
 
@@ -65,8 +56,6 @@
   type $$Props = SmuiAttrs<'span', keyof OwnProps> &
     SmuiAttrs<'label', keyof OwnProps> &
     OwnProps;
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   export let use: ActionArray = [];
   let className = '';
@@ -126,12 +115,12 @@
       removeStyle,
     };
 
-    dispatch(element, 'SMUIFloatingLabel:mount', accessor);
+    dispatch(element, 'SMUIFloatingLabelMount', accessor);
 
     instance.init();
 
     return () => {
-      dispatch(element, 'SMUIFloatingLabel:unmount', accessor);
+      dispatch(element, 'SMUIFloatingLabelUnmount', accessor);
 
       instance.destroy();
     };

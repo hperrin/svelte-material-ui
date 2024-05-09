@@ -1,7 +1,6 @@
 <div
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
     [className]: true,
     'mdc-chip-set': true,
@@ -11,13 +10,31 @@
     'mdc-chip-set--input': input,
   })}
   role="grid"
-  on:SMUIChipsChip:mount={handleChipMount}
-  on:SMUIChipsChip:unmount={handleChipUnmount}
-  on:SMUIChip:interaction={handleChipInteraction}
-  on:SMUIChip:selection={handleChipSelection}
-  on:SMUIChip:removal={handleChipRemoval}
-  on:SMUIChip:navigation={handleChipNavigation}
   {...$$restProps}
+  onSMUIChipMount={(e) => {
+    handleChipMount(e);
+    $$restProps.onSMUIChipMount?.(e);
+  }}
+  onSMUIChipUnmount={(e) => {
+    handleChipUnmount(e);
+    $$restProps.onSMUIChipUnmount?.(e);
+  }}
+  onSMUIChipInteraction={(e) => {
+    handleChipInteraction(e);
+    $$restProps.onSMUIChipInteraction?.(e);
+  }}
+  onSMUIChipSelection={(e) => {
+    handleChipSelection(e);
+    $$restProps.onSMUIChipSelection?.(e);
+  }}
+  onSMUIChipRemoval={(e) => {
+    handleChipRemoval(e);
+    $$restProps.onSMUIChipRemoval?.(e);
+  }}
+  onSMUIChipNavigation={(e) => {
+    handleChipNavigation(e);
+    $$restProps.onSMUIChipNavigation?.(e);
+  }}
 >
   {#each chips as chip, i (key(chip))}
     <ContextFragment key="SMUI:chips:chip:index" value={i}>
@@ -42,16 +59,9 @@
   import { deprecated } from '@material/chips';
   import { onMount, setContext } from 'svelte';
   import { writable } from 'svelte/store';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
-  import {
-    announce,
-    forwardEventsBuilder,
-    classMap,
-    useActions,
-  } from '@smui/common/internal';
+  import { announce, classMap, useActions } from '@smui/common/internal';
   import { ContextFragment } from '@smui/common';
 
   import type { SMUIChipsChipAccessor } from './Chip.types.js';
@@ -70,8 +80,6 @@
     input?: boolean;
   };
   type $$Props = OwnProps & SmuiAttrs<'div', keyof OwnProps>;
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];

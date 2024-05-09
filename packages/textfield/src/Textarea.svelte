@@ -1,31 +1,25 @@
 <textarea
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
     [className]: true,
     'mdc-text-field__input': true,
   })}
   style={`${resizable ? '' : 'resize: none; '}${style}`}
-  on:change={changeHandler}
-  on:blur
-  on:focus
   bind:value
   {...internalAttrs}
   {...$$restProps}
-/>
+  onchange={(e) => {
+    changeHandler();
+    $$restProps.onchange?.(e);
+  }}
+></textarea>
 
 <script lang="ts">
   import { onMount } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    useActions,
-  } from '@smui/common/internal';
+  import { classMap, useActions } from '@smui/common/internal';
 
   type OwnProps = {
     use?: ActionArray;
@@ -38,8 +32,6 @@
     resizable?: boolean;
   };
   type $$Props = OwnProps & SmuiAttrs<'textarea', keyof OwnProps>;
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];

@@ -8,20 +8,20 @@
     Build something today, even if it sucks.
   </Content>
   <Actions>
-    <Button on:click={() => (response = 'I will make you! Do it!')}>
+    <Button onclick={() => (response = 'I will make you! Do it!')}>
       <Label>You Can't Make Me</Label>
     </Button>
     <Button
       defaultAction
       use={[InitialFocus]}
-      on:click={() => (response = 'It will be glorious.')}
+      onclick={() => (response = 'It will be glorious.')}
     >
       <Label>I Will</Label>
     </Button>
   </Actions>
 </Dialog>
 
-<Button on:click={() => (open = true)}>
+<Button onclick={() => (open = true)}>
   <Label>Open Dialog</Label>
 </Button>
 

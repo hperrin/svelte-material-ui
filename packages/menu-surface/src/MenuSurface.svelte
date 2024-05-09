@@ -1,9 +1,8 @@
-<svelte:body on:click|capture={handleBodyClick} />
+<svelte:body onclickcapture={handleBodyClick} />
 
 <div
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
     [className]: true,
     'mdc-menu-surface': true,
@@ -18,8 +17,13 @@
     .concat([style])
     .join(' ')}
   role="dialog"
-  on:keydown={instance && instance.handleKeydown.bind(instance)}
   {...$$restProps}
+  onkeydown={(e) => {
+    if (instance) {
+      instance.handleKeydown.bind(instance);
+    }
+    $$restProps.onkeydown?.(e);
+  }}
 >
   <slot />
 </div>
@@ -27,16 +31,9 @@
 <script lang="ts">
   import { MDCMenuSurfaceFoundation } from '@material/menu-surface';
   import { onMount, onDestroy, setContext } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    useActions,
-    dispatch,
-  } from '@smui/common/internal';
+  import { classMap, useActions, dispatch } from '@smui/common/internal';
 
   import type { SMUIMenuSurfaceAccessor } from './MenuSurface.types.js';
   import { Corner } from './MenuSurface.types.js';
@@ -72,8 +69,6 @@
     neverRestoreFocus?: boolean;
   };
   type $$Props = OwnProps & SmuiAttrs<'div', keyof OwnProps>;
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
@@ -174,7 +169,7 @@
         if (!open) {
           dispatch(
             element,
-            'SMUIMenuSurface:closed',
+            'SMUIMenuSurfaceClosed',
             undefined,
             undefined,
             true,
@@ -188,7 +183,7 @@
         if (!open) {
           dispatch(
             element,
-            'SMUIMenuSurface:closing',
+            'SMUIMenuSurfaceClosing',
             undefined,
             undefined,
             true,
@@ -202,7 +197,7 @@
         if (open) {
           dispatch(
             element,
-            'SMUIMenuSurface:opened',
+            'SMUIMenuSurfaceOpened',
             undefined,
             undefined,
             true,
@@ -213,7 +208,7 @@
         if (!open) {
           dispatch(
             element,
-            'SMUIMenuSurface:opening',
+            'SMUIMenuSurfaceOpening',
             undefined,
             undefined,
             true,
@@ -284,11 +279,13 @@
       closeProgrammatic,
     };
 
-    dispatch(element, 'SMUIMenuSurface:mount', accessor);
+    dispatch(element, 'SMUIMenuSurfaceMount', accessor);
 
     instance.init();
 
     return () => {
+      dispatch(element, 'SMUIMenuSurfaceUnmount', accessor);
+
       const isHoisted = (instance as any).isHoistedElement;
       instance.destroy();
       if (isHoisted) {

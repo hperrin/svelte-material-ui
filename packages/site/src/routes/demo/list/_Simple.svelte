@@ -1,10 +1,10 @@
 <div>
   <List class="demo-list">
-    <Item on:SMUI:action={() => (clicked = 'Cut')}><Text>Cut</Text></Item>
-    <Item on:SMUI:action={() => (clicked = 'Copy')}><Text>Copy</Text></Item>
-    <Item on:SMUI:action={() => (clicked = 'Paste')}><Text>Paste</Text></Item>
+    <Item onSMUIAction={() => (clicked = 'Cut')}><Text>Cut</Text></Item>
+    <Item onSMUIAction={() => (clicked = 'Copy')}><Text>Copy</Text></Item>
+    <Item onSMUIAction={() => (clicked = 'Paste')}><Text>Paste</Text></Item>
     <Separator />
-    <Item on:SMUI:action={() => (clicked = 'Delete')}><Text>Delete</Text></Item>
+    <Item onSMUIAction={() => (clicked = 'Delete')}><Text>Delete</Text></Item>
   </List>
 </div>
 

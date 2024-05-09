@@ -1,7 +1,6 @@
 <aside
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
     [className]: true,
     'mdc-snackbar': true,
@@ -9,9 +8,17 @@
     'mdc-snackbar--leading': leading,
     ...internalClasses,
   })}
-  on:SMUISnackbar:closed={handleClosed}
-  on:keydown={instance && instance.handleKeyDown.bind(instance)}
   {...exclude($$restProps, ['surface$'])}
+  onkeydown={(e) => {
+    if (instance) {
+      instance.handleKeyDown.bind(instance);
+    }
+    $$restProps.onkeydown?.(e);
+  }}
+  onSMUISnackbarClosed={(e) => {
+    handleClosed();
+    $$restProps.onSMUISnackbarClosed?.(e);
+  }}
 >
   <div
     use:useActions={surface$use}
@@ -19,10 +26,13 @@
       [surface$class]: true,
       'mdc-snackbar__surface': true,
     })}
-    on:click={handleSurfaceClick}
     role="status"
     aria-relevant="additions"
     {...prefixFilter($$restProps, 'surface$')}
+    onclick={(e) => {
+      handleSurfaceClick(e);
+      $$restProps.surface$onclick?.(e);
+    }}
   >
     <slot />
   </div>
@@ -36,12 +46,9 @@
   import { MDCSnackbarFoundation, util } from '@material/snackbar';
   import { ponyfill } from '@material/dom';
   import { onMount, setContext } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type { SmuiAttrs, SmuiElementPropMap } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
-    forwardEventsBuilder,
     classMap,
     exclude,
     prefixFilter,
@@ -68,7 +75,6 @@
       [k in keyof SmuiElementPropMap['div'] as `surface\$${k}`]?: SmuiElementPropMap['div'][k];
     };
 
-  const forwardEvents = forwardEventsBuilder(get_current_component());
   interface UninitializedValue extends Function {}
   let uninitializedValue: UninitializedValue = () => {};
   function isUninitializedValue(value: any): value is UninitializedValue {
@@ -127,7 +133,7 @@
       notifyClosed: (reason) =>
         dispatch(
           getElement(),
-          'SMUISnackbar:closed',
+          'SMUISnackbarClosed',
           reason ? { reason } : {},
           undefined,
           true,
@@ -135,7 +141,7 @@
       notifyClosing: (reason) =>
         dispatch(
           getElement(),
-          'SMUISnackbar:closing',
+          'SMUISnackbarClosing',
           reason ? { reason } : {},
           undefined,
           true,
@@ -143,7 +149,7 @@
       notifyOpened: () =>
         dispatch(
           getElement(),
-          'SMUISnackbar:opened',
+          'SMUISnackbarOpened',
           undefined,
           undefined,
           true,
@@ -151,7 +157,7 @@
       notifyOpening: () =>
         dispatch(
           getElement(),
-          'SMUISnackbar:opening',
+          'SMUISnackbarOpening',
           undefined,
           undefined,
           true,

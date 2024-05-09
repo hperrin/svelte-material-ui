@@ -17,11 +17,11 @@
   </Content>
 </Dialog>
 
-<Button on:click={() => (open = true)}>
+<Button onclick={() => (open = true)}>
   <Label>Open Dialog</Label>
 </Button>
 
-<Button on:click={() => (openNoPadding = true)}>
+<Button onclick={() => (openNoPadding = true)}>
   <Label>Open No Padding Dialog</Label>
 </Button>
 

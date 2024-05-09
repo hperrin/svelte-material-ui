@@ -1,22 +1,22 @@
 <div>
   <Button
-    on:click={addEvent}
-    on:mousedown={addEvent}
-    on:mouseup={addEvent}
-    on:mouseover={addEvent}
-    on:mousemove={addEvent}
-    on:mouseout={addEvent}
-    on:keypress={addEvent}
-    on:keydown={addEvent}
-    on:keyup={addEvent}
-    on:focus={addEvent}
-    on:blur={addEvent}
-    on:animationstart={addEvent}
-    on:animationend={addEvent}
-    on:touchstart={addEvent}
-    on:touchend={addEvent}
-    on:touchmove={addEvent}
-    on:touchcancel={addEvent}
+    onclick={addEvent}
+    onmousedown={addEvent}
+    onmouseup={addEvent}
+    onmouseover={addEvent}
+    onmousemove={addEvent}
+    onmouseout={addEvent}
+    onkeypress={addEvent}
+    onkeydown={addEvent}
+    onkeyup={addEvent}
+    onfocus={addEvent}
+    onblur={addEvent}
+    onanimationstart={addEvent}
+    onanimationend={addEvent}
+    ontouchstart={addEvent}
+    ontouchend={addEvent}
+    ontouchmove={addEvent}
+    ontouchcancel={addEvent}
   >
     <Label>This Button has Event Listeners</Label>
   </Button>
@@ -37,7 +37,7 @@
 </div>
 
 <div>
-  <Button on:click$capture={addEventPhase} on:click={addEventPhase}>
+  <Button onclick$capture={addEventPhase} onclick={addEventPhase}>
     <Label>Capture and Bubble Phase Listeners</Label>
   </Button>
 </div>
@@ -60,7 +60,7 @@
 <div>
   <Button
     href="http://example.com"
-    on:click$preventDefault={() =>
+    onclick$preventDefault={() =>
       console.log("You tried to go, but didn't make it.")}
   >
     <Label>A Link, with Default Prevented</Label>
@@ -75,9 +75,7 @@
 </div>
 
 <div>
-  <Button on:mousedown$preventDefault={handleTypedEvent}>
-    Correct Event Type
-  </Button>
+  <Button onmousedown={handleTypedEvent}>Correct Event Type</Button>
 </div>
 
 <pre class="status">Mouse Button: {button}</pre>
@@ -124,6 +122,7 @@
   // event with a type assertion.
   function handleTypedEvent(event: CustomEvent | MouseEvent) {
     event = event as MouseEvent;
+    event.preventDefault();
     button =
       ['Left.', 'Middle.', 'Right.'][event.button] ??
       `Button #${event.button}.`;

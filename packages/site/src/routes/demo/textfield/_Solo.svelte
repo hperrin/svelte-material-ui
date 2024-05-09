@@ -3,13 +3,13 @@
     <Icon class="material-icons">search</Icon>
     <Input
       bind:value
-      on:keydown={handleKeyDown}
+      onkeydown={handleKeyDown}
       placeholder="Search"
       class="solo-input"
     />
   </Paper>
   <Fab
-    on:click={doSearch}
+    onclick={doSearch}
     disabled={value === ''}
     color="primary"
     mini

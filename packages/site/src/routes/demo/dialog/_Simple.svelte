@@ -7,16 +7,16 @@
   <Title id="simple-title">Dialog Title</Title>
   <Content id="simple-content">Super awesome dialog body text?</Content>
   <Actions>
-    <Button on:click={() => (clicked = 'No')}>
+    <Button onclick={() => (clicked = 'No')}>
       <Label>No</Label>
     </Button>
-    <Button on:click={() => (clicked = 'Yes')}>
+    <Button onclick={() => (clicked = 'Yes')}>
       <Label>Yes</Label>
     </Button>
   </Actions>
 </Dialog>
 
-<Button on:click={() => (open = true)}>
+<Button onclick={() => (open = true)}>
   <Label>Open Dialog</Label>
 </Button>
 

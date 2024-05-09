@@ -2,7 +2,7 @@
   this={component}
   {tag}
   bind:this={element}
-  use={[forwardEvents, ...use]}
+  {use}
   class={classMap({
     [className]: true,
     'mdc-deprecated-list': true,
@@ -18,14 +18,35 @@
     'smui-list--three-line': threeLine && !twoLine,
   })}
   {role}
-  on:keydown={handleKeydown}
-  on:focusin={handleFocusin}
-  on:focusout={handleFocusout}
-  on:click={handleClick}
-  on:SMUIListItem:mount={handleItemMount}
-  on:SMUIListItem:unmount={handleItemUnmount}
-  on:SMUI:action={handleAction}
   {...$$restProps}
+  onkeydown={(e: KeyboardEvent) => {
+    handleKeydown(e);
+    $$restProps.onkeydown?.(e);
+  }}
+  onfocusin={(e: FocusEvent) => {
+    handleFocusin(e);
+    $$restProps.onfocusin?.(e);
+  }}
+  onfocusout={(e: FocusEvent) => {
+    handleFocusout(e);
+    $$restProps.onfocusout?.(e);
+  }}
+  onclick={(e: MouseEvent) => {
+    handleClick(e);
+    $$restProps.onclick?.(e);
+  }}
+  onSMUIListItemMount={(e: CustomEvent) => {
+    handleItemMount(e);
+    $$restProps.onSMUIListItemMount?.(e);
+  }}
+  onSMUIListItemUnmount={(e: CustomEvent) => {
+    handleItemUnmount(e);
+    $$restProps.onSMUIListItemUnmount?.(e);
+  }}
+  onSMUIAction={(e: CustomEvent) => {
+    handleAction(e);
+    $$restProps.onSMUIAction?.(e);
+  }}
 >
   <slot />
 </svelte:component>
@@ -35,15 +56,9 @@
   import { ponyfill } from '@material/dom';
   import type { SvelteComponent } from 'svelte';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type { AddLayoutListener, RemoveLayoutListener } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    dispatch,
-  } from '@smui/common/internal';
+  import { classMap, dispatch } from '@smui/common/internal';
   import type {
     SmuiElementMap,
     SmuiEveryElement,
@@ -81,8 +96,6 @@
     tag?: TagName;
   };
   type $$Props = OwnProps & SmuiAttrs<TagName, keyof OwnProps>;
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
@@ -205,12 +218,12 @@
       notifyAction: (index) => {
         selectedIndex = index;
         if (element != null) {
-          dispatch(getElement(), 'SMUIList:action', { index }, undefined, true);
+          dispatch(getElement(), 'SMUIListAction', { index }, undefined, true);
         }
       },
       notifySelectionChange: (changedIndices: number[]) => {
         if (element != null) {
-          dispatch(getElement(), 'SMUIList:selectionChange', {
+          dispatch(getElement(), 'SMUIListSelectionChange', {
             changedIndices,
           });
         }
@@ -259,12 +272,13 @@
       getPrimaryTextAtIndex,
     };
 
-    dispatch(getElement(), 'SMUIList:mount', accessor);
+    dispatch(getElement(), 'SMUIListMount', accessor);
 
     instance.init();
     instance.layout();
 
     return () => {
+      dispatch(getElement(), 'SMUIListUnmount', accessor);
       instance.destroy();
     };
   });

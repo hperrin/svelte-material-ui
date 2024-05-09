@@ -15,7 +15,6 @@
         addStyle,
       },
     ],
-    forwardEvents,
     ...use,
   ]}
   class={classMap({
@@ -45,10 +44,15 @@
   {...defaultProp}
   {...secondaryProp}
   {href}
-  on:click={handleClick}
   {...$$restProps}
-  ><div class="mdc-button__ripple" />
-  <slot />{#if touch}<div class="mdc-button__touch" />{/if}</svelte:component
+  onclick={(e: MouseEvent) => {
+    handleClick();
+    $$restProps.onclick?.(e);
+  }}
+  ><div class="mdc-button__ripple"></div>
+  <slot />{#if touch}<div
+      class="mdc-button__touch"
+    ></div>{/if}</svelte:component
 >
 
 <script
@@ -57,14 +61,8 @@
 >
   import type { SvelteComponent } from 'svelte';
   import { setContext, getContext } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type { ActionArray } from '@smui/common/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    dispatch,
-  } from '@smui/common/internal';
+  import { classMap, dispatch } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
   import type {
     SmuiElementMap,
@@ -89,8 +87,6 @@
     tag?: TagName;
   };
   type $$Props = OwnProps & SmuiAttrs<TagName, keyof OwnProps>;
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
@@ -169,8 +165,8 @@
       dispatch(
         getElement(),
         secondary
-          ? 'SMUIBannerButton:secondaryActionClick'
-          : 'SMUIBannerButton:primaryActionClick',
+          ? 'SMUIBannerButtonSecondaryActionClick'
+          : 'SMUIBannerButtonPrimaryActionClick',
       );
     }
   }

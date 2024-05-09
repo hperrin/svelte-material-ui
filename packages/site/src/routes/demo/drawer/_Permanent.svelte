@@ -4,31 +4,31 @@
       <List>
         <Item
           href="javascript:void(0)"
-          on:click={() => (clicked = 'Gray Kittens')}
+          onclick={() => (clicked = 'Gray Kittens')}
         >
           <Text>Gray Kittens</Text>
         </Item>
         <Item
           href="javascript:void(0)"
-          on:click={() => (clicked = 'A Space Rocket')}
+          onclick={() => (clicked = 'A Space Rocket')}
         >
           <Text>A Space Rocket</Text>
         </Item>
         <Item
           href="javascript:void(0)"
-          on:click={() => (clicked = '100 Pounds of Gravel')}
+          onclick={() => (clicked = '100 Pounds of Gravel')}
         >
           <Text>100 Pounds of Gravel</Text>
         </Item>
         <Item
           href="javascript:void(0)"
-          on:click={() => (clicked = 'All of the Shrimp')}
+          onclick={() => (clicked = 'All of the Shrimp')}
         >
           <Text>All of the Shrimp</Text>
         </Item>
         <Item
           href="javascript:void(0)"
-          on:click={() => (clicked = 'A Planet with a Mall')}
+          onclick={() => (clicked = 'A Planet with a Mall')}
         >
           <Text>A Planet with a Mall</Text>
         </Item>

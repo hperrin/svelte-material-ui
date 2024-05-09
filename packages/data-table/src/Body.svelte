@@ -1,28 +1,26 @@
 <tbody
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
     [className]: true,
     'mdc-data-table__content': true,
   })}
-  on:SMUIDataTableRow:mount={handleRowMount}
-  on:SMUIDataTableRow:unmount={handleRowUnmount}
-  {...$$restProps}><slot /></tbody
+  {...$$restProps}
+  onSMUIDataTableRowMount={(e) => {
+    handleRowMount(e);
+    $$restProps.onSMUIDataTableRowMount?.(e);
+  }}
+  onSMUIDataTableRowUnmount={(e) => {
+    handleRowUnmount(e);
+    $$restProps.onSMUIDataTableRowUnmount?.(e);
+  }}><slot /></tbody
 >
 
 <script lang="ts">
   import { onMount, setContext } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    useActions,
-    dispatch,
-  } from '@smui/common/internal';
+  import { classMap, useActions, dispatch } from '@smui/common/internal';
 
   import type { SMUIDataTableRowAccessor } from './Row.types.js';
   import type { SMUIDataTableBodyAccessor } from './Body.types.js';
@@ -32,8 +30,6 @@
     class?: string;
   };
   type $$Props = OwnProps & SmuiAttrs<'tbody', keyof OwnProps>;
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
@@ -59,10 +55,10 @@
       },
     };
 
-    dispatch(getElement(), 'SMUIDataTableBody:mount', accessor);
+    dispatch(getElement(), 'SMUIDataTableBodyMount', accessor);
 
     return () => {
-      dispatch(getElement(), 'SMUIDataTableBody:unmount', accessor);
+      dispatch(getElement(), 'SMUIDataTableBodyUnmount', accessor);
     };
   });
 

@@ -1,13 +1,13 @@
 <div class="flexy">
   <div class="margins">
-    <Fab on:click={() => clicked++} href="http://example.com" target="_blank">
+    <Fab onclick={() => clicked++} href="http://example.com" target="_blank">
       <Icon class="material-icons">favorite</Icon>
     </Fab>
   </div>
   <div class="margins">
     <Fab
       color="primary"
-      on:click={() => clicked++}
+      onclick={() => clicked++}
       href="http://example.com"
       target="_blank"
     >
@@ -16,7 +16,7 @@
   </div>
   <div class="margins">
     <Fab
-      on:click={() => clicked++}
+      onclick={() => clicked++}
       href="http://example.com"
       target="_blank"
       extended
@@ -27,7 +27,7 @@
   <div class="margins">
     <Fab
       color="primary"
-      on:click={() => clicked++}
+      onclick={() => clicked++}
       href="http://example.com"
       target="_blank"
       extended

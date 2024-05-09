@@ -1,6 +1,6 @@
 <Kitchen bind:this={kitchen} dismiss$class="material-icons" />
 
-<Button on:click={pushToKitchen}><Label>Push a New Snackbar</Label></Button>
+<Button onclick={pushToKitchen}><Label>Push a New Snackbar</Label></Button>
 
 <pre class="status">Closed Reason: {reason}</pre>
 <pre class="status">Action: {action}</pre>

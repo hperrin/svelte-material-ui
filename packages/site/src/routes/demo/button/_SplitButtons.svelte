@@ -1,10 +1,10 @@
 <Group variant="raised">
-  <Button on:click={() => clicked++} variant="raised">
+  <Button onclick={() => clicked++} variant="raised">
     <Label>Do the thing</Label>
   </Button>
   <div use:GroupItem>
     <Button
-      on:click={() => menu.setOpen(true)}
+      onclick={() => menu.setOpen(true)}
       variant="raised"
       style="padding: 0; min-width: 36px;"
     >
@@ -12,14 +12,14 @@
     </Button>
     <Menu bind:this={menu} anchorCorner="TOP_LEFT">
       <List>
-        <Item on:SMUI:action={() => clicked++}>
+        <Item onSMUIAction={() => clicked++}>
           <Text>Thing 1</Text>
         </Item>
-        <Item on:SMUI:action={() => clicked++}>
+        <Item onSMUIAction={() => clicked++}>
           <Text>Thing 2</Text>
         </Item>
         <Separator />
-        <Item on:SMUI:action={() => clicked++}>
+        <Item onSMUIAction={() => clicked++}>
           <Text>Thing 3</Text>
         </Item>
       </List>
@@ -28,12 +28,12 @@
 </Group>
 
 <Group variant="outlined">
-  <Button on:click={() => clicked++} variant="outlined">
+  <Button onclick={() => clicked++} variant="outlined">
     <Label>Do the thing</Label>
   </Button>
   <div use:GroupItem>
     <Button
-      on:click={() => menu2.setOpen(true)}
+      onclick={() => menu2.setOpen(true)}
       variant="outlined"
       style="padding: 0; min-width: 36px;"
     >
@@ -41,14 +41,14 @@
     </Button>
     <Menu bind:this={menu2} anchorCorner="TOP_LEFT">
       <List>
-        <Item on:SMUI:action={() => clicked++}>
+        <Item onSMUIAction={() => clicked++}>
           <Text>Thing 1</Text>
         </Item>
-        <Item on:SMUI:action={() => clicked++}>
+        <Item onSMUIAction={() => clicked++}>
           <Text>Thing 2</Text>
         </Item>
         <Separator />
-        <Item on:SMUI:action={() => clicked++}>
+        <Item onSMUIAction={() => clicked++}>
           <Text>Thing 3</Text>
         </Item>
       </List>

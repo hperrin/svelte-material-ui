@@ -1,14 +1,14 @@
 <div>
-  <Button color="secondary" on:click={() => clicked++}>
+  <Button color="secondary" onclick={() => clicked++}>
     <Label>Default</Label>
   </Button>
-  <Button color="secondary" on:click={() => clicked++} disabled>
+  <Button color="secondary" onclick={() => clicked++} disabled>
     <Label>Disabled</Label>
   </Button>
-  <Button color="secondary" on:click={() => clicked++} ripple={false}>
+  <Button color="secondary" onclick={() => clicked++} ripple={false}>
     <Label>No Ripple</Label>
   </Button>
-  <Button color="secondary" on:click={() => clicked++} class="myClass">
+  <Button color="secondary" onclick={() => clicked++} class="myClass">
     <Label>With a Class</Label>
   </Button>
 </div>

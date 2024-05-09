@@ -12,7 +12,7 @@
 </FormField>
 
 <br />
-<Button on:click={() => (checked = null)}>Reset</Button>
+<Button onclick={() => (checked = null)}>Reset</Button>
 
 <pre class="status">Checked: {checked}</pre>
 

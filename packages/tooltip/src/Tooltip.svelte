@@ -1,7 +1,6 @@
 <div
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
     [className]: true,
     'mdc-tooltip': true,
@@ -23,10 +22,15 @@
   data-hide-tooltip-from-screenreader={hideFromScreenreader
     ? 'true'
     : undefined}
-  on:transitionend={() => instance && instance.handleTransitionEnd()}
   {...roleProps}
   {...internalAttrs}
   {...exclude($$restProps, ['surface$'])}
+  ontransitionend={(e) => {
+    if (instance) {
+      instance.handleTransitionEnd();
+    }
+    $$restProps.ontransitionend?.(e);
+  }}
 >
   <div
     class={classMap({
@@ -59,12 +63,9 @@
   } from '@material/tooltip';
   import { onMount, onDestroy, getContext } from 'svelte';
   import type { Writable } from 'svelte/store';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type { SmuiAttrs, SmuiElementPropMap } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
-    forwardEventsBuilder,
     classMap,
     exclude,
     prefixFilter,
@@ -92,8 +93,6 @@
     SmuiAttrs<'div', keyof OwnProps> & {
       [k in keyof SmuiElementPropMap['div'] as `surface\$${k}`]?: SmuiElementPropMap['div'][k];
     };
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
@@ -276,13 +275,7 @@
         );
       },
       notifyHidden: () => {
-        dispatch(
-          getElement(),
-          'SMUITooltip:hidden',
-          undefined,
-          undefined,
-          true,
-        );
+        dispatch(getElement(), 'SMUITooltipHidden', undefined, undefined, true);
       },
       // TODO: figure out why MDC-Web included these caret functions, because they're entirely undocumented.
       getTooltipCaretBoundingRect: () => {
