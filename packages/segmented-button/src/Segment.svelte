@@ -41,7 +41,7 @@
   // TODO: Also remove @material/base and @material/ripple from the package.json
   // @ts-ignore
   import { MDCSegmentedButtonSegmentFoundation } from './mdc-segmented-button/index.js';
-  import { onMount, getContext } from 'svelte';
+  import { onMount, getContext, tick } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, useActions, dispatch } from '@smui/common/internal';
@@ -150,7 +150,9 @@
       },
     };
 
-    dispatch(getElement(), 'SMUISegmentedButtonSegmentMount', accessor);
+    tick().then(() => {
+      dispatch(getElement(), 'SMUISegmentedButtonSegmentMount', accessor);
+    });
 
     instance.init();
 

@@ -99,7 +99,7 @@
 <script lang="ts" generics="TagName extends SmuiEveryElement = 'div'">
   import { deprecated } from '@material/chips';
   import type { SvelteComponent } from 'svelte';
-  import { onMount, setContext, getContext } from 'svelte';
+  import { onMount, setContext, getContext, tick } from 'svelte';
   import { writable } from 'svelte/store';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, dispatch } from '@smui/common/internal';
@@ -329,7 +329,9 @@
       setSelectedFromChipSet,
     };
 
-    dispatch(getElement(), 'SMUIChipMount', accessor);
+    tick().then(() => {
+      dispatch(getElement(), 'SMUIChipMount', accessor);
+    });
 
     instance.init();
 

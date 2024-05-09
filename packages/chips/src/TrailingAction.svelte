@@ -137,7 +137,9 @@
       removeFocus,
     };
 
-    dispatch(getElement(), 'SMUIChipTrailingActionMount', accessor);
+    tick().then(() => {
+      dispatch(getElement(), 'SMUIChipTrailingActionMount', accessor);
+    });
 
     instance.init();
 

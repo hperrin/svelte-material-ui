@@ -17,7 +17,7 @@
 >
 
 <script lang="ts">
-  import { onMount, setContext } from 'svelte';
+  import { onMount, setContext, tick } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, useActions, dispatch } from '@smui/common/internal';
@@ -55,7 +55,9 @@
       },
     };
 
-    dispatch(getElement(), 'SMUIDataTableBodyMount', accessor);
+    tick().then(() => {
+      dispatch(getElement(), 'SMUIDataTableBodyMount', accessor);
+    });
 
     return () => {
       dispatch(getElement(), 'SMUIDataTableBodyUnmount', accessor);

@@ -76,7 +76,7 @@
 >
   import { MDCTabFoundation } from '@material/tab';
   import type { SvelteComponent, ComponentProps } from 'svelte';
-  import { onMount, setContext, getContext } from 'svelte';
+  import { onMount, setContext, getContext, tick } from 'svelte';
   import type { ActionArray } from '@smui/common/internal';
   import {
     classMap,
@@ -205,7 +205,9 @@
       deactivate,
     };
 
-    dispatch(getElement(), 'SMUITabMount', accessor);
+    tick().then(() => {
+      dispatch(getElement(), 'SMUITabMount', accessor);
+    });
 
     instance.init();
 

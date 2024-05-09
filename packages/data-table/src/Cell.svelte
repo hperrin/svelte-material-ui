@@ -72,7 +72,7 @@
 
 <script lang="ts">
   import type { SortValue } from '@material/data-table';
-  import { onMount, getContext, setContext } from 'svelte';
+  import { onMount, getContext, setContext, tick } from 'svelte';
   import type { Writable } from 'svelte/store';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
@@ -154,7 +154,9 @@
           addAttr,
         };
 
-    dispatch(getElement(), 'SMUIDataTableCellMount', accessor);
+    tick().then(() => {
+      dispatch(getElement(), 'SMUIDataTableCellMount', accessor);
+    });
 
     return () => {
       dispatch(getElement(), 'SMUIDataTableCellUnmount', accessor);

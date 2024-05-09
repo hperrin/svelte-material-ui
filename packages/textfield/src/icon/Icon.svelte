@@ -17,7 +17,7 @@
 
 <script lang="ts">
   import { MDCTextFieldIconFoundation } from '@material/textfield';
-  import { onMount, getContext } from 'svelte';
+  import { onMount, getContext, tick } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, useActions, dispatch } from '@smui/common/internal';
@@ -69,13 +69,15 @@
         dispatch(getElement(), 'SMUITextFieldIcon', undefined, undefined, true),
     });
 
-    dispatch(
-      getElement(),
-      leading
-        ? 'SMUITextfieldLeadingIconMount'
-        : 'SMUITextfieldTrailingIconMount',
-      instance,
-    );
+    tick().then(() => {
+      dispatch(
+        getElement(),
+        leading
+          ? 'SMUITextfieldLeadingIconMount'
+          : 'SMUITextfieldTrailingIconMount',
+        instance,
+      );
+    });
 
     instance.init();
 

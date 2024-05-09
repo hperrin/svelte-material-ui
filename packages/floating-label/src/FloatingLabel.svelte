@@ -37,7 +37,7 @@
 
 <script lang="ts">
   import { MDCFloatingLabelFoundation } from '@material/floating-label';
-  import { onMount, getContext } from 'svelte';
+  import { onMount, getContext, tick } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, useActions, dispatch } from '@smui/common/internal';
@@ -115,7 +115,9 @@
       removeStyle,
     };
 
-    dispatch(element, 'SMUIFloatingLabelMount', accessor);
+    tick().then(() => {
+      dispatch(element, 'SMUIFloatingLabelMount', accessor);
+    });
 
     instance.init();
 

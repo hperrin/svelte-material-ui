@@ -80,7 +80,7 @@
   generics="Href extends string | undefined = undefined, TagName extends SmuiEveryElement = Href extends string ? 'a' : 'li'"
 >
   import type { SvelteComponent } from 'svelte';
-  import { onMount, onDestroy, getContext, setContext } from 'svelte';
+  import { onMount, onDestroy, getContext, setContext, tick } from 'svelte';
   import type {
     SMUICheckboxInputAccessor,
     SMUIGenericInputAccessor,
@@ -278,7 +278,9 @@
       },
     };
 
-    dispatch(getElement(), 'SMUIListItemMount', accessor);
+    tick().then(() => {
+      dispatch(getElement(), 'SMUIListItemMount', accessor);
+    });
 
     return () => {
       dispatch(getElement(), 'SMUIListItemUnmount', accessor);

@@ -22,7 +22,7 @@
 
 <script lang="ts">
   import { MDCTextFieldHelperTextFoundation } from '@material/textfield';
-  import { onMount } from 'svelte';
+  import { onMount, tick } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, useActions, dispatch } from '@smui/common/internal';
@@ -70,10 +70,12 @@
       },
     });
 
-    if (id.startsWith('SMUI-textfield-helper-text-')) {
-      dispatch(getElement(), 'SMUITextfieldHelperTextId', id);
-    }
-    dispatch(getElement(), 'SMUITextfieldHelperTextMount', instance);
+    tick().then(() => {
+      if (id.startsWith('SMUI-textfield-helper-text-')) {
+        dispatch(getElement(), 'SMUITextfieldHelperTextId', id);
+      }
+      dispatch(getElement(), 'SMUITextfieldHelperTextMount', instance);
+    });
 
     instance.init();
 

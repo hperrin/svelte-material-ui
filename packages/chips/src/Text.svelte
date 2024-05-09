@@ -70,7 +70,9 @@
       addAttr,
     };
 
-    dispatch(getElement(), 'SMUIChipPrimaryActionMount', accessor);
+    tick().then(() => {
+      dispatch(getElement(), 'SMUIChipPrimaryActionMount', accessor);
+    });
 
     return () => {
       dispatch(getElement(), 'SMUIChipPrimaryActionUnmount', accessor);

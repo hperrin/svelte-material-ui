@@ -12,7 +12,7 @@
 
 <script lang="ts">
   import { MDCTextFieldCharacterCounterFoundation } from '@material/textfield';
-  import { onMount } from 'svelte';
+  import { onMount, tick } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, useActions, dispatch } from '@smui/common/internal';
@@ -39,7 +39,9 @@
       },
     });
 
-    dispatch(getElement(), 'SMUITextfieldCharacterCounterMount', instance);
+    tick().then(() => {
+      dispatch(getElement(), 'SMUITextfieldCharacterCounterMount', instance);
+    });
 
     instance.init();
 

@@ -36,10 +36,10 @@
 >
 
 <script lang="ts">
-  import type { ComponentProps } from 'svelte';
   import { MDCMenuFoundation, cssClasses } from '@material/menu';
   import { ponyfill } from '@material/dom';
-  import { onMount } from 'svelte';
+  import type { ComponentProps } from 'svelte';
+  import { onMount, tick } from 'svelte';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, dispatch } from '@smui/common/internal';
   import type { SMUIListAccessor } from '@smui/list';
@@ -130,7 +130,9 @@
       },
     });
 
-    dispatch(getElement(), 'SMUIMenuMount', instance);
+    tick().then(() => {
+      dispatch(getElement(), 'SMUIMenuMount', instance);
+    });
 
     instance.init();
 

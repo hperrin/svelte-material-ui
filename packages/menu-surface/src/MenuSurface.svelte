@@ -30,7 +30,7 @@
 
 <script lang="ts">
   import { MDCMenuSurfaceFoundation } from '@material/menu-surface';
-  import { onMount, onDestroy, setContext } from 'svelte';
+  import { onMount, onDestroy, setContext, tick } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, useActions, dispatch } from '@smui/common/internal';
@@ -279,7 +279,9 @@
       closeProgrammatic,
     };
 
-    dispatch(element, 'SMUIMenuSurfaceMount', accessor);
+    tick().then(() => {
+      dispatch(element, 'SMUIMenuSurfaceMount', accessor);
+    });
 
     instance.init();
 

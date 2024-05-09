@@ -15,7 +15,7 @@
 
 <script lang="ts">
   import { MDCSelectIconFoundation } from '@material/select';
-  import { onMount } from 'svelte';
+  import { onMount, tick } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, useActions, dispatch } from '@smui/common/internal';
@@ -63,7 +63,9 @@
         dispatch(getElement(), 'SMUISelectIcon', undefined, undefined, true),
     });
 
-    dispatch(getElement(), 'SMUISelectLeadingIconMount', instance);
+    tick().then(() => {
+      dispatch(getElement(), 'SMUISelectLeadingIconMount', instance);
+    });
 
     instance.init();
 

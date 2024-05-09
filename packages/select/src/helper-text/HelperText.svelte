@@ -22,7 +22,7 @@
 
 <script lang="ts">
   import { MDCSelectHelperTextFoundation } from '@material/select';
-  import { onMount } from 'svelte';
+  import { onMount, tick } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, useActions, dispatch } from '@smui/common/internal';
@@ -63,10 +63,12 @@
       },
     });
 
-    if (id.startsWith('SMUI-select-helper-text-')) {
-      dispatch(getElement(), 'SMUISelectHelperTextId', id);
-    }
-    dispatch(getElement(), 'SMUISelectHelperTextMount', instance);
+    tick().then(() => {
+      if (id.startsWith('SMUI-select-helper-text-')) {
+        dispatch(getElement(), 'SMUISelectHelperTextId', id);
+      }
+      dispatch(getElement(), 'SMUISelectHelperTextMount', instance);
+    });
 
     instance.init();
 

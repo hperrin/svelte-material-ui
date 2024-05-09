@@ -80,7 +80,7 @@
     MDCSwitchState,
   } from '@material/switch';
   import { MDCSwitchRenderFoundation } from '@material/switch';
-  import { onMount, getContext } from 'svelte';
+  import { onMount, getContext, tick } from 'svelte';
   import type {
     SmuiAttrs,
     SmuiElementPropMap,
@@ -281,7 +281,9 @@
       },
     };
 
-    dispatch(element, 'SMUIGenericInputMount', accessor);
+    tick().then(() => {
+      dispatch(element, 'SMUIGenericInputMount', accessor);
+    });
 
     instance.init();
     instance.initFromDOM();

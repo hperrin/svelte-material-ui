@@ -55,7 +55,7 @@
   import { MDCListFoundation } from '@material/list';
   import { ponyfill } from '@material/dom';
   import type { SvelteComponent } from 'svelte';
-  import { onMount, onDestroy, getContext, setContext } from 'svelte';
+  import { onMount, onDestroy, getContext, setContext, tick } from 'svelte';
   import type { AddLayoutListener, RemoveLayoutListener } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, dispatch } from '@smui/common/internal';
@@ -272,7 +272,9 @@
       getPrimaryTextAtIndex,
     };
 
-    dispatch(getElement(), 'SMUIListMount', accessor);
+    tick().then(() => {
+      dispatch(getElement(), 'SMUIListMount', accessor);
+    });
 
     instance.init();
     instance.layout();

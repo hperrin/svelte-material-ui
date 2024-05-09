@@ -34,7 +34,7 @@
 </script>
 
 <script lang="ts">
-  import { onMount, getContext } from 'svelte';
+  import { onMount, getContext, tick } from 'svelte';
   import type { SmuiAttrs, SMUICheckboxInputAccessor } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, useActions, dispatch } from '@smui/common/internal';
@@ -101,7 +101,9 @@
           addAttr,
         };
 
-    dispatch(getElement(), 'SMUIDataTableRowMount', accessor);
+    tick().then(() => {
+      dispatch(getElement(), 'SMUIDataTableRowMount', accessor);
+    });
 
     return () => {
       dispatch(getElement(), 'SMUIDataTableRowUnmount', accessor);

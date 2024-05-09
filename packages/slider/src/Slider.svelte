@@ -207,7 +207,7 @@
 
 <script lang="ts">
   import { MDCSliderFoundation, Thumb, TickMark } from '@material/slider';
-  import { onMount, onDestroy, getContext } from 'svelte';
+  import { onMount, onDestroy, getContext, tick } from 'svelte';
   import type {
     AddLayoutListener,
     RemoveLayoutListener,
@@ -565,7 +565,9 @@
       },
     };
 
-    dispatch(element, 'SMUIGenericInputMount', accessor);
+    tick().then(() => {
+      dispatch(element, 'SMUIGenericInputMount', accessor);
+    });
 
     instance.init();
     instance.layout({ skipUpdateUI: true });

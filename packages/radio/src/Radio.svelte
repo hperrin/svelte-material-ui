@@ -51,7 +51,7 @@
 
 <script lang="ts">
   import { MDCRadioFoundation } from '@material/radio';
-  import { onMount, getContext } from 'svelte';
+  import { onMount, getContext, tick } from 'svelte';
   import type {
     SmuiAttrs,
     SmuiElementPropMap,
@@ -149,7 +149,9 @@
       },
     };
 
-    dispatch(element, 'SMUIGenericInputMount', accessor);
+    tick().then(() => {
+      dispatch(element, 'SMUIGenericInputMount', accessor);
+    });
 
     instance.init();
 

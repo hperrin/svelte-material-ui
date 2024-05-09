@@ -21,7 +21,7 @@
 >
 
 <script lang="ts">
-  import { onMount, setContext } from 'svelte';
+  import { onMount, setContext, tick } from 'svelte';
   import type { SmuiAttrs, SMUICheckboxInputAccessor } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import { useActions, dispatch } from '@smui/common/internal';
@@ -60,7 +60,9 @@
       },
     };
 
-    dispatch(getElement(), 'SMUIDataTableHeaderMount', accessor);
+    tick().then(() => {
+      dispatch(getElement(), 'SMUIDataTableHeaderMount', accessor);
+    });
 
     return () => {
       dispatch(getElement(), 'SMUIDataTableHeaderUnmount', accessor);
