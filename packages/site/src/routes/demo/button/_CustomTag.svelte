@@ -38,8 +38,7 @@
 
   let clicked = 0;
 
-  function handleClick(event: CustomEvent | KeyboardEvent) {
-    event = event as KeyboardEvent;
+  function handleClick(event: KeyboardEvent) {
     if (event.key === 'Enter') {
       clicked++;
     }

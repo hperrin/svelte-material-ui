@@ -89,9 +89,7 @@
   );
   const open = getContext<SvelteStore<boolean>>('SMUI:accordion:panel:open');
 
-  function handleClick(event: CustomEvent | MouseEvent) {
-    event = event as MouseEvent;
-
+  function handleClick(event: MouseEvent) {
     if (event.button === 0) {
       dispatch(getElement(), 'SMUIAccordionHeaderActivate', {
         event,
@@ -99,9 +97,7 @@
     }
   }
 
-  function handleKeyDown(event: CustomEvent | KeyboardEvent) {
-    event = event as KeyboardEvent;
-
+  function handleKeyDown(event: KeyboardEvent) {
     if (event.key === 'Enter') {
       dispatch(getElement(), 'SMUIAccordionHeaderActivate', {
         event,

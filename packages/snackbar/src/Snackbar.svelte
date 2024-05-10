@@ -11,7 +11,7 @@
   {...exclude($$restProps, ['surface$'])}
   onkeydown={(e) => {
     if (instance) {
-      instance.handleKeyDown.bind(instance);
+      instance.handleKeyDown(e);
     }
     $$restProps.onkeydown?.(e);
   }}

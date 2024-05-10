@@ -30,43 +30,43 @@
   {...$$restProps}
   ontransitionend={(e: TransitionEvent) => {
     if (instance) {
-      instance.handleTransitionEnd.bind(instance);
+      instance.handleTransitionEnd(e);
     }
     $$restProps.ontransitionend?.(e);
   }}
   onclick={(e: MouseEvent) => {
     if (instance) {
-      instance.handleClick.bind(instance);
+      instance.handleClick();
     }
     $$restProps.onclick?.(e);
   }}
   onkeydown={(e: KeyboardEvent) => {
     if (instance) {
-      instance.handleKeydown.bind(instance);
+      instance.handleKeydown(e);
     }
     $$restProps.onkeydown?.(e);
   }}
   onfocusin={(e: FocusEvent) => {
     if (instance) {
-      instance.handleFocusIn.bind(instance);
+      instance.handleFocusIn(e);
     }
     $$restProps.onfocusin?.(e);
   }}
   onfocusout={(e: FocusEvent) => {
     if (instance) {
-      instance.handleFocusOut.bind(instance);
+      instance.handleFocusOut(e);
     }
     $$restProps.onfocusout?.(e);
   }}
   onSMUIChipTrailingActionInteraction={(e: CustomEvent) => {
     if (instance) {
-      instance.handleTrailingActionInteraction.bind(instance);
+      instance.handleTrailingActionInteraction();
     }
     $$restProps.onSMUIChipTrailingActionInteraction?.(e);
   }}
   onSMUIChipTrailingActionNavigation={(e: CustomEvent) => {
     if (instance) {
-      instance.handleTrailingActionNavigation.bind(instance);
+      instance.handleTrailingActionNavigation(e);
     }
     $$restProps.onSMUIChipTrailingActionNavigation?.(e);
   }}

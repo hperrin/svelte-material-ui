@@ -178,8 +178,14 @@
         let offsetHeight = content.offsetHeight;
         if (offsetHeight === 0) {
           getElement().classList.add('smui-banner--force-show');
+          if (width) {
+            content.style.setProperty('width', `${width}px`);
+          }
           offsetHeight = content.offsetHeight;
           getElement().classList.remove('smui-banner--force-show');
+          if (width) {
+            content.style.removeProperty('width');
+          }
         }
         return offsetHeight;
       },

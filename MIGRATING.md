@@ -2,6 +2,11 @@
 
 This doc contains information that will help you migrate your code from an older version of SMUI to a newer one. Things that you will need to change in your existing code will be written here. It would also be helpful to check the MDC changelog if the upstream MDC versions has changed between SMUI versions.
 
+# SMUI 7 -> SMUI 8
+
+- Svelte 5 is required! Svelte 4 will not work.
+- Event listeners no longer need to use the CustomEvent type. They can use the correct type, like MouseEvent and KeyboardEvent.
+
 # SMUI 6 -> SMUI 7
 
 SMUI 7 migrated to upstream MDC 14.0 from 13.0:

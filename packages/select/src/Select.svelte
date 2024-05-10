@@ -79,7 +79,7 @@
     }}
     onkeydown={(e) => {
       if (instance) {
-        instance.handleKeydown.bind(instance);
+        instance.handleKeydown(e);
       }
       $$restProps.onkeydown?.(e);
     }}

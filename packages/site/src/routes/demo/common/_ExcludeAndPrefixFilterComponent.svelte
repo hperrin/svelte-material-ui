@@ -1,6 +1,5 @@
 <div class="my-component {className}" {...exclude($$restProps, ['button$'])}>
   <Button
-    onclick
     class="button {button$class}"
     {...prefixFilter($$restProps, 'button$')}
   >

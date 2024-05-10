@@ -2,9 +2,7 @@
   onresize={() => open && instance && instance.layout()}
   onorientationchange={() => open && instance && instance.layout()}
 />
-<svelte:body
-  onkeydown={instance && instance.handleDocumentKeydown.bind(instance)}
-/>
+<svelte:body onkeydown={(e) => instance && instance.handleDocumentKeydown(e)} />
 
 <div
   bind:this={element}
@@ -36,13 +34,13 @@
   }}
   onclick={(e) => {
     if (instance) {
-      instance.handleClick.bind(instance);
+      instance.handleClick(e);
     }
     $$restProps.onclick?.(e);
   }}
   onkeydown={(e) => {
     if (instance) {
-      instance.handleKeydown.bind(instance);
+      instance.handleKeydown(e);
     }
     $$restProps.onkeydown?.(e);
   }}

@@ -1,7 +1,7 @@
 <MyComponent
   class="my-class"
   button$disabled={disabled}
-  onclick={() => (disabled = true)}
+  button$onclick={() => (disabled = true)}
 >
   Click Me Only Once
 </MyComponent>

@@ -68,19 +68,6 @@
   </Button>
 </div>
 
-<br /> <br />
-
-<div>
-  TypeScript event types can be tricky with SMUI components. This example shows
-  you how to get them right.
-</div>
-
-<div>
-  <Button onmousedown={handleTypedEvent}>Correct Event Type</Button>
-</div>
-
-<pre class="status">Mouse Button: {button}</pre>
-
 <script lang="ts">
   import { preventDefault } from '@smui/common/events';
   import Button, { Label } from '@smui/button';
@@ -116,18 +103,6 @@
     requestAnimationFrame(() => {
       eventPhaseOutput.scrollTop = eventPhaseOutput.scrollHeight;
     });
-  }
-
-  let button = 'None yet.';
-
-  // In order to get the correct type, you need to reassign the
-  // event with a type assertion.
-  function handleTypedEvent(event: CustomEvent | MouseEvent) {
-    event = event as MouseEvent;
-    event.preventDefault();
-    button =
-      ['Left.', 'Middle.', 'Right.'][event.button] ??
-      `Button #${event.button}.`;
   }
 </script>
 

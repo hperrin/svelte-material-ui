@@ -10,13 +10,13 @@
   {...exclude($$restProps, ['tabScroller$'])}
   onkeydown={(e) => {
     if (instance) {
-      instance.handleKeyDown.bind(instance);
+      instance.handleKeyDown(e);
     }
     $$restProps.onkeydown?.(e);
   }}
   onSMUITabInteracted={(e) => {
     if (instance) {
-      instance.handleTabInteraction.bind(instance);
+      instance.handleTabInteraction(e);
     }
     $$restProps.onSMUITabInteracted?.(e);
   }}
