@@ -6,6 +6,7 @@ This doc contains information that will help you migrate your code from an older
 
 - Svelte 5 is required! Svelte 4 will not work.
 - Event listeners no longer need to use the CustomEvent type. They can use the correct type, like MouseEvent and KeyboardEvent.
+- Event modifiers are now wrapper functions, exported from the `@smui/common/events`.
 
 # SMUI 6 -> SMUI 7
 

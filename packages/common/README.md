@@ -154,7 +154,7 @@ Only run the event listener when `event.isTrusted` is true.
 
 Helper utilities are exported from the `@smui/common/internal` endpoint. They are used within SMUI to provide additional functionality outside of the features the Svelte API is natively capable of. You can use them in your own components to provide the same additional functionality.
 
-`classAdderBuilder` and `forwardEventsBuilder` use internal Svelte features. Since they depend on `svelte/internal`, you should consider use of them the same way you consider use of `svelte/internal` directly.
+`classAdderBuilder` uses internal Svelte features. Since it depends on `svelte/internal`, you should consider use of it the same way you consider use of `svelte/internal` directly.
 
 ## classMap
 
@@ -271,45 +271,6 @@ Exclude a set of properties from an object. It differs from normal `omit` functi
   import MyComponent from './MyComponent.svelte';
 
   let disabled = false;
-</script>
-```
-
-## forwardEventsBuilder
-
-Build an action to allow **all** events to be forwarded from a Svelte component, with support for event modifiers using the "$" syntax.
-
-This is especially useful for UI library components, as it is generally unknown which events will be required from them for all desired use cases. For example, if a Button component only forwards a `click` event, then no use case that requires the `mouseover` or the `keypress` event can be used with it.
-
-In addition, a component that uses Svelte's built in event forwarding system cannot allow event listeners on the "capture" phase of the event lifecycle. It also cannot allow events to be cancelable with the browser's built in `preventDefault` function. In fact, the one big advantage to Svelte's event system, the fact that you don't need an element as an event target, doesn't even apply to UI library components.
-
-```svelte
-<!-- MyComponent.svelte -->
-<div use:forwardEvents tabindex="0">
-  <slot />
-</div>
-
-<script lang="ts">
-  import { forwardEventsBuilder } from '@smui/common/internal';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
-</script>
-```
-
-```svelte
-<MyComponent
-  onclick={() => console.log('Click!')}
-  onmouseover={() => console.log('Mouseover!')}
-  ontouchstart$passive={() => console.log("Touchstart, and it's passive!")}
-  onkeypress$preventDefault$stopPropagation={() =>
-    console.log('No key presses!')}
->
-  Listen to my events!
-</MyComponent>
-
-<script lang="ts">
-  import MyComponent from './MyComponent.svelte';
 </script>
 ```
 

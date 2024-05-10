@@ -16,19 +16,6 @@ Here are some unique features that help SMUI stand out:
 - You can add arbitrary attributes to all of the components and many of the elements within them.
 - You can add actions to the components with `use={[Action1, [Action2, action2Props], Action3]}`.
 - You can add props to lower components and elements with "$" props, like `input$maxlength="15"`.
-- **All** events are forwarded. This includes DOM events, SMUI events, and custom events.
-  - You can add event modifiers with the `on:click$preventDefault$capture={handler}` syntax.
-    - You have to use "$" instead of "|" like in native Svelte. (The extra S inside the | stands for SMUI.)
-    - Supported modifiers are:
-      - passive
-      - nonpassive
-      - capture
-      - once
-      - preventDefault
-      - stopPropagation
-      - stopImmediatePropagation
-      - self
-      - trusted
 - SMUI [supports RTL languages](https://svelte.dev/repl/c2ff2d5dd5404eccb901ba04ef0161be).
 
 # Installation
