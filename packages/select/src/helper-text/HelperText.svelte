@@ -22,10 +22,10 @@
 
 <script lang="ts">
   import { MDCSelectHelperTextFoundation } from '@material/select';
-  import { onMount, tick } from 'svelte';
+  import { onMount, getContext } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
-  import { classMap, useActions, dispatch } from '@smui/common/internal';
+  import { classMap, useActions } from '@smui/common/internal';
 
   type OwnProps = {
     use?: ActionArray;
@@ -50,6 +50,16 @@
   let internalAttrs: { [k: string]: string | undefined } = {};
   let content: string | undefined = undefined;
 
+  const SMUISelectHelperTextId = getContext<
+    ((accessor: string) => void) | undefined
+  >('SMUI:select:helper-text:id');
+  const SMUISelectHelperTextMount = getContext<
+    ((accessor: MDCSelectHelperTextFoundation) => void) | undefined
+  >('SMUI:select:helper-text:mount');
+  const SMUISelectHelperTextUnmount = getContext<
+    ((accessor: MDCSelectHelperTextFoundation) => void) | undefined
+  >('SMUI:select:helper-text:unmount');
+
   onMount(() => {
     instance = new MDCSelectHelperTextFoundation({
       addClass,
@@ -63,17 +73,13 @@
       },
     });
 
-    tick().then(() => {
-      if (id.startsWith('SMUI-select-helper-text-')) {
-        dispatch(getElement(), 'SMUISelectHelperTextId', id);
-      }
-      dispatch(getElement(), 'SMUISelectHelperTextMount', instance);
-    });
+    SMUISelectHelperTextId && SMUISelectHelperTextId(id);
+    SMUISelectHelperTextMount && SMUISelectHelperTextMount(instance);
 
     instance.init();
 
     return () => {
-      dispatch(getElement(), 'SMUISelectHelperTextUnmount', instance);
+      SMUISelectHelperTextUnmount && SMUISelectHelperTextUnmount(instance);
 
       instance.destroy();
     };

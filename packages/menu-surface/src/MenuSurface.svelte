@@ -30,7 +30,7 @@
 
 <script lang="ts">
   import { MDCMenuSurfaceFoundation } from '@material/menu-surface';
-  import { onMount, onDestroy, setContext, tick } from 'svelte';
+  import { onMount, onDestroy, setContext, getContext } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, useActions, dispatch } from '@smui/common/internal';
@@ -156,6 +156,13 @@
     instance.setOpenBottomBias(openBottomBias);
   }
 
+  const SMUIMenuSurfaceMount = getContext<
+    ((accessor: SMUIMenuSurfaceAccessor) => void) | undefined
+  >('SMUI:menu-surface:mount');
+  const SMUIMenuSurfaceUnmount = getContext<
+    ((accessor: SMUIMenuSurfaceAccessor) => void) | undefined
+  >('SMUI:menu-surface:unmount');
+
   onMount(() => {
     instance = new MDCMenuSurfaceFoundation({
       addClass,
@@ -168,7 +175,7 @@
         }
         if (!open) {
           dispatch(
-            element,
+            getElement(),
             'SMUIMenuSurfaceClosed',
             undefined,
             undefined,
@@ -182,7 +189,7 @@
         }
         if (!open) {
           dispatch(
-            element,
+            getElement(),
             'SMUIMenuSurfaceClosing',
             undefined,
             undefined,
@@ -196,7 +203,7 @@
         }
         if (open) {
           dispatch(
-            element,
+            getElement(),
             'SMUIMenuSurfaceOpened',
             undefined,
             undefined,
@@ -207,7 +214,7 @@
       notifyOpening: () => {
         if (!open) {
           dispatch(
-            element,
+            getElement(),
             'SMUIMenuSurfaceOpening',
             undefined,
             undefined,
@@ -215,21 +222,21 @@
           );
         }
       },
-      isElementInContainer: (el) => element.contains(el),
+      isElementInContainer: (el) => getElement().contains(el),
       isRtl: () =>
-        getComputedStyle(element).getPropertyValue('direction') === 'rtl',
+        getComputedStyle(getElement()).getPropertyValue('direction') === 'rtl',
       setTransformOrigin: (origin) => {
         internalStyles['transform-origin'] = origin;
       },
 
-      isFocused: () => document.activeElement === element,
+      isFocused: () => document.activeElement === getElement(),
       saveFocus: () => {
         previousFocus = document.activeElement ?? undefined;
       },
       restoreFocus: () => {
         if (
           !neverRestoreFocus &&
-          (!element || element.contains(document.activeElement)) &&
+          (!element || getElement().contains(document.activeElement)) &&
           previousFocus &&
           document.contains(previousFocus) &&
           'focus' in previousFocus
@@ -239,8 +246,8 @@
       },
       getInnerDimensions: () => {
         return {
-          width: element.offsetWidth,
-          height: element.offsetHeight,
+          width: getElement().offsetWidth,
+          height: getElement().offsetHeight,
         };
       },
       getAnchorDimensions: () =>
@@ -279,27 +286,27 @@
       closeProgrammatic,
     };
 
-    tick().then(() => {
-      dispatch(element, 'SMUIMenuSurfaceMount', accessor);
-    });
+    SMUIMenuSurfaceMount && SMUIMenuSurfaceMount(accessor);
 
     instance.init();
 
     return () => {
-      dispatch(element, 'SMUIMenuSurfaceUnmount', accessor);
+      SMUIMenuSurfaceUnmount && SMUIMenuSurfaceUnmount(accessor);
 
       const isHoisted = (instance as any).isHoistedElement;
       instance.destroy();
       if (isHoisted) {
-        element.parentNode?.removeChild(element);
+        getElement().parentNode?.removeChild(getElement());
       }
     };
   });
 
   onDestroy(() => {
     if (anchor) {
-      element &&
-        element.parentElement?.classList.remove('mdc-menu-surface--anchor');
+      getElement() &&
+        getElement().parentElement?.classList.remove(
+          'mdc-menu-surface--anchor',
+        );
     }
   });
 

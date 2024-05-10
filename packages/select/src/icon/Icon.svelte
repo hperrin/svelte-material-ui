@@ -15,7 +15,7 @@
 
 <script lang="ts">
   import { MDCSelectIconFoundation } from '@material/select';
-  import { onMount, tick } from 'svelte';
+  import { onMount, getContext } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, useActions, dispatch } from '@smui/common/internal';
@@ -47,6 +47,13 @@
     tabindex,
   };
 
+  const SMUISelectLeadingIconMount = getContext<
+    ((accessor: MDCSelectIconFoundation) => void) | undefined
+  >('SMUI:select:leading-icon:mount');
+  const SMUISelectLeadingIconUnmount = getContext<
+    ((accessor: MDCSelectIconFoundation) => void) | undefined
+  >('SMUI:select:leading-icon:unmount');
+
   onMount(() => {
     instance = new MDCSelectIconFoundation({
       getAttr,
@@ -63,14 +70,12 @@
         dispatch(getElement(), 'SMUISelectIcon', undefined, undefined, true),
     });
 
-    tick().then(() => {
-      dispatch(getElement(), 'SMUISelectLeadingIconMount', instance);
-    });
+    SMUISelectLeadingIconMount && SMUISelectLeadingIconMount(instance);
 
     instance.init();
 
     return () => {
-      dispatch(getElement(), 'SMUISelectLeadingIconUnmount', instance);
+      SMUISelectLeadingIconUnmount && SMUISelectLeadingIconUnmount(instance);
 
       instance.destroy();
     };

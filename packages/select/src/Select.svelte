@@ -44,14 +44,6 @@
     'list$',
     'helperText$',
   ])}
-  onSMUISelectLeadingIconMount={(e) => {
-    handleLeadingIconMount(e);
-    $$restProps.onSMUISelectLeadingIconMount?.(e);
-  }}
-  onSMUISelectLeadingIconUnmount={(e) => {
-    leadingIcon = undefined;
-    $$restProps.onSMUISelectLeadingIconUnmount?.(e);
-  }}
 >
   {#if hiddenInput}
     <input
@@ -95,14 +87,14 @@
       if (instance) {
         instance.handleBlur();
       }
-      dispatch(element, 'blur', e);
+      dispatch(getElement(), 'blur', e);
       $$restProps.anchor$onblur?.(e);
     }}
     onfocus={(e) => {
       if (instance) {
         instance.handleFocus();
       }
-      dispatch(element, 'focus', e);
+      dispatch(getElement(), 'focus', e);
       $$restProps.anchor$onfocus?.(e);
     }}
   >
@@ -238,30 +230,13 @@
       role="listbox"
       {wrapFocus}
       bind:selectedIndex
-      {...prefixFilter($$restProps, 'list$')}
-      onSMUIListMount={(e) => {
-        list = e.detail;
-        $$restProps.list$onSMUIListMount?.(e);
-      }}><slot /></List
+      {...prefixFilter($$restProps, 'list$')}><slot /></List
     >
   </Menu>
 </div>
 {#if $$slots.helperText}
-  <HelperText
-    {...prefixFilter($$restProps, 'helperText$')}
-    onSMUISelectHelperTextId={(e) => {
-      helperId = e.detail;
-      $$restProps.helperText$onSMUISelectHelperTextId?.(e);
-    }}
-    onSMUISelectHelperTextMount={(e) => {
-      helperText = e.detail;
-      $$restProps.helperText$onSMUISelectHelperTextMount?.(e);
-    }}
-    onSMUISelectHelperTextUnmount={(e) => {
-      helperId = undefined;
-      helperText = undefined;
-      $$restProps.helperText$onSMUISelectHelperTextUnmount?.(e);
-    }}><slot name="helperText" /></HelperText
+  <HelperText {...prefixFilter($$restProps, 'helperText$')}
+    ><slot name="helperText" /></HelperText
   >
 {/if}
 
@@ -485,6 +460,32 @@
     removeLayoutListener = addLayoutListener(layout);
   }
 
+  setContext(
+    'SMUI:select:leading-icon:mount',
+    (accessor: MDCSelectIconFoundation) => {
+      leadingIcon = accessor;
+    },
+  );
+  setContext('SMUI:select:leading-icon:unmount', () => {
+    leadingIcon = undefined;
+  });
+  setContext('SMUI:list:mount', (accessor: SMUIListAccessor) => {
+    list = accessor;
+  });
+  setContext('SMUI:select:helper-text:id', (id: string) => {
+    helperId = id;
+  });
+  setContext(
+    'SMUI:select:helper-text:mount',
+    (accessor: MDCSelectHelperTextFoundation) => {
+      helperText = accessor;
+    },
+  );
+  setContext('SMUI:select:helper-text:unmount', () => {
+    helperId = undefined;
+    helperText = undefined;
+  });
+
   onMount(() => {
     instance = new MDCSelectFoundation(
       {
@@ -598,10 +599,6 @@
       removeLayoutListener();
     }
   });
-
-  function handleLeadingIconMount(event: CustomEvent<MDCSelectIconFoundation>) {
-    leadingIcon = event.detail;
-  }
 
   function hasClass(className: string) {
     return className in internalClasses

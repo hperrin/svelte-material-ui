@@ -51,7 +51,7 @@
 
 <script lang="ts">
   import { deprecated } from '@material/chips';
-  import { onMount, tick } from 'svelte';
+  import { onMount, getContext, tick } from 'svelte';
   import type { SmuiAttrs, SmuiElementPropMap } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
@@ -99,6 +99,13 @@
   let internalStyles: { [k: string]: string } = {};
   let internalAttrs: { [k: string]: string | undefined } = {};
 
+  const SMUIChipsTrailingActionMount = getContext<
+    ((accessor: SMUIChipsTrailingActionAccessor) => void) | undefined
+  >('SMUI:chips:trailing-action:mount');
+  const SMUIChipsTrailingActionUnmount = getContext<
+    ((accessor: SMUIChipsTrailingActionAccessor) => void) | undefined
+  >('SMUI:chips:trailing-action:unmount');
+
   onMount(() => {
     instance = new MDCChipTrailingActionFoundation({
       focus: () => {
@@ -119,15 +126,14 @@
           undefined,
           true,
         ),
-      notifyNavigation: (key) => {
+      notifyNavigation: (key) =>
         dispatch(
           getElement(),
           'SMUIChipTrailingActionNavigation',
           { key },
           undefined,
           true,
-        );
-      },
+        ),
       setAttribute: addAttr,
     });
 
@@ -137,14 +143,13 @@
       removeFocus,
     };
 
-    tick().then(() => {
-      dispatch(getElement(), 'SMUIChipTrailingActionMount', accessor);
-    });
+    SMUIChipsTrailingActionMount && SMUIChipsTrailingActionMount(accessor);
 
     instance.init();
 
     return () => {
-      dispatch(getElement(), 'SMUIChipTrailingActionUnmount', accessor);
+      SMUIChipsTrailingActionUnmount &&
+        SMUIChipsTrailingActionUnmount(accessor);
 
       instance.destroy();
     };
@@ -186,7 +191,7 @@
   }
 
   function waitForTabindex(fn: () => void) {
-    if (internalAttrs['tabindex'] !== element.getAttribute('tabindex')) {
+    if (internalAttrs['tabindex'] !== getElement().getAttribute('tabindex')) {
       tick().then(fn);
     } else {
       fn();

@@ -45,10 +45,6 @@
     anchor={menu$anchor}
     anchorCorner={menu$anchorCorner}
     {...prefixFilter($$restProps, 'menu$')}
-    onSMUIListMount={(e) => {
-      handleListAccessor(e);
-      $$restProps.menu$onSMUIListMount?.(e);
-    }}
   >
     <List {...prefixFilter($$restProps, 'list$')}>
       {#if loading}
@@ -82,7 +78,7 @@
           <Item
             disabled={noMatchesActionDisabled}
             onSMUIAction={(e) =>
-              dispatch(element, 'SMUIAutocompleteNoMatchesAction', e)}
+              dispatch(getElement(), 'SMUIAutocompleteNoMatchesAction', e)}
           >
             <slot name="no-matches">
               <Text>No matches found.</Text>
@@ -100,6 +96,7 @@
 
 <script lang="ts">
   import type { ComponentProps } from 'svelte';
+  import { setContext } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
@@ -284,6 +281,12 @@
     previousFocusedIndex = focusedIndex;
   }
 
+  setContext('SMUI:list:mount', (accessor: SMUIListAccessor) => {
+    if (!listAccessor) {
+      listAccessor = accessor;
+    }
+  });
+
   async function performSearch() {
     loading = true;
     error = false;
@@ -306,14 +309,8 @@
     loading = false;
   }
 
-  function handleListAccessor(event: CustomEvent<SMUIListAccessor>) {
-    if (!listAccessor) {
-      listAccessor = event.detail;
-    }
-  }
-
   function selectOption(option: any, setText = true) {
-    const event = dispatch(element, 'SMUIAutocompleteSelected', option, {
+    const event = dispatch(getElement(), 'SMUIAutocompleteSelected', option, {
       bubbles: true,
       cancelable: true,
     });
@@ -332,7 +329,7 @@
   }
 
   function deselectOption(option: any, setText = true) {
-    const event = dispatch(element, 'SMUIAutocompleteDeselected', option, {
+    const event = dispatch(getElement(), 'SMUIAutocompleteDeselected', option, {
       bubbles: true,
       cancelable: true,
     });
@@ -426,7 +423,7 @@
         .indexOf(event.relatedTarget as Element) !== -1
     ) {
       // Wait until the item is selected.
-      element.addEventListener(
+      getElement().addEventListener(
         'SMUIAutocomplete:selected',
         () => {
           // Then clear the focus.

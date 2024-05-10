@@ -49,14 +49,14 @@
 
   onMount(() => {
     if (updateInvalid) {
-      invalid = element.matches(':invalid');
+      invalid = getElement().matches(':invalid');
     }
   });
 
   function changeHandler() {
     dirty = true;
     if (updateInvalid) {
-      invalid = element.matches(':invalid');
+      invalid = getElement().matches(':invalid');
     }
   }
 

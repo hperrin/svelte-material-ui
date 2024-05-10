@@ -8,28 +8,6 @@
     ...internalClasses,
   })}
   {...exclude($$restProps, ['container$', 'table$'])}
-  onSMUICheckboxMount={(e) => {
-    if (instance && postMount) {
-      instance.layout();
-    }
-    $$restProps.onSMUICheckboxMount?.(e);
-  }}
-  onSMUIDataTableHeaderMount={(e) => {
-    handleHeaderMount(e);
-    $$restProps.onSMUIDataTableHeaderMount?.(e);
-  }}
-  onSMUIDataTableHeaderUnmount={(e) => {
-    header = undefined;
-    $$restProps.onSMUIDataTableHeaderUnmount?.(e);
-  }}
-  onSMUIDataTableBodyMount={(e) => {
-    handleBodyMount(e);
-    $$restProps.onSMUIDataTableBodyMount?.(e);
-  }}
-  onSMUIDataTableBodyUnmount={(e) => {
-    body = undefined;
-    $$restProps.onSMUIDataTableBodyUnmount?.(e);
-  }}
   onSMUIDataTableHeaderCheckboxChange={(e) => {
     if (instance) {
       instance.handleHeaderRowCheckboxChange();
@@ -202,6 +180,30 @@
     }
   }
 
+  setContext('SMUI:checkbox:mount', () => {
+    if (instance && postMount) {
+      instance.layout();
+    }
+  });
+  setContext(
+    'SMUI:data-table:header:mount',
+    (accessor: SMUIDataTableHeadAccessor) => {
+      header = accessor;
+    },
+  );
+  setContext('SMUI:data-table:header:unmount', () => {
+    header = undefined;
+  });
+  setContext(
+    'SMUI:data-table:body:mount',
+    (accessor: SMUIDataTableBodyAccessor) => {
+      body = accessor;
+    },
+  );
+  setContext('SMUI:data-table:body:unmount', () => {
+    body = undefined;
+  });
+
   onMount(() => {
     instance = new MDCDataTableFoundation({
       addClass,
@@ -311,15 +313,14 @@
           true,
         );
       },
-      notifyRowClick: (detail) => {
+      notifyRowClick: (detail) =>
         dispatch(
           getElement(),
           'SMUIDataTableClickRow',
           detail,
           undefined,
           true,
-        );
-      },
+        ),
       registerHeaderRowCheckbox: () => {
         // Handled automatically.
       },
@@ -366,14 +367,6 @@
       removeLayoutListener();
     }
   });
-
-  function handleHeaderMount(event: CustomEvent<SMUIDataTableHeadAccessor>) {
-    header = event.detail;
-  }
-
-  function handleBodyMount(event: CustomEvent<SMUIDataTableBodyAccessor>) {
-    body = event.detail;
-  }
 
   function handleBodyCheckboxChange(event: Event) {
     if (instance) {

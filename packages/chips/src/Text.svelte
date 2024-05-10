@@ -25,7 +25,7 @@
   import { onMount, getContext, tick } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
-  import { classMap, useActions, dispatch } from '@smui/common/internal';
+  import { classMap, useActions } from '@smui/common/internal';
 
   type OwnProps = {
     use?: ActionArray;
@@ -64,18 +64,23 @@
     tabindex,
   };
 
+  const SMUIChipsPrimaryActionMount = getContext<
+    ((accessor: SMUIChipsPrimaryActionAccessor) => void) | undefined
+  >('SMUI:chips:primary-action:mount');
+  const SMUIChipsPrimaryActionUnmount = getContext<
+    ((accessor: SMUIChipsPrimaryActionAccessor) => void) | undefined
+  >('SMUI:chips:primary-action:unmount');
+
   onMount(() => {
     let accessor: SMUIChipsPrimaryActionAccessor = {
       focus,
       addAttr,
     };
 
-    tick().then(() => {
-      dispatch(getElement(), 'SMUIChipPrimaryActionMount', accessor);
-    });
+    SMUIChipsPrimaryActionMount && SMUIChipsPrimaryActionMount(accessor);
 
     return () => {
-      dispatch(getElement(), 'SMUIChipPrimaryActionUnmount', accessor);
+      SMUIChipsPrimaryActionUnmount && SMUIChipsPrimaryActionUnmount(accessor);
     };
   });
 
@@ -86,7 +91,7 @@
   }
 
   function waitForTabindex(fn: () => void) {
-    if (internalAttrs['tabindex'] !== element.getAttribute('tabindex')) {
+    if (internalAttrs['tabindex'] !== getElement().getAttribute('tabindex')) {
       tick().then(fn);
     } else {
       fn();

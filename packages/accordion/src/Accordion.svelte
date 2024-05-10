@@ -8,14 +8,6 @@
     'smui-accordion--with-open-dialog': withOpenDialog,
   })}
   {...$$restProps}
-  onSMUIAccordionPanelMount={(e) => {
-    handlePanelMount(e);
-    $$restProps.onSMUIAccordionPanelMount?.(e);
-  }}
-  onSMUIAccordionPanelUnmount={(e) => {
-    handlePanelUnmount(e);
-    $$restProps.onSMUIAccordionPanelUnmount?.(e);
-  }}
   onSMUIAccordionPanelActivate={(e) => {
     handlePanelActivate(e);
     $$restProps.onSMUIAccordionPanelActivate?.(e);
@@ -37,6 +29,7 @@
 </div>
 
 <script lang="ts">
+  import { setContext } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, useActions } from '@smui/common/internal';
@@ -60,38 +53,34 @@
   let panelAccessorSet = new Set<SMUIAccordionPanelAccessor>();
   let withOpenDialog = false;
 
-  function handlePanelMount(event: CustomEvent<SMUIAccordionPanelAccessor>) {
-    const accessor = event.detail;
+  setContext(
+    'SMUI:accordion:panel:mount',
+    (accessor: SMUIAccordionPanelAccessor) => {
+      if (!multiple && accessor.open) {
+        const currentOpen = Array.from(panelAccessorSet).find(
+          (accessor) => accessor.open,
+        );
 
-    // Stop propagation so accordion's above this one don't receive the event.
-    event.stopPropagation();
-
-    if (!multiple && accessor.open) {
-      const currentOpen = Array.from(panelAccessorSet).find(
-        (accessor) => accessor.open,
-      );
-
-      if (currentOpen) {
-        currentOpen.setOpen(false);
+        if (currentOpen) {
+          currentOpen.setOpen(false);
+        }
       }
-    }
 
-    panelAccessorSet.add(accessor);
-  }
+      panelAccessorSet.add(accessor);
+    },
+  );
 
-  function handlePanelUnmount(event: CustomEvent<SMUIAccordionPanelAccessor>) {
-    const accessor = event.detail;
+  setContext(
+    'SMUI:accordion:panel:unmount',
+    (accessor: SMUIAccordionPanelAccessor) => {
+      // Nested check.
+      if (!panelAccessorSet.has(accessor)) {
+        return;
+      }
 
-    // Nested check.
-    if (!panelAccessorSet.has(accessor)) {
-      return;
-    }
-
-    // Stop propagation so accordion's above this one don't receive the event.
-    event.stopPropagation();
-
-    panelAccessorSet.delete(accessor);
-  }
+      panelAccessorSet.delete(accessor);
+    },
+  );
 
   function handlePanelActivate(
     event: CustomEvent<{ accessor: SMUIAccordionPanelAccessor }>,

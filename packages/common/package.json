@@ -17,6 +17,10 @@
       "types": "./src/classadder/index.d.ts",
       "svelte": "./dist/classadder/index.js"
     },
+    "./events": {
+      "types": "./src/events/index.d.ts",
+      "svelte": "./dist/events/index.js"
+    },
     "./internal": {
       "types": "./src/internal/index.d.ts",
       "svelte": "./dist/internal/index.js"
@@ -29,6 +33,9 @@
       ],
       "classadder": [
         "./src/classadder/index.d.ts"
+      ],
+      "events": [
+        "./src/events/index.d.ts"
       ],
       "internal": [
         "./src/internal/index.d.ts"

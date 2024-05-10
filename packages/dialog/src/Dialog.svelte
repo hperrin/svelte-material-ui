@@ -343,22 +343,22 @@
 
   function getButtonEls() {
     return [].slice.call(
-      element.querySelectorAll<HTMLButtonElement>('.mdc-dialog__button'),
+      getElement().querySelectorAll<HTMLButtonElement>('.mdc-dialog__button'),
     ) as HTMLButtonElement[];
   }
 
   function getDefaultButtonEl() {
-    return element.querySelector<HTMLButtonElement>(
+    return getElement().querySelector<HTMLButtonElement>(
       '[data-mdc-dialog-button-default]',
     );
   }
 
   function getContentEl() {
-    return element.querySelector<HTMLElement>('.mdc-dialog__content');
+    return getElement().querySelector<HTMLElement>('.mdc-dialog__content');
   }
 
   function getInitialFocusEl() {
-    return element.querySelector<HTMLElement>(
+    return getElement().querySelector<HTMLElement>(
       '[data-mdc-dialog-initial-focus]',
     );
   }

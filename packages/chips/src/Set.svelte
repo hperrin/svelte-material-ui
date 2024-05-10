@@ -11,14 +11,6 @@
   })}
   role="grid"
   {...$$restProps}
-  onSMUIChipMount={(e) => {
-    handleChipMount(e);
-    $$restProps.onSMUIChipMount?.(e);
-  }}
-  onSMUIChipUnmount={(e) => {
-    handleChipUnmount(e);
-    $$restProps.onSMUIChipUnmount?.(e);
-  }}
   onSMUIChipInteraction={(e) => {
     handleChipInteraction(e);
     $$restProps.onSMUIChipInteraction?.(e);
@@ -154,6 +146,13 @@
     return _difference;
   }
 
+  setContext('SMUI:chips:chip:mount', (accessor: SMUIChipsChipAccessor) => {
+    addAccessor(accessor.chipId, accessor);
+  });
+  setContext('SMUI:chips:chip:unmount', (accessor: SMUIChipsChipAccessor) => {
+    removeAccessor(accessor.chipId);
+  });
+
   onMount(() => {
     instance = new MDCChipSetFoundation({
       announceMessage: announce,
@@ -220,18 +219,6 @@
       instance.destroy();
     };
   });
-
-  function handleChipMount(event: CustomEvent<SMUIChipsChipAccessor>) {
-    const accessor = event.detail;
-
-    addAccessor(accessor.chipId, accessor);
-  }
-
-  function handleChipUnmount(event: CustomEvent<SMUIChipsChipAccessor>) {
-    const accessor = event.detail;
-
-    removeAccessor(accessor.chipId);
-  }
 
   function handleChipInteraction(event: MDCChipInteractionEvent) {
     if (instance) {

@@ -72,7 +72,7 @@
 
 <script lang="ts">
   import type { SortValue } from '@material/data-table';
-  import { onMount, getContext, setContext, tick } from 'svelte';
+  import { onMount, getContext, setContext } from 'svelte';
   import type { Writable } from 'svelte/store';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
@@ -125,6 +125,13 @@
     setContext('SMUI:icon-button:aria-describedby', columnId + '-status-label');
   }
 
+  const SMUIDataTableCellMount = getContext<
+    ((accessor: SMUIDataTableCellAccessor) => void) | undefined
+  >('SMUI:data-table:cell:mount');
+  const SMUIDataTableCellUnmount = getContext<
+    ((accessor: SMUIDataTableCellAccessor) => void) | undefined
+  >('SMUI:data-table:cell:unmount');
+
   onMount(() => {
     const accessor: SMUIDataTableCellAccessor = header
       ? {
@@ -154,12 +161,10 @@
           addAttr,
         };
 
-    tick().then(() => {
-      dispatch(getElement(), 'SMUIDataTableCellMount', accessor);
-    });
+    SMUIDataTableCellMount && SMUIDataTableCellMount(accessor);
 
     return () => {
-      dispatch(getElement(), 'SMUIDataTableCellUnmount', accessor);
+      SMUIDataTableCellUnmount && SMUIDataTableCellUnmount(accessor);
     };
   });
 

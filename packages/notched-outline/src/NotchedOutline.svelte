@@ -9,14 +9,6 @@
     ...internalClasses,
   })}
   {...$$restProps}
-  onSMUIFloatingLabelMount={(e) => {
-    handleFloatingLabelMount(e);
-    $$restProps.onSMUIFloatingLabelMount?.(e);
-  }}
-  onSMUIFloatingLabelUnmount={(e) => {
-    floatingLabel = undefined;
-    $$restProps.onSMUIFloatingLabelUnmount?.(e);
-  }}
 >
   <div class="mdc-notched-outline__leading"></div>
   {#if !noLabel}
@@ -34,7 +26,7 @@
 
 <script lang="ts">
   import { MDCNotchedOutlineFoundation } from '@material/notched-outline';
-  import { onMount } from 'svelte';
+  import { onMount, setContext } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, useActions } from '@smui/common/internal';
@@ -73,6 +65,16 @@
     removeClass('mdc-notched-outline--upgraded');
   }
 
+  setContext(
+    'SMUI:floating-label:mount',
+    (accessor: SMUIFloatingLabelAccessor) => {
+      floatingLabel = accessor;
+    },
+  );
+  setContext('SMUI:floating-label:unmount', () => {
+    floatingLabel = undefined;
+  });
+
   onMount(() => {
     instance = new MDCNotchedOutlineFoundation({
       addClass,
@@ -87,12 +89,6 @@
       instance.destroy();
     };
   });
-
-  function handleFloatingLabelMount(
-    event: CustomEvent<SMUIFloatingLabelAccessor>,
-  ) {
-    floatingLabel = event.detail;
-  }
 
   function addClass(className: string) {
     if (!internalClasses[className]) {

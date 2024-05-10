@@ -12,7 +12,7 @@
 
 <script lang="ts">
   import { MDCTextFieldCharacterCounterFoundation } from '@material/textfield';
-  import { onMount, tick } from 'svelte';
+  import { onMount, getContext } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, useActions, dispatch } from '@smui/common/internal';
@@ -32,6 +32,13 @@
   let instance: MDCTextFieldCharacterCounterFoundation;
   let content: string | undefined = undefined;
 
+  const SMUITextfieldCharacterCounterMount = getContext<
+    ((accessor: MDCTextFieldCharacterCounterFoundation) => void) | undefined
+  >('SMUI:textfield:character-counter:mount');
+  const SMUITextfieldCharacterCounterUnmount = getContext<
+    ((accessor: MDCTextFieldCharacterCounterFoundation) => void) | undefined
+  >('SMUI:textfield:character-counter:unmount');
+
   onMount(() => {
     instance = new MDCTextFieldCharacterCounterFoundation({
       setContent: (value) => {
@@ -39,14 +46,14 @@
       },
     });
 
-    tick().then(() => {
-      dispatch(getElement(), 'SMUITextfieldCharacterCounterMount', instance);
-    });
+    SMUITextfieldCharacterCounterMount &&
+      SMUITextfieldCharacterCounterMount(instance);
 
     instance.init();
 
     return () => {
-      dispatch(getElement(), 'SMUITextfieldCharacterCounterUnmount', instance);
+      SMUITextfieldCharacterCounterUnmount &&
+        SMUITextfieldCharacterCounterUnmount(instance);
 
       instance.destroy();
     };

@@ -59,14 +59,6 @@
     handleKeydown(e);
     $$restProps.onkeydown?.(e);
   }}
-  onSMUIGenericInputMount={(e: CustomEvent) => {
-    handleInputMount(e);
-    $$restProps.onSMUIGenericInputMount?.(e);
-  }}
-  onSMUIGenericInputUnmount={(e: CustomEvent) => {
-    input = undefined;
-    $$restProps.onSMUIGenericInputUnmount?.(e);
-  }}
   >{#if ripple}<span class="mdc-deprecated-list-item__ripple"></span>{/if}<slot
   /></svelte:component
 >
@@ -80,7 +72,7 @@
   generics="Href extends string | undefined = undefined, TagName extends SmuiEveryElement = Href extends string ? 'a' : 'li'"
 >
   import type { SvelteComponent } from 'svelte';
-  import { onMount, onDestroy, getContext, setContext, tick } from 'svelte';
+  import { onMount, onDestroy, setContext, getContext } from 'svelte';
   import type {
     SMUICheckboxInputAccessor,
     SMUIGenericInputAccessor,
@@ -182,6 +174,28 @@
   // Reset separator context, because we aren't directly under a list anymore.
   setContext('SMUI:separator:context', undefined);
 
+  setContext(
+    'SMUI:generic:input:mount',
+    (accessor: SMUIGenericInputAccessor) => {
+      if (
+        '_smui_checkbox_accessor' in accessor ||
+        '_smui_radio_accessor' in accessor
+      ) {
+        input = accessor;
+      }
+    },
+  );
+  setContext('SMUI:generic:input:unmount', () => {
+    input = undefined;
+  });
+
+  const SMUIListItemMount = getContext<
+    ((accessor: SMUIListItemAccessor) => void) | undefined
+  >('SMUI:list:item:mount');
+  const SMUIListItemUnmount = getContext<
+    ((accessor: SMUIListItemAccessor) => void) | undefined
+  >('SMUI:list:item:unmount');
+
   onMount(() => {
     // Tabindex needs to be '0' if this is the first non-disabled list item, and
     // no other item is selected.
@@ -278,12 +292,10 @@
       },
     };
 
-    tick().then(() => {
-      dispatch(getElement(), 'SMUIListItemMount', accessor);
-    });
+    SMUIListItemMount && SMUIListItemMount(accessor);
 
     return () => {
-      dispatch(getElement(), 'SMUIListItemUnmount', accessor);
+      SMUIListItemUnmount && SMUIListItemUnmount(accessor);
     };
   });
 
@@ -368,15 +380,6 @@
     const isSpace = e.key === 'Space';
     if (isEnter || isSpace) {
       action(e);
-    }
-  }
-
-  function handleInputMount(e: CustomEvent<SMUIGenericInputAccessor>) {
-    if (
-      '_smui_checkbox_accessor' in e.detail ||
-      '_smui_radio_accessor' in e.detail
-    ) {
-      input = e.detail;
     }
   }
 

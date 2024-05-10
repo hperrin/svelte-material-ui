@@ -18,14 +18,6 @@
       notifyRowClick(e);
     }
     $$restProps.onclick?.(e);
-  }}
-  onSMUICheckboxMount={(e) => {
-    handleCheckboxMount(e);
-    $$restProps.onSMUICheckboxMount?.(e);
-  }}
-  onSMUICheckboxUnmount={(e) => {
-    checkbox = undefined;
-    $$restProps.onSMUICheckboxUnmount?.(e);
   }}><slot /></tr
 >
 
@@ -34,7 +26,7 @@
 </script>
 
 <script lang="ts">
-  import { onMount, getContext, tick } from 'svelte';
+  import { onMount, getContext, setContext } from 'svelte';
   import type { SmuiAttrs, SMUICheckboxInputAccessor } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, useActions, dispatch } from '@smui/common/internal';
@@ -59,6 +51,28 @@
   let internalClasses: { [k: string]: boolean } = {};
   let internalAttrs: { [k: string]: string | undefined } = {};
   let header = getContext<boolean>('SMUI:data-table:row:header');
+
+  const SMUICheckboxMount = getContext<
+    ((accessor: SMUICheckboxInputAccessor) => void) | undefined
+  >('SMUI:checkbox:mount');
+  setContext('SMUI:checkbox:mount', (accessor: SMUICheckboxInputAccessor) => {
+    checkbox = accessor;
+    SMUICheckboxMount && SMUICheckboxMount(accessor);
+  });
+  const SMUICheckboxUnount = getContext<
+    ((accessor: SMUICheckboxInputAccessor) => void) | undefined
+  >('SMUI:checkbox:unmount');
+  setContext('SMUI:checkbox:unmount', (accessor: SMUICheckboxInputAccessor) => {
+    checkbox = undefined;
+    SMUICheckboxUnount && SMUICheckboxUnount(accessor);
+  });
+
+  const SMUIDataTableRowMount = getContext<
+    ((accessor: SMUIDataTableRowAccessor) => void) | undefined
+  >('SMUI:data-table:row:mount');
+  const SMUIDataTableRowUnmount = getContext<
+    ((accessor: SMUIDataTableRowAccessor) => void) | undefined
+  >('SMUI:data-table:row:unmount');
 
   onMount(() => {
     const accessor: SMUIDataTableRowAccessor = header
@@ -101,18 +115,12 @@
           addAttr,
         };
 
-    tick().then(() => {
-      dispatch(getElement(), 'SMUIDataTableRowMount', accessor);
-    });
+    SMUIDataTableRowMount && SMUIDataTableRowMount(accessor);
 
     return () => {
-      dispatch(getElement(), 'SMUIDataTableRowUnmount', accessor);
+      SMUIDataTableRowUnmount && SMUIDataTableRowUnmount(accessor);
     };
   });
-
-  function handleCheckboxMount(event: CustomEvent<SMUICheckboxInputAccessor>) {
-    checkbox = event.detail;
-  }
 
   function addClass(className: string) {
     if (!internalClasses[className]) {

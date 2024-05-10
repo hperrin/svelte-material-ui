@@ -456,7 +456,7 @@
     // doesn't fire on all components you would
     // anchor a tooltip to (since it doesn't
     // bubble), so we handle focusout like a blur.
-    if (element.contains(event.relatedTarget as Node | null)) {
+    if (getElement().contains(event.relatedTarget as Node | null)) {
       return;
     }
     instance && instance.hide();

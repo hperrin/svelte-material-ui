@@ -34,11 +34,11 @@
     bind:group
     {...prefixFilter($$restProps, 'input$')}
     onblur={(e) => {
-      dispatch(element, 'blur', e);
+      dispatch(getElement(), 'blur', e);
       $$restProps.input$onblur?.(e);
     }}
     onfocus={(e) => {
-      dispatch(element, 'focus', e);
+      dispatch(getElement(), 'focus', e);
       $$restProps.input$onfocus?.(e);
     }}
   />
@@ -51,7 +51,7 @@
 
 <script lang="ts">
   import { MDCRadioFoundation } from '@material/radio';
-  import { onMount, getContext, tick } from 'svelte';
+  import { onMount, getContext } from 'svelte';
   import type {
     SmuiAttrs,
     SmuiElementPropMap,
@@ -117,6 +117,13 @@
   let inputProps =
     getContext<{ id?: string } | undefined>('SMUI:generic:input:props') ?? {};
 
+  const SMUIGenericInputMount = getContext<
+    ((accessor: SMUIRadioInputAccessor) => void) | undefined
+  >('SMUI:generic:input:mount');
+  const SMUIGenericInputUnmount = getContext<
+    ((accessor: SMUIRadioInputAccessor) => void) | undefined
+  >('SMUI:generic:input:unmount');
+
   onMount(() => {
     instance = new MDCRadioFoundation({
       addClass,
@@ -149,14 +156,12 @@
       },
     };
 
-    tick().then(() => {
-      dispatch(element, 'SMUIGenericInputMount', accessor);
-    });
+    SMUIGenericInputMount && SMUIGenericInputMount(accessor);
 
     instance.init();
 
     return () => {
-      dispatch(element, 'SMUIGenericInputUnmount', accessor);
+      SMUIGenericInputUnmount && SMUIGenericInputUnmount(accessor);
 
       instance.destroy();
     };

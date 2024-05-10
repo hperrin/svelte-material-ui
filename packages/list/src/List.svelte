@@ -35,14 +35,6 @@
     handleClick(e);
     $$restProps.onclick?.(e);
   }}
-  onSMUIListItemMount={(e: CustomEvent) => {
-    handleItemMount(e);
-    $$restProps.onSMUIListItemMount?.(e);
-  }}
-  onSMUIListItemUnmount={(e: CustomEvent) => {
-    handleItemUnmount(e);
-    $$restProps.onSMUIListItemUnmount?.(e);
-  }}
   onSMUIAction={(e: CustomEvent) => {
     handleAction(e);
     $$restProps.onSMUIAction?.(e);
@@ -55,7 +47,7 @@
   import { MDCListFoundation } from '@material/list';
   import { ponyfill } from '@material/dom';
   import type { SvelteComponent } from 'svelte';
-  import { onMount, onDestroy, getContext, setContext, tick } from 'svelte';
+  import { onMount, onDestroy, getContext, setContext } from 'svelte';
   import type { AddLayoutListener, RemoveLayoutListener } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, dispatch } from '@smui/common/internal';
@@ -187,6 +179,29 @@
     removeLayoutListener = addLayoutListener(layout);
   }
 
+  setContext('SMUI:list:item:mount', (accessor: SMUIListItemAccessor) => {
+    items.push(accessor);
+    itemAccessorMap.set(accessor.element, accessor);
+    if (singleSelection && accessor.selected) {
+      selectedIndex = getListItemIndex(accessor.element);
+    }
+  });
+  setContext('SMUI:list:item:unmount', (accessor: SMUIListItemAccessor) => {
+    const idx = (accessor && items.indexOf(accessor)) ?? -1;
+    if (idx !== -1) {
+      items.splice(idx, 1);
+      items = items;
+      itemAccessorMap.delete(accessor.element);
+    }
+  });
+
+  const SMUIListMount = getContext<
+    ((accessor: SMUIListAccessor) => void) | undefined
+  >('SMUI:list:mount');
+  const SMUIListUnmount = getContext<
+    ((accessor: SMUIListAccessor) => void) | undefined
+  >('SMUI:list:unmount');
+
   onMount(() => {
     instance = new MDCListFoundation({
       addClassForElementIndex,
@@ -272,15 +287,14 @@
       getPrimaryTextAtIndex,
     };
 
-    tick().then(() => {
-      dispatch(getElement(), 'SMUIListMount', accessor);
-    });
+    SMUIListMount && SMUIListMount(accessor);
 
     instance.init();
     instance.layout();
 
     return () => {
-      dispatch(getElement(), 'SMUIListUnmount', accessor);
+      SMUIListUnmount && SMUIListUnmount(accessor);
+
       instance.destroy();
     };
   });
@@ -290,25 +304,6 @@
       removeLayoutListener();
     }
   });
-
-  function handleItemMount(event: CustomEvent<SMUIListItemAccessor>) {
-    items.push(event.detail);
-    itemAccessorMap.set(event.detail.element, event.detail);
-    if (singleSelection && event.detail.selected) {
-      selectedIndex = getListItemIndex(event.detail.element);
-    }
-    event.stopPropagation();
-  }
-
-  function handleItemUnmount(event: CustomEvent<SMUIListItemAccessor>) {
-    const idx = (event.detail && items.indexOf(event.detail)) ?? -1;
-    if (idx !== -1) {
-      items.splice(idx, 1);
-      items = items;
-      itemAccessorMap.delete(event.detail.element);
-    }
-    event.stopPropagation();
-  }
 
   function handleKeydown(event: KeyboardEvent) {
     if (instance && event.target) {

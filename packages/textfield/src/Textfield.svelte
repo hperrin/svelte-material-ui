@@ -48,30 +48,6 @@
       'outline$',
       'helperLine$',
     ])}
-    onSMUITextfieldLeadingIconMount={(e) => {
-      handleLeadingIconMount(e);
-      $$restProps.onSMUITextfieldLeadingIconMount?.(e);
-    }}
-    onSMUITextfieldLeadingIconUnmount={(e) => {
-      leadingIcon = undefined;
-      $$restProps.onSMUITextfieldLeadingIconUnmount?.(e);
-    }}
-    onSMUITextfieldTrailingIconMount={(e) => {
-      handleTrailingIconMount(e);
-      $$restProps.onSMUITextfieldTrailingIconMount?.(e);
-    }}
-    onSMUITextfieldTrailingIconUnmount={(e) => {
-      trailingIcon = undefined;
-      $$restProps.onSMUITextfieldTrailingIconUnmount?.(e);
-    }}
-    onSMUITextfieldCharacterCounterMount={(e) => {
-      handleCharacterCounterMount(e);
-      $$restProps.onSMUITextfieldCharacterCounterMount?.(e);
-    }}
-    onSMUITextfieldCharacterCounterUnmount={(e) => {
-      characterCounter = undefined;
-      $$restProps.onSMUITextfieldCharacterCounterUnmount?.(e);
-    }}
   >
     {#if !textarea && variant !== 'outlined'}
       {#if variant === 'filled'}
@@ -136,12 +112,12 @@
           {...prefixFilter($$restProps, 'input$')}
           onblur={(e) => {
             focused = false;
-            dispatch(element, 'blur', e);
+            dispatch(getElement(), 'blur', e);
             $$restProps.input$onblur?.(e);
           }}
           onfocus={(e) => {
             focused = true;
-            dispatch(element, 'focus', e);
+            dispatch(getElement(), 'focus', e);
             $$restProps.input$onfocus?.(e);
           }}
         />
@@ -168,12 +144,12 @@
         {...prefixFilter($$restProps, 'input$')}
         onblur={(e) => {
           focused = false;
-          dispatch(element, 'blur', e);
+          dispatch(getElement(), 'blur', e);
           $$restProps.input$onblur?.(e);
         }}
         onfocus={(e) => {
           focused = true;
-          dispatch(element, 'focus', e);
+          dispatch(getElement(), 'focus', e);
           $$restProps.input$onfocus?.(e);
         }}
       />
@@ -228,22 +204,6 @@
       'outline$',
       'helperLine$',
     ])}
-    onSMUITextfieldLeadingIconMount={(e) => {
-      handleLeadingIconMount(e);
-      $$restProps.onSMUITextfieldLeadingIconMount?.(e);
-    }}
-    onSMUITextfieldLeadingIconUnmount={(e) => {
-      leadingIcon = undefined;
-      $$restProps.onSMUITextfieldLeadingIconUnmount?.(e);
-    }}
-    onSMUITextfieldTrailingIconMount={(e) => {
-      handleTrailingIconMount(e);
-      $$restProps.onSMUITextfieldTrailingIconMount?.(e);
-    }}
-    onSMUITextfieldTrailingIconUnmount={(e) => {
-      trailingIcon = undefined;
-      $$restProps.onSMUITextfieldTrailingIconUnmount?.(e);
-    }}
   >
     <slot name="label" />
     <ContextFragment key="SMUI:textfield:icon:leading" value={true}>
@@ -257,29 +217,7 @@
   </div>
 {/if}
 {#if $$slots.helper}
-  <HelperLine
-    {...prefixFilter($$restProps, 'helperLine$')}
-    onSMUITextfieldHelperTextId={(e: CustomEvent) => {
-      handleHelperTextId(e);
-      $$restProps.helperLine$onSMUITextfieldHelperTextId?.(e);
-    }}
-    onSMUITextfieldHelperTextMount={(e: CustomEvent) => {
-      handleHelperTextMount(e);
-      $$restProps.helperLine$onSMUITextfieldHelperTextMount?.(e);
-    }}
-    onSMUITextfieldHelperTextUnmount={(e: CustomEvent) => {
-      helperId = undefined;
-      helperText = undefined;
-      $$restProps.helperLines$onSMUITextfieldHelperTextUnmount?.(e);
-    }}
-    onSMUITextfieldCharacterCounterMount={(e: CustomEvent) => {
-      handleCharacterCounterMount(e);
-      $$restProps.helperLine$onSMUITextfieldCharacterCounterMount?.(e);
-    }}
-    onSMUITextfieldCharacterCounterUnmount={(e: CustomEvent) => {
-      characterCounter = undefined;
-      $$restProps.helperLine$.onSMUITextfieldCharacterCounterUnmount?.(e);
-    }}
+  <HelperLine {...prefixFilter($$restProps, 'helperLine$')}
     ><slot name="helper" /></HelperLine
   >
 {/if}
@@ -293,7 +231,7 @@
   import { MDCTextFieldFoundation } from '@material/textfield';
   import { events } from '@material/dom';
   import type { ComponentProps } from 'svelte';
-  import { onMount, onDestroy, getContext, tick } from 'svelte';
+  import { onMount, onDestroy, getContext, setContext, tick } from 'svelte';
   import type {
     AddLayoutListener,
     RemoveLayoutListener,
@@ -503,6 +441,47 @@
     removeLayoutListener = addLayoutListener(layout);
   }
 
+  setContext(
+    'SMUI:textfield:leading-icon:mount',
+    (accessor: MDCTextFieldIconFoundation) => {
+      leadingIcon = accessor;
+    },
+  );
+  setContext('SMUI:textfield:leading-icon:unmount', () => {
+    leadingIcon = undefined;
+  });
+  setContext(
+    'SMUI:textfield:trailing-icon:mount',
+    (accessor: MDCTextFieldIconFoundation) => {
+      trailingIcon = accessor;
+    },
+  );
+  setContext('SMUI:textfield:trailing-icon:unmount', () => {
+    trailingIcon = undefined;
+  });
+  setContext('SMUI:textfield:helper-text:id', (id: string) => {
+    helperId = id;
+  });
+  setContext(
+    'SMUI:textfield:helper-text:mount',
+    (accessor: MDCTextFieldHelperTextFoundation) => {
+      helperText = accessor;
+    },
+  );
+  setContext('SMUI:textfield:helper-text:unmount', () => {
+    helperId = undefined;
+    helperText = undefined;
+  });
+  setContext(
+    'SMUI:textfield:character-counter:mount',
+    (accessor: MDCTextFieldCharacterCounterFoundation) => {
+      characterCounter = accessor;
+    },
+  );
+  setContext('SMUI:textfield:character-counter:unmount', () => {
+    characterCounter = undefined;
+  });
+
   onMount(() => {
     instance = new MDCTextFieldFoundation(
       {
@@ -633,34 +612,6 @@
       removeLayoutListener();
     }
   });
-
-  function handleLeadingIconMount(
-    event: CustomEvent<MDCTextFieldIconFoundation>,
-  ) {
-    leadingIcon = event.detail;
-  }
-
-  function handleTrailingIconMount(
-    event: CustomEvent<MDCTextFieldIconFoundation>,
-  ) {
-    trailingIcon = event.detail;
-  }
-
-  function handleCharacterCounterMount(
-    event: CustomEvent<MDCTextFieldCharacterCounterFoundation>,
-  ) {
-    characterCounter = event.detail;
-  }
-
-  function handleHelperTextId(event: CustomEvent<string>) {
-    helperId = event.detail;
-  }
-
-  function handleHelperTextMount(
-    event: CustomEvent<MDCTextFieldHelperTextFoundation>,
-  ) {
-    helperText = event.detail;
-  }
 
   function hasClass(className: string) {
     return className in internalClasses

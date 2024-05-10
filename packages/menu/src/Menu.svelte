@@ -11,14 +11,6 @@
     handleKeydown(e);
     $$restProps.onkeydown?.(e);
   }}
-  onSMUIMenuSurfaceMount={(e) => {
-    handleMenuSurfaceAccessor(e);
-    $$restProps.onSMUIMenuSurfaceMount?.(e);
-  }}
-  onSMUIListMount={(e) => {
-    handleListAccessor(e);
-    $$restProps.onSMUIListMount?.(e);
-  }}
   onSMUIMenuSurfaceOpened={(e) => {
     if (instance) {
       instance.handleMenuSurfaceOpened();
@@ -39,7 +31,7 @@
   import { MDCMenuFoundation, cssClasses } from '@material/menu';
   import { ponyfill } from '@material/dom';
   import type { ComponentProps } from 'svelte';
-  import { onMount, tick } from 'svelte';
+  import { onMount, getContext, setContext } from 'svelte';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, dispatch } from '@smui/common/internal';
   import type { SMUIListAccessor } from '@smui/list';
@@ -66,6 +58,28 @@
   let instance: MDCMenuFoundation;
   let menuSurfaceAccessor: SMUIMenuSurfaceAccessor;
   let listAccessor: SMUIListAccessor;
+
+  setContext('SMUI:menu-surface:mount', (accessor: SMUIMenuSurfaceAccessor) => {
+    if (!menuSurfaceAccessor) {
+      menuSurfaceAccessor = accessor;
+    }
+  });
+  const SMUIListMount = getContext<
+    ((accessor: SMUIListAccessor) => void) | undefined
+  >('SMUI:list:mount');
+  setContext('SMUI:list:mount', (accessor: SMUIListAccessor) => {
+    if (!listAccessor) {
+      listAccessor = accessor;
+    }
+    SMUIListMount && SMUIListMount(accessor);
+  });
+
+  const SMUIMenuMount = getContext<
+    ((accessor: MDCMenuFoundation) => void) | undefined
+  >('SMUI:menu:mount');
+  const SMUIMenuUnmount = getContext<
+    ((accessor: MDCMenuFoundation) => void) | undefined
+  >('SMUI:menu:unmount');
 
   onMount(() => {
     instance = new MDCMenuFoundation({
@@ -130,34 +144,19 @@
       },
     });
 
-    tick().then(() => {
-      dispatch(getElement(), 'SMUIMenuMount', instance);
-    });
+    SMUIMenuMount && SMUIMenuMount(instance);
 
     instance.init();
 
     return () => {
-      dispatch(getElement(), 'SMUIMenuUnmount', instance);
+      SMUIMenuUnmount && SMUIMenuUnmount(instance);
+
       instance.destroy();
     };
   });
 
   function handleKeydown(event: Event) {
     instance && instance.handleKeydown(event as KeyboardEvent);
-  }
-
-  function handleMenuSurfaceAccessor(
-    event: CustomEvent<SMUIMenuSurfaceAccessor>,
-  ) {
-    if (!menuSurfaceAccessor) {
-      menuSurfaceAccessor = event.detail;
-    }
-  }
-
-  function handleListAccessor(event: CustomEvent<SMUIListAccessor>) {
-    if (!listAccessor) {
-      listAccessor = event.detail;
-    }
   }
 
   export function isOpen() {

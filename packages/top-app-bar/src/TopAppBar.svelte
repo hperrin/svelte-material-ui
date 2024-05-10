@@ -163,13 +163,13 @@
       addClass,
       removeClass,
       setStyle: addStyle,
-      getTopAppBarHeight: () => element.clientHeight,
+      getTopAppBarHeight: () => getElement().clientHeight,
       notifyNavigationIconClicked: () =>
-        dispatch(element, 'SMUITopAppBarNav', undefined, undefined, true),
+        dispatch(getElement(), 'SMUITopAppBarNav', undefined, undefined, true),
       getViewportScrollY: () =>
         scrollTarget == null ? window.pageYOffset : scrollTarget.scrollTop,
       getTotalActionItems: () =>
-        element.querySelectorAll('.mdc-top-app-bar__action-item').length,
+        getElement().querySelectorAll('.mdc-top-app-bar__action-item').length,
     });
   }
 

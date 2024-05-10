@@ -50,11 +50,11 @@
     {...nativeControlAttrs}
     {...prefixFilter($$restProps, 'input$')}
     onblur={(e) => {
-      dispatch(element, 'blur', e);
+      dispatch(getElement(), 'blur', e);
       $$restProps.input$onblur?.(e);
     }}
     onfocus={(e) => {
-      dispatch(element, 'focus', e);
+      dispatch(getElement(), 'focus', e);
       $$restProps.input$onfocus?.(e);
     }}
   />
@@ -73,7 +73,7 @@
 
 <script lang="ts">
   import { MDCCheckboxFoundation } from '@material/checkbox';
-  import { onMount, getContext, tick } from 'svelte';
+  import { onMount, getContext } from 'svelte';
   import type {
     SmuiAttrs,
     SmuiElementPropMap,
@@ -244,15 +244,28 @@
     }
   }
 
+  const SMUIGenericInputMount = getContext<
+    ((accessor: SMUICheckboxInputAccessor) => void) | undefined
+  >('SMUI:generic:input:mount');
+  const SMUIGenericInputUnmount = getContext<
+    ((accessor: SMUICheckboxInputAccessor) => void) | undefined
+  >('SMUI:generic:input:unmount');
+  const SMUICheckboxMount = getContext<
+    ((accessor: SMUICheckboxInputAccessor) => void) | undefined
+  >('SMUI:checkbox:mount');
+  const SMUICheckboxUnmount = getContext<
+    ((accessor: SMUICheckboxInputAccessor) => void) | undefined
+  >('SMUI:checkbox:unmount');
+
   onMount(() => {
     checkbox.indeterminate =
       !isUninitializedValue(indeterminate) && indeterminate;
 
     instance = new MDCCheckboxFoundation({
       addClass,
-      forceLayout: () => element.offsetWidth,
+      forceLayout: () => getElement().offsetWidth,
       hasNativeControl: () => true,
-      isAttachedToDOM: () => Boolean(element.parentNode),
+      isAttachedToDOM: () => Boolean(getElement().parentNode),
       isChecked: () => nativeChecked ?? false,
       isIndeterminate: () =>
         isUninitializedValue(indeterminate) ? false : indeterminate,
@@ -291,16 +304,14 @@
       },
     };
 
-    tick().then(() => {
-      dispatch(element, 'SMUIGenericInputMount', accessor);
-      dispatch(element, 'SMUICheckboxMount', accessor);
-    });
+    SMUIGenericInputMount && SMUIGenericInputMount(accessor);
+    SMUICheckboxMount && SMUICheckboxMount(accessor);
 
     instance.init();
 
     return () => {
-      dispatch(element, 'SMUIGenericInputUnmount', accessor);
-      dispatch(element, 'SMUICheckboxUnmount', accessor);
+      SMUIGenericInputUnmount && SMUIGenericInputUnmount(accessor);
+      SMUICheckboxUnmount && SMUICheckboxUnmount(accessor);
 
       instance.destroy();
     };

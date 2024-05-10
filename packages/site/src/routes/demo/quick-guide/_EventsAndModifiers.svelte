@@ -37,7 +37,7 @@
 </div>
 
 <div>
-  <Button onclick$capture={addEventPhase} onclick={addEventPhase}>
+  <Button onclickcapture={addEventPhase} onclick={addEventPhase}>
     <Label>Capture and Bubble Phase Listeners</Label>
   </Button>
 </div>
@@ -60,8 +60,9 @@
 <div>
   <Button
     href="http://example.com"
-    onclick$preventDefault={() =>
-      console.log("You tried to go, but didn't make it.")}
+    onclick={preventDefault(() =>
+      console.log("You tried to go, but didn't make it."),
+    )}
   >
     <Label>A Link, with Default Prevented</Label>
   </Button>
@@ -81,6 +82,7 @@
 <pre class="status">Mouse Button: {button}</pre>
 
 <script lang="ts">
+  import { preventDefault } from '@smui/common/events';
   import Button, { Label } from '@smui/button';
 
   let eventOutput: HTMLDivElement;

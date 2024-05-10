@@ -32,11 +32,11 @@
       {...inputStartAttrs}
       {...prefixFilter($$restProps, 'input$')}
       onblur={(e) => {
-        dispatch(element, 'blur', e);
+        dispatch(getElement(), 'blur', e);
         $$restProps.input$onblur?.(e);
       }}
       onfocus={(e) => {
-        dispatch(element, 'focus', e);
+        dispatch(getElement(), 'focus', e);
         $$restProps.input$onfocus?.(e);
       }}
     />
@@ -56,11 +56,11 @@
       {...inputAttrs}
       {...prefixFilter($$restProps, 'input$')}
       onblur={(e) => {
-        dispatch(element, 'blur', e);
+        dispatch(getElement(), 'blur', e);
         $$restProps.input$onblur?.(e);
       }}
       onfocus={(e) => {
-        dispatch(element, 'focus', e);
+        dispatch(getElement(), 'focus', e);
         $$restProps.input$onfocus?.(e);
       }}
     />
@@ -81,11 +81,11 @@
       {...inputAttrs}
       {...prefixFilter($$restProps, 'input$')}
       onblur={(e) => {
-        dispatch(element, 'blur', e);
+        dispatch(getElement(), 'blur', e);
         $$restProps.input$onblur?.(e);
       }}
       onfocus={(e) => {
-        dispatch(element, 'focus', e);
+        dispatch(getElement(), 'focus', e);
         $$restProps.input$onfocus?.(e);
       }}
     />
@@ -207,7 +207,7 @@
 
 <script lang="ts">
   import { MDCSliderFoundation, Thumb, TickMark } from '@material/slider';
-  import { onMount, onDestroy, getContext, tick } from 'svelte';
+  import { onMount, onDestroy, getContext } from 'svelte';
   import type {
     AddLayoutListener,
     RemoveLayoutListener,
@@ -401,6 +401,13 @@
     instance.layout();
   }
 
+  const SMUIGenericInputMount = getContext<
+    ((accessor: any) => void) | undefined
+  >('SMUI:generic:input:mount');
+  const SMUIGenericInputUnmount = getContext<
+    ((accessor: any) => void) | undefined
+  >('SMUI:generic:input:unmount');
+
   onMount(() => {
     instance = new MDCSliderFoundation({
       hasClass,
@@ -565,15 +572,13 @@
       },
     };
 
-    tick().then(() => {
-      dispatch(element, 'SMUIGenericInputMount', accessor);
-    });
+    SMUIGenericInputMount && SMUIGenericInputMount(accessor);
 
     instance.init();
     instance.layout({ skipUpdateUI: true });
 
     return () => {
-      dispatch(element, 'SMUIGenericInputUnmount', accessor);
+      SMUIGenericInputUnmount && SMUIGenericInputUnmount(accessor);
 
       instance.destroy();
     };

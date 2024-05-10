@@ -56,6 +56,100 @@ An SVG tag component. This is separated from the `SmuiElement` component, becaus
 
 - `use`: `[]` - An array of Svelte actions and/or arrays of an action and its options.
 
+# Event Modifiers
+
+Event modifiers are exported from the `@smui/common/events` endpoint. You can use them with the event system introduced in Svelte 5.
+
+## once
+
+Fire an event listener only once.
+
+```svelte
+<Button onclick={once((event) => console.log(event))}>
+  <Label>Click Me</Label>
+</Button>
+
+<script lang="ts">
+  import { once } from '@smui/common/events';
+  import Button, { Label } from '@smui/button';
+</script>
+```
+
+## preventDefault
+
+Call `preventDefault()` on the event.
+
+```svelte
+<Button onclick={preventDefault((event) => console.log(event))}>
+  <Label>Click Me</Label>
+</Button>
+
+<script lang="ts">
+  import { preventDefault } from '@smui/common/events';
+  import Button, { Label } from '@smui/button';
+</script>
+```
+
+## selfEvent
+
+Only run the event listener when `event.target === event.currentTarget`.
+
+```svelte
+<Button onclick={selfEvent((event) => console.log(event))}>
+  <Label>Click Me</Label>
+</Button>
+
+<script lang="ts">
+  import { selfEvent } from '@smui/common/events';
+  import Button, { Label } from '@smui/button';
+</script>
+```
+
+## stopImmediatePropagation
+
+Call `stopImmediatePropagation()` on the event.
+
+```svelte
+<Button onclick={stopImmediatePropagation((event) => console.log(event))}>
+  <Label>Click Me</Label>
+</Button>
+
+<script lang="ts">
+  import { stopImmediatePropagation } from '@smui/common/events';
+  import Button, { Label } from '@smui/button';
+</script>
+```
+
+## stopPropagation
+
+Call `stopPropagation()` on the event.
+
+```svelte
+<Button onclick={stopPropagation((event) => console.log(event))}>
+  <Label>Click Me</Label>
+</Button>
+
+<script lang="ts">
+  import { stopPropagation } from '@smui/common/events';
+  import Button, { Label } from '@smui/button';
+</script>
+```
+
+## trustedEvent
+
+Only run the event listener when `event.isTrusted` is true.
+
+```svelte
+<Button onclick={trustedEvent((event) => console.log(event))}>
+  <Label>Click Me</Label>
+</Button>
+
+<script lang="ts">
+  import { trustedEvent } from '@smui/common/events';
+  import Button, { Label } from '@smui/button';
+</script>
+```
+
 # Helper Utilities
 
 Helper utilities are exported from the `@smui/common/internal` endpoint. They are used within SMUI to provide additional functionality outside of the features the Svelte API is natively capable of. You can use them in your own components to provide the same additional functionality.
@@ -78,6 +172,7 @@ Build a class string from a map of class names to conditions. This is useful whe
 </SomeComponent>
 
 <script lang="ts">
+  import { classMap } from '@smui/common/internal';
   import SomeComponent from './SomeComponent.svelte';
 
   export let condition = true;

@@ -76,7 +76,7 @@
 >
   import { MDCTabFoundation } from '@material/tab';
   import type { SvelteComponent, ComponentProps } from 'svelte';
-  import { onMount, setContext, getContext, tick } from 'svelte';
+  import { onMount, setContext, getContext } from 'svelte';
   import type { ActionArray } from '@smui/common/internal';
   import {
     classMap,
@@ -163,6 +163,13 @@
     instance.setFocusOnActivate(focusOnActivate);
   }
 
+  const SMUITabMount = getContext<
+    ((accessor: SMUITabAccessor) => void) | undefined
+  >('SMUI:tab:mount');
+  const SMUITabUnmount = getContext<
+    ((accessor: SMUITabAccessor) => void) | undefined
+  >('SMUI:tab:unmount');
+
   onMount(() => {
     instance = new MDCTabFoundation({
       setAttr: addAttr,
@@ -205,14 +212,12 @@
       deactivate,
     };
 
-    tick().then(() => {
-      dispatch(getElement(), 'SMUITabMount', accessor);
-    });
+    SMUITabMount && SMUITabMount(accessor);
 
     instance.init();
 
     return () => {
-      dispatch(getElement(), 'SMUITabUnmount', accessor);
+      SMUITabUnmount && SMUITabUnmount(accessor);
 
       instance.destroy();
     };

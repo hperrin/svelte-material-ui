@@ -97,7 +97,7 @@
 
   onMount(() => {
     if (updateInvalid) {
-      invalid = element.matches(':invalid');
+      invalid = getElement().matches(':invalid');
     }
   });
 
@@ -143,7 +143,7 @@
     }
     dirty = true;
     if (updateInvalid) {
-      invalid = element.matches(':invalid');
+      invalid = getElement().matches(':invalid');
     }
   }
 

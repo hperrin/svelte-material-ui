@@ -187,25 +187,22 @@
         open = false;
         dispatch(getElement(), 'SMUIBannerClosed', { reason }, undefined, true);
       },
-      notifyClosing: (reason) => {
+      notifyClosing: (reason) =>
         dispatch(
           getElement(),
           'SMUIBannerClosing',
           { reason },
           undefined,
           true,
-        );
-      },
+        ),
       notifyOpened: () => {
         open = true;
         dispatch(getElement(), 'SMUIBannerOpened', {}, undefined, true);
       },
-      notifyOpening: () => {
-        dispatch(getElement(), 'SMUIBannerOpening', {}, undefined, true);
-      },
-      notifyActionClicked: (action) => {
-        dispatch(getElement(), 'SMUIBannerActionClicked', { action });
-      },
+      notifyOpening: () =>
+        dispatch(getElement(), 'SMUIBannerOpening', {}, undefined, true),
+      notifyActionClicked: (action) =>
+        dispatch(getElement(), 'SMUIBannerActionClicked', { action }),
       releaseFocus: () => focusTrap && focusTrap.releaseFocus(),
       removeClass,
       setStyleProperty: addStyle,
@@ -251,7 +248,7 @@
 
   function getPrimaryActionEl(): HTMLElement | undefined {
     return (
-      element.querySelector<HTMLElement>('.mdc-banner__primary-action') ??
+      getElement().querySelector<HTMLElement>('.mdc-banner__primary-action') ??
       undefined
     );
   }
@@ -274,11 +271,11 @@
 
   export function layout() {
     if (fixed) {
-      width = element.offsetWidth;
+      width = getElement().offsetWidth;
       if (width === 0) {
-        element.classList.add('smui-banner--force-show');
-        width = element.offsetWidth;
-        element.classList.remove('smui-banner--force-show');
+        getElement().classList.add('smui-banner--force-show');
+        width = getElement().offsetWidth;
+        getElement().classList.remove('smui-banner--force-show');
       }
     }
     if (instance) {

@@ -20,14 +20,6 @@
     }
     $$restProps.onSMUITabInteracted?.(e);
   }}
-  onSMUITabMount={(e) => {
-    handleTabMount(e);
-    $$restProps.onSMUITabMount?.(e);
-  }}
-  onSMUITabUnmount={(e) => {
-    handleTabUnmount(e);
-    $$restProps.onSMUITabUnmount?.(e);
-  }}
 >
   <TabScroller
     bind:this={tabScroller}
@@ -123,6 +115,13 @@
     instance.setUseAutomaticActivation(useAutomaticActivation);
   }
 
+  setContext('SMUI:tab:mount', (accessor: SMUITabAccessor) => {
+    addAccessor(accessor.tabId, accessor);
+  });
+  setContext('SMUI:tab:unmount', (accessor: SMUITabAccessor) => {
+    removeAccessor(accessor.tabId);
+  });
+
   onMount(() => {
     instance = new MDCTabBarFoundation({
       scrollTo: (scrollX) => tabScroller.scrollTo(scrollX),
@@ -182,18 +181,6 @@
       instance.destroy();
     };
   });
-
-  function handleTabMount(event: CustomEvent<SMUITabAccessor>) {
-    const accessor = event.detail;
-
-    addAccessor(accessor.tabId, accessor);
-  }
-
-  function handleTabUnmount(event: CustomEvent<SMUITabAccessor>) {
-    const accessor = event.detail;
-
-    removeAccessor(accessor.tabId);
-  }
 
   function getAccessor(tabId: any) {
     return tabId instanceof Object

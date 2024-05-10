@@ -8,14 +8,6 @@
     'mdc-form-field--nowrap': noWrap,
   })}
   {...exclude($$restProps, ['label$'])}
-  onSMUIGenericInputMount={(e) => {
-    handleInputMount(e);
-    $$restProps.onSMUIGenericInputMount?.(e);
-  }}
-  onSMUIGenericInputUnmount={(e) => {
-    input = undefined;
-    $$restProps.onSMUIGenericInputUnmount?.(e);
-  }}
 >
   <slot />
   <label
@@ -75,6 +67,16 @@
 
   setContext('SMUI:generic:input:props', { id: inputId });
 
+  setContext(
+    'SMUI:generic:input:mount',
+    (accessor: SMUIGenericInputAccessor) => {
+      input = accessor;
+    },
+  );
+  setContext('SMUI:generic:input:unmount', () => {
+    input = undefined;
+  });
+
   onMount(() => {
     instance = new MDCFormFieldFoundation({
       activateInputRipple: () => {
@@ -101,10 +103,6 @@
       instance.destroy();
     };
   });
-
-  function handleInputMount(event: CustomEvent<SMUIGenericInputAccessor>) {
-    input = event.detail;
-  }
 
   export function getElement() {
     return element;

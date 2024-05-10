@@ -76,7 +76,7 @@
 
   afterUpdate(() => {
     if (variant === 'standard' || variant === 'fixed') {
-      withFab = element.querySelector<HTMLDivElement>('.mdc-fab') != null;
+      withFab = getElement().querySelector<HTMLDivElement>('.mdc-fab') != null;
     }
   });
 
@@ -136,7 +136,7 @@
   }
 
   function getTopAppBarHeight() {
-    return element.getBoundingClientRect().height;
+    return getElement().getBoundingClientRect().height;
   }
 
   let oldVariant: 'fixed' | 'static' | 'standard' | null = null;

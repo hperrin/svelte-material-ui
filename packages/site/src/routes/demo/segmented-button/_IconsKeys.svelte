@@ -27,10 +27,10 @@
   <SegmentedButton segments={actions} let:segment>
     <Segment
       {segment}
-      onclick$preventDefault={() => {
+      onclick={preventDefault(() => {
         segment.count++;
         actions = actions;
-      }}
+      })}
     >
       <Icon tag="svg" style="width: 1em; height: auto;" viewBox="0 0 24 24">
         <path fill="currentColor" d={segment.icon} />
@@ -47,6 +47,7 @@
     .join(', ')}</pre>
 
 <script lang="ts">
+  import { preventDefault } from '@smui/common/events';
   import SegmentedButton, {
     Segment,
     Icon,

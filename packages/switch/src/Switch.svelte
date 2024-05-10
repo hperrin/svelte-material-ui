@@ -80,7 +80,7 @@
     MDCSwitchState,
   } from '@material/switch';
   import { MDCSwitchRenderFoundation } from '@material/switch';
-  import { onMount, getContext, tick } from 'svelte';
+  import { onMount, getContext } from 'svelte';
   import type {
     SmuiAttrs,
     SmuiElementPropMap,
@@ -233,10 +233,17 @@
     previousChecked = checked;
     previousGroup = isUninitializedValue(group) ? [] : [...group];
     previousSelected = selected;
-    if (notifyChange && element) {
-      dispatch(element, 'SMUISwitchChange', { selected, value });
+    if (notifyChange && getElement()) {
+      dispatch(getElement(), 'SMUISwitchChange', { selected, value });
     }
   }
+
+  const SMUIGenericInputMount = getContext<
+    ((accessor: SMUISwitchInputAccessor) => void) | undefined
+  >('SMUI:generic:input:mount');
+  const SMUIGenericInputUnmount = getContext<
+    ((accessor: SMUISwitchInputAccessor) => void) | undefined
+  >('SMUI:generic:input:unmount');
 
   onMount(() => {
     instance = new MDCSwitchRenderFoundation({
@@ -263,8 +270,8 @@
       set checked(checked) {
         if (selected !== checked) {
           state.selected = checked;
-          if (element) {
-            dispatch(element, 'SMUISwitchChange', {
+          if (getElement()) {
+            dispatch(getElement(), 'SMUISwitchChange', {
               selected: checked,
               value,
             });
@@ -281,15 +288,13 @@
       },
     };
 
-    tick().then(() => {
-      dispatch(element, 'SMUIGenericInputMount', accessor);
-    });
+    SMUIGenericInputMount && SMUIGenericInputMount(accessor);
 
     instance.init();
     instance.initFromDOM();
 
     return () => {
-      dispatch(element, 'SMUIGenericInputUnmount', accessor);
+      SMUIGenericInputUnmount && SMUIGenericInputUnmount(accessor);
 
       instance.destroy();
     };

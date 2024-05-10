@@ -109,7 +109,8 @@
     }
 
     if (variant === 'modal') {
-      scrim = element.parentNode?.querySelector('.mdc-drawer-scrim') ?? false;
+      scrim =
+        getElement().parentNode?.querySelector('.mdc-drawer-scrim') ?? false;
       if (scrim) {
         scrim.addEventListener('SMUIDrawerScrim:click', handleScrimClick);
       }
@@ -134,26 +135,39 @@
             if (
               previousFocus &&
               'focus' in previousFocus &&
-              element.contains(document.activeElement)
+              getElement().contains(document.activeElement)
             ) {
               (previousFocus as HTMLInputElement).focus();
             }
           },
           focusActiveNavigationItem: () => {
-            const activeNavItemEl = element.querySelector<HTMLInputElement>(
-              '.mdc-list-item--activated,.mdc-deprecated-list-item--activated',
-            );
+            const activeNavItemEl =
+              getElement().querySelector<HTMLInputElement>(
+                '.mdc-list-item--activated,.mdc-deprecated-list-item--activated',
+              );
             if (activeNavItemEl) {
               activeNavItemEl.focus();
             }
           },
           notifyClose: () => {
             open = false;
-            dispatch(element, 'SMUIDrawerClosed', undefined, undefined, true);
+            dispatch(
+              getElement(),
+              'SMUIDrawerClosed',
+              undefined,
+              undefined,
+              true,
+            );
           },
           notifyOpen: () => {
             open = true;
-            dispatch(element, 'SMUIDrawerOpened', undefined, undefined, true);
+            dispatch(
+              getElement(),
+              'SMUIDrawerOpened',
+              undefined,
+              undefined,
+              true,
+            );
           },
           trapFocus: () => focusTrap.trapFocus(),
           releaseFocus: () => focusTrap.releaseFocus(),

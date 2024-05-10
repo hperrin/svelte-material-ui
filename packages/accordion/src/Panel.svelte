@@ -26,7 +26,7 @@
 
 <script lang="ts">
   import type { ComponentProps } from 'svelte';
-  import { onMount, setContext, tick } from 'svelte';
+  import { onMount, setContext, getContext } from 'svelte';
   import { writable } from 'svelte/store';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, dispatch } from '@smui/common/internal';
@@ -136,6 +136,13 @@
     );
   }
 
+  const SMUIAccordionPanelMount = getContext<
+    ((accessor: SMUIAccordionPanelAccessor) => void) | undefined
+  >('SMUI:accordion:panel:mount');
+  const SMUIAccordionPanelUnmount = getContext<
+    ((accessor: SMUIAccordionPanelAccessor) => void) | undefined
+  >('SMUI:accordion:panel:unmount');
+
   onMount(() => {
     accessor = {
       get open() {
@@ -152,12 +159,10 @@
       }
     });
 
-    tick().then(() => {
-      dispatch(getElement(), 'SMUIAccordionPanelMount', accessor);
-    });
+    SMUIAccordionPanelMount && SMUIAccordionPanelMount(accessor);
 
     return () => {
-      dispatch(getElement(), 'SMUIAccordionPanelUnmount', accessor);
+      SMUIAccordionPanelUnmount && SMUIAccordionPanelUnmount(accessor);
     };
   });
 

@@ -53,6 +53,19 @@
     tabindex,
   };
 
+  const SMUITextfieldLeadingIconMount = getContext<
+    ((accessor: MDCTextFieldIconFoundation) => void) | undefined
+  >('SMUI:textfield:leading-icon:mount');
+  const SMUITextfieldLeadingIconUnmount = getContext<
+    ((accessor: MDCTextFieldIconFoundation) => void) | undefined
+  >('SMUI:textfield:leading-icon:unmount');
+  const SMUITextfieldTrailingIconMount = getContext<
+    ((accessor: MDCTextFieldIconFoundation) => void) | undefined
+  >('SMUI:textfield:trailing-icon:mount');
+  const SMUITextfieldTrailingIconUnmount = getContext<
+    ((accessor: MDCTextFieldIconFoundation) => void) | undefined
+  >('SMUI:textfield:trailing-icon:unmount');
+
   onMount(() => {
     instance = new MDCTextFieldIconFoundation({
       getAttr,
@@ -69,26 +82,23 @@
         dispatch(getElement(), 'SMUITextFieldIcon', undefined, undefined, true),
     });
 
-    tick().then(() => {
-      dispatch(
-        getElement(),
-        leading
-          ? 'SMUITextfieldLeadingIconMount'
-          : 'SMUITextfieldTrailingIconMount',
-        instance,
-      );
-    });
+    if (leading) {
+      SMUITextfieldLeadingIconMount && SMUITextfieldLeadingIconMount(instance);
+    } else {
+      SMUITextfieldTrailingIconMount &&
+        SMUITextfieldTrailingIconMount(instance);
+    }
 
     instance.init();
 
     return () => {
-      dispatch(
-        getElement(),
-        leading
-          ? 'SMUITextfieldLeadingIconUnmount'
-          : 'SMUITextfieldTrailingIconUnmount',
-        instance,
-      );
+      if (leading) {
+        SMUITextfieldLeadingIconUnmount &&
+          SMUITextfieldLeadingIconUnmount(instance);
+      } else {
+        SMUITextfieldTrailingIconUnmount &&
+          SMUITextfieldTrailingIconUnmount(instance);
+      }
 
       instance.destroy();
     };

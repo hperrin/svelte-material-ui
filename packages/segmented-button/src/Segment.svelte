@@ -41,7 +41,7 @@
   // TODO: Also remove @material/base and @material/ripple from the package.json
   // @ts-ignore
   import { MDCSegmentedButtonSegmentFoundation } from './mdc-segmented-button/index.js';
-  import { onMount, getContext, tick } from 'svelte';
+  import { onMount, getContext } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, useActions, dispatch } from '@smui/common/internal';
@@ -114,6 +114,13 @@
     instance.setSelected();
   }
 
+  const SMUISegmentedButtonSegmentMount = getContext<
+    ((accessor: SMUISegmentedButtonSegmentAccessor) => void) | undefined
+  >('SMUI:segmented-button:segment:mount');
+  const SMUISegmentedButtonSegmentUnmount = getContext<
+    ((accessor: SMUISegmentedButtonSegmentAccessor) => void) | undefined
+  >('SMUI:segmented-button:segment:unmount');
+
   onMount(() => {
     instance = new MDCSegmentedButtonSegmentFoundation({
       isSingleSelect: () => {
@@ -150,14 +157,14 @@
       },
     };
 
-    tick().then(() => {
-      dispatch(getElement(), 'SMUISegmentedButtonSegmentMount', accessor);
-    });
+    SMUISegmentedButtonSegmentMount &&
+      SMUISegmentedButtonSegmentMount(accessor);
 
     instance.init();
 
     return () => {
-      dispatch(getElement(), 'SMUISegmentedButtonSegmentUnmount', accessor);
+      SMUISegmentedButtonSegmentUnmount &&
+        SMUISegmentedButtonSegmentUnmount(accessor);
 
       instance.destroy();
     };

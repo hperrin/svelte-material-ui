@@ -12,14 +12,6 @@
     handleSelected(e);
     $$restProps.onselected?.(e);
   }}
-  onSMUISegmentedButtonSegmentMount={(e) => {
-    handleSegmentMount(e);
-    $$restProps.onSMUISegmentedButtonSegmentMount?.(e);
-  }}
-  onSMUISegmentedButtonSegmentUnmount={(e) => {
-    handleSegmentUnmount(e);
-    $$restProps.onSMUISegmentedButtonSegmentUnmount?.(e);
-  }}
 >
   {#each segments as segment, i (key(segment))}
     <ContextFragment key="SMUI:segmented-button:segment:index" value={i}>
@@ -126,6 +118,19 @@
     return _difference;
   }
 
+  setContext(
+    'SMUI:segmented-button:segment:mount',
+    (accessor: SMUISegmentedButtonSegmentAccessor) => {
+      addAccessor(accessor.segmentId, accessor);
+    },
+  );
+  setContext(
+    'SMUI:segmented-button:segment:unmount',
+    (accessor: SMUISegmentedButtonSegmentAccessor) => {
+      removeAccessor(accessor.segmentId);
+    },
+  );
+
   onMount(() => {
     instance = new MDCSegmentedButtonFoundation({
       hasClass: (className) => {
@@ -159,22 +164,6 @@
       instance.destroy();
     };
   });
-
-  function handleSegmentMount(
-    event: CustomEvent<SMUISegmentedButtonSegmentAccessor>,
-  ) {
-    const accessor = event.detail;
-
-    addAccessor(accessor.segmentId, accessor);
-  }
-
-  function handleSegmentUnmount(
-    event: CustomEvent<SMUISegmentedButtonSegmentAccessor>,
-  ) {
-    const accessor = event.detail;
-
-    removeAccessor(accessor.segmentId);
-  }
 
   function handleSelected(event: CustomEvent<SegmentDetail>) {
     if (instance) {

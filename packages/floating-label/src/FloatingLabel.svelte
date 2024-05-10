@@ -37,10 +37,10 @@
 
 <script lang="ts">
   import { MDCFloatingLabelFoundation } from '@material/floating-label';
-  import { onMount, getContext, tick } from 'svelte';
+  import { onMount, getContext } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
-  import { classMap, useActions, dispatch } from '@smui/common/internal';
+  import { classMap, useActions } from '@smui/common/internal';
 
   import type { SMUIFloatingLabelAccessor } from './FloatingLabel.types.js';
 
@@ -86,6 +86,13 @@
     instance.setRequired(required);
   }
 
+  const SMUIFloatingLabelMount = getContext<
+    ((accessor: SMUIFloatingLabelAccessor) => void) | undefined
+  >('SMUI:floating-label:mount');
+  const SMUIFloatingLabelUnmount = getContext<
+    ((accessor: SMUIFloatingLabelAccessor) => void) | undefined
+  >('SMUI:floating-label:unmount');
+
   onMount(() => {
     instance = new MDCFloatingLabelFoundation({
       addClass,
@@ -115,14 +122,12 @@
       removeStyle,
     };
 
-    tick().then(() => {
-      dispatch(element, 'SMUIFloatingLabelMount', accessor);
-    });
+    SMUIFloatingLabelMount && SMUIFloatingLabelMount(accessor);
 
     instance.init();
 
     return () => {
-      dispatch(element, 'SMUIFloatingLabelUnmount', accessor);
+      SMUIFloatingLabelUnmount && SMUIFloatingLabelUnmount(accessor);
 
       instance.destroy();
     };

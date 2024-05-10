@@ -70,22 +70,6 @@
     }
     $$restProps.onSMUIChipTrailingActionNavigation?.(e);
   }}
-  onSMUIChipPrimaryActionMount={(e: CustomEvent) => {
-    handleSMUIChipPrimaryAction(e);
-    $$restProps.onSMUIChipPrimaryActionMount?.(e);
-  }}
-  onSMUIChipPrimaryActionUnmount={(e: CustomEvent) => {
-    primaryActionAccessor = undefined;
-    $$restProps.onSMUIChipPrimaryActionUnmount?.(e);
-  }}
-  onSMUIChipTrailingActionMount={(e: CustomEvent) => {
-    handleSMUIChipTrailingAction(e);
-    $$restProps.onSMUIChipTrailingActionMount?.(e);
-  }}
-  onSMUIChipTrailingActionUnmount={(e: CustomEvent) => {
-    trailingActionAccessor = undefined;
-    $$restProps.onSMUIChipTrailingActionUnmount?.(e);
-  }}
 >
   {#if ripple && !$nonInteractive}
     <div class="mdc-chip__ripple"></div>
@@ -99,7 +83,7 @@
 <script lang="ts" generics="TagName extends SmuiEveryElement = 'div'">
   import { deprecated } from '@material/chips';
   import type { SvelteComponent } from 'svelte';
-  import { onMount, setContext, getContext, tick } from 'svelte';
+  import { onMount, setContext, getContext } from 'svelte';
   import { writable } from 'svelte/store';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, dispatch } from '@smui/common/internal';
@@ -208,6 +192,32 @@
     );
   }
 
+  setContext(
+    'SMUI:chips:primary-action:mount',
+    (accessor: SMUIChipsPrimaryActionAccessor) => {
+      primaryActionAccessor = accessor;
+    },
+  );
+  setContext('SMUI:chips:primary-action:unmount', () => {
+    primaryActionAccessor = undefined;
+  });
+  setContext(
+    'SMUI:chips:trailing-action:mount',
+    (accessor: SMUIChipsTrailingActionAccessor) => {
+      trailingActionAccessor = accessor;
+    },
+  );
+  setContext('SMUI:chips:trailing-action:unmount', () => {
+    trailingActionAccessor = undefined;
+  });
+
+  const SMUIChipsChipMount = getContext<
+    ((accessor: SMUIChipsChipAccessor) => void) | undefined
+  >('SMUI:chips:chip:mount');
+  const SMUIChipsChipUnmount = getContext<
+    ((accessor: SMUIChipsChipAccessor) => void) | undefined
+  >('SMUI:chips:chip:unmount');
+
   onMount(() => {
     instance = new MDCChipFoundation({
       addClass,
@@ -265,7 +275,7 @@
           undefined,
           true,
         ),
-      notifyRemoval: (removedAnnouncement) => {
+      notifyRemoval: (removedAnnouncement) =>
         dispatch(
           getElement(),
           'SMUIChipRemoval',
@@ -275,8 +285,7 @@
           },
           undefined,
           true,
-        );
-      },
+        ),
       notifySelection: (selected, shouldIgnore) =>
         dispatch(
           getElement(),
@@ -329,30 +338,16 @@
       setSelectedFromChipSet,
     };
 
-    tick().then(() => {
-      dispatch(getElement(), 'SMUIChipMount', accessor);
-    });
+    SMUIChipsChipMount && SMUIChipsChipMount(accessor);
 
     instance.init();
 
     return () => {
-      dispatch(getElement(), 'SMUIChipUnmount', accessor);
+      SMUIChipsChipUnmount && SMUIChipsChipUnmount(accessor);
 
       instance.destroy();
     };
   });
-
-  function handleSMUIChipPrimaryAction(
-    event: CustomEvent<SMUIChipsPrimaryActionAccessor>,
-  ) {
-    primaryActionAccessor = event.detail;
-  }
-
-  function handleSMUIChipTrailingAction(
-    event: CustomEvent<SMUIChipsTrailingActionAccessor>,
-  ) {
-    trailingActionAccessor = event.detail;
-  }
 
   function hasClass(className: string) {
     return className in internalClasses
