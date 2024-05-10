@@ -1,7 +1,6 @@
 <span
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
     [className]: true,
     'mdc-tab-indicator': true,
@@ -34,12 +33,9 @@
     MDCSlidingTabIndicatorFoundation,
   } from '@material/tab-indicator';
   import { onMount } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type { SmuiAttrs, SmuiElementPropMap } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
-    forwardEventsBuilder,
     classMap,
     exclude,
     prefixFilter,
@@ -59,8 +55,6 @@
     SmuiAttrs<'span', keyof OwnProps> & {
       [k in keyof SmuiElementPropMap['span'] as `content\$${k}`]?: SmuiElementPropMap['span'][k];
     };
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];

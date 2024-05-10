@@ -1,7 +1,6 @@
 <div
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
     [className]: true,
     'mdc-select-helper-text': true,
@@ -23,17 +22,10 @@
 
 <script lang="ts">
   import { MDCSelectHelperTextFoundation } from '@material/select';
-  import { onMount } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
+  import { onMount, getContext } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    useActions,
-    dispatch,
-  } from '@smui/common/internal';
+  import { classMap, useActions } from '@smui/common/internal';
 
   type OwnProps = {
     use?: ActionArray;
@@ -43,8 +35,6 @@
     validationMsg?: boolean;
   };
   type $$Props = OwnProps & SmuiAttrs<'div', keyof OwnProps>;
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
@@ -60,6 +50,16 @@
   let internalAttrs: { [k: string]: string | undefined } = {};
   let content: string | undefined = undefined;
 
+  const SMUISelectHelperTextId = getContext<
+    ((accessor: string) => void) | undefined
+  >('SMUI:select:helper-text:id');
+  const SMUISelectHelperTextMount = getContext<
+    ((accessor: MDCSelectHelperTextFoundation) => void) | undefined
+  >('SMUI:select:helper-text:mount');
+  const SMUISelectHelperTextUnmount = getContext<
+    ((accessor: MDCSelectHelperTextFoundation) => void) | undefined
+  >('SMUI:select:helper-text:unmount');
+
   onMount(() => {
     instance = new MDCSelectHelperTextFoundation({
       addClass,
@@ -73,15 +73,13 @@
       },
     });
 
-    if (id.startsWith('SMUI-select-helper-text-')) {
-      dispatch(getElement(), 'SMUISelectHelperText:id', id);
-    }
-    dispatch(getElement(), 'SMUISelectHelperText:mount', instance);
+    SMUISelectHelperTextId && SMUISelectHelperTextId(id);
+    SMUISelectHelperTextMount && SMUISelectHelperTextMount(instance);
 
     instance.init();
 
     return () => {
-      dispatch(getElement(), 'SMUISelectHelperText:unmount', instance);
+      SMUISelectHelperTextUnmount && SMUISelectHelperTextUnmount(instance);
 
       instance.destroy();
     };

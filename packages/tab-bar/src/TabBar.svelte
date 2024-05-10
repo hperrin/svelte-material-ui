@@ -1,19 +1,25 @@
 <div
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
     [className]: true,
     'mdc-tab-bar': true,
   })}
   role="tablist"
   {tabindex}
-  on:SMUITab:mount={handleTabMount}
-  on:SMUITab:unmount={handleTabUnmount}
-  on:SMUITab:interacted={instance &&
-    instance.handleTabInteraction.bind(instance)}
-  on:keydown={instance && instance.handleKeyDown.bind(instance)}
   {...exclude($$restProps, ['tabScroller$'])}
+  onkeydown={(e) => {
+    if (instance) {
+      instance.handleKeyDown(e);
+    }
+    $$restProps.onkeydown?.(e);
+  }}
+  onSMUITabInteracted={(e) => {
+    if (instance) {
+      instance.handleTabInteraction(e);
+    }
+    $$restProps.onSMUITabInteracted?.(e);
+  }}
 >
   <TabScroller
     bind:this={tabScroller}
@@ -29,12 +35,9 @@
   import { MDCTabBarFoundation } from '@material/tab-bar';
   import type { ComponentProps } from 'svelte';
   import { onMount, setContext } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
-    forwardEventsBuilder,
     classMap,
     exclude,
     prefixFilter,
@@ -63,8 +66,6 @@
     SmuiAttrs<'div', keyof OwnProps> & {
       [k in keyof ComponentProps<TabScroller> as `tabScroller\$${k}`]?: ComponentProps<TabScroller>[k];
     };
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
@@ -114,6 +115,13 @@
     instance.setUseAutomaticActivation(useAutomaticActivation);
   }
 
+  setContext('SMUI:tab:mount', (accessor: SMUITabAccessor) => {
+    addAccessor(accessor.tabId, accessor);
+  });
+  setContext('SMUI:tab:unmount', (accessor: SMUITabAccessor) => {
+    removeAccessor(accessor.tabId);
+  });
+
   onMount(() => {
     instance = new MDCTabBarFoundation({
       scrollTo: (scrollX) => tabScroller.scrollTo(scrollX),
@@ -160,7 +168,7 @@
       notifyTabActivated: (index) =>
         dispatch(
           getElement(),
-          'SMUITabBar:activated',
+          'SMUITabBarActivated',
           { index },
           undefined,
           true,
@@ -173,18 +181,6 @@
       instance.destroy();
     };
   });
-
-  function handleTabMount(event: CustomEvent<SMUITabAccessor>) {
-    const accessor = event.detail;
-
-    addAccessor(accessor.tabId, accessor);
-  }
-
-  function handleTabUnmount(event: CustomEvent<SMUITabAccessor>) {
-    const accessor = event.detail;
-
-    removeAccessor(accessor.tabId);
-  }
 
   function getAccessor(tabId: any) {
     return tabId instanceof Object

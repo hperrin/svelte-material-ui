@@ -13,22 +13,22 @@
     How old is Alice's brother now?
   </Content>
   <Actions>
-    <Button on:click={() => (response = 'Wrong answer. Thrown in the lake.')}>
+    <Button onclick={() => (response = 'Wrong answer. Thrown in the lake.')}>
       <Label>Fifty</Label>
     </Button>
-    <Button on:click={() => (response = 'You are correct. You may pass.')}>
+    <Button onclick={() => (response = 'You are correct. You may pass.')}>
       <Label>Eighty-Seven</Label>
     </Button>
-    <Button on:click={() => (response = 'Wrong answer. Thrown in the lake.')}>
+    <Button onclick={() => (response = 'Wrong answer. Thrown in the lake.')}>
       <Label>Forty-Five</Label>
     </Button>
-    <Button on:click={() => (response = 'Wrong answer. Thrown in the lake.')}>
+    <Button onclick={() => (response = 'Wrong answer. Thrown in the lake.')}>
       <Label>Seventy-Five</Label>
     </Button>
   </Actions>
 </Dialog>
 
-<Button on:click={() => (open = true)}>
+<Button onclick={() => (open = true)}>
   <Label>Open Dialog</Label>
 </Button>
 

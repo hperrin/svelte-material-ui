@@ -1,25 +1,11 @@
-<thead
-  bind:this={element}
-  use:useActions={use}
-  use:forwardEvents
-  on:SMUICheckbox:mount={handleCheckboxMount}
-  on:SMUICheckbox:unmount={() => (checkbox = undefined)}
-  on:SMUIDataTableCell:mount={handleCellMount}
-  on:SMUIDataTableCell:unmount={handleCellUnmount}
-  {...$$restProps}><slot /></thead
+<thead bind:this={element} use:useActions={use} {...$$restProps}><slot /></thead
 >
 
 <script lang="ts">
-  import { onMount, setContext } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
+  import { onMount, setContext, getContext } from 'svelte';
   import type { SmuiAttrs, SMUICheckboxInputAccessor } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
-  import {
-    forwardEventsBuilder,
-    useActions,
-    dispatch,
-  } from '@smui/common/internal';
+  import { useActions } from '@smui/common/internal';
 
   import type { SMUIDataTableCellAccessor } from './Cell.types.js';
   import type { SMUIDataTableHeadAccessor } from './Head.types.js';
@@ -28,8 +14,6 @@
     use?: ActionArray;
   };
   type $$Props = OwnProps & SmuiAttrs<'thead', keyof OwnProps>;
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
@@ -44,6 +28,46 @@
 
   setContext('SMUI:data-table:row:header', true);
 
+  const SMUICheckboxMount = getContext<
+    ((accessor: SMUICheckboxInputAccessor) => void) | undefined
+  >('SMUI:checkbox:mount');
+  setContext('SMUI:checkbox:mount', (accessor: SMUICheckboxInputAccessor) => {
+    checkbox = accessor;
+    SMUICheckboxMount && SMUICheckboxMount(accessor);
+  });
+  const SMUICheckboxUnount = getContext<
+    ((accessor: SMUICheckboxInputAccessor) => void) | undefined
+  >('SMUI:checkbox:unmount');
+  setContext('SMUI:checkbox:unmount', (accessor: SMUICheckboxInputAccessor) => {
+    checkbox = undefined;
+    SMUICheckboxUnount && SMUICheckboxUnount(accessor);
+  });
+  setContext(
+    'SMUI:data-table:cell:mount',
+    (accessor: SMUIDataTableCellAccessor) => {
+      cells.push(accessor);
+      cellAccessorMap.set(accessor.element, accessor);
+    },
+  );
+  setContext(
+    'SMUI:data-table:cell:unmount',
+    (accessor: SMUIDataTableCellAccessor) => {
+      const idx = cells.indexOf(accessor);
+      if (idx !== -1) {
+        cells.splice(idx, 1);
+        cells = cells;
+      }
+      cellAccessorMap.delete(accessor.element);
+    },
+  );
+
+  const SMUIDataTableHeaderMount = getContext<
+    ((accessor: SMUIDataTableHeadAccessor) => void) | undefined
+  >('SMUI:data-table:header:mount');
+  const SMUIDataTableHeaderUnmount = getContext<
+    ((accessor: SMUIDataTableHeadAccessor) => void) | undefined
+  >('SMUI:data-table:header:unmount');
+
   onMount(() => {
     const accessor: SMUIDataTableHeadAccessor = {
       get cells() {
@@ -57,32 +81,12 @@
       },
     };
 
-    dispatch(getElement(), 'SMUIDataTableHeader:mount', accessor);
+    SMUIDataTableHeaderMount && SMUIDataTableHeaderMount(accessor);
 
     return () => {
-      dispatch(getElement(), 'SMUIDataTableHeader:unmount', accessor);
+      SMUIDataTableHeaderUnmount && SMUIDataTableHeaderUnmount(accessor);
     };
   });
-
-  function handleCheckboxMount(event: CustomEvent<SMUICheckboxInputAccessor>) {
-    checkbox = event.detail;
-  }
-
-  function handleCellMount(event: CustomEvent<SMUIDataTableCellAccessor>) {
-    cells.push(event.detail);
-    cellAccessorMap.set(event.detail.element, event.detail);
-    event.stopPropagation();
-  }
-
-  function handleCellUnmount(event: CustomEvent<SMUIDataTableCellAccessor>) {
-    const idx = cells.indexOf(event.detail);
-    if (idx !== -1) {
-      cells.splice(idx, 1);
-      cells = cells;
-    }
-    cellAccessorMap.delete(event.detail.element);
-    event.stopPropagation();
-  }
 
   function getOrderedCells() {
     return [

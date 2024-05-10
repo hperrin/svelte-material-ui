@@ -26,8 +26,8 @@
   >
     Events and Modifiers
     <svelte:fragment slot="subtitle">
-      SMUI supports listening to <strong>all</strong> events. You can also use modifiers
-      with the "$" syntax.
+      SMUI supports listening to <strong>all</strong> events. You can also add modifiers
+      from the @smui/common/events endpoint.
     </svelte:fragment>
   </Demo>
 

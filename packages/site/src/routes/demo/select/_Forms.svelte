@@ -1,5 +1,5 @@
 <div class="margins">
-  <form on:submit={handleSubmit}>
+  <form onsubmit={handleSubmit}>
     <Select bind:value label="Fruit" hiddenInput input$name="fruit">
       <Option value="" />
       {#each fruits as fruit}

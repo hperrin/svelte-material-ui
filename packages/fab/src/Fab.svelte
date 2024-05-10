@@ -15,7 +15,6 @@
         addStyle,
       },
     ],
-    forwardEvents,
     ...use,
   ]}
   class={classMap({
@@ -45,10 +44,8 @@
 >
   import type { SvelteComponent } from 'svelte';
   import { setContext } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type { ActionArray } from '@smui/common/internal';
-  import { forwardEventsBuilder, classMap } from '@smui/common/internal';
+  import { classMap } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
   import type {
     SmuiElementMap,
@@ -73,8 +70,6 @@
     tag?: TagName;
   };
   type $$Props = OwnProps & SmuiAttrs<TagName, keyof OwnProps>;
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];

@@ -35,7 +35,7 @@
   </Actions>
 </Dialog>
 
-<Button on:click={() => (open = true)}>
+<Button onclick={() => (open = true)}>
   <Label>Open Dialog</Label>
 </Button>
 

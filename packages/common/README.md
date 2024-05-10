@@ -56,6 +56,100 @@ An SVG tag component. This is separated from the `SmuiElement` component, becaus
 
 - `use`: `[]` - An array of Svelte actions and/or arrays of an action and its options.
 
+# Event Modifiers
+
+Event modifiers are exported from the `@smui/common/events` endpoint. You can use them with the event system introduced in Svelte 5.
+
+## once
+
+Fire an event listener only once.
+
+```svelte
+<Button onclick={once((event) => console.log(event))}>
+  <Label>Click Me</Label>
+</Button>
+
+<script lang="ts">
+  import { once } from '@smui/common/events';
+  import Button, { Label } from '@smui/button';
+</script>
+```
+
+## preventDefault
+
+Call `preventDefault()` on the event.
+
+```svelte
+<Button onclick={preventDefault((event) => console.log(event))}>
+  <Label>Click Me</Label>
+</Button>
+
+<script lang="ts">
+  import { preventDefault } from '@smui/common/events';
+  import Button, { Label } from '@smui/button';
+</script>
+```
+
+## selfEvent
+
+Only run the event listener when `event.target === event.currentTarget`.
+
+```svelte
+<Button onclick={selfEvent((event) => console.log(event))}>
+  <Label>Click Me</Label>
+</Button>
+
+<script lang="ts">
+  import { selfEvent } from '@smui/common/events';
+  import Button, { Label } from '@smui/button';
+</script>
+```
+
+## stopImmediatePropagation
+
+Call `stopImmediatePropagation()` on the event.
+
+```svelte
+<Button onclick={stopImmediatePropagation((event) => console.log(event))}>
+  <Label>Click Me</Label>
+</Button>
+
+<script lang="ts">
+  import { stopImmediatePropagation } from '@smui/common/events';
+  import Button, { Label } from '@smui/button';
+</script>
+```
+
+## stopPropagation
+
+Call `stopPropagation()` on the event.
+
+```svelte
+<Button onclick={stopPropagation((event) => console.log(event))}>
+  <Label>Click Me</Label>
+</Button>
+
+<script lang="ts">
+  import { stopPropagation } from '@smui/common/events';
+  import Button, { Label } from '@smui/button';
+</script>
+```
+
+## trustedEvent
+
+Only run the event listener when `event.isTrusted` is true.
+
+```svelte
+<Button onclick={trustedEvent((event) => console.log(event))}>
+  <Label>Click Me</Label>
+</Button>
+
+<script lang="ts">
+  import { trustedEvent } from '@smui/common/events';
+  import Button, { Label } from '@smui/button';
+</script>
+```
+
 # Helper Utilities
 
 Helper utilities are exported from the `@smui/common/internal` endpoint. They are used within SMUI to provide additional functionality outside of the features the Svelte API is natively capable of. You can use them in your own components to provide the same additional functionality.
@@ -78,6 +172,7 @@ Build a class string from a map of class names to conditions. This is useful whe
 </SomeComponent>
 
 <script lang="ts">
+  import { classMap } from '@smui/common/internal';
   import SomeComponent from './SomeComponent.svelte';
 
   export let condition = true;
@@ -105,8 +200,8 @@ Dispatch a custom event. This differs from Svelte's component event system, beca
 ```svelte
 <div
   bind:this={eventTarget}
-  on:mouseover={emitEvent}
-  on:click={emitCancelableEvent}
+  onmouseover={emitEvent}
+  onclick={emitCancelableEvent}
   tabindex={0}
 />
 
@@ -147,7 +242,6 @@ Exclude a set of properties from an object. It differs from normal `omit` functi
 <!-- MyComponent.svelte -->
 <div class="my-component {className}" {...exclude($$restProps, ['button$'])}>
   <button
-    on:click
     class="button {button$class}"
     {...prefixFilter($$restProps, 'button$')}
   >
@@ -168,7 +262,7 @@ Exclude a set of properties from an object. It differs from normal `omit` functi
 <MyComponent
   class="my-class"
   button$disabled={disabled}
-  on:click={() => (disabled = true)}
+  button$onclick={() => (disabled = true)}
 >
   Click Me Only Once
 </MyComponent>
@@ -205,10 +299,10 @@ In addition, a component that uses Svelte's built in event forwarding system can
 
 ```svelte
 <MyComponent
-  on:click={() => console.log('Click!')}
-  on:mouseover={() => console.log('Mouseover!')}
-  on:touchstart$passive={() => console.log("Touchstart, and it's passive!")}
-  on:keypress$preventDefault$stopPropagation={() =>
+  onclick={() => console.log('Click!')}
+  onmouseover={() => console.log('Mouseover!')}
+  ontouchstart$passive={() => console.log("Touchstart, and it's passive!")}
+  onkeypress$preventDefault$stopPropagation={() =>
     console.log('No key presses!')}
 >
   Listen to my events!
@@ -227,7 +321,6 @@ Filter an object for only properties with a certain prefix. It is usually used a
 <!-- MyComponent.svelte -->
 <div class="my-component {className}" {...exclude($$restProps, ['button$'])}>
   <button
-    on:click
     class="button {button$class}"
     {...prefixFilter($$restProps, 'button$')}
   >
@@ -248,7 +341,7 @@ Filter an object for only properties with a certain prefix. It is usually used a
 <MyComponent
   class="my-class"
   button$disabled={disabled}
-  on:click={() => (disabled = true)}
+  button$onclick={() => (disabled = true)}
 >
   Click Me Only Once
 </MyComponent>
@@ -302,8 +395,7 @@ A function that announces a string of text to users who are using a screen reade
   It's just an example.
 -->
 <Button
-  on:focus={() =>
-    announce("Don't push this button!", { priority: 'assertive' })}
+  onfocus={() => announce("Don't push this button!", { priority: 'assertive' })}
   style="background-color: red; color: white; transform: scale(2);"
 >
   Big Red Button

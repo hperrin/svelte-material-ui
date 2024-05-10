@@ -2,7 +2,6 @@
   bind:this={element}
   use:Anchor
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
     [className]: true,
     'smui-autocomplete': true,
@@ -15,14 +14,14 @@
     aria-expanded={menuOpen ? 'true' : 'false'}
     role="combobox"
     tabindex="0"
-    on:focusin={() => {
+    onfocusin={() => {
       focused = true;
     }}
-    on:focusout={handleTextfieldBlur}
-    on:input={() => {
+    onfocusout={handleTextfieldBlur}
+    oninput={() => {
       focusedIndex = -1;
     }}
-    on:keydown|capture={handleTextfieldKeydown}
+    onkeydowncapture={handleTextfieldKeydown}
   >
     <slot>
       <Textfield
@@ -45,7 +44,6 @@
     bind:anchorElement={element}
     anchor={menu$anchor}
     anchorCorner={menu$anchorCorner}
-    on:SMUIList:mount={handleListAccessor}
     {...prefixFilter($$restProps, 'menu$')}
   >
     <List {...prefixFilter($$restProps, 'list$')}>
@@ -66,10 +64,10 @@
           <Item
             disabled={getOptionDisabled(match)}
             selected={match === value}
-            on:mouseenter={() => {
+            onmouseenter={() => {
               focusedIndex = i;
             }}
-            on:SMUI:action={() =>
+            onSMUIAction={() =>
               toggle ? toggleOption(match) : selectOption(match)}
           >
             <slot name="match" {match}>
@@ -79,8 +77,8 @@
         {:else}
           <Item
             disabled={noMatchesActionDisabled}
-            on:SMUI:action={(e) =>
-              dispatch(element, 'SMUIAutocomplete:noMatchesAction', e)}
+            onSMUIAction={(e) =>
+              dispatch(getElement(), 'SMUIAutocompleteNoMatchesAction', e)}
           >
             <slot name="no-matches">
               <Text>No matches found.</Text>
@@ -98,12 +96,10 @@
 
 <script lang="ts">
   import type { ComponentProps } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
+  import { setContext } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
-    forwardEventsBuilder,
     classMap,
     exclude,
     prefixFilter,
@@ -149,8 +145,6 @@
       textfield$label?: never;
       textfield$value?: never;
     };
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
@@ -287,6 +281,12 @@
     previousFocusedIndex = focusedIndex;
   }
 
+  setContext('SMUI:list:mount', (accessor: SMUIListAccessor) => {
+    if (!listAccessor) {
+      listAccessor = accessor;
+    }
+  });
+
   async function performSearch() {
     loading = true;
     error = false;
@@ -309,14 +309,8 @@
     loading = false;
   }
 
-  function handleListAccessor(event: CustomEvent<SMUIListAccessor>) {
-    if (!listAccessor) {
-      listAccessor = event.detail;
-    }
-  }
-
   function selectOption(option: any, setText = true) {
-    const event = dispatch(element, 'SMUIAutocomplete:selected', option, {
+    const event = dispatch(getElement(), 'SMUIAutocompleteSelected', option, {
       bubbles: true,
       cancelable: true,
     });
@@ -335,7 +329,7 @@
   }
 
   function deselectOption(option: any, setText = true) {
-    const event = dispatch(element, 'SMUIAutocomplete:deselected', option, {
+    const event = dispatch(getElement(), 'SMUIAutocompleteDeselected', option, {
       bubbles: true,
       cancelable: true,
     });
@@ -429,7 +423,7 @@
         .indexOf(event.relatedTarget as Element) !== -1
     ) {
       // Wait until the item is selected.
-      element.addEventListener(
+      getElement().addEventListener(
         'SMUIAutocomplete:selected',
         () => {
           // Then clear the focus.

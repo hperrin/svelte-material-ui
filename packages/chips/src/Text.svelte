@@ -1,12 +1,7 @@
 {#if $filter}
   <Checkmark bind:this={input} />
 {/if}
-<span
-  bind:this={element}
-  use:useActions={use}
-  use:forwardEvents
-  role="gridcell"
->
+<span bind:this={element} use:useActions={use} role="gridcell">
   {#if $nonInteractive}
     <span class="mdc-chip__text"><slot /></span>
   {:else}
@@ -28,16 +23,9 @@
 
 <script lang="ts">
   import { onMount, getContext, tick } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    useActions,
-    dispatch,
-  } from '@smui/common/internal';
+  import { classMap, useActions } from '@smui/common/internal';
 
   type OwnProps = {
     use?: ActionArray;
@@ -48,8 +36,6 @@
 
   import type { SMUIChipsPrimaryActionAccessor } from './Text.types.js';
   import Checkmark from './Checkmark.svelte';
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
@@ -78,16 +64,23 @@
     tabindex,
   };
 
+  const SMUIChipsPrimaryActionMount = getContext<
+    ((accessor: SMUIChipsPrimaryActionAccessor) => void) | undefined
+  >('SMUI:chips:primary-action:mount');
+  const SMUIChipsPrimaryActionUnmount = getContext<
+    ((accessor: SMUIChipsPrimaryActionAccessor) => void) | undefined
+  >('SMUI:chips:primary-action:unmount');
+
   onMount(() => {
     let accessor: SMUIChipsPrimaryActionAccessor = {
       focus,
       addAttr,
     };
 
-    dispatch(getElement(), 'SMUIChipsChipPrimaryAction:mount', accessor);
+    SMUIChipsPrimaryActionMount && SMUIChipsPrimaryActionMount(accessor);
 
     return () => {
-      dispatch(getElement(), 'SMUIChipsChipPrimaryAction:unmount', accessor);
+      SMUIChipsPrimaryActionUnmount && SMUIChipsPrimaryActionUnmount(accessor);
     };
   });
 
@@ -98,7 +91,7 @@
   }
 
   function waitForTabindex(fn: () => void) {
-    if (internalAttrs['tabindex'] !== element.getAttribute('tabindex')) {
+    if (internalAttrs['tabindex'] !== getElement().getAttribute('tabindex')) {
       tick().then(fn);
     } else {
       fn();

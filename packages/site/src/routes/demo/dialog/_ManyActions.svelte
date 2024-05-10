@@ -3,7 +3,7 @@
   aria-labelledby="buttons-title"
   aria-describedby="buttons-content"
   autoStackButtons={false}
-  on:SMUIDialog:closed={(e) => (buttoned = e.detail.action)}
+  onSMUIDialogClosed={(e) => (buttoned = e.detail.action)}
 >
   <Title id="buttons-title">Use speed bost?</Title>
   <Content id="buttons-content">
@@ -24,7 +24,7 @@
   </Actions>
 </Dialog>
 
-<Button on:click={() => (open = true)}>
+<Button onclick={() => (open = true)}>
   <Label>Open Dialog</Label>
 </Button>
 

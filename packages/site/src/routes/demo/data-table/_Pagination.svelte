@@ -35,28 +35,28 @@
       class="material-icons"
       action="first-page"
       title="First page"
-      on:click={() => (currentPage = 0)}
+      onclick={() => (currentPage = 0)}
       disabled={currentPage === 0}>first_page</IconButton
     >
     <IconButton
       class="material-icons"
       action="prev-page"
       title="Prev page"
-      on:click={() => currentPage--}
+      onclick={() => currentPage--}
       disabled={currentPage === 0}>chevron_left</IconButton
     >
     <IconButton
       class="material-icons"
       action="next-page"
       title="Next page"
-      on:click={() => currentPage++}
+      onclick={() => currentPage++}
       disabled={currentPage === lastPage}>chevron_right</IconButton
     >
     <IconButton
       class="material-icons"
       action="last-page"
       title="Last page"
-      on:click={() => (currentPage = lastPage)}
+      onclick={() => (currentPage = lastPage)}
       disabled={currentPage === lastPage}>last_page</IconButton
     >
   </Pagination>

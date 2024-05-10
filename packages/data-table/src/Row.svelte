@@ -1,7 +1,6 @@
 <tr
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
     [className]: true,
     'mdc-data-table__header-row': header,
@@ -9,13 +8,17 @@
     'mdc-data-table__row--selected': !header && checkbox && checkbox.checked,
     ...internalClasses,
   })}
-  on:click={(event) =>
-    header ? notifyHeaderClick(event) : notifyRowClick(event)}
-  on:SMUICheckbox:mount={handleCheckboxMount}
-  on:SMUICheckbox:unmount={() => (checkbox = undefined)}
   aria-selected={checkbox ? (checkbox.checked ? 'true' : 'false') : undefined}
   {...internalAttrs}
-  {...$$restProps}><slot /></tr
+  {...$$restProps}
+  onclick={(e) => {
+    if (header) {
+      notifyHeaderClick(e);
+    } else {
+      notifyRowClick(e);
+    }
+    $$restProps.onclick?.(e);
+  }}><slot /></tr
 >
 
 <script context="module" lang="ts">
@@ -23,17 +26,10 @@
 </script>
 
 <script lang="ts">
-  import { onMount, getContext } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
+  import { onMount, getContext, setContext } from 'svelte';
   import type { SmuiAttrs, SMUICheckboxInputAccessor } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    useActions,
-    dispatch,
-  } from '@smui/common/internal';
+  import { classMap, useActions, dispatch } from '@smui/common/internal';
 
   import type { SMUIDataTableRowAccessor } from './Row.types.js';
 
@@ -43,8 +39,6 @@
     rowId?: string;
   };
   type $$Props = OwnProps & SmuiAttrs<'tr', keyof OwnProps>;
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
@@ -57,6 +51,28 @@
   let internalClasses: { [k: string]: boolean } = {};
   let internalAttrs: { [k: string]: string | undefined } = {};
   let header = getContext<boolean>('SMUI:data-table:row:header');
+
+  const SMUICheckboxMount = getContext<
+    ((accessor: SMUICheckboxInputAccessor) => void) | undefined
+  >('SMUI:checkbox:mount');
+  setContext('SMUI:checkbox:mount', (accessor: SMUICheckboxInputAccessor) => {
+    checkbox = accessor;
+    SMUICheckboxMount && SMUICheckboxMount(accessor);
+  });
+  const SMUICheckboxUnount = getContext<
+    ((accessor: SMUICheckboxInputAccessor) => void) | undefined
+  >('SMUI:checkbox:unmount');
+  setContext('SMUI:checkbox:unmount', (accessor: SMUICheckboxInputAccessor) => {
+    checkbox = undefined;
+    SMUICheckboxUnount && SMUICheckboxUnount(accessor);
+  });
+
+  const SMUIDataTableRowMount = getContext<
+    ((accessor: SMUIDataTableRowAccessor) => void) | undefined
+  >('SMUI:data-table:row:mount');
+  const SMUIDataTableRowUnmount = getContext<
+    ((accessor: SMUIDataTableRowAccessor) => void) | undefined
+  >('SMUI:data-table:row:unmount');
 
   onMount(() => {
     const accessor: SMUIDataTableRowAccessor = header
@@ -99,16 +115,12 @@
           addAttr,
         };
 
-    dispatch(getElement(), 'SMUIDataTableRow:mount', accessor);
+    SMUIDataTableRowMount && SMUIDataTableRowMount(accessor);
 
     return () => {
-      dispatch(getElement(), 'SMUIDataTableRow:unmount', accessor);
+      SMUIDataTableRowUnmount && SMUIDataTableRowUnmount(accessor);
     };
   });
-
-  function handleCheckboxMount(event: CustomEvent<SMUICheckboxInputAccessor>) {
-    checkbox = event.detail;
-  }
 
   function addClass(className: string) {
     if (!internalClasses[className]) {
@@ -135,11 +147,11 @@
   }
 
   function notifyHeaderClick(event: MouseEvent) {
-    dispatch(getElement(), 'SMUIDataTableHeader:click', event);
+    dispatch(getElement(), 'SMUIDataTableHeaderClick', event);
   }
 
   function notifyRowClick(event: MouseEvent) {
-    dispatch(getElement(), 'SMUIDataTableRow:click', {
+    dispatch(getElement(), 'SMUIDataTableRowClick', {
       rowId,
       target: event.target,
     });

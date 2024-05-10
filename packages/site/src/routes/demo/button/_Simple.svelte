@@ -1,18 +1,18 @@
 <div>
-  <Button on:click={() => clicked++}>
+  <Button onclick={() => clicked++}>
     <Label>Default</Label>
   </Button>
-  <Button on:click={() => clicked++} disabled>
+  <Button onclick={() => clicked++} disabled>
     <Label>Disabled</Label>
   </Button>
-  <Button on:click={() => clicked++} ripple={false}>
+  <Button onclick={() => clicked++} ripple={false}>
     <Label>No Ripple</Label>
   </Button>
   <!--
     Note: to target this class, you need to use
     a :global() selector. See the styles below.
   -->
-  <Button on:click={() => clicked++} class="myClass">
+  <Button onclick={() => clicked++} class="myClass">
     <Label>With a Class</Label>
   </Button>
 </div>

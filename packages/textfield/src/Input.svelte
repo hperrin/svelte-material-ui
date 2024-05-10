@@ -1,33 +1,32 @@
 <input
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
     [className]: true,
     'mdc-text-field__input': true,
   })}
-  on:input={(e) => type !== 'file' && valueUpdater(e)}
-  on:change={changeHandler}
-  on:blur
-  on:focus
   {type}
   {placeholder}
   {...valueProp}
   {...internalAttrs}
   {...$$restProps}
+  oninput={(e) => {
+    if (type !== 'file') {
+      valueUpdater(e);
+    }
+    $$restProps.oninput?.(e);
+  }}
+  onchange={(e) => {
+    changeHandler(e);
+    $$restProps.onchange?.(e);
+  }}
 />
 
 <script lang="ts">
   import { onMount } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    useActions,
-  } from '@smui/common/internal';
+  import { classMap, useActions } from '@smui/common/internal';
 
   type OwnProps = {
     use?: ActionArray;
@@ -46,7 +45,6 @@
   };
   type $$Props = OwnProps & SmuiAttrs<'input', keyof OwnProps>;
 
-  const forwardEvents = forwardEventsBuilder(get_current_component());
   interface UninitializedValue extends Function {}
   let uninitializedValue: UninitializedValue = () => {};
   function isUninitializedValue(value: any): value is UninitializedValue {
@@ -99,7 +97,7 @@
 
   onMount(() => {
     if (updateInvalid) {
-      invalid = element.matches(':invalid');
+      invalid = getElement().matches(':invalid');
     }
   });
 
@@ -145,7 +143,7 @@
     }
     dirty = true;
     if (updateInvalid) {
-      invalid = element.matches(':invalid');
+      invalid = getElement().matches(':invalid');
     }
   }
 

@@ -1,34 +1,38 @@
 <div
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
     [className]: true,
     'smui-accordion': true,
     'smui-accordion--multiple': multiple,
     'smui-accordion--with-open-dialog': withOpenDialog,
   })}
-  on:SMUIAccordionPanel:mount={handlePanelMount}
-  on:SMUIAccordionPanel:unmount={handlePanelUnmount}
-  on:SMUIAccordionPanel:activate={handlePanelActivate}
-  on:SMUIAccordionPanel:opening={handlePanelOpening}
-  on:SMUIDialog:opening|capture={() => (withOpenDialog = true)}
-  on:SMUIDialog:closed|capture={() => (withOpenDialog = false)}
   {...$$restProps}
+  onSMUIAccordionPanelActivate={(e) => {
+    handlePanelActivate(e);
+    $$restProps.onSMUIAccordionPanelActivate?.(e);
+  }}
+  onSMUIAccordionPanelOpening={(e) => {
+    handlePanelOpening(e);
+    $$restProps.onSMUIAccordionPanelOpening?.(e);
+  }}
+  onSMUIDialogOpeningcapture={(e) => {
+    withOpenDialog = true;
+    $$restProps.onSMUIDialogOpeningcapture?.(e);
+  }}
+  onSMUIDialogClosedcapture={(e) => {
+    withOpenDialog = false;
+    $$restProps.onSMUIDialogClosedcapture?.(e);
+  }}
 >
   <slot />
 </div>
 
 <script lang="ts">
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
+  import { setContext } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    useActions,
-  } from '@smui/common/internal';
+  import { classMap, useActions } from '@smui/common/internal';
 
   type OwnProps = {
     use?: ActionArray;
@@ -38,8 +42,6 @@
   type $$Props = OwnProps & SmuiAttrs<'div', keyof OwnProps>;
 
   import type { SMUIAccordionPanelAccessor } from './Panel.types.js';
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
@@ -51,38 +53,34 @@
   let panelAccessorSet = new Set<SMUIAccordionPanelAccessor>();
   let withOpenDialog = false;
 
-  function handlePanelMount(event: CustomEvent<SMUIAccordionPanelAccessor>) {
-    const accessor = event.detail;
+  setContext(
+    'SMUI:accordion:panel:mount',
+    (accessor: SMUIAccordionPanelAccessor) => {
+      if (!multiple && accessor.open) {
+        const currentOpen = Array.from(panelAccessorSet).find(
+          (accessor) => accessor.open,
+        );
 
-    // Stop propagation so accordion's above this one don't receive the event.
-    event.stopPropagation();
-
-    if (!multiple && accessor.open) {
-      const currentOpen = Array.from(panelAccessorSet).find(
-        (accessor) => accessor.open,
-      );
-
-      if (currentOpen) {
-        currentOpen.setOpen(false);
+        if (currentOpen) {
+          currentOpen.setOpen(false);
+        }
       }
-    }
 
-    panelAccessorSet.add(accessor);
-  }
+      panelAccessorSet.add(accessor);
+    },
+  );
 
-  function handlePanelUnmount(event: CustomEvent<SMUIAccordionPanelAccessor>) {
-    const accessor = event.detail;
+  setContext(
+    'SMUI:accordion:panel:unmount',
+    (accessor: SMUIAccordionPanelAccessor) => {
+      // Nested check.
+      if (!panelAccessorSet.has(accessor)) {
+        return;
+      }
 
-    // Nested check.
-    if (!panelAccessorSet.has(accessor)) {
-      return;
-    }
-
-    // Stop propagation so accordion's above this one don't receive the event.
-    event.stopPropagation();
-
-    panelAccessorSet.delete(accessor);
-  }
+      panelAccessorSet.delete(accessor);
+    },
+  );
 
   function handlePanelActivate(
     event: CustomEvent<{ accessor: SMUIAccordionPanelAccessor }>,

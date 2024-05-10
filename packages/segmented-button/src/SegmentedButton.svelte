@@ -1,17 +1,17 @@
 <div
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
     [className]: true,
     'mdc-segmented-button': true,
     'mdc-segmented-button--single-select': singleSelect,
   })}
   role={singleSelect ? 'radiogroup' : 'group'}
-  on:SMUISegmentedButtonSegment:mount={handleSegmentMount}
-  on:SMUISegmentedButtonSegment:unmount={handleSegmentUnmount}
-  on:selected={handleSelected}
   {...$$restProps}
+  onselected={(e) => {
+    handleSelected(e);
+    $$restProps.onselected?.(e);
+  }}
 >
   {#each segments as segment, i (key(segment))}
     <ContextFragment key="SMUI:segmented-button:segment:index" value={i}>
@@ -32,16 +32,9 @@
   import { MDCSegmentedButtonFoundation } from './mdc-segmented-button/index.js';
   import { onMount, setContext } from 'svelte';
   import { writable } from 'svelte/store';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    useActions,
-    dispatch,
-  } from '@smui/common/internal';
+  import { classMap, useActions, dispatch } from '@smui/common/internal';
   import { ContextFragment } from '@smui/common';
 
   import type { SMUISegmentedButtonSegmentAccessor } from './Segment.types.js';
@@ -55,8 +48,6 @@
     selected?: any | any[];
   };
   type $$Props = OwnProps & SmuiAttrs<'div', keyof OwnProps>;
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
@@ -127,6 +118,19 @@
     return _difference;
   }
 
+  setContext(
+    'SMUI:segmented-button:segment:mount',
+    (accessor: SMUISegmentedButtonSegmentAccessor) => {
+      addAccessor(accessor.segmentId, accessor);
+    },
+  );
+  setContext(
+    'SMUI:segmented-button:segment:unmount',
+    (accessor: SMUISegmentedButtonSegmentAccessor) => {
+      removeAccessor(accessor.segmentId);
+    },
+  );
+
   onMount(() => {
     instance = new MDCSegmentedButtonFoundation({
       hasClass: (className) => {
@@ -160,22 +164,6 @@
       instance.destroy();
     };
   });
-
-  function handleSegmentMount(
-    event: CustomEvent<SMUISegmentedButtonSegmentAccessor>,
-  ) {
-    const accessor = event.detail;
-
-    addAccessor(accessor.segmentId, accessor);
-  }
-
-  function handleSegmentUnmount(
-    event: CustomEvent<SMUISegmentedButtonSegmentAccessor>,
-  ) {
-    const accessor = event.detail;
-
-    removeAccessor(accessor.segmentId);
-  }
 
   function handleSelected(event: CustomEvent<SegmentDetail>) {
     if (instance) {

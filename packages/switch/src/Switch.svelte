@@ -1,7 +1,6 @@
 <button
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   use:Ripple={{
     unbounded: true,
     color,
@@ -25,17 +24,22 @@
   role="switch"
   aria-checked={selected ? 'true' : 'false'}
   {disabled}
-  on:click={() => instance && instance.handleClick()}
   {...inputProps}
   {...exclude($$restProps, ['icons$'])}
+  onclick={(e) => {
+    if (instance) {
+      instance.handleClick();
+    }
+    $$restProps.onclick?.(e);
+  }}
 >
-  <div class="mdc-switch__track" />
+  <div class="mdc-switch__track"></div>
   <div class="mdc-switch__handle-track">
     <div class="mdc-switch__handle">
       <div class="mdc-switch__shadow">
-        <div class="mdc-elevation-overlay" />
+        <div class="mdc-elevation-overlay"></div>
       </div>
-      <div class="mdc-switch__ripple" bind:this={rippleElement} />
+      <div class="mdc-switch__ripple" bind:this={rippleElement}></div>
       {#if icons}
         <div
           use:useActions={icons$use}
@@ -65,7 +69,7 @@
   </div>
   {#if focusRing}
     <div class="mdc-switch__focus-ring-wrapper">
-      <div class="mdc-switch__focus-ring" />
+      <div class="mdc-switch__focus-ring"></div>
     </div>
   {/if}
 </button>
@@ -77,8 +81,6 @@
   } from '@material/switch';
   import { MDCSwitchRenderFoundation } from '@material/switch';
   import { onMount, getContext } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type {
     SmuiAttrs,
     SmuiElementPropMap,
@@ -86,7 +88,6 @@
   } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
-    forwardEventsBuilder,
     classMap,
     exclude,
     prefixFilter,
@@ -115,7 +116,6 @@
       [k in keyof SmuiElementPropMap['div'] as `icons\$${k}`]?: SmuiElementPropMap['div'][k];
     };
 
-  const forwardEvents = forwardEventsBuilder(get_current_component());
   interface UninitializedValue extends Function {}
   let uninitializedValue: UninitializedValue = () => {};
   function isUninitializedValue(value: any): value is UninitializedValue {
@@ -175,7 +175,7 @@
   let previousGroup = isUninitializedValue(group) ? [] : [...group];
   let previousSelected = selected;
   $: {
-    // This is a substitute for an on:change listener that is
+    // This is a substitute for an onchange listener that is
     // smarter about when it calls the instance's handler. I do
     // this so that a group of changes will only trigger one
     // handler call, since the handler will reset currently
@@ -233,10 +233,17 @@
     previousChecked = checked;
     previousGroup = isUninitializedValue(group) ? [] : [...group];
     previousSelected = selected;
-    if (notifyChange && element) {
-      dispatch(element, 'SMUISwitch:change', { selected, value });
+    if (notifyChange && getElement()) {
+      dispatch(getElement(), 'SMUISwitchChange', { selected, value });
     }
   }
+
+  const SMUIGenericInputMount = getContext<
+    ((accessor: SMUISwitchInputAccessor) => void) | undefined
+  >('SMUI:generic:input:mount');
+  const SMUIGenericInputUnmount = getContext<
+    ((accessor: SMUISwitchInputAccessor) => void) | undefined
+  >('SMUI:generic:input:unmount');
 
   onMount(() => {
     instance = new MDCSwitchRenderFoundation({
@@ -263,8 +270,8 @@
       set checked(checked) {
         if (selected !== checked) {
           state.selected = checked;
-          if (element) {
-            dispatch(element, 'SMUISwitch:change', {
+          if (getElement()) {
+            dispatch(getElement(), 'SMUISwitchChange', {
               selected: checked,
               value,
             });
@@ -281,13 +288,13 @@
       },
     };
 
-    dispatch(element, 'SMUIGenericInput:mount', accessor);
+    SMUIGenericInputMount && SMUIGenericInputMount(accessor);
 
     instance.init();
     instance.initFromDOM();
 
     return () => {
-      dispatch(element, 'SMUIGenericInput:unmount', accessor);
+      SMUIGenericInputUnmount && SMUIGenericInputUnmount(accessor);
 
       instance.destroy();
     };

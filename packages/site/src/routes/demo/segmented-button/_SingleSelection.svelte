@@ -10,16 +10,16 @@
 </SegmentedButton>
 
 <div style="margin-top: 1em;">Programmatically select:</div>
-<Button on:click={() => (selected = 'Morning')}>
+<Button onclick={() => (selected = 'Morning')}>
   <Label>Morning</Label>
 </Button>
-<Button on:click={() => (selected = 'Afternoon')}>
+<Button onclick={() => (selected = 'Afternoon')}>
   <Label>Afternoon</Label>
 </Button>
-<Button on:click={() => (selected = 'Evening')}>
+<Button onclick={() => (selected = 'Evening')}>
   <Label>Evening</Label>
 </Button>
-<Button on:click={() => (selected = 'Night')}>
+<Button onclick={() => (selected = 'Night')}>
   <Label>Night</Label>
 </Button>
 

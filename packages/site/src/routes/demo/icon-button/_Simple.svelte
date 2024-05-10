@@ -1,15 +1,14 @@
 <div style="display: flex; align-items: center;">
-  <IconButton class="material-icons" on:click={() => clicked++}
-    >build</IconButton
+  <IconButton class="material-icons" onclick={() => clicked++}>build</IconButton
   >
 </div>
 <div style="display: flex; align-items: center;">
-  <IconButton class="material-icons" on:click={() => clicked++} disabled
+  <IconButton class="material-icons" onclick={() => clicked++} disabled
     >search</IconButton
   >&nbsp;(disabled)
 </div>
 <div style="display: flex; align-items: center;">
-  <IconButton class="material-icons" on:click={() => clicked++} ripple={false}
+  <IconButton class="material-icons" onclick={() => clicked++} ripple={false}
     >add_shopping_cart</IconButton
   >&nbsp;(no ripple)
 </div>

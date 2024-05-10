@@ -1,7 +1,6 @@
 <div
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   use:Ripple={{
     ripple,
     unbounded: false,
@@ -29,15 +28,9 @@
 </div>
 
 <script lang="ts">
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    useActions,
-  } from '@smui/common/internal';
+  import { classMap, useActions } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
 
   type OwnProps = {
@@ -50,8 +43,6 @@
     tabindex?: number;
   };
   type $$Props = OwnProps & SmuiAttrs<'div', keyof OwnProps>;
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];

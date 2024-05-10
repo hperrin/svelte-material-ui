@@ -1,7 +1,6 @@
 <div
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   class={Object.entries({
     [className]: true,
     'mdc-slider': true,
@@ -30,10 +29,16 @@
       {min}
       max={end}
       bind:value={start}
-      on:blur
-      on:focus
       {...inputStartAttrs}
       {...prefixFilter($$restProps, 'input$')}
+      onblur={(e) => {
+        dispatch(getElement(), 'blur', e);
+        $$restProps.input$onblur?.(e);
+      }}
+      onfocus={(e) => {
+        dispatch(getElement(), 'focus', e);
+        $$restProps.input$onfocus?.(e);
+      }}
     />
     <input
       bind:this={input}
@@ -47,11 +52,17 @@
       min={start}
       {max}
       bind:value={end}
-      on:blur
-      on:focus
       {...inputProps}
       {...inputAttrs}
       {...prefixFilter($$restProps, 'input$')}
+      onblur={(e) => {
+        dispatch(getElement(), 'blur', e);
+        $$restProps.input$onblur?.(e);
+      }}
+      onfocus={(e) => {
+        dispatch(getElement(), 'focus', e);
+        $$restProps.input$onfocus?.(e);
+      }}
     />
   {:else}
     <input
@@ -66,23 +77,29 @@
       {min}
       {max}
       bind:value
-      on:blur
-      on:focus
       {...inputProps}
       {...inputAttrs}
       {...prefixFilter($$restProps, 'input$')}
+      onblur={(e) => {
+        dispatch(getElement(), 'blur', e);
+        $$restProps.input$onblur?.(e);
+      }}
+      onfocus={(e) => {
+        dispatch(getElement(), 'focus', e);
+        $$restProps.input$onfocus?.(e);
+      }}
     />
   {/if}
 
   <div class="mdc-slider__track">
-    <div class="mdc-slider__track--inactive" />
+    <div class="mdc-slider__track--inactive"></div>
     <div class="mdc-slider__track--active">
       <div
         class="mdc-slider__track--active_fill"
         style={Object.entries(trackActiveStyles)
           .map(([name, value]) => `${name}: ${value};`)
           .join(' ')}
-      />
+      ></div>
     </div>
     {#if discrete && tickMarks && step > 0}
       <div class="mdc-slider__tick-marks">
@@ -91,7 +108,7 @@
             class={tickMark === TickMark.ACTIVE
               ? 'mdc-slider__tick-mark--active'
               : 'mdc-slider__tick-mark--inactive'}
-          />
+          ></div>
         {/each}
       </div>
     {/if}
@@ -124,7 +141,7 @@
           </div>
         </div>
       {/if}
-      <div bind:this={thumbKnobStart} class="mdc-slider__thumb-knob" />
+      <div bind:this={thumbKnobStart} class="mdc-slider__thumb-knob"></div>
     </div>
     <div
       bind:this={thumbEl}
@@ -153,7 +170,7 @@
           </div>
         </div>
       {/if}
-      <div bind:this={thumbKnob} class="mdc-slider__thumb-knob" />
+      <div bind:this={thumbKnob} class="mdc-slider__thumb-knob"></div>
     </div>
   {:else}
     <div
@@ -183,7 +200,7 @@
           </div>
         </div>
       {/if}
-      <div bind:this={thumbKnob} class="mdc-slider__thumb-knob" />
+      <div bind:this={thumbKnob} class="mdc-slider__thumb-knob"></div>
     </div>
   {/if}
 </div>
@@ -191,8 +208,6 @@
 <script lang="ts">
   import { MDCSliderFoundation, Thumb, TickMark } from '@material/slider';
   import { onMount, onDestroy, getContext } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type {
     AddLayoutListener,
     RemoveLayoutListener,
@@ -201,7 +216,6 @@
   } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
-    forwardEventsBuilder,
     classMap,
     exclude,
     prefixFilter,
@@ -241,8 +255,6 @@
       input$checked?: never;
       input$group?: never;
     };
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
@@ -389,6 +401,13 @@
     instance.layout();
   }
 
+  const SMUIGenericInputMount = getContext<
+    ((accessor: any) => void) | undefined
+  >('SMUI:generic:input:mount');
+  const SMUIGenericInputUnmount = getContext<
+    ((accessor: any) => void) | undefined
+  >('SMUI:generic:input:unmount');
+
   onMount(() => {
     instance = new MDCSliderFoundation({
       hasClass,
@@ -462,7 +481,7 @@
       emitChangeEvent: (value, thumb) => {
         dispatch(
           getElement(),
-          'SMUISlider:change',
+          'SMUISliderChange',
           { value, thumb },
           undefined,
           true,
@@ -471,7 +490,7 @@
       emitInputEvent: (value, thumb) => {
         dispatch(
           getElement(),
-          'SMUISlider:input',
+          'SMUISliderInput',
           { value, thumb },
           undefined,
           true,
@@ -553,13 +572,13 @@
       },
     };
 
-    dispatch(element, 'SMUIGenericInput:mount', accessor);
+    SMUIGenericInputMount && SMUIGenericInputMount(accessor);
 
     instance.init();
     instance.layout({ skipUpdateUI: true });
 
     return () => {
-      dispatch(element, 'SMUIGenericInput:unmount', accessor);
+      SMUIGenericInputUnmount && SMUIGenericInputUnmount(accessor);
 
       instance.destroy();
     };

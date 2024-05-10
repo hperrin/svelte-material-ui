@@ -1,22 +1,22 @@
 <div style="display: flex; flex-wrap: wrap; align-items: center;">
   <Wrapper>
-    <Button on:click={() => clicked++} touch>
+    <Button onclick={() => clicked++} touch>
       <Label>Button</Label>
     </Button>
   </Wrapper>
   <Wrapper>
-    <IconButton on:click={() => clicked++} touch>
+    <IconButton onclick={() => clicked++} touch>
       <Icon class="material-icons">favorite</Icon>
     </IconButton>
   </Wrapper>
   <Wrapper>
-    <Fab on:click={() => clicked++} mini touch>
+    <Fab onclick={() => clicked++} mini touch>
       <Icon class="material-icons">favorite</Icon>
     </Fab>
   </Wrapper>
   <Wrapper>
     <Set chips={['Chip']} let:chip style="display: inline-flex;">
-      <Chip {chip} on:click={() => clicked++} touch>
+      <Chip {chip} onclick={() => clicked++} touch>
         <Text tabindex={0}>{chip}</Text>
       </Chip>
     </Set>

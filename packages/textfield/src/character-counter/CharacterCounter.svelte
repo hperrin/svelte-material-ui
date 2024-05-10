@@ -1,7 +1,6 @@
 <div
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
     [className]: true,
     'mdc-text-field-character-counter': true,
@@ -13,25 +12,16 @@
 
 <script lang="ts">
   import { MDCTextFieldCharacterCounterFoundation } from '@material/textfield';
-  import { onMount } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
+  import { onMount, getContext } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    useActions,
-    dispatch,
-  } from '@smui/common/internal';
+  import { classMap, useActions, dispatch } from '@smui/common/internal';
 
   type OwnProps = {
     use?: ActionArray;
     class?: string;
   };
   type $$Props = OwnProps & SmuiAttrs<'div', keyof OwnProps>;
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
@@ -42,6 +32,13 @@
   let instance: MDCTextFieldCharacterCounterFoundation;
   let content: string | undefined = undefined;
 
+  const SMUITextfieldCharacterCounterMount = getContext<
+    ((accessor: MDCTextFieldCharacterCounterFoundation) => void) | undefined
+  >('SMUI:textfield:character-counter:mount');
+  const SMUITextfieldCharacterCounterUnmount = getContext<
+    ((accessor: MDCTextFieldCharacterCounterFoundation) => void) | undefined
+  >('SMUI:textfield:character-counter:unmount');
+
   onMount(() => {
     instance = new MDCTextFieldCharacterCounterFoundation({
       setContent: (value) => {
@@ -49,12 +46,14 @@
       },
     });
 
-    dispatch(getElement(), 'SMUITextfieldCharacterCounter:mount', instance);
+    SMUITextfieldCharacterCounterMount &&
+      SMUITextfieldCharacterCounterMount(instance);
 
     instance.init();
 
     return () => {
-      dispatch(getElement(), 'SMUITextfieldCharacterCounter:unmount', instance);
+      SMUITextfieldCharacterCounterUnmount &&
+        SMUITextfieldCharacterCounterUnmount(instance);
 
       instance.destroy();
     };

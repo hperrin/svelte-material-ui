@@ -4,7 +4,7 @@
     <TrailingAction icon$class="material-icons">cancel</TrailingAction>
   </Chip>
 </Set>
-<Button on:click={addInputChip}><Label>Add</Label></Button>
+<Button onclick={addInputChip}><Label>Add</Label></Button>
 
 <script lang="ts">
   import Chip, { Set, TrailingAction, Text } from '@smui/chips';

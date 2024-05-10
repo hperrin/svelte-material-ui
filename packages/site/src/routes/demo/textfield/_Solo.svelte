@@ -3,13 +3,13 @@
     <Icon class="material-icons">search</Icon>
     <Input
       bind:value
-      on:keydown={handleKeyDown}
+      onkeydown={handleKeyDown}
       placeholder="Search"
       class="solo-input"
     />
   </Paper>
   <Fab
-    on:click={doSearch}
+    onclick={doSearch}
     disabled={value === ''}
     color="primary"
     mini
@@ -33,8 +33,7 @@
     alert('Search for ' + value);
   }
 
-  function handleKeyDown(event: CustomEvent | KeyboardEvent) {
-    event = event as KeyboardEvent;
+  function handleKeyDown(event: KeyboardEvent) {
     if (event.key === 'Enter') {
       doSearch();
     }

@@ -55,8 +55,7 @@
       system, because these events require a DOM element as a target, can bubble
       (and do by default), and are cancelable with <code
         >event.preventDefault()</code
-      >. All SMUI events are dispatched with this instead of Svelte's
-      <code>createEventDispatcher</code>.
+      >. All SMUI events are dispatched with this.
     </svelte:fragment>
   </Demo>
 

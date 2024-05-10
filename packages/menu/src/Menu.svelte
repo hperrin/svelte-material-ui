@@ -1,37 +1,39 @@
 <MenuSurface
   bind:this={element}
-  use={usePass}
+  {use}
   class={classMap({
     [className]: true,
     'mdc-menu': true,
   })}
   bind:open
-  on:SMUIMenuSurface:mount={handleMenuSurfaceAccessor}
-  on:SMUIList:mount={handleListAccessor}
-  on:SMUIMenuSurface:opened={() =>
-    instance && instance.handleMenuSurfaceOpened()}
-  on:keydown={handleKeydown}
-  on:SMUIList:action={(event) =>
-    instance &&
-    instance.handleItemAction(
-      listAccessor.getOrderedList()[event.detail.index].element,
-    )}
-  {...$$restProps}><slot /></MenuSurface
+  {...$$restProps}
+  onkeydown={(e) => {
+    handleKeydown(e);
+    $$restProps.onkeydown?.(e);
+  }}
+  onSMUIMenuSurfaceOpened={(e) => {
+    if (instance) {
+      instance.handleMenuSurfaceOpened();
+    }
+    $$restProps.onSMUIMenuSurfaceOpened?.(e);
+  }}
+  onSMUIListAction={(e) => {
+    if (instance) {
+      instance.handleItemAction(
+        listAccessor.getOrderedList()[e.detail.index].element,
+      );
+    }
+    $$restProps.onSMUIListAction?.(e);
+  }}><slot /></MenuSurface
 >
 
 <script lang="ts">
-  import type { ComponentProps } from 'svelte';
   import { MDCMenuFoundation, cssClasses } from '@material/menu';
   import { ponyfill } from '@material/dom';
-  import { onMount } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
+  import type { ComponentProps } from 'svelte';
+  import { onMount, getContext, setContext } from 'svelte';
   import type { ActionArray } from '@smui/common/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    dispatch,
-  } from '@smui/common/internal';
+  import { classMap, dispatch } from '@smui/common/internal';
   import type { SMUIListAccessor } from '@smui/list';
   import type { SMUIMenuSurfaceAccessor } from '@smui/menu-surface';
   import MenuSurface from '@smui/menu-surface';
@@ -47,10 +49,7 @@
   };
   type $$Props = OwnProps & Omit<ComponentProps<MenuSurface>, keyof OwnProps>;
 
-  const forwardEvents = forwardEventsBuilder(get_current_component());
-
   export let use: ActionArray = [];
-  $: usePass = [forwardEvents, ...use] as ActionArray;
   let className = '';
   export { className as class };
   export let open = false;
@@ -59,6 +58,28 @@
   let instance: MDCMenuFoundation;
   let menuSurfaceAccessor: SMUIMenuSurfaceAccessor;
   let listAccessor: SMUIListAccessor;
+
+  setContext('SMUI:menu-surface:mount', (accessor: SMUIMenuSurfaceAccessor) => {
+    if (!menuSurfaceAccessor) {
+      menuSurfaceAccessor = accessor;
+    }
+  });
+  const SMUIListMount = getContext<
+    ((accessor: SMUIListAccessor) => void) | undefined
+  >('SMUI:list:mount');
+  setContext('SMUI:list:mount', (accessor: SMUIListAccessor) => {
+    if (!listAccessor) {
+      listAccessor = accessor;
+    }
+    SMUIListMount && SMUIListMount(accessor);
+  });
+
+  const SMUIMenuMount = getContext<
+    ((accessor: MDCMenuFoundation) => void) | undefined
+  >('SMUI:menu:mount');
+  const SMUIMenuUnmount = getContext<
+    ((accessor: MDCMenuFoundation) => void) | undefined
+  >('SMUI:menu:unmount');
 
   onMount(() => {
     instance = new MDCMenuFoundation({
@@ -80,7 +101,7 @@
         element.classList.contains(className),
       closeSurface: (skipRestoreFocus) => {
         menuSurfaceAccessor.closeProgrammatic(skipRestoreFocus);
-        dispatch(getElement(), 'SMUIMenu:closedProgrammatically');
+        dispatch(getElement(), 'SMUIMenuClosedProgrammatically');
       },
       getElementIndex: (element) =>
         listAccessor
@@ -90,7 +111,7 @@
       notifySelected: (evtData) =>
         dispatch(
           getElement(),
-          'SMUIMenu:selected',
+          'SMUIMenuSelected',
           {
             index: evtData.index,
             item: listAccessor.getOrderedList()[evtData.index].element,
@@ -123,31 +144,19 @@
       },
     });
 
-    dispatch(getElement(), 'SMUIMenu:mount', instance);
+    SMUIMenuMount && SMUIMenuMount(instance);
 
     instance.init();
 
     return () => {
+      SMUIMenuUnmount && SMUIMenuUnmount(instance);
+
       instance.destroy();
     };
   });
 
   function handleKeydown(event: Event) {
     instance && instance.handleKeydown(event as KeyboardEvent);
-  }
-
-  function handleMenuSurfaceAccessor(
-    event: CustomEvent<SMUIMenuSurfaceAccessor>,
-  ) {
-    if (!menuSurfaceAccessor) {
-      menuSurfaceAccessor = event.detail;
-    }
-  }
-
-  function handleListAccessor(event: CustomEvent<SMUIListAccessor>) {
-    if (!listAccessor) {
-      listAccessor = event.detail;
-    }
   }
 
   export function isOpen() {

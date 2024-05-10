@@ -15,7 +15,7 @@
   }}
   bind:this={anchor}
 >
-  <Button on:click={() => menu.setOpen(true)}>
+  <Button onclick={() => menu.setOpen(true)}>
     <Label>Open Menu</Label>
   </Button>
   <Menu
@@ -25,26 +25,26 @@
     anchorCorner="BOTTOM_LEFT"
   >
     <List twoLine>
-      <Item on:SMUI:action={() => (clicked = 'Cut')}>
+      <Item onSMUIAction={() => (clicked = 'Cut')}>
         <Text>
           <PrimaryText>Cut</PrimaryText>
           <SecondaryText>Copy to clipboard and remove.</SecondaryText>
         </Text>
       </Item>
-      <Item on:SMUI:action={() => (clicked = 'Copy')}>
+      <Item onSMUIAction={() => (clicked = 'Copy')}>
         <Text>
           <PrimaryText>Copy</PrimaryText>
           <SecondaryText>Copy to clipboard.</SecondaryText>
         </Text>
       </Item>
-      <Item on:SMUI:action={() => (clicked = 'Paste')}>
+      <Item onSMUIAction={() => (clicked = 'Paste')}>
         <Text>
           <PrimaryText>Paste</PrimaryText>
           <SecondaryText>Paste from clipboard.</SecondaryText>
         </Text>
       </Item>
       <Separator />
-      <Item on:SMUI:action={() => (clicked = 'Delete')}>
+      <Item onSMUIAction={() => (clicked = 'Delete')}>
         <Text>
           <PrimaryText>Delete</PrimaryText>
           <SecondaryText>Remove item.</SecondaryText>

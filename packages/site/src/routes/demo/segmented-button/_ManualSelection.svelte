@@ -6,7 +6,7 @@
   <Segment
     {segment}
     selected={segment.selected}
-    on:click={() => {
+    onclick={() => {
       segment.selected = !segment.selected;
       // Remember to do this so Svelte knows that `choices` has changed.
       choices = choices;

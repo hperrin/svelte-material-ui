@@ -15,7 +15,6 @@
         addStyle,
       },
     ],
-    forwardEvents,
     ...use,
   ]}
   class={classMap({
@@ -53,18 +52,23 @@
   data-aria-label-on={ariaLabelOn}
   data-aria-label-off={ariaLabelOff}
   aria-describedby={ariaDescribedby}
-  on:click={() => instance && instance.handleClick()}
-  on:click={() =>
-    context === 'top-app-bar:navigation' &&
-    dispatch(getElement(), 'SMUITopAppBarIconButton:nav')}
   {href}
   {...actionProp}
   {...internalAttrs}
   {...$$restProps}
-  ><div class="mdc-icon-button__ripple" />
+  onclick={(e: MouseEvent) => {
+    if (instance) {
+      instance.handleClick();
+    }
+    if (context === 'top-app-bar:navigation') {
+      dispatch(getElement(), 'SMUITopAppBarIconButtonNav');
+    }
+    $$restProps.onclick?.(e);
+  }}
+  ><div class="mdc-icon-button__ripple"></div>
   <slot />{#if touch}<div
       class="mdc-icon-button__touch"
-    />{/if}</svelte:component
+    ></div>{/if}</svelte:component
 >
 
 <script
@@ -75,14 +79,8 @@
   import { MDCIconButtonToggleFoundation } from '@material/icon-button';
   import type { SvelteComponent } from 'svelte';
   import { onDestroy, getContext, setContext } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type { ActionArray } from '@smui/common/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    dispatch,
-  } from '@smui/common/internal';
+  import { classMap, dispatch } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
   import type {
     SmuiElementMap,
@@ -118,7 +116,6 @@
   };
   type $$Props = OwnProps & SmuiAttrs<TagName, keyof OwnProps>;
 
-  const forwardEvents = forwardEventsBuilder(get_current_component());
   interface UninitializedValue extends Function {}
   let uninitializedValue: UninitializedValue = () => {};
   function isUninitializedValue(value: any): value is UninitializedValue {

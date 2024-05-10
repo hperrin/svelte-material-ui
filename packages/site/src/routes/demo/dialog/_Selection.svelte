@@ -3,7 +3,7 @@
   selection
   aria-labelledby="list-selection-title"
   aria-describedby="list-selection-content"
-  on:SMUIDialog:closed={closeHandler}
+  onSMUIDialogClosed={closeHandler}
 >
   <Title id="list-selection-title">Dialog Title</Title>
   <Content id="list-selection-content">
@@ -38,7 +38,7 @@
   </Actions>
 </Dialog>
 
-<Button on:click={() => (open = true)}>
+<Button onclick={() => (open = true)}>
   <Label>Open Dialog</Label>
 </Button>
 

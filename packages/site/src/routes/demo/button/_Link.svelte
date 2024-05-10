@@ -1,4 +1,4 @@
-<Button on:click={() => clicked++} href="http://example.com" target="_blank">
+<Button onclick={() => clicked++} href="http://example.com" target="_blank">
   <Label>Link</Label>
 </Button>
 

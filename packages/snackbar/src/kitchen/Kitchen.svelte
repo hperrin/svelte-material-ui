@@ -1,10 +1,13 @@
 {#if config}
   <Snackbar
     bind:this={element}
-    on:SMUISnackbar:closed={handleClosed}
     labelText={config.label}
     {...(config && config.props) || {}}
     {...prefixFilter($$restProps, 'snackbar$')}
+    onSMUISnackbarClosed={(e) => {
+      handleClosed(e);
+      $$restProps.snackbar$onSMUISnackbarClosed?.(e);
+    }}
   >
     <Label {...prefixFilter($$restProps, 'label$')} />
     {#if config.actions || config.dismissButton}
@@ -12,16 +15,22 @@
         {#if config.actions}
           {#each config.actions as action}
             <Button
-              on:click={(event) => handleActionClick(action, event)}
-              {...prefixFilter($$restProps, 'action$')}>{action.text}</Button
+              {...prefixFilter($$restProps, 'action$')}
+              onclick={(e) => {
+                handleActionClick(action, e);
+                $$restProps.action$onclick?.(e);
+              }}>{action.text}</Button
             >
           {/each}
         {/if}
         {#if config.dismissButton}
           <IconButton
-            on:click={handleDismiss}
             title={config.dismissTitle || 'Dismiss'}
             {...prefixFilter($$restProps, 'dismiss$')}
+            onclick={(e) => {
+              handleDismiss(e);
+              $$restProps.dismiss$onclick?.(e);
+            }}
             ><slot name="dismiss"
               >{!$$slots.dismiss ? config.dismissText ?? 'close' : ''}</slot
             ></IconButton
@@ -88,15 +97,15 @@
     config = undefined;
   }
 
-  function handleActionClick(action: ConfigAction, e: CustomEvent) {
+  function handleActionClick(action: ConfigAction, e: MouseEvent) {
     if (action.onClick) {
-      action.onClick(e as unknown as MouseEvent);
+      action.onClick(e);
     }
   }
 
-  function handleDismiss(e: CustomEvent) {
+  function handleDismiss(e: MouseEvent) {
     if (config?.onDismiss) {
-      config.onDismiss(e as unknown as MouseEvent);
+      config.onDismiss(e);
     }
   }
 

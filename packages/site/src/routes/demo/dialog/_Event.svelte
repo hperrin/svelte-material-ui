@@ -2,7 +2,7 @@
   bind:open
   aria-labelledby="event-title"
   aria-describedby="event-content"
-  on:SMUIDialog:closed={closeHandler}
+  onSMUIDialogClosed={closeHandler}
 >
   <Title id="event-title">The Best Dog</Title>
   <Content id="event-content">
@@ -18,7 +18,7 @@
   </Actions>
 </Dialog>
 
-<Button on:click={() => (open = true)}>
+<Button onclick={() => (open = true)}>
   <Label>Open Dialog</Label>
 </Button>
 

@@ -70,7 +70,7 @@
 </div>
 
 <div>
-  <Button on:click={() => (showLeadingIcons = !showLeadingIcons)}>
+  <Button onclick={() => (showLeadingIcons = !showLeadingIcons)}>
     Toggle Leading Icons
   </Button>
 </div>

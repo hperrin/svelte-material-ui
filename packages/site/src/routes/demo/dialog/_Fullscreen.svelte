@@ -3,7 +3,7 @@
   fullscreen
   aria-labelledby="fullscreen-title"
   aria-describedby="fullscreen-content"
-  on:SMUIDialog:closed={closeHandler}
+  onSMUIDialogClosed={closeHandler}
 >
   <Header>
     <Title id="fullscreen-title">Terms and Conditions</Title>
@@ -24,7 +24,7 @@
   </Actions>
 </Dialog>
 
-<Button on:click={() => (open = true)}>
+<Button onclick={() => (open = true)}>
   <Label>Open Dialog</Label>
 </Button>
 

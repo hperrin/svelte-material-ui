@@ -10,7 +10,7 @@
 
 <div>
   <Button
-    on:click={() => {
+    onclick={() => {
       valueStart = 0;
       valueEnd = 10;
     }}>Maximum Range!</Button

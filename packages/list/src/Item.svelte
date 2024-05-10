@@ -20,7 +20,6 @@
             },
           ],
         ]),
-    forwardEvents,
     ...use,
   ]}
   class={classMap({
@@ -49,14 +48,18 @@
   {...!nav ? { 'aria-disabled': disabled ? 'true' : 'false' } : {}}
   data-menu-item-skip-restore-focus={skipRestoreFocus || undefined}
   {tabindex}
-  on:click={action}
-  on:keydown={handleKeydown}
-  on:SMUIGenericInput:mount={handleInputMount}
-  on:SMUIGenericInput:unmount={() => (input = undefined)}
   {href}
   {...internalAttrs}
   {...$$restProps}
-  >{#if ripple}<span class="mdc-deprecated-list-item__ripple" />{/if}<slot
+  onclick={(e: MouseEvent) => {
+    action(e);
+    $$restProps.onclick?.(e);
+  }}
+  onkeydown={(e: KeyboardEvent) => {
+    handleKeydown(e);
+    $$restProps.onkeydown?.(e);
+  }}
+  >{#if ripple}<span class="mdc-deprecated-list-item__ripple"></span>{/if}<slot
   /></svelte:component
 >
 
@@ -69,20 +72,14 @@
   generics="Href extends string | undefined = undefined, TagName extends SmuiEveryElement = Href extends string ? 'a' : 'li'"
 >
   import type { SvelteComponent } from 'svelte';
-  import { onMount, onDestroy, getContext, setContext } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
+  import { onMount, onDestroy, setContext, getContext } from 'svelte';
   import type {
     SMUICheckboxInputAccessor,
     SMUIGenericInputAccessor,
     SMUIRadioInputAccessor,
   } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    dispatch,
-  } from '@smui/common/internal';
+  import { classMap, dispatch } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
   import type {
     SmuiElementMap,
@@ -118,7 +115,6 @@
       'data-value'?: any;
     };
 
-  const forwardEvents = forwardEventsBuilder(get_current_component());
   interface UninitializedValue extends Function {}
   let uninitializedValue: UninitializedValue = () => {};
   function isUninitializedValue(value: any): value is UninitializedValue {
@@ -177,6 +173,28 @@
   setContext('SMUI:generic:input:props', { id: inputId });
   // Reset separator context, because we aren't directly under a list anymore.
   setContext('SMUI:separator:context', undefined);
+
+  setContext(
+    'SMUI:generic:input:mount',
+    (accessor: SMUIGenericInputAccessor) => {
+      if (
+        '_smui_checkbox_accessor' in accessor ||
+        '_smui_radio_accessor' in accessor
+      ) {
+        input = accessor;
+      }
+    },
+  );
+  setContext('SMUI:generic:input:unmount', () => {
+    input = undefined;
+  });
+
+  const SMUIListItemMount = getContext<
+    ((accessor: SMUIListItemAccessor) => void) | undefined
+  >('SMUI:list:item:mount');
+  const SMUIListItemUnmount = getContext<
+    ((accessor: SMUIListItemAccessor) => void) | undefined
+  >('SMUI:list:item:unmount');
 
   onMount(() => {
     // Tabindex needs to be '0' if this is the first non-disabled list item, and
@@ -274,10 +292,10 @@
       },
     };
 
-    dispatch(getElement(), 'SMUIListItem:mount', accessor);
+    SMUIListItemMount && SMUIListItemMount(accessor);
 
     return () => {
-      dispatch(getElement(), 'SMUIListItem:unmount', accessor);
+      SMUIListItemUnmount && SMUIListItemUnmount(accessor);
     };
   });
 
@@ -365,18 +383,9 @@
     }
   }
 
-  function handleInputMount(e: CustomEvent<SMUIGenericInputAccessor>) {
-    if (
-      '_smui_checkbox_accessor' in e.detail ||
-      '_smui_radio_accessor' in e.detail
-    ) {
-      input = e.detail;
-    }
-  }
-
   export function action(e: Event) {
     if (!disabled) {
-      dispatch(getElement(), 'SMUI:action', e);
+      dispatch(getElement(), 'SMUIAction', e);
     }
   }
 

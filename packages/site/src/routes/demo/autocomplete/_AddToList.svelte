@@ -14,7 +14,7 @@
     options={available}
     bind:value
     label="Fruit"
-    on:SMUIAutocomplete:selected={handleSelection}
+    onSMUIAutocompleteSelected={handleSelection}
   />
 </div>
 

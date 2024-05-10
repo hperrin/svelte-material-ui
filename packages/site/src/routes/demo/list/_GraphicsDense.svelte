@@ -1,19 +1,19 @@
 <div>
   <List class="demo-list" dense>
-    <Item on:SMUI:action={() => (clicked = 'Edit')}>
+    <Item onSMUIAction={() => (clicked = 'Edit')}>
       <Graphic class="material-icons">edit</Graphic>
       <Text>Edit</Text>
     </Item>
-    <Item on:SMUI:action={() => (clicked = 'Send')}>
+    <Item onSMUIAction={() => (clicked = 'Send')}>
       <Graphic class="material-icons">send</Graphic>
       <Text>Send</Text>
     </Item>
-    <Item on:SMUI:action={() => (clicked = 'Archive')}>
+    <Item onSMUIAction={() => (clicked = 'Archive')}>
       <Graphic class="material-icons">archive</Graphic>
       <Text>Archive</Text>
     </Item>
     <Separator />
-    <Item on:SMUI:action={() => (clicked = 'Delete')}>
+    <Item onSMUIAction={() => (clicked = 'Delete')}>
       <Graphic class="material-icons">clear</Graphic>
       <Text>Delete</Text>
     </Item>

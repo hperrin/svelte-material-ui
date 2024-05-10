@@ -1,15 +1,12 @@
 <svelte:window
-  on:resize={() => open && instance && instance.layout()}
-  on:orientationchange={() => open && instance && instance.layout()}
+  onresize={() => open && instance && instance.layout()}
+  onorientationchange={() => open && instance && instance.layout()}
 />
-<svelte:body
-  on:keydown={instance && instance.handleDocumentKeydown.bind(instance)}
-/>
+<svelte:body onkeydown={(e) => instance && instance.handleDocumentKeydown(e)} />
 
 <div
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
     [className]: true,
     'mdc-dialog': true,
@@ -22,12 +19,31 @@
   })}
   role="alertdialog"
   aria-modal="true"
-  on:SMUIDialog:opening={handleDialogOpening}
-  on:SMUIDialog:opened={handleDialogOpened}
-  on:SMUIDialog:closed={handleDialogClosed}
-  on:click={instance && instance.handleClick.bind(instance)}
-  on:keydown={instance && instance.handleKeydown.bind(instance)}
   {...exclude($$restProps, ['container$', 'surface$'])}
+  onSMUIDialogOpening={(e) => {
+    handleDialogOpening();
+    $$restProps.onSMUIDialogOpening?.(e);
+  }}
+  onSMUIDialogOpened={(e) => {
+    handleDialogOpened();
+    $$restProps.onSMUIDialogOpened?.(e);
+  }}
+  onSMUIDialogClosed={(e) => {
+    handleDialogClosed();
+    $$restProps.onSMUIDialogClosed?.(e);
+  }}
+  onclick={(e) => {
+    if (instance) {
+      instance.handleClick(e);
+    }
+    $$restProps.onclick?.(e);
+  }}
+  onkeydown={(e) => {
+    if (instance) {
+      instance.handleKeydown(e);
+    }
+    $$restProps.onkeydown?.(e);
+  }}
 >
   <div
     class={classMap({
@@ -49,13 +65,13 @@
       {#if fullscreen}
         <div
           class="mdc-dialog__surface-scrim"
-          on:transitionend={() =>
+          ontransitionend={() =>
             instance && instance.handleSurfaceScrimTransitionEnd()}
-        />
+        ></div>
       {/if}
     </div>
   </div>
-  <div class="mdc-dialog__scrim" />
+  <div class="mdc-dialog__scrim"></div>
 </div>
 
 <slot name="over" />
@@ -66,8 +82,6 @@
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
   import type { Writable } from 'svelte/store';
   import { writable } from 'svelte/store';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type {
     AddLayoutListener,
     RemoveLayoutListener,
@@ -76,7 +90,6 @@
   } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
-    forwardEventsBuilder,
     classMap,
     exclude,
     prefixFilter,
@@ -113,8 +126,6 @@
     } & {
       [k in keyof SmuiElementPropMap['div'] as `surface\$${k}`]?: SmuiElementPropMap['div'][k];
     };
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
@@ -246,7 +257,7 @@
         open = false;
         dispatch(
           getElement(),
-          'SMUIDialog:closed',
+          'SMUIDialogClosed',
           action ? { action } : {},
           undefined,
           true,
@@ -255,15 +266,15 @@
       notifyClosing: (action) =>
         dispatch(
           getElement(),
-          'SMUIDialog:closing',
+          'SMUIDialogClosing',
           action ? { action } : {},
           undefined,
           true,
         ),
       notifyOpened: () =>
-        dispatch(getElement(), 'SMUIDialog:opened', {}, undefined, true),
+        dispatch(getElement(), 'SMUIDialogOpened', {}, undefined, true),
       notifyOpening: () =>
-        dispatch(getElement(), 'SMUIDialog:opening', {}, undefined, true),
+        dispatch(getElement(), 'SMUIDialogOpening', {}, undefined, true),
       releaseFocus: () => focusTrap.releaseFocus(),
       removeBodyClass: (className) => document.body.classList.remove(className),
       removeClass,
@@ -330,22 +341,22 @@
 
   function getButtonEls() {
     return [].slice.call(
-      element.querySelectorAll<HTMLButtonElement>('.mdc-dialog__button'),
+      getElement().querySelectorAll<HTMLButtonElement>('.mdc-dialog__button'),
     ) as HTMLButtonElement[];
   }
 
   function getDefaultButtonEl() {
-    return element.querySelector<HTMLButtonElement>(
+    return getElement().querySelector<HTMLButtonElement>(
       '[data-mdc-dialog-button-default]',
     );
   }
 
   function getContentEl() {
-    return element.querySelector<HTMLElement>('.mdc-dialog__content');
+    return getElement().querySelector<HTMLElement>('.mdc-dialog__content');
   }
 
   function getInitialFocusEl() {
-    return element.querySelector<HTMLElement>(
+    return getElement().querySelector<HTMLElement>(
       '[data-mdc-dialog-initial-focus]',
     );
   }

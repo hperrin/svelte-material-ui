@@ -29,7 +29,7 @@
   "scripts": {
     "build": "npm run build:js && npm run build:svelte && npm run build:sass",
     "build:js": "tsc -p . --outDir dist/ --rootDir src/",
-    "build:svelte": "svelte-strip strip src/ dist",
+    "build:svelte": "cp src/*.svelte dist/",
     "build:sass": "sass --no-source-map -I node_modules -I ../smui-theme/node_modules -I ../../node_modules _style.scss bare.css",
     "clean": "git status --ignored -u --porcelain . | grep -v node_modules/ | grep -e '^!! ' | sed 's/^!! packages\\/[a-z-]*\\///g' | tr '\\n' ' ' | xargs rm",
     "check": "npx svelte-check --ignore dist",
@@ -60,7 +60,6 @@
     "@tsconfig/svelte": "^5.0.4",
     "sass": "^1.76.0",
     "svelte-check": "^3.7.1",
-    "svelte-strip": "^3.1.1",
     "tslib": "^2.6.2",
     "typescript": "^5.4.5"
   }

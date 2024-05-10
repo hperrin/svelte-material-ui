@@ -2,7 +2,7 @@
   this={component}
   {tag}
   bind:this={element}
-  use={[forwardEvents, ...use]}
+  {use}
   class={classMap({
     [className]: true,
     [smuiClass]: true,
@@ -29,8 +29,6 @@
 <script lang="ts">
   import type { SvelteComponent } from 'svelte';
   import { onDestroy, getContext, setContext } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
 
   import type {
     SmuiElementPropMap,
@@ -38,7 +36,6 @@
     SmuiAttrs,
   } from '../smui.types.js';
   import type { ActionArray } from '../internal/useActions.js';
-  import { forwardEventsBuilder } from '../internal/forwardEventsBuilder.js';
   import { classMap } from '../internal/classMap.js';
 
   type OwnProps = {
@@ -75,8 +72,6 @@
       );
     }
   });
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   for (let context in contexts) {
     if (contexts.hasOwnProperty(context)) {

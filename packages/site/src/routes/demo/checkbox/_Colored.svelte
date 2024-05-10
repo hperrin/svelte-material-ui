@@ -28,7 +28,7 @@
 </div>
 
 <br />
-<Button on:click={() => (checked = null)}>Reset</Button>
+<Button onclick={() => (checked = null)}>Reset</Button>
 
 <br /><br />
 <div>
@@ -61,7 +61,7 @@
 </div>
 
 <br />
-<Button on:click={() => (checked2 = null)}>Reset</Button>
+<Button onclick={() => (checked2 = null)}>Reset</Button>
 
 <script lang="ts">
   import Checkbox from '@smui/checkbox';

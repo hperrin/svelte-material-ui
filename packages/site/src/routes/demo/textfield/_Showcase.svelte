@@ -13,8 +13,8 @@
     label="To"
     style="min-width: 250px;"
     input$autocomplete="email"
-    on:focus={() => (focused = true)}
-    on:blur={() => (focused = false)}
+    onfocus={() => (focused = true)}
+    onblur={() => (focused = false)}
     withTrailingIcon={!disabled}
   >
     <!--
@@ -23,7 +23,7 @@
     -->
     <svelte:fragment slot="trailingIcon">
       {#if !disabled}
-        <Icon class="material-icons" role="button" on:click={clickHandler}
+        <Icon class="material-icons" role="button" onclick={clickHandler}
           >send</Icon
         >
       {/if}

@@ -2,7 +2,6 @@
   <th
     bind:this={element}
     use:useActions={use}
-    use:forwardEvents
     class={classMap({
       [className]: true,
       'mdc-data-table__header-cell': true,
@@ -12,7 +11,6 @@
       'mdc-data-table__header-cell--sorted': sortable && $sort === columnId,
       ...internalClasses,
     })}
-    on:change={(event) => checkbox && notifyHeaderChange(event)}
     role="columnheader"
     scope="col"
     data-column-id={columnId}
@@ -23,6 +21,12 @@
       : undefined}
     {...internalAttrs}
     {...$$restProps}
+    onchange={(e) => {
+      if (checkbox) {
+        notifyHeaderChange(e);
+      }
+      $$restProps.onchange?.(e);
+    }}
     >{#if sortable}
       <div class="mdc-data-table__header-cell-wrapper">
         <slot />
@@ -44,7 +48,6 @@
   <td
     bind:this={element}
     use:useActions={use}
-    use:forwardEvents
     class={classMap({
       [className]: true,
       'mdc-data-table__cell': true,
@@ -52,9 +55,14 @@
       'mdc-data-table__cell--checkbox': checkbox,
       ...internalClasses,
     })}
-    on:change={(event) => checkbox && notifyBodyChange(event)}
     {...internalAttrs}
-    {...$$restProps}><slot /></td
+    {...$$restProps}
+    onchange={(e) => {
+      if (checkbox) {
+        notifyBodyChange(e);
+      }
+      $$restProps.onchange?.(e);
+    }}><slot /></td
   >
 {/if}
 
@@ -66,16 +74,9 @@
   import type { SortValue } from '@material/data-table';
   import { onMount, getContext, setContext } from 'svelte';
   import type { Writable } from 'svelte/store';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    useActions,
-    dispatch,
-  } from '@smui/common/internal';
+  import { classMap, useActions, dispatch } from '@smui/common/internal';
 
   import type { SMUIDataTableCellAccessor } from './Cell.types.js';
 
@@ -90,8 +91,6 @@
   type $$Props = SmuiAttrs<'th', keyof OwnProps> &
     SmuiAttrs<'td', keyof OwnProps> &
     OwnProps;
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   let header = getContext<boolean>('SMUI:data-table:row:header');
 
@@ -126,6 +125,13 @@
     setContext('SMUI:icon-button:aria-describedby', columnId + '-status-label');
   }
 
+  const SMUIDataTableCellMount = getContext<
+    ((accessor: SMUIDataTableCellAccessor) => void) | undefined
+  >('SMUI:data-table:cell:mount');
+  const SMUIDataTableCellUnmount = getContext<
+    ((accessor: SMUIDataTableCellAccessor) => void) | undefined
+  >('SMUI:data-table:cell:unmount');
+
   onMount(() => {
     const accessor: SMUIDataTableCellAccessor = header
       ? {
@@ -155,10 +161,10 @@
           addAttr,
         };
 
-    dispatch(getElement(), 'SMUIDataTableCell:mount', accessor);
+    SMUIDataTableCellMount && SMUIDataTableCellMount(accessor);
 
     return () => {
-      dispatch(getElement(), 'SMUIDataTableCell:unmount', accessor);
+      SMUIDataTableCellUnmount && SMUIDataTableCellUnmount(accessor);
     };
   });
 
@@ -187,11 +193,11 @@
   }
 
   function notifyHeaderChange(event: Event) {
-    dispatch(getElement(), 'SMUIDataTableHeaderCheckbox:change', event);
+    dispatch(getElement(), 'SMUIDataTableHeaderCheckboxChange', event);
   }
 
   function notifyBodyChange(event: Event) {
-    dispatch(getElement(), 'SMUIDataTableBodyCheckbox:change', event);
+    dispatch(getElement(), 'SMUIDataTableBodyCheckboxChange', event);
   }
 
   export function getElement() {

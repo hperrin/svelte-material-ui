@@ -1,22 +1,22 @@
 <div class="flexy">
   <div class="margins">
-    <Fab on:click={() => clicked++} ripple={false}>
+    <Fab onclick={() => clicked++} ripple={false}>
       <Icon class="material-icons">favorite</Icon>
     </Fab>
   </div>
   <div class="margins">
-    <Fab color="primary" on:click={() => clicked++} ripple={false}>
+    <Fab color="primary" onclick={() => clicked++} ripple={false}>
       <Icon class="material-icons">favorite</Icon>
     </Fab>
   </div>
   <div class="margins">
-    <Fab on:click={() => clicked++} extended ripple={false}>
+    <Fab onclick={() => clicked++} extended ripple={false}>
       <Icon class="material-icons">favorite</Icon>
       <Label>Extended</Label>
     </Fab>
   </div>
   <div class="margins">
-    <Fab color="primary" on:click={() => clicked++} extended ripple={false}>
+    <Fab color="primary" onclick={() => clicked++} extended ripple={false}>
       <Icon class="material-icons">favorite</Icon>
       <Label>Extended</Label>
     </Fab>

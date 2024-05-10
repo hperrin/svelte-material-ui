@@ -1,7 +1,6 @@
 <div
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
     [className]: true,
     'mdc-tab-scroller': true,
@@ -23,12 +22,37 @@
     style={Object.entries(scrollAreaStyles)
       .map(([name, value]) => `${name}: ${value};`)
       .join(' ')}
-    on:wheel={() => instance && instance.handleInteraction()}
-    on:touchstart={() => instance && instance.handleInteraction()}
-    on:pointerdown={() => instance && instance.handleInteraction()}
-    on:mousedown={() => instance && instance.handleInteraction()}
-    on:keydown={() => instance && instance.handleInteraction()}
     {...prefixFilter($$restProps, 'scrollArea$')}
+    onwheel={(e) => {
+      if (instance) {
+        instance.handleInteraction();
+      }
+      $$restProps.scrollArea$onwheel?.(e);
+    }}
+    ontouchstart={(e) => {
+      if (instance) {
+        instance.handleInteraction();
+      }
+      $$restProps.scrollArea$ontouchstart?.(e);
+    }}
+    onpointerdown={(e) => {
+      if (instance) {
+        instance.handleInteraction();
+      }
+      $$restProps.scrollArea$onpointerdown?.(e);
+    }}
+    onmousedown={(e) => {
+      if (instance) {
+        instance.handleInteraction();
+      }
+      $$restProps.scrollArea$onmousedown?.(e);
+    }}
+    onkeydown={(e) => {
+      if (instance) {
+        instance.handleInteraction();
+      }
+      $$restProps.scrollArea$onkeydown?.(e);
+    }}
   >
     <div
       bind:this={scrollContent}
@@ -40,9 +64,13 @@
       style={Object.entries(scrollContentStyles)
         .map(([name, value]) => `${name}: ${value};`)
         .join(' ')}
-      on:transitionend={(event) =>
-        instance && instance.handleTransitionEnd(event)}
       {...prefixFilter($$restProps, 'scrollContent$')}
+      ontransitionend={(e) => {
+        if (instance) {
+          instance.handleTransitionEnd(e);
+        }
+        $$restProps.scrollContent$ontransitionend?.(e);
+      }}
     >
       <slot />
     </div>
@@ -53,12 +81,9 @@
   import { MDCTabScrollerFoundation, util } from '@material/tab-scroller';
   import { ponyfill } from '@material/dom';
   import { onMount } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type { SmuiAttrs, SmuiElementPropMap } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
-    forwardEventsBuilder,
     classMap,
     exclude,
     prefixFilter,
@@ -82,8 +107,6 @@
     } & {
       [k in keyof SmuiElementPropMap['div'] as `scrollContent\$${k}`]?: SmuiElementPropMap['div'][k];
     };
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];

@@ -2,7 +2,7 @@
   this={component}
   {tag}
   bind:this={element}
-  use={[forwardEvents, ...use]}
+  {use}
   class={classMap({
     [className]: true,
     'mdc-deprecated-list': true,
@@ -18,14 +18,27 @@
     'smui-list--three-line': threeLine && !twoLine,
   })}
   {role}
-  on:keydown={handleKeydown}
-  on:focusin={handleFocusin}
-  on:focusout={handleFocusout}
-  on:click={handleClick}
-  on:SMUIListItem:mount={handleItemMount}
-  on:SMUIListItem:unmount={handleItemUnmount}
-  on:SMUI:action={handleAction}
   {...$$restProps}
+  onkeydown={(e: KeyboardEvent) => {
+    handleKeydown(e);
+    $$restProps.onkeydown?.(e);
+  }}
+  onfocusin={(e: FocusEvent) => {
+    handleFocusin(e);
+    $$restProps.onfocusin?.(e);
+  }}
+  onfocusout={(e: FocusEvent) => {
+    handleFocusout(e);
+    $$restProps.onfocusout?.(e);
+  }}
+  onclick={(e: MouseEvent) => {
+    handleClick(e);
+    $$restProps.onclick?.(e);
+  }}
+  onSMUIAction={(e: CustomEvent) => {
+    handleAction(e);
+    $$restProps.onSMUIAction?.(e);
+  }}
 >
   <slot />
 </svelte:component>
@@ -35,15 +48,9 @@
   import { ponyfill } from '@material/dom';
   import type { SvelteComponent } from 'svelte';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type { AddLayoutListener, RemoveLayoutListener } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    dispatch,
-  } from '@smui/common/internal';
+  import { classMap, dispatch } from '@smui/common/internal';
   import type {
     SmuiElementMap,
     SmuiEveryElement,
@@ -81,8 +88,6 @@
     tag?: TagName;
   };
   type $$Props = OwnProps & SmuiAttrs<TagName, keyof OwnProps>;
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
@@ -174,6 +179,29 @@
     removeLayoutListener = addLayoutListener(layout);
   }
 
+  setContext('SMUI:list:item:mount', (accessor: SMUIListItemAccessor) => {
+    items.push(accessor);
+    itemAccessorMap.set(accessor.element, accessor);
+    if (singleSelection && accessor.selected) {
+      selectedIndex = getListItemIndex(accessor.element);
+    }
+  });
+  setContext('SMUI:list:item:unmount', (accessor: SMUIListItemAccessor) => {
+    const idx = (accessor && items.indexOf(accessor)) ?? -1;
+    if (idx !== -1) {
+      items.splice(idx, 1);
+      items = items;
+      itemAccessorMap.delete(accessor.element);
+    }
+  });
+
+  const SMUIListMount = getContext<
+    ((accessor: SMUIListAccessor) => void) | undefined
+  >('SMUI:list:mount');
+  const SMUIListUnmount = getContext<
+    ((accessor: SMUIListAccessor) => void) | undefined
+  >('SMUI:list:unmount');
+
   onMount(() => {
     instance = new MDCListFoundation({
       addClassForElementIndex,
@@ -205,12 +233,12 @@
       notifyAction: (index) => {
         selectedIndex = index;
         if (element != null) {
-          dispatch(getElement(), 'SMUIList:action', { index }, undefined, true);
+          dispatch(getElement(), 'SMUIListAction', { index }, undefined, true);
         }
       },
       notifySelectionChange: (changedIndices: number[]) => {
         if (element != null) {
-          dispatch(getElement(), 'SMUIList:selectionChange', {
+          dispatch(getElement(), 'SMUIListSelectionChange', {
             changedIndices,
           });
         }
@@ -259,12 +287,14 @@
       getPrimaryTextAtIndex,
     };
 
-    dispatch(getElement(), 'SMUIList:mount', accessor);
+    SMUIListMount && SMUIListMount(accessor);
 
     instance.init();
     instance.layout();
 
     return () => {
+      SMUIListUnmount && SMUIListUnmount(accessor);
+
       instance.destroy();
     };
   });
@@ -274,25 +304,6 @@
       removeLayoutListener();
     }
   });
-
-  function handleItemMount(event: CustomEvent<SMUIListItemAccessor>) {
-    items.push(event.detail);
-    itemAccessorMap.set(event.detail.element, event.detail);
-    if (singleSelection && event.detail.selected) {
-      selectedIndex = getListItemIndex(event.detail.element);
-    }
-    event.stopPropagation();
-  }
-
-  function handleItemUnmount(event: CustomEvent<SMUIListItemAccessor>) {
-    const idx = (event.detail && items.indexOf(event.detail)) ?? -1;
-    if (idx !== -1) {
-      items.splice(idx, 1);
-      items = items;
-      itemAccessorMap.delete(event.detail.element);
-    }
-    event.stopPropagation();
-  }
 
   function handleKeydown(event: KeyboardEvent) {
     if (instance && event.target) {

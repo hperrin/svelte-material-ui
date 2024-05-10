@@ -7,7 +7,7 @@
     doesn't create any DOM elements.
   -->
   <Wrapper>
-    <Button on:click={() => clicked++}>
+    <Button onclick={() => clicked++}>
       <Label>Button</Label>
     </Button>
     <!--
@@ -18,7 +18,7 @@
   </Wrapper>
 
   <Wrapper>
-    <Fab on:click={() => clicked++} mini>
+    <Fab onclick={() => clicked++} mini>
       <Icon class="material-icons">favorite</Icon>
     </Fab>
     <Tooltip>Tooltip on a FAB.</Tooltip>

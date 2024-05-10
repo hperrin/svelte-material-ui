@@ -4,10 +4,10 @@
 
   <div style="margin-top: 1em;">
     <div>Programmatically select:</div>
-    <Button on:click={() => (value = 'Dragonfruit')}>
+    <Button onclick={() => (value = 'Dragonfruit')}>
       <Label>Dragonfruit</Label>
     </Button>
-    <Button on:click={() => (value = 'Elderberry')}>
+    <Button onclick={() => (value = 'Elderberry')}>
       <Label>Elderberry</Label>
     </Button>
   </div>

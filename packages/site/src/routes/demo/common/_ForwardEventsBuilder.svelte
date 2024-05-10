@@ -1,8 +1,8 @@
 <MyComponent
-  on:click={() => clicked++}
-  on:keypress$preventDefault={handleKeyPress}
-  on:focus={() => (focused = true)}
-  on:blur={() => (focused = false)}
+  onclick={() => clicked++}
+  onkeypress={handleKeyPress}
+  onfocus={() => (focused = true)}
+  onblur={() => (focused = false)}
 >
   Click me, key press me, focus me, blur me, use me however you want.
 </MyComponent>
@@ -19,6 +19,7 @@
   let focused = false;
 
   const handleKeyPress = ((event: KeyboardEvent) => {
+    event.preventDefault();
     key = event.key;
   }) as unknown as (event: CustomEvent) => void;
 </script>

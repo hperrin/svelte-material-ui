@@ -13,7 +13,6 @@
         addStyle,
       },
     ],
-    forwardEvents,
     ...use,
   ]}
   class={classMap({
@@ -32,9 +31,14 @@
   aria-selected={active ? 'true' : 'false'}
   tabindex={active || forceAccessible ? '0' : '-1'}
   {href}
-  on:click={handleClick}
   {...internalAttrs}
   {...exclude($$restProps, ['content$', 'tabIndicator$'])}
+  onclick={(e: MouseEvent) => {
+    $$restProps.onclick?.(e);
+    if (!e.defaultPrevented && instance) {
+      instance.handleClick();
+    }
+  }}
 >
   <span
     bind:this={content}
@@ -63,7 +67,7 @@
       ><slot name="tab-indicator" /></TabIndicator
     >
   {/if}
-  <span class="mdc-tab__ripple" />
+  <span class="mdc-tab__ripple"></span>
 </svelte:component>
 
 <script
@@ -73,11 +77,8 @@
   import { MDCTabFoundation } from '@material/tab';
   import type { SvelteComponent, ComponentProps } from 'svelte';
   import { onMount, setContext, getContext } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type { ActionArray } from '@smui/common/internal';
   import {
-    forwardEventsBuilder,
     classMap,
     exclude,
     prefixFilter,
@@ -117,8 +118,6 @@
     } & {
       [k in keyof ComponentProps<TabIndicator> as `tabIndicator\$${k}`]?: ComponentProps<TabIndicator>[k];
     };
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
@@ -164,6 +163,13 @@
     instance.setFocusOnActivate(focusOnActivate);
   }
 
+  const SMUITabMount = getContext<
+    ((accessor: SMUITabAccessor) => void) | undefined
+  >('SMUI:tab:mount');
+  const SMUITabUnmount = getContext<
+    ((accessor: SMUITabAccessor) => void) | undefined
+  >('SMUI:tab:unmount');
+
   onMount(() => {
     instance = new MDCTabFoundation({
       setAttr: addAttr,
@@ -176,7 +182,7 @@
       notifyInteracted: () =>
         dispatch(
           getElement(),
-          'SMUITab:interacted',
+          'SMUITabInteracted',
           { tabId: tabId },
           undefined,
           true,
@@ -206,12 +212,12 @@
       deactivate,
     };
 
-    dispatch(getElement(), 'SMUITab:mount', accessor);
+    SMUITabMount && SMUITabMount(accessor);
 
     instance.init();
 
     return () => {
-      dispatch(getElement(), 'SMUITab:unmount', accessor);
+      SMUITabUnmount && SMUITabUnmount(accessor);
 
       instance.destroy();
     };
@@ -249,12 +255,6 @@
   function addAttr(name: string, value: string) {
     if (internalAttrs[name] !== value) {
       internalAttrs[name] = value;
-    }
-  }
-
-  function handleClick(event: MouseEvent) {
-    if (!event.defaultPrevented && instance) {
-      instance.handleClick();
     }
   }
 

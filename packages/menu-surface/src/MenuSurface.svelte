@@ -1,9 +1,8 @@
-<svelte:body on:click|capture={handleBodyClick} />
+<svelte:body onclickcapture={handleBodyClick} />
 
 <div
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
     [className]: true,
     'mdc-menu-surface': true,
@@ -18,25 +17,23 @@
     .concat([style])
     .join(' ')}
   role="dialog"
-  on:keydown={instance && instance.handleKeydown.bind(instance)}
   {...$$restProps}
+  onkeydown={(e) => {
+    if (instance) {
+      instance.handleKeydown(e);
+    }
+    $$restProps.onkeydown?.(e);
+  }}
 >
   <slot />
 </div>
 
 <script lang="ts">
   import { MDCMenuSurfaceFoundation } from '@material/menu-surface';
-  import { onMount, onDestroy, setContext } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
+  import { onMount, onDestroy, setContext, getContext } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    useActions,
-    dispatch,
-  } from '@smui/common/internal';
+  import { classMap, useActions, dispatch } from '@smui/common/internal';
 
   import type { SMUIMenuSurfaceAccessor } from './MenuSurface.types.js';
   import { Corner } from './MenuSurface.types.js';
@@ -72,8 +69,6 @@
     neverRestoreFocus?: boolean;
   };
   type $$Props = OwnProps & SmuiAttrs<'div', keyof OwnProps>;
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
@@ -161,6 +156,13 @@
     instance.setOpenBottomBias(openBottomBias);
   }
 
+  const SMUIMenuSurfaceMount = getContext<
+    ((accessor: SMUIMenuSurfaceAccessor) => void) | undefined
+  >('SMUI:menu-surface:mount');
+  const SMUIMenuSurfaceUnmount = getContext<
+    ((accessor: SMUIMenuSurfaceAccessor) => void) | undefined
+  >('SMUI:menu-surface:unmount');
+
   onMount(() => {
     instance = new MDCMenuSurfaceFoundation({
       addClass,
@@ -173,8 +175,8 @@
         }
         if (!open) {
           dispatch(
-            element,
-            'SMUIMenuSurface:closed',
+            getElement(),
+            'SMUIMenuSurfaceClosed',
             undefined,
             undefined,
             true,
@@ -187,8 +189,8 @@
         }
         if (!open) {
           dispatch(
-            element,
-            'SMUIMenuSurface:closing',
+            getElement(),
+            'SMUIMenuSurfaceClosing',
             undefined,
             undefined,
             true,
@@ -201,8 +203,8 @@
         }
         if (open) {
           dispatch(
-            element,
-            'SMUIMenuSurface:opened',
+            getElement(),
+            'SMUIMenuSurfaceOpened',
             undefined,
             undefined,
             true,
@@ -212,29 +214,29 @@
       notifyOpening: () => {
         if (!open) {
           dispatch(
-            element,
-            'SMUIMenuSurface:opening',
+            getElement(),
+            'SMUIMenuSurfaceOpening',
             undefined,
             undefined,
             true,
           );
         }
       },
-      isElementInContainer: (el) => element.contains(el),
+      isElementInContainer: (el) => getElement().contains(el),
       isRtl: () =>
-        getComputedStyle(element).getPropertyValue('direction') === 'rtl',
+        getComputedStyle(getElement()).getPropertyValue('direction') === 'rtl',
       setTransformOrigin: (origin) => {
         internalStyles['transform-origin'] = origin;
       },
 
-      isFocused: () => document.activeElement === element,
+      isFocused: () => document.activeElement === getElement(),
       saveFocus: () => {
         previousFocus = document.activeElement ?? undefined;
       },
       restoreFocus: () => {
         if (
           !neverRestoreFocus &&
-          (!element || element.contains(document.activeElement)) &&
+          (!element || getElement().contains(document.activeElement)) &&
           previousFocus &&
           document.contains(previousFocus) &&
           'focus' in previousFocus
@@ -244,8 +246,8 @@
       },
       getInnerDimensions: () => {
         return {
-          width: element.offsetWidth,
-          height: element.offsetHeight,
+          width: getElement().offsetWidth,
+          height: getElement().offsetHeight,
         };
       },
       getAnchorDimensions: () =>
@@ -284,23 +286,27 @@
       closeProgrammatic,
     };
 
-    dispatch(element, 'SMUIMenuSurface:mount', accessor);
+    SMUIMenuSurfaceMount && SMUIMenuSurfaceMount(accessor);
 
     instance.init();
 
     return () => {
+      SMUIMenuSurfaceUnmount && SMUIMenuSurfaceUnmount(accessor);
+
       const isHoisted = (instance as any).isHoistedElement;
       instance.destroy();
       if (isHoisted) {
-        element.parentNode?.removeChild(element);
+        getElement().parentNode?.removeChild(getElement());
       }
     };
   });
 
   onDestroy(() => {
     if (anchor) {
-      element &&
-        element.parentElement?.classList.remove('mdc-menu-surface--anchor');
+      getElement() &&
+        getElement().parentElement?.classList.remove(
+          'mdc-menu-surface--anchor',
+        );
     }
   });
 

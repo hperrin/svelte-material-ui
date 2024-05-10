@@ -2,7 +2,7 @@
 
 <br />
 
-<Button on:click={reset}>Reset</Button>
+<Button onclick={reset}>Reset</Button>
 
 <FormField>
   <Checkbox bind:checked={closed} />

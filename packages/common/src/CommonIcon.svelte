@@ -2,7 +2,7 @@
   this={component}
   {tag}
   bind:this={element}
-  use={[forwardEvents, ...use]}
+  {use}
   class={classMap({
     [className]: true,
     'mdc-button__icon': context === 'button',
@@ -21,11 +21,9 @@
 <script lang="ts" generics="TagName extends SmuiEveryElement = 'i'">
   import type { SvelteComponent } from 'svelte';
   import { getContext } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
 
   import type { ActionArray } from './internal/useActions.js';
-  import { forwardEventsBuilder, classMap } from './internal/index.js';
+  import { classMap } from './internal/index.js';
   import type {
     SmuiElementMap,
     SmuiEveryElement,
@@ -41,8 +39,6 @@
     tag?: TagName;
   };
   type $$Props = OwnProps & SmuiAttrs<TagName, keyof OwnProps>;
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];

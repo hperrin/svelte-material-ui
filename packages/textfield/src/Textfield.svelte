@@ -12,7 +12,6 @@
       initPromise,
     }}
     use:useActions={use}
-    use:forwardEvents
     class={classMap({
       [className]: true,
       'mdc-text-field': true,
@@ -42,13 +41,6 @@
       .concat([style])
       .join(' ')}
     for={/* suppress a11y warning, since this is wrapped */ undefined}
-    on:SMUITextfieldLeadingIcon:mount={handleLeadingIconMount}
-    on:SMUITextfieldLeadingIcon:unmount={() => (leadingIcon = undefined)}
-    on:SMUITextfieldTrailingIcon:mount={handleTrailingIconMount}
-    on:SMUITextfieldTrailingIcon:unmount={() => (trailingIcon = undefined)}
-    on:SMUITextfieldCharacterCounter:mount={handleCharacterCounterMount}
-    on:SMUITextfieldCharacterCounter:unmount={() =>
-      (characterCounter = undefined)}
     {...exclude($$restProps, [
       'input$',
       'label$',
@@ -115,13 +107,19 @@
           bind:dirty
           bind:invalid
           {updateInvalid}
-          on:blur={() => (focused = false)}
-          on:focus={() => (focused = true)}
-          on:blur={(event) => dispatch(element, 'blur', event)}
-          on:focus={(event) => dispatch(element, 'focus', event)}
           aria-controls={helperId}
           aria-describedby={helperId}
           {...prefixFilter($$restProps, 'input$')}
+          onblur={(e) => {
+            focused = false;
+            dispatch(getElement(), 'blur', e);
+            $$restProps.input$onblur?.(e);
+          }}
+          onfocus={(e) => {
+            focused = true;
+            dispatch(getElement(), 'focus', e);
+            $$restProps.input$onfocus?.(e);
+          }}
         />
         <slot name="internalCounter" />
       </span>
@@ -140,14 +138,20 @@
         bind:dirty
         bind:invalid
         {updateInvalid}
-        on:blur={() => (focused = false)}
-        on:focus={() => (focused = true)}
-        on:blur={(event) => dispatch(element, 'blur', event)}
-        on:focus={(event) => dispatch(element, 'focus', event)}
         aria-controls={helperId}
         aria-describedby={helperId}
         {...noLabel && label != null ? { placeholder: label } : {}}
         {...prefixFilter($$restProps, 'input$')}
+        onblur={(e) => {
+          focused = false;
+          dispatch(getElement(), 'blur', e);
+          $$restProps.input$onblur?.(e);
+        }}
+        onfocus={(e) => {
+          focused = true;
+          dispatch(getElement(), 'focus', e);
+          $$restProps.input$onfocus?.(e);
+        }}
       />
       {#if suffix != null}
         <Suffix>{suffix}</Suffix>
@@ -175,7 +179,6 @@
       addStyle,
     }}
     use:useActions={use}
-    use:forwardEvents
     class={classMap({
       [className]: true,
       'mdc-text-field': true,
@@ -194,10 +197,6 @@
       .map(([name, value]) => `${name}: ${value};`)
       .concat([style])
       .join(' ')}
-    on:SMUITextfieldLeadingIcon:mount={handleLeadingIconMount}
-    on:SMUITextfieldLeadingIcon:unmount={() => (leadingIcon = undefined)}
-    on:SMUITextfieldTrailingIcon:mount={handleTrailingIconMount}
-    on:SMUITextfieldTrailingIcon:unmount={() => (trailingIcon = undefined)}
     {...exclude($$restProps, [
       'input$',
       'label$',
@@ -218,17 +217,7 @@
   </div>
 {/if}
 {#if $$slots.helper}
-  <HelperLine
-    on:SMUITextfieldHelperText:id={handleHelperTextId}
-    on:SMUITextfieldHelperText:mount={handleHelperTextMount}
-    on:SMUITextfieldHelperText:unmount={() => {
-      helperId = undefined;
-      helperText = undefined;
-    }}
-    on:SMUITextfieldCharacterCounter:mount={handleCharacterCounterMount}
-    on:SMUITextfieldCharacterCounter:unmount={() =>
-      (characterCounter = undefined)}
-    {...prefixFilter($$restProps, 'helperLine$')}
+  <HelperLine {...prefixFilter($$restProps, 'helperLine$')}
     ><slot name="helper" /></HelperLine
   >
 {/if}
@@ -242,9 +231,7 @@
   import { MDCTextFieldFoundation } from '@material/textfield';
   import { events } from '@material/dom';
   import type { ComponentProps } from 'svelte';
-  import { onMount, onDestroy, getContext, tick } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
+  import { onMount, onDestroy, getContext, setContext, tick } from 'svelte';
   import type {
     AddLayoutListener,
     RemoveLayoutListener,
@@ -253,7 +240,6 @@
   } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
-    forwardEventsBuilder,
     classMap,
     exclude,
     prefixFilter,
@@ -329,7 +315,6 @@
       'input$aria-describedby'?: never;
     };
 
-  const forwardEvents = forwardEventsBuilder(get_current_component());
   interface UninitializedValue extends Function {}
   let uninitializedValue: UninitializedValue = () => {};
   function isUninitializedValue(value: any): value is UninitializedValue {
@@ -455,6 +440,47 @@
   if (addLayoutListener) {
     removeLayoutListener = addLayoutListener(layout);
   }
+
+  setContext(
+    'SMUI:textfield:leading-icon:mount',
+    (accessor: MDCTextFieldIconFoundation) => {
+      leadingIcon = accessor;
+    },
+  );
+  setContext('SMUI:textfield:leading-icon:unmount', () => {
+    leadingIcon = undefined;
+  });
+  setContext(
+    'SMUI:textfield:trailing-icon:mount',
+    (accessor: MDCTextFieldIconFoundation) => {
+      trailingIcon = accessor;
+    },
+  );
+  setContext('SMUI:textfield:trailing-icon:unmount', () => {
+    trailingIcon = undefined;
+  });
+  setContext('SMUI:textfield:helper-text:id', (id: string) => {
+    helperId = id;
+  });
+  setContext(
+    'SMUI:textfield:helper-text:mount',
+    (accessor: MDCTextFieldHelperTextFoundation) => {
+      helperText = accessor;
+    },
+  );
+  setContext('SMUI:textfield:helper-text:unmount', () => {
+    helperId = undefined;
+    helperText = undefined;
+  });
+  setContext(
+    'SMUI:textfield:character-counter:mount',
+    (accessor: MDCTextFieldCharacterCounterFoundation) => {
+      characterCounter = accessor;
+    },
+  );
+  setContext('SMUI:textfield:character-counter:unmount', () => {
+    characterCounter = undefined;
+  });
 
   onMount(() => {
     instance = new MDCTextFieldFoundation(
@@ -586,34 +612,6 @@
       removeLayoutListener();
     }
   });
-
-  function handleLeadingIconMount(
-    event: CustomEvent<MDCTextFieldIconFoundation>,
-  ) {
-    leadingIcon = event.detail;
-  }
-
-  function handleTrailingIconMount(
-    event: CustomEvent<MDCTextFieldIconFoundation>,
-  ) {
-    trailingIcon = event.detail;
-  }
-
-  function handleCharacterCounterMount(
-    event: CustomEvent<MDCTextFieldCharacterCounterFoundation>,
-  ) {
-    characterCounter = event.detail;
-  }
-
-  function handleHelperTextId(event: CustomEvent<string>) {
-    helperId = event.detail;
-  }
-
-  function handleHelperTextMount(
-    event: CustomEvent<MDCTextFieldHelperTextFoundation>,
-  ) {
-    helperText = event.detail;
-  }
 
   function hasClass(className: string) {
     return className in internalClasses

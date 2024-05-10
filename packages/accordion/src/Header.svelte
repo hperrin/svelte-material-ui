@@ -1,7 +1,6 @@
 <div
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   use:Ripple={{
     ripple,
     unbounded: false,
@@ -23,12 +22,18 @@
   role="button"
   tabindex={$nonInteractive ? -1 : 0}
   aria-expanded={$open ? 'true' : 'false'}
-  on:click={handleClick}
-  on:keydown={handleKeyDown}
   {...$$restProps}
+  onclick={(e) => {
+    handleClick(e);
+    $$restProps.onclick?.(e);
+  }}
+  onkeydown={(e) => {
+    handleKeyDown(e);
+    $$restProps.onkeydown?.(e);
+  }}
 >
   {#if ripple}
-    <div class="smui-accordion__header__ripple" />
+    <div class="smui-accordion__header__ripple"></div>
   {/if}
   <div
     class={classMap({
@@ -52,16 +57,9 @@
 
 <script lang="ts">
   import { getContext } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    useActions,
-    dispatch,
-  } from '@smui/common/internal';
+  import { classMap, useActions, dispatch } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
 
   type OwnProps = {
@@ -71,8 +69,6 @@
     ripple?: boolean;
   };
   type $$Props = OwnProps & SmuiAttrs<'div', keyof OwnProps>;
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
@@ -93,21 +89,17 @@
   );
   const open = getContext<SvelteStore<boolean>>('SMUI:accordion:panel:open');
 
-  function handleClick(event: CustomEvent | MouseEvent) {
-    event = event as MouseEvent;
-
+  function handleClick(event: MouseEvent) {
     if (event.button === 0) {
-      dispatch(getElement(), 'SMUIAccordionHeader:activate', {
+      dispatch(getElement(), 'SMUIAccordionHeaderActivate', {
         event,
       });
     }
   }
 
-  function handleKeyDown(event: CustomEvent | KeyboardEvent) {
-    event = event as KeyboardEvent;
-
+  function handleKeyDown(event: KeyboardEvent) {
     if (event.key === 'Enter') {
-      dispatch(getElement(), 'SMUIAccordionHeader:activate', {
+      dispatch(getElement(), 'SMUIAccordionHeaderActivate', {
         event,
       });
     }

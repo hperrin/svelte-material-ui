@@ -13,7 +13,6 @@
         addStyle,
       },
     ],
-    forwardEvents,
     ...use,
   ]}
   class={classMap({
@@ -28,29 +27,56 @@
     .concat([style])
     .join(' ')}
   role="row"
-  on:transitionend={instance && instance.handleTransitionEnd.bind(instance)}
-  on:click={instance && instance.handleClick.bind(instance)}
-  on:keydown={instance && instance.handleKeydown.bind(instance)}
-  on:focusin={instance && instance.handleFocusIn.bind(instance)}
-  on:focusout={instance && instance.handleFocusOut.bind(instance)}
-  on:SMUIChipTrailingAction:interaction={instance &&
-    instance.handleTrailingActionInteraction.bind(instance)}
-  on:SMUIChipTrailingAction:navigation={instance &&
-    instance.handleTrailingActionNavigation.bind(instance)}
-  on:SMUIChipsChipPrimaryAction:mount={handleSMUIChipsChipPrimaryAction}
-  on:SMUIChipsChipPrimaryAction:unmount={() =>
-    (primaryActionAccessor = undefined)}
-  on:SMUIChipsChipTrailingAction:mount={handleSMUIChipsChipTrailingAction}
-  on:SMUIChipsChipTrailingAction:unmount={() =>
-    (trailingActionAccessor = undefined)}
   {...$$restProps}
+  ontransitionend={(e: TransitionEvent) => {
+    if (instance) {
+      instance.handleTransitionEnd(e);
+    }
+    $$restProps.ontransitionend?.(e);
+  }}
+  onclick={(e: MouseEvent) => {
+    if (instance) {
+      instance.handleClick();
+    }
+    $$restProps.onclick?.(e);
+  }}
+  onkeydown={(e: KeyboardEvent) => {
+    if (instance) {
+      instance.handleKeydown(e);
+    }
+    $$restProps.onkeydown?.(e);
+  }}
+  onfocusin={(e: FocusEvent) => {
+    if (instance) {
+      instance.handleFocusIn(e);
+    }
+    $$restProps.onfocusin?.(e);
+  }}
+  onfocusout={(e: FocusEvent) => {
+    if (instance) {
+      instance.handleFocusOut(e);
+    }
+    $$restProps.onfocusout?.(e);
+  }}
+  onSMUIChipTrailingActionInteraction={(e: CustomEvent) => {
+    if (instance) {
+      instance.handleTrailingActionInteraction();
+    }
+    $$restProps.onSMUIChipTrailingActionInteraction?.(e);
+  }}
+  onSMUIChipTrailingActionNavigation={(e: CustomEvent) => {
+    if (instance) {
+      instance.handleTrailingActionNavigation(e);
+    }
+    $$restProps.onSMUIChipTrailingActionNavigation?.(e);
+  }}
 >
   {#if ripple && !$nonInteractive}
-    <div class="mdc-chip__ripple" />
+    <div class="mdc-chip__ripple"></div>
   {/if}
   <slot />
   {#if touch}
-    <div class="mdc-chip__touch" />
+    <div class="mdc-chip__touch"></div>
   {/if}
 </svelte:component>
 
@@ -59,14 +85,8 @@
   import type { SvelteComponent } from 'svelte';
   import { onMount, setContext, getContext } from 'svelte';
   import { writable } from 'svelte/store';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type { ActionArray } from '@smui/common/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    dispatch,
-  } from '@smui/common/internal';
+  import { classMap, dispatch } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
   import type {
     SmuiElementMap,
@@ -94,8 +114,6 @@
     tag?: TagName;
   };
   type $$Props = OwnProps & SmuiAttrs<TagName, keyof OwnProps>;
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
@@ -174,6 +192,32 @@
     );
   }
 
+  setContext(
+    'SMUI:chips:primary-action:mount',
+    (accessor: SMUIChipsPrimaryActionAccessor) => {
+      primaryActionAccessor = accessor;
+    },
+  );
+  setContext('SMUI:chips:primary-action:unmount', () => {
+    primaryActionAccessor = undefined;
+  });
+  setContext(
+    'SMUI:chips:trailing-action:mount',
+    (accessor: SMUIChipsTrailingActionAccessor) => {
+      trailingActionAccessor = accessor;
+    },
+  );
+  setContext('SMUI:chips:trailing-action:unmount', () => {
+    trailingActionAccessor = undefined;
+  });
+
+  const SMUIChipsChipMount = getContext<
+    ((accessor: SMUIChipsChipAccessor) => void) | undefined
+  >('SMUI:chips:chip:mount');
+  const SMUIChipsChipUnmount = getContext<
+    ((accessor: SMUIChipsChipAccessor) => void) | undefined
+  >('SMUI:chips:chip:unmount');
+
   onMount(() => {
     instance = new MDCChipFoundation({
       addClass,
@@ -218,7 +262,7 @@
       notifyInteraction: () =>
         dispatch(
           getElement(),
-          'SMUIChip:interaction',
+          'SMUIChipInteraction',
           { chipId },
           undefined,
           true,
@@ -226,27 +270,26 @@
       notifyNavigation: (key, source) =>
         dispatch(
           getElement(),
-          'SMUIChip:navigation',
+          'SMUIChipNavigation',
           { chipId, key, source },
           undefined,
           true,
         ),
-      notifyRemoval: (removedAnnouncement) => {
+      notifyRemoval: (removedAnnouncement) =>
         dispatch(
           getElement(),
-          'SMUIChip:removal',
+          'SMUIChipRemoval',
           {
             chipId,
             removedAnnouncement,
           },
           undefined,
           true,
-        );
-      },
+        ),
       notifySelection: (selected, shouldIgnore) =>
         dispatch(
           getElement(),
-          'SMUIChip:selection',
+          'SMUIChipSelection',
           {
             chipId,
             selected,
@@ -258,7 +301,7 @@
       notifyTrailingIconInteraction: () =>
         dispatch(
           getElement(),
-          'SMUIChip:trailingIconInteraction',
+          'SMUIChipTrailingIconInteraction',
           { chipId },
           undefined,
           true,
@@ -295,28 +338,16 @@
       setSelectedFromChipSet,
     };
 
-    dispatch(getElement(), 'SMUIChipsChip:mount', accessor);
+    SMUIChipsChipMount && SMUIChipsChipMount(accessor);
 
     instance.init();
 
     return () => {
-      dispatch(getElement(), 'SMUIChipsChip:unmount', accessor);
+      SMUIChipsChipUnmount && SMUIChipsChipUnmount(accessor);
 
       instance.destroy();
     };
   });
-
-  function handleSMUIChipsChipPrimaryAction(
-    event: CustomEvent<SMUIChipsPrimaryActionAccessor>,
-  ) {
-    primaryActionAccessor = event.detail;
-  }
-
-  function handleSMUIChipsChipTrailingAction(
-    event: CustomEvent<SMUIChipsTrailingActionAccessor>,
-  ) {
-    trailingActionAccessor = event.detail;
-  }
 
   function hasClass(className: string) {
     return className in internalClasses

@@ -1,5 +1,5 @@
 <div style="margin-bottom: 1em;">
-  <Button on:click={() => loadThings(true)}>Do Pretend Loading</Button>
+  <Button onclick={() => loadThings(true)}>Do Pretend Loading</Button>
 </div>
 
 <DataTable table$aria-label="User list" style="width: 100%;">

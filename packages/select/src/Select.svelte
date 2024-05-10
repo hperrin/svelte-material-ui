@@ -9,7 +9,6 @@
   }}
   use:Anchor={{ addClass, removeClass }}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
     [className]: true,
     'mdc-select': true,
@@ -32,8 +31,6 @@
     .map(([name, value]) => `${name}: ${value};`)
     .concat([style])
     .join(' ')}
-  on:SMUISelectLeadingIcon:mount={handleLeadingIconMount}
-  on:SMUISelectLeadingIcon:unmount={() => (leadingIcon = undefined)}
   {...exclude($$restProps, [
     'input$',
     'anchor$',
@@ -71,22 +68,38 @@
     aria-describedby={helperId}
     role="combobox"
     tabindex="0"
-    on:focus={() => instance && instance.handleFocus()}
-    on:blur={() => instance && instance.handleBlur()}
-    on:click={(event) => {
-      selectAnchor.focus();
-      if (instance) {
-        instance.handleClick(getNormalizedXCoordinate(event));
-      }
-    }}
-    on:keydown={instance && instance.handleKeydown.bind(instance)}
-    on:focus
-    on:blur
     {...selectAnchorAttrs}
     {...prefixFilter($$restProps, 'anchor$')}
+    onclick={(e) => {
+      selectAnchor.focus();
+      if (instance) {
+        instance.handleClick(getNormalizedXCoordinate(e));
+      }
+      $$restProps.anchor$onclick?.(e);
+    }}
+    onkeydown={(e) => {
+      if (instance) {
+        instance.handleKeydown(e);
+      }
+      $$restProps.onkeydown?.(e);
+    }}
+    onblur={(e) => {
+      if (instance) {
+        instance.handleBlur();
+      }
+      dispatch(getElement(), 'blur', e);
+      $$restProps.anchor$onblur?.(e);
+    }}
+    onfocus={(e) => {
+      if (instance) {
+        instance.handleFocus();
+      }
+      dispatch(getElement(), 'focus', e);
+      $$restProps.anchor$onfocus?.(e);
+    }}
   >
     {#if variant === 'filled'}
-      <span class="mdc-select__ripple" />
+      <span class="mdc-select__ripple"></span>
     {/if}
     {#if variant !== 'outlined' && !noLabel && (label != null || $$slots.label)}
       <FloatingLabel
@@ -187,31 +200,42 @@
     {anchorElement}
     {anchorCorner}
     bind:open={menuOpen}
-    on:SMUIMenu:selected={(event) =>
-      instance && instance.handleMenuItemAction(event.detail.index)}
-    on:SMUIMenuSurface:closing={() => instance && instance.handleMenuClosing()}
-    on:SMUIMenuSurface:closed={() => instance && instance.handleMenuClosed()}
-    on:SMUIMenuSurface:opened={() => instance && instance.handleMenuOpened()}
     {...prefixFilter($$restProps, 'menu$')}
+    onSMUIMenuSelected={(e) => {
+      if (instance) {
+        instance.handleMenuItemAction(e.detail.index);
+      }
+      $$restProps.onSMUIMenuSelected?.(e);
+    }}
+    onSMUIMenuSurfaceClosing={(e) => {
+      if (instance) {
+        instance.handleMenuClosing();
+      }
+      $$restProps.onSMUIMenuSurfaceClosing?.(e);
+    }}
+    onSMUIMenuSurfaceClosed={(e) => {
+      if (instance) {
+        instance.handleMenuClosed();
+      }
+      $$restProps.onSMUIMenuSurfaceClosed?.(e);
+    }}
+    onSMUIMenuSurfaceOpened={(e) => {
+      if (instance) {
+        instance.handleMenuOpened();
+      }
+      $$restProps.onSMUIMenuSurfaceOpened?.(e);
+    }}
   >
     <List
       role="listbox"
       {wrapFocus}
       bind:selectedIndex
-      on:SMUIList:mount={(event) => (list = event.detail)}
       {...prefixFilter($$restProps, 'list$')}><slot /></List
     >
   </Menu>
 </div>
 {#if $$slots.helperText}
-  <HelperText
-    on:SMUISelectHelperText:id={(event) => (helperId = event.detail)}
-    on:SMUISelectHelperText:mount={(event) => (helperText = event.detail)}
-    on:SMUISelectHelperText:unmount={() => {
-      helperId = undefined;
-      helperText = undefined;
-    }}
-    {...prefixFilter($$restProps, 'helperText$')}
+  <HelperText {...prefixFilter($$restProps, 'helperText$')}
     ><slot name="helperText" /></HelperText
   >
 {/if}
@@ -229,8 +253,6 @@
   import type { ComponentProps } from 'svelte';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
   import { writable } from 'svelte/store';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type {
     AddLayoutListener,
     RemoveLayoutListener,
@@ -239,7 +261,6 @@
   } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
-    forwardEventsBuilder,
     classMap,
     exclude,
     prefixFilter,
@@ -315,7 +336,6 @@
       input$value?: never;
     };
 
-  const forwardEvents = forwardEventsBuilder(get_current_component());
   interface UninitializedValue extends Function {}
   let uninitializedValue: UninitializedValue = () => {};
   function isUninitializedValue(value: any): value is UninitializedValue {
@@ -440,6 +460,32 @@
     removeLayoutListener = addLayoutListener(layout);
   }
 
+  setContext(
+    'SMUI:select:leading-icon:mount',
+    (accessor: MDCSelectIconFoundation) => {
+      leadingIcon = accessor;
+    },
+  );
+  setContext('SMUI:select:leading-icon:unmount', () => {
+    leadingIcon = undefined;
+  });
+  setContext('SMUI:list:mount', (accessor: SMUIListAccessor) => {
+    list = accessor;
+  });
+  setContext('SMUI:select:helper-text:id', (id: string) => {
+    helperId = id;
+  });
+  setContext(
+    'SMUI:select:helper-text:mount',
+    (accessor: MDCSelectHelperTextFoundation) => {
+      helperText = accessor;
+    },
+  );
+  setContext('SMUI:select:helper-text:unmount', () => {
+    helperId = undefined;
+    helperText = undefined;
+  });
+
   onMount(() => {
     instance = new MDCSelectFoundation(
       {
@@ -504,7 +550,7 @@
           }
           dispatch(
             getElement(),
-            'SMUISelect:change',
+            'SMUISelectChange',
             {
               value,
               index: selectedIndex,
@@ -553,10 +599,6 @@
       removeLayoutListener();
     }
   });
-
-  function handleLeadingIconMount(event: CustomEvent<MDCSelectIconFoundation>) {
-    leadingIcon = event.detail;
-  }
 
   function hasClass(className: string) {
     return className in internalClasses

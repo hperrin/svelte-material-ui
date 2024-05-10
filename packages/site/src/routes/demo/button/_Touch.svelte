@@ -1,13 +1,13 @@
-<Button on:click={() => clicked++} touch>
+<Button onclick={() => clicked++} touch>
   <Label>Default</Label>
 </Button>
-<Button on:click={() => clicked++} touch variant="raised">
+<Button onclick={() => clicked++} touch variant="raised">
   <Label>Raised</Label>
 </Button>
-<Button on:click={() => clicked++} touch variant="unelevated">
+<Button onclick={() => clicked++} touch variant="unelevated">
   <Label>Unelevated</Label>
 </Button>
-<Button on:click={() => clicked++} touch variant="outlined">
+<Button onclick={() => clicked++} touch variant="outlined">
   <Label>Outlined</Label>
 </Button>
 

@@ -7,7 +7,7 @@
   <Chip
     {chip}
     shouldRemoveOnTrailingIconClick={false}
-    on:click={() => clicked++}
+    onclick={() => clicked++}
   >
     {#if chip === 'four'}
       <LeadingIcon class="material-icons">book</LeadingIcon>

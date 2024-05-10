@@ -15,7 +15,7 @@
   }}
   bind:this={anchor}
 >
-  <Button on:click={() => surface.setOpen(true)}>Open Menu Surface</Button>
+  <Button onclick={() => surface.setOpen(true)}>Open Menu Surface</Button>
   <MenuSurface bind:this={surface} anchor={false} bind:anchorElement={anchor}>
     <ImageList class="menu-surface-image-list">
       {#each Array(4) as _unused, i}

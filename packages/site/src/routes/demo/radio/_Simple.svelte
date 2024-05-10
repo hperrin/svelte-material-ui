@@ -15,7 +15,7 @@
 
 <div style="margin-top: 1em;">
   <Button
-    on:click={() => {
+    onclick={() => {
       selected = 'Doc';
     }}
   >

@@ -10,7 +10,7 @@
       <List>
         <Item
           href="javascript:void(0)"
-          on:click={() => setActive('Inbox')}
+          onclick={() => setActive('Inbox')}
           activated={active === 'Inbox'}
         >
           <Graphic class="material-icons" aria-hidden="true">inbox</Graphic>
@@ -18,7 +18,7 @@
         </Item>
         <Item
           href="javascript:void(0)"
-          on:click={() => setActive('Star')}
+          onclick={() => setActive('Star')}
           activated={active === 'Star'}
         >
           <Graphic class="material-icons" aria-hidden="true">star</Graphic>
@@ -26,7 +26,7 @@
         </Item>
         <Item
           href="javascript:void(0)"
-          on:click={() => setActive('Sent Mail')}
+          onclick={() => setActive('Sent Mail')}
           activated={active === 'Sent Mail'}
         >
           <Graphic class="material-icons" aria-hidden="true">send</Graphic>
@@ -34,7 +34,7 @@
         </Item>
         <Item
           href="javascript:void(0)"
-          on:click={() => setActive('Drafts')}
+          onclick={() => setActive('Drafts')}
           activated={active === 'Drafts'}
         >
           <Graphic class="material-icons" aria-hidden="true">drafts</Graphic>
@@ -45,7 +45,7 @@
         <Subheader tag="h6">Labels</Subheader>
         <Item
           href="javascript:void(0)"
-          on:click={() => setActive('Family')}
+          onclick={() => setActive('Family')}
           activated={active === 'Family'}
         >
           <Graphic class="material-icons" aria-hidden="true">bookmark</Graphic>
@@ -53,7 +53,7 @@
         </Item>
         <Item
           href="javascript:void(0)"
-          on:click={() => setActive('Friends')}
+          onclick={() => setActive('Friends')}
           activated={active === 'Friends'}
         >
           <Graphic class="material-icons" aria-hidden="true">bookmark</Graphic>
@@ -61,7 +61,7 @@
         </Item>
         <Item
           href="javascript:void(0)"
-          on:click={() => setActive('Work')}
+          onclick={() => setActive('Work')}
           activated={active === 'Work'}
         >
           <Graphic class="material-icons" aria-hidden="true">bookmark</Graphic>
@@ -76,7 +76,7 @@
   <Scrim fixed={false} />
   <AppContent class="app-content">
     <main class="main-content">
-      <Button on:click={() => (open = !open)}>
+      <Button onclick={() => (open = !open)}>
         <Label>Toggle Drawer</Label>
       </Button>
       <br />

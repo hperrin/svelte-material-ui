@@ -9,7 +9,7 @@
   >
     {#each options as item, i}
       <Item
-        on:SMUI:action={() => (selectionIndex = i)}
+        onSMUIAction={() => (selectionIndex = i)}
         disabled={item.disabled}
         selected={selectionIndex === i}
       >
@@ -35,7 +35,7 @@
 <div style="margin-top: 1em;">
   <div>Programmatically select:</div>
   {#each options as option, i}
-    <Button on:click={() => (selectionIndex = i)}>
+    <Button onclick={() => (selectionIndex = i)}>
       <Label>{option.name}</Label>
     </Button>
   {/each}
@@ -44,7 +44,7 @@
 <div style="margin-top: 1em;">
   <div>Programmatically focus:</div>
   {#each options as option, i}
-    <Button on:click={() => list.focusItemAtIndex(i)}>
+    <Button onclick={() => list.focusItemAtIndex(i)}>
       <Label>{option.name}</Label>
     </Button>
   {/each}

@@ -1,7 +1,6 @@
 <div
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
     [className]: true,
     'mdc-text-field-helper-text': true,
@@ -23,17 +22,10 @@
 
 <script lang="ts">
   import { MDCTextFieldHelperTextFoundation } from '@material/textfield';
-  import { onMount } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
+  import { onMount, getContext } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    useActions,
-    dispatch,
-  } from '@smui/common/internal';
+  import { classMap, useActions } from '@smui/common/internal';
 
   type OwnProps = {
     use?: ActionArray;
@@ -51,8 +43,6 @@
   };
   type $$Props = OwnProps & SmuiAttrs<'div', keyof OwnProps>;
 
-  const forwardEvents = forwardEventsBuilder(get_current_component());
-
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
   let className = '';
@@ -67,6 +57,16 @@
   let internalAttrs: { [k: string]: string | undefined } = {};
   let content: string | undefined = undefined;
 
+  const SMUITextfieldHelperTextId = getContext<
+    ((accessor: string) => void) | undefined
+  >('SMUI:textfield:helper-text:id');
+  const SMUITextfieldHelperTextMount = getContext<
+    ((accessor: MDCTextFieldHelperTextFoundation) => void) | undefined
+  >('SMUI:textfield:helper-text:mount');
+  const SMUITextfieldHelperTextUnmount = getContext<
+    ((accessor: MDCTextFieldHelperTextFoundation) => void) | undefined
+  >('SMUI:textfield:helper-text:unmount');
+
   onMount(() => {
     instance = new MDCTextFieldHelperTextFoundation({
       addClass,
@@ -80,15 +80,14 @@
       },
     });
 
-    if (id.startsWith('SMUI-textfield-helper-text-')) {
-      dispatch(getElement(), 'SMUITextfieldHelperText:id', id);
-    }
-    dispatch(getElement(), 'SMUITextfieldHelperText:mount', instance);
+    SMUITextfieldHelperTextId && SMUITextfieldHelperTextId(id);
+    SMUITextfieldHelperTextMount && SMUITextfieldHelperTextMount(instance);
 
     instance.init();
 
     return () => {
-      dispatch(getElement(), 'SMUITextfieldHelperText:unmount', instance);
+      SMUITextfieldHelperTextUnmount &&
+        SMUITextfieldHelperTextUnmount(instance);
 
       instance.destroy();
     };

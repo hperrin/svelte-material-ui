@@ -1,10 +1,9 @@
 <div
   use:Ripple={{ surface: true, active }}
-  on:mousedown|capture={() => (active = true)}
-  on:mouseup|capture={() => (active = false)}
-  on:keydown|capture={(e) =>
-    (active = e.code === 'Space' || e.code === 'Enter')}
-  on:keyup|capture={() => (active = false)}
+  onmousedowncapture={() => (active = true)}
+  onmouseupcapture={() => (active = false)}
+  onkeydowncapture={(e) => (active = e.code === 'Space' || e.code === 'Enter')}
+  onkeyupcapture={() => (active = false)}
   tabindex="0"
   role="button"
 >

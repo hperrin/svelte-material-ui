@@ -17,6 +17,10 @@
       "types": "./src/classadder/index.d.ts",
       "svelte": "./dist/classadder/index.js"
     },
+    "./events": {
+      "types": "./src/events/index.d.ts",
+      "svelte": "./dist/events/index.js"
+    },
     "./internal": {
       "types": "./src/internal/index.d.ts",
       "svelte": "./dist/internal/index.js"
@@ -29,6 +33,9 @@
       ],
       "classadder": [
         "./src/classadder/index.d.ts"
+      ],
+      "events": [
+        "./src/events/index.d.ts"
       ],
       "internal": [
         "./src/internal/index.d.ts"
@@ -50,7 +57,7 @@
   "scripts": {
     "build": "npm run build:js && npm run build:svelte",
     "build:js": "tsc -p . --outDir dist/ --rootDir src/",
-    "build:svelte": "svelte-strip strip src/ dist",
+    "build:svelte": "cp src/*.svelte dist/ && cp src/classadder/*.svelte dist/classadder/",
     "clean": "git status --ignored -u --porcelain . | grep -v node_modules/ | grep -e '^!! ' | sed 's/^!! packages\\/[a-z-]*\\///g' | tr '\\n' ' ' | xargs rm",
     "check": "npx svelte-check --ignore dist",
     "prepublish": "npm run build",
@@ -76,7 +83,6 @@
     "@tsconfig/svelte": "^5.0.4",
     "sass": "^1.76.0",
     "svelte-check": "^3.7.1",
-    "svelte-strip": "^3.1.1",
     "tslib": "^2.6.2",
     "typescript": "^5.4.5"
   }

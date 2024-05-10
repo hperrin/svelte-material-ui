@@ -11,7 +11,7 @@
   <Banner
     open
     autoClose={false}
-    on:SMUIBanner:actionClicked={handleActionClicked}
+    onSMUIBannerActionClicked={handleActionClicked}
   >
     <Label slot="label">This is a banner with actions to click.</Label>
     <svelte:fragment slot="actions">

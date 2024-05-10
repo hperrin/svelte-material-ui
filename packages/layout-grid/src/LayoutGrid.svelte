@@ -1,7 +1,6 @@
 <div
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
     [className]: true,
     'mdc-layout-grid': true,
@@ -17,12 +16,9 @@
 
 <script lang="ts">
   import type { ComponentProps } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
-    forwardEventsBuilder,
     classMap,
     exclude,
     prefixFilter,
@@ -41,8 +37,6 @@
     SmuiAttrs<'div', keyof OwnProps> & {
       [k in keyof ComponentProps<InnerGrid> as `innerGrid\$${k}`]?: ComponentProps<InnerGrid>[k];
     };
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
 
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];

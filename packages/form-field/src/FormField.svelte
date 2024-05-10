@@ -1,15 +1,12 @@
 <div
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
     [className]: true,
     'mdc-form-field': true,
     'mdc-form-field--align-end': align === 'end',
     'mdc-form-field--nowrap': noWrap,
   })}
-  on:SMUIGenericInput:mount={handleInputMount}
-  on:SMUIGenericInput:unmount={() => (input = undefined)}
   {...exclude($$restProps, ['label$'])}
 >
   <slot />
@@ -28,8 +25,6 @@
 <script lang="ts">
   import { MDCFormFieldFoundation } from '@material/form-field';
   import { onMount, setContext } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type {
     SmuiAttrs,
     SmuiElementPropMap,
@@ -37,7 +32,6 @@
   } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
-    forwardEventsBuilder,
     classMap,
     exclude,
     prefixFilter,
@@ -57,8 +51,6 @@
       [k in keyof SmuiElementPropMap['label'] as `label\$${k}`]?: SmuiElementPropMap['label'];
     };
 
-  const forwardEvents = forwardEventsBuilder(get_current_component());
-
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
   let className = '';
@@ -74,6 +66,16 @@
   let input: SMUIGenericInputAccessor | undefined;
 
   setContext('SMUI:generic:input:props', { id: inputId });
+
+  setContext(
+    'SMUI:generic:input:mount',
+    (accessor: SMUIGenericInputAccessor) => {
+      input = accessor;
+    },
+  );
+  setContext('SMUI:generic:input:unmount', () => {
+    input = undefined;
+  });
 
   onMount(() => {
     instance = new MDCFormFieldFoundation({
@@ -101,10 +103,6 @@
       instance.destroy();
     };
   });
-
-  function handleInputMount(event: CustomEvent<SMUIGenericInputAccessor>) {
-    input = event.detail;
-  }
 
   export function getElement() {
     return element;
