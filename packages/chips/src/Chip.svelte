@@ -260,52 +260,22 @@
         return false;
       },
       notifyInteraction: () =>
-        dispatch(
-          getElement(),
-          'SMUIChipInteraction',
-          { chipId },
-          undefined,
-          true,
-        ),
+        dispatch(getElement(), 'SMUIChipInteraction', { chipId }),
       notifyNavigation: (key, source) =>
-        dispatch(
-          getElement(),
-          'SMUIChipNavigation',
-          { chipId, key, source },
-          undefined,
-          true,
-        ),
+        dispatch(getElement(), 'SMUIChipNavigation', { chipId, key, source }),
       notifyRemoval: (removedAnnouncement) =>
-        dispatch(
-          getElement(),
-          'SMUIChipRemoval',
-          {
-            chipId,
-            removedAnnouncement,
-          },
-          undefined,
-          true,
-        ),
+        dispatch(getElement(), 'SMUIChipRemoval', {
+          chipId,
+          removedAnnouncement,
+        }),
       notifySelection: (selected, shouldIgnore) =>
-        dispatch(
-          getElement(),
-          'SMUIChipSelection',
-          {
-            chipId,
-            selected,
-            shouldIgnore,
-          },
-          undefined,
-          true,
-        ),
+        dispatch(getElement(), 'SMUIChipSelection', {
+          chipId,
+          selected,
+          shouldIgnore,
+        }),
       notifyTrailingIconInteraction: () =>
-        dispatch(
-          getElement(),
-          'SMUIChipTrailingIconInteraction',
-          { chipId },
-          undefined,
-          true,
-        ),
+        dispatch(getElement(), 'SMUIChipTrailingIconInteraction', { chipId }),
       notifyEditStart: () => {
         /* Not Implemented. */
       },

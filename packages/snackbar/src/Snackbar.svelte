@@ -131,37 +131,11 @@
       addClass,
       announce: () => util.announce(getLabelElement()),
       notifyClosed: (reason) =>
-        dispatch(
-          getElement(),
-          'SMUISnackbarClosed',
-          reason ? { reason } : {},
-          undefined,
-          true,
-        ),
+        dispatch(getElement(), 'SMUISnackbarClosed', reason ? { reason } : {}),
       notifyClosing: (reason) =>
-        dispatch(
-          getElement(),
-          'SMUISnackbarClosing',
-          reason ? { reason } : {},
-          undefined,
-          true,
-        ),
-      notifyOpened: () =>
-        dispatch(
-          getElement(),
-          'SMUISnackbarOpened',
-          undefined,
-          undefined,
-          true,
-        ),
-      notifyOpening: () =>
-        dispatch(
-          getElement(),
-          'SMUISnackbarOpening',
-          undefined,
-          undefined,
-          true,
-        ),
+        dispatch(getElement(), 'SMUISnackbarClosing', reason ? { reason } : {}),
+      notifyOpened: () => dispatch(getElement(), 'SMUISnackbarOpened'),
+      notifyOpening: () => dispatch(getElement(), 'SMUISnackbarOpening'),
       removeClass,
     });
 

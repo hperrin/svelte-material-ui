@@ -180,13 +180,7 @@
         tabIndicator.activate(previousIndicatorClientRect),
       deactivateIndicator: () => tabIndicator.deactivate(),
       notifyInteracted: () =>
-        dispatch(
-          getElement(),
-          'SMUITabInteracted',
-          { tabId: tabId },
-          undefined,
-          true,
-        ),
+        dispatch(getElement(), 'SMUITabInteracted', { tabId }),
       getOffsetLeft: () => getElement().offsetLeft,
       getOffsetWidth: () => getElement().offsetWidth,
       getContentOffsetLeft: () => content.offsetLeft,

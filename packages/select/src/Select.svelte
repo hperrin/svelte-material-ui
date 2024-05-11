@@ -548,16 +548,10 @@
           if (updateInvalid) {
             invalid = !instance.isValid();
           }
-          dispatch(
-            getElement(),
-            'SMUISelectChange',
-            {
-              value,
-              index: selectedIndex,
-            },
-            undefined,
-            true,
-          );
+          dispatch(getElement(), 'SMUISelectChange', {
+            value,
+            index: selectedIndex,
+          });
         },
 
         // getOutlineAdapterMethods

@@ -166,13 +166,7 @@
       getIndexOfTabById: (id) => tabs.indexOf(id as TabKey),
       getTabListLength: () => tabs.length,
       notifyTabActivated: (index) =>
-        dispatch(
-          getElement(),
-          'SMUITabBarActivated',
-          { index },
-          undefined,
-          true,
-        ),
+        dispatch(getElement(), 'SMUITabBarActivated', { index }),
     });
 
     instance.init();

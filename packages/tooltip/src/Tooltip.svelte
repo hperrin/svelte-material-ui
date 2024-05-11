@@ -275,7 +275,7 @@
         );
       },
       notifyHidden: () => {
-        dispatch(getElement(), 'SMUITooltipHidden', undefined, undefined, true);
+        dispatch(getElement(), 'SMUITooltipHidden');
       },
       // TODO: figure out why MDC-Web included these caret functions, because they're entirely undocumented.
       getTooltipCaretBoundingRect: () => {

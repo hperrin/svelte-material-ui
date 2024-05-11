@@ -191,22 +191,15 @@
       },
       notifyClosed: (reason) => {
         open = false;
-        dispatch(getElement(), 'SMUIBannerClosed', { reason }, undefined, true);
+        dispatch(getElement(), 'SMUIBannerClosed', { reason });
       },
       notifyClosing: (reason) =>
-        dispatch(
-          getElement(),
-          'SMUIBannerClosing',
-          { reason },
-          undefined,
-          true,
-        ),
+        dispatch(getElement(), 'SMUIBannerClosing', { reason }),
       notifyOpened: () => {
         open = true;
-        dispatch(getElement(), 'SMUIBannerOpened', {}, undefined, true);
+        dispatch(getElement(), 'SMUIBannerOpened', {});
       },
-      notifyOpening: () =>
-        dispatch(getElement(), 'SMUIBannerOpening', {}, undefined, true),
+      notifyOpening: () => dispatch(getElement(), 'SMUIBannerOpening', {}),
       notifyActionClicked: (action) =>
         dispatch(getElement(), 'SMUIBannerActionClicked', { action }),
       releaseFocus: () => focusTrap && focusTrap.releaseFocus(),

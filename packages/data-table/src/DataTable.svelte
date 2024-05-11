@@ -226,7 +226,7 @@
       notifySortAction: (data) => {
         sort = data.columnId;
         sortDirection = data.sortValue;
-        dispatch(getElement(), 'SMUIDataTableSorted', data, undefined, true);
+        dispatch(getElement(), 'SMUIDataTableSorted', data);
       },
       getTableContainerHeight: () => container.getBoundingClientRect().height,
       getTableHeaderHeight: () => {
@@ -279,48 +279,24 @@
       notifyRowSelectionChanged: (data) => {
         const row = body?.orderedRows[data.rowIndex];
         if (row) {
-          dispatch(
-            getElement(),
-            'SMUIDataTableSelectionChanged',
-            {
-              row: row.element,
-              rowId: row.rowId,
-              rowIndex: data.rowIndex,
-              selected: data.selected,
-            },
-            undefined,
-            true,
-          );
+          dispatch(getElement(), 'SMUIDataTableSelectionChanged', {
+            row: row.element,
+            rowId: row.rowId,
+            rowIndex: data.rowIndex,
+            selected: data.selected,
+          });
         }
       },
       notifySelectedAll: () => {
         setHeaderRowCheckboxIndeterminate(false);
-        dispatch(
-          getElement(),
-          'SMUIDataTableSelectedAll',
-          undefined,
-          undefined,
-          true,
-        );
+        dispatch(getElement(), 'SMUIDataTableSelectedAll');
       },
       notifyUnselectedAll: () => {
         setHeaderRowCheckboxIndeterminate(false);
-        dispatch(
-          getElement(),
-          'SMUIDataTableUnselectedAll',
-          undefined,
-          undefined,
-          true,
-        );
+        dispatch(getElement(), 'SMUIDataTableUnselectedAll');
       },
       notifyRowClick: (detail) =>
-        dispatch(
-          getElement(),
-          'SMUIDataTableClickRow',
-          detail,
-          undefined,
-          true,
-        ),
+        dispatch(getElement(), 'SMUIDataTableClickRow', detail),
       registerHeaderRowCheckbox: () => {
         // Handled automatically.
       },

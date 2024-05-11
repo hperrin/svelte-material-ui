@@ -110,12 +110,12 @@
           aria-controls={helperId}
           aria-describedby={helperId}
           {...prefixFilter($$restProps, 'input$')}
-          onblur={(e) => {
+          onblur={(e: CustomEvent) => {
             focused = false;
             dispatch(getElement(), 'blur', e);
             $$restProps.input$onblur?.(e);
           }}
-          onfocus={(e) => {
+          onfocus={(e: CustomEvent) => {
             focused = true;
             dispatch(getElement(), 'focus', e);
             $$restProps.input$onfocus?.(e);
@@ -142,12 +142,12 @@
         aria-describedby={helperId}
         {...noLabel && label != null ? { placeholder: label } : {}}
         {...prefixFilter($$restProps, 'input$')}
-        onblur={(e) => {
+        onblur={(e: CustomEvent) => {
           focused = false;
           dispatch(getElement(), 'blur', e);
           $$restProps.input$onblur?.(e);
         }}
-        onfocus={(e) => {
+        onfocus={(e: CustomEvent) => {
           focused = true;
           dispatch(getElement(), 'focus', e);
           $$restProps.input$onfocus?.(e);

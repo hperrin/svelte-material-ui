@@ -165,7 +165,7 @@
       setStyle: addStyle,
       getTopAppBarHeight: () => getElement().clientHeight,
       notifyNavigationIconClicked: () =>
-        dispatch(getElement(), 'SMUITopAppBarNav', undefined, undefined, true),
+        dispatch(getElement(), 'SMUITopAppBarNav'),
       getViewportScrollY: () =>
         scrollTarget == null ? window.pageYOffset : scrollTarget.scrollTop,
       getTotalActionItems: () =>

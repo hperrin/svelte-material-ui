@@ -109,16 +109,10 @@
           .map((accessor) => accessor.element)
           .indexOf(element),
       notifySelected: (evtData) =>
-        dispatch(
-          getElement(),
-          'SMUIMenuSelected',
-          {
-            index: evtData.index,
-            item: listAccessor.getOrderedList()[evtData.index].element,
-          },
-          undefined,
-          true,
-        ),
+        dispatch(getElement(), 'SMUIMenuSelected', {
+          index: evtData.index,
+          item: listAccessor.getOrderedList()[evtData.index].element,
+        }),
       getMenuItemCount: () => listAccessor.items.length,
       focusItemAtIndex: (index) => listAccessor.focusItemAtIndex(index),
       focusListRoot: () =>

@@ -174,13 +174,7 @@
           open = isStatic;
         }
         if (!open) {
-          dispatch(
-            getElement(),
-            'SMUIMenuSurfaceClosed',
-            undefined,
-            undefined,
-            true,
-          );
+          dispatch(getElement(), 'SMUIMenuSurfaceClosed');
         }
       },
       notifyClosing: () => {
@@ -188,13 +182,7 @@
           open = isStatic;
         }
         if (!open) {
-          dispatch(
-            getElement(),
-            'SMUIMenuSurfaceClosing',
-            undefined,
-            undefined,
-            true,
-          );
+          dispatch(getElement(), 'SMUIMenuSurfaceClosing');
         }
       },
       notifyOpen: () => {
@@ -202,24 +190,12 @@
           open = true;
         }
         if (open) {
-          dispatch(
-            getElement(),
-            'SMUIMenuSurfaceOpened',
-            undefined,
-            undefined,
-            true,
-          );
+          dispatch(getElement(), 'SMUIMenuSurfaceOpened');
         }
       },
       notifyOpening: () => {
         if (!open) {
-          dispatch(
-            getElement(),
-            'SMUIMenuSurfaceOpening',
-            undefined,
-            undefined,
-            true,
-          );
+          dispatch(getElement(), 'SMUIMenuSurfaceOpening');
         }
       },
       isElementInContainer: (el) => getElement().contains(el),

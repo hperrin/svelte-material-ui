@@ -479,22 +479,10 @@
         getElement().setPointerCapture(pointerId);
       },
       emitChangeEvent: (value, thumb) => {
-        dispatch(
-          getElement(),
-          'SMUISliderChange',
-          { value, thumb },
-          undefined,
-          true,
-        );
+        dispatch(getElement(), 'SMUISliderChange', { value, thumb });
       },
       emitInputEvent: (value, thumb) => {
-        dispatch(
-          getElement(),
-          'SMUISliderInput',
-          { value, thumb },
-          undefined,
-          true,
-        );
+        dispatch(getElement(), 'SMUISliderInput', { value, thumb });
       },
       emitDragStartEvent: (_, thumb) => {
         // Emitting event is not yet implemented. See issue:

@@ -255,26 +255,12 @@
       isContentScrollable: () => util.isScrollable(getContentEl()),
       notifyClosed: (action) => {
         open = false;
-        dispatch(
-          getElement(),
-          'SMUIDialogClosed',
-          action ? { action } : {},
-          undefined,
-          true,
-        );
+        dispatch(getElement(), 'SMUIDialogClosed', action ? { action } : {});
       },
       notifyClosing: (action) =>
-        dispatch(
-          getElement(),
-          'SMUIDialogClosing',
-          action ? { action } : {},
-          undefined,
-          true,
-        ),
-      notifyOpened: () =>
-        dispatch(getElement(), 'SMUIDialogOpened', {}, undefined, true),
-      notifyOpening: () =>
-        dispatch(getElement(), 'SMUIDialogOpening', {}, undefined, true),
+        dispatch(getElement(), 'SMUIDialogClosing', action ? { action } : {}),
+      notifyOpened: () => dispatch(getElement(), 'SMUIDialogOpened', {}),
+      notifyOpening: () => dispatch(getElement(), 'SMUIDialogOpening', {}),
       releaseFocus: () => focusTrap.releaseFocus(),
       removeBodyClass: (className) => document.body.classList.remove(className),
       removeClass,

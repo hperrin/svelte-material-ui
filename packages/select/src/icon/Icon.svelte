@@ -66,8 +66,7 @@
         getElement().addEventListener(evtType, handler),
       deregisterInteractionHandler: (evtType, handler) =>
         getElement().removeEventListener(evtType, handler),
-      notifyIconAction: () =>
-        dispatch(getElement(), 'SMUISelectIcon', undefined, undefined, true),
+      notifyIconAction: () => dispatch(getElement(), 'SMUISelectIcon'),
     });
 
     SMUISelectLeadingIconMount && SMUISelectLeadingIconMount(instance);

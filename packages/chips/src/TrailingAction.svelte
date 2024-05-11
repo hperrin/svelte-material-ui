@@ -117,23 +117,11 @@
       },
       getAttribute: getAttr,
       notifyInteraction: (trigger) =>
-        dispatch(
-          getElement(),
-          'SMUIChipTrailingActionInteraction',
-          {
-            trigger,
-          },
-          undefined,
-          true,
-        ),
+        dispatch(getElement(), 'SMUIChipTrailingActionInteraction', {
+          trigger,
+        }),
       notifyNavigation: (key) =>
-        dispatch(
-          getElement(),
-          'SMUIChipTrailingActionNavigation',
-          { key },
-          undefined,
-          true,
-        ),
+        dispatch(getElement(), 'SMUIChipTrailingActionNavigation', { key }),
       setAttribute: addAttr,
     });
 

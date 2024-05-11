@@ -78,8 +78,7 @@
         getElement().addEventListener(evtType, handler),
       deregisterInteractionHandler: (evtType, handler) =>
         getElement().removeEventListener(evtType, handler),
-      notifyIconAction: () =>
-        dispatch(getElement(), 'SMUITextFieldIcon', undefined, undefined, true),
+      notifyIconAction: () => dispatch(getElement(), 'SMUITextFieldIcon'),
     });
 
     if (leading) {

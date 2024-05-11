@@ -151,23 +151,11 @@
           },
           notifyClose: () => {
             open = false;
-            dispatch(
-              getElement(),
-              'SMUIDrawerClosed',
-              undefined,
-              undefined,
-              true,
-            );
+            dispatch(getElement(), 'SMUIDrawerClosed');
           },
           notifyOpen: () => {
             open = true;
-            dispatch(
-              getElement(),
-              'SMUIDrawerOpened',
-              undefined,
-              undefined,
-              true,
-            );
+            dispatch(getElement(), 'SMUIDrawerOpened');
           },
           trapFocus: () => focusTrap.trapFocus(),
           releaseFocus: () => focusTrap.releaseFocus(),
