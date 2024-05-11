@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <tr
   bind:this={element}
   use:useActions={use}

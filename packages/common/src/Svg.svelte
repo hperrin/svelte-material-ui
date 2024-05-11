@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <svg bind:this={element} use:useActions={use} {...$$restProps}><slot /></svg>
 
 <script lang="ts">

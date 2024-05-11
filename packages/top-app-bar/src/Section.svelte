@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <section
   bind:this={element}
   use:useActions={use}

@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <svelte:window
   onresize={() => open && instance && instance.layout()}
   onorientationchange={() => open && instance && instance.layout()}

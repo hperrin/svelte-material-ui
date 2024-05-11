@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <svelte:body onclickcapture={handleBodyClick} />
 
 <div

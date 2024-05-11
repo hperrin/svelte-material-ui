@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <svelte:component
   this={component}
   {tag}
@@ -33,9 +35,9 @@
     .join(' ')}
   {href}
   {...$$restProps}
-  ><div class="mdc-fab__ripple" />
-  {#if focusRing}<div class="mdc-fab__focus-ring" />{/if}
-  <slot />{#if touch}<div class="mdc-fab__touch" />{/if}</svelte:component
+  ><div class="mdc-fab__ripple"></div>
+  {#if focusRing}<div class="mdc-fab__focus-ring"></div>{/if}
+  <slot />{#if touch}<div class="mdc-fab__touch"></div>{/if}</svelte:component
 >
 
 <script

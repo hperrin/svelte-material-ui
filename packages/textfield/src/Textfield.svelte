@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 {#if valued}
   <label
     bind:this={element}
@@ -51,7 +53,7 @@
   >
     {#if !textarea && variant !== 'outlined'}
       {#if variant === 'filled'}
-        <span class="mdc-text-field__ripple" />
+        <span class="mdc-text-field__ripple"></span>
       {/if}
       {#if !noLabel && (label != null || $$slots.label)}
         <FloatingLabel
@@ -110,12 +112,12 @@
           aria-controls={helperId}
           aria-describedby={helperId}
           {...prefixFilter($$restProps, 'input$')}
-          onblur={(e: CustomEvent) => {
+          onblur={(e) => {
             focused = false;
             dispatch(getElement(), 'blur', e);
             $$restProps.input$onblur?.(e);
           }}
-          onfocus={(e: CustomEvent) => {
+          onfocus={(e) => {
             focused = true;
             dispatch(getElement(), 'focus', e);
             $$restProps.input$onfocus?.(e);
@@ -142,12 +144,12 @@
         aria-describedby={helperId}
         {...noLabel && label != null ? { placeholder: label } : {}}
         {...prefixFilter($$restProps, 'input$')}
-        onblur={(e: CustomEvent) => {
+        onblur={(e) => {
           focused = false;
           dispatch(getElement(), 'blur', e);
           $$restProps.input$onblur?.(e);
         }}
-        onfocus={(e: CustomEvent) => {
+        onfocus={(e) => {
           focused = true;
           dispatch(getElement(), 'focus', e);
           $$restProps.input$onfocus?.(e);

@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <svelte:window onresize={layout} />
 
 <div

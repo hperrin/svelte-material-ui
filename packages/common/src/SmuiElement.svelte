@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 {#if tag === 'svg'}
   <svg bind:this={element} use:useActions={use} {...$$restProps}><slot /></svg>
 {:else if selfClosing}

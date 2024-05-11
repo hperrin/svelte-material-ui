@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 {#if rich}
   <div
     bind:this={element}

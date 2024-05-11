@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <aside
   bind:this={element}
   use:useActions={use}

@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <Paper
   bind:this={element}
   {use}

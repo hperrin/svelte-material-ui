@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <div
   bind:this={element}
   use:useActions={use}
@@ -23,7 +25,7 @@
   role="button"
   {...$$restProps}
 >
-  <div class="mdc-card__ripple" />
+  <div class="mdc-card__ripple"></div>
   <slot />
 </div>
 

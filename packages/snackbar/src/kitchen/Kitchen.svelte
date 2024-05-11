@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 {#if config}
   <Snackbar
     bind:this={element}

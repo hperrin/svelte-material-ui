@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 {#if fixed}
   <div
     bind:this={element}

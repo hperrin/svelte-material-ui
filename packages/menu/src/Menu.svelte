@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <MenuSurface
   bind:this={element}
   {use}

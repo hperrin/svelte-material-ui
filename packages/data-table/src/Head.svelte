@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <thead bind:this={element} use:useActions={use} {...$$restProps}><slot /></thead
 >
 

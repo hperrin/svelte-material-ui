@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <textarea
   bind:this={element}
   use:useActions={use}

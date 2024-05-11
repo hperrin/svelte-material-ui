@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <svelte:component
   this={component}
   {tag}

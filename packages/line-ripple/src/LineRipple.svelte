@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <div
   bind:this={element}
   use:useActions={use}
@@ -12,7 +14,7 @@
     .concat([style])
     .join(' ')}
   {...$$restProps}
-/>
+></div>
 
 <script lang="ts">
   import { MDCLineRippleFoundation } from '@material/line-ripple';

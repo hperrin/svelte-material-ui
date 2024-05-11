@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <button
   bind:this={element}
   use:Ripple={{

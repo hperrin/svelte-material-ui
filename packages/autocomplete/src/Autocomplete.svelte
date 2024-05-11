@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <div
   bind:this={element}
   use:Anchor

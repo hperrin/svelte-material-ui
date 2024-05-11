@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <svelte:window onscroll={handleTargetScroll} onresize={handleWindowResize} />
 
 <div

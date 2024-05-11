@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 {#if wrapped}
   <span
     bind:this={element}

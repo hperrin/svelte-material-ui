@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <span bind:this={element} use:useActions={use} role="gridcell">
   <i
     class={classMap({

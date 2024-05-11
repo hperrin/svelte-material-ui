@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 {#if header}
   <th
     bind:this={element}

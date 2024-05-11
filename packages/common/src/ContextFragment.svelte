@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <slot />
 
 <script lang="ts">

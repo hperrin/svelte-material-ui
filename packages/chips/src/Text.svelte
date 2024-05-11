@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 {#if $filter}
   <Checkmark bind:this={input} />
 {/if}
@@ -27,15 +29,15 @@
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, useActions } from '@smui/common/internal';
 
+  import type { SMUIChipsPrimaryActionAccessor } from './Text.types.js';
+  import Checkmark from './Checkmark.svelte';
+
   type OwnProps = {
     use?: ActionArray;
     class?: string;
     tabindex?: number;
   };
   type $$Props = OwnProps & SmuiAttrs<'span', keyof OwnProps>;
-
-  import type { SMUIChipsPrimaryActionAccessor } from './Text.types.js';
-  import Checkmark from './Checkmark.svelte';
 
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];
