@@ -3,7 +3,7 @@
   class="bottom-app-bar-iframe"
   src="/demo/bottom-app-bar/iframe/standard"
   title="standard"
-/>
+></iframe>
 <a style="display: none;" href="/demo/bottom-app-bar/iframe/standard"
   >helper needed for export</a
 >
@@ -12,7 +12,7 @@
   class="bottom-app-bar-iframe"
   src="/demo/bottom-app-bar/iframe/fixed"
   title="fixed"
-/>
+></iframe>
 <a style="display: none;" href="/demo/bottom-app-bar/iframe/fixed"
   >helper needed for export</a
 >

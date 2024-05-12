@@ -14,7 +14,7 @@
     title="Selected Tab"
     name="href-tabs-frame"
     style="width: 100%; height: 400px; border: 0;"
-  />
+  ></iframe>
 </div>
 
 <script lang="ts">

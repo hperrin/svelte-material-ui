@@ -3,7 +3,7 @@
   class="top-app-bar-iframe"
   src="/demo/top-app-bar/iframe/standard"
   title="standard"
-/>
+></iframe>
 <a style="display: none;" href="/demo/top-app-bar/iframe/standard"
   >helper needed for export</a
 >
@@ -12,7 +12,7 @@
   class="top-app-bar-iframe"
   src="/demo/top-app-bar/iframe/fixed"
   title="fixed"
-/>
+></iframe>
 <a style="display: none;" href="/demo/top-app-bar/iframe/fixed"
   >helper needed for export</a
 >
@@ -21,7 +21,7 @@
   class="top-app-bar-iframe"
   src="/demo/top-app-bar/iframe/dense"
   title="dense"
-/>
+></iframe>
 <a style="display: none;" href="/demo/top-app-bar/iframe/dense"
   >helper needed for export</a
 >
@@ -30,7 +30,7 @@
   class="top-app-bar-iframe"
   src="/demo/top-app-bar/iframe/prominent"
   title="prominent"
-/>
+></iframe>
 <a style="display: none;" href="/demo/top-app-bar/iframe/prominent"
   >helper needed for export</a
 >
@@ -39,7 +39,7 @@
   class="top-app-bar-iframe"
   src="/demo/top-app-bar/iframe/short"
   title="short"
-/>
+></iframe>
 <a style="display: none;" href="/demo/top-app-bar/iframe/short"
   >helper needed for export</a
 >
@@ -48,7 +48,7 @@
   class="top-app-bar-iframe"
   src="/demo/top-app-bar/iframe/short-closed"
   title="short closed"
-/>
+></iframe>
 <a style="display: none;" href="/demo/top-app-bar/iframe/short-closed"
   >helper needed for export</a
 >

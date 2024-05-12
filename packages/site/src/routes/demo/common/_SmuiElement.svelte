@@ -6,7 +6,7 @@
 -->
 
 <div>
-  <Button tag="div" bind:this={DivButton}
+  <Button tag="div" bind:this={DivButton as Button<undefined, 'div'>}
     ><Label>I'm a &lt;div /&gt; Button</Label></Button
   >
   <Button tag="span"><Label>I'm a &lt;span /&gt; Button</Label></Button>
