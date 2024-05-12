@@ -28,7 +28,7 @@ If you need help installing or using SMUI, join the [Discord server](https://dis
 
 # Svelte 5
 
-SMUI v7 works with Svelte 4 only, due to the way it handles events. SMUI v8 is in development, and will work with Svelte 5 (and not Svelte 4).
+SMUI v8 requires Svelte 5. If you are using Svelte 4, you can use SMUI v7. Check out the [v7 branch](https://github.com/hperrin/svelte-material-ui/tree/v7).
 
 # Migration
 
@@ -50,6 +50,7 @@ Upgrading from v2? There are **lots** of changes listed in the [upgrade instruct
 
 You can find older versions of the docs on their respective branch:
 
+- [v7 docs](https://github.com/hperrin/svelte-material-ui/tree/v7#readme)
 - [v6 docs](https://github.com/hperrin/svelte-material-ui/tree/v6#readme)
 - [v5 docs](https://github.com/hperrin/svelte-material-ui/tree/v5#readme)
 - [v4 docs](https://github.com/hperrin/svelte-material-ui/tree/v4#readme)
@@ -69,15 +70,12 @@ However, there are two downsides. First is that all icons are downloaded, no mat
 
 Another option is the [Material Design Icons library](https://pictogrammers.com/library/mdi/). See the "Using SVGs" demo on the [Icon Button demo page](https://sveltematerialui.com/demo/icon-button) for instructions to use icons from the `@mdi/js` package (or any other SVG icons).
 
-You can even use them in data URLs: [![](data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiICB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCI+CiAgIDxwYXRoIGZpbGw9IiMwMDAwMDAiIGQ9Ik0xMSwyM0EyLDIgMCAwLDEgOSwyMVYxOUgxNVYyMUEyLDIgMCAwLDEgMTMsMjNIMTFNMTIsMUMxMi43MSwxIDEzLjM5LDEuMDkgMTQuMDUsMS4yNkMxNS4yMiwyLjgzIDE2LDUuNzEgMTYsOUMxNiwxMS4yOCAxNS42MiwxMy4zNyAxNSwxNkEyLDIgMCAwLDEgMTMsMThIMTFBMiwyIDAgMCwxIDksMTZDOC4zOCwxMy4zNyA4LDExLjI4IDgsOUM4LDUuNzEgOC43OCwyLjgzIDkuOTUsMS4yNkMxMC42MSwxLjA5IDExLjI5LDEgMTIsMU0yMCw4QzIwLDExLjE4IDE4LjE1LDE1LjkyIDE1LjQ2LDE3LjIxQzE2LjQxLDE1LjM5IDE3LDExLjgzIDE3LDlDMTcsNi4xNyAxNi40MSwzLjYxIDE1LjQ2LDEuNzlDMTguMTUsMy4wOCAyMCw0LjgyIDIwLDhNNCw4QzQsNC44MiA1Ljg1LDMuMDggOC41NCwxLjc5QzcuNTksMy42MSA3LDYuMTcgNyw5QzcsMTEuODMgNy41OSwxNS4zOSA4LjU0LDE3LjIxQzUuODUsMTUuOTIgNCwxMS4xOCA0LDhaIiAvPgo8L3N2Zz4=)](https://www.youtube.com/watch?v=vo9Fja5x04o)
+You can even use them in data URLs. To get a data URL for the icon:
 
-To get a data URL for the icon:
-
-1. [Find your icon](https://pictogrammers.com/library/mdi/) and click "View SVG" under the code menu.
-2. Click the "SVG File" tab and copy the full SVG document.
-3. [Base64 encode](https://www.base64encode.org/) the document.
-4. Format the URL like this `data:image/svg+xml;base64,encodedcontent`, replacing "encodedcontent" with the Base64 results.
-5. Now you have an image URL you can use in an "img" tag src attribute or anywhere else you put an image URL (like `background-image: url();`).
+1. [Find your icon](https://pictogrammers.com/library/mdi/) and click "Copy SVG" button (it looks like `</>`).
+2. [Base64 encode](https://www.base64encode.org/) the document.
+3. Format the URL like this `data:image/svg+xml;base64,encodedcontent`, replacing "encodedcontent" with the Base64 results.
+4. Now you have an image URL you can use in an "img" tag src attribute or anywhere else you put an image URL (like `background-image: url();`).
 
 # Components
 
