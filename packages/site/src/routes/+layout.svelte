@@ -7,6 +7,9 @@
   <!-- Site Styles -->
   <link rel="stylesheet" href="{assets}/site.css" />
 
+  <!-- Code Hightlighting Theme -->
+  {@html materialDarker}
+
   {#if theme}
     <!-- SMUI Styles -->
     <link rel="stylesheet" href="{assets}/smui-{theme}.css" />
@@ -260,6 +263,7 @@
   import { mdiFileDocument, mdiPalette } from '@mdi/js';
   import { siDiscord, siMastodon, siGithub } from 'simple-icons';
   import TinyGesture from 'tinygesture';
+  import materialDarker from 'svelte-highlight/styles/material-darker';
   import { assets } from '$app/paths';
   import { page } from '$app/stores';
 

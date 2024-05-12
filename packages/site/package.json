@@ -125,6 +125,7 @@
     "smui-theme": "^7.0.0",
     "svelte": "^5.0.0-next.130",
     "svelte-check": "^3.7.1",
+    "svelte-highlight": "^7.6.0",
     "svelte-portal": "^2.2.1",
     "svelte-preprocess": "^5.1.4",
     "tinygesture": "^3.0.0",
