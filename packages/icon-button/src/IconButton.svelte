@@ -113,7 +113,11 @@
       | 'last-page'
       | string
       | undefined;
-    component?: typeof SvelteComponent;
+    component?: typeof SvelteComponent<
+      Record<string, any>,
+      Record<string, any>,
+      Record<string, any>
+    >;
     tag?: TagName;
   };
   type $$Props = OwnProps & SmuiAttrs<TagName, keyof OwnProps>;
@@ -156,8 +160,11 @@
   let context = getContext('SMUI:icon-button:context');
   let ariaDescribedby = getContext('SMUI:icon-button:aria-describedby');
 
-  export let component: typeof SvelteComponent =
-    SmuiElement as typeof SvelteComponent;
+  export let component: typeof SvelteComponent<
+    Record<string, any>,
+    Record<string, any>,
+    Record<string, any>
+  > = SmuiElement;
   export let tag: SmuiEveryElement | undefined =
     component === SmuiElement ? (href == null ? 'button' : 'a') : undefined;
 

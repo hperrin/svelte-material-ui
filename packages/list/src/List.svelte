@@ -86,7 +86,11 @@
     radioList?: boolean;
     checkList?: boolean;
     hasTypeahead?: boolean;
-    component?: typeof SvelteComponent;
+    component?: typeof SvelteComponent<
+      Record<string, any>,
+      Record<string, any>,
+      Record<string, any>
+    >;
     tag?: TagName;
   };
   type $$Props = OwnProps & SmuiAttrs<TagName, keyof OwnProps>;
@@ -129,8 +133,11 @@
   );
   let removeLayoutListener: RemoveLayoutListener | undefined;
 
-  export let component: typeof SvelteComponent =
-    SmuiElement as typeof SvelteComponent;
+  export let component: typeof SvelteComponent<
+    Record<string, any>,
+    Record<string, any>,
+    Record<string, any>
+  > = SmuiElement;
   export let tag: SmuiEveryElement | undefined =
     component === SmuiElement ? (nav ? 'nav' : 'ul') : undefined;
 

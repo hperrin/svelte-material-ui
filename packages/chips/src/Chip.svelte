@@ -112,7 +112,11 @@
     touch?: boolean;
     shouldRemoveOnTrailingIconClick?: boolean;
     shouldFocusPrimaryActionOnClick?: boolean;
-    component?: typeof SvelteComponent;
+    component?: typeof SvelteComponent<
+      Record<string, any>,
+      Record<string, any>,
+      Record<string, any>
+    >;
     tag?: TagName;
   };
   type $$Props = OwnProps & SmuiAttrs<TagName, keyof OwnProps>;
@@ -148,8 +152,11 @@
   const choice = getContext<SvelteStore<boolean>>('SMUI:chips:choice');
   const index = getContext<SvelteStore<number>>('SMUI:chips:chip:index');
 
-  export let component: typeof SvelteComponent =
-    SmuiElement as typeof SvelteComponent;
+  export let component: typeof SvelteComponent<
+    Record<string, any>,
+    Record<string, any>,
+    Record<string, any>
+  > = SmuiElement;
   export let tag: SmuiEveryElement | undefined =
     component === SmuiElement ? 'div' : undefined;
 

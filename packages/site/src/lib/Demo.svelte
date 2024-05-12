@@ -111,7 +111,13 @@
 
   export let file: string | undefined = undefined;
   export let files: string[] = typeof file === 'string' ? [file] : [];
-  export let component: typeof SvelteComponent | string;
+  export let component:
+    | typeof SvelteComponent<
+        Record<string, any>,
+        Record<string, any>,
+        Record<string, any>
+      >
+    | string;
 
   let loadSourceView = false;
   let hide = true;

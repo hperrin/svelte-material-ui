@@ -108,7 +108,11 @@
     tabindex?: number;
     inputId?: string;
     href?: Href;
-    component?: typeof SvelteComponent;
+    component?: typeof SvelteComponent<
+      Record<string, any>,
+      Record<string, any>,
+      Record<string, any>
+    >;
     tag?: TagName;
   };
   type $$Props = SmuiAttrs<TagName, keyof OwnProps> &
@@ -161,8 +165,11 @@
       : -1
     : tabindexProp;
 
-  export let component: typeof SvelteComponent =
-    SmuiElement as typeof SvelteComponent;
+  export let component: typeof SvelteComponent<
+    Record<string, any>,
+    Record<string, any>,
+    Record<string, any>
+  > = SmuiElement;
   export let tag: SmuiEveryElement | undefined =
     component === SmuiElement
       ? nav

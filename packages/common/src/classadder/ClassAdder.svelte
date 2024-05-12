@@ -43,7 +43,11 @@
   type OwnProps = {
     use?: ActionArray;
     class?: string;
-    component?: typeof SvelteComponent;
+    component?: typeof SvelteComponent<
+      Record<string, any>,
+      Record<string, any>,
+      Record<string, any>
+    >;
     tag?: keyof SmuiElementPropMap;
   };
   type $$Props = OwnProps & SmuiAttrs<SmuiEveryElement, keyof OwnProps>;
@@ -59,7 +63,11 @@
   const contexts = internals.contexts;
   const props = internals.props;
 
-  export let component: typeof SvelteComponent = internals.component;
+  export let component: typeof SvelteComponent<
+    Record<string, any>,
+    Record<string, any>,
+    Record<string, any>
+  > = internals.component;
   export let tag: keyof SmuiElementPropMap | undefined =
     component === SmuiElement ? internals.tag : undefined;
 
