@@ -5,8 +5,9 @@ This doc contains information that will help you migrate your code from an older
 # SMUI 7 -> SMUI 8
 
 - Svelte 5 is required! Svelte 4 will not work.
-- Event listeners no longer need to use the CustomEvent type. They can use the correct type, like MouseEvent and KeyboardEvent.
-- Event modifiers are now wrapper functions, exported from the `@smui/common/events`.
+- Events have been renamed, removing colons and adopting CamelCase. (ex: SMUISwitch:change to SMUISwitchChange)
+- Event listeners for DOM events no longer need to use the CustomEvent type. They can use the correct type, like MouseEvent and KeyboardEvent.
+- Event modifiers are now wrapper functions, exported from `@smui/common/events`.
 - The deprecated "MDC" events have been removed. All event names should be migrated to the corresponding "SMUI" event names.
 - The "Fixation" theme now uses Tahoma as its large header font.
 
