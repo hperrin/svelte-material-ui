@@ -6,13 +6,12 @@
 -->
 
 <div>
-  <Button tag="div"><Label>I'm a &lt;div /&gt; Button</Label></Button>
+  <Button tag="div" bind:this={DivButton}
+    ><Label>I'm a &lt;div /&gt; Button</Label></Button
+  >
   <Button tag="span"><Label>I'm a &lt;span /&gt; Button</Label></Button>
   <Button tag="strong"><Label>I'm a &lt;strong /&gt; Button</Label></Button>
   <Button tag="em"><Label>I'm a &lt;em /&gt; Button</Label></Button>
-  <Button tag="p" bind:this={PButton}
-    ><Label>I'm a &lt;p /&gt; Button</Label></Button
-  >
 </div>
 
 <div>
@@ -29,11 +28,11 @@
 
   // When you change the tag, you can use the generic type argument to get the
   // right element from `getElement`. The first arg for Button is "href".
-  let PButton: Button<undefined, 'p'>;
-  let PButtonElement: HTMLParagraphElement;
+  let DivButton: Button<undefined, 'div'>;
+  let DivButtonElement: HTMLDivElement;
 
   onMount(() => {
-    PButtonElement = PButton.getElement();
-    console.log(PButtonElement);
+    DivButtonElement = DivButton.getElement();
+    console.log(DivButtonElement);
   });
 </script>

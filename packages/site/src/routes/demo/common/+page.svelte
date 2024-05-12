@@ -77,43 +77,6 @@
   </Demo>
 
   <Demo
-    component={ForwardEventsBuilder}
-    files={[
-      'common/_ForwardEventsBuilder.svelte',
-      'common/_ForwardEventsBuilderComponent.svelte',
-    ]}
-  >
-    Forward Events Builder
-    <svelte:fragment slot="subtitle">
-      Build an action to allow **all** events to be forwarded from a Svelte
-      component, with support for event modifiers using the "$" syntax.
-      <ul>
-        <li>
-          This is especially useful for UI library components, as it is
-          generally unknown which events will be required from them for all
-          desired use cases. For example, if a Button component only forwards a <code
-            >click</code
-          >
-          event, then no use case that requires the <code>mouseover</code> or
-          the
-          <code>keypress</code>
-          event can be used with it.
-        </li>
-        <li>
-          In addition, a component that uses Svelte's built in event forwarding
-          system cannot allow event listeners on the "capture" phase of the
-          event lifecycle. It also cannot allow events to be cancelable with the
-          browser's built in
-          <code>preventDefault</code>
-          function. In fact, the one big advantage to Svelte's event system, the
-          fact that you don't need an element as an event target, doesn't even apply
-          to UI library components.
-        </li>
-      </ul>
-    </svelte:fragment>
-  </Demo>
-
-  <Demo
     component={UseActions}
     files={[
       'common/_UseActions.svelte',
@@ -168,7 +131,6 @@
   import ClassMap from './_ClassMap.svelte';
   import Dispatch from './_Dispatch.svelte';
   import ExcludeAndPrefixFilter from './_ExcludeAndPrefixFilter.svelte';
-  import ForwardEventsBuilder from './_ForwardEventsBuilder.svelte';
   import UseActions from './_UseActions.svelte';
   import Announce from './_Announce.svelte';
   import ClassAdderBuilder from './_ClassAdderBuilder.svelte';
