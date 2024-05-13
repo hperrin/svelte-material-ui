@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.0.0-alpha.0](https://github.com/hperrin/svelte-material-ui/compare/v7.0.0...v8.0.0-alpha.0) (2024-05-13)
+
+
+### Bug Fixes
+
+* custom component types ([fa5b473](https://github.com/hperrin/svelte-material-ui/commit/fa5b473d87e816a994433b153a7257236f672c34))
+
+
+### Features
+
+* change fixation theme large header font ([ce56c2b](https://github.com/hperrin/svelte-material-ui/commit/ce56c2bdd74019c8b8d5f1e14cd69972c551913d))
+* events for svelte 5, mount events to contexts, event modifiers, remove custom event typing ([52d60b8](https://github.com/hperrin/svelte-material-ui/commit/52d60b8ce9f4796121516bab62a6867f39ae856d))
+
+
+
+
+
 # [7.0.0](https://github.com/hperrin/svelte-material-ui/compare/v7.0.0-beta.18...v7.0.0) (2024-05-04)
 
 **Note:** Version bump only for package @smui-extra/site

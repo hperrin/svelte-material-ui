@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.0.0-alpha.0](https://github.com/hperrin/svelte-material-ui/compare/v7.0.0...v8.0.0-alpha.0) (2024-05-13)
+
+
+### Features
+
+* events for svelte 5, mount events to contexts, event modifiers, remove custom event typing ([52d60b8](https://github.com/hperrin/svelte-material-ui/commit/52d60b8ce9f4796121516bab62a6867f39ae856d))
+
+
+
+
+
 # [7.0.0](https://github.com/hperrin/svelte-material-ui/compare/v7.0.0-beta.18...v7.0.0) (2024-05-04)
 
 **Note:** Version bump only for package @smui/touch-target

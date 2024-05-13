@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.0.0-alpha.0](https://github.com/hperrin/svelte-material-ui/compare/v7.0.0...v8.0.0-alpha.0) (2024-05-13)
+
+
+### Bug Fixes
+
+* custom component types ([fa5b473](https://github.com/hperrin/svelte-material-ui/commit/fa5b473d87e816a994433b153a7257236f672c34))
+* explicitly opt out of runes mode in all components ([96b69f9](https://github.com/hperrin/svelte-material-ui/commit/96b69f9335b8b8cd2d1cbad18df103c1f5a86681))
+
+
+### Features
+
+* events for svelte 5, mount events to contexts, event modifiers, remove custom event typing ([52d60b8](https://github.com/hperrin/svelte-material-ui/commit/52d60b8ce9f4796121516bab62a6867f39ae856d))
+* remove deprecated MDC event names ([df78b17](https://github.com/hperrin/svelte-material-ui/commit/df78b17a57791c93073b2e83bda4cd912d0974c8))
+
+
+
+
+
 # [7.0.0](https://github.com/hperrin/svelte-material-ui/compare/v7.0.0-beta.18...v7.0.0) (2024-05-04)
 
 **Note:** Version bump only for package @smui/list
