@@ -1,4 +1,4 @@
-<svelte:options runes={false} />
+<svelte:options runes={true} />
 
 <div
   bind:this={element}
@@ -15,7 +15,7 @@
     ['smui-paper--color-' + color]: color !== 'default',
     'smui-paper-transition': transition,
   })}
-  {...$$restProps}
+  {...restProps}
 >
   <slot />
 </div>
@@ -26,25 +26,45 @@
   import { classMap, useActions } from '@smui/common/internal';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * The visual variant of the Paper.
+     */
     variant?: 'raised' | 'unelevated' | 'outlined';
+    /**
+     * When true, removes the rounded corners.
+     */
     square?: boolean;
+    /**
+     * The color styling to apply to the Paper.
+     */
     color?: 'default' | 'primary' | 'secondary' | string;
+    /**
+     * The elevation styling to apply to the Paper.
+     */
     elevation?: number;
+    /**
+     * Whether transition animation styling should be applied to the Paper.
+     */
     transition?: boolean;
   };
-  type $$Props = OwnProps & SmuiAttrs<'div', keyof OwnProps>;
-
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let variant: 'raised' | 'unelevated' | 'outlined' = 'raised';
-  export let square = false;
-  export let color: 'default' | 'primary' | 'secondary' | string = 'default';
-  export let elevation = 1;
-  export let transition = false;
+  let {
+    use = $bindable([]),
+    class: className = $bindable(''),
+    variant = $bindable('raised'),
+    square = $bindable(false),
+    color = $bindable('default'),
+    elevation = $bindable(1),
+    transition = $bindable(false),
+    ...restProps
+  }: OwnProps & SmuiAttrs<'div', keyof OwnProps> = $props();
 
   let element: HTMLDivElement;
 
