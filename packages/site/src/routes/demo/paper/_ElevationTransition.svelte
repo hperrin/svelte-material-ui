@@ -51,6 +51,6 @@
   import Radio from '@smui/radio';
   import FormField from '@smui/form-field';
 
-  let elevation = 1;
-  let color = 'default';
+  let elevation = $state(1);
+  let color = $state('default');
 </script>

@@ -17,10 +17,13 @@
   })}
   {...restProps}
 >
-  <slot />
+  {#if children}
+    {@render children()}
+  {/if}
 </div>
 
 <script lang="ts">
+  import type { Snippet } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, useActions } from '@smui/common/internal';
@@ -44,6 +47,9 @@
     square?: boolean;
     /**
      * The color styling to apply to the Paper.
+     *
+     * Default, primary, and secondary are provided by SMUI. You can use custom
+     * scss styling to add your own color styling.
      */
     color?: 'default' | 'primary' | 'secondary' | string;
     /**
@@ -54,6 +60,8 @@
      * Whether transition animation styling should be applied to the Paper.
      */
     transition?: boolean;
+
+    children?: Snippet;
   };
   let {
     use = $bindable([]),
@@ -63,6 +71,7 @@
     color = $bindable('default'),
     elevation = $bindable(1),
     transition = $bindable(false),
+    children,
     ...restProps
   }: OwnProps & SmuiAttrs<'div', keyof OwnProps> = $props();
 
