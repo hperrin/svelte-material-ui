@@ -41,7 +41,11 @@ If you need help installing or using SMUI, join the [Discord server](https://dis
 
 # Svelte 5
 
-SMUI v7 works with Svelte 4 only, due to the way it handles events. SMUI v8 is in development, and will work with Svelte 5 (and not Svelte 4).
+SMUI v7 works with Svelte 4 only, due to the way it handles events.
+
+SMUI v8 is in development, and works with Svelte 5 (and not Svelte 4). You can view the [readme on the v8 branch](https://github.com/hperrin/svelte-material-ui/tree/v8#readme).
+
+You can install SMUI v8 by specifying the alpha tag when you install, like `npm i -D @smui/button@alpha`.
 
 # Migration
 
