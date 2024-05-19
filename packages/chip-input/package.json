@@ -1,0 +1,68 @@
+{
+  "name": "@smui-extra/chip-input",
+  "version": "8.0.0-alpha.0",
+  "description": "Svelte Material UI - Chip Input",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "svelte": "dist/index.js",
+  "exports": {
+    "./package.json": {
+      "types": "./package.json",
+      "svelte": "./package.json"
+    },
+    ".": {
+      "types": "./src/index.d.ts",
+      "svelte": "./dist/index.js"
+    }
+  },
+  "types": "src/index.d.ts",
+  "keywords": [
+    "svelte",
+    "svelte3",
+    "material-ui",
+    "material-design",
+    "material",
+    "svelte-components",
+    "sveltejs"
+  ],
+  "scripts": {
+    "build": "npm run build:js && npm run build:svelte && npm run build:sass",
+    "build:js": "tsc -p . --outDir dist/ --rootDir src/",
+    "build:svelte": "cp src/*.svelte dist/",
+    "build:sass": "sass --no-source-map -I node_modules -I ../smui-theme/node_modules -I ../../node_modules _style.scss bare.css",
+    "clean": "git status --ignored -u --porcelain . | grep -v node_modules/ | grep -e '^!! ' | sed 's/^!! packages\\/[a-z-]*\\///g' | tr '\\n' ' ' | xargs rm",
+    "check": "npx svelte-check --ignore dist",
+    "prepublish": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hperrin/svelte-material-ui.git"
+  },
+  "author": "Hunter Perrin <hperrin@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/hperrin/svelte-material-ui/issues"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@smui-extra/autocomplete": "^8.0.0-alpha.0",
+    "@smui/chips": "^8.0.0-alpha.0",
+    "@smui/common": "^8.0.0-alpha.0",
+    "@smui/floating-label": "^8.0.0-alpha.0",
+    "@smui/line-ripple": "^8.0.0-alpha.0",
+    "@smui/list": "^8.0.0-alpha.0",
+    "@smui/textfield": "^8.0.0-alpha.0",
+    "svelte2tsx": "^0.7.8"
+  },
+  "devDependencies": {
+    "@tsconfig/svelte": "^5.0.4",
+    "sass": "^1.76.0",
+    "svelte-check": "^3.7.1",
+    "tslib": "^2.6.2",
+    "typescript": "^5.4.5"
+  }
+}

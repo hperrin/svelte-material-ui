@@ -104,6 +104,7 @@ Click a component/package below to go to the documentation. (Note that this docu
   - [Autocomplete](packages/autocomplete/README.md)‡
   - [Checkbox](packages/checkbox/README.md)
   - [Chips](packages/chips/README.md)
+  - [Chip Input](packages/chip-input/README.md)‡
   - [Floating Label](packages/floating-label/README.md)
   - [Form Field](packages/form-field/README.md)
   - [Line Ripple](packages/line-ripple/README.md)

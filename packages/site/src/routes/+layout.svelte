@@ -495,6 +495,14 @@
       ],
     },
     {
+      name: 'Chip Input',
+      route: '/demo/chip-input/',
+      indent: 1,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/chip-input',
+      ],
+    },
+    {
       name: 'Form Field',
       route: '/demo/form-field/',
       indent: 1,

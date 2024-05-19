@@ -49,6 +49,7 @@
     "@smui-extra/autocomplete": "^8.0.0-alpha.0",
     "@smui-extra/badge": "^8.0.0-alpha.0",
     "@smui-extra/bottom-app-bar": "^8.0.0-alpha.0",
+    "@smui-extra/chip-input": "^8.0.0-alpha.0",
     "@smui/banner": "^8.0.0-alpha.0",
     "@smui/button": "^8.0.0-alpha.0",
     "@smui/card": "^8.0.0-alpha.0",

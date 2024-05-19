@@ -117,6 +117,10 @@ export interface SmuiEventProps<T extends EventTarget> {
   onSMUIBannerOpening?: EventHandler<CustomEvent, T> | null;
   onSMUIBannerOpeningcapture?: EventHandler<CustomEvent, T> | null;
 
+  onSMUIChipInputSelect?: EventHandler<CustomEvent, T> | null;
+  onSMUIChipInputEntry?: EventHandler<CustomEvent, T> | null;
+  onSMUIChipInputRemove?: EventHandler<CustomEvent, T> | null;
+
   onSMUIChipInteraction?: EventHandler<CustomEvent, T> | null;
   onSMUIChipInteractioncapture?: EventHandler<CustomEvent, T> | null;
   onSMUIChipNavigation?: EventHandler<CustomEvent, T> | null;
