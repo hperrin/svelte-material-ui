@@ -203,7 +203,7 @@
 
   let element: HTMLDivElement;
   let inputContainer: HTMLDivElement;
-  let loading = false;
+  let loading = 0;
   let error = false;
   let focused = false;
   let listAccessor: SMUIListAccessor;
@@ -216,7 +216,7 @@
   $: menuOpen =
     focused &&
     (text !== '' || showMenuWithNoInput) &&
-    (loading ||
+    (loading > 0 ||
       (!combobox && !(matches.length === 1 && matches[0] === value)) ||
       (combobox &&
         !!matches.length &&
@@ -288,7 +288,7 @@
   }
 
   async function performSearch() {
-    loading = true;
+    loading++;
     error = false;
     try {
       const searchResult = await search(text);
@@ -306,7 +306,7 @@
     } catch (e: any) {
       error = true;
     }
-    loading = false;
+    loading--;
   }
 
   function handleListAccessor(event: CustomEvent<SMUIListAccessor>) {
