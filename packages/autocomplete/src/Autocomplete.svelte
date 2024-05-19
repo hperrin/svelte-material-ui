@@ -426,7 +426,7 @@
     ) {
       // Wait until the item is selected.
       getElement().addEventListener(
-        'SMUIAutocomplete:selected',
+        'SMUIAutocompleteSelected',
         () => {
           // Then clear the focus.
           focusedIndex = -1;
