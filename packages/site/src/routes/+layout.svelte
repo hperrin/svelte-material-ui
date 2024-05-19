@@ -286,6 +286,7 @@
   const themes = [
     { label: 'Material', value: 'material' },
     { label: 'Fixation', value: 'fixation' },
+    { label: 'Bubblegum', value: 'bubblegum' },
     { label: 'Metro', value: 'metro' },
     { label: 'Unity', value: 'unity' },
   ];

@@ -1,0 +1,153 @@
+@use 'sass:math';
+@use 'sass:color';
+
+// Color scheme: https://coolors.co/222222-fffbfe-ff99c2-85ebff-ffa970
+@use '@material/theme/index' as theme with (
+  $primary: #ff99c2,
+  $secondary: #85ebff,
+  $surface: #fffbfe,
+  $background: #ffffff,
+  $error: #ffa970
+);
+
+// Less dense default scale.
+@use '@material/density/index' as density with (
+  $default-scale: maximum
+);
+
+// Custon animation curves.
+@use '@material/animation/index' as animation with (
+  $deceleration-curve-timing-function: cubic-bezier(0, 0.5, 0.1, 1),
+  $standard-curve-timing-function: cubic-bezier(0.6, 0, 0.4, 1),
+  $acceleration-curve-timing-function: cubic-bezier(0.5, 0, 1, 0.7),
+  $sharp-curve-timing-function: cubic-bezier(0.6, 0, 0.4, 1)
+);
+
+// Increase border radii.
+@use '@material/shape/index' as shape with (
+  $small-component-radius: 10px,
+  $medium-component-radius: 18px,
+  $large-component-radius: 24px
+);
+
+// Use custom fonts. Slightly increase font sizes.
+@use '@material/typography' with (
+  $font-family: unquote('"Poppins", sans-serif'),
+  $styles-headline1: (
+    font-family: unquote('"Poetsen One", sans-serif'),
+    font-size: math.div(98px, 16px) * 1rem,
+    line-height: math.div(98px, 16px) * 1rem,
+    letter-spacing: 0,
+  ),
+  $styles-headline2: (
+    font-family: unquote('"Poetsen One", sans-serif'),
+    font-size: math.div(62px, 16px) * 1rem,
+    line-height: math.div(62px, 16px) * 1rem,
+    letter-spacing: 0,
+  ),
+  $styles-headline3: (
+    font-family: unquote('"Poetsen One", sans-serif'),
+    font-size: math.div(50px, 16px) * 1rem,
+    line-height: math.div(52px, 16px) * 1rem,
+    letter-spacing: 0,
+  ),
+  $styles-headline4: (
+    font-family: unquote('"Poetsen One", sans-serif'),
+    font-size: math.div(36px, 16px) * 1rem,
+    line-height: math.div(42px, 16px) * 1rem,
+    letter-spacing: 0,
+  ),
+  $styles-headline5: (
+    font-family: unquote('"Poetsen One", sans-serif'),
+    font-size: math.div(26px, 16px) * 1rem,
+    line-height: math.div(34px, 16px) * 1rem,
+    letter-spacing: 0,
+  ),
+  $styles-headline6: (
+    font-family: unquote('"Poetsen One", sans-serif'),
+    font-size: math.div(22px, 16px) * 1rem,
+    line-height: math.div(34px, 16px) * 1rem,
+    letter-spacing: 0,
+  ),
+  $styles-subtitle1: (
+    font-size: math.div(18px, 16px) * 1rem,
+    line-height: math.div(30px, 16px) * 1rem,
+    letter-spacing: 0,
+  ),
+  $styles-subtitle2: (
+    font-size: math.div(16px, 16px) * 1rem,
+    line-height: math.div(24px, 16px) * 1rem,
+    letter-spacing: 0,
+  ),
+  $styles-body1: (
+    font-size: math.div(17px, 16px) * 1rem,
+    line-height: math.div(26px, 16px) * 1rem,
+    letter-spacing: 0,
+  ),
+  $styles-body2: (
+    font-size: math.div(15px, 16px) * 1rem,
+    line-height: math.div(22px, 16px) * 1rem,
+    letter-spacing: 0,
+  ),
+  $styles-caption: (
+    font-size: math.div(13px, 16px) * 1rem,
+    line-height: math.div(22px, 16px) * 1rem,
+    letter-spacing: 0,
+  ),
+  $styles-button: (
+    font-size: math.div(15px, 16px) * 1rem,
+    line-height: math.div(40px, 16px) * 1rem,
+    letter-spacing: 0,
+  ),
+  $styles-overline: (
+    font-size: math.div(13px, 16px) * 1rem,
+    line-height: math.div(36px, 16px) * 1rem,
+    letter-spacing: 0,
+  )
+);
+
+// Individual components that need configuration:
+
+// Big buttons.
+@use '@material/button/button-shared-theme' as button with (
+  $height: 40px
+);
+
+// Big FAB.
+@use '@material/fab/fab-theme' as fab with (
+  $mini-height: 44px
+);
+
+// Big icon buttons.
+@use '@material/icon-button/icon-button-theme' as icon-button with (
+  $icon-size: 26px,
+  $size: 48px
+);
+@use '@smui/icon-button/mixins' as smui-icon-button with (
+  $mini-icon-height: 26px,
+  $mini-height: 44px,
+  $button-icon-height: 24px,
+  $button-height: 40px
+);
+
+@import url('https://fonts.googleapis.com/css2?family=Poetsen+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
+html,
+body {
+  background-color: theme.$background;
+  color: theme.$on-surface;
+}
+
+// Be more specific than the _Typography.scss file.
+html code,
+html pre {
+  font-family: 'Roboto Mono', monospace;
+  font-optical-sizing: auto;
+}
+
+a {
+  color: #004452;
+}
+a:visited {
+  color: #520021;
+}

@@ -103,6 +103,8 @@ There are some premade themes as well in the "svelte-material-ui" package, inclu
 - `themes/material-dark.css`
 - `themes/fixation.css`
 - `themes/fixation-dark.css`
+- `themes/bubblegum.css`
+- `themes/bubblegum-dark.css`
 - `themes/metro.css`
 - `themes/metro-dark.css`
 - `themes/unity.css`
