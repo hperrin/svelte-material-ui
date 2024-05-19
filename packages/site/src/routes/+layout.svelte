@@ -10,6 +10,15 @@
   <!-- Code Hightlighting Theme -->
   {@html materialDarker}
 
+  {#each themes as theme}
+    <link rel="preload" href="{assets}/smui-{theme.value}.css" as="style" />
+    <link
+      rel="preload"
+      href="{assets}/smui-{theme.value}-dark.css"
+      as="style"
+    />
+  {/each}
+
   {#if theme}
     <!-- SMUI Styles -->
     <link rel="stylesheet" href="{assets}/smui-{theme}.css" />
