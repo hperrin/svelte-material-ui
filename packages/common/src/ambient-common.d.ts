@@ -131,6 +131,8 @@ declare namespace svelteHTML {
     onSMUIDrawerScrimClick?: EventHandler<CustomEvent, T> | null;
     onSMUIDrawerScrimClickcapture?: EventHandler<CustomEvent, T> | null;
 
+    onSMUIIconButtonToggleChange?: EventHandler<CustomEvent, T> | null;
+
     onSMUIListAction?: EventHandler<CustomEvent, T> | null;
     onSMUIListActioncapture?: EventHandler<CustomEvent, T> | null;
     onSMUIListSelectionChange?: EventHandler<CustomEvent, T> | null;

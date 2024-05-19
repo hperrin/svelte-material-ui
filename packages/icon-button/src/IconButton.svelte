@@ -210,7 +210,7 @@
         hasClass,
         notifyChange: (evtData) => {
           handleChange(evtData);
-          dispatch(getElement(), 'SMUIIconButtonToggle:change', evtData);
+          dispatch(getElement(), 'SMUIIconButtonToggleChange', evtData);
         },
         removeClass,
         getAttr,

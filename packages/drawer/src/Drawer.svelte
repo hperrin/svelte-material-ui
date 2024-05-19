@@ -102,19 +102,19 @@
   onDestroy(() => {
     instance && instance.destroy();
     scrim &&
-      scrim.removeEventListener('SMUIDrawerScrim:click', handleScrimClick);
+      scrim.removeEventListener('SMUIDrawerScrimClick', handleScrimClick);
   });
 
   function getInstance() {
     if (scrim) {
-      scrim.removeEventListener('SMUIDrawerScrim:click', handleScrimClick);
+      scrim.removeEventListener('SMUIDrawerScrimClick', handleScrimClick);
     }
 
     if (variant === 'modal') {
       scrim =
         getElement().parentNode?.querySelector('.mdc-drawer-scrim') ?? false;
       if (scrim) {
-        scrim.addEventListener('SMUIDrawerScrim:click', handleScrimClick);
+        scrim.addEventListener('SMUIDrawerScrimClick', handleScrimClick);
       }
     }
 

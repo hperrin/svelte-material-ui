@@ -163,7 +163,7 @@
     });
     anchorElement.addEventListener('focus', () => {
       subMenuElement.addEventListener(
-        'SMUIMenuSurface:opened',
+        'SMUIMenuSurfaceOpened',
         () => {
           const focusEl =
             subMenuElement.querySelector<HTMLElement>('[tabindex="0"]');
