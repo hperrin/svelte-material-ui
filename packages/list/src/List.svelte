@@ -110,6 +110,7 @@
 
   let element: SvelteComponent;
   let instance: MDCListFoundation;
+  let accessor: SMUIListAccessor;
   let items: SMUIListItemAccessor[] = [];
   let role = getContext<string | undefined>('SMUI:list:role');
   let nav = getContext<boolean | undefined>('SMUI:list:nav');
@@ -232,7 +233,7 @@
       },
     });
 
-    const accessor: SMUIListAccessor = {
+    accessor = {
       get element() {
         return getElement();
       },
@@ -282,6 +283,7 @@
       selectedIndex = getListItemIndex(event.detail.element);
     }
     event.stopPropagation();
+    dispatch(getElement(), 'SMUIList:mountItem', accessor);
   }
 
   function handleItemUnmount(event: CustomEvent<SMUIListItemAccessor>) {
@@ -292,6 +294,7 @@
       itemAccessorMap.delete(event.detail.element);
     }
     event.stopPropagation();
+    dispatch(getElement(), 'SMUIList:unmountItem', accessor);
   }
 
   function handleKeydown(event: KeyboardEvent) {
