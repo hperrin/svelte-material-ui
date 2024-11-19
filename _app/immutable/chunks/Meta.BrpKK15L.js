@@ -1,0 +1,1 @@
+import{c as t}from"./classAdderBuilder.cB7Ghhqr.js";const e=t({class:"mdc-deprecated-list-item__primary-text",tag:"span"}),s=t({class:"mdc-deprecated-list-item__secondary-text",tag:"span"}),c=t({class:"mdc-deprecated-list-item__meta",tag:"span"});export{c as M,e as P,s as S};

@@ -1,0 +1,1 @@
+import{R as c,S as s,N as i,O as r,D as h,T as p,E as d}from"./runtime.SXGrDfxi.js";function u(t,f,o){r&&h();var n=t,a,e;c(()=>{a!==(a=f())&&(e&&(p(e),e=null),a&&(e=i(()=>o(n,a))))},s),r&&(n=d)}export{u as c};
