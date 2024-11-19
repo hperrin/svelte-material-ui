@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.0.0-beta.0](https://github.com/hperrin/svelte-material-ui/compare/v8.0.0-alpha.0...v8.0.0-beta.0) (2024-11-19)
+
+
+### Features
+
+* migrate Paper slots to snippets ([9b7dedd](https://github.com/hperrin/svelte-material-ui/commit/9b7dedd17bfa4be02c5daa3f95189f0958fdac4d))
+* migrate Paper to runes mode ([0e55441](https://github.com/hperrin/svelte-material-ui/commit/0e55441b34e8f2d340a8da0d5c13630ecea15eca))
+
+
+
+
+
 # [8.0.0-alpha.0](https://github.com/hperrin/svelte-material-ui/compare/v7.0.0...v8.0.0-alpha.0) (2024-05-13)
 
 

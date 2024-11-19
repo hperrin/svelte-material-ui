@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.0.0-beta.0](https://github.com/hperrin/svelte-material-ui/compare/v8.0.0-alpha.0...v8.0.0-beta.0) (2024-11-19)
+
+
+### Bug Fixes
+
+* another event name ([614ce9a](https://github.com/hperrin/svelte-material-ui/commit/614ce9acd748ff6523be85d3745e35ab55ea6276))
+* keep autocomplete loading state when one of multiple searches is canceled ([19ea8ed](https://github.com/hperrin/svelte-material-ui/commit/19ea8edba225a22fbfbeeb76030a0d0f9ee1f8e5))
+
+
+
+
+
 # [8.0.0-alpha.0](https://github.com/hperrin/svelte-material-ui/compare/v7.0.0...v8.0.0-alpha.0) (2024-05-13)
 
 

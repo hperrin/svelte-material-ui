@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.0.0-beta.0](https://github.com/hperrin/svelte-material-ui/compare/v8.0.0-alpha.0...v8.0.0-beta.0) (2024-11-19)
+
+
+### Bug Fixes
+
+* improve chips trailing action focus state ([b61550b](https://github.com/hperrin/svelte-material-ui/commit/b61550b284c16718666e029f50bc407104c10d76))
+
+
+
+
+
 # [8.0.0-alpha.0](https://github.com/hperrin/svelte-material-ui/compare/v7.0.0...v8.0.0-alpha.0) (2024-05-13)
 
 

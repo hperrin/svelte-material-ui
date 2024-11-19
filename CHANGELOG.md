@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.0.0-beta.0](https://github.com/hperrin/svelte-material-ui/compare/v8.0.0-alpha.0...v8.0.0-beta.0) (2024-11-19)
+
+
+### Bug Fixes
+
+* another event name ([614ce9a](https://github.com/hperrin/svelte-material-ui/commit/614ce9acd748ff6523be85d3745e35ab55ea6276))
+* event names ([642c2a3](https://github.com/hperrin/svelte-material-ui/commit/642c2a362f05c21606b3b51da24c6e826add933a))
+* improve chips trailing action focus state ([b61550b](https://github.com/hperrin/svelte-material-ui/commit/b61550b284c16718666e029f50bc407104c10d76))
+* keep autocomplete loading state when one of multiple searches is canceled ([19ea8ed](https://github.com/hperrin/svelte-material-ui/commit/19ea8edba225a22fbfbeeb76030a0d0f9ee1f8e5))
+* update classadder to work with new svelte component functions ([54a4266](https://github.com/hperrin/svelte-material-ui/commit/54a426601d179f1c3a8cd1995bc1ffc67aae168c))
+
+
+### Features
+
+* add chip-input component ([4e82fd8](https://github.com/hperrin/svelte-material-ui/commit/4e82fd88d7e96f9f95b169017c6d18d620991194))
+* add new premade theme called Bubblegum ([18b496b](https://github.com/hperrin/svelte-material-ui/commit/18b496b46f1af82b8e6a37b051fadc1bf0823330))
+* migrate Paper slots to snippets ([9b7dedd](https://github.com/hperrin/svelte-material-ui/commit/9b7dedd17bfa4be02c5daa3f95189f0958fdac4d))
+* migrate Paper to runes mode ([0e55441](https://github.com/hperrin/svelte-material-ui/commit/0e55441b34e8f2d340a8da0d5c13630ecea15eca))
+
+
+
+
+
 # [8.0.0-alpha.0](https://github.com/hperrin/svelte-material-ui/compare/v7.0.0...v8.0.0-alpha.0) (2024-05-13)
 
 
