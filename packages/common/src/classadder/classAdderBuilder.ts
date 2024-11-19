@@ -1,25 +1,26 @@
 import type { SvelteComponent } from 'svelte';
 
 import type { SmuiEveryElement } from '../smui.types.js';
+import { SmuiElement } from '../index.js';
 import type { ClassAdderInternals } from './ClassAdder.types.js';
-// @ts-ignore: Internals is exported... argh.
-import ClassAdder, { internals } from './ClassAdder.svelte';
-
-const defaults = { ...internals };
+import ClassAdder from './ClassAdder.svelte';
 
 export function classAdderBuilder<
   T extends SmuiEveryElement = 'div',
   C extends typeof SvelteComponent = typeof SvelteComponent,
->(props: Partial<ClassAdderInternals<T, C>>): C {
-  return new Proxy(ClassAdder, {
-    construct: function (target, args) {
-      Object.assign(internals, defaults, props);
-      // @ts-ignore: Need spread arg.
-      return new target(...args);
-    },
-    get: function (target, prop) {
-      Object.assign(internals, defaults, props);
-      return (target as any)[prop];
-    },
-  }) as unknown as C;
+>(internals: Partial<ClassAdderInternals<T, C>>): C {
+  return function (anchor: any, props: any) {
+    return ClassAdder(anchor, {
+      ...props,
+      _internals: {
+        component: SmuiElement as typeof SvelteComponent,
+        tag: 'div',
+        class: '',
+        classMap: {},
+        contexts: {},
+        props: {},
+        ...internals,
+      },
+    });
+  } as unknown as C;
 }

@@ -14,20 +14,6 @@
   {...$$restProps}><slot /></svelte:component
 >
 
-<script lang="ts" context="module">
-  import type { ClassAdderInternals } from './ClassAdder.types.js';
-  import { SmuiElement } from '../index.js';
-
-  export const internals: ClassAdderInternals = {
-    component: SmuiElement as typeof SvelteComponent,
-    tag: 'div',
-    class: '',
-    classMap: {},
-    contexts: {},
-    props: {},
-  };
-</script>
-
 <script lang="ts">
   import type { SvelteComponent } from 'svelte';
   import { onDestroy, getContext, setContext } from 'svelte';
@@ -39,6 +25,8 @@
   } from '../smui.types.js';
   import type { ActionArray } from '../internal/useActions.js';
   import { classMap } from '../internal/classMap.js';
+  import { SmuiElement } from '../index.js';
+  import type { ClassAdderInternals } from './ClassAdder.types.js';
 
   type OwnProps = {
     use?: ActionArray;
@@ -55,23 +43,31 @@
   export let use: ActionArray = [];
   let className = '';
   export { className as class };
+  export let _internals: ClassAdderInternals = {
+    component: SmuiElement as typeof SvelteComponent,
+    tag: 'div',
+    class: '',
+    classMap: {},
+    contexts: {},
+    props: {},
+  };
 
   let element: SvelteComponent;
-  const smuiClass = internals.class;
+  const smuiClass = _internals.class;
   const smuiClassMap: { [k: string]: any } = {};
   const smuiClassUnsubscribes: (() => void)[] = [];
-  const contexts = internals.contexts;
-  const props = internals.props;
+  const contexts = _internals.contexts;
+  const props = _internals.props;
 
   export let component: typeof SvelteComponent<
     Record<string, any>,
     Record<string, any>,
     Record<string, any>
-  > = internals.component;
+  > = _internals.component;
   export let tag: keyof SmuiElementPropMap | undefined =
-    component === SmuiElement ? internals.tag : undefined;
+    component === SmuiElement ? _internals.tag : undefined;
 
-  Object.entries(internals.classMap).forEach(([name, context]) => {
+  Object.entries(_internals.classMap).forEach(([name, context]) => {
     const store = getContext(context) as SvelteStore<any>;
 
     if (store && 'subscribe' in store) {
