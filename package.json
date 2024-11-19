@@ -12,7 +12,6 @@
     "sveltejs"
   ],
   "scripts": {
-    "bootstrap": "lerna bootstrap --hoist --nohoist \"@tsconfig/svelte\"",
     "check": "lerna run check",
     "clean": "lerna run clean",
     "build": "lerna run build",
