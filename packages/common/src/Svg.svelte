@@ -1,8 +1,11 @@
-<svelte:options runes={false} />
+<svelte:options runes={true} />
 
-<svg bind:this={element} use:useActions={use} {...$$restProps}><slot /></svg>
+<svg bind:this={element} use:useActions={use} {...restProps}
+  >{#if children}{@render children()}{/if}</svg
+>
 
 <script lang="ts">
+  import type { Snippet } from 'svelte';
   import type { ActionArray } from './internal/useActions.js';
   import { useActions } from './internal/index.js';
   import type { SmuiAttrs } from './smui.types.js';
@@ -14,12 +17,18 @@
   }
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
-  };
-  type $$Props = OwnProps & SmuiAttrs<'svg', keyof OwnProps>;
 
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
+    children?: Snippet;
+  };
+  let {
+    use = $bindable([]),
+    children,
+    ...restProps
+  }: OwnProps & SmuiAttrs<'svg', keyof OwnProps> = $props();
 
   let element: SVGSVGElement;
 

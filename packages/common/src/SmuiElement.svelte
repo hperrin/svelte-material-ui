@@ -1,24 +1,28 @@
-<svelte:options runes={false} />
+<svelte:options runes={true} />
 
 {#if tag === 'svg'}
-  <svg bind:this={element} use:useActions={use} {...$$restProps}><slot /></svg>
+  <svg bind:this={element} use:useActions={use} {...restProps}
+    >{#if children}{@render children()}{/if}</svg
+  >
 {:else if selfClosing}
   <svelte:element
     this={tag}
     bind:this={element}
     use:useActions={use}
-    {...$$restProps}
+    {...restProps}
   />
 {:else}
   <svelte:element
     this={tag}
     bind:this={element}
     use:useActions={use}
-    {...$$restProps}><slot /></svelte:element
+    {...restProps}
+    >{#if children}{@render children()}{/if}</svelte:element
   >
 {/if}
 
 <script lang="ts" generics="TagName extends SmuiEveryElement">
+  import type { Snippet } from 'svelte';
   import type { ActionArray } from './internal/useActions.js';
   import { useActions } from './internal/index.js';
   import type {
@@ -28,16 +32,25 @@
   } from './smui.types.js';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
-    tag: TagName;
+    /**
+     * The tag name of the element to create.
+     */
+    tag?: TagName;
+
+    children?: Snippet;
   };
-  type $$Props = OwnProps & SmuiAttrs<TagName, keyof OwnProps>;
+  let {
+    use = $bindable([]),
+    tag = $bindable('div' as TagName),
+    children,
+    ...restProps
+  }: OwnProps & SmuiAttrs<TagName, keyof OwnProps> = $props();
 
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  export let tag: SmuiEveryElement;
-
-  $: selfClosing =
+  const selfClosing = $derived(
     [
       'area',
       'base',
@@ -53,7 +66,8 @@
       'source',
       'track',
       'wbr',
-    ].indexOf(tag) > -1;
+    ].indexOf(tag) > -1,
+  );
 
   let element: SmuiElementMap[SmuiEveryElement];
 

@@ -144,6 +144,63 @@ Click a component/package below to go to the documentation. (Note that this docu
 
 - Labels and icons are named exports in the components that use them, or you can use the 'Label' and 'Icon' exports from '@smui/common'. (Except for chips labels and icons, textfield icons, and select icons, because they are special snowflakes.)
 
+# Migration to Runes
+
+Svelte 5 Runes mode is being migrated to slowly. This is the todo list of components as they are migrated.
+
+- [ ] Accordion
+- Action Buttons
+  - [ ] Button
+  - [ ] Floating Action Button
+  - [ ] Icon Button
+- App Bars
+  - [ ] Bottom App Bar
+  - [ ] Top App Bar
+- [ ] Badge
+- [ ] Banner
+- [ ] Card
+- [x] Common
+- [ ] Data Table
+- [ ] Dialog
+- [ ] Drawer
+- [ ] Image List
+- Inputs and Controls
+  - [ ] Autocomplete
+  - [ ] Checkbox
+  - [ ] Chips
+  - [ ] Chip Input
+  - [ ] Floating Label
+  - [ ] Form Field
+  - [ ] Line Ripple
+  - [ ] Notched Outline
+  - [ ] Radio Button
+  - [ ] Segmented Button
+  - [ ] Select Menu
+    - [ ] Select Helper Text
+    - [ ] Select Icon
+  - [ ] Slider
+  - [ ] Switch
+  - [ ] Text Field
+    - [ ] Text Field Character Counter
+    - [ ] Text Field Helper Text
+    - [ ] Text Field Icon
+- [ ] Layout Grid
+- [ ] List
+- [ ] Menu Surface
+- [ ] Menu
+- [x] Paper
+- Progress Indicators
+  - [ ] Circular Progress
+  - [ ] Linear Progress
+- [ ] Ripple
+- [ ] Snackbar
+  - [ ] Kitchen
+- Tabs
+  - [ ] Tab
+  - [ ] Tab Bar
+- [ ] Tooltip
+- [ ] Touch Target
+
 # License
 
 Copyright 2019-2024 Hunter Perrin

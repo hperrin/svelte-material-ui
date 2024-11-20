@@ -1,4 +1,4 @@
-<svelte:options runes={false} />
+<svelte:options runes={true} />
 
 <svelte:component
   this={component}
@@ -11,10 +11,11 @@
     ...smuiClassMap,
   })}
   {...props}
-  {...$$restProps}><slot /></svelte:component
+  {...restProps}><slot /></svelte:component
 >
 
 <script lang="ts">
+  import type { Snippet } from 'svelte';
   import { onDestroy, getContext, setContext } from 'svelte';
 
   import type {
@@ -29,35 +30,52 @@
   import type { ClassAdderInternals } from './ClassAdder.types.js';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * Do not provide this.
+     */
+    _internals: ClassAdderInternals;
+    /**
+     * The component to use to render the element.
+     */
     component?: SmuiComponent;
+    /**
+     * The tag name of the element to create.
+     */
     tag?: keyof SmuiElementPropMap;
-  };
-  type $$Props = OwnProps & SmuiAttrs<SmuiEveryElement, keyof OwnProps>;
 
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let _internals: ClassAdderInternals = {
-    component: SmuiElement as SmuiComponent,
-    tag: 'div',
-    class: '',
-    classMap: {},
-    contexts: {},
-    props: {},
+    children?: Snippet;
   };
+  let {
+    use = [],
+    class: className = '',
+    _internals = {
+      component: SmuiElement as SmuiComponent,
+      tag: 'div',
+      class: '',
+      classMap: {},
+      contexts: {},
+      props: {},
+    },
+    component = _internals.component,
+    tag = _internals.tag,
+    children,
+    ...restProps
+  }: OwnProps & SmuiAttrs<SmuiEveryElement, keyof OwnProps> = $props();
 
   let element: ReturnType<SmuiComponent>;
-  const smuiClass = _internals.class;
-  const smuiClassMap: { [k: string]: any } = {};
+  const smuiClass = $state(_internals.class);
+  const smuiClassMap: { [k: string]: any } = $state({});
   const smuiClassUnsubscribes: (() => void)[] = [];
-  const contexts = _internals.contexts;
-  const props = _internals.props;
-
-  export let component: SmuiComponent = _internals.component;
-  export let tag: keyof SmuiElementPropMap | undefined =
-    component === (SmuiElement as SmuiComponent) ? _internals.tag : undefined;
+  const contexts = $state(_internals.contexts);
+  const props = $state(_internals.props);
 
   Object.entries(_internals.classMap).forEach(([name, context]) => {
     const store = getContext(context) as SvelteStore<any>;

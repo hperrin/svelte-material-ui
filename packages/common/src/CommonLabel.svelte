@@ -1,4 +1,4 @@
-<svelte:options runes={false} />
+<svelte:options runes={true} />
 
 <svelte:component
   this={component}
@@ -21,10 +21,12 @@
   })}
   {...context === 'snackbar' ? { 'aria-atomic': 'false' } : {}}
   {tabindex}
-  {...$$restProps}><slot /></svelte:component
+  {...restProps}
+  >{#if children}{@render children()}{/if}</svelte:component
 >
 
 <script lang="ts" generics="TagName extends SmuiEveryElement = 'span'">
+  import type { Snippet } from 'svelte';
   import { getContext } from 'svelte';
 
   import type { ActionArray } from './internal/useActions.js';
@@ -38,23 +40,35 @@
   import { SmuiElement } from './index.js';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * The component to use to render the element.
+     */
     component?: SmuiComponent<SmuiElementMap[TagName]>;
+    /**
+     * The tag name of the element to create.
+     */
     tag?: TagName;
-  };
-  type $$Props = OwnProps & SmuiAttrs<TagName, keyof OwnProps>;
 
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
+    children?: Snippet;
+  };
+  let {
+    use = $bindable([]),
+    class: className = $bindable(''),
+    component = $bindable(SmuiElement),
+    tag = $bindable('span' as TagName),
+    children,
+    ...restProps
+  }: OwnProps & SmuiAttrs<TagName, keyof OwnProps> = $props();
 
   let element: ReturnType<SmuiComponent<SmuiElementMap[TagName]>>;
-
-  export let component: SmuiComponent<SmuiElementMap[TagName]> = SmuiElement;
-  export let tag: SmuiEveryElement | undefined =
-    component === SmuiElement ? 'span' : undefined;
 
   const context = getContext<string | undefined>('SMUI:label:context');
   const tabindex = getContext<number | undefined>('SMUI:label:tabindex');
