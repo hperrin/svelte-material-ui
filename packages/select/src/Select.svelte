@@ -709,4 +709,12 @@
   export function getElement() {
     return element;
   }
+
+  export function isMenuOpen() {
+    return menuOpen;
+  }
+
+  export function setMenuOpen(value: boolean) {
+    menuOpen = value;
+  }
 </script>
