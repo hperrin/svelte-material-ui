@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <Kitchen bind:this={kitchen} dismiss$class="material-icons" />
 
 <Button onclick={pushToKitchen}><Label>Push a New Snackbar</Label></Button>

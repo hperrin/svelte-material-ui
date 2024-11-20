@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <LinearProgress progress={0.5} buffer={0.75} />
 
 <script lang="ts">

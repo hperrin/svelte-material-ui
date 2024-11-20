@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <Snackbar
   variant="stacked"
   bind:this={snackbar}

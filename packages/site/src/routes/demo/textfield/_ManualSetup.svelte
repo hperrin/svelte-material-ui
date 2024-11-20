@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <!--
   Using a manual setup gives you more control over the layout and
   elements inside the Textfield.

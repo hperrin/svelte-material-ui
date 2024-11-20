@@ -39,9 +39,9 @@
 
   <Demo component={Check} file="list/_Check.svelte">
     A check list with trailing checkboxes
-    <svelte:fragment slot="subtitle">
+    {#snippet subtitle()}
       Also, this uses the selection change event. Try CTRL+A and shift clicking.
-    </svelte:fragment>
+    {/snippet}
   </Demo>
 </section>
 

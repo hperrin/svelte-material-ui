@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <FormField>
   <Switch bind:checked={agreed} />
   <span slot="label">

@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <div>
   <List class="demo-list" nonInteractive>
     <Item><Text>Thing 1</Text></Item>

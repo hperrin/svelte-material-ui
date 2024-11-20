@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <Slider
   bind:value
   min={-10}

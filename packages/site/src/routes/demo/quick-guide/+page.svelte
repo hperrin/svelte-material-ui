@@ -14,10 +14,10 @@
     file="quick-guide/_TargetingClasses.svelte"
   >
     Targeting Classes
-    <svelte:fragment slot="subtitle">
+    {#snippet subtitle()}
       Because Svelte limits your CSS to <em>only</em> the current component, you
       need to use a ":global" selector to target SMUI elements.
-    </svelte:fragment>
+    {/snippet}
   </Demo>
 
   <Demo
@@ -25,10 +25,10 @@
     file="quick-guide/_EventsAndModifiers.svelte"
   >
     Events and Modifiers
-    <svelte:fragment slot="subtitle">
+    {#snippet subtitle()}
       SMUI supports listening to <strong>all</strong> events. You can also add modifiers
       from the @smui/common/events endpoint.
-    </svelte:fragment>
+    {/snippet}
   </Demo>
 
   <Demo
@@ -36,10 +36,10 @@
     file="quick-guide/_InnerElementProps.svelte"
   >
     Inner element props
-    <svelte:fragment slot="subtitle">
+    {#snippet subtitle()}
       Many SMUI components have inner elements that can take props with a
       prefix, like "input$" or "icon$".
-    </svelte:fragment>
+    {/snippet}
   </Demo>
 </section>
 

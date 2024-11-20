@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <div class="columns margins">
   <div>
     <!-- You need to both provide `invalid` and set `updateInvalid` to false -->

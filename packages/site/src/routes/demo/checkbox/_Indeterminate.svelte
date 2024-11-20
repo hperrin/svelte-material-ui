@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <FormField>
   <!--
     Note: binding to `indeterminate` is probably a bad idea.

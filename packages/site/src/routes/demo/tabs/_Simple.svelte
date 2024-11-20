@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <div>
   <!--
     Note: tabs must be unique. (They cannot === each other.)

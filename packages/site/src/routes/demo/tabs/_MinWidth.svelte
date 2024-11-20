@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <div>
   <TabBar tabs={['Home', 'Merchandise', 'About Us']} let:tab bind:active>
     <Tab {tab} minWidth>

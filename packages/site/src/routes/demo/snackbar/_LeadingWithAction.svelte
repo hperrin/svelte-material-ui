@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <Snackbar leading bind:this={snackbar} onSMUISnackbarClosed={handleClosed}>
   <Label>This is a leading snackbar.</Label>
   <Actions>

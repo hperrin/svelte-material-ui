@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <div class="columns margins">
   <div>
     <Textfield variant="filled" bind:value={valueA} label="Label">

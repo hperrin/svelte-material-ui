@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <div class="columns margins" style="justify-content: flex-start;">
   <div>
     <Select bind:value label="Select Menu">

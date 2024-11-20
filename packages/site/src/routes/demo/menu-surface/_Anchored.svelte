@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <div style="min-width: 100px;">
   <Button onclick={() => surface.setOpen(true)}>Open Menu Surface</Button>
   <MenuSurface bind:this={surface} anchorCorner="BOTTOM_LEFT">

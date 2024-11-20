@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <FormField>
   <Checkbox bind:checked />
   <span slot="label">

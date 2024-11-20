@@ -35,7 +35,7 @@
   import Checkbox from '@smui/checkbox';
   import FormField from '@smui/form-field';
 
-  let liftMeUp = false;
+  let liftMeUp = $state(false);
 </script>
 
 <style>

@@ -1,21 +1,23 @@
 <Card class="demo-spaced">
   <Content>
-    <h6 class="mdc-typography--headline6" style="margin: 0;">
-      <slot />
-    </h6>
-    {#if $$slots.subtitle}
+    {#if children}
+      <h6 class="mdc-typography--headline6" style="margin: 0;">
+        {@render children()}
+      </h6>
+    {/if}
+    {#if subtitle}
       <p
         class="mdc-typography--subtitle2"
         style="margin: 0 0 10px; color: #888;"
       >
-        <slot name="subtitle" />
+        {@render subtitle()}
       </p>
     {/if}
-    {#if typeof component === 'string'}
-      <em>{component}</em>
+    {#if typeof DemoComponent === 'string'}
+      <em>{DemoComponent}</em>
     {:else}
       <div>
-        <svelte:component this={component} />
+        <DemoComponent></DemoComponent>
       </div>
     {/if}
   </Content>
@@ -94,7 +96,7 @@
 </Card>
 
 <script lang="ts">
-  import type { SvelteComponent } from 'svelte';
+  import type { Component, Snippet } from 'svelte';
   import {
     mdiGithub,
     mdiCodeTags,
@@ -109,20 +111,24 @@
   import IconButton, { Icon } from '@smui/icon-button';
   import Tooltip, { Wrapper } from '@smui/tooltip';
 
-  export let file: string | undefined = undefined;
-  export let files: string[] = typeof file === 'string' ? [file] : [];
-  export let component:
-    | typeof SvelteComponent<
-        Record<string, any>,
-        Record<string, any>,
-        Record<string, any>
-      >
-    | string;
+  let {
+    file = undefined,
+    files = typeof file === 'string' ? [file] : [],
+    component: DemoComponent,
+    children,
+    subtitle,
+  }: {
+    file?: string;
+    files?: string[];
+    component: Component<Record<string, never>, Record<string, any>> | string;
+    children?: Snippet;
+    subtitle?: Snippet;
+  } = $props();
 
-  let loadSourceView = false;
-  let hide = true;
-  let sources: { [k: string]: string | null } = Object.fromEntries(
-    files.map((file) => [file, null]),
+  let loadSourceView = $state(false);
+  let hide = $state(true);
+  let sources: { [k: string]: string | null } = $state(
+    Object.fromEntries(files.map((file) => [file, null])),
   );
 
   async function loadSources() {

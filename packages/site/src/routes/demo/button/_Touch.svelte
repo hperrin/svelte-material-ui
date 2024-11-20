@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <Button onclick={() => clicked++} touch>
   <Label>Default</Label>
 </Button>

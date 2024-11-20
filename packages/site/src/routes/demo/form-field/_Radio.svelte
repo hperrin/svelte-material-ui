@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 {#each ['yes', 'no'] as option}
   <FormField style="margin-right: 1em;">
     <Radio bind:group={selected} value={option} />

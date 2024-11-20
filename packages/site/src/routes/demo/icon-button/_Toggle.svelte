@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <div style="display: flex; align-items: center;">
   <IconButton onclick={() => toggleClicked++} toggle bind:pressed={initialOff}>
     <Icon class="material-icons" on>star</Icon>

@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <div class="flexy">
   <div class="margins">
     <Fab onclick={() => clicked++}>

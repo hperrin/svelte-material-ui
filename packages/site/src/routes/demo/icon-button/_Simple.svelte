@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <div style="display: flex; align-items: center;">
   <IconButton class="material-icons" onclick={() => clicked++}>build</IconButton
   >

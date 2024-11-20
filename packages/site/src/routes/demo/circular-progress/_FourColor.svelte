@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <div style="display: flex; justify-content: center">
   <CircularProgress
     class="my-four-colors"

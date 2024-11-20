@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <LayoutGrid>
   {#each Array(9) as _unused, i}
     <Cell order={10 - i}>

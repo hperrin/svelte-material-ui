@@ -30,10 +30,10 @@
 
   <Demo component={Portal} file="menu/_Portal.svelte">
     Portal
-    <svelte:fragment slot="subtitle">
+    {#snippet subtitle()}
       Using a svelte-portal to show a menu in a place where it normally couldn't
       go (due to DOM restrictions, hidden overflow, etc.).
-    </svelte:fragment>
+    {/snippet}
   </Demo>
 
   <div style="padding-top: 200px;">Long div for scrolling...</div>

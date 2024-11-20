@@ -15,19 +15,19 @@
 
   <Demo component={Keys} file="select/_Keys.svelte">
     Using Keys
-    <svelte:fragment slot="subtitle">
+    {#snippet subtitle()}
       If your options aren't strings, you must provide a <code>key</code> function
       that converts them to unique strings, or the label may misbehave.
-    </svelte:fragment>
+    {/snippet}
   </Demo>
 
   <Demo component={Forms} file="select/_Forms.svelte">
     Using Forms
-    <svelte:fragment slot="subtitle">
+    {#snippet subtitle()}
       If you put a <code>Select</code> in a <code>&lt;form&gt;</code>, you have
       to add the <code>hiddenInput</code> and <code>input$name</code> props to have
       it sent with the rest of the inputs.
-    </svelte:fragment>
+    {/snippet}
   </Demo>
 
   <Demo component={Invalid} file="select/_Invalid.svelte">
@@ -42,12 +42,16 @@
 
   <Demo component={ShapedFilled} file="select/_ShapedFilled.svelte">
     Shaped Filled
-    <svelte:fragment slot="subtitle">Styled with CSS</svelte:fragment>
+    {#snippet subtitle()}
+      Styled with CSS
+    {/snippet}
   </Demo>
 
   <Demo component={ShapedOutlined} file="select/_ShapedOutlined.svelte">
     Shaped Outlined
-    <svelte:fragment slot="subtitle">Styled with CSS</svelte:fragment>
+    {#snippet subtitle()}
+      Styled with CSS
+    {/snippet}
   </Demo>
 
   <Demo component={Required} file="select/_Required.svelte">Required</Demo>

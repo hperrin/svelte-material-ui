@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <!--
   Icons are normally discovered through their slot,
   but Svelte slots cannot be conditional, so you can

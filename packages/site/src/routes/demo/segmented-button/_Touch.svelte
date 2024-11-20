@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <SegmentedButton
   segments={aligns}
   let:segment

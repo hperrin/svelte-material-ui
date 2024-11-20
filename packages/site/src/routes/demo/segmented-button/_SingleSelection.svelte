@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <!--
   Note: segments must be unique. (They cannot === each other.)
   If you need to show the same value, use keyed segments.

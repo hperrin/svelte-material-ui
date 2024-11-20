@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <div style="margin-bottom: 1em;">
   <Button onclick={() => loadThings(true)}>Do Pretend Loading</Button>
 </div>

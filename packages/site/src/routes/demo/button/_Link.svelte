@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <Button onclick={() => clicked++} href="http://example.com" target="_blank">
   <Label>Link</Label>
 </Button>

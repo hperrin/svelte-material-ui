@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <ImageList class="my-image-list-4x5" withTextProtection>
   {#each Array(15) as _unused, i}
     <Item>

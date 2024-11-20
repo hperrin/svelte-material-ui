@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <div style="min-width: 100px;">
   <Button onclick={() => menu.setOpen(true)}>
     <Label>Open Menu</Label>

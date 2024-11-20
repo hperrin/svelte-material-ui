@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <Button onclick={() => clicked++} variant="raised" class="button-shaped-round">
   <Label>Raised</Label>
 </Button>

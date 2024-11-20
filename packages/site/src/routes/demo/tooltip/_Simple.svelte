@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <div
   class="container"
   style="display: flex; flex-wrap: wrap; align-items: center;"

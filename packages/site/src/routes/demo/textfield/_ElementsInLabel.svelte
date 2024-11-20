@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <div class="margins">
   <Textfield bind:value={valueElementsLabel} type="email">
     <svelte:fragment slot="label">

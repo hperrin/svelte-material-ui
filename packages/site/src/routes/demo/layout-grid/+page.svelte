@@ -29,10 +29,10 @@
 
   <Demo component={Nested} file="layout-grid/_Nested.svelte">
     Nested
-    <svelte:fragment slot="subtitle">
+    {#snippet subtitle()}
       Only use this if you must because it doesn't align well at some
       resolutions.
-    </svelte:fragment>
+    {/snippet}
   </Demo>
 </section>
 

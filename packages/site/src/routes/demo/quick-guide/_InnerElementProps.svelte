@@ -17,5 +17,5 @@
   import Textfield from '@smui/textfield';
   import HelperText from '@smui/textfield/helper-text';
 
-  let value = '';
+  let value = $state('');
 </script>

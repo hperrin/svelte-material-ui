@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <div>
   <Button onclick={() => clicked++}>
     <Label>Default</Label>

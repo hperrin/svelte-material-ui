@@ -31,8 +31,8 @@
   import Radio from '@smui/radio';
   import Checkbox from '@smui/checkbox';
 
-  let big = false;
-  let color = 'red';
+  let big = $state(false);
+  let color = $state('red');
 </script>
 
 <style>

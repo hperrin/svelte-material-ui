@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <div>
   <List class="demo-list" dense>
     <Item onSMUIAction={() => (clicked = 'Edit')}>

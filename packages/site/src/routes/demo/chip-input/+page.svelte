@@ -19,9 +19,9 @@
 
   <Demo component={Objects} file="chip-input/_Objects.svelte">
     Objects
-    <svelte:fragment slot="subtitle"
-      >Objects allow you to have dupliate entries.</svelte:fragment
-    >
+    {#snippet subtitle()}
+      Objects allow you to have dupliate entries.
+    {/snippet}
   </Demo>
 
   <Demo component={Autocomplete} file="chip-input/_Autocomplete.svelte">
@@ -37,19 +37,19 @@
 
   <Demo component={Async} file="chip-input/_Async.svelte">
     Async options loading
-    <svelte:fragment slot="subtitle">
+    {#snippet subtitle()}
       The autocomplete in the chip input supports retrieving results
       asynchronously, like from a REST endpoint. Try typing a letter in the box
       below.
-    </svelte:fragment>
+    {/snippet}
   </Demo>
 
   <Demo component={AddChipKeys} file="chip-input/_AddChipKeys.svelte">
     Add chip keys
-    <svelte:fragment slot="subtitle">
+    {#snippet subtitle()}
       You can control which keys add the current chip. This one uses space,
       comma, dash, and plus.
-    </svelte:fragment>
+    {/snippet}
   </Demo>
 
   <Demo component={Disabled} file="chip-input/_Disabled.svelte">Disabled</Demo>

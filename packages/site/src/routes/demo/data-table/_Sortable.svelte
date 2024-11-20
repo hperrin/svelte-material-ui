@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <DataTable
   sortable
   bind:sort

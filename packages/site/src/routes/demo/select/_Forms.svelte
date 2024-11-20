@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <div class="margins">
   <form onsubmit={handleSubmit}>
     <Select bind:value label="Fruit" hiddenInput input$name="fruit">

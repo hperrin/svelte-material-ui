@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <div>
   <List class="demo-list">
     <Item onSMUIAction={() => (clicked = 'Cut')}><Text>Cut</Text></Item>

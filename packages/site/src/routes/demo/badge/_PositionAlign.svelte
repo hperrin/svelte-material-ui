@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <div style="margin-top: 2em; text-align: center;">
   <Button style="position: relative;">
     <Label>Button</Label>

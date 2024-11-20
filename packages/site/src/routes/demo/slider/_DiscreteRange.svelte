@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <Slider
   range
   bind:start={valueStart}

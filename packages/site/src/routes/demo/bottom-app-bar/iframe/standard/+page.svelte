@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <AutoAdjust {bottomAppBar}>
   <h5>Standard</h5>
 

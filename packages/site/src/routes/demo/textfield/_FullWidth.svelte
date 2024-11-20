@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <div class="margins">
   <Textfield
     style="width: 100%;"

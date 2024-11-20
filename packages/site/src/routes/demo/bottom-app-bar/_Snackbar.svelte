@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <!-- Check out iframe/*.svelte too see how these work. -->
 <iframe
   class="bottom-app-bar-iframe"

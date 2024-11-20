@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <Dialog
   bind:open
   aria-labelledby="large-scroll-title"

@@ -14,49 +14,49 @@
 
   <Demo component={CommonLabelIcon} file="common/_CommonLabelIcon.svelte">
     Common Label and Icon
-    <svelte:fragment slot="subtitle">
+    {#snippet subtitle()}
       The common label and icon are also exported from each package that uses
       them.
-    </svelte:fragment>
+    {/snippet}
   </Demo>
 
   <Demo component={SmuiElement} file="common/_SmuiElement.svelte">
     SmuiElement Component
-    <svelte:fragment slot="subtitle">
+    {#snippet subtitle()}
       Many SMUI components let you customize which DOM element is used to render
       them. This is done with the SmuiElement component.
-    </svelte:fragment>
+    {/snippet}
   </Demo>
 
   <Demo component={Svg} file="common/_Svg.svelte">
     Svg Elements
-    <svelte:fragment slot="subtitle">
+    {#snippet subtitle()}
       In the SMUI components that let you customize which DOM element is used to
       render them, you can use the "svg" tag to render an SVG.
-    </svelte:fragment>
+    {/snippet}
   </Demo>
 
   <h4>Helper Utilities</h4>
 
   <Demo component={ClassMap} file="common/_ClassMap.svelte">
     Class Map
-    <svelte:fragment slot="subtitle">
+    {#snippet subtitle()}
       Build a class string from a map of class names to conditions. This is
       useful when you need to add classes to a component, since Svelte's
       "class:" directives don't work on components. (It's also useful for
       actions that take <code>addClass</code> and <code>removeClass</code> functions.)
-    </svelte:fragment>
+    {/snippet}
   </Demo>
 
   <Demo component={Dispatch} file="common/_Dispatch.svelte">
     Dispatch
-    <svelte:fragment slot="subtitle">
+    {#snippet subtitle()}
       Dispatch a custom event. This differs from Svelte's component event
       system, because these events require a DOM element as a target, can bubble
       (and do by default), and are cancelable with <code
         >event.preventDefault()</code
       >. All SMUI events are dispatched with this.
-    </svelte:fragment>
+    {/snippet}
   </Demo>
 
   <Demo
@@ -67,13 +67,13 @@
     ]}
   >
     Exclude and Prefix Filter
-    <svelte:fragment slot="subtitle">
+    {#snippet subtitle()}
       Exclude differs from normal <code>omit</code> functions by also excluding all
       properties that begin with a given string if that string ends with "$". Prefix
       Filter filters an object for only properties with a certain prefix. They are
       usually used together to allow props to be given to multiple elements within
       a component.
-    </svelte:fragment>
+    {/snippet}
   </Demo>
 
   <Demo
@@ -87,19 +87,19 @@
     ]}
   >
     Use Actions
-    <svelte:fragment slot="subtitle">
+    {#snippet subtitle()}
       An action that takes actions and runs them on the element. Used to allow
       actions on components, and forward actions from one component to another,
       until the ultimate component finally renders the DOM element.
-    </svelte:fragment>
+    {/snippet}
   </Demo>
 
   <Demo component={Announce} file="common/_Announce.svelte">
     Announce
-    <svelte:fragment slot="subtitle">
+    {#snippet subtitle()}
       A function that announces a string of text to users who are using a screen
       reader.
-    </svelte:fragment>
+    {/snippet}
   </Demo>
 
   <h4>Other Components</h4>
@@ -112,13 +112,13 @@
     ]}
   >
     Class Adder Builder
-    <svelte:fragment slot="subtitle">
+    {#snippet subtitle()}
       Use this to build a ClassAdder component. ClassAdder components are useful
       for reducing the size of your bundle. If you have tons of simple
       components that just need to add classes/props or set a context, using
       ClassAdder components means there's only one actual Svelte component in
       your bundle for all of these many tiny components.
-    </svelte:fragment>
+    {/snippet}
   </Demo>
 </section>
 

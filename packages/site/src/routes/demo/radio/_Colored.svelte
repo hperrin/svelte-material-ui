@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <div>
   <FormField>
     <Radio class="my-colored-radio" bind:group={selected} value="on" />

@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <TopAppBar bind:this={topAppBar} variant="standard" prominent>
   <Row>
     <Section>

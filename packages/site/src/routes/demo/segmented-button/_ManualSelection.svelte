@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <SegmentedButton segments={choices} let:segment key={(segment) => segment.name}>
   <!--
     When the selected prop is provided, Segment will no longer fire a "selected"

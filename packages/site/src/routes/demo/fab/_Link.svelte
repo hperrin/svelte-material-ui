@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <div class="flexy">
   <div class="margins">
     <Fab onclick={() => clicked++} href="http://example.com" target="_blank">

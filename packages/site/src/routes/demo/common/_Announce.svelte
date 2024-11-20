@@ -25,7 +25,7 @@
   import Textfield from '@smui/textfield';
   import { announce } from '@smui/common/internal';
 
-  let text = '';
+  let text = $state('');
 
   function loremIpsum() {
     text =

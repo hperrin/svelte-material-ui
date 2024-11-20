@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <Slider disabled value={5} />
 
 <script lang="ts">

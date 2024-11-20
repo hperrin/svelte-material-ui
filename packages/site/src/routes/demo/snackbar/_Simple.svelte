@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <Snackbar bind:this={snackbarWithClose}>
   <Label>This is a snackbar.</Label>
   <Actions>

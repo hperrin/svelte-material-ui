@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <Button onclick={() => clicked++}>
   <Icon class="material-icons">favorite</Icon>
   <Label>Leading Icon</Label>

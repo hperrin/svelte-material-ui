@@ -86,7 +86,7 @@
 </svelte:head>
 
 {#if iframe}
-  <slot />
+  {#if children}{@render children()}{/if}
 {:else}
   <TopAppBar variant="static" class="demo-top-app-bar">
     <Row>
@@ -261,14 +261,14 @@
     {/if}
     <AppContent class="demo-app-content">
       <main class="demo-main-content" bind:this={mainContent}>
-        <slot />
+        {#if children}{@render children()}{/if}
       </main>
     </AppContent>
   </div>
 {/if}
 
 <script lang="ts">
-  import { onDestroy, onMount } from 'svelte';
+  import { onDestroy, onMount, type Snippet } from 'svelte';
   import { mdiFileDocument, mdiPalette } from '@mdi/js';
   import { siDiscord, siMastodon, siGithub } from 'simple-icons';
   import TinyGesture from 'tinygesture';
@@ -283,12 +283,14 @@
   import List, { Item, Text, Separator } from '@smui/list';
   import { Icon } from '@smui/common';
 
+  let { children }: { children: Snippet } = $props();
+
   const iframe = $page.url.pathname.includes('/iframe');
 
   let drawer: Drawer;
   let mainContent: HTMLElement;
-  let miniWindow = false;
-  let drawerOpen = false;
+  let miniWindow = $state(false);
+  let drawerOpen = $state(false);
   let drawerGesture: TinyGesture;
   let mainContentGesture: TinyGesture;
 
@@ -677,21 +679,25 @@
     },
   ];
 
-  $: activeSection = sections.find(
-    (section) =>
-      'route' in section &&
-      routesEqual(section.route ?? '', $page.url.pathname),
-  ) as DemoSection | undefined;
+  const activeSection = $derived(
+    sections.find(
+      (section) =>
+        'route' in section &&
+        routesEqual(section.route ?? '', $page.url.pathname),
+    ) as DemoSection | undefined,
+  );
   let previousPagePath: string | undefined = undefined;
-  $: if (mainContent && previousPagePath !== $page.url.pathname) {
-    drawerOpen = false;
-    const hashEl =
-      window.location.hash &&
-      document.querySelector<HTMLElement>(window.location.hash);
-    const top = (hashEl && hashEl.offsetTop) || 0;
-    mainContent.scrollTop = top;
-    previousPagePath = $page.url.pathname;
-  }
+  $effect(() => {
+    if (mainContent && previousPagePath !== $page.url.pathname) {
+      drawerOpen = false;
+      const hashEl =
+        window.location.hash &&
+        document.querySelector<HTMLElement>(window.location.hash);
+      const top = (hashEl && hashEl.offsetTop) || 0;
+      mainContent.scrollTop = top;
+      previousPagePath = $page.url.pathname;
+    }
+  });
 
   onMount(() => setTimeout(setMiniWindow, 0));
 

@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <div class="format-bar">
   <SegmentedButton
     segments={aligns}

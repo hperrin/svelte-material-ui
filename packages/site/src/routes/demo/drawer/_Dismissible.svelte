@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <div class="drawer-container">
   <Drawer variant="dismissible" bind:open>
     <Header>

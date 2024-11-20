@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <Set chips={input} let:chip input>
   <Chip {chip}>
     <Text>{chip}</Text>

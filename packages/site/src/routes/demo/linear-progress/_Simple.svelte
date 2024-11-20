@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <LinearProgress {progress} {closed} />
 
 <br />

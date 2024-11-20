@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <div class="drawer-container">
   <!-- Don't include fixed={false} if this is a page wide drawer.
         It adds a style for absolute positioning. -->

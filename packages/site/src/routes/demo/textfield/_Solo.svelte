@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <div class="solo-demo-container solo-container">
   <Paper class="solo-paper" elevation={6}>
     <Icon class="material-icons">search</Icon>

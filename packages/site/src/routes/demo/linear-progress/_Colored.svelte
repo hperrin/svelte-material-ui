@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <LinearProgress
   class="my-colored-linear-progress"
   progress={0.5}

@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <div>
   <TabBar {tabs} let:tab {key} bind:active>
     <Tab

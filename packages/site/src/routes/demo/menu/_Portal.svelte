@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <!--
   Note: This is a very hacky way of creating a sub-menu that has a lot of
   downsides. Don't use this in production, it's meant to show off using a

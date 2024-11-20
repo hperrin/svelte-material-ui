@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <div>
   <Group>
     <Subheader>Actors</Subheader>

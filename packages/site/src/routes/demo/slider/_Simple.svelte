@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <FormField align="end" style="display: flex;">
   <Slider style="flex-grow: 1;" bind:value />
   <span

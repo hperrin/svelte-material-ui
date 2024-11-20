@@ -74,8 +74,8 @@
 
   let eventOutput: HTMLDivElement;
   let eventPhaseOutput: HTMLDivElement;
-  let events: string[] = [];
-  let eventPhases: [Event, string][] = [];
+  let events: string[] = $state([]);
+  let eventPhases: [Event, string][] = $state([]);
 
   function addEvent(event: Event) {
     if (

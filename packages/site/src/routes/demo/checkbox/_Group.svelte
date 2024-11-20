@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <div>
   {#each options as option}
     <FormField>

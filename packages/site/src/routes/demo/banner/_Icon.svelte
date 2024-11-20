@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <div>
   <FormField>
     <Checkbox bind:checked={open} />

@@ -13,9 +13,9 @@
 
   <Demo component={Static} file="top-app-bar/_Static.svelte">
     Top app bars in a container
-    <svelte:fragment slot="subtitle">
+    {#snippet subtitle()}
       Only the "static" variant works inside containers.
-    </svelte:fragment>
+    {/snippet}
   </Demo>
 
   <Demo
@@ -30,10 +30,10 @@
     ]}
   >
     Page level top app bars
-    <svelte:fragment slot="subtitle">
+    {#snippet subtitle()}
       These are displayed in iframes and the source viewer shows the iframe
       source.
-    </svelte:fragment>
+    {/snippet}
   </Demo>
 </section>
 

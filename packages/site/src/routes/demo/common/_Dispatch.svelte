@@ -21,7 +21,7 @@
   import Button from '@smui/button';
 
   let target: HTMLDivElement;
-  let event: CustomEvent<{ time: string }>;
+  let event: CustomEvent<{ time: string }> | false = $state(false);
 
   function dispatchEvent() {
     dispatch(

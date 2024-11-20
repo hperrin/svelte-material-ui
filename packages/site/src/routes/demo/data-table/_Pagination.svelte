@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <DataTable table$aria-label="Todo list" style="width: 100%;">
   <Head>
     <Row>

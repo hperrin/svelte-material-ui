@@ -9,5 +9,5 @@
 <script lang="ts">
   import MyComponent from './_ExcludeAndPrefixFilterComponent.svelte';
 
-  let disabled = false;
+  let disabled = $state(false);
 </script>

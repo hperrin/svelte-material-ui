@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <div style="display: flex; align-items: center;">
   <IconButton onclick={() => clicked++}>
     <Icon tag="svg" viewBox="0 0 24 24">

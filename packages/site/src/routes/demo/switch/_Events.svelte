@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <div>
   <FormField>
     <Switch bind:checked onSMUISwitchChange={(e) => (event = e)} />

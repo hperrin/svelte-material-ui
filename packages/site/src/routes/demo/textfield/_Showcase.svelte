@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <div class="margins">
   <!--
     Note: when you bind to `invalid`, but you only want to

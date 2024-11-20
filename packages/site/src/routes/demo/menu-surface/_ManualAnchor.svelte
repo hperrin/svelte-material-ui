@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <div
   class={Object.keys(anchorClasses).join(' ')}
   use:Anchor={{

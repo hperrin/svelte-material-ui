@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <Kitchen bind:this={kitchen} dismiss$tag="svg" dismiss$viewBox="0 0 24 24">
   <path slot="dismiss" fill="currentColor" d={mdiCloseCircle} />
 </Kitchen>

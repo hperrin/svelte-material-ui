@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <DataTable style="max-width: 100%;">
   <Head>
     <Row>

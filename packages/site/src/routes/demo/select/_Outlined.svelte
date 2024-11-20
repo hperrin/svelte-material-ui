@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <div class="columns margins">
   <div>
     <Select variant="outlined" bind:value label="Fruit">

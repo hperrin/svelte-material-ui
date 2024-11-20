@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <div class="card-display">
   <div class="card-container">
     <Card>

@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <FormField align="end">
   <Checkbox bind:checked />
   <span slot="label"> The input can be aligned at the end too. </span>

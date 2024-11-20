@@ -1,14 +1,16 @@
 <div class="target" use:useActions={use}>
   <span style="user-select: none;">
-    <slot />
+    {#if children}{@render children()}{/if}
   </span>
 </div>
 
 <script lang="ts">
+  import type { Snippet } from 'svelte';
   import type { ActionArray } from '@smui/common/internal';
   import { useActions } from '@smui/common/internal';
 
-  export let use: ActionArray = [];
+  let { use = [], children }: { use: ActionArray; children?: Snippet } =
+    $props();
 </script>
 
 <style>

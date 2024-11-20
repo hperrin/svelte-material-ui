@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <SegmentedButton segments={choices} let:segment bind:selected>
   <Segment {segment}>
     <Label>{segment}</Label>

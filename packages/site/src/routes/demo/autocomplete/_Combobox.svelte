@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <div>
   <Autocomplete combobox options={fruits} bind:value label="Fruit" />
   <pre class="status">Selected: {value || ''}</pre>

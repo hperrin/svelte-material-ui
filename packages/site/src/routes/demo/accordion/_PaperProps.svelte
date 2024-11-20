@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <div class="accordion-container">
   <Accordion class="demo-small-titles">
     <Panel

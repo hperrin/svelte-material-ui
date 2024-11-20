@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <TopAppBar bind:this={topAppBar} variant="short" collapsed>
   <Row>
     <Section>

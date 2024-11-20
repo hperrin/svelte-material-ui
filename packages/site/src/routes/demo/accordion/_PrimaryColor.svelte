@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <div class="accordion-container">
   <Accordion>
     <Panel color="primary" bind:open={panel1Open}>

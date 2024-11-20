@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <pre class="status">Action Clicked: {action}</pre>
 
 <div class="top-app-bar-container">

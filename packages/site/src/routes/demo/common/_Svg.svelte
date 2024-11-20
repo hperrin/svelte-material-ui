@@ -113,5 +113,5 @@
   import IconButton, { Icon } from '@smui/icon-button';
   import { SmuiElement } from '@smui/common';
 
-  let clicked = 0;
+  let clicked = $state(0);
 </script>

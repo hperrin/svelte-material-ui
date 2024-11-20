@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <IconButton class="material-icons" onclick={() => clicked++} touch
   >build</IconButton
 >

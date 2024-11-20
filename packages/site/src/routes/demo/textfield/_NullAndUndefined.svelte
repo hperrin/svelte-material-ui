@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <div class="columns margins">
   <div>
     <Textfield bind:value={valueNull} label="Empty as Null">

@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <Set chips={choices} let:chip choice bind:selected>
   <Chip {chip}>
     <Text>{chip}</Text>

@@ -13,7 +13,7 @@
 <script lang="ts">
   import Ripple from '@smui/ripple';
 
-  let active = false;
+  let active = $state(false);
 </script>
 
 <style>

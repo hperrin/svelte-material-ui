@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <div style="display: flex; justify-content: center">
   <CircularProgress style="height: 32px; width: 32px;" indeterminate />
 </div>

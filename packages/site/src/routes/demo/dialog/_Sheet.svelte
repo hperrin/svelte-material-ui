@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <Dialog bind:open sheet aria-describedby="sheet-content">
   <Content id="sheet-content">
     <IconButton action="close" class="material-icons">close</IconButton>

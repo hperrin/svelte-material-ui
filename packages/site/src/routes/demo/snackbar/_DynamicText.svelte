@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <Snackbar bind:this={snackbar} labelText={text} timeoutMs={-1}>
   <Label />
   <Actions>

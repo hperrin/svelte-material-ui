@@ -31,6 +31,10 @@ const config = {
   kit: {
     adapter: staticAdapter(),
   },
+
+  compilerOptions: {
+    runes: true,
+  },
 };
 
 export default config;

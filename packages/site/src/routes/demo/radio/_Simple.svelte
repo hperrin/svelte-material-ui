@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <div class="radio-demo">
   {#each options as option}
     <FormField>

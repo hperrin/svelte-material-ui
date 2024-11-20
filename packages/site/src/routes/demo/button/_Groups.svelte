@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <Group>
   <Button onclick={() => clicked++}><Label>One</Label></Button>
   <Button onclick={() => clicked++}><Label>Two</Label></Button>

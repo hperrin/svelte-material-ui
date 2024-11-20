@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <div style="display: flex; flex-wrap: wrap; align-items: center;">
   <!--
     Note: the wrapper on a rich tooltip

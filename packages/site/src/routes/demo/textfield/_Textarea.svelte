@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <div class="margins">
   <Textfield textarea bind:value label="Label">
     <HelperText slot="helper">Helper Text</HelperText>

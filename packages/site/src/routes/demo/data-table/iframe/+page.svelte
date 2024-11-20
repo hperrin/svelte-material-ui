@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <DataTable stickyHeader table$aria-label="User list" style="width: 100%;">
   <Head>
     <Row>

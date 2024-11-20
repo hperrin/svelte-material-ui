@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <LayoutGrid fixedColumnWidth>
   {#each Array(9) as _unused, i}
     <Cell>

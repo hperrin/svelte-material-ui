@@ -20,9 +20,9 @@
 
   <Demo component={Static} file="bottom-app-bar/_Static.svelte">
     Bottom app bars in a container
-    <svelte:fragment slot="subtitle">
+    {#snippet subtitle()}
       Only the "static" variant works inside containers.
-    </svelte:fragment>
+    {/snippet}
   </Demo>
 
   <Demo
@@ -33,10 +33,10 @@
     ]}
   >
     Page level bottom app bars
-    <svelte:fragment slot="subtitle">
+    {#snippet subtitle()}
       These are displayed in iframes and the source viewer shows the iframe
       source.
-    </svelte:fragment>
+    {/snippet}
   </Demo>
 
   <Demo component={Fab} file="bottom-app-bar/_Fab.svelte">FABs</Demo>
@@ -49,10 +49,10 @@
     ]}
   >
     Inset FAB
-    <svelte:fragment slot="subtitle">
+    {#snippet subtitle()}
       These are displayed in iframes so that content will appear behind the
       inset.
-    </svelte:fragment>
+    {/snippet}
   </Demo>
 
   <Demo
@@ -60,11 +60,11 @@
     files={['bottom-app-bar/iframe/snackbar/+page.svelte']}
   >
     Snackbar positioning
-    <svelte:fragment slot="subtitle">
+    {#snippet subtitle()}
       The snackbar is positioned above the bottom app bar. Note: to follow
       scrolling adjustments with the "standard" variant, this requires the
       AutoAdjust component.
-    </svelte:fragment>
+    {/snippet}
   </Demo>
 </section>
 

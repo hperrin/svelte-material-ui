@@ -1,3 +1,5 @@
+<svelte:options runes={false} />
+
 <div>
   <div class="status">
     <pre style="display: inline-block;">Selected:</pre>
