@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div style="display: flex; align-items: center;">
   <IconButton onclick={() => toggleClicked++} toggle bind:pressed={initialOff}>
     <Icon class="material-icons" on>star</Icon>
@@ -39,8 +37,8 @@
   import IconButton, { Icon } from '@smui/icon-button';
   import Button, { Label } from '@smui/button';
 
-  let toggleClicked = 0;
-  let initialOff = false;
-  let initialOn = true;
-  let usingEvents = false;
+  let toggleClicked = $state(0);
+  let initialOff = $state(false);
+  let initialOn = $state(true);
+  let usingEvents = $state(false);
 </script>

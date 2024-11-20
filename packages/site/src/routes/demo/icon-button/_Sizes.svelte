@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div style="display: flex; align-items: center;">
   <IconButton class="material-icons" onclick={() => clicked++} size="normal">
     <Icon tag="svg" viewBox="0 0 24 24">
@@ -28,5 +26,5 @@
   import { mdiWrench } from '@mdi/js';
   import IconButton, { Icon } from '@smui/icon-button';
 
-  let clicked = 0;
+  let clicked = $state(0);
 </script>

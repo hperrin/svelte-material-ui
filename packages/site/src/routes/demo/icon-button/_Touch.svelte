@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <IconButton class="material-icons" onclick={() => clicked++} touch
   >build</IconButton
 >
@@ -9,5 +7,5 @@
 <script lang="ts">
   import IconButton from '@smui/icon-button';
 
-  let clicked = 0;
+  let clicked = $state(0);
 </script>

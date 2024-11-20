@@ -100,7 +100,6 @@
         <Title
           tag="a"
           href="/"
-          onclick={() => (activeSection = undefined)}
           class="mdc-theme--on-surface"
           style={miniWindow ? 'padding-left: 0;' : ''}
         >
@@ -268,7 +267,8 @@
 {/if}
 
 <script lang="ts">
-  import { onDestroy, onMount, type Snippet } from 'svelte';
+  import type { Snippet } from 'svelte';
+  import { onDestroy, onMount } from 'svelte';
   import { mdiFileDocument, mdiPalette } from '@mdi/js';
   import { siDiscord, siMastodon, siGithub } from 'simple-icons';
   import TinyGesture from 'tinygesture';
@@ -287,8 +287,8 @@
 
   const iframe = $page.url.pathname.includes('/iframe');
 
-  let drawer: Drawer;
-  let mainContent: HTMLElement;
+  let drawer: Drawer = $state(undefined as unknown as Drawer);
+  let mainContent: HTMLElement = $state(undefined as unknown as HTMLElement);
   let miniWindow = $state(false);
   let drawerOpen = $state(false);
   let drawerGesture: TinyGesture;
@@ -301,9 +301,9 @@
     { label: 'Metro', value: 'metro' },
     { label: 'Unity', value: 'unity' },
   ];
-  let themeMenu: Menu;
-  let lightTheme: boolean | null = null;
-  let theme: string | null = null;
+  let themeMenu: Menu = $state(undefined as unknown as Menu);
+  let lightTheme: boolean | null = $state(null);
+  let theme: string | null = $state(null);
 
   type DemoSection = {
     component?: Item<string>; // Items always have href.
