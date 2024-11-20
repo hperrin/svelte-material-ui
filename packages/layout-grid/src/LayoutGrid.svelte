@@ -37,7 +37,9 @@
   };
   type $$Props = OwnProps &
     SmuiAttrs<'div', keyof OwnProps> & {
-      [k in keyof ComponentProps<InnerGrid> as `innerGrid\$${k}`]?: ComponentProps<InnerGrid>[k];
+      [k in keyof ComponentProps<
+        typeof InnerGrid
+      > as `innerGrid\$${k}`]?: ComponentProps<typeof InnerGrid>[k];
     };
 
   // Remember to update $$Props if you add/remove/rename props.

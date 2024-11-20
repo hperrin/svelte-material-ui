@@ -66,7 +66,9 @@
   };
   type $$Props = OwnProps &
     SmuiAttrs<'div', keyof OwnProps> & {
-      [k in keyof ComponentProps<TabScroller> as `tabScroller\$${k}`]?: ComponentProps<TabScroller>[k];
+      [k in keyof ComponentProps<
+        typeof TabScroller
+      > as `tabScroller\$${k}`]?: ComponentProps<typeof TabScroller>[k];
     };
 
   // Remember to update $$Props if you add/remove/rename props.

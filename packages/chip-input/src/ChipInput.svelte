@@ -158,25 +158,47 @@
   };
   type $$Props = OwnProps &
     SmuiAttrs<'div', keyof OwnProps> & {
-      [k in keyof ComponentProps<Set> as `chipSet\$${k}`]?: ComponentProps<Set>[k];
+      [k in keyof ComponentProps<
+        typeof Set
+      > as `chipSet\$${k}`]?: ComponentProps<typeof Set>[k];
     } & {
-      [k in keyof ComponentProps<Chip> as `chip\$${k}`]?: ComponentProps<Chip>[k];
+      [k in keyof ComponentProps<typeof Chip> as `chip\$${k}`]?: ComponentProps<
+        typeof Chip
+      >[k];
     } & {
-      [k in keyof ComponentProps<ChipText> as `chipText\$${k}`]?: ComponentProps<ChipText>[k];
+      [k in keyof ComponentProps<
+        typeof ChipText
+      > as `chipText\$${k}`]?: ComponentProps<typeof ChipText>[k];
     } & {
-      [k in keyof ComponentProps<TrailingAction> as `chipTrailingAction\$${k}`]?: ComponentProps<TrailingAction>[k];
+      [k in keyof ComponentProps<
+        typeof TrailingAction
+      > as `chipTrailingAction\$${k}`]?: ComponentProps<
+        typeof TrailingAction
+      >[k];
     } & {
-      [k in keyof ComponentProps<Autocomplete> as `autocomplete\$${k}`]?: ComponentProps<Autocomplete>[k];
+      [k in keyof ComponentProps<
+        typeof Autocomplete
+      > as `autocomplete\$${k}`]?: ComponentProps<typeof Autocomplete>[k];
     } & {
-      [k in keyof ComponentProps<Textfield> as `textfield\$${k}`]?: ComponentProps<Textfield>[k];
+      [k in keyof ComponentProps<
+        typeof Textfield
+      > as `textfield\$${k}`]?: ComponentProps<typeof Textfield>[k];
     } & {
-      [k in keyof ComponentProps<FloatingLabel> as `label\$${k}`]?: ComponentProps<FloatingLabel>[k];
+      [k in keyof ComponentProps<
+        typeof FloatingLabel
+      > as `label\$${k}`]?: ComponentProps<typeof FloatingLabel>[k];
     } & {
-      [k in keyof ComponentProps<Input> as `input\$${k}`]?: ComponentProps<Input>[k];
+      [k in keyof ComponentProps<
+        typeof Input
+      > as `input\$${k}`]?: ComponentProps<typeof Input>[k];
     } & {
-      [k in keyof ComponentProps<ListText> as `loading\$${k}`]?: ComponentProps<ListText>[k];
+      [k in keyof ComponentProps<
+        typeof ListText
+      > as `loading\$${k}`]?: ComponentProps<typeof ListText>[k];
     } & {
-      [k in keyof ComponentProps<LineRipple> as `ripple\$${k}`]?: ComponentProps<LineRipple>[k];
+      [k in keyof ComponentProps<
+        typeof LineRipple
+      > as `ripple\$${k}`]?: ComponentProps<typeof LineRipple>[k];
     } & {
       chipSet$chips?: never;
       chipSet$chip?: never;

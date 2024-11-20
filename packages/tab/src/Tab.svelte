@@ -77,7 +77,7 @@
   generics="Href extends string | undefined = undefined, TagName extends SmuiHTMLElement = Href extends string ? 'a' : 'button'"
 >
   import { MDCTabFoundation } from '@material/tab';
-  import type { SvelteComponent, ComponentProps } from 'svelte';
+  import type { ComponentProps } from 'svelte';
   import { onMount, setContext, getContext } from 'svelte';
   import type { ActionArray } from '@smui/common/internal';
   import {
@@ -89,6 +89,7 @@
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
   import type {
+    SmuiComponent,
     SmuiHTMLElement,
     SmuiElementMap,
     SmuiElementPropMap,
@@ -111,18 +112,16 @@
     href?: Href;
     content$use?: ActionArray;
     content$class?: string;
-    component?: typeof SvelteComponent<
-      Record<string, any>,
-      Record<string, any>,
-      Record<string, any>
-    >;
+    component?: SmuiComponent<SmuiElementMap[TagName]>;
     tag?: TagName;
   };
   type $$Props = OwnProps &
     SmuiAttrs<TagName, keyof OwnProps> & {
       [k in keyof SmuiElementPropMap['span'] as `content\$${k}`]?: SmuiElementPropMap['span'][k];
     } & {
-      [k in keyof ComponentProps<TabIndicator> as `tabIndicator\$${k}`]?: ComponentProps<TabIndicator>[k];
+      [k in keyof ComponentProps<
+        typeof TabIndicator
+      > as `tabIndicator\$${k}`]?: ComponentProps<typeof TabIndicator>[k];
     };
 
   // Remember to update $$Props if you add/remove/rename props.
@@ -140,7 +139,7 @@
   export let content$use: ActionArray = [];
   export let content$class = '';
 
-  let element: SvelteComponent;
+  let element: ReturnType<SmuiComponent<SmuiElementMap[TagName]>>;
   let instance: MDCTabFoundation;
   let content: HTMLSpanElement;
   let tabIndicator: TabIndicator;
@@ -151,11 +150,7 @@
   let active = tabId === getContext<any | undefined>('SMUI:tab:initialActive');
   let forceAccessible = false;
 
-  export let component: typeof SvelteComponent<
-    Record<string, any>,
-    Record<string, any>,
-    Record<string, any>
-  > = SmuiElement;
+  export let component: SmuiComponent<SmuiElementMap[TagName]> = SmuiElement;
   export let tag: SmuiHTMLElement | undefined =
     component === SmuiElement ? (href == null ? 'button' : 'a') : undefined;
 
@@ -284,7 +279,7 @@
     getElement().focus();
   }
 
-  export function getElement(): SmuiElementMap[TagName] {
+  export function getElement() {
     return element.getElement();
   }
 </script>

@@ -208,7 +208,7 @@
 
   function getDeterminateCircleAttr(name: string) {
     return name in determinateCircleAttrs
-      ? determinateCircleAttrs[name] ?? null
+      ? (determinateCircleAttrs[name] ?? null)
       : determinateCircle.getAttribute(name);
   }
 

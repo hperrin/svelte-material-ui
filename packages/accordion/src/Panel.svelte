@@ -48,7 +48,7 @@
     extend?: boolean;
     extendedElevation?: number;
   };
-  type $$Props = OwnProps & Omit<ComponentProps<Paper>, keyof OwnProps>;
+  type $$Props = OwnProps & Omit<ComponentProps<typeof Paper>, keyof OwnProps>;
 
   // Remember to update $$Props if you add/remove/rename props.
   export let use: ActionArray = [];

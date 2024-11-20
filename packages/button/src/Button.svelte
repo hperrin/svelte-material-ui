@@ -61,12 +61,12 @@
   lang="ts"
   generics="Href extends string | undefined = undefined, TagName extends SmuiEveryElement = Href extends string ? 'a' : 'button'"
 >
-  import type { SvelteComponent } from 'svelte';
   import { setContext, getContext } from 'svelte';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, dispatch } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
   import type {
+    SmuiComponent,
     SmuiElementMap,
     SmuiEveryElement,
     SmuiAttrs,
@@ -85,11 +85,7 @@
     action?: string;
     defaultAction?: boolean;
     secondary?: boolean;
-    component?: typeof SvelteComponent<
-      Record<string, any>,
-      Record<string, any>,
-      Record<string, any>
-    >;
+    component?: SmuiComponent<SmuiElementMap[TagName]>;
     tag?: TagName;
   };
   type $$Props = OwnProps & SmuiAttrs<TagName, keyof OwnProps>;
@@ -108,16 +104,12 @@
   export let defaultAction = false;
   export let secondary = false;
 
-  let element: SvelteComponent;
+  let element: ReturnType<SmuiComponent<SmuiElementMap[TagName]>>;
   let internalClasses: { [k: string]: boolean } = {};
   let internalStyles: { [k: string]: string } = {};
   let context = getContext<string | undefined>('SMUI:button:context');
 
-  export let component: typeof SvelteComponent<
-    Record<string, any>,
-    Record<string, any>,
-    Record<string, any>
-  > = SmuiElement;
+  export let component: SmuiComponent<SmuiElementMap[TagName]> = SmuiElement;
   export let tag: SmuiEveryElement | undefined =
     component === SmuiElement ? (href == null ? 'button' : 'a') : undefined;
 
@@ -180,7 +172,7 @@
     }
   }
 
-  export function getElement(): SmuiElementMap[TagName] {
+  export function getElement() {
     return element.getElement();
   }
 </script>

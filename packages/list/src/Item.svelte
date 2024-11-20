@@ -73,7 +73,6 @@
   lang="ts"
   generics="Href extends string | undefined = undefined, TagName extends SmuiEveryElement = Href extends string ? 'a' : 'li'"
 >
-  import type { SvelteComponent } from 'svelte';
   import { onMount, onDestroy, setContext, getContext } from 'svelte';
   import type {
     SMUICheckboxInputAccessor,
@@ -84,6 +83,7 @@
   import { classMap, dispatch } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
   import type {
+    SmuiComponent,
     SmuiElementMap,
     SmuiEveryElement,
     SmuiAttrs,
@@ -108,11 +108,7 @@
     tabindex?: number;
     inputId?: string;
     href?: Href;
-    component?: typeof SvelteComponent<
-      Record<string, any>,
-      Record<string, any>,
-      Record<string, any>
-    >;
+    component?: SmuiComponent<SmuiElementMap[TagName]>;
     tag?: TagName;
   };
   type $$Props = SmuiAttrs<TagName, keyof OwnProps> &
@@ -151,7 +147,7 @@
   export let inputId = 'SMUI-form-field-list-' + counter++;
   export let href: string | undefined = undefined;
 
-  let element: SvelteComponent;
+  let element: ReturnType<SmuiComponent<SmuiElementMap[TagName]>>;
   let internalClasses: { [k: string]: boolean } = {};
   let internalStyles: { [k: string]: string } = {};
   let internalAttrs: { [k: string]: string | undefined } = {};
@@ -165,11 +161,7 @@
       : -1
     : tabindexProp;
 
-  export let component: typeof SvelteComponent<
-    Record<string, any>,
-    Record<string, any>,
-    Record<string, any>
-  > = SmuiElement;
+  export let component: SmuiComponent<SmuiElementMap[TagName]> = SmuiElement;
   export let tag: SmuiEveryElement | undefined =
     component === SmuiElement
       ? nav
@@ -211,9 +203,9 @@
 
     if (!selected && !nonInteractive) {
       let first = true;
-      let el = element.getElement();
-      while (el.previousSibling) {
-        el = el.previousSibling;
+      let el: Element = element.getElement();
+      while (el.previousElementSibling) {
+        el = el.previousElementSibling;
         if (
           el.nodeType === 1 &&
           el.classList.contains('mdc-deprecated-list-item') &&
@@ -227,7 +219,7 @@
         // This is first, so now set up a check that no other items are
         // selected.
         addTabindexIfNoItemsSelectedRaf = window.requestAnimationFrame(() =>
-          addTabindexIfNoItemsSelected(el),
+          addTabindexIfNoItemsSelected(el as HTMLElement),
         );
       }
     }
@@ -345,7 +337,7 @@
 
   function getAttr(name: string) {
     return name in internalAttrs
-      ? internalAttrs[name] ?? null
+      ? (internalAttrs[name] ?? null)
       : getElement().getAttribute(name);
   }
 
@@ -380,7 +372,7 @@
     if (noneSelected) {
       // This is the first element, and no other element is selected, so the
       // tabindex should be '0'.
-      tabindex = 0;
+      tabindexProp = 0;
     }
   }
 
@@ -414,7 +406,7 @@
     return element.textContent ?? '';
   }
 
-  export function getElement(): SmuiElementMap[TagName] {
+  export function getElement() {
     return element.getElement();
   }
 </script>

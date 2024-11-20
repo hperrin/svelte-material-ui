@@ -1,9 +1,8 @@
-import type { SvelteComponent } from 'svelte';
-import type { SmuiElementMap } from '@smui/common';
+import type { SmuiComponent, SmuiElementMap } from '@smui/common';
 import { classAdderBuilder } from '@smui/common/classadder';
 import { Graphic } from '@smui/list';
 
-export default classAdderBuilder<keyof SmuiElementMap, typeof SvelteComponent>({
+export default classAdderBuilder<keyof SmuiElementMap, SmuiComponent>({
   class: 'mdc-menu__selection-group-icon',
-  component: Graphic as unknown as typeof SvelteComponent,
+  component: Graphic as unknown as SmuiComponent,
 });

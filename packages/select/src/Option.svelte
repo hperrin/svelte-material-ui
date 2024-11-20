@@ -21,7 +21,7 @@
     class?: string;
     value?: any;
   };
-  type $$Props = OwnProps & Omit<ComponentProps<Item>, keyof OwnProps>;
+  type $$Props = OwnProps & Omit<ComponentProps<typeof Item>, keyof OwnProps>;
 
   export let use: ActionArray = [];
   const className = '';

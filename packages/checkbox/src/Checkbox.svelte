@@ -149,7 +149,7 @@
   let nativeChecked: boolean | undefined = isUninitializedValue(group)
     ? isUninitializedValue(checked)
       ? false
-      : checked ?? undefined
+      : (checked ?? undefined)
     : group.indexOf(value) !== -1;
   let context = getContext<string | undefined>('SMUI:checkbox:context');
   let dataTableHeader = getContext<boolean | undefined>(

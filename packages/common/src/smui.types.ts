@@ -1,3 +1,4 @@
+import type { Component } from 'svelte';
 import type {
   HTMLAttributes,
   HTMLAnchorAttributes,
@@ -50,6 +51,14 @@ import type {
   SVGAttributes,
   EventHandler,
 } from 'svelte/elements';
+
+export type SmuiComponent<
+  Element extends
+    SmuiElementMap[SmuiEveryElement] = SmuiElementMap[SmuiEveryElement],
+  Props extends Record<string, any> = {},
+  Exports extends Record<string, any> = {},
+  Bindings extends keyof Props | '' = string,
+> = Component<Props, Exports & { getElement(): Element }, Bindings>;
 
 export type SmuiEveryElement = keyof SmuiElementMap;
 export type SmuiHTMLElement = keyof Omit<SmuiElementMap, 'svg'>;

@@ -666,14 +666,14 @@
         return `${start}`;
       }
       return name in inputStartAttrs
-        ? inputStartAttrs[name] ?? null
-        : inputStart?.getAttribute(name) ?? null;
+        ? (inputStartAttrs[name] ?? null)
+        : (inputStart?.getAttribute(name) ?? null);
     } else {
       if (name === 'value') {
         return `${range ? end : value}`;
       }
       return name in inputAttrs
-        ? inputAttrs[name] ?? null
+        ? (inputAttrs[name] ?? null)
         : input.getAttribute(name);
     }
   }

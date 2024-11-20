@@ -84,13 +84,13 @@
 
 <script lang="ts" generics="TagName extends SmuiEveryElement = 'div'">
   import { deprecated } from '@material/chips';
-  import type { SvelteComponent } from 'svelte';
   import { onMount, setContext, getContext } from 'svelte';
   import { writable } from 'svelte/store';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, dispatch } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
   import type {
+    SmuiComponent,
     SmuiElementMap,
     SmuiEveryElement,
     SmuiAttrs,
@@ -112,11 +112,7 @@
     touch?: boolean;
     shouldRemoveOnTrailingIconClick?: boolean;
     shouldFocusPrimaryActionOnClick?: boolean;
-    component?: typeof SvelteComponent<
-      Record<string, any>,
-      Record<string, any>,
-      Record<string, any>
-    >;
+    component?: SmuiComponent<SmuiElementMap[TagName]>;
     tag?: TagName;
   };
   type $$Props = OwnProps & SmuiAttrs<TagName, keyof OwnProps>;
@@ -133,7 +129,7 @@
   export let shouldRemoveOnTrailingIconClick = true;
   export let shouldFocusPrimaryActionOnClick = true;
 
-  let element: SvelteComponent;
+  let element: ReturnType<SmuiComponent<SmuiElementMap[TagName]>>;
   let instance: deprecated.MDCChipFoundation;
   let internalClasses: { [k: string]: boolean } = {};
   let leadingIconClasses: { [k: string]: boolean } = {};
@@ -152,11 +148,7 @@
   const choice = getContext<SvelteStore<boolean>>('SMUI:chips:choice');
   const index = getContext<SvelteStore<number>>('SMUI:chips:chip:index');
 
-  export let component: typeof SvelteComponent<
-    Record<string, any>,
-    Record<string, any>,
-    Record<string, any>
-  > = SmuiElement;
+  export let component: SmuiComponent<SmuiElementMap[TagName]> = SmuiElement;
   export let tag: SmuiEveryElement | undefined =
     component === SmuiElement ? 'div' : undefined;
 
@@ -395,7 +387,7 @@
     instance.removeFocus();
   }
 
-  export function getElement(): SmuiElementMap[TagName] {
+  export function getElement() {
     return element.getElement();
   }
 </script>

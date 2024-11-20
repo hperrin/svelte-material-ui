@@ -25,12 +25,12 @@
 >
 
 <script lang="ts" generics="TagName extends SmuiEveryElement = 'span'">
-  import type { SvelteComponent } from 'svelte';
   import { getContext } from 'svelte';
 
   import type { ActionArray } from './internal/useActions.js';
   import { classMap } from './internal/index.js';
   import type {
+    SmuiComponent,
     SmuiElementMap,
     SmuiEveryElement,
     SmuiAttrs,
@@ -40,11 +40,7 @@
   type OwnProps = {
     use?: ActionArray;
     class?: string;
-    component?: typeof SvelteComponent<
-      Record<string, any>,
-      Record<string, any>,
-      Record<string, any>
-    >;
+    component?: SmuiComponent<SmuiElementMap[TagName]>;
     tag?: TagName;
   };
   type $$Props = OwnProps & SmuiAttrs<TagName, keyof OwnProps>;
@@ -54,20 +50,16 @@
   let className = '';
   export { className as class };
 
-  let element: SvelteComponent;
+  let element: ReturnType<SmuiComponent<SmuiElementMap[TagName]>>;
 
-  export let component: typeof SvelteComponent<
-    Record<string, any>,
-    Record<string, any>,
-    Record<string, any>
-  > = SmuiElement;
+  export let component: SmuiComponent<SmuiElementMap[TagName]> = SmuiElement;
   export let tag: SmuiEveryElement | undefined =
     component === SmuiElement ? 'span' : undefined;
 
   const context = getContext<string | undefined>('SMUI:label:context');
   const tabindex = getContext<number | undefined>('SMUI:label:tabindex');
 
-  export function getElement(): SmuiElementMap[TagName] {
+  export function getElement() {
     return element.getElement();
   }
 </script>

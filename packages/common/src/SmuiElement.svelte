@@ -57,7 +57,7 @@
 
   let element: SmuiElementMap[SmuiEveryElement];
 
-  export function getElement(): SmuiElementMap[TagName] {
+  export function getElement() {
     return element as SmuiElementMap[TagName];
   }
 </script>

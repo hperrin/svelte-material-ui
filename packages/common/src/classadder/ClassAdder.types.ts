@@ -1,10 +1,8 @@
-import type { SvelteComponent } from 'svelte';
-
-import type { SmuiEveryElement } from '../smui.types.js';
+import type { SmuiComponent, SmuiEveryElement } from '../smui.types.js';
 
 export type ClassAdderInternals<
   T extends SmuiEveryElement = 'div',
-  C extends typeof SvelteComponent = typeof SvelteComponent,
+  C extends SmuiComponent = SmuiComponent,
 > = {
   component: C;
   tag: T;

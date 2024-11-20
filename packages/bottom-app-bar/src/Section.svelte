@@ -26,7 +26,7 @@
     class?: string;
     fabInset?: boolean;
   };
-  type $$Props = Omit<ComponentProps<Paper>, keyof OwnProps> &
+  type $$Props = Omit<ComponentProps<typeof Paper>, keyof OwnProps> &
     OwnProps & {
       color?: never;
       variant?: never;

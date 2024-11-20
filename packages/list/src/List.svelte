@@ -48,12 +48,12 @@
 <script lang="ts" generics="TagName extends SmuiEveryElement = 'ul'">
   import { MDCListFoundation } from '@material/list';
   import { ponyfill } from '@material/dom';
-  import type { SvelteComponent } from 'svelte';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
   import type { AddLayoutListener, RemoveLayoutListener } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, dispatch } from '@smui/common/internal';
   import type {
+    SmuiComponent,
     SmuiElementMap,
     SmuiEveryElement,
     SmuiAttrs,
@@ -86,11 +86,7 @@
     radioList?: boolean;
     checkList?: boolean;
     hasTypeahead?: boolean;
-    component?: typeof SvelteComponent<
-      Record<string, any>,
-      Record<string, any>,
-      Record<string, any>
-    >;
+    component?: SmuiComponent<SmuiElementMap[TagName]>;
     tag?: TagName;
   };
   type $$Props = OwnProps & SmuiAttrs<TagName, keyof OwnProps>;
@@ -119,7 +115,7 @@
   export let checkList = false;
   export let hasTypeahead = false;
 
-  let element: SvelteComponent;
+  let element: ReturnType<SmuiComponent<SmuiElementMap[TagName]>>;
   let instance: MDCListFoundation;
   let items: SMUIListItemAccessor[] = [];
   let role = getContext<string | undefined>('SMUI:list:role');
@@ -133,11 +129,7 @@
   );
   let removeLayoutListener: RemoveLayoutListener | undefined;
 
-  export let component: typeof SvelteComponent<
-    Record<string, any>,
-    Record<string, any>,
-    Record<string, any>
-  > = SmuiElement;
+  export let component: SmuiComponent<SmuiElementMap[TagName]> = SmuiElement;
   export let tag: SmuiEveryElement | undefined =
     component === SmuiElement ? (nav ? 'nav' : 'ul') : undefined;
 
@@ -471,7 +463,7 @@
       (accessor.element as HTMLInputElement).focus();
   }
 
-  export function getElement(): SmuiElementMap[TagName] {
+  export function getElement() {
     return element.getElement();
   }
 </script>

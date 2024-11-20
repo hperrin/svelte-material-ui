@@ -293,17 +293,27 @@
   type $$Props = OwnProps &
     SmuiAttrs<'label', keyof OwnProps> &
     SmuiAttrs<'div', keyof OwnProps> & {
-      [k in keyof ComponentProps<FloatingLabel> as `label\$${k}`]?: ComponentProps<FloatingLabel>[k];
+      [k in keyof ComponentProps<
+        typeof FloatingLabel
+      > as `label\$${k}`]?: ComponentProps<typeof FloatingLabel>[k];
     } & {
-      [k in keyof ComponentProps<NotchedOutline> as `outline\$${k}`]?: ComponentProps<NotchedOutline>[k];
+      [k in keyof ComponentProps<
+        typeof NotchedOutline
+      > as `outline\$${k}`]?: ComponentProps<typeof NotchedOutline>[k];
     } & {
-      [k in keyof ComponentProps<LineRipple> as `ripple\$${k}`]?: ComponentProps<LineRipple>[k];
+      [k in keyof ComponentProps<
+        typeof LineRipple
+      > as `ripple\$${k}`]?: ComponentProps<typeof LineRipple>[k];
     } & {
       [k in keyof SmuiElementPropMap['div'] as `helperLine\$${k}`]?: SmuiElementPropMap['div'][k];
     } & {
-      [k in keyof ComponentProps<Input> as `input\$${k}`]?: ComponentProps<Input>[k];
+      [k in keyof ComponentProps<
+        typeof Input
+      > as `input\$${k}`]?: ComponentProps<typeof Input>[k];
     } & {
-      [k in keyof ComponentProps<Textarea> as `input\$${k}`]?: ComponentProps<Textarea>[k];
+      [k in keyof ComponentProps<
+        typeof Textarea
+      > as `input\$${k}`]?: ComponentProps<typeof Textarea>[k];
     } & {
       input$type?: never;
       input$disabled?: never;
@@ -617,7 +627,7 @@
 
   function hasClass(className: string) {
     return className in internalClasses
-      ? internalClasses[className] ?? null
+      ? (internalClasses[className] ?? null)
       : getElement().classList.contains(className);
   }
 

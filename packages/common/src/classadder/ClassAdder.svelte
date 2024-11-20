@@ -15,10 +15,10 @@
 >
 
 <script lang="ts">
-  import type { SvelteComponent } from 'svelte';
   import { onDestroy, getContext, setContext } from 'svelte';
 
   import type {
+    SmuiComponent,
     SmuiElementPropMap,
     SmuiEveryElement,
     SmuiAttrs,
@@ -31,11 +31,7 @@
   type OwnProps = {
     use?: ActionArray;
     class?: string;
-    component?: typeof SvelteComponent<
-      Record<string, any>,
-      Record<string, any>,
-      Record<string, any>
-    >;
+    component?: SmuiComponent;
     tag?: keyof SmuiElementPropMap;
   };
   type $$Props = OwnProps & SmuiAttrs<SmuiEveryElement, keyof OwnProps>;
@@ -44,7 +40,7 @@
   let className = '';
   export { className as class };
   export let _internals: ClassAdderInternals = {
-    component: SmuiElement as typeof SvelteComponent,
+    component: SmuiElement as SmuiComponent,
     tag: 'div',
     class: '',
     classMap: {},
@@ -52,20 +48,16 @@
     props: {},
   };
 
-  let element: SvelteComponent;
+  let element: ReturnType<SmuiComponent>;
   const smuiClass = _internals.class;
   const smuiClassMap: { [k: string]: any } = {};
   const smuiClassUnsubscribes: (() => void)[] = [];
   const contexts = _internals.contexts;
   const props = _internals.props;
 
-  export let component: typeof SvelteComponent<
-    Record<string, any>,
-    Record<string, any>,
-    Record<string, any>
-  > = _internals.component;
+  export let component: SmuiComponent = _internals.component;
   export let tag: keyof SmuiElementPropMap | undefined =
-    component === SmuiElement ? _internals.tag : undefined;
+    component === (SmuiElement as SmuiComponent) ? _internals.tag : undefined;
 
   Object.entries(_internals.classMap).forEach(([name, context]) => {
     const store = getContext(context) as SvelteStore<any>;
@@ -91,7 +83,7 @@
     }
   });
 
-  export function getElement(): HTMLElement {
+  export function getElement() {
     return element.getElement();
   }
 </script>

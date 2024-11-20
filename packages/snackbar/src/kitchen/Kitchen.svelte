@@ -34,7 +34,7 @@
               $$restProps.dismiss$onclick?.(e);
             }}
             ><slot name="dismiss"
-              >{!$$slots.dismiss ? config.dismissText ?? 'close' : ''}</slot
+              >{!$$slots.dismiss ? (config.dismissText ?? 'close') : ''}</slot
             ></IconButton
           >
         {/if}
@@ -60,14 +60,18 @@
   import Actions from '../Actions.js';
 
   type IconButtonProps = Omit<
-    ComponentProps<IconButton<DismissHref, DismissTagName>>,
+    ComponentProps<typeof IconButton<DismissHref, DismissTagName>>,
     symbol
   >;
 
   type $$Props = {
-    [k in keyof ComponentProps<Snackbar> as `snackbar\$${k}`]?: ComponentProps<Snackbar>[k];
+    [k in keyof ComponentProps<
+      typeof Snackbar
+    > as `snackbar\$${k}`]?: ComponentProps<typeof Snackbar>[k];
   } & {
-    [k in keyof ComponentProps<Button> as `action\$${k}`]?: ComponentProps<Button>[k];
+    [k in keyof ComponentProps<
+      typeof Button
+    > as `action\$${k}`]?: ComponentProps<typeof Button>[k];
   } & {
     dismiss$href?: DismissHref;
     dismiss$tag?: DismissTagName;

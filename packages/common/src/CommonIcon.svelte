@@ -21,12 +21,12 @@
 >
 
 <script lang="ts" generics="TagName extends SmuiEveryElement = 'i'">
-  import type { SvelteComponent } from 'svelte';
   import { getContext } from 'svelte';
 
   import type { ActionArray } from './internal/useActions.js';
   import { classMap } from './internal/index.js';
   import type {
+    SmuiComponent,
     SmuiElementMap,
     SmuiEveryElement,
     SmuiAttrs,
@@ -37,11 +37,7 @@
     use?: ActionArray;
     class?: string;
     on?: boolean;
-    component?: typeof SvelteComponent<
-      Record<string, any>,
-      Record<string, any>,
-      Record<string, any>
-    >;
+    component?: SmuiComponent<SmuiElementMap[TagName]>;
     tag?: TagName;
   };
   type $$Props = OwnProps & SmuiAttrs<TagName, keyof OwnProps>;
@@ -52,20 +48,16 @@
   export { className as class };
   export let on = false;
 
-  let element: SvelteComponent;
+  let element: ReturnType<SmuiComponent<SmuiElementMap[TagName]>>;
 
-  export let component: typeof SvelteComponent<
-    Record<string, any>,
-    Record<string, any>,
-    Record<string, any>
-  > = SmuiElement;
+  export let component: SmuiComponent<SmuiElementMap[TagName]> = SmuiElement;
   export let tag: SmuiEveryElement | undefined =
     component === SmuiElement ? 'i' : undefined;
 
-  const svg = component === Svg;
+  const svg = component === (Svg as SmuiComponent<SmuiElementMap['svg']>);
   const context = getContext<string | undefined>('SMUI:icon:context');
 
-  export function getElement(): SmuiElementMap[TagName] {
+  export function getElement() {
     return element.getElement();
   }
 </script>

@@ -49,7 +49,8 @@
     class?: string;
     open?: boolean;
   };
-  type $$Props = OwnProps & Omit<ComponentProps<MenuSurface>, keyof OwnProps>;
+  type $$Props = OwnProps &
+    Omit<ComponentProps<typeof MenuSurface>, keyof OwnProps>;
 
   export let use: ActionArray = [];
   let className = '';

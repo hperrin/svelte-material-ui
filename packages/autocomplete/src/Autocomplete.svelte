@@ -134,15 +134,21 @@
     search?: (input: string) => Promise<any[] | false>;
     menu$class?: string;
     menu$anchor?: boolean;
-    menu$anchorCorner?: ComponentProps<Menu>['anchorCorner'];
+    menu$anchorCorner?: ComponentProps<typeof Menu>['anchorCorner'];
   };
   type $$Props = OwnProps &
     SmuiAttrs<'div', keyof OwnProps> & {
-      [k in keyof ComponentProps<Menu> as `menu\$${k}`]?: ComponentProps<Menu>[k];
+      [k in keyof ComponentProps<typeof Menu> as `menu\$${k}`]?: ComponentProps<
+        typeof Menu
+      >[k];
     } & {
-      [k in keyof ComponentProps<Textfield> as `textfield\$${k}`]?: ComponentProps<Textfield>[k];
+      [k in keyof ComponentProps<
+        typeof Textfield
+      > as `textfield\$${k}`]?: ComponentProps<typeof Textfield>[k];
     } & {
-      [k in keyof ComponentProps<List> as `list\$${k}`]?: ComponentProps<List>[k];
+      [k in keyof ComponentProps<typeof List> as `list\$${k}`]?: ComponentProps<
+        typeof List
+      >[k];
     } & {
       textfield$label?: never;
       textfield$value?: never;
@@ -194,7 +200,7 @@
   };
   export let menu$class = '';
   export let menu$anchor = false;
-  export let menu$anchorCorner: ComponentProps<Menu>['anchorCorner'] =
+  export let menu$anchorCorner: ComponentProps<typeof Menu>['anchorCorner'] =
     'BOTTOM_START';
 
   let element: HTMLDivElement;

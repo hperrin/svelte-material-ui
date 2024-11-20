@@ -311,15 +311,21 @@
   };
   type $$Props = OwnProps &
     SmuiAttrs<'div', keyof OwnProps> & {
-      [k in keyof ComponentProps<HelperText> as `helperText\$${k}`]?: ComponentProps<HelperText>[k];
+      [k in keyof ComponentProps<
+        typeof HelperText
+      > as `helperText\$${k}`]?: ComponentProps<typeof HelperText>[k];
     } & {
       [k in keyof SmuiElementPropMap['input'] as `input\$${k}`]?: SmuiElementPropMap['input'][k];
     } & {
       [k in keyof SmuiElementPropMap['div'] as `anchor\$${k}`]?: SmuiElementPropMap['div'][k];
     } & {
-      [k in keyof ComponentProps<FloatingLabel> as `label\$${k}`]?: ComponentProps<FloatingLabel>[k];
+      [k in keyof ComponentProps<
+        typeof FloatingLabel
+      > as `label\$${k}`]?: ComponentProps<typeof FloatingLabel>[k];
     } & {
-      [k in keyof ComponentProps<NotchedOutline> as `outline\$${k}`]?: ComponentProps<NotchedOutline>[k];
+      [k in keyof ComponentProps<
+        typeof NotchedOutline
+      > as `outline\$${k}`]?: ComponentProps<typeof NotchedOutline>[k];
     } & {
       [k in keyof SmuiElementPropMap['span'] as `selectedTextContainer\$${k}`]?: SmuiElementPropMap['span'][k];
     } & {
@@ -327,11 +333,17 @@
     } & {
       [k in keyof SmuiElementPropMap['span'] as `dropdownIcon\$${k}`]?: SmuiElementPropMap['span'][k];
     } & {
-      [k in keyof ComponentProps<LineRipple> as `ripple\$${k}`]?: ComponentProps<LineRipple>[k];
+      [k in keyof ComponentProps<
+        typeof LineRipple
+      > as `ripple\$${k}`]?: ComponentProps<typeof LineRipple>[k];
     } & {
-      [k in keyof ComponentProps<Menu> as `menu\$${k}`]?: ComponentProps<Menu>[k];
+      [k in keyof ComponentProps<typeof Menu> as `menu\$${k}`]?: ComponentProps<
+        typeof Menu
+      >[k];
     } & {
-      [k in keyof ComponentProps<List> as `list\$${k}`]?: ComponentProps<List>[k];
+      [k in keyof ComponentProps<typeof List> as `list\$${k}`]?: ComponentProps<
+        typeof List
+      >[k];
     } & {
       input$disabled?: never;
       input$required?: never;
@@ -639,7 +651,7 @@
 
   function getSelectAnchorAttr(name: string) {
     return name in selectAnchorAttrs
-      ? selectAnchorAttrs[name] ?? null
+      ? (selectAnchorAttrs[name] ?? null)
       : getElement().getAttribute(name);
   }
 
