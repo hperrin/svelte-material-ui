@@ -1,4 +1,4 @@
-<svelte:options runes={false} />
+<svelte:options runes={true} />
 
 <section
   bind:this={element}
@@ -10,31 +10,46 @@
     'mdc-top-app-bar__section--align-end': align === 'end',
   })}
   {...toolbar ? { role: 'toolbar' } : {}}
-  {...$$restProps}
+  {...restProps}
 >
-  <slot />
+  {#if children}{@render children()}{/if}
 </section>
 
 <script lang="ts">
+  import type { Snippet } from 'svelte';
   import { setContext } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, useActions } from '@smui/common/internal';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * Where to align the element.
+     */
     align?: 'start' | 'end';
+    /**
+     * Whether this section acts as a toolbar.
+     */
     toolbar?: boolean;
-  };
-  type $$Props = OwnProps & SmuiAttrs<'section', keyof OwnProps>;
 
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let align: 'start' | 'end' = 'start';
-  export let toolbar = false;
+    children?: Snippet;
+  };
+  let {
+    use = [],
+    class: className = '',
+    align = 'start',
+    toolbar = false,
+    children,
+    ...restProps
+  }: OwnProps & SmuiAttrs<'section', keyof OwnProps> = $props();
 
   let element: HTMLElement;
 

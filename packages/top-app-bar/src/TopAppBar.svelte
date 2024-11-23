@@ -1,4 +1,4 @@
-<svelte:options runes={false} />
+<svelte:options runes={true} />
 
 <svelte:window
   onresize={() =>
@@ -28,15 +28,15 @@
     .map(([name, value]) => `${name}: ${value};`)
     .concat([style])
     .join(' ')}
-  {...$$restProps}
+  {...restProps}
   onSMUITopAppBarIconButtonNav={(e) => {
     if (instance) {
       instance.handleNavigationClick();
     }
-    $$restProps.onSMUITopAppBarIconButtonNav?.(e);
+    restProps.onSMUITopAppBarIconButtonNav?.(e);
   }}
 >
-  <slot />
+  {#if children}{@render children()}{/if}
 </header>
 
 <script lang="ts">
@@ -46,6 +46,7 @@
     MDCFixedTopAppBarFoundation,
     MDCShortTopAppBarFoundation,
   } from '@material/top-app-bar';
+  import type { Snippet } from 'svelte';
   import { onMount } from 'svelte';
   import type { Subscriber } from 'svelte/store';
   import { readable } from 'svelte/store';
@@ -53,101 +54,140 @@
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, useActions, dispatch } from '@smui/common/internal';
 
-  type OwnProps = {
-    use?: ActionArray;
-    class?: string;
-    style?: string;
-    variant?: 'short' | 'fixed' | 'static' | 'standard';
-    color?: 'primary' | 'secondary';
-    collapsed?: boolean;
-    prominent?: boolean;
-    dense?: boolean;
-    scrollTarget?: HTMLElement | undefined;
-  };
-  type $$Props = OwnProps & SmuiAttrs<'header', keyof OwnProps>;
-
   interface UninitializedValue extends Function {}
   let uninitializedValue: UninitializedValue = () => {};
   function isUninitializedValue(value: any): value is UninitializedValue {
     return value === uninitializedValue;
   }
 
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let style = '';
-  export let variant: 'short' | 'fixed' | 'static' | 'standard' = 'standard';
-  export let color: 'primary' | 'secondary' = 'primary';
+  type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
+    use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
+    class?: string;
+    /**
+     * A list of CSS styles.
+     */
+    style?: string;
+    /**
+     * The type of app bar to display.
+     */
+    variant?: 'short' | 'fixed' | 'static' | 'standard';
+    /**
+     * The color of the app bar.
+     */
+    color?: 'primary' | 'secondary';
+    /**
+     * When using short variant, whether the app bar is collapsed.
+     */
+    collapsed?: boolean;
+    /**
+     * Whether to style the app bar as prominent.
+     */
+    prominent?: boolean;
+    /**
+     * Whether to style the app bar more densely.
+     */
+    dense?: boolean;
+    /**
+     * You can specify the scroll target if needed.
+     */
+    scrollTarget?: HTMLElement | undefined;
+
+    children?: Snippet;
+  };
+  let {
+    use = $bindable([]),
+    class: className = $bindable(''),
+    style = $bindable(''),
+    variant = $bindable('standard'),
+    color = $bindable('primary'),
+    collapsed = $bindable(uninitializedValue as unknown as boolean),
+    prominent = $bindable(false),
+    dense = $bindable(false),
+    scrollTarget = $bindable(undefined),
+    children,
+    ...restProps
+  }: OwnProps & SmuiAttrs<'header', keyof OwnProps> = $props();
 
   // Some trickery to detect uninitialized values but also have the right types.
-  export let collapsed: boolean = uninitializedValue as unknown as boolean;
   const alwaysCollapsed = !isUninitializedValue(collapsed) && !!collapsed;
   if (isUninitializedValue(collapsed)) {
     collapsed = false;
   }
   // Done with the trickery.
 
-  export let prominent = false;
-  export let dense = false;
-  export let scrollTarget: HTMLElement | undefined = undefined;
-
   let element: HTMLElement;
   let instance:
     | MDCTopAppBarBaseFoundation
     | MDCShortTopAppBarFoundation
     | MDCFixedTopAppBarFoundation
-    | MDCTopAppBarFoundation;
-  let internalClasses: { [k: string]: boolean } = {};
-  let internalStyles: { [k: string]: string } = {};
+    | MDCTopAppBarFoundation
+    | undefined = $state();
+  let internalClasses: { [k: string]: boolean } = $state({});
+  let internalStyles: { [k: string]: string } = $state({});
 
-  let propStoreSet: Subscriber<{
-    variant: 'short' | 'fixed' | 'static' | 'standard';
-    prominent: boolean;
-    dense: boolean;
-  }>;
+  let propStoreSet:
+    | Subscriber<{
+        variant: 'short' | 'fixed' | 'static' | 'standard';
+        prominent: boolean;
+        dense: boolean;
+      }>
+    | undefined = $state();
   let propStore = readable({ variant, prominent, dense }, (set) => {
     propStoreSet = set;
   });
-  $: if (propStoreSet) {
-    propStoreSet({
-      variant,
-      prominent,
-      dense,
-    });
-  }
+  $effect(() => {
+    if (propStoreSet) {
+      propStoreSet({
+        variant,
+        prominent,
+        dense,
+      });
+    }
+  });
 
-  $: if (instance && variant === 'short' && 'setAlwaysCollapsed' in instance) {
-    instance.setAlwaysCollapsed(alwaysCollapsed);
-  }
+  $effect(() => {
+    if (instance && variant === 'short' && 'setAlwaysCollapsed' in instance) {
+      instance.setAlwaysCollapsed(alwaysCollapsed);
+    }
+  });
 
   let oldScrollTarget: HTMLElement | undefined = undefined;
-  $: if (oldScrollTarget !== scrollTarget) {
-    if (oldScrollTarget) {
-      oldScrollTarget.removeEventListener('scroll', handleTargetScroll);
+  $effect(() => {
+    if (oldScrollTarget !== scrollTarget) {
+      if (oldScrollTarget) {
+        oldScrollTarget.removeEventListener('scroll', handleTargetScroll);
+      }
+      if (scrollTarget) {
+        scrollTarget.addEventListener('scroll', handleTargetScroll);
+      }
+      oldScrollTarget = scrollTarget;
     }
-    if (scrollTarget) {
-      scrollTarget.addEventListener('scroll', handleTargetScroll);
-    }
-    oldScrollTarget = scrollTarget;
-  }
+  });
 
   let oldVariant = variant;
-  $: if (oldVariant !== variant && instance) {
-    oldVariant = variant;
-    instance.destroy();
-    internalClasses = {};
-    internalStyles = {};
-    instance = getInstance();
-    instance.init();
-  }
+  $effect(() => {
+    if (oldVariant !== variant && instance) {
+      oldVariant = variant;
+      instance.destroy();
+      internalClasses = {};
+      internalStyles = {};
+      instance = getInstance();
+      instance.init();
+    }
+  });
 
   onMount(() => {
     instance = getInstance();
     instance.init();
 
     return () => {
-      instance.destroy();
+      instance?.destroy();
     };
   });
 

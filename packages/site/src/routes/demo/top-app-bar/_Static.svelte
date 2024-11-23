@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div>
   <FormField>
     <Checkbox bind:checked={prominent} />
@@ -94,9 +92,9 @@
   import FormField from '@smui/form-field';
   import LoremIpsum from '$lib/LoremIpsum.svelte';
 
-  let prominent = false;
-  let dense = false;
-  let secondaryColor = false;
+  let prominent = $state(false);
+  let dense = $state(false);
+  let secondaryColor = $state(false);
 </script>
 
 <style>

@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <TopAppBar bind:this={topAppBar} variant="short" collapsed>
   <Row>
     <Section>
@@ -33,7 +31,7 @@
   import IconButton from '@smui/icon-button';
   import LoremIpsum from '$lib/LoremIpsum.svelte';
 
-  let topAppBar: TopAppBar;
+  let topAppBar: TopAppBar | null = $state(null);
 </script>
 
 <style>

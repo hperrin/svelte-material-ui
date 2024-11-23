@@ -201,28 +201,26 @@
   let context = getContext('SMUI:icon-button:context');
   let ariaDescribedby = getContext('SMUI:icon-button:aria-describedby');
 
-  const actionProp = $derived(
-    (() => {
-      if (context === 'data-table:pagination') {
-        switch (action) {
-          case 'first-page':
-            return { 'data-first-page': 'true' };
-          case 'prev-page':
-            return { 'data-prev-page': 'true' };
-          case 'next-page':
-            return { 'data-next-page': 'true' };
-          case 'last-page':
-            return { 'data-last-page': 'true' };
-          default:
-            return { 'data-action': 'true' };
-        }
-      } else if (context === 'dialog:header' || context === 'dialog:sheet') {
-        return { 'data-mdc-dialog-action': action };
-      } else {
-        return { action };
+  const actionProp = $derived.by(() => {
+    if (context === 'data-table:pagination') {
+      switch (action) {
+        case 'first-page':
+          return { 'data-first-page': 'true' };
+        case 'prev-page':
+          return { 'data-prev-page': 'true' };
+        case 'next-page':
+          return { 'data-next-page': 'true' };
+        case 'last-page':
+          return { 'data-last-page': 'true' };
+        default:
+          return { 'data-action': 'true' };
       }
-    })(),
-  );
+    } else if (context === 'dialog:header' || context === 'dialog:sheet') {
+      return { 'data-mdc-dialog-action': action };
+    } else {
+      return { action };
+    }
+  });
 
   let previousDisabled = !!restProps.disabled;
   $effect(() => {
