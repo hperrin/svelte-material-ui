@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div class="flexy">
   <div class="margins">
     <Fab class="my-colored-fab">

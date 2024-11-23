@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div class="flexy">
   <div class="margins">
     <Fab onclick={() => clicked++} {exited}>
@@ -35,7 +33,7 @@
   import FormField from '@smui/form-field';
   import Checkbox from '@smui/checkbox';
 
-  let clicked = 0;
-  let exited = false;
-  let exitedPrimary = false;
+  let clicked = $state(0);
+  let exited = $state(false);
+  let exitedPrimary = $state(false);
 </script>

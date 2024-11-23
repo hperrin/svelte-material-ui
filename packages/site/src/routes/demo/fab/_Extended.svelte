@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div class="flexy">
   <div class="margins">
     <Fab onclick={() => clicked++} extended>
@@ -30,5 +28,5 @@
 <script lang="ts">
   import Fab, { Label, Icon } from '@smui/fab';
 
-  let clicked = 0;
+  let clicked = $state(0);
 </script>

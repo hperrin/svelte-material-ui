@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div class="flexy">
   <div class="margins">
     <!--
@@ -21,7 +19,7 @@
   import { mdiPlus } from '@mdi/js';
   import Fab, { Icon } from '@smui/fab';
 
-  let clicked = 0;
+  let clicked = $state(0);
 </script>
 
 <style>

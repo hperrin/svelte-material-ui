@@ -1,4 +1,4 @@
-<svelte:options runes={false} />
+<svelte:options runes={true} />
 
 <svelte:component
   this={component}
@@ -11,7 +11,7 @@
         ripple,
         unbounded: false,
         color,
-        disabled: !!$$restProps.disabled,
+        disabled: !!restProps.disabled,
         addClass,
         removeClass,
         addStyle,
@@ -34,16 +34,19 @@
     .concat([style])
     .join(' ')}
   {href}
-  {...$$restProps}
+  {...restProps}
   ><div class="mdc-fab__ripple"></div>
   {#if focusRing}<div class="mdc-fab__focus-ring"></div>{/if}
-  <slot />{#if touch}<div class="mdc-fab__touch"></div>{/if}</svelte:component
+  {#if children}{@render children()}{/if}{#if touch}<div
+      class="mdc-fab__touch"
+    ></div>{/if}</svelte:component
 >
 
 <script
   lang="ts"
   generics="Href extends string | undefined = undefined, TagName extends SmuiEveryElement = Href extends string ? 'a' : 'button'"
 >
+  import type { Snippet } from 'svelte';
   import { setContext } from 'svelte';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap } from '@smui/common/internal';
@@ -57,43 +60,82 @@
   import { SmuiElement } from '@smui/common';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * A list of CSS styles.
+     */
     style?: string;
+    /**
+     * Whether to show a ripple animation.
+     */
     ripple?: boolean;
+    /**
+     * Whether to show a focus fing.
+     */
     focusRing?: boolean;
+    /**
+     * The color of the button.
+     */
     color?: 'primary' | 'secondary';
+    /**
+     * Whether to shrink the button to mini size.
+     */
     mini?: boolean;
+    /**
+     * Change this to true to animate out the button.
+     */
     exited?: boolean;
+    /**
+     * Whether to use the extended style with a label.
+     */
     extended?: boolean;
+    /**
+     * Whether to use touch styling
+     */
     touch?: boolean;
+    /**
+     * If provided, the button will act as a link.
+     */
     href?: Href;
+    /**
+     * The component to use to render the element.
+     */
     component?: SmuiComponent<SmuiElementMap[TagName]>;
+    /**
+     * The tag name of the element to create.
+     */
     tag?: TagName;
-  };
-  type $$Props = OwnProps & SmuiAttrs<TagName, keyof OwnProps>;
 
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let style = '';
-  export let ripple = true;
-  export let focusRing = false;
-  export let color: 'primary' | 'secondary' = 'secondary';
-  export let mini = false;
-  export let exited = false;
-  export let extended = false;
-  export let touch = false;
-  export let href: string | undefined = undefined;
+    children?: Snippet;
+  };
+  let {
+    use = $bindable([]),
+    class: className = $bindable(''),
+    style = $bindable(''),
+    ripple = $bindable(true),
+    focusRing = $bindable(false),
+    color = $bindable('secondary'),
+    mini = $bindable(false),
+    exited = $bindable(false),
+    extended = $bindable(false),
+    touch = $bindable(false),
+    href = $bindable(undefined),
+    component = $bindable(SmuiElement),
+    tag = $bindable((href == null ? 'button' : 'a') as TagName),
+    children,
+    ...restProps
+  }: OwnProps & SmuiAttrs<TagName, keyof OwnProps> = $props();
 
   let element: ReturnType<SmuiComponent<SmuiElementMap[TagName]>>;
-  let internalClasses: { [k: string]: boolean } = {};
-  let internalStyles: { [k: string]: string } = {};
-
-  export let component: SmuiComponent<SmuiElementMap[TagName]> = SmuiElement;
-  export let tag: SmuiEveryElement | undefined =
-    component === SmuiElement ? (href == null ? 'button' : 'a') : undefined;
+  let internalClasses: { [k: string]: boolean } = $state({});
+  let internalStyles: { [k: string]: string } = $state({});
 
   setContext('SMUI:label:context', 'fab');
   setContext('SMUI:icon:context', 'fab');
