@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div>
   <List
     class="demo-list"
@@ -87,7 +85,7 @@
       disabled: false,
     },
   ];
-  let selectionIndex = 3;
+  let selectionIndex = $state(3);
 </script>
 
 <style>

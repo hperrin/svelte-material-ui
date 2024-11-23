@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div>
   <List class="demo-list" radioList>
     <Item>
@@ -41,7 +39,7 @@
   import List, { Item, Graphic, Label } from '@smui/list';
   import Radio from '@smui/radio';
 
-  let selected = 'Tom Hanks';
+  let selected = $state('Tom Hanks');
 </script>
 
 <style>

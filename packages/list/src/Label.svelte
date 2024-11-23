@@ -1,4 +1,4 @@
-<svelte:options runes={false} />
+<svelte:options runes={true} />
 
 <label
   bind:this={element}
@@ -8,25 +8,35 @@
     'mdc-deprecated-list-item__text': true,
   })}
   for={inputProps ? inputProps.id : undefined}
-  {...$$restProps}><slot /></label
+  {...restProps}
+  >{#if children}{@render children()}{/if}</label
 >
 
 <script lang="ts">
+  import type { Snippet } from 'svelte';
   import { getContext } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, useActions } from '@smui/common/internal';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
-  };
-  type $$Props = OwnProps & SmuiAttrs<'label', keyof OwnProps>;
 
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
+    children?: Snippet;
+  };
+  let {
+    use = $bindable([]),
+    class: className = $bindable(''),
+    children,
+    ...restProps
+  }: OwnProps & SmuiAttrs<'label', keyof OwnProps> = $props();
 
   let element: HTMLLabelElement;
   let inputProps =

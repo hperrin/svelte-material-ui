@@ -1,4 +1,4 @@
-<svelte:options runes={false} />
+<svelte:options runes={true} />
 
 <svelte:component
   this={component}
@@ -52,17 +52,17 @@
   {tabindex}
   {href}
   {...internalAttrs}
-  {...$$restProps}
+  {...restProps}
   onclick={(e: MouseEvent) => {
     action(e);
-    $$restProps.onclick?.(e);
+    restProps.onclick?.(e);
   }}
   onkeydown={(e: KeyboardEvent) => {
     handleKeydown(e);
-    $$restProps.onkeydown?.(e);
+    restProps.onkeydown?.(e);
   }}
-  >{#if ripple}<span class="mdc-deprecated-list-item__ripple"></span>{/if}<slot
-  /></svelte:component
+  >{#if ripple}<span class="mdc-deprecated-list-item__ripple"
+    ></span>{/if}{#if children}{@render children()}{/if}</svelte:component
 >
 
 <script context="module" lang="ts">
@@ -73,6 +73,7 @@
   lang="ts"
   generics="Href extends string | undefined = undefined, TagName extends SmuiEveryElement = Href extends string ? 'a' : 'li'"
 >
+  import type { Snippet } from 'svelte';
   import { onMount, onDestroy, setContext, getContext } from 'svelte';
   import type {
     SMUICheckboxInputAccessor,
@@ -92,84 +93,134 @@
 
   import type { SMUIListItemAccessor } from './Item.types.js';
 
-  type OwnProps = {
-    use?: ActionArray;
-    class?: string;
-    style?: string;
-    color?: 'primary' | 'secondary' | undefined;
-    nonInteractive?: boolean;
-    ripple?: boolean;
-    wrapper?: boolean;
-    activated?: boolean;
-    role?: string;
-    selected?: boolean;
-    disabled?: boolean;
-    skipRestoreFocus?: boolean;
-    tabindex?: number;
-    inputId?: string;
-    href?: Href;
-    component?: SmuiComponent<SmuiElementMap[TagName]>;
-    tag?: TagName;
-  };
-  type $$Props = SmuiAttrs<TagName, keyof OwnProps> &
-    OwnProps & {
-      value?: any;
-      'data-value'?: any;
-    };
-
   interface UninitializedValue extends Function {}
   let uninitializedValue: UninitializedValue = () => {};
   function isUninitializedValue(value: any): value is UninitializedValue {
     return value === uninitializedValue;
   }
 
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let style = '';
-  export let color: 'primary' | 'secondary' | undefined = undefined;
-  export let nonInteractive: boolean =
-    getContext<boolean | undefined>('SMUI:list:nonInteractive') ?? false;
+  type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
+    use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
+    class?: string;
+    /**
+     * A list of CSS styles.
+     */
+    style?: string;
+    /**
+     * The color of the item.
+     */
+    color?: 'primary' | 'secondary' | undefined;
+    /**
+     * Whether the item should ignore all user input.
+     */
+    nonInteractive?: boolean;
+    /**
+     * Whether to show a ripple animation.
+     */
+    ripple?: boolean;
+    /**
+     * Whether this item wraps another list.
+     */
+    wrapper?: boolean;
+    /**
+     * Whether this item is activated.
+     */
+    activated?: boolean;
+    /**
+     * The accessibility role of this item.
+     */
+    role?: string;
+    /**
+     * Whether this item is selected.
+     */
+    selected?: boolean;
+    /**
+     * Whether this item is disabled.
+     */
+    disabled?: boolean;
+    /**
+     * If this is a menu item, skip restoring focus to the previous item when
+     * this is selected.
+     */
+    skipRestoreFocus?: boolean;
+    /**
+     * The item's tab index.
+     */
+    tabindex?: number;
+    /**
+     * An ID to pass down to an input.
+     */
+    inputId?: string;
+    /**
+     * If provided, the item will act as a link.
+     */
+    href?: Href;
+    /**
+     * The component to use to render the element.
+     */
+    component?: SmuiComponent<SmuiElementMap[TagName]>;
+    /**
+     * The tag name of the element to create.
+     */
+    tag?: TagName;
+
+    children?: Snippet;
+  };
+  let nav = getContext<boolean | undefined>('SMUI:list:item:nav');
+  let {
+    use = $bindable([]),
+    class: className = $bindable(''),
+    style = $bindable(''),
+    color = $bindable(undefined),
+    nonInteractive = $bindable(
+      getContext<boolean | undefined>('SMUI:list:nonInteractive') ?? false,
+    ),
+    ripple = $bindable(!nonInteractive),
+    wrapper = $bindable(false),
+    activated = $bindable(false),
+    role = $bindable(
+      wrapper ? 'presentation' : getContext('SMUI:list:item:role'),
+    ),
+    selected = $bindable(false),
+    disabled = $bindable(false),
+    skipRestoreFocus = $bindable(false),
+    tabindex: tabindexProp = $bindable(uninitializedValue as unknown as number),
+    inputId = $bindable('SMUI-form-field-list-' + counter++),
+    href = $bindable(undefined),
+    component = $bindable(SmuiElement),
+    tag = $bindable((nav ? (href ? 'a' : 'span') : 'li') as TagName),
+    children,
+    ...restProps
+  }: SmuiAttrs<TagName, keyof OwnProps> &
+    OwnProps & {
+      value?: any;
+      'data-value'?: any;
+    } = $props();
+
   setContext('SMUI:list:nonInteractive', undefined);
-  export let ripple = !nonInteractive;
-  export let wrapper = false;
-  export let activated = false;
-  export let role: string = wrapper
-    ? 'presentation'
-    : getContext('SMUI:list:item:role');
   setContext('SMUI:list:item:role', undefined);
-  export let selected = false;
-  export let disabled = false;
-  export let skipRestoreFocus = false;
-  let tabindexProp: UninitializedValue | number = uninitializedValue;
-  export { tabindexProp as tabindex };
-  export let inputId = 'SMUI-form-field-list-' + counter++;
-  export let href: string | undefined = undefined;
 
   let element: ReturnType<SmuiComponent<SmuiElementMap[TagName]>>;
-  let internalClasses: { [k: string]: boolean } = {};
-  let internalStyles: { [k: string]: string } = {};
-  let internalAttrs: { [k: string]: string | undefined } = {};
-  let input: SMUICheckboxInputAccessor | SMUIRadioInputAccessor | undefined;
-  let addTabindexIfNoItemsSelectedRaf: number | undefined;
-  let nav = getContext<boolean | undefined>('SMUI:list:item:nav');
+  let internalClasses: { [k: string]: boolean } = $state({});
+  let internalStyles: { [k: string]: string } = $state({});
+  let internalAttrs: { [k: string]: string | undefined } = $state({});
+  let input: SMUICheckboxInputAccessor | SMUIRadioInputAccessor | undefined =
+    $state();
+  let addTabindexIfNoItemsSelectedRaf: number | undefined = $state();
 
-  $: tabindex = isUninitializedValue(tabindexProp)
-    ? !nonInteractive && !disabled && (selected || (input && input.checked))
-      ? 0
-      : -1
-    : tabindexProp;
-
-  export let component: SmuiComponent<SmuiElementMap[TagName]> = SmuiElement;
-  export let tag: SmuiEveryElement | undefined =
-    component === SmuiElement
-      ? nav
-        ? href
-          ? 'a'
-          : 'span'
-        : 'li'
-      : undefined;
+  const tabindex = $derived(
+    isUninitializedValue(tabindexProp)
+      ? !nonInteractive && !disabled && (selected || (input && input.checked))
+        ? 0
+        : -1
+      : tabindexProp,
+  );
 
   setContext('SMUI:generic:input:props', { id: inputId });
   // Reset separator context, because we aren't directly under a list anymore.
@@ -271,7 +322,7 @@
 
       // For select options.
       getValue() {
-        return $$restProps.value;
+        return restProps.value;
       },
 
       // For autocomplete

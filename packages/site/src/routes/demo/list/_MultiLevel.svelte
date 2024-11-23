@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div>
   <List class="demo-list">
     <Item onSMUIAction={() => (clicked = 'Level 1 - 1')}>
@@ -42,7 +40,7 @@
 <script lang="ts">
   import List, { Item, Text } from '@smui/list';
 
-  let clicked = 'nothing yet';
+  let clicked = $state('nothing yet');
 </script>
 
 <style>

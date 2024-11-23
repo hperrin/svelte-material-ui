@@ -145,7 +145,7 @@
         </IconButton>
         <div style="display: inline-block;">
           <IconButton
-            onclick={() => themeMenu.setOpen(true)}
+            onclick={() => themeMenu?.setOpen(true)}
             title="Pick a theme or toggle dark mode."
           >
             <Icon tag="svg" viewBox="0 0 24 24">
@@ -287,8 +287,8 @@
 
   const iframe = $page.url.pathname.includes('/iframe');
 
-  let drawer: Drawer = $state(undefined as unknown as Drawer);
-  let mainContent: HTMLElement = $state(undefined as unknown as HTMLElement);
+  let drawer: Drawer | undefined = $state();
+  let mainContent: HTMLElement | undefined = $state();
   let miniWindow = $state(false);
   let drawerOpen = $state(false);
   let drawerGesture: TinyGesture;
@@ -301,7 +301,7 @@
     { label: 'Metro', value: 'metro' },
     { label: 'Unity', value: 'unity' },
   ];
-  let themeMenu: Menu = $state(undefined as unknown as Menu);
+  let themeMenu: Menu | undefined = $state();
   let lightTheme: boolean | null = $state(null);
   let theme: string | null = $state(null);
 

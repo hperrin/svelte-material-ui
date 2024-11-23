@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div>
   <List
     class="demo-list"
@@ -49,8 +47,9 @@
   import List, { Item, Meta, Label } from '@smui/list';
   import Checkbox from '@smui/checkbox';
 
-  let selected = ['Tom Hanks'];
-  let changeEvent: CustomEvent<{ changedIndices: number[] }> | null;
+  let selected = $state(['Tom Hanks']);
+  let changeEvent: CustomEvent<{ changedIndices: number[] }> | null =
+    $state(null);
 </script>
 
 <style>

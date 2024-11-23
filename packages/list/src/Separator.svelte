@@ -1,4 +1,4 @@
-<svelte:options runes={false} />
+<svelte:options runes={true} />
 
 <svelte:component
   this={component}
@@ -15,10 +15,11 @@
     'mdc-deprecated-list-divider--inset-padding': insetPadding,
   })}
   role="separator"
-  {...$$restProps}
+  {...restProps}
 />
 
 <script lang="ts" generics="TagName extends SmuiEveryElement = 'li'">
+  import type { Snippet } from 'svelte';
   import { getContext } from 'svelte';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap } from '@smui/common/internal';
@@ -31,39 +32,62 @@
   import { SmuiElement } from '@smui/common';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * Apply padded styling.
+     */
     padded?: boolean;
+    /**
+     * Apply inset styling.
+     */
     inset?: boolean;
+    /**
+     * Apply leading inset styling.
+     */
     insetLeading?: boolean;
+    /**
+     * Apply trailing inset styling.
+     */
     insetTrailing?: boolean;
+    /**
+     * Apply inset padding styling.
+     */
     insetPadding?: boolean;
+    /**
+     * The component to use to render the element.
+     */
     component?: SmuiComponent<SmuiElementMap[TagName]>;
+    /**
+     * The tag name of the element to create.
+     */
     tag?: TagName;
+
+    children?: Snippet;
   };
-  type $$Props = OwnProps & SmuiAttrs<TagName, keyof OwnProps>;
-
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let padded = false;
-  export let inset = false;
-  export let insetLeading = false;
-  export let insetTrailing = false;
-  export let insetPadding = false;
-
-  let element: ReturnType<SmuiComponent<SmuiElementMap[TagName]>>;
   let nav = getContext<boolean | undefined>('SMUI:list:item:nav');
   let context = getContext<string | undefined>('SMUI:separator:context');
+  let {
+    use = $bindable([]),
+    class: className = $bindable(''),
+    padded = $bindable(false),
+    inset = $bindable(false),
+    insetLeading = $bindable(false),
+    insetTrailing = $bindable(false),
+    insetPadding = $bindable(false),
+    component = $bindable(SmuiElement),
+    tag = $bindable((nav || context !== 'list' ? 'hr' : 'li') as TagName),
+    children,
+    ...restProps
+  }: OwnProps & SmuiAttrs<TagName, keyof OwnProps> = $props();
 
-  export let component: SmuiComponent<SmuiElementMap[TagName]> = SmuiElement;
-  export let tag: SmuiEveryElement | undefined =
-    component === SmuiElement
-      ? nav || context !== 'list'
-        ? 'hr'
-        : 'li'
-      : undefined;
+  let element: ReturnType<SmuiComponent<SmuiElementMap[TagName]>>;
 
   export function getElement() {
     return element.getElement();

@@ -11,7 +11,8 @@
     ...smuiClassMap,
   })}
   {...props}
-  {...restProps}><slot /></svelte:component
+  {...restProps}
+  >{#if children}{@render children()}{/if}</svelte:component
 >
 
 <script lang="ts">

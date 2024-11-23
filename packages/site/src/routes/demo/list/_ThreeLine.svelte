@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div>
   <List threeLine nonInteractive>
     <Item>

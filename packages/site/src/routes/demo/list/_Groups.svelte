@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div>
   <Group>
     <Subheader>Actors</Subheader>
@@ -46,7 +44,7 @@
 <script lang="ts">
   import List, { Group, Item, Subheader, Text } from '@smui/list';
 
-  let clicked = 'nothing yet';
+  let clicked = $state('nothing yet');
 </script>
 
 <style>

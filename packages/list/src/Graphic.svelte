@@ -1,4 +1,4 @@
-<svelte:options runes={false} />
+<svelte:options runes={true} />
 
 <span
   bind:this={element}
@@ -8,25 +8,35 @@
     'mdc-deprecated-list-item__graphic': true,
     'mdc-menu__selection-group-icon': menuSelectionGroup,
   })}
-  {...$$restProps}><slot /></span
+  {...restProps}
+  >{#if children}{@render children()}{/if}</span
 >
 
 <script lang="ts">
+  import type { Snippet } from 'svelte';
   import { getContext } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, useActions } from '@smui/common/internal';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
-  };
-  type $$Props = OwnProps & SmuiAttrs<'span', keyof OwnProps>;
 
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
+    children?: Snippet;
+  };
+  let {
+    use = $bindable([]),
+    class: className = $bindable(''),
+    children,
+    ...restProps
+  }: OwnProps & SmuiAttrs<'span', keyof OwnProps> = $props();
 
   let element: HTMLSpanElement;
   let menuSelectionGroup = getContext('SMUI:list:graphic:menu-selection-group');
