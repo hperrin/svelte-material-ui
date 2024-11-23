@@ -1,4 +1,4 @@
-<svelte:options runes={false} />
+<svelte:options runes={true} />
 
 <aside
   bind:this={element}
@@ -11,21 +11,21 @@
     'smui-drawer__absolute': variant === 'modal' && !fixed,
     ...internalClasses,
   })}
-  {...$$restProps}
+  {...restProps}
   onkeydown={(e) => {
     if (instance) {
       instance.handleKeydown(e);
     }
-    $$restProps.onkeydown?.(e);
+    restProps.onkeydown?.(e);
   }}
   ontransitionend={(e) => {
     if (instance) {
       instance.handleTransitionEnd(e);
     }
-    $$restProps.ontransitionend?.(e);
+    restProps.ontransitionend?.(e);
   }}
 >
-  <slot />
+  {#if children}{@render children()}{/if}
 </aside>
 
 <script lang="ts">
@@ -34,6 +34,7 @@
     MDCModalDrawerFoundation,
   } from '@material/drawer';
   import { focusTrap as domFocusTrap } from '@material/dom';
+  import type { Snippet } from 'svelte';
   import { onMount, onDestroy, setContext } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
@@ -42,52 +43,81 @@
   const { FocusTrap } = domFocusTrap;
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * How the drawer opens.
+     *
+     * Undefined means it's always open.
+     *
+     * Dismissible means it pushes the content over when it opens.
+     *
+     * Modal means it uses a scrim to open over the content.
+     */
     variant?: 'dismissible' | 'modal' | undefined;
+    /**
+     * When using a dismissible or modal drawer, controls whether it's open.
+     */
     open?: boolean;
+    /**
+     * Turn this off for non-page-wide drawers.
+     *
+     * This controls whether the drawer uses fixed or absolute positioning.
+     */
     fixed?: boolean;
-  };
-  type $$Props = OwnProps & SmuiAttrs<'aside', keyof OwnProps>;
 
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let variant: 'dismissible' | 'modal' | undefined = undefined;
-  export let open = false;
-  export let fixed = true;
+    children?: Snippet;
+  };
+  let {
+    use = $bindable([]),
+    class: className = $bindable(''),
+    variant = $bindable(undefined),
+    open = $bindable(false),
+    fixed = $bindable(true),
+    children,
+    ...restProps
+  }: OwnProps & SmuiAttrs<'aside', keyof OwnProps> = $props();
 
   let element: HTMLElement;
   let instance:
     | MDCDismissibleDrawerFoundation
     | MDCModalDrawerFoundation
-    | undefined = undefined;
-  let internalClasses: { [k: string]: boolean } = {};
-  let previousFocus: Element | null = null;
+    | undefined = $state(undefined);
+  let internalClasses: { [k: string]: boolean } = $state({});
+  let previousFocus: Element | null = $state(null);
   let focusTrap: domFocusTrap.FocusTrap;
-  let scrim: Element | false = false;
+  let scrim: Element | false = $state(false);
 
   setContext('SMUI:list:nav', true);
   setContext('SMUI:list:item:nav', true);
   setContext('SMUI:list:wrapFocus', true);
 
-  $: if (instance && instance.isOpen() !== open) {
-    if (open) {
-      instance.open();
-    } else {
-      instance.close();
+  $effect(() => {
+    if (instance && instance.isOpen() !== open) {
+      if (open) {
+        instance.open();
+      } else {
+        instance.close();
+      }
     }
-  }
+  });
 
   let oldVariant = variant;
-  $: if (oldVariant !== variant) {
-    oldVariant = variant;
-    instance && instance.destroy();
-    internalClasses = {};
-    instance = getInstance();
-    instance && instance.init();
-  }
+  $effect(() => {
+    if (oldVariant !== variant) {
+      oldVariant = variant;
+      instance && instance.destroy();
+      internalClasses = {};
+      instance = getInstance();
+      instance && instance.init();
+    }
+  });
 
   onMount(() => {
     focusTrap = new FocusTrap(element, {

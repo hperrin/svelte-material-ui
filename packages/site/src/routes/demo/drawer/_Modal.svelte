@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div class="drawer-container">
   <!-- Don't include fixed={false} if this is a page wide drawer.
         It adds a style for absolute positioning. -->
@@ -101,8 +99,8 @@
   import Button, { Label } from '@smui/button';
   import List, { Item, Text, Graphic, Separator, Subheader } from '@smui/list';
 
-  let open = false;
-  let active = 'Inbox';
+  let open = $state(false);
+  let active = $state('Inbox');
 
   function setActive(value: string) {
     active = value;

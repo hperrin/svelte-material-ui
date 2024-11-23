@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div class="drawer-container">
   <Drawer>
     <Content>
@@ -51,7 +49,7 @@
   import Drawer, { AppContent, Content } from '@smui/drawer';
   import List, { Item, Text } from '@smui/list';
 
-  let clicked = 'nothing yet';
+  let clicked = $state('nothing yet');
 </script>
 
 <style>

@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div class="drawer-container">
   <Drawer variant="dismissible" bind:open>
     <Header>
@@ -69,8 +67,8 @@
   import Button, { Label } from '@smui/button';
   import List, { Item, Text } from '@smui/list';
 
-  let open = false;
-  let active = 'Gray Kittens';
+  let open = $state(false);
+  let active = $state('Gray Kittens');
 
   function setActive(value: string) {
     active = value;

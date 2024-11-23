@@ -1,7 +1,6 @@
-<svelte:options runes={false} />
+<svelte:options runes={true} />
 
-<svelte:component
-  this={component}
+<MyComponent
   {tag}
   bind:this={element}
   {use}
@@ -10,16 +9,17 @@
     'mdc-drawer-scrim': true,
     'smui-drawer-scrim__absolute': !fixed,
   })}
-  {...$$restProps}
+  {...restProps}
   onclick={(e: MouseEvent) => {
     handleClick(e);
-    $$restProps.onclick?.(e);
+    restProps.onclick?.(e);
   }}
 >
-  <slot />
-</svelte:component>
+  {#if children}{@render children()}{/if}
+</MyComponent>
 
 <script lang="ts" generics="TagName extends SmuiEveryElement = 'div'">
+  import type { Snippet } from 'svelte';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, dispatch } from '@smui/common/internal';
   import type {
@@ -31,25 +31,42 @@
   import { SmuiElement } from '@smui/common';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * Turn this off for non-page-wide drawers.
+     *
+     * This controls whether the drawer uses fixed or absolute positioning.
+     */
     fixed?: boolean;
+    /**
+     * The component to use to render the element.
+     */
     component?: SmuiComponent<SmuiElementMap[TagName]>;
+    /**
+     * The tag name of the element to create.
+     */
     tag?: TagName;
-  };
-  type $$Props = OwnProps & SmuiAttrs<TagName, keyof OwnProps>;
 
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let fixed = true;
+    children?: Snippet;
+  };
+  let {
+    use = $bindable([]),
+    class: className = $bindable(''),
+    fixed = $bindable(true),
+    component: MyComponent = $bindable(SmuiElement),
+    tag = $bindable('div' as TagName),
+    children,
+    ...restProps
+  }: OwnProps & SmuiAttrs<TagName, keyof OwnProps> = $props();
 
   let element: ReturnType<SmuiComponent<SmuiElementMap[TagName]>>;
-
-  export let component: SmuiComponent<SmuiElementMap[TagName]> = SmuiElement;
-  export let tag: SmuiEveryElement | undefined =
-    component === SmuiElement ? 'div' : undefined;
 
   function handleClick(event: MouseEvent) {
     dispatch(getElement(), 'SMUIDrawerScrimClick', event);
