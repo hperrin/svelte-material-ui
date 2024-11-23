@@ -1,7 +1,6 @@
 <svelte:options runes={true} />
 
-<svelte:component
-  this={component}
+<MyComponent
   {tag}
   bind:this={element}
   {use}
@@ -12,7 +11,7 @@
   })}
   {...props}
   {...restProps}
-  >{#if children}{@render children()}{/if}</svelte:component
+  >{#if children}{@render children()}{/if}</MyComponent
 >
 
 <script lang="ts">
@@ -65,7 +64,7 @@
       contexts: {},
       props: {},
     },
-    component = _internals.component,
+    component: MyComponent = _internals.component,
     tag = _internals.tag,
     children,
     ...restProps

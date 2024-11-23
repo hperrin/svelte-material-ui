@@ -1,7 +1,6 @@
 <svelte:options runes={true} />
 
-<svelte:component
-  this={component}
+<MyComponent
   {tag}
   bind:this={element}
   {use}
@@ -81,7 +80,7 @@
     insetLeading = $bindable(false),
     insetTrailing = $bindable(false),
     insetPadding = $bindable(false),
-    component = $bindable(SmuiElement),
+    component: MyComponent = $bindable(SmuiElement),
     tag = $bindable((nav || context !== 'list' ? 'hr' : 'li') as TagName),
     children,
     ...restProps

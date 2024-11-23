@@ -1,7 +1,6 @@
 <svelte:options runes={true} />
 
-<svelte:component
-  this={component}
+<MyComponent
   {tag}
   bind:this={element}
   {use}
@@ -45,7 +44,7 @@
   }}
 >
   {#if children}{@render children()}{/if}
-</svelte:component>
+</MyComponent>
 
 <script lang="ts" generics="TagName extends SmuiEveryElement = 'ul'">
   import { MDCListFoundation } from '@material/list';
@@ -184,7 +183,7 @@
     radioList = $bindable(false),
     checkList = $bindable(false),
     hasTypeahead = $bindable(false),
-    component = $bindable(SmuiElement),
+    component: MyComponent = $bindable(SmuiElement),
     tag = $bindable((nav ? 'nav' : 'ul') as TagName),
     children,
     ...restProps

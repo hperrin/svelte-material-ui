@@ -1,7 +1,6 @@
 <svelte:options runes={true} />
 
-<svelte:component
-  this={component}
+<MyComponent
   {tag}
   bind:this={element}
   use={[
@@ -39,7 +38,7 @@
   {#if focusRing}<div class="mdc-fab__focus-ring"></div>{/if}
   {#if children}{@render children()}{/if}{#if touch}<div
       class="mdc-fab__touch"
-    ></div>{/if}</svelte:component
+    ></div>{/if}</MyComponent
 >
 
 <script
@@ -127,7 +126,7 @@
     extended = $bindable(false),
     touch = $bindable(false),
     href = $bindable(undefined),
-    component = $bindable(SmuiElement),
+    component: MyComponent = $bindable(SmuiElement),
     tag = $bindable((href == null ? 'button' : 'a') as TagName),
     children,
     ...restProps

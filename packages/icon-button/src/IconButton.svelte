@@ -1,7 +1,6 @@
 <svelte:options runes={true} />
 
-<svelte:component
-  this={component}
+<MyComponent
   {tag}
   bind:this={element}
   use={[
@@ -70,7 +69,7 @@
   ><div class="mdc-icon-button__ripple"></div>
   {#if children}{@render children()}{/if}{#if touch}<div
       class="mdc-icon-button__touch"
-    ></div>{/if}</svelte:component
+    ></div>{/if}</MyComponent
 >
 
 <script
@@ -188,7 +187,7 @@
     size = $bindable('normal'),
     href = $bindable(undefined),
     action = $bindable(undefined),
-    component = $bindable(SmuiElement),
+    component: MyComponent = $bindable(SmuiElement),
     tag = $bindable((href == null ? 'button' : 'a') as TagName),
     children,
     ...restProps

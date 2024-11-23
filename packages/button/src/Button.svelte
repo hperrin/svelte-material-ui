@@ -1,7 +1,6 @@
 <svelte:options runes={true} />
 
-<svelte:component
-  this={component}
+<MyComponent
   {tag}
   bind:this={element}
   use={[
@@ -54,7 +53,7 @@
   ><div class="mdc-button__ripple"></div>
   {#if children}{@render children()}{/if}{#if touch}<div
       class="mdc-button__touch"
-    ></div>{/if}</svelte:component
+    ></div>{/if}</MyComponent
 >
 
 <script
@@ -142,7 +141,7 @@
     action = $bindable('close'),
     defaultAction = $bindable(false),
     secondary = $bindable(false),
-    component = $bindable(SmuiElement),
+    component: MyComponent = $bindable(SmuiElement),
     tag = $bindable((href == null ? 'button' : 'a') as TagName),
     children,
     ...restProps
@@ -156,16 +155,14 @@
   const actionProp = $derived(
     context === 'dialog:action' && action != null
       ? { 'data-mdc-dialog-action': action }
-      : { action: $$props.action },
+      : { action },
   );
   const defaultProp = $derived(
     context === 'dialog:action' && defaultAction
       ? { 'data-mdc-dialog-button-default': '' }
-      : { default: $$props.default },
+      : {},
   );
-  const secondaryProp = $derived(
-    context === 'banner' ? {} : { secondary: $$props.secondary },
-  );
+  const secondaryProp = $derived(context === 'banner' ? {} : { secondary });
 
   let previousDisabled = restProps.disabled;
   $effect(() => {

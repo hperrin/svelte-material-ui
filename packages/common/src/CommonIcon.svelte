@@ -1,7 +1,6 @@
 <svelte:options runes={true} />
 
-<svelte:component
-  this={component}
+<MyComponent
   {tag}
   bind:this={element}
   {use}
@@ -18,7 +17,7 @@
   aria-hidden="true"
   {...svg ? { focusable: 'false', tabindex: '-1' } : {}}
   {...restProps}
-  >{#if children}{@render children()}{/if}</svelte:component
+  >{#if children}{@render children()}{/if}</MyComponent
 >
 
 <script lang="ts" generics="TagName extends SmuiEveryElement = 'i'">
@@ -63,7 +62,7 @@
     use = $bindable([]),
     class: className = $bindable(''),
     on = $bindable(false),
-    component = $bindable(SmuiElement),
+    component: MyComponent = $bindable(SmuiElement),
     tag = $bindable('i' as TagName),
     children,
     ...restProps
@@ -73,7 +72,7 @@
 
   const svg = $derived(
     tag === 'svg' ||
-      component === (Svg as SmuiComponent<SmuiElementMap['svg']>),
+      MyComponent === (Svg as SmuiComponent<SmuiElementMap['svg']>),
   );
   const context = getContext<string | undefined>('SMUI:icon:context');
 

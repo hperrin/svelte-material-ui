@@ -1,7 +1,6 @@
 <svelte:options runes={true} />
 
-<svelte:component
-  this={component}
+<MyComponent
   {tag}
   bind:this={element}
   {use}
@@ -22,7 +21,7 @@
   {...context === 'snackbar' ? { 'aria-atomic': 'false' } : {}}
   {tabindex}
   {...restProps}
-  >{#if children}{@render children()}{/if}</svelte:component
+  >{#if children}{@render children()}{/if}</MyComponent
 >
 
 <script lang="ts" generics="TagName extends SmuiEveryElement = 'span'">
@@ -62,7 +61,7 @@
   let {
     use = $bindable([]),
     class: className = $bindable(''),
-    component = $bindable(SmuiElement),
+    component: MyComponent = $bindable(SmuiElement),
     tag = $bindable('span' as TagName),
     children,
     ...restProps

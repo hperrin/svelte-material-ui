@@ -1,7 +1,6 @@
 <svelte:options runes={true} />
 
-<svelte:component
-  this={component}
+<MyComponent
   {tag}
   bind:this={element}
   use={[
@@ -62,7 +61,7 @@
     restProps.onkeydown?.(e);
   }}
   >{#if ripple}<span class="mdc-deprecated-list-item__ripple"
-    ></span>{/if}{#if children}{@render children()}{/if}</svelte:component
+    ></span>{/if}{#if children}{@render children()}{/if}</MyComponent
 >
 
 <script context="module" lang="ts">
@@ -193,7 +192,7 @@
     tabindex: tabindexProp = $bindable(uninitializedValue as unknown as number),
     inputId = $bindable('SMUI-form-field-list-' + counter++),
     href = $bindable(undefined),
-    component = $bindable(SmuiElement),
+    component: MyComponent = $bindable(SmuiElement),
     tag = $bindable((nav ? (href ? 'a' : 'span') : 'li') as TagName),
     children,
     ...restProps
