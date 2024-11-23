@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <Group variant="raised">
   <Button onclick={() => clicked++} variant="raised">
     <Label>Do the thing</Label>
@@ -65,7 +63,7 @@
   import Menu from '@smui/menu';
   import List, { Item, Separator, Text } from '@smui/list';
 
-  let clicked = 0;
+  let clicked = $state(0);
   let menu: Menu;
   let menu2: Menu;
 </script>

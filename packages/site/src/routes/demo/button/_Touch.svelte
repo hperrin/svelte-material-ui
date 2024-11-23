@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <Button onclick={() => clicked++} touch>
   <Label>Default</Label>
 </Button>
@@ -18,5 +16,5 @@
 <script lang="ts">
   import Button, { Label } from '@smui/button';
 
-  let clicked = 0;
+  let clicked = $state(0);
 </script>

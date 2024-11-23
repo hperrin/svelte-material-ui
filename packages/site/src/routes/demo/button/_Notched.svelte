@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <Button onclick={() => clicked++} variant="raised" class="button-shaped-notch">
   <Label>Raised</Label>
 </Button>
@@ -32,5 +30,5 @@
 <script lang="ts">
   import Button, { Label, Icon } from '@smui/button';
 
-  let clicked = 0;
+  let clicked = $state(0);
 </script>

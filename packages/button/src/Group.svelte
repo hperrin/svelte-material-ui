@@ -1,4 +1,4 @@
-<svelte:options runes={false} />
+<svelte:options runes={true} />
 
 <div
   bind:this={element}
@@ -8,28 +8,42 @@
     'smui-button__group': true,
     'smui-button__group--raised': variant === 'raised',
   })}
-  {...$$restProps}
+  {...restProps}
 >
-  <slot />
+  {#if children}{@render children()}{/if}
 </div>
 
 <script lang="ts">
+  import type { Snippet } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, useActions } from '@smui/common/internal';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * The styling variant of the button group.
+     */
     variant?: 'text' | 'raised' | 'unelevated' | 'outlined';
+
+    children?: Snippet;
   };
-  type $$Props = OwnProps & SmuiAttrs<'div', keyof OwnProps>;
 
   // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let variant: 'text' | 'raised' | 'unelevated' | 'outlined' = 'text';
+  let {
+    use = $bindable([]),
+    class: className = $bindable(''),
+    variant = $bindable('text'),
+    children,
+    ...restProps
+  }: OwnProps & SmuiAttrs<'div', keyof OwnProps> = $props();
 
   let element: HTMLDivElement;
 

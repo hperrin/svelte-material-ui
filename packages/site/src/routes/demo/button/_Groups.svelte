@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <Group>
   <Button onclick={() => clicked++}><Label>One</Label></Button>
   <Button onclick={() => clicked++}><Label>Two</Label></Button>
@@ -73,5 +71,5 @@
 <script lang="ts">
   import Button, { Group, Label } from '@smui/button';
 
-  let clicked = 0;
+  let clicked = $state(0);
 </script>

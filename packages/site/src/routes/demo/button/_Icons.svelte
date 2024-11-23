@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <Button onclick={() => clicked++}>
   <Icon class="material-icons">favorite</Icon>
   <Label>Leading Icon</Label>
@@ -22,5 +20,5 @@
 <script lang="ts">
   import Button, { Label, Icon } from '@smui/button';
 
-  let clicked = 0;
+  let clicked = $state(0);
 </script>

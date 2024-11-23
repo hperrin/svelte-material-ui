@@ -1,4 +1,4 @@
-<svelte:options runes={false} />
+<svelte:options runes={true} />
 
 <svelte:component
   this={component}
@@ -11,7 +11,7 @@
         ripple,
         unbounded: false,
         color,
-        disabled: !!$$restProps.disabled,
+        disabled: !!restProps.disabled,
         addClass,
         removeClass,
         addStyle,
@@ -46,13 +46,13 @@
   {...defaultProp}
   {...secondaryProp}
   {href}
-  {...$$restProps}
+  {...restProps}
   onclick={(e: MouseEvent) => {
     handleClick();
-    $$restProps.onclick?.(e);
+    restProps.onclick?.(e);
   }}
   ><div class="mdc-button__ripple"></div>
-  <slot />{#if touch}<div
+  {#if children}{@render children()}{/if}{#if touch}<div
       class="mdc-button__touch"
     ></div>{/if}</svelte:component
 >
@@ -61,6 +61,7 @@
   lang="ts"
   generics="Href extends string | undefined = undefined, TagName extends SmuiEveryElement = Href extends string ? 'a' : 'button'"
 >
+  import type { Snippet } from 'svelte';
   import { setContext, getContext } from 'svelte';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, dispatch } from '@smui/common/internal';
@@ -74,66 +75,110 @@
   import { SmuiElement } from '@smui/common';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * A list of CSS styles.
+     */
     style?: string;
+    /**
+     * Whether to show a ripple animation.
+     */
     ripple?: boolean;
+    /**
+     * The color of the button.
+     */
     color?: 'primary' | 'secondary';
+    /**
+     * The styling variant of the button.
+     */
     variant?: 'text' | 'raised' | 'unelevated' | 'outlined';
+    /**
+     * Whether to use touch styling
+     */
     touch?: boolean;
+    /**
+     * If provided, the button will act as a link.
+     */
     href?: Href;
+    /**
+     * The action the button represents.
+     */
     action?: string;
+    /**
+     * Whether the button is the default action for the dialog.
+     */
     defaultAction?: boolean;
+    /**
+     * Whether the button is the secondary button for the banner.
+     */
     secondary?: boolean;
+    /**
+     * The component to use to render the element.
+     */
     component?: SmuiComponent<SmuiElementMap[TagName]>;
+    /**
+     * The tag name of the element to create.
+     */
     tag?: TagName;
-  };
-  type $$Props = OwnProps & SmuiAttrs<TagName, keyof OwnProps>;
 
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let style = '';
-  export let ripple = true;
-  export let color: 'primary' | 'secondary' = 'primary';
-  export let variant: 'text' | 'raised' | 'unelevated' | 'outlined' = 'text';
-  export let touch = false;
-  export let href: string | undefined = undefined;
-  export let action = 'close';
-  export let defaultAction = false;
-  export let secondary = false;
+    children?: Snippet;
+  };
+  let {
+    use = $bindable([]),
+    class: className = $bindable(''),
+    style = $bindable(''),
+    ripple = $bindable(true),
+    color = $bindable('primary'),
+    variant = $bindable('text'),
+    touch = $bindable(false),
+    href = $bindable(undefined),
+    action = $bindable('close'),
+    defaultAction = $bindable(false),
+    secondary = $bindable(false),
+    component = $bindable(SmuiElement),
+    tag = $bindable((href == null ? 'button' : 'a') as TagName),
+    children,
+    ...restProps
+  }: OwnProps & SmuiAttrs<TagName, keyof OwnProps> = $props();
 
   let element: ReturnType<SmuiComponent<SmuiElementMap[TagName]>>;
-  let internalClasses: { [k: string]: boolean } = {};
-  let internalStyles: { [k: string]: string } = {};
+  let internalClasses: { [k: string]: boolean } = $state({});
+  let internalStyles: { [k: string]: string } = $state({});
   let context = getContext<string | undefined>('SMUI:button:context');
 
-  export let component: SmuiComponent<SmuiElementMap[TagName]> = SmuiElement;
-  export let tag: SmuiEveryElement | undefined =
-    component === SmuiElement ? (href == null ? 'button' : 'a') : undefined;
-
-  $: actionProp =
+  const actionProp = $derived(
     context === 'dialog:action' && action != null
       ? { 'data-mdc-dialog-action': action }
-      : { action: $$props.action };
-  $: defaultProp =
+      : { action: $$props.action },
+  );
+  const defaultProp = $derived(
     context === 'dialog:action' && defaultAction
       ? { 'data-mdc-dialog-button-default': '' }
-      : { default: $$props.default };
-  $: secondaryProp =
-    context === 'banner' ? {} : { secondary: $$props.secondary };
+      : { default: $$props.default },
+  );
+  const secondaryProp = $derived(
+    context === 'banner' ? {} : { secondary: $$props.secondary },
+  );
 
-  let previousDisabled = $$restProps.disabled;
-  $: if (previousDisabled !== $$restProps.disabled) {
-    if (element) {
-      const el = getElement();
-      if ('blur' in el) {
-        el.blur();
+  let previousDisabled = restProps.disabled;
+  $effect(() => {
+    if (previousDisabled !== restProps.disabled) {
+      if (element) {
+        const el = getElement();
+        if ('blur' in el) {
+          el.blur();
+        }
       }
+      previousDisabled = restProps.disabled;
     }
-    previousDisabled = $$restProps.disabled;
-  }
+  });
 
   setContext('SMUI:label:context', 'button');
   setContext('SMUI:icon:context', 'button');

@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <Button class="my-colored-button">
   <Label>Text</Label>
 </Button>

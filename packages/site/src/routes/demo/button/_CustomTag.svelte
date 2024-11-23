@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div>
   <Button
     tag="em"
@@ -38,7 +36,7 @@
 <script lang="ts">
   import Button, { Label } from '@smui/button';
 
-  let clicked = 0;
+  let clicked = $state(0);
 
   function handleClick(event: KeyboardEvent) {
     if (event.key === 'Enter') {
