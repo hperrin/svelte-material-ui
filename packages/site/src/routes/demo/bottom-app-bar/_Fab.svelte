@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div>
   <FormField>
     <Checkbox bind:checked={secondaryColor} />
@@ -93,7 +91,7 @@
   import FormField from '@smui/form-field';
   import LoremIpsum from '$lib/LoremIpsum.svelte';
 
-  let secondaryColor = false;
+  let secondaryColor = $state(false);
 </script>
 
 <style>

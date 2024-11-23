@@ -1,7 +1,6 @@
-<svelte:options runes={false} />
+<svelte:options runes={true} />
 
-<svelte:component
-  this={component}
+<MyComponent
   {tag}
   bind:this={element}
   {use}
@@ -13,12 +12,13 @@
     .map(([name, value]) => `${name}: ${value};`)
     .concat([style])
     .join(' ')}
-  {...$$restProps}
+  {...restProps}
 >
-  <slot />
-</svelte:component>
+  {#if children}{@render children()}{/if}
+</MyComponent>
 
 <script lang="ts" generics="TagName extends SmuiEveryElement = 'main'">
+  import type { Snippet } from 'svelte';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap } from '@smui/common/internal';
   import type {
@@ -29,47 +29,74 @@
   } from '@smui/common';
   import { SmuiElement } from '@smui/common';
 
-  type OwnProps = {
-    use?: ActionArray;
-    class?: string;
-    style?: string;
-    bottomAppBar: BottomAppBar;
-    component?: SmuiComponent<SmuiElementMap[TagName]>;
-    tag?: TagName;
-  };
-  type $$Props = OwnProps & SmuiAttrs<TagName, keyof OwnProps>;
-
   import type BottomAppBar from './BottomAppBar.svelte';
 
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let style = '';
-  export let bottomAppBar: BottomAppBar;
+  type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
+    use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
+    class?: string;
+    /**
+     * A list of CSS styles.
+     */
+    style?: string;
+    /**
+     * The Bottom App Bar that this auto adjuster is for.
+     *
+     * This is REQUIRED! The reason you can provide `null` is so that the
+     * Bottom App Bar has a chance to mount, then you must provide it.
+     */
+    bottomAppBar: BottomAppBar | null;
+    /**
+     * The component to use to render the element.
+     */
+    component?: SmuiComponent<SmuiElementMap[TagName]>;
+    /**
+     * The tag name of the element to create.
+     */
+    tag?: TagName;
+
+    children?: Snippet;
+  };
+  let {
+    use = $bindable([]),
+    class: className = $bindable(''),
+    style = $bindable(''),
+    bottomAppBar = $bindable(),
+    component: MyComponent = $bindable(SmuiElement),
+    tag = $bindable('main' as TagName),
+    children,
+    ...restProps
+  }: OwnProps & SmuiAttrs<TagName, keyof OwnProps> = $props();
 
   let element: ReturnType<SmuiComponent<SmuiElementMap[TagName]>>;
 
-  export let component: SmuiComponent<SmuiElementMap[TagName]> = SmuiElement;
-  export let tag: SmuiEveryElement | undefined =
-    component === SmuiElement ? 'main' : undefined;
-
-  let internalStyles: { [k: string]: string } = {};
-  $: propStore = bottomAppBar && bottomAppBar.getPropStore();
-  $: adjustClass = (() => {
-    if (!propStore || $propStore.variant === 'static') {
+  let internalStyles: { [k: string]: string } = $state({});
+  const propStore = $derived(bottomAppBar && bottomAppBar.getPropStore());
+  const adjustClass = $derived.by(() => {
+    if (!propStore || !$propStore || $propStore.variant === 'static') {
       return '';
+    }
+
+    return `smui-bottom-app-bar--${$propStore.variant}-adjust ${
+      $propStore.withFab ? 'smui-bottom-app-bar--with-fab' : ''
+    }`;
+  });
+  $effect(() => {
+    if (!propStore || !$propStore || $propStore.variant === 'static') {
+      addStyle('--smui-bottom-app-bar--fab-offset', '0px');
+      return;
     }
 
     addStyle(
       '--smui-bottom-app-bar--fab-offset',
       $propStore.adjustOffset + 'px',
     );
-
-    return `smui-bottom-app-bar--${$propStore.variant}-adjust ${
-      $propStore.withFab ? 'smui-bottom-app-bar--with-fab' : ''
-    }`;
-  })();
+  });
 
   function addStyle(name: string, value: string) {
     if (internalStyles[name] != value) {

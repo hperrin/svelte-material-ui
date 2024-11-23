@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <AutoAdjust {bottomAppBar}>
   <h5>Standard</h5>
 
@@ -29,7 +27,7 @@
   import IconButton from '@smui/icon-button';
   import LoremIpsum from '$lib/LoremIpsum.svelte';
 
-  let bottomAppBar: BottomAppBar;
+  let bottomAppBar: BottomAppBar | null = $state(null);
 </script>
 
 <style>

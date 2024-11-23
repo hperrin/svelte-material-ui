@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <AutoAdjust {bottomAppBar}>
   <h5>Standard</h5>
 
@@ -10,7 +8,7 @@
     </FormField>
   </div>
 
-  <Button onclick={() => snackbar.open()}>
+  <Button onclick={() => snackbar?.open()}>
     <Label>Open Snackbar</Label>
   </Button>
 
@@ -59,9 +57,9 @@
   import FormField from '@smui/form-field';
   import LoremIpsum from '$lib/LoremIpsum.svelte';
 
-  let bottomAppBar: BottomAppBar;
-  let snackbar: Snackbar;
-  let withFab = false;
+  let bottomAppBar: BottomAppBar | null = $state(null);
+  let snackbar: Snackbar | undefined = $state();
+  let withFab = $state(false);
 </script>
 
 <style>

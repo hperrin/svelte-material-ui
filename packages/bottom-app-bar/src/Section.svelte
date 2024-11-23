@@ -1,4 +1,4 @@
-<svelte:options runes={false} />
+<svelte:options runes={true} />
 
 <Paper
   bind:this={element}
@@ -11,33 +11,45 @@
   color={$color}
   variant="unelevated"
   square
-  {...$$restProps}><slot /></Paper
+  {...restProps}
+  >{#if children}{@render children()}{/if}</Paper
 >
 
 <script lang="ts">
-  import type { ComponentProps } from 'svelte';
+  import type { ComponentProps, Snippet } from 'svelte';
   import { getContext } from 'svelte';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap } from '@smui/common/internal';
   import Paper from '@smui/paper';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * Use an inset cutout styling for the FAB.
+     */
     fabInset?: boolean;
+
+    children?: Snippet;
   };
-  type $$Props = Omit<ComponentProps<typeof Paper>, keyof OwnProps> &
+  let {
+    use = $bindable([]),
+    class: className = $bindable(''),
+    fabInset = $bindable(false),
+    children,
+    ...restProps
+  }: Omit<ComponentProps<typeof Paper>, keyof OwnProps> &
     OwnProps & {
       color?: never;
       variant?: never;
       square?: never;
-    };
-
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let fabInset = false;
+    } = $props();
 
   let element: Paper;
 

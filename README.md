@@ -154,7 +154,7 @@ Svelte 5 Runes mode is being migrated to slowly. This is the todo list of compon
   - [x] Floating Action Button
   - [x] Icon Button
 - App Bars
-  - [ ] Bottom App Bar
+  - [x] Bottom App Bar
   - [x] Top App Bar
 - [x] Badge
 - [ ] Banner

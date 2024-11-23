@@ -1,4 +1,4 @@
-<svelte:options runes={false} />
+<svelte:options runes={true} />
 
 <svelte:window onscroll={handleTargetScroll} onresize={handleWindowResize} />
 
@@ -15,13 +15,14 @@
     .map(([name, value]) => `${name}: ${value};`)
     .concat([style])
     .join(' ')}
-  {...$$restProps}
+  {...restProps}
 >
-  <slot />
+  {#if children}{@render children()}{/if}
 </div>
 
 <script lang="ts">
-  import { afterUpdate, setContext } from 'svelte';
+  import type { Snippet } from 'svelte';
+  import { onMount, setContext } from 'svelte';
   import type { Subscriber } from 'svelte/store';
   import { readable, writable } from 'svelte/store';
   import type { SmuiAttrs } from '@smui/common';
@@ -29,35 +30,56 @@
   import { classMap, useActions } from '@smui/common/internal';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * A list of CSS styles.
+     */
     style?: string;
-    color?: 'default' | 'primary' | 'secondary' | string;
+    /**
+     * The type of app bar to display.
+     */
     variant?: 'fixed' | 'static' | 'standard';
-  };
-  type $$Props = OwnProps & SmuiAttrs<'div', keyof OwnProps>;
+    /**
+     * The color of the app bar.
+     */
+    color?: 'default' | 'primary' | 'secondary' | string;
 
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let style = '';
-  export let color: 'default' | 'primary' | 'secondary' | string = 'primary';
-  export let variant: 'fixed' | 'static' | 'standard' = 'standard';
+    children?: Snippet;
+  };
+  let {
+    use = $bindable([]),
+    class: className = $bindable(''),
+    style = $bindable(''),
+    variant = $bindable('standard'),
+    color = $bindable('primary'),
+    children,
+    ...restProps
+  }: OwnProps & SmuiAttrs<'div', keyof OwnProps> = $props();
 
   let element: HTMLDivElement;
 
-  let internalStyles: { [k: string]: string } = {};
+  let internalStyles: { [k: string]: string } = $state({});
   const colorStore = writable(color);
-  let withFab = false;
-  let adjustOffset = 0;
-  $: $colorStore = color;
+  let withFab = $state(false);
+  let adjustOffset = $state(0);
+  $effect(() => {
+    $colorStore = color;
+  });
   setContext('SMUI:bottom-app-bar:color', colorStore);
-  let propStoreSet: Subscriber<{
-    withFab: boolean;
-    adjustOffset: number;
-    variant: 'fixed' | 'static' | 'standard';
-  }>;
+  let propStoreSet:
+    | Subscriber<{
+        withFab: boolean;
+        adjustOffset: number;
+        variant: 'fixed' | 'static' | 'standard';
+      }>
+    | undefined = $state();
   let propStore = readable(
     {
       withFab,
@@ -68,18 +90,31 @@
       propStoreSet = set;
     },
   );
-  $: if (propStoreSet) {
-    propStoreSet({
-      withFab,
-      adjustOffset,
-      variant,
-    });
-  }
-
-  afterUpdate(() => {
-    if (variant === 'standard' || variant === 'fixed') {
-      withFab = getElement().querySelector<HTMLDivElement>('.mdc-fab') != null;
+  $effect(() => {
+    if (propStoreSet) {
+      propStoreSet({
+        withFab,
+        adjustOffset,
+        variant,
+      });
     }
+  });
+
+  onMount(() => {
+    const observer = new MutationObserver(() => {
+      if (variant === 'standard' || variant === 'fixed') {
+        withFab =
+          getElement()?.querySelector<HTMLDivElement>('.mdc-fab') != null;
+      } else {
+        withFab = false;
+      }
+    });
+
+    observer.observe(getElement(), { childList: true, subtree: true });
+
+    return () => {
+      observer.disconnect();
+    };
   });
 
   function addStyle(name: string, value: string) {
@@ -142,17 +177,19 @@
   }
 
   let oldVariant: 'fixed' | 'static' | 'standard' | null = null;
-  $: if (element && variant !== oldVariant) {
-    if (variant === 'standard') {
-      lastScrollPosition = getViewportScrollY();
-      bottomAppBarHeight = getTopAppBarHeight();
-    } else if (oldVariant === 'standard') {
-      addStyle('bottom', '');
-      addStyle('--smui-bottom-app-bar--fab-offset', '0px');
-      adjustOffset = 0;
+  $effect(() => {
+    if (element && variant !== oldVariant) {
+      if (variant === 'standard') {
+        lastScrollPosition = getViewportScrollY();
+        bottomAppBarHeight = getTopAppBarHeight();
+      } else if (oldVariant === 'standard') {
+        addStyle('bottom', '');
+        addStyle('--smui-bottom-app-bar--fab-offset', '0px');
+        adjustOffset = 0;
+      }
+      oldVariant = variant;
     }
-    oldVariant = variant;
-  }
+  });
 
   /**
    * Scroll handler for the default scroll behavior of the bottom app bar.

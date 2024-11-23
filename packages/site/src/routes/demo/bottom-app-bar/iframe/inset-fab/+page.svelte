@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <AutoAdjust {bottomAppBar}>
   <h5>Inset FAB</h5>
 
@@ -35,7 +33,7 @@
   import Fab, { Icon } from '@smui/fab';
   import LoremIpsum from '$lib/LoremIpsum.svelte';
 
-  let bottomAppBar: BottomAppBar;
+  let bottomAppBar: BottomAppBar | null = $state(null);
 </script>
 
 <style>
