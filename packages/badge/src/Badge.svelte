@@ -1,4 +1,4 @@
-<svelte:options runes={false} />
+<svelte:options runes={true} />
 
 <span
   bind:this={element}
@@ -12,22 +12,41 @@
     ['smui-badge--align-' + align]: true,
   })}
   role="status"
-  {...$$restProps}
+  {...restProps}
 >
-  <slot />
+  {#if children}{@render children()}{/if}
 </span>
 
 <script lang="ts">
+  import type { Snippet } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, useActions } from '@smui/common/internal';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * Square off the corners, instead of rounding them.
+     */
     square?: boolean;
+    /**
+     * The color of the badge.
+     */
     color?: 'primary' | 'secondary' | string;
+    /**
+     * The position of the badge relative to the edge/corner it is aligned to.
+     */
     position?: 'inset' | 'middle' | 'outset';
+    /**
+     * The edge or corner to align the badge to.
+     */
     align?:
       | 'top-start'
       | 'top-middle'
@@ -38,26 +57,19 @@
       | 'bottom-start'
       | 'bottom-middle'
       | 'bottom-end';
-  };
-  type $$Props = OwnProps & SmuiAttrs<'span', keyof OwnProps>;
 
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let square = false;
-  export let color: 'primary' | 'secondary' | string = 'primary';
-  export let position: 'inset' | 'middle' | 'outset' = 'middle';
-  export let align:
-    | 'top-start'
-    | 'top-middle'
-    | 'top-end'
-    | 'middle-start'
-    | 'middle-middle'
-    | 'middle-end'
-    | 'bottom-start'
-    | 'bottom-middle'
-    | 'bottom-end' = 'top-end';
+    children?: Snippet;
+  };
+  let {
+    use = $bindable([]),
+    class: className = $bindable(''),
+    square = $bindable(false),
+    color = $bindable('primary'),
+    position = $bindable('middle'),
+    align = $bindable('top-end'),
+    children,
+    ...restProps
+  }: OwnProps & SmuiAttrs<'span', keyof OwnProps> = $props();
 
   let element: HTMLSpanElement;
 

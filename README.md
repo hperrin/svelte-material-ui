@@ -156,7 +156,7 @@ Svelte 5 Runes mode is being migrated to slowly. This is the todo list of compon
 - App Bars
   - [ ] Bottom App Bar
   - [ ] Top App Bar
-- [ ] Badge
+- [x] Badge
 - [ ] Banner
 - [ ] Card
 - [x] Common

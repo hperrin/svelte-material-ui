@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div style="margin-top: 2em; text-align: center;">
   <Button style="position: relative;">
     <Label>Button</Label>
@@ -49,19 +47,21 @@
   import Radio from '@smui/radio';
   import FormField from '@smui/form-field';
 
-  let position: 'inset' | 'middle' | 'outset' = 'middle';
-  let alignY: 'top' | 'middle' | 'bottom' = 'top';
-  let alignX: 'start' | 'middle' | 'end' = 'end';
-  $: align = `${alignY}-${alignX}` as
-    | 'top-start'
-    | 'top-middle'
-    | 'top-end'
-    | 'middle-start'
-    | 'middle-middle'
-    | 'middle-end'
-    | 'bottom-start'
-    | 'bottom-middle'
-    | 'bottom-end';
+  let position: 'inset' | 'middle' | 'outset' = $state('middle');
+  let alignY: 'top' | 'middle' | 'bottom' = $state('top');
+  let alignX: 'start' | 'middle' | 'end' = $state('end');
+  const align = $derived(
+    `${alignY}-${alignX}` as
+      | 'top-start'
+      | 'top-middle'
+      | 'top-end'
+      | 'middle-start'
+      | 'middle-middle'
+      | 'middle-end'
+      | 'bottom-start'
+      | 'bottom-middle'
+      | 'bottom-end',
+  );
 
   const positions = ['inset', 'middle', 'outset'];
   const alignmentsY = ['top', 'middle', 'bottom'];

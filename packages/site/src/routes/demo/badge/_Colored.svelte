@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div style="margin-top: 2em;">
   <Button style="position: relative;">
     <Label>Custom Color Badge</Label>

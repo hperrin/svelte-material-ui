@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div>
   <span style="position: relative;">
     Text with a badge.
