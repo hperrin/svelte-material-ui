@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div class="radio-demo">
   {#each ['On', 'Off'] as option}
     <FormField>
@@ -15,7 +13,7 @@
   import Radio from '@smui/radio';
   import FormField from '@smui/form-field';
 
-  let onoff = 'On';
+  let onoff = $state('On');
 </script>
 
 <style>

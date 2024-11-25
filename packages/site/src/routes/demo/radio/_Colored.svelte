@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div>
   <FormField>
     <Radio class="my-colored-radio" bind:group={selected} value="on" />
@@ -47,6 +45,6 @@
   import Radio from '@smui/radio';
   import FormField from '@smui/form-field';
 
-  let selected = 'on';
-  let selected2 = 'on';
+  let selected = $state('on');
+  let selected2 = $state('on');
 </script>

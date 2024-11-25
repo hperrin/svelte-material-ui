@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div class="radio-demo">
   {#each options as option}
     <FormField>
@@ -62,7 +60,7 @@
       disabled: false,
     },
   ];
-  let selected = 'Grumpy';
+  let selected = $state('Grumpy');
 </script>
 
 <style>

@@ -1,4 +1,4 @@
-<svelte:options runes={false} />
+<svelte:options runes={true} />
 
 <div
   bind:this={element}
@@ -21,7 +21,7 @@
     .map(([name, value]) => `${name}: ${value};`)
     .concat([style])
     .join(' ')}
-  {...exclude($$restProps, ['input$'])}
+  {...exclude(restProps, ['input$'])}
 >
   <input
     use:useActions={input$use}
@@ -34,14 +34,14 @@
     {disabled}
     value={isUninitializedValue(valueKey) ? value : valueKey}
     bind:group
-    {...prefixFilter($$restProps, 'input$')}
+    {...prefixFilter(restProps, 'input$')}
     onblur={(e) => {
       dispatch(getElement(), 'blur', e);
-      $$restProps.input$onblur?.(e);
+      restProps.input$onblur?.(e);
     }}
     onfocus={(e) => {
       dispatch(getElement(), 'focus', e);
-      $$restProps.input$onfocus?.(e);
+      restProps.input$onfocus?.(e);
     }}
   />
   <div class="mdc-radio__background">
@@ -69,19 +69,69 @@
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
 
+  interface UninitializedValue extends Function {}
+  let uninitializedValue: UninitializedValue = () => {};
+  function isUninitializedValue(value: any): value is UninitializedValue {
+    return value === uninitializedValue;
+  }
+
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * A list of CSS styles.
+     */
     style?: string;
+    /**
+     * Whether the input is disabled.
+     */
     disabled?: boolean;
+    /**
+     * Whether to use touch styling
+     */
     touch?: boolean;
+    /**
+     * The value of the currently selected item.
+     */
     group?: any | undefined;
+    /**
+     * The value of the item this radio button represents.
+     */
     value?: any;
+    /**
+     * A string representation of the value.
+     *
+     * Use this if it can't be converted to a unique string in its group.
+     */
     valueKey?: string;
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     input$use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     input$class?: string;
   };
-  type $$Props = OwnProps &
+  let {
+    use = $bindable([]),
+    class: className = $bindable(''),
+    style = $bindable(''),
+    disabled = $bindable(false),
+    touch = $bindable(false),
+    group = $bindable(undefined),
+    value = $bindable(null),
+    valueKey = $bindable(uninitializedValue as unknown as string),
+    input$use = $bindable([]),
+    input$class = $bindable(''),
+    ...restProps
+  }: OwnProps &
     SmuiAttrs<'div', keyof OwnProps> & {
       [k in keyof SmuiElementPropMap['input'] as `input\$${k}`]?: SmuiElementPropMap['input'][k];
     } & {
@@ -90,34 +140,16 @@
       input$value?: never;
       input$checked?: never;
       input$group?: never;
-    };
-
-  interface UninitializedValue extends Function {}
-  let uninitializedValue: UninitializedValue = () => {};
-  function isUninitializedValue(value: any): value is UninitializedValue {
-    return value === uninitializedValue;
-  }
-
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let style = '';
-  export let disabled = false;
-  export let touch = false;
-  export let group: any | undefined = undefined;
-  export let value: any = null;
-  export let valueKey: UninitializedValue | string = uninitializedValue;
-  export let input$use: ActionArray = [];
-  export let input$class = '';
+    } = $props();
 
   let element: HTMLDivElement;
-  let instance: MDCRadioFoundation;
-  let internalClasses: { [k: string]: boolean } = {};
-  let internalStyles: { [k: string]: string } = {};
-  let rippleActive = false;
-  let inputProps =
-    getContext<{ id?: string } | undefined>('SMUI:generic:input:props') ?? {};
+  let instance: MDCRadioFoundation | undefined = $state();
+  let internalClasses: { [k: string]: boolean } = $state({});
+  let internalStyles: { [k: string]: string } = $state({});
+  let rippleActive = $state(false);
+  let inputProps = $state(
+    getContext<{ id?: string } | undefined>('SMUI:generic:input:props') ?? {},
+  );
 
   const SMUIGenericInputMount = getContext<
     ((accessor: SMUIRadioInputAccessor) => void) | undefined
@@ -165,7 +197,7 @@
     return () => {
       SMUIGenericInputUnmount && SMUIGenericInputUnmount(accessor);
 
-      instance.destroy();
+      instance?.destroy();
     };
   });
 
