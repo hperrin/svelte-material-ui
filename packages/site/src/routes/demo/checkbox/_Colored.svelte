@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div>
   <FormField>
     <Checkbox class="my-colored-checkbox" />
@@ -70,6 +68,6 @@
   import FormField from '@smui/form-field';
   import Button from '@smui/button';
 
-  let checked: boolean | null = null;
-  let checked2: boolean | null = null;
+  let checked: boolean | null = $state(null);
+  let checked2: boolean | null = $state(null);
 </script>

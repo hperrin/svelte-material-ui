@@ -235,7 +235,6 @@
               <Separator />
             {:else}
               <Item
-                bind:this={section.component}
                 nonInteractive={!('route' in section || 'shortcut' in section)}
                 href={'route' in section
                   ? section.route
@@ -306,7 +305,6 @@
   let theme: string | null = $state(null);
 
   type DemoSection = {
-    component?: Item<string>; // Items always have href.
     name: string;
     route?: string;
     shortcut?: string;

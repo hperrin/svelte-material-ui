@@ -166,7 +166,7 @@ Svelte 5 Runes mode is being migrated to slowly. This is the todo list of compon
 - [ ] Image List
 - Inputs and Controls
   - [ ] Autocomplete
-  - [ ] Checkbox
+  - [x] Checkbox
   - [ ] Chips
   - [ ] Chip Input
   - [ ] Floating Label
@@ -199,6 +199,10 @@ Svelte 5 Runes mode is being migrated to slowly. This is the todo list of compon
   - [ ] Tab Bar
 - [ ] Tooltip
 - [ ] Touch Target
+
+Note to Devs: update `indexOf()` on any `$state` array to `findIndex()`.
+
+Note to Devs: remove `x = x;` statements after `push()` and the like. They aren't needed anymore with Svelte 5's new $state rune.
 
 # License
 

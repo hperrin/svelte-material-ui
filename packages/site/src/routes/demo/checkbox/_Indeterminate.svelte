@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <FormField>
   <!--
     Note: binding to `indeterminate` is probably a bad idea.
@@ -16,12 +14,12 @@
 <br />
 <Button onclick={() => (checked = null)}>Reset</Button>
 
-<pre class="status">Checked: {checked}</pre>
+<pre class="status">Checked: {checked ?? 'indeterminate'}</pre>
 
 <script lang="ts">
   import Checkbox from '@smui/checkbox';
   import FormField from '@smui/form-field';
   import Button from '@smui/button';
 
-  let checked: boolean | null = null;
+  let checked: boolean | null = $state(null);
 </script>

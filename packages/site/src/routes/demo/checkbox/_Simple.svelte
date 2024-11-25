@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div>
   <FormField>
     <Checkbox bind:checked />
@@ -29,6 +27,6 @@
   import FormField from '@smui/form-field';
   import Button from '@smui/button';
 
-  let checked = false;
-  let checked2 = false;
+  let checked = $state(false);
+  let checked2 = $state(false);
 </script>

@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <FormField>
   <Checkbox bind:checked touch />
   <span slot="label">Remember me.</span>
@@ -11,5 +9,5 @@
   import Checkbox from '@smui/checkbox';
   import FormField from '@smui/form-field';
 
-  let checked = false;
+  let checked = $state(false);
 </script>
