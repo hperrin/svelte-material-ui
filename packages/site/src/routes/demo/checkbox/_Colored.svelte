@@ -1,19 +1,25 @@
 <div>
   <FormField>
     <Checkbox class="my-colored-checkbox" />
-    <span slot="label">Custom Color</span>
+    {#snippet label()}
+      Custom Color
+    {/snippet}
   </FormField>
 </div>
 <div>
   <FormField>
     <Checkbox class="my-colored-checkbox" disabled />
-    <span slot="label">Disabled</span>
+    {#snippet label()}
+      Disabled
+    {/snippet}
   </FormField>
 </div>
 <div>
   <FormField>
     <Checkbox class="my-colored-checkbox" disabled checked />
-    <span slot="label">Disabled, Checked</span>
+    {#snippet label()}
+      Disabled, Checked
+    {/snippet}
   </FormField>
 </div>
 <div>
@@ -23,7 +29,9 @@
       bind:checked
       indeterminate={checked === null}
     />
-    <span slot="label">Indeterminate</span>
+    {#snippet label()}
+      Indeterminate
+    {/snippet}
   </FormField>
 </div>
 
@@ -34,19 +42,25 @@
 <div>
   <FormField>
     <Checkbox class="my-fully-colored-checkbox" />
-    <span slot="label">Fully Colored</span>
+    {#snippet label()}
+      Fully Colored
+    {/snippet}
   </FormField>
 </div>
 <div>
   <FormField>
     <Checkbox class="my-fully-colored-checkbox" disabled />
-    <span slot="label">Disabled</span>
+    {#snippet label()}
+      Disabled
+    {/snippet}
   </FormField>
 </div>
 <div>
   <FormField>
     <Checkbox class="my-fully-colored-checkbox" disabled checked />
-    <span slot="label">Disabled, Checked</span>
+    {#snippet label()}
+      Disabled, Checked
+    {/snippet}
   </FormField>
 </div>
 <div>
@@ -56,7 +70,9 @@
       bind:checked={checked2}
       indeterminate={checked2 === null}
     />
-    <span slot="label">Indeterminate</span>
+    {#snippet label()}
+      Indeterminate
+    {/snippet}
   </FormField>
 </div>
 

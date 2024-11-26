@@ -1,7 +1,9 @@
 <div>
   <FormField>
     <Switch bind:checked onSMUISwitchChange={(e) => (event = e)} />
-    <span slot="label">Fields of grain.</span>
+    {#snippet label()}
+      Fields of grain.
+    {/snippet}
   </FormField>
 </div>
 

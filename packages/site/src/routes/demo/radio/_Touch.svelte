@@ -2,7 +2,9 @@
   {#each ['On', 'Off'] as option}
     <FormField>
       <Radio bind:group={onoff} value={option} touch />
-      <span slot="label">{option}</span>
+      {#snippet label()}
+        {option}
+      {/snippet}
     </FormField>
   {/each}
 </div>

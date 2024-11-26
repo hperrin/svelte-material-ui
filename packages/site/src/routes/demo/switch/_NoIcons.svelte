@@ -1,7 +1,9 @@
 <div>
   <FormField>
     <Switch bind:checked={checked1} icons={false} />
-    <span slot="label">Fields of grain.</span>
+    {#snippet label()}
+      Fields of grain.
+    {/snippet}
   </FormField>
 </div>
 
@@ -10,7 +12,9 @@
 <div style="margin-top: 1em;">
   <FormField>
     <Switch bind:checked={checked2} color="secondary" icons={false} />
-    <span slot="label">Fields of grain.</span>
+    {#snippet label()}
+      Fields of grain.
+    {/snippet}
   </FormField>
 </div>
 

@@ -1,21 +1,29 @@
 <div>
   <FormField>
     <Radio class="my-colored-radio" bind:group={selected} value="on" />
-    <span slot="label">Custom</span>
+    {#snippet label()}
+      Custom
+    {/snippet}
   </FormField>
   <FormField>
     <Radio class="my-colored-radio" bind:group={selected} value="off" />
-    <span slot="label">Color</span>
+    {#snippet label()}
+      Color
+    {/snippet}
   </FormField>
 </div>
 <div>
   <FormField>
     <Radio class="my-colored-radio" disabled group="off" value="on" />
-    <span slot="label">Disabled</span>
+    {#snippet label()}
+      Disabled
+    {/snippet}
   </FormField>
   <FormField>
     <Radio class="my-colored-radio" disabled group="on" value="on" />
-    <span slot="label">Checked</span>
+    {#snippet label()}
+      Checked
+    {/snippet}
   </FormField>
 </div>
 
@@ -23,21 +31,29 @@
 <div>
   <FormField>
     <Radio class="my-fully-colored-radio" bind:group={selected2} value="on" />
-    <span slot="label">Fully</span>
+    {#snippet label()}
+      Fully
+    {/snippet}
   </FormField>
   <FormField>
     <Radio class="my-fully-colored-radio" bind:group={selected2} value="off" />
-    <span slot="label">Colored</span>
+    {#snippet label()}
+      Colored
+    {/snippet}
   </FormField>
 </div>
 <div>
   <FormField>
     <Radio class="my-fully-colored-radio" disabled group="off" value="on" />
-    <span slot="label">Disabled</span>
+    {#snippet label()}
+      Disabled
+    {/snippet}
   </FormField>
   <FormField>
     <Radio class="my-fully-colored-radio" disabled group="on" value="on" />
-    <span slot="label">Checked</span>
+    {#snippet label()}
+      Checked
+    {/snippet}
   </FormField>
 </div>
 

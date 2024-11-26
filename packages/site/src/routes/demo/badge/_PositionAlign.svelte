@@ -10,9 +10,9 @@
   {#each positions as pos}
     <FormField>
       <Radio bind:group={position} value={pos} />
-      <span slot="label">
+      {#snippet label()}
         {pos}
-      </span>
+      {/snippet}
     </FormField>
   {/each}
 </div>
@@ -22,9 +22,9 @@
   {#each alignmentsY as alignment}
     <FormField>
       <Radio bind:group={alignY} value={alignment} />
-      <span slot="label">
+      {#snippet label()}
         {alignment}
-      </span>
+      {/snippet}
     </FormField>
   {/each}
 </div>
@@ -34,9 +34,9 @@
   {#each alignmentsX as alignment}
     <FormField>
       <Radio bind:group={alignX} value={alignment} />
-      <span slot="label">
+      {#snippet label()}
         {alignment}
-      </span>
+      {/snippet}
     </FormField>
   {/each}
 </div>

@@ -1,7 +1,9 @@
 <div>
   <FormField>
     <Checkbox bind:checked={secondaryColor} />
-    <span slot="label">Secondary</span>
+    {#snippet label()}
+      Secondary
+    {/snippet}
   </FormField>
 </div>
 

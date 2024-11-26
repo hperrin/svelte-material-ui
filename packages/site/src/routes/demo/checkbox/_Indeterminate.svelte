@@ -8,7 +8,9 @@
     if `checked` is null.
   -->
   <Checkbox bind:checked indeterminate={checked === null} input$required />
-  <span slot="label">I agree to the terms.</span>
+  {#snippet label()}
+    I agree to the terms.
+  {/snippet}
 </FormField>
 
 <br />

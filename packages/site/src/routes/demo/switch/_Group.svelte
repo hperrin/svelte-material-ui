@@ -6,9 +6,9 @@
         value={option.name}
         disabled={option.disabled}
       />
-      <span slot="label"
-        >{option.name}{option.disabled ? ' (disabled)' : ''}</span
-      >
+      {#snippet label()}
+        {option.name}{option.disabled ? ' (disabled)' : ''}
+      {/snippet}
     </FormField>
   </div>
 {/each}

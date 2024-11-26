@@ -3,15 +3,21 @@
 <div>
   <FormField>
     <Checkbox bind:checked={open} />
-    <span slot="label">Open</span>
+    {#snippet label()}
+      Open
+    {/snippet}
   </FormField>
   <FormField>
     <Checkbox bind:checked={centered} />
-    <span slot="label">Centered</span>
+    {#snippet label()}
+      Centered
+    {/snippet}
   </FormField>
   <FormField>
     <Checkbox bind:checked={mobileStacked} />
-    <span slot="label">Mobile Stacked</span>
+    {#snippet label()}
+      Mobile Stacked
+    {/snippet}
   </FormField>
 </div>
 

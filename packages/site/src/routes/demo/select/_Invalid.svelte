@@ -18,7 +18,9 @@
     <div style="margin-top: 1em;">
       <FormField>
         <Checkbox bind:checked={invalidA} />
-        <span slot="label"> Invalid </span>
+        {#snippet label()}
+          Invalid
+        {/snippet}
       </FormField>
     </div>
 

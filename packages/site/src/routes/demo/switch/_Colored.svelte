@@ -1,19 +1,25 @@
 <div>
   <FormField>
     <Switch class="my-colored-switch" />
-    <span slot="label">Custom Color</span>
+    {#snippet label()}
+      Custom Color
+    {/snippet}
   </FormField>
 </div>
 <div>
   <FormField>
     <Switch class="my-colored-switch" disabled />
-    <span slot="label">Disabled</span>
+    {#snippet label()}
+      Disabled
+    {/snippet}
   </FormField>
 </div>
 <div>
   <FormField>
     <Switch class="my-colored-switch" disabled checked />
-    <span slot="label">Disabled, Checked</span>
+    {#snippet label()}
+      Disabled, Checked
+    {/snippet}
   </FormField>
 </div>
 
@@ -21,19 +27,25 @@
 <div>
   <FormField>
     <Switch class="my-fully-colored-switch" />
-    <span slot="label">Fully Colored</span>
+    {#snippet label()}
+      Fully Colored
+    {/snippet}
   </FormField>
 </div>
 <div>
   <FormField>
     <Switch class="my-fully-colored-switch" disabled />
-    <span slot="label">Disabled</span>
+    {#snippet label()}
+      Disabled
+    {/snippet}
   </FormField>
 </div>
 <div>
   <FormField>
     <Switch class="my-fully-colored-switch" disabled checked />
-    <span slot="label">Disabled, Checked</span>
+    {#snippet label()}
+      Disabled, Checked
+    {/snippet}
   </FormField>
 </div>
 

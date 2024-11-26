@@ -8,7 +8,9 @@
 
 <FormField>
   <Checkbox bind:checked={closed} />
-  <span slot="label">Closed</span>
+  {#snippet label()}
+    Closed
+  {/snippet}
 </FormField>
 
 <script lang="ts">

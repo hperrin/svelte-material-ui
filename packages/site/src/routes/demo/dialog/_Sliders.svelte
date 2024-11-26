@@ -14,19 +14,25 @@
           use={[InitialFocus]}
           style="width: 100%;"
         />
-        <span slot="label">Media Volume</span>
+        {#snippet label()}
+          Media Volume
+        {/snippet}
       </FormField>
     </div>
     <div>
       <FormField style="display: flex; flex-direction: column-reverse;">
         <Slider bind:value={volumeRingtone} style="width: 100%;" />
-        <span slot="label">Ringtone Volume</span>
+        {#snippet label()}
+          Ringtone Volume
+        {/snippet}
       </FormField>
     </div>
     <div>
       <FormField style="display: flex; flex-direction: column-reverse;">
         <Slider bind:value={volumeAlarm} style="width: 100%;" />
-        <span slot="label">Alarm Volume</span>
+        {#snippet label()}
+          Alarm Volume
+        {/snippet}
       </FormField>
     </div>
   </Content>

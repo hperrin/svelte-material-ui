@@ -2,12 +2,11 @@
 
 <FormField align="end" style="display: flex;">
   <Slider style="flex-grow: 1;" bind:value />
-  <span
-    slot="label"
-    style="padding-right: 12px; width: max-content; display: block;"
-  >
-    Amount of Wonder
-  </span>
+  {#snippet label()}
+    <span style="padding-inline-end: 12px; width: max-content; display: block;">
+      Amount of Wonder
+    </span>
+  {/snippet}
 </FormField>
 
 {#if value == 0}

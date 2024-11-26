@@ -4,7 +4,9 @@
   <div>
     <FormField>
       <Checkbox bind:checked={withFab} />
-      <span slot="label">With FAB</span>
+      {#snippet label()}
+        With FAB
+      {/snippet}
     </FormField>
   </div>
 

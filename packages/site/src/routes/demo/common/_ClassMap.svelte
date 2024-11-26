@@ -13,12 +13,16 @@
 <div>
   <FormField style="margin-right: 1em;">
     <Checkbox bind:checked={big} />
-    <span slot="label">Big</span>
+    {#snippet label()}
+      Big
+    {/snippet}
   </FormField>
   {#each ['red', 'blue', 'green'] as option}
     <FormField style="margin-right: 1em;">
       <Radio bind:group={color} value={option} />
-      <span slot="label">{`${option[0].toUpperCase()}${option.slice(1)}`}</span>
+      {#snippet label()}
+        {`${option[0].toUpperCase()}${option.slice(1)}`}
+      {/snippet}
     </FormField>
   {/each}
 </div>

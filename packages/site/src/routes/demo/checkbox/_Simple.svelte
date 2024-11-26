@@ -1,7 +1,9 @@
 <div>
   <FormField>
     <Checkbox bind:checked />
-    <span slot="label">Remember me.</span>
+    {#snippet label()}
+      Remember me.
+    {/snippet}
   </FormField>
 </div>
 
@@ -10,7 +12,9 @@
 <div style="margin-top: 1em;">
   <FormField align="end">
     <Checkbox bind:checked={checked2} />
-    <span slot="label">Remember me.</span>
+    {#snippet label()}
+      Remember me.
+    {/snippet}
   </FormField>
 </div>
 

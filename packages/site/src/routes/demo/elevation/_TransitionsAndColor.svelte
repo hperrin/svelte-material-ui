@@ -5,7 +5,9 @@
 
 <FormField>
   <Checkbox bind:checked={liftMeUp} />
-  <span slot="label">You raise me up, so I can stand on mountains!</span>
+  {#snippet label()}
+    You raise me up, so I can stand on mountains!
+  {/snippet}
 </FormField>
 
 <br /><br />

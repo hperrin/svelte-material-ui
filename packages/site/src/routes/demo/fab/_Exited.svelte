@@ -7,7 +7,9 @@
   <div class="margins">
     <FormField>
       <Checkbox bind:checked={exited} />
-      <span slot="label">Exited</span>
+      {#snippet label()}
+        Exited
+      {/snippet}
     </FormField>
   </div>
 </div>
@@ -21,7 +23,9 @@
   <div class="margins">
     <FormField>
       <Checkbox bind:checked={exitedPrimary} />
-      <span slot="label">Exited</span>
+      {#snippet label()}
+        Exited
+      {/snippet}
     </FormField>
   </div>
 </div>
