@@ -1,10 +1,8 @@
-<svelte:options runes={false} />
-
 <FormField>
   <Checkbox bind:checked />
-  <span slot="label">
+  {#snippet label()}
     Form fields let you click the label to toggle or focus the form control.
-  </span>
+  {/snippet}
 </FormField>
 
 <pre class="status">Checked: {checked ? 'Yes' : 'No'}</pre>
@@ -13,5 +11,5 @@
   import FormField from '@smui/form-field';
   import Checkbox from '@smui/checkbox';
 
-  let checked = false;
+  let checked = $state(false);
 </script>
