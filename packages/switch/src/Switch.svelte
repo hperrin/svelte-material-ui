@@ -1,4 +1,4 @@
-<svelte:options runes={false} />
+<svelte:options runes={true} />
 
 <button
   bind:this={element}
@@ -27,12 +27,12 @@
   aria-checked={selected ? 'true' : 'false'}
   {disabled}
   {...inputProps}
-  {...exclude($$restProps, ['icons$'])}
+  {...exclude(restProps, ['icons$'])}
   onclick={(e) => {
     if (instance) {
       instance.handleClick();
     }
-    $$restProps.onclick?.(e);
+    restProps.onclick?.(e);
   }}
 >
   <div class="mdc-switch__track"></div>
@@ -49,7 +49,7 @@
             [icons$class]: true,
             'mdc-switch__icons': true,
           })}
-          {...prefixFilter($$restProps, 'icons$')}
+          {...prefixFilter(restProps, 'icons$')}
         >
           <svg
             class="mdc-switch__icon mdc-switch__icon--on"
@@ -98,61 +98,103 @@
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
 
-  type OwnProps = {
-    use?: ActionArray;
-    class?: string;
-    disabled?: boolean;
-    focusRing?: boolean;
-    color?: 'primary' | 'secondary';
-    group?: any[];
-    checked?: boolean;
-    value?: any;
-    /** This currently does nothing. */
-    processing?: boolean;
-    icons?: boolean;
-    icons$use?: ActionArray;
-    icons$class?: string;
-  };
-  type $$Props = OwnProps &
-    SmuiAttrs<'button', keyof OwnProps> & {
-      [k in keyof SmuiElementPropMap['div'] as `icons\$${k}`]?: SmuiElementPropMap['div'][k];
-    };
-
   interface UninitializedValue extends Function {}
   let uninitializedValue: UninitializedValue = () => {};
   function isUninitializedValue(value: any): value is UninitializedValue {
     return value === uninitializedValue;
   }
 
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let disabled = false;
-  export let focusRing = false;
-  export let color: 'primary' | 'secondary' = 'primary';
-  export let group: UninitializedValue | any[] = uninitializedValue;
-  export let checked: UninitializedValue | boolean = uninitializedValue;
-  export let value: any = null;
-  /** This currently does nothing. */
-  export let processing = false;
-  export let icons = true;
-  export let icons$use: ActionArray = [];
-  export let icons$class = '';
+  type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
+    use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
+    class?: string;
+    /**
+     * Whether the input is disabled.
+     */
+    disabled?: boolean;
+    /**
+     * Whether to show a focus fing.
+     */
+    focusRing?: boolean;
+    /**
+     * The color of the switch.
+     */
+    color?: 'primary' | 'secondary';
+    /**
+     * An array of items to pick from.
+     *
+     * If the switch is in a group, the values for the checked items will be
+     * added to the array passed in the `value` prop.
+     */
+    group?: any[];
+    /**
+     * Whether the switch is checked.
+     */
+    checked?: boolean;
+    /**
+     * An array of currently selected values.
+     *
+     * This is the array that is added to/taken from when the switch is in a
+     * group.
+     */
+    value?: any;
+    /**
+     * This currently does nothing.
+     */
+    processing?: boolean;
+    /**
+     * Whether to show icons.
+     */
+    icons?: boolean;
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
+    icons$use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
+    icons$class?: string;
+  };
+  let {
+    use = $bindable([]),
+    class: className = $bindable(''),
+    disabled = $bindable(false),
+    focusRing = $bindable(false),
+    color = $bindable('primary'),
+    group = $bindable(uninitializedValue as unknown as any[]),
+    checked = $bindable(uninitializedValue as unknown as boolean),
+    value = $bindable(null),
+    processing = $bindable(false),
+    icons = $bindable(true),
+    icons$use = $bindable([]),
+    icons$class = $bindable(''),
+    ...restProps
+  }: OwnProps &
+    SmuiAttrs<'button', keyof OwnProps> & {
+      [k in keyof SmuiElementPropMap['div'] as `icons\$${k}`]?: SmuiElementPropMap['div'][k];
+    } = $props();
 
   let element: HTMLButtonElement;
-  let instance: MDCSwitchRenderFoundation;
-  let internalClasses: { [k: string]: boolean } = {};
-  let rippleElement: HTMLDivElement;
-  let rippleActive = false;
-  let inputProps =
-    getContext<{ id?: string } | undefined>('SMUI:generic:input:props') ?? {};
-  let selected = isUninitializedValue(group)
-    ? isUninitializedValue(checked)
-      ? false
-      : checked
-    : group.indexOf(value) !== -1;
-  let state = {
+  let instance: MDCSwitchRenderFoundation | undefined = $state();
+  let internalClasses: { [k: string]: boolean } = $state({});
+  let rippleElement: HTMLDivElement | undefined = $state();
+  let rippleActive = $state(false);
+  let inputProps = $state(
+    getContext<{ id?: string } | undefined>('SMUI:generic:input:props') ?? {},
+  );
+  let selected = $state(
+    isUninitializedValue(group)
+      ? isUninitializedValue(checked)
+        ? false
+        : checked
+      : group.findIndex((val) => val === value) !== -1,
+  );
+  let switchState = {
     get disabled() {
       return disabled;
     },
@@ -176,7 +218,7 @@
   let previousChecked = checked;
   let previousGroup = isUninitializedValue(group) ? [] : [...group];
   let previousSelected = selected;
-  $: {
+  $effect(() => {
     // This is a substitute for an onchange listener that is
     // smarter about when it calls the instance's handler. I do
     // this so that a group of changes will only trigger one
@@ -189,26 +231,24 @@
     if (!isUninitializedValue(group)) {
       if (previousSelected !== selected) {
         // The change needs to flow up.
-        const idx = group.indexOf(value);
+        const idx = group.findIndex((val) => val === value);
         if (selected && idx === -1) {
           group.push(value);
-          group = group;
         } else if (!selected && idx !== -1) {
           group.splice(idx, 1);
-          group = group;
         }
         notifyChange = true;
       } else {
         // Potential changes need to flow down.
-        const idxPrev = previousGroup.indexOf(value);
-        const idx = group.indexOf(value);
+        const idxPrev = previousGroup.findIndex((val) => val === value);
+        const idx = group.findIndex((val) => val === value);
 
         if (idxPrev > -1 && idx === -1) {
           // The checkbox was removed from the group.
-          state.selected = false;
+          switchState.selected = false;
         } else if (idx > -1 && idxPrev === -1) {
           // The checkbox was added to the group.
-          state.selected = true;
+          switchState.selected = true;
         }
       }
     }
@@ -228,7 +268,7 @@
       } else {
         // The checkbox was changed programmatically
         // and the change needs to flow down.
-        state.selected = checked;
+        switchState.selected = checked;
       }
     }
 
@@ -238,7 +278,7 @@
     if (notifyChange && getElement()) {
       dispatch(getElement(), 'SMUISwitchChange', { selected, value });
     }
-  }
+  });
 
   const SMUIGenericInputMount = getContext<
     ((accessor: SMUISwitchInputAccessor) => void) | undefined
@@ -259,7 +299,7 @@
       setDisabled: (value: boolean) => {
         disabled = value;
       },
-      state,
+      state: switchState,
     } as MDCSwitchRenderAdapter);
 
     const accessor: SMUISwitchInputAccessor = {
@@ -271,7 +311,7 @@
       },
       set checked(checked) {
         if (selected !== checked) {
-          state.selected = checked;
+          switchState.selected = checked;
           if (getElement()) {
             dispatch(getElement(), 'SMUISwitchChange', {
               selected: checked,
@@ -298,7 +338,7 @@
     return () => {
       SMUIGenericInputUnmount && SMUIGenericInputUnmount(accessor);
 
-      instance.destroy();
+      instance?.destroy();
     };
   });
 

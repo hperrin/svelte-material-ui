@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 {#each options as option}
   <div>
     <FormField>
@@ -68,5 +66,5 @@
       disabled: false,
     },
   ];
-  let selected = ['Happy', 'Grumpy'];
+  let selected = $state(['Happy', 'Grumpy']);
 </script>
