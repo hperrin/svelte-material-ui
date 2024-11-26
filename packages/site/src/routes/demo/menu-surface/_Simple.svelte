@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <MenuSurface static style="max-width: 350px;">
   <p style="margin: 1em;">
     This is a menu surface. It's similar to a menu. It is more versatile, but

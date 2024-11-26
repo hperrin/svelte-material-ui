@@ -26,7 +26,7 @@
       'menu-surface/_ManualAnchor.scss',
     ]}
   >
-    Anchored manually
+    Anchored manually, origin corner flipped horizontally
   </Demo>
 
   <div style="padding-top: 200px;">Long div for scrolling...</div>

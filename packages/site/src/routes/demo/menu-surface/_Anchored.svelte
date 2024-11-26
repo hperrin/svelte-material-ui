@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div style="min-width: 100px;">
   <Button onclick={() => surface.setOpen(true)}>Open Menu Surface</Button>
   <MenuSurface bind:this={surface} anchorCorner="BOTTOM_LEFT">
@@ -21,6 +19,6 @@
   import Button from '@smui/button';
 
   let surface: MenuSurface;
-  let name = '';
-  let email = '';
+  let name = $state('');
+  let email = $state('');
 </script>

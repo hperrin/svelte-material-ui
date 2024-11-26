@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <MenuSurface static>
   <List>
     <Item onSMUIAction={() => (clicked = 'Cut')}>
@@ -24,5 +22,5 @@
   import MenuSurface from '@smui/menu-surface';
   import List, { Item, Separator, Text } from '@smui/list';
 
-  let clicked = 'nothing yet';
+  let clicked = $state('nothing yet');
 </script>
