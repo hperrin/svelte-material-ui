@@ -38,9 +38,9 @@
 
   // Remember to update $$Props if you add/remove/rename props.
   let {
-    use = $bindable([]),
-    class: className = $bindable(''),
-    variant = $bindable('text'),
+    use = [],
+    class: className = '',
+    variant = 'text',
     children,
     ...restProps
   }: OwnProps & SmuiAttrs<'div', keyof OwnProps> = $props();

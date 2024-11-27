@@ -61,12 +61,12 @@
     children?: Snippet;
   };
   let {
-    use = $bindable([]),
-    class: className = $bindable(''),
-    square = $bindable(false),
-    color = $bindable('primary'),
-    position = $bindable('middle'),
-    align = $bindable('top-end'),
+    use = [],
+    class: className = '',
+    square = false,
+    color = 'primary',
+    position = 'middle',
+    align = 'top-end',
     children,
     ...restProps
   }: OwnProps & SmuiAttrs<'span', keyof OwnProps> = $props();

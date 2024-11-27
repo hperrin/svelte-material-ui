@@ -91,11 +91,11 @@
      *
      * You should only need this if you set `anchor` to false.
      */
-    anchorElement?: Element | undefined;
+    anchorElement?: Element;
     /**
      * Default anchor corner alignment of top left menu surface corner.
      */
-    anchorCorner?: Corner | keyof typeof Corner | undefined;
+    anchorCorner?: Corner | keyof typeof Corner;
     /**
      * The margin to put between the anchor and the menu.
      */
@@ -127,23 +127,23 @@
     children?: Snippet;
   };
   let {
-    use = $bindable([]),
-    class: className = $bindable(''),
-    style = $bindable(''),
-    static: isStatic = $bindable(false),
-    anchor = $bindable(true),
-    fixed = $bindable(false),
+    use = [],
+    class: className = '',
+    style = '',
+    static: isStatic = false,
+    anchor = true,
+    fixed = false,
     open = $bindable(isStatic),
-    managed = $bindable(false),
-    fullWidth = $bindable(false),
-    quickOpen = $bindable(false),
-    anchorElement = $bindable(undefined),
-    anchorCorner = $bindable(undefined),
-    anchorMargin = $bindable({ top: 0, right: 0, bottom: 0, left: 0 }),
-    maxHeight = $bindable(0),
-    horizontallyCenteredOnViewport = $bindable(false),
-    openBottomBias = $bindable(0),
-    neverRestoreFocus = $bindable(false),
+    managed = false,
+    fullWidth = false,
+    quickOpen = false,
+    anchorElement = $bindable(),
+    anchorCorner,
+    anchorMargin = { top: 0, right: 0, bottom: 0, left: 0 },
+    maxHeight = 0,
+    horizontallyCenteredOnViewport = false,
+    openBottomBias = 0,
+    neverRestoreFocus = false,
     children,
     ...restProps
   }: OwnProps & SmuiAttrs<'div', keyof OwnProps> = $props();

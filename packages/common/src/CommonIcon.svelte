@@ -59,11 +59,11 @@
     children?: Snippet;
   };
   let {
-    use = $bindable([]),
-    class: className = $bindable(''),
-    on = $bindable(false),
-    component: MyComponent = $bindable(SmuiElement),
-    tag = $bindable('i' as TagName),
+    use = [],
+    class: className = '',
+    on = false,
+    component: MyComponent = SmuiElement,
+    tag = 'i' as TagName,
     children,
     ...restProps
   }: OwnProps & SmuiAttrs<TagName, keyof OwnProps> = $props();

@@ -161,18 +161,18 @@
     icons$class?: string;
   };
   let {
-    use = $bindable([]),
-    class: className = $bindable(''),
+    use = [],
+    class: className = '',
     disabled = $bindable(false),
-    focusRing = $bindable(false),
-    color = $bindable('primary'),
+    focusRing = false,
+    color = 'primary',
     group = $bindable(uninitializedValue as unknown as any[]),
     checked = $bindable(uninitializedValue as unknown as boolean),
-    value = $bindable(null),
-    processing = $bindable(false),
-    icons = $bindable(true),
-    icons$use = $bindable([]),
-    icons$class = $bindable(''),
+    value = null,
+    processing = false,
+    icons = true,
+    icons$use = [],
+    icons$class = '',
     ...restProps
   }: OwnProps &
     SmuiAttrs<'button', keyof OwnProps> & {

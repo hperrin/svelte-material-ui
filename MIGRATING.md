@@ -9,6 +9,7 @@ This doc contains information that will help you migrate your code from an older
 - Svelte 5 is required! Svelte 4 will not work.
 - Events have been renamed, removing colons and adopting CamelCase. (ex: SMUISwitch:change to SMUISwitchChange)
 - Event modifiers are now wrapper functions, exported from `@smui/common/events`.
+- Slots must be migrated to snippets.
 - The deprecated "MDC" events have been removed. All event names should be migrated to the corresponding "SMUI" event names.
 - The "Fixation" theme now uses Tahoma as its large header font.
 

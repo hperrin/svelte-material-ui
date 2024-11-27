@@ -32,8 +32,8 @@
     children?: Snippet;
   };
   let {
-    use = $bindable([]),
-    class: className = $bindable(''),
+    use = [],
+    class: className = '',
     children,
     ...restProps
   }: OwnProps & SmuiAttrs<'label', keyof OwnProps> = $props();

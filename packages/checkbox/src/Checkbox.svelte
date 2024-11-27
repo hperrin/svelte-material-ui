@@ -156,18 +156,18 @@
     input$class?: string;
   };
   let {
-    use = $bindable([]),
-    class: className = $bindable(''),
-    style = $bindable(''),
+    use = [],
+    class: className = '',
+    style = '',
     disabled = $bindable(false),
-    touch = $bindable(false),
+    touch = false,
     indeterminate = $bindable(uninitializedValue as unknown as boolean),
     group = $bindable(uninitializedValue as unknown as any[]),
     checked = $bindable(uninitializedValue as unknown as boolean),
-    value = $bindable(null),
-    valueKey = $bindable(uninitializedValue as unknown as string),
-    input$use = $bindable([]),
-    input$class = $bindable(''),
+    value = null,
+    valueKey = uninitializedValue as unknown as string,
+    input$use = [],
+    input$class = '',
     ...restProps
   }: OwnProps &
     SmuiAttrs<'div', keyof OwnProps> & {

@@ -73,15 +73,15 @@
   let nav = getContext<boolean | undefined>('SMUI:list:item:nav');
   let context = getContext<string | undefined>('SMUI:separator:context');
   let {
-    use = $bindable([]),
-    class: className = $bindable(''),
-    padded = $bindable(false),
-    inset = $bindable(false),
-    insetLeading = $bindable(false),
-    insetTrailing = $bindable(false),
-    insetPadding = $bindable(false),
-    component: MyComponent = $bindable(SmuiElement),
-    tag = $bindable((nav || context !== 'list' ? 'hr' : 'li') as TagName),
+    use = [],
+    class: className = '',
+    padded = false,
+    inset = false,
+    insetLeading = false,
+    insetTrailing = false,
+    insetPadding = false,
+    component: MyComponent = SmuiElement,
+    tag = (nav || context !== 'list' ? 'hr' : 'li') as TagName,
     children,
     ...restProps
   }: OwnProps & SmuiAttrs<TagName, keyof OwnProps> = $props();

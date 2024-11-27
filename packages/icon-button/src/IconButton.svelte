@@ -129,11 +129,11 @@
     /**
      * The ARIA label for the pressed state.
      */
-    ariaLabelOn?: string | undefined;
+    ariaLabelOn?: string;
     /**
      * The ARIA label for the unpressed stated.
      */
-    ariaLabelOff?: string | undefined;
+    ariaLabelOff?: string;
     /**
      * Whether to use touch styling
      */
@@ -159,8 +159,7 @@
       | 'prev-page'
       | 'next-page'
       | 'last-page'
-      | string
-      | undefined;
+      | string;
     /**
      * The component to use to render the element.
      */
@@ -173,22 +172,22 @@
     children?: Snippet;
   };
   let {
-    use = $bindable([]),
-    class: className = $bindable(''),
-    style = $bindable(''),
-    ripple = $bindable(true),
-    color = $bindable(undefined),
-    toggle = $bindable(false),
+    use = [],
+    class: className = '',
+    style = '',
+    ripple = true,
+    color,
+    toggle = false,
     pressed = $bindable(uninitializedValue as unknown as boolean),
-    ariaLabelOn = $bindable(undefined),
-    ariaLabelOff = $bindable(undefined),
-    touch = $bindable(false),
-    displayFlex = $bindable(true),
-    size = $bindable('normal'),
-    href = $bindable(undefined),
-    action = $bindable(undefined),
-    component: MyComponent = $bindable(SmuiElement),
-    tag = $bindable((href == null ? 'button' : 'a') as TagName),
+    ariaLabelOn,
+    ariaLabelOff,
+    touch = false,
+    displayFlex = true,
+    size = 'normal',
+    href,
+    action,
+    component: MyComponent = SmuiElement,
+    tag = (href == null ? 'button' : 'a') as TagName,
     children,
     ...restProps
   }: OwnProps & SmuiAttrs<TagName, keyof OwnProps> = $props();

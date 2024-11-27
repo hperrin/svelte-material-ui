@@ -96,20 +96,20 @@
     /**
      * You can specify the scroll target if needed.
      */
-    scrollTarget?: HTMLElement | undefined;
+    scrollTarget?: HTMLElement;
 
     children?: Snippet;
   };
   let {
-    use = $bindable([]),
-    class: className = $bindable(''),
-    style = $bindable(''),
-    variant = $bindable('standard'),
-    color = $bindable('primary'),
+    use = [],
+    class: className = '',
+    style = '',
+    variant = 'standard',
+    color = 'primary',
     collapsed = $bindable(uninitializedValue as unknown as boolean),
-    prominent = $bindable(false),
-    dense = $bindable(false),
-    scrollTarget = $bindable(undefined),
+    prominent = false,
+    dense = false,
+    scrollTarget,
     children,
     ...restProps
   }: OwnProps & SmuiAttrs<'header', keyof OwnProps> = $props();

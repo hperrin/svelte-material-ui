@@ -54,11 +54,11 @@
     children?: Snippet;
   };
   let {
-    use = $bindable([]),
-    class: className = $bindable(''),
-    style = $bindable(''),
-    variant = $bindable('standard'),
-    color = $bindable('primary'),
+    use = [],
+    class: className = '',
+    style = '',
+    variant = 'standard',
+    color = 'primary',
     children,
     ...restProps
   }: OwnProps & SmuiAttrs<'div', keyof OwnProps> = $props();

@@ -44,8 +44,8 @@
     children?: Snippet;
   };
   let {
-    use = $bindable([]),
-    tag = $bindable('div' as TagName),
+    use = [],
+    tag = 'div' as TagName,
     children,
     ...restProps
   }: OwnProps & SmuiAttrs<TagName, keyof OwnProps> = $props();

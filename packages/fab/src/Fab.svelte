@@ -115,19 +115,19 @@
     children?: Snippet;
   };
   let {
-    use = $bindable([]),
-    class: className = $bindable(''),
-    style = $bindable(''),
-    ripple = $bindable(true),
-    focusRing = $bindable(false),
-    color = $bindable('secondary'),
-    mini = $bindable(false),
-    exited = $bindable(false),
-    extended = $bindable(false),
-    touch = $bindable(false),
-    href = $bindable(undefined),
-    component: MyComponent = $bindable(SmuiElement),
-    tag = $bindable((href == null ? 'button' : 'a') as TagName),
+    use = [],
+    class: className = '',
+    style = '',
+    ripple = true,
+    focusRing = false,
+    color = 'secondary',
+    mini = false,
+    exited = false,
+    extended = false,
+    touch = false,
+    href,
+    component: MyComponent = SmuiElement,
+    tag = (href == null ? 'button' : 'a') as TagName,
     children,
     ...restProps
   }: OwnProps & SmuiAttrs<TagName, keyof OwnProps> = $props();

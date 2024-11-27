@@ -173,27 +173,25 @@
   };
   let nav = getContext<boolean | undefined>('SMUI:list:item:nav');
   let {
-    use = $bindable([]),
-    class: className = $bindable(''),
-    style = $bindable(''),
-    color = $bindable(undefined),
-    nonInteractive = $bindable(
-      getContext<boolean | undefined>('SMUI:list:nonInteractive') ?? false,
-    ),
-    ripple = $bindable(!nonInteractive),
-    wrapper = $bindable(false),
+    use = [],
+    class: className = '',
+    style = '',
+    color,
+    nonInteractive = getContext<boolean | undefined>(
+      'SMUI:list:nonInteractive',
+    ) ?? false,
+    ripple = !nonInteractive,
+    wrapper = false,
     activated = $bindable(false),
-    role = $bindable(
-      wrapper ? 'presentation' : getContext('SMUI:list:item:role'),
-    ),
+    role = wrapper ? 'presentation' : getContext('SMUI:list:item:role'),
     selected = $bindable(false),
-    disabled = $bindable(false),
-    skipRestoreFocus = $bindable(false),
+    disabled = false,
+    skipRestoreFocus = false,
     tabindex: tabindexProp = $bindable(uninitializedValue as unknown as number),
-    inputId = $bindable('SMUI-form-field-list-' + counter++),
-    href = $bindable(undefined),
-    component: MyComponent = $bindable(SmuiElement),
-    tag = $bindable((nav ? (href ? 'a' : 'span') : 'li') as TagName),
+    inputId = 'SMUI-form-field-list-' + counter++,
+    href,
+    component: MyComponent = SmuiElement,
+    tag = (nav ? (href ? 'a' : 'span') : 'li') as TagName,
     children,
     ...restProps
   }: SmuiAttrs<TagName, keyof OwnProps> &

@@ -25,7 +25,7 @@
     children?: Snippet;
   };
   let {
-    use = $bindable([]),
+    use = [],
     children,
     ...restProps
   }: OwnProps & SmuiAttrs<'svg', keyof OwnProps> = $props();

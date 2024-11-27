@@ -64,13 +64,13 @@
     children?: Snippet;
   };
   let {
-    use = $bindable([]),
-    class: className = $bindable(''),
-    variant = $bindable('raised'),
-    square = $bindable(false),
-    color = $bindable('default'),
-    elevation = $bindable(1),
-    transition = $bindable(false),
+    use = [],
+    class: className = '',
+    variant = 'raised',
+    square = false,
+    color = 'default',
+    elevation = 1,
+    transition = false,
     children,
     ...restProps
   }: OwnProps & SmuiAttrs<'div', keyof OwnProps> = $props();

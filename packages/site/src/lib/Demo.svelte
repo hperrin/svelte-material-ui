@@ -112,7 +112,7 @@
   import Tooltip, { Wrapper } from '@smui/tooltip';
 
   let {
-    file = undefined,
+    file,
     files = typeof file === 'string' ? [file] : [],
     component: DemoComponent,
     children,

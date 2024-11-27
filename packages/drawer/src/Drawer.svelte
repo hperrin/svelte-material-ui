@@ -75,11 +75,11 @@
     children?: Snippet;
   };
   let {
-    use = $bindable([]),
-    class: className = $bindable(''),
-    variant = $bindable(undefined),
+    use = [],
+    class: className = '',
+    variant,
     open = $bindable(false),
-    fixed = $bindable(true),
+    fixed = true,
     children,
     ...restProps
   }: OwnProps & SmuiAttrs<'aside', keyof OwnProps> = $props();

@@ -39,9 +39,9 @@
     children?: Snippet;
   };
   let {
-    use = $bindable([]),
-    class: className = $bindable(''),
-    fabInset = $bindable(false),
+    use = [],
+    class: className = '',
+    fabInset = false,
     children,
     ...restProps
   }: Omit<ComponentProps<typeof Paper>, keyof OwnProps> &

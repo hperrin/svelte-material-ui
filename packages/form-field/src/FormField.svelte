@@ -75,12 +75,12 @@
     label?: Snippet;
   };
   let {
-    use = $bindable([]),
-    class: className = $bindable(''),
-    align = $bindable('start'),
-    noWrap = $bindable(false),
-    inputId = $bindable('SMUI-form-field-' + counter++),
-    label$use = $bindable([]),
+    use = [],
+    class: className = '',
+    align = 'start',
+    noWrap = false,
+    inputId = 'SMUI-form-field-' + counter++,
+    label$use = [],
     children,
     label,
     ...restProps
