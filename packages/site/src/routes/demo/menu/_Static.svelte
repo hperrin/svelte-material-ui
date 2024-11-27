@@ -1,6 +1,4 @@
-<svelte:options runes={false} />
-
-<Menu static>
+<Menu static neverRestoreFocus>
   <List>
     <Item onSMUIAction={() => (clicked = 'Cut')}>
       <Text>Cut</Text>
@@ -24,5 +22,5 @@
   import Menu from '@smui/menu';
   import List, { Item, Separator, Text } from '@smui/list';
 
-  let clicked = 'nothing yet';
+  let clicked = $state('nothing yet');
 </script>

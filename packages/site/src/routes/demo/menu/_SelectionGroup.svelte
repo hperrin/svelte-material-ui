@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div style="min-width: 100px;">
   <Button onclick={() => menu.setOpen(true)}>
     <Label>Open Menu</Label>
@@ -51,7 +49,7 @@
   import Button, { Label } from '@smui/button';
 
   let menu: Menu;
-  let clicked = 'nothing yet';
-  let selected1 = 'Red';
-  let selected2 = 'Small';
+  let clicked = $state('nothing yet');
+  let selected1 = $state('Red');
+  let selected2 = $state('Small');
 </script>

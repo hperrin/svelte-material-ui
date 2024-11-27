@@ -1,4 +1,4 @@
-import type { Component } from 'svelte';
+import type { SvelteComponent, Component } from 'svelte';
 import type {
   HTMLAttributes,
   HTMLAnchorAttributes,
@@ -59,6 +59,15 @@ export type SmuiComponent<
   Exports extends Record<string, any> = {},
   Bindings extends keyof Props | '' = string,
 > = Component<Props, Exports & { getElement(): Element }, Bindings>;
+
+export type ComponentBindings<
+  Comp extends SvelteComponent | Component<any, any>,
+> =
+  Comp extends SvelteComponent<infer Props>
+    ? keyof Props
+    : Comp extends Component<any, any, infer Bindings>
+      ? Bindings
+      : never;
 
 export type SmuiEveryElement = keyof SmuiElementMap;
 export type SmuiHTMLElement = keyof Omit<SmuiElementMap, 'svg'>;

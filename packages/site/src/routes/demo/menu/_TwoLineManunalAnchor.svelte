@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div
   class={Object.keys(anchorClasses).join(' ')}
   use:Anchor={{
@@ -23,7 +21,7 @@
   <Menu
     bind:this={menu}
     anchor={false}
-    bind:anchorElement={anchor}
+    anchorElement={anchor}
     anchorCorner="BOTTOM_LEFT"
   >
     <List twoLine>
@@ -71,7 +69,7 @@
   import Button, { Label } from '@smui/button';
 
   let menu: Menu;
-  let anchor: HTMLDivElement;
-  let anchorClasses: { [k: string]: boolean } = {};
-  let clicked = 'nothing yet';
+  let anchor: HTMLDivElement | undefined = $state();
+  let anchorClasses: { [k: string]: boolean } = $state({});
+  let clicked = $state('nothing yet');
 </script>

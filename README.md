@@ -187,7 +187,7 @@ Svelte 5 Runes mode is being migrated to slowly. This is the todo list of compon
 - [ ] Layout Grid
 - [x] List
 - [x] Menu Surface
-- [ ] Menu
+- [x] Menu
 - [x] Paper
 - Progress Indicators
   - [ ] Circular Progress

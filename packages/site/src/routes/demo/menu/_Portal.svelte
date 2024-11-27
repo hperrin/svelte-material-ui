@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <!--
   Note: This is a very hacky way of creating a sub-menu that has a lot of
   downsides. Don't use this in production, it's meant to show off using a
@@ -64,7 +62,7 @@
     <Menu
       bind:this={subMenu}
       anchor={false}
-      bind:anchorElement
+      {anchorElement}
       anchorCorner="TOP_END"
     >
       <List>
@@ -104,9 +102,9 @@
   let menu: Menu;
   let subMenu: Menu;
   let anchor: Item;
-  let anchorElement: HTMLElement;
-  let anchorClasses: { [k: string]: boolean } = {};
-  let clicked = 'nothing yet';
+  let anchorElement: HTMLElement | undefined = $state();
+  let anchorClasses: { [k: string]: boolean } = $state({});
+  let clicked = $state('nothing yet');
 
   function addClass(className: string) {
     if (!anchorClasses[className]) {
@@ -183,7 +181,10 @@
       }
     });
     subMenuElement.addEventListener('mouseleave', (event) => {
-      if (!contains(anchorElement, event.relatedTarget as HTMLElement)) {
+      if (
+        anchorElement &&
+        !contains(anchorElement, event.relatedTarget as HTMLElement)
+      ) {
         subMenu.setOpen(false);
       }
     });

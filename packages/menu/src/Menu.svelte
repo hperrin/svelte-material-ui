@@ -1,4 +1,4 @@
-<svelte:options runes={false} />
+<svelte:options runes={true} />
 
 <MenuSurface
   bind:this={element}
@@ -8,31 +8,33 @@
     'mdc-menu': true,
   })}
   bind:open
-  {...$$restProps}
+  bind:anchorElement
+  {...restProps}
   onkeydown={(e) => {
     handleKeydown(e);
-    $$restProps.onkeydown?.(e);
+    restProps.onkeydown?.(e);
   }}
   onSMUIMenuSurfaceOpened={(e) => {
     if (instance) {
       instance.handleMenuSurfaceOpened();
     }
-    $$restProps.onSMUIMenuSurfaceOpened?.(e);
+    restProps.onSMUIMenuSurfaceOpened?.(e);
   }}
   onSMUIListAction={(e) => {
-    if (instance) {
+    if (instance && listAccessor) {
       instance.handleItemAction(
         listAccessor.getOrderedList()[e.detail.index].element,
       );
     }
-    $$restProps.onSMUIListAction?.(e);
-  }}><slot /></MenuSurface
+    restProps.onSMUIListAction?.(e);
+  }}
+  >{#if children}{@render children()}{/if}</MenuSurface
 >
 
 <script lang="ts">
   import { MDCMenuFoundation, cssClasses } from '@material/menu';
   import { ponyfill } from '@material/dom';
-  import type { ComponentProps } from 'svelte';
+  import type { ComponentProps, Snippet } from 'svelte';
   import { onMount, getContext, setContext } from 'svelte';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, dispatch } from '@smui/common/internal';
@@ -45,22 +47,35 @@
   const { closest } = ponyfill;
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * Whether the menu is open.
+     */
     open?: boolean;
-  };
-  type $$Props = OwnProps &
-    Omit<ComponentProps<typeof MenuSurface>, keyof OwnProps>;
 
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let open = false;
+    children?: Snippet;
+  };
+  let {
+    use = [],
+    class: className = '',
+    open = $bindable(false),
+    anchorElement = $bindable(),
+    children,
+    ...restProps
+  }: OwnProps &
+    Omit<ComponentProps<typeof MenuSurface>, keyof OwnProps> = $props();
 
   let element: MenuSurface;
-  let instance: MDCMenuFoundation;
-  let menuSurfaceAccessor: SMUIMenuSurfaceAccessor;
-  let listAccessor: SMUIListAccessor;
+  let instance: MDCMenuFoundation | undefined = $state();
+  let menuSurfaceAccessor: SMUIMenuSurfaceAccessor | undefined = $state();
+  let listAccessor: SMUIListAccessor | undefined = $state();
 
   setContext('SMUI:menu-surface:mount', (accessor: SMUIMenuSurfaceAccessor) => {
     if (!menuSurfaceAccessor) {
@@ -87,46 +102,92 @@
   onMount(() => {
     instance = new MDCMenuFoundation({
       addClassToElementAtIndex: (index, className) => {
+        if (listAccessor == null) {
+          throw new Error('List accessor is undefined.');
+        }
         listAccessor.addClassForElementIndex(index, className);
       },
       removeClassFromElementAtIndex: (index, className) => {
+        if (listAccessor == null) {
+          throw new Error('List accessor is undefined.');
+        }
         listAccessor.removeClassForElementIndex(index, className);
       },
       addAttributeToElementAtIndex: (index, attr, value) => {
+        if (listAccessor == null) {
+          throw new Error('List accessor is undefined.');
+        }
         listAccessor.setAttributeForElementIndex(index, attr, value);
       },
       removeAttributeFromElementAtIndex: (index, attr) => {
+        if (listAccessor == null) {
+          throw new Error('List accessor is undefined.');
+        }
         listAccessor.removeAttributeForElementIndex(index, attr);
       },
-      getAttributeFromElementAtIndex: (index, attr) =>
-        listAccessor.getAttributeFromElementIndex(index, attr),
+      getAttributeFromElementAtIndex: (index, attr) => {
+        if (listAccessor == null) {
+          throw new Error('List accessor is undefined.');
+        }
+        return listAccessor.getAttributeFromElementIndex(index, attr);
+      },
       elementContainsClass: (element, className) =>
         element.classList.contains(className),
       closeSurface: (skipRestoreFocus) => {
-        menuSurfaceAccessor.closeProgrammatic(skipRestoreFocus);
+        menuSurfaceAccessor?.closeProgrammatic(skipRestoreFocus);
         dispatch(getElement(), 'SMUIMenuClosedProgrammatically');
       },
-      getElementIndex: (element) =>
-        listAccessor
+      getElementIndex: (element) => {
+        if (listAccessor == null) {
+          throw new Error('List accessor is undefined.');
+        }
+        return listAccessor
           .getOrderedList()
           .map((accessor) => accessor.element)
-          .indexOf(element),
-      notifySelected: (evtData) =>
+          .indexOf(element);
+      },
+      notifySelected: (evtData) => {
+        if (listAccessor == null) {
+          throw new Error('List accessor is undefined.');
+        }
         dispatch(getElement(), 'SMUIMenuSelected', {
           index: evtData.index,
           item: listAccessor.getOrderedList()[evtData.index].element,
-        }),
-      getMenuItemCount: () => listAccessor.items.length,
-      focusItemAtIndex: (index) => listAccessor.focusItemAtIndex(index),
-      focusListRoot: () =>
-        'focus' in listAccessor.element &&
-        (listAccessor.element as HTMLInputElement).focus(),
-      isSelectableItemAtIndex: (index) =>
-        !!closest(
+        });
+      },
+      getMenuItemCount: () => {
+        if (listAccessor == null) {
+          throw new Error('List accessor is undefined.');
+        }
+        return listAccessor.items.length;
+      },
+      focusItemAtIndex: (index) => {
+        if (listAccessor == null) {
+          throw new Error('List accessor is undefined.');
+        }
+        listAccessor.focusItemAtIndex(index);
+      },
+      focusListRoot: () => {
+        if (listAccessor == null) {
+          throw new Error('List accessor is undefined.');
+        }
+        if ('focus' in listAccessor.element) {
+          (listAccessor.element as HTMLInputElement).focus();
+        }
+      },
+      isSelectableItemAtIndex: (index) => {
+        if (listAccessor == null) {
+          throw new Error('List accessor is undefined.');
+        }
+        return !!closest(
           listAccessor.getOrderedList()[index].element,
           `.${cssClasses.MENU_SELECTION_GROUP}`,
-        ),
+        );
+      },
       getSelectedSiblingOfItemAtIndex: (index) => {
+        if (listAccessor == null) {
+          throw new Error('List accessor is undefined.');
+        }
         const orderedList = listAccessor.getOrderedList();
         const selectionGroupEl = closest(
           orderedList[index].element,
@@ -146,9 +207,11 @@
     instance.init();
 
     return () => {
-      SMUIMenuUnmount && SMUIMenuUnmount(instance);
+      if (SMUIMenuUnmount && instance) {
+        SMUIMenuUnmount(instance);
+      }
 
-      instance.destroy();
+      instance?.destroy();
     };
   });
 
@@ -165,10 +228,16 @@
   }
 
   export function setDefaultFocusState(focusState: DefaultFocusState) {
+    if (instance == null) {
+      throw new Error('Instance is undefined.');
+    }
     instance.setDefaultFocusState(focusState);
   }
 
   export function getSelectedIndex() {
+    if (instance == null) {
+      throw new Error('Instance is undefined.');
+    }
     return instance.getSelectedIndex();
   }
 

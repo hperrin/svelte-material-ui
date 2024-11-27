@@ -1,23 +1,20 @@
-<svelte:options runes={false} />
+<svelte:options runes={true} />
 
-<li
-  bind:this={element}
-  use:useActions={use}
-  {...exclude($$restProps, ['list$'])}
->
+<li bind:this={element} use:useActions={use} {...exclude(restProps, ['list$'])}>
   <ul
     use:useActions={list$use}
     class={classMap({
       [list$class]: true,
       'mdc-menu__selection-group': true,
     })}
-    {...prefixFilter($$restProps, 'list$')}
+    {...prefixFilter(restProps, 'list$')}
   >
-    <slot />
+    {#if children}{@render children()}{/if}
   </ul>
 </li>
 
 <script lang="ts">
+  import type { Snippet } from 'svelte';
   import { setContext } from 'svelte';
   import type { SmuiAttrs, SmuiElementPropMap } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
@@ -29,19 +26,31 @@
   } from '@smui/common/internal';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     list$use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     list$class?: string;
+
+    children?: Snippet;
   };
-  type $$Props = OwnProps &
+  let {
+    use = [],
+    list$use = [],
+    list$class = '',
+    children,
+    ...restProps
+  }: OwnProps &
     SmuiAttrs<'li', keyof OwnProps> & {
       [k in keyof SmuiElementPropMap['ul'] as `list\$${k}`]?: SmuiElementPropMap['ul'][k];
-    };
-
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  export let list$use: ActionArray = [];
-  export let list$class = '';
+    } = $props();
 
   let element: HTMLLIElement;
 
