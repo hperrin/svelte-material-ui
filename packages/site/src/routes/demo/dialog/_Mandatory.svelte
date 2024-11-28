@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <Dialog
   bind:open
   scrimClickAction=""
@@ -40,6 +38,6 @@
   import Dialog, { Title, Content, Actions } from '@smui/dialog';
   import Button, { Label } from '@smui/button';
 
-  let open = false;
-  let response = 'Nothing yet.';
+  let open = $state(false);
+  let response = $state('Nothing yet.');
 </script>

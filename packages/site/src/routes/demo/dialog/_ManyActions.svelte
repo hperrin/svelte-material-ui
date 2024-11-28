@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <Dialog
   bind:open
   aria-labelledby="buttons-title"
@@ -36,6 +34,6 @@
   import Dialog, { Title, Content, Actions } from '@smui/dialog';
   import Button, { Label } from '@smui/button';
 
-  let open = false;
-  let buttoned = 'Nothing yet.';
+  let open = $state(false);
+  let buttoned = $state('Nothing yet.');
 </script>

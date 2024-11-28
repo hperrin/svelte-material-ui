@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <Dialog
   bind:open
   aria-labelledby="default-focus-title"
@@ -33,6 +31,6 @@
   import Dialog, { Title, Content, Actions, InitialFocus } from '@smui/dialog';
   import Button, { Label } from '@smui/button';
 
-  let open = false;
-  let response = 'Nothing yet.';
+  let open = $state(false);
+  let response = $state('Nothing yet.');
 </script>

@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <Dialog
   bind:open
   selection
@@ -52,9 +50,9 @@
   import List, { Item, Graphic, Text } from '@smui/list';
   import Radio from '@smui/radio';
 
-  let open = false;
-  let selection = 'Radishes';
-  let selected = 'Nothing yet.';
+  let open = $state(false);
+  let selection = $state('Radishes');
+  let selected = $state('Nothing yet.');
 
   function closeHandler(e: CustomEvent<{ action: string }>) {
     if (e.detail.action === 'accept') {

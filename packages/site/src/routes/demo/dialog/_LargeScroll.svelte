@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <Dialog
   bind:open
   aria-labelledby="large-scroll-title"
@@ -28,5 +26,5 @@
   import Button, { Label } from '@smui/button';
   import LoremIpsum from '$lib/LoremIpsum.svelte';
 
-  let open = false;
+  let open = $state(false);
 </script>

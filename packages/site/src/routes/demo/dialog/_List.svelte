@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <Dialog
   bind:open
   selection
@@ -36,6 +34,6 @@
   import Button, { Label } from '@smui/button';
   import List, { Item, Text } from '@smui/list';
 
-  let open = false;
-  let clicked: string | number = 'Nothing yet.';
+  let open = $state(false);
+  let clicked: string | number = $state('Nothing yet.');
 </script>

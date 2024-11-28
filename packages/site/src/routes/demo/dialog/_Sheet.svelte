@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <Dialog bind:open sheet aria-describedby="sheet-content">
   <Content id="sheet-content">
     <IconButton action="close" class="material-icons">close</IconButton>
@@ -33,6 +31,6 @@
   import Button, { Label } from '@smui/button';
   import LoremIpsum from '$lib/LoremIpsum.svelte';
 
-  let open = false;
-  let openNoPadding = false;
+  let open = $state(false);
+  let openNoPadding = $state(false);
 </script>

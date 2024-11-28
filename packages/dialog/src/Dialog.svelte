@@ -1,4 +1,4 @@
-<svelte:options runes={false} />
+<svelte:options runes />
 
 <svelte:window
   onresize={() => open && instance && instance.layout()}
@@ -21,30 +21,30 @@
   })}
   role="alertdialog"
   aria-modal="true"
-  {...exclude($$restProps, ['container$', 'surface$'])}
+  {...exclude(restProps, ['container$', 'surface$'])}
   onSMUIDialogOpening={(e) => {
     handleDialogOpening();
-    $$restProps.onSMUIDialogOpening?.(e);
+    restProps.onSMUIDialogOpening?.(e);
   }}
   onSMUIDialogOpened={(e) => {
     handleDialogOpened();
-    $$restProps.onSMUIDialogOpened?.(e);
+    restProps.onSMUIDialogOpened?.(e);
   }}
   onSMUIDialogClosed={(e) => {
     handleDialogClosed();
-    $$restProps.onSMUIDialogClosed?.(e);
+    restProps.onSMUIDialogClosed?.(e);
   }}
   onclick={(e) => {
     if (instance) {
       instance.handleClick(e);
     }
-    $$restProps.onclick?.(e);
+    restProps.onclick?.(e);
   }}
   onkeydown={(e) => {
     if (instance) {
       instance.handleKeydown(e);
     }
-    $$restProps.onkeydown?.(e);
+    restProps.onkeydown?.(e);
   }}
 >
   <div
@@ -52,7 +52,7 @@
       [container$class]: true,
       'mdc-dialog__container': true,
     })}
-    {...prefixFilter($$restProps, 'container$')}
+    {...prefixFilter(restProps, 'container$')}
   >
     <div
       class={classMap({
@@ -61,9 +61,9 @@
       })}
       role="alertdialog"
       aria-modal="true"
-      {...prefixFilter($$restProps, 'surface$')}
+      {...prefixFilter(restProps, 'surface$')}
     >
-      <slot />
+      {@render children?.()}
       {#if fullscreen}
         <div
           class="mdc-dialog__surface-scrim"
@@ -76,11 +76,12 @@
   <div class="mdc-dialog__scrim"></div>
 </div>
 
-<slot name="over" />
+{@render over?.()}
 
 <script lang="ts">
   import { MDCDialogFoundation, util } from '@material/dialog';
   import { focusTrap as domFocusTrap, ponyfill } from '@material/dom';
+  import type { Snippet } from 'svelte';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
   import type { Writable } from 'svelte/store';
   import { writable } from 'svelte/store';
@@ -103,50 +104,99 @@
   const { closest, matches } = ponyfill;
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * Whether the dialog is open.
+     */
     open?: boolean;
+    /**
+     * Whether this is a selection dialog.
+     */
     selection?: boolean;
+    /**
+     * What action the escape key should trigger.
+     *
+     * Set to an empty string to not trigger an action or close the dialog.
+     */
     escapeKeyAction?: string;
+    /**
+     * What action clicking the scrim should trigger.
+     *
+     * Set to an empty string to not trigger an action or close the dialog.
+     */
     scrimClickAction?: string;
+    /**
+     * Automatically stack buttons that are too wide on mobile screens.
+     */
     autoStackButtons?: boolean;
+    /**
+     * Style as a full screen dialog on mobile screens.
+     */
     fullscreen?: boolean;
     /**
+     * Style as a floating sheet.
+     *
      * Floating sheets are dialogs with a close icon button. Clicking the close
      * icon button closes the sheet. Having the close icon button is mutually
      * exclusive with having action bar buttons (e.g. cancel and OK buttons).
      * The icon button is absolutely positioned.
      */
     sheet?: boolean;
+    /**
+     * Don't pad the content.
+     */
     noContentPadding?: boolean;
+    /**
+     * A space separated list of CSS classes.
+     */
     container$class?: string;
+    /**
+     * A space separated list of CSS classes.
+     */
     surface$class?: string;
+
+    children?: Snippet;
+    /**
+     * A spot to render another dialog over this one.
+     *
+     * According to the Material spec, you should only use this to put a choice
+     * dialog over a fullscreen dialog.
+     */
+    over?: Snippet;
   };
-  type $$Props = OwnProps &
+  let {
+    use = [],
+    class: className = '',
+    open = $bindable(false),
+    selection = false,
+    escapeKeyAction = 'close',
+    scrimClickAction = 'close',
+    autoStackButtons = true,
+    fullscreen = false,
+    sheet = false,
+    noContentPadding = false,
+    container$class = '',
+    surface$class = '',
+    children,
+    over,
+    ...restProps
+  }: OwnProps &
     SmuiAttrs<'div', keyof OwnProps> & {
       [k in keyof SmuiElementPropMap['div'] as `container\$${k}`]?: SmuiElementPropMap['div'][k];
     } & {
       [k in keyof SmuiElementPropMap['div'] as `surface\$${k}`]?: SmuiElementPropMap['div'][k];
-    };
-
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let open = false;
-  export let selection = false;
-  export let escapeKeyAction = 'close';
-  export let scrimClickAction = 'close';
-  export let autoStackButtons = true;
-  export let fullscreen = false;
-  export let sheet = false;
-  export let noContentPadding = false;
-  export let container$class = '';
-  export let surface$class = '';
+    } = $props();
 
   let element: HTMLDivElement;
-  let instance: MDCDialogFoundation;
-  let internalClasses: { [k: string]: boolean } = {};
+  let instance: MDCDialogFoundation | undefined = $state();
+  let internalClasses: { [k: string]: boolean } = $state({});
   let focusTrap: domFocusTrap.FocusTrap;
   let actionButtonsReversed = writable(false);
   let aboveFullscreen = getContext<boolean | undefined>(
@@ -181,49 +231,61 @@
     setContext('SMUI:icon-button:context', 'dialog:sheet');
   }
 
-  $: if (instance && instance.getEscapeKeyAction() !== escapeKeyAction) {
-    instance.setEscapeKeyAction(escapeKeyAction);
-  }
+  $effect(() => {
+    if (instance && instance.getEscapeKeyAction() !== escapeKeyAction) {
+      instance.setEscapeKeyAction(escapeKeyAction);
+    }
+  });
 
-  $: if (instance && instance.getScrimClickAction() !== scrimClickAction) {
-    instance.setScrimClickAction(scrimClickAction);
-  }
+  $effect(() => {
+    if (instance && instance.getScrimClickAction() !== scrimClickAction) {
+      instance.setScrimClickAction(scrimClickAction);
+    }
+  });
 
-  $: if (instance && instance.getAutoStackButtons() !== autoStackButtons) {
-    instance.setAutoStackButtons(autoStackButtons);
-  }
+  $effect(() => {
+    if (instance && instance.getAutoStackButtons() !== autoStackButtons) {
+      instance.setAutoStackButtons(autoStackButtons);
+    }
+  });
 
-  $: if (!autoStackButtons) {
-    $actionButtonsReversed = true;
-  }
+  $effect(() => {
+    if (!autoStackButtons) {
+      $actionButtonsReversed = true;
+    }
+  });
 
   if (addLayoutListener) {
     removeLayoutListener = addLayoutListener(layout);
   }
 
-  $: if (instance && instance.isOpen() !== open) {
-    if (open) {
-      instance.open({
-        isAboveFullscreenDialog: !!aboveFullscreen,
-      });
-    } else {
-      instance.close();
+  $effect(() => {
+    if (instance && instance.isOpen() !== open) {
+      if (open) {
+        instance.open({
+          isAboveFullscreenDialog: !!aboveFullscreen,
+        });
+      } else {
+        instance.close();
+      }
     }
-  }
+  });
 
   let previousAboveFullscreenShown = $aboveFullscreenShown;
-  $: if (
-    fullscreen &&
-    instance &&
-    previousAboveFullscreenShown !== $aboveFullscreenShown
-  ) {
-    previousAboveFullscreenShown = $aboveFullscreenShown;
-    if ($aboveFullscreenShown) {
-      instance.showSurfaceScrim();
-    } else {
-      instance.hideSurfaceScrim();
+  $effect(() => {
+    if (
+      fullscreen &&
+      instance &&
+      previousAboveFullscreenShown !== $aboveFullscreenShown
+    ) {
+      previousAboveFullscreenShown = $aboveFullscreenShown;
+      if ($aboveFullscreenShown) {
+        instance.showSurfaceScrim();
+      } else {
+        instance.hideSurfaceScrim();
+      }
     }
-  }
+  });
 
   onMount(() => {
     focusTrap = new FocusTrap(element, {
@@ -299,7 +361,7 @@
     instance.init();
 
     return () => {
-      instance.destroy();
+      instance?.destroy();
     };
   });
 
@@ -377,7 +439,7 @@
   }
 
   export function layout() {
-    return instance.layout();
+    return instance?.layout();
   }
 
   export function getElement() {

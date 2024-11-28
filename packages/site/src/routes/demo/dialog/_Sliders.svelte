@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <Dialog
   bind:open
   aria-labelledby="slider-title"
@@ -53,8 +51,8 @@
   import Slider from '@smui/slider';
   import FormField from '@smui/form-field';
 
-  let open = false;
-  let volumeMedia = 100;
-  let volumeRingtone = 80;
-  let volumeAlarm = 80;
+  let open = $state(false);
+  let volumeMedia = $state(100);
+  let volumeRingtone = $state(80);
+  let volumeAlarm = $state(80);
 </script>
