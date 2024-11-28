@@ -1,9 +1,9 @@
-<svelte:options runes={false} />
-
 <div class="columns margins">
   <div>
     <Textfield bind:value={valueA} label="Standard" input$maxlength={18}>
-      <CharacterCounter slot="helper">0 / 18</CharacterCounter>
+      {#snippet helper()}
+        <CharacterCounter>0 / 18</CharacterCounter>
+      {/snippet}
     </Textfield>
 
     <pre class="status">Value: {valueA}</pre>
@@ -15,7 +15,9 @@
       label="Filled"
       input$maxlength={18}
     >
-      <CharacterCounter slot="helper">0 / 18</CharacterCounter>
+      {#snippet helper()}
+        <CharacterCounter>0 / 18</CharacterCounter>
+      {/snippet}
     </Textfield>
 
     <pre class="status">Value: {valueB}</pre>
@@ -27,7 +29,9 @@
       label="Outlined"
       input$maxlength={18}
     >
-      <CharacterCounter slot="helper">0 / 18</CharacterCounter>
+      {#snippet helper()}
+        <CharacterCounter>0 / 18</CharacterCounter>
+      {/snippet}
     </Textfield>
 
     <pre class="status">Value: {valueC}</pre>
@@ -38,7 +42,7 @@
   import Textfield from '@smui/textfield';
   import CharacterCounter from '@smui/textfield/character-counter';
 
-  let valueA = '';
-  let valueB = '';
-  let valueC = '';
+  let valueA = $state('');
+  let valueB = $state('');
+  let valueC = $state('');
 </script>

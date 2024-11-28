@@ -1,9 +1,9 @@
-<svelte:options runes={false} />
-
 <div class="columns margins">
   <div>
     <Textfield bind:value={valueNull} label="Empty as Null">
-      <HelperText slot="helper">Helper Text</HelperText>
+      {#snippet helper()}
+        <HelperText>Helper Text</HelperText>
+      {/snippet}
     </Textfield>
 
     <pre class="status">Value: {JSON.stringify(valueNull)}</pre>
@@ -17,7 +17,9 @@
       label="Empty as Undefined"
       input$emptyValueUndefined
     >
-      <HelperText slot="helper">Helper Text</HelperText>
+      {#snippet helper()}
+        <HelperText>Helper Text</HelperText>
+      {/snippet}
     </Textfield>
 
     <pre class="status">Value: {JSON.stringify(valueUndefined)}</pre>
@@ -28,6 +30,6 @@
   import Textfield from '@smui/textfield';
   import HelperText from '@smui/textfield/helper-text';
 
-  let valueNull: string | null = null;
-  let valueUndefined: string | undefined = undefined;
+  let valueNull: string | null = $state(null);
+  let valueUndefined: string | undefined = $state(undefined);
 </script>

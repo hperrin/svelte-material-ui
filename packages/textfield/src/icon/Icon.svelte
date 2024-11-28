@@ -1,4 +1,4 @@
-<svelte:options runes={false} />
+<svelte:options runes />
 
 <i
   bind:this={element}
@@ -13,47 +13,65 @@
   aria-disabled={role === 'button' ? (disabled ? 'true' : 'false') : undefined}
   {...roleProps}
   {...internalAttrs}
-  {...$$restProps}
-  >{#if content == null}<slot />{:else}{content}{/if}</i
+  {...restProps}
+  >{#if content == null}{@render children?.()}{:else}{content}{/if}</i
 >
 
 <script lang="ts">
   import { MDCTextFieldIconFoundation } from '@material/textfield';
-  import { onMount, getContext, tick } from 'svelte';
+  import type { Snippet } from 'svelte';
+  import { onMount, getContext } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, useActions, dispatch } from '@smui/common/internal';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * The element's role.
+     */
     role?: string | undefined;
+    /**
+     * The tab index.
+     */
     tabindex?: number;
+    /**
+     * Whether the element is disabled.
+     */
     disabled?: boolean;
-  };
-  type $$Props = OwnProps & SmuiAttrs<'i', keyof OwnProps>;
 
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let role: string | undefined = undefined;
-  export let tabindex = role === 'button' ? 0 : -1;
-  export let disabled = false;
+    children?: Snippet;
+  };
+  let {
+    use = [],
+    class: className = '',
+    role,
+    tabindex = role === 'button' ? 0 : -1,
+    disabled = false,
+    children,
+    ...restProps
+  }: OwnProps & SmuiAttrs<'i', keyof OwnProps> = $props();
 
   let element: HTMLElement;
-  let instance: MDCTextFieldIconFoundation;
-  let internalAttrs: { [k: string]: string | undefined } = {};
+  let instance: MDCTextFieldIconFoundation | undefined = $state();
+  let internalAttrs: { [k: string]: string | undefined } = $state({});
   const leadingStore = getContext<SvelteStore<boolean>>(
     'SMUI:textfield:icon:leading',
   );
   const leading = $leadingStore;
-  let content: string | undefined = undefined;
+  let content: string | undefined = $state();
 
-  $: roleProps = {
+  const roleProps = $derived({
     role,
     tabindex,
-  };
+  });
 
   const SMUITextfieldLeadingIconMount = getContext<
     ((accessor: MDCTextFieldIconFoundation) => void) | undefined
@@ -93,15 +111,17 @@
     instance.init();
 
     return () => {
-      if (leading) {
-        SMUITextfieldLeadingIconUnmount &&
-          SMUITextfieldLeadingIconUnmount(instance);
-      } else {
-        SMUITextfieldTrailingIconUnmount &&
-          SMUITextfieldTrailingIconUnmount(instance);
+      if (instance) {
+        if (leading) {
+          SMUITextfieldLeadingIconUnmount &&
+            SMUITextfieldLeadingIconUnmount(instance);
+        } else {
+          SMUITextfieldTrailingIconUnmount &&
+            SMUITextfieldTrailingIconUnmount(instance);
+        }
       }
 
-      instance.destroy();
+      instance?.destroy();
     };
   });
 

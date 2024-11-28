@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div class="columns margins">
   <div>
     <Textfield bind:value={valueTypeNumber} label="Number" type="number" />
@@ -34,15 +32,17 @@
 <script lang="ts">
   import Textfield from '@smui/textfield';
 
-  let valueTypeNumber = 0;
-  let valueTypeNumberStep = 0;
-  let valueTypeDate = '';
-  let valueTypeFiles: FileList | null = null;
+  let valueTypeNumber = $state(0);
+  let valueTypeNumberStep = $state(0);
+  let valueTypeDate = $state('');
+  let valueTypeFiles: FileList | null = $state(null);
 
   // Note: the change and input events fire before the `files` prop is updated.
-  $: if (valueTypeFiles != null && valueTypeFiles.length) {
-    alert('Selected ' + valueTypeFiles.length + ' file(s).');
-  }
+  $effect(() => {
+    if (valueTypeFiles != null && valueTypeFiles.length) {
+      alert('Selected ' + valueTypeFiles.length + ' file(s).');
+    }
+  });
 </script>
 
 <style>

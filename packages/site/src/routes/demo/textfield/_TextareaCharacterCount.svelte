@@ -1,8 +1,8 @@
-<svelte:options runes={false} />
-
 <div class="margins">
   <Textfield textarea input$maxlength={100} bind:value label="Label">
-    <CharacterCounter slot="internalCounter">0 / 100</CharacterCounter>
+    {#snippet internalCounter()}
+      <CharacterCounter>0 / 100</CharacterCounter>
+    {/snippet}
   </Textfield>
 </div>
 
@@ -10,5 +10,5 @@
   import Textfield from '@smui/textfield';
   import CharacterCounter from '@smui/textfield/character-counter';
 
-  let value = '';
+  let value = $state('');
 </script>

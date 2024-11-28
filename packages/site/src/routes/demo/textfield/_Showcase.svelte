@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div class="margins">
   <!--
     Note: when you bind to `invalid`, but you only want to
@@ -23,16 +21,16 @@
       Since this icon is conditional, it needs to be wrapped
       in a fragment, and we need to provide withTrailingIcon.
     -->
-    <svelte:fragment slot="trailingIcon">
+    {#snippet trailingIcon()}
       {#if !disabled}
         <Icon class="material-icons" role="button" onclick={clickHandler}
           >send</Icon
         >
       {/if}
-    </svelte:fragment>
-    <HelperText validationMsg slot="helper">
-      That's not a valid email address.
-    </HelperText>
+    {/snippet}
+    {#snippet helper()}
+      <HelperText validationMsg>That's not a valid email address.</HelperText>
+    {/snippet}
   </Textfield>
 </div>
 
@@ -44,11 +42,11 @@
   import Icon from '@smui/textfield/icon';
   import HelperText from '@smui/textfield/helper-text';
 
-  let focused = false;
-  let value: string | null = null;
-  let dirty = false;
-  let invalid = false;
-  $: disabled = focused || !value || !dirty || invalid;
+  let focused = $state(false);
+  let value: string | null = $state(null);
+  let dirty = $state(false);
+  let invalid = $state(false);
+  const disabled = $derived(focused || !value || !dirty || invalid);
 
   function clickHandler() {
     alert(`Sending to ${value}!`);

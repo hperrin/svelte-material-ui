@@ -1,4 +1,4 @@
-<svelte:options runes={false} />
+<svelte:options runes />
 
 <textarea
   bind:this={element}
@@ -10,10 +10,10 @@
   style={`${resizable ? '' : 'resize: none; '}${style}`}
   bind:value
   {...internalAttrs}
-  {...$$restProps}
+  {...restProps}
   onchange={(e) => {
     changeHandler();
-    $$restProps.onchange?.(e);
+    restProps.onchange?.(e);
   }}
 ></textarea>
 
@@ -24,33 +24,61 @@
   import { classMap, useActions } from '@smui/common/internal';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * A list of CSS styles.
+     */
     style?: string;
+    /**
+     * The value of the input.
+     */
     value?: string;
+    /**
+     * Whether the input has been changed.
+     */
     dirty?: boolean;
+    /**
+     * Whether the input is invalid.
+     */
     invalid?: boolean;
+    /**
+     * Set to false to prevent updating the value passed to invalid.
+     */
     updateInvalid?: boolean;
+    /**
+     * Set to true to update the invalid state immediately on instantiation.
+     */
+    initialInvalid?: boolean;
+    /**
+     * Whether the textarea should be user resizeable.
+     */
     resizable?: boolean;
   };
-  type $$Props = OwnProps & SmuiAttrs<'textarea', keyof OwnProps>;
-
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let style = '';
-  export let value = '';
-  export let dirty = false;
-  export let invalid = false;
-  export let updateInvalid = true;
-  export let resizable = true;
+  let {
+    use = [],
+    class: className = '',
+    style = '',
+    value = $bindable(''),
+    dirty = $bindable(false),
+    invalid = $bindable(false),
+    updateInvalid = true,
+    initialInvalid = false,
+    resizable = true,
+    ...restProps
+  }: OwnProps & SmuiAttrs<'textarea', keyof OwnProps> = $props();
 
   let element: HTMLTextAreaElement;
-  let internalAttrs: { [k: string]: string | undefined } = {};
+  let internalAttrs: { [k: string]: string | undefined } = $state({});
 
   onMount(() => {
-    if (updateInvalid) {
+    if (updateInvalid && initialInvalid) {
       invalid = getElement().matches(':invalid');
     }
   });

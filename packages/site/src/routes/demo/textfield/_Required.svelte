@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div class="columns margins">
   <div>
     <Textfield bind:value={valueA} label="Standard" required />
@@ -26,7 +24,7 @@
 <script lang="ts">
   import Textfield from '@smui/textfield';
 
-  let valueA = '';
-  let valueB = '';
-  let valueC = '';
+  let valueA = $state('');
+  let valueB = $state('');
+  let valueC = $state('');
 </script>

@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div class="margins">
   <Textfield
     textarea
@@ -9,7 +7,9 @@
     input$cols={24}
     input$resizable={false}
   >
-    <HelperText slot="helper">Helper Text</HelperText>
+    {#snippet helper()}
+      <HelperText>Helper Text</HelperText>
+    {/snippet}
   </Textfield>
 </div>
 
@@ -17,5 +17,5 @@
   import Textfield from '@smui/textfield';
   import HelperText from '@smui/textfield/helper-text';
 
-  let value = '';
+  let value = $state('');
 </script>

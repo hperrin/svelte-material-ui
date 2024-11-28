@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div class="solo-demo-container solo-container">
   <Paper class="solo-paper" elevation={6}>
     <Icon class="material-icons">search</Icon>
@@ -29,7 +27,7 @@
   import Fab from '@smui/fab';
   import { Icon } from '@smui/common';
 
-  let value = '';
+  let value = $state('');
 
   function doSearch() {
     alert('Search for ' + value);

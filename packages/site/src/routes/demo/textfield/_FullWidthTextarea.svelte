@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div class="margins">
   <Textfield
     style="width: 100%;"
@@ -8,7 +6,9 @@
     bind:value
     label="Label"
   >
-    <HelperText slot="helper">Helper Text</HelperText>
+    {#snippet helper()}
+      <HelperText>Helper Text</HelperText>
+    {/snippet}
   </Textfield>
 </div>
 
@@ -16,5 +16,5 @@
   import Textfield from '@smui/textfield';
   import HelperText from '@smui/textfield/helper-text';
 
-  let value = '';
+  let value = $state('');
 </script>
