@@ -1,4 +1,4 @@
-<svelte:options runes={false} />
+<svelte:options runes />
 
 <div
   bind:this={element}
@@ -9,28 +9,40 @@
     'mdc-card__media--square': aspectRatio === 'square',
     'mdc-card__media--16-9': aspectRatio === '16x9',
   })}
-  {...$$restProps}
+  {...restProps}
 >
-  <slot />
+  {@render children?.()}
 </div>
 
 <script lang="ts">
+  import type { Snippet } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, useActions } from '@smui/common/internal';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
-    aspectRatio?: 'square' | '16x9' | undefined;
-  };
-  type $$Props = OwnProps & SmuiAttrs<'div', keyof OwnProps>;
+    /**
+     * Force an aspect ratio.
+     */
+    aspectRatio?: 'square' | '16x9';
 
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let aspectRatio: 'square' | '16x9' | undefined = undefined;
+    children?: Snippet;
+  };
+  let {
+    use = [],
+    class: className = '',
+    aspectRatio,
+    children,
+    ...restProps
+  }: OwnProps & SmuiAttrs<'div', keyof OwnProps> = $props();
 
   let element: HTMLDivElement;
 

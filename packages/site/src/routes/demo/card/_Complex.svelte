@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div class="card-display">
   <div class="card-container">
     <Card>
@@ -123,7 +121,7 @@
   import Button, { Label } from '@smui/button';
   import IconButton, { Icon } from '@smui/icon-button';
 
-  let clicked = 0;
+  let clicked = $state(0);
 </script>
 
 <style>

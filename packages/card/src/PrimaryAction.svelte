@@ -1,4 +1,4 @@
-<svelte:options runes={false} />
+<svelte:options runes />
 
 <div
   bind:this={element}
@@ -23,42 +23,66 @@
     .join(' ')}
   {tabindex}
   role="button"
-  {...$$restProps}
+  {...restProps}
 >
   <div class="mdc-card__ripple"></div>
-  <slot />
+  {@render children?.()}
 </div>
 
 <script lang="ts">
+  import type { Snippet } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, useActions } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * A list of CSS styles.
+     */
     style?: string;
+    /**
+     * Whether to show a ripple animation.
+     */
     ripple?: boolean;
+    /**
+     * The color of the action.
+     */
     color?: 'primary' | 'secondary' | undefined;
+    /**
+     * Whether to add padding.
+     */
     padded?: boolean;
+    /**
+     * The tab index.
+     */
     tabindex?: number;
-  };
-  type $$Props = OwnProps & SmuiAttrs<'div', keyof OwnProps>;
 
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let style = '';
-  export let ripple = true;
-  export let color: 'primary' | 'secondary' | undefined = undefined;
-  export let padded = false;
-  export let tabindex = 0;
+    children?: Snippet;
+  };
+  let {
+    use = [],
+    class: className = '',
+    style = '',
+    ripple = true,
+    color,
+    padded = false,
+    tabindex = 0,
+    children,
+    ...restProps
+  }: OwnProps & SmuiAttrs<'div', keyof OwnProps> = $props();
 
   let element: HTMLDivElement;
-  let internalClasses: { [k: string]: boolean } = {};
-  let internalStyles: { [k: string]: string } = {};
+  let internalClasses: { [k: string]: boolean } = $state({});
+  let internalStyles: { [k: string]: string } = $state({});
 
   function addClass(className: string) {
     if (!internalClasses[className]) {

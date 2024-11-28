@@ -1,4 +1,4 @@
-<svelte:options runes={false} />
+<svelte:options runes />
 
 <div
   bind:this={element}
@@ -9,30 +9,45 @@
     'mdc-card--outlined': variant === 'outlined',
     'smui-card--padded': padded,
   })}
-  {...$$restProps}
+  {...restProps}
 >
-  <slot />
+  {@render children?.()}
 </div>
 
 <script lang="ts">
+  import type { Snippet } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, useActions } from '@smui/common/internal';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * The styling variant of the card.
+     */
     variant?: 'raised' | 'outlined';
+    /**
+     * Whether to add padding.
+     */
     padded?: boolean;
-  };
-  type $$Props = OwnProps & SmuiAttrs<'div', keyof OwnProps>;
 
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let variant: 'raised' | 'outlined' = 'raised';
-  export let padded = false;
+    children?: Snippet;
+  };
+  let {
+    use = [],
+    class: className = '',
+    variant = 'raised',
+    padded = false,
+    children,
+    ...restProps
+  }: OwnProps & SmuiAttrs<'div', keyof OwnProps> = $props();
 
   let element: HTMLDivElement;
 

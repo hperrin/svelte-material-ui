@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div class="card-display">
   <div class="card-container">
     <Card>
@@ -23,5 +21,5 @@
   import Card, { Content } from '@smui/card';
   import List, { Item, Text } from '@smui/list';
 
-  let clicked = 0;
+  let clicked = $state(0);
 </script>

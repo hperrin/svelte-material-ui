@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div class="card-display">
   <div class="card-container">
     <Card padded>A simple padded card.</Card>
@@ -16,10 +14,6 @@
   </div>
 </div>
 
-<pre class="status">Clicked: {clicked}</pre>
-
 <script lang="ts">
   import Card, { Content } from '@smui/card';
-
-  let clicked = 0;
 </script>

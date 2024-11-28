@@ -1,4 +1,4 @@
-<svelte:options runes={false} />
+<svelte:options runes />
 
 <div
   bind:this={element}
@@ -8,29 +8,41 @@
     'mdc-card__actions': true,
     'mdc-card__actions--full-bleed': fullBleed,
   })}
-  {...$$restProps}
+  {...restProps}
 >
-  <slot />
+  {@render children?.()}
 </div>
 
 <script lang="ts">
+  import type { Snippet } from 'svelte';
   import { setContext } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, useActions } from '@smui/common/internal';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * Style the actions to stretch across the full card.
+     */
     fullBleed?: boolean;
-  };
-  type $$Props = OwnProps & SmuiAttrs<'div', keyof OwnProps>;
 
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let fullBleed = false;
+    children?: Snippet;
+  };
+  let {
+    use = [],
+    class: className = '',
+    fullBleed = false,
+    children,
+    ...restProps
+  }: OwnProps & SmuiAttrs<'div', keyof OwnProps> = $props();
 
   let element: HTMLDivElement;
 
