@@ -1,4 +1,4 @@
-<svelte:options runes={true} />
+<svelte:options runes />
 
 <MyComponent
   {tag}
@@ -10,8 +10,7 @@
     ...smuiClassMap,
   })}
   {...props}
-  {...restProps}
-  >{#if children}{@render children()}{/if}</MyComponent
+  {...restProps}>{@render children?.()}</MyComponent
 >
 
 <script lang="ts">

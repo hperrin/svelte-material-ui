@@ -1,4 +1,4 @@
-<svelte:options runes={true} />
+<svelte:options runes />
 
 <MyComponent
   {tag}
@@ -61,7 +61,7 @@
     restProps.onkeydown?.(e);
   }}
   >{#if ripple}<span class="mdc-deprecated-list-item__ripple"
-    ></span>{/if}{#if children}{@render children()}{/if}</MyComponent
+    ></span>{/if}{@render children?.()}</MyComponent
 >
 
 <script context="module" lang="ts">

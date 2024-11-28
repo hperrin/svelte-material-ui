@@ -1,4 +1,4 @@
-<svelte:options runes={true} />
+<svelte:options runes />
 
 <svelte:window onscroll={handleTargetScroll} onresize={handleWindowResize} />
 
@@ -17,7 +17,7 @@
     .join(' ')}
   {...restProps}
 >
-  {#if children}{@render children()}{/if}
+  {@render children?.()}
 </div>
 
 <script lang="ts">

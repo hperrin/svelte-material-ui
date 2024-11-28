@@ -1,8 +1,8 @@
-<svelte:options runes={true} />
+<svelte:options runes />
 
 {#if tag === 'svg'}
   <svg bind:this={element} use:useActions={use} {...restProps}
-    >{#if children}{@render children()}{/if}</svg
+    >{@render children?.()}</svg
   >
 {:else if selfClosing}
   <svelte:element
@@ -16,8 +16,7 @@
     this={tag}
     bind:this={element}
     use:useActions={use}
-    {...restProps}
-    >{#if children}{@render children()}{/if}</svelte:element
+    {...restProps}>{@render children?.()}</svelte:element
   >
 {/if}
 

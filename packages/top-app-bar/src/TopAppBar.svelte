@@ -1,4 +1,4 @@
-<svelte:options runes={true} />
+<svelte:options runes />
 
 <svelte:window
   onresize={() =>
@@ -36,7 +36,7 @@
     restProps.onSMUITopAppBarIconButtonNav?.(e);
   }}
 >
-  {#if children}{@render children()}{/if}
+  {@render children?.()}
 </header>
 
 <script lang="ts">

@@ -1,4 +1,4 @@
-<svelte:options runes={true} />
+<svelte:options runes />
 
 <MenuSurface
   bind:this={element}
@@ -27,8 +27,7 @@
       );
     }
     restProps.onSMUIListAction?.(e);
-  }}
-  >{#if children}{@render children()}{/if}</MenuSurface
+  }}>{@render children?.()}</MenuSurface
 >
 
 <script lang="ts">

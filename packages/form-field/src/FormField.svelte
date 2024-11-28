@@ -1,4 +1,4 @@
-<svelte:options runes={true} />
+<svelte:options runes />
 
 <div
   bind:this={element}
@@ -11,13 +11,12 @@
   })}
   {...exclude(restProps, ['label$'])}
 >
-  {#if children}{@render children()}{/if}
+  {@render children?.()}
   <label
     bind:this={labelEl}
     use:useActions={label$use}
     for={inputId}
-    {...prefixFilter(restProps, 'label$')}
-    >{#if label}{@render label()}{/if}</label
+    {...prefixFilter(restProps, 'label$')}>{@render label?.()}</label
   >
 </div>
 

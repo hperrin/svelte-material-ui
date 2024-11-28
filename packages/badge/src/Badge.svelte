@@ -1,4 +1,4 @@
-<svelte:options runes={true} />
+<svelte:options runes />
 
 <span
   bind:this={element}
@@ -14,7 +14,7 @@
   role="status"
   {...restProps}
 >
-  {#if children}{@render children()}{/if}
+  {@render children?.()}
 </span>
 
 <script lang="ts">

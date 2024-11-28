@@ -1,4 +1,4 @@
-<svelte:options runes={true} />
+<svelte:options runes />
 
 <label
   bind:this={element}
@@ -8,8 +8,7 @@
     'mdc-deprecated-list-item__text': true,
   })}
   for={inputProps ? inputProps.id : undefined}
-  {...restProps}
-  >{#if children}{@render children()}{/if}</label
+  {...restProps}>{@render children?.()}</label
 >
 
 <script lang="ts">

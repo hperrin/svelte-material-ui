@@ -86,7 +86,7 @@
 </svelte:head>
 
 {#if iframe}
-  {#if children}{@render children()}{/if}
+  {@render children?.()}
 {:else}
   <TopAppBar variant="static" class="demo-top-app-bar">
     <Row>
@@ -259,7 +259,7 @@
     {/if}
     <AppContent class="demo-app-content">
       <main class="demo-main-content" bind:this={mainContent}>
-        {#if children}{@render children()}{/if}
+        {@render children?.()}
       </main>
     </AppContent>
   </div>

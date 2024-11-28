@@ -1,4 +1,4 @@
-<svelte:options runes={true} />
+<svelte:options runes />
 
 <li bind:this={element} use:useActions={use} {...exclude(restProps, ['list$'])}>
   <ul
@@ -9,7 +9,7 @@
     })}
     {...prefixFilter(restProps, 'list$')}
   >
-    {#if children}{@render children()}{/if}
+    {@render children?.()}
   </ul>
 </li>
 

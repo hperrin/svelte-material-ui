@@ -1,4 +1,4 @@
-<svelte:options runes={true} />
+<svelte:options runes />
 
 <aside
   bind:this={element}
@@ -25,7 +25,7 @@
     restProps.ontransitionend?.(e);
   }}
 >
-  {#if children}{@render children()}{/if}
+  {@render children?.()}
 </aside>
 
 <script lang="ts">

@@ -1,6 +1,6 @@
 <div class="target" use:useActions={use}>
   <span style="user-select: none;">
-    {#if children}{@render children()}{/if}
+    {@render children?.()}
   </span>
 </div>
 

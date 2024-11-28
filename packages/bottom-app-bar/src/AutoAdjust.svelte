@@ -1,4 +1,4 @@
-<svelte:options runes={true} />
+<svelte:options runes />
 
 <MyComponent
   {tag}
@@ -14,7 +14,7 @@
     .join(' ')}
   {...restProps}
 >
-  {#if children}{@render children()}{/if}
+  {@render children?.()}
 </MyComponent>
 
 <script lang="ts" generics="TagName extends SmuiEveryElement = 'main'">

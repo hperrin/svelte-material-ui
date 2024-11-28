@@ -1,6 +1,6 @@
 <div class="my-component {className}" {...exclude(restProps, ['button$'])}>
   <Button class="button {button$class}" {...prefixFilter(restProps, 'button$')}>
-    {#if children}{@render children()}{/if}
+    {@render children?.()}
   </Button>
 </div>
 

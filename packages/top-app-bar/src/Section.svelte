@@ -1,4 +1,4 @@
-<svelte:options runes={true} />
+<svelte:options runes />
 
 <section
   bind:this={element}
@@ -12,7 +12,7 @@
   {...toolbar ? { role: 'toolbar' } : {}}
   {...restProps}
 >
-  {#if children}{@render children()}{/if}
+  {@render children?.()}
 </section>
 
 <script lang="ts">

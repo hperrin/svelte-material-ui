@@ -1,4 +1,4 @@
-<svelte:options runes={true} />
+<svelte:options runes />
 
 <div
   bind:this={element}
@@ -10,7 +10,7 @@
   })}
   {...restProps}
 >
-  {#if children}{@render children()}{/if}
+  {@render children?.()}
 </div>
 
 <script lang="ts">

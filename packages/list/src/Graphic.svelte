@@ -1,4 +1,4 @@
-<svelte:options runes={true} />
+<svelte:options runes />
 
 <span
   bind:this={element}
@@ -8,8 +8,7 @@
     'mdc-deprecated-list-item__graphic': true,
     'mdc-menu__selection-group-icon': menuSelectionGroup,
   })}
-  {...restProps}
-  >{#if children}{@render children()}{/if}</span
+  {...restProps}>{@render children?.()}</span
 >
 
 <script lang="ts">

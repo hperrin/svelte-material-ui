@@ -1,6 +1,6 @@
-<svelte:options runes={true} />
+<svelte:options runes />
 
-{#if children}{@render children()}{/if}
+{@render children?.()}
 
 <script lang="ts">
   import type { Snippet } from 'svelte';

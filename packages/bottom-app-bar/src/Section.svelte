@@ -1,4 +1,4 @@
-<svelte:options runes={true} />
+<svelte:options runes />
 
 <Paper
   bind:this={element}
@@ -11,8 +11,7 @@
   color={$color}
   variant="unelevated"
   square
-  {...restProps}
-  >{#if children}{@render children()}{/if}</Paper
+  {...restProps}>{@render children?.()}</Paper
 >
 
 <script lang="ts">

@@ -1,4 +1,4 @@
-<svelte:options runes={true} />
+<svelte:options runes />
 
 <MyComponent
   {tag}
@@ -67,7 +67,7 @@
     restProps.onclick?.(e);
   }}
   ><div class="mdc-icon-button__ripple"></div>
-  {#if children}{@render children()}{/if}{#if touch}<div
+  {@render children?.()}{#if touch}<div
       class="mdc-icon-button__touch"
     ></div>{/if}</MyComponent
 >

@@ -1,4 +1,4 @@
-<svelte:options runes={true} />
+<svelte:options runes />
 
 <MyComponent
   {tag}
@@ -20,8 +20,7 @@
   })}
   {...context === 'snackbar' ? { 'aria-atomic': 'false' } : {}}
   {tabindex}
-  {...restProps}
-  >{#if children}{@render children()}{/if}</MyComponent
+  {...restProps}>{@render children?.()}</MyComponent
 >
 
 <script lang="ts" generics="TagName extends SmuiEveryElement = 'span'">

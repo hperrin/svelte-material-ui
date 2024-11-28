@@ -1,4 +1,4 @@
-<svelte:options runes={true} />
+<svelte:options runes />
 
 <MyComponent
   {tag}
@@ -36,7 +36,7 @@
   {...restProps}
   ><div class="mdc-fab__ripple"></div>
   {#if focusRing}<div class="mdc-fab__focus-ring"></div>{/if}
-  {#if children}{@render children()}{/if}{#if touch}<div
+  {@render children?.()}{#if touch}<div
       class="mdc-fab__touch"
     ></div>{/if}</MyComponent
 >
