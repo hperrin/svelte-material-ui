@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div style="display: flex; justify-content: center">
   <CircularProgress style="height: 48px; width: 48px;" {progress} {closed} />
 </div>
@@ -22,8 +20,8 @@
   import FormField from '@smui/form-field';
   import Button from '@smui/button';
 
-  let progress = 0;
-  let closed = false;
+  let progress = $state(0);
+  let closed = $state(false);
   let timer: NodeJS.Timer;
 
   onMount(reset);
