@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <Slider
   bind:value
   min={-100}
@@ -15,5 +13,5 @@
 <script lang="ts">
   import Slider from '@smui/slider';
 
-  let value = 0;
+  let value = $state(0);
 </script>

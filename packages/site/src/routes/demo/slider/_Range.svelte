@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <Slider
   range
   bind:start={valueStart}
@@ -25,6 +23,6 @@
   import Slider from '@smui/slider';
   import Button from '@smui/button';
 
-  let valueStart = 1;
-  let valueEnd = 4;
+  let valueStart = $state(1);
+  let valueEnd = $state(4);
 </script>

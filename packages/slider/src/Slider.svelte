@@ -1,4 +1,4 @@
-<svelte:options runes={false} />
+<svelte:options runes />
 
 <div
   bind:this={element}
@@ -16,7 +16,7 @@
     .map(([name]) => name)
     .join(' ')}
   {...range ? { 'data-min-range': `${minRange}` } : {}}
-  {...exclude($$restProps, ['input$'])}
+  {...exclude(restProps, ['input$'])}
 >
   {#if range}
     <input
@@ -32,14 +32,14 @@
       max={end}
       bind:value={start}
       {...inputStartAttrs}
-      {...prefixFilter($$restProps, 'input$')}
+      {...prefixFilter(restProps, 'input$')}
       onblur={(e) => {
         dispatch(getElement(), 'blur', e);
-        $$restProps.input$onblur?.(e);
+        restProps.input$onblur?.(e);
       }}
       onfocus={(e) => {
         dispatch(getElement(), 'focus', e);
-        $$restProps.input$onfocus?.(e);
+        restProps.input$onfocus?.(e);
       }}
     />
     <input
@@ -56,14 +56,14 @@
       bind:value={end}
       {...inputProps}
       {...inputAttrs}
-      {...prefixFilter($$restProps, 'input$')}
+      {...prefixFilter(restProps, 'input$')}
       onblur={(e) => {
         dispatch(getElement(), 'blur', e);
-        $$restProps.input$onblur?.(e);
+        restProps.input$onblur?.(e);
       }}
       onfocus={(e) => {
         dispatch(getElement(), 'focus', e);
-        $$restProps.input$onfocus?.(e);
+        restProps.input$onfocus?.(e);
       }}
     />
   {:else}
@@ -81,14 +81,14 @@
       bind:value
       {...inputProps}
       {...inputAttrs}
-      {...prefixFilter($$restProps, 'input$')}
+      {...prefixFilter(restProps, 'input$')}
       onblur={(e) => {
         dispatch(getElement(), 'blur', e);
-        $$restProps.input$onblur?.(e);
+        restProps.input$onblur?.(e);
       }}
       onfocus={(e) => {
         dispatch(getElement(), 'focus', e);
-        $$restProps.input$onfocus?.(e);
+        restProps.input$onfocus?.(e);
       }}
     />
   {/if}
@@ -227,24 +227,90 @@
   import Ripple from '@smui/ripple';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * Whether the input is disabled.
+     */
     disabled?: boolean;
+    /**
+     * Whether the input is for a range.
+     */
     range?: boolean;
+    /**
+     * Whether to show a discrete value indicator when sliding.
+     */
     discrete?: boolean;
+    /**
+     * Whether to show tick marks on the slider.
+     */
     tickMarks?: boolean;
+    /**
+     * The step in between values.
+     */
     step?: number;
+    /**
+     * The minimum value.
+     */
     min?: number;
+    /**
+     * The maximum value.
+     */
     max?: number;
+    /**
+     * The minimum range.
+     */
     minRange?: number;
+    /**
+     * The value of the input.
+     */
     value?: number | undefined;
+    /**
+     * The value of the start of the range.
+     */
     start?: number | undefined;
+    /**
+     * The value of the end of the range.
+     */
     end?: number | undefined;
+    /**
+     * A function that converts values to their ARIA value strings.
+     */
     valueToAriaValueTextFn?: (value: number, thumb: Thumb) => string;
+    /**
+     * Whether to hide focus styles when a change comes from a pointer (finger).
+     */
     hideFocusStylesForPointerEvents?: boolean;
+    /**
+     * A space separated list of CSS classes.
+     */
     input$class?: string;
   };
-  type $$Props = OwnProps &
+  let {
+    use = [],
+    class: className = '',
+    disabled = false,
+    range = false,
+    discrete = false,
+    tickMarks = false,
+    step = 1,
+    min = 0,
+    max = 100,
+    minRange = 0,
+    value = $bindable(),
+    start = $bindable(),
+    end = $bindable(),
+    valueToAriaValueTextFn = (value) => `${value}`,
+    hideFocusStylesForPointerEvents = false,
+    input$class = '',
+    ...restProps
+  }: OwnProps &
     SmuiAttrs<'div', keyof OwnProps> & {
       [k in keyof SmuiElementPropMap['input'] as `input\$${k}`]?: SmuiElementPropMap['input'][k];
     } & {
@@ -256,48 +322,27 @@
       input$value?: never;
       input$checked?: never;
       input$group?: never;
-    };
-
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let disabled = false;
-  export let range = false;
-  export let discrete = false;
-  export let tickMarks = false;
-  export let step = 1;
-  export let min = 0;
-  export let max = 100;
-  export let minRange = 0;
-  export let value: number | undefined = undefined;
-  export let start: number | undefined = undefined;
-  export let end: number | undefined = undefined;
-  export let valueToAriaValueTextFn: (value: number, thumb: Thumb) => string = (
-    value,
-  ) => `${value}`;
-  export let hideFocusStylesForPointerEvents = false;
-  export let input$class = '';
+    } = $props();
 
   let element: HTMLDivElement;
-  let instance: MDCSliderFoundation;
-  let input: HTMLInputElement;
-  let inputStart: HTMLInputElement | undefined = undefined;
+  let instance: MDCSliderFoundation | undefined = $state();
+  let input: HTMLInputElement | undefined = $state();
+  let inputStart: HTMLInputElement | undefined = $state();
   let thumbEl: HTMLDivElement;
   let thumbStart: HTMLDivElement | undefined = undefined;
   let thumbKnob: HTMLDivElement;
   let thumbKnobStart: HTMLDivElement | undefined = undefined;
-  let internalClasses: { [k: string]: boolean } = {};
-  let thumbStartClasses: { [k: string]: boolean } = {};
-  let thumbClasses: { [k: string]: boolean } = {};
-  let inputAttrs: { [k: string]: string | undefined } = {};
-  let inputStartAttrs: { [k: string]: string | undefined } = {};
-  let trackActiveStyles: { [k: string]: string } = {};
-  let thumbStyles: { [k: string]: string } = {};
-  let thumbStartStyles: { [k: string]: string } = {};
-  let thumbRippleActive = false;
-  let thumbStartRippleActive = false;
-  let currentTickMarks: TickMark[];
+  let internalClasses: { [k: string]: boolean } = $state({});
+  let thumbStartClasses: { [k: string]: boolean } = $state({});
+  let thumbClasses: { [k: string]: boolean } = $state({});
+  let inputAttrs: { [k: string]: string | undefined } = $state({});
+  let inputStartAttrs: { [k: string]: string | undefined } = $state({});
+  let trackActiveStyles: { [k: string]: string } = $state({});
+  let thumbStyles: { [k: string]: string } = $state({});
+  let thumbStartStyles: { [k: string]: string } = $state({});
+  let thumbRippleActive = $state(false);
+  let thumbStartRippleActive = $state(false);
+  let currentTickMarks: TickMark[] = $state([]);
   let inputProps =
     getContext<{ id?: string } | undefined>('SMUI:generic:input:props') ?? {};
   let addLayoutListener = getContext<AddLayoutListener | undefined>(
@@ -306,44 +351,54 @@
   let removeLayoutListener: RemoveLayoutListener | undefined;
 
   let previousMin = min;
-  $: if (min !== previousMin) {
-    if (instance) {
-      instance.setMin(min);
+  $effect(() => {
+    if (min !== previousMin) {
+      if (instance) {
+        instance.setMin(min);
+      }
+      previousMin = min;
     }
-    previousMin = min;
-  }
+  });
 
   let previousMax = max;
-  $: if (max !== previousMax) {
-    if (instance) {
-      instance.setMax(max);
+  $effect(() => {
+    if (max !== previousMax) {
+      if (instance) {
+        instance.setMax(max);
+      }
+      previousMax = max;
     }
-    previousMax = max;
-  }
+  });
 
   let previousStep = step;
-  $: if (step !== previousStep) {
-    if (instance) {
-      instance.setStep(step);
+  $effect(() => {
+    if (step !== previousStep) {
+      if (instance) {
+        instance.setStep(step);
+      }
+      previousStep = step;
     }
-    previousStep = step;
-  }
+  });
 
   let previousDiscrete = discrete;
-  $: if (discrete !== previousDiscrete) {
-    if (instance) {
-      instance.setIsDiscrete(discrete);
+  $effect(() => {
+    if (discrete !== previousDiscrete) {
+      if (instance) {
+        instance.setIsDiscrete(discrete);
+      }
+      previousDiscrete = discrete;
     }
-    previousDiscrete = discrete;
-  }
+  });
 
   let previousTickMarks = tickMarks;
-  $: if (tickMarks !== previousTickMarks) {
-    if (instance) {
-      instance.setHasTickMarks(tickMarks);
+  $effect(() => {
+    if (tickMarks !== previousTickMarks) {
+      if (instance) {
+        instance.setHasTickMarks(tickMarks);
+      }
+      previousTickMarks = tickMarks;
     }
-    previousTickMarks = tickMarks;
-  }
+  });
 
   if (tickMarks && step > 0) {
     const absMax = max + Math.abs(min);
@@ -386,22 +441,24 @@
   let previousValue = value;
   let previousStart = start;
   let previousEnd = end;
-  $: if (instance) {
-    if (previousValue !== value && typeof value === 'number') {
-      instance.setValue(value);
+  $effect(() => {
+    if (instance) {
+      if (previousValue !== value && typeof value === 'number') {
+        instance.setValue(value);
+      }
+      if (previousStart !== start && typeof start === 'number') {
+        instance.setValueStart(start);
+      }
+      if (previousEnd !== end && typeof end === 'number') {
+        instance.setValue(end);
+      }
+      previousValue = value;
+      previousStart = start;
+      previousEnd = end;
+      // Needed for range start to take effect.
+      instance.layout();
     }
-    if (previousStart !== start && typeof start === 'number') {
-      instance.setValueStart(start);
-    }
-    if (previousEnd !== end && typeof end === 'number') {
-      instance.setValue(end);
-    }
-    previousValue = value;
-    previousStart = start;
-    previousEnd = end;
-    // Needed for range start to take effect.
-    instance.layout();
-  }
+  });
 
   const SMUIGenericInputMount = getContext<
     ((accessor: any) => void) | undefined
@@ -441,7 +498,7 @@
         if (range && thumb === Thumb.START && inputStart) {
           inputStart.focus();
         } else {
-          input.focus();
+          input?.focus();
         }
       },
       isInputFocused: (thumb) =>
@@ -570,7 +627,7 @@
     return () => {
       SMUIGenericInputUnmount && SMUIGenericInputUnmount(accessor);
 
-      instance.destroy();
+      instance?.destroy();
     };
   });
 
@@ -674,7 +731,7 @@
       }
       return name in inputAttrs
         ? (inputAttrs[name] ?? null)
-        : input.getAttribute(name);
+        : (input?.getAttribute(name) ?? null);
     }
   }
 
@@ -721,7 +778,7 @@
   }
 
   export function layout() {
-    return instance.layout();
+    return instance?.layout();
   }
 
   export function getId() {

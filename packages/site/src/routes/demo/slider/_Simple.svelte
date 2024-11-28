@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <FormField align="end" style="display: flex;">
   <Slider style="flex-grow: 1;" bind:value />
   {#snippet label()}
@@ -22,5 +20,5 @@
   import FormField from '@smui/form-field';
   import Button from '@smui/button';
 
-  let value = 50;
+  let value = $state(50);
 </script>
