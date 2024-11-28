@@ -1,4 +1,4 @@
-<svelte:options runes={false} />
+<svelte:options runes />
 
 <div
   bind:this={element}
@@ -10,7 +10,7 @@
     'mdc-notched-outline--no-label': noLabel,
     ...internalClasses,
   })}
-  {...$$restProps}
+  {...restProps}
 >
   <div class="mdc-notched-outline__leading"></div>
   {#if !noLabel}
@@ -20,7 +20,7 @@
         .map(([name, value]) => `${name}: ${value};`)
         .join(' ')}
     >
-      <slot />
+      {@render children?.()}
     </div>
   {/if}
   <div class="mdc-notched-outline__trailing"></div>
@@ -28,6 +28,7 @@
 
 <script lang="ts">
   import { MDCNotchedOutlineFoundation } from '@material/notched-outline';
+  import type { Snippet } from 'svelte';
   import { onMount, setContext } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
@@ -35,37 +36,57 @@
   import type { SMUIFloatingLabelAccessor } from '@smui/floating-label';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * The notched state of the outline.
+     */
     notched?: boolean;
+    /**
+     * Don't render a label.
+     */
     noLabel?: boolean;
-  };
-  type $$Props = OwnProps & SmuiAttrs<'div', keyof OwnProps>;
 
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let notched = false;
-  export let noLabel = false;
+    children?: Snippet;
+  };
+  let {
+    use = [],
+    class: className = '',
+    notched = false,
+    noLabel = false,
+    children,
+    ...restProps
+  }: OwnProps & SmuiAttrs<'div', keyof OwnProps> = $props();
 
   let element: HTMLDivElement;
-  let instance: MDCNotchedOutlineFoundation;
-  let floatingLabel: SMUIFloatingLabelAccessor | undefined;
-  let internalClasses: { [k: string]: boolean } = {};
-  let notchStyles: { [k: string]: string } = {};
+  let instance: MDCNotchedOutlineFoundation | undefined = $state();
+  let floatingLabel: SMUIFloatingLabelAccessor | undefined = $state();
+  let internalClasses: { [k: string]: boolean } = $state({});
+  let notchStyles: { [k: string]: string } = $state({});
 
-  $: if (floatingLabel) {
-    floatingLabel.addStyle('transition-duration', '0s');
-    addClass('mdc-notched-outline--upgraded');
-    requestAnimationFrame(() => {
+  let previousFloatingLabel: SMUIFloatingLabelAccessor | undefined = undefined;
+  $effect(() => {
+    if (floatingLabel !== previousFloatingLabel) {
       if (floatingLabel) {
-        floatingLabel.removeStyle('transition-duration');
+        floatingLabel.addStyle('transition-duration', '0s');
+        addClass('mdc-notched-outline--upgraded');
+        requestAnimationFrame(() => {
+          if (floatingLabel) {
+            floatingLabel.removeStyle('transition-duration');
+          }
+        });
+      } else {
+        removeClass('mdc-notched-outline--upgraded');
       }
-    });
-  } else {
-    removeClass('mdc-notched-outline--upgraded');
-  }
+      previousFloatingLabel = floatingLabel;
+    }
+  });
 
   setContext(
     'SMUI:floating-label:mount',
@@ -88,7 +109,7 @@
     instance.init();
 
     return () => {
-      instance.destroy();
+      instance?.destroy();
     };
   });
 
@@ -123,11 +144,11 @@
   }
 
   export function notch(notchWidth: number) {
-    instance.notch(notchWidth);
+    instance?.notch(notchWidth);
   }
 
   export function closeNotch() {
-    instance.closeNotch();
+    instance?.closeNotch();
   }
 
   export function getElement() {

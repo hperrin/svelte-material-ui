@@ -169,10 +169,10 @@ Svelte 5 Runes mode is being migrated to slowly. This is the todo list of compon
   - [x] Checkbox
   - [ ] Chips
   - [ ] Chip Input
-  - [ ] Floating Label
+  - [x] Floating Label
   - [x] Form Field
-  - [ ] Line Ripple
-  - [ ] Notched Outline
+  - [x] Line Ripple
+  - [x] Notched Outline
   - [x] Radio Button
   - [ ] Segmented Button
   - [ ] Select Menu

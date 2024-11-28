@@ -1,4 +1,4 @@
-<svelte:options runes={false} />
+<svelte:options runes />
 
 <div
   bind:this={element}
@@ -13,7 +13,7 @@
     .map(([name, value]) => `${name}: ${value};`)
     .concat([style])
     .join(' ')}
-  {...$$restProps}
+  {...restProps}
 ></div>
 
 <script lang="ts">
@@ -24,24 +24,35 @@
   import { classMap, useActions } from '@smui/common/internal';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * A list of CSS styles.
+     */
     style?: string;
+    /**
+     * Whether the line is active.
+     */
     active?: boolean;
   };
-  type $$Props = OwnProps & SmuiAttrs<'div', keyof OwnProps>;
-
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let style = '';
-  export let active = false;
+  let {
+    use = [],
+    class: className = '',
+    style = '',
+    active = false,
+    ...restProps
+  }: OwnProps & SmuiAttrs<'div', keyof OwnProps> = $props();
 
   let element: HTMLDivElement;
-  let instance: MDCLineRippleFoundation;
-  let internalClasses: { [k: string]: boolean } = {};
-  let internalStyles: { [k: string]: string } = {};
+  let instance: MDCLineRippleFoundation | undefined = $state();
+  let internalClasses: { [k: string]: boolean } = $state({});
+  let internalStyles: { [k: string]: string } = $state({});
 
   onMount(() => {
     instance = new MDCLineRippleFoundation({
@@ -58,7 +69,7 @@
     instance.init();
 
     return () => {
-      instance.destroy();
+      instance?.destroy();
     };
   });
 
@@ -92,15 +103,15 @@
   }
 
   export function activate() {
-    instance.activate();
+    instance?.activate();
   }
 
   export function deactivate() {
-    instance.deactivate();
+    instance?.deactivate();
   }
 
   export function setRippleCenter(xCoordinate: number) {
-    instance.setRippleCenter(xCoordinate);
+    instance?.setRippleCenter(xCoordinate);
   }
 
   export function getElement() {

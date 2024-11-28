@@ -1,4 +1,4 @@
-<svelte:options runes={false} />
+<svelte:options runes />
 
 {#if wrapped}
   <span
@@ -15,7 +15,7 @@
       .map(([name, value]) => `${name}: ${value};`)
       .concat([style])
       .join(' ')}
-    {...$$restProps}><slot /></span
+    {...restProps}>{@render children?.()}</span
   >
 {:else}
   <label
@@ -33,12 +33,13 @@
       .concat([style])
       .join(' ')}
     for={forId || (inputProps ? inputProps.id : undefined)}
-    {...$$restProps}><slot /></label
+    {...restProps}>{@render children?.()}</label
   >
 {/if}
 
 <script lang="ts">
   import { MDCFloatingLabelFoundation } from '@material/floating-label';
+  import type { Snippet } from 'svelte';
   import { onMount, getContext } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
@@ -47,46 +48,75 @@
   import type { SMUIFloatingLabelAccessor } from './FloatingLabel.types.js';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * A list of CSS styles.
+     */
     style?: string;
+    /**
+     * The ID that this label is for.
+     */
     for?: string | undefined;
+    /**
+     * Whether to float the label.
+     */
     floatAbove?: boolean;
+    /**
+     * Whether to style for a required input.
+     */
     required?: boolean;
+    /**
+     * Whether the input is already wrapped in a label.
+     *
+     * If not, a label element will be used with the ID value in the `for` prop.
+     */
     wrapped?: boolean;
-  };
-  type $$Props = SmuiAttrs<'span', keyof OwnProps> &
-    SmuiAttrs<'label', keyof OwnProps> &
-    OwnProps;
 
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let style = '';
-  let forId: string | undefined = undefined;
-  export { forId as for };
-  export let floatAbove = false;
-  export let required = false;
-  export let wrapped = false;
+    children?: Snippet;
+  };
+  let {
+    use = [],
+    class: className = '',
+    style = '',
+    for: forId,
+    floatAbove = $bindable(false),
+    required = $bindable(false),
+    wrapped = false,
+    children,
+    ...restProps
+  }: SmuiAttrs<'span', keyof OwnProps> &
+    SmuiAttrs<'label', keyof OwnProps> &
+    OwnProps = $props();
 
   let element: HTMLSpanElement | HTMLLabelElement;
-  let instance: MDCFloatingLabelFoundation;
-  let internalClasses: { [k: string]: boolean } = {};
-  let internalStyles: { [k: string]: string } = {};
+  let instance: MDCFloatingLabelFoundation | undefined = $state();
+  let internalClasses: { [k: string]: boolean } = $state({});
+  let internalStyles: { [k: string]: string } = $state({});
   let inputProps =
     getContext<{ id?: string } | undefined>('SMUI:generic:input:props') ?? {};
 
   let previousFloatAbove = floatAbove;
-  $: if (instance && previousFloatAbove !== floatAbove) {
-    previousFloatAbove = floatAbove;
-    instance.float(floatAbove);
-  }
+  $effect(() => {
+    if (instance && previousFloatAbove !== floatAbove) {
+      previousFloatAbove = floatAbove;
+      instance.float(floatAbove);
+    }
+  });
 
   let previousRequired = required;
-  $: if (instance && previousRequired !== required) {
-    previousRequired = required;
-    instance.setRequired(required);
-  }
+  $effect(() => {
+    if (instance && previousRequired !== required) {
+      previousRequired = required;
+      instance.setRequired(required);
+    }
+  });
 
   const SMUIFloatingLabelMount = getContext<
     ((accessor: SMUIFloatingLabelAccessor) => void) | undefined
@@ -131,7 +161,7 @@
     return () => {
       SMUIFloatingLabelUnmount && SMUIFloatingLabelUnmount(accessor);
 
-      instance.destroy();
+      instance?.destroy();
     };
   });
 
@@ -166,7 +196,7 @@
   }
 
   export function shake(shouldShake: boolean) {
-    instance.shake(shouldShake);
+    instance?.shake(shouldShake);
   }
 
   export function float(shouldFloat: boolean) {
@@ -178,6 +208,9 @@
   }
 
   export function getWidth() {
+    if (instance == null) {
+      throw new Error('Instance is undefined.');
+    }
     return instance.getWidth();
   }
 
