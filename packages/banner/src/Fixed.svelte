@@ -1,23 +1,36 @@
-<svelte:options runes={false} />
+<svelte:options runes />
 
 {#if fixed}
   <div
     bind:this={element}
     class="mdc-banner__fixed"
     style={width == null ? undefined : `width: ${width}px;`}
-    {...$$restProps}
+    {...restProps}
   >
-    <slot />
+    {@render children?.()}
   </div>
 {:else}
-  <slot />
+  {@render children?.()}
 {/if}
 
 <script lang="ts">
-  export let fixed = false;
-  export let width: number | undefined = undefined;
+  import type { Snippet } from 'svelte';
+  import type { SmuiAttrs } from '@smui/common';
 
-  let element: HTMLDivElement;
+  type OwnProps = {
+    fixed?: boolean;
+    width?: number;
+
+    children?: Snippet;
+  };
+  let {
+    fixed = false,
+    width,
+    children,
+    ...restProps
+  }: OwnProps & SmuiAttrs<'div', keyof OwnProps> = $props();
+
+  let element: HTMLDivElement = $state() as HTMLDivElement;
 
   export function getElement() {
     return element;

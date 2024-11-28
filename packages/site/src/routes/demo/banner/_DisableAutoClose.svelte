@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <pre class="status">Action Clicked: {action}</pre>
 
 <div class="top-app-bar-container">
@@ -15,11 +13,13 @@
     autoClose={false}
     onSMUIBannerActionClicked={handleActionClicked}
   >
-    <Label slot="label">This is a banner with actions to click.</Label>
-    <svelte:fragment slot="actions">
+    {#snippet label()}
+      <Label>This is a banner with actions to click.</Label>
+    {/snippet}
+    {#snippet actions()}
       <Button secondary>Secondary</Button>
       <Button>Primary</Button>
-    </svelte:fragment>
+    {/snippet}
   </Banner>
   <div>
     <img
@@ -41,7 +41,7 @@
     [1]: 'Secondary',
     [2]: 'Unknown',
   };
-  let action = 'None yet';
+  let action = $state('None yet');
 
   function handleActionClicked(event: CustomEvent<{ action: Action }>) {
     action = actions[event.detail.action];

@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div>
   <FormField>
     <Checkbox bind:checked={open} />
@@ -33,15 +31,17 @@
   </TopAppBar>
   <Banner
     bind:open
-    bind:centered
-    bind:mobileStacked
+    {centered}
+    {mobileStacked}
     onSMUIBannerClosed={handleBannerClosed}
   >
-    <Label slot="label">This is a banner with no icon and some actions.</Label>
-    <svelte:fragment slot="actions">
+    {#snippet label()}
+      <Label>This is a banner with no icon and some actions.</Label>
+    {/snippet}
+    {#snippet actions()}
       <Button secondary>Secondary</Button>
       <Button>Primary</Button>
-    </svelte:fragment>
+    {/snippet}
   </Banner>
   <div>
     <img
@@ -59,16 +59,16 @@
   import Checkbox from '@smui/checkbox';
   import FormField from '@smui/form-field';
 
-  let open = false;
-  let centered = false;
-  let mobileStacked = true;
+  let open = $state(false);
+  let centered = $state(false);
+  let mobileStacked = $state(true);
 
   const closedReasons = {
     [CloseReason.PRIMARY]: 'Primary',
     [CloseReason.SECONDARY]: 'Secondary',
     [CloseReason.UNSPECIFIED]: 'Unspecified',
   };
-  let closedReason = 'None yet';
+  let closedReason = $state('None yet');
 
   function handleBannerClosed(event: CustomEvent<{ reason: CloseReason }>) {
     closedReason = closedReasons[event.detail.reason];

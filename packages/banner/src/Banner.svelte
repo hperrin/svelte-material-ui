@@ -1,4 +1,4 @@
-<svelte:options runes={false} />
+<svelte:options runes />
 
 <svelte:window onresize={layout} />
 
@@ -17,17 +17,17 @@
     .concat([style])
     .join(' ')}
   role="banner"
-  {...exclude($$restProps, ['content$', 'textWrapper$', 'graphic$'])}
+  {...exclude(restProps, ['content$', 'textWrapper$', 'graphic$'])}
   onSMUIBannerButtonPrimaryActionClick={(e) => {
     handlePrimaryActionClick();
-    $$restProps.onSMUIBannerButtonPrimaryActionClick?.(e);
+    restProps.onSMUIBannerButtonPrimaryActionClick?.(e);
   }}
   onSMUIBannerButtonSecondaryActionClick={(e) => {
     handleSecondaryActionClick();
-    $$restProps.onSMUIBannerButtonSecondaryActionClick?.(e);
+    restProps.onSMUIBannerButtonSecondaryActionClick?.(e);
   }}
 >
-  <Fixed bind:fixed {width}>
+  <Fixed {fixed} {width}>
     <div
       bind:this={content}
       class={classMap({
@@ -36,17 +36,17 @@
       })}
       role="alertdialog"
       aria-live="assertive"
-      {...prefixFilter($$restProps, 'content$')}
+      {...prefixFilter(restProps, 'content$')}
     >
-      {#if $$slots.icon || $$slots.label}
+      {#if icon || label}
         <div
           class={classMap({
             [textWrapper$class]: true,
             'mdc-banner__graphic-text-wrapper': true,
           })}
-          {...prefixFilter($$restProps, 'textWrapper$')}
+          {...prefixFilter(restProps, 'textWrapper$')}
         >
-          {#if $$slots.icon}
+          {#if icon}
             <div
               class={classMap({
                 [graphic$class]: true,
@@ -54,17 +54,17 @@
               })}
               role="img"
               {...altProp}
-              {...prefixFilter($$restProps, 'graphic$')}
+              {...prefixFilter(restProps, 'graphic$')}
             >
-              <slot name="icon" />
+              {@render icon?.()}
             </div>
           {/if}
-          <slot name="label" />
+          {@render label?.()}
         </div>
       {/if}
-      {#if $$slots.actions}
+      {#if actions}
         <div class="mdc-banner__actions">
-          <slot name="actions" />
+          {@render actions?.()}
         </div>
       {/if}
     </div>
@@ -74,6 +74,7 @@
 <script lang="ts">
   import { CloseReason, MDCBannerFoundation } from '@material/banner';
   import { focusTrap as domFocusTrap } from '@material/dom';
+  import type { Snippet } from 'svelte';
   import { onMount, onDestroy, getContext, setContext, tick } from 'svelte';
   import type {
     AddLayoutListener,
@@ -95,52 +96,94 @@
   const { FocusTrap } = domFocusTrap;
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * A list of CSS styles.
+     */
     style?: string;
+    /**
+     * Whether the banner is open.
+     */
     open?: boolean;
-    autoClose?: false;
+    /**
+     * Whether the banner closes on button click.
+     */
+    autoClose?: boolean;
+    /**
+     * Whether the banner contents are centered.
+     */
     centered?: boolean;
+    /**
+     * Fix the banner to the top of the container.
+     */
     fixed?: boolean;
+    /**
+     * Stack the buttons under the content on mobile displays.
+     */
     mobileStacked?: boolean;
+    /**
+     * A space separated list of CSS classes.
+     */
     content$class?: string;
+    /**
+     * A space separated list of CSS classes.
+     */
     textWrapper$class?: string;
+    /**
+     * A space separated list of CSS classes.
+     */
     graphic$class?: string;
+
+    children?: Snippet;
+
+    icon?: Snippet;
+    label?: Snippet;
+    actions?: Snippet;
   };
-  type $$Props = OwnProps &
+  let {
+    use = [],
+    class: className = '',
+    style = '',
+    open = $bindable(false),
+    autoClose = true,
+    centered = false,
+    fixed = false,
+    mobileStacked = false,
+    content$class = '',
+    textWrapper$class = '',
+    graphic$class = '',
+    children,
+    icon,
+    label,
+    actions,
+    ...restProps
+  }: OwnProps &
     SmuiAttrs<'div', keyof OwnProps> & {
       [k in keyof SmuiElementPropMap['div'] as `content\$${k}`]?: SmuiElementPropMap['div'][k];
     } & {
       [k in keyof SmuiElementPropMap['div'] as `textWrapper\$${k}`]?: SmuiElementPropMap['div'][k];
     } & {
       [k in keyof SmuiElementPropMap['div'] as `graphic\$${k}`]?: SmuiElementPropMap['div'][k];
-    };
-
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let style = '';
-  export let open = false;
-  export let autoClose = true;
-  export let centered = false;
-  export let fixed = false;
-  export let mobileStacked = false;
-  export let content$class = '';
-  export let textWrapper$class = '';
-  export let graphic$class = '';
+    } = $props();
 
   let element: HTMLDivElement;
-  let instance: MDCBannerFoundation;
-  let internalClasses: { [k: string]: boolean } = {};
-  let internalStyles: { [k: string]: string } = {};
+  let instance: MDCBannerFoundation | undefined = $state();
+  let internalClasses: { [k: string]: boolean } = $state({});
+  let internalStyles: { [k: string]: string } = $state({});
   let content: HTMLDivElement;
   let focusTrap: domFocusTrap.FocusTrap | undefined;
   let addLayoutListener = getContext<AddLayoutListener | undefined>(
     'SMUI:addLayoutListener',
   );
   let removeLayoutListener: RemoveLayoutListener | undefined;
-  let width: number | undefined = undefined;
+  let width: number | undefined = $state();
 
   // This is for a div that uses the role of "img". TS doesn't like it directly
   // on the element.
@@ -150,19 +193,23 @@
   setContext('SMUI:icon:context', 'banner');
   setContext('SMUI:button:context', 'banner');
 
-  $: if (instance && instance.isOpen() !== open) {
-    if (open) {
-      instance.open();
-    } else {
-      instance.close(CloseReason.UNSPECIFIED);
+  $effect(() => {
+    if (instance && instance.isOpen() !== open) {
+      if (open) {
+        instance.open();
+      } else {
+        instance.close(CloseReason.UNSPECIFIED);
+      }
     }
-  }
+  });
 
   let previousMobileStacked = mobileStacked;
-  $: if (previousMobileStacked !== mobileStacked) {
-    previousMobileStacked = mobileStacked;
-    tick().then(layout);
-  }
+  $effect(() => {
+    if (previousMobileStacked !== mobileStacked) {
+      previousMobileStacked = mobileStacked;
+      tick().then(layout);
+    }
+  });
 
   if (addLayoutListener) {
     removeLayoutListener = addLayoutListener(layout);
@@ -214,7 +261,7 @@
     layout();
 
     return () => {
-      instance.destroy();
+      instance?.destroy();
     };
   });
 
@@ -255,11 +302,11 @@
   }
 
   function handlePrimaryActionClick() {
-    instance.handlePrimaryActionClick(!autoClose);
+    instance?.handlePrimaryActionClick(!autoClose);
   }
 
   function handleSecondaryActionClick() {
-    instance.handleSecondaryActionClick(!autoClose);
+    instance?.handleSecondaryActionClick(!autoClose);
   }
 
   export function isOpen() {
