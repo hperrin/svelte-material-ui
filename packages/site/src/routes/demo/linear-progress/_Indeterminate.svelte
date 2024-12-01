@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <LinearProgress indeterminate />
 
 <script lang="ts">

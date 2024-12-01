@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <LinearProgress {progress} {closed} />
 
 <br />
@@ -20,8 +18,8 @@
   import FormField from '@smui/form-field';
   import Button from '@smui/button';
 
-  let progress = 0;
-  let closed = false;
+  let progress = $state(0);
+  let closed = $state(false);
   let timer: NodeJS.Timer;
 
   onMount(reset);

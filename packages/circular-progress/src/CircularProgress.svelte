@@ -126,7 +126,7 @@
      */
     class?: string;
     /**
-     * Whether to show indeterminate progress.
+     * Whether to show indeterminate progress (a throbber).
      */
     indeterminate?: boolean;
     /**
