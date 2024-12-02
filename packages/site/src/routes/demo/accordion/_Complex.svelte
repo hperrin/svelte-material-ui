@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div class="accordion-container">
   <Accordion>
     <Panel>
@@ -74,5 +72,5 @@
   } from '@smui/dialog';
 
   let menu: Menu;
-  let dialogOpen = false;
+  let dialogOpen = $state(false);
 </script>

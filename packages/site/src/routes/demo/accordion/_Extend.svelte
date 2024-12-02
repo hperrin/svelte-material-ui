@@ -1,11 +1,11 @@
-<svelte:options runes={false} />
-
 <div class="accordion-container">
   <Accordion>
     <Panel extend>
       <Header>
         Panel 1
-        <span slot="description">Description of panel 1.</span>
+        {#snippet description()}
+          Description of panel 1.
+        {/snippet}
       </Header>
       <Content>
         The content for panel 1.
@@ -20,14 +20,18 @@
     <Panel extend>
       <Header>
         Panel 2
-        <span slot="description">Description of panel 2.</span>
+        {#snippet description()}
+          Description of panel 2.
+        {/snippet}
       </Header>
       <Content>The content for panel 2.</Content>
     </Panel>
     <Panel extend>
       <Header>
         Panel 3
-        <span slot="description">Description of panel 3.</span>
+        {#snippet description()}
+          Description of panel 3.
+        {/snippet}
       </Header>
       <Content>
         The content for panel 3.
@@ -47,7 +51,9 @@
     <Panel extend>
       <Header>
         Panel 4
-        <span slot="description">Description of panel 4.</span>
+        {#snippet description()}
+          Description of panel 4.
+        {/snippet}
       </Header>
       <Content>The content for panel 4.</Content>
     </Panel>

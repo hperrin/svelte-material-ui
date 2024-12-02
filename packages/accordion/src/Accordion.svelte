@@ -1,4 +1,4 @@
-<svelte:options runes={false} />
+<svelte:options runes />
 
 <div
   bind:this={element}
@@ -9,51 +9,63 @@
     'smui-accordion--multiple': multiple,
     'smui-accordion--with-open-dialog': withOpenDialog,
   })}
-  {...$$restProps}
+  {...restProps}
   onSMUIAccordionPanelActivate={(e) => {
     handlePanelActivate(e);
-    $$restProps.onSMUIAccordionPanelActivate?.(e);
+    restProps.onSMUIAccordionPanelActivate?.(e);
   }}
   onSMUIAccordionPanelOpening={(e) => {
     handlePanelOpening(e);
-    $$restProps.onSMUIAccordionPanelOpening?.(e);
+    restProps.onSMUIAccordionPanelOpening?.(e);
   }}
   onSMUIDialogOpeningcapture={(e) => {
     withOpenDialog = true;
-    $$restProps.onSMUIDialogOpeningcapture?.(e);
+    restProps.onSMUIDialogOpeningcapture?.(e);
   }}
   onSMUIDialogClosedcapture={(e) => {
     withOpenDialog = false;
-    $$restProps.onSMUIDialogClosedcapture?.(e);
+    restProps.onSMUIDialogClosedcapture?.(e);
   }}
 >
-  <slot />
+  {@render children?.()}
 </div>
 
 <script lang="ts">
+  import type { Snippet } from 'svelte';
   import { setContext } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, useActions } from '@smui/common/internal';
 
-  type OwnProps = {
-    use?: ActionArray;
-    class?: string;
-    multiple?: boolean;
-  };
-  type $$Props = OwnProps & SmuiAttrs<'div', keyof OwnProps>;
-
   import type { SMUIAccordionPanelAccessor } from './Panel.types.js';
 
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let multiple = false;
+  type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
+    use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
+    class?: string;
+    /**
+     * Whether multiple panels can be open at once.
+     */
+    multiple?: boolean;
+
+    children?: Snippet;
+  };
+  let {
+    use = [],
+    class: className = '',
+    multiple = false,
+    children,
+    ...restProps
+  }: OwnProps & SmuiAttrs<'div', keyof OwnProps> = $props();
 
   let element: HTMLDivElement;
   let panelAccessorSet = new Set<SMUIAccordionPanelAccessor>();
-  let withOpenDialog = false;
+  let withOpenDialog = $state(false);
 
   setContext(
     'SMUI:accordion:panel:mount',

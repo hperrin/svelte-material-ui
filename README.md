@@ -148,7 +148,7 @@ Click a component/package below to go to the documentation. (Note that this docu
 
 Svelte 5 Runes mode is being migrated to slowly. This is the todo list of components as they are migrated.
 
-- [ ] Accordion
+- [x] Accordion
 - Action Buttons
   - [x] Button
   - [x] Floating Action Button

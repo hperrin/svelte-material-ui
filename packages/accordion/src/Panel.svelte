@@ -1,4 +1,4 @@
-<svelte:options runes={false} />
+<svelte:options runes />
 
 <Paper
   bind:this={element}
@@ -19,15 +19,15 @@
   })}
   {color}
   variant={variant === 'raised' ? 'unelevated' : variant}
-  {...$$restProps}
+  {...restProps}
   onSMUIAccordionHeaderActivate={(e) => {
     handleHeaderActivate(e);
-    $$restProps.onSMUIAccordionHeaderActivate?.(e);
-  }}><slot /></Paper
+    restProps.onSMUIAccordionHeaderActivate?.(e);
+  }}>{@render children?.()}</Paper
 >
 
 <script lang="ts">
-  import type { ComponentProps } from 'svelte';
+  import type { ComponentProps, Snippet } from 'svelte';
   import { onMount, setContext, getContext } from 'svelte';
   import { writable } from 'svelte/store';
   import type { ActionArray } from '@smui/common/internal';
@@ -37,106 +37,152 @@
   import type { SMUIAccordionPanelAccessor } from './Panel.types.js';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * The styling variant of the panel.
+     */
     variant?: 'raised' | 'unelevated' | 'outlined';
+    /**
+     * The color of the panel.
+     */
     color?: 'default' | 'primary' | 'secondary' | string;
+    /**
+     * The elevation of the panel.
+     */
     elevation?: number;
+    /**
+     * Whether the panel is open.
+     */
     open?: boolean;
+    /**
+     * Whether the panel is disabled.
+     */
     disabled?: boolean;
+    /**
+     * Whether the panel is non-interactive.
+     *
+     * This is distinct from disabled, because it doesn't add any visual
+     * styling.
+     */
     nonInteractive?: boolean;
+    /**
+     * Whether the panel should slightly extend horizontally when it is opened.
+     */
     extend?: boolean;
+    /**
+     * The elevation the panel should transition to when it is extended.
+     */
     extendedElevation?: number;
-  };
-  type $$Props = OwnProps & Omit<ComponentProps<typeof Paper>, keyof OwnProps>;
 
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let variant: 'raised' | 'unelevated' | 'outlined' = 'raised';
-  export let color: 'default' | 'primary' | 'secondary' | string = 'default';
-  export let elevation = 1;
-  export let open = false;
-  export let disabled = false;
-  export let nonInteractive = false;
-  export let extend = false;
-  export let extendedElevation = 3;
+    children?: Snippet;
+  };
+  let {
+    use = [],
+    class: className = '',
+    variant = 'raised',
+    color = 'default',
+    elevation = 1,
+    open = $bindable(false),
+    disabled = false,
+    nonInteractive = false,
+    extend = false,
+    extendedElevation = 3,
+    children,
+    ...restProps
+  }: OwnProps & Omit<ComponentProps<typeof Paper>, keyof OwnProps> = $props();
 
   let element: Paper;
   let accessor: SMUIAccordionPanelAccessor;
-  let opened = open;
+  let opened = $state(open);
 
   const disabledStore = writable(disabled);
-  $: $disabledStore = disabled;
+  $effect(() => {
+    $disabledStore = disabled;
+  });
   setContext('SMUI:accordion:panel:disabled', disabledStore);
   const nonInteractiveStore = writable(nonInteractive);
-  $: $nonInteractiveStore = nonInteractive;
+  $effect(() => {
+    $nonInteractiveStore = nonInteractive;
+  });
   setContext('SMUI:accordion:panel:nonInteractive', nonInteractiveStore);
   const openStore = writable(open);
-  $: $openStore = open;
+  $effect(() => {
+    $openStore = open;
+  });
   setContext('SMUI:accordion:panel:open', openStore);
 
   let previousOpen = open;
-  $: if (previousOpen !== open) {
-    previousOpen = open;
+  $effect.pre(() => {
+    if (previousOpen !== open) {
+      previousOpen = open;
 
-    Array.from(getElement().children).forEach((child) => {
-      if (child.classList.contains('smui-paper__content')) {
-        const content = child as HTMLDivElement;
+      Array.from(getElement().children).forEach((child) => {
+        if (child.classList.contains('smui-paper__content')) {
+          const content = child as HTMLDivElement;
 
-        // Calculate the height of the content and apply it. This lets the CSS
-        // animation run properly.
-        if (open) {
-          content.classList.add('smui-accordion__content--no-transition');
-          content.classList.add('smui-accordion__content--force-open');
-          // Force a reflow to get the height.
-          const { height } = content.getBoundingClientRect();
-          content.classList.remove('smui-accordion__content--force-open');
-          // Force another reflow to reset the height.
-          content.getBoundingClientRect();
-          content.classList.remove('smui-accordion__content--no-transition');
-          content.style.height = height + 'px';
-          content.addEventListener(
-            'transitionend',
-            () => {
+          // Calculate the height of the content and apply it. This lets the CSS
+          // animation run properly.
+          if (open) {
+            content.classList.add('smui-accordion__content--no-transition');
+            content.classList.add('smui-accordion__content--force-open');
+            // Force a reflow to get the height.
+            const { height } = content.getBoundingClientRect();
+            content.classList.remove('smui-accordion__content--force-open');
+            // Force another reflow to reset the height.
+            content.getBoundingClientRect();
+            content.classList.remove('smui-accordion__content--no-transition');
+            content.style.height = height + 'px';
+            content.addEventListener(
+              'transitionend',
+              () => {
+                if (content) {
+                  content.style.height = '';
+                }
+
+                // Assign only when the panel is fully opened.
+                opened = open;
+
+                dispatch(getElement(), 'SMUIAccordionPanelOpened', {
+                  accessor,
+                });
+              },
+              { once: true },
+            );
+          } else {
+            content.style.height =
+              content.getBoundingClientRect().height + 'px';
+            // Force a reflow.
+            content.getBoundingClientRect();
+            requestAnimationFrame(() => {
               if (content) {
                 content.style.height = '';
               }
+              dispatch(getElement(), 'SMUIAccordionPanelClosed', { accessor });
+            });
 
-              // Assign only when the panel is fully opened.
-              opened = open;
+            // Assign as soon as the panel is closing.
+            opened = false;
+          }
 
-              dispatch(getElement(), 'SMUIAccordionPanelOpened', { accessor });
-            },
-            { once: true },
-          );
-        } else {
-          content.style.height = content.getBoundingClientRect().height + 'px';
-          // Force a reflow.
-          content.getBoundingClientRect();
-          requestAnimationFrame(() => {
-            if (content) {
-              content.style.height = '';
-            }
-            dispatch(getElement(), 'SMUIAccordionPanelClosed', { accessor });
-          });
-
-          // Assign as soon as the panel is closing.
-          opened = false;
+          // Set the aria-hidden property.
+          content.setAttribute('aria-hidden', open ? 'false' : 'true');
         }
+      });
 
-        // Set the aria-hidden property.
-        content.setAttribute('aria-hidden', open ? 'false' : 'true');
-      }
-    });
-
-    dispatch(
-      getElement(),
-      open ? 'SMUIAccordionPanelOpening' : 'SMUIAccordionPanelClosing',
-      { accessor },
-    );
-  }
+      dispatch(
+        getElement(),
+        open ? 'SMUIAccordionPanelOpening' : 'SMUIAccordionPanelClosing',
+        { accessor },
+      );
+    }
+  });
 
   const SMUIAccordionPanelMount = getContext<
     ((accessor: SMUIAccordionPanelAccessor) => void) | undefined

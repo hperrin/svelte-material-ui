@@ -1,4 +1,4 @@
-<svelte:options runes={false} />
+<svelte:options runes />
 
 <div
   bind:this={element}
@@ -24,14 +24,14 @@
   role="button"
   tabindex={$nonInteractive ? -1 : 0}
   aria-expanded={$open ? 'true' : 'false'}
-  {...$$restProps}
+  {...restProps}
   onclick={(e) => {
     handleClick(e);
-    $$restProps.onclick?.(e);
+    restProps.onclick?.(e);
   }}
   onkeydown={(e) => {
     handleKeyDown(e);
-    $$restProps.onkeydown?.(e);
+    restProps.onkeydown?.(e);
   }}
 >
   {#if ripple}
@@ -40,24 +40,25 @@
   <div
     class={classMap({
       'smui-accordion__header__title': true,
-      'smui-accordion__header__title--with-description': $$slots.description,
+      'smui-accordion__header__title--with-description': description,
     })}
   >
-    <slot />
+    {@render children?.()}
   </div>
-  {#if $$slots.description}
+  {#if description}
     <div class="smui-accordion__header__description">
-      <slot name="description" />
+      {@render description?.()}
     </div>
   {/if}
-  {#if $$slots.icon}
+  {#if icon}
     <div class="smui-accordion__header__icon">
-      <slot name="icon" />
+      {@render icon?.()}
     </div>
   {/if}
 </div>
 
 <script lang="ts">
+  import type { Snippet } from 'svelte';
   import { getContext } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
@@ -65,23 +66,47 @@
   import Ripple from '@smui/ripple';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * A list of CSS styles.
+     */
     style?: string;
+    /**
+     * Whether to show a ripple animation.
+     */
     ripple?: boolean;
-  };
-  type $$Props = OwnProps & SmuiAttrs<'div', keyof OwnProps>;
 
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let style = '';
-  export let ripple = true;
+    children?: Snippet;
+    /**
+     * A spot for the description.
+     */
+    description?: Snippet;
+    /**
+     * A spot for the icon.
+     */
+    icon?: Snippet;
+  };
+  let {
+    use = [],
+    class: className = '',
+    style = '',
+    ripple = true,
+    children,
+    description,
+    icon,
+    ...restProps
+  }: OwnProps & SmuiAttrs<'div', keyof OwnProps> = $props();
 
   let element: HTMLDivElement;
-  let internalClasses: { [k: string]: boolean } = {};
-  let internalStyles: { [k: string]: string } = {};
+  let internalClasses: { [k: string]: boolean } = $state({});
+  let internalStyles: { [k: string]: string } = $state({});
 
   const disabled = getContext<SvelteStore<boolean>>(
     'SMUI:accordion:panel:disabled',
