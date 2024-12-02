@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div class="margins">
   <form onsubmit={handleSubmit}>
     <Select bind:value label="Fruit" hiddenInput input$name="fruit">
@@ -27,9 +25,9 @@
 
   let fruits = ['Apple', 'Orange', 'Banana', 'Mango'];
 
-  let value = '';
+  let value = $state('');
 
-  let received: string | undefined = undefined;
+  let received: string | undefined = $state();
 
   function handleSubmit(e: SubmitEvent & { currentTarget: HTMLFormElement }) {
     e.preventDefault();

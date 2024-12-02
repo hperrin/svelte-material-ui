@@ -45,6 +45,7 @@
     id?: string;
     /**
      * Whether the validation helper text persists even if the input is valid.
+     *
      * If it is, it will be displayed in the normal (grey) color.
      */
     persistent?: boolean;

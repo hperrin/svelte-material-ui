@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div class="columns margins">
   <div>
     <Select variant="outlined" bind:value label="Fruit">
@@ -22,7 +20,9 @@
       {#each fruits as fruit}
         <Option value={fruit}>{fruit}</Option>
       {/each}
-      <svelte:fragment slot="helperText">Helper text.</svelte:fragment>
+      {#snippet helperText()}
+        Helper text.
+      {/snippet}
     </Select>
 
     <pre class="status">Selected: {valueHelperText}</pre>
@@ -34,7 +34,9 @@
       bind:value={valueLeadingIcon}
       label="Leading Icon"
     >
-      <Icon class="material-icons" slot="leadingIcon">event</Icon>
+      {#snippet leadingIcon()}
+        <Icon class="material-icons">event</Icon>
+      {/snippet}
       <Option value="" />
       {#each fruits as fruit}
         <Option value={fruit}>{fruit}</Option>
@@ -67,8 +69,8 @@
 
   let fruits = ['Apple', 'Orange', 'Banana', 'Mango'];
 
-  let value = '';
-  let valueHelperText = '';
-  let valueLeadingIcon = '';
-  let valueInvalid = '';
+  let value = $state('');
+  let valueHelperText = $state('');
+  let valueLeadingIcon = $state('');
+  let valueInvalid = $state('');
 </script>

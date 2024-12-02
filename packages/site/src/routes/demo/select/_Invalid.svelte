@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div class="columns margins">
   <div>
     <!-- You need to both provide `invalid` and set `updateInvalid` to false -->
@@ -35,6 +33,6 @@
 
   let fruits = ['Apple', 'Orange', 'Banana', 'Mango'];
 
-  let valueA = '';
-  let invalidA = false;
+  let valueA = $state('');
+  let invalidA = $state(false);
 </script>

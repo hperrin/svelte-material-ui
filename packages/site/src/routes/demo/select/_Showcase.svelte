@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div class="columns margins" style="justify-content: flex-start;">
   <div>
     <Select bind:value label="Select Menu">
@@ -17,5 +15,5 @@
 
   let fruits = ['Apple', 'Orange', 'Banana', 'Mango'];
 
-  let value = 'Orange';
+  let value = $state('Orange');
 </script>

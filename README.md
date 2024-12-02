@@ -175,9 +175,9 @@ Svelte 5 Runes mode is being migrated to slowly. This is the todo list of compon
   - [x] Notched Outline
   - [x] Radio Button
   - [ ] Segmented Button
-  - [ ] Select Menu
-    - [ ] Select Helper Text
-    - [ ] Select Icon
+  - [x] Select Menu
+    - [x] Select Helper Text
+    - [x] Select Icon
   - [x] Slider
   - [x] Switch
   - [x] Text Field

@@ -1,4 +1,4 @@
-<svelte:options runes={false} />
+<svelte:options runes />
 
 <Item
   bind:this={element}
@@ -6,27 +6,39 @@
   data-value={value}
   {value}
   {selected}
-  {...$$restProps}><slot /></Item
+  {...restProps}>{@render children?.()}</Item
 >
 
 <script lang="ts">
-  import type { ComponentProps } from 'svelte';
+  import type { ComponentProps, Snippet } from 'svelte';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
   import type { Writable } from 'svelte/store';
   import type { ActionArray } from '@smui/common/internal';
   import { Item } from '@smui/list';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * The value of the input.
+     */
     value?: any;
-  };
-  type $$Props = OwnProps & Omit<ComponentProps<typeof Item>, keyof OwnProps>;
 
-  export let use: ActionArray = [];
-  const className = '';
-  export { className as class };
-  export let value: any = '';
+    children?: Snippet;
+  };
+  let {
+    use = [],
+    class: className = '',
+    value = '',
+    children,
+    ...restProps
+  }: OwnProps & Omit<ComponentProps<typeof Item>, keyof OwnProps> = $props();
 
   let element: Item;
   const selectedText = getContext<Writable<string>>('SMUI:select:selectedText');
@@ -34,7 +46,9 @@
 
   setContext('SMUI:list:item:role', 'option');
 
-  $: selected = value != null && value !== '' && $selectedValue === value;
+  const selected = $derived(
+    value != null && value !== '' && $selectedValue === value,
+  );
 
   onMount(setSelectedText);
 
