@@ -1,4 +1,4 @@
-<svelte:options runes={false} />
+<svelte:options runes />
 
 <div
   bind:this={element}
@@ -9,15 +9,15 @@
     'mdc-layout-grid--fixed-column-width': fixedColumnWidth,
     ['mdc-layout-grid--align-' + align]: align != null,
   })}
-  {...exclude($$restProps, ['innerGrid$'])}
+  {...exclude(restProps, ['innerGrid$'])}
 >
-  <InnerGrid {...prefixFilter($$restProps, 'innerGrid$')}>
-    <slot />
+  <InnerGrid {...prefixFilter(restProps, 'innerGrid$')}>
+    {@render children?.()}
   </InnerGrid>
 </div>
 
 <script lang="ts">
-  import type { ComponentProps } from 'svelte';
+  import type { ComponentProps, Snippet } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
@@ -30,24 +30,38 @@
   import InnerGrid from './InnerGrid.svelte';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * Whether to use a fixed column width instead of variable.
+     */
     fixedColumnWidth?: boolean;
+    /**
+     * Where to align the cells horizontally, if not default.
+     */
     align?: 'left' | 'right' | undefined;
+
+    children?: Snippet;
   };
-  type $$Props = OwnProps &
+  let {
+    use = [],
+    class: className = '',
+    fixedColumnWidth = false,
+    align = undefined,
+    children,
+    ...restProps
+  }: OwnProps &
     SmuiAttrs<'div', keyof OwnProps> & {
       [k in keyof ComponentProps<
         typeof InnerGrid
       > as `innerGrid\$${k}`]?: ComponentProps<typeof InnerGrid>[k];
-    };
-
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let fixedColumnWidth = false;
-  export let align: 'left' | 'right' | undefined = undefined;
+    } = $props();
 
   let element: HTMLDivElement;
 

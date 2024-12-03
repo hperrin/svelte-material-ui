@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <LayoutGrid
   align="right"
   style="border: 1px solid var(--mdc-theme-secondary, #333);"

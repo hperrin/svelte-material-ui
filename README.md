@@ -184,7 +184,7 @@ Svelte 5 Runes mode is being migrated to slowly. This is the todo list of compon
     - [x] Text Field Character Counter
     - [x] Text Field Helper Text
     - [x] Text Field Icon
-- [ ] Layout Grid
+- [x] Layout Grid
 - [x] List
 - [x] Menu Surface
 - [x] Menu

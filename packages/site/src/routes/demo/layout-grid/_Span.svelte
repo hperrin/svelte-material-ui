@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <LayoutGrid>
   {#each Array(2) as _unused, _i}
     <Cell span={6}>
