@@ -9,7 +9,7 @@
 <pre class="status">Closed Reason: {reason}</pre>
 <pre class="status">Action: {action}</pre>
 
-<script context="module" lang="ts">
+<script module lang="ts">
   let counter = 0;
 </script>
 

@@ -40,7 +40,7 @@
   </div>
 </aside>
 
-<script context="module" lang="ts">
+<script module lang="ts">
   let waiting = Promise.resolve();
 </script>
 

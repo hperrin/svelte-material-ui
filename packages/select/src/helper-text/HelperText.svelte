@@ -18,7 +18,7 @@
   {#if content == null}{@render children?.()}{:else}{content}{/if}
 </div>
 
-<script context="module" lang="ts">
+<script module lang="ts">
   let counter = 0;
 </script>
 
