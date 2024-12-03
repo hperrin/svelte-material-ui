@@ -1,4 +1,4 @@
-<svelte:options runes={false} />
+<svelte:options runes />
 
 <div style="display: flex; flex-wrap: wrap; align-items: center;">
   <Wrapper>
@@ -17,10 +17,12 @@
     </Fab>
   </Wrapper>
   <Wrapper>
-    <Set chips={['Chip']} let:chip style="display: inline-flex;">
-      <Chip {chip} onclick={() => clicked++} touch>
-        <Text tabindex={0}>{chip}</Text>
-      </Chip>
+    <Set chips={['Chip']} style="display: inline-flex;">
+      {#snippet chip(chip)}
+        <Chip {chip} onclick={() => clicked++} touch>
+          <Text tabindex={0}>{chip}</Text>
+        </Chip>
+      {/snippet}
     </Set>
   </Wrapper>
   <Wrapper>
@@ -51,8 +53,8 @@
   import Switch from '@smui/switch';
   import { Label, Icon } from '@smui/common';
 
-  let clicked = 0;
-  let checked = false;
-  let selected = 'on';
-  let switchChecked = false;
+  let clicked = $state(0);
+  let checked = $state(false);
+  let selected = $state('on');
+  let switchChecked = $state(false);
 </script>
