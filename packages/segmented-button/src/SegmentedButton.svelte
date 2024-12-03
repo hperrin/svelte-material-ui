@@ -1,4 +1,4 @@
-<svelte:options runes={false} />
+<svelte:options runes />
 
 <div
   bind:this={element}
@@ -9,29 +9,30 @@
     'mdc-segmented-button--single-select': singleSelect,
   })}
   role={singleSelect ? 'radiogroup' : 'group'}
-  {...$$restProps}
+  {...restProps}
   onselected={(e) => {
     handleSelected(e);
-    $$restProps.onselected?.(e);
+    restProps.onselected?.(e);
   }}
 >
-  {#each segments as segment, i (key(segment))}
+  {#each segments as segmentKey, i (key(segmentKey))}
     <ContextFragment key="SMUI:segmented-button:segment:index" value={i}>
       <ContextFragment
         key="SMUI:segmented-button:segment:initialSelected"
         value={initialSelected[i]}
       >
-        <slot {segment} />
+        {@render segment(segmentKey)}
       </ContextFragment>
     </ContextFragment>
   {/each}
 </div>
 
-<script lang="ts">
+<script lang="ts" generics="SegmentKey extends Object | string | number">
   import type { SegmentDetail } from '@material/segmented-button';
   // TODO: Remove this when MDC's segmented button is fixed.
   // @ts-ignore
   import { MDCSegmentedButtonFoundation } from './mdc-segmented-button/index.js';
+  import type { Snippet } from 'svelte';
   import { onMount, setContext } from 'svelte';
   import { writable } from 'svelte/store';
   import type { SmuiAttrs } from '@smui/common';
@@ -41,76 +42,148 @@
 
   import type { SMUISegmentedButtonSegmentAccessor } from './Segment.types.js';
 
+  type PrimitiveKey = string | number;
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
-    segments?: any[];
-    key?: (segment: any) => string | number;
+    /**
+     * An array of segment objects.
+     */
+    segments?: SegmentKey[];
+    /**
+     * Function that takes segment object and returns a unique string or number.
+     *
+     * If your segments are strings or numbers, you don't need this.
+     */
+    key?: (segment: SegmentKey) => PrimitiveKey;
+    /**
+     * Allow only one selection.
+     *
+     * When this is true, `selected` will be one segment object.
+     */
     singleSelect?: boolean;
-    selected?: any | any[];
-  };
-  type $$Props = OwnProps & SmuiAttrs<'div', keyof OwnProps>;
+    /**
+     * The segment that is or segments that are currently selected.
+     */
+    selected?: SegmentKey[] | SegmentKey | undefined;
 
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let segments: any[] = [];
-  export let key: (segment: any) => string | number = (segment) => segment;
-  export let singleSelect = false;
-  export let selected: any | any[] = singleSelect ? undefined : [];
+    segment: Snippet<[SegmentKey]>;
+  };
+  let {
+    use = [],
+    class: className = '',
+    segments = [],
+    key = (segment) => segment as PrimitiveKey,
+    singleSelect = false,
+    selected = $bindable(),
+    segment,
+    ...restProps
+  }: OwnProps & SmuiAttrs<'div', keyof OwnProps> = $props();
+
+  if (singleSelect && typeof selected === 'object' && 'findIndex' in selected) {
+    throw new Error(
+      'Single-select segmented buttons must not be given multiple selected segments.',
+    );
+  }
+
+  if (
+    !singleSelect &&
+    selected !== undefined &&
+    (typeof selected !== 'object' || !('findIndex' in selected))
+  ) {
+    throw new Error(
+      'Multi-select segmented buttons must be given an array of selected segments.',
+    );
+  }
 
   let element: HTMLDivElement;
-  let instance: MDCSegmentedButtonFoundation;
-  let segmentAccessorMap: {
-    [k: string]: SMUISegmentedButtonSegmentAccessor;
-    [k: number]: SMUISegmentedButtonSegmentAccessor;
-  } = {};
-  let segmentAccessorWeakMap = new WeakMap<
-    Object,
+  let instance: MDCSegmentedButtonFoundation | undefined = $state();
+  let segmentAccessorMap: Record<
+    PrimitiveKey,
     SMUISegmentedButtonSegmentAccessor
-  >();
+  > = $state({});
+  let segmentAccessorWeakMap = $state.raw(
+    new WeakMap<Object, SMUISegmentedButtonSegmentAccessor>(),
+  );
   let initialSelected = segments.map(
     (segmentId) =>
-      (singleSelect && selected === segmentId) ||
-      (!singleSelect && selected.indexOf(segmentId) !== -1),
+      (singleSelect &&
+        selected != null &&
+        key(selected as SegmentKey) === key(segmentId)) ||
+      (!singleSelect &&
+        selected != null &&
+        (selected as SegmentKey[]).findIndex(
+          (segment) => key(segment) === key(segmentId),
+        ) !== -1),
   );
 
   setContext('SMUI:icon:context', 'segmented-button');
   setContext('SMUI:label:context', 'segmented-button');
   const singleSelectStore = writable(singleSelect);
-  $: $singleSelectStore = singleSelect;
+  $effect(() => {
+    $singleSelectStore = singleSelect;
+  });
   setContext('SMUI:segmented-button:singleSelect', singleSelectStore);
 
-  let previousSelected = singleSelect ? selected : new Set(selected);
-  $: if (instance && singleSelect && previousSelected !== selected) {
-    if (previousSelected != null) {
-      instance.unselectSegment(previousSelected);
+  let previousSelected = singleSelect
+    ? (selected as SegmentKey | undefined)
+    : new Set((selected as SegmentKey[] | undefined) ?? []);
+  $effect(() => {
+    if (instance && singleSelect && previousSelected !== selected) {
+      if (previousSelected != null) {
+        instance.unselectSegment(
+          segments.findIndex(
+            (segment) => key(segment) === key(previousSelected as SegmentKey),
+          ),
+        );
+      }
+      previousSelected = selected as SegmentKey | undefined;
+      if (selected != null) {
+        instance.selectSegment(
+          segments.findIndex(
+            (segment) => key(segment) === key(selected as SegmentKey),
+          ),
+        );
+      }
     }
-    previousSelected = selected;
-    if (selected != null) {
-      instance.selectSegment(selected);
-    }
-  }
-  $: if (instance && !singleSelect) {
-    const setSelected = new Set(selected);
-    const unSelected = setDifference(previousSelected, setSelected);
-    const newSelected = setDifference(setSelected, previousSelected);
+  });
+  $effect(() => {
+    if (instance && !singleSelect) {
+      const setSelected = new Set((selected as SegmentKey[] | undefined) ?? []);
+      const unSelected = setDifference(
+        previousSelected as Set<SegmentKey>,
+        setSelected,
+      );
+      const newSelected = setDifference(
+        setSelected,
+        previousSelected as Set<SegmentKey>,
+      );
 
-    if (unSelected.size || newSelected.size) {
-      previousSelected = setSelected;
+      if (unSelected.size || newSelected.size) {
+        previousSelected = setSelected;
 
-      for (let segmentId of unSelected) {
-        const idx = segments.indexOf(segmentId);
-        if (idx !== -1) {
-          instance.unselectSegment(idx);
+        for (let segmentId of unSelected) {
+          const idx = segments.findIndex(
+            (segment) => key(segment) === key(segmentId),
+          );
+          if (idx !== -1) {
+            instance.unselectSegment(idx);
+          }
+        }
+        for (let segmentId of newSelected) {
+          instance.selectSegment(
+            segments.findIndex((segment) => key(segment) === key(segmentId)),
+          );
         }
       }
-      for (let segmentId of newSelected) {
-        instance.selectSegment(segments.indexOf(segmentId));
-      }
     }
-  }
+  });
 
   function setDifference(setA: Set<any>, setB: Set<any>) {
     let _difference = new Set(setA);
@@ -139,12 +212,17 @@
         return getElement().classList.contains(className);
       },
       getSegments: () => {
-        return segments.map((segment, index) => ({
+        return segments.map((segmentKey, index) => ({
           index,
-          selected: singleSelect
-            ? selected === segment
-            : selected.indexOf(segment) !== -1,
-          // segmentId: segment, // Not necessarily a string.
+          selected:
+            selected == null
+              ? false
+              : singleSelect
+                ? key(selected as SegmentKey) === key(segmentKey)
+                : (selected as SegmentKey[]).findIndex(
+                    (segment) => key(segment) === key(segmentKey),
+                  ) !== -1,
+          // segmentId: segmentKey, // Not necessarily a string.
         }));
       },
       selectSegment,
@@ -163,7 +241,7 @@
     instance.init();
 
     return () => {
-      instance.destroy();
+      instance?.destroy();
     };
   });
 
@@ -199,17 +277,25 @@
   }
 
   function selectSegment(indexOrSegmentId: any) {
-    let index = segments.indexOf(indexOrSegmentId);
+    let index = segments.findIndex(
+      (segment) => key(segment) === indexOrSegmentId,
+    );
     if (index === -1) {
       index = indexOrSegmentId;
     }
+    const segmentKey = key(segments[index]);
     if (!singleSelect) {
-      const selIndex = selected.indexOf(segments[index]);
+      if (selected == null) {
+        selected = [];
+      }
+      const selIndex = (selected as SegmentKey[]).findIndex(
+        (segment) => key(segment) === segmentKey,
+      );
       if (selIndex === -1) {
-        selected.push(segments[index]);
+        (selected as SegmentKey[]).push(segments[index]);
         selected = selected;
       }
-    } else if (selected !== segments[index]) {
+    } else if (selected == null || key(selected as SegmentKey) !== segmentKey) {
       selected = segments[index];
     }
 
@@ -220,18 +306,27 @@
   }
 
   function unselectSegment(indexOrSegmentId: any) {
-    let index = segments.indexOf(indexOrSegmentId);
+    let index = segments.findIndex(
+      (segment) => key(segment) === indexOrSegmentId,
+    );
     if (index === -1) {
       index = indexOrSegmentId;
     }
     if (!singleSelect) {
-      const selIndex = selected.indexOf(segments[index]);
-      if (selIndex !== -1) {
-        selected.splice(selIndex, 1);
-        selected = selected;
+      if (selected != null) {
+        const selIndex = (selected as SegmentKey[]).findIndex(
+          (segment) => key(segment) === key(segments[index]),
+        );
+        if (selIndex !== -1) {
+          (selected as SegmentKey[]).splice(selIndex, 1);
+          selected = selected;
+        }
       }
-    } else if (selected === segments[index]) {
-      selected = null;
+    } else if (
+      selected != null &&
+      key(selected as SegmentKey) === key(segments[index])
+    ) {
+      selected = undefined;
     }
 
     const accessor = getAccessor(segments[index]);

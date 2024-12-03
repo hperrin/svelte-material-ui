@@ -1,14 +1,14 @@
-<svelte:options runes={false} />
-
 <!--
   Note: segments must be unique. (They cannot === each other.)
   If you need to show the same value, use keyed segments.
 -->
-<SegmentedButton segments={choices} let:segment singleSelect bind:selected>
-  <!-- Note: the `segment` property is required! -->
-  <Segment {segment}>
-    <Label>{segment}</Label>
-  </Segment>
+<SegmentedButton segments={choices} singleSelect bind:selected>
+  {#snippet segment(segment)}
+    <!-- Note: the `segment` property is required! -->
+    <Segment {segment}>
+      <Label>{segment}</Label>
+    </Segment>
+  {/snippet}
 </SegmentedButton>
 
 <div style="margin-top: 1em;">Programmatically select:</div>
@@ -33,5 +33,5 @@
   import { Label } from '@smui/common';
 
   let choices = ['Morning', 'Afternoon', 'Evening', 'Night'];
-  let selected = 'Morning';
+  let selected = $state('Morning');
 </script>

@@ -1,4 +1,4 @@
-<svelte:options runes={false} />
+<svelte:options runes />
 
 <button
   bind:this={element}
@@ -25,24 +25,26 @@
   aria-pressed={!singleSelect ? (selected ? 'true' : 'false') : undefined}
   aria-checked={singleSelect ? (selected ? 'true' : 'false') : undefined}
   {...internalAttrs}
-  {...$$restProps}
+  {...restProps}
   onclick={(e) => {
-    $$restProps.onclick?.(e);
+    restProps.onclick?.(e);
     if (!e.defaultPrevented && instance && !manualSelection) {
       instance.handleClick();
     }
   }}
-  >{#if ripple}<div class="mdc-segmented-button__ripple"></div>{/if}<slot
-  />{#if touch}<div
+  >{#if ripple}<div
+      class="mdc-segmented-button__ripple"
+    ></div>{/if}{@render children?.()}{#if touch}<div
       class="mdc-segmented-button__segment__touch"
     ></div>{/if}</button
 >
 
-<script lang="ts">
+<script lang="ts" generics="SegmentKey extends Object | string | number">
   // TODO: Remove this when MDC's segmented button is fixed.
   // TODO: Also remove @material/base and @material/ripple from the package.json
   // @ts-ignore
   import { MDCSegmentedButtonSegmentFoundation } from './mdc-segmented-button/index.js';
+  import type { Snippet } from 'svelte';
   import { onMount, getContext } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
@@ -51,39 +53,62 @@
 
   import type { SMUISegmentedButtonSegmentAccessor } from './Segment.types.js';
 
-  type OwnProps = {
-    use?: ActionArray;
-    class?: string;
-    style?: string;
-    segment: any;
-    ripple?: boolean;
-    touch?: boolean;
-    selected?: boolean;
-  };
-  type $$Props = OwnProps & SmuiAttrs<'button', keyof OwnProps>;
-
   interface UninitializedValue extends Function {}
   let uninitializedValue: UninitializedValue = () => {};
   function isUninitializedValue(value: any): value is UninitializedValue {
     return value === uninitializedValue;
   }
 
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let style = '';
-  let segmentId: any;
-  export { segmentId as segment };
-  export let ripple = true;
-  export let touch = false;
+  type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
+    use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
+    class?: string;
+    /**
+     * A list of CSS styles.
+     */
+    style?: string;
+    /**
+     * The segment object this segment is for.
+     */
+    segment: SegmentKey;
+    /**
+     * Whether to show a ripple animation.
+     */
+    ripple?: boolean;
+    /**
+     * Whether to use touch styling
+     */
+    touch?: boolean;
+    /**
+     * Whether this segment is selected.
+     *
+     * You don't need to set this unless you are manually handling selection.
+     */
+    selected?: boolean;
+
+    children?: Snippet;
+  };
+  let {
+    use = [],
+    class: className = '',
+    style = '',
+    segment: segmentId,
+    ripple = true,
+    touch = false,
+    selected = $bindable(uninitializedValue as unknown as boolean),
+    children,
+    ...restProps
+  }: OwnProps & SmuiAttrs<'button', keyof OwnProps> = $props();
+
   const initialSelectedStore = getContext<SvelteStore<boolean>>(
     'SMUI:segmented-button:segment:initialSelected',
   );
-
   // Some trickery to detect uninitialized values but also have the right types.
-  /** You don't need to set this unless you are manually handling selection. */
-  export let selected: boolean = uninitializedValue as unknown as boolean;
   let manualSelection: boolean = !isUninitializedValue(selected);
   if (isUninitializedValue(selected)) {
     selected = $initialSelectedStore;
@@ -91,10 +116,10 @@
   // Done with the trickery.
 
   let element: HTMLButtonElement;
-  let instance: MDCSegmentedButtonSegmentFoundation;
-  let internalClasses: { [k: string]: boolean } = {};
-  let internalStyles: { [k: string]: string } = {};
-  let internalAttrs: { [k: string]: string | undefined } = {};
+  let instance: MDCSegmentedButtonSegmentFoundation | undefined = $state();
+  let internalClasses: { [k: string]: boolean } = $state({});
+  let internalStyles: { [k: string]: string } = $state({});
+  let internalAttrs: { [k: string]: string | undefined } = $state({});
   const singleSelect = getContext<SvelteStore<boolean>>(
     'SMUI:segmented-button:singleSelect',
   );
@@ -102,19 +127,17 @@
     'SMUI:segmented-button:segment:index',
   );
 
-  if (!segmentId) {
-    throw new Error(
-      'The segment property is required! It should be passed down from the SegmentedButton to the Segment.',
-    );
-  }
+  $effect(() => {
+    if (instance && instance.isSelected() && !selected) {
+      instance.setUnselected();
+    }
+  });
 
-  $: if (instance && instance.isSelected() && !selected) {
-    instance.setUnselected();
-  }
-
-  $: if (instance && !instance.isSelected() && selected) {
-    instance.setSelected();
-  }
+  $effect(() => {
+    if (instance && !instance.isSelected() && selected) {
+      instance.setSelected();
+    }
+  });
 
   const SMUISegmentedButtonSegmentMount = getContext<
     ((accessor: SMUISegmentedButtonSegmentAccessor) => void) | undefined
@@ -168,7 +191,7 @@
       SMUISegmentedButtonSegmentUnmount &&
         SMUISegmentedButtonSegmentUnmount(accessor);
 
-      instance.destroy();
+      instance?.destroy();
     };
   });
 

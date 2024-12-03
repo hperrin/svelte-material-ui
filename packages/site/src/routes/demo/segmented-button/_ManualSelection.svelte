@@ -1,21 +1,19 @@
-<svelte:options runes={false} />
-
-<SegmentedButton segments={choices} let:segment key={(segment) => segment.name}>
-  <!--
-    When the selected prop is provided, Segment will no longer fire a "selected"
-    event.
-  -->
-  <Segment
-    {segment}
-    selected={segment.selected}
-    onclick={() => {
-      segment.selected = !segment.selected;
-      // Remember to do this so Svelte knows that `choices` has changed.
-      choices = choices;
-    }}
-  >
-    <Label>{segment.name}</Label>
-  </Segment>
+<SegmentedButton segments={choices} key={(segment) => segment.name}>
+  {#snippet segment(segment)}
+    <!--
+      When the selected prop is provided, Segment will no longer fire a "selected"
+      event.
+    -->
+    <Segment
+      {segment}
+      selected={segment.selected}
+      onclick={() => {
+        segment.selected = !segment.selected;
+      }}
+    >
+      <Label>{segment.name}</Label>
+    </Segment>
+  {/snippet}
 </SegmentedButton>
 
 <pre class="status">Selected: {choices
@@ -26,7 +24,7 @@
 <script lang="ts">
   import SegmentedButton, { Segment, Label } from '@smui/segmented-button';
 
-  let choices = [
+  let choices = $state([
     {
       name: 'Shoes',
       selected: true,
@@ -47,5 +45,5 @@
       name: 'Coats',
       selected: true,
     },
-  ];
+  ]);
 </script>

@@ -16,6 +16,7 @@ This doc contains information that will help you migrate your code from an older
 - TabBar now expects a `tab` snippet instead of using `let:tab`.
 - Chips' Set now expects a `chip` snippet instead of using `let:chip`.
 - Chips' Set key function is now required to return `string`, not `string | number`.
+- SegmentedButton now expects a `segment` snippet instead of using `let:segment`.
 
 ## Changes
 

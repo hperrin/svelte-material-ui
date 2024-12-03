@@ -1,44 +1,45 @@
-<svelte:options runes={false} />
-
 <div class="format-bar">
   <SegmentedButton
     segments={aligns}
-    let:segment
     singleSelect
     bind:selected={align}
     key={(segment) => segment.name}
   >
-    <Segment {segment} title={segment.name}>
-      <Icon tag="svg" style="width: 1em; height: auto;" viewBox="0 0 24 24">
-        <path fill="currentColor" d={segment.icon} />
-      </Icon>
-    </Segment>
+    {#snippet segment(segment)}
+      <Segment {segment} title={segment.name}>
+        <Icon tag="svg" style="width: 1em; height: auto;" viewBox="0 0 24 24">
+          <path fill="currentColor" d={segment.icon} />
+        </Icon>
+      </Segment>
+    {/snippet}
   </SegmentedButton>
   <SegmentedButton
     segments={formats}
-    let:segment
     bind:selected={format}
     key={(segment) => segment.name}
   >
-    <Segment {segment} title={segment.name}>
-      <Icon tag="svg" style="width: 1em; height: auto;" viewBox="0 0 24 24">
-        <path fill="currentColor" d={segment.icon} />
-      </Icon>
-    </Segment>
+    {#snippet segment(segment)}
+      <Segment {segment} title={segment.name}>
+        <Icon tag="svg" style="width: 1em; height: auto;" viewBox="0 0 24 24">
+          <path fill="currentColor" d={segment.icon} />
+        </Icon>
+      </Segment>
+    {/snippet}
   </SegmentedButton>
-  <SegmentedButton segments={actions} let:segment>
-    <Segment
-      {segment}
-      onclick={preventDefault(() => {
-        segment.count++;
-        actions = actions;
-      })}
-    >
-      <Icon tag="svg" style="width: 1em; height: auto;" viewBox="0 0 24 24">
-        <path fill="currentColor" d={segment.icon} />
-      </Icon>
-      <Label>{segment.name}</Label>
-    </Segment>
+  <SegmentedButton segments={actions} key={(segment) => segment.name}>
+    {#snippet segment(segment)}
+      <Segment
+        {segment}
+        onclick={preventDefault(() => {
+          segment.count += 1;
+        })}
+      >
+        <Icon tag="svg" style="width: 1em; height: auto;" viewBox="0 0 24 24">
+          <path fill="currentColor" d={segment.icon} />
+        </Icon>
+        <Label>{segment.name}</Label>
+      </Segment>
+    {/snippet}
   </SegmentedButton>
 </div>
 
@@ -91,13 +92,13 @@
     { name: 'Italic', icon: mdiFormatItalic },
     { name: 'Underline', icon: mdiFormatUnderline },
   ];
-  let actions = [
+  let actions = $state([
     { name: 'Link', icon: mdiLink, count: 0 },
     { name: 'Image', icon: mdiImage, count: 0 },
-  ];
+  ]);
 
-  let align = aligns[0];
-  let format: Format[] = [];
+  let align = $state(aligns[0]);
+  let format: Format[] = $state([]);
 </script>
 
 <style>
