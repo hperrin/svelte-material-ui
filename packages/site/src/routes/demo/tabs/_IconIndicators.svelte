@@ -1,15 +1,15 @@
-<svelte:options runes={false} />
-
 <div class="icon-indicators">
-  <TabBar tabs={['Home', 'Merchandise', 'About Us']} let:tab bind:active>
-    <Tab
-      {tab}
-      tabIndicator$type="icon"
-      tabIndicator$content$class="material-icons"
-    >
-      <Label>{tab}</Label>
-      <svelte:fragment slot="tab-indicator">star</svelte:fragment>
-    </Tab>
+  <TabBar tabs={['Home', 'Merchandise', 'About Us']} bind:active>
+    {#snippet tab(tab)}
+      <Tab
+        {tab}
+        tabIndicator$type="icon"
+        tabIndicator$content$class="material-icons"
+      >
+        <Label>{tab}</Label>
+        {#snippet tabIndicator()}star{/snippet}
+      </Tab>
+    {/snippet}
   </TabBar>
 </div>
 
@@ -17,7 +17,7 @@
   import Tab, { Label } from '@smui/tab';
   import TabBar from '@smui/tab-bar';
 
-  let active = 'Home';
+  let active = $state('Home');
 </script>
 
 <style>

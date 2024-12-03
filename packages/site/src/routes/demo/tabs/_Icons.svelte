@@ -1,11 +1,11 @@
-<svelte:options runes={false} />
-
 <div>
-  <TabBar {tabs} let:tab bind:active>
-    <Tab {tab}>
-      <Icon class="material-icons">{tab.icon}</Icon>
-      <Label>{tab.label}</Label>
-    </Tab>
+  <TabBar {tabs} key={(tab) => tab.label} bind:active>
+    {#snippet tab(tab)}
+      <Tab {tab}>
+        <Icon class="material-icons">{tab.icon}</Icon>
+        <Label>{tab.label}</Label>
+      </Tab>
+    {/snippet}
   </TabBar>
 </div>
 
@@ -27,5 +27,5 @@
       label: 'Favorites',
     },
   ];
-  let active = tabs[0];
+  let active = $state(tabs[0]);
 </script>

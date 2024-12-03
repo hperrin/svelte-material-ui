@@ -195,8 +195,8 @@ Svelte 5 Runes mode is being migrated to slowly. This is the todo list of compon
 - [ ] Snackbar
   - [ ] Kitchen
 - Tabs
-  - [ ] Tab
-  - [ ] Tab Bar
+  - [x] Tab
+  - [x] Tab Bar
 - [ ] Tooltip
 - [ ] Touch Target
 

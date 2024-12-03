@@ -1,7 +1,6 @@
-<svelte:options runes={false} />
+<svelte:options runes />
 
-<svelte:component
-  this={component}
+<MyComponent
   {tag}
   bind:this={element}
   use={[
@@ -34,9 +33,9 @@
   tabindex={active || forceAccessible ? '0' : '-1'}
   {href}
   {...internalAttrs}
-  {...exclude($$restProps, ['content$', 'tabIndicator$'])}
+  {...exclude(restProps, ['content$', 'tabIndicator$'])}
   onclick={(e: MouseEvent) => {
-    $$restProps.onclick?.(e);
+    restProps.onclick?.(e);
     if (!e.defaultPrevented && instance) {
       instance.handleClick();
     }
@@ -49,35 +48,34 @@
       [content$class]: true,
       'mdc-tab__content': true,
     })}
-    {...prefixFilter($$restProps, 'content$')}
+    {...prefixFilter(restProps, 'content$')}
   >
-    <slot />
+    {@render children?.()}
     {#if indicatorSpanOnlyContent}
-      <TabIndicator
-        bind:this={tabIndicator}
-        {active}
-        {...prefixFilter($$restProps, 'tabIndicator$')}
-        ><slot name="tab-indicator" /></TabIndicator
-      >
+      {@render tabIndicatorSnippet()}
     {/if}
   </span>
   {#if !indicatorSpanOnlyContent}
-    <TabIndicator
-      bind:this={tabIndicator}
-      {active}
-      {...prefixFilter($$restProps, 'tabIndicator$')}
-      ><slot name="tab-indicator" /></TabIndicator
-    >
+    {@render tabIndicatorSnippet()}
   {/if}
   <span class="mdc-tab__ripple"></span>
-</svelte:component>
+</MyComponent>
+
+{#snippet tabIndicatorSnippet()}
+  <TabIndicator
+    bind:this={tabIndicatorInstance}
+    bind:active
+    {...prefixFilter(restProps, 'tabIndicator$')}
+    >{@render tabIndicator?.()}</TabIndicator
+  >
+{/snippet}
 
 <script
   lang="ts"
   generics="Href extends string | undefined = undefined, TagName extends SmuiHTMLElement = Href extends string ? 'a' : 'button'"
 >
   import { MDCTabFoundation } from '@material/tab';
-  import type { ComponentProps } from 'svelte';
+  import type { ComponentProps, Snippet } from 'svelte';
   import { onMount, setContext, getContext } from 'svelte';
   import type { ActionArray } from '@smui/common/internal';
   import {
@@ -101,58 +99,108 @@
   import type { SMUITabAccessor } from './Tab.types.js';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * A list of CSS styles.
+     */
     style?: string;
+    /**
+     * The tab object this tab is for.
+     */
     tab: any;
+    /**
+     * Whether to show a ripple animation.
+     */
     ripple?: boolean;
+    /**
+     * Whether to stack the contents of the tab.
+     */
     stacked?: boolean;
+    /**
+     * Whether to use minimum width possible.
+     */
     minWidth?: boolean;
+    /**
+     * Whether the indicator spans only the content instead of the whole tab.
+     */
     indicatorSpanOnlyContent?: boolean;
+    /**
+     * If provided, the tab will act as a link.
+     */
     href?: Href;
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     content$use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     content$class?: string;
+    /**
+     * The component to use to render the element.
+     */
     component?: SmuiComponent<SmuiElementMap[TagName]>;
+    /**
+     * The tag name of the element to create.
+     */
     tag?: TagName;
+
+    children?: Snippet;
+    /**
+     * A spot for the tab indicator content.
+     */
+    tabIndicator?: Snippet;
   };
-  type $$Props = OwnProps &
+  let {
+    use = [],
+    class: className = '',
+    style = '',
+    tab: tabId,
+    ripple = true,
+    stacked = false,
+    minWidth = false,
+    indicatorSpanOnlyContent = false,
+    href = undefined,
+    content$use = [],
+    content$class = '',
+    component: MyComponent = SmuiElement,
+    tag = (href == null ? 'button' : 'a') as TagName,
+    children,
+    tabIndicator,
+    ...restProps
+  }: OwnProps &
     SmuiAttrs<TagName, keyof OwnProps> & {
       [k in keyof SmuiElementPropMap['span'] as `content\$${k}`]?: SmuiElementPropMap['span'][k];
     } & {
       [k in keyof ComponentProps<
         typeof TabIndicator
       > as `tabIndicator\$${k}`]?: ComponentProps<typeof TabIndicator>[k];
-    };
-
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let style = '';
-  let tabId: any;
-  export { tabId as tab };
-  export let ripple = true;
-  export let stacked = false;
-  export let minWidth = false;
-  export let indicatorSpanOnlyContent = false;
-  export let href: string | undefined = undefined;
-  export let content$use: ActionArray = [];
-  export let content$class = '';
+    } = $props();
 
   let element: ReturnType<SmuiComponent<SmuiElementMap[TagName]>>;
-  let instance: MDCTabFoundation;
+  let instance: MDCTabFoundation | undefined = $state();
   let content: HTMLSpanElement;
-  let tabIndicator: TabIndicator;
-  let internalClasses: { [k: string]: boolean } = {};
-  let internalStyles: { [k: string]: string } = {};
-  let internalAttrs: { [k: string]: string | undefined } = {};
+  let tabIndicatorInstance: TabIndicator;
+  let internalClasses: { [k: string]: boolean } = $state({});
+  let internalStyles: { [k: string]: string } = $state({});
+  let internalAttrs: { [k: string]: string | undefined } = $state({});
   let focusOnActivate = getContext<boolean>('SMUI:tab:focusOnActivate');
-  let active = tabId === getContext<any | undefined>('SMUI:tab:initialActive');
-  let forceAccessible = false;
-
-  export let component: SmuiComponent<SmuiElementMap[TagName]> = SmuiElement;
-  export let tag: SmuiHTMLElement | undefined =
-    component === SmuiElement ? (href == null ? 'button' : 'a') : undefined;
+  const initialActive = getContext<{
+    active: string | number | null | undefined;
+    key: (tab: any) => string | number;
+  }>('SMUI:tab:initialActive');
+  let active = $state(
+    initialActive.active != null &&
+      initialActive.key(tabId) === initialActive.active,
+  );
+  let forceAccessible = $state(false);
 
   setContext('SMUI:label:context', 'tab');
   setContext('SMUI:icon:context', 'tab');
@@ -163,9 +211,17 @@
     );
   }
 
-  $: if (instance) {
-    instance.setFocusOnActivate(focusOnActivate);
-  }
+  let setFocusOnActivate = false;
+  $effect(() => {
+    if (!instance) {
+      setFocusOnActivate = false;
+      return;
+    }
+    if (!setFocusOnActivate) {
+      setFocusOnActivate = true;
+      instance.setFocusOnActivate(focusOnActivate);
+    }
+  });
 
   const SMUITabMount = getContext<
     ((accessor: SMUITabAccessor) => void) | undefined
@@ -181,8 +237,8 @@
       removeClass,
       hasClass,
       activateIndicator: (previousIndicatorClientRect: DOMRect) =>
-        tabIndicator.activate(previousIndicatorClientRect),
-      deactivateIndicator: () => tabIndicator.deactivate(),
+        tabIndicatorInstance.activate(previousIndicatorClientRect),
+      deactivateIndicator: () => tabIndicatorInstance.deactivate(),
       notifyInteracted: () =>
         dispatch(getElement(), 'SMUITabInteracted', { tabId }),
       getOffsetLeft: () => getElement().offsetLeft,
@@ -203,8 +259,14 @@
       forceAccessible(accessible: boolean) {
         forceAccessible = accessible;
       },
-      computeIndicatorClientRect: () => tabIndicator.computeContentClientRect(),
-      computeDimensions: () => instance.computeDimensions(),
+      computeIndicatorClientRect: () =>
+        tabIndicatorInstance.computeContentClientRect(),
+      computeDimensions: () => {
+        if (instance == null) {
+          throw new Error('Instance is undefined.');
+        }
+        return instance.computeDimensions();
+      },
       focus,
       activate,
       deactivate,
@@ -217,7 +279,7 @@
     return () => {
       SMUITabUnmount && SMUITabUnmount(accessor);
 
-      instance.destroy();
+      instance?.destroy();
     };
   });
 
@@ -262,17 +324,17 @@
   ) {
     active = true;
     if (skipFocus) {
-      instance.setFocusOnActivate(false);
+      instance?.setFocusOnActivate(false);
     }
-    instance.activate(previousIndicatorClientRect);
+    instance?.activate(previousIndicatorClientRect);
     if (skipFocus) {
-      instance.setFocusOnActivate(focusOnActivate);
+      instance?.setFocusOnActivate(focusOnActivate);
     }
   }
 
   export function deactivate() {
     active = false;
-    instance.deactivate();
+    instance?.deactivate();
   }
 
   export function focus() {

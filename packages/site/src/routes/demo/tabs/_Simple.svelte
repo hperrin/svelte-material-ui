@@ -1,29 +1,29 @@
-<svelte:options runes={false} />
-
 <div>
   <!--
     Note: tabs must be unique. (They cannot === each other.)
   -->
-  <TabBar tabs={['Home', 'Merchandise', 'About Us']} let:tab bind:active>
-    <!-- Note: the `tab` property is required! -->
-    <Tab {tab}>
-      <Label>{tab}</Label>
-    </Tab>
+  <TabBar tabs={['Home', 'Merchandise', 'About Us']} bind:active>
+    {#snippet tab(tab)}
+      <!-- Note: the `tab` property is required! -->
+      <Tab {tab}>
+        <Label>{tab}</Label>
+      </Tab>
+    {/snippet}
   </TabBar>
 
   {#if active === 'Home'}
-    <Paper variant="unelevated">
+    <Paper role="tabpanel" variant="unelevated">
       <Content>Welcome to the Home page! I hope you like SMUI!</Content>
     </Paper>
   {:else if active === 'Merchandise'}
-    <Paper variant="unelevated">
+    <Paper role="tabpanel" variant="unelevated">
       <Content>
         You want merch? We got so much cool merch! We got SMUI toilet paper,
         SMUI ironing boards, SMUI gas pedals! Come and get 'em!
       </Content>
     </Paper>
   {:else if active === 'About Us'}
-    <Paper variant="unelevated">
+    <Paper role="tabpanel" variant="unelevated">
       <Content>
         We are a boutique UI library, ready to get you up and running on
         whatever your project is. Whether you're building a web UI for an
@@ -47,5 +47,5 @@
   import Button from '@smui/button';
   import Paper, { Content } from '@smui/paper';
 
-  let active = 'Home';
+  let active = $state('Home');
 </script>

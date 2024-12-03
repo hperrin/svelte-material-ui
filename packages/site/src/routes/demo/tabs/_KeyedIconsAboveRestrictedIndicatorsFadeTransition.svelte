@@ -1,16 +1,16 @@
-<svelte:options runes={false} />
-
 <div>
-  <TabBar {tabs} let:tab {key} bind:active>
-    <Tab
-      {tab}
-      stacked={true}
-      indicatorSpanOnlyContent={true}
-      tabIndicator$transition="fade"
-    >
-      <Icon class="material-icons">{tab.icon}</Icon>
-      <Label>{tab.label}</Label>
-    </Tab>
+  <TabBar {tabs} key={(tab) => tab.k} bind:active>
+    {#snippet tab(tab)}
+      <Tab
+        {tab}
+        stacked={true}
+        indicatorSpanOnlyContent={true}
+        tabIndicator$transition="fade"
+      >
+        <Icon class="material-icons">{tab.icon}</Icon>
+        <Label>{tab.label}</Label>
+      </Tab>
+    {/snippet}
   </TabBar>
 
   <pre class="status">Selected: {active.k}</pre>
@@ -25,7 +25,6 @@
     icon: string;
     label: string;
   };
-  const key = (tab: TabEntry) => tab.k;
 
   let tabs: TabEntry[] = [
     {
@@ -49,5 +48,5 @@
       label: 'Code',
     },
   ];
-  let active = tabs[2];
+  let active = $state(tabs[2]);
 </script>

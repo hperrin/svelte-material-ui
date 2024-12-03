@@ -1,4 +1,4 @@
-<svelte:options runes={false} />
+<svelte:options runes />
 
 <div
   bind:this={element}
@@ -11,7 +11,7 @@
     'mdc-tab-scroller--align-center': align === 'center',
     ...internalClasses,
   })}
-  {...exclude($$restProps, ['scrollArea$', 'scrollContent$'])}
+  {...exclude(restProps, ['scrollArea$', 'scrollContent$'])}
 >
   <div
     bind:this={scrollArea}
@@ -24,36 +24,36 @@
     style={Object.entries(scrollAreaStyles)
       .map(([name, value]) => `${name}: ${value};`)
       .join(' ')}
-    {...prefixFilter($$restProps, 'scrollArea$')}
+    {...prefixFilter(restProps, 'scrollArea$')}
     onwheel={(e) => {
       if (instance) {
         instance.handleInteraction();
       }
-      $$restProps.scrollArea$onwheel?.(e);
+      restProps.scrollArea$onwheel?.(e);
     }}
     ontouchstart={(e) => {
       if (instance) {
         instance.handleInteraction();
       }
-      $$restProps.scrollArea$ontouchstart?.(e);
+      restProps.scrollArea$ontouchstart?.(e);
     }}
     onpointerdown={(e) => {
       if (instance) {
         instance.handleInteraction();
       }
-      $$restProps.scrollArea$onpointerdown?.(e);
+      restProps.scrollArea$onpointerdown?.(e);
     }}
     onmousedown={(e) => {
       if (instance) {
         instance.handleInteraction();
       }
-      $$restProps.scrollArea$onmousedown?.(e);
+      restProps.scrollArea$onmousedown?.(e);
     }}
     onkeydown={(e) => {
       if (instance) {
         instance.handleInteraction();
       }
-      $$restProps.scrollArea$onkeydown?.(e);
+      restProps.scrollArea$onkeydown?.(e);
     }}
   >
     <div
@@ -66,15 +66,15 @@
       style={Object.entries(scrollContentStyles)
         .map(([name, value]) => `${name}: ${value};`)
         .join(' ')}
-      {...prefixFilter($$restProps, 'scrollContent$')}
+      {...prefixFilter(restProps, 'scrollContent$')}
       ontransitionend={(e) => {
         if (instance) {
           instance.handleTransitionEnd(e);
         }
-        $$restProps.scrollContent$ontransitionend?.(e);
+        restProps.scrollContent$ontransitionend?.(e);
       }}
     >
-      <slot />
+      {@render children?.()}
     </div>
   </div>
 </div>
@@ -82,6 +82,7 @@
 <script lang="ts">
   import { MDCTabScrollerFoundation, util } from '@material/tab-scroller';
   import { ponyfill } from '@material/dom';
+  import type { Snippet } from 'svelte';
   import { onMount } from 'svelte';
   import type { SmuiAttrs, SmuiElementPropMap } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
@@ -95,39 +96,62 @@
   const { matches } = ponyfill;
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * Where to align the tabs.
+     */
     align?: 'start' | 'end' | 'center' | undefined;
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     scrollArea$use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     scrollArea$class?: string;
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     scrollContent$use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     scrollContent$class?: string;
+
+    children?: Snippet;
   };
-  type $$Props = OwnProps &
+  let {
+    use = [],
+    class: className = '',
+    align = undefined,
+    scrollArea$use = [],
+    scrollArea$class = '',
+    scrollContent$use = [],
+    scrollContent$class = '',
+    children,
+    ...restProps
+  }: OwnProps &
     SmuiAttrs<'div', keyof OwnProps> & {
       [k in keyof SmuiElementPropMap['div'] as `scrollArea\$${k}`]?: SmuiElementPropMap['div'][k];
     } & {
       [k in keyof SmuiElementPropMap['div'] as `scrollContent\$${k}`]?: SmuiElementPropMap['div'][k];
-    };
-
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let align: 'start' | 'end' | 'center' | undefined = undefined;
-  export let scrollArea$use: ActionArray = [];
-  export let scrollArea$class = '';
-  export let scrollContent$use: ActionArray = [];
-  export let scrollContent$class = '';
+    } = $props();
 
   let element: HTMLDivElement;
-  let instance: MDCTabScrollerFoundation;
+  let instance: MDCTabScrollerFoundation | undefined = $state();
   let scrollArea: HTMLDivElement;
   let scrollContent: HTMLDivElement;
-  let internalClasses: { [k: string]: boolean } = {};
-  let scrollAreaClasses: { [k: string]: boolean } = {};
-  let scrollAreaStyles: { [k: string]: string } = {};
-  let scrollContentStyles: { [k: string]: string } = {};
+  let internalClasses: { [k: string]: boolean } = $state({});
+  let scrollAreaClasses: { [k: string]: boolean } = $state({});
+  let scrollAreaStyles: { [k: string]: string } = $state({});
+  let scrollContentStyles: { [k: string]: string } = $state({});
 
   onMount(() => {
     instance = new MDCTabScrollerFoundation({
@@ -153,7 +177,7 @@
     instance.init();
 
     return () => {
-      instance.destroy();
+      instance?.destroy();
     };
   });
 
@@ -204,6 +228,9 @@
   }
 
   export function getScrollPosition() {
+    if (instance == null) {
+      throw new Error('Instance is undefined.');
+    }
     return instance.getScrollPosition();
   }
 
@@ -212,11 +239,11 @@
   }
 
   export function incrementScroll(scrollXIncrement: number) {
-    instance.incrementScroll(scrollXIncrement);
+    instance?.incrementScroll(scrollXIncrement);
   }
 
   export function scrollTo(scrollX: number) {
-    instance.scrollTo(scrollX);
+    instance?.scrollTo(scrollX);
   }
 
   export function getElement() {
