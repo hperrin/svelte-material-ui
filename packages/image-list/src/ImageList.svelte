@@ -1,4 +1,4 @@
-<svelte:options runes={false} />
+<svelte:options runes />
 
 <ul
   bind:this={element}
@@ -9,31 +9,46 @@
     'mdc-image-list--masonry': masonry,
     'mdc-image-list--with-text-protection': withTextProtection,
   })}
-  {...$$restProps}
+  {...restProps}
 >
-  <slot />
+  {@render children?.()}
 </ul>
 
 <script lang="ts">
+  import type { Snippet } from 'svelte';
   import { setContext } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, useActions } from '@smui/common/internal';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * Whether to use masonry layout.
+     */
     masonry?: boolean;
+    /**
+     * Whether to move the text over the image in a caption area at the bottom.
+     */
     withTextProtection?: boolean;
-  };
-  type $$Props = OwnProps & SmuiAttrs<'ul', keyof OwnProps>;
 
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let masonry = false;
-  export let withTextProtection = false;
+    children?: Snippet;
+  };
+  let {
+    use = [],
+    class: className = '',
+    masonry = false,
+    withTextProtection = false,
+    children,
+    ...restProps
+  }: OwnProps & SmuiAttrs<'ul', keyof OwnProps> = $props();
 
   let element: HTMLUListElement;
 
