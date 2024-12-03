@@ -23,6 +23,10 @@
 
   <Demo component={DynamicText} file="snackbar/_DynamicText.svelte">
     Using dynamic text
+    {#snippet subtitle()}
+      This demo is set to not close automatically, so you can more easily test
+      it.
+    {/snippet}
   </Demo>
 
   <Demo

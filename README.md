@@ -192,8 +192,8 @@ Svelte 5 Runes mode is being migrated to slowly. This is the todo list of compon
 - Progress Indicators
   - [x] Circular Progress
   - [x] Linear Progress
-- [ ] Snackbar
-  - [ ] Kitchen
+- [x] Snackbar
+  - [x] Kitchen
 - Tabs
   - [x] Tab
   - [x] Tab Bar

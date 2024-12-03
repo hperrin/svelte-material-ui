@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <Snackbar leading bind:this={snackbar} onSMUISnackbarClosed={handleClosed}>
   <Label>This is a leading snackbar.</Label>
   <Actions>
@@ -18,7 +16,7 @@
   import Button from '@smui/button';
 
   let snackbar: Snackbar;
-  let reason = 'nothing yet';
+  let reason = $state('nothing yet');
 
   function handleClosed(e: CustomEvent<{ reason: string | undefined }>) {
     reason = e.detail.reason ?? 'Undefined.';

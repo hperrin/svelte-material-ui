@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <Snackbar
   variant="stacked"
   bind:this={snackbar}
@@ -32,8 +30,8 @@
   import IconButton from '@smui/icon-button';
 
   let snackbar: Snackbar;
-  let reason = 'nothing yet';
-  let action = 'nothing yet';
+  let reason = $state('nothing yet');
+  let action = $state('nothing yet');
 
   function handleClosedStacked(e: CustomEvent<{ reason: string | undefined }>) {
     reason = e.detail.reason ?? 'Undefined.';

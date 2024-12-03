@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <Snackbar bind:this={snackbarSuccess} class="demo-success">
   <Label
     >That thing you tried to do actually worked, if you can believe it!</Label

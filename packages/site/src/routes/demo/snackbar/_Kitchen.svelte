@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <Kitchen bind:this={kitchen} dismiss$class="material-icons" />
 
 <Button onclick={pushToKitchen}><Label>Push a New Snackbar</Label></Button>
@@ -16,8 +14,8 @@
   import Button, { Label } from '@smui/button';
 
   let kitchen: Kitchen;
-  let reason = 'nothing yet';
-  let action = 'nothing yet';
+  let reason = $state('nothing yet');
+  let action = $state('nothing yet');
 
   function pushToKitchen() {
     kitchen.push({

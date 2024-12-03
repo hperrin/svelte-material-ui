@@ -1,7 +1,7 @@
-<svelte:options runes={false} />
-
 <Kitchen bind:this={kitchen} dismiss$tag="svg" dismiss$viewBox="0 0 24 24">
-  <path slot="dismiss" fill="currentColor" d={mdiCloseCircle} />
+  {#snippet dismiss()}
+    <path fill="currentColor" d={mdiCloseCircle} />
+  {/snippet}
 </Kitchen>
 
 <Button onclick={pushToKitchen}><Label>Push a New Snackbar</Label></Button>
@@ -19,8 +19,8 @@
   import Button, { Label } from '@smui/button';
 
   let kitchen: Kitchen<undefined, 'svg'>;
-  let reason = 'nothing yet';
-  let action = 'nothing yet';
+  let reason = $state('nothing yet');
+  let action = $state('nothing yet');
 
   function pushToKitchen() {
     kitchen.push({

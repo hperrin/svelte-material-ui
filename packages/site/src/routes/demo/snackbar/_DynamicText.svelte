@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <Snackbar bind:this={snackbar} labelText={text} timeoutMs={-1}>
   <Label />
   <Actions>
@@ -20,5 +18,5 @@
   import Textfield from '@smui/textfield';
 
   let snackbar: Snackbar;
-  let text = 'This is a snackbar with dynamic text.';
+  let text = $state('This is a snackbar with dynamic text.');
 </script>
