@@ -8,7 +8,7 @@ export function dispatch<T extends any = any>(
     throw new Error('Event not defined.');
   }
   if (!element) {
-    throw new Error('Tried to dipatch event without element.');
+    throw new Error('Tried to dispatch event without element.');
   }
   const event: CustomEvent<T> = new CustomEvent(eventType, {
     ...eventInit,
