@@ -13,7 +13,9 @@ This doc contains information that will help you migrate your code from an older
 - The deprecated "MDC" events have been removed. All event names should be migrated to the corresponding "SMUI" event names.
 - The "Fixation" theme now uses Tahoma as its large header font.
 - Select no longer defaults the value to an empty string, meaning you must either set the value given to it to an empty string or provide a key function that returns an empty string for an undefined value.
-- The TabBar now exprects a `tab` snippet instead of using `let:tab`.
+- TabBar now expects a `tab` snippet instead of using `let:tab`.
+- Chips' Set now expects a `chip` snippet instead of using `let:chip`.
+- Chips' Set key function is now required to return `string`, not `string | number`.
 
 ## Changes
 

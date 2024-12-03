@@ -1,10 +1,10 @@
-<svelte:options runes={false} />
-
-<Set chips={input} let:chip input>
-  <Chip {chip}>
-    <Text>{chip}</Text>
-    <TrailingAction icon$class="material-icons">cancel</TrailingAction>
-  </Chip>
+<Set bind:chips={myChips} input>
+  {#snippet chip(chip)}
+    <Chip {chip}>
+      <Text>{chip}</Text>
+      <TrailingAction icon$class="material-icons">cancel</TrailingAction>
+    </Chip>
+  {/snippet}
 </Set>
 <Button onclick={addInputChip}><Label>Add</Label></Button>
 
@@ -12,15 +12,13 @@
   import Chip, { Set, TrailingAction, Text } from '@smui/chips';
   import Button, { Label } from '@smui/button';
 
-  let input = [1, 2, 3, 4];
+  let myChips = $state([1, 2, 3, 4]);
 
   function addInputChip() {
-    if (input.length) {
-      input.push(input[input.length - 1] + 1);
-      input = input;
+    if (myChips.length) {
+      myChips.push(myChips[myChips.length - 1] + 1);
     } else {
-      input.push(1);
-      input = input;
+      myChips.push(1);
     }
   }
 </script>

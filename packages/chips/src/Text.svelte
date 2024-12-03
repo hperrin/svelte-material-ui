@@ -1,11 +1,22 @@
-<svelte:options runes={false} />
+<svelte:options runes />
 
 {#if $filter}
-  <Checkmark bind:this={input} />
+  <Checkmark
+    bind:this={input}
+    children={checkbox}
+    {...prefixFilter(restProps, 'checkmark$')}
+  />
 {/if}
-<span bind:this={element} use:useActions={use} role="gridcell">
+<span
+  bind:this={element}
+  use:useActions={use}
+  role="gridcell"
+  {...prefixFilter(restProps, 'container$')}
+>
   {#if $nonInteractive}
-    <span class="mdc-chip__text"><slot /></span>
+    <span class="mdc-chip__text" {...prefixFilter(restProps, 'text$')}
+      >{@render children?.()}</span
+    >
   {:else}
     <span
       bind:this={primaryAction}
@@ -18,39 +29,73 @@
         : {}}
       {...roleProps}
       {...internalAttrs}
-      {...$$restProps}><span class="mdc-chip__text"><slot /></span></span
+      {...exclude(restProps, ['checkmark$', 'container$', 'text$'])}
+      ><span class="mdc-chip__text" {...prefixFilter(restProps, 'text$')}
+        >{@render children?.()}</span
+      ></span
     >
   {/if}
 </span>
 
 <script lang="ts">
+  import type { ComponentProps, Snippet } from 'svelte';
   import { onMount, getContext, tick } from 'svelte';
-  import type { SmuiAttrs } from '@smui/common';
+  import type { SmuiAttrs, SmuiElementPropMap } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
-  import { classMap, useActions } from '@smui/common/internal';
+  import {
+    classMap,
+    exclude,
+    prefixFilter,
+    useActions,
+  } from '@smui/common/internal';
 
   import type { SMUIChipsPrimaryActionAccessor } from './Text.types.js';
   import Checkmark from './Checkmark.svelte';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * The tab index.
+     */
     tabindex?: number;
-  };
-  type $$Props = OwnProps & SmuiAttrs<'span', keyof OwnProps>;
 
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let tabindex = getContext<boolean>('SMUI:chips:chip:focusable')
-    ? 0
-    : -1;
+    children?: Snippet;
+    /**
+     * A spot for the checkbox icon.
+     *
+     * You probably shouldn't customize this.
+     */
+    checkbox?: Snippet;
+  };
+  let {
+    use = [],
+    class: className = '',
+    tabindex = getContext<boolean>('SMUI:chips:chip:focusable') ? 0 : -1,
+    children,
+    checkbox,
+    ...restProps
+  }: OwnProps &
+    SmuiAttrs<'span', keyof OwnProps> & {
+      [k in keyof ComponentProps<
+        typeof Checkmark
+      > as `checkmark\$${k}`]?: ComponentProps<typeof Checkmark>[k];
+    } & {
+      [k in keyof SmuiElementPropMap['span'] as `container\$${k}`]?: SmuiElementPropMap['span'][k];
+    } & {
+      [k in keyof SmuiElementPropMap['span'] as `text\$${k}`]?: SmuiElementPropMap['span'][k];
+    } = $props();
 
   let element: HTMLSpanElement;
   let input: Checkmark | undefined = undefined;
   let primaryAction: HTMLSpanElement | undefined = undefined;
-  let internalAttrs: { [k: string]: string | undefined } = {};
+  let internalAttrs: { [k: string]: string | undefined } = $state({});
 
   const nonInteractive = getContext<SvelteStore<boolean>>(
     'SMUI:chips:nonInteractive',
@@ -61,10 +106,10 @@
     'SMUI:chips:chip:isSelected',
   );
 
-  $: roleProps = {
+  const roleProps = $derived({
     role: $filter ? 'checkbox' : $choice ? 'radio' : 'button',
     tabindex,
-  };
+  });
 
   const SMUIChipsPrimaryActionMount = getContext<
     ((accessor: SMUIChipsPrimaryActionAccessor) => void) | undefined

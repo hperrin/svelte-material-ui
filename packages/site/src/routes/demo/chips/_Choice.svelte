@@ -1,9 +1,9 @@
-<svelte:options runes={false} />
-
-<Set chips={choices} let:chip choice bind:selected>
-  <Chip {chip}>
-    <Text>{chip}</Text>
-  </Chip>
+<Set chips={choices} choice bind:selected>
+  {#snippet chip(chip)}
+    <Chip {chip}>
+      <Text>{chip}</Text>
+    </Chip>
+  {/snippet}
 </Set>
 
 <div style="margin-top: 1em;">Programmatically select:</div>
@@ -27,5 +27,5 @@
   import Button, { Label } from '@smui/button';
 
   let choices = ['Morning', 'Afternoon', 'Evening', 'Night'];
-  let selected = 'Morning';
+  let selected = $state('Morning');
 </script>
