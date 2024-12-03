@@ -23,6 +23,8 @@
   </Demo>
 
   <Demo component={Rich} file="tooltip/_Rich.svelte">Rich</Demo>
+
+  <Demo component={Delayed} file="tooltip/_Delayed.svelte">Delayed</Demo>
 </section>
 
 <script lang="ts">
@@ -31,4 +33,5 @@
   import Simple from './_Simple.svelte';
   import Positioning from './_Positioning.svelte';
   import Rich from './_Rich.svelte';
+  import Delayed from './_Delayed.svelte';
 </script>

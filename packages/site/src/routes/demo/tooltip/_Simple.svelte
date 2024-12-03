@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div
   class="container"
   style="display: flex; flex-wrap: wrap; align-items: center;"
@@ -23,7 +21,8 @@
     <Fab onclick={() => clicked++} mini>
       <Icon class="material-icons">favorite</Icon>
     </Fab>
-    <Tooltip>Tooltip on a FAB.</Tooltip>
+    <!-- The unbounded prop adds more gap between the tooltip and anchor. -->
+    <Tooltip unbounded>Tooltip on a FAB.</Tooltip>
   </Wrapper>
 
   <Wrapper>
@@ -43,13 +42,7 @@
 
   <Wrapper>
     <span tabindex="0" role="button">I'm a span element.</span>
-    <!--
-      For tooltips on things that don't have a
-      visually declared boundary, like plain text,
-      use the `unbounded` prop to remove the gap
-      between the element and the tooltip.
-    -->
-    <Tooltip unbounded>Tooltip on a span.</Tooltip>
+    <Tooltip>Tooltip on a span.</Tooltip>
   </Wrapper>
 </div>
 
@@ -80,9 +73,9 @@
   import Radio from '@smui/radio';
   import { Label, Icon } from '@smui/common';
 
-  let clicked = 0;
-  let checked = false;
-  let selected = 'on';
+  let clicked = $state(0);
+  let checked = $state(false);
+  let selected = $state('on');
 </script>
 
 <style>

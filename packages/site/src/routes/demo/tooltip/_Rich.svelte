@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div style="display: flex; flex-wrap: wrap; align-items: center;">
   <!--
     Note: the wrapper on a rich tooltip
@@ -64,5 +62,5 @@
   } from '@smui/tooltip';
   import Button, { Label } from '@smui/button';
 
-  let clicked = 0;
+  let clicked = $state(0);
 </script>

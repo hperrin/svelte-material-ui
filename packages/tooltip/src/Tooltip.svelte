@@ -1,4 +1,4 @@
-<svelte:options runes={false} />
+<svelte:options runes />
 
 <div
   bind:this={element}
@@ -26,12 +26,12 @@
     : undefined}
   {...roleProps}
   {...internalAttrs}
-  {...exclude($$restProps, ['surface$'])}
+  {...exclude(restProps, ['surface$'])}
   ontransitionend={(e) => {
     if (instance) {
       instance.handleTransitionEnd();
     }
-    $$restProps.ontransitionend?.(e);
+    restProps.ontransitionend?.(e);
   }}
 >
   <div
@@ -44,9 +44,9 @@
       .map(([name, value]) => `${name}: ${value};`)
       .concat([surface$style])
       .join(' ')}
-    {...prefixFilter($$restProps, 'surface$')}
+    {...prefixFilter(restProps, 'surface$')}
   >
-    <slot />
+    {@render children?.()}
   </div>
 </div>
 
@@ -63,6 +63,7 @@
     YPosition,
     CssClasses,
   } from '@material/tooltip';
+  import type { Snippet } from 'svelte';
   import { onMount, onDestroy, getContext } from 'svelte';
   import type { Writable } from 'svelte/store';
   import type { SmuiAttrs, SmuiElementPropMap } from '@smui/common';
@@ -76,62 +77,116 @@
   } from '@smui/common/internal';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * A list of CSS styles.
+     */
     style?: string;
+    /**
+     * The ID of the tooltip.
+     *
+     * If one is not provided, one will be generated.
+     */
     id?: string;
+    /**
+     * Whether the tooltip should use unbounded styling.
+     *
+     * Unbounded styling adds more gap between the anchor element and the
+     * tooltip.
+     */
     unbounded?: boolean;
+    /**
+     * The horizontal position of the tooltip.
+     */
     xPos?: Lowercase<keyof typeof XPosition>;
+    /**
+     * The vertical position of the tooltip.
+     */
     yPos?: Lowercase<keyof typeof YPosition>;
+    /**
+     * Whether the tooltip should act as a persistent popup.
+     *
+     * A persistent rich tooltip shows up when you click or press enter/space
+     * bar on an element and goes away when you activate it again or it loses
+     * focus. Great for informational popups on those little "i" icons.
+     */
     persistent?: boolean;
+    /**
+     * Whether the tooltip will have interative elements inside.
+     *
+     * Using this lets the browser know that this is an interactive area, not
+     * just an informational tooltip, helping with accessibility.
+     */
     interactive?: boolean;
+    /**
+     * Whether the tooltip should be hidden from users using screen readers.
+     *
+     * You should only use this if the information in the tooltip is either
+     * redundant or unhelpful.
+     */
     hideFromScreenreader?: boolean;
+    /**
+     * The delay before the tooltip is shown when the user hovers.
+     *
+     * Defaults to 500ms.
+     */
     showDelay?: number | null | undefined;
+    /**
+     * The delay before the tooltip is hidden when the user quits hovering.
+     *
+     * Defaults to 600ms.
+     */
     hideDelay?: number | null | undefined;
+    /**
+     * A space separated list of CSS classes.
+     */
     surface$class?: string;
+    /**
+     * A list of CSS styles.
+     */
     surface$style?: string;
+
+    children?: Snippet;
   };
-  type $$Props = OwnProps &
+  let {
+    use = [],
+    class: className = '',
+    style = '',
+    id = 'SMUI-tooltip-' + counter++,
+    unbounded = false,
+    xPos = 'detected',
+    yPos = 'detected',
+    persistent = false,
+    interactive = persistent,
+    hideFromScreenreader = false,
+    showDelay = undefined,
+    hideDelay = undefined,
+    surface$class = '',
+    surface$style = '',
+    children,
+    ...restProps
+  }: OwnProps &
     SmuiAttrs<'div', keyof OwnProps> & {
       [k in keyof SmuiElementPropMap['div'] as `surface\$${k}`]?: SmuiElementPropMap['div'][k];
-    };
-
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let style = '';
-  export let id = 'SMUI-tooltip-' + counter++;
-  export let unbounded = false;
-  export let xPos: Lowercase<keyof typeof XPosition> = 'detected';
-  export let yPos: Lowercase<keyof typeof YPosition> = 'detected';
-  export let persistent = false;
-  export let interactive = persistent;
-  export let hideFromScreenreader = false;
-  export let showDelay: number | null | undefined = undefined;
-  export let hideDelay: number | null | undefined = undefined;
-  export let surface$class = '';
-  export let surface$style = '';
+    } = $props();
 
   let element: HTMLDivElement;
-  let instance: MDCTooltipFoundation;
+  let instance: MDCTooltipFoundation | undefined = $state();
   let nonReactiveLocationStore: {
-    readonly parent?: HTMLElement;
-    readonly nextSibling?: HTMLElement;
-    setParent(value: HTMLElement | undefined): void;
-    setNextSibling(value: HTMLElement | undefined): void;
-  } = {
-    setParent(value: HTMLElement | undefined) {
-      Object.defineProperty(this, 'parent', { value });
-    },
-    setNextSibling(value: HTMLElement | undefined) {
-      Object.defineProperty(this, 'nextSibling', { value });
-    },
-  };
-  let internalClasses: { [k: string]: boolean } = {};
-  let internalStyles: { [k: string]: string } = {};
-  let internalAttrs: { [k: string]: string | undefined } = {};
-  let surfaceAnimationStyles: { [k: string]: string } = {};
+    parent?: HTMLElement;
+    nextSibling?: HTMLElement;
+  } = {};
+  let internalClasses: { [k: string]: boolean } = $state({});
+  let internalStyles: { [k: string]: string } = $state({});
+  let internalAttrs: { [k: string]: string | undefined } = $state({});
+  let surfaceAnimationStyles: { [k: string]: string } = $state({});
   let anchor = getContext<Writable<HTMLElement | undefined>>(
     'SMUI:tooltip:wrapper:anchor',
   );
@@ -140,44 +195,54 @@
   );
   const rich = getContext<boolean>('SMUI:tooltip:rich');
 
-  $: roleProps = {
+  const roleProps = $derived({
     role: rich && interactive ? 'dialog' : 'tooltip',
     tabindex: rich && persistent ? -1 : undefined,
-  };
+  });
 
   let previousAnchor: HTMLElement | undefined = undefined;
-  $: if (instance && previousAnchor !== $anchor) {
-    if (previousAnchor) {
-      destroy(previousAnchor);
+  $effect(() => {
+    if (instance && previousAnchor !== $anchor) {
+      if (previousAnchor) {
+        destroy(previousAnchor);
+      }
+
+      if ($anchor) {
+        init($anchor);
+      }
+
+      previousAnchor = $anchor;
     }
+  });
 
-    if ($anchor) {
-      init($anchor);
+  $effect(() => {
+    if (instance) {
+      instance.setAnchorBoundaryType(
+        AnchorBoundaryType[unbounded ? 'UNBOUNDED' : 'BOUNDED'],
+      );
     }
+  });
 
-    previousAnchor = $anchor;
-  }
+  $effect(() => {
+    if (instance) {
+      instance.setTooltipPosition({
+        xPos: XPosition[xPos.toUpperCase() as keyof typeof XPosition],
+        yPos: YPosition[yPos.toUpperCase() as keyof typeof YPosition],
+      });
+    }
+  });
 
-  $: if (instance) {
-    instance.setAnchorBoundaryType(
-      AnchorBoundaryType[unbounded ? 'UNBOUNDED' : 'BOUNDED'],
-    );
-  }
+  $effect(() => {
+    if (instance && showDelay != null) {
+      instance.setShowDelay(showDelay);
+    }
+  });
 
-  $: if (instance) {
-    instance.setTooltipPosition({
-      xPos: XPosition[xPos.toUpperCase() as keyof typeof XPosition],
-      yPos: YPosition[yPos.toUpperCase() as keyof typeof YPosition],
-    });
-  }
-
-  $: if (instance && showDelay != null) {
-    instance.setShowDelay(showDelay);
-  }
-
-  $: if (instance && hideDelay != null) {
-    instance.setHideDelay(hideDelay);
-  }
+  $effect(() => {
+    if (instance && hideDelay != null) {
+      instance.setHideDelay(hideDelay);
+    }
+  });
 
   onMount(() => {
     instance = new MDCTooltipFoundation({
@@ -334,12 +399,12 @@
     if (
       !rich &&
       typeof document !== 'undefined' &&
-      document.body === getElement().parentElement &&
-      nonReactiveLocationStore.parent !== getElement().parentElement &&
+      document.body === getElement()?.parentElement &&
+      nonReactiveLocationStore.parent !== getElement()?.parentElement &&
       nonReactiveLocationStore.parent?.insertBefore &&
       nonReactiveLocationStore.nextSibling
     ) {
-      nonReactiveLocationStore.parent.insertBefore(
+      nonReactiveLocationStore.parent?.insertBefore(
         getElement(),
         nonReactiveLocationStore.nextSibling,
       );
@@ -366,7 +431,7 @@
       anchor.removeAttribute('aria-describedby');
     }
 
-    instance.destroy();
+    instance?.destroy();
   }
 
   function init(anchor: HTMLElement) {
@@ -392,7 +457,7 @@
       hoistToBody();
     }
 
-    instance.init();
+    instance?.init();
   }
 
   function hasClass(className: string) {
@@ -499,12 +564,9 @@
 
   function hoistToBody() {
     if ($anchor && document.body !== getElement().parentNode) {
-      nonReactiveLocationStore.setParent(
-        getElement().parentElement ?? undefined,
-      );
-      nonReactiveLocationStore.setNextSibling(
-        (getElement().nextElementSibling as HTMLElement | null) ?? undefined,
-      );
+      nonReactiveLocationStore.parent = getElement().parentElement ?? undefined;
+      nonReactiveLocationStore.nextSibling =
+        (getElement().nextElementSibling as HTMLElement | null) ?? undefined;
       document.body.appendChild(getElement());
     }
   }

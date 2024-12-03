@@ -197,7 +197,7 @@ Svelte 5 Runes mode is being migrated to slowly. This is the todo list of compon
 - Tabs
   - [x] Tab
   - [x] Tab Bar
-- [ ] Tooltip
+- [x] Tooltip
 - [ ] Touch Target
 
 Note to Devs: update `indexOf()` on any `$state` array to `findIndex()`.
