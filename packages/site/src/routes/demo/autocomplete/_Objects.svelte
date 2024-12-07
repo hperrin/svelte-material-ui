@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div>
   <Autocomplete
     {options}
@@ -20,7 +18,9 @@
     label: string;
   };
 
-  let options: Item[] = [
+  // When options are objects, you need to wrap them in a $state rune, so that
+  // Svelte can compare the objects properly.
+  let options: Item[] = $state([
     {
       id: 0,
       label: 'One',
@@ -41,7 +41,7 @@
       id: 4,
       label: 'Five',
     },
-  ];
+  ]);
 
-  let value: Item | undefined = undefined;
+  let value: Item | undefined = $state();
 </script>

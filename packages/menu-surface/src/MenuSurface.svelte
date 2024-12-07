@@ -21,7 +21,7 @@
   role="dialog"
   {...restProps}
   onkeydown={(e) => {
-    if (instance) {
+    if (instance && !managed) {
       instance.handleKeydown(e);
     }
     restProps.onkeydown?.(e);

@@ -9,6 +9,7 @@
   })}
   bind:open
   bind:anchorElement
+  {managed}
   {...restProps}
   onkeydown={(e) => {
     handleKeydown(e);
@@ -58,6 +59,11 @@
      * Whether the menu is open.
      */
     open?: boolean;
+    /**
+     * A managed menu means you completely control the open state. The component
+     * will never alter it on its own.
+     */
+    managed?: boolean;
 
     children?: Snippet;
   };
@@ -66,6 +72,7 @@
     class: className = '',
     open = $bindable(false),
     anchorElement = $bindable(),
+    managed = false,
     children,
     ...restProps
   }: OwnProps &
@@ -133,8 +140,10 @@
       elementContainsClass: (element, className) =>
         element.classList.contains(className),
       closeSurface: (skipRestoreFocus) => {
-        menuSurfaceAccessor?.closeProgrammatic(skipRestoreFocus);
-        dispatch(getElement(), 'SMUIMenuClosedProgrammatically');
+        if (!managed) {
+          menuSurfaceAccessor?.closeProgrammatic(skipRestoreFocus);
+          dispatch(getElement(), 'SMUIMenuClosedProgrammatically');
+        }
       },
       getElementIndex: (element) => {
         if (listAccessor == null) {

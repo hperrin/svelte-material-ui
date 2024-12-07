@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div class="columns margins">
   <div>
     <Autocomplete
@@ -44,10 +42,10 @@
 
   let fruits = ['Apple', 'Orange', 'Banana', 'Mango'];
 
-  let valueStandard: string | undefined = undefined;
-  let textStandard = '';
-  let valueFilled: string | undefined = undefined;
-  let textFilled = '';
-  let valueOutlined: string | undefined = undefined;
-  let textOutlined = '';
+  let valueStandard: string | undefined = $state();
+  let textStandard = $state('');
+  let valueFilled: string | undefined = $state();
+  let textFilled = $state('');
+  let valueOutlined: string | undefined = $state();
+  let textOutlined = $state('');
 </script>

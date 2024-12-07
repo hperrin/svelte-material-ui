@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div>
   <Autocomplete
     options={fruits}
@@ -16,5 +14,5 @@
 
   let fruits = ['Apple', 'Orange', 'Banana', 'Mango'];
 
-  let value: string | undefined = undefined;
+  let value: string | undefined = $state();
 </script>

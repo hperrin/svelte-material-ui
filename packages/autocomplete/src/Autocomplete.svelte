@@ -1,4 +1,4 @@
-<svelte:options runes={false} />
+<svelte:options runes />
 
 <div
   bind:this={element}
@@ -8,7 +8,14 @@
     [className]: true,
     'smui-autocomplete': true,
   })}
-  {...exclude($$restProps, ['menu$', 'textfield$', 'list$'])}
+  onfocusout={(
+    event: FocusEvent & { currentTarget: EventTarget & HTMLDivElement },
+  ) => {
+    if (!disabled) {
+      handleElementBlur(event);
+    }
+  }}
+  {...exclude(restProps, ['menu$', 'textfield$', 'list$'])}
 >
   <div
     bind:this={inputContainer}
@@ -17,22 +24,25 @@
     role="combobox"
     tabindex="0"
     onfocusin={() => {
-      focused = true;
+      if (!disabled) {
+        focused = true;
+      }
     }}
-    onfocusout={handleTextfieldBlur}
     oninput={() => {
       focusedIndex = -1;
     }}
     onkeydowncapture={handleTextfieldKeydown}
   >
-    <slot>
+    {#if children}
+      {@render children?.()}
+    {:else}
       <Textfield
         {label}
         {disabled}
         bind:value={text}
-        {...prefixFilter($$restProps, 'textfield$')}
+        {...prefixFilter(restProps, 'textfield$')}
       />
-    </slot>
+    {/if}
   </div>
   <Menu
     class={classMap({
@@ -46,35 +56,41 @@
     bind:anchorElement={element}
     anchor={menu$anchor}
     anchorCorner={menu$anchorCorner}
-    {...prefixFilter($$restProps, 'menu$')}
+    {...prefixFilter(restProps, 'menu$')}
   >
-    <List {...prefixFilter($$restProps, 'list$')}>
-      {#if loading}
+    <List {...prefixFilter(restProps, 'list$')}>
+      {#if loadingState}
         <Item disabled>
-          <slot name="loading">
+          {#if loading}
+            {@render loading()}
+          {:else}
             <Text>Loading...</Text>
-          </slot>
+          {/if}
         </Item>
-      {:else if error}
+      {:else if errorState}
         <Item disabled>
-          <slot name="error">
+          {#if error}
+            {@render error()}
+          {:else}
             <Text>Error while fetching suggestions.</Text>
-          </slot>
+          {/if}
         </Item>
       {:else}
-        {#each matches as match, i}
+        {#each matches as curMatch, i}
           <Item
-            disabled={getOptionDisabled(match)}
-            selected={match === value}
+            disabled={getOptionDisabled(curMatch)}
+            selected={curMatch === value}
             onmouseenter={() => {
               focusedIndex = i;
             }}
             onSMUIAction={() =>
-              toggle ? toggleOption(match) : selectOption(match)}
+              toggle ? toggleOption(curMatch) : selectOption(curMatch)}
           >
-            <slot name="match" {match}>
-              <Text>{getOptionLabel(match)}</Text>
-            </slot>
+            {#if match}
+              {@render match(curMatch)}
+            {:else}
+              <Text>{getOptionLabel(curMatch)}</Text>
+            {/if}
           </Item>
         {:else}
           <Item
@@ -82,9 +98,11 @@
             onSMUIAction={(e) =>
               dispatch(getElement(), 'SMUIAutocompleteNoMatchesAction', e)}
           >
-            <slot name="no-matches">
+            {#if noMatches}
+              {@render noMatches()}
+            {:else}
               <Text>No matches found.</Text>
-            </slot>
+            {/if}
           </Item>
         {/each}
       {/if}
@@ -97,7 +115,7 @@
 </script>
 
 <script lang="ts">
-  import type { ComponentProps } from 'svelte';
+  import type { ComponentProps, Snippet } from 'svelte';
   import { setContext } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
@@ -115,28 +133,158 @@
   import { Anchor } from '@smui/menu-surface';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * The styling variant of the input.
+     */
     variant?: 'text' | 'raised' | 'unelevated' | 'outlined';
+    /**
+     * The available options, or a function that returns them asynchronously.
+     */
     options?: (() => Promise<any[]>) | any[];
+    /**
+     * The value of the input.
+     */
     value?: any;
+    /**
+     * A function that returns whether an option is disabled.
+     */
     getOptionDisabled?: (option: any) => boolean;
+    /**
+     * A function that returns the text label for an object.
+     */
     getOptionLabel?: (option: any) => string;
+    /**
+     * The text value of the input box.
+     */
     text?: string;
-    label?: string | undefined;
+    /**
+     * The label or a spot for the label.
+     */
+    label?: string | Snippet | undefined;
+    /**
+     * Whether the input is disabled.
+     */
     disabled?: boolean;
+    /**
+     * Whether options should be toggled when selected.
+     */
     toggle?: boolean;
+    /**
+     * Allow the user to enter their own value as well as pick from the options.
+     */
     combobox?: boolean;
+    /**
+     * Clear the input text when the input loses focus.
+     */
     clearOnBlur?: boolean;
+    /**
+     * Select an option when the search text matches it exactly.
+     */
     selectOnExactMatch?: boolean;
+    /**
+     * Show the options dropdown menu before the user enters any input text.
+     */
     showMenuWithNoInput?: boolean;
+    /**
+     * Whether the item button displayed when there are no matches is disabled.
+     */
     noMatchesActionDisabled?: boolean;
+    /**
+     * A function that takes a search input and returns options.
+     */
     search?: (input: string) => Promise<any[] | false>;
+    /**
+     * A space separated list of CSS classes.
+     */
     menu$class?: string;
+    /**
+     * Anchor the menu surface automatically to its parent element.
+     *
+     * If you set this to false, you need to provide an element to
+     * `anchorElement`.
+     */
     menu$anchor?: boolean;
+    /**
+     * Default anchor corner alignment of top left menu surface corner.
+     */
     menu$anchorCorner?: ComponentProps<typeof Menu>['anchorCorner'];
+
+    children?: Snippet;
+    /**
+     * A spot for the item text when the results are loading.
+     */
+    loading?: Snippet;
+    /**
+     * A spot for the item text when an error occurred.
+     */
+    error?: Snippet;
+    /**
+     * A spot for the item text for a matched option.
+     */
+    match?: Snippet<[any]>;
+    /**
+     * A spot for the item text when no matches were found.
+     */
+    noMatches?: Snippet;
   };
-  type $$Props = OwnProps &
+  let {
+    use = [],
+    class: className = '',
+    options = [],
+    value = $bindable(),
+    getOptionDisabled = () => false,
+    getOptionLabel = (option: any) => (option == null ? '' : `${option}`),
+    text = $bindable(getOptionLabel(value)),
+    label,
+    disabled = false,
+    toggle = false,
+    combobox = false,
+    clearOnBlur = !combobox,
+    selectOnExactMatch = true,
+    showMenuWithNoInput = true,
+    noMatchesActionDisabled = true,
+    search = async (input: string) => {
+      const linput = input.toLowerCase();
+      const fullOptions =
+        typeof options == 'function' ? await options() : options || [];
+
+      if (linput === '') {
+        return fullOptions;
+      }
+
+      const result = fullOptions.filter((item) =>
+        getOptionLabel(item).toLowerCase().includes(linput),
+      );
+      result.sort((a, b) => {
+        const aString = getOptionLabel(a).toLowerCase();
+        const bString = getOptionLabel(b).toLowerCase();
+        if (aString.startsWith(linput) && !bString.startsWith(linput)) {
+          return -1;
+        } else if (bString.startsWith(linput) && !aString.startsWith(linput)) {
+          return 1;
+        }
+        return 0;
+      });
+      return result;
+    },
+    menu$class = '',
+    menu$anchor = false,
+    menu$anchorCorner = 'BOTTOM_START',
+    children,
+    loading,
+    error,
+    match,
+    noMatches,
+    ...restProps
+  }: OwnProps &
     SmuiAttrs<'div', keyof OwnProps> & {
       [k in keyof ComponentProps<typeof Menu> as `menu\$${k}`]?: ComponentProps<
         typeof Menu
@@ -152,142 +300,106 @@
     } & {
       textfield$label?: never;
       textfield$value?: never;
-    };
-
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let options: (() => Promise<any[]>) | any[] = [];
-  export let value: any = undefined;
-  export let getOptionDisabled: (option: any) => boolean = () => false;
-  export let getOptionLabel: (option: any) => string = (option: any) =>
-    option == null ? '' : `${option}`;
-  export let text = getOptionLabel(value);
-  export let label: string | undefined = undefined;
-  export let disabled = false;
-  export let toggle = false;
-  export let combobox = false;
-  export let clearOnBlur = !combobox;
-  export let selectOnExactMatch = true;
-  export let showMenuWithNoInput = true;
-  export let noMatchesActionDisabled = true;
-  export let search: (input: string) => Promise<any[] | false> = async (
-    input: string,
-  ) => {
-    const linput = input.toLowerCase();
-    const fullOptions =
-      typeof options == 'function' ? await options() : options || [];
-
-    if (linput === '') {
-      return fullOptions;
-    }
-
-    const result = fullOptions.filter((item) =>
-      getOptionLabel(item).toLowerCase().includes(linput),
-    );
-    result.sort((a, b) => {
-      const aString = getOptionLabel(a).toLowerCase();
-      const bString = getOptionLabel(b).toLowerCase();
-      if (aString.startsWith(linput) && !bString.startsWith(linput)) {
-        return -1;
-      } else if (bString.startsWith(linput) && !aString.startsWith(linput)) {
-        return 1;
-      }
-      return 0;
-    });
-    return result;
-  };
-  export let menu$class = '';
-  export let menu$anchor = false;
-  export let menu$anchorCorner: ComponentProps<typeof Menu>['anchorCorner'] =
-    'BOTTOM_START';
+    } = $props();
 
   let element: HTMLDivElement;
   let inputContainer: HTMLDivElement;
-  let loading = 0;
-  let error = false;
-  let focused = false;
+  let loadingState = $state(0);
+  let errorState = $state(false);
+  let focused = $state(false);
   let listAccessor: SMUIListAccessor;
-  let matches: any[] = [];
-  let focusedIndex = -1;
-  let focusedItem: SMUIListItemAccessor | undefined = undefined;
+  let matches: any[] = $state([]);
+  let focusedIndex = $state(-1);
+  let focusedItem: SMUIListItemAccessor | undefined = $state();
   let menuId: string =
-    $$restProps['menu$id'] ?? 'SMUI-autocomplete-' + counter++ + '-menu';
+    restProps['menu$id'] ?? 'SMUI-autocomplete-' + counter++ + '-menu';
 
-  $: menuOpen =
+  const menuOpen = $derived(
     focused &&
-    (text !== '' || showMenuWithNoInput) &&
-    (loading > 0 ||
-      (!combobox && !(matches.length === 1 && matches[0] === value)) ||
-      (combobox &&
-        !!matches.length &&
-        !(matches.length === 1 && matches[0] === value)));
+      (text !== '' || showMenuWithNoInput) &&
+      (loadingState > 0 ||
+        (!combobox && !(matches.length === 1 && matches[0] === value)) ||
+        (combobox &&
+          !!matches.length &&
+          !(matches.length === 1 && matches[0] === value))),
+  );
 
   let previousText = text;
-  $: if (previousText !== text) {
-    if (!combobox && value != null && getOptionLabel(value) !== text) {
-      deselectOption(value, false);
-    }
+  $effect(() => {
+    if (previousText !== text) {
+      if (value != null && getOptionLabel(value) !== text) {
+        deselectOption(value, false);
+      }
 
-    // Only when we're focused do we need to perform a search.
-    if (focused) {
-      performSearch();
-      previousText = text;
-    }
-  }
-
-  $: if (options) {
-    // Set search results on init and refresh search results when `options` is
-    // changed.
-    performSearch();
-  }
-
-  let previousValue = value;
-  $: if (previousValue !== value) {
-    // If the value changes from outside, update the text.
-    text = getOptionLabel(value);
-    previousValue = value;
-  } else if (combobox && value !== text) {
-    // An update came from the user.
-    value = text;
-    previousValue = value;
-  }
-
-  let previousFocusedIndex: number | undefined = undefined;
-  $: if (previousFocusedIndex !== focusedIndex) {
-    const activeItems = getActiveMenuItems();
-
-    if (focusedIndex === -1) {
-      focusedItem = undefined;
-    } else {
-      focusedItem = activeItems[focusedIndex];
-
-      if (focusedItem) {
-        focusedItem.activated = true;
-        if (!isInViewport(focusedItem.element)) {
-          focusedItem.element.scrollIntoView({
-            block: 'end',
-            inline: 'nearest',
-          });
-        }
+      // Only when we're focused do we need to perform a search.
+      if (focused) {
+        performSearch();
+        previousText = text;
       }
     }
+  });
 
-    activeItems.forEach((item, i) => {
-      if (i !== focusedIndex) {
-        item.activated = false;
-      }
-    });
-
-    if (listAccessor) {
-      listAccessor.getOrderedList().forEach((itemAccessor) => {
-        itemAccessor.tabindex = -1;
+  let performingSearchForOptions = false;
+  $effect(() => {
+    if (options && !performingSearchForOptions) {
+      performingSearchForOptions = true;
+      // Set search results on init and refresh search results when `options` is
+      // changed.
+      performSearch().then(() => {
+        performingSearchForOptions = false;
       });
     }
+  });
 
-    previousFocusedIndex = focusedIndex;
-  }
+  let previousValue = value;
+  $effect(() => {
+    if (previousValue !== value) {
+      // If the value changed from outside, update the text.
+      text = getOptionLabel(value);
+      previousValue = value;
+    } else if (combobox && value !== text) {
+      // An update came from the user.
+      value = text;
+      previousValue = value;
+    }
+  });
+
+  let previousFocusedIndex: number | undefined = undefined;
+  $effect(() => {
+    if (previousFocusedIndex !== focusedIndex) {
+      const activeItems = getActiveMenuItems();
+
+      if (focusedIndex === -1) {
+        focusedItem = undefined;
+      } else {
+        focusedItem = activeItems[focusedIndex];
+
+        if (focusedItem) {
+          focusedItem.activated = true;
+          if (!isInViewport(focusedItem.element)) {
+            focusedItem.element.scrollIntoView({
+              block: 'end',
+              inline: 'nearest',
+            });
+          }
+        }
+      }
+
+      activeItems.forEach((item, i) => {
+        if (i !== focusedIndex) {
+          item.activated = false;
+        }
+      });
+
+      if (listAccessor) {
+        listAccessor.getOrderedList().forEach((itemAccessor) => {
+          itemAccessor.tabindex = -1;
+        });
+      }
+
+      previousFocusedIndex = focusedIndex;
+    }
+  });
 
   setContext('SMUI:list:mount', (accessor: SMUIListAccessor) => {
     if (!listAccessor) {
@@ -296,8 +408,14 @@
   });
 
   async function performSearch() {
-    loading++;
-    error = false;
+    // This will cause the menu to be rerendered, so we should preserve
+    // focus if the menu is focused.
+    if (focused && !isInputFocused()) {
+      focus();
+    }
+
+    loadingState += 1;
+    errorState = false;
     try {
       const searchResult = await search(text);
       if (searchResult !== false) {
@@ -306,15 +424,15 @@
           const exactMatch = matches.find(
             (match) => getOptionLabel(match) === text,
           );
-          if (exactMatch && value !== exactMatch) {
+          if (exactMatch != null && getOptionLabel(value) !== text) {
             selectOption(exactMatch);
           }
         }
       }
     } catch (e: any) {
-      error = true;
+      errorState = true;
     }
-    loading--;
+    loadingState -= 1;
   }
 
   function selectOption(option: any, setText = true) {
@@ -422,24 +540,25 @@
     }
   }
 
-  async function handleTextfieldBlur(event: FocusEvent) {
-    // Check if the reason we're unfocusing is that the user clicked an item.
-    if (
-      event.relatedTarget &&
-      getActiveMenuItems()
-        .map((itemAccessor) => itemAccessor.element)
-        .indexOf(event.relatedTarget as Element) !== -1
-    ) {
-      // Wait until the item is selected.
-      getElement().addEventListener(
-        'SMUIAutocompleteSelected',
+  async function handleElementBlur(
+    event: FocusEvent & { currentTarget: EventTarget & HTMLDivElement },
+  ) {
+    if (!document.hasFocus()) {
+      // Document lost focus.
+      window.addEventListener(
+        'focus',
         () => {
-          // Then clear the focus.
-          focusedIndex = -1;
-          focused = false;
+          if (!getElement()?.contains(document.activeElement)) {
+            handleElementBlur(event);
+          }
         },
         { once: true },
       );
+
+      return;
+    }
+    if (event.currentTarget?.contains(event.relatedTarget as Element | null)) {
+      // Focus is remaining in the container.
       return;
     }
 
@@ -449,6 +568,17 @@
 
     if (clearOnBlur && value == null) {
       text = '';
+    }
+  }
+
+  function isInputFocused() {
+    if (inputContainer) {
+      return (
+        document.activeElement ===
+        inputContainer.querySelector<HTMLInputElement>(
+          'input.mdc-text-field__input',
+        )
+      );
     }
   }
 

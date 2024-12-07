@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div>
   <Autocomplete combobox options={fruits} bind:value label="Fruit" />
   <pre class="status">Selected: {value || ''}</pre>
@@ -30,5 +28,5 @@
     'Grape',
     'Strawberry',
   ];
-  let value: string | undefined = undefined;
+  let value: string | undefined = $state();
 </script>

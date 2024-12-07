@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div>
   <Autocomplete options={fruits} bind:value label="Fruit" />
   <pre class="status">Selected: {value || ''}</pre>
@@ -10,5 +8,5 @@
 
   let fruits = ['Apple', 'Orange', 'Banana', 'Mango'];
 
-  let value = 'Orange';
+  let value = $state('Orange');
 </script>

@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div>
   <Autocomplete
     {options}
@@ -14,9 +12,9 @@
     }}
     label="Dialog"
   >
-    <div slot="no-matches">
+    {#snippet noMatches()}
       <Text>Add item</Text>
-    </div>
+    {/snippet}
   </Autocomplete>
 
   <pre class="status">Selected: {value ? JSON.stringify(value) : ''}</pre>
@@ -54,8 +52,10 @@
     label: string;
   };
 
-  let dialogOpen = false;
-  let options: Item[] = [
+  let dialogOpen = $state(false);
+  // When options are objects, you need to wrap them in a $state rune, so that
+  // Svelte can compare the objects properly.
+  let options: Item[] = $state([
     {
       id: 0,
       label: 'One',
@@ -76,11 +76,11 @@
       id: 4,
       label: 'Five',
     },
-  ];
-  let newLabel = '';
+  ]);
+  let newLabel = $state('');
 
-  let value: Item | undefined = undefined;
-  let text = '';
+  let value: Item | undefined = $state();
+  let text = $state('');
 
   function addObject() {
     const newObject = {

@@ -52,6 +52,10 @@
     Full width
   </Demo>
 
+  <Demo component={CustomDisplay} file="autocomplete/_CustomDisplay.svelte">
+    Custom item display
+  </Demo>
+
   <Demo component={Manual} file="autocomplete/_Manual.svelte">
     Manual setup
   </Demo>
@@ -68,6 +72,7 @@
   import AddToList from './_AddToList.svelte';
   import Async from './_Async.svelte';
   import FullWidth from './_FullWidth.svelte';
+  import CustomDisplay from './_CustomDisplay.svelte';
   import Manual from './_Manual.svelte';
 </script>
 
