@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <DataTable style="max-width: 100%;">
   <Head>
     <Row>
@@ -38,12 +36,7 @@
   import DataTable, { Head, Body, Row, Cell } from '@smui/data-table';
   import Checkbox from '@smui/checkbox';
 
-  $: selectedPrice = selected.reduce(
-    (total, option) => option.price + total,
-    0,
-  );
-
-  let options = [
+  let options = $state([
     {
       name: 'Broom',
       description: 'A wooden handled broom.',
@@ -69,6 +62,10 @@
       description: 'A metal bucket.',
       price: 13,
     },
-  ];
-  let selected = [options[2]];
+  ]);
+  let selected = $state([options[2]]);
+
+  const selectedPrice = $derived(
+    selected.reduce((total, option) => option.price + total, 0),
+  );
 </script>

@@ -1,4 +1,4 @@
-<svelte:options runes={false} />
+<svelte:options runes />
 
 <div
   bind:this={element}
@@ -7,7 +7,7 @@
     [className]: true,
     'mdc-data-table__pagination': true,
   })}
-  {...exclude($$restProps, ['trailing$'])}
+  {...exclude(restProps, ['trailing$'])}
 >
   <div
     use:useActions={trailing$use}
@@ -15,27 +15,28 @@
       [trailing$class]: true,
       'mdc-data-table__pagination-trailing': true,
     })}
-    {...prefixFilter($$restProps, 'trailing$')}
+    {...prefixFilter(restProps, 'trailing$')}
   >
-    {#if $$slots.rowsPerPage}
+    {#if rowsPerPage}
       <div class="mdc-data-table__pagination-rows-per-page">
-        <slot name="rowsPerPage" />
+        {@render rowsPerPage?.()}
       </div>
     {/if}
 
     <div class="mdc-data-table__pagination-navigation">
-      {#if $$slots.total}
+      {#if total}
         <div class="mdc-data-table__pagination-total">
-          <slot name="total" />
+          {@render total?.()}
         </div>
       {/if}
 
-      <slot />
+      {@render children?.()}
     </div>
   </div>
 </div>
 
 <script lang="ts">
+  import type { Snippet } from 'svelte';
   import { setContext } from 'svelte';
   import type { SmuiAttrs, SmuiElementPropMap } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
@@ -47,22 +48,46 @@
   } from '@smui/common/internal';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     trailing$use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     trailing$class?: string;
+
+    children?: Snippet;
+    /**
+     * A spot for the rows per page selector or indicator.
+     */
+    rowsPerPage?: Snippet;
+    /**
+     * A spot for the count and total count.
+     */
+    total?: Snippet;
   };
-  type $$Props = OwnProps &
+  let {
+    use = [],
+    class: className = '',
+    trailing$use = [],
+    trailing$class = '',
+    children,
+    rowsPerPage,
+    total,
+    ...restProps
+  }: OwnProps &
     SmuiAttrs<'div', keyof OwnProps> & {
       [k in keyof SmuiElementPropMap['div'] as `trailing\$${k}`]?: SmuiElementPropMap['div'][k];
-    };
-
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let trailing$use: ActionArray = [];
-  export let trailing$class = '';
+    } = $props();
 
   let element: HTMLDivElement;
 

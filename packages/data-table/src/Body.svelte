@@ -1,4 +1,4 @@
-<svelte:options runes={false} />
+<svelte:options runes />
 
 <tbody
   bind:this={element}
@@ -7,10 +7,11 @@
     [className]: true,
     'mdc-data-table__content': true,
   })}
-  {...$$restProps}><slot /></tbody
+  {...restProps}>{@render children?.()}</tbody
 >
 
 <script lang="ts">
+  import type { Snippet } from 'svelte';
   import { onMount, setContext, getContext } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
@@ -20,22 +21,29 @@
   import type { SMUIDataTableBodyAccessor } from './Body.types.js';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
-  };
-  type $$Props = OwnProps & SmuiAttrs<'tbody', keyof OwnProps>;
 
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
+    children?: Snippet;
+  };
+  let {
+    use = [],
+    class: className = '',
+    children,
+    ...restProps
+  }: OwnProps & SmuiAttrs<'tbody', keyof OwnProps> = $props();
 
   let element: HTMLTableSectionElement;
-  let rows: SMUIDataTableRowAccessor[] = [];
-  const rowAccessorMap = new WeakMap<
-    HTMLTableRowElement,
-    SMUIDataTableRowAccessor
-  >();
+  let rows: SMUIDataTableRowAccessor[] = $state([]);
+  const rowAccessorMap = $state(
+    new WeakMap<HTMLTableRowElement, SMUIDataTableRowAccessor>(),
+  );
 
   setContext('SMUI:data-table:row:header', false);
 

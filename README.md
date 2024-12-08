@@ -160,7 +160,7 @@ Svelte 5 Runes mode is being migrated to slowly. This is the todo list of compon
 - [x] Banner
 - [x] Card
 - [x] Common
-- [ ] Data Table
+- [x] Data Table
 - [x] Dialog
 - [x] Drawer
 - [x] Image List

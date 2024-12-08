@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <!-- Check out iframe.svelte too see how these work. -->
 <iframe class="data-table-iframe" src="/demo/data-table/iframe" title="standard"
 ></iframe>

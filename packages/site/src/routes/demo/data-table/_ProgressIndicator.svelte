@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <div style="margin-bottom: 1em;">
   <Button onclick={() => loadThings(true)}>Do Pretend Loading</Button>
 </div>
@@ -24,12 +22,13 @@
     {/each}
   </Body>
 
-  <LinearProgress
-    indeterminate
-    bind:closed={loaded}
-    aria-label="Data is being loaded..."
-    slot="progress"
-  />
+  {#snippet progress()}
+    <LinearProgress
+      indeterminate
+      closed={loaded}
+      aria-label="Data is being loaded..."
+    />
+  {/snippet}
 </DataTable>
 
 <script lang="ts">
@@ -44,8 +43,8 @@
     email: string;
     website: string;
   };
-  let items: User[] = [];
-  let loaded = false;
+  let items: User[] = $state([]);
+  let loaded = $state(false);
 
   loadThings(false);
 

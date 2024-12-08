@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <DataTable stickyHeader table$aria-label="User list" style="width: 100%;">
   <Head>
     <Row>
@@ -31,7 +29,7 @@
     email: string;
     website: string;
   };
-  let items: User[] = [];
+  let items: User[] = $state([]);
 
   if (typeof fetch !== 'undefined') {
     fetch(

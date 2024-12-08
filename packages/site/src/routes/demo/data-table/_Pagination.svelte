@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <DataTable table$aria-label="Todo list" style="width: 100%;">
   <Head>
     <Row>
@@ -20,48 +18,50 @@
     {/each}
   </Body>
 
-  <Pagination slot="paginate">
-    <svelte:fragment slot="rowsPerPage">
-      <Label>Rows Per Page</Label>
-      <Select variant="outlined" bind:value={rowsPerPage} noLabel>
-        <Option value={10}>10</Option>
-        <Option value={25}>25</Option>
-        <Option value={100}>100</Option>
-      </Select>
-    </svelte:fragment>
-    <svelte:fragment slot="total">
-      {start + 1}-{end} of {items.length}
-    </svelte:fragment>
+  {#snippet paginate()}
+    <Pagination>
+      {#snippet rowsPerPage()}
+        <Label>Rows Per Page</Label>
+        <Select variant="outlined" bind:value={perPage} noLabel>
+          <Option value={10}>10</Option>
+          <Option value={25}>25</Option>
+          <Option value={100}>100</Option>
+        </Select>
+      {/snippet}
+      {#snippet total()}
+        {start + 1}-{end} of {items.length}
+      {/snippet}
 
-    <IconButton
-      class="material-icons"
-      action="first-page"
-      title="First page"
-      onclick={() => (currentPage = 0)}
-      disabled={currentPage === 0}>first_page</IconButton
-    >
-    <IconButton
-      class="material-icons"
-      action="prev-page"
-      title="Prev page"
-      onclick={() => currentPage--}
-      disabled={currentPage === 0}>chevron_left</IconButton
-    >
-    <IconButton
-      class="material-icons"
-      action="next-page"
-      title="Next page"
-      onclick={() => currentPage++}
-      disabled={currentPage === lastPage}>chevron_right</IconButton
-    >
-    <IconButton
-      class="material-icons"
-      action="last-page"
-      title="Last page"
-      onclick={() => (currentPage = lastPage)}
-      disabled={currentPage === lastPage}>last_page</IconButton
-    >
-  </Pagination>
+      <IconButton
+        class="material-icons"
+        action="first-page"
+        title="First page"
+        onclick={() => (currentPage = 0)}
+        disabled={currentPage === 0}>first_page</IconButton
+      >
+      <IconButton
+        class="material-icons"
+        action="prev-page"
+        title="Prev page"
+        onclick={() => currentPage--}
+        disabled={currentPage === 0}>chevron_left</IconButton
+      >
+      <IconButton
+        class="material-icons"
+        action="next-page"
+        title="Next page"
+        onclick={() => currentPage++}
+        disabled={currentPage === lastPage}>chevron_right</IconButton
+      >
+      <IconButton
+        class="material-icons"
+        action="last-page"
+        title="Last page"
+        onclick={() => (currentPage = lastPage)}
+        disabled={currentPage === lastPage}>last_page</IconButton
+      >
+    </Pagination>
+  {/snippet}
 </DataTable>
 
 <script lang="ts">
@@ -82,18 +82,20 @@
     completed: boolean;
     userId: number;
   };
-  let items: Todo[] = [];
-  let rowsPerPage = 10;
-  let currentPage = 0;
+  let items: Todo[] = $state([]);
+  let perPage = $state(10);
+  let currentPage = $state(0);
 
-  $: start = currentPage * rowsPerPage;
-  $: end = Math.min(start + rowsPerPage, items.length);
-  $: slice = items.slice(start, end);
-  $: lastPage = Math.max(Math.ceil(items.length / rowsPerPage) - 1, 0);
+  const start = $derived(currentPage * perPage);
+  const end = $derived(Math.min(start + perPage, items.length));
+  const slice = $derived(items.slice(start, end));
+  const lastPage = $derived(Math.max(Math.ceil(items.length / perPage) - 1, 0));
 
-  $: if (currentPage > lastPage) {
-    currentPage = lastPage;
-  }
+  $effect(() => {
+    if (currentPage > lastPage) {
+      currentPage = lastPage;
+    }
+  });
 
   if (typeof fetch !== 'undefined') {
     // Slice a few off the end to show how the

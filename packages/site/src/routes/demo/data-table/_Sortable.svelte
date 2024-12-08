@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <DataTable
   sortable
   bind:sort
@@ -73,9 +71,9 @@
     email: string;
     website: string;
   };
-  let items: User[] = [];
-  let sort: keyof User = 'id';
-  let sortDirection: Lowercase<keyof typeof SortValue> = 'ascending';
+  let items: User[] = $state([]);
+  let sort: keyof User = $state('id');
+  let sortDirection: Lowercase<keyof typeof SortValue> = $state('ascending');
 
   if (typeof fetch !== 'undefined') {
     fetch(
@@ -95,6 +93,5 @@
       }
       return Number(aVal) - Number(bVal);
     });
-    items = items;
   }
 </script>

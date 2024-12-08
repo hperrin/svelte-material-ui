@@ -1,4 +1,4 @@
-<svelte:options runes={false} />
+<svelte:options runes />
 
 <tr
   bind:this={element}
@@ -12,15 +12,15 @@
   })}
   aria-selected={checkbox ? (checkbox.checked ? 'true' : 'false') : undefined}
   {...internalAttrs}
-  {...$$restProps}
+  {...restProps}
   onclick={(e) => {
     if (header) {
       notifyHeaderClick(e);
     } else {
       notifyRowClick(e);
     }
-    $$restProps.onclick?.(e);
-  }}><slot /></tr
+    restProps.onclick?.(e);
+  }}>{@render children?.()}</tr
 >
 
 <script module lang="ts">
@@ -28,6 +28,7 @@
 </script>
 
 <script lang="ts">
+  import type { Snippet } from 'svelte';
   import { onMount, getContext, setContext } from 'svelte';
   import type { SmuiAttrs, SMUICheckboxInputAccessor } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
@@ -36,22 +37,35 @@
   import type { SMUIDataTableRowAccessor } from './Row.types.js';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * An optional unique row ID.
+     *
+     * If none is provided, one will be generated.
+     */
     rowId?: string;
-  };
-  type $$Props = OwnProps & SmuiAttrs<'tr', keyof OwnProps>;
 
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let rowId = 'SMUI-data-table-row-' + counter++;
+    children?: Snippet;
+  };
+  let {
+    use = [],
+    class: className = '',
+    rowId = 'SMUI-data-table-row-' + counter++,
+    children,
+    ...restProps
+  }: OwnProps & SmuiAttrs<'tr', keyof OwnProps> = $props();
 
   let element: HTMLTableRowElement;
-  let checkbox: SMUICheckboxInputAccessor | undefined = undefined;
-  let internalClasses: { [k: string]: boolean } = {};
-  let internalAttrs: { [k: string]: string | undefined } = {};
+  let checkbox: SMUICheckboxInputAccessor | undefined = $state();
+  let internalClasses: { [k: string]: boolean } = $state({});
+  let internalAttrs: { [k: string]: string | undefined } = $state({});
   let header = getContext<boolean>('SMUI:data-table:row:header');
 
   const SMUICheckboxMount = getContext<

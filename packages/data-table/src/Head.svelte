@@ -1,9 +1,11 @@
-<svelte:options runes={false} />
+<svelte:options runes />
 
-<thead bind:this={element} use:useActions={use} {...$$restProps}><slot /></thead
+<thead bind:this={element} use:useActions={use} {...restProps}
+  >{@render children?.()}</thead
 >
 
 <script lang="ts">
+  import type { Snippet } from 'svelte';
   import { onMount, setContext, getContext } from 'svelte';
   import type { SmuiAttrs, SMUICheckboxInputAccessor } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
@@ -13,20 +15,25 @@
   import type { SMUIDataTableHeadAccessor } from './Head.types.js';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
-  };
-  type $$Props = OwnProps & SmuiAttrs<'thead', keyof OwnProps>;
 
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
+    children?: Snippet;
+  };
+  let {
+    use = [],
+    children,
+    ...restProps
+  }: OwnProps & SmuiAttrs<'thead', keyof OwnProps> = $props();
 
   let element: HTMLTableSectionElement;
-  let checkbox: SMUICheckboxInputAccessor | undefined = undefined;
-  let cells: SMUIDataTableCellAccessor[] = [];
-  const cellAccessorMap = new WeakMap<
-    HTMLTableCellElement,
-    SMUIDataTableCellAccessor
-  >();
+  let checkbox: SMUICheckboxInputAccessor | undefined = $state();
+  let cells: SMUIDataTableCellAccessor[] = $state([]);
+  const cellAccessorMap = $state.raw(
+    new WeakMap<HTMLTableCellElement, SMUIDataTableCellAccessor>(),
+  );
 
   setContext('SMUI:data-table:row:header', true);
 

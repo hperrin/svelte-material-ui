@@ -1,4 +1,4 @@
-<svelte:options runes={false} />
+<svelte:options runes />
 
 {#if header}
   <th
@@ -22,16 +22,16 @@
         : 'none'
       : undefined}
     {...internalAttrs}
-    {...$$restProps}
+    {...restProps}
     onchange={(e) => {
       if (checkbox) {
         notifyHeaderChange(e);
       }
-      $$restProps.onchange?.(e);
+      restProps.onchange?.(e);
     }}
     >{#if sortable}
       <div class="mdc-data-table__header-cell-wrapper">
-        <slot />
+        {@render children?.()}
         <div
           class="mdc-data-table__sort-status-label"
           aria-hidden="true"
@@ -44,7 +44,7 @@
             : ''}
         </div>
       </div>
-    {:else}<slot />{/if}</th
+    {:else}{@render children?.()}{/if}</th
   >
 {:else}
   <td
@@ -58,13 +58,13 @@
       ...internalClasses,
     })}
     {...internalAttrs}
-    {...$$restProps}
+    {...restProps}
     onchange={(e) => {
       if (checkbox) {
         notifyBodyChange(e);
       }
-      $$restProps.onchange?.(e);
-    }}><slot /></td
+      restProps.onchange?.(e);
+    }}>{@render children?.()}</td
   >
 {/if}
 
@@ -74,6 +74,7 @@
 
 <script lang="ts">
   import type { SortValue } from '@material/data-table';
+  import type { Snippet } from 'svelte';
   import { onMount, getContext, setContext } from 'svelte';
   import type { Writable } from 'svelte/store';
   import type { SmuiAttrs } from '@smui/common';
@@ -82,34 +83,59 @@
 
   import type { SMUIDataTableCellAccessor } from './Cell.types.js';
 
-  type OwnProps = {
-    use?: ActionArray;
-    class?: string;
-    numeric?: boolean;
-    checkbox?: boolean;
-    columnId?: string;
-    sortable?: boolean;
-  };
-  type $$Props = SmuiAttrs<'th', keyof OwnProps> &
-    SmuiAttrs<'td', keyof OwnProps> &
-    OwnProps;
-
   let header = getContext<boolean>('SMUI:data-table:row:header');
 
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let numeric = false;
-  export let checkbox = false;
-  export let columnId = header
-    ? 'SMUI-data-table-column-' + counter++
-    : 'SMUI-data-table-unused';
-  export let sortable = getContext<boolean>('SMUI:data-table:sortable');
+  type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
+    use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
+    class?: string;
+    /**
+     * Whether to apply numeric column styling.
+     */
+    numeric?: boolean;
+    /**
+     * Whether this cell contains the checkbox to select.
+     */
+    checkbox?: boolean;
+    /**
+     * The column ID for the column this cell is a header for.
+     *
+     * You only need this on sortable columns and you only need to put it on the
+     * cell in the header.
+     */
+    columnId?: string;
+    /**
+     * Whether sorting is enabled on the column this cell is a header for.
+     *
+     * This will default to true if the data table is sortable.
+     */
+    sortable?: boolean;
+
+    children?: Snippet;
+  };
+  let {
+    use = [],
+    class: className = '',
+    numeric = false,
+    checkbox = false,
+    columnId = header
+      ? 'SMUI-data-table-column-' + counter++
+      : 'SMUI-data-table-unused',
+    sortable = getContext<boolean>('SMUI:data-table:sortable'),
+    children,
+    ...restProps
+  }: OwnProps &
+    SmuiAttrs<'th', keyof OwnProps> &
+    SmuiAttrs<'td', keyof OwnProps> = $props();
 
   let element: HTMLTableCellElement;
-  let internalClasses: { [k: string]: boolean } = {};
-  let internalAttrs: { [k: string]: string | undefined } = {};
+  let internalClasses: { [k: string]: boolean } = $state({});
+  let internalAttrs: { [k: string]: string | undefined } = $state({});
   let sort = getContext<Writable<string | null>>('SMUI:data-table:sort');
   let sortDirection = getContext<Writable<SortValue>>(
     'SMUI:data-table:sortDirection',
