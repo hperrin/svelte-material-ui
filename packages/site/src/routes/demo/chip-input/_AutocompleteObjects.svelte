@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <!--
   Note: chips must be unique. (They cannot === each other.)
   If you need to show the same value, use keyed chips.
@@ -10,6 +8,7 @@
     bind:value
     key={(color) => color.id}
     getChipLabel={(color) => color.text}
+    getChipText={(color) => color.text}
     chipTrailingAction$class="material-icons"
     chipTrailingAction$aria-label="Remove color"
     autocomplete$combobox
@@ -17,20 +16,22 @@
     onSMUIChipInputEntry={handleChipInputEntry}
     onSMUIChipInputSelect={handleChipInputSelect}
   >
-    <svelte:fragment slot="chipTrailingAction">cancel</svelte:fragment>
-    <svelte:fragment slot="label">Color Mix</svelte:fragment>
+    {#snippet chipTrailingAction()}cancel{/snippet}
+    {#snippet label()}
+      Color Mix
+    {/snippet}
   </ChipInput>
 </div>
 
 <script lang="ts">
   import ChipInput from '@smui-extra/chip-input';
 
-  let colors = [
+  let colors = $state([
     { id: 1, text: 'red' },
     { id: 2, text: 'green' },
     { id: 3, text: 'blue' },
-  ];
-  let value = '';
+  ]);
+  let value = $state('');
 
   function handleChipInputEntry(event: CustomEvent<{ text: string }>) {
     // This prevents the text itself from being pushed onto the array.
@@ -41,7 +42,6 @@
       id: Math.max(...colors.map((color) => color.id)) + 1,
       text: event.detail.text,
     });
-    colors = colors;
     value = '';
   }
 
@@ -54,10 +54,6 @@
       id: Math.max(...colors.map((color) => color.id)) + 1,
       text: event.detail,
     });
-    colors = colors;
-
-    // // Wait a tick before clearing the value.
-    // await tick();
     value = '';
   }
 

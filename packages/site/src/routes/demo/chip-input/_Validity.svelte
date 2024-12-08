@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <!--
   Note: chips must be unique. (They cannot === each other.)
   If you need to show the same value, use keyed chips.
@@ -14,14 +12,16 @@
     input$maxlength={1}
     input$pattern="[a-zA-Z]"
   >
-    <svelte:fragment slot="chipTrailingAction">cancel</svelte:fragment>
-    <svelte:fragment slot="label">Letters</svelte:fragment>
+    {#snippet chipTrailingAction()}cancel{/snippet}
+    {#snippet label()}
+      Letters
+    {/snippet}
   </ChipInput>
 </div>
 
 <script lang="ts">
   import ChipInput from '@smui-extra/chip-input';
 
-  let letters = ['a', 'b', 'c'];
-  let value = '';
+  let letters = $state(['a', 'b', 'c']);
+  let value = $state('');
 </script>

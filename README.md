@@ -168,7 +168,7 @@ Svelte 5 Runes mode is being migrated to slowly. This is the todo list of compon
   - [x] Autocomplete
   - [x] Checkbox
   - [x] Chips
-  - [ ] Chip Input
+  - [x] Chip Input
   - [x] Floating Label
   - [x] Form Field
   - [x] Line Ripple

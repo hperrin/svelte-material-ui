@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <!--
   Note: chips must be unique. (They cannot === each other.)
   If you need to show the same value, use keyed chips.
@@ -11,12 +9,14 @@
     autocomplete$combobox
     chipTrailingAction$aria-label="Remove tag"
   >
-    <svelte:fragment slot="chipTrailingAction">
+    {#snippet chipTrailingAction()}
       <svg style="display: block;" viewBox="0 0 24 24">
         <path fill="currentColor" d={mdiBomb} />
       </svg>
-    </svelte:fragment>
-    <svelte:fragment slot="label">Tags</svelte:fragment>
+    {/snippet}
+    {#snippet label()}
+      Tags
+    {/snippet}
   </ChipInput>
 </div>
 
@@ -24,6 +24,6 @@
   import { mdiBomb } from '@mdi/js';
   import ChipInput from '@smui-extra/chip-input';
 
-  let tags = ['great', 'awesome', 'wonderful'];
-  let value = '';
+  let tags = $state(['great', 'awesome', 'wonderful']);
+  let value = $state('');
 </script>

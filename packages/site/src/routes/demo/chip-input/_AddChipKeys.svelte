@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <!--
   Note: chips must be unique. (They cannot === each other.)
   If you need to show the same value, use keyed chips.
@@ -13,14 +11,16 @@
     chipTrailingAction$aria-label="Remove tag"
     addChipKeys={[' ', ',', '-', '+']}
   >
-    <svelte:fragment slot="chipTrailingAction">cancel</svelte:fragment>
-    <svelte:fragment slot="label">Tags</svelte:fragment>
+    {#snippet chipTrailingAction()}cancel{/snippet}
+    {#snippet label()}
+      Tags
+    {/snippet}
   </ChipInput>
 </div>
 
 <script lang="ts">
   import ChipInput from '@smui-extra/chip-input';
 
-  let tags = ['great', 'awesome', 'wonderful'];
-  let value = '';
+  let tags = $state(['great', 'awesome', 'wonderful']);
+  let value = $state('');
 </script>

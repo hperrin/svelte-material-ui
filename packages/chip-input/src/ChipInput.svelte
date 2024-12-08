@@ -1,4 +1,4 @@
-<svelte:options runes={false} />
+<svelte:options runes />
 
 <div
   bind:this={element}
@@ -8,7 +8,7 @@
     'smui-chip-input': true,
     'smui-chip-input--disabled': disabled,
   })}
-  {...exclude($$restProps, [
+  {...exclude(restProps, [
     'chipSet$',
     'chip$',
     'chipText$',
@@ -27,31 +27,32 @@
       [chipSet$class]: true,
       'smui-chip-input__chip-set': true,
     })}
-    let:chip
     input
     nonInteractive={disabled}
     {...chipSetProps}
-    {...prefixFilter($$restProps, 'chipSet$')}
+    {...prefixFilter(restProps, 'chipSet$')}
   >
-    <Chip
-      {chip}
-      {...prefixFilter($$restProps, 'chip$')}
-      onSMUIChipInteraction={(e) => {
-        handleChipInteraction(chip);
-        $$restProps.chip$onSMUIChipInteraction?.(e);
-      }}
-      onSMUIChipRemoval={(e) => {
-        handleChipRemoval(chip);
-        $$restProps.chip$onSMUIChipRemoval?.(e);
-      }}
-    >
-      <ChipText {...prefixFilter($$restProps, 'chipText$')}
-        >{getChipLabel(chip)}</ChipText
+    {#snippet chip(chip)}
+      <Chip
+        {chip}
+        {...prefixFilter(restProps, 'chip$')}
+        onSMUIChipInteraction={(e) => {
+          handleChipInteraction(chip);
+          restProps.chip$onSMUIChipInteraction?.(e);
+        }}
+        onSMUIChipRemoval={(e) => {
+          handleChipRemoval(chip);
+          restProps.chip$onSMUIChipRemoval?.(e);
+        }}
       >
-      <TrailingAction {...prefixFilter($$restProps, 'chipTrailingAction$')}>
-        <slot name="chipTrailingAction" />
-      </TrailingAction>
-    </Chip>
+        <ChipText {...prefixFilter(restProps, 'chipText$')}
+          >{getChipLabel(chip)}</ChipText
+        >
+        <TrailingAction {...prefixFilter(restProps, 'chipTrailingAction$')}>
+          {@render chipTrailingAction?.()}
+        </TrailingAction>
+      </Chip>
+    {/snippet}
   </Set>
   <Autocomplete
     bind:this={autocomplete}
@@ -63,14 +64,14 @@
     showMenuWithNoInput={false}
     bind:value
     bind:text
-    {...prefixFilter($$restProps, 'autocomplete$')}
+    {...prefixFilter(restProps, 'autocomplete$')}
     onSMUIAutocompleteSelected={(e) => {
       handleAutocompleteSelected(e);
-      $$restProps.autocomplete$onSMUIAutocompleteSelected?.(e);
+      restProps.autocomplete$onSMUIAutocompleteSelected?.(e);
     }}
     onfocusout={(e) => {
       handleAutocompleteFocusout(e);
-      $$restProps.autocomplete$onfocusout?.(e);
+      restProps.autocomplete$onfocusout?.(e);
     }}
   >
     <Textfield
@@ -78,46 +79,45 @@
         [textfield$class]: true,
         'smui-chip-input__textfield': true,
       })}
-      bind:input
-      bind:floatingLabel
-      bind:lineRipple
-      {...prefixFilter($$restProps, 'textfield$')}
+      {input}
+      {floatingLabel}
+      {lineRipple}
+      {...prefixFilter(restProps, 'textfield$')}
     >
-      <FloatingLabel
-        bind:this={floatingLabel}
-        slot="label"
-        {...prefixFilter($$restProps, 'label$')}
-        ><slot name="label" /></FloatingLabel
-      >
+      {#snippet label()}
+        <FloatingLabel
+          bind:this={floatingLabel}
+          {...prefixFilter(restProps, 'label$')}
+          >{@render labelSnippet?.()}</FloatingLabel
+        >
+      {/snippet}
       <Input
         bind:this={input}
         bind:value={text}
-        {...prefixFilter($$restProps, 'input$')}
-        onkeypress={(e) => {
-          handleInputKeypress(e);
-          $$restProps.input$onkeypress?.(e);
+        {...prefixFilter(restProps, 'input$')}
+        onkeydown={(e) => {
+          handleInputKeydown(e);
+          restProps.input$onkeydown?.(e);
         }}
       />
     </Textfield>
-    <ListText
-      class={classMap({
-        [loading$class]: true,
-        'smui-chip-input__loading': true,
-      })}
-      slot="loading"
-      {...prefixFilter($$restProps, 'loading$')}
-    >
-      <slot name="loading" />
-    </ListText>
+    {#snippet loading()}
+      <ListText
+        class={classMap({
+          [loading$class]: true,
+          'smui-chip-input__loading': true,
+        })}
+        {...prefixFilter(restProps, 'loading$')}
+      >
+        {@render loading?.()}
+      </ListText>
+    {/snippet}
   </Autocomplete>
-  <LineRipple
-    bind:this={lineRipple}
-    {...prefixFilter($$restProps, 'ripple$')}
-  />
+  <LineRipple bind:this={lineRipple} {...prefixFilter(restProps, 'ripple$')} />
 </div>
 
 <script lang="ts">
-  import type { ComponentProps } from 'svelte';
+  import type { ComponentProps, Snippet } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
@@ -135,9 +135,24 @@
   import { Text as ListText } from '@smui/list';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * An array of chip objects.
+     */
     chips: any[];
+    /**
+     * Function that takes a chip object and returns a unique string.
+     *
+     * If your chips are strings or convert to unique strings (like numbers),
+     * you don't need this.
+     */
     key?: (chip: any) => string;
     /**
      * Get the label that will go on the chip itself.
@@ -147,16 +162,77 @@
      * Get the text that will go in the autocomplete when the chip is clicked.
      */
     getChipText?: (chip: any) => string;
+    /**
+     * The value of the autocomplete input.
+     */
     value: any;
+    /**
+     * The text of the autocomplete input.
+     */
+    text?: any;
+    /**
+     * Whether the input is disabled.
+     */
     disabled?: boolean;
+    /**
+     * The keys that result in a chip being added when pressed.
+     */
     addChipKeys?: string[];
+    /**
+     * A space separated list of CSS classes.
+     */
     chipSet$class?: string;
+    /**
+     * A space separated list of CSS classes.
+     */
     autocomplete$class?: string;
+    /**
+     * Allow the user to enter their own value as well as pick from the options.
+     */
     autocomplete$combobox?: boolean;
+    /**
+     * A space separated list of CSS classes.
+     */
     textfield$class?: string;
+    /**
+     * A space separated list of CSS classes.
+     */
     loading$class?: string;
+
+    /**
+     * A spot for the chips' trailing action.
+     */
+    chipTrailingAction?: Snippet;
+    /**
+     * A spot for the label.
+     */
+    label?: Snippet;
+    /**
+     * A spot for the item text when the results are loading.
+     */
+    loading?: Snippet;
   };
-  type $$Props = OwnProps &
+  let {
+    use = [],
+    class: className = '',
+    chips = $bindable(),
+    key,
+    getChipLabel = (chip: any) => `${chip}`,
+    getChipText = (chip: any) => `${chip}`,
+    value = $bindable(),
+    text = $bindable(''),
+    disabled = false,
+    addChipKeys = [','],
+    chipSet$class = '',
+    autocomplete$class = '',
+    autocomplete$combobox = false,
+    textfield$class = '',
+    loading$class = '',
+    chipTrailingAction,
+    label: labelSnippet,
+    loading,
+    ...restProps
+  }: OwnProps &
     SmuiAttrs<'div', keyof OwnProps> & {
       [k in keyof ComponentProps<
         typeof Set
@@ -212,60 +288,46 @@
       textfield$floatingLabel?: never;
       textfield$lineRipple?: never;
       input$value?: never;
-    };
-
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let chips: any[];
-  export let key: ((chip: any) => string | number) | undefined = undefined;
-  export let getChipLabel: (chip: any) => string = (chip: any) => `${chip}`;
-  export let getChipText: (chip: any) => string = (chip: any) => `${chip}`;
-  export let value: any;
-  export let disabled = false;
-  export let addChipKeys = [','];
-  export let chipSet$class = '';
-  export let autocomplete$class = '';
-  export let autocomplete$combobox = false;
-  export let textfield$class = '';
-  export let loading$class = '';
+    } = $props();
 
   let element: HTMLDivElement;
-  let autocomplete: Autocomplete;
-  let input: Input;
-  let floatingLabel: FloatingLabel;
-  let lineRipple: LineRipple;
-  let text = '';
+  let autocomplete: Autocomplete | undefined = $state();
+  let input: Input | undefined = $state();
+  let floatingLabel: FloatingLabel | undefined = $state();
+  let lineRipple: LineRipple | undefined = $state();
 
   let previousValue = value;
-  $: if (previousValue !== value) {
-    if (previousValue && value == null) {
-      text = '';
+  $effect(() => {
+    if (previousValue !== value) {
+      if (previousValue && value == null) {
+        text = '';
+      }
+      previousValue = value;
     }
-    previousValue = value;
-  }
+  });
 
-  $: if (
-    text === '' &&
-    floatingLabel &&
-    input &&
-    document.activeElement !== input.getElement()
-  ) {
-    floatingLabel.float(false);
-  }
+  $effect(() => {
+    if (
+      text === '' &&
+      floatingLabel &&
+      input &&
+      document.activeElement !== input.getElement()
+    ) {
+      floatingLabel.float(false);
+    }
+  });
 
-  $: chipSetProps = {
+  const chipSetProps = $derived({
     ...(key != null ? { key } : {}),
-  };
+  });
 
   function handleAutocompleteSelected(event: CustomEvent<any>) {
     event.preventDefault();
 
     // Clear the text to not trigger an entry event on blur.
     text = '';
-    if (document.activeElement !== input.getElement()) {
-      floatingLabel.float(false);
+    if (document.activeElement !== input?.getElement()) {
+      floatingLabel?.float(false);
     }
     const selectEvent = dispatch(
       getElement(),
@@ -275,19 +337,19 @@
     );
 
     if (!selectEvent.defaultPrevented) {
-      if (chips.indexOf(event.detail) === -1) {
+      if (chips.findIndex((chip) => chip === event.detail) === -1) {
         chips.push(event.detail);
       }
       chips = chips;
     }
   }
 
-  function handleInputKeypress(event: KeyboardEvent) {
+  function handleInputKeydown(event: KeyboardEvent) {
     if (
       autocomplete$combobox &&
       (event.key === 'Enter' || addChipKeys.includes(event.key)) &&
       text &&
-      input.getElement().validity.valid
+      input?.getElement().validity.valid
     ) {
       event.preventDefault();
 
@@ -299,7 +361,7 @@
       );
 
       if (!entryEvent.defaultPrevented) {
-        if (chips.indexOf(text) === -1) {
+        if (chips.findIndex((chip) => chip === text) === -1) {
           chips.push(text);
         }
         chips = chips;
@@ -317,7 +379,7 @@
       return;
     }
 
-    if (autocomplete$combobox && text && input.getElement().validity.valid) {
+    if (autocomplete$combobox && text && input?.getElement().validity.valid) {
       const entryEvent = dispatch(
         getElement(),
         'SMUIChipInputEntry',
@@ -326,12 +388,12 @@
       );
 
       if (!entryEvent.defaultPrevented) {
-        if (chips.indexOf(text) === -1) {
+        if (chips.findIndex((chip) => chip === text) === -1) {
           chips.push(text);
         }
         chips = chips;
         text = '';
-        floatingLabel.float(false);
+        floatingLabel?.float(false);
       }
     }
   }
@@ -342,7 +404,7 @@
         key ? key(curChip) !== key(chip) : curChip !== chip,
       );
       text = getChipText(chip);
-      input.focus();
+      input?.focus();
     }
   }
 
@@ -352,11 +414,11 @@
   }
 
   export function focus() {
-    input.focus();
+    input?.focus();
   }
 
   export function blur() {
-    input.blur();
+    input?.blur();
   }
 
   export function getElement() {

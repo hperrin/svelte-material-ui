@@ -1,5 +1,3 @@
-<svelte:options runes={false} />
-
 <!--
   Note: chips must be unique. (They cannot === each other.)
   If you need to show the same value, use keyed chips.
@@ -17,13 +15,13 @@
     chipTrailingAction$class="material-icons"
     chipTrailingAction$aria-label="Remove element"
   >
-    <svelte:fragment slot="chipTrailingAction">cancel</svelte:fragment>
-    <svelte:fragment slot="label">Elements</svelte:fragment>
-    <CircularProgress
-      slot="loading"
-      style="height: 24px; width: 24px;"
-      indeterminate
-    />
+    {#snippet chipTrailingAction()}cancel{/snippet}
+    {#snippet label()}
+      Elements
+    {/snippet}
+    {#snippet loading()}
+      <CircularProgress style="height: 24px; width: 24px;" indeterminate />
+    {/snippet}
   </ChipInput>
 </div>
 
@@ -31,10 +29,10 @@
   import ChipInput from '@smui-extra/chip-input';
   import CircularProgress from '@smui/circular-progress';
 
-  let elements: { name: string; symbol: string }[] = [];
-  let value = '';
+  let elements: { name: string; symbol: string }[] = $state([]);
+  let value = $state('');
 
-  const elementList = [
+  const elementList = $state([
     { symbol: 'H', name: 'Hydrogen' },
     { symbol: 'He', name: 'Helium' },
     { symbol: 'Li', name: 'Lithium' },
@@ -153,7 +151,7 @@
     { symbol: 'Lv', name: 'Livermorium' },
     { symbol: 'Ts', name: 'Tennessine' },
     { symbol: 'Og', name: 'Oganesson' },
-  ];
+  ]);
 
   let counter = 0;
 

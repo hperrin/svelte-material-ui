@@ -8,14 +8,15 @@
     [className]: true,
     'smui-autocomplete': true,
   })}
+  {...exclude(restProps, ['menu$', 'textfield$', 'list$'])}
   onfocusout={(
     event: FocusEvent & { currentTarget: EventTarget & HTMLDivElement },
   ) => {
     if (!disabled) {
       handleElementBlur(event);
     }
+    restProps.onfocusout?.(event);
   }}
-  {...exclude(restProps, ['menu$', 'textfield$', 'list$'])}
 >
   <div
     bind:this={inputContainer}
