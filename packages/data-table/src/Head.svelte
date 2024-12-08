@@ -61,10 +61,9 @@
   setContext(
     'SMUI:data-table:cell:unmount',
     (accessor: SMUIDataTableCellAccessor) => {
-      const idx = cells.indexOf(accessor);
+      const idx = cells.findIndex((a) => a === accessor);
       if (idx !== -1) {
         cells.splice(idx, 1);
-        cells = cells;
       }
       cellAccessorMap.delete(accessor.element);
     },

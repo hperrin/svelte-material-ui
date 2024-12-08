@@ -16,13 +16,12 @@
 <div style="margin-top: 1em;">
   <Button
     onclick={() => {
-      const idx = selected.indexOf('Doc');
+      const idx = selected.findIndex((v) => v === 'Doc');
       if (idx > -1) {
         selected.splice(idx, 1);
       } else {
         selected.push('Doc');
       }
-      selected = selected;
     }}>Toggle Doc Programmatically</Button
   >
 </div>

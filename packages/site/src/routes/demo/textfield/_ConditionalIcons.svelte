@@ -1,9 +1,8 @@
 <!--
-  Icons are normally discovered through their slot,
-  but Svelte slots cannot be conditional, so you can
-  use a fragment with a conditional icon inside and
-  pass the `withLeadingIcon` or `withTrailingIcon`
-  props to use conditional icons.
+  Icons are normally discovered through their snippet, but Svelte snippets
+  cannot be conditional, so you can use a fragment with a conditional icon
+  inside and pass the `withLeadingIcon` or `withTrailingIcon` props to use
+  conditional icons.
 -->
 <div class="columns margins">
   <div>

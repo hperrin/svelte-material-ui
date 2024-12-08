@@ -177,7 +177,7 @@ Build a class string from a map of class names to conditions. This is useful whe
 
   export let condition = true;
 
-  let internalClasses: { [k: string]: boolean } = {};
+  let internalClasses: { [k: string]: boolean } = $state({});
 
   export function addClass(className: string) {
     if (!internalClasses[className]) {
@@ -240,21 +240,34 @@ Exclude a set of properties from an object. It differs from normal `omit` functi
 
 ```svelte
 <!-- MyComponent.svelte -->
-<div class="my-component {className}" {...exclude($$restProps, ['button$'])}>
-  <button
-    class="button {button$class}"
-    {...prefixFilter($$restProps, 'button$')}
-  >
-    <slot />
+<div class="my-component {className}" {...exclude(restProps, ['button$'])}>
+  <button class="button {button$class}" {...prefixFilter(restProps, 'button$')}>
+    {@render children?.()}
   </button>
 </div>
 
 <script lang="ts">
+  import type { Snippet } from 'svelte';
+  import type { SmuiAttrs } from '@smui/common';
   import { exclude, prefixFilter } from '@smui/common/internal';
 
-  let className = '';
-  export { className as class };
-  export let button$class = '';
+  type OwnProps = {
+    class?: string;
+    button$class?: string;
+    children?: Snippet;
+  };
+  let {
+    class: className = '',
+    button$class = '',
+    children,
+    ...restProps
+  }: OwnProps &
+    SmuiAttrs<'div', keyof OwnProps> & {
+      [k in keyof SmuiAttrs<
+        'button',
+        keyof OwnProps
+      > as `button\$${k}`]?: SmuiAttrs<'button', keyof OwnProps>[k];
+    } = $props();
 </script>
 ```
 
@@ -270,7 +283,7 @@ Exclude a set of properties from an object. It differs from normal `omit` functi
 <script lang="ts">
   import MyComponent from './MyComponent.svelte';
 
-  let disabled = false;
+  let disabled = $state(false);
 </script>
 ```
 
@@ -280,21 +293,34 @@ Filter an object for only properties with a certain prefix. It is usually used a
 
 ```svelte
 <!-- MyComponent.svelte -->
-<div class="my-component {className}" {...exclude($$restProps, ['button$'])}>
-  <button
-    class="button {button$class}"
-    {...prefixFilter($$restProps, 'button$')}
-  >
-    <slot />
+<div class="my-component {className}" {...exclude(restProps, ['button$'])}>
+  <button class="button {button$class}" {...prefixFilter(restProps, 'button$')}>
+    {@render children?.()}
   </button>
 </div>
 
 <script lang="ts">
+  import type { Snippet } from 'svelte';
+  import type { SmuiAttrs } from '@smui/common';
   import { exclude, prefixFilter } from '@smui/common/internal';
 
-  let className = '';
-  export { className as class };
-  export let button$class = '';
+  type OwnProps = {
+    class?: string;
+    button$class?: string;
+    children?: Snippet;
+  };
+  let {
+    class: className = '',
+    button$class = '',
+    children,
+    ...restProps
+  }: OwnProps &
+    SmuiAttrs<'div', keyof OwnProps> & {
+      [k in keyof SmuiAttrs<
+        'button',
+        keyof OwnProps
+      > as `button\$${k}`]?: SmuiAttrs<'button', keyof OwnProps>[k];
+    } = $props();
 </script>
 ```
 
@@ -310,7 +336,7 @@ Filter an object for only properties with a certain prefix. It is usually used a
 <script lang="ts">
   import MyComponent from './MyComponent.svelte';
 
-  let disabled = false;
+  let disabled = $state(false);
 </script>
 ```
 
@@ -321,14 +347,21 @@ An action that takes actions and runs them on the element. Used to allow actions
 ```svelte
 <!-- MyComponent.svelte -->
 <div use:useActions={use}>
-  <slot />
+  {@render children?.()}
 </div>
 
 <script lang="ts">
+  import type { Snippet } from 'svelte';
   import type { ActionArray } from '@smui/common/internal';
   import { useActions } from '@smui/common/internal';
 
-  export let use: ActionArray = [];
+  let {
+    use = [],
+    children,
+  }: {
+    use?: ActionArray;
+    children?: Snippet;
+  } = $props();
 </script>
 ```
 
@@ -373,7 +406,7 @@ These components are not exported in the index file, but are available to be imp
 
 ## ContextFragment.svelte
 
-A fragment component (only contains a `<slot />`) used to define a Svelte context with a Svelte store.
+A fragment component (only contains a `{@render children?.()}`) used to define a Svelte context with a Svelte store.
 
 ### Props / Defaults
 

@@ -90,7 +90,6 @@
     } else {
       events.push(event.type);
     }
-    events = events;
     requestAnimationFrame(() => {
       eventOutput.scrollTop = eventOutput.scrollHeight;
     });
@@ -99,7 +98,6 @@
   function addEventPhase(event: Event) {
     const phases = ['none', 'capturing', 'at-target', 'bubbling'];
     eventPhases.push([event, phases[event.eventPhase]]);
-    eventPhases = eventPhases;
     requestAnimationFrame(() => {
       eventPhaseOutput.scrollTop = eventPhaseOutput.scrollHeight;
     });

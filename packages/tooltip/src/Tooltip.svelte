@@ -482,7 +482,6 @@
     if (internalStyles[name] != value) {
       if (value === '' || value == null) {
         delete internalStyles[name];
-        internalStyles = internalStyles;
       } else {
         internalStyles[name] = value;
       }
@@ -493,7 +492,6 @@
     if (surfaceAnimationStyles[name] != value) {
       if (value === '' || value == null) {
         delete surfaceAnimationStyles[name];
-        surfaceAnimationStyles = surfaceAnimationStyles;
       } else {
         surfaceAnimationStyles[name] = value;
       }

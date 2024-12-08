@@ -115,7 +115,6 @@
   function removeClass(className: string) {
     if (anchorClasses[className]) {
       delete anchorClasses[className];
-      anchorClasses = anchorClasses;
     }
   }
 

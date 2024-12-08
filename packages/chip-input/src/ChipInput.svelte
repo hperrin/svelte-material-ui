@@ -340,7 +340,6 @@
       if (chips.findIndex((chip) => chip === event.detail) === -1) {
         chips.push(event.detail);
       }
-      chips = chips;
     }
   }
 
@@ -364,7 +363,6 @@
         if (chips.findIndex((chip) => chip === text) === -1) {
           chips.push(text);
         }
-        chips = chips;
         text = '';
       }
     }
@@ -391,7 +389,6 @@
         if (chips.findIndex((chip) => chip === text) === -1) {
           chips.push(text);
         }
-        chips = chips;
         text = '';
         floatingLabel?.float(false);
       }
@@ -409,7 +406,6 @@
   }
 
   function handleChipRemoval(chip: any) {
-    chips = chips;
     dispatch(getElement(), 'SMUIChipInputRemove', { chip });
   }
 

@@ -684,7 +684,6 @@
       if (thumbStartStyles[name] != value) {
         if (value === '' || value == null) {
           delete thumbStartStyles[name];
-          thumbStartStyles = thumbStartStyles;
         } else {
           thumbStartStyles[name] = value;
         }
@@ -693,7 +692,6 @@
       if (thumbStyles[name] != value) {
         if (value === '' || value == null) {
           delete thumbStyles[name];
-          thumbStyles = thumbStyles;
         } else {
           thumbStyles[name] = value;
         }
@@ -705,12 +703,10 @@
     if (range && thumb === Thumb.START) {
       if (name in thumbStartStyles) {
         delete thumbStartStyles[name];
-        thumbStartStyles = thumbStartStyles;
       }
     } else {
       if (name in thumbStyles) {
         delete thumbStyles[name];
-        thumbStyles = thumbStyles;
       }
     }
   }
@@ -763,7 +759,6 @@
     if (trackActiveStyles[name] != value) {
       if (value === '' || value == null) {
         delete trackActiveStyles[name];
-        trackActiveStyles = trackActiveStyles;
       } else {
         trackActiveStyles[name] = value;
       }
@@ -773,7 +768,6 @@
   function removeTrackActiveStyle(name: string) {
     if (name in trackActiveStyles) {
       delete trackActiveStyles[name];
-      trackActiveStyles = trackActiveStyles;
     }
   }
 

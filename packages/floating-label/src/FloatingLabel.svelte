@@ -181,7 +181,6 @@
     if (internalStyles[name] != value) {
       if (value === '' || value == null) {
         delete internalStyles[name];
-        internalStyles = internalStyles;
       } else {
         internalStyles[name] = value;
       }
@@ -191,7 +190,6 @@
   function removeStyle(name: string) {
     if (name in internalStyles) {
       delete internalStyles[name];
-      internalStyles = internalStyles;
     }
   }
 

@@ -14,7 +14,6 @@
       removeClass: (className) => {
         if (rippleClasses[className]) {
           delete rippleClasses[className];
-          rippleClasses = rippleClasses;
         }
       },
     }}
@@ -40,7 +39,6 @@
       removeClass: (className) => {
         if (primaryRippleClasses[className]) {
           delete primaryRippleClasses[className];
-          primaryRippleClasses = primaryRippleClasses;
         }
       },
     }}
@@ -66,7 +64,6 @@
       removeClass: (className) => {
         if (secondaryRippleClasses[className]) {
           delete secondaryRippleClasses[className];
-          secondaryRippleClasses = secondaryRippleClasses;
         }
       },
     }}

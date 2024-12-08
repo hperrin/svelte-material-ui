@@ -9,7 +9,6 @@
     removeClass: (className) => {
       if (anchorClasses[className]) {
         delete anchorClasses[className];
-        anchorClasses = anchorClasses;
       }
     },
   }}

@@ -743,7 +743,6 @@
     if (internalStyles[name] != value) {
       if (value === '' || value == null) {
         delete internalStyles[name];
-        internalStyles = internalStyles;
       } else {
         internalStyles[name] = value;
       }

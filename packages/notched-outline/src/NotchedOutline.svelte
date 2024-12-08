@@ -129,7 +129,6 @@
     if (notchStyles[name] != value) {
       if (value === '' || value == null) {
         delete notchStyles[name];
-        notchStyles = notchStyles;
       } else {
         notchStyles[name] = value;
       }
@@ -139,7 +138,6 @@
   function removeNotchStyle(name: string) {
     if (name in notchStyles) {
       delete notchStyles[name];
-      notchStyles = notchStyles;
     }
   }
 

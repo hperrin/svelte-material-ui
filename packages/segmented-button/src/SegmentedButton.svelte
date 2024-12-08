@@ -107,10 +107,11 @@
   let segmentAccessorMap: Record<
     PrimitiveKey,
     SMUISegmentedButtonSegmentAccessor
-  > = $state({});
-  let segmentAccessorWeakMap = $state.raw(
-    new WeakMap<Object, SMUISegmentedButtonSegmentAccessor>(),
-  );
+  > = {};
+  let segmentAccessorWeakMap = new WeakMap<
+    Object,
+    SMUISegmentedButtonSegmentAccessor
+  >();
   let initialSelected = segments.map(
     (segmentId) =>
       (singleSelect &&
@@ -293,7 +294,6 @@
       );
       if (selIndex === -1) {
         (selected as SegmentKey[]).push(segments[index]);
-        selected = selected;
       }
     } else if (selected == null || key(selected as SegmentKey) !== segmentKey) {
       selected = segments[index];
@@ -319,7 +319,6 @@
         );
         if (selIndex !== -1) {
           (selected as SegmentKey[]).splice(selIndex, 1);
-          selected = selected;
         }
       }
     } else if (

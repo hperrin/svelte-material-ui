@@ -225,7 +225,6 @@
     if (internalStyles[name] != value) {
       if (value === '' || value == null) {
         delete internalStyles[name];
-        internalStyles = internalStyles;
       } else {
         internalStyles[name] = value;
       }
@@ -236,7 +235,6 @@
     if (bufferBarStyles[name] != value) {
       if (value === '' || value == null) {
         delete bufferBarStyles[name];
-        bufferBarStyles = bufferBarStyles;
       } else {
         bufferBarStyles[name] = value;
       }
@@ -247,7 +245,6 @@
     if (primaryBarStyles[name] != value) {
       if (value === '' || value == null) {
         delete primaryBarStyles[name];
-        primaryBarStyles = primaryBarStyles;
       } else {
         primaryBarStyles[name] = value;
       }

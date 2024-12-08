@@ -4,6 +4,12 @@ This doc contains information that will help you migrate your code from an older
 
 # SMUI 7 -> SMUI 8
 
+SMUI 8 has migrated to Svelte 5's new Runes mode. As such, it expects things like snippets and only some props are bindable.
+
+Note to Devs: update `indexOf()` with `$state` arrays or items to `findIndex()` to avoid bugs.
+
+Note to Devs: remove `x = x;` statements after `push()` and the like. They aren't needed anymore with Svelte 5's new $state rune.
+
 ## Breaking Changes
 
 - Svelte 5 is required! Svelte 4 will not work.

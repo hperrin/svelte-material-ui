@@ -267,10 +267,9 @@
     }
   });
   setContext('SMUI:list:item:unmount', (accessor: SMUIListItemAccessor) => {
-    const idx = (accessor && items.indexOf(accessor)) ?? -1;
+    const idx = (accessor && items.findIndex((a) => a === accessor)) ?? -1;
     if (idx !== -1) {
       items.splice(idx, 1);
-      items = items;
       itemAccessorMap.delete(accessor.element);
     }
   });

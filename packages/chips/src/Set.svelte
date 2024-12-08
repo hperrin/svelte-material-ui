@@ -159,10 +159,8 @@
 
   let element: HTMLDivElement;
   let instance: deprecated.MDCChipSetFoundation | undefined = $state();
-  let chipAccessorMap: Record<string, SMUIChipsChipAccessor> = $state({});
-  let chipAccessorWeakMap = $state.raw(
-    new WeakMap<Object, SMUIChipsChipAccessor>(),
-  );
+  let chipAccessorMap: Record<string, SMUIChipsChipAccessor> = {};
+  let chipAccessorWeakMap = new WeakMap<Object, SMUIChipsChipAccessor>();
   let initialSelected = chips.map(
     (chipId) =>
       (choice &&
@@ -292,12 +290,10 @@
             );
             if (selIndex !== -1) {
               (selected as ChipKey[]).splice(selIndex, 1);
-              selected = selected;
             }
           }
           // Now remove it from the chips.
           chips.splice(index, 1);
-          chips = chips;
         }
       },
       removeFocusFromChipAtIndex: (index) => {
@@ -315,10 +311,8 @@
             );
             if (selectedValue && selIndex === -1) {
               (selected as ChipKey[]).push(chips[index]);
-              selected = selected;
             } else if (!selectedValue && selIndex !== -1) {
               (selected as ChipKey[]).splice(selIndex, 1);
-              selected = selected;
             }
           } else if (
             choice &&

@@ -252,7 +252,6 @@
       tabAccessorWeakMap = tabAccessorWeakMap;
     } else {
       tabAccessorMap[tabId] = accessor;
-      tabAccessorMap = tabAccessorMap;
     }
   }
 
@@ -262,7 +261,6 @@
       tabAccessorWeakMap = tabAccessorWeakMap;
     } else {
       delete tabAccessorMap[tabId];
-      tabAccessorMap = tabAccessorMap;
     }
   }
 

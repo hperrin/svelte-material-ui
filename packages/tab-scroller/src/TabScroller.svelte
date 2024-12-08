@@ -203,7 +203,6 @@
     if (scrollAreaStyles[name] != value) {
       if (value === '' || value == null) {
         delete scrollAreaStyles[name];
-        scrollAreaStyles = scrollAreaStyles;
       } else {
         scrollAreaStyles[name] = value;
       }
@@ -214,7 +213,6 @@
     if (scrollContentStyles[name] != value) {
       if (value === '' || value == null) {
         delete scrollContentStyles[name];
-        scrollContentStyles = scrollContentStyles;
       } else {
         scrollContentStyles[name] = value;
       }

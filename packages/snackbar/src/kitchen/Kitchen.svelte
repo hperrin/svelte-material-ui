@@ -121,7 +121,6 @@
       config.onClose(e);
     }
     snackbars.splice(0, 1);
-    snackbars = snackbars;
     // Let the snackbar handle its close event.
     tick().then(() => {
       config = undefined;
@@ -142,7 +141,6 @@
 
   export function push(config: Config) {
     snackbars.push(config);
-    snackbars = snackbars;
   }
 
   export function getElement() {

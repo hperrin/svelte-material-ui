@@ -119,7 +119,6 @@
     if (changeSets.length) {
       requestAnimationFrame(() => {
         const changeSet = changeSets.shift() ?? [];
-        changeSets = changeSets;
         for (const fn of changeSet) {
           fn();
         }
@@ -177,7 +176,6 @@
     if (contentStyles[name] != value) {
       if (value === '' || value == null) {
         delete contentStyles[name];
-        contentStyles = contentStyles;
       } else {
         contentStyles[name] = value;
       }
@@ -196,7 +194,6 @@
 
   export function computeContentClientRect() {
     changeSets.push([]);
-    changeSets = changeSets;
     return content.getBoundingClientRect();
   }
 

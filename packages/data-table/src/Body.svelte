@@ -57,10 +57,9 @@
   setContext(
     'SMUI:data-table:row:unmount',
     (accessor: SMUIDataTableRowAccessor) => {
-      const idx = rows.indexOf(accessor);
+      const idx = rows.findIndex((a) => a === accessor);
       if (idx !== -1) {
         rows.splice(idx, 1);
-        rows = rows;
       }
       rowAccessorMap.delete(accessor.element);
     },
