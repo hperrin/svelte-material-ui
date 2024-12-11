@@ -3,6 +3,65 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.0.0-beta.1](https://github.com/hperrin/svelte-material-ui/compare/v8.0.0-beta.0...v8.0.0-beta.1) (2024-12-11)
+
+
+### Bug Fixes
+
+* finish some migration steps, update readme ([95fbdc2](https://github.com/hperrin/svelte-material-ui/commit/95fbdc21e07c35cdfed81f8d8d1a1c789c475a8a))
+* migrate away from svelte:component ([8cc6c77](https://github.com/hperrin/svelte-material-ui/commit/8cc6c7717c8ed7336c5fa39eac1f30010963400c))
+* migrate to new module script declaration in svelte files ([c1a918a](https://github.com/hperrin/svelte-material-ui/commit/c1a918a6b031312639cb11796cf29271b1d92fa1))
+* remove bindable rune from things that don't need it ([2b77cf8](https://github.com/hperrin/svelte-material-ui/commit/2b77cf8b7caa213b041834eeea42db479765f072))
+* shorten runes options and snippet renders ([d1368a6](https://github.com/hperrin/svelte-material-ui/commit/d1368a603351d47fed0439af484373221afc7338))
+* svg demo ([db24e33](https://github.com/hperrin/svelte-material-ui/commit/db24e33ba1aca1b485128037336a2c3df493f3af))
+* type issues ([0424a48](https://github.com/hperrin/svelte-material-ui/commit/0424a484de68a44ca2264553f08030a43b133b4f))
+* use snippets instead of slots for migrated components ([99ca184](https://github.com/hperrin/svelte-material-ui/commit/99ca184d2a6cff326938a91ac52801ea7457a300))
+
+
+### Features
+
+* migrate components in accordion to runes ([ae985f3](https://github.com/hperrin/svelte-material-ui/commit/ae985f32993a471b771a1847e2cf62f80f6b3571))
+* migrate components in autocomplete to runes ([8201ec2](https://github.com/hperrin/svelte-material-ui/commit/8201ec2be1edeb7eb1fe6f868f3078389d7a2991))
+* migrate components in badge to runes ([20db79a](https://github.com/hperrin/svelte-material-ui/commit/20db79aa77f9150763c4f26141af34e49038d8bf))
+* migrate components in banner to runes ([5de28c8](https://github.com/hperrin/svelte-material-ui/commit/5de28c8b0c695d445b188f0fd0ca95276448434a))
+* migrate components in bottom app bar to runes ([1f92d28](https://github.com/hperrin/svelte-material-ui/commit/1f92d28fdd557a71c25e50585f9b7de2ac5abce5))
+* migrate components in button to runes ([63c91d4](https://github.com/hperrin/svelte-material-ui/commit/63c91d42de9642965e61bba30dc9c91707dd58c2))
+* migrate components in card to runes ([dbabb13](https://github.com/hperrin/svelte-material-ui/commit/dbabb13f53eeda873a1b6a0208233e0f18001a7e))
+* migrate components in checkbox to runes ([60bf4ef](https://github.com/hperrin/svelte-material-ui/commit/60bf4efc2796e4394018bc3737e43e06f9175c3c))
+* migrate components in chip input to runes ([e53dda1](https://github.com/hperrin/svelte-material-ui/commit/e53dda10247e1e0ac26194a768c01e0f9dbd3031))
+* migrate components in chips to runes ([1d9f88d](https://github.com/hperrin/svelte-material-ui/commit/1d9f88d443563292f07c51f4218c9afe7d30503c))
+* migrate components in circular progress to runes ([a5ff2a0](https://github.com/hperrin/svelte-material-ui/commit/a5ff2a07ea228c8d913fde9bc7d4a5a97f23ddbe))
+* migrate components in common to runes ([0b14a99](https://github.com/hperrin/svelte-material-ui/commit/0b14a99d1421b01a15bdc54937fedcb212d3bd39))
+* migrate components in data table to runes ([c4f2909](https://github.com/hperrin/svelte-material-ui/commit/c4f2909721d6cbd046ea7c041d813dffb3e90534))
+* migrate components in dialog to runes ([9c936ab](https://github.com/hperrin/svelte-material-ui/commit/9c936ab8468c7c6fbe86145b6a8f8c0d722d888d))
+* migrate components in drawer to runes ([cd03aa5](https://github.com/hperrin/svelte-material-ui/commit/cd03aa5f99948957bcf71e5b99c4733635d9f120))
+* migrate components in fab to runes ([43a2a1c](https://github.com/hperrin/svelte-material-ui/commit/43a2a1c5e2574578f580dd1a240a769ab67299b0))
+* migrate components in floating label, line ripple, and notched outline to runes ([605ca35](https://github.com/hperrin/svelte-material-ui/commit/605ca357681988186f06db1321f6cecc32dd68e8))
+* migrate components in form field to runes ([b905153](https://github.com/hperrin/svelte-material-ui/commit/b905153df9de78c7b0f918c1b33feb047ef1c567))
+* migrate components in icon button to runes ([58edcd2](https://github.com/hperrin/svelte-material-ui/commit/58edcd2de6145beabf55a72f3494b64f3b82c95a))
+* migrate components in image list to runes ([9b7063b](https://github.com/hperrin/svelte-material-ui/commit/9b7063b7787c20f76786ebcb0cce391d4aaa5b50))
+* migrate components in layout grid to runes ([2a806f5](https://github.com/hperrin/svelte-material-ui/commit/2a806f52e4e77f5444f43a2e00c0136bc4461fc9))
+* migrate components in linear progress to runes ([a82d923](https://github.com/hperrin/svelte-material-ui/commit/a82d923d209aadd4667e0c15be59d32d54102d5d))
+* migrate components in list to runes ([6ece353](https://github.com/hperrin/svelte-material-ui/commit/6ece3538d3e43e61e46f988e33d93e5e3120ae1a))
+* migrate components in menu surface to runes ([bde6442](https://github.com/hperrin/svelte-material-ui/commit/bde64427fbc636e4f220a7f5ec40d0cbc56ce405))
+* migrate components in menu to runes ([42a84e8](https://github.com/hperrin/svelte-material-ui/commit/42a84e86e989f9e0f40b2c1732c6febb87b0adc7))
+* migrate components in radio to runes ([9e18b62](https://github.com/hperrin/svelte-material-ui/commit/9e18b6218341efd26157d6570d01e150fa66ccc4))
+* migrate components in segmented button to runes ([1dece23](https://github.com/hperrin/svelte-material-ui/commit/1dece232005d4185a86158afa482fea894e1a2e8))
+* migrate components in select to runes ([451d7c0](https://github.com/hperrin/svelte-material-ui/commit/451d7c0f9c1336e3a876c2dd4b8d3859e0228561))
+* migrate components in slider to runes ([f1783d9](https://github.com/hperrin/svelte-material-ui/commit/f1783d94b874fd11c031af05039d24af3295bbe0))
+* migrate components in snackbar to runes ([30ad599](https://github.com/hperrin/svelte-material-ui/commit/30ad59909f3fe36e7e288827f4f1c3eeab866206))
+* migrate components in switch to runes ([0394217](https://github.com/hperrin/svelte-material-ui/commit/03942174ac44a89659c41ff3c0aaf9f41d643279))
+* migrate components in tab and tab bar to runes ([3f3ceef](https://github.com/hperrin/svelte-material-ui/commit/3f3ceefdb386afc8a3145710dab9b67ef1bf970a))
+* migrate components in text field to runes ([7233ecc](https://github.com/hperrin/svelte-material-ui/commit/7233ecca8830b04d87115e4436c3ea40a87c118b))
+* migrate components in tooltip to runes ([69055f6](https://github.com/hperrin/svelte-material-ui/commit/69055f639fa6e34530ac118fb2062d3998cffd63))
+* migrate components in top app bar to runes ([b6dff77](https://github.com/hperrin/svelte-material-ui/commit/b6dff77b4268e8e3f39f2c0b1d7a56f7023bf879))
+* migrate components in touch target to runes ([e2a005c](https://github.com/hperrin/svelte-material-ui/commit/e2a005caf24af2d6a8e1c510dc7adf41fde7e34f))
+* turn on runes mode on demo site and begin migrating ([52f1681](https://github.com/hperrin/svelte-material-ui/commit/52f1681241978dbad238900d40d0ef19a1fe333e))
+
+
+
+
+
 # [8.0.0-beta.0](https://github.com/hperrin/svelte-material-ui/compare/v8.0.0-alpha.0...v8.0.0-beta.0) (2024-11-19)
 
 

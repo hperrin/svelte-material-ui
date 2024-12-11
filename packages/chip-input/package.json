@@ -1,6 +1,6 @@
 {
   "name": "@smui-extra/chip-input",
-  "version": "8.0.0-beta.0",
+  "version": "8.0.0-beta.1",
   "description": "Svelte Material UI - Chip Input",
   "type": "module",
   "main": "dist/index.js",
@@ -49,13 +49,13 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@smui-extra/autocomplete": "^8.0.0-beta.0",
-    "@smui/chips": "^8.0.0-beta.0",
-    "@smui/common": "^8.0.0-beta.0",
-    "@smui/floating-label": "^8.0.0-beta.0",
-    "@smui/line-ripple": "^8.0.0-beta.0",
-    "@smui/list": "^8.0.0-beta.0",
-    "@smui/textfield": "^8.0.0-beta.0",
+    "@smui-extra/autocomplete": "^8.0.0-beta.1",
+    "@smui/chips": "^8.0.0-beta.1",
+    "@smui/common": "^8.0.0-beta.1",
+    "@smui/floating-label": "^8.0.0-beta.1",
+    "@smui/line-ripple": "^8.0.0-beta.1",
+    "@smui/list": "^8.0.0-beta.1",
+    "@smui/textfield": "^8.0.0-beta.1",
     "svelte2tsx": "^0.7.26"
   },
   "devDependencies": {

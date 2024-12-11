@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.0.0-beta.1](https://github.com/hperrin/svelte-material-ui/compare/v8.0.0-beta.0...v8.0.0-beta.1) (2024-12-11)
+
+
+### Bug Fixes
+
+* migrate to new module script declaration in svelte files ([c1a918a](https://github.com/hperrin/svelte-material-ui/commit/c1a918a6b031312639cb11796cf29271b1d92fa1))
+* type issues ([0424a48](https://github.com/hperrin/svelte-material-ui/commit/0424a484de68a44ca2264553f08030a43b133b4f))
+
+
+### Features
+
+* migrate components in autocomplete to runes ([8201ec2](https://github.com/hperrin/svelte-material-ui/commit/8201ec2be1edeb7eb1fe6f868f3078389d7a2991))
+* migrate components in chip input to runes ([e53dda1](https://github.com/hperrin/svelte-material-ui/commit/e53dda10247e1e0ac26194a768c01e0f9dbd3031))
+
+
+
+
+
 # [8.0.0-beta.0](https://github.com/hperrin/svelte-material-ui/compare/v8.0.0-alpha.0...v8.0.0-beta.0) (2024-11-19)
 
 

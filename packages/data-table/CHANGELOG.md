@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.0.0-beta.1](https://github.com/hperrin/svelte-material-ui/compare/v8.0.0-beta.0...v8.0.0-beta.1) (2024-12-11)
+
+
+### Bug Fixes
+
+* finish some migration steps, update readme ([95fbdc2](https://github.com/hperrin/svelte-material-ui/commit/95fbdc21e07c35cdfed81f8d8d1a1c789c475a8a))
+* migrate to new module script declaration in svelte files ([c1a918a](https://github.com/hperrin/svelte-material-ui/commit/c1a918a6b031312639cb11796cf29271b1d92fa1))
+* type issues ([0424a48](https://github.com/hperrin/svelte-material-ui/commit/0424a484de68a44ca2264553f08030a43b133b4f))
+
+
+### Features
+
+* migrate components in data table to runes ([c4f2909](https://github.com/hperrin/svelte-material-ui/commit/c4f2909721d6cbd046ea7c041d813dffb3e90534))
+
+
+
+
+
 # [8.0.0-beta.0](https://github.com/hperrin/svelte-material-ui/compare/v8.0.0-alpha.0...v8.0.0-beta.0) (2024-11-19)
 
 **Note:** Version bump only for package @smui/data-table

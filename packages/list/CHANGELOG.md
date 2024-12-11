@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.0.0-beta.1](https://github.com/hperrin/svelte-material-ui/compare/v8.0.0-beta.0...v8.0.0-beta.1) (2024-12-11)
+
+
+### Bug Fixes
+
+* finish some migration steps, update readme ([95fbdc2](https://github.com/hperrin/svelte-material-ui/commit/95fbdc21e07c35cdfed81f8d8d1a1c789c475a8a))
+* migrate away from svelte:component ([8cc6c77](https://github.com/hperrin/svelte-material-ui/commit/8cc6c7717c8ed7336c5fa39eac1f30010963400c))
+* migrate to new module script declaration in svelte files ([c1a918a](https://github.com/hperrin/svelte-material-ui/commit/c1a918a6b031312639cb11796cf29271b1d92fa1))
+* remove bindable rune from things that don't need it ([2b77cf8](https://github.com/hperrin/svelte-material-ui/commit/2b77cf8b7caa213b041834eeea42db479765f072))
+* shorten runes options and snippet renders ([d1368a6](https://github.com/hperrin/svelte-material-ui/commit/d1368a603351d47fed0439af484373221afc7338))
+* type issues ([0424a48](https://github.com/hperrin/svelte-material-ui/commit/0424a484de68a44ca2264553f08030a43b133b4f))
+
+
+### Features
+
+* migrate components in list to runes ([6ece353](https://github.com/hperrin/svelte-material-ui/commit/6ece3538d3e43e61e46f988e33d93e5e3120ae1a))
+
+
+
+
+
 # [8.0.0-beta.0](https://github.com/hperrin/svelte-material-ui/compare/v8.0.0-alpha.0...v8.0.0-beta.0) (2024-11-19)
 
 **Note:** Version bump only for package @smui/list

@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.0.0-beta.1](https://github.com/hperrin/svelte-material-ui/compare/v8.0.0-beta.0...v8.0.0-beta.1) (2024-12-11)
+
+
+### Bug Fixes
+
+* finish some migration steps, update readme ([95fbdc2](https://github.com/hperrin/svelte-material-ui/commit/95fbdc21e07c35cdfed81f8d8d1a1c789c475a8a))
+* remove bindable rune from things that don't need it ([2b77cf8](https://github.com/hperrin/svelte-material-ui/commit/2b77cf8b7caa213b041834eeea42db479765f072))
+* shorten runes options and snippet renders ([d1368a6](https://github.com/hperrin/svelte-material-ui/commit/d1368a603351d47fed0439af484373221afc7338))
+
+
+### Features
+
+* migrate components in radio to runes ([9e18b62](https://github.com/hperrin/svelte-material-ui/commit/9e18b6218341efd26157d6570d01e150fa66ccc4))
+
+
+
+
+
 # [8.0.0-beta.0](https://github.com/hperrin/svelte-material-ui/compare/v8.0.0-alpha.0...v8.0.0-beta.0) (2024-11-19)
 
 **Note:** Version bump only for package @smui/radio

@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.0.0-beta.1](https://github.com/hperrin/svelte-material-ui/compare/v8.0.0-beta.0...v8.0.0-beta.1) (2024-12-11)
+
+
+### Bug Fixes
+
+* type issues ([0424a48](https://github.com/hperrin/svelte-material-ui/commit/0424a484de68a44ca2264553f08030a43b133b4f))
+
+
+### Features
+
+* migrate components in circular progress to runes ([a5ff2a0](https://github.com/hperrin/svelte-material-ui/commit/a5ff2a07ea228c8d913fde9bc7d4a5a97f23ddbe))
+* migrate components in linear progress to runes ([a82d923](https://github.com/hperrin/svelte-material-ui/commit/a82d923d209aadd4667e0c15be59d32d54102d5d))
+
+
+
+
+
 # [8.0.0-beta.0](https://github.com/hperrin/svelte-material-ui/compare/v8.0.0-alpha.0...v8.0.0-beta.0) (2024-11-19)
 
 **Note:** Version bump only for package @smui/circular-progress

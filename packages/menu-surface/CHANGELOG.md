@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.0.0-beta.1](https://github.com/hperrin/svelte-material-ui/compare/v8.0.0-beta.0...v8.0.0-beta.1) (2024-12-11)
+
+
+### Bug Fixes
+
+* remove bindable rune from things that don't need it ([2b77cf8](https://github.com/hperrin/svelte-material-ui/commit/2b77cf8b7caa213b041834eeea42db479765f072))
+* shorten runes options and snippet renders ([d1368a6](https://github.com/hperrin/svelte-material-ui/commit/d1368a603351d47fed0439af484373221afc7338))
+
+
+### Features
+
+* migrate components in autocomplete to runes ([8201ec2](https://github.com/hperrin/svelte-material-ui/commit/8201ec2be1edeb7eb1fe6f868f3078389d7a2991))
+* migrate components in menu surface to runes ([bde6442](https://github.com/hperrin/svelte-material-ui/commit/bde64427fbc636e4f220a7f5ec40d0cbc56ce405))
+
+
+
+
+
 # [8.0.0-beta.0](https://github.com/hperrin/svelte-material-ui/compare/v8.0.0-alpha.0...v8.0.0-beta.0) (2024-11-19)
 
 **Note:** Version bump only for package @smui/menu-surface
