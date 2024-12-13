@@ -1,0 +1,1 @@
+import{N as c,O as s,J as i,K as r,z as h,P as p,A as d}from"./runtime.DwlehcF5.js";function u(t,f,o){r&&h();var n=t,a,e;c(()=>{a!==(a=f())&&(e&&(p(e),e=null),a&&(e=i(()=>o(n,a))))},s),r&&(n=d)}export{u as c};

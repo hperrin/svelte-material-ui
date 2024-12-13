@@ -1,0 +1,110 @@
+import{b as v,a as i,t as x,n as te,c as Z}from"../chunks/disclose-version.B3RRTx8Z.js";import"../chunks/legacy.DjbHF6v5.js";import{c as b,i as u,s as $,r as y,p as D,g as _,f as S,a as E,aR as se,h as T,j as re,t as B,b as I,d as F,n as X,$ as oe}from"../chunks/runtime.DwlehcF5.js";import{h as ae}from"../chunks/svelte-head.D-HkJy3f.js";import{D as P}from"../chunks/Demo.Bfwjb-lf.js";import{B as k}from"../chunks/Button.C8xi94DV.js";import{C as L}from"../chunks/CommonLabel.5WGQzEOd.js";import{C as U}from"../chunks/Svg.D6p-_t7C.js";import{I as Y}from"../chunks/IconButton.CkPA9NQ0.js";import{F as q}from"../chunks/Fab.Bwzm73aE.js";import{o as ne,b as J,a as M,p as j,s as le,r as ie}from"../chunks/index-client.BDIqpeZ8.js";import{i as ce}from"../chunks/lifecycle.BF7I3Ruh.js";import{S as K}from"../chunks/SmuiElement.BnumFtpb.js";import{s as z}from"../chunks/render.DfrYEMuQ.js";import{h as ue}from"../chunks/keyboard.WUdi56uv.js";import{a as de,a5 as me}from"../chunks/mdi.Df6Oh-6v.js";import{e as pe,i as fe,d as ve}from"../chunks/dispatch.CwJSP0lB.js";import{c as he,s as Q,d as $e,b as ge,u as be}from"../chunks/useActions.dWwaU660.js";import{F as R}from"../chunks/FormField.B8Q_aztq.js";import{R as ye}from"../chunks/Radio.DZxNPsmQ.js";import{C as xe}from"../chunks/Checkbox.C_ZJkEQ6.js";import{e as _e}from"../chunks/store.wXOX-S52.js";import{e as we,p as Ce}from"../chunks/prefixFilter.OhiPYEKz.js";import{T as G}from"../chunks/TinyGesture.BNFvbqtA.js";import{w as ke}from"../chunks/index.BnJoPGWA.js";import{a as Pe}from"../chunks/announce.BOaqSvR2.js";import{T as Le}from"../chunks/Textfield.DrLiwF9l.js";import{c as Ae}from"../chunks/classAdderBuilder.Btis2bDi.js";const Te=()=>performance.now(),A={tick:e=>requestAnimationFrame(e),now:()=>Te(),tasks:new Set};function ee(e){A.tasks.forEach(t=>{t.c(e)||(A.tasks.delete(t),t.f())}),A.tasks.size!==0&&A.tick(ee)}function Se(e){let t;return A.tasks.size===0&&A.tick(ee),{promise:new Promise(s=>{A.tasks.add(t={c:e,f:s})}),abort(){A.tasks.delete(t)}}}var Ie=x('<div style="display: flex; flex-wrap: wrap; align-items: center;"><!> <!> <!> <!></div>');function De(e){var t=Ie(),s=b(t);k(s,{children:(c,p)=>{L(c,{children:(d,h)=>{u();var g=v("Button with a Label");i(d,g)},$$slots:{default:!0}})},$$slots:{default:!0}});var a=$(s,2);q(a,{extended:!0,children:(c,p)=>{L(c,{children:(d,h)=>{u();var g=v("Fab with a Label");i(d,g)},$$slots:{default:!0}})},$$slots:{default:!0}});var l=$(a,2);Y(l,{children:(c,p)=>{U(c,{class:"material-icons",children:(d,h)=>{u();var g=v("favorite");i(d,g)},$$slots:{default:!0}})},$$slots:{default:!0}});var o=$(l,2);q(o,{children:(c,p)=>{U(c,{class:"material-icons",children:(d,h)=>{u();var g=v("favorite");i(d,g)},$$slots:{default:!0}})},$$slots:{default:!0}}),y(t),i(e,t)}var Ee=x("I'm rendered as a HTML <code>em</code> element!",1),Me=x("<div><!> <!> <!> <!></div> <div><!></div>",1);function Be(e,t){D(t,!1);let s=se(),a;ne(()=>{a=_(s).getElement(),console.log(a)}),ce();var l=Me(),o=S(l),c=b(o);J(k(c,{tag:"div",children:(r,n)=>{L(r,{children:(m,w)=>{u();var C=v("I'm a <div /> Button");i(m,C)},$$slots:{default:!0}})},$$slots:{default:!0},$$legacy:!0}),r=>T(s,r),()=>_(s));var p=$(c,2);k(p,{tag:"span",children:(r,n)=>{L(r,{children:(m,w)=>{u();var C=v("I'm a <span /> Button");i(m,C)},$$slots:{default:!0}})},$$slots:{default:!0}});var d=$(p,2);k(d,{tag:"strong",children:(r,n)=>{L(r,{children:(m,w)=>{u();var C=v("I'm a <strong /> Button");i(m,C)},$$slots:{default:!0}})},$$slots:{default:!0}});var h=$(d,2);k(h,{tag:"em",children:(r,n)=>{L(r,{children:(m,w)=>{u();var C=v("I'm a <em /> Button");i(m,C)},$$slots:{default:!0}})},$$slots:{default:!0}}),y(o);var g=$(o,2),f=b(g);K(f,{tag:"em",children:(r,n)=>{u();var m=Ee();u(2),i(r,m)},$$slots:{default:!0}}),y(g),i(e,l),E()}var Fe=te(`<path fill="currentColor"${de("d",me)}></path>`),Ue=x('<div style="display: flex; justify-content: center; align-items: center; height: 140px;"><!></div> <div style="display: flex; align-items: center;"><!></div> <pre class="status"> </pre>',1);function je(e){let t=I(0);var s=Ue(),a=S(s),l=b(a);K(l,{tag:"svg",style:"width: 100px; height: 100px;",xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 300 300",children:(h,g)=>{var f=Z(),r=S(f);ue(r,()=>`
+    <title>SVG Logo</title>
+    <desc
+      >Designed for the SVG Logo Contest in 2006 by Harvey Rayner, and adopted
+      by W3C in 2009. It is available under the Creative Commons license for
+      those who have an SVG product or who are using SVG on their site.</desc
+    >
+
+    <metadata id="license">
+      <rdf:RDF
+        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+        xmlns:dc="http://purl.org/dc/elements/1.1/"
+        xmlns:cc="http://web.resource.org/cc/"
+      >
+        <cc:Work rdf:about="">
+          <dc:title>SVG Logo</dc:title>
+          <dc:date>14-08-2009</dc:date>
+          <dc:creator>
+            <cc:Agent><dc:title>W3C</dc:title></cc:Agent>
+            <cc:Agent><dc:title>Harvey Rayner, designer</dc:title></cc:Agent>
+          </dc:creator>
+          <dc:description>See document description</dc:description>
+          <cc:license
+            rdf:resource="http://creativecommons.org/licenses/by-nc-sa/2.5/"
+          />
+          <dc:format>image/svg+xml</dc:format>
+          <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        </cc:Work>
+        <cc:License
+          rdf:about="http://creativecommons.org/licenses/by-nc-sa/2.5/"
+        >
+          <cc:permits rdf:resource="http://web.resource.org/cc/Reproduction" />
+          <cc:permits rdf:resource="http://web.resource.org/cc/Distribution" />
+          <cc:requires rdf:resource="http://web.resource.org/cc/Notice" />
+          <cc:requires rdf:resource="http://web.resource.org/cc/Attribution" />
+          <cc:prohibits
+            rdf:resource="http://web.resource.org/cc/CommercialUse"
+          />
+          <cc:permits
+            rdf:resource="http://web.resource.org/cc/DerivativeWorks"
+          />
+          <cc:requires rdf:resource="http://web.resource.org/cc/ShareAlike" />
+        </cc:License>
+      </rdf:RDF>
+    </metadata>
+
+    <defs>
+      <g id="SVG" fill="#ffffff" transform="scale(2) translate(20,79)">
+        <path
+          id="S"
+          d="M 5.482,31.319 C2.163,28.001 0.109,23.419 0.109,18.358 C0.109,8.232 8.322,0.024 18.443,0.024 C28.569,0.024 36.782,8.232 36.782,18.358 L26.042,18.358 C26.042,14.164 22.638,10.765 18.443,10.765 C14.249,10.765 10.850,14.164 10.850,18.358 C10.850,20.453 11.701,22.351 13.070,23.721 L13.075,23.721 C14.450,25.101 15.595,25.500 18.443,25.952 L18.443,25.952 C23.509,26.479 28.091,28.006 31.409,31.324 L31.409,31.324 C34.728,34.643 36.782,39.225 36.782,44.286 C36.782,54.412 28.569,62.625 18.443,62.625 C8.322,62.625 0.109,54.412 0.109,44.286 L10.850,44.286 C10.850,48.480 14.249,51.884 18.443,51.884 C22.638,51.884 26.042,48.480 26.042,44.286 C26.042,42.191 25.191,40.298 23.821,38.923 L23.816,38.923 C22.441,37.548 20.468,37.074 18.443,36.697 L18.443,36.692 C13.533,35.939 8.800,34.638 5.482,31.319 L5.482,31.319 L5.482,31.319 Z"
+        />
+
+        <path
+          id="V"
+          d="M 73.452,0.024 L60.482,62.625 L49.742,62.625 L36.782,0.024 L47.522,0.024 L55.122,36.687 L62.712,0.024 L73.452,0.024 Z"
+        />
+
+        <path
+          id="G"
+          d="M 91.792,25.952 L110.126,25.952 L110.126,44.286 L110.131,44.286 C110.131,54.413 101.918,62.626 91.792,62.626 C81.665,62.626 73.458,54.413 73.458,44.286 L73.458,44.286 L73.458,18.359 L73.453,18.359 C73.453,8.233 81.665,0.025 91.792,0.025 C101.913,0.025 110.126,8.233 110.126,18.359 L99.385,18.359 C99.385,14.169 95.981,10.765 91.792,10.765 C87.597,10.765 84.198,14.169 84.198,18.359 L84.198,44.286 L84.198,44.286 C84.198,48.481 87.597,51.880 91.792,51.880 C95.981,51.880 99.380,48.481 99.385,44.291 L99.385,44.286 L99.385,36.698 L91.792,36.698 L91.792,25.952 L91.792,25.952 Z"
+        />
+      </g>
+    </defs>
+
+    <path
+      id="base"
+      fill="#000"
+      d="M8.5,150 H291.5 V250 C291.5,273.5 273.5,291.5 250,291.5 H50 C26.5,291.5 8.5,273.5 8.5,250 Z"
+    />
+    <g stroke-width="38.0086" stroke="#000">
+      <g id="svgstar" transform="translate(150, 150)">
+        <path
+          id="svgbar"
+          fill="#ffb13b"
+          d="M-84.1487,-15.8513 a22.4171,22.4171 0 1 0 0,31.7026 h168.2974 a22.4171,22.4171 0 1 0 0,-31.7026 Z"
+        />
+        <use xlink:href="#svgbar" transform="rotate(45)" />
+        <use xlink:href="#svgbar" transform="rotate(90)" />
+        <use xlink:href="#svgbar" transform="rotate(135)" />
+      </g>
+    </g>
+    <use xlink:href="#svgstar" xmlns:xlink="http://www.w3.org/1999/xlink" />
+    <use
+      xlink:href="#base"
+      opacity="0.85"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+    />
+    <use xlink:href="#SVG" xmlns:xlink="http://www.w3.org/1999/xlink" />
+    `),i(h,f)},$$slots:{default:!0}}),y(a);var o=$(a,2),c=b(o);Y(c,{onclick:()=>re(t),children:(h,g)=>{U(h,{tag:"svg",viewBox:"0 0 24 24",children:(f,r)=>{var n=Fe();i(f,n)},$$slots:{default:!0}})},$$slots:{default:!0}}),y(o);var p=$(o,2),d=b(p);y(p),B(()=>z(d,`Clicked: ${_(t)??""}`)),i(e,s)}var Oe=x('<div class="svelte-3uxzje"><!></div> <div class="svelte-3uxzje"><!> <!></div>',1);function ze(e,t){D(t,!0);let s=I(!1),a=I("red");var l=Oe(),o=S(l),c=b(o),p=F(()=>he({"my-button":!0,big:_(s),[_(a)]:!0}));k(c,{get class(){return _(p)},children:(f,r)=>{L(f,{children:(n,m)=>{u();var w=v("I'm a Colored Button");i(n,w)},$$slots:{default:!0}})},$$slots:{default:!0}}),y(o);var d=$(o,2),h=b(d);R(h,{style:"margin-right: 1em;",label:r=>{u();var n=v("Big");i(r,n)},children:(r,n)=>{xe(r,{get checked(){return _(s)},set checked(m){T(s,M(m))}})},$$slots:{label:!0,default:!0}});var g=$(h,2);pe(g,16,()=>["red","blue","green"],fe,(f,r)=>{R(f,{style:"margin-right: 1em;",label:m=>{u();var w=v();B(()=>z(w,`${r[0].toUpperCase()}${r.slice(1)}`)),i(m,w)},children:(m,w)=>{ye(m,{get group(){return _(a)},set group(C){T(a,M(C))},get value(){return r}})},$$slots:{label:!0,default:!0}})}),y(d),i(e,l),E()}var Ge=x(`<div class="event svelte-1szpskr">I'm the event listener. <div class="event svelte-1szpskr"><div class="event svelte-1szpskr"><div class="event svelte-1szpskr">I'm the event target.</div></div></div></div> <br> <!> <pre class="status"> </pre>`,1);function Ve(e,t){D(t,!0);let s,a=I(!1);function l(){ve(s,"MyEvent",{time:new Date().toLocaleTimeString()},{bubbles:!0,cancelable:!0})}var o=Ge(),c=S(o),p=$(b(c)),d=b(p),h=b(d);J(h,n=>s=n,()=>s),y(d),y(p),y(c);var g=$(c,4);k(g,{onclick:l,children:(n,m)=>{u();var w=v("Dispatch Event");i(n,w)},$$slots:{default:!0}});var f=$(g,2),r=b(f);B(()=>z(r,`Caught Event Detail: ${(_(a)&&JSON.stringify(_(a).detail))??""}`)),y(f),_e("MyEvent",c,n=>T(a,M(n))),i(e,o),E()}var qe=x("<div><!></div>");function Re(e,t){D(t,!0);let s=j(t,"class",3,""),a=j(t,"button$class",3,""),l=ie(t,["$$slots","$$events","$$legacy","class","button$class","children"]);var o=qe();const c=F(()=>we(l,["button$"]));let p;var d=b(o),h=F(()=>Ce(l,"button$"));k(d,le({get class(){return`button ${a()??""}`}},()=>_(h),{children:(g,f)=>{var r=Z(),n=S(r);Q(n,()=>t.children??X),i(g,r)},$$slots:{default:!0}})),y(o),B(()=>p=$e(o,p,{class:`my-component ${s()??""}`,..._(c)})),i(e,o),E()}function He(e){let t=I(!1);Re(e,{class:"my-class",get button$disabled(){return _(t)},button$onclick:()=>T(t,!0),children:(s,a)=>{u();var l=v("Click Me Only Once");i(s,l)},$$slots:{default:!0}})}var Ne=x('<div class="target svelte-1xr4yot"><span style="user-select: none;"><!></span></div>');function We(e,t){D(t,!0);let s=j(t,"use",19,()=>[]);var a=Ne(),l=b(a),o=b(l);Q(o,()=>t.children??X),y(l),y(a),ge(a,(c,p)=>be(c,p),s),i(e,a),E()}function H(e){return Object.prototype.toString.call(e)==="[object Date]"}function Ze(e){return e}function N(e){return e<.5?4*e*e*e:.5*Math.pow(2*e-2,3)+1}function O(e,t){if(e===t||e!==e)return()=>e;const s=typeof e;if(s!==typeof t||Array.isArray(e)!==Array.isArray(t))throw new Error("Cannot interpolate values of different type");if(Array.isArray(e)){const a=t.map((l,o)=>O(e[o],l));return l=>a.map(o=>o(l))}if(s==="object"){if(!e||!t)throw new Error("Object cannot be null");if(H(e)&&H(t)){const o=e.getTime(),p=t.getTime()-o;return d=>new Date(o+d*p)}const a=Object.keys(t),l={};return a.forEach(o=>{l[o]=O(e[o],t[o])}),o=>{const c={};return a.forEach(p=>{c[p]=l[p](o)}),c}}if(s==="number"){const a=t-e;return l=>e+l*a}throw new Error(`Cannot interpolate ${s} values`)}function W(e,t={}){const s=ke(e);let a,l=e;function o(c,p){if(l=c,e==null)return s.set(e=c),Promise.resolve();let d=a,h=!1,{delay:g=0,duration:f=400,easing:r=Ze,interpolate:n=O}={...t,...p};if(f===0)return d&&(d.abort(),d=null),s.set(e=l),Promise.resolve();const m=A.now()+g;let w;return a=Se(C=>{if(C<m)return!0;h||(w=n(e,c),typeof f=="function"&&(f=f(e,c)),h=!0),d&&(d.abort(),d=null);const V=C-m;return V>f?(s.set(e=c),!1):(s.set(e=w(r(V/f))),!0)}),a.promise}return{set:o,update:(c,p)=>o(c(l,e),p),subscribe:s.subscribe}}function Xe(e){const t=new G(e);let s=null;const a=d=>{d.preventDefault()},l=W(0,{duration:300,easing:N}),o=W(0,{duration:300,easing:N}),c=l.subscribe(d=>{e.style.left=d+"px"}),p=o.subscribe(d=>{e.style.top=d+"px"});return e.style.transition=(e.style.transition?e.style.transition+", ":"")+"opacity .3s ease",e.addEventListener("touchstart",a,{passive:!1}),t.on("panmove",()=>{s||(s=window.requestAnimationFrame(()=>{t.swipingDirection.startsWith("pre-")?e.style.opacity="1":e.style.opacity="0.7",e.style.transform="rotate("+(t.touchMoveX/8+t.touchMoveY/8)+"deg)",l.set(t.touchMoveX,{duration:0}),o.set(t.touchMoveY,{duration:0}),s=null}))}),t.on("panend",()=>{s!=null&&window.cancelAnimationFrame(s),s=null,e.style.transform="",l.set(0),o.set(0),e.style.opacity="1"}),{destroy(){e.removeEventListener("touchstart",a,{passive:!1}),s!=null&&window.cancelAnimationFrame(s),c(),p(),t.destroy()}}}function Ye(e){const t=new G(e);let s;const a=l=>{l.preventDefault()};return e.style.transition=(e.style.transition?e.style.transition+", ":"")+"transform .3s ease",e.addEventListener("touchstart",a,{passive:!1}),t.on("swiperight",()=>{e.style.transform="perspective(1000px) translate3d(2000px, 0, 0)",clearTimeout(s),setTimeout(()=>e.style.transform="",1e3)}),t.on("swipeleft",()=>{e.style.transform="perspective(1000px) translate3d(-2000px, 0, 0)",clearTimeout(s),setTimeout(()=>e.style.transform="",1e3)}),t.on("swipeup",()=>{e.style.transform="perspective(1000px) translate3d(0, -2000px, 0)",clearTimeout(s),setTimeout(()=>e.style.transform="",1e3)}),t.on("swipedown",()=>{e.style.transform="perspective(1000px) translate3d(0, 2000px, 0)",clearTimeout(s),setTimeout(()=>e.style.transform="",1e3)}),{destroy(){e.removeEventListener("touchstart",a,{passive:!1}),clearTimeout(s),t.destroy()}}}function Je(e,t){const s=new G(e);let a,l,o=!1;return e.style.transition=(e.style.transition?e.style.transition+", ":"")+"background-color .3s ease, color .3s ease",s.on("tap",()=>{o||(e.style.transform="perspective(1000px) translate3d(0, 0, 100px)",clearTimeout(a),a=setTimeout(()=>e.style.transform="",300))}),s.on("doubletap",()=>{e.style.transform="perspective(1000px) translate3d(0, 0, 400px)",clearTimeout(a),a=setTimeout(()=>e.style.transform="",300)}),s.on("longpress",()=>{o=!0,e.style.backgroundColor=t.bgColor,e.style.color=t.color,clearTimeout(l)}),s.on("panend",()=>{o&&(l=setTimeout(()=>{e.style.backgroundColor="",e.style.color=""},300),setTimeout(()=>{o=!1},0))}),{destroy(){clearTimeout(a),clearTimeout(l),s.destroy()}}}var Ke=x("Swipe me.<br> Tap me.<br> Press me.",1),Qe=x('<div class="container svelte-i78oca"><!></div>');function et(e){var t=Qe(),s=b(t);We(s,{use:[Xe,Ye,[Je,{bgColor:"var(--mdc-theme-secondary)",color:"var(--mdc-theme-on-secondary)"}]],children:(a,l)=>{u();var o=Ke();u(4),i(a,o)},$$slots:{default:!0}}),y(t),i(e,t)}var tt=x(`<div>Note that this demo will not work for you if you are not using a screen
+  reader. <!> <div style="text-align: end;"><!> <!></div></div>`);function st(e,t){D(t,!0);let s=I("");function a(){T(s,"But I must explain to you how all this mistaken idea of denouncing of a pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?")}var l=tt(),o=$(b(l));Le(o,{label:"Text",get value(){return _(s)},set value(h){T(s,M(h))},textarea:!0,style:"width: 100%; margin: 1em 0 .5em;"});var c=$(o,2),p=b(c);k(p,{onclick:a,children:(h,g)=>{L(h,{children:(f,r)=>{u();var n=v("Fill Lorem Ipsum");i(f,n)},$$slots:{default:!0}})},$$slots:{default:!0}});var d=$(p,2);k(d,{onclick:()=>Pe(_(s),{priority:"assertive"}),variant:"raised",children:(h,g)=>{L(h,{children:(f,r)=>{u();var n=v("Speak");i(f,n)},$$slots:{default:!0}})},$$slots:{default:!0}}),y(c),y(l),i(e,l),E()}const rt=Ae({class:"my-added-class",tag:"div"});var ot=x('<div class="svelte-5kobxj"><!></div>');function at(e){var t=ot(),s=b(t);rt(s,{children:(a,l)=>{u();var o=v("I'm a component with an added class!");i(a,o)},$$slots:{default:!0}}),y(t),i(e,t)}var nt=x(`Build a class string from a map of class names to conditions. This is
+      useful when you need to add classes to a component, since Svelte's
+      "class:" directives don't work on components. (It's also useful for
+      actions that take <code>addClass</code> and <code>removeClass</code> functions.)`,1),lt=x(`Dispatch a custom event. This differs from Svelte's component event
+      system, because these events require a DOM element as a target, can bubble
+      (and do by default), and are cancelable with <code>event.preventDefault()</code>. All SMUI events are dispatched with this.`,1),it=x(`Exclude differs from normal <code>omit</code> functions by also excluding all
+      properties that begin with a given string if that string ends with "$". Prefix
+      Filter filters an object for only properties with a certain prefix. They are
+      usually used together to allow props to be given to multiple elements within
+      a component.`,1),ct=x('<section><h2>Common</h2> <p>A common Label and Icon, helper utilities, and elemental components.</p> <h5>Installation</h5> <pre class="demo-spaced">npm i -D @smui/common</pre> <h5>Demos</h5> <!> <!> <!> <h4>Helper Utilities</h4> <!> <!> <!> <!> <!> <h4>Other Components</h4> <!></section>');function jt(e){var t=ct();ae(f=>{oe.title="Common - SMUI"});var s=$(b(t),10);P(s,{component:De,file:"common/_CommonLabelIcon.svelte",subtitle:r=>{u();var n=v(`The common label and icon are also exported from each package that uses
+      them.`);i(r,n)},children:(r,n)=>{u();var m=v("Common Label and Icon");i(r,m)},$$slots:{subtitle:!0,default:!0}});var a=$(s,2);P(a,{component:Be,file:"common/_SmuiElement.svelte",subtitle:r=>{u();var n=v(`Many SMUI components let you customize which DOM element is used to render
+      them. This is done with the SmuiElement component.`);i(r,n)},children:(r,n)=>{u();var m=v("SmuiElement Component");i(r,m)},$$slots:{subtitle:!0,default:!0}});var l=$(a,2);P(l,{component:je,file:"common/_Svg.svelte",subtitle:r=>{u();var n=v(`In the SMUI components that let you customize which DOM element is used to
+      render them, you can use the "svg" tag to render an SVG.`);i(r,n)},children:(r,n)=>{u();var m=v("Svg Elements");i(r,m)},$$slots:{subtitle:!0,default:!0}});var o=$(l,4);P(o,{component:ze,file:"common/_ClassMap.svelte",subtitle:r=>{u();var n=nt();u(4),i(r,n)},children:(r,n)=>{u();var m=v("Class Map");i(r,m)},$$slots:{subtitle:!0,default:!0}});var c=$(o,2);P(c,{component:Ve,file:"common/_Dispatch.svelte",subtitle:r=>{u();var n=lt();u(2),i(r,n)},children:(r,n)=>{u();var m=v("Dispatch");i(r,m)},$$slots:{subtitle:!0,default:!0}});var p=$(c,2);P(p,{component:He,files:["common/_ExcludeAndPrefixFilter.svelte","common/_ExcludeAndPrefixFilterComponent.svelte"],subtitle:r=>{u();var n=it();u(2),i(r,n)},children:(r,n)=>{u();var m=v("Exclude and Prefix Filter");i(r,m)},$$slots:{subtitle:!0,default:!0}});var d=$(p,2);P(d,{component:et,files:["common/_UseActions.svelte","common/_UseActionsComponent.svelte","common/_UseActionsPannable.ts","common/_UseActionsSwipeable.ts","common/_UseActionsTappable.ts"],subtitle:r=>{u();var n=v(`An action that takes actions and runs them on the element. Used to allow
+      actions on components, and forward actions from one component to another,
+      until the ultimate component finally renders the DOM element.`);i(r,n)},children:(r,n)=>{u();var m=v("Use Actions");i(r,m)},$$slots:{subtitle:!0,default:!0}});var h=$(d,2);P(h,{component:st,file:"common/_Announce.svelte",subtitle:r=>{u();var n=v(`A function that announces a string of text to users who are using a screen
+      reader.`);i(r,n)},children:(r,n)=>{u();var m=v("Announce");i(r,m)},$$slots:{subtitle:!0,default:!0}});var g=$(h,4);P(g,{component:at,files:["common/_ClassAdderBuilder.svelte","common/_ClassAdderBuilderComponent.ts"],subtitle:r=>{u();var n=v(`Use this to build a ClassAdder component. ClassAdder components are useful
+      for reducing the size of your bundle. If you have tons of simple
+      components that just need to add classes/props or set a context, using
+      ClassAdder components means there's only one actual Svelte component in
+      your bundle for all of these many tiny components.`);i(r,n)},children:(r,n)=>{u();var m=v("Class Adder Builder");i(r,m)},$$slots:{subtitle:!0,default:!0}}),y(t),i(e,t)}export{jt as component};
