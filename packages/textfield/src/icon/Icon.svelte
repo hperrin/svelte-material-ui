@@ -23,7 +23,12 @@
   import { onMount, getContext } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
-  import { classMap, useActions, dispatch } from '@smui/common/internal';
+  import {
+    classMap,
+    useActions,
+    dispatch,
+    SvelteEventManager,
+  } from '@smui/common/internal';
 
   type OwnProps = {
     /**
@@ -61,6 +66,7 @@
 
   let element: HTMLElement;
   let instance: MDCTextFieldIconFoundation | undefined = $state();
+  let eventManager = new SvelteEventManager();
   let internalAttrs: { [k: string]: string | undefined } = $state({});
   const leadingStore = getContext<SvelteStore<boolean>>(
     'SMUI:textfield:icon:leading',
@@ -95,9 +101,9 @@
         content = value;
       },
       registerInteractionHandler: (evtType, handler) =>
-        getElement().addEventListener(evtType, handler),
+        eventManager.on(getElement(), evtType, handler),
       deregisterInteractionHandler: (evtType, handler) =>
-        getElement().removeEventListener(evtType, handler),
+        eventManager.off(getElement(), evtType, handler),
       notifyIconAction: () => dispatch(getElement(), 'SMUITextFieldIcon'),
     });
 
@@ -122,6 +128,7 @@
       }
 
       instance?.destroy();
+      eventManager.clear();
     };
   });
 

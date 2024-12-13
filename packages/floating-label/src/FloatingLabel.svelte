@@ -43,7 +43,11 @@
   import { onMount, getContext } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
-  import { classMap, useActions } from '@smui/common/internal';
+  import {
+    classMap,
+    useActions,
+    SvelteEventManager,
+  } from '@smui/common/internal';
 
   import type { SMUIFloatingLabelAccessor } from './FloatingLabel.types.js';
 
@@ -97,6 +101,7 @@
 
   let element: HTMLSpanElement | HTMLLabelElement;
   let instance: MDCFloatingLabelFoundation | undefined = $state();
+  let eventManager = new SvelteEventManager();
   let internalClasses: { [k: string]: boolean } = $state({});
   let internalStyles: { [k: string]: string } = $state({});
   let inputProps =
@@ -141,9 +146,9 @@
         return scrollWidth;
       },
       registerInteractionHandler: (evtType, handler) =>
-        getElement().addEventListener(evtType, handler as EventListener),
+        eventManager.on(getElement(), evtType, handler),
       deregisterInteractionHandler: (evtType, handler) =>
-        getElement().removeEventListener(evtType, handler as EventListener),
+        eventManager.off(getElement(), evtType, handler),
     });
 
     const accessor: SMUIFloatingLabelAccessor = {
@@ -162,6 +167,7 @@
       SMUIFloatingLabelUnmount && SMUIFloatingLabelUnmount(accessor);
 
       instance?.destroy();
+      eventManager.clear();
     };
   });
 

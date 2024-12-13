@@ -21,7 +21,11 @@
   import { onMount } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
-  import { classMap, useActions } from '@smui/common/internal';
+  import {
+    classMap,
+    useActions,
+    SvelteEventManager,
+  } from '@smui/common/internal';
 
   type OwnProps = {
     /**
@@ -51,6 +55,7 @@
 
   let element: HTMLDivElement;
   let instance: MDCLineRippleFoundation | undefined = $state();
+  let eventManager = new SvelteEventManager();
   let internalClasses: { [k: string]: boolean } = $state({});
   let internalStyles: { [k: string]: string } = $state({});
 
@@ -61,15 +66,16 @@
       hasClass,
       setStyle: addStyle,
       registerEventHandler: (evtType, handler) =>
-        getElement().addEventListener(evtType, handler),
+        eventManager.on(getElement(), evtType, handler),
       deregisterEventHandler: (evtType, handler) =>
-        getElement().removeEventListener(evtType, handler),
+        eventManager.off(getElement(), evtType, handler),
     });
 
     instance.init();
 
     return () => {
       instance?.destroy();
+      eventManager.clear();
     };
   });
 

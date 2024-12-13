@@ -38,7 +38,12 @@
   import { onMount, onDestroy, setContext } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
-  import { classMap, useActions, dispatch } from '@smui/common/internal';
+  import {
+    classMap,
+    useActions,
+    dispatch,
+    SvelteEventManager,
+  } from '@smui/common/internal';
 
   const { FocusTrap } = domFocusTrap;
 
@@ -89,6 +94,7 @@
     | MDCDismissibleDrawerFoundation
     | MDCModalDrawerFoundation
     | undefined = $state(undefined);
+  let eventManager = new SvelteEventManager();
   let internalClasses: { [k: string]: boolean } = $state({});
   let previousFocus: Element | null = $state(null);
   let focusTrap: domFocusTrap.FocusTrap;
@@ -131,20 +137,20 @@
 
   onDestroy(() => {
     instance && instance.destroy();
-    scrim &&
-      scrim.removeEventListener('SMUIDrawerScrimClick', handleScrimClick);
+    scrim && eventManager.off(scrim, 'SMUIDrawerScrimClick', handleScrimClick);
+    eventManager.clear();
   });
 
   function getInstance() {
     if (scrim) {
-      scrim.removeEventListener('SMUIDrawerScrimClick', handleScrimClick);
+      eventManager.off(scrim, 'SMUIDrawerScrimClick', handleScrimClick);
     }
 
     if (variant === 'modal') {
       scrim =
         getElement().parentNode?.querySelector('.mdc-drawer-scrim') ?? false;
       if (scrim) {
-        scrim.addEventListener('SMUIDrawerScrimClick', handleScrimClick);
+        eventManager.on(scrim, 'SMUIDrawerScrimClick', handleScrimClick);
       }
     }
 

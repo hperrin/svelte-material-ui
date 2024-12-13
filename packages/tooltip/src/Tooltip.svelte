@@ -74,6 +74,7 @@
     prefixFilter,
     useActions,
     dispatch,
+    SvelteEventManager,
   } from '@smui/common/internal';
 
   type OwnProps = {
@@ -179,6 +180,7 @@
 
   let element: HTMLDivElement;
   let instance: MDCTooltipFoundation | undefined = $state();
+  let eventManager = new SvelteEventManager();
   let nonReactiveLocationStore: {
     parent?: HTMLElement;
     nextSibling?: HTMLElement;
@@ -308,39 +310,27 @@
       focusAnchorElement: () => {
         $anchor && $anchor.focus();
       },
-      registerEventHandler: (evt, handler) => {
-        getElement().addEventListener(evt, handler);
-      },
-      deregisterEventHandler: (evt, handler) => {
-        getElement().removeEventListener(evt, handler);
-      },
-      registerAnchorEventHandler: (evt, handler) => {
-        $anchor && $anchor.addEventListener(evt, handler);
-      },
-      deregisterAnchorEventHandler: (evt, handler) => {
-        $anchor && $anchor.removeEventListener(evt, handler);
-      },
-      registerDocumentEventHandler: (evt, handler) => {
-        document.body.addEventListener(evt, handler);
-      },
-      deregisterDocumentEventHandler: (evt, handler) => {
-        document.body.removeEventListener(evt, handler);
-      },
-      registerWindowEventHandler: (evt, handler) => {
-        window.addEventListener(
+      registerEventHandler: (evt, handler) =>
+        eventManager.on(getElement(), evt, handler),
+      deregisterEventHandler: (evt, handler) =>
+        eventManager.off(getElement(), evt, handler),
+      registerAnchorEventHandler: (evt, handler) =>
+        $anchor && eventManager.on($anchor, evt, handler),
+      deregisterAnchorEventHandler: (evt, handler) =>
+        $anchor && eventManager.off($anchor, evt, handler),
+      registerDocumentEventHandler: (evt, handler) =>
+        eventManager.on(document.body, evt, handler),
+      deregisterDocumentEventHandler: (evt, handler) =>
+        eventManager.off(document.body, evt, handler),
+      registerWindowEventHandler: (evt, handler) =>
+        eventManager.on(
+          window,
           evt,
           handler,
-          evt === 'scroll' && { capture: true, passive: true },
-        );
-      },
-      deregisterWindowEventHandler: (evt, handler) => {
-        window.removeEventListener(
-          evt,
-          handler as EventListener,
-          evt === 'scroll' &&
-            ({ capture: true, passive: true } as EventListenerOptions),
-        );
-      },
+          (evt === 'scroll' && { capture: true, passive: true }) || undefined,
+        ),
+      deregisterWindowEventHandler: (evt, handler) =>
+        eventManager.off(window, evt, handler),
       notifyHidden: () => {
         dispatch(getElement(), 'SMUITooltipHidden');
       },
@@ -392,6 +382,7 @@
       if ($anchor) {
         destroy($anchor);
       }
+      eventManager.clear();
     };
   });
 
@@ -412,16 +403,16 @@
   });
 
   function destroy(anchor: HTMLElement) {
-    anchor.removeEventListener('focusout', handleAnchorFocusOut);
+    eventManager.off(anchor, 'focusout', handleAnchorFocusOut);
     if (rich && persistent) {
-      anchor.removeEventListener('click', handleAnchorActivate);
-      anchor.removeEventListener('keydown', handleAnchorActivate);
+      eventManager.off(anchor, 'click', handleAnchorActivate);
+      eventManager.off(anchor, 'keydown', handleAnchorActivate);
     } else {
-      anchor.removeEventListener('mouseenter', handleAnchorMouseEnter);
-      anchor.removeEventListener('focusin', handleAnchorFocus);
-      anchor.removeEventListener('mouseleave', handleAnchorMouseLeave);
-      anchor.removeEventListener('touchstart', handleAnchorTouchStart);
-      anchor.removeEventListener('touchend', handleAnchorTouchEnd);
+      eventManager.off(anchor, 'mouseenter', handleAnchorMouseEnter);
+      eventManager.off(anchor, 'focusin', handleAnchorFocus);
+      eventManager.off(anchor, 'mouseleave', handleAnchorMouseLeave);
+      eventManager.off(anchor, 'touchstart', handleAnchorTouchStart);
+      eventManager.off(anchor, 'touchend', handleAnchorTouchEnd);
     }
     if (rich && interactive) {
       anchor.removeAttribute('aria-haspopup');
@@ -435,16 +426,16 @@
   }
 
   function init(anchor: HTMLElement) {
-    anchor.addEventListener('focusout', handleAnchorFocusOut);
+    eventManager.on(anchor, 'focusout', handleAnchorFocusOut);
     if (rich && persistent) {
-      anchor.addEventListener('click', handleAnchorActivate);
-      anchor.addEventListener('keydown', handleAnchorActivate);
+      eventManager.on(anchor, 'click', handleAnchorActivate);
+      eventManager.on(anchor, 'keydown', handleAnchorActivate);
     } else {
-      anchor.addEventListener('mouseenter', handleAnchorMouseEnter);
-      anchor.addEventListener('focusin', handleAnchorFocus);
-      anchor.addEventListener('mouseleave', handleAnchorMouseLeave);
-      anchor.addEventListener('touchstart', handleAnchorTouchStart);
-      anchor.addEventListener('touchend', handleAnchorTouchEnd);
+      eventManager.on(anchor, 'mouseenter', handleAnchorMouseEnter);
+      eventManager.on(anchor, 'focusin', handleAnchorFocus);
+      eventManager.on(anchor, 'mouseleave', handleAnchorMouseLeave);
+      eventManager.on(anchor, 'touchstart', handleAnchorTouchStart);
+      eventManager.on(anchor, 'touchend', handleAnchorTouchEnd);
     }
     if (rich && interactive) {
       anchor.setAttribute('aria-haspopup', 'dialog');

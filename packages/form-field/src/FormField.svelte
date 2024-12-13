@@ -39,6 +39,7 @@
     exclude,
     prefixFilter,
     useActions,
+    SvelteEventManager,
   } from '@smui/common/internal';
 
   type OwnProps = {
@@ -90,6 +91,7 @@
 
   let element: HTMLDivElement;
   let instance: MDCFormFieldFoundation | undefined = $state();
+  let eventManager = new SvelteEventManager();
   let labelEl: HTMLLabelElement;
   let input: SMUIGenericInputAccessor | undefined = $state();
 
@@ -117,18 +119,17 @@
           input.deactivateRipple();
         }
       },
-      deregisterInteractionHandler: (evtType, handler) => {
-        labelEl.removeEventListener(evtType, handler);
-      },
-      registerInteractionHandler: (evtType, handler) => {
-        labelEl.addEventListener(evtType, handler);
-      },
+      deregisterInteractionHandler: (evtType, handler) =>
+        eventManager.off(labelEl, evtType, handler),
+      registerInteractionHandler: (evtType, handler) =>
+        eventManager.on(labelEl, evtType, handler),
     });
 
     instance.init();
 
     return () => {
       instance?.destroy();
+      eventManager.clear();
     };
   });
 

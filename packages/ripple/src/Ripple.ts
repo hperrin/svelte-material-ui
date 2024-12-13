@@ -2,6 +2,7 @@ import { MDCRippleFoundation, util } from '@material/ripple';
 import { events, ponyfill } from '@material/dom';
 import { getContext } from 'svelte';
 import type { AddLayoutListener, RemoveLayoutListener } from '@smui/common';
+import { SvelteEventManager } from '@smui/common/internal';
 const { applyPassive } = events;
 const { matches } = ponyfill;
 
@@ -41,6 +42,7 @@ export default function Ripple(
   }: RippleProps = {},
 ) {
   let instance: MDCRippleFoundation | undefined;
+  let eventManager = new SvelteEventManager();
   let addLayoutListener = getContext<AddLayoutListener | undefined>(
     'SMUI:addLayoutListener',
   );
@@ -87,41 +89,39 @@ export default function Ripple(
           (rippleElement || node).getBoundingClientRect(),
         containsEventTarget: (target) => node.contains(target as Node),
         deregisterDocumentInteractionHandler: (evtType, handler) =>
-          document.documentElement.removeEventListener(
-            evtType,
-            handler,
-            applyPassive(),
-          ),
+          eventManager.off(document.documentElement, evtType, handler),
         deregisterInteractionHandler: (evtType, handler) =>
-          (eventTarget || node).removeEventListener(
-            evtType,
-            handler,
-            applyPassive(),
-          ),
+          eventManager.off(eventTarget || node, evtType, handler),
         deregisterResizeHandler: (handler) =>
           window.removeEventListener('resize', handler),
         getWindowPageOffset: () => ({
-          x: window.pageXOffset,
-          y: window.pageYOffset,
+          x: window.pageXOffset ?? window.scrollX,
+          y: window.pageYOffset ?? window.scrollY,
         }),
         isSurfaceActive: () =>
           active == null ? matches(activeTarget || node, ':active') : active,
         isSurfaceDisabled: () => !!disabled,
         isUnbounded: () => !!unbounded,
-        registerDocumentInteractionHandler: (evtType, handler) =>
-          document.documentElement.addEventListener(
+        registerDocumentInteractionHandler: (evtType, handler) => {
+          const opts = applyPassive();
+          eventManager.on(
+            document.documentElement,
             evtType,
             handler,
-            applyPassive(),
-          ),
-        registerInteractionHandler: (evtType, handler) =>
-          (eventTarget || node).addEventListener(
+            typeof opts === 'boolean' ? { capture: opts } : opts,
+          );
+        },
+        registerInteractionHandler: (evtType, handler) => {
+          const opts = applyPassive();
+          eventManager.on(
+            eventTarget || node,
             evtType,
             handler,
-            applyPassive(),
-          ),
+            typeof opts === 'boolean' ? { capture: opts } : opts,
+          );
+        },
         registerResizeHandler: (handler) =>
-          window.addEventListener('resize', handler),
+          eventManager.on(window, 'resize', handler),
         removeClass,
         updateCssVariable: addStyle,
       });
@@ -137,6 +137,7 @@ export default function Ripple(
         if (instance) {
           instance.destroy();
           instance = undefined;
+          eventManager.clear();
         }
       });
     }
@@ -214,6 +215,7 @@ export default function Ripple(
       if (instance) {
         instance.destroy();
         instance = undefined;
+        eventManager.clear();
         removeClass('mdc-ripple-surface');
         removeClass('smui-ripple-surface--primary');
         removeClass('smui-ripple-surface--secondary');

@@ -118,6 +118,7 @@
 <script lang="ts">
   import type { ComponentProps, Snippet } from 'svelte';
   import { setContext } from 'svelte';
+  import { on } from 'svelte/events';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
@@ -546,7 +547,8 @@
   ) {
     if (!document.hasFocus()) {
       // Document lost focus.
-      window.addEventListener(
+      on(
+        window,
         'focus',
         () => {
           if (!getElement()?.contains(document.activeElement)) {

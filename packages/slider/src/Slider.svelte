@@ -223,6 +223,7 @@
     prefixFilter,
     useActions,
     dispatch,
+    SvelteEventManager,
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
 
@@ -326,6 +327,7 @@
 
   let element: HTMLDivElement;
   let instance: MDCSliderFoundation | undefined = $state();
+  let eventManager = new SvelteEventManager();
   let input: HTMLInputElement | undefined = $state();
   let inputStart: HTMLInputElement | undefined = $state();
   let thumbEl: HTMLDivElement;
@@ -561,48 +563,42 @@
           thumbRippleActive = false;
         }
       },
-      registerEventHandler: (evtType, handler) => {
-        getElement().addEventListener(evtType, handler);
-      },
-      deregisterEventHandler: (evtType, handler) => {
-        getElement().removeEventListener(evtType, handler);
-      },
+      registerEventHandler: (evtType, handler) =>
+        eventManager.on(getElement(), evtType, handler),
+      deregisterEventHandler: (evtType, handler) =>
+        eventManager.off(getElement(), evtType, handler),
       registerThumbEventHandler: (thumb, evtType, handler) => {
-        (range && thumb === Thumb.START
-          ? thumbStart
-          : thumbEl
-        )?.addEventListener(evtType, handler);
+        const el = range && thumb === Thumb.START ? thumbStart : thumbEl;
+        if (el) {
+          eventManager.on(el, evtType, handler);
+        }
       },
       deregisterThumbEventHandler: (thumb, evtType, handler) => {
-        (range && thumb === Thumb.START
-          ? thumbStart
-          : thumbEl
-        )?.removeEventListener(evtType, handler);
+        const el = range && thumb === Thumb.START ? thumbStart : thumbEl;
+        if (el) {
+          eventManager.off(el, evtType, handler);
+        }
       },
       registerInputEventHandler: (thumb, evtType, handler) => {
-        (range && thumb === Thumb.START ? inputStart : input)?.addEventListener(
-          evtType,
-          handler,
-        );
+        const el = range && thumb === Thumb.START ? inputStart : input;
+        if (el) {
+          eventManager.on(el, evtType, handler);
+        }
       },
       deregisterInputEventHandler: (thumb, evtType, handler) => {
-        (range && thumb === Thumb.START
-          ? inputStart
-          : input
-        )?.removeEventListener(evtType, handler);
+        const el = range && thumb === Thumb.START ? inputStart : input;
+        if (el) {
+          eventManager.off(el, evtType, handler);
+        }
       },
-      registerBodyEventHandler: (evtType, handler) => {
-        document.body.addEventListener(evtType, handler);
-      },
-      deregisterBodyEventHandler: (evtType, handler) => {
-        document.body.removeEventListener(evtType, handler);
-      },
-      registerWindowEventHandler: (evtType, handler) => {
-        window.addEventListener(evtType, handler);
-      },
-      deregisterWindowEventHandler: (evtType, handler) => {
-        window.removeEventListener(evtType, handler);
-      },
+      registerBodyEventHandler: (evtType, handler) =>
+        eventManager.on(document.body, evtType, handler),
+      deregisterBodyEventHandler: (evtType, handler) =>
+        eventManager.off(document.body, evtType, handler),
+      registerWindowEventHandler: (evtType, handler) =>
+        eventManager.on(window, evtType, handler),
+      deregisterWindowEventHandler: (evtType, handler) =>
+        eventManager.off(window, evtType, handler),
     });
 
     const accessor = {
@@ -628,6 +624,7 @@
       SMUIGenericInputUnmount && SMUIGenericInputUnmount(accessor);
 
       instance?.destroy();
+      eventManager.clear();
     };
   });
 

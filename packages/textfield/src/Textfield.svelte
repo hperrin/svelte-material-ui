@@ -264,6 +264,7 @@
     prefixFilter,
     useActions,
     dispatch,
+    SvelteEventManager,
   } from '@smui/common/internal';
   import { ContextFragment } from '@smui/common';
   import Ripple from '@smui/ripple';
@@ -508,6 +509,7 @@
 
   let element: HTMLLabelElement | HTMLDivElement;
   let instance: MDCTextFieldFoundation | undefined = $state();
+  let eventManager = new SvelteEventManager();
   let internalClasses: { [k: string]: boolean } = $state({});
   let internalStyles: { [k: string]: string } = $state({});
   let helperId: string | undefined = $state(undefined);
@@ -639,9 +641,9 @@
         removeClass,
         hasClass,
         registerTextFieldInteractionHandler: (evtType, handler) =>
-          getElement().addEventListener(evtType, handler as EventListener),
+          eventManager.on(getElement(), evtType, handler),
         deregisterTextFieldInteractionHandler: (evtType, handler) =>
-          getElement().removeEventListener(evtType, handler as EventListener),
+          eventManager.off(getElement(), evtType, handler),
         registerValidationAttributeChangeHandler: (handler) => {
           const getAttributesList = (mutationsList: MutationRecord[]) => {
             return mutationsList
@@ -673,22 +675,22 @@
         },
         isFocused: () => document.activeElement === input?.getElement(),
         registerInputInteractionHandler: (evtType, handler) => {
-          input
-            ?.getElement()
-            .addEventListener(
+          const el = input?.getElement();
+          if (el) {
+            const opts = applyPassive();
+            eventManager.on(
+              el,
               evtType,
-              handler as EventListener,
-              applyPassive(),
+              handler,
+              typeof opts === 'boolean' ? { capture: opts } : opts,
             );
+          }
         },
         deregisterInputInteractionHandler: (evtType, handler) => {
-          input
-            ?.getElement()
-            .removeEventListener(
-              evtType,
-              handler as EventListener,
-              applyPassive(),
-            );
+          const el = input?.getElement();
+          if (el) {
+            eventManager.off(el, evtType, handler);
+          }
         },
 
         // getLabelAdapterMethods_
@@ -753,6 +755,7 @@
 
     return () => {
       instance?.destroy();
+      eventManager.clear();
     };
   });
 

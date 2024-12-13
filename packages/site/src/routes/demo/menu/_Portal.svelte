@@ -92,6 +92,7 @@
 
 <script lang="ts">
   import { onMount } from 'svelte';
+  import { on } from 'svelte/events';
   import Portal from 'svelte-portal';
   import Menu from '@smui/menu';
   import { Anchor } from '@smui/menu-surface';
@@ -155,13 +156,14 @@
       return false;
     }
 
-    anchorElement.addEventListener('mouseenter', (event) => {
+    on(anchorElement, 'mouseenter', (event) => {
       if (!contains(subMenuElement, event.relatedTarget as HTMLElement)) {
         subMenu.setOpen(true);
       }
     });
-    anchorElement.addEventListener('focus', () => {
-      subMenuElement.addEventListener(
+    on(anchorElement, 'focus', () => {
+      on(
+        subMenuElement,
         'SMUIMenuSurfaceOpened',
         () => {
           const focusEl =
@@ -174,12 +176,12 @@
       );
       subMenu.setOpen(true);
     });
-    anchorElement.addEventListener('mouseleave', (event) => {
+    on(anchorElement, 'mouseleave', (event) => {
       if (!contains(subMenuElement, event.relatedTarget as HTMLElement)) {
         subMenu.setOpen(false);
       }
     });
-    subMenuElement.addEventListener('mouseleave', (event) => {
+    on(subMenuElement, 'mouseleave', (event) => {
       if (
         anchorElement &&
         !contains(anchorElement, event.relatedTarget as HTMLElement)

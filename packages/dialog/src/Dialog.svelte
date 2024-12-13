@@ -98,6 +98,7 @@
     prefixFilter,
     useActions,
     dispatch,
+    SvelteEventManager,
   } from '@smui/common/internal';
 
   const { FocusTrap } = domFocusTrap;
@@ -196,6 +197,7 @@
 
   let element: HTMLDivElement;
   let instance: MDCDialogFoundation | undefined = $state();
+  let eventManager = new SvelteEventManager();
   let internalClasses: { [k: string]: boolean } = $state({});
   let focusTrap: domFocusTrap.FocusTrap;
   let actionButtonsReversed = writable(false);
@@ -335,13 +337,13 @@
       registerContentEventHandler: (evt, handler) => {
         const content = getContentEl();
         if (content instanceof HTMLElement) {
-          content.addEventListener(evt, handler);
+          eventManager.on(content, evt, handler);
         }
       },
       deregisterContentEventHandler: (evt, handler) => {
         const content = getContentEl();
         if (content instanceof HTMLElement) {
-          content.removeEventListener(evt, handler);
+          eventManager.off(content, evt, handler);
         }
       },
       isScrollableContentAtTop: () => {
@@ -350,18 +352,17 @@
       isScrollableContentAtBottom: () => {
         return util.isScrollAtBottom(getContentEl());
       },
-      registerWindowEventHandler: (evt, handler) => {
-        window.addEventListener(evt, handler);
-      },
-      deregisterWindowEventHandler: (evt, handler) => {
-        window.removeEventListener(evt, handler);
-      },
+      registerWindowEventHandler: (evt, handler) =>
+        eventManager.on(window, evt, handler),
+      deregisterWindowEventHandler: (evt, handler) =>
+        eventManager.off(window, evt, handler),
     });
 
     instance.init();
 
     return () => {
       instance?.destroy();
+      eventManager.clear();
     };
   });
 

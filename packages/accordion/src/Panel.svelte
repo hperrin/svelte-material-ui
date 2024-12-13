@@ -29,6 +29,7 @@
 <script lang="ts">
   import type { ComponentProps, Snippet } from 'svelte';
   import { onMount, setContext, getContext } from 'svelte';
+  import { on } from 'svelte/events';
   import { writable } from 'svelte/store';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, dispatch } from '@smui/common/internal';
@@ -139,7 +140,8 @@
             content.getBoundingClientRect();
             content.classList.remove('smui-accordion__content--no-transition');
             content.style.height = height + 'px';
-            content.addEventListener(
+            on(
+              content,
               'transitionend',
               () => {
                 if (content) {

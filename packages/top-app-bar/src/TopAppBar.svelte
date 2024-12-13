@@ -52,7 +52,12 @@
   import { readable } from 'svelte/store';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
-  import { classMap, useActions, dispatch } from '@smui/common/internal';
+  import {
+    classMap,
+    useActions,
+    dispatch,
+    SvelteEventManager,
+  } from '@smui/common/internal';
 
   interface UninitializedValue extends Function {}
   let uninitializedValue: UninitializedValue = () => {};
@@ -128,6 +133,7 @@
     | MDCFixedTopAppBarFoundation
     | MDCTopAppBarFoundation
     | undefined = $state();
+  let eventManager = new SvelteEventManager();
   let internalClasses: { [k: string]: boolean } = $state({});
   let internalStyles: { [k: string]: string } = $state({});
 
@@ -161,10 +167,10 @@
   $effect(() => {
     if (oldScrollTarget !== scrollTarget) {
       if (oldScrollTarget) {
-        oldScrollTarget.removeEventListener('scroll', handleTargetScroll);
+        eventManager.off(oldScrollTarget, 'scroll', handleTargetScroll);
       }
       if (scrollTarget) {
-        scrollTarget.addEventListener('scroll', handleTargetScroll);
+        eventManager.on(scrollTarget, 'scroll', handleTargetScroll);
       }
       oldScrollTarget = scrollTarget;
     }
@@ -188,6 +194,7 @@
 
     return () => {
       instance?.destroy();
+      eventManager.clear();
     };
   });
 
