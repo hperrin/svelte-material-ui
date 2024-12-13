@@ -189,7 +189,7 @@
 
   let element: ReturnType<SmuiComponent<SmuiElementMap[TagName]>>;
   let instance: MDCListFoundation | undefined = $state();
-  let items: SMUIListItemAccessor[] = $state([]);
+  let items: SMUIListItemAccessor[] = [];
   let role = getContext<string | undefined>('SMUI:list:role');
   const itemAccessorMap = new WeakMap<Element, SMUIListItemAccessor>();
   let selectionDialog = getContext<boolean | undefined>(

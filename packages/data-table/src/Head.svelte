@@ -30,10 +30,11 @@
 
   let element: HTMLTableSectionElement;
   let checkbox: SMUICheckboxInputAccessor | undefined = $state();
-  let cells: SMUIDataTableCellAccessor[] = $state([]);
-  const cellAccessorMap = $state.raw(
-    new WeakMap<HTMLTableCellElement, SMUIDataTableCellAccessor>(),
-  );
+  let cells: SMUIDataTableCellAccessor[] = [];
+  const cellAccessorMap = new WeakMap<
+    HTMLTableCellElement,
+    SMUIDataTableCellAccessor
+  >();
 
   setContext('SMUI:data-table:row:header', true);
 

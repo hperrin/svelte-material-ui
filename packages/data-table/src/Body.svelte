@@ -40,11 +40,11 @@
   }: OwnProps & SmuiAttrs<'tbody', keyof OwnProps> = $props();
 
   let element: HTMLTableSectionElement;
-  let rows: SMUIDataTableRowAccessor[] = $state([]);
-  const rowAccessorMap = $state(
-    new WeakMap<HTMLTableRowElement, SMUIDataTableRowAccessor>(),
-  );
-
+  let rows: SMUIDataTableRowAccessor[] = [];
+  const rowAccessorMap = new WeakMap<
+    HTMLTableRowElement,
+    SMUIDataTableRowAccessor
+  >();
   setContext('SMUI:data-table:row:header', false);
 
   setContext(

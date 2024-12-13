@@ -241,7 +241,7 @@
                   : 'shortcut' in section
                     ? section.shortcut
                     : undefined}
-                activated={section === activeSection}
+                activated={section.route === activeSection?.route}
                 style={section.indent
                   ? 'margin-left: ' + section.indent * 25 + 'px;'
                   : ''}
@@ -284,7 +284,7 @@
 
   let { children }: { children: Snippet } = $props();
 
-  const iframe = $page.url.pathname.includes('/iframe');
+  const iframe = $derived($page.url.pathname.includes('/iframe'));
 
   let drawer: Drawer | undefined = $state();
   let mainContent: HTMLElement | undefined = $state();
