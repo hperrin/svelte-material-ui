@@ -1,6 +1,6 @@
 {
   "name": "@smui/segmented-button",
-  "version": "8.0.0-beta.1",
+  "version": "8.0.0-beta.2",
   "description": "Svelte Material UI - Segmented Button",
   "type": "module",
   "main": "dist/index.js",
@@ -52,8 +52,8 @@
     "@material/base": "^14.0.0",
     "@material/ripple": "^14.0.0",
     "@material/segmented-button": "^14.0.0",
-    "@smui/common": "^8.0.0-beta.1",
-    "@smui/ripple": "^8.0.0-beta.1",
+    "@smui/common": "^8.0.0-beta.2",
+    "@smui/ripple": "^8.0.0-beta.2",
     "svelte2tsx": "^0.7.26"
   },
   "devDependencies": {

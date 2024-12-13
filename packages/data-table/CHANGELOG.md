@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.0.0-beta.2](https://github.com/hperrin/svelte-material-ui/compare/v8.0.0-beta.1...v8.0.0-beta.2) (2024-12-13)
+
+
+### Bug Fixes
+
+* don't use state rune on accessor lists and maps ([0c90d40](https://github.com/hperrin/svelte-material-ui/commit/0c90d406081c8632679613f69ee185baa779314c))
+
+
+
+
+
 # [8.0.0-beta.1](https://github.com/hperrin/svelte-material-ui/compare/v8.0.0-beta.0...v8.0.0-beta.1) (2024-12-11)
 
 
