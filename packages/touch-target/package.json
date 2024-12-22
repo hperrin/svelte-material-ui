@@ -27,8 +27,9 @@
     "sveltejs"
   ],
   "scripts": {
-    "build": "npm run build:js && npm run build:sass",
+    "build": "npm run build:js && npm run build:svelte && npm run build:sass",
     "build:js": "tsc -p . --outDir dist/ --rootDir src/",
+    "build:svelte": "cp src/*.svelte dist/",
     "build:sass": "sass --no-source-map -I node_modules -I ../smui-theme/node_modules -I ../../node_modules _style.scss bare.css",
     "clean": "git status --ignored -u --porcelain . | grep -v node_modules/ | grep -e '^!! ' | sed 's/^!! packages\\/[a-z-]*\\///g' | tr '\\n' ' ' | xargs rm",
     "check": "npx svelte-check --ignore dist",

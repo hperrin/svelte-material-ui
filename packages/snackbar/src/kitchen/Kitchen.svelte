@@ -57,7 +57,7 @@
 
   import type { ConfigAction, Config } from './Kitchen.types.js';
   import Snackbar from '../Snackbar.svelte';
-  import Actions from '../Actions.js';
+  import Actions from '../Actions.svelte';
 
   type IconButtonProps = Omit<
     ComponentProps<typeof IconButton<DismissHref, DismissTagName>>,

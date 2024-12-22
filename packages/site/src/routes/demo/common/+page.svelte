@@ -105,19 +105,12 @@
   <h4>Other Components</h4>
 
   <Demo
-    component={ClassAdderBuilder}
-    files={[
-      'common/_ClassAdderBuilder.svelte',
-      'common/_ClassAdderBuilderComponent.ts',
-    ]}
+    component={ClassAdder}
+    files={['common/_ClassAdder.svelte', 'common/_ClassAdderComponent.ts']}
   >
-    Class Adder Builder
+    Class Adder
     {#snippet subtitle()}
-      Use this to build a ClassAdder component. ClassAdder components are useful
-      for reducing the size of your bundle. If you have tons of simple
-      components that just need to add classes/props or set a context, using
-      ClassAdder components means there's only one actual Svelte component in
-      your bundle for all of these many tiny components.
+      Use this to make a ClassAdder component.
     {/snippet}
   </Demo>
 </section>
@@ -133,5 +126,5 @@
   import ExcludeAndPrefixFilter from './_ExcludeAndPrefixFilter.svelte';
   import UseActions from './_UseActions.svelte';
   import Announce from './_Announce.svelte';
-  import ClassAdderBuilder from './_ClassAdderBuilder.svelte';
+  import ClassAdder from './_ClassAdder.svelte';
 </script>

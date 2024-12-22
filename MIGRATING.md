@@ -23,6 +23,8 @@ Note to Devs: remove `x = x;` statements after `push()` and the like. They aren'
 - Chips' Set now expects a `chip` snippet instead of using `let:chip`.
 - Chips' Set key function is now required to return `string`, not `string | number`.
 - SegmentedButton now expects a `segment` snippet instead of using `let:segment`.
+- `classAdderBuilder` is no longer available. Instead, the `ClassAdder` component is exported.
+  - Svelte 5 doesn't seem to provide a way to reuse components the way classAdderBuilder needs. The version in beta.2 and before works only on the first render, but props were not reactive.
 
 ## Changes
 

@@ -415,45 +415,84 @@ A fragment component (only contains a `{@render children?.()}`) used to define a
 
 ## classadder/ClassAdder.svelte
 
-A base component that adds a class to an element. The ClassAdder is used to provide simple components. It usually uses the `SmuiElement` component shown above, but you can specify a different component for it to use.
+Use this to make a ClassAdder component.
 
-### Props / Defaults
+```svelte
+<ClassAdder
+  _smuiClass="my-added-class"
+  tag="div"
+  bind:this={element as ReturnType<C>}
+  {...restProps}>{@render children?.()}</ClassAdder
+>
 
-- `component`: `(depends on context)` - The component to extend. Usually it is set to `SmuiElement`.
-- `tag`: `(depends on context)` - The HTML tag name `SmuiElement` will use.
-- `use`: `[]` - An array of Svelte actions and/or arrays of an action and its options.
-- `class`: `''` - A CSS class string.
+<script
+  lang="ts"
+  generics="T extends SmuiEveryElement = keyof SmuiElementPropMap, C extends SmuiComponent = SmuiComponent"
+>
+  import type { ComponentProps, Snippet } from 'svelte';
+  import type {
+    SmuiComponent,
+    SmuiElementPropMap,
+    SmuiEveryElement,
+  } from '@smui/common';
+  import { ClassAdder } from '@smui/common/classadder';
 
-## classAdderBuilder
+  type OwnProps = {
+    children?: Snippet;
+  };
+  let { children, ...restProps }: OwnProps & ComponentProps<ClassAdder<T, C>> =
+    $props();
 
-Use this to build a ClassAdder component. ClassAdder components are useful for reducing the size of your bundle. If you have tons of simple components that just need to add classes/props or set a context, using ClassAdder components means there's only one actual Svelte component in your bundle for all of these many tiny components.
+  let element: ReturnType<C>;
 
-```js
-import { classAdderBuilder } from '@smui/common/classadder';
-
-export default classAdderBuilder({
-  class: 'my-added-class',
-  tag: 'div',
-});
+  export function getElement() {
+    return element.getElement();
+  }
+</script>
 ```
 
 You can also supply a component that implements the `SmuiComponent` interface.
 
-```js
-import { classAdderBuilder } from '@smui/common/classadder';
-import Button from '@smui/button';
+```svelte
+<ClassAdder
+  _smuiClass="my-added-class"
+  component={Button as unknown as SmuiComponent}
+  bind:this={element as ReturnType<C>}
+  {...restProps}>{@render children?.()}</ClassAdder
+>
 
-export default classAdderBuilder({
-  class: 'my-added-class',
-  component: Button,
-});
+<script
+  lang="ts"
+  generics="T extends SmuiEveryElement = keyof SmuiElementPropMap, C extends SmuiComponent = SmuiComponent"
+>
+  import type { ComponentProps, Snippet } from 'svelte';
+  import type {
+    SmuiComponent,
+    SmuiElementPropMap,
+    SmuiEveryElement,
+  } from '@smui/common';
+  import { ClassAdder } from '@smui/common/classadder';
+  import Button from '@smui/button';
+
+  type OwnProps = {
+    children?: Snippet;
+  };
+  let { children, ...restProps }: OwnProps & ComponentProps<ClassAdder<T, C>> =
+    $props();
+
+  let element: ReturnType<C>;
+
+  export function getElement() {
+    return element.getElement();
+  }
+</script>
 ```
 
 ### Props / Defaults
 
 - `component`: `SmuiElement` - An SMUI compatible component.
 - `tag`: `'div'` - An HTML tag name. (Only means anything for the `SmuiElement` component.)
-- `class`: `''` - The class to add.
-- `classMap`: `{}` - A map of classes to contexts. The context should resolve to a Svelte store, and the class will be added if the Svelte store's value is true.
-- `contexts`: `{}` - A map of contexts to values to set for them.
-- `props`: `{}` - A map of props to add to the element.
+- `_smuiClass`: `''` - The class to add.
+- `_smuiClassMap`: `{}` - A map of classes to contexts. The context should resolve to a Svelte store, and the class will be added if the Svelte store's value is true.
+- `_smuiContexts`: `{}` - A map of contexts to values to set for them.
+- `_smuiProps`: `{}` - A map of props to add to the element.
