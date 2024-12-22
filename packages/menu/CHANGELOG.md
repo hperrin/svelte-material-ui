@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.0.0-beta.3](https://github.com/hperrin/svelte-material-ui/compare/v8.0.0-beta.2...v8.0.0-beta.3) (2024-12-22)
+
+
+### Bug Fixes
+
+* sigh, svelte 5 doesn't support what classAdderBuilder needs, so it had to be refactored ([a4df13c](https://github.com/hperrin/svelte-material-ui/commit/a4df13c247ca3ef5bf41df75d82ad15b895f3167))
+
+
+
+
+
 # [8.0.0-beta.2](https://github.com/hperrin/svelte-material-ui/compare/v8.0.0-beta.1...v8.0.0-beta.2) (2024-12-13)
 
 **Note:** Version bump only for package @smui/menu

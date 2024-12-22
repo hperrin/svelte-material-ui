@@ -1,6 +1,6 @@
 {
   "name": "@smui/data-table",
-  "version": "8.0.0-beta.2",
+  "version": "8.0.0-beta.3",
   "description": "Svelte Material UI - Data Table",
   "type": "module",
   "main": "dist/index.js",
@@ -51,11 +51,11 @@
   "dependencies": {
     "@material/data-table": "^14.0.0",
     "@material/dom": "^14.0.0",
-    "@smui/checkbox": "^8.0.0-beta.2",
-    "@smui/common": "^8.0.0-beta.2",
-    "@smui/icon-button": "^8.0.0-beta.2",
-    "@smui/ripple": "^8.0.0-beta.2",
-    "@smui/select": "^8.0.0-beta.2"
+    "@smui/checkbox": "^8.0.0-beta.3",
+    "@smui/common": "^8.0.0-beta.3",
+    "@smui/icon-button": "^8.0.0-beta.3",
+    "@smui/ripple": "^8.0.0-beta.3",
+    "@smui/select": "^8.0.0-beta.3"
   },
   "devDependencies": {
     "@tsconfig/svelte": "^5.0.4",
