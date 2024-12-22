@@ -53,8 +53,7 @@
     "@smui/button": "^8.0.0-beta.2",
     "@smui/common": "^8.0.0-beta.2",
     "@smui/icon-button": "^8.0.0-beta.2",
-    "@smui/ripple": "^8.0.0-beta.2",
-    "svelte2tsx": "^0.7.26"
+    "@smui/ripple": "^8.0.0-beta.2"
   },
   "devDependencies": {
     "@material/button": "^14.0.0",

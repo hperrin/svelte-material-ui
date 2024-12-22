@@ -1,5 +1,4 @@
 /// <reference types="svelte" />
-/// <reference types="svelte2tsx/svelte-jsx" />
 
 declare namespace svelteHTML {
   type EventHandler<E, T> = import('svelte/elements').EventHandler<E, T>;

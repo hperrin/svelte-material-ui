@@ -86,8 +86,7 @@
     "@smui/floating-label": "^8.0.0-beta.2",
     "@smui/line-ripple": "^8.0.0-beta.2",
     "@smui/notched-outline": "^8.0.0-beta.2",
-    "@smui/ripple": "^8.0.0-beta.2",
-    "svelte2tsx": "^0.7.26"
+    "@smui/ripple": "^8.0.0-beta.2"
   },
   "devDependencies": {
     "@tsconfig/svelte": "^5.0.4",

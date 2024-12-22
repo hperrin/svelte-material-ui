@@ -53,8 +53,7 @@
     "@material/menu": "^14.0.0",
     "@smui/common": "^8.0.0-beta.2",
     "@smui/list": "^8.0.0-beta.2",
-    "@smui/menu-surface": "^8.0.0-beta.2",
-    "svelte2tsx": "^0.7.26"
+    "@smui/menu-surface": "^8.0.0-beta.2"
   },
   "devDependencies": {
     "@tsconfig/svelte": "^5.0.4",

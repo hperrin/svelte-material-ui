@@ -1,5 +1,4 @@
 /// <reference types="svelte" />
-/// <reference types="svelte2tsx/svelte-jsx" />
 
 // Needed until https://github.com/sveltejs/language-tools/issues/431 is solved.
 
