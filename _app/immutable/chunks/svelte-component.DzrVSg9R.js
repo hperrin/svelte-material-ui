@@ -1,0 +1,1 @@
+import{S as c,T as s,P as i,Q as r,F as h,U as p,G as d}from"./runtime.W_ZEMHic.js";function u(t,f,o){r&&h();var n=t,a,e;c(()=>{a!==(a=f())&&(e&&(p(e),e=null),a&&(e=i(()=>o(n,a))))},s),r&&(n=d)}export{u as c};
