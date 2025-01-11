@@ -117,7 +117,7 @@ yargs(hideBin(process.argv))
           }_smui-theme.scss`,
           {
             agent: process.env['https_proxy']
-              ? new HttpsProxyAgent(process.env['https_proxy'])
+              ? new HttpsProxyAgent.HttpsProxyAgent(process.env['https_proxy'])
               : undefined,
           },
         ).then((result) => result.text());
