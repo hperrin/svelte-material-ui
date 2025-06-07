@@ -4,10 +4,10 @@
   bind:this={element}
   use:useActions={use}
   class={classMap({
-    [className]: true,
     'mdc-card': true,
     'mdc-card--outlined': variant === 'outlined',
     'smui-card--padded': padded,
+    [className]: true,
   })}
   {...restProps}
 >
