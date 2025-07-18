@@ -4,12 +4,12 @@
   bind:this={element}
   use:useActions={use}
   class={classMap({
-    [className]: true,
     'mdc-drawer': true,
     'mdc-drawer--dismissible': variant === 'dismissible',
     'mdc-drawer--modal': variant === 'modal',
     'smui-drawer__absolute': variant === 'modal' && !fixed,
     ...internalClasses,
+    [className]: true,
   })}
   {...restProps}
   onkeydown={(e) => {

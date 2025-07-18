@@ -4,8 +4,8 @@
   bind:this={element}
   use:useActions={use}
   class={classMap({
-    [className]: true,
     'mdc-select__icon': true,
+    [className]: true,
   })}
   aria-hidden={tabindex === -1 ? 'true' : 'false'}
   aria-disabled={role === 'button' ? (disabled ? 'true' : 'false') : undefined}

@@ -4,7 +4,6 @@
   bind:this={element}
   {use}
   class={classMap({
-    [className]: true,
     'smui-accordion__panel': true,
     'smui-accordion__panel--open': open,
     'smui-accordion__panel--opened': opened,
@@ -16,6 +15,7 @@
     (extend && open ? extendedElevation : elevation)]:
       (elevation !== 0 && variant === 'raised') ||
       (extendedElevation !== 0 && variant === 'raised' && extend && open),
+    [className]: true,
   })}
   {color}
   variant={variant === 'raised' ? 'unelevated' : variant}

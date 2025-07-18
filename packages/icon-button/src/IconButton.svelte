@@ -19,7 +19,6 @@
     ...use,
   ]}
   class={classMap({
-    [className]: true,
     'mdc-icon-button': true,
     'mdc-icon-button--on': !isUninitializedValue(pressed) && pressed,
     'mdc-icon-button--touch': touch,
@@ -39,6 +38,7 @@
       (context === 'dialog:header' || context === 'dialog:sheet') &&
       action === 'close',
     ...internalClasses,
+    [className]: true,
   })}
   style={Object.entries(internalStyles)
     .map(([name, value]) => `${name}: ${value};`)

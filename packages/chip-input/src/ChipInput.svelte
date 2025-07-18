@@ -4,9 +4,9 @@
   bind:this={element}
   use:useActions={use}
   class={classMap({
-    [className]: true,
     'smui-chip-input': true,
     'smui-chip-input--disabled': disabled,
+    [className]: true,
   })}
   {...exclude(restProps, [
     'chipSet$',

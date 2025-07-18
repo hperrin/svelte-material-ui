@@ -4,10 +4,10 @@
   bind:this={element}
   use:useActions={use}
   class={classMap({
-    [className]: true,
     'mdc-card__media': true,
     'mdc-card__media--square': aspectRatio === 'square',
     'mdc-card__media--16-9': aspectRatio === '16x9',
+    [className]: true,
   })}
   {...restProps}
 >

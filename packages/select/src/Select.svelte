@@ -12,7 +12,6 @@
   use:Anchor={{ addClass, removeClass }}
   use:useActions={use}
   class={classMap({
-    [className]: true,
     'mdc-select': true,
     'mdc-select--required': required,
     'mdc-select--disabled': disabled,
@@ -28,6 +27,7 @@
     'mdc-data-table__pagination-rows-per-page-select':
       context === 'data-table:pagination',
     ...internalClasses,
+    [className]: true,
   })}
   style={Object.entries(internalStyles)
     .map(([name, value]) => `${name}: ${value};`)

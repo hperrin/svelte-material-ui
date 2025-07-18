@@ -21,8 +21,8 @@
     <span
       bind:this={primaryAction}
       class={classMap({
-        [className]: true,
         'mdc-chip__primary-action': true,
+        [className]: true,
       })}
       {...$filter || $choice
         ? { 'aria-selected': $isSelected ? 'true' : 'false' }

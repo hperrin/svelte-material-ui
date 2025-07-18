@@ -4,9 +4,9 @@
   bind:this={element}
   use:useActions={use}
   class={classMap({
-    [className]: true,
     'smui-button__group': true,
     'smui-button__group--raised': variant === 'raised',
+    [className]: true,
   })}
   {...restProps}
 >

@@ -4,8 +4,8 @@
   bind:this={element}
   use:useActions={use}
   class={classMap({
-    [className]: true,
     'mdc-layout-grid__inner': true,
+    [className]: true,
   })}
   {...restProps}
 >

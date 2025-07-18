@@ -4,9 +4,9 @@
   bind:this={element}
   use:useActions={use}
   class={classMap({
-    [className]: true,
     'mdc-deprecated-list-item__graphic': true,
     'mdc-menu__selection-group-icon': menuSelectionGroup,
+    [className]: true,
   })}
   {...restProps}>{@render children?.()}</span
 >

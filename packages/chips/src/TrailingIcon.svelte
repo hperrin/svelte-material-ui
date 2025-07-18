@@ -3,9 +3,9 @@
 <span bind:this={element} use:useActions={use} role="gridcell">
   <i
     class={classMap({
-      [className]: true,
       'mdc-chip__icon': true,
       'mdc-chip__icon--trailing': true,
+      [className]: true,
     })}
     {...restProps}>{@render children?.()}</i
   >

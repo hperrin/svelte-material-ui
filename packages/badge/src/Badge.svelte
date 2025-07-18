@@ -4,12 +4,12 @@
   bind:this={element}
   use:useActions={use}
   class={classMap({
-    [className]: true,
     'smui-badge': true,
     'smui-badge--rounded': !square,
     ['smui-badge--color-' + color]: true,
     ['smui-badge--position-' + position]: true,
     ['smui-badge--align-' + align]: true,
+    [className]: true,
   })}
   role="status"
   {...restProps}

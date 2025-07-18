@@ -4,8 +4,8 @@
   bind:this={element}
   use:useActions={use}
   class={classMap({
-    [className]: true,
     'mdc-text-field__input': true,
+    [className]: true,
   })}
   {type}
   {placeholder}

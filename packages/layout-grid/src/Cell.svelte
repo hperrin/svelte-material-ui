@@ -4,7 +4,6 @@
   bind:this={element}
   use:useActions={use}
   class={classMap({
-    [className]: true,
     'mdc-layout-grid__cell': true,
     ['mdc-layout-grid__cell--align-' + align]: align != null,
     ['mdc-layout-grid__cell--order-' + order]: order != null,
@@ -15,6 +14,7 @@
         true,
       ]),
     ),
+    [className]: true,
   })}
   {...restProps}
 >

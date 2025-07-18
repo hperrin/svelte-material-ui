@@ -5,8 +5,8 @@
     bind:this={element}
     use:useActions={use}
     class={classMap({
-      [className]: true,
       'mdc-tooltip-wrapper--rich': true,
+      [className]: true,
     })}
     {...restProps}
   >

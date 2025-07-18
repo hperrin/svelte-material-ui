@@ -5,7 +5,6 @@
   bind:this={element}
   {use}
   class={classMap({
-    [className]: true,
     'mdc-button__icon': context === 'button',
     'mdc-fab__icon': context === 'fab',
     'mdc-icon-button__icon': context === 'icon-button',
@@ -13,6 +12,7 @@
     'mdc-tab__icon': context === 'tab',
     'mdc-banner__icon': context === 'banner',
     'mdc-segmented-button__icon': context === 'segmented-button',
+    [className]: true,
   })}
   aria-hidden="true"
   {...svg ? { focusable: 'false', tabindex: '-1' } : {}}

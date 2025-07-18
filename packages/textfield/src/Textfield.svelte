@@ -15,7 +15,6 @@
     }}
     use:useActions={use}
     class={classMap({
-      [className]: true,
       'mdc-text-field': true,
       'mdc-text-field--disabled': disabled,
       'mdc-text-field--textarea': textarea,
@@ -36,6 +35,7 @@
       'mdc-text-field--with-internal-counter': textarea && internalCounter,
       'mdc-text-field--invalid': invalid,
       ...internalClasses,
+      [className]: true,
     })}
     style={Object.entries(internalStyles)
       .map(([name, value]) => `${name}: ${value};`)
@@ -197,7 +197,6 @@
     }}
     use:useActions={use}
     class={classMap({
-      [className]: true,
       'mdc-text-field': true,
       'mdc-text-field--disabled': disabled,
       'mdc-text-field--textarea': textarea,
@@ -209,6 +208,7 @@
       'mdc-text-field--with-trailing-icon': trailingIcon,
       'mdc-text-field--invalid': invalid,
       ...internalClasses,
+      [className]: true,
     })}
     style={Object.entries(internalStyles)
       .map(([name, value]) => `${name}: ${value};`)

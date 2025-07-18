@@ -4,10 +4,10 @@
   bind:this={element}
   use:useActions={use}
   class={classMap({
-    [className]: true,
     'mdc-layout-grid': true,
     'mdc-layout-grid--fixed-column-width': fixedColumnWidth,
     ['mdc-layout-grid--align-' + align]: align != null,
+    [className]: true,
   })}
   {...exclude(restProps, ['innerGrid$'])}
 >

@@ -13,7 +13,6 @@
   bind:this={element}
   use:useActions={use}
   class={classMap({
-    [className]: true,
     'mdc-top-app-bar': true,
     'mdc-top-app-bar--short': variant === 'short',
     'mdc-top-app-bar--short-collapsed': collapsed,
@@ -23,6 +22,7 @@
     'mdc-top-app-bar--prominent': prominent,
     'mdc-top-app-bar--dense': dense,
     ...internalClasses,
+    [className]: true,
   })}
   style={Object.entries(internalStyles)
     .map(([name, value]) => `${name}: ${value};`)

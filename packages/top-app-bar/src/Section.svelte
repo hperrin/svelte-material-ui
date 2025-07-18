@@ -4,10 +4,10 @@
   bind:this={element}
   use:useActions={use}
   class={classMap({
-    [className]: true,
     'mdc-top-app-bar__section': true,
     'mdc-top-app-bar__section--align-start': align === 'start',
     'mdc-top-app-bar__section--align-end': align === 'end',
+    [className]: true,
   })}
   {...toolbar ? { role: 'toolbar' } : {}}
   {...restProps}

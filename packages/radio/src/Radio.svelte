@@ -11,11 +11,11 @@
   }}
   use:useActions={use}
   class={classMap({
-    [className]: true,
     'mdc-radio': true,
     'mdc-radio--disabled': disabled,
     'mdc-radio--touch': touch,
     ...internalClasses,
+    [className]: true,
   })}
   style={Object.entries(internalStyles)
     .map(([name, value]) => `${name}: ${value};`)

@@ -17,12 +17,12 @@
     ...use,
   ]}
   class={classMap({
-    [className]: true,
     'mdc-tab': true,
     'mdc-tab--active': active,
     'mdc-tab--stacked': stacked,
     'mdc-tab--min-width': minWidth,
     ...internalClasses,
+    [className]: true,
   })}
   style={Object.entries(internalStyles)
     .map(([name, value]) => `${name}: ${value};`)

@@ -4,12 +4,12 @@
   bind:this={element}
   use:useActions={use}
   class={classMap({
-    [className]: true,
     'mdc-tab-scroller': true,
     'mdc-tab-scroller--align-start': align === 'start',
     'mdc-tab-scroller--align-end': align === 'end',
     'mdc-tab-scroller--align-center': align === 'center',
     ...internalClasses,
+    [className]: true,
   })}
   {...exclude(restProps, ['scrollArea$', 'scrollContent$'])}
 >

@@ -4,11 +4,11 @@
   bind:this={element}
   use:useActions={use}
   class={classMap({
-    [className]: true,
     'mdc-data-table__header-row': header,
     'mdc-data-table__row': !header,
     'mdc-data-table__row--selected': !header && checkbox && checkbox.checked,
     ...internalClasses,
+    [className]: true,
   })}
   aria-selected={checkbox ? (checkbox.checked ? 'true' : 'false') : undefined}
   {...internalAttrs}

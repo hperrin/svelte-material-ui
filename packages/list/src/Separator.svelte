@@ -5,13 +5,13 @@
   bind:this={element}
   {use}
   class={classMap({
-    [className]: true,
     'mdc-deprecated-list-divider': true,
     'mdc-deprecated-list-divider--padded': padded,
     'mdc-deprecated-list-divider--inset': inset,
     'mdc-deprecated-list-divider--inset-leading': insetLeading,
     'mdc-deprecated-list-divider--inset-trailing': insetTrailing,
     'mdc-deprecated-list-divider--inset-padding': insetPadding,
+    [className]: true,
   })}
   role="separator"
   {...restProps}

@@ -4,11 +4,11 @@
   bind:this={element}
   use:useActions={use}
   class={classMap({
-    [className]: true,
     'mdc-notched-outline': true,
     'mdc-notched-outline--notched': notched,
     'mdc-notched-outline--no-label': noLabel,
     ...internalClasses,
+    [className]: true,
   })}
   {...restProps}
 >

@@ -5,7 +5,6 @@
   bind:this={element}
   {use}
   class={classMap({
-    [className]: true,
     'mdc-button__label': context === 'button',
     'mdc-fab__label': context === 'fab',
     'mdc-tab__text-label': context === 'tab',
@@ -17,6 +16,7 @@
       context === 'data-table:pagination',
     'mdc-data-table__header-cell-label':
       context === 'data-table:sortable-header-cell',
+    [className]: true,
   })}
   {...context === 'snackbar' ? { 'aria-atomic': 'false' } : {}}
   {tabindex}

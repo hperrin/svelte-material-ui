@@ -19,7 +19,6 @@
     ...use,
   ]}
   class={classMap({
-    [className]: true,
     'mdc-fab': true,
     'mdc-fab--mini': mini,
     'mdc-fab--exited': exited,
@@ -27,6 +26,7 @@
     'smui-fab--color-primary': color === 'primary',
     'mdc-fab--touch': touch,
     ...internalClasses,
+    [className]: true,
   })}
   style={Object.entries(internalStyles)
     .map(([name, value]) => `${name}: ${value};`)

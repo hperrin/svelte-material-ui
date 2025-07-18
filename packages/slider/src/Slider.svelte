@@ -4,13 +4,13 @@
   bind:this={element}
   use:useActions={use}
   class={Object.entries({
-    [className]: true,
     'mdc-slider': true,
     'mdc-slider--range': range,
     'mdc-slider--discrete': discrete,
     'mdc-slider--tick-marks': discrete && tickMarks,
     'mdc-slider--disabled': disabled,
     ...internalClasses,
+    [className]: true,
   })
     .filter(([name, value]) => name !== '' && value)
     .map(([name]) => name)

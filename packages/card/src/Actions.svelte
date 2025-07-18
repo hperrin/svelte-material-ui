@@ -4,9 +4,9 @@
   bind:this={element}
   use:useActions={use}
   class={classMap({
-    [className]: true,
     'mdc-card__actions': true,
     'mdc-card__actions--full-bleed': fullBleed,
+    [className]: true,
   })}
   {...restProps}
 >

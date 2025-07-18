@@ -4,8 +4,8 @@
   bind:this={element}
   {use}
   class={classMap({
-    [className]: true,
     'mdc-menu': true,
+    [className]: true,
   })}
   bind:open
   bind:anchorElement

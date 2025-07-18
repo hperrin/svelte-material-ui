@@ -10,7 +10,6 @@
   bind:this={element}
   use:useActions={use}
   class={classMap({
-    [className]: true,
     'mdc-dialog': true,
     'mdc-dialog--stacked': !autoStackButtons,
     'mdc-dialog--fullscreen': fullscreen,
@@ -18,6 +17,7 @@
     'mdc-dialog--no-content-padding': noContentPadding,
     'smui-dialog--selection': selection,
     ...internalClasses,
+    [className]: true,
   })}
   role="alertdialog"
   aria-modal="true"

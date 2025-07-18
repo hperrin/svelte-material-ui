@@ -13,9 +13,9 @@
     addStyle,
   }}
   class={classMap({
-    [className]: true,
     'smui-accordion__header': true,
     ...internalClasses,
+    [className]: true,
   })}
   style={Object.entries(internalStyles)
     .map(([name, value]) => `${name}: ${value};`)
