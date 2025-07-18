@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.0.0](https://github.com/hperrin/svelte-material-ui/compare/v8.0.0-beta.3...v8.0.0) (2025-07-18)
+
+**Note:** Version bump only for package @smui-extra/badge
+
+
+
+
+
 # [8.0.0-beta.3](https://github.com/hperrin/svelte-material-ui/compare/v8.0.0-beta.2...v8.0.0-beta.3) (2024-12-22)
 
 **Note:** Version bump only for package @smui-extra/badge
