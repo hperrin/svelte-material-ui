@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.0.1](https://github.com/hperrin/svelte-material-ui/compare/v8.0.0...v8.0.1) (2025-07-18)
+
+**Note:** Version bump only for package @smui/touch-target
+
+
+
+
+
 # [8.0.0](https://github.com/hperrin/svelte-material-ui/compare/v8.0.0-beta.3...v8.0.0) (2025-07-18)
 
 **Note:** Version bump only for package @smui/touch-target

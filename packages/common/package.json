@@ -1,6 +1,6 @@
 {
   "name": "@smui/common",
-  "version": "8.0.0",
+  "version": "8.0.1",
   "description": "Svelte Material UI - Common",
   "type": "module",
   "svelte": "./dist/index.js",
