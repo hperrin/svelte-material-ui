@@ -1,6 +1,6 @@
 @use '@smui/paper/mixins' as paper;
-@use '@material/theme/color-palette';
-@use '@material/theme/theme-color';
+@use '@smui/theme/color-palette';
+@use '@smui/theme/theme-color';
 
 @include paper.paper-color(
   custom-green,

@@ -74,7 +74,7 @@
     "@smui/touch-target": "^8.0.1"
   },
   "dependencies": {
-    "@material/theme": "^14.0.0",
+    "@smui/theme": "^8.0.1",
     "https-proxy-agent": "^7.0.6",
     "node-fetch": "^2.7.0",
     "sass": "^1.83.0",

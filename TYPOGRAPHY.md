@@ -4,7 +4,7 @@ If you'd like to style your entire app using Material's typography, you can add 
 
 ```scss
 // Import the mixins.
-@use '@material/typography/index' as typography;
+@use '@smui/typography/index' as typography;
 
 html {
   @include typography.typography('body1');

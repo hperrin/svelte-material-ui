@@ -1,11 +1,11 @@
 @use '@material/textfield/index' as textfield;
 @use '@material/textfield/icon/variables' as icon-variables;
-@use '@material/ripple/index' as ripple;
+@use '@smui/ripple/styles/index' as ripple;
 @use '@material/floating-label/mixins' as floating-label-mixins;
 @use '@material/floating-label/variables' as floating-label-variables;
-@use '@material/rtl/mixins' as rtl-mixins;
-@use '@material/typography/typography';
-@use '@material/feature-targeting/index' as feature-targeting;
+@use '@smui/rtl/mixins' as rtl-mixins;
+@use '@smui/typography/typography';
+@use '@smui/feature-targeting/index' as feature-targeting;
 
 @mixin core-styles($query: feature-targeting.all()) {
   $feat-structure: feature-targeting.create-target($query, structure);

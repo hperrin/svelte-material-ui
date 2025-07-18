@@ -1,4 +1,4 @@
-@use '@material/theme/theme-color';
+@use '@smui/theme/theme-color';
 @use '@material/snackbar/index' as snackbar with (
   $action-ink-color: theme-color.prop-value(primary)
 );

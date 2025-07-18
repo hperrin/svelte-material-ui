@@ -48,7 +48,7 @@
 
 <script lang="ts" generics="TagName extends SmuiEveryElement = 'ul'">
   import { MDCListFoundation } from '@material/list';
-  import { ponyfill } from '@material/dom';
+  import { ponyfill } from '@smui/dom';
   import type { Snippet } from 'svelte';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
   import type { AddLayoutListener, RemoveLayoutListener } from '@smui/common';

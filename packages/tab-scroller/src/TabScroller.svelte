@@ -81,7 +81,7 @@
 
 <script lang="ts">
   import { MDCTabScrollerFoundation, util } from '@material/tab-scroller';
-  import { ponyfill } from '@material/dom';
+  import { ponyfill } from '@smui/dom';
   import type { Snippet } from 'svelte';
   import { onMount } from 'svelte';
   import type { SmuiAttrs, SmuiElementPropMap } from '@smui/common';

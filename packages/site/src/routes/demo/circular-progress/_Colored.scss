@@ -1,5 +1,5 @@
 @use '@material/circular-progress/mixins' as circular-progress;
-@use '@material/theme/color-palette';
+@use '@smui/theme/color-palette';
 
 .my-colored-circle {
   @include circular-progress.color(color-palette.$green-600);

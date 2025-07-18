@@ -3,8 +3,8 @@
 // See https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-snackbar
 @use '@material/snackbar/mixins' as snackbar;
 // See https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-theme
-@use '@material/theme/color-palette';
-@use '@material/theme/theme-color';
+@use '@smui/theme/color-palette';
+@use '@smui/theme/theme-color';
 
 .mdc-snackbar.demo-success {
   @include snackbar.fill-color(color-palette.$green-500);

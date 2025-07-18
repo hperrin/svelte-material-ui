@@ -70,19 +70,18 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@material/feature-targeting": "^14.0.0",
-    "@material/ripple": "^14.0.0",
-    "@material/rtl": "^14.0.0",
     "@material/select": "^14.0.0",
-    "@material/theme": "^14.0.0",
     "@smui/common": "^8.0.1",
+    "@smui/feature-targeting": "^8.0.1",
     "@smui/floating-label": "^8.0.1",
     "@smui/line-ripple": "^8.0.1",
     "@smui/list": "^8.0.1",
     "@smui/menu": "^8.0.1",
     "@smui/menu-surface": "^8.0.1",
     "@smui/notched-outline": "^8.0.1",
-    "@smui/ripple": "^8.0.1"
+    "@smui/ripple": "^8.0.1",
+    "@smui/rtl": "^8.0.1",
+    "@smui/theme": "^8.0.1"
   },
   "devDependencies": {
     "@tsconfig/svelte": "^5.0.4",

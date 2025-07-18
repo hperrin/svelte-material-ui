@@ -1,0 +1,46 @@
+{
+  "name": "@smui/typography",
+  "version": "8.0.1",
+  "description": "Svelte Material UI - Typography",
+  "exports": {
+    "./package.json": {
+      "types": "./package.json",
+      "svelte": "./package.json"
+    }
+  },
+  "keywords": [
+    "svelte",
+    "svelte3",
+    "material-ui",
+    "material-design",
+    "material",
+    "svelte-components",
+    "sveltejs"
+  ],
+  "scripts": {
+    "build": "npm run build:sass",
+    "build:sass": "sass --no-source-map -I node_modules -I ../smui-theme/node_modules -I ../../node_modules styles.scss bare.css",
+    "clean": "git status --ignored -u --porcelain . | grep -v node_modules/ | grep -e '^!! ' | sed 's/^!! packages\\/[a-z-]*\\///g' | tr '\\n' ' ' | xargs rm",
+    "prepublish": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hperrin/svelte-material-ui.git"
+  },
+  "author": "Hunter Perrin <hperrin@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/hperrin/svelte-material-ui/issues"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@smui/feature-targeting": "^8.0.1",
+    "@smui/theme": "^8.0.1"
+  },
+  "devDependencies": {
+    "sass": "^1.83.0"
+  }
+}

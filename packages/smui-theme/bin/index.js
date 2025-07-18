@@ -59,7 +59,7 @@ yargs(hideBin(process.argv))
           ...argv.includes,
           // Include the node_modules directory for MDC styles.
           path.resolve(
-            path.dirname(require.resolve('@material/dom/package.json')),
+            path.dirname(require.resolve('@smui/dom/package.json')),
             '..',
             '..',
           ),

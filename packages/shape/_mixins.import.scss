@@ -1,0 +1,5 @@
+@forward '@smui/feature-targeting' as mdc-feature-*;
+@forward '@smui/rtl' as mdc-rtl-* hide mdc-rtl-rtl;
+@forward '@smui/rtl' as mdc-* hide mdc-property-, mdc-reflexive,
+  mdc-reflexive-box, mdc-reflexive-position, mdc-reflexive-property;
+@forward './index' as mdc-shape-*;

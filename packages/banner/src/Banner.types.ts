@@ -1,2 +1,2 @@
-export { CloseReason } from '@material/banner';
-export type { Action } from '@material/banner';
+export { CloseReason } from './mdc';
+export type { Action } from './mdc';

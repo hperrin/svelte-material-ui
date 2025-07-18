@@ -71,7 +71,7 @@
     SortValue,
   } from '@material/data-table';
   import { MDCDataTableFoundation } from '@material/data-table';
-  import { ponyfill } from '@material/dom';
+  import { ponyfill } from '@smui/dom';
   import type { Snippet } from 'svelte';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
   import { writable } from 'svelte/store';

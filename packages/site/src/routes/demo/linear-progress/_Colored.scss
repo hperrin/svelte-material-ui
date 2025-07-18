@@ -1,5 +1,5 @@
 @use '@material/linear-progress/mixins' as linear-progress;
-@use '@material/theme/color-palette';
+@use '@smui/theme/color-palette';
 
 .my-colored-linear-progress {
   @include linear-progress.bar-color(color-palette.$green-600);

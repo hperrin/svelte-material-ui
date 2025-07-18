@@ -7,7 +7,7 @@
 
   <h5>Installation</h5>
 
-  <pre class="demo-spaced">npm i -D @material/typography@^14.0.0</pre>
+  <pre class="demo-spaced">npm i -D @smui/typography</pre>
 
   <h5>Demos</h5>
 

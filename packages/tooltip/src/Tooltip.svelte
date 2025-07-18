@@ -55,7 +55,7 @@
 </script>
 
 <script lang="ts">
-  import type { SpecificEventListener } from '@material/base/types';
+  import type { SpecificEventListener } from '@smui/base/types';
   import {
     MDCTooltipFoundation,
     AnchorBoundaryType,

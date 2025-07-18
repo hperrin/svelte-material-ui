@@ -33,7 +33,7 @@
 
 <script lang="ts">
   import { MDCMenuFoundation, cssClasses } from '@material/menu';
-  import { ponyfill } from '@material/dom';
+  import { ponyfill } from '@smui/dom';
   import type { ComponentProps, Snippet } from 'svelte';
   import { onMount, getContext, setContext } from 'svelte';
   import type { ActionArray } from '@smui/common/internal';

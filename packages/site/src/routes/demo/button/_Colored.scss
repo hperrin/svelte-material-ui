@@ -1,5 +1,5 @@
 @use '@material/button/mixins' as button;
-@use '@material/theme/color-palette';
+@use '@smui/theme/color-palette';
 
 .my-colored-button {
   &.mdc-button {

@@ -1,7 +1,7 @@
 @use 'sass:color';
-@use '@material/feature-targeting/index' as feature-targeting;
-@use '@material/theme/theme-color';
-@use '@material/theme/index' as theme;
+@use '@smui/feature-targeting/index' as feature-targeting;
+@use '@smui/theme/theme-color';
+@use '@smui/theme/index' as theme;
 @use '@material/switch/index' as switch;
 
 $margin: 14px !default;

@@ -1,7 +1,7 @@
 @use 'sass:color';
 
 // Color scheme: https://coolors.co/222222-fffbfe-a76295-55808b-ff4000
-@use '@material/theme/index' as theme with (
+@use '@smui/theme/index' as theme with (
   $primary: #a76295,
   $secondary: #55808b,
   $surface: #fffbfe,
@@ -10,12 +10,12 @@
 );
 
 // More dense default scale.
-@use '@material/density/index' as density with (
+@use '@smui/density/index' as density with (
   $default-scale: -1
 );
 
 // Custon animation curves.
-@use '@material/animation/index' as animation with (
+@use '@smui/animation/index' as animation with (
   $deceleration-curve-timing-function: cubic-bezier(0, 0.5, 0.1, 1),
   $standard-curve-timing-function: cubic-bezier(0.6, 0, 0.4, 1),
   $acceleration-curve-timing-function: cubic-bezier(0.5, 0, 1, 0.7),
@@ -23,14 +23,14 @@
 );
 
 // Increase border radii.
-@use '@material/shape/index' as shape with (
+@use '@smui/shape/index' as shape with (
   $small-component-radius: 8px,
   $medium-component-radius: 15px,
   $large-component-radius: 20px
 );
 
 // Increase elevations.
-@use '@material/elevation/index' as elevation with (
+@use '@smui/elevation/index' as elevation with (
   $umbra-map: (
     0: '0px 0px 0px 0px',
     1: '0px 3px 3px -2px',
@@ -115,7 +115,7 @@
 );
 
 // Use custom fonts.
-@use '@material/typography' with (
+@use '@smui/typography' with (
   $font-family: unquote('Verdana, Geneva, sans-serif'),
   $styles-headline1: (
     font-family: unquote('Tahoma, sans-serif'),

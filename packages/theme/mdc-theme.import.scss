@@ -1,0 +1,8 @@
+@forward '@smui/feature-targeting/variables' as mdc-feature-*;
+@forward '@smui/feature-targeting/mixins' as mdc-feature-*;
+@forward 'constants' as mdc-theme-*;
+@forward 'variables' as mdc-theme-*;
+@forward 'mixins' as mdc-theme-*;
+@forward '@smui/feature-targeting/functions' as mdc-feature-*;
+@forward 'functions' as mdc-theme-*;
+@forward 'mdc-theme';

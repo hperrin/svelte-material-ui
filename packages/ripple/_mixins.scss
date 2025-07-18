@@ -1,5 +1,5 @@
-@use '@material/ripple/index' as ripple;
-@use '@material/feature-targeting/index' as feature-targeting;
+@use './styles/index' as ripple;
+@use '@smui/feature-targeting/index' as feature-targeting;
 
 @mixin core-styles($query: feature-targeting.all()) {
   .smui-ripple-surface {

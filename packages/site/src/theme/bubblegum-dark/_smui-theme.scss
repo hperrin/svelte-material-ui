@@ -2,7 +2,7 @@
 @use 'sass:color';
 
 // Color scheme: https://coolors.co/222222-000000-ff4791-37deff-ff7d27
-@use '@material/theme/index' as theme with (
+@use '@smui/theme/index' as theme with (
   $primary: #ff4791,
   $secondary: #37deff,
   $surface: #222222,
@@ -11,12 +11,12 @@
 );
 
 // Less dense default scale.
-@use '@material/density/index' as density with (
+@use '@smui/density/index' as density with (
   $default-scale: maximum
 );
 
 // Custon animation curves.
-@use '@material/animation/index' as animation with (
+@use '@smui/animation/index' as animation with (
   $deceleration-curve-timing-function: cubic-bezier(0, 0.5, 0.1, 1),
   $standard-curve-timing-function: cubic-bezier(0.6, 0, 0.4, 1),
   $acceleration-curve-timing-function: cubic-bezier(0.5, 0, 1, 0.7),
@@ -24,14 +24,14 @@
 );
 
 // Increase border radii.
-@use '@material/shape/index' as shape with (
+@use '@smui/shape/index' as shape with (
   $small-component-radius: 10px,
   $medium-component-radius: 18px,
   $large-component-radius: 24px
 );
 
 // Use custom fonts. Slightly increase font sizes.
-@use '@material/typography' with (
+@use '@smui/typography' with (
   $font-family: unquote('"Poppins", sans-serif'),
   $styles-headline1: (
     font-family: unquote('"Poetsen One", sans-serif'),

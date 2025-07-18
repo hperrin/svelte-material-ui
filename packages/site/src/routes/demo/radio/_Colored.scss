@@ -1,5 +1,5 @@
 @use '@material/radio/mixins' as radio;
-@use '@material/theme/color-palette';
+@use '@smui/theme/color-palette';
 
 .my-colored-radio {
   @include radio.checked-stroke-color(color-palette.$green-600);

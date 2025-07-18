@@ -49,9 +49,9 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@material/density": "^14.0.0",
     "@material/icon-button": "^14.0.0",
     "@smui/common": "^8.0.1",
+    "@smui/density": "^8.0.1",
     "@smui/ripple": "^8.0.1"
   },
   "devDependencies": {

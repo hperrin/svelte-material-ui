@@ -1,5 +1,5 @@
 <!--
-  You need to import `@material/elevation/mdc-elevation` in SCSS for
+  You need to import `@smui/elevation/mdc-elevation` in SCSS for
   these to work. Check out "_Elevation.scss"
 -->
 

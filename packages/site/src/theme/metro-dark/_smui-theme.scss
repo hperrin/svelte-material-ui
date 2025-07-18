@@ -1,6 +1,6 @@
 @use 'sass:color';
 
-@use '@material/theme/index' as theme with (
+@use '@smui/theme/index' as theme with (
   $primary: #008299,
   $secondary: #8c0095,
   $surface: #000000,
@@ -9,19 +9,19 @@
 );
 
 // Elevation shadow color. (Since surface is #000.)
-@use '@material/elevation/index' as elevation with (
+@use '@smui/elevation/index' as elevation with (
   $baseline-color: #333333
 );
 
 // Sharp corners.
-@use '@material/shape/index' as shape with (
+@use '@smui/shape/index' as shape with (
   $small-component-radius: 0,
   $medium-component-radius: 0,
   $large-component-radius: 0
 );
 
 // Use custom fonts.
-@use '@material/typography' with (
+@use '@smui/typography' with (
   $font-family: unquote('"Selawik", "Segoe UI", sans-serif'),
   $styles-headline1: (
     font-family: unquote('"Selawik Light", "Segoe UI", sans-serif'),

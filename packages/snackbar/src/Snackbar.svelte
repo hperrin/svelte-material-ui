@@ -46,7 +46,7 @@
 
 <script lang="ts">
   import { MDCSnackbarFoundation, util } from '@material/snackbar';
-  import { ponyfill } from '@material/dom';
+  import { ponyfill } from '@smui/dom';
   import type { Snippet } from 'svelte';
   import { onMount, setContext } from 'svelte';
   import type { SmuiAttrs, SmuiElementPropMap } from '@smui/common';

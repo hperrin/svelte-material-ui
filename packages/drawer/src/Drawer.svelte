@@ -33,7 +33,7 @@
     MDCDismissibleDrawerFoundation,
     MDCModalDrawerFoundation,
   } from '@material/drawer';
-  import { focusTrap as domFocusTrap } from '@material/dom';
+  import { focusTrap as domFocusTrap } from '@smui/dom';
   import type { Snippet } from 'svelte';
   import { onMount, onDestroy, setContext } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';

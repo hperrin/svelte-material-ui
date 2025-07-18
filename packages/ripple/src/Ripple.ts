@@ -1,8 +1,10 @@
-import { MDCRippleFoundation, util } from '@material/ripple';
-import { events, ponyfill } from '@material/dom';
+import { events, ponyfill } from '@smui/dom';
 import { getContext } from 'svelte';
 import type { AddLayoutListener, RemoveLayoutListener } from '@smui/common';
 import { SvelteEventManager } from '@smui/common/internal';
+
+import { MDCRippleFoundation, util } from './mdc';
+
 const { applyPassive } = events;
 const { matches } = ponyfill;
 

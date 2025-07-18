@@ -248,7 +248,7 @@
     MDCTextFieldCharacterCounterFoundation,
   } from '@material/textfield';
   import { MDCTextFieldFoundation } from '@material/textfield';
-  import { events } from '@material/dom';
+  import { events } from '@smui/dom';
   import type { ComponentProps, Snippet } from 'svelte';
   import { onMount, onDestroy, getContext, setContext, tick } from 'svelte';
   import type {

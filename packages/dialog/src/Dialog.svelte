@@ -80,7 +80,7 @@
 
 <script lang="ts">
   import { MDCDialogFoundation, util } from '@material/dialog';
-  import { focusTrap as domFocusTrap, ponyfill } from '@material/dom';
+  import { focusTrap as domFocusTrap, ponyfill } from '@smui/dom';
   import type { Snippet } from 'svelte';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
   import type { Writable } from 'svelte/store';

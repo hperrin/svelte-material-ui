@@ -72,8 +72,7 @@
 </div>
 
 <script lang="ts">
-  import { CloseReason, MDCBannerFoundation } from '@material/banner';
-  import { focusTrap as domFocusTrap } from '@material/dom';
+  import { focusTrap as domFocusTrap } from '@smui/dom';
   import type { Snippet } from 'svelte';
   import { onMount, onDestroy, getContext, setContext, tick } from 'svelte';
   import type {
@@ -91,6 +90,7 @@
     dispatch,
   } from '@smui/common/internal';
 
+  import { CloseReason, MDCBannerFoundation } from './mdc';
   import Fixed from './Fixed.svelte';
 
   const { FocusTrap } = domFocusTrap;

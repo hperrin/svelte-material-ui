@@ -1,0 +1,15 @@
+@forward '@smui/base/mixins' as mdc-base-*;
+@forward '@smui/feature-targeting/variables' as mdc-feature-*;
+@forward '@smui/feature-targeting/mixins' as mdc-feature-*;
+@forward '@smui/theme/variables' as mdc-theme-*;
+@forward '@smui/animation/variables' as mdc-animation-*;
+@forward 'variables' as mdc-elevation-*;
+@forward '@smui/theme/mixins' as mdc-theme-*;
+@forward 'mixins' as mdc-* hide mdc-core-styles, mdc-overlay-common,
+  mdc-overlay-dimensions, mdc-overlay-fill-color, mdc-overlay-opacity,
+  mdc-overlay-selector-, mdc-overlay-surface-position, mdc-shadow;
+@forward 'mixins' as mdc-elevation-* hide mdc-elevation-elevation;
+@forward '@smui/feature-targeting/functions' as mdc-feature-*;
+@forward '@smui/theme/functions' as mdc-theme-*;
+@forward 'functions' as mdc-elevation-*;
+@forward 'mdc-elevation';

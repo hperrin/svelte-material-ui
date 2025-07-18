@@ -1,12 +1,12 @@
 // Elevation mixins.
-@use '@material/elevation/mixins' as elevation;
+@use '@smui/elevation/mixins' as elevation;
 
 // Paper mixins.
 @use '@smui/paper/mixins' as paper;
-@use '@material/theme/mixins' as theme;
+@use '@smui/theme/mixins' as theme;
 
 // Typography mixins.
-@use '@material/typography/mixins' as typography;
+@use '@smui/typography/mixins' as typography;
 
 // Main Top App Bar styling.
 @use '@material/top-app-bar/mixins' as top-app-bar-mixins;
