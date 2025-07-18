@@ -12,7 +12,6 @@
     eventTarget: checkbox,
   }}
   class={classMap({
-    [className]: true,
     'mdc-checkbox': true,
     'mdc-checkbox--disabled': disabled,
     'mdc-checkbox--touch': touch,
@@ -21,6 +20,7 @@
     'mdc-data-table__row-checkbox':
       context === 'data-table' && !dataTableHeader,
     ...internalClasses,
+    [className]: true,
   })}
   style={Object.entries(internalStyles)
     .map(([name, value]) => `${name}: ${value};`)

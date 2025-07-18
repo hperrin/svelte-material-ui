@@ -87,7 +87,7 @@ If that's not working (probably because your dependencies aren't copied to your 
 <!-- SMUI Styles -->
 <link
   rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/svelte-material-ui@7.0.0/bare.min.css"
+  href="https://cdn.jsdelivr.net/npm/svelte-material-ui@8.0.0/bare.min.css"
 />
 ```
 
@@ -134,12 +134,12 @@ Or with a CDN. **Remember to update the version!**
 <!-- SMUI Styles -->
 <link
   rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/svelte-material-ui@7.0.0/themes/svelte.min.css"
+  href="https://cdn.jsdelivr.net/npm/svelte-material-ui@8.0.0/themes/svelte.min.css"
   media="(prefers-color-scheme: light)"
 />
 <link
   rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/svelte-material-ui@7.0.0/themes/svelte-dark.min.css"
+  href="https://cdn.jsdelivr.net/npm/svelte-material-ui@8.0.0/themes/svelte-dark.min.css"
   media="screen and (prefers-color-scheme: dark)"
 />
 ```

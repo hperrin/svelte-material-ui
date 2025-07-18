@@ -6,10 +6,10 @@
   bind:this={element}
   use:useActions={use}
   class={classMap({
-    [className]: true,
     'smui-bottom-app-bar': true,
     'smui-bottom-app-bar--standard': variant === 'standard',
     'smui-bottom-app-bar--fixed': variant === 'fixed',
+    [className]: true,
   })}
   style={Object.entries(internalStyles)
     .map(([name, value]) => `${name}: ${value};`)

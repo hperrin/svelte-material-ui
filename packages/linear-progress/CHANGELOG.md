@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.0.1](https://github.com/hperrin/svelte-material-ui/compare/v8.0.0...v8.0.1) (2025-07-18)
+
+
+### Bug Fixes
+
+* move all custom classes to end of class list, allowing them to override other classes ([a25b839](https://github.com/hperrin/svelte-material-ui/commit/a25b839b920674f3e97cb02175f6bb1e8455656d))
+
+
+
+
+
 # [8.0.0](https://github.com/hperrin/svelte-material-ui/compare/v8.0.0-beta.3...v8.0.0) (2025-07-18)
 
 **Note:** Version bump only for package @smui/linear-progress

@@ -4,8 +4,8 @@
   bind:this={element}
   use:useActions={use}
   class={classMap({
-    [className]: true,
     'mdc-tab-bar': true,
+    [className]: true,
   })}
   role="tablist"
   {tabindex}

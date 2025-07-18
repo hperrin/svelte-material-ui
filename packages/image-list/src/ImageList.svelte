@@ -4,10 +4,10 @@
   bind:this={element}
   use:useActions={use}
   class={classMap({
-    [className]: true,
     'mdc-image-list': true,
     'mdc-image-list--masonry': masonry,
     'mdc-image-list--with-text-protection': withTextProtection,
+    [className]: true,
   })}
   {...restProps}
 >

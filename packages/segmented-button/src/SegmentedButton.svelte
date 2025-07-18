@@ -4,9 +4,9 @@
   bind:this={element}
   use:useActions={use}
   class={classMap({
-    [className]: true,
     'mdc-segmented-button': true,
     'mdc-segmented-button--single-select': singleSelect,
+    [className]: true,
   })}
   role={singleSelect ? 'radiogroup' : 'group'}
   {...restProps}

@@ -1,6 +1,6 @@
 <div class="card-display">
   <div class="card-container">
-    <Card>
+    <Card class="mdc-elevation--z12">
       <PrimaryAction onclick={() => clicked++}>
         <Media class="card-media-16x9" aspectRatio="16x9">
           <MediaContent>
@@ -17,7 +17,8 @@
           </MediaContent>
         </Media>
         <Content class="mdc-typography--body2">
-          It's all in this card. It's a veritable smorgasbord of card features.
+          And higher elevation. It's all in this card. It's a veritable
+          smorgasbord of card features.
         </Content>
       </PrimaryAction>
       <Actions>
@@ -55,7 +56,7 @@
   </div>
 
   <div class="card-container">
-    <Card>
+    <Card class="mdc-elevation--z12">
       <PrimaryAction onclick={() => clicked++}>
         <Media class="card-media-16x9" aspectRatio="16x9" />
         <Content class="mdc-typography--body2">
@@ -68,7 +69,8 @@
           >
             And a subtitle.
           </h3>
-          It's all in this card. It's a veritable smorgasbord of card features.
+          And higher elevation. It's all in this card. It's a veritable smorgasbord
+          of card features.
         </Content>
       </PrimaryAction>
       <Actions>

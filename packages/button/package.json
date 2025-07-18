@@ -1,6 +1,6 @@
 {
   "name": "@smui/button",
-  "version": "8.0.0",
+  "version": "8.0.1",
   "description": "Svelte Material UI - Button",
   "type": "module",
   "main": "dist/index.js",
@@ -55,8 +55,8 @@
     "@material/ripple": "^14.0.0",
     "@material/shape": "^14.0.0",
     "@material/theme": "^14.0.0",
-    "@smui/common": "^8.0.0",
-    "@smui/ripple": "^8.0.0"
+    "@smui/common": "^8.0.1",
+    "@smui/ripple": "^8.0.1"
   },
   "devDependencies": {
     "@tsconfig/svelte": "^5.0.4",

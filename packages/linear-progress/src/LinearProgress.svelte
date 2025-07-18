@@ -4,12 +4,12 @@
   bind:this={element}
   use:useActions={use}
   class={classMap({
-    [className]: true,
     'mdc-linear-progress': true,
     'mdc-linear-progress--indeterminate': indeterminate,
     'mdc-linear-progress--closed': closed,
     'mdc-data-table__linear-progress': context === 'data-table',
     ...internalClasses,
+    [className]: true,
   })}
   style={Object.entries(internalStyles)
     .map(([name, value]) => `${name}: ${value};`)

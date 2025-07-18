@@ -5,7 +5,6 @@
   bind:this={element}
   {use}
   class={classMap({
-    [className]: true,
     'mdc-deprecated-list': true,
     'mdc-deprecated-list--non-interactive': nonInteractive,
     'mdc-deprecated-list--dense': dense,
@@ -17,6 +16,7 @@
     'mdc-deprecated-list--video-list': videoList,
     'mdc-deprecated-list--two-line': twoLine,
     'smui-list--three-line': threeLine && !twoLine,
+    [className]: true,
   })}
   {role}
   {...restProps}

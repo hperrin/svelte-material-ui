@@ -4,7 +4,6 @@
   bind:this={element}
   use:useActions={use}
   class={classMap({
-    [className]: true,
     'smui-paper': true,
     'smui-paper--raised': variant === 'raised',
     'smui-paper--unelevated': variant === 'unelevated',
@@ -14,6 +13,7 @@
     'smui-paper--rounded': !square,
     ['smui-paper--color-' + color]: color !== 'default',
     'smui-paper-transition': transition,
+    [className]: true,
   })}
   {...restProps}
 >

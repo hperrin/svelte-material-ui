@@ -5,13 +5,13 @@
     bind:this={element}
     use:useActions={use}
     class={classMap({
-      [className]: true,
       'mdc-data-table__header-cell': true,
       'mdc-data-table__header-cell--numeric': numeric,
       'mdc-data-table__header-cell--checkbox': checkbox,
       'mdc-data-table__header-cell--with-sort': sortable,
       'mdc-data-table__header-cell--sorted': sortable && $sort === columnId,
       ...internalClasses,
+      [className]: true,
     })}
     role="columnheader"
     scope="col"
@@ -51,11 +51,11 @@
     bind:this={element}
     use:useActions={use}
     class={classMap({
-      [className]: true,
       'mdc-data-table__cell': true,
       'mdc-data-table__cell--numeric': numeric,
       'mdc-data-table__cell--checkbox': checkbox,
       ...internalClasses,
+      [className]: true,
     })}
     {...internalAttrs}
     {...restProps}

@@ -4,12 +4,12 @@
   bind:this={element}
   use:useActions={use}
   class={classMap({
-    [className]: true,
     'mdc-chip-set': true,
     'smui-chip-set--non-interactive': nonInteractive,
     'mdc-chip-set--choice': choice,
     'mdc-chip-set--filter': filter,
     'mdc-chip-set--input': input,
+    [className]: true,
   })}
   role="grid"
   {...restProps}

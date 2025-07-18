@@ -4,11 +4,11 @@
   bind:this={element}
   use:useActions={use}
   class={classMap({
-    [className]: true,
     'mdc-circular-progress': true,
     'mdc-circular-progress--indeterminate': indeterminate,
     'mdc-circular-progress--closed': closed,
     ...internalClasses,
+    [className]: true,
   })}
   role="progressbar"
   aria-valuemin={0}
@@ -47,9 +47,9 @@
     {#each fourColor ? [1, 2, 3, 4] : [1] as color}
       <div
         class={classMap({
-          [className]: true,
           'mdc-circular-progress__spinner-layer': true,
           ['mdc-circular-progress__color-' + color]: fourColor,
+          [className]: true,
         })}
       >
         <div

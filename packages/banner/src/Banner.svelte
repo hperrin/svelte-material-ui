@@ -6,11 +6,11 @@
   bind:this={element}
   use:useActions={use}
   class={classMap({
-    [className]: true,
     'mdc-banner': true,
     'mdc-banner--centered': centered,
     'mdc-banner--mobile-stacked': mobileStacked,
     ...internalClasses,
+    [className]: true,
   })}
   style={Object.entries(internalStyles)
     .map(([name, value]) => `${name}: ${value};`)

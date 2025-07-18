@@ -5,9 +5,9 @@
   bind:this={element}
   {use}
   class={classMap({
-    [className]: true,
     'mdc-drawer-scrim': true,
     'smui-drawer-scrim__absolute': !fixed,
+    [className]: true,
   })}
   {...restProps}
   onclick={(e: MouseEvent) => {

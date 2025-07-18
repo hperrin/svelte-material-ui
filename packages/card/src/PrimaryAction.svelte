@@ -12,10 +12,10 @@
     addStyle,
   }}
   class={classMap({
-    [className]: true,
     'mdc-card__primary-action': true,
     'smui-card__primary-action--padded': padded,
     ...internalClasses,
+    [className]: true,
   })}
   style={Object.entries(internalStyles)
     .map(([name, value]) => `${name}: ${value};`)

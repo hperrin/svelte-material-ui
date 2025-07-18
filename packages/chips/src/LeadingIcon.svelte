@@ -4,11 +4,11 @@
   bind:this={element}
   use:useActions={use}
   class={classMap({
-    [className]: true,
     'mdc-chip__icon': true,
     'mdc-chip__icon--leading': true,
     'mdc-chip__icon--leading-hidden': $filter && $isSelected,
     ...$leadingIconClasses,
+    [className]: true,
   })}
   {...restProps}>{@render children?.()}</i
 >

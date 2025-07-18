@@ -4,10 +4,10 @@
   bind:this={element}
   use:useActions={use}
   class={classMap({
-    [className]: true,
     'mdc-text-field__icon': true,
     'mdc-text-field__icon--leading': leading,
     'mdc-text-field__icon--trailing': !leading,
+    [className]: true,
   })}
   aria-hidden={tabindex === -1 ? 'true' : 'false'}
   aria-disabled={role === 'button' ? (disabled ? 'true' : 'false') : undefined}

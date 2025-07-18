@@ -6,13 +6,13 @@
   bind:this={element}
   use:useActions={use}
   class={classMap({
-    [className]: true,
     'mdc-menu-surface': true,
     'mdc-menu-surface--fixed': fixed,
     'mdc-menu-surface--open': isStatic,
     'smui-menu-surface--static': isStatic,
     'mdc-menu-surface--fullwidth': fullWidth,
     ...internalClasses,
+    [className]: true,
   })}
   style={Object.entries(internalStyles)
     .map(([name, value]) => `${name}: ${value};`)

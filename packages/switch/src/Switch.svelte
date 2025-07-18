@@ -14,13 +14,13 @@
     // Don't need addStyle, since we don't set style prop.
   }}
   class={classMap({
-    [className]: true,
     'mdc-switch': true,
     'mdc-switch--unselected': !selected,
     'mdc-switch--selected': selected,
     'mdc-switch--processing': processing,
     'smui-switch--color-secondary': color === 'secondary',
     ...internalClasses,
+    [className]: true,
   })}
   type="button"
   role="switch"

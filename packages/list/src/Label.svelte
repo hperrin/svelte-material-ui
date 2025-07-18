@@ -4,8 +4,8 @@
   bind:this={element}
   use:useActions={use}
   class={classMap({
-    [className]: true,
     'mdc-deprecated-list-item__text': true,
+    [className]: true,
   })}
   for={inputProps ? inputProps.id : undefined}
   {...restProps}>{@render children?.()}</label

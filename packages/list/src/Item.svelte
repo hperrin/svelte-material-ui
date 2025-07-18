@@ -24,7 +24,6 @@
     ...use,
   ]}
   class={classMap({
-    [className]: true,
     'mdc-deprecated-list-item': !wrapper,
     'mdc-deprecated-list-item__wrapper': wrapper,
     'mdc-deprecated-list-item--activated': activated,
@@ -33,6 +32,7 @@
     'mdc-menu-item--selected': !nav && role === 'menuitem' && selected,
     'smui-menu-item--non-interactive': nonInteractive,
     ...internalClasses,
+    [className]: true,
   })}
   style={Object.entries(internalStyles)
     .map(([name, value]) => `${name}: ${value};`)

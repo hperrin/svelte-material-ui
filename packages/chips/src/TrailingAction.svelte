@@ -12,9 +12,9 @@
   use:useActions={use}
   type="button"
   class={classMap({
-    [className]: true,
     'mdc-deprecated-chip-trailing-action': true,
     ...internalClasses,
+    [className]: true,
   })}
   style={Object.entries(internalStyles)
     .map(([name, value]) => `${name}: ${value};`)

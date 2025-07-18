@@ -4,11 +4,11 @@
   bind:this={element}
   use:useActions={use}
   class={classMap({
-    [className]: true,
     'mdc-snackbar': true,
     'mdc-snackbar--stacked': variant === 'stacked',
     'mdc-snackbar--leading': leading,
     ...internalClasses,
+    [className]: true,
   })}
   {...exclude(restProps, ['surface$'])}
   onkeydown={(e) => {

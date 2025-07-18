@@ -5,8 +5,8 @@
   bind:this={element}
   {use}
   class={classMap({
-    [className]: true,
     [adjustClass]: true,
+    [className]: true,
   })}
   style={Object.entries(internalStyles)
     .map(([name, value]) => `${name}: ${value};`)

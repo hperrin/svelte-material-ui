@@ -4,8 +4,8 @@
   bind:this={element}
   use:useActions={use}
   class={classMap({
-    [className]: true,
     'mdc-chip__checkmark': true,
+    [className]: true,
   })}
   {...restProps}
 >

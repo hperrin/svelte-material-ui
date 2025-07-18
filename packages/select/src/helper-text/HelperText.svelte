@@ -4,11 +4,11 @@
   bind:this={element}
   use:useActions={use}
   class={classMap({
-    [className]: true,
     'mdc-select-helper-text': true,
     'mdc-select-helper-text--validation-msg': validationMsg,
     'mdc-select-helper-text--validation-msg-persistent': persistent,
     ...internalClasses,
+    [className]: true,
   })}
   aria-hidden={persistent ? undefined : 'true'}
   {id}

@@ -5,8 +5,8 @@
   use:Anchor
   use:useActions={use}
   class={classMap({
-    [className]: true,
     'smui-autocomplete': true,
+    [className]: true,
   })}
   {...exclude(restProps, ['menu$', 'textfield$', 'list$'])}
   onfocusout={(

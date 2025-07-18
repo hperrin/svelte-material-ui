@@ -19,7 +19,6 @@
     ...use,
   ]}
   class={classMap({
-    [className]: true,
     'mdc-button': true,
     'mdc-button--raised': variant === 'raised',
     'mdc-button--unelevated': variant === 'unelevated',
@@ -36,6 +35,7 @@
     'mdc-banner__primary-action': context === 'banner' && !secondary,
     'mdc-tooltip__action': context === 'tooltip:rich-actions',
     ...internalClasses,
+    [className]: true,
   })}
   style={Object.entries(internalStyles)
     .map(([name, value]) => `${name}: ${value};`)

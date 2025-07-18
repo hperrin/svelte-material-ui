@@ -4,9 +4,9 @@
   bind:this={element}
   {use}
   class={classMap({
-    [className]: true,
     'smui-bottom-app-bar__section': true,
     'smui-bottom-app-bar__section--fab-inset': fabInset,
+    [className]: true,
   })}
   color={$color}
   variant="unelevated"

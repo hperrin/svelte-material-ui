@@ -5,11 +5,11 @@
     bind:this={element}
     use:useActions={use}
     class={classMap({
-      [className]: true,
       'mdc-floating-label': true,
       'mdc-floating-label--float-above': floatAbove,
       'mdc-floating-label--required': required,
       ...internalClasses,
+      [className]: true,
     })}
     style={Object.entries(internalStyles)
       .map(([name, value]) => `${name}: ${value};`)
@@ -22,11 +22,11 @@
     bind:this={element}
     use:useActions={use}
     class={classMap({
-      [className]: true,
       'mdc-floating-label': true,
       'mdc-floating-label--float-above': floatAbove,
       'mdc-floating-label--required': required,
       ...internalClasses,
+      [className]: true,
     })}
     style={Object.entries(internalStyles)
       .map(([name, value]) => `${name}: ${value};`)

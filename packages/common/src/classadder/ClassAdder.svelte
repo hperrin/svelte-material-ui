@@ -5,9 +5,9 @@
   bind:this={element as ReturnType<C>}
   {use}
   class={classMap({
-    [className]: true,
     [_smuiClass]: true,
     ..._smuiClassMap,
+    [className]: true,
   })}
   {..._smuiProps}
   {...restProps}>{@render children?.()}</MyComponent

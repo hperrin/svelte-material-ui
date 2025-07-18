@@ -17,11 +17,11 @@
     ...use,
   ]}
   class={classMap({
-    [className]: true,
     'mdc-chip': true,
     'mdc-chip--selected': selected,
     'mdc-chip--touch': touch,
     ...internalClasses,
+    [className]: true,
   })}
   style={Object.entries(internalStyles)
     .map(([name, value]) => `${name}: ${value};`)

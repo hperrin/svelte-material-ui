@@ -4,10 +4,10 @@
   bind:this={element}
   use:useActions={use}
   class={classMap({
-    [className]: true,
     'mdc-data-table': true,
     'mdc-data-table--sticky-header': stickyHeader,
     ...internalClasses,
+    [className]: true,
   })}
   {...exclude(restProps, ['container$', 'table$'])}
   onSMUIDataTableHeaderCheckboxChange={(e) => {

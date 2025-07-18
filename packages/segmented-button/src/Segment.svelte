@@ -11,11 +11,11 @@
   }}
   use:useActions={use}
   class={classMap({
-    [className]: true,
     'mdc-segmented-button__segment': true,
     'mdc-segmented-button__segment--touch': touch,
     'mdc-segmented-button__segment--selected': selected,
     ...internalClasses,
+    [className]: true,
   })}
   style={Object.entries(internalStyles)
     .map(([name, value]) => `${name}: ${value};`)

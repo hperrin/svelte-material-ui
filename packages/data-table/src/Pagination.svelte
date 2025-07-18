@@ -4,8 +4,8 @@
   bind:this={element}
   use:useActions={use}
   class={classMap({
-    [className]: true,
     'mdc-data-table__pagination': true,
+    [className]: true,
   })}
   {...exclude(restProps, ['trailing$'])}
 >

@@ -4,10 +4,10 @@
   bind:this={element}
   use:useActions={use}
   class={classMap({
-    [className]: true,
     'mdc-form-field': true,
     'mdc-form-field--align-end': align === 'end',
     'mdc-form-field--nowrap': noWrap,
+    [className]: true,
   })}
   {...exclude(restProps, ['label$'])}
 >

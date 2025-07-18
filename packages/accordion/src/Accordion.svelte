@@ -4,10 +4,10 @@
   bind:this={element}
   use:useActions={use}
   class={classMap({
-    [className]: true,
     'smui-accordion': true,
     'smui-accordion--multiple': multiple,
     'smui-accordion--with-open-dialog': withOpenDialog,
+    [className]: true,
   })}
   {...restProps}
   onSMUIAccordionPanelActivate={(e) => {

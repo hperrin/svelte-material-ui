@@ -4,11 +4,11 @@
   bind:this={element}
   use:useActions={use}
   class={classMap({
-    [className]: true,
     'mdc-tab-indicator': true,
     'mdc-tab-indicator--active': active,
     'mdc-tab-indicator--fade': transition === 'fade',
     ...internalClasses,
+    [className]: true,
   })}
   {...exclude(restProps, ['content$'])}
 >
