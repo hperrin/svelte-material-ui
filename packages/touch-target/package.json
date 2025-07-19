@@ -49,8 +49,10 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@material/touch-target": "^14.0.0",
-    "@smui/common": "^8.0.1"
+    "@smui/base": "^8.0.1",
+    "@smui/common": "^8.0.1",
+    "@smui/feature-targeting": "^8.0.1",
+    "@smui/rtl": "^8.0.1"
   },
   "devDependencies": {
     "@tsconfig/svelte": "^5.0.4",

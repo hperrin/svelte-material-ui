@@ -155,7 +155,7 @@ Migrating away from MDC-Web is a multi-step process. The steps are as follows:
 - [ ] Accordion
 - [x] Animation (new)
 - Action Buttons
-  - [ ] Button
+  - [x] Button
   - [ ] Floating Action Button
   - [ ] Icon Button
 - App Bars
@@ -214,7 +214,7 @@ Migrating away from MDC-Web is a multi-step process. The steps are as follows:
 - [x] Theme (new)
 - [x] Tokens (new, possibly temporary)
 - [ ] Tooltip
-- [ ] Touch Target
+- [x] Touch Target
 - [x] Typography
 
 2. [ ] Redo all of the changes from MDC-Web's commit history that have happened since v14, updating component code as necessary.

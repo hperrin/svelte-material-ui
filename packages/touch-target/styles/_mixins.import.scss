@@ -1,0 +1,4 @@
+@forward '@smui/base' as mdc-base-*;
+@forward '@smui/feature-targeting' as mdc-feature-*;
+@forward './index' as mdc-touch-target-* hide mdc-touch-target-touch-target;
+@forward './index' as mdc-* show mdc-touch-target;
