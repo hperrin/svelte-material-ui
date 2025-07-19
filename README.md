@@ -164,7 +164,7 @@ Migrating away from MDC-Web is a multi-step process. The steps are as follows:
 - [ ] Badge
 - [x] Banner
 - [x] Base (new, temporary)
-- [ ] Card
+- [x] Card
 - [ ] Common
 - [ ] Data Table
 - [x] Density (new)
