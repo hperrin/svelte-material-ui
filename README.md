@@ -200,7 +200,8 @@ Migrating away from MDC-Web is a multi-step process. The steps are as follows:
   - [ ] Menu
   - [ ] Paper
   - Progress Indicators
-    - [ ] Circular Progress
+    - [x] Progress Indicator (new, possibly temporary)
+    - [x] Circular Progress
     - [ ] Linear Progress
   - [ ] Ripple
   - [x] RTL (new)
@@ -267,6 +268,7 @@ Migrating away from MDC-Web is a multi-step process. The steps are as follows:
   - [ ] Menu
   - [ ] Paper
   - Progress Indicators
+    - [ ] Progress Indicator (new, possibly temporary)
     - [ ] Circular Progress
     - [ ] Linear Progress
   - [ ] Ripple
@@ -334,6 +336,7 @@ Migrating away from MDC-Web is a multi-step process. The steps are as follows:
   - [ ] Menu
   - [ ] Paper
   - Progress Indicators
+    - [ ] Progress Indicator (new, possibly temporary)
     - [ ] Circular Progress
     - [ ] Linear Progress
   - [ ] Ripple

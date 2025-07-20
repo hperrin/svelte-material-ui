@@ -110,11 +110,12 @@
 </div>
 
 <script lang="ts">
-  import { MDCCircularProgressFoundation } from '@material/circular-progress';
   import { onMount } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, useActions } from '@smui/common/internal';
+
+  import { MDCCircularProgressFoundation } from './mdc';
 
   type OwnProps = {
     /**
