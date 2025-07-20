@@ -93,8 +93,6 @@
   lang="ts"
   generics="ChipKey extends Object | string | number, TagName extends SmuiEveryElement = 'div'"
 >
-  import type { InteractionTrigger } from '@material/chips/deprecated/trailingaction/constants';
-  import { deprecated } from '@material/chips';
   import type { Snippet } from 'svelte';
   import { onMount, setContext, getContext } from 'svelte';
   import { writable } from 'svelte/store';
@@ -109,6 +107,8 @@
   } from '@smui/common';
   import { SmuiElement } from '@smui/common';
 
+  import type { InteractionTrigger } from './mdc/deprecated/trailingaction/constants';
+  import { deprecated } from './mdc';
   import type { SMUIChipsPrimaryActionAccessor } from './Text.types.js';
   import type { SMUIChipsTrailingActionAccessor } from './TrailingAction.types.js';
   import type { SMUIChipsChipAccessor } from './Chip.types.js';

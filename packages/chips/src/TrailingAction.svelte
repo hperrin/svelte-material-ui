@@ -52,7 +52,6 @@
 </button>
 
 <script lang="ts">
-  import { deprecated } from '@material/chips';
   import type { Snippet } from 'svelte';
   import { onMount, getContext, tick } from 'svelte';
   import type { SmuiAttrs, SmuiElementPropMap } from '@smui/common';
@@ -66,6 +65,7 @@
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
 
+  import { deprecated } from './mdc';
   import type { SMUIChipsTrailingActionAccessor } from './TrailingAction.types.js';
 
   const { MDCChipTrailingActionFoundation } = deprecated;

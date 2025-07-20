@@ -66,8 +66,6 @@
 </div>
 
 <script lang="ts" generics="ChipKey extends Object | string | number">
-  import type { EventSource } from '@material/chips/deprecated/chip/constants';
-  import { deprecated } from '@material/chips';
   import type { Snippet } from 'svelte';
   import { onMount, setContext } from 'svelte';
   import { writable } from 'svelte/store';
@@ -76,6 +74,8 @@
   import { announce, classMap, useActions } from '@smui/common/internal';
   import { ContextFragment } from '@smui/common';
 
+  import type { EventSource } from './mdc/deprecated/chip/constants';
+  import { deprecated } from './mdc';
   import type { SMUIChipsChipAccessor } from './Chip.types.js';
 
   const { MDCChipSetFoundation } = deprecated;

@@ -1,4 +1,4 @@
-@use '@material/chips/deprecated/mdc-chips';
+@use './styles/deprecated/mdc-chips';
 @use './mixins';
 
 @include mixins.core-styles;

@@ -178,7 +178,7 @@ Migrating away from MDC-Web is a multi-step process. The steps are as follows:
 - Inputs and Controls
   - [ ] Autocomplete
   - [x] Checkbox
-  - [ ] Chips
+  - [x] Chips
   - [ ] Chip Input
   - [ ] Floating Label
   - [ ] Form Field

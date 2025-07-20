@@ -17,6 +17,11 @@
       "svelte": "./dist/index.js",
       "default": "./dist/index.js"
     },
+    "./animationframe": {
+      "types": "./dist/animationframe.d.ts",
+      "svelte": "./dist/animationframe.js",
+      "default": "./dist/animationframe.js"
+    },
     "./util": {
       "types": "./dist/util.d.ts",
       "svelte": "./dist/util.js",
