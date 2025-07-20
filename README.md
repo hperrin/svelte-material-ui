@@ -211,6 +211,8 @@ Migrating away from MDC-Web is a multi-step process. The steps are as follows:
 - Tabs
   - [ ] Tab
   - [ ] Tab Bar
+  - [ ] Tab Indicator
+  - [ ] Tab Scroller
 - [x] Theme (new)
 - [x] Tokens (new, possibly temporary)
 - [ ] Tooltip
@@ -278,6 +280,8 @@ Migrating away from MDC-Web is a multi-step process. The steps are as follows:
 - Tabs
   - [ ] Tab
   - [ ] Tab Bar
+  - [ ] Tab Indicator
+  - [ ] Tab Scroller
 - [ ] Theme (new)
 - [ ] Tokens (new, possibly temporary)
 - [ ] Tooltip
@@ -345,6 +349,8 @@ Migrating away from MDC-Web is a multi-step process. The steps are as follows:
 - Tabs
   - [ ] Tab
   - [ ] Tab Bar
+  - [ ] Tab Indicator
+  - [ ] Tab Scroller
 - [ ] Theme (new)
 - [ ] Tokens (new, possibly temporary)
 - [ ] Tooltip
