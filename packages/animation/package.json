@@ -16,6 +16,11 @@
       "types": "./dist/index.d.ts",
       "svelte": "./dist/index.js",
       "default": "./dist/index.js"
+    },
+    "./util": {
+      "types": "./dist/util.d.ts",
+      "svelte": "./dist/util.js",
+      "default": "./dist/util.js"
     }
   },
   "keywords": [

@@ -74,7 +74,6 @@
 </div>
 
 <script lang="ts">
-  import { MDCCheckboxFoundation } from '@material/checkbox';
   import { onMount, getContext } from 'svelte';
   import type {
     SmuiAttrs,
@@ -90,6 +89,8 @@
     dispatch,
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
+
+  import { MDCCheckboxFoundation } from './mdc';
 
   interface UninitializedValue extends Function {}
   let uninitializedValue: UninitializedValue = () => {};
