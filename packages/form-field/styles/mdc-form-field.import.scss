@@ -1,0 +1,18 @@
+@forward '@smui/feature-targeting/variables' as mdc-feature-*;
+@forward '@smui/feature-targeting/mixins' as mdc-feature-*;
+@forward '@smui/rtl/variables' as mdc-rtl-*;
+@forward '@smui/theme/variables' as mdc-theme-*;
+@forward '@smui/typography/variables' as mdc-typography-*;
+@forward 'variables' as mdc-form-field-*;
+@forward '@smui/rtl/mixins' as mdc-* hide mdc-property-, mdc-reflexive,
+  mdc-reflexive-box, mdc-reflexive-position, mdc-reflexive-property;
+@forward '@smui/rtl/mixins' as mdc-rtl-* hide mdc-rtl-rtl;
+@forward '@smui/theme/mixins' as mdc-theme-*;
+@forward '@smui/typography/mixins' as mdc-* hide mdc-base, mdc-baseline-bottom,
+  mdc-baseline-strut-, mdc-baseline-top, mdc-core-styles, mdc-overflow-ellipsis;
+@forward '@smui/typography/mixins' as mdc-typography-* hide mdc-typography-typography;
+@forward 'mixins' as mdc-form-field-*;
+@forward '@smui/feature-targeting/functions' as mdc-feature-*;
+@forward '@smui/theme/functions' as mdc-theme-*;
+@forward '@smui/typography/functions' as mdc-typography-*;
+@forward 'mdc-form-field';

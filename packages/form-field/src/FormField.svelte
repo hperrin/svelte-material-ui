@@ -25,7 +25,6 @@
 </script>
 
 <script lang="ts">
-  import { MDCFormFieldFoundation } from '@material/form-field';
   import type { Snippet } from 'svelte';
   import { onMount, setContext } from 'svelte';
   import type {
@@ -41,6 +40,8 @@
     useActions,
     SvelteEventManager,
   } from '@smui/common/internal';
+
+  import { MDCFormFieldFoundation } from './mdc';
 
   type OwnProps = {
     /**
