@@ -173,7 +173,7 @@ Migrating away from MDC-Web is a multi-step process. The steps are as follows:
   - [x] Elevation
   - [x] Feature Targeting (new)
   - [x] Focus Ring (new)
-  - [ ] Image List
+  - [x] Image List
   - Inputs and Controls
     - [ ] Autocomplete
     - [x] Checkbox
