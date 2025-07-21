@@ -1,0 +1,134 @@
+// Copyright 2017 Google Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+@use 'sass:list';
+@use 'sass:map';
+@use './variables';
+@use './mixins';
+
+:root {
+  @each $size in map.keys(variables.$columns) {
+    --mdc-layout-grid-margin-#{$size}: #{map.get(
+        variables.$default-margin,
+        $size
+      )};
+    --mdc-layout-grid-gutter-#{$size}: #{map.get(
+        variables.$default-gutter,
+        $size
+      )};
+    --mdc-layout-grid-column-width-#{$size}: #{map.get(
+        variables.$column-width,
+        $size
+      )};
+  }
+}
+
+// postcss-bem-linter: define layout-grid
+.mdc-layout-grid {
+  @each $size in map.keys(variables.$columns) {
+    @include mixins.media-query_($size) {
+      $margin: map.get(variables.$default-margin, $size);
+
+      @include mixins.layout-grid($size, $margin, variables.$max-width);
+    }
+  }
+}
+
+.mdc-layout-grid__inner {
+  @each $size in map.keys(variables.$columns) {
+    @include mixins.media-query_($size) {
+      $margin: map.get(variables.$default-margin, $size);
+      $gutter: map.get(variables.$default-gutter, $size);
+
+      @include mixins.inner($size, $margin, $gutter);
+    }
+  }
+}
+
+.mdc-layout-grid__cell {
+  // select the upper breakpoint
+  $upper-breakpoint: list.nth(map.keys(variables.$columns), 1);
+
+  @each $size in map.keys(variables.$columns) {
+    @include mixins.media-query_($size) {
+      $gutter: map.get(variables.$default-gutter, $size);
+
+      @include mixins.cell($size, variables.$default-column-span, $gutter);
+
+      @for $span from 1 through map.get(variables.$columns, $upper-breakpoint) {
+        // Span classes.
+        // stylelint-disable max-nesting-depth
+        @at-root .mdc-layout-grid__cell--span-#{$span},
+          .mdc-layout-grid__cell--span-#{$span}-#{$size} {
+          @include mixins.cell-span_($size, $span, $gutter);
+        }
+        // stylelint-enable max-nesting-depth
+      }
+    }
+  }
+
+  // Order override classes.
+  @for $i from 1 through map.get(variables.$columns, $upper-breakpoint) {
+    &--order-#{$i} {
+      @include mixins.cell-order($i);
+    }
+  }
+
+  // Alignment classes.
+  &--align-top {
+    @include mixins.cell-align(top);
+  }
+
+  &--align-middle {
+    @include mixins.cell-align(middle);
+  }
+
+  &--align-bottom {
+    @include mixins.cell-align(bottom);
+  }
+}
+
+.mdc-layout-grid--fixed-column-width {
+  @each $size in map.keys(variables.$columns) {
+    @include mixins.media-query_($size) {
+      $margin: map.get(variables.$default-margin, $size);
+      $gutter: map.get(variables.$default-gutter, $size);
+      $column-width: map.get(variables.$column-width, $size);
+
+      @include mixins.fixed-column-width(
+        $size,
+        $margin,
+        $gutter,
+        $column-width
+      );
+    }
+  }
+}
+
+.mdc-layout-grid--align-left {
+  margin-right: auto;
+  margin-left: 0;
+}
+
+.mdc-layout-grid--align-right {
+  margin-right: 0;
+  margin-left: auto;
+}
+// postcss-bem-linter: end
