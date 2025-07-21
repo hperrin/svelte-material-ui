@@ -1,0 +1,125 @@
+// Copyright 2016 Google Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+@use '@smui/density/variables' as density-variables;
+@use '@smui/theme/theme-color';
+
+$deprecated-ripple-target: '.mdc-deprecated-list-item__ripple';
+$deprecated-temporary-ripple-target: '.mdc-list-item__ripple';
+
+$deprecated-divider-color-on-light-bg: rgba(0, 0, 0, 0.12) !default;
+$deprecated-divider-color-on-dark-bg: rgba(255, 255, 255, 0.2) !default;
+$deprecated-side-padding: 16px !default;
+$deprecated-trailing-padding: 16px !default;
+$deprecated-text-offset: 72px !default;
+$deprecated-text-disabled-opacity: theme-color.text-emphasis(disabled) !default;
+$deprecated-text-disabled-color: on-surface !default;
+$deprecated-text-selected-color: primary !default;
+
+$deprecated-single-line-height: 48px !default;
+$deprecated-single-line-minimum-height: 24px !default;
+$deprecated-single-line-maximum-height: $deprecated-single-line-height !default;
+$deprecated-single-line-density-scale: density-variables.$default-scale !default;
+$deprecated-single-line-density-config: (
+  height: (
+    default: $deprecated-single-line-height,
+    maximum: $deprecated-single-line-maximum-height,
+    minimum: $deprecated-single-line-minimum-height,
+  ),
+) !default;
+
+$deprecated-item-primary-text-baseline-height: 28px !default;
+$deprecated-item-primary-text-baseline-height-with-graphic: 32px !default;
+$deprecated-item-secondary-text-baseline-height: 20px !default;
+$deprecated-dense-item-primary-text-baseline-height: 24px !default;
+
+$deprecated-two-line-height: 64px !default;
+$deprecated-two-line-graphic-height: 72px !default;
+$deprecated-two-line-icon-top-margin: 16px !default;
+
+// TODO(b/156624966): this is used to support legacy usage of embedded graphics.
+$deprecated-deprecated-graphic-config: (
+  graphic-size: (
+    width: 24px,
+    height: 24px,
+  ),
+  leading-padding: 16px,
+  text-offset: 72px,
+) !default;
+
+$deprecated-textual-variant-config: (
+  single-line-height: $deprecated-single-line-height,
+  graphic-size: (
+    width: 24px,
+    height: 24px,
+  ),
+  leading-padding: 16px,
+  text-offset: 16px,
+) !default;
+
+$deprecated-icon-variant-config: (
+  single-line-height: 56px,
+  graphic-size: (
+    width: 24px,
+    height: 24px,
+  ),
+  leading-padding: 16px,
+  text-offset: 72px,
+) !default;
+
+$deprecated-avatar-variant-config: (
+  single-line-height: 56px,
+  graphic-size: (
+    width: 40px,
+    height: 40px,
+  ),
+  leading-padding: 16px,
+  text-offset: 72px,
+) !default;
+
+$deprecated-thumbnail-variant-config: (
+  single-line-height: 56px,
+  graphic-size: (
+    width: 40px,
+    height: 40px,
+  ),
+  leading-padding: 16px,
+  text-offset: 72px,
+) !default;
+
+$deprecated-image-variant-config: (
+  single-line-height: 72px,
+  graphic-size: (
+    width: 56px,
+    height: 56px,
+  ),
+  leading-padding: 16px,
+  text-offset: 88px,
+) !default;
+
+$deprecated-video-variant-config: (
+  single-line-height: 72px,
+  graphic-size: (
+    width: 100px,
+    height: 56px,
+  ),
+  leading-padding: 0px,
+  text-offset: 116px,
+) !default;

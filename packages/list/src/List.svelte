@@ -47,7 +47,6 @@
 </MyComponent>
 
 <script lang="ts" generics="TagName extends SmuiEveryElement = 'ul'">
-  import { MDCListFoundation } from '@material/list';
   import { ponyfill } from '@smui/dom';
   import type { Snippet } from 'svelte';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
@@ -62,6 +61,7 @@
   } from '@smui/common';
   import { SmuiElement } from '@smui/common';
 
+  import { MDCListFoundation } from './mdc';
   import type { SMUIListAccessor } from './List.types.js';
   import type { SMUIListItemAccessor } from './Item.types.js';
 
