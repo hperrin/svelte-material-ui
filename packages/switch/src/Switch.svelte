@@ -77,11 +77,6 @@
 </button>
 
 <script lang="ts">
-  import type {
-    MDCSwitchRenderAdapter,
-    MDCSwitchState,
-  } from '@material/switch';
-  import { MDCSwitchRenderFoundation } from '@material/switch';
   import { onMount, getContext } from 'svelte';
   import type {
     SmuiAttrs,
@@ -97,6 +92,9 @@
     dispatch,
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
+
+  import type { MDCSwitchRenderAdapter, MDCSwitchState } from './mdc';
+  import { MDCSwitchRenderFoundation } from './mdc';
 
   interface UninitializedValue extends Function {}
   let uninitializedValue: UninitializedValue = () => {};

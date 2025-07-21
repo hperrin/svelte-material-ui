@@ -27,6 +27,11 @@
       "svelte": "./dist/foundation.js",
       "default": "./dist/foundation.js"
     },
+    "./observer-foundation": {
+      "types": "./dist/observer-foundation.d.ts",
+      "svelte": "./dist/observer-foundation.js",
+      "default": "./dist/observer-foundation.js"
+    },
     "./observer": {
       "types": "./dist/observer.d.ts",
       "svelte": "./dist/observer.js",
