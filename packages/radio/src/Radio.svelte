@@ -52,7 +52,6 @@
 </div>
 
 <script lang="ts">
-  import { MDCRadioFoundation } from '@material/radio';
   import { onMount, getContext } from 'svelte';
   import type {
     SmuiAttrs,
@@ -68,6 +67,8 @@
     dispatch,
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
+
+  import { MDCRadioFoundation } from './mdc';
 
   interface UninitializedValue extends Function {}
   let uninitializedValue: UninitializedValue = () => {};

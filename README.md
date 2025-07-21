@@ -183,7 +183,7 @@ Migrating away from MDC-Web is a multi-step process. The steps are as follows:
     - [ ] Form Field
     - [ ] Line Ripple
     - [ ] Notched Outline
-    - [ ] Radio Button
+    - [x] Radio Button
     - [ ] Segmented Button
     - [ ] Select Menu
       - [ ] Select Helper Text
