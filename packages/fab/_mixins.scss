@@ -1,7 +1,7 @@
 @use '@smui/feature-targeting/index' as feature-targeting;
 @use '@smui/ripple/styles/index' as ripple;
-@use '@material/fab/index' as fab;
-@use '@material/fab/fab-theme';
+@use './styles/index' as fab;
+@use './styles/fab-theme';
 
 @mixin core-styles($query: feature-targeting.all()) {
   @include without-ripple($query);
