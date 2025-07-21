@@ -156,7 +156,7 @@ Migrating away from MDC-Web is a multi-step process. The steps are as follows:
   - Action Buttons
     - [x] Button
     - [x] Floating Action Button
-    - [ ] Icon Button
+    - [x] Icon Button
   - App Bars
     - [ ] Bottom App Bar
     - [ ] Top App Bar

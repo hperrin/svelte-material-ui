@@ -1,5 +1,5 @@
 @use '@smui/feature-targeting/index' as feature-targeting;
-@use '@material/icon-button/icon-button-theme';
+@use './styles/icon-button-theme';
 
 $mini-icon-height: 24px !default;
 $mini-height: 40px !default;

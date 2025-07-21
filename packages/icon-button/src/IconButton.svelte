@@ -76,8 +76,6 @@
   lang="ts"
   generics="Href extends string | undefined = undefined, TagName extends SmuiEveryElement = Href extends string ? 'a' : 'button'"
 >
-  import type { MDCIconButtonToggleEventDetail } from '@material/icon-button';
-  import { MDCIconButtonToggleFoundation } from '@material/icon-button';
   import type { Snippet } from 'svelte';
   import { onDestroy, getContext, setContext } from 'svelte';
   import type { ActionArray } from '@smui/common/internal';
@@ -90,6 +88,9 @@
     SmuiAttrs,
   } from '@smui/common';
   import { SmuiElement } from '@smui/common';
+
+  import type { MDCIconButtonToggleEventDetail } from './mdc';
+  import { MDCIconButtonToggleFoundation } from './mdc';
 
   interface UninitializedValue extends Function {}
   let uninitializedValue: UninitializedValue = () => {};
