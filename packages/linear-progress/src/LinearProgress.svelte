@@ -51,13 +51,14 @@
 </div>
 
 <script lang="ts">
-  import type { MDCResizeObserver } from '@material/linear-progress';
-  import { MDCLinearProgressFoundation } from '@material/linear-progress';
   import { onMount, getContext } from 'svelte';
   import type { Writable } from 'svelte/store';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, useActions } from '@smui/common/internal';
+
+  import type { MDCResizeObserver } from './mdc';
+  import { MDCLinearProgressFoundation } from './mdc';
 
   type OwnProps = {
     /**

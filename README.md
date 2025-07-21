@@ -202,8 +202,8 @@ Migrating away from MDC-Web is a multi-step process. The steps are as follows:
   - Progress Indicators
     - [x] Progress Indicator (new, possibly temporary)
     - [x] Circular Progress
-    - [ ] Linear Progress
-  - [ ] Ripple
+    - [x] Linear Progress
+  - [x] Ripple
   - [x] RTL (new)
   - [x] Shape (new)
   - [ ] Snackbar
