@@ -1,5 +1,5 @@
 @use '@smui/feature-targeting/feature-targeting';
-@use '@material/tooltip/tooltip-theme';
+@use './styles/tooltip-theme';
 
 $rich-title-text-color: on-surface !default;
 $rich-content-text-color: on-surface !default;

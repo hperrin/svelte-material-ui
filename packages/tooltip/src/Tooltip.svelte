@@ -55,17 +55,10 @@
 </script>
 
 <script lang="ts">
-  import type { SpecificEventListener } from '@smui/base/types';
-  import {
-    MDCTooltipFoundation,
-    AnchorBoundaryType,
-    XPosition,
-    YPosition,
-    CssClasses,
-  } from '@material/tooltip';
   import type { Snippet } from 'svelte';
   import { onMount, onDestroy, getContext } from 'svelte';
   import type { Writable } from 'svelte/store';
+  import type { SpecificEventListener } from '@smui/base/types';
   import type { SmuiAttrs, SmuiElementPropMap } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
@@ -76,6 +69,14 @@
     dispatch,
     SvelteEventManager,
   } from '@smui/common/internal';
+
+  import {
+    MDCTooltipFoundation,
+    AnchorBoundaryType,
+    XPosition,
+    YPosition,
+    CssClasses,
+  } from './mdc';
 
   type OwnProps = {
     /**

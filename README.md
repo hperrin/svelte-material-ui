@@ -216,7 +216,7 @@ Migrating away from MDC-Web is a multi-step process. The steps are as follows:
   - [ ] Tab Scroller
 - [x] Theme (new)
 - [x] Tokens (new, possibly temporary)
-- [ ] Tooltip
+- [x] Tooltip
 - [x] Touch Target
 - [x] Typography
 
