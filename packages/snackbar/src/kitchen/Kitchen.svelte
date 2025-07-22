@@ -46,7 +46,6 @@
   lang="ts"
   generics="DismissHref extends string | undefined = undefined, DismissTagName extends SmuiEveryElement = DismissHref extends string ? 'a' : 'button'"
 >
-  import type { MDCSnackbarCloseEvent } from '@material/snackbar';
   import type { ComponentProps, Snippet } from 'svelte';
   import { tick } from 'svelte';
   import { prefixFilter } from '@smui/common/internal';
@@ -55,6 +54,7 @@
   import Button from '@smui/button';
   import IconButton from '@smui/icon-button';
 
+  import type { MDCSnackbarCloseEvent } from '../mdc';
   import type { ConfigAction, Config } from './Kitchen.types.js';
   import Snackbar from '../Snackbar.svelte';
   import Actions from '../Actions.svelte';

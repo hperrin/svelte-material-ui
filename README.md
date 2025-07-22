@@ -207,8 +207,8 @@ Migrating away from MDC-Web is a multi-step process. The steps are as follows:
 - [x] Ripple
 - [x] RTL (new)
 - [x] Shape (new)
-- [ ] Snackbar
-  - [ ] Kitchen
+- [x] Snackbar
+  - [x] Kitchen
 - Tabs
   - [ ] Tab
   - [ ] Tab Bar

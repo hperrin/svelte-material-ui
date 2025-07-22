@@ -1,6 +1,6 @@
-import type { MDCSnackbarCloseEvent } from '@material/snackbar';
 import type { ComponentProps } from 'svelte';
 
+import type { MDCSnackbarCloseEvent } from '../mdc';
 import type Snackbar from '../Snackbar.svelte';
 
 export interface ConfigAction {

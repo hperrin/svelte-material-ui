@@ -45,7 +45,6 @@
 </script>
 
 <script lang="ts">
-  import { MDCSnackbarFoundation, util } from '@material/snackbar';
   import { ponyfill } from '@smui/dom';
   import type { Snippet } from 'svelte';
   import { onMount, setContext } from 'svelte';
@@ -58,6 +57,8 @@
     useActions,
     dispatch,
   } from '@smui/common/internal';
+
+  import { MDCSnackbarFoundation, util } from './mdc';
 
   const { closest } = ponyfill;
 
