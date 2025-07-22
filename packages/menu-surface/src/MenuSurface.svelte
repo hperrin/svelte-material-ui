@@ -31,13 +31,13 @@
 </div>
 
 <script lang="ts">
-  import { MDCMenuSurfaceFoundation } from '@material/menu-surface';
   import type { Snippet } from 'svelte';
   import { onMount, onDestroy, setContext, getContext } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, useActions, dispatch } from '@smui/common/internal';
 
+  import { MDCMenuSurfaceFoundation } from './mdc';
   import type { SMUIMenuSurfaceAccessor } from './MenuSurface.types.js';
   import { Corner } from './MenuSurface.types.js';
 

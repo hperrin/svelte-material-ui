@@ -1,4 +1,4 @@
-import { Corner } from '@material/menu-surface';
+import { Corner } from './mdc';
 
 export { Corner };
 
