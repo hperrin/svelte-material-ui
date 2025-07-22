@@ -160,7 +160,7 @@ Migrating away from MDC-Web is a multi-step process. The steps are as follows:
   - [x] Icon Button
 - App Bars
   - [ ] Bottom App Bar
-  - [ ] Top App Bar
+  - [x] Top App Bar
 - [ ] Badge
 - [x] Banner
 - [x] Base (new, temporary)

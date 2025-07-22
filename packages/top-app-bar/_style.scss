@@ -1,4 +1,4 @@
-@use '@material/top-app-bar/mdc-top-app-bar';
+@use './styles/mdc-top-app-bar';
 @use './mixins';
 
 @include mixins.core-styles;

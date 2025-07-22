@@ -1,0 +1,53 @@
+//
+// Copyright 2018 Google Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+//
+
+// Default styles
+$row-height: 64px !default;
+$title-left-padding: 20px !default;
+$section-vertical-padding: 8px !default;
+$section-horizontal-padding: 12px !default;
+
+$mobile-breakpoint: 599px !default;
+
+// Default mobile styles
+$mobile-row-height: 56px !default;
+$mobile-section-padding: 4px !default;
+
+// Short top app bar
+$short-collapsed-border-radius: 4px !default;
+$short-collapsed-width: 56px !default;
+$short-collapsed-right-icon-padding: 12px !default;
+
+// Prominent styles
+$prominent-row-height: 128px !default;
+$prominent-title-bottom-padding: 2px !default;
+
+// Prominent mobile styles
+$prominent-mobile-title-bottom-padding: 6px !default;
+
+// Dense styles
+$dense-row-height: 48px !default;
+$dense-section-horizontal-padding: 4px !default;
+$dense-title-left-padding: 12px !default;
+
+// Dense & Prominent styles
+$dense-prominent-title-bottom-padding: 9px !default;

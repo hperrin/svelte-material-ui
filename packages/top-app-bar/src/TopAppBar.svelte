@@ -40,12 +40,6 @@
 </header>
 
 <script lang="ts">
-  import {
-    MDCTopAppBarBaseFoundation,
-    MDCTopAppBarFoundation,
-    MDCFixedTopAppBarFoundation,
-    MDCShortTopAppBarFoundation,
-  } from '@material/top-app-bar';
   import type { Snippet } from 'svelte';
   import { onMount } from 'svelte';
   import type { Subscriber } from 'svelte/store';
@@ -58,6 +52,13 @@
     dispatch,
     SvelteEventManager,
   } from '@smui/common/internal';
+
+  import {
+    MDCTopAppBarBaseFoundation,
+    MDCTopAppBarFoundation,
+    MDCFixedTopAppBarFoundation,
+    MDCShortTopAppBarFoundation,
+  } from './mdc';
 
   interface UninitializedValue extends Function {}
   let uninitializedValue: UninitializedValue = () => {};
