@@ -1,3 +1,3 @@
-import type { Thumb } from '@material/slider';
+import type { Thumb } from './mdc';
 
 export type { Thumb };

@@ -208,7 +208,6 @@
 </div>
 
 <script lang="ts">
-  import { MDCSliderFoundation, Thumb, TickMark } from '@material/slider';
   import { onMount, onDestroy, getContext } from 'svelte';
   import type {
     AddLayoutListener,
@@ -226,6 +225,8 @@
     SvelteEventManager,
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
+
+  import { MDCSliderFoundation, Thumb, TickMark } from './mdc';
 
   type OwnProps = {
     /**

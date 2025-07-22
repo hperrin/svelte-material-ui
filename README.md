@@ -189,7 +189,7 @@ Migrating away from MDC-Web is a multi-step process. The steps are as follows:
   - [ ] Select Menu
     - [ ] Select Helper Text
     - [ ] Select Icon
-  - [ ] Slider
+  - [x] Slider
   - [x] Switch
   - [ ] Text Field
     - [ ] Text Field Character Counter
