@@ -79,7 +79,6 @@
 {@render over?.()}
 
 <script lang="ts">
-  import { MDCDialogFoundation, util } from '@material/dialog';
   import { focusTrap as domFocusTrap, ponyfill } from '@smui/dom';
   import type { Snippet } from 'svelte';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
@@ -100,6 +99,8 @@
     dispatch,
     SvelteEventManager,
   } from '@smui/common/internal';
+
+  import { MDCDialogFoundation, util } from './mdc';
 
   const { FocusTrap } = domFocusTrap;
   const { closest, matches } = ponyfill;

@@ -168,7 +168,7 @@ Migrating away from MDC-Web is a multi-step process. The steps are as follows:
 - [ ] Common
 - [ ] Data Table
 - [x] Density (new)
-- [ ] Dialog
+- [x] Dialog
 - [x] DOM (new, possibly temporary)
 - [ ] Drawer
 - [x] Elevation

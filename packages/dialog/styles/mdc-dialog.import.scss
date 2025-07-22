@@ -1,0 +1,34 @@
+@forward '@smui/animation/variables' as mdc-animation-*;
+@forward '@smui/density/variables' as mdc-density-*;
+@forward '@smui/theme/variables' as mdc-theme-*;
+@forward '@smui/button/styles/variables' as mdc-button-*;
+@forward '@smui/base/mixins' as mdc-base-*;
+@forward '@smui/feature-targeting/variables' as mdc-feature-*;
+@forward '@smui/feature-targeting/mixins' as mdc-feature-*;
+@forward '@smui/elevation/variables' as mdc-elevation-*;
+@forward '@smui/rtl/variables' as mdc-rtl-*;
+@forward '@smui/shape/variables' as mdc-shape-*;
+@forward '@smui/touch-target/styles/variables' as mdc-touch-target-*;
+@forward '@smui/typography/variables' as mdc-typography-*;
+@forward 'variables' as mdc-dialog-*;
+@forward '@smui/theme/mixins' as mdc-theme-*;
+@forward '@smui/elevation/mixins' as mdc-* hide mdc-core-styles,
+  mdc-overlay-common, mdc-overlay-dimensions, mdc-overlay-fill-color,
+  mdc-overlay-opacity, mdc-overlay-selector-, mdc-overlay-surface-position,
+  mdc-shadow;
+@forward '@smui/elevation/mixins' as mdc-elevation-* hide mdc-elevation-elevation;
+@forward '@smui/rtl/mixins' as mdc-* hide mdc-property-, mdc-reflexive,
+  mdc-reflexive-box, mdc-reflexive-position, mdc-reflexive-property;
+@forward '@smui/rtl/mixins' as mdc-rtl-* hide mdc-rtl-rtl;
+@forward '@smui/shape/mixins' as mdc-shape-*;
+@forward '@smui/typography/mixins' as mdc-* hide mdc-base, mdc-baseline-bottom,
+  mdc-baseline-strut-, mdc-baseline-top, mdc-core-styles, mdc-overflow-ellipsis;
+@forward '@smui/typography/mixins' as mdc-typography-* hide mdc-typography-typography;
+@forward 'mixins' as mdc-dialog-*;
+@forward '@smui/animation/functions' as mdc-animation-*;
+@forward '@smui/theme/functions' as mdc-theme-*;
+@forward '@smui/feature-targeting/functions' as mdc-feature-*;
+@forward '@smui/elevation/functions' as mdc-elevation-*;
+@forward '@smui/shape/functions' as mdc-shape-*;
+@forward '@smui/typography/functions' as mdc-typography-*;
+@forward 'mdc-dialog';
