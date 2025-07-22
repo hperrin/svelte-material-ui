@@ -29,10 +29,6 @@
 </aside>
 
 <script lang="ts">
-  import {
-    MDCDismissibleDrawerFoundation,
-    MDCModalDrawerFoundation,
-  } from '@material/drawer';
   import { focusTrap as domFocusTrap } from '@smui/dom';
   import type { Snippet } from 'svelte';
   import { onMount, onDestroy, setContext } from 'svelte';
@@ -44,6 +40,11 @@
     dispatch,
     SvelteEventManager,
   } from '@smui/common/internal';
+
+  import {
+    MDCDismissibleDrawerFoundation,
+    MDCModalDrawerFoundation,
+  } from './mdc';
 
   const { FocusTrap } = domFocusTrap;
 

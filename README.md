@@ -170,7 +170,7 @@ Migrating away from MDC-Web is a multi-step process. The steps are as follows:
 - [x] Density (new)
 - [x] Dialog
 - [x] DOM (new, possibly temporary)
-- [ ] Drawer
+- [x] Drawer
 - [x] Elevation
 - [x] Feature Targeting (new)
 - [x] Focus Ring (new)
