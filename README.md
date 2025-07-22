@@ -198,7 +198,7 @@ Migrating away from MDC-Web is a multi-step process. The steps are as follows:
 - [x] Layout Grid
 - [x] List
 - [x] Menu Surface
-- [ ] Menu
+- [x] Menu
 - [ ] Paper
 - Progress Indicators
   - [x] Progress Indicator (new, possibly temporary)

@@ -32,7 +32,6 @@
 >
 
 <script lang="ts">
-  import { MDCMenuFoundation, cssClasses } from '@material/menu';
   import { ponyfill } from '@smui/dom';
   import type { ComponentProps, Snippet } from 'svelte';
   import { onMount, getContext, setContext } from 'svelte';
@@ -42,6 +41,7 @@
   import type { SMUIMenuSurfaceAccessor } from '@smui/menu-surface';
   import MenuSurface from '@smui/menu-surface';
 
+  import { MDCMenuFoundation, cssClasses } from './mdc';
   import type { DefaultFocusState } from './Menu.types.js';
 
   const { closest } = ponyfill;
