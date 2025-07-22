@@ -1,0 +1,109 @@
+//
+// Copyright 2018 Google Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+//
+
+// stylelint-disable selector-class-pattern --
+// Selector '.mdc-*' should only be used in this project.
+
+@use '@smui/animation/variables' as animation-variables;
+@use '@smui/density/functions' as density-functions;
+@use '@smui/feature-targeting/feature-targeting';
+@use '@smui/tab-scroller/styles/mixins' as tab-scroller-mixins;
+@use '@smui/tab/styles/mixins' as tab-mixins;
+@use './variables';
+
+@mixin static-styles($query: feature-targeting.all()) {
+  .mdc-tab-bar {
+    @include width(100%, $query);
+  }
+}
+
+@mixin core-styles($query: feature-targeting.all()) {
+  // postcss-bem-linter: define tab-bar
+  @include static-styles($query: $query);
+  @include density(variables.$density-scale, $query: $query);
+  @include stacked-density(variables.$stacked-density-scale, $query: $query);
+  // postcss-bem-linter: end
+}
+
+@mixin width($width, $query: feature-targeting.all()) {
+  $feat-structure: feature-targeting.create-target($query, structure);
+
+  @include feature-targeting.targets($feat-structure) {
+    width: $width;
+  }
+}
+
+///
+/// Sets density scale to default tab bar variant. Use `mdc-tab-bar-stacked-density()` mixin for stacked tab bar
+/// variant.
+///
+/// @param {Number} $density-scale Density scale value. Supported density scales `-4`, `-3`, `-2`, `-1` and `0`.
+///
+@mixin density($density-scale, $query: feature-targeting.all()) {
+  $height: density-functions.prop-value(
+    $density-config: variables.$density-config,
+    $density-scale: $density-scale,
+    $property-name: height,
+  );
+
+  .mdc-tab {
+    @include tab-mixins.height($height, $query: $query);
+  }
+}
+
+///
+/// Sets density scale to stacked tab bar variant.
+///
+/// @param {Number} $density-scale Density scale value. Supported density scales `-4`, `-3`, `-2`, `-1` and `0`.
+///
+@mixin stacked-density($density-scale, $query: feature-targeting.all()) {
+  $height: density-functions.prop-value(
+    $density-config: variables.$stacked-density-config,
+    $density-scale: $density-scale,
+    $property-name: height,
+  );
+
+  .mdc-tab--stacked {
+    @include tab-mixins.height($height, $query: $query);
+  }
+}
+
+///
+/// Sets the CSS transition for the tab scrolling animation. This mixin is a proxy to `mdc-tab-scroller-transition`
+/// mixin.
+///
+/// @param {Number | String} $duration-ms - Duration (in ms) of the animation.
+/// @param {String} $timing-function - Optionally overrides the default animation timing function.
+///
+@mixin tab-scroller-transition(
+  $duration-ms,
+  $timing-function: animation-variables.$standard-curve-timing-function,
+  $query: feature-targeting.all()
+) {
+  .mdc-tab-scroller {
+    @include tab-scroller-mixins.transition(
+      $duration-ms,
+      $timing-function: $timing-function,
+      $query: $query
+    );
+  }
+}

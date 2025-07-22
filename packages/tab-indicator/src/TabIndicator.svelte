@@ -30,10 +30,6 @@
 </span>
 
 <script lang="ts">
-  import {
-    MDCFadingTabIndicatorFoundation,
-    MDCSlidingTabIndicatorFoundation,
-  } from '@material/tab-indicator';
   import type { Snippet } from 'svelte';
   import { onMount } from 'svelte';
   import type { SmuiAttrs, SmuiElementPropMap } from '@smui/common';
@@ -44,6 +40,11 @@
     prefixFilter,
     useActions,
   } from '@smui/common/internal';
+
+  import {
+    MDCFadingTabIndicatorFoundation,
+    MDCSlidingTabIndicatorFoundation,
+  } from './mdc';
 
   type OwnProps = {
     /**

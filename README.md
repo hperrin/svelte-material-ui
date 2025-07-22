@@ -210,10 +210,10 @@ Migrating away from MDC-Web is a multi-step process. The steps are as follows:
 - [x] Snackbar
   - [x] Kitchen
 - Tabs
-  - [ ] Tab
-  - [ ] Tab Bar
-  - [ ] Tab Indicator
-  - [ ] Tab Scroller
+  - [x] Tab
+  - [x] Tab Bar
+  - [x] Tab Indicator
+  - [x] Tab Scroller
 - [x] Theme (new)
 - [x] Tokens (new, possibly temporary)
 - [x] Tooltip

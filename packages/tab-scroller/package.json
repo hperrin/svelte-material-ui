@@ -14,6 +14,11 @@
     ".": {
       "types": "./src/index.d.ts",
       "svelte": "./dist/index.js"
+    },
+    "./component": {
+      "types": "./dist/mdc/component.d.ts",
+      "svelte": "./dist/mdc/component.js",
+      "default": "./dist/mdc/component.js"
     }
   },
   "types": "src/index.d.ts",
@@ -49,9 +54,12 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@material/tab-scroller": "^14.0.0",
+    "@smui/animation": "^8.0.1",
+    "@smui/base": "^8.0.1",
     "@smui/common": "^8.0.1",
-    "@smui/dom": "^8.0.1"
+    "@smui/dom": "^8.0.1",
+    "@smui/feature-targeting": "^8.0.1",
+    "@smui/tab": "^8.0.1"
   },
   "devDependencies": {
     "@tsconfig/svelte": "^5.0.4",

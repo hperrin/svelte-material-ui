@@ -34,7 +34,6 @@
 </div>
 
 <script lang="ts" generics="TabKey extends Object | string | number">
-  import { MDCTabBarFoundation } from '@material/tab-bar';
   import type { ComponentProps, Snippet } from 'svelte';
   import { onMount, setContext } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
@@ -48,6 +47,8 @@
   } from '@smui/common/internal';
   import type { SMUITabAccessor } from '@smui/tab';
   import TabScroller from '@smui/tab-scroller';
+
+  import { MDCTabBarFoundation } from './mdc';
 
   type PrimitiveKey = string | number;
   type OwnProps = {

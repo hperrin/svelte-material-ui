@@ -1,4 +1,4 @@
-import type { MDCTabDimensions } from '@material/tab';
+import type { MDCTabDimensions } from './mdc';
 
 export interface SMUITabAccessor {
   tabId: any;

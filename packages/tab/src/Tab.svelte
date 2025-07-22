@@ -74,7 +74,6 @@
   lang="ts"
   generics="Href extends string | undefined = undefined, TagName extends SmuiHTMLElement = Href extends string ? 'a' : 'button'"
 >
-  import { MDCTabFoundation } from '@material/tab';
   import type { ComponentProps, Snippet } from 'svelte';
   import { onMount, setContext, getContext } from 'svelte';
   import type { ActionArray } from '@smui/common/internal';
@@ -96,6 +95,7 @@
   import { SmuiElement } from '@smui/common';
   import TabIndicator from '@smui/tab-indicator';
 
+  import { MDCTabFoundation } from './mdc';
   import type { SMUITabAccessor } from './Tab.types.js';
 
   type OwnProps = {

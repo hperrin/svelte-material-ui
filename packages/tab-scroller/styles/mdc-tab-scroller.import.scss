@@ -1,0 +1,40 @@
+@forward '@smui/animation/variables' as mdc-animation-*;
+@forward '@smui/feature-targeting/variables' as mdc-feature-*;
+@forward '@smui/feature-targeting/mixins' as mdc-feature-*;
+@forward '@smui/base/mixins' as mdc-base-*;
+@forward '@smui/theme/variables' as mdc-theme-*;
+@forward '@smui/ripple/styles/variables' as mdc-* hide $mdc-dark-ink-opacities,
+  $mdc-fade-in-duration, $mdc-fade-out-duration, $mdc-light-ink-opacities,
+  $mdc-pressed-dark-ink-opacity, $mdc-pressed-light-ink-opacity,
+  $mdc-translate-duration;
+@forward '@smui/ripple/styles/variables' as mdc-ripple-* hide $mdc-ripple-states-wash-duration;
+@forward '@smui/typography/variables' as mdc-typography-*;
+@forward '@smui/rtl/variables' as mdc-rtl-*;
+@forward '@smui/tab/styles/variables' as mdc-tab-*;
+@forward 'variables' as mdc-tab-scroller-*;
+@forward '@smui/theme/mixins' as mdc-theme-*;
+@forward '@smui/ripple/styles/keyframes' as mdc-ripple-*;
+@forward '@smui/ripple/styles/mixins' as mdc-* hide mdc-common, mdc-core-styles,
+  mdc-radius-bounded, mdc-radius-unbounded, mdc-surface, mdc-target-common,
+  mdc-target-selector;
+@forward '@smui/ripple/styles/mixins' as mdc-ripple-* hide mdc-ripple-states,
+  mdc-ripple-states-activated, mdc-ripple-states-base-color,
+  mdc-ripple-states-focus-opacity, mdc-ripple-states-focus-opacity-properties-,
+  mdc-ripple-states-hover-opacity, mdc-ripple-states-interactions-,
+  mdc-ripple-states-opacities, mdc-ripple-states-press-opacity,
+  mdc-ripple-states-selected;
+@forward '@smui/typography/mixins' as mdc-* hide mdc-base, mdc-baseline-bottom,
+  mdc-baseline-strut-, mdc-baseline-top, mdc-core-styles, mdc-overflow-ellipsis;
+@forward '@smui/typography/mixins' as mdc-typography-* hide mdc-typography-typography;
+@forward '@smui/rtl/mixins' as mdc-* hide mdc-property-, mdc-reflexive,
+  mdc-reflexive-box, mdc-reflexive-position, mdc-reflexive-property;
+@forward '@smui/rtl/mixins' as mdc-rtl-* hide mdc-rtl-rtl;
+@forward '@smui/tab-indicator/styles/mixins' as mdc-tab-indicator-*;
+@forward '@smui/tab/styles/mixins' as mdc-tab-*;
+@forward 'mixins' as mdc-tab-scroller-*;
+@forward '@smui/feature-targeting/functions' as mdc-feature-*;
+@forward '@smui/animation/functions' as mdc-animation-*;
+@forward '@smui/theme/functions' as mdc-theme-*;
+@forward '@smui/ripple/styles/functions' as mdc-*;
+@forward '@smui/typography/functions' as mdc-typography-*;
+@forward 'mdc-tab-scroller';

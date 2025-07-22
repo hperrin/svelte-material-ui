@@ -80,7 +80,6 @@
 </div>
 
 <script lang="ts">
-  import { MDCTabScrollerFoundation, util } from '@material/tab-scroller';
   import { ponyfill } from '@smui/dom';
   import type { Snippet } from 'svelte';
   import { onMount } from 'svelte';
@@ -92,6 +91,8 @@
     prefixFilter,
     useActions,
   } from '@smui/common/internal';
+
+  import { MDCTabScrollerFoundation, util } from './mdc';
 
   const { matches } = ponyfill;
 
