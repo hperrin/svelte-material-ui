@@ -17,7 +17,6 @@
 ></div>
 
 <script lang="ts">
-  import { MDCLineRippleFoundation } from '@material/line-ripple';
   import { onMount } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
@@ -26,6 +25,8 @@
     useActions,
     SvelteEventManager,
   } from '@smui/common/internal';
+
+  import { MDCLineRippleFoundation } from './mdc';
 
   type OwnProps = {
     /**

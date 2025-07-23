@@ -182,7 +182,7 @@ Migrating away from MDC-Web is a multi-step process. The steps are as follows:
   - [ ] Chip Input
   - [x] Floating Label
   - [x] Form Field
-  - [ ] Line Ripple
+  - [x] Line Ripple
   - [ ] Notched Outline
   - [x] Radio Button
   - [ ] Segmented Button
