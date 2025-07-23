@@ -1,9 +1,9 @@
 @use 'sass:math';
-@use '@material/select/select-theme';
-@use '@material/select/select-icon-theme';
-@use '@material/menu-surface/mixins' as menu-surface-mixins;
-@use '@material/floating-label/mixins' as floating-label-mixins;
-@use '@material/floating-label/variables' as floating-label-variables;
+@use './styles/select-theme';
+@use './styles/select-icon-theme';
+@use '@smui/menu-surface/styles/mixins' as menu-surface-mixins;
+@use '@smui/floating-label/styles/mixins' as floating-label-mixins;
+@use '@smui/floating-label/styles/variables' as floating-label-variables;
 @use '@smui/ripple/styles/ripple-theme';
 @use '@smui/rtl/mixins' as rtl-mixins;
 @use '@smui/feature-targeting/index' as feature-targeting;

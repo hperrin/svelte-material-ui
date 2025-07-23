@@ -14,6 +14,21 @@
     ".": {
       "types": "./src/index.d.ts",
       "svelte": "./dist/index.js"
+    },
+    "./component": {
+      "types": "./dist/mdc/component.d.ts",
+      "svelte": "./dist/mdc/component.js",
+      "default": "./dist/mdc/component.js"
+    },
+    "./constants": {
+      "types": "./dist/mdc/constants.d.ts",
+      "svelte": "./dist/mdc/constants.js",
+      "default": "./dist/mdc/constants.js"
+    },
+    "./types": {
+      "types": "./dist/mdc/types.d.ts",
+      "svelte": "./dist/mdc/types.js",
+      "default": "./dist/mdc/types.js"
     }
   },
   "types": "src/index.d.ts",

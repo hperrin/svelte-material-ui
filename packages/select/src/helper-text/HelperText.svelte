@@ -23,12 +23,13 @@
 </script>
 
 <script lang="ts">
-  import { MDCSelectHelperTextFoundation } from '@material/select';
   import type { Snippet } from 'svelte';
   import { onMount, getContext } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, useActions } from '@smui/common/internal';
+
+  import { MDCSelectHelperTextFoundation } from './mdc';
 
   type OwnProps = {
     /**

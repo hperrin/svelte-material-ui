@@ -247,11 +247,6 @@
 </script>
 
 <script lang="ts">
-  import type {
-    MDCSelectIconFoundation,
-    MDCSelectHelperTextFoundation,
-  } from '@material/select';
-  import { MDCSelectFoundation } from '@material/select';
   import type { ComponentProps, Snippet } from 'svelte';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
   import { writable } from 'svelte/store';
@@ -279,6 +274,11 @@
   import LineRipple from '@smui/line-ripple';
   import NotchedOutline from '@smui/notched-outline';
 
+  import type {
+    MDCSelectIconFoundation,
+    MDCSelectHelperTextFoundation,
+  } from './mdc';
+  import { MDCSelectFoundation } from './mdc';
   import HelperText from './helper-text/HelperText.svelte';
 
   interface UninitializedValue extends Function {}
