@@ -73,7 +73,6 @@
 </script>
 
 <script lang="ts">
-  import type { SortValue } from '@material/data-table';
   import type { Snippet } from 'svelte';
   import { onMount, getContext, setContext } from 'svelte';
   import type { Writable } from 'svelte/store';
@@ -81,6 +80,7 @@
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, useActions, dispatch } from '@smui/common/internal';
 
+  import type { SortValue } from './mdc';
   import type { SMUIDataTableCellAccessor } from './Cell.types.js';
 
   let header = getContext<boolean>('SMUI:data-table:row:header');

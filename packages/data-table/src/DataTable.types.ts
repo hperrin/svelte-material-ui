@@ -1,1 +1,1 @@
-export { SortValue } from '@material/data-table';
+export { SortValue } from './mdc';

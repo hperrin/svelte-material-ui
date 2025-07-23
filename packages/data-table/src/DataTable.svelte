@@ -66,11 +66,6 @@
 </div>
 
 <script lang="ts">
-  import type {
-    ProgressIndicatorStyles,
-    SortValue,
-  } from '@material/data-table';
-  import { MDCDataTableFoundation } from '@material/data-table';
   import { ponyfill } from '@smui/dom';
   import type { Snippet } from 'svelte';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
@@ -90,6 +85,8 @@
     dispatch,
   } from '@smui/common/internal';
 
+  import type { ProgressIndicatorStyles, SortValue } from './mdc';
+  import { MDCDataTableFoundation } from './mdc';
   import type { SMUIDataTableHeadAccessor } from './Head.types.js';
   import type { SMUIDataTableBodyAccessor } from './Body.types.js';
 
