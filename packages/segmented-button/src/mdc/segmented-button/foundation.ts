@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  */
 
-import { MDCFoundation } from '@material/base';
+import { MDCFoundation } from '@smui/base/foundation';
 
 import type { SegmentDetail } from '../types';
 

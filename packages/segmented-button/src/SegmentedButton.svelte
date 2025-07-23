@@ -28,10 +28,6 @@
 </div>
 
 <script lang="ts" generics="SegmentKey extends Object | string | number">
-  import type { SegmentDetail } from '@material/segmented-button';
-  // TODO: Remove this when MDC's segmented button is fixed.
-  // @ts-ignore
-  import { MDCSegmentedButtonFoundation } from './mdc-segmented-button/index.js';
   import type { Snippet } from 'svelte';
   import { onMount, setContext } from 'svelte';
   import { writable } from 'svelte/store';
@@ -40,6 +36,8 @@
   import { classMap, useActions, dispatch } from '@smui/common/internal';
   import { ContextFragment } from '@smui/common';
 
+  import type { SegmentDetail } from './mdc';
+  import { MDCSegmentedButtonFoundation } from './mdc';
   import type { SMUISegmentedButtonSegmentAccessor } from './Segment.types.js';
 
   type PrimitiveKey = string | number;

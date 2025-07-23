@@ -21,11 +21,13 @@
  * THE SOFTWARE.
  */
 
-import { MDCComponent } from '@material/base';
-import type { CustomEventListener } from '@material/base';
+import { MDCComponent } from '@smui/base/component';
+import type { CustomEventListener } from '@smui/base/types';
 
-import { MDCSegmentedButtonSegment } from '../segment/component';
-import type { MDCSegmentedButtonSegmentFactory } from '../segment/component';
+import {
+  MDCSegmentedButtonSegment,
+  type MDCSegmentedButtonSegmentFactory,
+} from '../segment/component';
 import type { MDCSegmentedButtonEvent, SegmentDetail } from '../types';
 
 import type { MDCSegmentedButtonAdapter } from './adapter';

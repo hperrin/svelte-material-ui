@@ -40,10 +40,6 @@
 >
 
 <script lang="ts" generics="SegmentKey extends Object | string | number">
-  // TODO: Remove this when MDC's segmented button is fixed.
-  // TODO: Also remove @material/base and @material/ripple from the package.json
-  // @ts-ignore
-  import { MDCSegmentedButtonSegmentFoundation } from './mdc-segmented-button/index.js';
   import type { Snippet } from 'svelte';
   import { onMount, getContext } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
@@ -51,6 +47,7 @@
   import { classMap, useActions, dispatch } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
 
+  import { MDCSegmentedButtonSegmentFoundation } from './mdc';
   import type { SMUISegmentedButtonSegmentAccessor } from './Segment.types.js';
 
   interface UninitializedValue extends Function {}

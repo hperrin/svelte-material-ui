@@ -49,10 +49,14 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@material/base": "^14.0.0",
-    "@material/segmented-button": "^14.0.0",
+    "@smui/base": "^8.0.1",
     "@smui/common": "^8.0.1",
-    "@smui/ripple": "^8.0.1"
+    "@smui/elevation": "^8.0.1",
+    "@smui/feature-targeting": "^8.0.1",
+    "@smui/ripple": "^8.0.1",
+    "@smui/theme": "^8.0.1",
+    "@smui/touch-target": "^8.0.1",
+    "@smui/typography": "^8.0.1"
   },
   "devDependencies": {
     "@tsconfig/svelte": "^5.0.4",

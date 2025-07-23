@@ -21,13 +21,12 @@
  * THE SOFTWARE.
  */
 
-import { MDCComponent } from '@material/base';
-import type { SpecificEventListener } from '@material/base';
-import type { MDCRippleAdapter } from '@material/ripple';
-import { MDCRipple } from '@material/ripple';
-import type { MDCRippleFactory } from '@material/ripple';
-import { MDCRippleFoundation } from '@material/ripple';
-import type { MDCRippleCapableSurface } from '@material/ripple';
+import { MDCComponent } from '@smui/base/component';
+import type { SpecificEventListener } from '@smui/base/types';
+import type { MDCRippleAdapter } from '@smui/ripple/adapter';
+import { MDCRipple, type MDCRippleFactory } from '@smui/ripple/component';
+import { MDCRippleFoundation } from '@smui/ripple/foundation';
+import type { MDCRippleCapableSurface } from '@smui/ripple/types';
 
 import type { SegmentDetail } from '../types';
 
