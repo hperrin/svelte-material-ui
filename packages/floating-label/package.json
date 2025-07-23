@@ -14,6 +14,11 @@
     ".": {
       "types": "./src/index.d.ts",
       "svelte": "./dist/index.js"
+    },
+    "./foundation": {
+      "types": "./dist/mdc/foundation.d.ts",
+      "svelte": "./dist/mdc/foundation.js",
+      "default": "./dist/mdc/foundation.js"
     }
   },
   "types": "src/index.d.ts",

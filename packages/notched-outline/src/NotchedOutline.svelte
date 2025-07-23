@@ -27,13 +27,14 @@
 </div>
 
 <script lang="ts">
-  import { MDCNotchedOutlineFoundation } from '@material/notched-outline';
   import type { Snippet } from 'svelte';
   import { onMount, setContext } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, useActions } from '@smui/common/internal';
   import type { SMUIFloatingLabelAccessor } from '@smui/floating-label';
+
+  import { MDCNotchedOutlineFoundation } from './mdc';
 
   type OwnProps = {
     /**

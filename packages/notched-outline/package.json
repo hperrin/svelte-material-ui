@@ -49,9 +49,13 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@material/notched-outline": "^14.0.0",
+    "@smui/base": "^8.0.1",
     "@smui/common": "^8.0.1",
-    "@smui/floating-label": "^8.0.1"
+    "@smui/feature-targeting": "^8.0.1",
+    "@smui/floating-label": "^8.0.1",
+    "@smui/rtl": "^8.0.1",
+    "@smui/shape": "^8.0.1",
+    "@smui/theme": "^8.0.1"
   },
   "devDependencies": {
     "@tsconfig/svelte": "^5.0.4",
