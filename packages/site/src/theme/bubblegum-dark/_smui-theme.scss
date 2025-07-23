@@ -109,17 +109,17 @@
 // Individual components that need configuration:
 
 // Big buttons.
-@use '@material/button/button-shared-theme' as button with (
+@use '@smui/button/styles/button-shared-theme' as button with (
   $height: 40px
 );
 
 // Big FAB.
-@use '@material/fab/fab-theme' as fab with (
+@use '@smui/fab/styles/fab-theme' as fab with (
   $mini-height: 44px
 );
 
 // Big icon buttons.
-@use '@material/icon-button/icon-button-theme' as icon-button with (
+@use '@smui/icon-button/styles/icon-button-theme' as icon-button with (
   $icon-size: 26px,
   $size: 48px
 );

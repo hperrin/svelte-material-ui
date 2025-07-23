@@ -1,1 +1,1 @@
-export { DefaultFocusState } from '@material/menu';
+export { DefaultFocusState } from './mdc';

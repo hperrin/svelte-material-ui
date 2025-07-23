@@ -36,6 +36,8 @@ If you are using Svelte 4, you can use SMUI v7, which is the current stable vers
 
 Upgrading from an old version? Be sure to read the [migration doc](MIGRATING.md).
 
+Upgrading from v8? No more "@material" packages. Check out the [upgrade instructions](MIGRATING.md#smui-8---smui-9).
+
 Upgrading from v7? You need Svelte 5. Event listeners no longer to use the CustomEvent type. Check out the [upgrade instructions](MIGRATING.md#smui-7---smui-8).
 
 Upgrading from v6? You need Svelte 4. No more elemental components; you can now use the "tag" prop to change the element. No more "ComponentDev" types; components can now be used as their type. Check out the [upgrade instructions](MIGRATING.md#smui-6---smui-7).
@@ -52,6 +54,7 @@ Upgrading from v2? There are **lots** of changes listed in the [upgrade instruct
 
 You can find older versions of the docs on their respective branch:
 
+- [v8 docs](https://github.com/hperrin/svelte-material-ui/tree/v8#readme)
 - [v7 docs](https://github.com/hperrin/svelte-material-ui/tree/v7#readme)
 - [v6 docs](https://github.com/hperrin/svelte-material-ui/tree/v6#readme)
 - [v5 docs](https://github.com/hperrin/svelte-material-ui/tree/v5#readme)
@@ -152,20 +155,20 @@ Migrating away from MDC-Web is a multi-step process. The steps are as follows:
 
 ## Step 1. Import all of the styles and JS into SMUI from v14 of MDC-Web, and rewrite anything that needs to be to get it working.
 
-- [ ] Accordion
+- [x] Accordion
 - [x] Animation (new)
 - Action Buttons
   - [x] Button
   - [x] Floating Action Button
   - [x] Icon Button
 - App Bars
-  - [ ] Bottom App Bar
+  - [x] Bottom App Bar
   - [x] Top App Bar
-- [ ] Badge
+- [x] Badge
 - [x] Banner
 - [x] Base (new, temporary)
 - [x] Card
-- [ ] Common
+- [x] Common
 - [x] Data Table
 - [x] Density (new)
 - [x] Dialog
@@ -176,10 +179,10 @@ Migrating away from MDC-Web is a multi-step process. The steps are as follows:
 - [x] Focus Ring (new)
 - [x] Image List
 - Inputs and Controls
-  - [ ] Autocomplete
+  - [x] Autocomplete
   - [x] Checkbox
   - [x] Chips
-  - [ ] Chip Input
+  - [x] Chip Input
   - [x] Floating Label
   - [x] Form Field
   - [x] Line Ripple
@@ -199,7 +202,7 @@ Migrating away from MDC-Web is a multi-step process. The steps are as follows:
 - [x] List
 - [x] Menu Surface
 - [x] Menu
-- [ ] Paper
+- [x] Paper
 - Progress Indicators
   - [x] Progress Indicator (new, possibly temporary)
   - [x] Circular Progress

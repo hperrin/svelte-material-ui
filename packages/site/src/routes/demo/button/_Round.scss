@@ -1,4 +1,4 @@
-@use '@material/button/mixins' as mdc-button;
+@use '@smui/button/styles/mixins' as mdc-button;
 
 .button-shaped-round {
   @include mdc-button.shape-radius(100%);

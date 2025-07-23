@@ -1,6 +1,12 @@
 # Migrating to Newer SMUI Versions
 
-This doc contains information that will help you migrate your code from an older version of SMUI to a newer one. Things that you will need to change in your existing code will be written here. It would also be helpful to check the MDC changelog if the upstream MDC versions has changed between SMUI versions.
+This doc contains information that will help you migrate your code from an older version of SMUI to a newer one. Things that you will need to change in your existing code will be written here.
+
+# SMUI 8 -> SMUI 9
+
+SMUI 9 has migrated away from MDC-Web, since MDC-Web has been abandoned.
+
+- All "@material" packages you're using should be migrated to the equivalent "@smui" packages.
 
 # SMUI 7 -> SMUI 8
 
