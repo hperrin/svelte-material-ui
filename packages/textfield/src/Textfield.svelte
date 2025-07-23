@@ -242,12 +242,6 @@
 {/if}
 
 <script lang="ts">
-  import type {
-    MDCTextFieldIconFoundation,
-    MDCTextFieldHelperTextFoundation,
-    MDCTextFieldCharacterCounterFoundation,
-  } from '@material/textfield';
-  import { MDCTextFieldFoundation } from '@material/textfield';
   import { events } from '@smui/dom';
   import type { ComponentProps, Snippet } from 'svelte';
   import { onMount, onDestroy, getContext, setContext, tick } from 'svelte';
@@ -272,6 +266,12 @@
   import LineRipple from '@smui/line-ripple';
   import NotchedOutline from '@smui/notched-outline';
 
+  import type {
+    MDCTextFieldIconFoundation,
+    MDCTextFieldHelperTextFoundation,
+    MDCTextFieldCharacterCounterFoundation,
+  } from './mdc';
+  import { MDCTextFieldFoundation } from './mdc';
   import HelperLine from './HelperLine.svelte';
   import Prefix from './Prefix.svelte';
   import Suffix from './Suffix.svelte';

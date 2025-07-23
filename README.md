@@ -191,10 +191,10 @@ Migrating away from MDC-Web is a multi-step process. The steps are as follows:
     - [x] Select Icon
   - [x] Slider
   - [x] Switch
-  - [ ] Text Field
-    - [ ] Text Field Character Counter
-    - [ ] Text Field Helper Text
-    - [ ] Text Field Icon
+  - [x] Text Field
+    - [x] Text Field Character Counter
+    - [x] Text Field Helper Text
+    - [x] Text Field Icon
 - [x] Layout Grid
 - [x] List
 - [x] Menu Surface

@@ -1,0 +1,117 @@
+//
+// Copyright 2018 Google Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+//
+
+// stylelint-disable selector-class-pattern --
+// Selector '.mdc-*' should only be used in this project.
+
+@use '@smui/animation/animation';
+@use '@smui/animation/variables';
+@use '@smui/theme/theme';
+@use '@smui/typography/typography';
+@use '@smui/feature-targeting/feature-targeting';
+
+// Public mixins
+
+@mixin helper-text-core-styles($query: feature-targeting.all()) {
+  $feat-structure: feature-targeting.create-target($query, structure);
+  $feat-animation: feature-targeting.create-target($query, animation);
+
+  // postcss-bem-linter: define text-field-helper-text
+
+  .mdc-text-field-helper-text {
+    @include typography.typography(caption, $query: $query);
+    @include typography.text-baseline($top: 16px, $query: $query);
+
+    @include feature-targeting.targets($feat-structure) {
+      margin: 0;
+      opacity: 0;
+      will-change: opacity;
+    }
+
+    @include feature-targeting.targets($feat-animation) {
+      transition: animation.standard(opacity, 150ms);
+    }
+  }
+
+  .mdc-text-field-helper-text--persistent {
+    @include feature-targeting.targets($feat-animation) {
+      transition: none;
+    }
+
+    @include feature-targeting.targets($feat-structure) {
+      opacity: 1;
+      will-change: initial;
+    }
+  }
+
+  // postcss-bem-linter: end
+}
+
+///
+/// Customizes the color of the helper text following an enabled text-field.
+/// @param {Color} $color - The desired helper text color.
+///
+@mixin helper-text-color($color, $query: feature-targeting.all()) {
+  &:not(.mdc-text-field--disabled) {
+    @include helper-text-color_($color, $query);
+  }
+}
+
+///
+/// Customizes the color of the helper text following a disabled text-field.
+/// @param {Color} $color - The desired helper text color.
+///
+@mixin disabled-helper-text-color($color, $query: feature-targeting.all()) {
+  &.mdc-text-field--disabled {
+    @include helper-text-color_($color, $query);
+  }
+}
+
+@mixin helper-text-validation-color($color, $query: feature-targeting.all()) {
+  &:not(.mdc-text-field--disabled) {
+    @include helper-text-validation-color_($color, $query);
+  }
+}
+
+// Private mixins
+
+@mixin helper-text-color_($color, $query: feature-targeting.all()) {
+  $feat-color: feature-targeting.create-target($query, color);
+
+  + .mdc-text-field-helper-line .mdc-text-field-helper-text {
+    @include feature-targeting.targets($feat-color) {
+      @include theme.property(color, $color);
+    }
+  }
+}
+
+@mixin helper-text-validation-color_($color, $query: feature-targeting.all()) {
+  $feat-color: feature-targeting.create-target($query, color);
+
+  &.mdc-text-field--invalid
+    + .mdc-text-field-helper-line
+    .mdc-text-field-helper-text--validation-msg {
+    @include feature-targeting.targets($feat-color) {
+      @include theme.property(color, $color);
+    }
+  }
+}

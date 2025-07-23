@@ -1,8 +1,8 @@
-@use '@material/textfield/index' as textfield;
-@use '@material/textfield/icon/variables' as icon-variables;
+@use './styles/index' as textfield;
+@use './styles/icon/variables' as icon-variables;
 @use '@smui/ripple/styles/index' as ripple;
-@use '@material/floating-label/mixins' as floating-label-mixins;
-@use '@material/floating-label/variables' as floating-label-variables;
+@use '@smui/floating-label/styles/mixins' as floating-label-mixins;
+@use '@smui/floating-label/styles/variables' as floating-label-variables;
 @use '@smui/rtl/mixins' as rtl-mixins;
 @use '@smui/typography/typography';
 @use '@smui/feature-targeting/index' as feature-targeting;
