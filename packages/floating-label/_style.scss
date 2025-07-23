@@ -1,4 +1,4 @@
-@use '@material/floating-label/mdc-floating-label';
+@use './styles/mdc-floating-label';
 
 .smui-floating-label--remove-transition {
   transition: unset !important;

@@ -38,7 +38,6 @@
 {/if}
 
 <script lang="ts">
-  import { MDCFloatingLabelFoundation } from '@material/floating-label';
   import type { Snippet } from 'svelte';
   import { onMount, getContext } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
@@ -49,6 +48,7 @@
     SvelteEventManager,
   } from '@smui/common/internal';
 
+  import { MDCFloatingLabelFoundation } from './mdc';
   import type { SMUIFloatingLabelAccessor } from './FloatingLabel.types.js';
 
   type OwnProps = {

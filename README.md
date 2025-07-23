@@ -180,7 +180,7 @@ Migrating away from MDC-Web is a multi-step process. The steps are as follows:
   - [x] Checkbox
   - [x] Chips
   - [ ] Chip Input
-  - [ ] Floating Label
+  - [x] Floating Label
   - [x] Form Field
   - [ ] Line Ripple
   - [ ] Notched Outline
