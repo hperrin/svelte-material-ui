@@ -172,7 +172,7 @@
   }
 
   function getTopAppBarHeight() {
-    return getElement().getBoundingClientRect().height;
+    return getElement()?.getBoundingClientRect().height;
   }
 
   let oldVariant: 'fixed' | 'static' | 'standard' | null = null;
