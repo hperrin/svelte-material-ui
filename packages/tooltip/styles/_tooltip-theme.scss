@@ -32,7 +32,7 @@
 @use '@smui/theme/css';
 @use '@smui/theme/theme-color';
 
-$background-color: rgba(black, theme-color.text-emphasis(medium));
+$background-color: rgba(97, 97, 97, theme-color.text-emphasis(high));
 $border-radius: small;
 $label-color: text-primary-on-dark;
 

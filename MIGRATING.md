@@ -9,7 +9,7 @@ SMUI 9 has migrated away from MDC-Web, since MDC-Web has been abandoned.
 ## Breaking Changes
 
 - All "@material" packages you're using should be migrated to the equivalent "@smui" packages.
-- Simple Tooltips now require a Label component (can be imported from `@smui/tooltip` or `@smui/common`) wrapping their text. (Rich tooltips still use the Content component.)
+- Plain Tooltips now require a Label component (can be imported from `@smui/tooltip` or `@smui/common`) wrapping their text. (Rich tooltips still use the Content component.)
 - IconButton should now always contain at least one Icon child.
 - Kitchen now includes a `dismissIcon$` prefix. If you used `dismiss$class`, you should probably now change it to `dismissIcon$class`.
 - In Slider, the input now appears inside the "thumb" element.
@@ -21,6 +21,9 @@ SMUI 9 has migrated away from MDC-Web, since MDC-Web has been abandoned.
 - IconButton now has a `focusRing` property to control whether the focus ring is shown.
 - Dialog now has a `scrimRemoved` property to remove the Scrim behind the dialog.
 - Form Field now has a `justify` property to justify the label and input.
+- Tooltip timing has been changed to 250ms to show and 100ms to hide (previously 500ms and 600ms respectively).
+- Plain Tooltips now do not respond to mouse events.
+- Plain Tooltips now actually look like the Material Spec.
 
 # SMUI 7 -> SMUI 8
 

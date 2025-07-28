@@ -77,11 +77,17 @@ $_caret-size: 24px;
   );
 
   .mdc-tooltip {
+    pointer-events: none;
+
     @include feature-targeting.targets($feat-structure) {
       position: fixed;
       display: none;
       z-index: tooltip-theme.$z-index;
     }
+  }
+
+  .mdc-tooltip--rich {
+    pointer-events: all;
   }
 
   .mdc-tooltip-wrapper--rich {
