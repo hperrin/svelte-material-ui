@@ -6,6 +6,7 @@
   class={classMap({
     'mdc-form-field': true,
     'mdc-form-field--align-end': align === 'end',
+    'mdc-form-field--space-between': justify === 'space-between',
     'mdc-form-field--nowrap': noWrap,
     [className]: true,
   })}
@@ -15,6 +16,10 @@
   <label
     bind:this={labelEl}
     use:useActions={label$use}
+    class={classMap({
+      'mdc-label': true,
+      [label$class]: true,
+    })}
     for={inputId}
     {...prefixFilter(restProps, 'label$')}>{@render label?.()}</label
   >
@@ -57,6 +62,10 @@
      */
     align?: 'start' | 'end';
     /**
+     * How to justify the label and input.
+     */
+    justify?: 'normal' | 'space-between';
+    /**
      * Whether to prevent content wrapping.
      */
     noWrap?: boolean;
@@ -68,6 +77,10 @@
      * An array of Action or [Action, ActionProps] to be applied to the element.
      */
     label$use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
+    label$class?: string;
 
     children?: Snippet;
     /**
@@ -79,15 +92,17 @@
     use = [],
     class: className = '',
     align = 'start',
+    justify = 'normal',
     noWrap = false,
     inputId = 'SMUI-form-field-' + counter++,
     label$use = [],
+    label$class = '',
     children,
     label,
     ...restProps
   }: OwnProps &
     SmuiAttrs<'div', keyof OwnProps> & {
-      [k in keyof SmuiElementPropMap['label'] as `label\$${k}`]?: SmuiElementPropMap['label'];
+      [k in keyof SmuiElementPropMap['label'] as `label\$${k}`]?: SmuiElementPropMap['label'][k];
     } = $props();
 
   let element: HTMLDivElement;

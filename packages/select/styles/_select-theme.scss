@@ -42,25 +42,36 @@
 @use '@smui/menu-surface/styles/mixins' as menu-surface-mixins;
 @use '@smui/notched-outline/styles/mixins' as notched-outline-mixins;
 @use '@smui/notched-outline/styles/variables' as notched-outline-variables;
+@use '@smui/ripple/styles/ripple-theme';
 @use '@smui/rtl/rtl';
 @use '@smui/shape/functions' as shape-functions;
 @use '@smui/shape/mixins' as shape-mixins;
+@use '@smui/theme/css';
 @use '@smui/theme/custom-properties';
 @use '@smui/theme/gss';
-@use '@smui/theme/mixins' as theme-mixins;
+@use '@smui/theme/keys';
 @use '@smui/theme/state';
 @use '@smui/theme/theme';
 @use '@smui/theme/variables' as theme-variables;
 @use '@smui/typography/mixins' as typography-mixins;
 @use '@smui/typography/typography';
-@use './select-icon-theme';
 @use './select-helper-text-theme';
+@use './select-icon-theme';
+@use './select-shared-theme';
 
 $ripple-target: '.mdc-select__ripple';
 
 @function get-outlined-label-position-y($select-anchor-height) {
-  @return math.div($select-anchor-height, 2) +
-    math.div(notched-outline-variables.$label-box-height, 2);
+  @if custom-properties.is-custom-prop($select-anchor-height) {
+    $value: custom-properties.get-declaration-value($select-anchor-height);
+    @return calc(
+      calc($value / 2) +
+        math.div(notched-outline-variables.$label-box-height, 2)
+    );
+  } @else {
+    @return math.div($select-anchor-height, 2) +
+      math.div(notched-outline-variables.$label-box-height, 2);
+  }
 }
 
 $arrow-padding: 52px !default;
@@ -166,135 +177,7 @@ $icon-inactive-fade-in-duration: 0.5 * $dropdown-transition-duration !default;
 // Error colors
 $error-color: error !default;
 
-$_light-theme: (
-  // Implement `menu-cascading-menu-indicator-icon-color` when select supports.
-  // Implement `menu-cascading-menu-indicator-icon-size` when select supports.
-  // Implement `menu-container-surface-tint-layer-color` when select supports.
-  // Implement `text-field-disabled-trailing-icon-color` when select supports.
-  // Implement `text-field-hover-trailing-icon-color` when select supports.
-  // Implement `text-field-focus-trailing-icon-color` when select supports.
-  // Implement `text-field-error-trailing-icon-color` when select supports.
-  // Implement `text-field-error-hover-trailing-icon-color` when select supports.
-  // Implement `text-field-error-focus-trailing-icon-color` when select supports.
-  // Implement `text-field-trailing-icon-color` when select supports.
-  // Implement `text-field-trailing-icon-size` when select supports.
-  // Implement `text-field-error-hover-state-layer-color` when select supports.
-  // Implement `text-field-error-hover-state-layer-opacity` when select supports.
-  // Implement `text-field-hover-state-layer-color` when select supports.
-  // Implement `text-field-hover-state-layer-opacity` when select supports.
-  menu-container-color: null,
-  menu-container-elevation: null,
-  menu-container-shadow-color: null,
-  menu-container-shape: null,
-  menu-divider-color: null,
-  menu-divider-height: null,
-  menu-list-item-container-height: null,
-  menu-list-item-label-text-color: null,
-  menu-list-item-label-text-font: null,
-  menu-list-item-label-text-line-height: null,
-  menu-list-item-label-text-size: null,
-  menu-list-item-label-text-tracking: null,
-  menu-list-item-label-text-weight: null,
-  menu-list-item-selected-container-color: null,
-  menu-list-item-with-leading-icon-leading-icon-color: null,
-  menu-list-item-with-leading-icon-leading-icon-size: null,
-  menu-list-item-with-trailing-icon-trailing-icon-color: null,
-  menu-list-item-with-trailing-icon-trailing-icon-size: null,
-  text-field-active-indicator-color: null,
-  text-field-active-indicator-height: null,
-  text-field-caret-color: null,
-  // Token key `text-field-hover-caret-color` not available on DSDB.
-  text-field-hover-caret-color: null,
-  // Token key `text-field-focus-caret-color` not available on DSDB.
-  text-field-focus-caret-color: null,
-  text-field-container-color: null,
-  text-field-container-height: null,
-  text-field-container-shape: null,
-  text-field-disabled-active-indicator-color: null,
-  text-field-disabled-active-indicator-height: null,
-  text-field-disabled-active-indicator-opacity: null,
-  text-field-disabled-container-color: null,
-  text-field-disabled-container-opacity: null,
-  text-field-disabled-input-text-color: null,
-  text-field-disabled-input-text-opacity: null,
-  text-field-disabled-label-text-color: null,
-  text-field-disabled-label-text-opacity: null,
-  text-field-disabled-leading-icon-color: null,
-  text-field-disabled-leading-icon-opacity: null,
-  text-field-disabled-outline-color: null,
-  text-field-disabled-outline-opacity: null,
-  text-field-disabled-outline-width: null,
-  text-field-disabled-supporting-text-color: null,
-  text-field-disabled-supporting-text-opacity: null,
-  text-field-disabled-trailing-icon-opacity: null,
-  text-field-error-active-indicator-color: null,
-  text-field-error-focus-active-indicator-color: null,
-  // Token key `text-field-error-caret-color` not available on DSDB.
-  text-field-error-caret-color: null,
-  // Token key `text-field-error-hover-caret-color` not available on DSDB.
-  text-field-error-hover-caret-color: null,
-  text-field-error-focus-caret-color: null,
-  text-field-error-focus-input-text-color: null,
-  text-field-error-focus-label-text-color: null,
-  text-field-error-focus-leading-icon-color: null,
-  text-field-error-focus-outline-color: null,
-  text-field-error-focus-supporting-text-color: null,
-  text-field-error-hover-active-indicator-color: null,
-  text-field-error-hover-input-text-color: null,
-  text-field-error-hover-label-text-color: null,
-  text-field-error-hover-leading-icon-color: null,
-  text-field-error-hover-outline-color: null,
-  text-field-error-hover-supporting-text-color: null,
-  text-field-error-input-text-color: null,
-  text-field-error-label-text-color: null,
-  text-field-error-leading-icon-color: null,
-  text-field-error-outline-color: null,
-  text-field-error-supporting-text-color: null,
-  text-field-focus-active-indicator-color: null,
-  text-field-focus-active-indicator-height: null,
-  text-field-focus-input-text-color: null,
-  text-field-focus-label-text-color: null,
-  text-field-focus-leading-icon-color: null,
-  text-field-focus-outline-color: null,
-  text-field-focus-outline-width: null,
-  text-field-focus-supporting-text-color: null,
-  text-field-hover-active-indicator-color: null,
-  text-field-hover-active-indicator-height: null,
-  text-field-hover-input-text-color: null,
-  text-field-hover-label-text-color: null,
-  text-field-hover-leading-icon-color: null,
-  text-field-hover-outline-color: null,
-  text-field-hover-outline-width: null,
-  text-field-hover-supporting-text-color: null,
-  text-field-input-text-color: null,
-  text-field-input-text-font: null,
-  text-field-input-text-line-height: null,
-  text-field-input-text-size: null,
-  text-field-input-text-tracking: null,
-  text-field-input-text-weight: null,
-  text-field-label-text-color: null,
-  text-field-label-text-font: null,
-  text-field-label-text-line-height: null,
-  text-field-label-text-populated-line-height: null,
-  text-field-label-text-populated-size: null,
-  text-field-label-text-size: null,
-  text-field-label-text-tracking: null,
-  text-field-label-text-weight: null,
-  text-field-leading-icon-color: null,
-  text-field-leading-icon-size: null,
-  text-field-outline-color: null,
-  text-field-outline-width: null,
-  text-field-supporting-text-color: null,
-  text-field-supporting-text-font: null,
-  text-field-supporting-text-line-height: null,
-  text-field-supporting-text-size: null,
-  text-field-supporting-text-tracking: null,
-  text-field-supporting-text-weight: null
-);
-
 @mixin theme-styles($theme, $resolvers: resolvers.$material) {
-  @include theme.validate-theme-keys($_light-theme, $theme);
-
   @include container-fill-color(
     (
       default: map.get($theme, text-field-container-color),
@@ -324,12 +207,11 @@ $_light-theme: (
     )
   );
   @include _menu-container-color(map.get($theme, menu-container-color));
-  @include _menu-container-elevation(
-    map.get($resolvers, elevation),
-    $shadow-color: map.get($theme, menu-container-shadow-color),
-    $elevation: map.get($theme, menu-container-elevation)
-  );
+  @include _menu-container-elevation(map.get($theme, menu-container-elevation));
   @include _menu-container-shape(map.get($theme, menu-container-shape));
+  @include _menu-container-surface-tint-layer-color(
+    map.get($theme, menu-container-surface-tint-layer-color)
+  );
   @include _menu-divider-color(map.get($theme, menu-divider-color));
   @include _menu-divider-height(map.get($theme, menu-divider-height));
   @include _menu-list-item-container-height(
@@ -345,6 +227,22 @@ $_light-theme: (
       size: map.get($theme, menu-list-item-label-text-size),
       tracking: map.get($theme, menu-list-item-label-text-tracking),
       weight: map.get($theme, menu-list-item-label-text-weight),
+    )
+  );
+  @include _menu-list-item-state-layer(
+    (
+      focus-state-layer-color:
+        map.get($theme, menu-list-item-focus-state-layer-color),
+      focus-state-layer-opacity:
+        map.get($theme, menu-list-item-focus-state-layer-opacity),
+      hover-state-layer-color:
+        map.get($theme, menu-list-item-hover-state-layer-color),
+      hover-state-layer-opacity:
+        map.get($theme, menu-list-item-hover-state-layer-opacity),
+      pressed-state-layer-color:
+        map.get($theme, menu-list-item-pressed-state-layer-color),
+      pressed-state-layer-opacity:
+        map.get($theme, menu-list-item-pressed-state-layer-opacity),
     )
   );
   @include _menu-list-item-selected-container-color(
@@ -368,8 +266,12 @@ $_light-theme: (
       default: map.get($theme, text-field-active-indicator-color),
       hover: map.get($theme, text-field-hover-active-indicator-color),
       focus: map.get($theme, text-field-focus-active-indicator-color),
-      disabled: map.get($theme, text-field-disabled-indicator-color),
+      disabled: map.get($theme, text-field-disabled-active-indicator-color),
     )
+  );
+  @include dropdown-icon-size(map.get($theme, text-field-trailing-icon-size));
+  @include select-icon-theme.size(
+    map.get($theme, text-field-leading-icon-size)
   );
   @include _text-field-error-active-indicator-color(
     (
@@ -379,22 +281,46 @@ $_light-theme: (
     )
   );
   @include _text-field-active-indicator-height(
-    map.get($theme, text-field-active-indicator-height)
-  );
-  @include _text-field-caret-color(
     (
-      default: map.get($theme, text-field-caret-color),
-      hover: map.get($theme, text-field-hover-caret-color),
-      focus: map.get($theme, text-field-focus-caret-color),
+      default: map.get($theme, text-field-active-indicator-height),
+      focus: map.get($theme, text-field-focus-active-indicator-height),
     )
   );
-  @include _text-field-error-caret-color(
-    (
-      default: map.get($theme, text-field-error-caret-color),
-      hover: map.get($theme, text-field-error-hover-caret-color),
-      focus: map.get($theme, text-field-error-focus-caret-color),
-    )
-  );
+  // TODO(b/259951357): Cleanup branch after fix and tokens upgrade.
+  @if map.has-key($theme, text-field-caret-color) or
+    map.has-key($theme, text-field-error-caret-color)
+  {
+    @include _text-field-trailing-icon-color(
+      (
+        default: map.get($theme, text-field-caret-color),
+        hover: map.get($theme, text-field-hover-caret-color),
+        focus: map.get($theme, text-field-focus-caret-color),
+      )
+    );
+    @include _text-field-error-trailing-icon-color(
+      (
+        default: map.get($theme, text-field-error-caret-color),
+        hover: map.get($theme, text-field-error-hover-caret-color),
+        focus: map.get($theme, text-field-error-focus-caret-color),
+      )
+    );
+  } @else {
+    @include _text-field-trailing-icon-color(
+      (
+        default: map.get($theme, text-field-trailing-icon-color),
+        hover: map.get($theme, text-field-hover-trailing-icon-color),
+        focus: map.get($theme, text-field-focus-trailing-icon-color),
+        disabled: map.get($theme, text-field-disabled-trailing-icon-color),
+      )
+    );
+    @include _text-field-error-trailing-icon-color(
+      (
+        default: map.get($theme, text-field-error-trailing-icon-color),
+        hover: map.get($theme, text-field-error-hover-trailing-icon-color),
+        focus: map.get($theme, text-field-error-focus-trailing-icon-color),
+      )
+    );
+  }
   @include ink-color(
     (
       default: map.get($theme, text-field-input-text-color),
@@ -452,10 +378,16 @@ $_light-theme: (
     (
       default: map.get($theme, text-field-supporting-text-color),
       disabled: map.get($theme, text-field-disabled-supporting-text-color),
+      hover: map.get($theme, text-field-hover-supporting-text-color),
+      focus: map.get($theme, text-field-focus-supporting-text-color),
     )
   );
   @include select-helper-text-theme.helper-text-validation-color(
-    map.get($theme, text-field-error-supporting-text-color)
+    (
+      default: map.get($theme, text-field-error-supporting-text-color),
+      hover: map.get($theme, text-field-error-hover-supporting-text-color),
+      focus: map.get($theme, text-field-error-focus-supporting-text-color),
+    )
   );
   @include _text-field-input-text-typography(
     (
@@ -516,6 +448,14 @@ $_light-theme: (
   .mdc-floating-label {
     @include typography.theme-styles($typography-theme);
   }
+
+  @if map.get($typography-theme, 'size') {
+    &.mdc-select--outlined .mdc-select__anchor {
+      @include notched-outline-mixins.floating-label-float-font-size(
+        $font-size: map.get($typography-theme, 'size')
+      );
+    }
+  }
 }
 
 @mixin _error-outline-color($color) {
@@ -564,7 +504,7 @@ $_light-theme: (
 
 @mixin _error-label-text-color($color) {
   &.mdc-select--invalid {
-    @include label-floating-color($color);
+    @include label-color($color);
   }
 }
 
@@ -574,11 +514,11 @@ $_light-theme: (
   }
 }
 
-@mixin _text-field-caret-color($color) {
+@mixin _text-field-trailing-icon-color($color) {
   @include dropdown-icon-color($color);
 }
 
-@mixin _text-field-error-caret-color($color) {
+@mixin _text-field-error-trailing-icon-color($color) {
   &.mdc-select--invalid {
     @include dropdown-icon-color($color);
   }
@@ -592,7 +532,8 @@ $_light-theme: (
 
 @mixin _text-field-active-indicator-height($height) {
   .mdc-line-ripple {
-    @include line-ripple-mixins.height($height);
+    @include line-ripple-mixins.height(state.get-default-state($height));
+    @include line-ripple-mixins.active-height(state.get-focus-state($height));
   }
 }
 
@@ -634,6 +575,15 @@ $_light-theme: (
   }
 }
 
+@mixin _menu-list-item-state-layer($ripple-theme) {
+  .mdc-list-item:not(.mdc-list-item--disabled) {
+    @include ripple-theme.theme-styles(
+      $ripple-theme,
+      $ripple-target: list-evolution-mixins.$ripple-target
+    );
+  }
+}
+
 @mixin _menu-divider-color($color) {
   .mdc-select__list {
     @include list-evolution-mixins.divider-color($color);
@@ -652,19 +602,26 @@ $_light-theme: (
   }
 }
 
-@mixin _menu-container-elevation($resolver, $shadow-color, $elevation) {
-  .mdc-select__menu {
-    @include elevation-theme.with-resolver(
-      $resolver,
-      $elevation: $elevation,
-      $shadow-color: $shadow-color
-    );
+@mixin _menu-container-elevation($elevation) {
+  @if $elevation {
+    .mdc-select__menu {
+      @include elevation-theme.shadow(map.get($elevation, shadow));
+      @include elevation-theme.overlay-opacity(
+        map.get($elevation, overlay-opacity)
+      );
+    }
   }
 }
 
 @mixin _menu-container-shape($shape) {
   .mdc-select__menu {
     @include menu-surface-mixins.shape-radius($shape);
+  }
+}
+
+@mixin _menu-container-surface-tint-layer-color($color) {
+  .mdc-select__menu {
+    @include elevation-theme.overlay-container-color($color);
   }
 }
 
@@ -873,25 +830,25 @@ $_light-theme: (
   }
 }
 
-@mixin outline-width($width) {
+@mixin outline-width($width, $query: feature-targeting.all()) {
   @include _if-enabled {
-    @include _outline-width(state.get-default-state($width));
+    @include _outline-width(state.get-default-state($width), $query: $query);
 
     &:not(.mdc-select--focused) .mdc-select__anchor:hover {
-      @include _outline-width(state.get-hover-state($width));
+      @include _outline-width(state.get-hover-state($width), $query: $query);
     }
 
     @include _if-focused {
       .mdc-notched-outline {
-        @include _outline-width(state.get-focus-state($width));
+        @include _outline-width(state.get-focus-state($width), $query: $query);
       }
     }
   }
 }
 
-@mixin _outline-width($width) {
+@mixin _outline-width($width, $query: feature-targeting.all()) {
   @if $width {
-    @include notched-outline-mixins.stroke-width($width);
+    @include notched-outline-mixins.stroke-width($width, $query: $query);
   }
 }
 
@@ -903,8 +860,8 @@ $_light-theme: (
 
   .mdc-select__dropdown-icon {
     @include feature-targeting.targets($feat-structure) {
-      width: $size;
-      height: $size;
+      @include theme.property(width, $size);
+      @include theme.property(height, $size);
     }
   }
 }
@@ -915,17 +872,53 @@ $_light-theme: (
   $rtl-reflexive: false,
   $query: feature-targeting.all()
 ) {
-  @if meta.type-of($radius) == 'list' and list.length($radius) > 2 {
-    @error "mdc-select: Invalid radius #{$radius}. Only top-left and top-right corners may be customized.";
-  }
-
   $height: density-functions.prop-value(
     $density-config: $density-config,
     $density-scale: $density-scale,
     $property-name: height,
   );
 
-  $masked-radius: shape-functions.mask-radius($radius, 1 1 0 0);
+  $masked-radius: if(
+    (meta.type-of($radius) == 'list') and (list.length($radius) > 2),
+    shape-functions.mask-radius($radius, 1 1 1 1),
+    shape-functions.mask-radius($radius, 1 1 0 0)
+  );
+
+  $fallback: if(
+    custom-properties.is-custom-prop($radius),
+    custom-properties.get-fallback($radius),
+    null
+  );
+
+  @if meta.type-of($fallback) == 'list' {
+    $fallback: css.unpack-value($fallback);
+    $first: list.nth($masked-radius, 1);
+    $second: list.nth($masked-radius, 2);
+    $third: list.nth($masked-radius, 3);
+    $fourth: list.nth($masked-radius, 4);
+    $masked-radius: (
+      if(
+        custom-properties.is-custom-prop($first),
+        custom-properties.set-fallback($first, list.nth($fallback, 1)),
+        $first
+      ),
+      if(
+        custom-properties.is-custom-prop($second),
+        custom-properties.set-fallback($second, list.nth($fallback, 2)),
+        $second
+      ),
+      if(
+        custom-properties.is-custom-prop($third),
+        custom-properties.set-fallback($third, list.nth($fallback, 3)),
+        $third
+      ),
+      if(
+        custom-properties.is-custom-prop($fourth),
+        custom-properties.set-fallback($fourth, list.nth($fallback, 4)),
+        $fourth
+      )
+    );
+  }
 
   .mdc-select__anchor {
     @include shape-mixins.radius(
@@ -1163,7 +1156,7 @@ $_light-theme: (
 
   .mdc-select__anchor {
     @include feature-targeting.targets($feat-structure) {
-      height: $new-height;
+      @include theme.property(height, $new-height);
     }
 
     // Filled variant is aligned to baseline...
@@ -1173,7 +1166,8 @@ $_light-theme: (
       $query: $query
     );
     // ...unless it is too small to display a label
-    @if $new-height < $minimum-height-for-filled-label {
+    // TODO(b/283457421): Account for dynamic height
+    @if _is-less-than($new-height, $minimum-height-for-filled-label) {
       @include center-aligned($query: $query);
 
       @include feature-targeting.targets($feat-structure) {
@@ -1189,7 +1183,8 @@ $_light-theme: (
     @include center-aligned($query: $query);
   }
 
-  @if $new-height < $height {
+  // TODO(b/283457421): Account for dynamic height
+  @if _is-less-than($new-height, $height) {
     @include dropdown-icon-size(
       select-icon-theme.$dense-icon-size,
       $query: $query
@@ -1230,7 +1225,8 @@ $_light-theme: (
     $query: $query
   );
 
-  @if $new-height < $height {
+  // TODO(b/283457421): Account for dynamic height
+  @if _is-less-than($new-height, $height) {
     @include select-icon-theme.size(
       select-icon-theme.$dense-icon-size,
       $query: $query
@@ -1270,19 +1266,30 @@ $_light-theme: (
 /// @param {Number} $new-height
 /// @param {String} $keyframe-suffix - Optional suffix to use for generated
 ///     floating label keyframes
+/// @param {Number} $label-font-size - Defaults to 1rem.
 ///
 @mixin outlined-height(
   $new-height,
-  $keyframe-suffix: select-outlined-#{$new-height},
+  $keyframe-suffix: null,
+  $label-font-size: 1rem,
   $query: feature-targeting.all()
 ) {
   $feat-structure: feature-targeting.create-target($query, structure);
   $positionY: get-outlined-label-position-y($new-height);
 
+  @if $keyframe-suffix == null {
+    $modifier: $new-height;
+    @if custom-properties.is-custom-prop($modifier) {
+      $modifier: custom-properties.get-fallback($modifier);
+    }
+    $keyframe-suffix: select-outlined-#{$modifier};
+  }
+
   .mdc-select__anchor {
     // Floating label position
     @include notched-outline-mixins.floating-label-float-position-absolute(
       $positionY,
+      $font-size: $label-font-size,
       $query: $query
     );
 
@@ -1300,11 +1307,12 @@ $_light-theme: (
     }
 
     @include feature-targeting.targets($feat-structure) {
-      height: $new-height;
+      @include theme.property(height, $new-height);
     }
   }
 
-  @if $new-height < $height {
+  // TODO(b/283457421): Account for dynamic height
+  @if _is-less-than($new-height, $height) {
     @include dropdown-icon-size(
       select-icon-theme.$dense-icon-size,
       $query: $query
@@ -1326,16 +1334,19 @@ $_light-theme: (
 /// @param {Number} $new-height
 /// @param {String} $keyframe-suffix - Optional suffix to use for generated
 ///     floating label keyframes
+/// @param {Number} $label-font-size - Font size for floating label. Defaults to 1rem.
 ///
 @mixin outlined-with-leading-icon-height(
   $new-height,
   $keyframe-suffix: null,
+  $label-font-size: 1rem,
   $query: feature-targeting.all()
 ) {
   $feat-structure: feature-targeting.create-target($query, structure);
 
   .mdc-select__anchor {
-    @if $new-height < $height {
+    // TODO(b/283457421): Account for dynamic height
+    @if _is-less-than($new-height, $height) {
       @include dropdown-icon-size(
         select-icon-theme.$dense-icon-size,
         $query: $query
@@ -1344,6 +1355,7 @@ $_light-theme: (
         $new-height,
         select-icon-theme.$dense-icon-size,
         $keyframe-suffix,
+        $label-font-size,
         $query: $query
       );
     } @else {
@@ -1351,16 +1363,18 @@ $_light-theme: (
         $new-height,
         select-icon-theme.$icon-size,
         $keyframe-suffix,
+        $label-font-size,
         $query: $query
       );
     }
 
     @include feature-targeting.targets($feat-structure) {
-      height: $new-height;
+      @include theme.property(height, $new-height);
     }
   }
 
-  @if $new-height < $height {
+  // TODO(b/283457421): Account for dynamic height
+  @if _is-less-than($new-height, $height) {
     .mdc-deprecated-list-item__graphic {
       width: select-icon-theme.$dense-icon-size;
       height: select-icon-theme.$dense-icon-size;
@@ -1515,11 +1529,13 @@ $_light-theme: (
 /// outlined select with leaing icon.
 /// @param {number} $icon-size - The size of the leading icon.
 /// @param {string} $keyframe-suffix - The suffix for the newly generated keyframes.
+/// @param {number} $font-size - The size of the label font. Defaults to 1rem.
 ///
 @mixin outlined-with-leading-icon-floating-label-position-animation(
   $height,
   $icon-size,
   $keyframe-suffix: select-outlined-leading-icon-#{$height},
+  $font-size: 1rem,
   $query: feature-targeting.all()
 ) {
   $feat-structure: feature-targeting.create-target($query, structure);
@@ -1542,6 +1558,7 @@ $_light-theme: (
   @include notched-outline-mixins.floating-label-float-position-absolute(
     $float-position-y,
     $float-position-x,
+    $font-size: $font-size,
     $query: $query
   );
 
@@ -1674,7 +1691,7 @@ $_light-theme: (
   @if $color {
     .mdc-select__selected-text {
       @include feature-targeting.targets($feat-color) {
-        @include theme-mixins.property(color, $color);
+        @include theme.property(color, $color);
       }
     }
   }
@@ -1686,7 +1703,7 @@ $_light-theme: (
   @if $color {
     .mdc-select__anchor {
       @include feature-targeting.targets($feat-color) {
-        @include theme-mixins.property(background-color, $color);
+        @include theme.property(background-color, $color);
       }
     }
   }
@@ -1725,10 +1742,6 @@ $_light-theme: (
 @mixin _focused-outline-color($color, $query: feature-targeting.all()) {
   @if $color {
     .mdc-notched-outline {
-      @include notched-outline-mixins.stroke-width(
-        $outlined-stroke-width,
-        $query: $query
-      );
       @include notched-outline-mixins.color($color, $query: $query);
     }
   }
@@ -1760,8 +1773,28 @@ $_light-theme: (
   @if $color {
     @include feature-targeting.targets($feat-color) {
       .mdc-select__dropdown-icon {
-        @include theme-mixins.property(fill, $color);
+        @include theme.property(fill, $color);
       }
     }
   }
+}
+
+///
+/// Compare the two inputs even if they're custom-prop objects.
+/// @access private
+///
+@function _is-less-than($subject, $object) {
+  $fallback-subject: if(
+    custom-properties.is-custom-prop($subject),
+    custom-properties.get-fallback($subject),
+    $subject
+  );
+
+  $fallback-object: if(
+    custom-properties.is-custom-prop($object),
+    custom-properties.get-fallback($object),
+    $object
+  );
+
+  @return $fallback-subject < $fallback-object;
 }

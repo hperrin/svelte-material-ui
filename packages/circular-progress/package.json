@@ -52,6 +52,7 @@
     "@smui/animation": "^8.0.1",
     "@smui/base": "^8.0.1",
     "@smui/common": "^8.0.1",
+    "@smui/dom": "^8.0.1",
     "@smui/feature-targeting": "^8.0.1",
     "@smui/progress-indicator": "^8.0.1",
     "@smui/rtl": "^8.0.1",

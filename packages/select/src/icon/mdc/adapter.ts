@@ -55,7 +55,7 @@ export interface MDCSelectIconAdapter {
    * Registers an event listener on the icon element for a given event.
    */
   registerInteractionHandler<K extends EventType>(
-    evtType: K,
+    eventType: K,
     handler: SpecificEventListener<K>,
   ): void;
 
@@ -63,7 +63,7 @@ export interface MDCSelectIconAdapter {
    * Deregisters an event listener on the icon element for a given event.
    */
   deregisterInteractionHandler<K extends EventType>(
-    evtType: K,
+    eventType: K,
     handler: SpecificEventListener<K>,
   ): void;
 

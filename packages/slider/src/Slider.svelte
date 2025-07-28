@@ -18,81 +18,6 @@
   {...range ? { 'data-min-range': `${minRange}` } : {}}
   {...exclude(restProps, ['input$'])}
 >
-  {#if range}
-    <input
-      bind:this={inputStart}
-      class={classMap({
-        [input$class]: true,
-        'mdc-slider__input': true,
-      })}
-      type="range"
-      {disabled}
-      {step}
-      {min}
-      max={end}
-      bind:value={start}
-      {...inputStartAttrs}
-      {...prefixFilter(restProps, 'input$')}
-      onblur={(e) => {
-        dispatch(getElement(), 'blur', e);
-        restProps.input$onblur?.(e);
-      }}
-      onfocus={(e) => {
-        dispatch(getElement(), 'focus', e);
-        restProps.input$onfocus?.(e);
-      }}
-    />
-    <input
-      bind:this={input}
-      class={classMap({
-        [input$class]: true,
-        'mdc-slider__input': true,
-      })}
-      type="range"
-      {disabled}
-      {step}
-      min={start}
-      {max}
-      bind:value={end}
-      {...inputProps}
-      {...inputAttrs}
-      {...prefixFilter(restProps, 'input$')}
-      onblur={(e) => {
-        dispatch(getElement(), 'blur', e);
-        restProps.input$onblur?.(e);
-      }}
-      onfocus={(e) => {
-        dispatch(getElement(), 'focus', e);
-        restProps.input$onfocus?.(e);
-      }}
-    />
-  {:else}
-    <input
-      bind:this={input}
-      class={classMap({
-        [input$class]: true,
-        'mdc-slider__input': true,
-      })}
-      type="range"
-      {disabled}
-      {step}
-      {min}
-      {max}
-      bind:value
-      {...inputProps}
-      {...inputAttrs}
-      {...prefixFilter(restProps, 'input$')}
-      onblur={(e) => {
-        dispatch(getElement(), 'blur', e);
-        restProps.input$onblur?.(e);
-      }}
-      onfocus={(e) => {
-        dispatch(getElement(), 'focus', e);
-        restProps.input$onfocus?.(e);
-      }}
-    />
-  {/if}
-
   <div class="mdc-slider__track">
     <div class="mdc-slider__track--inactive"></div>
     <div class="mdc-slider__track--active">
@@ -144,6 +69,29 @@
         </div>
       {/if}
       <div bind:this={thumbKnobStart} class="mdc-slider__thumb-knob"></div>
+      <input
+        bind:this={inputStart}
+        class={classMap({
+          [input$class]: true,
+          'mdc-slider__input': true,
+        })}
+        type="range"
+        {disabled}
+        {step}
+        {min}
+        max={end}
+        bind:value={start}
+        {...inputStartAttrs}
+        {...prefixFilter(restProps, 'input$')}
+        onblur={(e) => {
+          dispatch(getElement(), 'blur', e);
+          restProps.input$onblur?.(e);
+        }}
+        onfocus={(e) => {
+          dispatch(getElement(), 'focus', e);
+          restProps.input$onfocus?.(e);
+        }}
+      />
     </div>
     <div
       bind:this={thumbEl}
@@ -173,6 +121,30 @@
         </div>
       {/if}
       <div bind:this={thumbKnob} class="mdc-slider__thumb-knob"></div>
+      <input
+        bind:this={input}
+        class={classMap({
+          [input$class]: true,
+          'mdc-slider__input': true,
+        })}
+        type="range"
+        {disabled}
+        {step}
+        min={start}
+        {max}
+        bind:value={end}
+        {...inputProps}
+        {...inputAttrs}
+        {...prefixFilter(restProps, 'input$')}
+        onblur={(e) => {
+          dispatch(getElement(), 'blur', e);
+          restProps.input$onblur?.(e);
+        }}
+        onfocus={(e) => {
+          dispatch(getElement(), 'focus', e);
+          restProps.input$onfocus?.(e);
+        }}
+      />
     </div>
   {:else}
     <div
@@ -203,6 +175,30 @@
         </div>
       {/if}
       <div bind:this={thumbKnob} class="mdc-slider__thumb-knob"></div>
+      <input
+        bind:this={input}
+        class={classMap({
+          [input$class]: true,
+          'mdc-slider__input': true,
+        })}
+        type="range"
+        {disabled}
+        {step}
+        {min}
+        {max}
+        bind:value
+        {...inputProps}
+        {...inputAttrs}
+        {...prefixFilter(restProps, 'input$')}
+        onblur={(e) => {
+          dispatch(getElement(), 'blur', e);
+          restProps.input$onblur?.(e);
+        }}
+        onfocus={(e) => {
+          dispatch(getElement(), 'focus', e);
+          restProps.input$onfocus?.(e);
+        }}
+      />
     </div>
   {/if}
 </div>

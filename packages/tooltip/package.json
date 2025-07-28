@@ -51,6 +51,7 @@
   "dependencies": {
     "@smui/animation": "^8.0.1",
     "@smui/base": "^8.0.1",
+    "@smui/button": "^8.0.1",
     "@smui/common": "^8.0.1",
     "@smui/dom": "^8.0.1",
     "@smui/elevation": "^8.0.1",
@@ -58,7 +59,9 @@
     "@smui/rtl": "^8.0.1",
     "@smui/shape": "^8.0.1",
     "@smui/theme": "^8.0.1",
-    "@smui/typography": "^8.0.1"
+    "@smui/tokens": "^8.0.1",
+    "@smui/typography": "^8.0.1",
+    "safevalues": "^1.2.0"
   },
   "devDependencies": {
     "@tsconfig/svelte": "^5.0.4",

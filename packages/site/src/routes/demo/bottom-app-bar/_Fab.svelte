@@ -25,7 +25,7 @@
       color={secondaryColor ? 'secondary' : 'primary'}
     >
       <Section>
-        <IconButton class="material-icons">menu</IconButton>
+        <IconButton><Icon class="material-icons">menu</Icon></IconButton>
       </Section>
       <Section>
         <Fab
@@ -36,12 +36,12 @@
         </Fab>
       </Section>
       <Section>
-        <IconButton class="material-icons" aria-label="Search"
-          >search</IconButton
-        >
-        <IconButton class="material-icons" aria-label="More"
-          >more_vert</IconButton
-        >
+        <IconButton aria-label="Search">
+          <Icon class="material-icons">search</Icon>
+        </IconButton>
+        <IconButton aria-label="More">
+          <Icon class="material-icons">more_vert</Icon>
+        </IconButton>
       </Section>
     </BottomAppBar>
   </div>
@@ -63,15 +63,18 @@
       color={secondaryColor ? 'secondary' : 'primary'}
     >
       <Section>
-        <IconButton class="material-icons" aria-label="Archive"
-          >archive</IconButton
-        >
-        <IconButton class="material-icons" aria-label="Mark unread"
-          >mail</IconButton
-        >
-        <IconButton class="material-icons" aria-label="Label">label</IconButton>
-        <IconButton class="material-icons" aria-label="Trash">delete</IconButton
-        >
+        <IconButton aria-label="Archive">
+          <Icon class="material-icons">archive</Icon>
+        </IconButton>
+        <IconButton aria-label="Mark unread">
+          <Icon class="material-icons">mail</Icon>
+        </IconButton>
+        <IconButton aria-label="Label">
+          <Icon class="material-icons">label</Icon>
+        </IconButton>
+        <IconButton aria-label="Trash">
+          <Icon class="material-icons">delete</Icon>
+        </IconButton>
       </Section>
       <Section>
         <Fab

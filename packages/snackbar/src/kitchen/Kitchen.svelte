@@ -33,8 +33,10 @@
               handleDismiss(e);
               (restProps as unknown as any).dismiss$onclick?.(e);
             }}
-            >{#if dismiss}{@render dismiss?.()}{:else}{config.dismissText ??
-                'close'}{/if}</IconButton
+            ><Icon {...prefixFilter(restProps, 'dismissIcon$')}
+              >{#if dismiss}{@render dismiss?.()}{:else}{config.dismissText ??
+                  'close'}{/if}</Icon
+            ></IconButton
           >
         {/if}
       </Actions>
@@ -52,7 +54,7 @@
   import type { SmuiEveryElement } from '@smui/common';
   import { Label } from '@smui/common';
   import Button from '@smui/button';
-  import IconButton from '@smui/icon-button';
+  import IconButton, { Icon } from '@smui/icon-button';
 
   import type { MDCSnackbarCloseEvent } from '../mdc';
   import type { ConfigAction, Config } from './Kitchen.types.js';
@@ -63,6 +65,7 @@
     ComponentProps<typeof IconButton<DismissHref, DismissTagName>>,
     symbol
   >;
+  type IconProps = Omit<ComponentProps<typeof Icon>, symbol>;
   let {
     dismiss,
     ...restProps
@@ -89,6 +92,8 @@
     dismiss?: Snippet;
   } & {
     [k in keyof IconButtonProps as `dismiss\$${k}`]?: IconButtonProps[k];
+  } & {
+    [k in keyof IconProps as `dismissIcon\$${k}`]?: IconProps[k];
   } = $props();
 
   let element: Snackbar | undefined = $state();

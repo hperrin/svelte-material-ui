@@ -262,6 +262,8 @@ export interface SmuiEventProps<T extends EventTarget> {
 
   onSMUITooltipHidden?: EventHandler<CustomEvent, T> | null;
   onSMUITooltipHiddencapture?: EventHandler<CustomEvent, T> | null;
+  onSMUITooltipShown?: EventHandler<CustomEvent, T> | null;
+  onSMUITooltipShowncapture?: EventHandler<CustomEvent, T> | null;
 
   onSMUITopAppBarIconButtonNav?: EventHandler<CustomEvent, T> | null;
   onSMUITopAppBarIconButtonNavcapture?: EventHandler<CustomEvent, T> | null;

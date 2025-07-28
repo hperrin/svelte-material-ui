@@ -22,9 +22,11 @@
  */
 
 import { MDCFoundation } from '@smui/base/foundation';
+
 import type { MDCTabIndicatorAdapter } from './adapter';
 import { cssClasses, strings } from './constants';
 
+/** MDC Tab Indicator Foundation */
 export abstract class MDCTabIndicatorFoundation extends MDCFoundation<MDCTabIndicatorAdapter> {
   static override get cssClasses() {
     return cssClasses;

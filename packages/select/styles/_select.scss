@@ -31,10 +31,10 @@
 @use '@smui/floating-label/styles/variables' as floating-label-variables;
 @use '@smui/list/styles/mixins' as list-mixins;
 @use '@smui/list/styles/evolution-mixins' as list-evolution-mixins;
+@use '@smui/touch-target/styles/touch-target';
 @use '@smui/notched-outline/styles/mixins' as notched-outline-mixins;
 @use '@smui/notched-outline/styles/variables' as notched-outline-variables;
 @use '@smui/rtl/rtl';
-@use '@smui/theme/mixins' as theme-mixins;
 @use '@smui/typography/mixins' as typography-mixins;
 @use './select-helper-text-theme';
 @use './select-icon-theme';
@@ -45,7 +45,88 @@
 @use './select-helper-text';
 @use './select-icon';
 
+@mixin static-styles($query: feature-targeting.all()) {
+  @include _static-styles-base($query);
+  @include select-filled.static-styles($query);
+  @include select-outlined.static-styles($query);
+}
+
+@mixin _static-styles-base($query) {
+  $feat-structure: feature-targeting.create-target($query, structure);
+
+  .mdc-select {
+    // Floating label private mixin
+    @include _floating-label($query: $query);
+
+    @include _option-side-padding(16px, $query: $query);
+    @include _option-graphic-trailing-margin(12px, $query: $query);
+
+    @include feature-targeting.targets($feat-structure) {
+      display: inline-flex;
+      position: relative; // Menu is absolutely positioned relative to this.
+      &[hidden] {
+        display: none;
+      }
+    }
+
+    &__dropdown-icon {
+      @include _dropdown-icon-base($query: $query);
+      @include _dropdown-icon-inactive($query: $query);
+
+      @include feature-targeting.targets($feat-structure) {
+        display: inline-flex;
+        position: relative;
+        align-self: center;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        pointer-events: none;
+      }
+
+      .mdc-select--activated & {
+        @include _dropdown-icon-active($query: $query);
+      }
+    }
+  }
+
+  .mdc-select__anchor {
+    @include feature-targeting.targets($feat-structure) {
+      min-width: 0;
+      flex: 1 1 auto;
+      position: relative;
+      box-sizing: border-box;
+      overflow: hidden;
+      outline: none;
+      cursor: pointer;
+    }
+  }
+
+  .mdc-select__touch {
+    @include touch-target.touch-target($query: $query, $height: 48px);
+  }
+
+  @include _text($query: $query);
+
+  .mdc-select--disabled {
+    @include _disabled($query: $query);
+  }
+
+  .mdc-select--with-leading-icon {
+    @include _option-side-padding(12px, $query: $query);
+  }
+
+  @include _list($query: $query);
+
+  @include select-filled.core-styles($query: $query);
+  @include select-outlined.core-styles($query: $query);
+  @include select-ripple.core-styles($query: $query);
+  @include select-helper-text.helper-text-core-styles($query: $query);
+  @include select-icon.icon-core-styles($query: $query);
+}
+
 @mixin core-styles($query: feature-targeting.all()) {
+  @include _static-styles-base($query);
+
   $feat-animation: feature-targeting.create-target($query, animation);
   $feat-color: feature-targeting.create-target($query, color);
   $feat-structure: feature-targeting.create-target($query, structure);
@@ -99,12 +180,7 @@
         disabled: GrayText,
       );
       @include select-theme.ink-color($gray-text, $query: $query);
-      @include select-theme.dropdown-icon-color(
-        (
-          disabled: red,
-        ),
-        $query: $query
-      );
+      @include select-theme.dropdown-icon-color($gray-text, $query: $query);
       @include select-theme.label-color($gray-text, $query: $query);
       @include select-theme.bottom-line-color($gray-text, $query: $query);
       @include select-theme.outline-color($gray-text, $query: $query);
@@ -115,10 +191,6 @@
       );
     }
 
-    // Floating label private mixin
-    @include _floating-label($query: $query);
-
-    // structural
     @include _padding-horizontal(
       $left: select-theme.$anchor-padding-left,
       $left-with-leading-icon:
@@ -134,35 +206,14 @@
       select-icon-theme.$icon-size,
       $query: $query
     );
-    @include _option-side-padding(16px, $query: $query);
-    @include _option-graphic-trailing-margin(12px, $query: $query);
-
-    @include feature-targeting.targets($feat-structure) {
-      display: inline-flex;
-      position: relative; // Menu is absolutely positioned relative to this.
-    }
 
     &__dropdown-icon {
-      @include _dropdown-icon-base($query: $query);
-      @include _dropdown-icon-inactive($query: $query);
-
       @include feature-targeting.targets($feat-structure) {
         @include rtl.reflexive-property(
           margin,
           select-icon-theme.$icon-horizontal-margin,
           select-icon-theme.$icon-horizontal-margin
         );
-        display: inline-flex;
-        position: relative;
-        align-self: center;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-        pointer-events: none;
-      }
-
-      .mdc-select--activated & {
-        @include _dropdown-icon-active($query: $query);
       }
     }
   }
@@ -175,17 +226,8 @@
 
     @include feature-targeting.targets($feat-structure) {
       width: select-theme.$default-width;
-      min-width: 0;
-      flex: 1 1 auto;
-      position: relative;
-      box-sizing: border-box;
-      overflow: hidden;
-      outline: none;
-      cursor: pointer;
     }
   }
-
-  @include _text($query: $query);
 
   .mdc-select--invalid {
     @include select-theme.label-color(
@@ -208,21 +250,7 @@
     );
   }
 
-  .mdc-select--disabled {
-    @include _disabled($query: $query);
-  }
-
-  .mdc-select--with-leading-icon {
-    @include _option-side-padding(12px, $query: $query);
-  }
-
-  @include _list($query: $query);
-
-  @include select-filled.core-styles($query: $query);
-  @include select-outlined.core-styles($query: $query);
-  @include select-ripple.core-styles($query: $query);
-  @include select-helper-text.helper-text-core-styles($query: $query);
-  @include select-icon.icon-core-styles($query: $query);
+  @include _text-container-height($query: $query);
 }
 
 @mixin _list($query) {
@@ -423,6 +451,16 @@
   }
 }
 
+@mixin _text-container-height($query: feature-targeting.all()) {
+  $feat-structure: feature-targeting.create-target($query, structure);
+
+  .mdc-select__selected-text-container {
+    @include feature-targeting.targets($feat-structure) {
+      height: select-theme.$selected-text-height;
+    }
+  }
+}
+
 @mixin _text($query: feature-targeting.all()) {
   $feat-structure: feature-targeting.create-target($query, structure);
   $feat-color: feature-targeting.create-target($query, color);
@@ -436,7 +474,6 @@
       width: auto;
       min-width: 0;
       flex-grow: 1;
-      height: select-theme.$selected-text-height;
       border: none;
       outline: none;
       padding: 0;

@@ -56,7 +56,7 @@
 
 <script lang="ts">
   import type { Snippet } from 'svelte';
-  import { onMount, onDestroy, getContext } from 'svelte';
+  import { onMount, onDestroy, getContext, setContext } from 'svelte';
   import type { Writable } from 'svelte/store';
   import type { SpecificEventListener } from '@smui/base/types';
   import type { SmuiAttrs, SmuiElementPropMap } from '@smui/common';
@@ -247,6 +247,8 @@
     }
   });
 
+  setContext('SMUI:label:context', 'tooltip');
+
   onMount(() => {
     instance = new MDCTooltipFoundation({
       getAttribute: getAttr,
@@ -335,6 +337,9 @@
       notifyHidden: () => {
         dispatch(getElement(), 'SMUITooltipHidden');
       },
+      notifyShown: () => {
+        dispatch(getElement(), 'SMUITooltipShown');
+      },
       // TODO: figure out why MDC-Web included these caret functions, because they're entirely undocumented.
       getTooltipCaretBoundingRect: () => {
         const caret = getElement().querySelector<HTMLElement>(
@@ -375,6 +380,8 @@
         bottomCaret.removeAttribute('style');
       },
       getActiveElement: () => document.activeElement,
+      isInstanceOfElement: (eventTarget: EventTarget | null) =>
+        eventTarget instanceof Element,
     });
 
     $tooltip = element;

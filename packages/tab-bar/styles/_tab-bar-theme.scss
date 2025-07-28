@@ -23,19 +23,22 @@
 @use 'sass:map';
 @use '@smui/elevation/elevation-theme';
 @use '@smui/tab/styles/tab-theme';
-@use '@smui/theme/keys';
 @use '@smui/theme/map-ext';
 @use '@smui/tab-indicator/styles/tab-indicator-theme';
-@use '@smui/theme/theme';
 @use '@smui/theme/theme-color';
 @use '@smui/typography/typography';
+@use '@smui/tokens/resolvers';
+@use '@smui/theme/theme';
+@use '@smui/theme/keys';
+@use '@smui/theme/validate';
 
 // stylelint-disable selector-class-pattern --
 // Selector '.mdc-*' should only be used in this project.
 
 $custom-property-prefix: 'tab-bar';
 
-// TODO: `divider-color` and `divider-height` are not supported by tabs.
+// Complete tokens set for primary tabs component
+// tab bar should validate all tokens as it is the entry point
 $primary-navigation-tabs-light-theme: (
   active-focus-state-layer-color: theme-color.$primary,
   active-focus-state-layer-opacity: 0.12,
@@ -56,7 +59,7 @@ $primary-navigation-tabs-light-theme: (
   container-height: 48px,
   container-shape: 0,
   divider-color: null,
-  divider-height: 1px,
+  divider-height: null,
   inactive-focus-state-layer-color: theme-color.$on-surface,
   inactive-focus-state-layer-opacity: 0.12,
   inactive-hover-state-layer-color: theme-color.$on-surface,
@@ -84,12 +87,16 @@ $primary-navigation-tabs-light-theme: (
   with-label-text-label-text-font-family: typography.get-font(subhead2),
   with-label-text-label-text-font-size: typography.get-size(subhead2),
   with-label-text-label-text-letter-spacing: typography.get-tracking(subhead2),
+  with-label-text-label-text-font: typography.get-font(subhead2),
+  with-label-text-label-text-size: typography.get-size(subhead2),
+  with-label-text-label-text-tracking: typography.get-tracking(subhead2),
   with-label-text-label-text-line-height: typography.get-line-height(subhead2),
   with-label-text-label-text-weight: typography.get-weight(subhead2),
 );
 
-// TODO: `divider-color` and `divider-height` are not supported by tabs.
-$secondary-navigation-tab-light-theme: (
+// Complete tokens set for secondary tabs component
+// tab bar should validate all tokens as it is the entry point
+$secondary-navigation-tabs-light-theme: (
   active-indicator-color: null,
   active-indicator-height: null,
   active-label-text-color: null,
@@ -110,33 +117,87 @@ $secondary-navigation-tab-light-theme: (
   label-text-font-family: null,
   label-text-font-size: null,
   label-text-letter-spacing: null,
+  label-text-font: null,
+  label-text-size: null,
+  label-text-tracking: null,
   label-text-line-height: null,
   label-text-weight: null,
   pressed-label-text-color: null,
   pressed-state-layer-color: null,
   pressed-state-layer-opacity: null,
+  with-icon-active-icon-color: null,
+  with-icon-focus-icon-color: null,
+  with-icon-hover-icon-color: null,
+  with-icon-inactive-icon-color: null,
+  with-icon-pressed-icon-color: null,
+  with-icon-icon-size: null,
 );
 
-@mixin primary-navigation-tab-theme($theme) {
-  @include theme.validate-theme($primary-navigation-tabs-light-theme, $theme);
+// Tab bar related tokens to create custom properties
+$light-theme: (
+  divider-color: null,
+  divider-height: null,
+);
+
+@mixin primary-navigation-tab-theme($theme, $resolvers: resolvers.$material) {
+  $theme: validate.theme($primary-navigation-tabs-light-theme, $theme);
+  $tab-bar-theme: map-ext.pick($theme, map.keys($light-theme)...);
   @include keys.declare-custom-properties(
-    $theme,
+    $tab-bar-theme,
     $prefix: $custom-property-prefix
+  );
+
+  @include tab-theme.primary-navigation-tab-theme(
+    map-ext.pick($theme, map.keys(tab-theme.$primary-light-theme)...),
+    $resolvers
+  );
+  @include tab-indicator-theme.theme(
+    map-ext.pick($theme, map.keys(tab-indicator-theme.$light-theme)...)
   );
 }
 
-@mixin secondary-navigation-tab-theme($theme) {
-  @include theme.validate-theme($secondary-navigation-tab-light-theme, $theme);
+@mixin secondary-navigation-tab-theme($theme, $resolvers: resolvers.$material) {
+  $theme: validate.theme($secondary-navigation-tabs-light-theme, $theme);
+  $tab-bar-theme: map-ext.pick($theme, map.keys($light-theme)...);
   @include keys.declare-custom-properties(
-    $theme,
+    $tab-bar-theme,
     $prefix: $custom-property-prefix
+  );
+
+  @include tab-theme.secondary-navigation-tab-theme(
+    map-ext.pick($theme, map.keys(tab-theme.$secondary-light-theme)...),
+    $resolvers
+  );
+  @include tab-indicator-theme.theme(
+    map-ext.pick($theme, map.keys(tab-indicator-theme.$light-theme)...)
   );
 }
 
-@mixin primary-navigation-tab-theme-styles($theme) {
+@mixin primary-navigation-tab-theme-styles(
+  $theme,
+  $resolvers: resolvers.$material
+) {
+  // TODO(b/251881053): Use theme-styles mixin from validate module
+  // when all customers are migrated
+  @include theme.validate-theme-styles(
+    $primary-navigation-tabs-light-theme,
+    $theme
+  );
+  $tab-bar-theme: map-ext.pick($theme, map.keys($light-theme)...);
+  $tab-bar-theme: keys.create-theme-properties(
+    $tab-bar-theme,
+    $prefix: $custom-property-prefix
+  );
+
+  &.mdc-tab-bar {
+    @include _divider-color(map.get($tab-bar-theme, divider-color));
+    @include _divider-height(map.get($tab-bar-theme, divider-height));
+  }
+
   .mdc-tab {
     @include tab-theme.primary-navigation-tab-theme-styles(
-      map-ext.pick($theme, map.keys(tab-theme.$primary-light-theme)...)
+      map-ext.pick($theme, map.keys(tab-theme.$primary-light-theme)...),
+      $resolvers
     );
   }
 
@@ -147,10 +208,31 @@ $secondary-navigation-tab-light-theme: (
   }
 }
 
-@mixin secondary-navigation-tab-theme-styles($theme) {
+@mixin secondary-navigation-tab-theme-styles(
+  $theme,
+  $resolvers: resolvers.$material
+) {
+  // TODO(b/251881053): Use theme-styles mixin from validate module
+  // when all customers are migrated
+  @include theme.validate-theme-styles(
+    $secondary-navigation-tabs-light-theme,
+    $theme
+  );
+  $tab-bar-theme: map-ext.pick($theme, map.keys($light-theme)...);
+  $tab-bar-theme: keys.create-theme-properties(
+    $tab-bar-theme,
+    $prefix: $custom-property-prefix
+  );
+
+  &.mdc-tab-bar {
+    @include _divider-color(map.get($tab-bar-theme, divider-color));
+    @include _divider-height(map.get($tab-bar-theme, divider-height));
+  }
+
   .mdc-tab {
     @include tab-theme.secondary-navigation-tab-theme-styles(
-      map-ext.pick($theme, map.keys(tab-theme.$secondary-light-theme)...)
+      map-ext.pick($theme, map.keys(tab-theme.$secondary-light-theme)...),
+      $resolvers
     );
   }
 
@@ -159,4 +241,12 @@ $secondary-navigation-tab-light-theme: (
       map-ext.pick($theme, map.keys(tab-indicator-theme.$light-theme)...)
     );
   }
+}
+
+@mixin _divider-color($color) {
+  @include theme.property('border-bottom-color', $color);
+}
+
+@mixin _divider-height($height) {
+  @include theme.property('border-bottom-width', $height);
 }

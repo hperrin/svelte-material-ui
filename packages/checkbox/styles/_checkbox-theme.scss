@@ -118,7 +118,8 @@ $forced-colors-theme: (
 );
 
 @mixin theme($theme) {
-  @include theme.validate-theme-keys($light-theme, $theme);
+  // TODO(b/251881053): Replace with `validate-theme`.
+  @include theme.validate-theme-styles($light-theme, $theme);
   @include keys.declare-custom-properties(
     $theme,
     $prefix: $custom-property-prefix
@@ -126,7 +127,7 @@ $forced-colors-theme: (
 }
 
 @mixin theme-styles($theme) {
-  @include theme.validate-theme-keys($light-theme, $theme);
+  @include theme.validate-theme-styles($light-theme, $theme);
   $theme: keys.create-theme-properties(
     $theme,
     $prefix: $custom-property-prefix
@@ -169,7 +170,10 @@ $forced-colors-theme: (
   }
 
   @include ripple-color(
-    $color: map.get($theme, unselected-hover-state-layer-color),
+    $color-map: (
+      hover: map.get($theme, unselected-hover-state-layer-color),
+      press: map.get($theme, unselected-pressed-state-layer-color),
+    ),
     $opacity-map: (
       hover: map.get($theme, unselected-hover-state-layer-opacity),
       focus: map.get($theme, unselected-focus-state-layer-opacity),
@@ -632,16 +636,30 @@ $light-theme-deprecated: (
 
 /// Sets ripple color when checkbox is not in checked state.
 @mixin ripple-color(
-  $color,
+  $color: null,
+  $color-map: null,
   $opacity-map: null,
   $query: feature-targeting.all()
 ) {
+  @if $color == null {
+    // deprecated approach - always use 'hover' color.
+    $color: map.get($color-map, hover);
+  }
+
   @include ripple-theme.states(
     $color: $color,
     $opacity-map: $opacity-map,
     $query: $query,
     $ripple-target: $ripple-target
   );
+
+  @if $color-map {
+    @include ripple-theme.states-colors(
+      $color-map: $color-map,
+      $query: $query,
+      $ripple-target: $ripple-target
+    );
+  }
 }
 
 /// Sets focus indicator color when checkbox is in checked state.

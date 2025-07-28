@@ -56,6 +56,7 @@
       setContent: (value) => {
         content = value;
       },
+      setCounterValue: (currentLength, maxLength) => {},
     });
 
     SMUITextfieldCharacterCounterMount &&

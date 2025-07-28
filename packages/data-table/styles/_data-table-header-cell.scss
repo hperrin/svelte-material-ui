@@ -20,7 +20,7 @@
 // THE SOFTWARE.
 //
 
-// stylelint-disable selector-class-pattern
+// stylelint-disable selector-class-pattern --
 // NOTE: We disable `selector-class-pattern` above to allow using `mdc-` class
 // selectors.
 
@@ -32,16 +32,24 @@
 @use '@smui/icon-button/styles/icon-button-theme';
 @use '@smui/rtl/rtl';
 @use '@smui/typography/typography';
-@use './data-table-theme';
 @use './data-table-cell';
+@use './data-table-header-cell-checkbox-sorting';
+@use './data-table-theme';
 
 @mixin core-styles($query: feature-targeting.all()) {
+  .mdc-data-table__header-cell {
+    @include typography.typography(subtitle2, $query: $query);
+  }
+
+  @include static-styles($query);
+  @include data-table-header-cell-checkbox-sorting.static-styles($query);
+}
+
+@mixin static-styles($query: feature-targeting.all()) {
   $feat-structure: feature-targeting.create-target($query, structure);
   $feat-animation: feature-targeting.create-target($query, animation);
 
   .mdc-data-table__header-cell {
-    @include typography.typography(subtitle2, $query: $query);
-
     @include feature-targeting.targets($feat-structure) {
       box-sizing: border-box;
       text-overflow: ellipsis;
@@ -58,10 +66,6 @@
     }
   }
 
-  .mdc-data-table__header-cell--checkbox {
-    @include data-table-cell.adaptive-width($query: $query);
-  }
-
   .mdc-data-table__header-cell--numeric {
     @include feature-targeting.targets($feat-structure) {
       text-align: right;
@@ -75,66 +79,12 @@
     }
   }
 
-  .mdc-data-table__sort-icon-button {
-    @include icon-button-theme.density(
-      $density-scale: data-table-theme.$sort-icon-density-scale,
-      $query: $query
-    );
-
-    @include feature-targeting.targets($feat-structure) {
-      // Apply dummy `transform` to avoid pixel shift on sort down animation.
-      transform: rotate(0.0001deg);
-    }
-
-    @include feature-targeting.targets($feat-structure) {
-      @include rtl.reflexive-box(margin, left, 4px);
-    }
-
-    .mdc-data-table__header-cell--numeric & {
-      @include feature-targeting.targets($feat-structure) {
-        @include rtl.reflexive-box(margin, right, 4px);
-      }
-    }
-
-    @include feature-targeting.targets($feat-animation) {
-      transition: functions.standard(transform, $duration: 150ms);
-    }
-
-    .mdc-data-table__header-cell--sorted-descending & {
-      @include feature-targeting.targets($feat-structure) {
-        transform: rotate(-180deg);
-      }
-    }
-
-    @include feature-targeting.targets($feat-structure) {
-      opacity: 0;
-    }
-
-    &:focus,
-    .mdc-data-table__header-cell:hover &,
-    .mdc-data-table__header-cell--sorted & {
-      @include feature-targeting.targets($feat-structure) {
-        opacity: 1;
-      }
-    }
-  }
-
   .mdc-data-table__header-cell-wrapper {
     @include feature-targeting.targets($feat-structure) {
       align-items: center;
       display: inline-flex;
       vertical-align: middle;
     }
-  }
-
-  .mdc-data-table__header-cell--with-sort {
-    @include feature-targeting.targets($feat-structure) {
-      cursor: pointer;
-    }
-  }
-
-  .mdc-data-table__sort-status-label {
-    @include dom.visually-hidden($query: $query);
   }
 }
 

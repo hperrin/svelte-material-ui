@@ -47,7 +47,7 @@ $primary-action-text-color: primary;
 $secondary-action-text-color: primary;
 
 $mobile-breakpoint: 480px;
-$z-index: 1;
+$custom-property-prefix: 'banner';
 
 $light-theme: (
   action-focus-state-layer-color: theme-color.$primary,
@@ -69,6 +69,7 @@ $light-theme: (
   container-elevation: null,
   container-shadow-color: null,
   container-shape: 0,
+  content-max-width: 720px,
   divider-color: $divider-color,
   divider-height: 1px,
   supporting-text-color: theme-color.$on-surface,
@@ -79,12 +80,19 @@ $light-theme: (
   supporting-text-weight: typography.get-weight(body2),
   with-image-image-shape: $graphic-shape-radius,
   with-image-image-size: 40px,
+  with-image-image-color: $graphic-color,
+  with-image-image-container-color: $graphic-background-color,
+  z-index: 1,
 );
 
 @mixin theme($theme, $resolvers: resolvers.$material) {
-  @include theme.validate-theme-keys($light-theme, $theme);
+  // TODO(b/251881053): Replace with `validate-theme`.
+  @include theme.validate-theme-styles($light-theme, $theme);
   $theme: _resolve-theme($theme, $resolvers);
-  @include keys.declare-custom-properties($theme, banner);
+  @include keys.declare-custom-properties(
+    $theme,
+    $prefix: $custom-property-prefix
+  );
 }
 
 @function _resolve-theme($theme, $resolvers) {
@@ -123,7 +131,25 @@ $light-theme: (
   $resolver: resolvers.$material,
   $query: feature-targeting.all()
 ) {
-  @include theme.validate-theme-keys($light-theme, $theme);
+  @include theme.validate-theme-styles($light-theme, $theme);
+  $theme: keys.create-theme-properties(
+    $theme,
+    $prefix: $custom-property-prefix
+  );
+
+  @include z-index(map.get($theme, 'z-index'), $query: $query);
+
+  @include max-width(map.get($theme, 'content-max-width'), $query: $query);
+
+  @include graphic-color(
+    map.get($theme, 'with-image-image-color'),
+    $query: $query
+  );
+  @include graphic-background-color(
+    map.get($theme, 'with-image-image-container-color'),
+    $query: $query
+  );
+
   @include text-color(map.get($theme, supporting-text-color), $query: $query);
   @include _supporting-text-typography(
     (
@@ -327,7 +353,7 @@ $light-theme: (
 
   .mdc-banner__content {
     @include feature-targeting.targets($feat-structure) {
-      max-width: $max-width;
+      @include theme.property(max-width, $max-width);
     }
   }
 }
@@ -380,7 +406,7 @@ $light-theme: (
   $feat-structure: feature-targeting.create-target($query, structure);
 
   @include feature-targeting.targets($feat-structure) {
-    z-index: $z-index;
+    @include theme.property(z-index, $z-index);
   }
 }
 

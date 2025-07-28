@@ -35,7 +35,12 @@
   import { onMount, onDestroy, setContext, getContext } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
-  import { classMap, useActions, dispatch } from '@smui/common/internal';
+  import {
+    classMap,
+    useActions,
+    dispatch,
+    SvelteEventManager,
+  } from '@smui/common/internal';
 
   import { MDCMenuSurfaceFoundation } from './mdc';
   import type { SMUIMenuSurfaceAccessor } from './MenuSurface.types.js';
@@ -150,6 +155,7 @@
 
   let element: HTMLDivElement;
   let instance: MDCMenuSurfaceFoundation | undefined = $state();
+  let eventManager = new SvelteEventManager();
   let internalClasses: { [k: string]: boolean } = $state({});
   let internalStyles: { [k: string]: string } = $state({});
   let previousFocus: Element | undefined = $state(undefined);
@@ -299,7 +305,7 @@
       },
       getAnchorDimensions: () =>
         anchorElement ? anchorElement.getBoundingClientRect() : null,
-      getWindowDimensions: () => {
+      getViewportDimensions: () => {
         return { width: window.innerWidth, height: window.innerHeight };
       },
       getBodyDimensions: () => {
@@ -321,6 +327,10 @@
       setMaxHeight: (height) => {
         internalStyles['max-height'] = height;
       },
+      registerWindowEventHandler: (evt, handler) =>
+        eventManager.on(window, evt, handler),
+      deregisterWindowEventHandler: (evt, handler) =>
+        eventManager.off(window, evt, handler),
     });
 
     const accessor: SMUIMenuSurfaceAccessor = {

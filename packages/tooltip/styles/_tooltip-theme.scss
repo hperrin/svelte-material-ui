@@ -44,6 +44,8 @@ $rich-background-color: theme-color.prop-value(surface);
 $rich-title-text-color: text-primary-on-light;
 $rich-content-text-color: rgba(black, theme-color.text-emphasis(medium));
 $rich-content-link-color: primary;
+$rich-content-overflow-x: unset;
+$rich-content-overflow-y: auto;
 
 // Use a custom property so IE11 does not use "normal" and instead uses provided
 // fall-back value.
@@ -55,7 +57,7 @@ $word-break-default: custom-properties.create-var($word-break-custom-prop);
 $word-break-ie11-fallback: break-all;
 $z-index: 9;
 
-// Sets the border-radius for the tooltip element.
+// Sets the border-radius for the tooltip surface and tooltip caret element.
 // @param {Number | String} $radius Desired border radius value, accepts either
 //   a shape category or number value. $radius can be a singel value, or a
 //   list of up to 4 values.
@@ -72,6 +74,22 @@ $z-index: 9;
 
   .mdc-tooltip__caret-surface-top,
   .mdc-tooltip__caret-surface-bottom {
+    @include shape-mixins.radius($radius, $rtl-reflexive, $query: $query);
+  }
+}
+
+// Sets the border-radius for the tooltip surface element only.
+// @param {Number | String} $radius Desired border radius value, accepts either
+//   a shape category or number value. $radius can be a singel value, or a
+//   list of up to 4 values.
+// @param {Boolean} $rtl-reflexive [false] If a rule should be created for a
+//    flipped $radius for a RTL layout.
+@mixin surface-shape-radius(
+  $radius,
+  $rtl-reflexive: false,
+  $query: feature-targeting.all()
+) {
+  .mdc-tooltip__surface {
     @include shape-mixins.radius($radius, $rtl-reflexive, $query: $query);
   }
 }
@@ -121,23 +139,29 @@ $z-index: 9;
 // @param {Color | String} $content-link-color The color for a link in the
 //   content of rich tooltips.
 @mixin rich-text-ink-color(
-  $title-color,
-  $content-color,
-  $content-link-color,
+  $title-color: null,
+  $content-color: null,
+  $content-link-color: null,
   $query: feature-targeting.all()
 ) {
   $feat-color: feature-targeting.create-target($query, color);
   @include feature-targeting.targets($feat-color) {
-    .mdc-tooltip__title {
-      @include theme.property(color, $title-color);
+    @if $title-color {
+      .mdc-tooltip__title {
+        @include theme.property(color, $title-color);
+      }
     }
 
-    .mdc-tooltip__content {
-      @include theme.property(color, $content-color);
+    @if $content-color {
+      .mdc-tooltip__content {
+        @include theme.property(color, $content-color);
+      }
     }
 
-    .mdc-tooltip__content-link {
-      @include theme.property(color, $content-link-color);
+    @if $content-link-color {
+      .mdc-tooltip__content-link {
+        @include theme.property(color, $content-link-color);
+      }
     }
   }
 }
@@ -187,13 +211,32 @@ $z-index: 9;
   }
 }
 
+// Sets the max-width of the rich tooltip.
+// @param {Number} $max-width
+@mixin rich-max-width($max-width, $query: feature-targeting.all()) {
+  $feat-structure: feature-targeting.create-target($query, structure);
+
+  &.mdc-tooltip--rich {
+    .mdc-tooltip__surface {
+      @include feature-targeting.targets($feat-structure) {
+        @include theme.property(max-width, $max-width);
+      }
+      .mdc-tooltip__content {
+        @include feature-targeting.targets($feat-structure) {
+          @include theme.property(max-width, $max-width);
+        }
+      }
+    }
+  }
+}
+
 // Sets the z-index of the tooltip.
 // @param {Number} $z-index
 @mixin z-index($z-index, $query: feature-targeting.all()) {
   $feat-structure: feature-targeting.create-target($query, structure);
 
   @include feature-targeting.targets($feat-structure) {
-    .mdc-tooltip {
+    &.mdc-tooltip {
       z-index: $z-index;
     }
   }
@@ -220,6 +263,37 @@ $z-index: 9;
   @include feature-targeting.targets($feat-animation) {
     .mdc-tooltip--hide-transition .mdc-tooltip__surface-animation {
       transition: animation-functions.exit-permanent(opacity, $exit-duration);
+    }
+  }
+}
+
+// Set the number of lines visible on a plain tooltip before being truncated.
+// @param {Number} $num-line-clamp
+@mixin line-clamp($num-line-clamp, $tooltip-surface-color: $background-color) {
+  .mdc-tooltip__label {
+    display: -webkit-box;
+    -webkit-line-clamp: $num-line-clamp;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+// Sets the overflow behavior on interactive rich tooltip content. Note that
+// this is only applied to INTERACTIVE rich tooltips, as the content of non-
+// interactive rich tooltip is not focusable. This means keyboard users cannot
+// scroll the tooltip content and is an a11y violation. Non-interactive rich
+// tooltips should, therefore, utilize the `max-height` mixin above to increase
+// the tooltip height.
+@mixin content-scroll(
+  $content-overflow-x,
+  $content-overflow-y,
+  $query: feature-targeting.all()
+) {
+  $feat-structure: feature-targeting.create-target($query, structure);
+  @include feature-targeting.targets($feat-structure) {
+    .mdc-tooltip__interactive-content {
+      @include theme.property(overflow-x, $content-overflow-x);
+      @include theme.property(overflow-y, $content-overflow-y);
     }
   }
 }

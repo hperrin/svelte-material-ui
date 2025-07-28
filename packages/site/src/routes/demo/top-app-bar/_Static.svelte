@@ -29,19 +29,21 @@
     >
       <Row>
         <Section>
-          <IconButton class="material-icons">menu</IconButton>
+          <IconButton>
+            <Icon class="material-icons">menu</Icon>
+          </IconButton>
           <Title>Flex Static</Title>
         </Section>
         <Section align="end" toolbar>
-          <IconButton class="material-icons" aria-label="Download"
-            >file_download</IconButton
-          >
-          <IconButton class="material-icons" aria-label="Print this page"
-            >print</IconButton
-          >
-          <IconButton class="material-icons" aria-label="Bookmark this page"
-            >bookmark</IconButton
-          >
+          <IconButton aria-label="Download">
+            <Icon class="material-icons">file_download</Icon>
+          </IconButton>
+          <IconButton aria-label="Print this page">
+            <Icon class="material-icons">print</Icon>
+          </IconButton>
+          <IconButton aria-label="Bookmark this page">
+            <Icon class="material-icons">bookmark</Icon>
+          </IconButton>
         </Section>
       </Row>
     </TopAppBar>
@@ -64,19 +66,21 @@
     >
       <Row>
         <Section>
-          <IconButton class="material-icons">menu</IconButton>
+          <IconButton>
+            <Icon class="material-icons">menu</Icon>
+          </IconButton>
           <Title>Static</Title>
         </Section>
         <Section align="end" toolbar>
-          <IconButton class="material-icons" aria-label="Download"
-            >file_download</IconButton
-          >
-          <IconButton class="material-icons" aria-label="Print this page"
-            >print</IconButton
-          >
-          <IconButton class="material-icons" aria-label="Bookmark this page"
-            >bookmark</IconButton
-          >
+          <IconButton aria-label="Download">
+            <Icon class="material-icons">file_download</Icon>
+          </IconButton>
+          <IconButton aria-label="Print this page">
+            <Icon class="material-icons">print</Icon>
+          </IconButton>
+          <IconButton aria-label="Bookmark this page">
+            <Icon class="material-icons">bookmark</Icon>
+          </IconButton>
         </Section>
       </Row>
     </TopAppBar>
@@ -93,7 +97,7 @@
 
 <script lang="ts">
   import TopAppBar, { Row, Section, Title } from '@smui/top-app-bar';
-  import IconButton from '@smui/icon-button';
+  import IconButton, { Icon } from '@smui/icon-button';
   import Checkbox from '@smui/checkbox';
   import FormField from '@smui/form-field';
   import LoremIpsum from '$lib/LoremIpsum.svelte';

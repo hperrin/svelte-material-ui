@@ -57,7 +57,9 @@
                     <path fill="currentColor" d={mdiContentCopy} />
                   </Icon>
                 </IconButton>
-                <Tooltip>Copy source code</Tooltip>
+                <Tooltip>
+                  <Label>Copy source code</Label>
+                </Tooltip>
               </Wrapper>
             </div>
           </div>
@@ -77,7 +79,9 @@
               <path fill="currentColor" d={mdiGithub} />
             </Icon>
           </IconButton>
-          <Tooltip>View {file} on GitHub</Tooltip>
+          <Tooltip>
+            <Label>View {file} on GitHub</Label>
+          </Tooltip>
         </Wrapper>
       {/each}
       <Wrapper>
@@ -89,7 +93,9 @@
             <path fill="currentColor" d={mdiCodeTagsCheck} />
           </Icon>
         </IconButton>
-        <Tooltip>{hide ? 'Show' : 'Hide'} the source code</Tooltip>
+        <Tooltip>
+          <Label>{hide ? 'Show' : 'Hide'} the source code</Label>
+        </Tooltip>
       </Wrapper>
     </ActionIcons>
   </Actions>
@@ -109,7 +115,7 @@
   import Card, { Content, Actions, ActionIcons } from '@smui/card';
   import CircularProgress from '@smui/circular-progress';
   import IconButton, { Icon } from '@smui/icon-button';
-  import Tooltip, { Wrapper } from '@smui/tooltip';
+  import Tooltip, { Wrapper, Label } from '@smui/tooltip';
 
   let {
     file,

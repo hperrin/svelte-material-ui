@@ -22,9 +22,11 @@
  */
 
 import { MDCFoundation } from '@smui/base/foundation';
+
 import type { MDCTextFieldHelperTextAdapter } from './adapter';
 import { cssClasses, strings } from './constants';
 
+/** MDC Text Field Helper Text Foundation */
 export class MDCTextFieldHelperTextFoundation extends MDCFoundation<MDCTextFieldHelperTextAdapter> {
   static override get cssClasses() {
     return cssClasses;
@@ -35,7 +37,8 @@ export class MDCTextFieldHelperTextFoundation extends MDCFoundation<MDCTextField
   }
 
   /**
-   * See {@link MDCTextFieldHelperTextAdapter} for typing information on parameters and return types.
+   * See {@link MDCTextFieldHelperTextAdapter} for typing information on
+   * parameters and return types.
    */
   static override get defaultAdapter(): MDCTextFieldHelperTextAdapter {
     // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
@@ -93,7 +96,8 @@ export class MDCTextFieldHelperTextFoundation extends MDCFoundation<MDCTextField
   }
 
   /**
-   * @param isValidation True to make the helper text act as an error validation message.
+   * @param isValidation True to make the helper text act as an error validation
+   *     message.
    */
   setValidation(isValidation: boolean) {
     if (isValidation) {

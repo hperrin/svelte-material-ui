@@ -78,5 +78,8 @@
     "svelte-check": "^4.1.1",
     "tslib": "^2.8.1",
     "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "safevalues": "^1.2.0"
   }
 }

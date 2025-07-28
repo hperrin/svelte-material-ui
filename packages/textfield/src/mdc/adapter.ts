@@ -22,6 +22,7 @@
  */
 
 import type { EventType, SpecificEventListener } from '@smui/base/types';
+
 import type { MDCTextFieldNativeInputElement } from './types';
 
 /**
@@ -58,7 +59,7 @@ export interface MDCTextFieldRootAdapter {
    * Registers an event handler on the root element for a given event.
    */
   registerTextFieldInteractionHandler<K extends EventType>(
-    evtType: K,
+    eventType: K,
     handler: SpecificEventListener<K>,
   ): void;
 
@@ -66,7 +67,7 @@ export interface MDCTextFieldRootAdapter {
    * Deregisters an event handler on the root element for a given event.
    */
   deregisterTextFieldInteractionHandler<K extends EventType>(
-    evtType: K,
+    eventType: K,
     handler: SpecificEventListener<K>,
   ): void;
 
@@ -87,7 +88,8 @@ export interface MDCTextFieldRootAdapter {
 export interface MDCTextFieldInputAdapter {
   /**
    * @return The native `<input>` element, or an object with the same shape.
-   * Note that this method can return null, which the foundation will handle gracefully.
+   * Note that this method can return null, which the foundation will handle
+   * gracefully.
    */
   getNativeInput(): MDCTextFieldNativeInputElement | null;
 
@@ -102,7 +104,8 @@ export interface MDCTextFieldInputAdapter {
   removeInputAttr(attr: string): void;
 
   /**
-   * @return true if the textfield is focused. We achieve this via `document.activeElement === this.root`.
+   * @return true if the textfield is focused. We achieve this via
+   *     `document.activeElement === this.root`.
    */
   isFocused(): boolean;
 
@@ -110,15 +113,16 @@ export interface MDCTextFieldInputAdapter {
    * Registers an event listener on the native input element for a given event.
    */
   registerInputInteractionHandler<K extends EventType>(
-    evtType: K,
+    eventType: K,
     handler: SpecificEventListener<K>,
   ): void;
 
   /**
-   * Deregisters an event listener on the native input element for a given event.
+   * Deregisters an event listener on the native input element for a given
+   * event.
    */
   deregisterInputInteractionHandler<K extends EventType>(
-    evtType: K,
+    eventType: K,
     handler: SpecificEventListener<K>,
   ): void;
 }

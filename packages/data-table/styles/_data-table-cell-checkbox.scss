@@ -1,5 +1,5 @@
 //
-// Copyright 2021 Google Inc.
+// Copyright 2020 Google Inc.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -19,14 +19,23 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 //
-@use './mixins';
-@provide 'mdc.textfield';
-@require '../floatinglabel/gss_gss';
-@require '../lineripple/line_ripple_gss_gss';
-@require '../notchedoutline/gss_gss';
-@require '../ripple/styles_gss_gss';
 
-@use '@smui/floating-label/styles/mdc-floating-label'; // COPYBARA_COMMENT_THIS_LINE
-@use '@smui/line-ripple/styles/mdc-line-ripple'; // COPYBARA_COMMENT_THIS_LINE
-@use '@smui/notched-outline/styles/mdc-notched-outline'; // COPYBARA_COMMENT_THIS_LINE
-@include mixins.core-styles;
+// stylelint-disable selector-class-pattern --
+// NOTE: We disable `selector-class-pattern` above to allow using `mdc-` class
+// selectors.
+
+@use '@smui/feature-targeting/feature-targeting';
+
+/// Styles related to checkbox for cell.
+@mixin static-styles($query: feature-targeting.all()) {
+  $feat-structure: feature-targeting.create-target($query, structure);
+
+  .mdc-data-table__cell--checkbox {
+    @include feature-targeting.targets($feat-structure) {
+      // Set to lowest width to adapt to cell content. Cell width should adapt
+      // to row checkbox size when it is dense.
+      // NOTE: `min-width` does not seem to work on table cells.
+      width: 1px;
+    }
+  }
+}

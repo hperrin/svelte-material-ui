@@ -34,10 +34,10 @@ import { cssClasses, events } from './constants';
 import { MDCSliderFoundation } from './foundation';
 import { type MDCSliderChangeEventDetail, Thumb, TickMark } from './types';
 
-/** Vanilla JS implementation of slider component. */
+/** Vanilla implementation of slider component. */
 export class MDCSlider extends MDCComponent<MDCSliderFoundation> {
   static override attachTo(
-    root: Element,
+    root: HTMLElement,
     options: {
       skipInitialUIUpdate?: boolean;
     } = {},
@@ -45,7 +45,6 @@ export class MDCSlider extends MDCComponent<MDCSliderFoundation> {
     return new MDCSlider(root, undefined, options);
   }
 
-  override root!: HTMLElement; // Assigned in MDCComponent constructor.
   private inputs!: HTMLInputElement[]; // Assigned in #initialize.
   private thumbs!: HTMLElement[]; // Assigned in #initialize.
   private trackActive!: HTMLElement; // Assigned in #initialize.
@@ -158,47 +157,49 @@ export class MDCSlider extends MDCComponent<MDCSliderFoundation> {
       emitInputEvent: (value, thumb: Thumb) => {
         this.emit<MDCSliderChangeEventDetail>(events.INPUT, { value, thumb });
       },
+      // tslint:disable-next-line:enforce-name-casing
       emitDragStartEvent: (_, thumb: Thumb) => {
         // Emitting event is not yet implemented. See issue:
         // https://github.com/material-components/material-components-web/issues/6448
 
         this.getRipple(thumb).activate();
       },
+      // tslint:disable-next-line:enforce-name-casing
       emitDragEndEvent: (_, thumb: Thumb) => {
         // Emitting event is not yet implemented. See issue:
         // https://github.com/material-components/material-components-web/issues/6448
 
         this.getRipple(thumb).deactivate();
       },
-      registerEventHandler: (evtType, handler) => {
-        this.listen(evtType, handler);
+      registerEventHandler: (eventType, handler) => {
+        this.listen(eventType, handler);
       },
-      deregisterEventHandler: (evtType, handler) => {
-        this.unlisten(evtType, handler);
+      deregisterEventHandler: (eventType, handler) => {
+        this.unlisten(eventType, handler);
       },
-      registerThumbEventHandler: (thumb, evtType, handler) => {
-        this.getThumbEl(thumb).addEventListener(evtType, handler);
+      registerThumbEventHandler: (thumb, eventType, handler) => {
+        this.getThumbEl(thumb).addEventListener(eventType, handler);
       },
-      deregisterThumbEventHandler: (thumb, evtType, handler) => {
-        this.getThumbEl(thumb).removeEventListener(evtType, handler);
+      deregisterThumbEventHandler: (thumb, eventType, handler) => {
+        this.getThumbEl(thumb).removeEventListener(eventType, handler);
       },
-      registerInputEventHandler: (thumb, evtType, handler) => {
-        this.getInput(thumb).addEventListener(evtType, handler);
+      registerInputEventHandler: (thumb, eventType, handler) => {
+        this.getInput(thumb).addEventListener(eventType, handler);
       },
-      deregisterInputEventHandler: (thumb, evtType, handler) => {
-        this.getInput(thumb).removeEventListener(evtType, handler);
+      deregisterInputEventHandler: (thumb, eventType, handler) => {
+        this.getInput(thumb).removeEventListener(eventType, handler);
       },
-      registerBodyEventHandler: (evtType, handler) => {
-        document.body.addEventListener(evtType, handler);
+      registerBodyEventHandler: (eventType, handler) => {
+        document.body.addEventListener(eventType, handler);
       },
-      deregisterBodyEventHandler: (evtType, handler) => {
-        document.body.removeEventListener(evtType, handler);
+      deregisterBodyEventHandler: (eventType, handler) => {
+        document.body.removeEventListener(eventType, handler);
       },
-      registerWindowEventHandler: (evtType, handler) => {
-        window.addEventListener(evtType, handler);
+      registerWindowEventHandler: (eventType, handler) => {
+        window.addEventListener(eventType, handler);
       },
-      deregisterWindowEventHandler: (evtType, handler) => {
-        window.removeEventListener(evtType, handler);
+      deregisterWindowEventHandler: (eventType, handler) => {
+        window.removeEventListener(eventType, handler);
       },
       // tslint:enable:object-literal-sort-keys
     };
@@ -214,15 +215,15 @@ export class MDCSlider extends MDCComponent<MDCSliderFoundation> {
   override initialize({
     skipInitialUIUpdate,
   }: { skipInitialUIUpdate?: boolean } = {}) {
-    this.inputs = [].slice.call(
-      this.root.querySelectorAll(`.${cssClasses.INPUT}`),
-    ) as HTMLInputElement[];
-    this.thumbs = [].slice.call(
-      this.root.querySelectorAll(`.${cssClasses.THUMB}`),
-    ) as HTMLElement[];
-    this.trackActive = this.root.querySelector(
+    this.inputs = Array.from(
+      this.root.querySelectorAll<HTMLInputElement>(`.${cssClasses.INPUT}`),
+    );
+    this.thumbs = Array.from(
+      this.root.querySelectorAll<HTMLElement>(`.${cssClasses.THUMB}`),
+    );
+    this.trackActive = this.root.querySelector<HTMLElement>(
       `.${cssClasses.TRACK_ACTIVE}`,
-    ) as HTMLElement;
+    )!;
     this.ripples = this.createRipples();
 
     if (skipInitialUIUpdate) {
@@ -326,11 +327,11 @@ export class MDCSlider extends MDCComponent<MDCSliderFoundation> {
   /** Initializes thumb ripples. */
   private createRipples(): MDCRipple[] {
     const ripples = [];
-    const rippleSurfaces = [].slice.call(
+    const rippleSurfaces = Array.from(
       this.root.querySelectorAll<HTMLElement>(`.${cssClasses.THUMB}`),
     );
     for (let i = 0; i < rippleSurfaces.length; i++) {
-      const rippleSurface = rippleSurfaces[i] as HTMLElement;
+      const rippleSurface = rippleSurfaces[i];
       // Use the corresponding input as the focus source for the ripple (i.e.
       // when the input is focused, the ripple is in the focused state).
       const input = this.inputs[i];
@@ -342,18 +343,18 @@ export class MDCSlider extends MDCComponent<MDCSliderFoundation> {
         },
         computeBoundingRect: () => rippleSurface.getBoundingClientRect(),
         deregisterInteractionHandler: <K extends EventType>(
-          evtType: K,
+          eventType: K,
           handler: SpecificEventListener<K>,
         ) => {
-          input.removeEventListener(evtType, handler);
+          input.removeEventListener(eventType, handler);
         },
         isSurfaceActive: () => matches(input, ':active'),
         isUnbounded: () => true,
         registerInteractionHandler: <K extends EventType>(
-          evtType: K,
+          eventType: K,
           handler: SpecificEventListener<K>,
         ) => {
-          input.addEventListener(evtType, handler, applyPassive());
+          input.addEventListener(eventType, handler, applyPassive());
         },
         removeClass: (className: string) => {
           rippleSurface.classList.remove(className);

@@ -55,7 +55,7 @@ export interface MDCTextFieldIconAdapter {
    * Registers an event listener on the icon element for a given event.
    */
   registerInteractionHandler<K extends EventType>(
-    evtType: K,
+    eventType: K,
     handler: SpecificEventListener<K>,
   ): void;
 
@@ -63,12 +63,13 @@ export interface MDCTextFieldIconAdapter {
    * Deregisters an event listener on the icon element for a given event.
    */
   deregisterInteractionHandler<K extends EventType>(
-    evtType: K,
+    eventType: K,
     handler: SpecificEventListener<K>,
   ): void;
 
   /**
-   * Emits a custom event "MDCTextField:icon" denoting a user has clicked the icon.
+   * Emits a custom event "MDCTextField:icon" denoting a user has clicked the
+   * icon.
    */
   notifyIconAction(): void;
 }

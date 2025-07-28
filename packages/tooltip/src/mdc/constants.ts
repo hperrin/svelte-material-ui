@@ -42,6 +42,7 @@ const numbers = {
   HIDE_DELAY_MS: 600,
   SHOW_DELAY_MS: 500,
   // LINT.IfChange(tooltip-dimensions)
+  MIN_WIDTH: 40,
   MIN_HEIGHT: 24,
   MAX_WIDTH: 200,
   // LINT.ThenChange(_tooltip.scss:tooltip-dimensions)
@@ -49,6 +50,9 @@ const numbers = {
   // LINT.IfChange(tooltip-anim-scale)
   ANIMATION_SCALE: 0.8,
   // LINT.ThenChange(_tooltip.scss:tooltip-anim-scale)
+  // LINT.IfChange(rich-tooltip-dimensions)
+  RICH_MAX_WIDTH: 320,
+  // LINT.ThenChange(_tooltip.scss:rich-tooltip-dimensions)
 };
 
 const attributes = {
@@ -61,6 +65,7 @@ const attributes = {
 
 const events = {
   HIDDEN: 'MDCTooltip:hidden',
+  SHOWN: 'MDCTooltip:shown',
 };
 
 /** Enum for possible tooltip positioning relative to its anchor element. */
@@ -70,12 +75,18 @@ enum XPosition {
   // Note: CENTER is not valid for rich tooltips.
   CENTER = 2,
   END = 3,
+  // SIDE_XXX positioning is only valid for plain tooltips.
+  SIDE_START = 4,
+  SIDE_END = 5,
 }
 
 enum YPosition {
   DETECTED = 0,
   ABOVE = 1,
   BELOW = 2,
+  // SIDE positioning is only valid for plain tooltips with either SIDE_START or
+  // SIDE_END x positioning.
+  SIDE = 3,
 }
 
 /**

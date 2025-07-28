@@ -73,13 +73,14 @@ export interface MDCChipAdapter {
   notifyInteraction(): void;
 
   /**
-   * Emits a custom "MDCChip:selection" event denoting the chip has been selected or deselected.
+   * Emits a custom "MDCChip:selection" event denoting the chip has been
+   * selected or deselected.
    */
   notifySelection(selected: boolean, chipSetShouldIgnore: boolean): void;
 
   /**
-   * Emits a custom "MDCChip:trailingIconInteraction" event denoting the trailing icon has been
-   * interacted with (typically on click or keydown).
+   * Emits a custom "MDCChip:trailingIconInteraction" event denoting the
+   * trailing icon has been interacted with (typically on click or keydown).
    */
   notifyTrailingIconInteraction(): void;
 
@@ -89,7 +90,8 @@ export interface MDCChipAdapter {
   notifyRemoval(removedAnnouncement: string | null): void;
 
   /**
-   * Emits a custom event "MDCChip:navigation" denoting a focus navigation event.
+   * Emits a custom event "MDCChip:navigation" denoting a focus navigation
+   * event.
    */
   notifyNavigation(key: string, source: EventSource): void;
 
@@ -104,7 +106,8 @@ export interface MDCChipAdapter {
   notifyEditFinish(): void;
 
   /**
-   * @return The computed property value of the given style property on the root element.
+   * @return The computed property value of the given style property on the root
+   *     element.
    */
   getComputedStyleValue(propertyName: string): string;
 
@@ -124,7 +127,8 @@ export interface MDCChipAdapter {
   getRootBoundingClientRect(): DOMRect;
 
   /**
-   * @return The bounding client rect of the checkmark element or null if it doesn't exist.
+   * @return The bounding client rect of the checkmark element or null if it
+   *     doesn't exist.
    */
   getCheckmarkBoundingClientRect(): DOMRect | null;
 

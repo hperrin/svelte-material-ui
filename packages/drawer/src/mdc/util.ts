@@ -23,6 +23,7 @@
 
 import { type FocusOptions, FocusTrap } from '@smui/dom/focus-trap';
 
+/** MDC Drawer Focus Trap Factory */
 export type MDCDrawerFocusTrapFactory = (
   element: HTMLElement,
   options: FocusOptions,

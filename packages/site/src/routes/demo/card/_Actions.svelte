@@ -46,16 +46,12 @@
           <Icon class="material-icons" on>favorite</Icon>
           <Icon class="material-icons">favorite_border</Icon>
         </IconButton>
-        <IconButton
-          class="material-icons"
-          onclick={() => clicked++}
-          title="Share">share</IconButton
-        >
-        <IconButton
-          class="material-icons"
-          onclick={() => clicked++}
-          title="More options">more_vert</IconButton
-        >
+        <IconButton onclick={() => clicked++} title="Share">
+          <Icon class="material-icons">share</Icon>
+        </IconButton>
+        <IconButton onclick={() => clicked++} title="More options">
+          <Icon class="material-icons">more_vert</Icon>
+        </IconButton>
       </Actions>
     </Card>
   </div>
@@ -82,16 +78,12 @@
             <Icon class="material-icons" on>favorite</Icon>
             <Icon class="material-icons">favorite_border</Icon>
           </IconButton>
-          <IconButton
-            class="material-icons"
-            onclick={() => clicked++}
-            title="Share">share</IconButton
-          >
-          <IconButton
-            class="material-icons"
-            onclick={() => clicked++}
-            title="More options">more_vert</IconButton
-          >
+          <IconButton onclick={() => clicked++} title="Share">
+            <Icon class="material-icons">share</Icon>
+          </IconButton>
+          <IconButton onclick={() => clicked++} title="More options">
+            <Icon class="material-icons">more_vert</Icon>
+          </IconButton>
         </ActionIcons>
       </Actions>
     </Card>

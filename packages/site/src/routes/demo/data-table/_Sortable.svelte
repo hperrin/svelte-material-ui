@@ -20,21 +20,29 @@
       -->
       <Cell numeric columnId="id">
         <!-- For numeric columns, icon comes first. -->
-        <IconButton class="material-icons">arrow_upward</IconButton>
+        <IconButton>
+          <Icon class="material-icons">arrow_upward</Icon>
+        </IconButton>
         <Label>ID</Label>
       </Cell>
       <Cell columnId="name" style="width: 100%;">
         <Label>Name</Label>
         <!-- For non-numeric columns, icon comes second. -->
-        <IconButton class="material-icons">arrow_upward</IconButton>
+        <IconButton>
+          <Icon class="material-icons">arrow_upward</Icon>
+        </IconButton>
       </Cell>
       <Cell columnId="username">
         <Label>Username</Label>
-        <IconButton class="material-icons">arrow_upward</IconButton>
+        <IconButton>
+          <Icon class="material-icons">arrow_upward</Icon>
+        </IconButton>
       </Cell>
       <Cell columnId="email">
         <Label>Email</Label>
-        <IconButton class="material-icons">arrow_upward</IconButton>
+        <IconButton>
+          <Icon class="material-icons">arrow_upward</Icon>
+        </IconButton>
       </Cell>
       <!-- You can turn off sorting for a column. -->
       <Cell sortable={false}>Website</Cell>
@@ -62,7 +70,7 @@
     Label,
     SortValue,
   } from '@smui/data-table';
-  import IconButton from '@smui/icon-button';
+  import IconButton, { Icon } from '@smui/icon-button';
 
   type User = {
     id: number;

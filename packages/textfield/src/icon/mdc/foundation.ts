@@ -23,6 +23,7 @@
 
 import { MDCFoundation } from '@smui/base/foundation';
 import type { SpecificEventListener } from '@smui/base/types';
+
 import type { MDCTextFieldIconAdapter } from './adapter';
 import { cssClasses, strings } from './constants';
 
@@ -30,6 +31,7 @@ type InteractionEventType = 'click' | 'keydown';
 
 const INTERACTION_EVENTS: InteractionEventType[] = ['click', 'keydown'];
 
+/** MDC Text Field Icon Foundation */
 export class MDCTextFieldIconFoundation extends MDCFoundation<MDCTextFieldIconAdapter> {
   static override get strings() {
     return strings;
@@ -40,7 +42,8 @@ export class MDCTextFieldIconFoundation extends MDCFoundation<MDCTextFieldIconAd
   }
 
   /**
-   * See {@link MDCTextFieldIconAdapter} for typing information on parameters and return types.
+   * See {@link MDCTextFieldIconAdapter} for typing information on parameters
+   * and return types.
    */
   static override get defaultAdapter(): MDCTextFieldIconAdapter {
     // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
@@ -62,23 +65,26 @@ export class MDCTextFieldIconFoundation extends MDCFoundation<MDCTextFieldIconAd
   constructor(adapter?: Partial<MDCTextFieldIconAdapter>) {
     super({ ...MDCTextFieldIconFoundation.defaultAdapter, ...adapter });
 
-    this.interactionHandler = (evt) => {
-      this.handleInteraction(evt);
+    this.interactionHandler = (event) => {
+      this.handleInteraction(event);
     };
   }
 
   override init() {
     this.savedTabIndex = this.adapter.getAttr('tabindex');
 
-    for (const evtType of INTERACTION_EVENTS) {
-      this.adapter.registerInteractionHandler(evtType, this.interactionHandler);
+    for (const eventType of INTERACTION_EVENTS) {
+      this.adapter.registerInteractionHandler(
+        eventType,
+        this.interactionHandler,
+      );
     }
   }
 
   override destroy() {
-    for (const evtType of INTERACTION_EVENTS) {
+    for (const eventType of INTERACTION_EVENTS) {
       this.adapter.deregisterInteractionHandler(
-        evtType,
+        eventType,
         this.interactionHandler,
       );
     }
@@ -106,12 +112,13 @@ export class MDCTextFieldIconFoundation extends MDCFoundation<MDCTextFieldIconAd
     this.adapter.setContent(content);
   }
 
-  handleInteraction(evt: MouseEvent | KeyboardEvent) {
+  handleInteraction(event: MouseEvent | KeyboardEvent) {
     const isEnterKey =
-      (evt as KeyboardEvent).key === 'Enter' ||
-      (evt as KeyboardEvent).keyCode === 13;
-    if (evt.type === 'click' || isEnterKey) {
-      evt.preventDefault(); // stop click from causing host label to focus
+      (event as KeyboardEvent).key === 'Enter' ||
+      (event as KeyboardEvent).keyCode === 13;
+    const isSpaceKey = (event as KeyboardEvent).key === ' ';
+    if (event.type === 'click' || isEnterKey || isSpaceKey) {
+      event.preventDefault(); // stop click from causing host label to focus
       // input
       this.adapter.notifyIconAction();
     }

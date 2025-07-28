@@ -1,8 +1,6 @@
 @forward '@smui/base/mixins' as mdc-base-*;
 @forward '@smui/rtl/variables' as mdc-rtl-*;
 @forward '@smui/theme/variables' as mdc-theme-*;
-@forward '@smui/feature-targeting/variables' as mdc-feature-*;
-@forward '@smui/feature-targeting/mixins' as mdc-feature-*;
 @forward '@smui/animation/variables' as mdc-animation-*;
 @forward '@smui/typography/variables' as mdc-typography-*;
 @forward 'variables' as mdc-floating-label-*;
@@ -15,6 +13,5 @@
 @forward '@smui/typography/mixins' as mdc-typography-* hide mdc-typography-typography;
 @forward 'mixins' as mdc-floating-label-*;
 @forward '@smui/theme/functions' as mdc-theme-*;
-@forward '@smui/feature-targeting/functions' as mdc-feature-*;
 @forward '@smui/typography/functions' as mdc-typography-*;
 @forward 'mdc-floating-label';

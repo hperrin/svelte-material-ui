@@ -23,9 +23,11 @@
 
 import { MDCFoundation } from '@smui/base/foundation';
 import type { MDCProgressIndicatorFoundation } from '@smui/progress-indicator/foundation';
+
 import type { MDCCircularProgressAdapter } from './adapter';
 import { cssClasses, strings } from './constants';
 
+/** MDC Circular Progress Foundation */
 export class MDCCircularProgressFoundation
   extends MDCFoundation<MDCCircularProgressAdapter>
   implements MDCProgressIndicatorFoundation

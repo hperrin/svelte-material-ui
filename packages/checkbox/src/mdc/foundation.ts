@@ -22,9 +22,11 @@
  */
 
 import { MDCFoundation } from '@smui/base/foundation';
+
 import type { MDCCheckboxAdapter } from './adapter';
 import { cssClasses, numbers, strings } from './constants';
 
+/** MDC Checkbox Foundation */
 export class MDCCheckboxFoundation extends MDCFoundation<MDCCheckboxAdapter> {
   static override get cssClasses() {
     return cssClasses;
@@ -125,8 +127,9 @@ export class MDCCheckboxFoundation extends MDCFoundation<MDCCheckboxAdapter> {
       this.adapter.addClass(SELECTED);
     }
 
-    // Check to ensure that there isn't a previously existing animation class, in case for example
-    // the user interacted with the checkbox before the animation was finished.
+    // Check to ensure that there isn't a previously existing animation class,
+    // in case for example the user interacted with the checkbox before the
+    // animation was finished.
     if (this.currentAnimationClass.length > 0) {
       clearTimeout(this.animEndLatchTimer);
       this.adapter.forceLayout();
@@ -139,8 +142,8 @@ export class MDCCheckboxFoundation extends MDCFoundation<MDCCheckboxAdapter> {
     );
     this.currentCheckState = newState;
 
-    // Check for parentNode so that animations are only run when the element is attached
-    // to the DOM.
+    // Check for parentNode so that animations are only run when the element is
+    // attached to the DOM.
     if (
       this.adapter.isAttachedToDOM() &&
       this.currentAnimationClass.length > 0
@@ -208,7 +211,8 @@ export class MDCCheckboxFoundation extends MDCFoundation<MDCCheckboxAdapter> {
   }
 
   private updateAriaChecked() {
-    // Ensure aria-checked is set to mixed if checkbox is in indeterminate state.
+    // Ensure aria-checked is set to mixed if checkbox is in indeterminate
+    // state.
     if (this.adapter.isIndeterminate()) {
       this.adapter.setNativeControlAttr(
         strings.ARIA_CHECKED_ATTR,

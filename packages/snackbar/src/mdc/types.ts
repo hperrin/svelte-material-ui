@@ -21,7 +21,10 @@
  * THE SOFTWARE.
  */
 
-export type MDCSnackbarAnnouncer = (ariaEl: Element, labelEl?: Element) => void;
+export type MDCSnackbarAnnouncer = (
+  ariaEl: HTMLElement,
+  labelEl?: HTMLElement,
+) => void;
 export type MDCSnackbarAnnouncerFactory = () => MDCSnackbarAnnouncer;
 
 export interface MDCSnackbarCloseEventDetail {

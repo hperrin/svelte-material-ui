@@ -20,7 +20,7 @@
 // THE SOFTWARE.
 //
 
-// stylelint-disable selector-class-pattern
+// stylelint-disable selector-class-pattern --
 // NOTE: We disable `selector-class-pattern` above to allow using `mdc-` class
 // selectors.
 
@@ -28,15 +28,23 @@
 @use '@smui/feature-targeting/feature-targeting';
 @use '@smui/rtl/rtl';
 @use '@smui/typography/typography';
+@use './data-table-cell-checkbox';
 
 @mixin core-styles($query: feature-targeting.all()) {
+  .mdc-data-table__cell {
+    @include typography.typography(body2, $query: $query);
+  }
+
+  @include static-styles($query);
+  @include data-table-cell-checkbox.static-styles($query);
+}
+
+@mixin static-styles($query: feature-targeting.all()) {
   $feat-structure: feature-targeting.create-target($query, structure);
   $feat-typography: feature-targeting.create-target($query, typography);
   $feat-animation: feature-targeting.create-target($query, animation);
 
   .mdc-data-table__cell {
-    @include typography.typography(body2, $query: $query);
-
     @include feature-targeting.targets($feat-structure) {
       box-sizing: border-box;
       overflow: hidden;
@@ -61,20 +69,5 @@
         text-align: left;
       }
     }
-  }
-
-  .mdc-data-table__cell--checkbox {
-    @include adaptive-width($query: $query);
-  }
-}
-
-@mixin adaptive-width($query: feature-targeting.all()) {
-  $feat-structure: feature-targeting.create-target($query, structure);
-
-  @include feature-targeting.targets($feat-structure) {
-    // Set to lowest width to adapt to cell content. Cell width should adapt
-    // to row checkbox size when it is dense.
-    // NOTE: `min-width` does not seem to work on table cells.
-    width: 1px;
   }
 }

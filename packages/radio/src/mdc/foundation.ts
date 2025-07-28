@@ -22,9 +22,11 @@
  */
 
 import { MDCFoundation } from '@smui/base/foundation';
+
 import type { MDCRadioAdapter } from './adapter';
 import { cssClasses, strings } from './constants';
 
+/** MDC Radio Foundation */
 export class MDCRadioFoundation extends MDCFoundation<MDCRadioAdapter> {
   static override get cssClasses() {
     return cssClasses;

@@ -34,17 +34,18 @@ import type { MDCSegmentedButtonAdapter } from './adapter';
 import { events, selectors } from './constants';
 import { MDCSegmentedButtonFoundation } from './foundation';
 
+/** MDC Segmented Button */
 export class MDCSegmentedButton extends MDCComponent<MDCSegmentedButtonFoundation> {
-  static override attachTo(root: Element): MDCSegmentedButton {
+  static override attachTo(root: HTMLElement): MDCSegmentedButton {
     return new MDCSegmentedButton(root);
   }
 
-  get segments(): ReadonlyArray<MDCSegmentedButtonSegment> {
+  get segments(): readonly MDCSegmentedButtonSegment[] {
     return this.segmentsList.slice();
   }
 
   private segmentsList!: MDCSegmentedButtonSegment[]; // assigned in initialize
-  private segmentFactory!: (el: Element) => MDCSegmentedButtonSegment; // assigned in initialize
+  private segmentFactory!: (el: HTMLElement) => MDCSegmentedButtonSegment; // assigned in initialize
   private handleSelected!: CustomEventListener<MDCSegmentedButtonEvent>; // assigned in
   // initialSyncWithDOM
 
@@ -63,10 +64,10 @@ export class MDCSegmentedButton extends MDCComponent<MDCSegmentedButtonFoundatio
   private instantiateSegments(
     segmentFactory: MDCSegmentedButtonSegmentFactory,
   ): MDCSegmentedButtonSegment[] {
-    const segmentElements: Element[] = [].slice.call(
-      this.root.querySelectorAll(selectors.SEGMENT),
+    const segmentElements = Array.from(
+      this.root.querySelectorAll<HTMLElement>(selectors.SEGMENT),
     );
-    return segmentElements.map((el: Element) => segmentFactory(el));
+    return segmentElements.map((el) => segmentFactory(el));
   }
 
   override initialSyncWithDOM() {

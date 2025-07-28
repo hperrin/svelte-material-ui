@@ -33,33 +33,37 @@
       {/snippet}
 
       <IconButton
-        class="material-icons"
         action="first-page"
         title="First page"
         onclick={() => (currentPage = 0)}
-        disabled={currentPage === 0}>first_page</IconButton
+        disabled={currentPage === 0}
       >
+        <Icon class="material-icons">first_page</Icon>
+      </IconButton>
       <IconButton
-        class="material-icons"
         action="prev-page"
         title="Prev page"
         onclick={() => currentPage--}
-        disabled={currentPage === 0}>chevron_left</IconButton
+        disabled={currentPage === 0}
       >
+        <Icon class="material-icons">chevron_left</Icon>
+      </IconButton>
       <IconButton
-        class="material-icons"
         action="next-page"
         title="Next page"
         onclick={() => currentPage++}
-        disabled={currentPage === lastPage}>chevron_right</IconButton
+        disabled={currentPage === lastPage}
       >
+        <Icon class="material-icons">chevron_right</Icon>
+      </IconButton>
       <IconButton
-        class="material-icons"
         action="last-page"
         title="Last page"
         onclick={() => (currentPage = lastPage)}
-        disabled={currentPage === lastPage}>last_page</IconButton
+        disabled={currentPage === lastPage}
       >
+        <Icon class="material-icons">last_page</Icon>
+      </IconButton>
     </Pagination>
   {/snippet}
 </DataTable>
@@ -73,7 +77,7 @@
     Pagination,
   } from '@smui/data-table';
   import Select, { Option } from '@smui/select';
-  import IconButton from '@smui/icon-button';
+  import IconButton, { Icon } from '@smui/icon-button';
   import { Label } from '@smui/common';
 
   type Todo = {

@@ -38,6 +38,7 @@ $light-theme: (
   container-elevation: null,
   container-shadow-color: null,
   container-shape: null,
+  container-surface-tint-layer-color: null,
   with-divider-divider-color: null,
   with-divider-divider-height: null,
   with-icon-icon-size: null,
@@ -76,12 +77,14 @@ $light-theme: (
   headline-size: null,
   headline-tracking: null,
   headline-weight: null,
+  z-index: null,
 );
 
 $custom-property-prefix: 'dialog';
 
 @mixin theme($theme, $resolvers: resolvers.$material) {
-  @include theme.validate-theme-keys($light-theme, $theme);
+  // TODO(b/251881053): Replace with `validate-theme`.
+  @include theme.validate-theme-styles($light-theme, $theme);
   $theme: _resolve-elevation($theme, map.get($resolvers, elevation));
   @include keys.declare-custom-properties(
     $theme,
@@ -90,7 +93,7 @@ $custom-property-prefix: 'dialog';
 }
 
 @mixin theme-styles($theme, $resolvers: resolvers.$material) {
-  @include theme.validate-theme-keys($light-theme, $theme);
+  @include theme.validate-theme-styles($light-theme, $theme);
   $theme: keys.create-theme-properties(
     $theme,
     $prefix: $custom-property-prefix
@@ -127,6 +130,7 @@ $custom-property-prefix: 'dialog';
     )
   );
   @include _supporting-text-color(map.get($theme, supporting-text-color));
+  @include _z-index(map.get($theme, z-index));
 
   .mdc-dialog__actions .mdc-button {
     @include button-text-theme.theme-styles-internal(
@@ -243,6 +247,12 @@ $custom-property-prefix: 'dialog';
 @mixin _supporting-text-color($color) {
   .mdc-dialog__content {
     @include theme.property(color, $color);
+  }
+}
+
+@mixin _z-index($z-index) {
+  &.mdc-dialog {
+    @include theme.property(z-index, $z-index);
   }
 }
 

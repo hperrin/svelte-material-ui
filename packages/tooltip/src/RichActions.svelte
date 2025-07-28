@@ -15,6 +15,7 @@
   generics="T extends SmuiEveryElement = keyof SmuiElementPropMap, C extends SmuiComponent = SmuiComponent"
 >
   import type { ComponentProps, Snippet } from 'svelte';
+  import { setContext } from 'svelte';
   import type {
     SmuiComponent,
     SmuiElementPropMap,
@@ -29,6 +30,8 @@
     $props();
 
   let element: ReturnType<C>;
+
+  setContext('SMUI:button:context', 'tooltip:rich-actions');
 
   export function getElement() {
     return element.getElement();

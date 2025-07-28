@@ -7,7 +7,11 @@
 >
   <Header>
     <Title id="fullscreen-title">Terms and Conditions</Title>
-    <IconButton action="close" class="material-icons">close</IconButton>
+    <CloseTooltipWrapper>
+      <IconButton action="close">
+        <Icon class="material-icons">close</Icon>
+      </IconButton>
+    </CloseTooltipWrapper>
   </Header>
   <Content id="fullscreen-content">
     {#each Array(3) as _item}
@@ -31,8 +35,14 @@
 <pre class="status">Response: {response}</pre>
 
 <script lang="ts">
-  import Dialog, { Header, Title, Content, Actions } from '@smui/dialog';
-  import IconButton from '@smui/icon-button';
+  import Dialog, {
+    Header,
+    Title,
+    CloseTooltipWrapper,
+    Content,
+    Actions,
+  } from '@smui/dialog';
+  import IconButton, { Icon } from '@smui/icon-button';
   import Button, { Label } from '@smui/button';
   import LoremIpsum from '$lib/LoremIpsum.svelte';
 

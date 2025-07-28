@@ -88,6 +88,7 @@
     "@smui/shape": "^8.0.1",
     "@smui/theme": "^8.0.1",
     "@smui/tokens": "^8.0.1",
+    "@smui/touch-target": "8.0.1",
     "@smui/typography": "^8.0.1"
   },
   "devDependencies": {

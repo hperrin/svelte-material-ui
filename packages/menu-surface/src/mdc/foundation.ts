@@ -22,6 +22,7 @@
  */
 
 import { MDCFoundation } from '@smui/base/foundation';
+import type { SpecificEventListener } from '@smui/base/types';
 
 import type { MDCMenuSurfaceAdapter } from './adapter';
 import { Corner, CornerBit, cssClasses, numbers, strings } from './constants';
@@ -36,6 +37,7 @@ interface AutoLayoutMeasurements {
   windowScroll: MDCMenuPoint;
 }
 
+/** MDC Menu Surface Foundation */
 export class MDCMenuSurfaceFoundation extends MDCFoundation<MDCMenuSurfaceAdapter> {
   static override get cssClasses() {
     return cssClasses;
@@ -70,7 +72,7 @@ export class MDCMenuSurfaceFoundation extends MDCFoundation<MDCMenuSurfaceAdapte
 
       getInnerDimensions: () => ({ height: 0, width: 0 }),
       getAnchorDimensions: () => null,
-      getWindowDimensions: () => ({ height: 0, width: 0 }),
+      getViewportDimensions: () => ({ height: 0, width: 0 }),
       getBodyDimensions: () => ({ height: 0, width: 0 }),
       getWindowScroll: () => ({ x: 0, y: 0 }),
       setPosition: () => undefined,
@@ -84,6 +86,8 @@ export class MDCMenuSurfaceFoundation extends MDCFoundation<MDCMenuSurfaceAdapte
       notifyClosing: () => undefined,
       notifyOpen: () => undefined,
       notifyOpening: () => undefined,
+      registerWindowEventHandler: () => undefined,
+      deregisterWindowEventHandler: () => undefined,
     };
     // tslint:enable:object-literal-sort-keys
   }
@@ -102,6 +106,8 @@ export class MDCMenuSurfaceFoundation extends MDCFoundation<MDCMenuSurfaceAdapte
   private animationRequestId = 0;
 
   private anchorCorner: Corner = Corner.TOP_START;
+
+  private resizeListener!: SpecificEventListener<'resize'>; // Assigned in #initialize.
 
   /**
    * Corner of the menu surface to which menu surface is attached to anchor.
@@ -143,6 +149,9 @@ export class MDCMenuSurfaceFoundation extends MDCFoundation<MDCMenuSurfaceAdapte
     if (this.adapter.hasClass(OPEN)) {
       this.isSurfaceOpen = true;
     }
+
+    this.resizeListener = this.handleResize.bind(this);
+    this.adapter.registerWindowEventHandler('resize', this.resizeListener);
   }
 
   override destroy() {
@@ -150,6 +159,8 @@ export class MDCMenuSurfaceFoundation extends MDCFoundation<MDCMenuSurfaceAdapte
     clearTimeout(this.closeAnimationEndTimerId);
     // Cancel any currently running animations.
     cancelAnimationFrame(this.animationRequestId);
+
+    this.adapter.deregisterWindowEventHandler('resize', this.resizeListener);
   }
 
   /**
@@ -268,6 +279,8 @@ export class MDCMenuSurfaceFoundation extends MDCFoundation<MDCMenuSurfaceAdapte
 
       this.isSurfaceOpen = true;
     }
+
+    this.adapter.registerWindowEventHandler('resize', this.resizeListener);
   }
 
   /**
@@ -279,6 +292,7 @@ export class MDCMenuSurfaceFoundation extends MDCFoundation<MDCMenuSurfaceAdapte
     }
 
     this.adapter.notifyClosing();
+    this.adapter.deregisterWindowEventHandler('resize', this.resizeListener);
 
     if (this.isQuickOpen) {
       this.isSurfaceOpen = false;
@@ -317,8 +331,8 @@ export class MDCMenuSurfaceFoundation extends MDCFoundation<MDCMenuSurfaceAdapte
   }
 
   /** Handle clicks and close if not within menu-surface element. */
-  handleBodyClick(evt: MouseEvent) {
-    const el = evt.target as Element;
+  handleBodyClick(event: MouseEvent) {
+    const el = event.target as Element;
     if (this.adapter.isElementInContainer(el)) {
       return;
     }
@@ -326,13 +340,19 @@ export class MDCMenuSurfaceFoundation extends MDCFoundation<MDCMenuSurfaceAdapte
   }
 
   /** Handle keys that close the surface. */
-  handleKeydown(evt: KeyboardEvent) {
-    const { keyCode, key } = evt;
+  handleKeydown(event: KeyboardEvent) {
+    const { keyCode, key } = event;
 
     const isEscape = key === 'Escape' || keyCode === 27;
     if (isEscape) {
       this.close();
     }
+  }
+
+  /** Handles resize events on the window. */
+  private handleResize() {
+    this.dimensions = this.adapter.getInnerDimensions();
+    this.autoposition();
   }
 
   private autoposition() {
@@ -391,7 +411,7 @@ export class MDCMenuSurfaceFoundation extends MDCFoundation<MDCMenuSurfaceAdapte
   private getAutoLayoutmeasurements(): AutoLayoutMeasurements {
     let anchorRect = this.adapter.getAnchorDimensions();
     const bodySize = this.adapter.getBodyDimensions();
-    const viewportSize = this.adapter.getWindowDimensions();
+    const viewportSize = this.adapter.getViewportDimensions();
     const windowScroll = this.adapter.getWindowScroll();
 
     if (!anchorRect) {
@@ -486,8 +506,8 @@ export class MDCMenuSurfaceFoundation extends MDCFoundation<MDCMenuSurfaceAdapte
     let availableRight;
     if (isAnchoredToRight) {
       availableLeft =
-        viewportDistance.left + anchorSize.width + this.anchorMargin.right;
-      availableRight = viewportDistance.right - this.anchorMargin.right;
+        viewportDistance.left + anchorSize.width + this.anchorMargin.left;
+      availableRight = viewportDistance.right - this.anchorMargin.left;
     } else {
       availableLeft = viewportDistance.left + this.anchorMargin.left;
       availableRight =

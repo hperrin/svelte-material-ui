@@ -13,8 +13,10 @@
     'mdc-dialog': true,
     'mdc-dialog--stacked': !autoStackButtons,
     'mdc-dialog--fullscreen': fullscreen,
+    'mdc-dialog--fullscreen--titleless': fullscreenTitleless,
     'mdc-dialog--sheet': sheet,
     'mdc-dialog--no-content-padding': noContentPadding,
+    'mdc-dialog--chaining': chaining,
     'smui-dialog--selection': selection,
     ...internalClasses,
     [className]: true,
@@ -61,19 +63,28 @@
       })}
       role="alertdialog"
       aria-modal="true"
+      tabindex={-1}
       {...prefixFilter(restProps, 'surface$')}
     >
       {@render children?.()}
       {#if fullscreen}
         <div
-          class="mdc-dialog__surface-scrim"
+          class={classMap({
+            'mdc-dialog__surface-scrim': true,
+            'mdc-dialog__scrim--removed': scrimRemoved,
+          })}
           ontransitionend={() =>
             instance && instance.handleSurfaceScrimTransitionEnd()}
         ></div>
       {/if}
     </div>
   </div>
-  <div class="mdc-dialog__scrim"></div>
+  <div
+    class={classMap({
+      'mdc-dialog__scrim': true,
+      'mdc-dialog__scrim--removed': scrimRemoved,
+    })}
+  ></div>
 </div>
 
 {@render over?.()}
@@ -156,6 +167,13 @@
      */
     noContentPadding?: boolean;
     /**
+     * Remove the scrim.
+     *
+     * When true, remove semitransparent backdrop behind dialog and allow
+     * pointer on a content behind a dialog.
+     */
+    scrimRemoved?: boolean;
+    /**
      * A space separated list of CSS classes.
      */
     container$class?: string;
@@ -184,6 +202,7 @@
     fullscreen = false,
     sheet = false,
     noContentPadding = false,
+    scrimRemoved = false,
     container$class = '',
     surface$class = '',
     children,
@@ -202,9 +221,11 @@
   let internalClasses: { [k: string]: boolean } = $state({});
   let focusTrap: domFocusTrap.FocusTrap;
   let actionButtonsReversed = writable(false);
+  let fullscreenTitleless = $state(!!fullscreen);
   let aboveFullscreen = getContext<boolean | undefined>(
     'SMUI:dialog:aboveFullscreen',
   );
+  let chaining = !!getContext<boolean | undefined>('SMUI:dialog:chaining');
   let aboveFullscreenShown =
     getContext<Writable<boolean> | undefined>(
       'SMUI:dialog:aboveFullscreenShown',
@@ -225,9 +246,13 @@
     };
   };
 
+  setContext('SMUI:dialog:chaining', true);
   setContext('SMUI:dialog:actions:reversed', actionButtonsReversed);
   setContext('SMUI:addLayoutListener', addLayoutListenerFn);
   setContext('SMUI:dialog:selection', selection);
+  setContext('SMUI:dialog:setFullscreenTitleless', (value: boolean) => {
+    fullscreenTitleless = value;
+  });
   setContext('SMUI:dialog:aboveFullscreen', aboveFullscreen || fullscreen);
   setContext('SMUI:dialog:aboveFullscreenShown', aboveFullscreenShown);
   if (sheet) {

@@ -22,9 +22,11 @@
  */
 
 import { MDCFoundation } from '@smui/base/foundation';
+
 import type { MDCSelectHelperTextAdapter } from './adapter';
 import { cssClasses, strings } from './constants';
 
+/** MDC Select Helper Text Foundation */
 export class MDCSelectHelperTextFoundation extends MDCFoundation<MDCSelectHelperTextAdapter> {
   static override get cssClasses() {
     return cssClasses;
@@ -35,7 +37,8 @@ export class MDCSelectHelperTextFoundation extends MDCFoundation<MDCSelectHelper
   }
 
   /**
-   * See {@link MDCSelectHelperTextAdapter} for typing information on parameters and return types.
+   * See {@link MDCSelectHelperTextAdapter} for typing information on parameters
+   * and return types.
    */
   static override get defaultAdapter(): MDCSelectHelperTextAdapter {
     // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.

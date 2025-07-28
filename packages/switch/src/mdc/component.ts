@@ -67,7 +67,9 @@ export class MDCSwitch
   }
 
   override initialSyncWithDOM() {
-    const rippleElement = this.root.querySelector(Selectors.RIPPLE);
+    const rippleElement = this.root.querySelector<HTMLElement>(
+      Selectors.RIPPLE,
+    );
     if (!rippleElement) {
       throw new Error(`Switch ${Selectors.RIPPLE} element is required.`);
     }
@@ -97,8 +99,9 @@ export class MDCSwitch
       removeClass: (className) => {
         this.root.classList.remove(className);
       },
-      setAriaChecked: (ariaChecked) =>
-        this.root.setAttribute('aria-checked', ariaChecked),
+      setAriaChecked: (ariaChecked) => {
+        this.root.setAttribute('aria-checked', ariaChecked);
+      },
       setDisabled: (disabled) => {
         this.root.disabled = disabled;
       },

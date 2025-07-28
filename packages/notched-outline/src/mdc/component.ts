@@ -23,17 +23,20 @@
 
 import { MDCComponent } from '@smui/base/component';
 import { MDCFloatingLabelFoundation } from '@smui/floating-label/foundation';
+
 import type { MDCNotchedOutlineAdapter } from './adapter';
 import { cssClasses, strings } from './constants';
 import { MDCNotchedOutlineFoundation } from './foundation';
 
+/** MDC Notched Outline Factory */
 export type MDCNotchedOutlineFactory = (
-  el: Element,
+  el: HTMLElement,
   foundation?: MDCNotchedOutlineFoundation,
 ) => MDCNotchedOutline;
 
+/** MDC Notched Outline */
 export class MDCNotchedOutline extends MDCComponent<MDCNotchedOutlineFoundation> {
-  static override attachTo(root: Element): MDCNotchedOutline {
+  static override attachTo(root: HTMLElement): MDCNotchedOutline {
     return new MDCNotchedOutline(root);
   }
 
@@ -74,12 +77,17 @@ export class MDCNotchedOutline extends MDCComponent<MDCNotchedOutlineFoundation>
   }
 
   override getDefaultFoundation() {
-    // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
-    // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+    // DO NOT INLINE this variable. For backward compatibility, foundations take
+    // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
+    // methods, we need a separate, strongly typed adapter variable.
     // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
     const adapter: MDCNotchedOutlineAdapter = {
-      addClass: (className) => this.root.classList.add(className),
-      removeClass: (className) => this.root.classList.remove(className),
+      addClass: (className) => {
+        this.root.classList.add(className);
+      },
+      removeClass: (className) => {
+        this.root.classList.remove(className);
+      },
       setNotchWidthProperty: (width) => {
         this.notchElement.style.setProperty('width', width + 'px');
       },

@@ -1,13 +1,15 @@
 <TopAppBar bind:this={topAppBar} variant="short" collapsed>
   <Row>
     <Section>
-      <IconButton class="material-icons">menu</IconButton>
+      <IconButton>
+        <Icon class="material-icons">menu</Icon>
+      </IconButton>
       <Title>Short</Title>
     </Section>
     <Section align="end" toolbar>
-      <IconButton class="material-icons" aria-label="Download"
-        >file_download</IconButton
-      >
+      <IconButton aria-label="Download">
+        <Icon class="material-icons">file_download</Icon>
+      </IconButton>
     </Section>
   </Row>
 </TopAppBar>
@@ -28,7 +30,7 @@
     Title,
     AutoAdjust,
   } from '@smui/top-app-bar';
-  import IconButton from '@smui/icon-button';
+  import IconButton, { Icon } from '@smui/icon-button';
   import LoremIpsum from '$lib/LoremIpsum.svelte';
 
   let topAppBar: TopAppBar | null = $state(null);

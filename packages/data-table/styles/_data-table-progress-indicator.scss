@@ -20,7 +20,7 @@
 // THE SOFTWARE.
 //
 
-// stylelint-disable selector-class-pattern
+// stylelint-disable selector-class-pattern --
 // NOTE: We disable `selector-class-pattern` above to allow using `mdc-` class
 // selectors.
 
@@ -28,7 +28,7 @@
 @use '@smui/feature-targeting/feature-targeting';
 @use '@smui/theme/theme';
 
-@mixin core-styles($query: feature-targeting.all()) {
+@mixin static-styles($query: feature-targeting.all()) {
   $feat-structure: feature-targeting.create-target($query, structure);
 
   .mdc-data-table__progress-indicator {

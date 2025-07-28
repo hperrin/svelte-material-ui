@@ -9,11 +9,9 @@
   <Actions>
     <Button onclick={() => (action = 'Something')}>Something</Button>
     <Button onclick={() => (action = 'Another')}>Another</Button>
-    <IconButton
-      onclick={() => (action = 'Dismissed')}
-      class="material-icons"
-      title="Dismiss">close</IconButton
-    >
+    <IconButton onclick={() => (action = 'Dismissed')} title="Dismiss">
+      <Icon class="material-icons">close</Icon>
+    </IconButton>
   </Actions>
 </Snackbar>
 
@@ -27,7 +25,7 @@
 <script lang="ts">
   import Snackbar, { Actions, Label } from '@smui/snackbar';
   import Button from '@smui/button';
-  import IconButton from '@smui/icon-button';
+  import IconButton, { Icon } from '@smui/icon-button';
 
   let snackbar: Snackbar;
   let reason = $state('nothing yet');

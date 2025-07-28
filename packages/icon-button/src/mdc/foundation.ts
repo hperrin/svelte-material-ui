@@ -22,15 +22,17 @@
  */
 
 import { MDCFoundation } from '@smui/base/foundation';
+
 import type { MDCIconButtonToggleAdapter } from './adapter';
 import { cssClasses, strings } from './constants';
 
+/** MDC Icon Button Toggle Foundation */
 export class MDCIconButtonToggleFoundation extends MDCFoundation<MDCIconButtonToggleAdapter> {
   /**
-   * Whether the icon button has an aria label that changes depending on
+   * Whether the icon button has an aria-label that changes depending on
    * toggled state.
    */
-  private hasToggledAriaLabel: boolean = false;
+  private hasToggledAriaLabel = false;
 
   static override get cssClasses() {
     return cssClasses;
@@ -62,7 +64,7 @@ export class MDCIconButtonToggleFoundation extends MDCFoundation<MDCIconButtonTo
       if (this.adapter.getAttr(strings.ARIA_PRESSED) !== null) {
         throw new Error(
           'MDCIconButtonToggleFoundation: Button should not set ' +
-            '`aria-pressed` if it has a toggled aria label.',
+            '`aria-pressed` if it has a toggled ARIA label.',
         );
       }
 

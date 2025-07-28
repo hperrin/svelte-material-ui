@@ -52,7 +52,7 @@ export interface MDCLineRippleAdapter {
    * Registers an event listener on the line ripple element for a given event.
    */
   registerEventHandler<K extends EventType>(
-    evtType: K,
+    eventType: K,
     handler: SpecificEventListener<K>,
   ): void;
 
@@ -60,7 +60,7 @@ export interface MDCLineRippleAdapter {
    * Deregisters an event listener on the line ripple element for a given event.
    */
   deregisterEventHandler<K extends EventType>(
-    evtType: K,
+    eventType: K,
     handler: SpecificEventListener<K>,
   ): void;
 }

@@ -67,7 +67,7 @@ $disabled-container-color: rgba(
   0.12
 ) !default;
 
-@mixin theme($theme, $resolver, $query: feature-targeting.all()) {
+@mixin theme-styles($theme, $resolver, $query: feature-targeting.all()) {
   @include _label-text-typography(
     (
       family: map.get($theme, label-text-font),
@@ -112,12 +112,12 @@ $disabled-container-color: rgba(
   $icon-size: map.get($theme, with-icon-icon-size);
   @include _icon-size($icon-size, $query: $query);
 
-  @include _states-colors(
-    (
-      focus: map.get($theme, focus-state-layer-color),
+  @include ripple-theme.states-colors(
+    $color-map: (
       hover: map.get($theme, hover-state-layer-color),
-      pressed: map.get($theme, pressed-state-layer-color),
+      press: map.get($theme, pressed-state-layer-color),
     ),
+    $ripple-target: button-ripple.$ripple-target,
     $query: $query
   );
 
@@ -142,7 +142,15 @@ $disabled-container-color: rgba(
     custom-properties.get-fallback($container-height),
     $container-height
   );
-  @if $container-height-value != null and $container-height-value != $height {
+
+  /// Token "keep-touch-target":
+  /// Prevent the increased touch target from being reseted if the
+  /// container-height differs from the default (36px)
+  $keep-touch-target: map.get($theme, keep-touch-target);
+  @if (not $keep-touch-target) and
+    ($container-height-value != null) and
+    ($container-height-value != $height)
+  {
     @include _touch-target-reset($query: $query);
   }
 
@@ -172,6 +180,9 @@ $disabled-container-color: rgba(
     $shadow-color: map.get($theme, container-shadow-color),
     $query: $query
   );
+
+  @include _focus-ring-color(map.get($theme, focus-ring-color), $query);
+  @include _focus-ring-offset(map.get($theme, focus-ring-offset), $query);
 }
 
 @function resolve-theme-elevation-keys($theme, $resolver) {
@@ -193,7 +204,7 @@ $disabled-container-color: rgba(
     $elevation: map.get($theme, $key);
     @if $elevation != null {
       $resolved-value: meta.call(
-        $resolver,
+        $elevation-resolver,
         $elevation: $elevation,
         $shadow-color: $shadow-color
       );
@@ -241,7 +252,7 @@ $disabled-container-color: rgba(
 /// Sets the container fill color to the given color for an enabled button.
 /// @param {Color|map} $color-or-map - The desired container fill color,
 ///     specified either as a flat value or a map of colors with states
-///     {default, hover, focused, pressed, disabled} as keys.
+///     {default, hover, focus, pressed, disabled} as keys.
 ///
 @mixin container-fill-color($color-or-map, $query: feature-targeting.all()) {
   // :not(:disabled) is used to support link styled as button
@@ -301,7 +312,7 @@ $disabled-container-color: rgba(
 /// Sets the icon color to the given color for an enabled button.
 /// @param {Color} $color-or-map - The desired icon color, specified either
 ///     as a flat value or a map of colors with states
-///     {default, hover, focused, pressed, disabled} as keys.
+///     {default, hover, focus, pressed, disabled} as keys.
 ///
 @mixin icon-color($color-or-map, $query: feature-targeting.all()) {
   &:not(:disabled) {
@@ -360,7 +371,7 @@ $disabled-container-color: rgba(
 /// is also used.
 /// @param {Color} $color-or-map - The desired ink color, specified either
 ///     as a flat value or a map of colors with states
-///     {default, hover, focused, pressed, disabled} as keys.
+///     {default, hover, focus, pressed, disabled} as keys.
 ///
 @mixin ink-color($color-or-map, $query: feature-targeting.all()) {
   &:not(:disabled) {
@@ -496,6 +507,8 @@ $disabled-container-color: rgba(
       $query: $query
     );
   }
+
+  @include _focus-ring-shape($radius, $query);
 }
 
 ///
@@ -634,25 +647,6 @@ $disabled-container-color: rgba(
   }
 }
 
-@mixin _states-colors($color-map, $query: feature-targeting.all()) {
-  $hover: map.get($color-map, hover);
-
-  $hover-value: if(
-    custom-properties.is-custom-prop($hover),
-    custom-properties.get-fallback($hover),
-    $hover
-  );
-  // TODO(b/191298796): support focused & pressed key colors.
-
-  @if $hover-value != null {
-    @include ripple-theme.states-base-color(
-      $color: $hover,
-      $ripple-target: button-ripple.$ripple-target,
-      $query: $query
-    );
-  }
-}
-
 @mixin _label-text-typography(
   $typography-map,
   $query: feature-targeting.all()
@@ -739,6 +733,57 @@ $disabled-container-color: rgba(
           $query: $query
         );
       }
+    }
+  }
+}
+
+@mixin _focus-ring-shape($radius, $query: feature-targeting.all()) {
+  $radius-value: if(
+    custom-properties.is-custom-prop($radius),
+    custom-properties.get-declaration-value($radius),
+    $radius
+  );
+
+  .mdc-button__focus-ring {
+    @if $radius-value != 0 and type-of($radius-value) == 'number' {
+      @include focus-ring.focus-ring-radius(
+        $ring-radius: $radius-value,
+        $query: $query
+      );
+    }
+  }
+}
+
+@mixin _focus-ring-color($color, $query: feature-targeting.all()) {
+  $color-value: if(
+    custom-properties.is-custom-prop($color),
+    custom-properties.get-declaration-value($color),
+    $color
+  );
+
+  .mdc-button__focus-ring {
+    @if $color != null {
+      @include focus-ring.focus-ring-color(
+        $inner-ring-color: $color-value,
+        $query: $query
+      );
+    }
+  }
+}
+
+@mixin _focus-ring-offset($offset, $query: feature-targeting.all()) {
+  $offset-value: if(
+    custom-properties.is-custom-prop($offset),
+    custom-properties.get-declaration-value($offset),
+    $offset
+  );
+
+  .mdc-button__focus-ring {
+    @if $offset-value != 0 and meta.type-of($offset-value) == 'number' {
+      @include focus-ring.focus-ring-offset(
+        $offset: $offset-value,
+        $query: $query
+      );
     }
   }
 }

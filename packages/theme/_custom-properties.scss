@@ -33,6 +33,8 @@ $_config: (
   emit-custom-properties: true,
   emit-fallback-values: true,
   emit-fallback-vars: true,
+  emit-declaration-fallback: true,
+  varname-prefix: 'mdc',
 );
 
 /// Configure options for custom properties. The configuration will be applied
@@ -55,6 +57,7 @@ $_config: (
 ///     fallback values.
 /// @param {Bool} $emit-fallback-vars [true] - Enable or disable emission of
 ///     fallback `var()` values.
+/// @param {String} $varname-prefix ['mdc'] - Global prefix for all custom properties.
 @mixin configure($config...) {
   @if not meta.content-exists() {
     @error 'content is required for configure()';
@@ -124,9 +127,6 @@ $_config: (
   @return (varname: $varname, fallback: $fallback);
 }
 
-/// Global prefix for all custom properties.
-$_varname-prefix: 'mdc';
-
 /// Create a custom property variable name with the global prefix.
 ///
 /// @example - scss
@@ -135,7 +135,8 @@ $_varname-prefix: 'mdc';
 /// @param {String} $name - The name of the custom property.
 /// @return {String} The full CSS custom property variable name.
 @function create-varname($name) {
-  @return --#{$_varname-prefix}-#{$name};
+  $varname-prefix: map.get($_config, 'varname-prefix');
+  @return --#{$varname-prefix}-#{$name};
 }
 
 /// Returns the custom property variable name of a custom property Map.
@@ -227,23 +228,13 @@ $_varname-prefix: 'mdc';
 /// typically a `var()` function.
 ///
 /// If custom properties are disabled, the custom property's fallback value
-/// will be returned instead. If the fallback value is `null`, an error will
-/// be thrown.
+/// will be returned instead.
 ///
 /// @param {Map} $custom-prop - The custom property Map to retrieve a
 ///     declaration value for.
 /// @return {*} The CSS declaration value.
 @function get-declaration-value($custom-prop) {
-  $emit-custom-properties: map.get($_config, emit-custom-properties);
-  $fallback: get-fallback($custom-prop);
-  @if not $emit-custom-properties and not $fallback {
-    @error 'Custom properties are disabled and #{get-varname($custom-prop)} does not have a fallback value.';
-  }
-
-  @if not $emit-custom-properties {
-    @return $fallback;
-  }
-
+  // This will return just the fallback value if `emit-custom-properties` is false.
   @return create-var($custom-prop);
 }
 
@@ -260,7 +251,11 @@ $_varname-prefix: 'mdc';
 @function get-declaration-fallback($custom-prop) {
   $emit-custom-properties: map.get($_config, emit-custom-properties);
   $emit-fallback-values: map.get($_config, emit-fallback-values);
-  @if not $emit-custom-properties or not $emit-fallback-values {
+  $emit-declaration-fallback: map.get($_config, emit-declaration-fallback);
+  @if (not $emit-custom-properties) or
+    (not $emit-fallback-values) or
+    (not $emit-declaration-fallback)
+  {
     @return null;
   }
 

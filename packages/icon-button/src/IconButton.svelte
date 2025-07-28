@@ -67,6 +67,7 @@
     restProps.onclick?.(e);
   }}
   ><div class="mdc-icon-button__ripple"></div>
+  {#if focusRing}<span class="mdc-icon-button__focus-ring"></span>{/if}
   {@render children?.()}{#if touch}<div
       class="mdc-icon-button__touch"
     ></div>{/if}</MyComponent
@@ -162,6 +163,10 @@
       | 'last-page'
       | string;
     /**
+     * If false, hides the high contrast mode focus ring element.
+     */
+    focusRing?: boolean;
+    /**
      * The component to use to render the element.
      */
     component?: SmuiComponent<SmuiElementMap[TagName]>;
@@ -187,6 +192,7 @@
     size = 'normal',
     href,
     action,
+    focusRing = true,
     component: MyComponent = SmuiElement,
     tag = (href == null ? 'button' : 'a') as TagName,
     children,

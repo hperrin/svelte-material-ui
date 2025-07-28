@@ -1,22 +1,23 @@
 <div style="display: flex; align-items: center;">
-  <IconButton class="material-icons" onclick={() => clicked++}>build</IconButton
-  >
+  <IconButton onclick={() => clicked++}>
+    <Icon class="material-icons">build</Icon>
+  </IconButton>
 </div>
 <div style="display: flex; align-items: center;">
-  <IconButton class="material-icons" onclick={() => clicked++} disabled
-    >search</IconButton
-  >&nbsp;(disabled)
+  <IconButton onclick={() => clicked++} disabled>
+    <Icon class="material-icons">search</Icon>
+  </IconButton>&nbsp;(disabled)
 </div>
 <div style="display: flex; align-items: center;">
-  <IconButton class="material-icons" onclick={() => clicked++} ripple={false}
-    >add_shopping_cart</IconButton
-  >&nbsp;(no ripple)
+  <IconButton onclick={() => clicked++} ripple={false}>
+    <Icon class="material-icons">add_shopping_cart</Icon>
+  </IconButton>&nbsp;(no ripple)
 </div>
 
 <pre class="status">Clicked: {clicked}</pre>
 
 <script lang="ts">
-  import IconButton from '@smui/icon-button';
+  import IconButton, { Icon } from '@smui/icon-button';
 
   let clicked = $state(0);
 </script>

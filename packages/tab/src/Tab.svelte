@@ -246,6 +246,7 @@
       getContentOffsetLeft: () => content.offsetLeft,
       getContentOffsetWidth: () => content.offsetWidth,
       focus,
+      isFocused: () => getElement() === document.activeElement,
     });
 
     const accessor: SMUITabAccessor = {

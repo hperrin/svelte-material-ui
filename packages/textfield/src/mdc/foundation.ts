@@ -23,6 +23,7 @@
 
 import { MDCFoundation } from '@smui/base/foundation';
 import type { SpecificEventListener } from '@smui/base/types';
+
 import type { MDCTextFieldAdapter } from './adapter';
 import { MDCTextFieldCharacterCounterFoundation } from '../character-counter/mdc';
 import {
@@ -45,6 +46,7 @@ type InteractionEventType = 'click' | 'keydown';
 const POINTERDOWN_EVENTS: PointerDownEventType[] = ['mousedown', 'touchstart'];
 const INTERACTION_EVENTS: InteractionEventType[] = ['click', 'keydown'];
 
+/** MDC Text Field Foundation */
 export class MDCTextFieldFoundation extends MDCFoundation<MDCTextFieldAdapter> {
   static override get cssClasses() {
     return cssClasses;
@@ -114,9 +116,9 @@ export class MDCTextFieldFoundation extends MDCFoundation<MDCTextFieldAdapter> {
 
   private isFocused = false;
   private receivedUserInput = false;
-  private valid = true;
   private useNativeValidation = true;
   private validateOnValueChange = true;
+  private valid: boolean;
 
   private readonly inputFocusHandler: () => void;
   private readonly inputBlurHandler: SpecificEventListener<'blur'>;
@@ -147,6 +149,9 @@ export class MDCTextFieldFoundation extends MDCFoundation<MDCTextFieldAdapter> {
     this.characterCounter = foundationMap.characterCounter;
     this.leadingIcon = foundationMap.leadingIcon;
     this.trailingIcon = foundationMap.trailingIcon;
+    this.valid = !this.adapter.hasClass(
+      MDCTextFieldFoundation.cssClasses.INVALID,
+    );
 
     this.inputFocusHandler = () => {
       this.activateFocus();
@@ -157,8 +162,8 @@ export class MDCTextFieldFoundation extends MDCFoundation<MDCTextFieldAdapter> {
     this.inputInputHandler = () => {
       this.handleInput();
     };
-    this.setPointerXOffset = (evt) => {
-      this.setTransformOrigin(evt);
+    this.setPointerXOffset = (event) => {
+      this.setTransformOrigin(event);
     };
     this.textFieldInteractionHandler = () => {
       this.handleTextFieldInteraction();
@@ -190,15 +195,15 @@ export class MDCTextFieldFoundation extends MDCFoundation<MDCTextFieldAdapter> {
       'input',
       this.inputInputHandler,
     );
-    for (const evtType of POINTERDOWN_EVENTS) {
+    for (const eventType of POINTERDOWN_EVENTS) {
       this.adapter.registerInputInteractionHandler(
-        evtType,
+        eventType,
         this.setPointerXOffset,
       );
     }
-    for (const evtType of INTERACTION_EVENTS) {
+    for (const eventType of INTERACTION_EVENTS) {
       this.adapter.registerTextFieldInteractionHandler(
-        evtType,
+        eventType,
         this.textFieldInteractionHandler,
       );
     }
@@ -222,15 +227,15 @@ export class MDCTextFieldFoundation extends MDCFoundation<MDCTextFieldAdapter> {
       'input',
       this.inputInputHandler,
     );
-    for (const evtType of POINTERDOWN_EVENTS) {
+    for (const eventType of POINTERDOWN_EVENTS) {
       this.adapter.deregisterInputInteractionHandler(
-        evtType,
+        eventType,
         this.setPointerXOffset,
       );
     }
-    for (const evtType of INTERACTION_EVENTS) {
+    for (const eventType of INTERACTION_EVENTS) {
       this.adapter.deregisterTextFieldInteractionHandler(
-        evtType,
+        eventType,
         this.textFieldInteractionHandler,
       );
     }
@@ -311,13 +316,13 @@ export class MDCTextFieldFoundation extends MDCFoundation<MDCTextFieldAdapter> {
    * Sets the line ripple's transform origin, so that the line ripple activate
    * animation will animate out from the user's click location.
    */
-  setTransformOrigin(evt: TouchEvent | MouseEvent): void {
+  setTransformOrigin(event: TouchEvent | MouseEvent): void {
     if (this.isDisabled() || this.adapter.hasOutline()) {
       return;
     }
 
-    const touches = (evt as TouchEvent).touches;
-    const targetEvent = touches ? touches[0] : evt;
+    const touches = (event as TouchEvent).touches;
+    const targetEvent = touches ? touches[0] : event;
     const targetClientRect = (
       targetEvent.target as Element
     ).getBoundingClientRect();

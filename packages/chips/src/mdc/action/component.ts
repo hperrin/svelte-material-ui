@@ -28,6 +28,8 @@ import type { MDCRippleAdapter } from '@smui/ripple/adapter';
 import { MDCRipple, type MDCRippleFactory } from '@smui/ripple/component';
 import { MDCRippleFoundation } from '@smui/ripple/foundation';
 import type { MDCRippleCapableSurface } from '@smui/ripple/types';
+import { safeAttrPrefix } from 'safevalues';
+import { setElementPrefixedAttribute } from 'safevalues/dom';
 
 import type { MDCChipActionAdapter } from './adapter';
 import {
@@ -48,9 +50,17 @@ import { MDCChipTrailingActionFoundation } from './trailing-foundation';
  * chip actions.
  */
 export type MDCChipActionFactory = (
-  el: Element,
+  el: HTMLElement,
   foundation?: MDCChipActionFoundation,
 ) => MDCChipAction;
+
+const ALLOWED_ATTR_PREFIXES = [
+  safeAttrPrefix`aria-`,
+  safeAttrPrefix`data-`,
+  safeAttrPrefix`disabled`,
+  safeAttrPrefix`role`,
+  safeAttrPrefix`tabindex`,
+];
 
 /**
  * MDCChipAction provides component encapsulation of the different foundation
@@ -60,11 +70,11 @@ export class MDCChipAction
   extends MDCComponent<MDCChipActionFoundation>
   implements MDCRippleCapableSurface
 {
-  static override attachTo(root: Element): MDCChipAction {
+  static override attachTo(root: HTMLElement): MDCChipAction {
     return new MDCChipAction(root);
   }
 
-  private readonly rootHTML = this.root as HTMLElement;
+  private readonly rootHTML = this.root;
 
   // Assigned in #initialize()
   private rippleInstance!: MDCRipple;
@@ -127,7 +137,12 @@ export class MDCChipAction
         this.root.removeAttribute(name);
       },
       setAttribute: (name, value) => {
-        this.root.setAttribute(name, value);
+        setElementPrefixedAttribute(
+          ALLOWED_ATTR_PREFIXES,
+          this.root,
+          name,
+          value,
+        );
       },
     };
 

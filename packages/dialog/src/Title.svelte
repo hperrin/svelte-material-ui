@@ -12,6 +12,7 @@
   generics="T extends SmuiEveryElement = keyof SmuiElementPropMap, C extends SmuiComponent = SmuiComponent"
 >
   import type { ComponentProps, Snippet } from 'svelte';
+  import { getContext } from 'svelte';
   import type {
     SmuiComponent,
     SmuiElementPropMap,
@@ -26,6 +27,14 @@
     $props();
 
   let element: ReturnType<C>;
+
+  let setFullscreenTitleless = getContext<
+    ((value: boolean) => void) | undefined
+  >('SMUI:dialog:setFullscreenTitleless');
+
+  if (setFullscreenTitleless != null) {
+    setFullscreenTitleless(false);
+  }
 
   export function getElement() {
     return element.getElement();

@@ -25,15 +25,17 @@
       color={secondaryColor ? 'secondary' : 'primary'}
     >
       <Section>
-        <IconButton class="material-icons">menu</IconButton>
+        <IconButton>
+          <Icon class="material-icons">menu</Icon>
+        </IconButton>
       </Section>
       <Section>
-        <IconButton class="material-icons" aria-label="Search"
-          >search</IconButton
-        >
-        <IconButton class="material-icons" aria-label="More"
-          >more_vert</IconButton
-        >
+        <IconButton aria-label="Search">
+          <Icon class="material-icons">search</Icon>
+        </IconButton>
+        <IconButton aria-label="More">
+          <Icon class="material-icons">more_vert</Icon>
+        </IconButton>
       </Section>
     </BottomAppBar>
   </div>
@@ -55,15 +57,17 @@
       color={secondaryColor ? 'secondary' : 'primary'}
     >
       <Section>
-        <IconButton class="material-icons">menu</IconButton>
+        <IconButton>
+          <Icon class="material-icons">menu</Icon>
+        </IconButton>
       </Section>
       <Section>
-        <IconButton class="material-icons" aria-label="Search"
-          >search</IconButton
-        >
-        <IconButton class="material-icons" aria-label="More"
-          >more_vert</IconButton
-        >
+        <IconButton aria-label="Search">
+          <Icon class="material-icons">search</Icon>
+        </IconButton>
+        <IconButton aria-label="More">
+          <Icon class="material-icons">more_vert</Icon>
+        </IconButton>
       </Section>
     </BottomAppBar>
   </div>
@@ -71,7 +75,7 @@
 
 <script lang="ts">
   import BottomAppBar, { Section } from '@smui-extra/bottom-app-bar';
-  import IconButton from '@smui/icon-button';
+  import IconButton, { Icon } from '@smui/icon-button';
   import Checkbox from '@smui/checkbox';
   import FormField from '@smui/form-field';
   import LoremIpsum from '$lib/LoremIpsum.svelte';

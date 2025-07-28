@@ -1,4 +1,8 @@
-<Kitchen bind:this={kitchen} dismiss$tag="svg" dismiss$viewBox="0 0 24 24">
+<Kitchen
+  bind:this={kitchen}
+  dismissIcon$tag="svg"
+  dismissIcon$viewBox="0 0 24 24"
+>
   {#snippet dismiss()}
     <path fill="currentColor" d={mdiCloseCircle} />
   {/snippet}

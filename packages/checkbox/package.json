@@ -62,6 +62,7 @@
     "@smui/feature-targeting": "^8.0.1",
     "@smui/focus-ring": "^8.0.1",
     "@smui/ripple": "^8.0.1",
+    "@smui/rtl": "^8.0.1",
     "@smui/theme": "^8.0.1",
     "@smui/touch-target": "^8.0.1"
   },

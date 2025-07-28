@@ -3,7 +3,9 @@
     >That thing you tried to do actually worked, if you can believe it!</Label
   >
   <Actions>
-    <IconButton class="material-icons" title="Dismiss">close</IconButton>
+    <IconButton title="Dismiss">
+      <Icon class="material-icons">close</Icon>
+    </IconButton>
   </Actions>
 </Snackbar>
 
@@ -12,7 +14,9 @@
     >Ok, it looks like that thing you tried to do might not have work.</Label
   >
   <Actions>
-    <IconButton class="material-icons" title="Dismiss">close</IconButton>
+    <IconButton title="Dismiss">
+      <Icon class="material-icons">close</Icon>
+    </IconButton>
   </Actions>
 </Snackbar>
 
@@ -22,7 +26,9 @@
     tried.</Label
   >
   <Actions>
-    <IconButton class="material-icons" title="Dismiss">close</IconButton>
+    <IconButton title="Dismiss">
+      <Icon class="material-icons">close</Icon>
+    </IconButton>
   </Actions>
 </Snackbar>
 
@@ -40,7 +46,7 @@
 
 <script lang="ts">
   import Snackbar, { Label, Actions } from '@smui/snackbar';
-  import IconButton from '@smui/icon-button';
+  import IconButton, { Icon } from '@smui/icon-button';
   import Button from '@smui/button';
 
   let snackbarSuccess: Snackbar;

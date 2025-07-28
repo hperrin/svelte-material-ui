@@ -73,7 +73,9 @@
     "@smui/menu-surface": "^8.0.1",
     "@smui/ripple": "^8.0.1",
     "@smui/rtl": "^8.0.1",
-    "@smui/theme": "^8.0.1"
+    "@smui/shape": "^8.0.1",
+    "@smui/theme": "^8.0.1",
+    "@smui/tokens": "^8.0.1"
   },
   "devDependencies": {
     "@tsconfig/svelte": "^5.0.4",

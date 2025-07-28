@@ -92,10 +92,9 @@
     <Row>
       <Section>
         {#if miniWindow}
-          <IconButton
-            class="material-icons"
-            onclick={() => (drawerOpen = !drawerOpen)}>menu</IconButton
-          >
+          <IconButton onclick={() => (drawerOpen = !drawerOpen)}>
+            <Icon class="material-icons">menu</Icon>
+          </IconButton>
         {/if}
         <Title
           tag="a"

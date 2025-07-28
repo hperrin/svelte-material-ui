@@ -22,9 +22,11 @@
  */
 
 import { MDCFoundation } from '@smui/base/foundation';
+
 import type { MDCFormFieldAdapter } from './adapter';
 import { cssClasses, strings } from './constants';
 
+/** MDC Form Field Foundation */
 export class MDCFormFieldFoundation extends MDCFoundation<MDCFormFieldAdapter> {
   static override get cssClasses() {
     return cssClasses;

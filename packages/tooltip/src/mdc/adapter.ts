@@ -124,12 +124,12 @@ export interface MDCTooltipAdapter {
   /**
    * Checks if element is contained within the anchor element.
    */
-  anchorContainsElement(element: HTMLElement): boolean;
+  anchorContainsElement(element: Element): boolean;
 
   /**
    * Checks if element is contained within the tooltip element.
    */
-  tooltipContainsElement(element: HTMLElement): boolean;
+  tooltipContainsElement(element: Element): boolean;
 
   /**
    * Sets focus on the anchor element.
@@ -140,7 +140,7 @@ export interface MDCTooltipAdapter {
    * Registers an event listener to the root element.
    */
   registerEventHandler<K extends EventType>(
-    evtType: K,
+    eventType: K,
     handler: SpecificEventListener<K>,
   ): void;
 
@@ -148,7 +148,7 @@ export interface MDCTooltipAdapter {
    * Deregisters an event listener to the root element.
    */
   deregisterEventHandler<K extends EventType>(
-    evtType: K,
+    eventType: K,
     handler: SpecificEventListener<K>,
   ): void;
 
@@ -156,7 +156,7 @@ export interface MDCTooltipAdapter {
    * Registers an event listener to the anchor element.
    */
   registerAnchorEventHandler<K extends EventType>(
-    evtType: K,
+    eventType: K,
     handler: SpecificEventListener<K>,
   ): void;
 
@@ -164,7 +164,7 @@ export interface MDCTooltipAdapter {
    * Deregisters an event listener to the anchor element.
    */
   deregisterAnchorEventHandler<K extends EventType>(
-    evtType: K,
+    eventType: K,
     handler: SpecificEventListener<K>,
   ): void;
 
@@ -172,7 +172,7 @@ export interface MDCTooltipAdapter {
    * Registers an event listener to the document body.
    */
   registerDocumentEventHandler<K extends EventType>(
-    evtType: K,
+    eventType: K,
     handler: SpecificEventListener<K>,
   ): void;
 
@@ -180,7 +180,7 @@ export interface MDCTooltipAdapter {
    * Deregisters an event listener to the document body.
    */
   deregisterDocumentEventHandler<K extends EventType>(
-    evtType: K,
+    eventType: K,
     handler: SpecificEventListener<K>,
   ): void;
 
@@ -188,7 +188,7 @@ export interface MDCTooltipAdapter {
    * Registers an event listener to the window.
    */
   registerWindowEventHandler<K extends EventType>(
-    evtType: K,
+    eventType: K,
     handler: SpecificEventListener<K>,
   ): void;
 
@@ -196,7 +196,7 @@ export interface MDCTooltipAdapter {
    * Deregisters an event listener to the window.
    */
   deregisterWindowEventHandler<K extends EventType>(
-    evtType: K,
+    eventType: K,
     handler: SpecificEventListener<K>,
   ): void;
 
@@ -205,6 +205,11 @@ export interface MDCTooltipAdapter {
    * to wait for the hide animation to complete.
    */
   notifyHidden(): void;
+
+  /**
+   * Notification that the tooltip element has been shown.
+   */
+  notifyShown(): void;
 
   /**
    * @return the DOMRect for the caret element.
@@ -226,4 +231,10 @@ export interface MDCTooltipAdapter {
    * @return the active element of the document that owns the tooltip.
    */
   getActiveElement(): Element | null;
+
+  /**
+   * @return whether the provided object is an Element or not. This is
+   * required because Elements from iframes are typed differently.
+   */
+  isInstanceOfElement(eventTarget: EventTarget | null): boolean;
 }

@@ -1,6 +1,10 @@
 <Dialog bind:open sheet aria-describedby="sheet-content">
+  <CloseTooltipWrapper>
+    <IconButton action="close">
+      <Icon class="material-icons">close</Icon>
+    </IconButton>
+  </CloseTooltipWrapper>
   <Content id="sheet-content">
-    <IconButton action="close" class="material-icons">close</IconButton>
     <LoremIpsum />
   </Content>
 </Dialog>
@@ -11,8 +15,12 @@
   sheet
   aria-describedby="sheet-no-padding-content"
 >
+  <CloseTooltipWrapper>
+    <IconButton action="close">
+      <Icon class="material-icons">close</Icon>
+    </IconButton>
+  </CloseTooltipWrapper>
   <Content id="sheet-no-padding-content">
-    <IconButton action="close" class="material-icons">close</IconButton>
     <LoremIpsum />
   </Content>
 </Dialog>
@@ -26,8 +34,8 @@
 </Button>
 
 <script lang="ts">
-  import Dialog, { Content } from '@smui/dialog';
-  import IconButton from '@smui/icon-button';
+  import Dialog, { CloseTooltipWrapper, Content } from '@smui/dialog';
+  import IconButton, { Icon } from '@smui/icon-button';
   import Button, { Label } from '@smui/button';
   import LoremIpsum from '$lib/LoremIpsum.svelte';
 

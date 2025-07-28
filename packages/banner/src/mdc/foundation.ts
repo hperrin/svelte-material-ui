@@ -70,9 +70,9 @@ export class MDCBannerFoundation extends MDCFoundation<MDCBannerAdapter> {
 
   open() {
     this.isOpened = true;
-    this.adapter.notifyOpening();
     this.adapter.removeClass(CLOSING);
     this.adapter.addClass(OPENING);
+    this.adapter.notifyOpening();
 
     const contentHeight = this.adapter.getContentHeight();
     this.animationFrame = requestAnimationFrame(() => {
@@ -123,7 +123,7 @@ export class MDCBannerFoundation extends MDCFoundation<MDCBannerAdapter> {
     return this.isOpened;
   }
 
-  handlePrimaryActionClick(disableAutoClose: boolean = false) {
+  handlePrimaryActionClick(disableAutoClose = false) {
     if (disableAutoClose) {
       this.adapter.notifyActionClicked(Action.PRIMARY);
     } else {
@@ -131,7 +131,7 @@ export class MDCBannerFoundation extends MDCFoundation<MDCBannerAdapter> {
     }
   }
 
-  handleSecondaryActionClick(disableAutoClose: boolean = false) {
+  handleSecondaryActionClick(disableAutoClose = false) {
     if (disableAutoClose) {
       this.adapter.notifyActionClicked(Action.SECONDARY);
     } else {

@@ -37,6 +37,7 @@ enum AnimationKeys {
   POLL_LAYOUT_CHANGE = 'poll_layout_change',
 }
 
+/** MDC Dialog Foundation */
 export class MDCDialogFoundation extends MDCFoundation<MDCDialogAdapter> {
   static override get cssClasses() {
     return cssClasses;
@@ -169,7 +170,9 @@ export class MDCDialogFoundation extends MDCFoundation<MDCDialogAdapter> {
     // animation
     this.runNextAnimationFrame(() => {
       this.adapter.addClass(cssClasses.OPEN);
-      this.adapter.addBodyClass(cssClasses.SCROLL_LOCK);
+      if (!dialogOptions || !dialogOptions.isScrimless) {
+        this.adapter.addBodyClass(cssClasses.SCROLL_LOCK);
+      }
 
       this.layout();
 
@@ -291,16 +294,16 @@ export class MDCDialogFoundation extends MDCFoundation<MDCDialogAdapter> {
   }
 
   /** Handles click on the dialog root element. */
-  handleClick(evt: MouseEvent) {
+  handleClick(event: MouseEvent) {
     const isScrim = this.adapter.eventTargetMatches(
-      evt.target,
+      event.target,
       strings.SCRIM_SELECTOR,
     );
     // Check for scrim click first since it doesn't require querying ancestors.
     if (isScrim && this.scrimClickAction !== '') {
       this.close(this.scrimClickAction);
     } else {
-      const action = this.adapter.getActionFromEvent(evt);
+      const action = this.adapter.getActionFromEvent(event);
       if (action) {
         this.close(action);
       }
@@ -308,12 +311,12 @@ export class MDCDialogFoundation extends MDCFoundation<MDCDialogAdapter> {
   }
 
   /** Handles keydown on the dialog root element. */
-  handleKeydown(evt: KeyboardEvent) {
-    const isEnter = evt.key === 'Enter' || evt.keyCode === 13;
+  handleKeydown(event: KeyboardEvent) {
+    const isEnter = event.key === 'Enter' || event.keyCode === 13;
     if (!isEnter) {
       return;
     }
-    const action = this.adapter.getActionFromEvent(evt);
+    const action = this.adapter.getActionFromEvent(event);
     if (action) {
       // Action button callback is handled in `handleClick`,
       // since space/enter keydowns on buttons trigger click events.
@@ -333,7 +336,7 @@ export class MDCDialogFoundation extends MDCFoundation<MDCDialogAdapter> {
     //       </mwc-textarea>
     //   </horizontal-layout>
     // </mwc-dialog>
-    const target = evt.composedPath ? evt.composedPath()[0] : evt.target;
+    const target = event.composedPath ? event.composedPath()[0] : event.target;
     const isDefault = this.suppressDefaultPressSelector
       ? !this.adapter.eventTargetMatches(
           target,
@@ -346,8 +349,8 @@ export class MDCDialogFoundation extends MDCFoundation<MDCDialogAdapter> {
   }
 
   /** Handles keydown on the document. */
-  handleDocumentKeydown(evt: KeyboardEvent) {
-    const isEscape = evt.key === 'Escape' || evt.keyCode === 27;
+  handleDocumentKeydown(event: KeyboardEvent) {
+    const isEscape = event.key === 'Escape' || event.keyCode === 27;
     if (isEscape && this.escapeKeyAction !== '') {
       this.close(this.escapeKeyAction);
     }

@@ -26,6 +26,8 @@
     'mdc-select--activated': menuOpen,
     'mdc-data-table__pagination-rows-per-page-select':
       context === 'data-table:pagination',
+    'mdc-data-table__pagination-rows-per-page-select--outlined':
+      context === 'data-table:pagination' && variant === 'outlined',
     ...internalClasses,
     [className]: true,
   })}
@@ -68,6 +70,7 @@
     aria-controls={menuId}
     aria-expanded={menuOpen ? 'true' : 'false'}
     aria-describedby={helperId}
+    aria-labelledby={inputId + '-smui-label'}
     role="combobox"
     tabindex="0"
     {...selectAnchorAttrs}

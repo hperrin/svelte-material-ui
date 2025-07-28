@@ -1,7 +1,5 @@
 @forward '@smui/rtl/variables' as mdc-rtl-*;
 @forward '@smui/theme/variables' as mdc-theme-*;
-@forward '@smui/feature-targeting/variables' as mdc-feature-*;
-@forward '@smui/feature-targeting/mixins' as mdc-feature-*;
 @forward '@smui/animation/variables' as mdc-animation-*;
 @forward '@smui/typography/variables' as mdc-typography-*;
 @forward '@smui/floating-label/styles/variables' as mdc-floating-label-*;
@@ -14,7 +12,6 @@
   $mdc-translate-duration;
 @forward '@smui/ripple/styles/variables' as mdc-ripple-* hide $mdc-ripple-states-wash-duration;
 @forward 'icon' as mdc-select-*;
-@forward 'variables' as mdc-select-*;
 @forward '@smui/rtl/mixins' as mdc-* hide mdc-property-, mdc-reflexive,
   mdc-reflexive-box, mdc-reflexive-position, mdc-reflexive-property;
 @forward '@smui/rtl/mixins' as mdc-rtl-* hide mdc-rtl-rtl;

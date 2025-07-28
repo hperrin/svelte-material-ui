@@ -37,13 +37,12 @@ import {
 } from './constants';
 import { MDCBannerFoundation } from './foundation';
 
-/** Vanilla JS implementation of banner component. */
+/** Vanilla implementation of banner component. */
 export class MDCBanner extends MDCComponent<MDCBannerFoundation> {
-  static override attachTo(root: Element) {
+  static override attachTo(root: HTMLElement) {
     return new MDCBanner(root);
   }
 
-  override root!: HTMLElement; // Assigned in MDCComponent constructor.
   private handleContentClick!: SpecificEventListener<'click'>; // Assigned in #initialize.
   private primaryActionEl!: HTMLElement; // Assigned in #initialize.
   private secondaryActionEl!: HTMLElement | null; // Assigned in #initialize.
@@ -56,18 +55,18 @@ export class MDCBanner extends MDCComponent<MDCBannerFoundation> {
     focusTrapFactory: MDCBannerFocusTrapFactory = (el, focusOptions) =>
       new FocusTrap(el, focusOptions),
   ) {
-    this.contentEl = this.root.querySelector(selectors.CONTENT) as HTMLElement;
-    this.textEl = this.root.querySelector(selectors.TEXT) as HTMLElement;
-    this.primaryActionEl = this.root.querySelector(
+    this.contentEl = this.root.querySelector<HTMLElement>(selectors.CONTENT)!;
+    this.textEl = this.root.querySelector<HTMLElement>(selectors.TEXT)!;
+    this.primaryActionEl = this.root.querySelector<HTMLElement>(
       selectors.PRIMARY_ACTION,
-    ) as HTMLElement;
-    this.secondaryActionEl = this.root.querySelector(
+    )!;
+    this.secondaryActionEl = this.root.querySelector<HTMLElement>(
       selectors.SECONDARY_ACTION,
-    ) as HTMLElement;
+    )!;
     this.focusTrapFactory = focusTrapFactory;
 
-    this.handleContentClick = (evt) => {
-      const target = evt.target as Element;
+    this.handleContentClick = (event) => {
+      const target = event.target as Element;
       if (closest(target, selectors.PRIMARY_ACTION)) {
         this.foundation.handlePrimaryActionClick();
       } else if (closest(target, selectors.SECONDARY_ACTION)) {

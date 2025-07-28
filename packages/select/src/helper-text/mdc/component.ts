@@ -22,16 +22,19 @@
  */
 
 import { MDCComponent } from '@smui/base/component';
+
 import type { MDCSelectHelperTextAdapter } from './adapter';
 import { MDCSelectHelperTextFoundation } from './foundation';
 
+/** MDC Select Helper Text Factory */
 export type MDCSelectHelperTextFactory = (
-  el: Element,
+  el: HTMLElement,
   foundation?: MDCSelectHelperTextFoundation,
 ) => MDCSelectHelperText;
 
+/** MDC Select Helper Text */
 export class MDCSelectHelperText extends MDCComponent<MDCSelectHelperTextFoundation> {
-  static override attachTo(root: Element): MDCSelectHelperText {
+  static override attachTo(root: HTMLElement): MDCSelectHelperText {
     return new MDCSelectHelperText(root);
   }
 
@@ -41,16 +44,25 @@ export class MDCSelectHelperText extends MDCComponent<MDCSelectHelperTextFoundat
   }
 
   override getDefaultFoundation() {
-    // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
-    // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+    // DO NOT INLINE this variable. For backward compatibility, foundations take
+    // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
+    // methods, we need a separate, strongly typed adapter variable.
     // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
     const adapter: MDCSelectHelperTextAdapter = {
-      addClass: (className) => this.root.classList.add(className),
-      removeClass: (className) => this.root.classList.remove(className),
+      addClass: (className) => {
+        this.root.classList.add(className);
+      },
+      removeClass: (className) => {
+        this.root.classList.remove(className);
+      },
       hasClass: (className) => this.root.classList.contains(className),
       getAttr: (attr) => this.root.getAttribute(attr),
-      setAttr: (attr, value) => this.root.setAttribute(attr, value),
-      removeAttr: (attr) => this.root.removeAttribute(attr),
+      setAttr: (attr, value) => {
+        this.safeSetAttribute(this.root, attr, value);
+      },
+      removeAttr: (attr) => {
+        this.root.removeAttribute(attr);
+      },
       setContent: (content) => {
         this.root.textContent = content;
       },

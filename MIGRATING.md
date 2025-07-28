@@ -6,7 +6,21 @@ This doc contains information that will help you migrate your code from an older
 
 SMUI 9 has migrated away from MDC-Web, since MDC-Web has been abandoned.
 
+## Breaking Changes
+
 - All "@material" packages you're using should be migrated to the equivalent "@smui" packages.
+- Simple Tooltips now require a Label component (can be imported from `@smui/tooltip` or `@smui/common`) wrapping their text. (Rich tooltips still use the Content component.)
+- IconButton should now always contain at least one Icon child.
+- Kitchen now includes a `dismissIcon$` prefix. If you used `dismiss$class`, you should probably now change it to `dismissIcon$class`.
+- In Slider, the input now appears inside the "thumb" element.
+- Fullscreen and Sheet Dialogs should now have a new CloseTooltipWrapper component surrounding the close button.
+- The close button in a Sheet Dialog should be a child of the Dialog, not the Content.
+
+## Changes
+
+- IconButton now has a `focusRing` property to control whether the focus ring is shown.
+- Dialog now has a `scrimRemoved` property to remove the Scrim behind the dialog.
+- Form Field now has a `justify` property to justify the label and input.
 
 # SMUI 7 -> SMUI 8
 

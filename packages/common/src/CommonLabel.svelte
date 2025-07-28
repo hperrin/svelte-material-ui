@@ -16,6 +16,7 @@
       context === 'data-table:pagination',
     'mdc-data-table__header-cell-label':
       context === 'data-table:sortable-header-cell',
+    'mdc-tooltip__label': context === 'tooltip',
     [className]: true,
   })}
   {...context === 'snackbar' ? { 'aria-atomic': 'false' } : {}}

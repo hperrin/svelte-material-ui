@@ -1,7 +1,9 @@
 <Snackbar bind:this={snackbarWithClose}>
   <Label>This is a snackbar.</Label>
   <Actions>
-    <IconButton class="material-icons" title="Dismiss">close</IconButton>
+    <IconButton title="Dismiss">
+      <Icon class="material-icons">close</Icon>
+    </IconButton>
   </Actions>
 </Snackbar>
 
@@ -19,7 +21,7 @@
 <script lang="ts">
   import Snackbar, { Actions, Label } from '@smui/snackbar';
   import Button from '@smui/button';
-  import IconButton from '@smui/icon-button';
+  import IconButton, { Icon } from '@smui/icon-button';
 
   let snackbarWithClose: Snackbar;
   let snackbarWithoutClose: Snackbar;

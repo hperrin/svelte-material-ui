@@ -40,6 +40,7 @@ import type {
 import type { MDCChipSetAdapter } from './adapter';
 import { cssClasses, strings } from './constants';
 
+/** MDC Chip Set Foundation */
 export class MDCChipSetFoundation extends MDCFoundation<MDCChipSetAdapter> {
   static override get strings() {
     return strings;
@@ -65,7 +66,8 @@ export class MDCChipSetFoundation extends MDCFoundation<MDCChipSetAdapter> {
   }
 
   /**
-   * The ids of the selected chips in the set. Only used for choice chip set or filter chip set.
+   * The ids of the selected chips in the set. Only used for choice chip set or
+   * filter chip set.
    */
   private selectedChipIds: string[] = [];
 
@@ -76,13 +78,14 @@ export class MDCChipSetFoundation extends MDCFoundation<MDCChipSetAdapter> {
   /**
    * Returns an array of the IDs of all selected chips.
    */
-  getSelectedChipIds(): ReadonlyArray<string> {
+  getSelectedChipIds(): readonly string[] {
     return this.selectedChipIds.slice();
   }
 
   /**
-   * Selects the chip with the given id. Deselects all other chips if the chip set is of the choice variant.
-   * Does not notify clients of the updated selection state.
+   * Selects the chip with the given id. Deselects all other chips if the chip
+   * set is of the choice variant. Does not notify clients of the updated
+   * selection state.
    */
   select(chipId: string) {
     this.selectImpl(chipId, false);
@@ -103,7 +106,8 @@ export class MDCChipSetFoundation extends MDCFoundation<MDCChipSetAdapter> {
   }
 
   /**
-   * Handles a chip selection event, used to handle discrepancy when selection state is set directly on the Chip.
+   * Handles a chip selection event, used to handle discrepancy when selection
+   * state is set directly on the Chip.
    */
   handleChipSelection({
     chipId,
@@ -143,7 +147,8 @@ export class MDCChipSetFoundation extends MDCFoundation<MDCChipSetAdapter> {
     }
     const nextIndex = Math.min(index, maxIndex);
     this.removeFocusFromChipsExcept(nextIndex);
-    // After removing a chip, we should focus the trailing action for the next chip.
+    // After removing a chip, we should focus the trailing action for the next
+    // chip.
     this.adapter.focusChipTrailingActionAtIndex(nextIndex);
   }
 
@@ -194,20 +199,24 @@ export class MDCChipSetFoundation extends MDCFoundation<MDCChipSetAdapter> {
   private focusChipAction(index: number, key: string, source: EventSource) {
     const shouldJumpChips = jumpChipKeys.has(key);
     if (shouldJumpChips && source === EventSource.PRIMARY) {
-      return this.adapter.focusChipPrimaryActionAtIndex(index);
+      this.adapter.focusChipPrimaryActionAtIndex(index);
+      return;
     }
 
     if (shouldJumpChips && source === EventSource.TRAILING) {
-      return this.adapter.focusChipTrailingActionAtIndex(index);
+      this.adapter.focusChipTrailingActionAtIndex(index);
+      return;
     }
 
     const dir = this.getDirection(key);
     if (dir === Direction.LEFT) {
-      return this.adapter.focusChipTrailingActionAtIndex(index);
+      this.adapter.focusChipTrailingActionAtIndex(index);
+      return;
     }
 
     if (dir === Direction.RIGHT) {
-      return this.adapter.focusChipPrimaryActionAtIndex(index);
+      this.adapter.focusChipPrimaryActionAtIndex(index);
+      return;
     }
   }
 

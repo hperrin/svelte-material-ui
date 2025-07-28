@@ -23,11 +23,13 @@
 
 import { MDCFoundation } from '@smui/base/foundation';
 import type { MDCTabDimensions, MDCTabInteractionEvent } from '@smui/tab/types';
+
 import type { MDCTabBarAdapter } from './adapter';
 import { numbers, strings } from './constants';
 
 const ACCEPTABLE_KEYS = new Set<string>();
-// IE11 has no support for new Set with iterable so we need to initialize this by hand
+// IE11 has no support for new Set with iterable so we need to initialize this
+// by hand
 ACCEPTABLE_KEYS.add(strings.ARROW_LEFT_KEY);
 ACCEPTABLE_KEYS.add(strings.ARROW_RIGHT_KEY);
 ACCEPTABLE_KEYS.add(strings.END_KEY);
@@ -36,7 +38,8 @@ ACCEPTABLE_KEYS.add(strings.ENTER_KEY);
 ACCEPTABLE_KEYS.add(strings.SPACE_KEY);
 
 const KEYCODE_MAP = new Map<number, string>();
-// IE11 has no support for new Map with iterable so we need to initialize this by hand
+// IE11 has no support for new Map with iterable so we need to initialize this
+// by hand
 KEYCODE_MAP.set(numbers.ARROW_LEFT_KEYCODE, strings.ARROW_LEFT_KEY);
 KEYCODE_MAP.set(numbers.ARROW_RIGHT_KEYCODE, strings.ARROW_RIGHT_KEY);
 KEYCODE_MAP.set(numbers.END_KEYCODE, strings.END_KEY);
@@ -44,6 +47,7 @@ KEYCODE_MAP.set(numbers.HOME_KEYCODE, strings.HOME_KEY);
 KEYCODE_MAP.set(numbers.ENTER_KEYCODE, strings.ENTER_KEY);
 KEYCODE_MAP.set(numbers.SPACE_KEYCODE, strings.SPACE_KEY);
 
+/** MDC Tab Bar Foundation */
 export class MDCTabBarFoundation extends MDCFoundation<MDCTabBarAdapter> {
   static override get strings() {
     return strings;
@@ -116,48 +120,44 @@ export class MDCTabBarFoundation extends MDCFoundation<MDCTabBarAdapter> {
     this.adapter.notifyTabActivated(index);
   }
 
-  handleKeyDown(evt: KeyboardEvent) {
+  handleKeyDown(event: KeyboardEvent) {
     // Get the key from the event
-    const key = this.getKeyFromEvent(evt);
+    const key = this.getKeyFromEvent(event);
 
     // Early exit if the event key isn't one of the keyboard navigation keys
     if (key === undefined) {
       return;
     }
 
-    // Prevent default behavior for movement keys, but not for activation keys, since :active is used to apply ripple
+    // Prevent default behavior for movement keys, but not for activation keys,
+    // since :active is used to apply ripple
     if (!this.isActivationKey(key)) {
-      evt.preventDefault();
+      event.preventDefault();
     }
 
+    if (this.useAutomaticActivation && this.isActivationKey(key)) {
+      return;
+    }
+    const focusedTabIndex = this.adapter.getFocusedTabIndex();
+    if (this.isActivationKey(key)) {
+      this.adapter.setActiveTab(focusedTabIndex);
+      return;
+    }
+    const index = this.determineTargetFromKey(focusedTabIndex, key);
+    this.adapter.focusTabAtIndex(index);
+    this.scrollIntoView(index);
     if (this.useAutomaticActivation) {
-      if (this.isActivationKey(key)) {
-        return;
-      }
-
-      const index = this.determineTargetFromKey(
-        this.adapter.getPreviousActiveTabIndex(),
-        key,
-      );
       this.adapter.setActiveTab(index);
-      this.scrollIntoView(index);
-    } else {
-      const focusedTabIndex = this.adapter.getFocusedTabIndex();
-      if (this.isActivationKey(key)) {
-        this.adapter.setActiveTab(focusedTabIndex);
-      } else {
-        const index = this.determineTargetFromKey(focusedTabIndex, key);
-        this.adapter.focusTabAtIndex(index);
-        this.scrollIntoView(index);
-      }
     }
   }
 
   /**
    * Handles the MDCTab:interacted event
    */
-  handleTabInteraction(evt: MDCTabInteractionEvent) {
-    this.adapter.setActiveTab(this.adapter.getIndexOfTabById(evt.detail.tabId));
+  handleTabInteraction(event: MDCTabInteractionEvent) {
+    this.adapter.setActiveTab(
+      this.adapter.getIndexOfTabById(event.detail.tabId),
+    );
   }
 
   /**
@@ -192,7 +192,8 @@ export class MDCTabBarFoundation extends MDCFoundation<MDCTabBarAdapter> {
   }
 
   /**
-   * Private method for determining the index of the destination tab based on what key was pressed
+   * Private method for determining the index of the destination tab based on
+   * what key was pressed
    * @param origin The original index from which to determine the destination
    * @param key The name of the key
    */
@@ -228,7 +229,8 @@ export class MDCTabBarFoundation extends MDCFoundation<MDCTabBarAdapter> {
   }
 
   /**
-   * Calculates the scroll increment that will make the tab at the given index visible
+   * Calculates the scroll increment that will make the tab at the given index
+   * visible
    * @param index The index of the tab
    * @param nextIndex The index of the next tab
    * @param scrollPosition The current scroll position
@@ -256,7 +258,8 @@ export class MDCTabBarFoundation extends MDCFoundation<MDCTabBarAdapter> {
   }
 
   /**
-   * Calculates the scroll increment that will make the tab at the given index visible in RTL
+   * Calculates the scroll increment that will make the tab at the given index
+   * visible in RTL
    * @param index The index of the tab
    * @param nextIndex The index of the next tab
    * @param scrollPosition The current scroll position
@@ -289,7 +292,8 @@ export class MDCTabBarFoundation extends MDCFoundation<MDCTabBarAdapter> {
   }
 
   /**
-   * Determines the index of the adjacent tab closest to either edge of the Tab Bar
+   * Determines the index of the adjacent tab closest to either edge of the Tab
+   * Bar
    * @param index The index of the tab
    * @param tabDimensions The dimensions of the tab
    * @param scrollPosition The current scroll position
@@ -344,7 +348,8 @@ export class MDCTabBarFoundation extends MDCFoundation<MDCTabBarAdapter> {
   }
 
   /**
-   * Determines the index of the adjacent tab closest to either edge of the Tab Bar in RTL
+   * Determines the index of the adjacent tab closest to either edge of the Tab
+   * Bar in RTL
    * @param index The index of the tab
    * @param tabDimensions The dimensions of the tab
    * @param scrollPosition The current scroll position
@@ -379,13 +384,13 @@ export class MDCTabBarFoundation extends MDCFoundation<MDCTabBarAdapter> {
 
   /**
    * Returns the key associated with a keydown event
-   * @param evt The keydown event
+   * @param event The keydown event
    */
-  private getKeyFromEvent(evt: KeyboardEvent): string {
-    if (ACCEPTABLE_KEYS.has(evt.key)) {
-      return evt.key;
+  private getKeyFromEvent(event: KeyboardEvent): string {
+    if (ACCEPTABLE_KEYS.has(event.key)) {
+      return event.key;
     }
-    return KEYCODE_MAP.get(evt.keyCode)!;
+    return KEYCODE_MAP.get(event.keyCode)!;
   }
 
   private isActivationKey(key: string) {

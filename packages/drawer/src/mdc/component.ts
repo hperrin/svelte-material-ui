@@ -25,9 +25,10 @@ import { MDCComponent } from '@smui/base/component';
 import type { SpecificEventListener } from '@smui/base/types';
 import { FocusTrap } from '@smui/dom/focus-trap';
 import { MDCList, type MDCListFactory } from '@smui/list/component';
+
 import type { MDCDrawerAdapter } from './adapter';
-import { MDCDismissibleDrawerFoundation } from './dismissible/foundation.js';
-import { MDCModalDrawerFoundation } from './modal/foundation.js';
+import { MDCDismissibleDrawerFoundation } from './dismissible/foundation';
+import { MDCModalDrawerFoundation } from './modal/foundation';
 import * as util from './util';
 import type { MDCDrawerFocusTrapFactory } from './util';
 
@@ -38,7 +39,7 @@ const { cssClasses, strings } = MDCDismissibleDrawerFoundation;
  * @events `MDCDrawer:opened {}` Emits when the navigation drawer has opened.
  */
 export class MDCDrawer extends MDCComponent<MDCDismissibleDrawerFoundation> {
-  static override attachTo(root: Element): MDCDrawer {
+  static override attachTo(root: HTMLElement): MDCDrawer {
     return new MDCDrawer(root);
   }
 
@@ -81,7 +82,7 @@ export class MDCDrawer extends MDCComponent<MDCDismissibleDrawerFoundation> {
     focusTrapFactory: MDCDrawerFocusTrapFactory = (el) => new FocusTrap(el),
     listFactory: MDCListFactory = (el) => new MDCList(el),
   ) {
-    const listEl = this.root.querySelector(strings.LIST_SELECTOR);
+    const listEl = this.root.querySelector<HTMLElement>(strings.LIST_SELECTOR);
     if (listEl) {
       this.innerList = listFactory(listEl);
       this.innerList.wrapFocus = true;
@@ -98,20 +99,21 @@ export class MDCDrawer extends MDCComponent<MDCDismissibleDrawerFoundation> {
     );
 
     if (this.scrim && this.root.classList.contains(MODAL)) {
-      this.handleScrimClick = () =>
+      this.handleScrimClick = () => {
         (this.foundation as MDCModalDrawerFoundation).handleScrimClick();
+      };
       this.scrim.addEventListener('click', this.handleScrimClick);
       this.focusTrap = util.createFocusTrapInstance(
-        this.root as HTMLElement,
+        this.root,
         this.focusTrapFactory,
       );
     }
 
-    this.handleKeydown = (evt) => {
-      this.foundation.handleKeydown(evt);
+    this.handleKeydown = (event) => {
+      this.foundation.handleKeydown(event);
     };
-    this.handleTransitionEnd = (evt) => {
-      this.foundation.handleTransitionEnd(evt);
+    this.handleTransitionEnd = (event) => {
+      this.foundation.handleTransitionEnd(event);
     };
     this.listen('keydown', this.handleKeydown);
     this.listen('transitionend', this.handleTransitionEnd);

@@ -27,6 +27,7 @@ import type { MDCRippleAdapter } from '@smui/ripple/adapter';
 import { MDCRipple, type MDCRippleFactory } from '@smui/ripple/component';
 import { MDCRippleFoundation } from '@smui/ripple/foundation';
 import type { MDCRippleCapableSurface } from '@smui/ripple/types';
+
 import type { MDCChipTrailingActionAdapter } from './adapter';
 import { strings } from './constants';
 import { MDCChipTrailingActionFoundation } from './foundation';
@@ -39,10 +40,11 @@ import type {
  * Creates a trailing action component on the given element.
  */
 export type MDCChipTrailingActionFactory = (
-  el: Element,
+  el: HTMLElement,
   foundation?: MDCChipTrailingActionFoundation,
 ) => MDCChipTrailingAction;
 
+/** MDC Chip Trailing Action */
 export class MDCChipTrailingAction
   extends MDCComponent<MDCChipTrailingActionFoundation>
   implements MDCRippleCapableSurface
@@ -51,7 +53,7 @@ export class MDCChipTrailingAction
     return this.rippleSurface;
   }
 
-  static override attachTo(root: Element) {
+  static override attachTo(root: HTMLElement) {
     return new MDCChipTrailingAction(root);
   }
 
@@ -74,11 +76,11 @@ export class MDCChipTrailingAction
   }
 
   override initialSyncWithDOM() {
-    this.handleClick = (evt: MouseEvent) => {
-      this.foundation.handleClick(evt);
+    this.handleClick = (event: MouseEvent) => {
+      this.foundation.handleClick(event);
     };
-    this.handleKeydown = (evt: KeyboardEvent) => {
-      this.foundation.handleKeydown(evt);
+    this.handleKeydown = (event: KeyboardEvent) => {
+      this.foundation.handleKeydown(event);
     };
 
     this.listen('click', this.handleClick);
@@ -98,16 +100,16 @@ export class MDCChipTrailingAction
     // methods, we need a separate, strongly typed adapter variable.
     const adapter: MDCChipTrailingActionAdapter = {
       focus: () => {
-        // TODO(b/157231863): Migate MDCComponent#root to HTMLElement
-        (this.root as HTMLElement).focus();
+        this.root.focus();
       },
       getAttribute: (attr) => this.root.getAttribute(attr),
-      notifyInteraction: (trigger) =>
+      notifyInteraction: (trigger) => {
         this.emit<MDCChipTrailingActionInteractionEventDetail>(
           strings.INTERACTION_EVENT,
           { trigger },
           true /* shouldBubble */,
-        ),
+        );
+      },
       notifyNavigation: (key) => {
         this.emit<MDCChipTrailingActionNavigationEventDetail>(
           strings.NAVIGATION_EVENT,
@@ -116,7 +118,7 @@ export class MDCChipTrailingAction
         );
       },
       setAttribute: (attr, value) => {
-        this.root.setAttribute(attr, value);
+        this.safeSetAttribute(this.root, attr, value);
       },
     };
     return new MDCChipTrailingActionFoundation(adapter);

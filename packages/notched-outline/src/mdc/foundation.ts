@@ -22,9 +22,11 @@
  */
 
 import { MDCFoundation } from '@smui/base/foundation';
+
 import type { MDCNotchedOutlineAdapter } from './adapter';
 import { cssClasses, numbers, strings } from './constants';
 
+/** MDC Notched Outline Foundation */
 export class MDCNotchedOutlineFoundation extends MDCFoundation<MDCNotchedOutlineAdapter> {
   static override get strings() {
     return strings;
@@ -39,7 +41,8 @@ export class MDCNotchedOutlineFoundation extends MDCFoundation<MDCNotchedOutline
   }
 
   /**
-   * See {@link MDCNotchedOutlineAdapter} for typing information on parameters and return types.
+   * See {@link MDCNotchedOutlineAdapter} for typing information on parameters
+   * and return types.
    */
   static override get defaultAdapter(): MDCNotchedOutlineAdapter {
     // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
@@ -57,7 +60,8 @@ export class MDCNotchedOutlineFoundation extends MDCFoundation<MDCNotchedOutline
   }
 
   /**
-   * Adds the outline notched selector and updates the notch width calculated based off of notchWidth.
+   * Adds the outline notched selector and updates the notch width calculated
+   * based off of notchWidth.
    */
   notch(notchWidth: number) {
     const { OUTLINE_NOTCHED } = MDCNotchedOutlineFoundation.cssClasses;

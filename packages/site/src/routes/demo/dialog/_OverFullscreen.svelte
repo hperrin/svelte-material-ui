@@ -7,7 +7,11 @@
 >
   <Header>
     <Title id="over-fullscreen-title">Terms and Conditions</Title>
-    <IconButton action="close" class="material-icons">close</IconButton>
+    <CloseTooltipWrapper>
+      <IconButton action="close">
+        <Icon class="material-icons">close</Icon>
+      </IconButton>
+    </CloseTooltipWrapper>
   </Header>
   <Content id="over-fullscreen-content">
     <Button onclick={() => (subOpen = true)}>
@@ -75,11 +79,12 @@
   import Dialog, {
     Header,
     Title,
+    CloseTooltipWrapper,
     Content,
     Actions,
     InitialFocus,
   } from '@smui/dialog';
-  import IconButton from '@smui/icon-button';
+  import IconButton, { Icon } from '@smui/icon-button';
   import Button, { Label } from '@smui/button';
   import List, { Item, Graphic, Text } from '@smui/list';
   import Radio from '@smui/radio';

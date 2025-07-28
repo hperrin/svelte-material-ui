@@ -34,6 +34,7 @@
 @use '@smui/ripple/styles/ripple-theme';
 @use '@smui/rtl/rtl';
 @use '@smui/dom/dom';
+@use '@smui/theme/custom-properties';
 @use '@smui/theme/keys';
 @use '@smui/theme/state';
 @use '@smui/theme/theme';
@@ -73,6 +74,8 @@ $light-theme: (
   pressed-state-layer-color: theme-color.$primary,
   pressed-state-layer-opacity: 0.12,
   state-layer-size: $size,
+  focus-ring-color: null,
+  focus-ring-offset: 0,
 );
 
 @mixin theme($theme) {
@@ -85,7 +88,7 @@ $light-theme: (
 }
 
 @mixin theme-styles($theme) {
-  @include theme.validate-theme($light-theme, $theme);
+  @include theme.validate-theme-styles($light-theme, $theme);
 
   $theme: keys.create-theme-properties(
     $theme,
@@ -117,6 +120,17 @@ $light-theme: (
     ),
     $ripple-target: $ripple-target
   );
+
+  @include ripple-theme.states-colors(
+    (
+      hover: map.get($theme, hover-state-layer-color),
+      press: map.get($theme, pressed-state-layer-color),
+    ),
+    $ripple-target: $ripple-target
+  );
+
+  @include _focus-ring-color(map.get($theme, 'focus-ring-color'));
+  @include _focus-ring-offset(map.get($theme, 'focus-ring-offset'));
 }
 
 ///
@@ -147,31 +161,7 @@ $light-theme: (
   @include feature-targeting.targets($feat-structure) {
     width: $size;
     height: $size;
-    padding: math.div($size - $icon-size, 2);
-  }
-
-  .mdc-icon-button__focus-ring {
-    @include feature-targeting.targets($feat-structure) {
-      display: none;
-    }
-  }
-
-  @include ripple-theme.focus {
-    .mdc-icon-button__focus-ring {
-      @include dom.forced-colors-mode($exclude-ie11: true) {
-        @include focus-ring.focus-ring(
-          $query: $query,
-          $container-outer-padding-vertical: 0,
-          $container-outer-padding-horizontal: 0
-        );
-      }
-
-      @include feature-targeting.targets($feat-structure) {
-        display: block;
-        max-height: $size;
-        max-width: $size;
-      }
-    }
+    padding: calc(($size - $icon-size) / 2);
   }
 
   &.mdc-icon-button--reduced-size {
@@ -179,7 +169,7 @@ $light-theme: (
     // Icon button ripple size is capped at 40px for icon buttons with
     // densities -1 and 0 (icon buttons with sizes 44x44 and 48x48px).
     // See http://b/192353968 for more info.
-    @if $size >= 40px and $size <= 48px {
+    @if math.unit($size) == 'px' and ($size >= 40px and $size <= 48px) {
       $component-size: 40px;
     }
 
@@ -198,12 +188,10 @@ $light-theme: (
       );
     }
 
-    @include ripple-theme.focus {
-      .mdc-icon-button__focus-ring {
-        @include feature-targeting.targets($feat-structure) {
-          max-height: $component-size;
-          max-width: $component-size;
-        }
+    .mdc-icon-button__focus-ring {
+      @include feature-targeting.targets($feat-structure) {
+        max-height: $component-size;
+        max-width: $component-size;
       }
     }
   }
@@ -261,12 +249,14 @@ $light-theme: (
 /// @param {Color} $color - The desired font and ripple color.
 ///
 @mixin ink-color($color, $query: feature-targeting.all()) {
-  @include ink-color_($color, $query: $query);
-  @include ripple-theme.states(
-    $color,
-    $query: $query,
-    $ripple-target: $ripple-target
-  );
+  @if $color {
+    @include ink-color_($color, $query: $query);
+    @include ripple-theme.states(
+      $color,
+      $query: $query,
+      $ripple-target: $ripple-target
+    );
+  }
 }
 
 ///
@@ -328,11 +318,19 @@ $light-theme: (
 @mixin _state-layer-size($size) {
   @include theme.property(height, $size);
   @include theme.property(width, $size);
+
+  @if $size {
+    $value: custom-properties.get-declaration-value($size);
+    @if type-of($value) == 'number' {
+      @include size($value);
+    }
+  }
 }
 
 @mixin _icon-size($size) {
-  @include theme.property(font-size, $size);
-
+  .mdc-button__icon {
+    @include theme.property(font-size, $size);
+  }
   svg,
   img {
     @include theme.property(width, $size);
@@ -359,13 +357,6 @@ $light-theme: (
 @mixin _icon-color-with-map($color-map) {
   @include ink-color_(state.get-default-state($color-map));
 
-  $disabled: state.get-disabled-state($color-map);
-  @if $disabled {
-    &:disabled {
-      @include ink-color_($disabled);
-    }
-  }
-
   $focus: state.get-focus-state($color-map);
   @if $focus {
     @include ripple-theme.focus {
@@ -386,6 +377,13 @@ $light-theme: (
       @include ink-color_($pressed);
     }
   }
+
+  $disabled: state.get-disabled-state($color-map);
+  @if $disabled {
+    &:disabled {
+      @include ink-color_($disabled);
+    }
+  }
 }
 
 @mixin _states-colors($color-map) {
@@ -397,6 +395,40 @@ $light-theme: (
       $color: $hover,
       $ripple-target: $ripple-target
     );
+  }
+}
+
+@mixin _focus-ring-color($color, $query: feature-targeting.all()) {
+  $color-value: if(
+    custom-properties.is-custom-prop($color),
+    custom-properties.get-declaration-value($color),
+    $color
+  );
+
+  @if $color != null {
+    .mdc-icon-button__focus-ring {
+      @include focus-ring.focus-ring-color(
+        $inner-ring-color: $color-value,
+        $query: $query
+      );
+    }
+  }
+}
+
+@mixin _focus-ring-offset($offset, $query: feature-targeting.all()) {
+  $offset-value: if(
+    custom-properties.is-custom-prop($offset),
+    custom-properties.get-declaration-value($offset),
+    $offset
+  );
+
+  @if meta.type-of($offset-value) == 'number' {
+    .mdc-icon-button__focus-ring {
+      @include focus-ring.focus-ring-offset(
+        $offset: $offset-value,
+        $query: $query
+      );
+    }
   }
 }
 

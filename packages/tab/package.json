@@ -73,6 +73,7 @@
     "@smui/rtl": "^8.0.1",
     "@smui/tab-indicator": "^8.0.1",
     "@smui/theme": "^8.0.1",
+    "@smui/tokens": "^8.0.1",
     "@smui/typography": "^8.0.1"
   },
   "devDependencies": {

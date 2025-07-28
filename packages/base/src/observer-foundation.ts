@@ -29,9 +29,9 @@ import {
   setObserversEnabled,
 } from './observer';
 
-export class MDCObserverFoundation<
-  Adapter extends {},
-> extends MDCFoundation<Adapter> {
+// @ts-ignore(go/ts48upgrade) Fix code and remove this comment. Error:
+// TS2344: Type 'Adapter' does not satisfy the constraint '{}'.
+export class MDCObserverFoundation<Adapter> extends MDCFoundation<Adapter> {
   /** A set of cleanup functions to unobserve changes. */
   protected unobserves = new Set<Function>();
 

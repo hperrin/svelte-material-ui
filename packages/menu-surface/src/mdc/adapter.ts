@@ -21,6 +21,8 @@
  * THE SOFTWARE.
  */
 
+import type { EventType, SpecificEventListener } from '@smui/base/types';
+
 import type { MDCMenuDimensions, MDCMenuDistance, MDCMenuPoint } from './types';
 
 /**
@@ -42,7 +44,7 @@ export interface MDCMenuSurfaceAdapter {
 
   getInnerDimensions(): MDCMenuDimensions;
   getAnchorDimensions(): DOMRect | null;
-  getWindowDimensions(): MDCMenuDimensions;
+  getViewportDimensions(): MDCMenuDimensions;
   getBodyDimensions(): MDCMenuDimensions;
   getWindowScroll(): MDCMenuPoint;
   setPosition(position: Partial<MDCMenuDistance>): void;
@@ -53,7 +55,10 @@ export interface MDCMenuSurfaceAdapter {
   /** Saves the element that was focused before the menu surface was opened. */
   saveFocus(): void;
 
-  /** Restores focus to the element that was focused before the menu surface was opened. */
+  /**
+   * Restores focus to the element that was focused before the menu surface was
+   * opened.
+   */
   restoreFocus(): void;
 
   /** Emits an event when the menu surface is closed. */
@@ -67,4 +72,16 @@ export interface MDCMenuSurfaceAdapter {
 
   /** Emits an event when the menu surface is opening. */
   notifyOpening(): void;
+
+  /** Registers an event listener on the window. */
+  registerWindowEventHandler<K extends EventType>(
+    eventType: K,
+    handler: SpecificEventListener<K>,
+  ): void;
+
+  /** Deregisters an event listener on the window. */
+  deregisterWindowEventHandler<K extends EventType>(
+    eventType: K,
+    handler: SpecificEventListener<K>,
+  ): void;
 }

@@ -27,14 +27,16 @@ import type { MDCRippleAdapter } from '@smui/ripple/adapter';
 import { MDCRipple } from '@smui/ripple/component';
 import { MDCRippleFoundation } from '@smui/ripple/foundation';
 import type { MDCRippleCapableSurface } from '@smui/ripple/types';
+
 import type { MDCRadioAdapter } from './adapter';
 import { MDCRadioFoundation } from './foundation';
 
+/** MDC Radio */
 export class MDCRadio
   extends MDCComponent<MDCRadioFoundation>
   implements MDCRippleCapableSurface
 {
-  static override attachTo(root: Element) {
+  static override attachTo(root: HTMLElement) {
     return new MDCRadio(root);
   }
 
@@ -74,11 +76,16 @@ export class MDCRadio
   }
 
   override getDefaultFoundation() {
-    // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
-    // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+    // DO NOT INLINE this variable. For backward compatibility, foundations take
+    // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
+    // methods, we need a separate, strongly typed adapter variable.
     const adapter: MDCRadioAdapter = {
-      addClass: (className) => this.root.classList.add(className),
-      removeClass: (className) => this.root.classList.remove(className),
+      addClass: (className) => {
+        this.root.classList.add(className);
+      },
+      removeClass: (className) => {
+        this.root.classList.remove(className);
+      },
       setNativeControlDisabled: (disabled) =>
         (this.nativeControl.disabled = disabled),
     };
@@ -86,17 +93,18 @@ export class MDCRadio
   }
 
   private createRipple(): MDCRipple {
-    // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
-    // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+    // DO NOT INLINE this variable. For backward compatibility, foundations take
+    // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
+    // methods, we need a separate, strongly typed adapter variable.
     // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
     const adapter: MDCRippleAdapter = {
       ...MDCRipple.createAdapter(this),
-      registerInteractionHandler: (evtType, handler) => {
-        this.nativeControl.addEventListener(evtType, handler, applyPassive());
+      registerInteractionHandler: (eventType, handler) => {
+        this.nativeControl.addEventListener(eventType, handler, applyPassive());
       },
-      deregisterInteractionHandler: (evtType, handler) => {
+      deregisterInteractionHandler: (eventType, handler) => {
         this.nativeControl.removeEventListener(
-          evtType,
+          eventType,
           handler,
           applyPassive(),
         );

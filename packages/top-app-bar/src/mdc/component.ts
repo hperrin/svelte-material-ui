@@ -24,33 +24,37 @@
 import { MDCComponent } from '@smui/base/component';
 import type { SpecificEventListener } from '@smui/base/types';
 import { MDCRipple, type MDCRippleFactory } from '@smui/ripple/component';
+
 import type { MDCTopAppBarAdapter } from './adapter';
 import { cssClasses, strings } from './constants';
-import { MDCFixedTopAppBarFoundation } from './fixed/foundation.js';
-import { MDCTopAppBarBaseFoundation } from './foundation.js';
-import { MDCShortTopAppBarFoundation } from './short/foundation.js';
-import { MDCTopAppBarFoundation } from './standard/foundation.js';
+import { MDCFixedTopAppBarFoundation } from './fixed/foundation';
+import { MDCTopAppBarBaseFoundation } from './foundation';
+import { MDCShortTopAppBarFoundation } from './short/foundation';
+import { MDCTopAppBarFoundation } from './standard/foundation';
 
+/** MDC Top App Bar */
 export class MDCTopAppBar extends MDCComponent<MDCTopAppBarBaseFoundation> {
-  static override attachTo(root: Element): MDCTopAppBar {
+  static override attachTo(root: HTMLElement): MDCTopAppBar {
     return new MDCTopAppBar(root);
   }
 
   private handleNavigationClick!: SpecificEventListener<'click'>; // assigned in initialSyncWithDOM()
   private handleWindowResize!: SpecificEventListener<'resize'>; // assigned in initialSyncWithDOM()
   private handleTargetScroll!: SpecificEventListener<'scroll'>; // assigned in initialSyncWithDOM()
-  private navIcon!: Element | null;
+  private navIcon!: HTMLElement | null;
   private iconRipples!: MDCRipple[];
   private scrollTarget!: EventTarget;
 
   override initialize(
     rippleFactory: MDCRippleFactory = (el) => MDCRipple.attachTo(el),
   ) {
-    this.navIcon = this.root.querySelector(strings.NAVIGATION_ICON_SELECTOR);
+    this.navIcon = this.root.querySelector<HTMLElement>(
+      strings.NAVIGATION_ICON_SELECTOR,
+    );
 
     // Get all icons in the toolbar and instantiate the ripples
-    const icons: Element[] = [].slice.call(
-      this.root.querySelectorAll(strings.ACTION_ITEM_SELECTOR),
+    const icons = Array.from(
+      this.root.querySelectorAll<HTMLElement>(strings.ACTION_ITEM_SELECTOR),
     );
     if (this.navIcon) {
       icons.push(this.navIcon);
@@ -143,25 +147,33 @@ export class MDCTopAppBar extends MDCComponent<MDCTopAppBarBaseFoundation> {
   }
 
   override getDefaultFoundation() {
-    // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
-    // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+    // DO NOT INLINE this variable. For backward compatibility, foundations take
+    // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
+    // methods, we need a separate, strongly typed adapter variable.
     // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
     const adapter: MDCTopAppBarAdapter = {
       hasClass: (className) => this.root.classList.contains(className),
-      addClass: (className) => this.root.classList.add(className),
-      removeClass: (className) => this.root.classList.remove(className),
-      setStyle: (property, value) =>
-        (this.root as HTMLElement).style.setProperty(property, value),
+      addClass: (className) => {
+        this.root.classList.add(className);
+      },
+      removeClass: (className) => {
+        this.root.classList.remove(className);
+      },
+      setStyle: (property, value) => {
+        this.root.style.setProperty(property, value);
+      },
       getTopAppBarHeight: () => this.root.clientHeight,
-      notifyNavigationIconClicked: () =>
-        this.emit(strings.NAVIGATION_EVENT, {}),
+      notifyNavigationIconClicked: () => {
+        this.emit(strings.NAVIGATION_EVENT, {});
+      },
       getViewportScrollY: () => {
         const win = this.scrollTarget as Window;
         const el = this.scrollTarget as Element;
         return win.pageYOffset !== undefined ? win.pageYOffset : el.scrollTop;
       },
       getTotalActionItems: () =>
-        this.root.querySelectorAll(strings.ACTION_ITEM_SELECTOR).length,
+        this.root.querySelectorAll<HTMLElement>(strings.ACTION_ITEM_SELECTOR)
+          .length,
     };
     // tslint:enable:object-literal-sort-keys
 

@@ -24,9 +24,11 @@
 // NOTE: We disable `selector-class-pattern` above to allow using `mdc-` class
 // selectors.
 
+@use 'sass:map';
 @use 'sass:math';
 @use 'sass:list';
 @use 'sass:meta';
+@use 'sass:color';
 @use '@smui/animation/functions';
 @use '@smui/checkbox/styles/checkbox-theme';
 @use '@smui/density/density';
@@ -38,6 +40,7 @@
 @use '@smui/select/styles/select-theme';
 @use '@smui/shape/functions' as shape-functions;
 @use '@smui/shape/mixins' as shape-mixins;
+@use '@smui/theme/keys';
 @use '@smui/theme/theme';
 @use '@smui/theme/theme-color';
 @use '@smui/touch-target/styles/touch-target';
@@ -82,6 +85,248 @@ $density-config: (
   ),
 );
 $pagination-rows-per-page-select-height: 36px;
+
+$outline-color: color.mix(
+  theme-color.prop-value(on-surface),
+  theme-color.prop-value(surface),
+  12%
+) !default;
+$outline-width: 1px !default;
+
+$light-theme: (
+  'container-shape': $shape-radius,
+  'footer-container-color': theme-color.$surface,
+  'footer-container-height': $row-height,
+  'footer-outlined-select-text-field-container-height': 36px,
+  'footer-supporting-text-color': theme-color.$on-surface,
+  'footer-supporting-text-font': typography.get-font(body1),
+  'footer-supporting-text-line-height': typography.get-line-height(body1),
+  'footer-supporting-text-size': typography.get-size(body1),
+  'footer-supporting-text-tracking': typography.get-tracking(body1),
+  'footer-supporting-text-weight': typography.get-weight(body1),
+  'header-container-color': theme-color.$surface,
+  'header-container-height': 56px,
+  'header-headline-color': theme-color.$on-surface,
+  'header-headline-font': typography.get-font(body1),
+  'header-headline-line-height': typography.get-line-height(body1),
+  'header-headline-size': typography.get-size(body1),
+  'header-headline-tracking': typography.get-tracking(body1),
+  'header-headline-weight': map.get(typography.$font-weight-values, medium),
+  'header-hover-headline-color': theme-color.$on-surface,
+  'header-hover-sorting-icon-button-color': theme-color.$on-surface,
+  'outline-color': $outline-color,
+  'outline-width': $outline-width,
+  'row-item-container-height': $row-height,
+  'row-item-disabled-label-text-color': theme-color.$on-surface,
+  'row-item-disabled-label-text-opacity': 0.38,
+  'row-item-label-text-color': theme-color.$on-surface,
+  'row-item-label-text-font': typography.get-font(body1),
+  'row-item-label-text-line-height': typography.get-line-height(body1),
+  'row-item-label-text-size': typography.get-size(body1),
+  'row-item-label-text-tracking': typography.get-tracking(body1),
+  'row-item-label-text-weight': typography.get-weight(body1),
+  'row-item-outline-color': $outline-color,
+  'row-item-outline-width': $outline-width,
+  'row-item-selected-container-color': theme-color.$primary,
+  'row-item-selected-hover-state-layer-color': theme-color.$on-primary,
+  'row-item-selected-hover-state-layer-opacity': 0.08,
+  'row-item-unselected-container-color': theme-color.$surface,
+  'row-item-unselected-hover-state-layer-color': theme-color.$on-surface,
+  'row-item-unselected-hover-state-layer-opacity': 0.08,
+) !default;
+
+@function remove-unsupported-keys($theme) {
+  $theme: map.remove(
+    $theme,
+    (
+      // TODO(b/254356584): We don't set pagination background-color.
+      'footer-container-color',
+      // TODO(b/254356584): Select doesn't have Theming API support yet.
+      'footer-outlined-select-text-field-container-height',
+      // TODO(b/254356584): We don't add hover styles on header.
+      'header-hover-headline-color',
+      // TODO(b/254356584): We don't add hover styles on header.
+      'header-hover-sorting-icon-button-color',
+      // TODO(b/254356584): We don't support disabled rows.
+      'row-item-disabled-label-text-color',
+      // TODO(b/254356584): We don't support disabled rows.
+      'row-item-disabled-label-text-opacity',
+      // TODO(b/254356584): We don't add hover styles on selected rows.
+      'row-item-selected-hover-state-layer-color',
+      // TODO(b/254356584): We don't add hover styles on selected rows.
+      'row-item-selected-hover-state-layer-opacity',
+      // TODO(b/254356584): We don't have state layers on rows.
+      'row-item-unselected-hover-state-layer-color'
+        // TODO(b/254356584): We don't have state layers on rows.
+      'row-item-unselected-hover-state-layer-opacity'
+    )
+  );
+  @return $theme;
+}
+
+$_validation-theme: remove-unsupported-keys($light-theme);
+
+$custom-property-prefix: 'data-table';
+
+@mixin theme($theme) {
+  @include theme.validate-theme($_validation-theme, $theme);
+  @include keys.declare-custom-properties($theme, $custom-property-prefix);
+}
+
+@mixin theme-styles($theme, $query: feature-targeting.all()) {
+  $feat-color: feature-targeting.create-target($query, color);
+  $feat-structure: feature-targeting.create-target($query, structure);
+  $feat-typography: feature-targeting.create-target($query, typography);
+
+  @include theme.validate-theme-styles($_validation-theme, $theme);
+  $theme: keys.create-theme-properties($theme, $custom-property-prefix);
+
+  ///////////
+  // Table //
+  ///////////
+
+  @include shape-radius(map.get($theme, 'container-shape'), $query: $query);
+  @include stroke-color(map.get($theme, 'outline-color'), $query: $query);
+  @include stroke-size(map.get($theme, 'outline-width'), $query: $query);
+
+  ////////////
+  // Header //
+  ////////////
+
+  @include header-row-fill-color(
+    map.get($theme, 'header-container-color'),
+    $query: $query
+  );
+  @include header-row-height(
+    map.get($theme, 'header-container-height'),
+    $query: $query
+  );
+  @include header-row-text-color(
+    map.get($theme, 'header-headline-color'),
+    $query: $query
+  );
+  .mdc-data-table__header-cell {
+    @include feature-targeting.targets($feat-typography) {
+      $font: map.get($theme, 'header-headline-font');
+      $line-height: map.get($theme, 'header-headline-line-height');
+      $size: map.get($theme, 'header-headline-size');
+      $tracking: map.get($theme, 'header-headline-tracking');
+      $weight: map.get($theme, 'header-headline-weight');
+
+      @include theme.property('font-family', $font);
+      @include theme.property('line-height', $line-height);
+      @include theme.property('font-size', $size);
+      @include theme.property('letter-spacing', $tracking);
+      @include theme.property('font-weight', $weight);
+    }
+  }
+
+  //////////
+  // Rows //
+  //////////
+
+  // Separated because row-height() sets min-height on pagination
+  .mdc-data-table__row {
+    @include feature-targeting.targets($feat-structure) {
+      @include theme.property(
+        'height',
+        map.get($theme, 'row-item-container-height')
+      );
+    }
+  }
+  .mdc-data-table__cell {
+    @include feature-targeting.targets($feat-typography) {
+      $font: map.get($theme, 'row-item-label-text-font');
+      $line-height: map.get($theme, 'row-item-label-text-line-height');
+      $size: map.get($theme, 'row-item-label-text-size');
+      $tracking: map.get($theme, 'row-item-label-text-tracking');
+      $weight: map.get($theme, 'row-item-label-text-weight');
+
+      @include theme.property('font-family', $font);
+      @include theme.property('line-height', $line-height);
+      @include theme.property('font-size', $size);
+      @include theme.property('letter-spacing', $tracking);
+      @include theme.property('font-weight', $weight);
+    }
+
+    @include feature-targeting.targets($feat-color) {
+      // Separated because row-text-color() also sets color on pagination text
+      @include theme.property(
+        'color',
+        map.get($theme, 'row-item-label-text-color')
+      );
+    }
+  }
+  .mdc-data-table__cell,
+  .mdc-data-table__header-cell {
+    @include feature-targeting.targets($feat-color) {
+      // Separated because divider-color() also sets color on pagination select
+      @include theme.property(
+        'border-bottom-color',
+        map.get($theme, 'row-item-outline-color')
+      );
+    }
+  }
+  .mdc-data-table__pagination {
+    @include feature-targeting.targets($feat-color) {
+      // Separated because divider-color() also sets color on pagination select
+      @include theme.property(
+        'border-top-color',
+        map.get($theme, 'row-item-outline-color')
+      );
+    }
+  }
+  @include divider-size(
+    map.get($theme, 'row-item-outline-width'),
+    $query: $query
+  );
+  @include row-fill-color(
+    map.get($theme, 'row-item-unselected-container-color'),
+    $query: $query
+  );
+  @include selected-row-fill-color(
+    map.get($theme, 'row-item-selected-container-color'),
+    $query: $query
+  );
+
+  ////////////
+  // Footer //
+  ////////////
+
+  .mdc-data-table__pagination {
+    @include feature-targeting.targets($feat-typography) {
+      $font: map.get($theme, 'footer-supporting-text-font');
+      $line-height: map.get($theme, 'footer-supporting-text-line-height');
+      $size: map.get($theme, 'footer-supporting-text-size');
+      $tracking: map.get($theme, 'footer-supporting-text-tracking');
+      $weight: map.get($theme, 'footer-supporting-text-weight');
+
+      @include theme.property('font-family', $font);
+      @include theme.property('line-height', $line-height);
+      @include theme.property('font-size', $size);
+      @include theme.property('letter-spacing', $tracking);
+      @include theme.property('font-weight', $weight);
+    }
+
+    @include feature-targeting.targets($feat-structure) {
+      // Separated because row-height() also sets height on row
+      @include theme.property(
+        'min-height',
+        map.get($theme, 'footer-container-height')
+      );
+    }
+  }
+  .mdc-data-table__pagination-total,
+  .mdc-data-table__pagination-rows-per-page-label {
+    @include feature-targeting.targets($feat-color) {
+      // Separated because row-text-color() also sets color on row text
+      @include theme.property(
+        'color',
+        map.get($theme, 'footer-supporting-text-color')
+      );
+    }
+  }
+}
 
 @function get-header-row-height($height) {
   @return $height + 4px;
@@ -167,20 +412,20 @@ $pagination-rows-per-page-select-height: 36px;
 @mixin divider-color($color, $query: feature-targeting.all()) {
   $feat-color: feature-targeting.create-target($query, color);
 
-  .mdc-data-table__pagination-rows-per-page-select {
+  .mdc-data-table__pagination-rows-per-page-select--outlined {
     @include select-theme.outline-color($color, $query: $query);
   }
 
   .mdc-data-table__cell,
   .mdc-data-table__header-cell {
     @include feature-targeting.targets($feat-color) {
-      border-bottom-color: $color;
+      @include theme.property('border-bottom-color', $color);
     }
   }
 
   .mdc-data-table__pagination {
     @include feature-targeting.targets($feat-color) {
-      border-top-color: $color;
+      @include theme.property('border-top-color', $color);
     }
   }
 }
@@ -191,19 +436,19 @@ $pagination-rows-per-page-select-height: 36px;
   .mdc-data-table__cell,
   .mdc-data-table__header-cell {
     @include feature-targeting.targets($feat-structure) {
-      border-bottom-width: $size;
+      @include theme.property('border-bottom-width', $size);
       border-bottom-style: solid;
     }
   }
 
   .mdc-data-table__pagination {
     @include feature-targeting.targets($feat-structure) {
-      border-top-width: $size;
+      @include theme.property('border-top-width', $size);
       border-top-style: solid;
     }
   }
 
-  .mdc-data-table__row:last-child .mdc-data-table__cell {
+  .mdc-data-table__row:last-child > .mdc-data-table__cell {
     @include feature-targeting.targets($feat-structure) {
       border-bottom: none;
     }
@@ -309,7 +554,7 @@ $pagination-rows-per-page-select-height: 36px;
 
   &.mdc-data-table--without-footer
     .mdc-data-table__row:last-child
-    .mdc-data-table__cell:first-child {
+    > .mdc-data-table__cell:first-child {
     @include feature-targeting.targets($feat-structure) {
       @include theme.property(border-bottom-left-radius, $bottom-left-radius);
 
@@ -326,7 +571,7 @@ $pagination-rows-per-page-select-height: 36px;
 
   &.mdc-data-table--without-footer
     .mdc-data-table__row:last-child
-    .mdc-data-table__cell:last-child {
+    > .mdc-data-table__cell:last-child {
     @include feature-targeting.targets($feat-structure) {
       @include theme.property(border-bottom-right-radius, $bottom-right-radius);
 
@@ -346,7 +591,7 @@ $pagination-rows-per-page-select-height: 36px;
   $feat-structure: feature-targeting.create-target($query, structure);
 
   @include feature-targeting.targets($feat-structure) {
-    border-width: $size;
+    @include theme.property('border-width', $size);
     border-style: solid;
   }
 }
@@ -355,7 +600,7 @@ $pagination-rows-per-page-select-height: 36px;
   $feat-color: feature-targeting.create-target($query, color);
 
   @include feature-targeting.targets($feat-color) {
-    border-color: $color;
+    @include theme.property('border-color', $color);
   }
 }
 
@@ -364,7 +609,7 @@ $pagination-rows-per-page-select-height: 36px;
 
   .mdc-data-table__header-row {
     @include feature-targeting.targets($feat-structure) {
-      height: $height;
+      @include theme.property('height', $height);
     }
   }
 }
@@ -374,13 +619,13 @@ $pagination-rows-per-page-select-height: 36px;
 
   .mdc-data-table__row {
     @include feature-targeting.targets($feat-structure) {
-      height: $height;
+      @include theme.property('height', $height);
     }
   }
 
   .mdc-data-table__pagination {
     @include feature-targeting.targets($feat-structure) {
-      min-height: $height;
+      @include theme.property('min-height', $height);
     }
   }
 }

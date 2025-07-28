@@ -22,9 +22,11 @@
  */
 
 import { MDCFoundation } from '@smui/base/foundation';
+
 import type { MDCTextFieldCharacterCounterAdapter } from './adapter';
 import { cssClasses, strings } from './constants';
 
+/** MDC Text Field Character Counter Foundation */
 export class MDCTextFieldCharacterCounterFoundation extends MDCFoundation<MDCTextFieldCharacterCounterAdapter> {
   static override get cssClasses() {
     return cssClasses;
@@ -35,11 +37,13 @@ export class MDCTextFieldCharacterCounterFoundation extends MDCFoundation<MDCTex
   }
 
   /**
-   * See {@link MDCTextFieldCharacterCounterAdapter} for typing information on parameters and return types.
+   * See {@link MDCTextFieldCharacterCounterAdapter} for typing information on
+   * parameters and return types.
    */
   static override get defaultAdapter(): MDCTextFieldCharacterCounterAdapter {
     return {
       setContent: () => undefined,
+      setCounterValue: () => undefined,
     };
   }
 
@@ -53,6 +57,7 @@ export class MDCTextFieldCharacterCounterFoundation extends MDCFoundation<MDCTex
   setCounterValue(currentLength: number, maxLength: number) {
     currentLength = Math.min(currentLength, maxLength);
     this.adapter.setContent(`${currentLength} / ${maxLength}`);
+    this.adapter.setCounterValue(currentLength, maxLength);
   }
 }
 

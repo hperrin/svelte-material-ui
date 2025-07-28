@@ -23,10 +23,11 @@
 
 import { MDCFoundation } from '@smui/base/foundation';
 import { cssClasses as listCssClasses } from '@smui/list/constants';
-import { MDCMenuSurfaceFoundation } from '@smui/menu-surface/foundation';
+
 import type { MDCMenuAdapter } from './adapter';
 import { cssClasses, DefaultFocusState, numbers, strings } from './constants';
 
+/** MDC Menu Foundation */
 export class MDCMenuFoundation extends MDCFoundation<MDCMenuAdapter> {
   static override get cssClasses() {
     return cssClasses;
@@ -40,7 +41,6 @@ export class MDCMenuFoundation extends MDCFoundation<MDCMenuAdapter> {
     return numbers;
   }
 
-  private closeAnimationEndTimerId = 0;
   private defaultFocusState = DefaultFocusState.LIST_ROOT;
   private selectedIndex = -1;
 
@@ -73,15 +73,11 @@ export class MDCMenuFoundation extends MDCFoundation<MDCMenuAdapter> {
   }
 
   override destroy() {
-    if (this.closeAnimationEndTimerId) {
-      clearTimeout(this.closeAnimationEndTimerId);
-    }
-
     this.adapter.closeSurface();
   }
 
-  handleKeydown(evt: KeyboardEvent) {
-    const { key, keyCode } = evt;
+  handleKeydown(event: KeyboardEvent) {
+    const { key, keyCode } = event;
     const isTab = key === 'Tab' || keyCode === 9;
 
     if (isTab) {
@@ -89,7 +85,7 @@ export class MDCMenuFoundation extends MDCFoundation<MDCMenuAdapter> {
     }
   }
 
-  handleItemAction(listItem: Element) {
+  handleItemAction(listItem: HTMLElement) {
     const index = this.adapter.getElementIndex(listItem);
     if (index < 0) {
       return;
@@ -103,17 +99,9 @@ export class MDCMenuFoundation extends MDCFoundation<MDCMenuAdapter> {
       ) === 'true';
     this.adapter.closeSurface(skipRestoreFocus);
 
-    // Wait for the menu to close before adding/removing classes that affect styles.
-    this.closeAnimationEndTimerId = setTimeout(() => {
-      // Recompute the index in case the menu contents have changed.
-      const recomputedIndex = this.adapter.getElementIndex(listItem);
-      if (
-        recomputedIndex >= 0 &&
-        this.adapter.isSelectableItemAtIndex(recomputedIndex)
-      ) {
-        this.setSelectedIndex(recomputedIndex);
-      }
-    }, MDCMenuSurfaceFoundation.numbers.TRANSITION_CLOSE_DURATION) as unknown as number;
+    if (this.adapter.isSelectableItemAtIndex(index)) {
+      this.setSelectedIndex(index);
+    }
   }
 
   handleMenuSurfaceOpened() {

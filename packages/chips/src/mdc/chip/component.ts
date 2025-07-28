@@ -41,7 +41,7 @@ import type { ActionInteractionEvent, ActionNavigationEvent } from './types';
  * chips.
  */
 export type MDCChipFactory = (
-  el: Element,
+  el: HTMLElement,
   foundation?: MDCChipFoundation,
 ) => MDCChip;
 
@@ -49,11 +49,9 @@ export type MDCChipFactory = (
  * MDCChip provides component encapsulation of the foundation implementation.
  */
 export class MDCChip extends MDCComponent<MDCChipFoundation> {
-  static override attachTo(root: Element): MDCChip {
+  static override attachTo(root: HTMLElement): MDCChip {
     return new MDCChip(root);
   }
-
-  private readonly rootHTML = this.root as HTMLElement;
 
   // Below properties are all assigned in #initialize()
   private handleActionInteraction!: CustomEventListener<ActionInteractionEvent>;
@@ -61,11 +59,13 @@ export class MDCChip extends MDCComponent<MDCChipFoundation> {
   private actions!: Map<MDCChipActionType, MDCChipAction>;
 
   override initialize(
-    actionFactory: MDCChipActionFactory = (el: Element) =>
+    actionFactory: MDCChipActionFactory = (el: HTMLElement) =>
       new MDCChipAction(el),
   ) {
     this.actions = new Map();
-    const actionEls = this.root.querySelectorAll('.mdc-evolution-chip__action');
+    const actionEls = this.root.querySelectorAll<HTMLElement>(
+      '.mdc-evolution-chip__action',
+    );
     for (let i = 0; i < actionEls.length; i++) {
       const action = actionFactory(actionEls[i]);
       this.actions.set(action.actionType(), action);
@@ -113,9 +113,9 @@ export class MDCChip extends MDCComponent<MDCChipFoundation> {
         return actions;
       },
       getAttribute: (attrName) => this.root.getAttribute(attrName),
-      getElementID: () => this.rootHTML.id,
+      getElementID: () => this.root.id,
       getOffsetWidth: () => {
-        return this.rootHTML.offsetWidth;
+        return this.root.offsetWidth;
       },
       hasClass: (className) => this.root.classList.contains(className),
       isActionSelectable: (actionType: MDCChipActionType) => {
@@ -180,7 +180,7 @@ export class MDCChip extends MDCComponent<MDCChipFoundation> {
         }
       },
       setStyleProperty: (prop: string, value: string) => {
-        this.rootHTML.style.setProperty(prop, value);
+        this.root.style.setProperty(prop, value);
       },
     };
 

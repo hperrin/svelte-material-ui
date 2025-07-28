@@ -21,9 +21,9 @@
  * THE SOFTWARE.
  */
 
-import { MDCTextFieldCharacterCounterFoundation } from '../character-counter/mdc';
-import { MDCTextFieldHelperTextFoundation } from '../helper-text/mdc';
-import { MDCTextFieldIconFoundation } from '../icon/mdc';
+import type { MDCTextFieldCharacterCounterFoundation } from '../character-counter/mdc';
+import type { MDCTextFieldHelperTextFoundation } from '../helper-text/mdc';
+import type { MDCTextFieldIconFoundation } from '../icon/mdc';
 
 export type MDCTextFieldNativeInputElement = Pick<
   HTMLInputElement,

@@ -14,7 +14,9 @@
       Note: the toolip element in a simple
       tooltip is hoisted up to the body element.
     -->
-    <Tooltip>Tooltip on a button.</Tooltip>
+    <Tooltip>
+      <Label>Tooltip on a button.</Label>
+    </Tooltip>
   </Wrapper>
 
   <Wrapper>
@@ -22,27 +24,37 @@
       <Icon class="material-icons">favorite</Icon>
     </Fab>
     <!-- The unbounded prop adds more gap between the tooltip and anchor. -->
-    <Tooltip unbounded>Tooltip on a FAB.</Tooltip>
+    <Tooltip unbounded>
+      <Label>Tooltip on a FAB.</Label>
+    </Tooltip>
   </Wrapper>
 
   <Wrapper>
     <Checkbox bind:checked />
-    <Tooltip>Tooltip on a checkbox.</Tooltip>
+    <Tooltip>
+      <Label>Tooltip on a checkbox.</Label>
+    </Tooltip>
   </Wrapper>
 
   <Wrapper>
     <Radio bind:group={selected} value={'on'} />
-    <Tooltip>Tooltip on a radio button.</Tooltip>
+    <Tooltip>
+      <Label>Tooltip on a radio button.</Label>
+    </Tooltip>
   </Wrapper>
 
   <Wrapper>
     <Radio bind:group={selected} value={'off'} />
-    <Tooltip>Tooltip on another radio button.</Tooltip>
+    <Tooltip>
+      <Label>Tooltip on another radio button.</Label>
+    </Tooltip>
   </Wrapper>
 
   <Wrapper>
     <span tabindex="0" role="button">I'm a span element.</span>
-    <Tooltip>Tooltip on a span.</Tooltip>
+    <Tooltip>
+      <Label>Tooltip on a span.</Label>
+    </Tooltip>
   </Wrapper>
 </div>
 
@@ -59,7 +71,9 @@
     defined boundary (the background), so we do not
     use the `unbounded` prop.
   -->
-  <Tooltip>Tooltip on a div.</Tooltip>
+  <Tooltip>
+    <Label>Tooltip on a div.</Label>
+  </Tooltip>
 </Wrapper>
 
 <pre

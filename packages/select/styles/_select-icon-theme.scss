@@ -20,10 +20,13 @@
 // THE SOFTWARE.
 //
 
+// stylelint-disable selector-class-pattern --
+// Selector '.mdc-*' should only be used in this project.
+
 @use '@smui/feature-targeting/feature-targeting';
 @use '@smui/rtl/rtl';
-@use '@smui/theme/mixins' as theme-mixins;
 @use '@smui/theme/state';
+@use '@smui/theme/theme';
 @use '@smui/theme/variables' as theme-variables;
 
 $icon-size: 24px !default;
@@ -45,9 +48,9 @@ $disabled-icon-color: rgba(
 
   @include feature-targeting.targets($feat-structure) {
     .mdc-select__icon {
-      width: $size;
-      height: $size;
-      font-size: $size;
+      @include theme.property(width, $size);
+      @include theme.property(height, $size);
+      @include theme.property(font-size, $size);
     }
   }
 }
@@ -83,7 +86,7 @@ $disabled-icon-color: rgba(
   @if $color {
     .mdc-select__icon {
       @include feature-targeting.targets($feat-color) {
-        @include theme-mixins.property(color, $color);
+        @include theme.property(color, $color);
       }
     }
   }

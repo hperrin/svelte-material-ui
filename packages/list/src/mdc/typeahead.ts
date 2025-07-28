@@ -64,7 +64,7 @@ export function initState(): TypeaheadState {
  *     given index
  *
  * @return Map that maps the first character of the primary text to the full
- *     list text and it's index
+ *     list text and its index
  */
 export function initSortedIndex(
   listItemCount: number,
@@ -324,8 +324,8 @@ export function clearBuffer(state: TypeaheadState) {
 
 /**
  * Given a keydown event, it calculates whether or not to automatically focus a
- * list item depending on what was typed mimicing the typeahead functionality of
- * a standard <select> element that is open.
+ * list item depending on what was typed mimicking the typeahead functionality
+ * of a standard <select> element that is open.
  *
  * @param opts Options and accessors
  *   - event - the KeyboardEvent to handle and parse
@@ -337,7 +337,7 @@ export function clearBuffer(state: TypeaheadState) {
  *   - isTargetListItem - whether or not the event target is a list item
  * @param state The typeahead state instance. See `initState`.
  *
- * @returns index of the item matched by the keydown. -1 if not matched.
+ * @return index of the item matched by the keydown. -1 if not matched.
  */
 export function handleKeydown(opts: HandleKeydownOpts, state: TypeaheadState) {
   const {

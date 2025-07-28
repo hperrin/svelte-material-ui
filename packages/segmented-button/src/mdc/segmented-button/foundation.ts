@@ -28,6 +28,7 @@ import type { SegmentDetail } from '../types';
 import type { MDCSegmentedButtonAdapter } from './adapter';
 import { cssClasses } from './constants';
 
+/** MDC Segmented Button Foundation */
 export class MDCSegmentedButtonFoundation extends MDCFoundation<MDCSegmentedButtonAdapter> {
   static override get defaultAdapter(): MDCSegmentedButtonAdapter {
     return {
@@ -120,7 +121,7 @@ export class MDCSegmentedButtonFoundation extends MDCFoundation<MDCSegmentedButt
    * @param index Index of child segment to not unselect
    */
   private unselectPrevSelected(index: number) {
-    for (let selectedSegment of this.getSelectedSegments()) {
+    for (const selectedSegment of this.getSelectedSegments()) {
       if (selectedSegment.index !== index) {
         this.unselectSegment(selectedSegment.index);
       }

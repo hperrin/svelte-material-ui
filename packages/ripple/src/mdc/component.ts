@@ -24,22 +24,25 @@
 import { MDCComponent } from '@smui/base/component';
 import { applyPassive } from '@smui/dom/events';
 import { matches } from '@smui/dom/ponyfill';
+
 import type { MDCRippleAdapter } from './adapter';
 import { MDCRippleFoundation } from './foundation';
 import type { MDCRippleAttachOpts, MDCRippleCapableSurface } from './types';
 import * as util from './util';
 
+/** MDC Ripple Factory */
 export type MDCRippleFactory = (
-  el: Element,
+  el: HTMLElement,
   foundation?: MDCRippleFoundation,
 ) => MDCRipple;
 
+/** MDC Ripple */
 export class MDCRipple
   extends MDCComponent<MDCRippleFoundation>
   implements MDCRippleCapableSurface
 {
   static override attachTo(
-    root: Element,
+    root: HTMLElement,
     opts: MDCRippleAttachOpts = {
       isUnbounded: undefined,
     },
@@ -54,24 +57,25 @@ export class MDCRipple
 
   static createAdapter(instance: MDCRippleCapableSurface): MDCRippleAdapter {
     return {
-      addClass: (className) => instance.root.classList.add(className),
+      addClass: (className) => {
+        instance.root.classList.add(className);
+      },
       browserSupportsCssVars: () => util.supportsCssVariables(window),
       computeBoundingRect: () => instance.root.getBoundingClientRect(),
       containsEventTarget: (target) => instance.root.contains(target as Node),
-      deregisterDocumentInteractionHandler: (evtType, handler) =>
+      deregisterDocumentInteractionHandler: (eventType, handler) => {
         document.documentElement.removeEventListener(
-          evtType,
+          eventType,
           handler,
           applyPassive(),
-        ),
-      deregisterInteractionHandler: (evtType, handler) =>
-        (instance.root as HTMLElement).removeEventListener(
-          evtType,
-          handler,
-          applyPassive(),
-        ),
-      deregisterResizeHandler: (handler) =>
-        window.removeEventListener('resize', handler),
+        );
+      },
+      deregisterInteractionHandler: (eventType, handler) => {
+        instance.root.removeEventListener(eventType, handler, applyPassive());
+      },
+      deregisterResizeHandler: (handler) => {
+        window.removeEventListener('resize', handler);
+      },
       getWindowPageOffset: () => ({
         x: window.pageXOffset,
         y: window.pageYOffset,
@@ -79,23 +83,25 @@ export class MDCRipple
       isSurfaceActive: () => matches(instance.root, ':active'),
       isSurfaceDisabled: () => Boolean(instance.disabled),
       isUnbounded: () => Boolean(instance.unbounded),
-      registerDocumentInteractionHandler: (evtType, handler) =>
+      registerDocumentInteractionHandler: (eventType, handler) => {
         document.documentElement.addEventListener(
-          evtType,
+          eventType,
           handler,
           applyPassive(),
-        ),
-      registerInteractionHandler: (evtType, handler) =>
-        (instance.root as HTMLElement).addEventListener(
-          evtType,
-          handler,
-          applyPassive(),
-        ),
-      registerResizeHandler: (handler) =>
-        window.addEventListener('resize', handler),
-      removeClass: (className) => instance.root.classList.remove(className),
-      updateCssVariable: (varName, value) =>
-        (instance.root as HTMLElement).style.setProperty(varName, value),
+        );
+      },
+      registerInteractionHandler: (eventType, handler) => {
+        instance.root.addEventListener(eventType, handler, applyPassive());
+      },
+      registerResizeHandler: (handler) => {
+        window.addEventListener('resize', handler);
+      },
+      removeClass: (className) => {
+        instance.root.classList.remove(className);
+      },
+      updateCssVariable: (varName, value) => {
+        instance.root.style.setProperty(varName, value);
+      },
     };
   }
 
@@ -129,7 +135,7 @@ export class MDCRipple
   }
 
   override initialSyncWithDOM() {
-    const root = this.root as HTMLElement;
+    const root = this.root;
     this.isUnbounded = 'mdcRippleIsUnbounded' in root.dataset;
   }
 

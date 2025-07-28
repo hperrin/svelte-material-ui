@@ -30,20 +30,23 @@ import {
   MDCTabIndicator,
   type MDCTabIndicatorFactory,
 } from '@smui/tab-indicator/component';
+
 import type { MDCTabAdapter } from './adapter';
 import { MDCTabFoundation } from './foundation';
 import type { MDCTabDimensions, MDCTabInteractionEventDetail } from './types';
 
+/** MDC Tab Factory */
 export type MDCTabFactory = (
-  el: Element,
+  el: HTMLElement,
   foundation?: MDCTabFoundation,
 ) => MDCTab;
 
+/** MDC Tab */
 export class MDCTab
   extends MDCComponent<MDCTabFoundation>
   implements MDCRippleCapableSurface
 {
-  static override attachTo(root: Element): MDCTab {
+  static override attachTo(root: HTMLElement): MDCTab {
     return new MDCTab(root);
   }
 
@@ -66,7 +69,7 @@ export class MDCTab
     );
     this.ripple = rippleFactory(this.root, rippleFoundation);
 
-    const tabIndicatorElement = this.root.querySelector(
+    const tabIndicatorElement = this.root.querySelector<HTMLElement>(
       MDCTabFoundation.strings.TAB_INDICATOR_SELECTOR,
     )!;
     this.tabIndicator = tabIndicatorFactory(tabIndicatorElement);
@@ -89,13 +92,20 @@ export class MDCTab
   }
 
   override getDefaultFoundation() {
-    // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
-    // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+    // DO NOT INLINE this variable. For backward compatibility, foundations take
+    // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
+    // methods, we need a separate, strongly typed adapter variable.
     // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
     const adapter: MDCTabAdapter = {
-      setAttr: (attr, value) => this.root.setAttribute(attr, value),
-      addClass: (className) => this.root.classList.add(className),
-      removeClass: (className) => this.root.classList.remove(className),
+      setAttr: (attr, value) => {
+        this.safeSetAttribute(this.root, attr, value);
+      },
+      addClass: (className) => {
+        this.root.classList.add(className);
+      },
+      removeClass: (className) => {
+        this.root.classList.remove(className);
+      },
       hasClass: (className) => this.root.classList.contains(className),
       activateIndicator: (previousIndicatorClientRect) => {
         this.tabIndicator.activate(previousIndicatorClientRect);
@@ -103,17 +113,21 @@ export class MDCTab
       deactivateIndicator: () => {
         this.tabIndicator.deactivate();
       },
-      notifyInteracted: () =>
+      notifyInteracted: () => {
         this.emit<MDCTabInteractionEventDetail>(
           MDCTabFoundation.strings.INTERACTED_EVENT,
           { tabId: this.id },
           true /* bubble */,
-        ),
-      getOffsetLeft: () => (this.root as HTMLElement).offsetLeft,
-      getOffsetWidth: () => (this.root as HTMLElement).offsetWidth,
+        );
+      },
+      getOffsetLeft: () => this.root.offsetLeft,
+      getOffsetWidth: () => this.root.offsetWidth,
       getContentOffsetLeft: () => this.content.offsetLeft,
       getContentOffsetWidth: () => this.content.offsetWidth,
-      focus: () => (this.root as HTMLElement).focus(),
+      focus: () => {
+        this.root.focus();
+      },
+      isFocused: () => this.root === document.activeElement,
     };
     // tslint:enable:object-literal-sort-keys
     return new MDCTabFoundation(adapter);
@@ -159,6 +173,6 @@ export class MDCTab
    * Focuses the tab
    */
   focus() {
-    (this.root as HTMLElement).focus();
+    this.root.focus();
   }
 }

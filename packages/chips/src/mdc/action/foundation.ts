@@ -83,6 +83,9 @@ export abstract class MDCChipActionFoundation extends MDCFoundation<MDCChipActio
       this.emitNavigation(key);
       return;
     }
+
+    // signal to propagate the event since this Key isn't handled by chip
+    return true;
   }
 
   setDisabled(isDisabled: boolean) {

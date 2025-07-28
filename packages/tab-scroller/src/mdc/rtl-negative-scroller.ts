@@ -27,6 +27,7 @@ import type {
   MDCTabScrollerHorizontalEdges,
 } from './types';
 
+/** MDC Tab Scroller RTL Negative */
 export class MDCTabScrollerRTLNegative extends MDCTabScrollerRTL {
   getScrollPositionRTL(translateX: number): number {
     const currentScrollLeft = this.adapter.getScrollAreaScrollLeft();

@@ -22,9 +22,11 @@
  */
 
 import { MDCFoundation } from '@smui/base/foundation';
+
 import type { MDCTopAppBarAdapter } from './adapter';
 import { cssClasses, numbers, strings } from './constants';
 
+/** MDC Top App Bar Base Foundation */
 export class MDCTopAppBarBaseFoundation extends MDCFoundation<MDCTopAppBarAdapter> {
   static override get strings() {
     return strings;
@@ -39,7 +41,8 @@ export class MDCTopAppBarBaseFoundation extends MDCFoundation<MDCTopAppBarAdapte
   }
 
   /**
-   * See {@link MDCTopAppBarAdapter} for typing information on parameters and return types.
+   * See {@link MDCTopAppBarAdapter} for typing information on parameters and
+   * return types.
    */
   static override get defaultAdapter(): MDCTopAppBarAdapter {
     // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.

@@ -1,19 +1,21 @@
 <TopAppBar bind:this={topAppBar} variant="standard" dense>
   <Row>
     <Section>
-      <IconButton class="material-icons">menu</IconButton>
+      <IconButton>
+        <Icon class="material-icons">menu</Icon>
+      </IconButton>
       <Title>Dense</Title>
     </Section>
     <Section align="end" toolbar>
-      <IconButton class="material-icons" aria-label="Download"
-        >file_download</IconButton
-      >
-      <IconButton class="material-icons" aria-label="Print this page"
-        >print</IconButton
-      >
-      <IconButton class="material-icons" aria-label="Bookmark this page"
-        >bookmark</IconButton
-      >
+      <IconButton aria-label="Download">
+        <Icon class="material-icons">file_download</Icon>
+      </IconButton>
+      <IconButton aria-label="Print this page">
+        <Icon class="material-icons">print</Icon>
+      </IconButton>
+      <IconButton aria-label="Bookmark this page">
+        <Icon class="material-icons">bookmark</Icon>
+      </IconButton>
     </Section>
   </Row>
 </TopAppBar>
@@ -33,7 +35,7 @@
     Title,
     AutoAdjust,
   } from '@smui/top-app-bar';
-  import IconButton from '@smui/icon-button';
+  import IconButton, { Icon } from '@smui/icon-button';
   import LoremIpsum from '$lib/LoremIpsum.svelte';
 
   let topAppBar: TopAppBar | null = $state(null);

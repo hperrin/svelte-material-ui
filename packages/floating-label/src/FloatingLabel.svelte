@@ -134,6 +134,7 @@
     instance = new MDCFloatingLabelFoundation({
       addClass,
       removeClass,
+      hasClass,
       getWidth: () => {
         const el = getElement();
         const clone = el.cloneNode(true) as typeof el;
@@ -170,6 +171,12 @@
       eventManager.clear();
     };
   });
+
+  function hasClass(className: string) {
+    return className in internalClasses
+      ? internalClasses[className]
+      : getElement().classList.contains(className);
+  }
 
   function addClass(className: string) {
     if (!internalClasses[className]) {

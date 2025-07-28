@@ -17,7 +17,9 @@
   <Snackbar bind:this={snackbar}>
     <Label>This is a snackbar.</Label>
     <Actions>
-      <IconButton class="material-icons" title="Dismiss">close</IconButton>
+      <IconButton title="Dismiss">
+        <Icon class="material-icons">close</Icon>
+      </IconButton>
     </Actions>
   </Snackbar>
 
@@ -31,7 +33,9 @@
 
 <BottomAppBar bind:this={bottomAppBar}>
   <Section>
-    <IconButton class="material-icons">menu</IconButton>
+    <IconButton>
+      <Icon class="material-icons">menu</Icon>
+    </IconButton>
   </Section>
   {#if withFab}
     <Section fabInset>
@@ -41,8 +45,12 @@
     </Section>
   {/if}
   <Section>
-    <IconButton class="material-icons" aria-label="Search">search</IconButton>
-    <IconButton class="material-icons" aria-label="More">more_vert</IconButton>
+    <IconButton aria-label="Search">
+      <Icon class="material-icons">search</Icon>
+    </IconButton>
+    <IconButton aria-label="More">
+      <Icon class="material-icons">more_vert</Icon>
+    </IconButton>
   </Section>
 </BottomAppBar>
 
@@ -54,7 +62,8 @@
   import Snackbar, { Actions, Label } from '@smui/snackbar';
   import Button from '@smui/button';
   import IconButton from '@smui/icon-button';
-  import Fab, { Icon } from '@smui/fab';
+  import Fab from '@smui/fab';
+  import { Icon } from '@smui/common';
   import Checkbox from '@smui/checkbox';
   import FormField from '@smui/form-field';
   import LoremIpsum from '$lib/LoremIpsum.svelte';

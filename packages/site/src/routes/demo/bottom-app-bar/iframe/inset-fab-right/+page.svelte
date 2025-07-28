@@ -11,11 +11,18 @@
 
 <BottomAppBar bind:this={bottomAppBar}>
   <Section>
-    <IconButton class="material-icons" aria-label="Archive">archive</IconButton>
-    <IconButton class="material-icons" aria-label="Mark unread">mail</IconButton
-    >
-    <IconButton class="material-icons" aria-label="Label">label</IconButton>
-    <IconButton class="material-icons" aria-label="Trash">delete</IconButton>
+    <IconButton aria-label="Archive">
+      <Icon class="material-icons">archive</Icon>
+    </IconButton>
+    <IconButton aria-label="Mark unread">
+      <Icon class="material-icons">mail</Icon>
+    </IconButton>
+    <IconButton aria-label="Label">
+      <Icon class="material-icons">label</Icon>
+    </IconButton>
+    <IconButton aria-label="Trash">
+      <Icon class="material-icons">delete</Icon>
+    </IconButton>
   </Section>
   <Section fabInset>
     <Fab aria-label="Reply">
@@ -30,7 +37,8 @@
     AutoAdjust,
   } from '@smui-extra/bottom-app-bar';
   import IconButton from '@smui/icon-button';
-  import Fab, { Icon } from '@smui/fab';
+  import Fab from '@smui/fab';
+  import { Icon } from '@smui/common';
   import LoremIpsum from '$lib/LoremIpsum.svelte';
 
   let bottomAppBar: BottomAppBar | null = $state(null);

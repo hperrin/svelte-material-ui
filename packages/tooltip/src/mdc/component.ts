@@ -23,6 +23,8 @@
 
 import { MDCComponent } from '@smui/base/component';
 import type { EventType, SpecificEventListener } from '@smui/base/types';
+import { safeAttrPrefix } from 'safevalues';
+import { setElementPrefixedAttribute } from 'safevalues/dom';
 
 import type { MDCTooltipAdapter } from './adapter';
 import {
@@ -35,8 +37,11 @@ import {
 } from './constants';
 import { MDCTooltipFoundation } from './foundation';
 
+const ARIA_ATTR_PREFIX = [safeAttrPrefix`aria-`];
+
+/** MDC Tooltip */
 export class MDCTooltip extends MDCComponent<MDCTooltipFoundation> {
-  static override attachTo(root: Element) {
+  static override attachTo(root: HTMLElement) {
     return new MDCTooltip(root);
   }
 
@@ -77,8 +82,8 @@ export class MDCTooltip extends MDCComponent<MDCTooltipFoundation> {
       this.foundation.handleAnchorMouseEnter();
     };
 
-    this.handleFocus = (evt) => {
-      this.foundation.handleAnchorFocus(evt);
+    this.handleFocus = (event) => {
+      this.foundation.handleAnchorFocus(event);
     };
 
     this.handleMouseLeave = () => {
@@ -202,7 +207,7 @@ export class MDCTooltip extends MDCComponent<MDCTooltipFoundation> {
     const adapter: MDCTooltipAdapter = {
       getAttribute: (attr) => this.root.getAttribute(attr),
       setAttribute: (attr, value) => {
-        this.root.setAttribute(attr, value);
+        setElementPrefixedAttribute(ARIA_ATTR_PREFIX, this.root, attr, value);
       },
       removeAttribute: (attr) => {
         this.root.removeAttribute(attr);
@@ -220,7 +225,7 @@ export class MDCTooltip extends MDCComponent<MDCTooltipFoundation> {
           .getPropertyValue(propertyName);
       },
       setStyleProperty: (propertyName, value) => {
-        (this.root as HTMLElement).style.setProperty(propertyName, value);
+        this.root.style.setProperty(propertyName, value);
       },
       setSurfaceAnimationStyleProperty: (propertyName, value) => {
         const surface = this.root.querySelector<HTMLElement>(
@@ -231,10 +236,7 @@ export class MDCTooltip extends MDCComponent<MDCTooltipFoundation> {
       getViewportWidth: () => window.innerWidth,
       getViewportHeight: () => window.innerHeight,
       getTooltipSize: () => {
-        return {
-          width: (this.root as HTMLElement).offsetWidth,
-          height: (this.root as HTMLElement).offsetHeight,
-        };
+        return { width: this.root.offsetWidth, height: this.root.offsetHeight };
       },
       getAnchorBoundingRect: () => {
         return this.anchorElem ? this.anchorElem.getBoundingClientRect() : null;
@@ -246,7 +248,14 @@ export class MDCTooltip extends MDCComponent<MDCTooltipFoundation> {
         return this.anchorElem ? this.anchorElem.getAttribute(attr) : null;
       },
       setAnchorAttribute: (attr, value) => {
-        this.anchorElem?.setAttribute(attr, value);
+        if (this.anchorElem) {
+          setElementPrefixedAttribute(
+            ARIA_ATTR_PREFIX,
+            this.anchorElem,
+            attr,
+            value,
+          );
+        }
       },
       isRTL: () => getComputedStyle(this.root).direction === 'rtl',
       anchorContainsElement: (element) => {
@@ -258,36 +267,39 @@ export class MDCTooltip extends MDCComponent<MDCTooltipFoundation> {
       focusAnchorElement: () => {
         this.anchorElem?.focus();
       },
-      registerEventHandler: (evt, handler) => {
+      registerEventHandler: (event, handler) => {
         if (this.root instanceof HTMLElement) {
-          this.root.addEventListener(evt, handler);
+          this.root.addEventListener(event, handler);
         }
       },
-      deregisterEventHandler: (evt, handler) => {
+      deregisterEventHandler: (event, handler) => {
         if (this.root instanceof HTMLElement) {
-          this.root.removeEventListener(evt, handler);
+          this.root.removeEventListener(event, handler);
         }
       },
-      registerAnchorEventHandler: (evt, handler) => {
-        this.anchorElem?.addEventListener(evt, handler);
+      registerAnchorEventHandler: (event, handler) => {
+        this.anchorElem?.addEventListener(event, handler);
       },
-      deregisterAnchorEventHandler: (evt, handler) => {
-        this.anchorElem?.removeEventListener(evt, handler);
+      deregisterAnchorEventHandler: (event, handler) => {
+        this.anchorElem?.removeEventListener(event, handler);
       },
-      registerDocumentEventHandler: (evt, handler) => {
-        document.body.addEventListener(evt, handler);
+      registerDocumentEventHandler: (event, handler) => {
+        document.body.addEventListener(event, handler);
       },
-      deregisterDocumentEventHandler: (evt, handler) => {
-        document.body.removeEventListener(evt, handler);
+      deregisterDocumentEventHandler: (event, handler) => {
+        document.body.removeEventListener(event, handler);
       },
-      registerWindowEventHandler: (evt, handler) => {
-        window.addEventListener(evt, handler);
+      registerWindowEventHandler: (event, handler) => {
+        window.addEventListener(event, handler);
       },
-      deregisterWindowEventHandler: (evt, handler) => {
-        window.removeEventListener(evt, handler);
+      deregisterWindowEventHandler: (event, handler) => {
+        window.removeEventListener(event, handler);
       },
       notifyHidden: () => {
         this.emit(events.HIDDEN, {});
+      },
+      notifyShown: () => {
+        this.emit(events.SHOWN, {});
       },
       getTooltipCaretBoundingRect: () => {
         const caret = this.root.querySelector<HTMLElement>(
@@ -329,6 +341,9 @@ export class MDCTooltip extends MDCComponent<MDCTooltipFoundation> {
       },
       getActiveElement: () => {
         return document.activeElement;
+      },
+      isInstanceOfElement: (eventTarget: EventTarget) => {
+        return eventTarget instanceof Element;
       },
     };
 

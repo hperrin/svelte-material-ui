@@ -3,7 +3,9 @@
     <Button touch>
       <Label>X Position: Start</Label>
     </Button>
-    <Tooltip xPos="start">Tooltip.</Tooltip>
+    <Tooltip xPos="start">
+      <Label>Tooltip.</Label>
+    </Tooltip>
   </Wrapper>
 
   <Wrapper>
@@ -11,39 +13,50 @@
       <Label>X Position: Center</Label>
     </Button>
     <!-- Note: "center" is not valid for rich tooltips. -->
-    <Tooltip xPos="center">Tooltip.</Tooltip>
+    <Tooltip xPos="center">
+      <Label>Tooltip.</Label>
+    </Tooltip>
   </Wrapper>
 
   <Wrapper>
     <Button touch>
       <Label>X Position: End</Label>
     </Button>
-    <Tooltip xPos="end">Tooltip.</Tooltip>
+    <Tooltip xPos="end">
+      <Label>Tooltip.</Label>
+    </Tooltip>
   </Wrapper>
 
   <Wrapper>
     <Button touch>
       <Label>Y Position: Above</Label>
     </Button>
-    <Tooltip yPos="above">Tooltip.</Tooltip>
+    <Tooltip yPos="above">
+      <Label>Tooltip.</Label>
+    </Tooltip>
   </Wrapper>
 
   <Wrapper>
     <Button touch>
       <Label>Y Position: Below</Label>
     </Button>
-    <Tooltip yPos="below">Tooltip.</Tooltip>
+    <Tooltip yPos="below">
+      <Label>Tooltip.</Label>
+    </Tooltip>
   </Wrapper>
 
   <Wrapper>
     <Button touch>
       <Label>X Position: Start, Y Position: Above</Label>
     </Button>
-    <Tooltip xPos="start" yPos="above">Tooltip.</Tooltip>
+    <Tooltip xPos="start" yPos="above">
+      <Label>Tooltip.</Label>
+    </Tooltip>
   </Wrapper>
 </div>
 
 <script lang="ts">
   import Tooltip, { Wrapper } from '@smui/tooltip';
-  import Button, { Label } from '@smui/button';
+  import Button from '@smui/button';
+  import { Label } from '@smui/common';
 </script>

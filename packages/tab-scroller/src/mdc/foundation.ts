@@ -22,6 +22,7 @@
  */
 
 import { MDCFoundation } from '@smui/base/foundation';
+
 import type { MDCTabScrollerAdapter } from './adapter';
 import { cssClasses, strings } from './constants';
 import { MDCTabScrollerRTLDefault } from './rtl-default-scroller';
@@ -33,6 +34,7 @@ import type {
   MDCTabScrollerHorizontalEdges,
 } from './types';
 
+/** MDC Tab Scroller Foundation */
 export class MDCTabScrollerFoundation extends MDCFoundation<MDCTabScrollerAdapter> {
   static override get cssClasses() {
     return cssClasses;
@@ -66,13 +68,15 @@ export class MDCTabScrollerFoundation extends MDCFoundation<MDCTabScrollerAdapte
   }
 
   /**
-   * Controls whether we should handle the transitionend and interaction events during the animation.
+   * Controls whether we should handle the transitionend and interaction events
+   * during the animation.
    */
   private isAnimating = false;
 
   /**
-   * The MDCTabScrollerRTL instance varies per browser and allows us to encapsulate the peculiar browser behavior
-   * of RTL scrolling in it's own class.
+   * The MDCTabScrollerRTL instance varies per browser and allows us to
+   * encapsulate the peculiar browser behavior of RTL scrolling in its own
+   * class.
    */
   private rtlScrollerInstance?: MDCTabScrollerRTL;
 
@@ -81,8 +85,9 @@ export class MDCTabScrollerFoundation extends MDCFoundation<MDCTabScrollerAdapte
   }
 
   override init() {
-    // Compute horizontal scrollbar height on scroller with overflow initially hidden, then update overflow to scroll
-    // and immediately adjust bottom margin to avoid the scrollbar initially appearing before JS runs.
+    // Compute horizontal scrollbar height on scroller with overflow initially
+    // hidden, then update overflow to scroll and immediately adjust bottom
+    // margin to avoid the scrollbar initially appearing before JS runs.
     const horizontalScrollbarHeight =
       this.adapter.computeHorizontalScrollbarHeight();
     this.adapter.setScrollAreaStyleProperty(
@@ -123,13 +128,14 @@ export class MDCTabScrollerFoundation extends MDCFoundation<MDCTabScrollerAdapte
   /**
    * Handles the transitionend event
    */
-  handleTransitionEnd(evt: Event) {
-    // Early exit if we aren't animating or the event was triggered by a different element.
-    const evtTarget = evt.target as Element;
+  handleTransitionEnd(event: Event) {
+    // Early exit if we aren't animating or the event was triggered by a
+    // different element.
+    const eventTarget = event.target as Element;
     if (
       !this.isAnimating ||
       !this.adapter.eventTargetMatchesSelector(
-        evtTarget,
+        eventTarget,
         MDCTabScrollerFoundation.strings.CONTENT_SELECTOR,
       )
     ) {
@@ -216,8 +222,9 @@ export class MDCTabScrollerFoundation extends MDCFoundation<MDCTabScrollerAdapte
 
     const matrixParams = match[1];
 
-    // tslint:disable-next-line:ban-ts-ignore "Unused vars" should be a linter warning, not a compiler error.
-    // @ts-ignore These unused variables should retain their semantic names for clarity.
+    // tslint:disable-next-line:ban-ts-suppressions "Unused vars" should be a linter warning, not a compiler error.
+    // @ts-ignore These unused variables should retain their semantic names for
+    // clarity.
     const [a, b, c, d, tx, ty] = matrixParams.split(',');
 
     return parseFloat(tx); // tslint:disable-line:ban
@@ -272,7 +279,8 @@ export class MDCTabScrollerFoundation extends MDCFoundation<MDCTabScrollerAdapte
   /**
    * Internal method to compute the increment scroll operation values.
    * @param scrollX The desired scroll position increment
-   * @return MDCTabScrollerAnimation with the sanitized values for performing the scroll operation.
+   * @return MDCTabScrollerAnimation with the sanitized values for performing
+   *     the scroll operation.
    */
   private getIncrementScrollOperation(
     scrollX: number,
@@ -296,7 +304,8 @@ export class MDCTabScrollerFoundation extends MDCFoundation<MDCTabScrollerAdapte
    * @param animation The animation to apply
    */
   private animate(animation: MDCTabScrollerAnimation) {
-    // Early exit if translateX is 0, which means there's no animation to perform
+    // Early exit if translateX is 0, which means there's no animation to
+    // perform
     if (animation.scrollDelta === 0) {
       return;
     }

@@ -239,7 +239,7 @@ export interface MDCSliderAdapter {
    * Registers an event listener on the root element.
    */
   registerEventHandler<K extends EventType>(
-    evtType: K,
+    eventType: K,
     handler: SpecificEventListener<K>,
   ): void;
 
@@ -247,7 +247,7 @@ export interface MDCSliderAdapter {
    * Deregisters an event listener on the root element.
    */
   deregisterEventHandler<K extends EventType>(
-    evtType: K,
+    eventType: K,
     handler: SpecificEventListener<K>,
   ): void;
 
@@ -256,7 +256,7 @@ export interface MDCSliderAdapter {
    */
   registerThumbEventHandler<K extends EventType>(
     thumb: Thumb,
-    evtType: K,
+    eventType: K,
     handler: SpecificEventListener<K>,
   ): void;
 
@@ -265,7 +265,7 @@ export interface MDCSliderAdapter {
    */
   deregisterThumbEventHandler<K extends EventType>(
     thumb: Thumb,
-    evtType: K,
+    eventType: K,
     handler: SpecificEventListener<K>,
   ): void;
 
@@ -274,7 +274,7 @@ export interface MDCSliderAdapter {
    */
   registerInputEventHandler<K extends EventType>(
     thumb: Thumb,
-    evtType: K,
+    eventType: K,
     handler: SpecificEventListener<K>,
   ): void;
 
@@ -283,7 +283,7 @@ export interface MDCSliderAdapter {
    */
   deregisterInputEventHandler<K extends EventType>(
     thumb: Thumb,
-    evtType: K,
+    eventType: K,
     handler: SpecificEventListener<K>,
   ): void;
 
@@ -291,7 +291,7 @@ export interface MDCSliderAdapter {
    * Registers an event listener on the body element.
    */
   registerBodyEventHandler<K extends EventType>(
-    evtType: K,
+    eventType: K,
     handler: SpecificEventListener<K>,
   ): void;
 
@@ -299,7 +299,7 @@ export interface MDCSliderAdapter {
    * Deregisters an event listener on the body element.
    */
   deregisterBodyEventHandler<K extends EventType>(
-    evtType: K,
+    eventType: K,
     handler: SpecificEventListener<K>,
   ): void;
 
@@ -307,7 +307,7 @@ export interface MDCSliderAdapter {
    * Registers an event listener on the window.
    */
   registerWindowEventHandler<K extends EventType>(
-    evtType: K,
+    eventType: K,
     handler: SpecificEventListener<K>,
   ): void;
 
@@ -315,7 +315,7 @@ export interface MDCSliderAdapter {
    * Deregisters an event listener on the window.
    */
   deregisterWindowEventHandler<K extends EventType>(
-    evtType: K,
+    eventType: K,
     handler: SpecificEventListener<K>,
   ): void;
 }

@@ -22,6 +22,7 @@
  */
 
 import type { EventType, SpecificEventListener } from '@smui/base/types';
+
 import type { MDCRipplePoint } from './types';
 
 /**
@@ -47,22 +48,22 @@ export interface MDCRippleAdapter {
   containsEventTarget(target: EventTarget | null): boolean;
 
   registerInteractionHandler<K extends EventType>(
-    evtType: K,
+    eventType: K,
     handler: SpecificEventListener<K>,
   ): void;
 
   deregisterInteractionHandler<K extends EventType>(
-    evtType: K,
+    eventType: K,
     handler: SpecificEventListener<K>,
   ): void;
 
   registerDocumentInteractionHandler<K extends EventType>(
-    evtType: K,
+    eventType: K,
     handler: SpecificEventListener<K>,
   ): void;
 
   deregisterDocumentInteractionHandler<K extends EventType>(
-    evtType: K,
+    eventType: K,
     handler: SpecificEventListener<K>,
   ): void;
 

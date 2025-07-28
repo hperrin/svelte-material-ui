@@ -33,10 +33,11 @@ export class MDCSlidingTabIndicatorFoundation extends MDCTabIndicatorFoundation 
       return;
     }
 
-    // This animation uses the FLIP approach. You can read more about it at the link below:
-    // https://aerotwist.com/blog/flip-your-animations/
+    // This animation uses the FLIP approach. You can read more about it at the
+    // link below: https://aerotwist.com/blog/flip-your-animations/
 
-    // Calculate the dimensions based on the dimensions of the previous indicator
+    // Calculate the dimensions based on the dimensions of the previous
+    // indicator
     const currentClientRect = this.computeContentClientRect();
     const widthDelta =
       previousIndicatorClientRect.width / currentClientRect.width;
@@ -47,7 +48,8 @@ export class MDCSlidingTabIndicatorFoundation extends MDCTabIndicatorFoundation 
       `translateX(${xPosition}px) scaleX(${widthDelta})`,
     );
 
-    // Force repaint before updating classes and transform to ensure the transform properly takes effect
+    // Force repaint before updating classes and transform to ensure the
+    // transform properly takes effect
     this.computeContentClientRect();
 
     this.adapter.removeClass(

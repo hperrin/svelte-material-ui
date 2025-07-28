@@ -24,7 +24,7 @@
 import { MDCFoundation } from '@smui/base/foundation';
 
 import type { MDCDataTableAdapter } from './adapter';
-import { cssClasses, SortValue, strings } from './constants';
+import { cssClasses, SortValue, attributes } from './constants';
 import type { RowClickEventData, SortActionEventData } from './types';
 
 /**
@@ -105,7 +105,7 @@ export class MDCDataTableFoundation extends MDCFoundation<MDCDataTableAdapter> {
   /**
    * @return Returns array of row elements.
    */
-  getRows(): Element[] {
+  getRows(): HTMLElement[] {
     return this.adapter.getRowElements();
   }
 
@@ -223,7 +223,7 @@ export class MDCDataTableFoundation extends MDCFoundation<MDCDataTableAdapter> {
       );
       this.adapter.setAttributeByHeaderCellIndex(
         index,
-        strings.ARIA_SORT,
+        attributes.ARIA_SORT,
         SortValue.NONE,
       );
       this.adapter.setSortStatusLabelByHeaderCellIndex(index, SortValue.NONE);
@@ -237,7 +237,7 @@ export class MDCDataTableFoundation extends MDCFoundation<MDCDataTableAdapter> {
 
     const currentSortValue = this.adapter.getAttributeByHeaderCellIndex(
       columnIndex,
-      strings.ARIA_SORT,
+      attributes.ARIA_SORT,
     );
     let sortValue = SortValue.NONE;
 
@@ -249,7 +249,7 @@ export class MDCDataTableFoundation extends MDCFoundation<MDCDataTableAdapter> {
       );
       this.adapter.setAttributeByHeaderCellIndex(
         columnIndex,
-        strings.ARIA_SORT,
+        attributes.ARIA_SORT,
         SortValue.DESCENDING,
       );
       sortValue = SortValue.DESCENDING;
@@ -261,7 +261,7 @@ export class MDCDataTableFoundation extends MDCFoundation<MDCDataTableAdapter> {
       );
       this.adapter.setAttributeByHeaderCellIndex(
         columnIndex,
-        strings.ARIA_SORT,
+        attributes.ARIA_SORT,
         SortValue.ASCENDING,
       );
       sortValue = SortValue.ASCENDING;
@@ -269,7 +269,7 @@ export class MDCDataTableFoundation extends MDCFoundation<MDCDataTableAdapter> {
       // Set to ascending by default when not sorted.
       this.adapter.setAttributeByHeaderCellIndex(
         columnIndex,
-        strings.ARIA_SORT,
+        attributes.ARIA_SORT,
         SortValue.ASCENDING,
       );
       sortValue = SortValue.ASCENDING;
@@ -288,10 +288,21 @@ export class MDCDataTableFoundation extends MDCFoundation<MDCDataTableAdapter> {
   /**
    * Handles data table row click event.
    */
-  handleRowClick({ rowId, row }: RowClickEventData) {
+  handleRowClick({
+    rowId,
+    row,
+    altKey,
+    ctrlKey,
+    metaKey,
+    shiftKey,
+  }: RowClickEventData) {
     this.adapter.notifyRowClick({
       rowId,
       row,
+      altKey,
+      ctrlKey,
+      metaKey,
+      shiftKey,
     });
   }
 
@@ -346,14 +357,14 @@ export class MDCDataTableFoundation extends MDCFoundation<MDCDataTableAdapter> {
       this.adapter.addClassAtRowIndex(rowIndex, cssClasses.ROW_SELECTED);
       this.adapter.setAttributeAtRowIndex(
         rowIndex,
-        strings.ARIA_SELECTED,
+        attributes.ARIA_SELECTED,
         'true',
       );
     } else {
       this.adapter.removeClassAtRowIndex(rowIndex, cssClasses.ROW_SELECTED);
       this.adapter.setAttributeAtRowIndex(
         rowIndex,
-        strings.ARIA_SELECTED,
+        attributes.ARIA_SELECTED,
         'false',
       );
     }

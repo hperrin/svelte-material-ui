@@ -38,18 +38,21 @@ import {
 import { Corner } from '@smui/menu-surface/constants';
 import { MDCMenuSurfaceFoundation } from '@smui/menu-surface/foundation';
 import type { MDCMenuDistance } from '@smui/menu-surface/types';
+
 import type { MDCMenuAdapter } from './adapter';
 import { cssClasses, DefaultFocusState, strings } from './constants';
 import { MDCMenuFoundation } from './foundation';
 import type { MDCMenuItemComponentEventDetail } from './types';
 
+/** MDC Menu Factory */
 export type MDCMenuFactory = (
-  el: Element,
+  el: HTMLElement,
   foundation?: MDCMenuFoundation,
 ) => MDCMenu;
 
+/** MDC Menu */
 export class MDCMenu extends MDCComponent<MDCMenuFoundation> {
-  static override attachTo(root: Element) {
+  static override attachTo(root: HTMLElement) {
     return new MDCMenu(root);
   }
 
@@ -75,7 +78,7 @@ export class MDCMenu extends MDCComponent<MDCMenuFoundation> {
   override initialSyncWithDOM() {
     this.menuSurface = this.menuSurfaceFactory(this.root);
 
-    const list = this.root.querySelector(strings.LIST_SELECTOR);
+    const list = this.root.querySelector<HTMLElement>(strings.LIST_SELECTOR);
     if (list) {
       this.list = this.listFactory(list);
       this.list.wrapFocus = true;
@@ -83,11 +86,11 @@ export class MDCMenu extends MDCComponent<MDCMenuFoundation> {
       this.list = null;
     }
 
-    this.handleKeydown = (evt) => {
-      this.foundation.handleKeydown(evt);
+    this.handleKeydown = (event) => {
+      this.foundation.handleKeydown(event);
     };
-    this.handleItemAction = (evt) => {
-      this.foundation.handleItemAction(this.items[evt.detail.index]);
+    this.handleItemAction = (event) => {
+      this.foundation.handleItemAction(this.items[event.detail.index]);
     };
     this.handleMenuSurfaceOpened = () => {
       this.foundation.handleMenuSurfaceOpened();
@@ -189,11 +192,11 @@ export class MDCMenu extends MDCComponent<MDCMenuFoundation> {
   }
 
   /**
-   * Return the items within the menu. Note that this only contains the set of elements within
-   * the items container that are proper list items, and not supplemental / presentational DOM
-   * elements.
+   * Return the items within the menu. Note that this only contains the set of
+   * elements within the items container that are proper list items, and not
+   * supplemental / presentational DOM elements.
    */
-  get items(): Element[] {
+  get items(): HTMLElement[] {
     return this.list ? this.list.listElements : [];
   }
 
@@ -316,8 +319,9 @@ export class MDCMenu extends MDCComponent<MDCMenuFoundation> {
   }
 
   override getDefaultFoundation() {
-    // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
-    // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+    // DO NOT INLINE this variable. For backward compatibility, foundations take
+    // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
+    // methods, we need a separate, strongly typed adapter variable.
     // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
     const adapter: MDCMenuAdapter = {
       addClassToElementAtIndex: (index, className) => {
@@ -330,7 +334,7 @@ export class MDCMenu extends MDCComponent<MDCMenuFoundation> {
       },
       addAttributeToElementAtIndex: (index, attr, value) => {
         const list = this.items;
-        list[index].setAttribute(attr, value);
+        this.safeSetAttribute(list[index], attr, value);
       },
       removeAttributeFromElementAtIndex: (index, attr) => {
         const list = this.items;
@@ -346,18 +350,18 @@ export class MDCMenu extends MDCComponent<MDCMenuFoundation> {
         this.menuSurface.close(skipRestoreFocus);
       },
       getElementIndex: (element) => this.items.indexOf(element),
-      notifySelected: (evtData) => {
+      notifySelected: (eventData) => {
         this.emit<MDCMenuItemComponentEventDetail>(strings.SELECTED_EVENT, {
-          index: evtData.index,
-          item: this.items[evtData.index],
+          index: eventData.index,
+          item: this.items[eventData.index],
         });
       },
       getMenuItemCount: () => this.items.length,
       focusItemAtIndex: (index) => {
-        (this.items[index] as HTMLElement).focus();
+        this.items[index].focus();
       },
       focusListRoot: () => {
-        (this.root.querySelector(strings.LIST_SELECTOR) as HTMLElement).focus();
+        this.root.querySelector<HTMLElement>(strings.LIST_SELECTOR)!.focus();
       },
       isSelectableItemAtIndex: (index) =>
         !!closest(this.items[index], `.${cssClasses.MENU_SELECTION_GROUP}`),
@@ -366,7 +370,7 @@ export class MDCMenu extends MDCComponent<MDCMenuFoundation> {
           this.items[index],
           `.${cssClasses.MENU_SELECTION_GROUP}`,
         ) as HTMLElement;
-        const selectedItemEl = selectionGroupEl.querySelector(
+        const selectedItemEl = selectionGroupEl.querySelector<HTMLElement>(
           `.${cssClasses.MENU_SELECTED_LIST_ITEM}`,
         );
         return selectedItemEl ? this.items.indexOf(selectedItemEl) : -1;

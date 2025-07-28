@@ -29,7 +29,7 @@
               </Menu>
             </div>
             <Tooltip yPos="below">
-              This tooltip should extend outside the panel!
+              <Label>This tooltip should extend outside the panel!</Label>
             </Tooltip>
           </Wrapper>
         </div>
@@ -61,8 +61,9 @@
 
 <script lang="ts">
   import Accordion, { Panel, Header, Content } from '@smui-extra/accordion';
-  import Button, { Label } from '@smui/button';
+  import Button from '@smui/button';
   import Tooltip, { Wrapper } from '@smui/tooltip';
+  import { Label } from '@smui/common';
   import Menu from '@smui/menu';
   import List, { Item, Text } from '@smui/list';
   import Dialog, {

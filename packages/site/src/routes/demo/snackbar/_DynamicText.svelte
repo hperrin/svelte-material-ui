@@ -1,7 +1,9 @@
 <Snackbar bind:this={snackbar} labelText={text} timeoutMs={-1}>
   <Label />
   <Actions>
-    <IconButton class="material-icons" title="Dismiss">close</IconButton>
+    <IconButton title="Dismiss">
+      <Icon class="material-icons">close</Icon>
+    </IconButton>
   </Actions>
 </Snackbar>
 
@@ -14,7 +16,7 @@
 <script lang="ts">
   import Snackbar, { Actions, Label } from '@smui/snackbar';
   import Button from '@smui/button';
-  import IconButton from '@smui/icon-button';
+  import IconButton, { Icon } from '@smui/icon-button';
   import Textfield from '@smui/textfield';
 
   let snackbar: Snackbar;

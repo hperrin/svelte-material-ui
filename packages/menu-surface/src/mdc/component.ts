@@ -21,23 +21,26 @@
  * THE SOFTWARE.
  */
 
+import { getCorrectPropertyName } from '@smui/animation/util';
 import { MDCComponent } from '@smui/base/component';
 import type { SpecificEventListener } from '@smui/base/types';
+
 import type { MDCMenuSurfaceAdapter } from './adapter';
 import { Corner, cssClasses, strings } from './constants';
 import { MDCMenuSurfaceFoundation } from './foundation';
 import type { MDCMenuDistance } from './types';
-import { getCorrectPropertyName } from '@smui/animation/util';
 
 type RegisterFunction = () => void;
 
+/** MDC Menu Surface Factory */
 export type MDCMenuSurfaceFactory = (
-  el: Element,
+  el: HTMLElement,
   foundation?: MDCMenuSurfaceFoundation,
 ) => MDCMenuSurface;
 
+/** MDC Menu Surface */
 export class MDCMenuSurface extends MDCComponent<MDCMenuSurfaceFoundation> {
-  static override attachTo(root: Element): MDCMenuSurface {
+  static override attachTo(root: HTMLElement): MDCMenuSurface {
     return new MDCMenuSurface(root);
   }
 
@@ -110,7 +113,10 @@ export class MDCMenuSurface extends MDCComponent<MDCMenuSurfaceFoundation> {
     this.foundation.setQuickOpen(quickOpen);
   }
 
-  /** Sets the foundation to use page offsets for an positioning when the menu is hoisted to the body. */
+  /**
+   * Sets the foundation to use page offsets for a positioning when the menu is
+   * hoisted to the body.
+   */
   setIsHoisted(isHoisted: boolean) {
     this.foundation.setIsHoisted(isHoisted);
   }
@@ -131,7 +137,10 @@ export class MDCMenuSurface extends MDCComponent<MDCMenuSurfaceFoundation> {
     this.foundation.setFixedPosition(isFixed);
   }
 
-  /** Sets the absolute x/y position to position based on. Requires the menu to be hoisted. */
+  /**
+   * Sets the absolute x/y position to position based on. Requires the menu to
+   * be hoisted.
+   */
   setAbsolutePosition(x: number, y: number) {
     this.foundation.setAbsolutePosition(x, y);
     this.setIsHoisted(true);
@@ -149,29 +158,37 @@ export class MDCMenuSurface extends MDCComponent<MDCMenuSurfaceFoundation> {
   }
 
   override getDefaultFoundation() {
-    // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
-    // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+    // DO NOT INLINE this variable. For backward compatibility, foundations take
+    // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
+    // methods, we need a separate, strongly typed adapter variable.
     // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
     const adapter: MDCMenuSurfaceAdapter = {
-      addClass: (className) => this.root.classList.add(className),
-      removeClass: (className) => this.root.classList.remove(className),
+      addClass: (className) => {
+        this.root.classList.add(className);
+      },
+      removeClass: (className) => {
+        this.root.classList.remove(className);
+      },
       hasClass: (className) => this.root.classList.contains(className),
       hasAnchor: () => !!this.anchorElement,
-      notifyClose: () =>
-        this.emit(MDCMenuSurfaceFoundation.strings.CLOSED_EVENT, {}),
+      notifyClose: () => {
+        this.emit(MDCMenuSurfaceFoundation.strings.CLOSED_EVENT, {});
+      },
       notifyClosing: () => {
         this.emit(MDCMenuSurfaceFoundation.strings.CLOSING_EVENT, {});
       },
-      notifyOpen: () =>
-        this.emit(MDCMenuSurfaceFoundation.strings.OPENED_EVENT, {}),
-      notifyOpening: () =>
-        this.emit(MDCMenuSurfaceFoundation.strings.OPENING_EVENT, {}),
+      notifyOpen: () => {
+        this.emit(MDCMenuSurfaceFoundation.strings.OPENED_EVENT, {});
+      },
+      notifyOpening: () => {
+        this.emit(MDCMenuSurfaceFoundation.strings.OPENING_EVENT, {});
+      },
       isElementInContainer: (el) => this.root.contains(el),
       isRtl: () =>
         getComputedStyle(this.root).getPropertyValue('direction') === 'rtl',
       setTransformOrigin: (origin) => {
         const propertyName = `${getCorrectPropertyName(window, 'transform')}-origin`;
-        (this.root as HTMLElement).style.setProperty(propertyName, origin);
+        this.root.style.setProperty(propertyName, origin);
       },
 
       isFocused: () => document.activeElement === this.root,
@@ -189,14 +206,11 @@ export class MDCMenuSurface extends MDCComponent<MDCMenuSurfaceFoundation> {
         }
       },
       getInnerDimensions: () => {
-        return {
-          width: (this.root as HTMLElement).offsetWidth,
-          height: (this.root as HTMLElement).offsetHeight,
-        };
+        return { width: this.root.offsetWidth, height: this.root.offsetHeight };
       },
       getAnchorDimensions: () =>
         this.anchorElement ? this.anchorElement.getBoundingClientRect() : null,
-      getWindowDimensions: () => {
+      getViewportDimensions: () => {
         return { width: window.innerWidth, height: window.innerHeight };
       },
       getBodyDimensions: () => {
@@ -209,7 +223,7 @@ export class MDCMenuSurface extends MDCComponent<MDCMenuSurfaceFoundation> {
         return { x: window.pageXOffset, y: window.pageYOffset };
       },
       setPosition: (position) => {
-        const rootHTML = this.root as HTMLElement;
+        const rootHTML = this.root;
         rootHTML.style.left = 'left' in position ? `${position.left}px` : '';
         rootHTML.style.right = 'right' in position ? `${position.right}px` : '';
         rootHTML.style.top = 'top' in position ? `${position.top}px` : '';
@@ -217,7 +231,13 @@ export class MDCMenuSurface extends MDCComponent<MDCMenuSurfaceFoundation> {
           'bottom' in position ? `${position.bottom}px` : '';
       },
       setMaxHeight: (height) => {
-        (this.root as HTMLElement).style.maxHeight = height;
+        this.root.style.maxHeight = height;
+      },
+      registerWindowEventHandler: (eventType, handler) => {
+        window.addEventListener(eventType, handler);
+      },
+      deregisterWindowEventHandler: (eventType, handler) => {
+        window.removeEventListener(eventType, handler);
       },
     };
     // tslint:enable:object-literal-sort-keys

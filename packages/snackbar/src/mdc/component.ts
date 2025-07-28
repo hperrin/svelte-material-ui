@@ -24,6 +24,7 @@
 import { MDCComponent } from '@smui/base/component';
 import type { SpecificEventListener } from '@smui/base/types';
 import { closest } from '@smui/dom/ponyfill';
+
 import type { MDCSnackbarAdapter } from './adapter';
 import { strings } from './constants';
 import { MDCSnackbarFoundation } from './foundation';
@@ -45,16 +46,17 @@ const {
   CLOSED_EVENT,
 } = strings;
 
+/** MDC Snackbar */
 export class MDCSnackbar extends MDCComponent<MDCSnackbarFoundation> {
-  static override attachTo(root: Element) {
+  static override attachTo(root: HTMLElement) {
     return new MDCSnackbar(root);
   }
 
   private announce!: MDCSnackbarAnnouncer; // assigned in initialize()
 
-  private actionEl!: Element; // assigned in initialSyncWithDOM()
-  private labelEl!: Element; // assigned in initialSyncWithDOM()
-  private surfaceEl!: Element; // assigned in initialSyncWithDOM()
+  private actionEl!: HTMLElement; // assigned in initialSyncWithDOM()
+  private labelEl!: HTMLElement; // assigned in initialSyncWithDOM()
+  private surfaceEl!: HTMLElement; // assigned in initialSyncWithDOM()
 
   private handleKeyDown!: SpecificEventListener<'keydown'>; // assigned in initialSyncWithDOM()
   private handleSurfaceClick!: SpecificEventListener<'click'>; // assigned in initialSyncWithDOM()
@@ -66,19 +68,19 @@ export class MDCSnackbar extends MDCComponent<MDCSnackbarFoundation> {
   }
 
   override initialSyncWithDOM() {
-    this.surfaceEl = this.root.querySelector(SURFACE_SELECTOR)!;
-    this.labelEl = this.root.querySelector(LABEL_SELECTOR)!;
-    this.actionEl = this.root.querySelector(ACTION_SELECTOR)!;
+    this.surfaceEl = this.root.querySelector<HTMLElement>(SURFACE_SELECTOR)!;
+    this.labelEl = this.root.querySelector<HTMLElement>(LABEL_SELECTOR)!;
+    this.actionEl = this.root.querySelector<HTMLElement>(ACTION_SELECTOR)!;
 
-    this.handleKeyDown = (evt) => {
-      this.foundation.handleKeyDown(evt);
+    this.handleKeyDown = (event) => {
+      this.foundation.handleKeyDown(event);
     };
-    this.handleSurfaceClick = (evt) => {
-      const target = evt.target as Element;
+    this.handleSurfaceClick = (event) => {
+      const target = event.target as Element;
       if (this.isActionButton(target)) {
-        this.foundation.handleActionButtonClick(evt);
+        this.foundation.handleActionButtonClick(event);
       } else if (this.isActionIcon(target)) {
-        this.foundation.handleActionIconClick(evt);
+        this.foundation.handleActionIconClick(event);
       }
     };
 
@@ -97,8 +99,9 @@ export class MDCSnackbar extends MDCComponent<MDCSnackbarFoundation> {
   }
 
   /**
-   * @param reason Why the snackbar was closed. Value will be passed to CLOSING_EVENT and CLOSED_EVENT via the
-   *     `event.detail.reason` property. Standard values are REASON_ACTION and REASON_DISMISS, but custom
+   * @param reason Why the snackbar was closed. Value will be passed to
+   *     CLOSING_EVENT and CLOSED_EVENT via the `event.detail.reason` property.
+   *     Standard values are REASON_ACTION and REASON_DISMISS, but custom
    *     client-specific values may also be used if desired.
    */
   close(reason = '') {
@@ -106,8 +109,9 @@ export class MDCSnackbar extends MDCComponent<MDCSnackbarFoundation> {
   }
 
   override getDefaultFoundation() {
-    // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
-    // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
+    // DO NOT INLINE this variable. For backward compatibility, foundations take
+    // a Partial<MDCFooAdapter>. To ensure we don't accidentally omit any
+    // methods, we need a separate, strongly typed adapter variable.
     const adapter: MDCSnackbarAdapter = {
       addClass: (className) => {
         this.root.classList.add(className);
@@ -115,19 +119,27 @@ export class MDCSnackbar extends MDCComponent<MDCSnackbarFoundation> {
       announce: () => {
         this.announce(this.labelEl);
       },
-      notifyClosed: (reason) =>
+      notifyClosed: (reason) => {
         this.emit<MDCSnackbarCloseEventDetail>(
           CLOSED_EVENT,
           reason ? { reason } : {},
-        ),
-      notifyClosing: (reason) =>
+        );
+      },
+      notifyClosing: (reason) => {
         this.emit<MDCSnackbarCloseEventDetail>(
           CLOSING_EVENT,
           reason ? { reason } : {},
-        ),
-      notifyOpened: () => this.emit(OPENED_EVENT, {}),
-      notifyOpening: () => this.emit(OPENING_EVENT, {}),
-      removeClass: (className) => this.root.classList.remove(className),
+        );
+      },
+      notifyOpened: () => {
+        this.emit(OPENED_EVENT, {});
+      },
+      notifyOpening: () => {
+        this.emit(OPENING_EVENT, {});
+      },
+      removeClass: (className) => {
+        this.root.classList.remove(className);
+      },
     };
     return new MDCSnackbarFoundation(adapter);
   }

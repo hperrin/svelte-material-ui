@@ -226,72 +226,73 @@ Migrating away from MDC-Web is a multi-step process. The steps are as follows:
 ## Step 2. Redo all of the changes from MDC-Web's commit history that have happened since v14, updating component code as necessary.
 
 - [ ] Accordion
-- [ ] Animation (new)
+- [x] Animation (new)
 - Action Buttons
-  - [ ] Button
-  - [ ] Floating Action Button
-  - [ ] Icon Button
+  - [x] Button
+  - [x] Floating Action Button
+  - [x] Icon Button
 - App Bars
   - [ ] Bottom App Bar
-  - [ ] Top App Bar
+  - [x] Top App Bar
 - [ ] Badge
-- [ ] Banner
-- [ ] Base (new, temporary)
-- [ ] Card
+- [x] Banner
+- [x] Base (new, temporary)
+- [x] Card
 - [ ] Common
-- [ ] Data Table
-- [ ] Density (new)
-- [ ] Dialog
-- [ ] DOM (new, possibly temporary)
-- [ ] Drawer
-- [ ] Elevation
-- [ ] Feature Targeting (new)
-- [ ] Focus Ring (new)
-- [ ] Image List
+- [x] Data Table
+- [x] Density (new)
+- [x] Dialog
+- [x] DOM (new, possibly temporary)
+- [x] Drawer
+- [x] Elevation
+- [x] Feature Targeting (new)
+- [x] Focus (new)
+- [x] Focus Ring (new)
+- [x] Image List
 - Inputs and Controls
   - [ ] Autocomplete
-  - [ ] Checkbox
-  - [ ] Chips
+  - [x] Checkbox
+  - [x] Chips
   - [ ] Chip Input
-  - [ ] Floating Label
-  - [ ] Form Field
-  - [ ] Line Ripple
-  - [ ] Notched Outline
-  - [ ] Radio Button
-  - [ ] Segmented Button
-  - [ ] Select Menu
-    - [ ] Select Helper Text
-    - [ ] Select Icon
-  - [ ] Slider
-  - [ ] Switch
-  - [ ] Text Field
-    - [ ] Text Field Character Counter
-    - [ ] Text Field Helper Text
-    - [ ] Text Field Icon
-- [ ] Layout Grid
-- [ ] List
-- [ ] Menu Surface
-- [ ] Menu
+  - [x] Floating Label
+  - [x] Form Field
+  - [x] Line Ripple
+  - [x] Notched Outline
+  - [x] Radio Button
+  - [x] Segmented Button
+  - [x] Select Menu
+    - [x] Select Helper Text
+    - [x] Select Icon
+  - [x] Slider
+  - [x] Switch
+  - [x] Text Field
+    - [x] Text Field Character Counter
+    - [x] Text Field Helper Text
+    - [x] Text Field Icon
+- [x] Layout Grid
+- [x] List
+- [x] Menu Surface
+- [x] Menu
 - [ ] Paper
 - Progress Indicators
-  - [ ] Progress Indicator (new, possibly temporary)
-  - [ ] Circular Progress
-  - [ ] Linear Progress
-- [ ] Ripple
-- [ ] RTL (new)
-- [ ] Shape (new)
-- [ ] Snackbar
+  - [x] Progress Indicator (new, possibly temporary)
+  - [x] Circular Progress
+  - [x] Linear Progress
+- [x] Ripple
+- [x] RTL (new)
+- [x] Shape (new)
+- [x] Snackbar
   - [ ] Kitchen
 - Tabs
-  - [ ] Tab
-  - [ ] Tab Bar
-  - [ ] Tab Indicator
-  - [ ] Tab Scroller
-- [ ] Theme (new)
-- [ ] Tokens (new, possibly temporary)
-- [ ] Tooltip
-- [ ] Touch Target
-- [ ] Typography
+  - [x] Tab
+  - [x] Tab Bar
+  - [x] Tab Indicator
+  - [x] Tab Scroller
+- [x] Theme (new)
+- [x] Tokens (new, possibly temporary)
+- [x] Tooltip
+- [x] Touch Target
+- [x] Typography
 
 ## Step 3. Once in a state similar to MDC-Web's archived repo, reimplement all of MDC-Web's JS in the actual Svelte components.
 
@@ -316,6 +317,7 @@ Migrating away from MDC-Web is a multi-step process. The steps are as follows:
 - [ ] Drawer
 - [ ] Elevation
 - [ ] Feature Targeting (new)
+- [ ] Focus (new)
 - [ ] Focus Ring (new)
 - [ ] Image List
 - Inputs and Controls
