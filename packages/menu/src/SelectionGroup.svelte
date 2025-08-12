@@ -4,8 +4,8 @@
   <ul
     use:useActions={list$use}
     class={classMap({
-      [list$class]: true,
       'mdc-menu__selection-group': true,
+      [list$class]: true,
     })}
     {...prefixFilter(restProps, 'list$')}
   >

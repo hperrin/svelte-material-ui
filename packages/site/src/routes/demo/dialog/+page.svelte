@@ -37,6 +37,10 @@
     Dialog with sliders
   </Demo>
 
+  <Demo component={NonCloseButton} file="dialog/_NonCloseButton.svelte">
+    Dialog with button that doesn't close
+  </Demo>
+
   <Demo component={LargeScroll} file="dialog/_LargeScroll.svelte">
     Large, scrollable dialog
   </Demo>
@@ -86,6 +90,7 @@
   import List from './_List.svelte';
   import Selection from './_Selection.svelte';
   import Sliders from './_Sliders.svelte';
+  import NonCloseButton from './_NonCloseButton.svelte';
   import LargeScroll from './_LargeScroll.svelte';
   import Fullscreen from './_Fullscreen.svelte';
   import OverFullscreen from './_OverFullscreen.svelte';

@@ -20,7 +20,7 @@
   <Demo component={Objects} file="chip-input/_Objects.svelte">
     Objects
     {#snippet subtitle()}
-      Objects allow you to have dupliate entries.
+      Objects allow you to have duplicate entries.
     {/snippet}
   </Demo>
 

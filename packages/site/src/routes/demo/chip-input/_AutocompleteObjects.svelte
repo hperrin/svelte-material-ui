@@ -39,7 +39,7 @@
 
     // And we can push our own object containing the text.
     colors.push({
-      id: Math.max(...colors.map((color) => color.id)) + 1,
+      id: colors.length ? Math.max(...colors.map((color) => color.id)) + 1 : 1,
       text: event.detail.text,
     });
     value = '';
@@ -51,7 +51,7 @@
 
     // And we can push our own object containing the text.
     colors.push({
-      id: Math.max(...colors.map((color) => color.id)) + 1,
+      id: colors.length ? Math.max(...colors.map((color) => color.id)) + 1 : 1,
       text: event.detail,
     });
     value = '';

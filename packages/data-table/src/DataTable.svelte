@@ -33,16 +33,16 @@
     bind:this={container}
     use:useActions={container$use}
     class={classMap({
-      [container$class]: true,
       'mdc-data-table__table-container': true,
+      [container$class]: true,
     })}
     {...prefixFilter(restProps, 'container$')}
   >
     <table
       use:useActions={table$use}
       class={classMap({
-        [table$class]: true,
         'mdc-data-table__table': true,
+        [table$class]: true,
       })}
       {...prefixFilter(restProps, 'table$')}
     >

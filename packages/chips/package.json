@@ -1,6 +1,6 @@
 {
   "name": "@smui/chips",
-  "version": "8.0.1",
+  "version": "8.0.2",
   "description": "Svelte Material UI - Chips",
   "type": "module",
   "main": "dist/index.js",
@@ -51,7 +51,7 @@
   "dependencies": {
     "@smui/animation": "^8.0.1",
     "@smui/base": "^8.0.1",
-    "@smui/checkbox": "^8.0.1",
+    "@smui/checkbox": "^8.0.2",
     "@smui/common": "^8.0.1",
     "@smui/density": "^8.0.1",
     "@smui/dom": "^8.0.1",

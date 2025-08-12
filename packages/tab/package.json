@@ -1,6 +1,6 @@
 {
   "name": "@smui/tab",
-  "version": "8.0.1",
+  "version": "8.0.2",
   "description": "Svelte Material UI - Tab",
   "type": "module",
   "main": "dist/index.js",
@@ -71,7 +71,7 @@
     "@smui/focus-ring": "^8.0.1",
     "@smui/ripple": "^8.0.1",
     "@smui/rtl": "^8.0.1",
-    "@smui/tab-indicator": "^8.0.1",
+    "@smui/tab-indicator": "^8.0.2",
     "@smui/theme": "^8.0.1",
     "@smui/tokens": "^8.0.1",
     "@smui/typography": "^8.0.1"

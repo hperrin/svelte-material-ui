@@ -46,8 +46,8 @@
         <div
           use:useActions={icons$use}
           class={classMap({
-            [icons$class]: true,
             'mdc-switch__icons': true,
+            [icons$class]: true,
           })}
           {...prefixFilter(restProps, 'icons$')}
         >

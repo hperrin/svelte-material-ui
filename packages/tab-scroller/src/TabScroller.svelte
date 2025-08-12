@@ -17,9 +17,9 @@
     bind:this={scrollArea}
     use:useActions={scrollArea$use}
     class={classMap({
-      [scrollArea$class]: true,
       'mdc-tab-scroller__scroll-area': true,
       ...scrollAreaClasses,
+      [scrollArea$class]: true,
     })}
     style={Object.entries(scrollAreaStyles)
       .map(([name, value]) => `${name}: ${value};`)
@@ -60,8 +60,8 @@
       bind:this={scrollContent}
       use:useActions={scrollContent$use}
       class={classMap({
-        [scrollContent$class]: true,
         'mdc-tab-scroller__scroll-content': true,
+        [scrollContent$class]: true,
       })}
       style={Object.entries(scrollContentStyles)
         .map(([name, value]) => `${name}: ${value};`)

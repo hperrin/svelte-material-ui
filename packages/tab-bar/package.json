@@ -1,6 +1,6 @@
 {
   "name": "@smui/tab-bar",
-  "version": "8.0.1",
+  "version": "8.0.2",
   "description": "Svelte Material UI - Tab Bar",
   "type": "module",
   "main": "dist/index.js",
@@ -55,9 +55,9 @@
     "@smui/density": "^8.0.1",
     "@smui/elevation": "^8.0.1",
     "@smui/feature-targeting": "^8.0.1",
-    "@smui/tab": "^8.0.1",
-    "@smui/tab-indicator": "^8.0.1",
-    "@smui/tab-scroller": "^8.0.1",
+    "@smui/tab": "^8.0.2",
+    "@smui/tab-indicator": "^8.0.2",
+    "@smui/tab-scroller": "^8.0.2",
     "@smui/theme": "^8.0.1",
     "@smui/tokens": "^8.0.1",
     "@smui/typography": "^8.0.1"

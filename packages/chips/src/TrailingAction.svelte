@@ -44,8 +44,8 @@
   <span
     use:useActions={icon$use}
     class={classMap({
-      [icon$class]: true,
       'mdc-deprecated-chip-trailing-action__icon': true,
+      [icon$class]: true,
     })}
     {...prefixFilter(restProps, 'icon$')}>{@render children?.()}</span
   >

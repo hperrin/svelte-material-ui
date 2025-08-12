@@ -1,6 +1,6 @@
 {
   "name": "@smui/tab-scroller",
-  "version": "8.0.1",
+  "version": "8.0.2",
   "description": "Svelte Material UI - Tab Scroller",
   "type": "module",
   "main": "dist/index.js",
@@ -59,7 +59,7 @@
     "@smui/common": "^8.0.1",
     "@smui/dom": "^8.0.1",
     "@smui/feature-targeting": "^8.0.1",
-    "@smui/tab": "^8.0.1"
+    "@smui/tab": "^8.0.2"
   },
   "devDependencies": {
     "@tsconfig/svelte": "^5.0.4",

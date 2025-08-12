@@ -36,9 +36,9 @@
 >
   <div
     class={classMap({
-      [surface$class]: true,
       'mdc-tooltip__surface': true,
       'mdc-tooltip__surface-animation': true,
+      [surface$class]: true,
     })}
     style={Object.entries(surfaceAnimationStyles)
       .map(([name, value]) => `${name}: ${value};`)

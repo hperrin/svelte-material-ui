@@ -28,9 +28,9 @@ If you need help installing or using SMUI, join the [Discord server](https://dis
 
 # Svelte 5
 
-SMUI v8 requires Svelte 5. This is the documentation for v8, which is still in development (and is currently in a prerelease state).
+SMUI v8 requires Svelte 5. This is the documentation for SMUI v8.
 
-If you are using Svelte 4, you can use SMUI v7, which is the current stable version. Check out the [v7 branch](https://github.com/hperrin/svelte-material-ui/tree/v7) for the current docs.
+If you are using Svelte 4, you can use SMUI v7, which is the last version to support Svelte 4. Check out the [v7 branch](https://github.com/hperrin/svelte-material-ui/tree/v7) for the current docs.
 
 # Migration
 

@@ -12,8 +12,8 @@
   <div
     use:useActions={trailing$use}
     class={classMap({
-      [trailing$class]: true,
       'mdc-data-table__pagination-trailing': true,
+      [trailing$class]: true,
     })}
     {...prefixFilter(restProps, 'trailing$')}
   >

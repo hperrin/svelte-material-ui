@@ -16,10 +16,10 @@
     bind:this={content}
     use:useActions={content$use}
     class={classMap({
-      [content$class]: true,
       'mdc-tab-indicator__content': true,
       'mdc-tab-indicator__content--underline': type === 'underline',
       'mdc-tab-indicator__content--icon': type === 'icon',
+      [content$class]: true,
     })}
     style={Object.entries(contentStyles)
       .map(([name, value]) => `${name}: ${value};`)

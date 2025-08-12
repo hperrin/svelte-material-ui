@@ -1,6 +1,6 @@
 {
   "name": "@smui/switch",
-  "version": "8.0.1",
+  "version": "8.0.2",
   "description": "Svelte Material UI - Switch",
   "type": "module",
   "main": "dist/index.js",

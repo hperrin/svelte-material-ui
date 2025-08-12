@@ -72,8 +72,8 @@
       <input
         bind:this={inputStart}
         class={classMap({
-          [input$class]: true,
           'mdc-slider__input': true,
+          [input$class]: true,
         })}
         type="range"
         {disabled}
@@ -124,8 +124,8 @@
       <input
         bind:this={input}
         class={classMap({
-          [input$class]: true,
           'mdc-slider__input': true,
+          [input$class]: true,
         })}
         type="range"
         {disabled}
@@ -178,8 +178,8 @@
       <input
         bind:this={input}
         class={classMap({
-          [input$class]: true,
           'mdc-slider__input': true,
+          [input$class]: true,
         })}
         type="range"
         {disabled}

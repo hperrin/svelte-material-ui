@@ -1,6 +1,6 @@
 {
   "name": "@smui/checkbox",
-  "version": "8.0.1",
+  "version": "8.0.2",
   "description": "Svelte Material UI - Checkbox",
   "type": "module",
   "main": "dist/index.js",

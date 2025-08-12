@@ -24,8 +24,8 @@
   <Set
     bind:chips
     class={classMap({
-      [chipSet$class]: true,
       'smui-chip-input__chip-set': true,
+      [chipSet$class]: true,
     })}
     input
     nonInteractive={disabled}
@@ -57,8 +57,8 @@
   <Autocomplete
     bind:this={autocomplete}
     class={classMap({
-      [autocomplete$class]: true,
       'smui-chip-input__autocomplete': true,
+      [autocomplete$class]: true,
     })}
     combobox={autocomplete$combobox}
     showMenuWithNoInput={false}
@@ -76,8 +76,8 @@
   >
     <Textfield
       class={classMap({
-        [textfield$class]: true,
         'smui-chip-input__textfield': true,
+        [textfield$class]: true,
       })}
       {input}
       {floatingLabel}
@@ -95,17 +95,13 @@
         bind:this={input}
         bind:value={text}
         {...prefixFilter(restProps, 'input$')}
-        onkeydown={(e) => {
-          handleInputKeydown(e);
-          restProps.input$onkeydown?.(e);
-        }}
       />
     </Textfield>
     {#snippet loading()}
       <ListText
         class={classMap({
-          [loading$class]: true,
           'smui-chip-input__loading': true,
+          [loading$class]: true,
         })}
         {...prefixFilter(restProps, 'loading$')}
       >
@@ -118,6 +114,8 @@
 
 <script lang="ts">
   import type { ComponentProps, Snippet } from 'svelte';
+  import { onMount } from 'svelte';
+  import { on } from 'svelte/events';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
@@ -319,6 +317,26 @@
 
   const chipSetProps = $derived({
     ...(key != null ? { key } : {}),
+  });
+
+  onMount(() => {
+    const el = input?.getElement();
+
+    if (el) {
+      return on(
+        el,
+        'keydown',
+        (e) => {
+          handleInputKeydown(e);
+          restProps.input$onkeydown?.(
+            e as KeyboardEvent & {
+              currentTarget: EventTarget & HTMLInputElement;
+            },
+          );
+        },
+        { passive: false },
+      );
+    }
   });
 
   function handleAutocompleteSelected(event: CustomEvent<any>) {
