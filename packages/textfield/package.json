@@ -1,6 +1,6 @@
 {
   "name": "@smui/textfield",
-  "version": "8.0.1",
+  "version": "8.0.2",
   "description": "Svelte Material UI - Text Field",
   "type": "module",
   "svelte": "./dist/index.js",

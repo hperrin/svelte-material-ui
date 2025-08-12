@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.0.2](https://github.com/hperrin/svelte-material-ui/compare/v8.0.1...v8.0.2) (2025-08-12)
+
+
+### Bug Fixes
+
+* move class prop classes to end of list for sub-components ([d9ddb12](https://github.com/hperrin/svelte-material-ui/commit/d9ddb12d9c473b3f6527e7989a5cf9ab03592c5b)), closes [#698](https://github.com/hperrin/svelte-material-ui/issues/698)
+
+
+
+
+
 ## [8.0.1](https://github.com/hperrin/svelte-material-ui/compare/v8.0.0...v8.0.1) (2025-07-18)
 
 
