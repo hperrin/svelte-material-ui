@@ -31,8 +31,8 @@
     <div
       bind:this={content}
       class={classMap({
-        [content$class]: true,
         'mdc-banner__content': true,
+        [content$class]: true,
       })}
       role="alertdialog"
       aria-live="assertive"
@@ -41,16 +41,16 @@
       {#if icon || label}
         <div
           class={classMap({
-            [textWrapper$class]: true,
             'mdc-banner__graphic-text-wrapper': true,
+            [textWrapper$class]: true,
           })}
           {...prefixFilter(restProps, 'textWrapper$')}
         >
           {#if icon}
             <div
               class={classMap({
-                [graphic$class]: true,
                 'mdc-banner__graphic': true,
+                [graphic$class]: true,
               })}
               role="img"
               {...altProp}

@@ -60,8 +60,8 @@
     bind:this={selectAnchor}
     use:useActions={anchor$use}
     class={classMap({
-      [anchor$class]: true,
       'mdc-select__anchor': true,
+      [anchor$class]: true,
     })}
     aria-required={required ? 'true' : undefined}
     aria-disabled={disabled ? 'true' : undefined}
@@ -135,8 +135,8 @@
     <span
       use:useActions={selectedTextContainer$use}
       class={classMap({
-        [selectedTextContainer$class]: true,
         'mdc-select__selected-text-container': true,
+        [selectedTextContainer$class]: true,
       })}
       {...prefixFilter(restProps, 'selectedTextContainer$')}
     >
@@ -144,8 +144,8 @@
         use:useActions={selectedText$use}
         id={inputId + '-smui-selected-text'}
         class={classMap({
-          [selectedText$class]: true,
           'mdc-select__selected-text': true,
+          [selectedText$class]: true,
         })}
         role="button"
         aria-haspopup="listbox"
@@ -158,8 +158,8 @@
     <span
       use:useActions={dropdownIcon$use}
       class={classMap({
-        [dropdownIcon$class]: true,
         'mdc-select__dropdown-icon': true,
+        [dropdownIcon$class]: true,
       })}
       {...prefixFilter(restProps, 'dropdownIcon$')}
     >
@@ -192,9 +192,9 @@
 
   <Menu
     class={classMap({
-      [menu$class]: true,
       'mdc-select__menu': true,
       ...menuClasses,
+      [menu$class]: true,
     })}
     id={menuId}
     fullWidth

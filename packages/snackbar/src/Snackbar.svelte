@@ -25,8 +25,8 @@
   <div
     use:useActions={surface$use}
     class={classMap({
-      [surface$class]: true,
       'mdc-snackbar__surface': true,
+      [surface$class]: true,
     })}
     role="status"
     aria-relevant="additions"

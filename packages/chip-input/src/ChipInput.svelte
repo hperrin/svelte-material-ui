@@ -24,8 +24,8 @@
   <Set
     bind:chips
     class={classMap({
-      [chipSet$class]: true,
       'smui-chip-input__chip-set': true,
+      [chipSet$class]: true,
     })}
     input
     nonInteractive={disabled}
@@ -57,8 +57,8 @@
   <Autocomplete
     bind:this={autocomplete}
     class={classMap({
-      [autocomplete$class]: true,
       'smui-chip-input__autocomplete': true,
+      [autocomplete$class]: true,
     })}
     combobox={autocomplete$combobox}
     showMenuWithNoInput={false}
@@ -76,8 +76,8 @@
   >
     <Textfield
       class={classMap({
-        [textfield$class]: true,
         'smui-chip-input__textfield': true,
+        [textfield$class]: true,
       })}
       {input}
       {floatingLabel}
@@ -104,8 +104,8 @@
     {#snippet loading()}
       <ListText
         class={classMap({
-          [loading$class]: true,
           'smui-chip-input__loading': true,
+          [loading$class]: true,
         })}
         {...prefixFilter(restProps, 'loading$')}
       >

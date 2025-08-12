@@ -45,8 +45,8 @@
     bind:this={content}
     use:useActions={content$use}
     class={classMap({
-      [content$class]: true,
       'mdc-tab__content': true,
+      [content$class]: true,
     })}
     {...prefixFilter(restProps, 'content$')}
   >

@@ -26,8 +26,8 @@
   <input
     use:useActions={input$use}
     class={classMap({
-      [input$class]: true,
       'mdc-radio__native-control': true,
+      [input$class]: true,
     })}
     type="radio"
     {...inputProps}

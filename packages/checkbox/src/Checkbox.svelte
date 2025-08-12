@@ -38,8 +38,8 @@
     bind:this={checkbox}
     use:useActions={input$use}
     class={classMap({
-      [input$class]: true,
       'mdc-checkbox__native-control': true,
+      [input$class]: true,
     })}
     type="checkbox"
     {...inputProps}

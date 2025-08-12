@@ -49,15 +49,15 @@
 >
   <div
     class={classMap({
-      [container$class]: true,
       'mdc-dialog__container': true,
+      [container$class]: true,
     })}
     {...prefixFilter(restProps, 'container$')}
   >
     <div
       class={classMap({
-        [surface$class]: true,
         'mdc-dialog__surface': true,
+        [surface$class]: true,
       })}
       role="alertdialog"
       aria-modal="true"
