@@ -37,7 +37,7 @@
 
     // And we can push our own object containing the text.
     items.push({
-      id: Math.max(...items.map((tag) => tag.id)) + 1,
+      id: items.length ? Math.max(...items.map((tag) => tag.id)) + 1 : 1,
       text: event.detail.text,
     });
     value = '';
