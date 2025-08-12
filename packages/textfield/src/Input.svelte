@@ -143,7 +143,6 @@
       case 'range':
         value = toNumber(e.currentTarget.value);
         break;
-      // Fall through.
       default:
         value = e.currentTarget.value;
         break;

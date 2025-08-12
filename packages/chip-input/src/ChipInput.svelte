@@ -95,10 +95,6 @@
         bind:this={input}
         bind:value={text}
         {...prefixFilter(restProps, 'input$')}
-        onkeydown={(e) => {
-          handleInputKeydown(e);
-          restProps.input$onkeydown?.(e);
-        }}
       />
     </Textfield>
     {#snippet loading()}
@@ -118,6 +114,8 @@
 
 <script lang="ts">
   import type { ComponentProps, Snippet } from 'svelte';
+  import { onMount } from 'svelte';
+  import { on } from 'svelte/events';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
@@ -319,6 +317,26 @@
 
   const chipSetProps = $derived({
     ...(key != null ? { key } : {}),
+  });
+
+  onMount(() => {
+    const el = input?.getElement();
+
+    if (el) {
+      return on(
+        el,
+        'keydown',
+        (e) => {
+          handleInputKeydown(e);
+          restProps.input$onkeydown?.(
+            e as KeyboardEvent & {
+              currentTarget: EventTarget & HTMLInputElement;
+            },
+          );
+        },
+        { passive: false },
+      );
+    }
   });
 
   function handleAutocompleteSelected(event: CustomEvent<any>) {
