@@ -40,14 +40,14 @@
     "packages/*"
   ],
   "devDependencies": {
-    "@commitlint/cli": "^19.6.0",
-    "@commitlint/config-conventional": "^19.6.0",
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
     "husky": "^9.1.7",
-    "lerna": "^8.1.9",
-    "lint-staged": "^15.2.10",
-    "prettier": "^3.3.3",
-    "prettier-plugin-svelte": "^3.2.8",
+    "lerna": "^8.2.3",
+    "lint-staged": "^16.1.5",
+    "prettier": "^3.6.2",
+    "prettier-plugin-svelte": "^3.4.0",
     "sass": "^1.81.0",
-    "svelte": "^5.2.4"
+    "svelte": "^5.38.1"
   }
 }
