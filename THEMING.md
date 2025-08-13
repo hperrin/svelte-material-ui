@@ -55,6 +55,62 @@ Or if you don't need dark mode support.
 
 **Important: The smui-theme compiler will only include the Sass for the packages installed when it is run. If you install a new SMUI package, you should run `npm run prepare` to rebuild the CSS.**
 
+### Improved Caching with Vite
+
+Most SvelteKit apps are built using [Vite](https://vitejs.dev). If you're using Vite, you can use its [Static Asset Handling](https://vitejs.dev/guide/assets) to include your SMUI theme in Vite's build output instead of serving it from a static path. This is helpful, since it helps ensure if you make changes to your SMUI theme, your visitors will cache your updated CSS instead of using stale styles.
+
+To leverage this approach, you can change the previous example to build the themes to the `src/lib` folder, adjusting the source/destination files as needed.
+
+```
+"prepare": "npm run smui-theme-light && npm run smui-theme-dark",
+"smui-theme-light": "smui-theme compile src/lib/smui.css -i src/theme",
+"smui-theme-dark": "smui-theme compile src/lib/smui-dark.css -i src/theme/dark",
+```
+
+Or if you don't need dark mode support.
+
+```
+"prepare": "smui-theme compile src/lib/smui.css -i src/theme",
+```
+
+Now run `npm run prepare` to build the CSS file(s), then add them in your root layout (usually `src/routes/+layout.svelte`) inside a `svelte:head` tag. Something like this, adjusting the paths as needed.
+
+```html
+<script>
+  // "?url" tells Vite to treat the URL of the file as the default export.
+  import Smui from '$lib/smui.css?url';
+  import SmuiDark from '$lib/smui-dark.css?url';
+</script>
+
+<!-- SMUI Styles -->
+<svelte:head>
+  <link rel="stylesheet" href="{Smui}" media="(prefers-color-scheme: light)" />
+  <link
+    rel="stylesheet"
+    href="{SmuiDark}"
+    media="screen and (prefers-color-scheme: dark)"
+  />
+</svelte:head>
+```
+
+Or if you don't need dark mode support.
+
+```html
+<script>
+  // "?url" tells Vite to treat the URL of the file as the default export.
+  import Smui from '$lib/smui.css?url';
+</script>
+
+<!-- SMUI Styles -->
+<svelte:head>
+  <link rel="stylesheet" href="{Smui}" />
+</svelte:head>
+```
+
+During development, the URLs won't change, it will be something like /src/lib/smui.css. However, when you build for production, Vite will insert a hash into the file name, and it will become something like /\_app/immutable/assets/smui.CFqnE549.css. This will allow browsers to cache your CSS indefinitely, but also reliably receive new CSS when your theme changes.
+
+**Important: The smui-theme compiler will only include the Sass for the packages installed when it is run. If you install a new SMUI package, you should run `npm run prepare` to rebuild the CSS.**
+
 ### Theme Variables
 
 The most important part of theming (and probably the only one you want) is setting the [theme colors](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-theme#color-scheme). For the Material color palette, you can @use ["@material/theme/color-palette"](https://github.com/material-components/material-components-web/blob/v14.0.0/packages/mdc-theme/_color-palette.scss). You might also want to style the [border radius variables](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-shape#sass-variables).
