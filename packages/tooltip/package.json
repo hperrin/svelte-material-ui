@@ -1,6 +1,6 @@
 {
   "name": "@smui/tooltip",
-  "version": "8.0.2",
+  "version": "8.0.3",
   "description": "Svelte Material UI - Tooltip",
   "type": "module",
   "main": "dist/index.js",
@@ -50,7 +50,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@material/tooltip": "^14.0.0",
-    "@smui/common": "^8.0.1"
+    "@smui/common": "^8.0.3"
   },
   "devDependencies": {
     "@tsconfig/svelte": "^5.0.4",

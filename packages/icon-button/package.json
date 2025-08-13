@@ -1,6 +1,6 @@
 {
   "name": "@smui/icon-button",
-  "version": "8.0.1",
+  "version": "8.0.3",
   "description": "Svelte Material UI - Icon Button",
   "type": "module",
   "main": "dist/index.js",
@@ -51,8 +51,8 @@
   "dependencies": {
     "@material/density": "^14.0.0",
     "@material/icon-button": "^14.0.0",
-    "@smui/common": "^8.0.1",
-    "@smui/ripple": "^8.0.1"
+    "@smui/common": "^8.0.3",
+    "@smui/ripple": "^8.0.3"
   },
   "devDependencies": {
     "@tsconfig/svelte": "^5.0.4",
