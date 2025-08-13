@@ -1,6 +1,6 @@
 {
   "name": "@smui/layout-grid",
-  "version": "8.0.1",
+  "version": "8.0.3",
   "description": "Svelte Material UI - Layout Grid",
   "type": "module",
   "main": "dist/index.js",
@@ -49,13 +49,13 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@smui/common": "^8.0.1"
+    "@smui/common": "^8.0.3"
   },
   "devDependencies": {
     "@tsconfig/svelte": "^5.0.4",
     "sass": "^1.83.0",
-    "svelte-check": "^4.1.1",
+    "svelte-check": "^4.3.1",
     "tslib": "^2.8.1",
-    "typescript": "^5.7.2"
+    "typescript": "^5.9.2"
   }
 }

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.0.3](https://github.com/hperrin/svelte-material-ui/compare/v8.0.2...v8.0.3) (2025-08-13)
+
+**Note:** Version bump only for package @smui-extra/bottom-app-bar
+
+
+
+
+
 ## [8.0.1](https://github.com/hperrin/svelte-material-ui/compare/v8.0.0...v8.0.1) (2025-07-18)
 
 

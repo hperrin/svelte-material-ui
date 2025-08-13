@@ -1,6 +1,6 @@
 {
   "name": "@smui/theme",
-  "version": "8.0.1",
+  "version": "8.0.3",
   "description": "Svelte Material UI - Theme",
   "exports": {
     "./package.json": {
@@ -37,7 +37,7 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@smui/feature-targeting": "^8.0.1"
+    "@smui/feature-targeting": "^8.0.3"
   },
   "devDependencies": {
     "sass": "^1.83.0"

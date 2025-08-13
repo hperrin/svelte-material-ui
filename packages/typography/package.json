@@ -1,6 +1,6 @@
 {
   "name": "@smui/typography",
-  "version": "8.0.1",
+  "version": "8.0.3",
   "description": "Svelte Material UI - Typography",
   "exports": {
     "./package.json": {
@@ -37,8 +37,8 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@smui/feature-targeting": "^8.0.1",
-    "@smui/theme": "^8.0.1"
+    "@smui/feature-targeting": "^8.0.3",
+    "@smui/theme": "^8.0.3"
   },
   "devDependencies": {
     "sass": "^1.83.0"

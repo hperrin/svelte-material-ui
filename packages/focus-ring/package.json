@@ -1,6 +1,6 @@
 {
   "name": "@smui/focus-ring",
-  "version": "8.0.1",
+  "version": "8.0.3",
   "description": "Svelte Material UI - Focus Ring",
   "exports": {
     "./package.json": {
@@ -35,11 +35,11 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@smui/dom": "^8.0.1",
-    "@smui/feature-targeting": "^8.0.1",
-    "@smui/rtl": "^8.0.1",
-    "@smui/shape": "^8.0.1",
-    "@smui/theme": "^8.0.1"
+    "@smui/dom": "^8.0.3",
+    "@smui/feature-targeting": "^8.0.3",
+    "@smui/rtl": "^8.0.3",
+    "@smui/shape": "^8.0.3",
+    "@smui/theme": "^8.0.3"
   },
   "devDependencies": {
     "sass": "^1.83.0"

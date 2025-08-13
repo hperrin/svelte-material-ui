@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.0.3](https://github.com/hperrin/svelte-material-ui/compare/v8.0.2...v8.0.3) (2025-08-13)
+
+
+### Bug Fixes
+
+* update html attribute types to account for svelte attachments ([7fa516d](https://github.com/hperrin/svelte-material-ui/commit/7fa516dcbeac7e7abbdcf856a85e568d0382f985)), closes [#695](https://github.com/hperrin/svelte-material-ui/issues/695)
+
+
+
+
+
 ## [8.0.2](https://github.com/hperrin/svelte-material-ui/compare/v8.0.1...v8.0.2) (2025-08-12)
 
 

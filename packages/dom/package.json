@@ -1,6 +1,6 @@
 {
   "name": "@smui/dom",
-  "version": "8.0.1",
+  "version": "8.0.3",
   "description": "Svelte Material UI - DOM",
   "type": "module",
   "main": "dist/index.js",
@@ -73,8 +73,8 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@smui/feature-targeting": "^8.0.1",
-    "@smui/rtl": "^8.0.1"
+    "@smui/feature-targeting": "^8.0.3",
+    "@smui/rtl": "^8.0.3"
   },
   "devDependencies": {
     "@tsconfig/svelte": "^5.0.4",

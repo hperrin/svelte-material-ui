@@ -1,6 +1,6 @@
 {
   "name": "@smui/progress-indicator",
-  "version": "8.0.1",
+  "version": "8.0.3",
   "description": "Svelte Material UI - Progress Indicator",
   "type": "module",
   "main": "dist/index.js",

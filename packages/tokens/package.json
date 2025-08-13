@@ -1,6 +1,6 @@
 {
   "name": "@smui/tokens",
-  "version": "8.0.1",
+  "version": "8.0.3",
   "description": "Svelte Material UI - Tokens",
   "exports": {
     "./package.json": {
@@ -35,7 +35,7 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@smui/elevation": "^8.0.1"
+    "@smui/elevation": "^8.0.3"
   },
   "devDependencies": {
     "sass": "^1.83.0"
