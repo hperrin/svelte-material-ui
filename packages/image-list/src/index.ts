@@ -2,10 +2,10 @@
 
 import ImageList from './ImageList.svelte';
 
-import Item from './Item.js';
-import ImageAspectContainer from './ImageAspectContainer.js';
-import Image from './Image.js';
-import Supporting from './Supporting.js';
+import Item from './Item.svelte';
+import ImageAspectContainer from './ImageAspectContainer.svelte';
+import Image from './Image.svelte';
+import Supporting from './Supporting.svelte';
 import { Label } from '@smui/common';
 
 export default ImageList;

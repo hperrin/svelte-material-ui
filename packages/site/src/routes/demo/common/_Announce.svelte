@@ -8,11 +8,11 @@
     style="width: 100%; margin: 1em 0 .5em;"
   />
   <div style="text-align: end;">
-    <Button on:click={loremIpsum}>
+    <Button onclick={loremIpsum}>
       <Label>Fill Lorem Ipsum</Label>
     </Button>
     <Button
-      on:click={() => announce(text, { priority: 'assertive' })}
+      onclick={() => announce(text, { priority: 'assertive' })}
       variant="raised"
     >
       <Label>Speak</Label>
@@ -25,7 +25,7 @@
   import Textfield from '@smui/textfield';
   import { announce } from '@smui/common/internal';
 
-  let text = '';
+  let text = $state('');
 
   function loremIpsum() {
     text =

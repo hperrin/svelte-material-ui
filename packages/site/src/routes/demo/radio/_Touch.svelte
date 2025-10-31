@@ -2,7 +2,9 @@
   {#each ['On', 'Off'] as option}
     <FormField>
       <Radio bind:group={onoff} value={option} touch />
-      <span slot="label">{option}</span>
+      {#snippet label()}
+        {option}
+      {/snippet}
     </FormField>
   {/each}
 </div>
@@ -13,7 +15,7 @@
   import Radio from '@smui/radio';
   import FormField from '@smui/form-field';
 
-  let onoff = 'On';
+  let onoff = $state('On');
 </script>
 
 <style>

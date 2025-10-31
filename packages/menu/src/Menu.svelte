@@ -1,37 +1,43 @@
+<svelte:options runes />
+
 <MenuSurface
   bind:this={element}
-  use={usePass}
+  {use}
   class={classMap({
-    [className]: true,
     'mdc-menu': true,
+    [className]: true,
   })}
   bind:open
-  on:SMUIMenuSurface:mount={handleMenuSurfaceAccessor}
-  on:SMUIList:mount={handleListAccessor}
-  on:SMUIMenuSurface:opened={() =>
-    instance && instance.handleMenuSurfaceOpened()}
-  on:keydown={handleKeydown}
-  on:SMUIList:action={(event) =>
-    instance &&
-    instance.handleItemAction(
-      listAccessor.getOrderedList()[event.detail.index].element
-    )}
-  {...$$restProps}><slot /></MenuSurface
+  bind:anchorElement
+  {managed}
+  {...restProps}
+  onkeydown={(e) => {
+    handleKeydown(e);
+    restProps.onkeydown?.(e);
+  }}
+  onSMUIMenuSurfaceOpened={(e) => {
+    if (instance) {
+      instance.handleMenuSurfaceOpened();
+    }
+    restProps.onSMUIMenuSurfaceOpened?.(e);
+  }}
+  onSMUIListAction={(e) => {
+    if (instance && listAccessor) {
+      instance.handleItemAction(
+        listAccessor.getOrderedList()[e.detail.index].element,
+      );
+    }
+    restProps.onSMUIListAction?.(e);
+  }}>{@render children?.()}</MenuSurface
 >
 
 <script lang="ts">
-  import type { ComponentProps } from 'svelte';
   import { MDCMenuFoundation, cssClasses } from '@material/menu';
   import { ponyfill } from '@material/dom';
-  import { onMount } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
+  import type { ComponentProps, Snippet } from 'svelte';
+  import { onMount, getContext, setContext } from 'svelte';
   import type { ActionArray } from '@smui/common/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    dispatch,
-  } from '@smui/common/internal';
+  import { classMap, dispatch } from '@smui/common/internal';
   import type { SMUIListAccessor } from '@smui/list';
   import type { SMUIMenuSurfaceAccessor } from '@smui/menu-surface';
   import MenuSurface from '@smui/menu-surface';
@@ -41,81 +47,162 @@
   const { closest } = ponyfill;
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * Whether the menu is open.
+     */
     open?: boolean;
+    /**
+     * A managed menu means you completely control the open state. The component
+     * will never alter it on its own.
+     */
+    managed?: boolean;
+
+    children?: Snippet;
   };
-  type $$Props = OwnProps & Omit<ComponentProps<MenuSurface>, keyof OwnProps>;
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
-
-  export let use: ActionArray = [];
-  $: usePass = [forwardEvents, ...use] as ActionArray;
-  let className = '';
-  export { className as class };
-  export let open = false;
+  let {
+    use = [],
+    class: className = '',
+    open = $bindable(false),
+    anchorElement = $bindable(),
+    managed = false,
+    children,
+    ...restProps
+  }: OwnProps &
+    Omit<ComponentProps<typeof MenuSurface>, keyof OwnProps> = $props();
 
   let element: MenuSurface;
-  let instance: MDCMenuFoundation;
-  let menuSurfaceAccessor: SMUIMenuSurfaceAccessor;
-  let listAccessor: SMUIListAccessor;
+  let instance: MDCMenuFoundation | undefined = $state();
+  let menuSurfaceAccessor: SMUIMenuSurfaceAccessor | undefined = $state();
+  let listAccessor: SMUIListAccessor | undefined = $state();
+
+  setContext('SMUI:menu-surface:mount', (accessor: SMUIMenuSurfaceAccessor) => {
+    if (!menuSurfaceAccessor) {
+      menuSurfaceAccessor = accessor;
+    }
+  });
+  const SMUIListMount = getContext<
+    ((accessor: SMUIListAccessor) => void) | undefined
+  >('SMUI:list:mount');
+  setContext('SMUI:list:mount', (accessor: SMUIListAccessor) => {
+    if (!listAccessor) {
+      listAccessor = accessor;
+    }
+    SMUIListMount && SMUIListMount(accessor);
+  });
+
+  const SMUIMenuMount = getContext<
+    ((accessor: MDCMenuFoundation) => void) | undefined
+  >('SMUI:menu:mount');
+  const SMUIMenuUnmount = getContext<
+    ((accessor: MDCMenuFoundation) => void) | undefined
+  >('SMUI:menu:unmount');
 
   onMount(() => {
     instance = new MDCMenuFoundation({
       addClassToElementAtIndex: (index, className) => {
+        if (listAccessor == null) {
+          throw new Error('List accessor is undefined.');
+        }
         listAccessor.addClassForElementIndex(index, className);
       },
       removeClassFromElementAtIndex: (index, className) => {
+        if (listAccessor == null) {
+          throw new Error('List accessor is undefined.');
+        }
         listAccessor.removeClassForElementIndex(index, className);
       },
       addAttributeToElementAtIndex: (index, attr, value) => {
+        if (listAccessor == null) {
+          throw new Error('List accessor is undefined.');
+        }
         listAccessor.setAttributeForElementIndex(index, attr, value);
       },
       removeAttributeFromElementAtIndex: (index, attr) => {
+        if (listAccessor == null) {
+          throw new Error('List accessor is undefined.');
+        }
         listAccessor.removeAttributeForElementIndex(index, attr);
       },
-      getAttributeFromElementAtIndex: (index, attr) =>
-        listAccessor.getAttributeFromElementIndex(index, attr),
+      getAttributeFromElementAtIndex: (index, attr) => {
+        if (listAccessor == null) {
+          throw new Error('List accessor is undefined.');
+        }
+        return listAccessor.getAttributeFromElementIndex(index, attr);
+      },
       elementContainsClass: (element, className) =>
         element.classList.contains(className),
       closeSurface: (skipRestoreFocus) => {
-        menuSurfaceAccessor.closeProgrammatic(skipRestoreFocus);
-        dispatch(getElement(), 'SMUIMenu:closedProgrammatically');
+        if (!managed) {
+          menuSurfaceAccessor?.closeProgrammatic(skipRestoreFocus);
+          dispatch(getElement(), 'SMUIMenuClosedProgrammatically');
+        }
       },
-      getElementIndex: (element) =>
-        listAccessor
+      getElementIndex: (element) => {
+        if (listAccessor == null) {
+          throw new Error('List accessor is undefined.');
+        }
+        return listAccessor
           .getOrderedList()
           .map((accessor) => accessor.element)
-          .indexOf(element),
-      notifySelected: (evtData) =>
-        dispatch(
-          getElement(),
-          'SMUIMenu:selected',
-          {
-            index: evtData.index,
-            item: listAccessor.getOrderedList()[evtData.index].element,
-          },
-          undefined,
-          true
-        ),
-      getMenuItemCount: () => listAccessor.items.length,
-      focusItemAtIndex: (index) => listAccessor.focusItemAtIndex(index),
-      focusListRoot: () =>
-        'focus' in listAccessor.element &&
-        (listAccessor.element as HTMLInputElement).focus(),
-      isSelectableItemAtIndex: (index) =>
-        !!closest(
+          .indexOf(element);
+      },
+      notifySelected: (evtData) => {
+        if (listAccessor == null) {
+          throw new Error('List accessor is undefined.');
+        }
+        dispatch(getElement(), 'SMUIMenuSelected', {
+          index: evtData.index,
+          item: listAccessor.getOrderedList()[evtData.index].element,
+        });
+      },
+      getMenuItemCount: () => {
+        if (listAccessor == null) {
+          throw new Error('List accessor is undefined.');
+        }
+        return listAccessor.items.length;
+      },
+      focusItemAtIndex: (index) => {
+        if (listAccessor == null) {
+          throw new Error('List accessor is undefined.');
+        }
+        listAccessor.focusItemAtIndex(index);
+      },
+      focusListRoot: () => {
+        if (listAccessor == null) {
+          throw new Error('List accessor is undefined.');
+        }
+        if ('focus' in listAccessor.element) {
+          (listAccessor.element as HTMLInputElement).focus();
+        }
+      },
+      isSelectableItemAtIndex: (index) => {
+        if (listAccessor == null) {
+          throw new Error('List accessor is undefined.');
+        }
+        return !!closest(
           listAccessor.getOrderedList()[index].element,
-          `.${cssClasses.MENU_SELECTION_GROUP}`
-        ),
+          `.${cssClasses.MENU_SELECTION_GROUP}`,
+        );
+      },
       getSelectedSiblingOfItemAtIndex: (index) => {
+        if (listAccessor == null) {
+          throw new Error('List accessor is undefined.');
+        }
         const orderedList = listAccessor.getOrderedList();
         const selectionGroupEl = closest(
           orderedList[index].element,
-          `.${cssClasses.MENU_SELECTION_GROUP}`
+          `.${cssClasses.MENU_SELECTION_GROUP}`,
         );
         const selectedItemEl = selectionGroupEl?.querySelector(
-          `.${cssClasses.MENU_SELECTED_LIST_ITEM}`
+          `.${cssClasses.MENU_SELECTED_LIST_ITEM}`,
         );
         return selectedItemEl
           ? orderedList.map((item) => item.element).indexOf(selectedItemEl)
@@ -123,31 +210,21 @@
       },
     });
 
-    dispatch(getElement(), 'SMUIMenu:mount', instance);
+    SMUIMenuMount && SMUIMenuMount(instance);
 
     instance.init();
 
     return () => {
-      instance.destroy();
+      if (SMUIMenuUnmount && instance) {
+        SMUIMenuUnmount(instance);
+      }
+
+      instance?.destroy();
     };
   });
 
   function handleKeydown(event: Event) {
     instance && instance.handleKeydown(event as KeyboardEvent);
-  }
-
-  function handleMenuSurfaceAccessor(
-    event: CustomEvent<SMUIMenuSurfaceAccessor>
-  ) {
-    if (!menuSurfaceAccessor) {
-      menuSurfaceAccessor = event.detail;
-    }
-  }
-
-  function handleListAccessor(event: CustomEvent<SMUIListAccessor>) {
-    if (!listAccessor) {
-      listAccessor = event.detail;
-    }
   }
 
   export function isOpen() {
@@ -159,10 +236,16 @@
   }
 
   export function setDefaultFocusState(focusState: DefaultFocusState) {
+    if (instance == null) {
+      throw new Error('Instance is undefined.');
+    }
     instance.setDefaultFocusState(focusState);
   }
 
   export function getSelectedIndex() {
+    if (instance == null) {
+      throw new Error('Instance is undefined.');
+    }
     return instance.getSelectedIndex();
   }
 

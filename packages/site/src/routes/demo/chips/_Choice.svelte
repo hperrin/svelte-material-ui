@@ -1,20 +1,22 @@
-<Set chips={choices} let:chip choice bind:selected>
-  <Chip {chip}>
-    <Text>{chip}</Text>
-  </Chip>
+<Set chips={choices} choice bind:selected>
+  {#snippet chip(chip)}
+    <Chip {chip}>
+      <Text>{chip}</Text>
+    </Chip>
+  {/snippet}
 </Set>
 
 <div style="margin-top: 1em;">Programmatically select:</div>
-<Button on:click={() => (selected = 'Morning')}>
+<Button onclick={() => (selected = 'Morning')}>
   <Label>Morning</Label>
 </Button>
-<Button on:click={() => (selected = 'Afternoon')}>
+<Button onclick={() => (selected = 'Afternoon')}>
   <Label>Afternoon</Label>
 </Button>
-<Button on:click={() => (selected = 'Evening')}>
+<Button onclick={() => (selected = 'Evening')}>
   <Label>Evening</Label>
 </Button>
-<Button on:click={() => (selected = 'Night')}>
+<Button onclick={() => (selected = 'Night')}>
   <Label>Night</Label>
 </Button>
 
@@ -25,5 +27,5 @@
   import Button, { Label } from '@smui/button';
 
   let choices = ['Morning', 'Afternoon', 'Evening', 'Night'];
-  let selected = 'Morning';
+  let selected = $state('Morning');
 </script>

@@ -1,39 +1,41 @@
+<svelte:options runes />
+
 <label
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
-    [className]: true,
     'mdc-deprecated-list-item__text': true,
+    [className]: true,
   })}
   for={inputProps ? inputProps.id : undefined}
-  {...$$restProps}><slot /></label
+  {...restProps}>{@render children?.()}</label
 >
 
 <script lang="ts">
+  import type { Snippet } from 'svelte';
   import { getContext } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    useActions,
-  } from '@smui/common/internal';
+  import { classMap, useActions } from '@smui/common/internal';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+
+    children?: Snippet;
   };
-  type $$Props = OwnProps & SmuiAttrs<'label', keyof OwnProps>;
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
-
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
+  let {
+    use = [],
+    class: className = '',
+    children,
+    ...restProps
+  }: OwnProps & SmuiAttrs<'label', keyof OwnProps> = $props();
 
   let element: HTMLLabelElement;
   let inputProps =

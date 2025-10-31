@@ -7,6 +7,7 @@
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 300 300"
   >
+    {@html `
     <title>SVG Logo</title>
     <desc
       >Designed for the SVG Logo Contest in 2006 by Harvey Rayner, and adopted
@@ -95,11 +96,12 @@
       xmlns:xlink="http://www.w3.org/1999/xlink"
     />
     <use xlink:href="#SVG" xmlns:xlink="http://www.w3.org/1999/xlink" />
+    `}
   </SmuiElement>
 </div>
 
 <div style="display: flex; align-items: center;">
-  <IconButton on:click={() => clicked++}>
+  <IconButton onclick={() => clicked++}>
     <Icon tag="svg" viewBox="0 0 24 24">
       <path fill="currentColor" d={mdiAccount} />
     </Icon>
@@ -113,5 +115,5 @@
   import IconButton, { Icon } from '@smui/icon-button';
   import { SmuiElement } from '@smui/common';
 
-  let clicked = 0;
+  let clicked = $state(0);
 </script>

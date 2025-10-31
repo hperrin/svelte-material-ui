@@ -5,7 +5,9 @@
 
 <FormField>
   <Checkbox bind:checked={liftMeUp} />
-  <span slot="label">You raise me up, so I can stand on mountains!</span>
+  {#snippet label()}
+    You raise me up, so I can stand on mountains!
+  {/snippet}
 </FormField>
 
 <br /><br />
@@ -35,7 +37,7 @@
   import Checkbox from '@smui/checkbox';
   import FormField from '@smui/form-field';
 
-  let liftMeUp = false;
+  let liftMeUp = $state(false);
 </script>
 
 <style>

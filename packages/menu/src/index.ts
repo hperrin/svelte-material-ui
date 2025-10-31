@@ -4,7 +4,7 @@ import Menu from './Menu.svelte';
 export * from './Menu.types.js';
 
 import SelectionGroup from './SelectionGroup.svelte';
-import SelectionGroupIcon from './SelectionGroupIcon.js';
+import SelectionGroupIcon from './SelectionGroupIcon.svelte';
 
 export default Menu;
 

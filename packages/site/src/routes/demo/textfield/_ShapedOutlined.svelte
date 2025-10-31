@@ -6,7 +6,9 @@
       bind:value={valueA}
       label="Label"
     >
-      <HelperText slot="helper">Helper Text</HelperText>
+      {#snippet helper()}
+        <HelperText>Helper Text</HelperText>
+      {/snippet}
     </Textfield>
 
     <pre class="status">Value: {valueA}</pre>
@@ -18,8 +20,12 @@
       bind:value={valueB}
       label="Leading Icon"
     >
-      <Icon class="material-icons" slot="leadingIcon">event</Icon>
-      <HelperText slot="helper">Helper Text</HelperText>
+      {#snippet leadingIcon()}
+        <Icon class="material-icons">event</Icon>
+      {/snippet}
+      {#snippet helper()}
+        <HelperText>Helper Text</HelperText>
+      {/snippet}
     </Textfield>
 
     <pre class="status">Value: {valueB}</pre>
@@ -31,8 +37,12 @@
       bind:value={valueC}
       label="Trailing Icon"
     >
-      <Icon class="material-icons" slot="trailingIcon">delete</Icon>
-      <HelperText slot="helper">Helper Text</HelperText>
+      {#snippet trailingIcon()}
+        <Icon class="material-icons">delete</Icon>
+      {/snippet}
+      {#snippet helper()}
+        <HelperText>Helper Text</HelperText>
+      {/snippet}
     </Textfield>
 
     <pre class="status">Value: {valueC}</pre>
@@ -45,7 +55,9 @@
       bind:value={valueD}
       label="Invalid"
     >
-      <HelperText slot="helper">Helper Text</HelperText>
+      {#snippet helper()}
+        <HelperText>Helper Text</HelperText>
+      {/snippet}
     </Textfield>
 
     <pre class="status">Value: {valueD}</pre>
@@ -57,32 +69,36 @@
   import Icon from '@smui/textfield/icon';
   import HelperText from '@smui/textfield/helper-text';
 
-  let valueA = '';
-  let valueB = '';
-  let valueC = '';
-  let valueD = '';
+  let valueA = $state('');
+  let valueB = $state('');
+  let valueC = $state('');
+  let valueD = $state('');
 </script>
 
 <style>
   *
-    :global(.shaped-outlined
-      .mdc-notched-outline
-      .mdc-notched-outline__leading) {
+    :global(
+      .shaped-outlined .mdc-notched-outline .mdc-notched-outline__leading
+    ) {
     border-radius: 28px 0 0 28px;
     width: 28px;
   }
   *
-    :global(.shaped-outlined
-      .mdc-notched-outline
-      .mdc-notched-outline__trailing) {
+    :global(
+      .shaped-outlined .mdc-notched-outline .mdc-notched-outline__trailing
+    ) {
     border-radius: 0 28px 28px 0;
   }
   * :global(.shaped-outlined .mdc-notched-outline .mdc-notched-outline__notch) {
     max-width: calc(100% - 28px * 2);
   }
   *
-    :global(.shaped-outlined.mdc-text-field--with-leading-icon:not(.mdc-text-field--label-floating)
-      .mdc-floating-label) {
+    :global(
+      .shaped-outlined.mdc-text-field--with-leading-icon:not(
+          .mdc-text-field--label-floating
+        )
+        .mdc-floating-label
+    ) {
     left: 16px;
   }
   * :global(.shaped-outlined + .mdc-text-field-helper-line) {

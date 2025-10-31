@@ -40,7 +40,7 @@
           And a subtitle.
         </h3>
       </div>
-      <PrimaryAction on:click={() => clicked++}>
+      <PrimaryAction onclick={() => clicked++}>
         <Media class="card-media-16x9" aspectRatio="16x9" />
         <Content class="mdc-typography--body2">
           And some info text. And the media and info text are a primary action
@@ -61,7 +61,7 @@
     MediaContent,
   } from '@smui/card';
 
-  let clicked = 0;
+  let clicked = $state(0);
 </script>
 
 <style>

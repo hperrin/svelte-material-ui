@@ -1,4 +1,5 @@
 {
+  "plugins": ["prettier-plugin-svelte"],
   "singleQuote": true,
   "svelteSortOrder": "options-markup-scripts-styles"
 }

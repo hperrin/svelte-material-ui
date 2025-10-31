@@ -3,7 +3,7 @@
   selection
   aria-labelledby="list-selection-title"
   aria-describedby="list-selection-content"
-  on:SMUIDialog:closed={closeHandler}
+  onSMUIDialogClosed={closeHandler}
 >
   <Title id="list-selection-title">Dialog Title</Title>
   <Content id="list-selection-content">
@@ -38,7 +38,7 @@
   </Actions>
 </Dialog>
 
-<Button on:click={() => (open = true)}>
+<Button onclick={() => (open = true)}>
   <Label>Open Dialog</Label>
 </Button>
 
@@ -50,9 +50,9 @@
   import List, { Item, Graphic, Text } from '@smui/list';
   import Radio from '@smui/radio';
 
-  let open = false;
-  let selection = 'Radishes';
-  let selected = 'Nothing yet.';
+  let open = $state(false);
+  let selection = $state('Radishes');
+  let selected = $state('Nothing yet.');
 
   function closeHandler(e: CustomEvent<{ action: string }>) {
     if (e.detail.action === 'accept') {

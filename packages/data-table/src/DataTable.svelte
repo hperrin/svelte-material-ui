@@ -1,59 +1,68 @@
+<svelte:options runes />
+
 <div
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
-    [className]: true,
     'mdc-data-table': true,
     'mdc-data-table--sticky-header': stickyHeader,
     ...internalClasses,
+    [className]: true,
   })}
-  on:SMUICheckbox:mount={() => instance && postMount && instance.layout()}
-  on:SMUIDataTableHeader:mount={handleHeaderMount}
-  on:SMUIDataTableHeader:unmount={() => (header = undefined)}
-  on:SMUIDataTableBody:mount={handleBodyMount}
-  on:SMUIDataTableBody:unmount={() => (body = undefined)}
-  on:SMUIDataTableHeaderCheckbox:change={() =>
-    instance && instance.handleHeaderRowCheckboxChange()}
-  on:SMUIDataTableHeader:click={handleHeaderRowClick}
-  on:SMUIDataTableRow:click={handleRowClick}
-  on:SMUIDataTableBodyCheckbox:change={handleBodyCheckboxChange}
-  {...exclude($$restProps, ['container$', 'table$'])}
+  {...exclude(restProps, ['container$', 'table$'])}
+  onSMUIDataTableHeaderCheckboxChange={(e) => {
+    if (instance) {
+      instance.handleHeaderRowCheckboxChange();
+    }
+    restProps.onSMUIDataTableHeaderCheckboxChange?.(e);
+  }}
+  onSMUIDataTableHeaderClick={(e) => {
+    handleHeaderRowClick(e);
+    restProps.onSMUIDataTableHeaderClick?.(e);
+  }}
+  onSMUIDataTableRowClick={(e) => {
+    handleRowClick(e);
+    restProps.onSMUIDataTableRowClick?.(e);
+  }}
+  onSMUIDataTableBodyCheckboxChange={(e) => {
+    handleBodyCheckboxChange(e);
+    restProps.onSMUIDataTableBodyCheckboxChange?.(e);
+  }}
 >
   <div
     bind:this={container}
     use:useActions={container$use}
     class={classMap({
-      [container$class]: true,
       'mdc-data-table__table-container': true,
+      [container$class]: true,
     })}
-    {...prefixFilter($$restProps, 'container$')}
+    {...prefixFilter(restProps, 'container$')}
   >
     <table
       use:useActions={table$use}
       class={classMap({
-        [table$class]: true,
         'mdc-data-table__table': true,
+        [table$class]: true,
       })}
-      {...prefixFilter($$restProps, 'table$')}
+      {...prefixFilter(restProps, 'table$')}
     >
-      <slot />
+      {@render children?.()}
     </table>
   </div>
 
-  {#if $$slots.progress}
+  {#if progress}
     <div
       class="mdc-data-table__progress-indicator"
       style={Object.entries(progressIndicatorStyles)
         .map(([name, value]) => `${name}: ${value};`)
         .join(' ')}
     >
-      <div class="mdc-data-table__scrim" />
-      <slot name="progress" />
+      <div class="mdc-data-table__scrim"></div>
+      {@render progress?.()}
     </div>
   {/if}
 
-  <slot name="paginate" />
+  {@render paginate?.()}
 </div>
 
 <script lang="ts">
@@ -63,10 +72,9 @@
   } from '@material/data-table';
   import { MDCDataTableFoundation } from '@material/data-table';
   import { ponyfill } from '@material/dom';
+  import type { Snippet } from 'svelte';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
   import { writable } from 'svelte/store';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type {
     AddLayoutListener,
     RemoveLayoutListener,
@@ -75,7 +83,6 @@
   } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
-    forwardEventsBuilder,
     classMap,
     exclude,
     prefixFilter,
@@ -89,61 +96,116 @@
   const { closest } = ponyfill;
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * Whether to use sticky header styles.
+     */
     stickyHeader?: boolean;
+    /**
+     * Whether the data table is sortable.
+     *
+     * (You handle sorting on your own with a handler on the SMUIDataTableSorted
+     * event, but the interactions are available to the user.)
+     */
     sortable?: boolean;
+    /**
+     * The columnId of the currently sorted column.
+     */
     sort?: string | null;
+    /**
+     * The direction the rows are sorted in.
+     */
     sortDirection?: Lowercase<keyof typeof SortValue>;
+    /**
+     * An ARIA label to indicate sorted status when sort is ascending.
+     */
     sortAscendingAriaLabel?: string;
+    /**
+     * An ARIA label to indicate sorted status when sort is descending.
+     */
     sortDescendingAriaLabel?: string;
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     container$use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     container$class?: string;
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     table$use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     table$class?: string;
+
+    children?: Snippet;
+    /**
+     * A spot for the progress indicator.
+     */
+    progress?: Snippet;
+    /**
+     * A spot for the pagination components.
+     */
+    paginate?: Snippet;
   };
-  type $$Props = OwnProps &
+  let {
+    use = [],
+    class: className = '',
+    stickyHeader = false,
+    sortable = false,
+    sort = $bindable(null),
+    sortDirection = $bindable('ascending'),
+    sortAscendingAriaLabel = 'sorted, ascending',
+    sortDescendingAriaLabel = 'sorted, descending',
+    container$use = [],
+    container$class = '',
+    table$use = [],
+    table$class = '',
+    children,
+    progress,
+    paginate,
+    ...restProps
+  }: OwnProps &
     SmuiAttrs<'div', keyof OwnProps> & {
       [k in keyof SmuiElementPropMap['div'] as `container\$${k}`]?: SmuiElementPropMap['div'][k];
     } & {
       [k in keyof SmuiElementPropMap['table'] as `table\$${k}`]?: SmuiElementPropMap['table'][k];
-    };
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
-
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let stickyHeader = false;
-  export let sortable = false;
-  export let sort: string | null = null;
-  export let sortDirection: Lowercase<keyof typeof SortValue> = 'ascending';
-  export let sortAscendingAriaLabel = 'sorted, ascending';
-  export let sortDescendingAriaLabel = 'sorted, descending';
-  export let container$use: ActionArray = [];
-  export let container$class = '';
-  export let table$use: ActionArray = [];
-  export let table$class = '';
+    } = $props();
 
   let element: HTMLDivElement;
-  let instance: MDCDataTableFoundation;
+  let instance: MDCDataTableFoundation | undefined = $state();
   let container: HTMLDivElement;
-  let header: SMUIDataTableHeadAccessor | undefined = undefined;
-  let body: SMUIDataTableBodyAccessor | undefined = undefined;
-  let internalClasses: { [k: string]: boolean } = {};
-  let progressIndicatorStyles: ProgressIndicatorStyles = {
+  let header: SMUIDataTableHeadAccessor | undefined = $state();
+  let body: SMUIDataTableBodyAccessor | undefined = $state();
+  let internalClasses: { [k: string]: boolean } = $state({});
+  let progressIndicatorStyles: ProgressIndicatorStyles = $state({
     height: 'auto',
     top: 'initial',
-  };
+  });
   let addLayoutListener = getContext<AddLayoutListener | undefined>(
-    'SMUI:addLayoutListener'
+    'SMUI:addLayoutListener',
   );
   let removeLayoutListener: RemoveLayoutListener | undefined;
   let postMount = false;
   let progressClosed = writable(false);
   let sortStore = writable(sort);
+  $effect(() => {
+    $sortStore = sort;
+  });
   let sortDirectionStore = writable(sortDirection);
+  $effect(() => {
+    $sortDirectionStore = sortDirection;
+  });
 
   setContext('SMUI:checkbox:context', 'data-table');
   setContext('SMUI:linear-progress:context', 'data-table');
@@ -154,29 +216,48 @@
   setContext('SMUI:data-table:sortAscendingAriaLabel', sortAscendingAriaLabel);
   setContext(
     'SMUI:data-table:sortDescendingAriaLabel',
-    sortDescendingAriaLabel
+    sortDescendingAriaLabel,
   );
-
-  $: $sortStore = sort;
-  $: $sortDirectionStore = sortDirection;
 
   if (addLayoutListener) {
     removeLayoutListener = addLayoutListener(layout);
   }
 
   let previousProgressClosed: boolean | undefined = undefined;
-  $: if (
-    $$slots.progress &&
-    instance &&
-    previousProgressClosed !== $progressClosed
-  ) {
-    previousProgressClosed = $progressClosed;
-    if ($progressClosed) {
-      instance.hideProgress();
-    } else {
-      instance.showProgress();
+  $effect(() => {
+    if (!!progress && instance && previousProgressClosed !== $progressClosed) {
+      previousProgressClosed = $progressClosed;
+      if ($progressClosed) {
+        instance.hideProgress();
+      } else {
+        instance.showProgress();
+      }
     }
-  }
+  });
+
+  setContext('SMUI:checkbox:mount', () => {
+    if (instance && postMount) {
+      instance.layout();
+    }
+  });
+  setContext(
+    'SMUI:data-table:header:mount',
+    (accessor: SMUIDataTableHeadAccessor) => {
+      header = accessor;
+    },
+  );
+  setContext('SMUI:data-table:header:unmount', () => {
+    header = undefined;
+  });
+  setContext(
+    'SMUI:data-table:body:mount',
+    (accessor: SMUIDataTableBodyAccessor) => {
+      body = accessor;
+    },
+  );
+  setContext('SMUI:data-table:body:unmount', () => {
+    body = undefined;
+  });
 
   onMount(() => {
     instance = new MDCDataTableFoundation({
@@ -200,12 +281,12 @@
       notifySortAction: (data) => {
         sort = data.columnId;
         sortDirection = data.sortValue;
-        dispatch(getElement(), 'SMUIDataTable:sorted', data, undefined, true);
+        dispatch(getElement(), 'SMUIDataTableSorted', data);
       },
       getTableContainerHeight: () => container.getBoundingClientRect().height,
       getTableHeaderHeight: () => {
         const tableHeader = getElement().querySelector(
-          '.mdc-data-table__header-row'
+          '.mdc-data-table__header-row',
         );
         if (!tableHeader) {
           throw new Error('MDCDataTable: Table header element not found.');
@@ -227,7 +308,7 @@
           body?.orderedRows
             .map((accessor) => accessor.element)
             .indexOf(
-              closest(el, '.mdc-data-table__row') as HTMLTableRowElement
+              closest(el, '.mdc-data-table__row') as HTMLTableRowElement,
             ) ?? -1
         );
       },
@@ -253,49 +334,24 @@
       notifyRowSelectionChanged: (data) => {
         const row = body?.orderedRows[data.rowIndex];
         if (row) {
-          dispatch(
-            getElement(),
-            'SMUIDataTable:rowSelectionChanged',
-            {
-              row: row.element,
-              rowId: row.rowId,
-              rowIndex: data.rowIndex,
-              selected: data.selected,
-            },
-            undefined,
-            true
-          );
+          dispatch(getElement(), 'SMUIDataTableSelectionChanged', {
+            row: row.element,
+            rowId: row.rowId,
+            rowIndex: data.rowIndex,
+            selected: data.selected,
+          });
         }
       },
       notifySelectedAll: () => {
         setHeaderRowCheckboxIndeterminate(false);
-        dispatch(
-          getElement(),
-          'SMUIDataTable:selectedAll',
-          undefined,
-          undefined,
-          true
-        );
+        dispatch(getElement(), 'SMUIDataTableSelectedAll');
       },
       notifyUnselectedAll: () => {
         setHeaderRowCheckboxIndeterminate(false);
-        dispatch(
-          getElement(),
-          'SMUIDataTable:unselectedAll',
-          undefined,
-          undefined,
-          true
-        );
+        dispatch(getElement(), 'SMUIDataTableUnselectedAll');
       },
-      notifyRowClick: (detail) => {
-        dispatch(
-          getElement(),
-          'SMUIDataTable:rowClick',
-          detail,
-          undefined,
-          true
-        );
-      },
+      notifyRowClick: (detail) =>
+        dispatch(getElement(), 'SMUIDataTableClickRow', detail),
       registerHeaderRowCheckbox: () => {
         // Handled automatically.
       },
@@ -333,7 +389,7 @@
     postMount = true;
 
     return () => {
-      instance.destroy();
+      instance?.destroy();
     };
   });
 
@@ -342,14 +398,6 @@
       removeLayoutListener();
     }
   });
-
-  function handleHeaderMount(event: CustomEvent<SMUIDataTableHeadAccessor>) {
-    header = event.detail;
-  }
-
-  function handleBodyMount(event: CustomEvent<SMUIDataTableBodyAccessor>) {
-    body = event.detail;
-  }
 
   function handleBodyCheckboxChange(event: Event) {
     if (instance) {
@@ -383,7 +431,7 @@
 
     const headerCell = closest(
       event.detail.target as Element,
-      '.mdc-data-table__header-cell--with-sort'
+      '.mdc-data-table__header-cell--with-sort',
     ) as HTMLTableCellElement;
 
     if (headerCell) {
@@ -392,7 +440,7 @@
   }
 
   function handleRowClick(
-    event: CustomEvent<{ rowId: string; target: HTMLElement }>
+    event: CustomEvent<{ rowId: string; target: HTMLElement }>,
   ) {
     if (!instance || !event.detail.target) {
       return;
@@ -400,7 +448,7 @@
 
     const row = closest(
       event.detail.target as Element,
-      '.mdc-data-table__row'
+      '.mdc-data-table__row',
     ) as HTMLTableRowElement;
 
     if (row && instance) {
@@ -419,11 +467,11 @@
     }
     const columnId = orderedCells[columnIndex].columnId ?? null;
 
-    instance.handleSortAction({ columnId, columnIndex, headerCell });
+    instance?.handleSortAction({ columnId, columnIndex, headerCell });
   }
 
   export function layout() {
-    return instance.layout();
+    return instance?.layout();
   }
 
   export function getElement() {

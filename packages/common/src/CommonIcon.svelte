@@ -1,10 +1,10 @@
-<svelte:component
-  this={component}
+<svelte:options runes />
+
+<MyComponent
   {tag}
   bind:this={element}
-  use={[forwardEvents, ...use]}
+  {use}
   class={classMap({
-    [className]: true,
     'mdc-button__icon': context === 'button',
     'mdc-fab__icon': context === 'fab',
     'mdc-icon-button__icon': context === 'icon-button',
@@ -12,21 +12,21 @@
     'mdc-tab__icon': context === 'tab',
     'mdc-banner__icon': context === 'banner',
     'mdc-segmented-button__icon': context === 'segmented-button',
+    [className]: true,
   })}
   aria-hidden="true"
   {...svg ? { focusable: 'false', tabindex: '-1' } : {}}
-  {...$$restProps}><slot /></svelte:component
+  {...restProps}>{@render children?.()}</MyComponent
 >
 
 <script lang="ts" generics="TagName extends SmuiEveryElement = 'i'">
-  import type { SvelteComponent } from 'svelte';
+  import type { Snippet } from 'svelte';
   import { getContext } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
 
   import type { ActionArray } from './internal/useActions.js';
-  import { forwardEventsBuilder, classMap } from './internal/index.js';
+  import { classMap } from './internal/index.js';
   import type {
+    SmuiComponent,
     SmuiElementMap,
     SmuiEveryElement,
     SmuiAttrs,
@@ -34,32 +34,48 @@
   import { SmuiElement, Svg } from './index.js';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * Whether the icon is toggled.
+     */
     on?: boolean;
-    component?: typeof SvelteComponent;
+    /**
+     * The component to use to render the element.
+     */
+    component?: SmuiComponent<SmuiElementMap[TagName]>;
+    /**
+     * The tag name of the element to create.
+     */
     tag?: TagName;
+
+    children?: Snippet;
   };
-  type $$Props = OwnProps & SmuiAttrs<TagName, keyof OwnProps>;
+  let {
+    use = [],
+    class: className = '',
+    on = false,
+    component: MyComponent = SmuiElement,
+    tag = 'i' as TagName,
+    children,
+    ...restProps
+  }: OwnProps & SmuiAttrs<TagName, keyof OwnProps> = $props();
 
-  const forwardEvents = forwardEventsBuilder(get_current_component());
+  let element: ReturnType<SmuiComponent<SmuiElementMap[TagName]>>;
 
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let on = false;
-
-  let element: SvelteComponent;
-
-  export let component: typeof SvelteComponent = SmuiElement;
-  export let tag: SmuiEveryElement | undefined =
-    component === SmuiElement ? 'i' : undefined;
-
-  const svg = component === Svg;
+  const svg = $derived(
+    tag === 'svg' ||
+      MyComponent === (Svg as SmuiComponent<SmuiElementMap['svg']>),
+  );
   const context = getContext<string | undefined>('SMUI:icon:context');
 
-  export function getElement(): SmuiElementMap[TagName] {
+  export function getElement() {
     return element.getElement();
   }
 </script>

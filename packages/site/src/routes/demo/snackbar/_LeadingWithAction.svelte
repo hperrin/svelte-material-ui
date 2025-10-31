@@ -1,11 +1,11 @@
-<Snackbar leading bind:this={snackbar} on:SMUISnackbar:closed={handleClosed}>
+<Snackbar leading bind:this={snackbar} onSMUISnackbarClosed={handleClosed}>
   <Label>This is a leading snackbar.</Label>
   <Actions>
     <Button>Action</Button>
   </Actions>
 </Snackbar>
 
-<Button on:click={() => snackbar.open()}>
+<Button onclick={() => snackbar.open()}>
   <Label>Open Snackbar</Label>
 </Button>
 
@@ -16,7 +16,7 @@
   import Button from '@smui/button';
 
   let snackbar: Snackbar;
-  let reason = 'nothing yet';
+  let reason = $state('nothing yet');
 
   function handleClosed(e: CustomEvent<{ reason: string | undefined }>) {
     reason = e.detail.reason ?? 'Undefined.';

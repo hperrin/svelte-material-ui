@@ -1,7 +1,7 @@
 @use '@material/banner/styles' as banner-styles;
 
 .smui-banner--force-show {
-  display: block !important;
+  display: flex !important;
 }
 
 .mdc-banner--closing,

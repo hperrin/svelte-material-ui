@@ -3,6 +3,145 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.0.3](https://github.com/hperrin/svelte-material-ui/compare/v8.0.2...v8.0.3) (2025-08-13)
+
+**Note:** Version bump only for package @smui/textfield
+
+
+
+
+
+## [8.0.2](https://github.com/hperrin/svelte-material-ui/compare/v8.0.1...v8.0.2) (2025-08-12)
+
+
+### Bug Fixes
+
+* chip input leaves add key in input after adding chip ([6f6544e](https://github.com/hperrin/svelte-material-ui/commit/6f6544e16cd37f8bbb88ce68d07307bc0d75ff1f)), closes [#703](https://github.com/hperrin/svelte-material-ui/issues/703)
+
+
+
+
+
+## [8.0.1](https://github.com/hperrin/svelte-material-ui/compare/v8.0.0...v8.0.1) (2025-07-18)
+
+
+### Bug Fixes
+
+* move all custom classes to end of class list, allowing them to override other classes ([a25b839](https://github.com/hperrin/svelte-material-ui/commit/a25b839b920674f3e97cb02175f6bb1e8455656d))
+
+
+
+
+
+# [8.0.0](https://github.com/hperrin/svelte-material-ui/compare/v8.0.0-beta.3...v8.0.0) (2025-07-18)
+
+**Note:** Version bump only for package @smui/textfield
+
+
+
+
+
+# [8.0.0-beta.3](https://github.com/hperrin/svelte-material-ui/compare/v8.0.0-beta.2...v8.0.0-beta.3) (2024-12-22)
+
+
+### Bug Fixes
+
+* sigh, svelte 5 doesn't support what classAdderBuilder needs, so it had to be refactored ([a4df13c](https://github.com/hperrin/svelte-material-ui/commit/a4df13c247ca3ef5bf41df75d82ad15b895f3167))
+
+
+
+
+
+# [8.0.0-beta.2](https://github.com/hperrin/svelte-material-ui/compare/v8.0.0-beta.1...v8.0.0-beta.2) (2024-12-13)
+
+
+### Bug Fixes
+
+* use svelte event on instead of addEventListener ([11b68e7](https://github.com/hperrin/svelte-material-ui/commit/11b68e7ffa75a87be6cb5b47dd2d92ab59763774))
+
+
+
+
+
+# [8.0.0-beta.1](https://github.com/hperrin/svelte-material-ui/compare/v8.0.0-beta.0...v8.0.0-beta.1) (2024-12-11)
+
+
+### Bug Fixes
+
+* finish some migration steps, update readme ([95fbdc2](https://github.com/hperrin/svelte-material-ui/commit/95fbdc21e07c35cdfed81f8d8d1a1c789c475a8a))
+* migrate to new module script declaration in svelte files ([c1a918a](https://github.com/hperrin/svelte-material-ui/commit/c1a918a6b031312639cb11796cf29271b1d92fa1))
+* type issues ([0424a48](https://github.com/hperrin/svelte-material-ui/commit/0424a484de68a44ca2264553f08030a43b133b4f))
+
+
+### Features
+
+* migrate components in select to runes ([451d7c0](https://github.com/hperrin/svelte-material-ui/commit/451d7c0f9c1336e3a876c2dd4b8d3859e0228561))
+* migrate components in text field to runes ([7233ecc](https://github.com/hperrin/svelte-material-ui/commit/7233ecca8830b04d87115e4436c3ea40a87c118b))
+
+
+
+
+
+# [8.0.0-beta.0](https://github.com/hperrin/svelte-material-ui/compare/v8.0.0-alpha.0...v8.0.0-beta.0) (2024-11-19)
+
+**Note:** Version bump only for package @smui/textfield
+
+
+
+
+
+# [8.0.0-alpha.0](https://github.com/hperrin/svelte-material-ui/compare/v7.0.0...v8.0.0-alpha.0) (2024-05-13)
+
+
+### Bug Fixes
+
+* explicitly opt out of runes mode in all components ([96b69f9](https://github.com/hperrin/svelte-material-ui/commit/96b69f9335b8b8cd2d1cbad18df103c1f5a86681))
+
+
+### Features
+
+* events for svelte 5, mount events to contexts, event modifiers, remove custom event typing ([52d60b8](https://github.com/hperrin/svelte-material-ui/commit/52d60b8ce9f4796121516bab62a6867f39ae856d))
+* remove deprecated MDC event names ([df78b17](https://github.com/hperrin/svelte-material-ui/commit/df78b17a57791c93073b2e83bda4cd912d0974c8))
+
+
+
+
+
+# [7.0.0](https://github.com/hperrin/svelte-material-ui/compare/v7.0.0-beta.18...v7.0.0) (2024-05-04)
+
+**Note:** Version bump only for package @smui/textfield
+
+
+
+
+
+# [7.0.0-beta.18](https://github.com/hperrin/svelte-material-ui/compare/v7.0.0-beta.17...v7.0.0-beta.18) (2024-03-17)
+
+**Note:** Version bump only for package @smui/textfield
+
+
+
+
+
+# [7.0.0-beta.17](https://github.com/hperrin/svelte-material-ui/compare/v7.0.0-beta.16...v7.0.0-beta.17) (2024-03-13)
+
+**Note:** Version bump only for package @smui/textfield
+
+
+
+
+
+# [7.0.0-beta.16](https://github.com/hperrin/svelte-material-ui/compare/v7.0.0-beta.15...v7.0.0-beta.16) (2023-12-27)
+
+
+### Bug Fixes
+
+* typescript and accessibility issues with menus and select inputs ([5b4794f](https://github.com/hperrin/svelte-material-ui/commit/5b4794f57e590d0f6ee33f0936124dc0e425e2a6))
+
+
+
+
+
 # [7.0.0-beta.15](https://github.com/hperrin/svelte-material-ui/compare/v7.0.0-beta.14...v7.0.0-beta.15) (2023-09-04)
 
 

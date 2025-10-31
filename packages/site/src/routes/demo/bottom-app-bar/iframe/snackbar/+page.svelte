@@ -4,11 +4,13 @@
   <div>
     <FormField>
       <Checkbox bind:checked={withFab} />
-      <span slot="label">With FAB</span>
+      {#snippet label()}
+        With FAB
+      {/snippet}
     </FormField>
   </div>
 
-  <Button on:click={() => snackbar.open()}>
+  <Button onclick={() => snackbar?.open()}>
     <Label>Open Snackbar</Label>
   </Button>
 
@@ -57,9 +59,9 @@
   import FormField from '@smui/form-field';
   import LoremIpsum from '$lib/LoremIpsum.svelte';
 
-  let bottomAppBar: BottomAppBar;
-  let snackbar: Snackbar;
-  let withFab = false;
+  let bottomAppBar: BottomAppBar | null = $state(null);
+  let snackbar: Snackbar | undefined = $state();
+  let withFab = $state(false);
 </script>
 
 <style>

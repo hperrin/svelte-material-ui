@@ -3,14 +3,14 @@
   fullscreen
   aria-labelledby="over-fullscreen-title"
   aria-describedby="over-fullscreen-content"
-  on:SMUIDialog:closed={closeHandler}
+  onSMUIDialogClosed={closeHandler}
 >
   <Header>
     <Title id="over-fullscreen-title">Terms and Conditions</Title>
     <IconButton action="close" class="material-icons">close</IconButton>
   </Header>
   <Content id="over-fullscreen-content">
-    <Button on:click={() => (subOpen = true)}>
+    <Button onclick={() => (subOpen = true)}>
       <Label>Open Confirmation Dialog</Label>
     </Button>
     {#each Array(3) as _item}
@@ -26,45 +26,46 @@
     </Button>
   </Actions>
 
-  <Dialog
-    bind:open={subOpen}
-    slot="over"
-    selection
-    aria-labelledby="over-fullscreen-confirmation-title"
-    aria-describedby="over-fullscreen-confirmation-content"
-    on:SMUIDialog:closed={confirmationCloseHandler}
-  >
-    <Header>
-      <Title id="over-fullscreen-confirmation-title">Confirmation</Title>
-    </Header>
-    <Content id="over-fullscreen-confirmation-content">
-      <List radioList>
-        <Item use={[InitialFocus]}>
-          <Graphic>
-            <Radio bind:group={selection} value="One" />
-          </Graphic>
-          <Text>Choice 1</Text>
-        </Item>
-        <Item>
-          <Graphic>
-            <Radio bind:group={selection} value="Two" />
-          </Graphic>
-          <Text>Choice 2</Text>
-        </Item>
-      </List>
-    </Content>
-    <Actions>
-      <Button>
-        <Label>Cancel</Label>
-      </Button>
-      <Button action="accept">
-        <Label>Accept</Label>
-      </Button>
-    </Actions>
-  </Dialog>
+  {#snippet over()}
+    <Dialog
+      bind:open={subOpen}
+      selection
+      aria-labelledby="over-fullscreen-confirmation-title"
+      aria-describedby="over-fullscreen-confirmation-content"
+      onSMUIDialogClosed={confirmationCloseHandler}
+    >
+      <Header>
+        <Title id="over-fullscreen-confirmation-title">Confirmation</Title>
+      </Header>
+      <Content id="over-fullscreen-confirmation-content">
+        <List radioList>
+          <Item use={[InitialFocus]}>
+            <Graphic>
+              <Radio bind:group={selection} value="One" />
+            </Graphic>
+            <Text>Choice 1</Text>
+          </Item>
+          <Item>
+            <Graphic>
+              <Radio bind:group={selection} value="Two" />
+            </Graphic>
+            <Text>Choice 2</Text>
+          </Item>
+        </List>
+      </Content>
+      <Actions>
+        <Button>
+          <Label>Cancel</Label>
+        </Button>
+        <Button action="accept">
+          <Label>Accept</Label>
+        </Button>
+      </Actions>
+    </Dialog>
+  {/snippet}
 </Dialog>
 
-<Button on:click={() => (open = true)}>
+<Button onclick={() => (open = true)}>
   <Label>Open Dialog</Label>
 </Button>
 
@@ -84,11 +85,11 @@
   import Radio from '@smui/radio';
   import LoremIpsum from '$lib/LoremIpsum.svelte';
 
-  let open = false;
-  let subOpen = false;
-  let selection = 'Radishes';
-  let selected = 'Nothing yet.';
-  let response = 'Nothing yet.';
+  let open = $state(false);
+  let subOpen = $state(false);
+  let selection = $state('Radishes');
+  let selected = $state('Nothing yet.');
+  let response = $state('Nothing yet.');
 
   function confirmationCloseHandler(e: CustomEvent<{ action: string }>) {
     if (e.detail.action === 'accept') {

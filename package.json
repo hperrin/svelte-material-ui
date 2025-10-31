@@ -12,7 +12,6 @@
     "sveltejs"
   ],
   "scripts": {
-    "bootstrap": "lerna bootstrap --hoist --nohoist \"@tsconfig/svelte\"",
     "check": "lerna run check",
     "clean": "lerna run clean",
     "build": "lerna run build",
@@ -22,7 +21,7 @@
     "pages": "npm run build && npm run pages:build && npm run pages:push",
     "pages:build": "cd packages/site && npm run build && cd ../..",
     "pages:push": "git add -f packages/site/build && git commit -m 'chore: update built files' && git push origin $(git subtree split --prefix packages/site/build master):refs/heads/gh-pages --force && git reset --hard HEAD^",
-    "prepare": "husky install",
+    "prepare": "husky",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "lint-staged": {
@@ -41,14 +40,14 @@
     "packages/*"
   ],
   "devDependencies": {
-    "@commitlint/cli": "^17.7.1",
-    "@commitlint/config-conventional": "^17.7.0",
-    "husky": "^8.0.3",
-    "lerna": "^7.2.0",
-    "lint-staged": "^14.0.1",
-    "prettier": "^2.8.8",
-    "prettier-plugin-svelte": "^2.10.1",
-    "sass": "^1.66.1",
-    "svelte": "^4.2.0"
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "husky": "^9.1.7",
+    "lerna": "^8.2.3",
+    "lint-staged": "^16.1.5",
+    "prettier": "^3.6.2",
+    "prettier-plugin-svelte": "^3.4.0",
+    "sass": "^1.81.0",
+    "svelte": "^5.38.1"
   }
 }

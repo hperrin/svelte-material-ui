@@ -1,15 +1,21 @@
 <div>
   <FormField>
     <Checkbox bind:checked={prominent} />
-    <span slot="label">Prominent</span>
+    {#snippet label()}
+      Prominent
+    {/snippet}
   </FormField>
   <FormField>
     <Checkbox bind:checked={dense} />
-    <span slot="label">Dense</span>
+    {#snippet label()}
+      Dense
+    {/snippet}
   </FormField>
   <FormField>
     <Checkbox bind:checked={secondaryColor} />
-    <span slot="label">Secondary</span>
+    {#snippet label()}
+      Secondary
+    {/snippet}
   </FormField>
 </div>
 
@@ -92,9 +98,9 @@
   import FormField from '@smui/form-field';
   import LoremIpsum from '$lib/LoremIpsum.svelte';
 
-  let prominent = false;
-  let dense = false;
-  let secondaryColor = false;
+  let prominent = $state(false);
+  let dense = $state(false);
+  let secondaryColor = $state(false);
 </script>
 
 <style>

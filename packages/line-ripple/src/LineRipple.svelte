@@ -1,54 +1,63 @@
+<svelte:options runes />
+
 <div
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
-    [className]: true,
     'mdc-line-ripple': true,
     'mdc-line-ripple--active': active,
     ...internalClasses,
+    [className]: true,
   })}
   style={Object.entries(internalStyles)
     .map(([name, value]) => `${name}: ${value};`)
     .concat([style])
     .join(' ')}
-  {...$$restProps}
-/>
+  {...restProps}
+></div>
 
 <script lang="ts">
   import { MDCLineRippleFoundation } from '@material/line-ripple';
   import { onMount } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
-    forwardEventsBuilder,
     classMap,
     useActions,
+    SvelteEventManager,
   } from '@smui/common/internal';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * A list of CSS styles.
+     */
     style?: string;
+    /**
+     * Whether the line is active.
+     */
     active?: boolean;
   };
-  type $$Props = OwnProps & SmuiAttrs<'div', keyof OwnProps>;
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
-
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let style = '';
-  export let active = false;
+  let {
+    use = [],
+    class: className = '',
+    style = '',
+    active = false,
+    ...restProps
+  }: OwnProps & SmuiAttrs<'div', keyof OwnProps> = $props();
 
   let element: HTMLDivElement;
-  let instance: MDCLineRippleFoundation;
-  let internalClasses: { [k: string]: boolean } = {};
-  let internalStyles: { [k: string]: string } = {};
+  let instance: MDCLineRippleFoundation | undefined = $state();
+  let eventManager = new SvelteEventManager();
+  let internalClasses: { [k: string]: boolean } = $state({});
+  let internalStyles: { [k: string]: string } = $state({});
 
   onMount(() => {
     instance = new MDCLineRippleFoundation({
@@ -57,15 +66,16 @@
       hasClass,
       setStyle: addStyle,
       registerEventHandler: (evtType, handler) =>
-        getElement().addEventListener(evtType, handler),
+        eventManager.on(getElement(), evtType, handler),
       deregisterEventHandler: (evtType, handler) =>
-        getElement().removeEventListener(evtType, handler),
+        eventManager.off(getElement(), evtType, handler),
     });
 
     instance.init();
 
     return () => {
-      instance.destroy();
+      instance?.destroy();
+      eventManager.clear();
     };
   });
 
@@ -91,7 +101,6 @@
     if (internalStyles[name] != value) {
       if (value === '' || value == null) {
         delete internalStyles[name];
-        internalStyles = internalStyles;
       } else {
         internalStyles[name] = value;
       }
@@ -99,15 +108,15 @@
   }
 
   export function activate() {
-    instance.activate();
+    instance?.activate();
   }
 
   export function deactivate() {
-    instance.deactivate();
+    instance?.deactivate();
   }
 
   export function setRippleCenter(xCoordinate: number) {
-    instance.setRippleCenter(xCoordinate);
+    instance?.setRippleCenter(xCoordinate);
   }
 
   export function getElement() {

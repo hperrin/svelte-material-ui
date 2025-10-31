@@ -86,7 +86,7 @@ export class MDCSegmentedButtonFoundation extends MDCFoundation<MDCSegmentedButt
         (segmentDetail) =>
           (segmentDetail.index === indexOrSegmentId ||
             segmentDetail.segmentId === indexOrSegmentId) &&
-          segmentDetail.selected
+          segmentDetail.selected,
       );
   }
 

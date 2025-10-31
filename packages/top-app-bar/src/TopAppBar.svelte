@@ -1,18 +1,18 @@
+<svelte:options runes />
+
 <svelte:window
-  on:resize={() =>
+  onresize={() =>
     variant !== 'short' &&
     variant !== 'fixed' &&
     instance &&
     instance.handleWindowResize()}
-  on:scroll={() => scrollTarget == null && handleTargetScroll()}
+  onscroll={() => scrollTarget == null && handleTargetScroll()}
 />
 
 <header
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
-    [className]: true,
     'mdc-top-app-bar': true,
     'mdc-top-app-bar--short': variant === 'short',
     'mdc-top-app-bar--short-collapsed': collapsed,
@@ -22,16 +22,21 @@
     'mdc-top-app-bar--prominent': prominent,
     'mdc-top-app-bar--dense': dense,
     ...internalClasses,
+    [className]: true,
   })}
   style={Object.entries(internalStyles)
     .map(([name, value]) => `${name}: ${value};`)
     .concat([style])
     .join(' ')}
-  on:SMUITopAppBarIconButton:nav={() =>
-    instance && instance.handleNavigationClick()}
-  {...$$restProps}
+  {...restProps}
+  onSMUITopAppBarIconButtonNav={(e) => {
+    if (instance) {
+      instance.handleNavigationClick();
+    }
+    restProps.onSMUITopAppBarIconButtonNav?.(e);
+  }}
 >
-  <slot />
+  {@render children?.()}
 </header>
 
 <script lang="ts">
@@ -41,116 +46,155 @@
     MDCFixedTopAppBarFoundation,
     MDCShortTopAppBarFoundation,
   } from '@material/top-app-bar';
+  import type { Snippet } from 'svelte';
   import { onMount } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type { Subscriber } from 'svelte/store';
   import { readable } from 'svelte/store';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
-    forwardEventsBuilder,
     classMap,
     useActions,
     dispatch,
+    SvelteEventManager,
   } from '@smui/common/internal';
 
-  type OwnProps = {
-    use?: ActionArray;
-    class?: string;
-    style?: string;
-    variant?: 'short' | 'fixed' | 'static' | 'standard';
-    color?: 'primary' | 'secondary';
-    collapsed?: boolean;
-    prominent?: boolean;
-    dense?: boolean;
-    scrollTarget?: HTMLElement | undefined;
-  };
-  type $$Props = OwnProps & SmuiAttrs<'header', keyof OwnProps>;
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
   interface UninitializedValue extends Function {}
   let uninitializedValue: UninitializedValue = () => {};
   function isUninitializedValue(value: any): value is UninitializedValue {
     return value === uninitializedValue;
   }
 
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let style = '';
-  export let variant: 'short' | 'fixed' | 'static' | 'standard' = 'standard';
-  export let color: 'primary' | 'secondary' = 'primary';
+  type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
+    use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
+    class?: string;
+    /**
+     * A list of CSS styles.
+     */
+    style?: string;
+    /**
+     * The type of app bar to display.
+     */
+    variant?: 'short' | 'fixed' | 'static' | 'standard';
+    /**
+     * The color of the app bar.
+     */
+    color?: 'primary' | 'secondary';
+    /**
+     * When using short variant, whether the app bar is collapsed.
+     */
+    collapsed?: boolean;
+    /**
+     * Whether to style the app bar as prominent.
+     */
+    prominent?: boolean;
+    /**
+     * Whether to style the app bar more densely.
+     */
+    dense?: boolean;
+    /**
+     * You can specify the scroll target if needed.
+     */
+    scrollTarget?: HTMLElement;
+
+    children?: Snippet;
+  };
+  let {
+    use = [],
+    class: className = '',
+    style = '',
+    variant = 'standard',
+    color = 'primary',
+    collapsed = $bindable(uninitializedValue as unknown as boolean),
+    prominent = false,
+    dense = false,
+    scrollTarget,
+    children,
+    ...restProps
+  }: OwnProps & SmuiAttrs<'header', keyof OwnProps> = $props();
 
   // Some trickery to detect uninitialized values but also have the right types.
-  export let collapsed: boolean = uninitializedValue as unknown as boolean;
   const alwaysCollapsed = !isUninitializedValue(collapsed) && !!collapsed;
   if (isUninitializedValue(collapsed)) {
     collapsed = false;
   }
   // Done with the trickery.
 
-  export let prominent = false;
-  export let dense = false;
-  export let scrollTarget: HTMLElement | undefined = undefined;
-
   let element: HTMLElement;
   let instance:
     | MDCTopAppBarBaseFoundation
     | MDCShortTopAppBarFoundation
     | MDCFixedTopAppBarFoundation
-    | MDCTopAppBarFoundation;
-  let internalClasses: { [k: string]: boolean } = {};
-  let internalStyles: { [k: string]: string } = {};
+    | MDCTopAppBarFoundation
+    | undefined = $state();
+  let eventManager = new SvelteEventManager();
+  let internalClasses: { [k: string]: boolean } = $state({});
+  let internalStyles: { [k: string]: string } = $state({});
 
-  let propStoreSet: Subscriber<{
-    variant: 'short' | 'fixed' | 'static' | 'standard';
-    prominent: boolean;
-    dense: boolean;
-  }>;
+  let propStoreSet:
+    | Subscriber<{
+        variant: 'short' | 'fixed' | 'static' | 'standard';
+        prominent: boolean;
+        dense: boolean;
+      }>
+    | undefined = $state();
   let propStore = readable({ variant, prominent, dense }, (set) => {
     propStoreSet = set;
   });
-  $: if (propStoreSet) {
-    propStoreSet({
-      variant,
-      prominent,
-      dense,
-    });
-  }
+  $effect(() => {
+    if (propStoreSet) {
+      propStoreSet({
+        variant,
+        prominent,
+        dense,
+      });
+    }
+  });
 
-  $: if (instance && variant === 'short' && 'setAlwaysCollapsed' in instance) {
-    instance.setAlwaysCollapsed(alwaysCollapsed);
-  }
+  $effect(() => {
+    if (instance && variant === 'short' && 'setAlwaysCollapsed' in instance) {
+      instance.setAlwaysCollapsed(alwaysCollapsed);
+    }
+  });
 
   let oldScrollTarget: HTMLElement | undefined = undefined;
-  $: if (oldScrollTarget !== scrollTarget) {
-    if (oldScrollTarget) {
-      oldScrollTarget.removeEventListener('scroll', handleTargetScroll);
+  $effect(() => {
+    if (oldScrollTarget !== scrollTarget) {
+      if (oldScrollTarget) {
+        eventManager.off(oldScrollTarget, 'scroll', handleTargetScroll);
+      }
+      if (scrollTarget) {
+        eventManager.on(scrollTarget, 'scroll', handleTargetScroll);
+      }
+      oldScrollTarget = scrollTarget;
     }
-    if (scrollTarget) {
-      scrollTarget.addEventListener('scroll', handleTargetScroll);
-    }
-    oldScrollTarget = scrollTarget;
-  }
+  });
 
   let oldVariant = variant;
-  $: if (oldVariant !== variant && instance) {
-    oldVariant = variant;
-    instance.destroy();
-    internalClasses = {};
-    internalStyles = {};
-    instance = getInstance();
-    instance.init();
-  }
+  $effect(() => {
+    if (oldVariant !== variant && instance) {
+      oldVariant = variant;
+      instance.destroy();
+      internalClasses = {};
+      internalStyles = {};
+      instance = getInstance();
+      instance.init();
+    }
+  });
 
   onMount(() => {
     instance = getInstance();
     instance.init();
 
     return () => {
-      instance.destroy();
+      instance?.destroy();
+      eventManager.clear();
     };
   });
 
@@ -168,13 +212,13 @@
       addClass,
       removeClass,
       setStyle: addStyle,
-      getTopAppBarHeight: () => element.clientHeight,
+      getTopAppBarHeight: () => getElement().clientHeight,
       notifyNavigationIconClicked: () =>
-        dispatch(element, 'SMUITopAppBar:nav', undefined, undefined, true),
+        dispatch(getElement(), 'SMUITopAppBarNav'),
       getViewportScrollY: () =>
         scrollTarget == null ? window.pageYOffset : scrollTarget.scrollTop,
       getTotalActionItems: () =>
-        element.querySelectorAll('.mdc-top-app-bar__action-item').length,
+        getElement().querySelectorAll('.mdc-top-app-bar__action-item').length,
     });
   }
 
@@ -200,7 +244,6 @@
     if (internalStyles[name] != value) {
       if (value === '' || value == null) {
         delete internalStyles[name];
-        internalStyles = internalStyles;
       } else {
         internalStyles[name] = value;
       }

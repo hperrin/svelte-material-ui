@@ -1,23 +1,23 @@
 <Snackbar
   variant="stacked"
   bind:this={snackbar}
-  on:SMUISnackbar:closed={handleClosedStacked}
+  onSMUISnackbarClosed={handleClosedStacked}
 >
   <Label>
     This is a stacked snackbar. Use it when you have really long text.
   </Label>
   <Actions>
-    <Button on:click={() => (action = 'Something')}>Something</Button>
-    <Button on:click={() => (action = 'Another')}>Another</Button>
+    <Button onclick={() => (action = 'Something')}>Something</Button>
+    <Button onclick={() => (action = 'Another')}>Another</Button>
     <IconButton
-      on:click={() => (action = 'Dismissed')}
+      onclick={() => (action = 'Dismissed')}
       class="material-icons"
       title="Dismiss">close</IconButton
     >
   </Actions>
 </Snackbar>
 
-<Button on:click={() => snackbar.open()}>
+<Button onclick={() => snackbar.open()}>
   <Label>Open Snackbar</Label>
 </Button>
 
@@ -30,8 +30,8 @@
   import IconButton from '@smui/icon-button';
 
   let snackbar: Snackbar;
-  let reason = 'nothing yet';
-  let action = 'nothing yet';
+  let reason = $state('nothing yet');
+  let action = $state('nothing yet');
 
   function handleClosedStacked(e: CustomEvent<{ reason: string | undefined }>) {
     reason = e.detail.reason ?? 'Undefined.';

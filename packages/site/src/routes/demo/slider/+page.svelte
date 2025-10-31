@@ -29,9 +29,9 @@
 
   <Demo component={MinRange} file="slider/_MinRange.svelte">
     Min range slider
-    <svelte:fragment slot="subtitle">
+    {#snippet subtitle()}
       Limit the range the user can select to a minimum value.
-    </svelte:fragment>
+    {/snippet}
   </Demo>
 
   <Demo component={DiscreteRange} file="slider/_DiscreteRange.svelte">

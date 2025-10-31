@@ -1,3 +1,5 @@
+<svelte:options runes />
+
 <div
   bind:this={element}
   use:Ripple={{
@@ -9,9 +11,7 @@
   }}
   use:Anchor={{ addClass, removeClass }}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
-    [className]: true,
     'mdc-select': true,
     'mdc-select--required': required,
     'mdc-select--disabled': disabled,
@@ -19,22 +19,21 @@
     'mdc-select--outlined': variant === 'outlined',
     'smui-select--standard': variant === 'standard',
     'mdc-select--with-leading-icon': isUninitializedValue(withLeadingIcon)
-      ? $$slots.leadingIcon
+      ? leadingIcon
       : withLeadingIcon,
-    'mdc-select--no-label': noLabel || (label == null && !$$slots.label),
+    'mdc-select--no-label': noLabel || label == null,
     'mdc-select--invalid': invalid,
     'mdc-select--activated': menuOpen,
     'mdc-data-table__pagination-rows-per-page-select':
       context === 'data-table:pagination',
     ...internalClasses,
+    [className]: true,
   })}
   style={Object.entries(internalStyles)
     .map(([name, value]) => `${name}: ${value};`)
     .concat([style])
     .join(' ')}
-  on:SMUISelectLeadingIcon:mount={handleLeadingIconMount}
-  on:SMUISelectLeadingIcon:unmount={() => (leadingIcon = undefined)}
-  {...exclude($$restProps, [
+  {...exclude(restProps, [
     'input$',
     'anchor$',
     'label$',
@@ -54,85 +53,104 @@
       {required}
       {disabled}
       {value}
-      {...prefixFilter($$restProps, 'input$')}
+      {...prefixFilter(restProps, 'input$')}
     />
   {/if}
   <div
     bind:this={selectAnchor}
     use:useActions={anchor$use}
     class={classMap({
-      [anchor$class]: true,
       'mdc-select__anchor': true,
+      [anchor$class]: true,
     })}
     aria-required={required ? 'true' : undefined}
     aria-disabled={disabled ? 'true' : undefined}
-    aria-controls={helperId}
+    aria-controls={menuId}
+    aria-expanded={menuOpen ? 'true' : 'false'}
     aria-describedby={helperId}
-    on:focus={() => instance && instance.handleFocus()}
-    on:blur={() => instance && instance.handleBlur()}
-    on:click={(event) => {
+    role="combobox"
+    tabindex="0"
+    {...selectAnchorAttrs}
+    {...prefixFilter(restProps, 'anchor$')}
+    onclick={(e) => {
       selectAnchor.focus();
       if (instance) {
-        instance.handleClick(getNormalizedXCoordinate(event));
+        instance.handleClick(getNormalizedXCoordinate(e));
       }
+      restProps.anchor$onclick?.(e);
     }}
-    on:keydown={instance && instance.handleKeydown.bind(instance)}
-    on:focus
-    on:blur
-    {...selectAnchorAttrs}
-    {...prefixFilter($$restProps, 'anchor$')}
+    onkeydown={(e) => {
+      if (instance) {
+        instance.handleKeydown(e);
+      }
+      restProps.onkeydown?.(e);
+    }}
+    onblur={(e) => {
+      if (instance) {
+        instance.handleBlur();
+      }
+      dispatch(getElement(), 'blur', e);
+      restProps.anchor$onblur?.(e);
+    }}
+    onfocus={(e) => {
+      if (instance) {
+        instance.handleFocus();
+      }
+      dispatch(getElement(), 'focus', e);
+      restProps.anchor$onfocus?.(e);
+    }}
   >
     {#if variant === 'filled'}
-      <span class="mdc-select__ripple" />
+      <span class="mdc-select__ripple"></span>
     {/if}
-    {#if variant !== 'outlined' && !noLabel && (label != null || $$slots.label)}
+    {#if variant !== 'outlined' && !noLabel && label != null}
       <FloatingLabel
         bind:this={floatingLabel}
         id={inputId + '-smui-label'}
         floatAbove={$selectedTextStore !== ''}
         {required}
-        {...prefixFilter($$restProps, 'label$')}
-        >{label == null ? '' : label}<slot name="label" /></FloatingLabel
+        {...prefixFilter(restProps, 'label$')}
+        >{#if label == null}{:else if typeof label === 'string'}{label}{:else}{@render label()}{/if}</FloatingLabel
       >
     {/if}
     {#if variant === 'outlined'}
       <NotchedOutline
         bind:this={notchedOutline}
-        noLabel={noLabel || (label == null && !$$slots.label)}
-        {...prefixFilter($$restProps, 'outline$')}
+        noLabel={noLabel || label == null}
+        {...prefixFilter(restProps, 'outline$')}
       >
-        {#if !noLabel && (label != null || $$slots.label)}
+        {#if !noLabel && label != null}
           <FloatingLabel
             bind:this={floatingLabel}
             id={inputId + '-smui-label'}
             floatAbove={$selectedTextStore !== ''}
             {required}
-            {...prefixFilter($$restProps, 'label$')}
-            >{label == null ? '' : label}<slot name="label" /></FloatingLabel
+            {...prefixFilter(restProps, 'label$')}
+            >{#if label == null}{:else if typeof label === 'string'}{label}{:else}{@render label()}{/if}</FloatingLabel
           >
         {/if}
       </NotchedOutline>
     {/if}
-    <slot name="leadingIcon" />
+    {@render leadingIcon?.()}
     <span
       use:useActions={selectedTextContainer$use}
       class={classMap({
-        [selectedTextContainer$class]: true,
         'mdc-select__selected-text-container': true,
+        [selectedTextContainer$class]: true,
       })}
-      {...prefixFilter($$restProps, 'selectedTextContainer$')}
+      {...prefixFilter(restProps, 'selectedTextContainer$')}
     >
       <span
         use:useActions={selectedText$use}
         id={inputId + '-smui-selected-text'}
         class={classMap({
-          [selectedText$class]: true,
           'mdc-select__selected-text': true,
+          [selectedText$class]: true,
         })}
         role="button"
         aria-haspopup="listbox"
         aria-labelledby={inputId + '-smui-label'}
-        {...prefixFilter($$restProps, 'selectedText$')}
+        {...prefixFilter(restProps, 'selectedText$')}
       >
         {$selectedTextStore}
       </span>
@@ -140,10 +158,10 @@
     <span
       use:useActions={dropdownIcon$use}
       class={classMap({
-        [dropdownIcon$class]: true,
         'mdc-select__dropdown-icon': true,
+        [dropdownIcon$class]: true,
       })}
-      {...prefixFilter($$restProps, 'dropdownIcon$')}
+      {...prefixFilter(restProps, 'dropdownIcon$')}
     >
       <svg
         class="mdc-select__dropdown-icon-graphic"
@@ -167,52 +185,64 @@
     {#if variant !== 'outlined' && ripple}
       <LineRipple
         bind:this={lineRipple}
-        {...prefixFilter($$restProps, 'ripple$')}
+        {...prefixFilter(restProps, 'ripple$')}
       />
     {/if}
   </div>
 
   <Menu
     class={classMap({
-      [menu$class]: true,
       'mdc-select__menu': true,
       ...menuClasses,
+      [menu$class]: true,
     })}
+    id={menuId}
     fullWidth
     anchor={false}
     {anchorElement}
     {anchorCorner}
     bind:open={menuOpen}
-    on:SMUIMenu:selected={(event) =>
-      instance && instance.handleMenuItemAction(event.detail.index)}
-    on:SMUIMenuSurface:closing={() => instance && instance.handleMenuClosing()}
-    on:SMUIMenuSurface:closed={() => instance && instance.handleMenuClosed()}
-    on:SMUIMenuSurface:opened={() => instance && instance.handleMenuOpened()}
-    {...prefixFilter($$restProps, 'menu$')}
+    {...prefixFilter(restProps, 'menu$')}
+    onSMUIMenuSelected={(e) => {
+      if (instance) {
+        instance.handleMenuItemAction(e.detail.index);
+      }
+      restProps.onSMUIMenuSelected?.(e);
+    }}
+    onSMUIMenuSurfaceClosing={(e) => {
+      if (instance) {
+        instance.handleMenuClosing();
+      }
+      restProps.onSMUIMenuSurfaceClosing?.(e);
+    }}
+    onSMUIMenuSurfaceClosed={(e) => {
+      if (instance) {
+        instance.handleMenuClosed();
+      }
+      restProps.onSMUIMenuSurfaceClosed?.(e);
+    }}
+    onSMUIMenuSurfaceOpened={(e) => {
+      if (instance) {
+        instance.handleMenuOpened();
+      }
+      restProps.onSMUIMenuSurfaceOpened?.(e);
+    }}
   >
     <List
       role="listbox"
       {wrapFocus}
       bind:selectedIndex
-      on:SMUIList:mount={(event) => (list = event.detail)}
-      {...prefixFilter($$restProps, 'list$')}><slot /></List
+      {...prefixFilter(restProps, 'list$')}>{@render children?.()}</List
     >
   </Menu>
 </div>
-{#if $$slots.helperText}
-  <HelperText
-    on:SMUISelectHelperText:id={(event) => (helperId = event.detail)}
-    on:SMUISelectHelperText:mount={(event) => (helperText = event.detail)}
-    on:SMUISelectHelperText:unmount={() => {
-      helperId = undefined;
-      helperText = undefined;
-    }}
-    {...prefixFilter($$restProps, 'helperText$')}
-    ><slot name="helperText" /></HelperText
+{#if helperText}
+  <HelperText {...prefixFilter(restProps, 'helperText$')}
+    >{@render helperText?.()}</HelperText
   >
 {/if}
 
-<script context="module" lang="ts">
+<script module lang="ts">
   let counter = 0;
 </script>
 
@@ -222,11 +252,9 @@
     MDCSelectHelperTextFoundation,
   } from '@material/select';
   import { MDCSelectFoundation } from '@material/select';
-  import type { ComponentProps } from 'svelte';
+  import type { ComponentProps, Snippet } from 'svelte';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
   import { writable } from 'svelte/store';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type {
     AddLayoutListener,
     RemoveLayoutListener,
@@ -235,7 +263,6 @@
   } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
-    forwardEventsBuilder,
     classMap,
     exclude,
     prefixFilter,
@@ -254,45 +281,188 @@
 
   import HelperText from './helper-text/HelperText.svelte';
 
+  interface UninitializedValue extends Function {}
+  let uninitializedValue: UninitializedValue = () => {};
+  function isUninitializedValue(value: any): value is UninitializedValue {
+    return value === uninitializedValue;
+  }
+
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * A list of CSS styles.
+     */
     style?: string;
+    /**
+     * Whether to show a ripple animation.
+     */
     ripple?: boolean;
+    /**
+     * Whether the input is disabled.
+     */
     disabled?: boolean;
+    /**
+     * The styling variant of the input.
+     */
     variant?: 'standard' | 'filled' | 'outlined';
+    /**
+     * Do not use a label.
+     */
     noLabel?: boolean;
-    label?: string | undefined;
+    /**
+     * The label or a spot for the label.
+     */
+    label?: string | Snippet;
+    /**
+     * The value of the input.
+     */
     value?: any;
+    /**
+     * A function that turns values into string representations.
+     *
+     * This is necessary if your values can't be automatically turned into
+     * strings. So, for things like objects, functions, null, undefined, etc,
+     * this function should take a value and return a unique string
+     * representation.
+     *
+     * Whatever value semantically means "empty" or "none" can return an empty
+     * string to unfloat the label.
+     */
     key?: (item: any) => string;
+    /**
+     * Whether the input has been changed.
+     */
     dirty?: boolean;
+    /**
+     * Whether the input is invalid.
+     */
     invalid?: boolean;
+    /**
+     * Set to false to prevent updating the value passed to invalid.
+     *
+     * Defaults to true if and only if the invalid prop was not explicitly set.
+     */
     updateInvalid?: boolean;
+    /**
+     * Whether the input is required.
+     */
     required?: boolean;
+    /**
+     * The ID the input will use.
+     */
     inputId?: string;
+    /**
+     * If true, a hidden HTML input element will be used.
+     *
+     * This is useful if the input is part of an HTML form.
+     */
     hiddenInput?: boolean;
+    /**
+     * Whether a leading icon will be included after instantiation.
+     */
     withLeadingIcon?: boolean;
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     anchor$use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     anchor$class?: string;
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     selectedTextContainer$use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     selectedTextContainer$class?: string;
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     selectedText$use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     selectedText$class?: string;
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     dropdownIcon$use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     dropdownIcon$class?: string;
+    /**
+     * A space separated list of CSS classes.
+     */
     menu$class?: string;
+
+    children?: Snippet;
+    /**
+     * A spot for the leading icon.
+     */
+    leadingIcon?: Snippet;
+    /**
+     * A spot for the helper text.
+     */
+    helperText?: Snippet;
   };
-  type $$Props = OwnProps &
+  let {
+    use = [],
+    class: className = '',
+    style = '',
+    ripple = true,
+    disabled = false,
+    variant = 'standard',
+    noLabel = false,
+    label = undefined,
+    value = $bindable(),
+    key = (item) => item,
+    dirty = $bindable(false),
+    invalid = $bindable(uninitializedValue as unknown as boolean),
+    updateInvalid = isUninitializedValue(invalid),
+    required = false,
+    inputId = 'SMUI-select-' + counter++,
+    hiddenInput = false,
+    withLeadingIcon = uninitializedValue as unknown as boolean,
+    anchor$use = [],
+    anchor$class = '',
+    selectedTextContainer$use = [],
+    selectedTextContainer$class = '',
+    selectedText$use = [],
+    selectedText$class = '',
+    dropdownIcon$use = [],
+    dropdownIcon$class = '',
+    menu$class = '',
+    children,
+    leadingIcon,
+    helperText,
+    ...restProps
+  }: OwnProps &
     SmuiAttrs<'div', keyof OwnProps> & {
-      [k in keyof ComponentProps<HelperText> as `helperText\$${k}`]?: ComponentProps<HelperText>[k];
+      [k in keyof ComponentProps<
+        typeof HelperText
+      > as `helperText\$${k}`]?: ComponentProps<typeof HelperText>[k];
     } & {
       [k in keyof SmuiElementPropMap['input'] as `input\$${k}`]?: SmuiElementPropMap['input'][k];
     } & {
       [k in keyof SmuiElementPropMap['div'] as `anchor\$${k}`]?: SmuiElementPropMap['div'][k];
     } & {
-      [k in keyof ComponentProps<FloatingLabel> as `label\$${k}`]?: ComponentProps<FloatingLabel>[k];
+      [k in keyof ComponentProps<
+        typeof FloatingLabel
+      > as `label\$${k}`]?: ComponentProps<typeof FloatingLabel>[k];
     } & {
-      [k in keyof ComponentProps<NotchedOutline> as `outline\$${k}`]?: ComponentProps<NotchedOutline>[k];
+      [k in keyof ComponentProps<
+        typeof NotchedOutline
+      > as `outline\$${k}`]?: ComponentProps<typeof NotchedOutline>[k];
     } & {
       [k in keyof SmuiElementPropMap['span'] as `selectedTextContainer\$${k}`]?: SmuiElementPropMap['span'][k];
     } & {
@@ -300,83 +470,53 @@
     } & {
       [k in keyof SmuiElementPropMap['span'] as `dropdownIcon\$${k}`]?: SmuiElementPropMap['span'][k];
     } & {
-      [k in keyof ComponentProps<LineRipple> as `ripple\$${k}`]?: ComponentProps<LineRipple>[k];
+      [k in keyof ComponentProps<
+        typeof LineRipple
+      > as `ripple\$${k}`]?: ComponentProps<typeof LineRipple>[k];
     } & {
-      [k in keyof ComponentProps<Menu> as `menu\$${k}`]?: ComponentProps<Menu>[k];
+      [k in keyof ComponentProps<typeof Menu> as `menu\$${k}`]?: ComponentProps<
+        typeof Menu
+      >[k];
     } & {
-      [k in keyof ComponentProps<List> as `list\$${k}`]?: ComponentProps<List>[k];
+      [k in keyof ComponentProps<typeof List> as `list\$${k}`]?: ComponentProps<
+        typeof List
+      >[k];
     } & {
       input$disabled?: never;
       input$required?: never;
       input$value?: never;
-    };
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
-  interface UninitializedValue extends Function {}
-  let uninitializedValue: UninitializedValue = () => {};
-  function isUninitializedValue(value: any): value is UninitializedValue {
-    return value === uninitializedValue;
-  }
-
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let style = '';
-  export let ripple = true;
-  export let disabled = false;
-  export let variant: 'standard' | 'filled' | 'outlined' = 'standard';
-  export let noLabel = false;
-  export let label: string | undefined = undefined;
-  export let value: any = '';
-  export let key: (item: any) => string = (item) => item;
-  export let dirty = false;
+    } = $props();
 
   // Some trickery to detect uninitialized values but also have the right types.
-  export let invalid = uninitializedValue as unknown as boolean;
-  export let updateInvalid = isUninitializedValue(invalid);
   const useDefaultValidation = isUninitializedValue(invalid);
   if (isUninitializedValue(invalid)) {
     invalid = false;
   }
   // Done with the trickery.
 
-  export let required = false;
-  export let inputId = 'SMUI-select-' + counter++;
-  export let hiddenInput = false;
-  export let withLeadingIcon: UninitializedValue | boolean = uninitializedValue;
-  export let anchor$use: ActionArray = [];
-  export let anchor$class = '';
-  export let selectedTextContainer$use: ActionArray = [];
-  export let selectedTextContainer$class = '';
-  export let selectedText$use: ActionArray = [];
-  export let selectedText$class = '';
-  export let dropdownIcon$use: ActionArray = [];
-  export let dropdownIcon$class = '';
-  export let menu$class = '';
-
   let element: HTMLDivElement;
-  let instance: MDCSelectFoundation;
-  let internalClasses: { [k: string]: boolean } = {};
-  let internalStyles: { [k: string]: string } = {};
+  let instance: MDCSelectFoundation | undefined = $state();
+  let internalClasses: { [k: string]: boolean } = $state({});
+  let internalStyles: { [k: string]: string } = $state({});
   let selectAnchor: HTMLDivElement;
-  let selectAnchorAttrs: { [k: string]: string | undefined } = {};
-  let selectedIndex = -1;
-  let helperId: string | undefined = undefined;
+  let selectAnchorAttrs: { [k: string]: string | undefined } = $state({});
+  let selectedIndex = $state(-1);
+  const menuId = $derived(restProps['menu$id'] ?? inputId + '-menu');
+  let helperId: string | undefined = $state();
   let addLayoutListener = getContext<AddLayoutListener | undefined>(
-    'SMUI:addLayoutListener'
+    'SMUI:addLayoutListener',
   );
   let removeLayoutListener: RemoveLayoutListener | undefined;
-  let menuOpen = false;
-  let menuClasses: { [k: string]: boolean } = {};
-  let anchorElement: Element | undefined = undefined;
-  let anchorCorner: Corner | undefined = undefined;
-  let wrapFocus = false;
+  let menuOpen = $state(false);
+  let menuClasses: { [k: string]: boolean } = $state({});
+  let anchorElement: Element | undefined = $state();
+  let anchorCorner: Corner | undefined = $state();
+  let wrapFocus = $state(false);
   let list: SMUIListAccessor;
   let context = getContext<string | undefined>('SMUI:select:context');
   // These are instances, not accessors.
-  let leadingIcon: MDCSelectIconFoundation | undefined = undefined;
-  let helperText: MDCSelectHelperTextFoundation | undefined = undefined;
+  let leadingIconInstance: MDCSelectIconFoundation | undefined = undefined;
+  let helperTextInstance: MDCSelectHelperTextFoundation | undefined = undefined;
 
   // Components
   let floatingLabel: FloatingLabel | undefined = undefined;
@@ -391,49 +531,87 @@
   setContext('SMUI:select:selectedText', selectedTextStore);
 
   const valueStore = writable(value);
-  $: $valueStore = value;
+  $effect(() => {
+    $valueStore = value;
+  });
   setContext('SMUI:select:value', valueStore);
 
-  $: if (instance && instance.getValue() !== key(value)) {
-    instance.setValue(key(value));
-  }
+  $effect(() => {
+    if (instance && instance.getValue() !== key(value)) {
+      instance.setValue(key(value));
+    }
+  });
 
   let previousSelectedIndex = selectedIndex;
-  $: if (previousSelectedIndex !== selectedIndex) {
-    previousSelectedIndex = selectedIndex;
-    if (instance) {
-      instance.setSelectedIndex(
-        selectedIndex,
-        /* closeMenu */ false,
-        /* skipNotify */ true
-      );
-    } else {
-      const values = getMenuItemValues();
-      if (value !== values[selectedIndex]) {
-        value = values[selectedIndex];
+  $effect(() => {
+    if (previousSelectedIndex !== selectedIndex) {
+      previousSelectedIndex = selectedIndex;
+      if (instance) {
+        instance.setSelectedIndex(
+          selectedIndex,
+          /* closeMenu */ false,
+          /* skipNotify */ true,
+        );
+      } else {
+        const values = getMenuItemValues();
+        if (value !== values[selectedIndex]) {
+          value = values[selectedIndex];
+        }
       }
     }
-  }
+  });
 
-  $: if (instance && instance.getDisabled() !== disabled) {
-    instance.setDisabled(disabled);
-  }
-
-  $: if (instance && dirty && instance.isValid() !== !invalid) {
-    if (updateInvalid) {
-      invalid = !instance.isValid();
-    } else {
-      instance.setValid(!invalid);
+  $effect(() => {
+    if (instance && instance.getDisabled() !== disabled) {
+      instance.setDisabled(disabled);
     }
-  }
+  });
 
-  $: if (instance && instance.getRequired() !== required) {
-    instance.setRequired(required);
-  }
+  $effect(() => {
+    if (instance && dirty && instance.isValid() !== !invalid) {
+      if (updateInvalid) {
+        invalid = !instance.isValid();
+      } else {
+        instance.setValid(!invalid);
+      }
+    }
+  });
+
+  $effect(() => {
+    if (instance && instance.getRequired() !== required) {
+      instance.setRequired(required);
+    }
+  });
 
   if (addLayoutListener) {
     removeLayoutListener = addLayoutListener(layout);
   }
+
+  setContext(
+    'SMUI:select:leading-icon:mount',
+    (accessor: MDCSelectIconFoundation) => {
+      leadingIconInstance = accessor;
+    },
+  );
+  setContext('SMUI:select:leading-icon:unmount', () => {
+    leadingIconInstance = undefined;
+  });
+  setContext('SMUI:list:mount', (accessor: SMUIListAccessor) => {
+    list = accessor;
+  });
+  setContext('SMUI:select:helper-text:id', (id: string) => {
+    helperId = id;
+  });
+  setContext(
+    'SMUI:select:helper-text:mount',
+    (accessor: MDCSelectHelperTextFoundation) => {
+      helperTextInstance = accessor;
+    },
+  );
+  setContext('SMUI:select:helper-text:unmount', () => {
+    helperId = undefined;
+    helperTextInstance = undefined;
+  });
 
   onMount(() => {
     instance = new MDCSelectFoundation(
@@ -495,18 +673,12 @@
         notifyChange: (_selectedValue) => {
           dirty = true;
           if (updateInvalid) {
-            invalid = !instance.isValid();
+            invalid = !instance?.isValid();
           }
-          dispatch(
-            getElement(),
-            'SMUISelect:change',
-            {
-              value,
-              index: selectedIndex,
-            },
-            undefined,
-            true
-          );
+          dispatch(getElement(), 'SMUISelectChange', {
+            value,
+            index: selectedIndex,
+          });
         },
 
         // getOutlineAdapterMethods
@@ -525,12 +697,12 @@
       },
       {
         get helperText() {
-          return helperText;
+          return helperTextInstance;
         },
         get leadingIcon() {
-          return leadingIcon;
+          return leadingIconInstance;
         },
-      }
+      },
     );
 
     selectedIndex = getMenuItemValues().indexOf(value);
@@ -539,7 +711,7 @@
     setUseDefaultValidation(useDefaultValidation);
 
     return () => {
-      instance.destroy();
+      instance?.destroy();
     };
   });
 
@@ -548,10 +720,6 @@
       removeLayoutListener();
     }
   });
-
-  function handleLeadingIconMount(event: CustomEvent<MDCSelectIconFoundation>) {
-    leadingIcon = event.detail;
-  }
 
   function hasClass(className: string) {
     return className in internalClasses
@@ -575,7 +743,6 @@
     if (internalStyles[name] != value) {
       if (value === '' || value == null) {
         delete internalStyles[name];
-        internalStyles = internalStyles;
       } else {
         internalStyles[name] = value;
       }
@@ -596,7 +763,7 @@
 
   function getSelectAnchorAttr(name: string) {
     return name in selectAnchorAttrs
-      ? selectAnchorAttrs[name] ?? null
+      ? (selectAnchorAttrs[name] ?? null)
       : getElement().getAttribute(name);
   }
 
@@ -619,7 +786,7 @@
   function getNormalizedXCoordinate(
     evt: (MouseEvent | TouchEvent) & {
       currentTarget: EventTarget & HTMLDivElement;
-    }
+    },
   ) {
     const targetClientRect = evt.currentTarget.getBoundingClientRect();
     const xCoordinate = isTouchEvent(evt)
@@ -633,6 +800,9 @@
   }
 
   export function getUseDefaultValidation() {
+    if (instance == null) {
+      throw new Error('Instance is undefined.');
+    }
     return instance.getUseDefaultValidation();
   }
 
@@ -640,7 +810,7 @@
    * This is set to true automatically if you don't provide a `invalid` prop.
    */
   export function setUseDefaultValidation(useDefaultValidation: boolean) {
-    instance.setUseDefaultValidation(useDefaultValidation);
+    instance?.setUseDefaultValidation(useDefaultValidation);
   }
 
   export function focus() {
@@ -648,7 +818,7 @@
   }
 
   export function layout() {
-    instance.layout();
+    instance?.layout();
   }
 
   export function getElement() {

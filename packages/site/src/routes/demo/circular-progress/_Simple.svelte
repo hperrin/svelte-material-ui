@@ -4,11 +4,13 @@
 
 <br />
 
-<Button on:click={reset}>Reset</Button>
+<Button onclick={reset}>Reset</Button>
 
 <FormField>
   <Checkbox bind:checked={closed} />
-  <span slot="label">Closed</span>
+  {#snippet label()}
+    Closed
+  {/snippet}
 </FormField>
 
 <script lang="ts">
@@ -18,8 +20,8 @@
   import FormField from '@smui/form-field';
   import Button from '@smui/button';
 
-  let progress = 0;
-  let closed = false;
+  let progress = $state(0);
+  let closed = $state(false);
   let timer: NodeJS.Timer;
 
   onMount(reset);

@@ -1,30 +1,31 @@
+<svelte:options runes />
+
 <span
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
-    [className]: true,
     'mdc-tab-indicator': true,
     'mdc-tab-indicator--active': active,
     'mdc-tab-indicator--fade': transition === 'fade',
     ...internalClasses,
+    [className]: true,
   })}
-  {...exclude($$restProps, ['content$'])}
+  {...exclude(restProps, ['content$'])}
 >
   <span
     bind:this={content}
     use:useActions={content$use}
     class={classMap({
-      [content$class]: true,
       'mdc-tab-indicator__content': true,
       'mdc-tab-indicator__content--underline': type === 'underline',
       'mdc-tab-indicator__content--icon': type === 'icon',
+      [content$class]: true,
     })}
     style={Object.entries(contentStyles)
       .map(([name, value]) => `${name}: ${value};`)
       .join(' ')}
     aria-hidden={type === 'icon' ? 'true' : undefined}
-    {...prefixFilter($$restProps, 'content$')}><slot /></span
+    {...prefixFilter(restProps, 'content$')}>{@render children?.()}</span
   >
 </span>
 
@@ -33,13 +34,11 @@
     MDCFadingTabIndicatorFoundation,
     MDCSlidingTabIndicatorFoundation,
   } from '@material/tab-indicator';
+  import type { Snippet } from 'svelte';
   import { onMount } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type { SmuiAttrs, SmuiElementPropMap } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
-    forwardEventsBuilder,
     classMap,
     exclude,
     prefixFilter,
@@ -47,60 +46,85 @@
   } from '@smui/common/internal';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * Whether the tab associated with this indicator is active.
+     */
     active?: boolean;
+    /**
+     * The visual styling of the tab indictor.
+     */
     type?: 'underline' | 'icon';
+    /**
+     * The visual transition used when the active tab changes.
+     */
     transition?: 'slide' | 'fade';
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     content$use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     content$class?: string;
+
+    children?: Snippet;
   };
-  type $$Props = OwnProps &
+  let {
+    use = [],
+    class: className = '',
+    active = $bindable(false),
+    type = 'underline',
+    transition = 'slide',
+    content$use = [],
+    content$class = '',
+    children,
+    ...restProps
+  }: OwnProps &
     SmuiAttrs<'span', keyof OwnProps> & {
       [k in keyof SmuiElementPropMap['span'] as `content\$${k}`]?: SmuiElementPropMap['span'][k];
-    };
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
-
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let active = false;
-  export let type: 'underline' | 'icon' = 'underline';
-  export let transition: 'slide' | 'fade' = 'slide';
-  export let content$use: ActionArray = [];
-  export let content$class = '';
+    } = $props();
 
   let element: HTMLSpanElement;
   let instance:
     | MDCFadingTabIndicatorFoundation
-    | MDCSlidingTabIndicatorFoundation;
+    | MDCSlidingTabIndicatorFoundation
+    | undefined = $state();
   let content: HTMLSpanElement;
-  let internalClasses: { [k: string]: boolean } = {};
-  let contentStyles: { [k: string]: string } = {};
-  let changeSets: (() => void)[][] = [];
+  let internalClasses: { [k: string]: boolean } = $state({});
+  let contentStyles: { [k: string]: string } = $state({});
+  let changeSets: (() => void)[][] = $state([]);
 
   let oldTransition = transition;
-  $: if (oldTransition !== transition) {
-    oldTransition = transition;
-    instance && instance.destroy();
-    internalClasses = {};
-    contentStyles = {};
-    instance = getInstance();
-    instance.init();
-  }
+  $effect(() => {
+    if (oldTransition !== transition) {
+      oldTransition = transition;
+      instance && instance.destroy();
+      internalClasses = {};
+      contentStyles = {};
+      instance = getInstance();
+      instance.init();
+    }
+  });
 
   // Use sets of changes for DOM updates, to facilitate animations.
-  $: if (changeSets.length) {
-    requestAnimationFrame(() => {
-      const changeSet = changeSets.shift() ?? [];
-      changeSets = changeSets;
-      for (const fn of changeSet) {
-        fn();
-      }
-    });
-  }
+  $effect.pre(() => {
+    if (changeSets.length) {
+      requestAnimationFrame(() => {
+        const changeSet = changeSets.shift() ?? [];
+        for (const fn of changeSet) {
+          fn();
+        }
+      });
+    }
+  });
 
   onMount(() => {
     instance = getInstance();
@@ -108,7 +132,7 @@
     instance.init();
 
     return () => {
-      instance.destroy();
+      instance?.destroy();
     };
   });
 
@@ -152,7 +176,6 @@
     if (contentStyles[name] != value) {
       if (value === '' || value == null) {
         delete contentStyles[name];
-        contentStyles = contentStyles;
       } else {
         contentStyles[name] = value;
       }
@@ -161,17 +184,16 @@
 
   export function activate(previousIndicatorClientRect: DOMRect) {
     active = true;
-    instance.activate(previousIndicatorClientRect);
+    instance?.activate(previousIndicatorClientRect);
   }
 
   export function deactivate() {
     active = false;
-    instance.deactivate();
+    instance?.deactivate();
   }
 
   export function computeContentClientRect() {
     changeSets.push([]);
-    changeSets = changeSets;
     return content.getBoundingClientRect();
   }
 

@@ -1,19 +1,19 @@
 <div style="display: flex; align-items: center;">
-  <IconButton on:click={() => clicked++}>
+  <IconButton onclick={() => clicked++}>
     <Icon tag="svg" viewBox="0 0 24 24">
       <path fill="currentColor" d={mdiFormatColorFill} />
     </Icon>
   </IconButton>
 </div>
 <div style="display: flex; align-items: center;">
-  <IconButton on:click={() => clicked++} disabled>
+  <IconButton onclick={() => clicked++} disabled>
     <Icon tag="svg" viewBox="0 0 24 24">
       <path fill="currentColor" d={mdiWrench} />
     </Icon>
   </IconButton>&nbsp;(disabled)
 </div>
 <div style="display: flex; align-items: center;">
-  <IconButton on:click={() => clicked++} ripple={false}>
+  <IconButton onclick={() => clicked++} ripple={false}>
     <Icon tag="svg" viewBox="0 0 24 24">
       <path fill="currentColor" d={mdiCurrencyUsd} />
     </Icon>
@@ -26,5 +26,5 @@
   import { mdiFormatColorFill, mdiWrench, mdiCurrencyUsd } from '@mdi/js';
   import IconButton, { Icon } from '@smui/icon-button';
 
-  let clicked = 0;
+  let clicked = $state(0);
 </script>

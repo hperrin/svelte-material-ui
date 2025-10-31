@@ -36,7 +36,7 @@
   import IconButton from '@smui/icon-button';
   import LoremIpsum from '$lib/LoremIpsum.svelte';
 
-  let topAppBar: TopAppBar;
+  let topAppBar: TopAppBar | null = $state(null);
 </script>
 
 <style>

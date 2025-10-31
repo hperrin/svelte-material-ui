@@ -40,11 +40,10 @@
 
   <Demo component={HrefAnchors} file="tabs/_HrefAnchors.svelte">
     Tabs with href attributes render as anchor elements
-
-    <svelte:fragment slot="subtitle">
+    {#snippet subtitle()}
       But they don't activate through keyboard arrow keys. They need to be
       activated with the enter key.
-    </svelte:fragment>
+    {/snippet}
   </Demo>
 </section>
 

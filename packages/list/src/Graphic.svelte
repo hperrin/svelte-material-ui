@@ -1,39 +1,41 @@
+<svelte:options runes />
+
 <span
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
-    [className]: true,
     'mdc-deprecated-list-item__graphic': true,
     'mdc-menu__selection-group-icon': menuSelectionGroup,
+    [className]: true,
   })}
-  {...$$restProps}><slot /></span
+  {...restProps}>{@render children?.()}</span
 >
 
 <script lang="ts">
+  import type { Snippet } from 'svelte';
   import { getContext } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    useActions,
-  } from '@smui/common/internal';
+  import { classMap, useActions } from '@smui/common/internal';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+
+    children?: Snippet;
   };
-  type $$Props = OwnProps & SmuiAttrs<'span', keyof OwnProps>;
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
-
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
+  let {
+    use = [],
+    class: className = '',
+    children,
+    ...restProps
+  }: OwnProps & SmuiAttrs<'span', keyof OwnProps> = $props();
 
   let element: HTMLSpanElement;
   let menuSelectionGroup = getContext('SMUI:list:graphic:menu-selection-group');

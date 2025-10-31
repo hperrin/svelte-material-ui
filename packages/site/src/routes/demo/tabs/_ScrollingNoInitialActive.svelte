@@ -1,8 +1,10 @@
 <div>
-  <TabBar tabs={[...Array(20)].map((_v, i) => i + 1)} let:tab>
-    <Tab {tab}>
-      <Label>Tab {tab}</Label>
-    </Tab>
+  <TabBar tabs={[...Array(20)].map((_v, i) => i + 1)}>
+    {#snippet tab(tab)}
+      <Tab {tab}>
+        <Label>Tab {tab}</Label>
+      </Tab>
+    {/snippet}
   </TabBar>
 </div>
 

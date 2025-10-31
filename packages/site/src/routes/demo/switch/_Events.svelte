@@ -1,12 +1,14 @@
 <div>
   <FormField>
-    <Switch bind:checked on:SMUISwitch:change={(e) => (event = e)} />
-    <span slot="label">Fields of grain.</span>
+    <Switch bind:checked onSMUISwitchChange={(e) => (event = e)} />
+    {#snippet label()}
+      Fields of grain.
+    {/snippet}
   </FormField>
 </div>
 
 <div style="margin-top: 1em;">
-  <Button on:click={() => (checked = !checked)}>Toggle Programmatically</Button>
+  <Button onclick={() => (checked = !checked)}>Toggle Programmatically</Button>
   (Notice that this doesn't fire an event.)
 </div>
 
@@ -19,6 +21,6 @@
   import FormField from '@smui/form-field';
   import Button from '@smui/button';
 
-  let checked = false;
-  let event: CustomEvent | undefined = undefined;
+  let checked = $state(false);
+  let event: CustomEvent | undefined = $state();
 </script>

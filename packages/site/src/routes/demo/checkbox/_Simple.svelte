@@ -1,7 +1,9 @@
 <div>
   <FormField>
     <Checkbox bind:checked />
-    <span slot="label">Remember me.</span>
+    {#snippet label()}
+      Remember me.
+    {/snippet}
   </FormField>
 </div>
 
@@ -10,12 +12,14 @@
 <div style="margin-top: 1em;">
   <FormField align="end">
     <Checkbox bind:checked={checked2} />
-    <span slot="label">Remember me.</span>
+    {#snippet label()}
+      Remember me.
+    {/snippet}
   </FormField>
 </div>
 
 <div style="margin-top: 1em;">
-  <Button on:click={() => (checked2 = !checked2)}>
+  <Button onclick={() => (checked2 = !checked2)}>
     Toggle Programmatically
   </Button>
 </div>
@@ -27,6 +31,6 @@
   import FormField from '@smui/form-field';
   import Button from '@smui/button';
 
-  let checked = false;
-  let checked2 = false;
+  let checked = $state(false);
+  let checked2 = $state(false);
 </script>

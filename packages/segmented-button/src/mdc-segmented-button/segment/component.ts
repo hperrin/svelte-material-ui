@@ -40,7 +40,7 @@ import { MDCSegmentedButtonSegmentFoundation } from './foundation';
  */
 export type MDCSegmentedButtonSegmentFactory = (
   el: Element,
-  foundation?: MDCSegmentedButtonSegmentFoundation
+  foundation?: MDCSegmentedButtonSegmentFoundation,
 ) => MDCSegmentedButtonSegment;
 
 /**
@@ -65,7 +65,7 @@ export class MDCSegmentedButtonSegment
 
   override initialize(
     rippleFactory: MDCRippleFactory = (el, foundation) =>
-      new MDCRipple(el, foundation)
+      new MDCRipple(el, foundation),
   ) {
     const rippleAdapter: MDCRippleAdapter = {
       ...MDCRipple.createAdapter(this),
@@ -73,7 +73,7 @@ export class MDCSegmentedButtonSegment
     };
     this.rippleComponent = rippleFactory(
       this.root,
-      new MDCRippleFoundation(rippleAdapter)
+      new MDCRippleFoundation(rippleAdapter),
     );
   }
 
@@ -125,7 +125,7 @@ export class MDCSegmentedButtonSegment
             selected,
             segmentId: this.getSegmentId(),
           },
-          true /* shouldBubble */
+          true /* shouldBubble */,
         );
       },
       getRootBoundingClientRect: () => {

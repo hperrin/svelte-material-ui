@@ -1,34 +1,29 @@
+<svelte:options runes />
+
 {#if tag === 'svg'}
-  <svg
-    bind:this={element}
-    use:useActions={use}
-    use:forwardEvents
-    {...$$restProps}><slot /></svg
+  <svg bind:this={element} use:useActions={use} {...restProps}
+    >{@render children?.()}</svg
   >
 {:else if selfClosing}
   <svelte:element
     this={tag}
     bind:this={element}
     use:useActions={use}
-    use:forwardEvents
-    {...$$restProps}
+    {...restProps}
   />
 {:else}
   <svelte:element
     this={tag}
     bind:this={element}
     use:useActions={use}
-    use:forwardEvents
-    {...$$restProps}><slot /></svelte:element
+    {...restProps}>{@render children?.()}</svelte:element
   >
 {/if}
 
 <script lang="ts" generics="TagName extends SmuiEveryElement">
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
-
+  import type { Snippet } from 'svelte';
   import type { ActionArray } from './internal/useActions.js';
-  import { forwardEventsBuilder, useActions } from './internal/index.js';
+  import { useActions } from './internal/index.js';
   import type {
     SmuiAttrs,
     SmuiElementMap,
@@ -36,18 +31,25 @@
   } from './smui.types.js';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
-    tag: TagName;
+    /**
+     * The tag name of the element to create.
+     */
+    tag?: TagName;
+
+    children?: Snippet;
   };
-  type $$Props = OwnProps & SmuiAttrs<TagName, keyof OwnProps>;
+  let {
+    use = [],
+    tag = 'div' as TagName,
+    children,
+    ...restProps
+  }: OwnProps & SmuiAttrs<TagName, keyof OwnProps> = $props();
 
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  export let tag: SmuiEveryElement;
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
-
-  $: selfClosing =
+  const selfClosing = $derived(
     [
       'area',
       'base',
@@ -63,11 +65,12 @@
       'source',
       'track',
       'wbr',
-    ].indexOf(tag) > -1;
+    ].indexOf(tag) > -1,
+  );
 
   let element: SmuiElementMap[SmuiEveryElement];
 
-  export function getElement(): SmuiElementMap[TagName] {
+  export function getElement() {
     return element as SmuiElementMap[TagName];
   }
 </script>

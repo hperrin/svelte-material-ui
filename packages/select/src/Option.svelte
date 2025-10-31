@@ -1,36 +1,44 @@
+<svelte:options runes />
+
 <Item
   bind:this={element}
-  use={usePass}
+  {use}
   data-value={value}
   {value}
   {selected}
-  {...$$restProps}><slot /></Item
+  {...restProps}>{@render children?.()}</Item
 >
 
 <script lang="ts">
-  import type { ComponentProps } from 'svelte';
+  import type { ComponentProps, Snippet } from 'svelte';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
   import type { Writable } from 'svelte/store';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type { ActionArray } from '@smui/common/internal';
-  import { forwardEventsBuilder } from '@smui/common/internal';
   import { Item } from '@smui/list';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * The value of the input.
+     */
     value?: any;
+
+    children?: Snippet;
   };
-  type $$Props = OwnProps & Omit<ComponentProps<Item>, keyof OwnProps>;
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
-
-  export let use: ActionArray = [];
-  $: usePass = [forwardEvents, ...use] as ActionArray;
-  const className = '';
-  export { className as class };
-  export let value: any = '';
+  let {
+    use = [],
+    class: className = '',
+    value = '',
+    children,
+    ...restProps
+  }: OwnProps & Omit<ComponentProps<typeof Item>, keyof OwnProps> = $props();
 
   let element: Item;
   const selectedText = getContext<Writable<string>>('SMUI:select:selectedText');
@@ -38,7 +46,9 @@
 
   setContext('SMUI:list:item:role', 'option');
 
-  $: selected = value != null && value !== '' && $selectedValue === value;
+  const selected = $derived(
+    value != null && value !== '' && $selectedValue === value,
+  );
 
   onMount(setSelectedText);
 

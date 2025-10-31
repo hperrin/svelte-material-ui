@@ -1,67 +1,96 @@
+<svelte:options runes />
+
 <i
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
-    [className]: true,
     'mdc-text-field__icon': true,
     'mdc-text-field__icon--leading': leading,
     'mdc-text-field__icon--trailing': !leading,
+    [className]: true,
   })}
   aria-hidden={tabindex === -1 ? 'true' : 'false'}
   aria-disabled={role === 'button' ? (disabled ? 'true' : 'false') : undefined}
   {...roleProps}
   {...internalAttrs}
-  {...$$restProps}
-  >{#if content == null}<slot />{:else}{content}{/if}</i
+  {...restProps}
+  >{#if content == null}{@render children?.()}{:else}{content}{/if}</i
 >
 
 <script lang="ts">
   import { MDCTextFieldIconFoundation } from '@material/textfield';
+  import type { Snippet } from 'svelte';
   import { onMount, getContext } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
-    forwardEventsBuilder,
     classMap,
     useActions,
     dispatch,
+    SvelteEventManager,
   } from '@smui/common/internal';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * The element's role.
+     */
     role?: string | undefined;
+    /**
+     * The tab index.
+     */
     tabindex?: number;
+    /**
+     * Whether the element is disabled.
+     */
     disabled?: boolean;
+
+    children?: Snippet;
   };
-  type $$Props = OwnProps & SmuiAttrs<'i', keyof OwnProps>;
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
-
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let role: string | undefined = undefined;
-  export let tabindex = role === 'button' ? 0 : -1;
-  export let disabled = false;
+  let {
+    use = [],
+    class: className = '',
+    role,
+    tabindex = role === 'button' ? 0 : -1,
+    disabled = false,
+    children,
+    ...restProps
+  }: OwnProps & SmuiAttrs<'i', keyof OwnProps> = $props();
 
   let element: HTMLElement;
-  let instance: MDCTextFieldIconFoundation;
-  let internalAttrs: { [k: string]: string | undefined } = {};
+  let instance: MDCTextFieldIconFoundation | undefined = $state();
+  let eventManager = new SvelteEventManager();
+  let internalAttrs: { [k: string]: string | undefined } = $state({});
   const leadingStore = getContext<SvelteStore<boolean>>(
-    'SMUI:textfield:icon:leading'
+    'SMUI:textfield:icon:leading',
   );
   const leading = $leadingStore;
-  let content: string | undefined = undefined;
+  let content: string | undefined = $state();
 
-  $: roleProps = {
+  const roleProps = $derived({
     role,
     tabindex,
-  };
+  });
+
+  const SMUITextfieldLeadingIconMount = getContext<
+    ((accessor: MDCTextFieldIconFoundation) => void) | undefined
+  >('SMUI:textfield:leading-icon:mount');
+  const SMUITextfieldLeadingIconUnmount = getContext<
+    ((accessor: MDCTextFieldIconFoundation) => void) | undefined
+  >('SMUI:textfield:leading-icon:unmount');
+  const SMUITextfieldTrailingIconMount = getContext<
+    ((accessor: MDCTextFieldIconFoundation) => void) | undefined
+  >('SMUI:textfield:trailing-icon:mount');
+  const SMUITextfieldTrailingIconUnmount = getContext<
+    ((accessor: MDCTextFieldIconFoundation) => void) | undefined
+  >('SMUI:textfield:trailing-icon:unmount');
 
   onMount(() => {
     instance = new MDCTextFieldIconFoundation({
@@ -72,45 +101,40 @@
         content = value;
       },
       registerInteractionHandler: (evtType, handler) =>
-        getElement().addEventListener(evtType, handler),
+        eventManager.on(getElement(), evtType, handler),
       deregisterInteractionHandler: (evtType, handler) =>
-        getElement().removeEventListener(evtType, handler),
-      notifyIconAction: () =>
-        dispatch(
-          getElement(),
-          'SMUITextField:icon',
-          undefined,
-          undefined,
-          true
-        ),
+        eventManager.off(getElement(), evtType, handler),
+      notifyIconAction: () => dispatch(getElement(), 'SMUITextFieldIcon'),
     });
 
-    dispatch(
-      getElement(),
-      leading
-        ? 'SMUITextfieldLeadingIcon:mount'
-        : 'SMUITextfieldTrailingIcon:mount',
-      instance
-    );
+    if (leading) {
+      SMUITextfieldLeadingIconMount && SMUITextfieldLeadingIconMount(instance);
+    } else {
+      SMUITextfieldTrailingIconMount &&
+        SMUITextfieldTrailingIconMount(instance);
+    }
 
     instance.init();
 
     return () => {
-      dispatch(
-        getElement(),
-        leading
-          ? 'SMUITextfieldLeadingIcon:unmount'
-          : 'SMUITextfieldTrailingIcon:unmount',
-        instance
-      );
+      if (instance) {
+        if (leading) {
+          SMUITextfieldLeadingIconUnmount &&
+            SMUITextfieldLeadingIconUnmount(instance);
+        } else {
+          SMUITextfieldTrailingIconUnmount &&
+            SMUITextfieldTrailingIconUnmount(instance);
+        }
+      }
 
-      instance.destroy();
+      instance?.destroy();
+      eventManager.clear();
     };
   });
 
   function getAttr(name: string) {
     return name in internalAttrs
-      ? internalAttrs[name] ?? null
+      ? (internalAttrs[name] ?? null)
       : getElement().getAttribute(name);
   }
 

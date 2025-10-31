@@ -1,7 +1,8 @@
+<svelte:options runes />
+
 <div
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   use:Ripple={{
     unbounded: true,
     addClass,
@@ -11,7 +12,6 @@
     eventTarget: checkbox,
   }}
   class={classMap({
-    [className]: true,
     'mdc-checkbox': true,
     'mdc-checkbox--disabled': disabled,
     'mdc-checkbox--touch': touch,
@@ -20,20 +20,26 @@
     'mdc-data-table__row-checkbox':
       context === 'data-table' && !dataTableHeader,
     ...internalClasses,
+    [className]: true,
   })}
   style={Object.entries(internalStyles)
     .map(([name, value]) => `${name}: ${value};`)
     .concat([style])
     .join(' ')}
-  on:animationend={() => instance && instance.handleAnimationEnd()}
-  {...exclude($$restProps, ['input$'])}
+  {...exclude(restProps, ['input$'])}
+  onanimationend={(e) => {
+    if (instance) {
+      instance.handleAnimationEnd();
+    }
+    restProps.onanimationend?.(e);
+  }}
 >
   <input
     bind:this={checkbox}
     use:useActions={input$use}
     class={classMap({
-      [input$class]: true,
       'mdc-checkbox__native-control': true,
+      [input$class]: true,
     })}
     type="checkbox"
     {...inputProps}
@@ -43,10 +49,16 @@
     data-indeterminate={!isUninitializedValue(indeterminate) && indeterminate
       ? 'true'
       : undefined}
-    on:blur
-    on:focus
     {...nativeControlAttrs}
-    {...prefixFilter($$restProps, 'input$')}
+    {...prefixFilter(restProps, 'input$')}
+    onblur={(e) => {
+      dispatch(getElement(), 'blur', e);
+      restProps.input$onblur?.(e);
+    }}
+    onfocus={(e) => {
+      dispatch(getElement(), 'focus', e);
+      restProps.input$onfocus?.(e);
+    }}
   />
   <div class="mdc-checkbox__background">
     <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
@@ -56,16 +68,14 @@
         d="M1.73,12.91 8.1,19.28 22.79,4.59"
       />
     </svg>
-    <div class="mdc-checkbox__mixedmark" />
+    <div class="mdc-checkbox__mixedmark"></div>
   </div>
-  <div class="mdc-checkbox__ripple" />
+  <div class="mdc-checkbox__ripple"></div>
 </div>
 
 <script lang="ts">
   import { MDCCheckboxFoundation } from '@material/checkbox';
   import { onMount, getContext } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type {
     SmuiAttrs,
     SmuiElementPropMap,
@@ -73,7 +83,6 @@
   } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
-    forwardEventsBuilder,
     classMap,
     exclude,
     prefixFilter,
@@ -82,21 +91,85 @@
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
 
+  interface UninitializedValue extends Function {}
+  let uninitializedValue: UninitializedValue = () => {};
+  function isUninitializedValue(value: any): value is UninitializedValue {
+    return value === uninitializedValue;
+  }
+
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * A list of CSS styles.
+     */
     style?: string;
+    /**
+     * Whether the input is disabled.
+     */
     disabled?: boolean;
+    /**
+     * Whether to use touch styling
+     */
     touch?: boolean;
+    /**
+     * Whether the checkbox is in an indeterminate state.
+     */
     indeterminate?: boolean;
+    /**
+     * An array of items to pick from.
+     *
+     * If the checkbox is in a group, the values for the checked items will be
+     * added to the array passed in the `value` prop.
+     */
     group?: any[];
+    /**
+     * Whether the box is checked.
+     */
     checked?: boolean | null;
+    /**
+     * An array of currently selected values.
+     *
+     * This is the array that is added to/taken from when the checkbox is in a
+     * group.
+     */
     value?: any;
+    /**
+     * A string representation of the value.
+     *
+     * Use this if it can't be converted to a unique string in its group.
+     */
     valueKey?: string;
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     input$use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     input$class?: string;
   };
-  type $$Props = OwnProps &
+  let {
+    use = [],
+    class: className = '',
+    style = '',
+    disabled = $bindable(false),
+    touch = false,
+    indeterminate = $bindable(uninitializedValue as unknown as boolean),
+    group = $bindable(uninitializedValue as unknown as any[]),
+    checked = $bindable(uninitializedValue as unknown as boolean),
+    value = null,
+    valueKey = uninitializedValue as unknown as string,
+    input$use = [],
+    input$class = '',
+    ...restProps
+  }: OwnProps &
     SmuiAttrs<'div', keyof OwnProps> & {
       [k in keyof SmuiElementPropMap['input'] as `input\$${k}`]?: SmuiElementPropMap['input'][k];
     } & {
@@ -105,54 +178,35 @@
       input$value?: never;
       input$checked?: never;
       input$group?: never;
-    };
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
-  interface UninitializedValue extends Function {}
-  let uninitializedValue: UninitializedValue = () => {};
-  function isUninitializedValue(value: any): value is UninitializedValue {
-    return value === uninitializedValue;
-  }
-
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let style = '';
-  export let disabled = false;
-  export let touch = false;
-  export let indeterminate: UninitializedValue | boolean = uninitializedValue;
-  export let group: UninitializedValue | any[] = uninitializedValue;
-  export let checked: UninitializedValue | boolean | null = uninitializedValue;
-  export let value: any = null;
-  export let valueKey: UninitializedValue | string = uninitializedValue;
-  export let input$use: ActionArray = [];
-  export let input$class = '';
+    } = $props();
 
   let element: HTMLDivElement;
-  let instance: MDCCheckboxFoundation;
-  let checkbox: HTMLInputElement;
-  let internalClasses: { [k: string]: boolean } = {};
-  let internalStyles: { [k: string]: string } = {};
-  let nativeControlAttrs: { [k: string]: string | undefined } = {};
-  let rippleActive = false;
-  let inputProps =
-    getContext<{ id?: string } | undefined>('SMUI:generic:input:props') ?? {};
-  let nativeChecked: boolean | undefined = isUninitializedValue(group)
-    ? isUninitializedValue(checked)
-      ? false
-      : checked ?? undefined
-    : group.indexOf(value) !== -1;
+  let instance: MDCCheckboxFoundation | undefined = $state();
+  let checkbox: HTMLInputElement | undefined = $state();
+  let internalClasses: { [k: string]: boolean } = $state({});
+  let internalStyles: { [k: string]: string } = $state({});
+  let nativeControlAttrs: { [k: string]: string | undefined } = $state({});
+  let rippleActive = $state(false);
+  let inputProps = $state(
+    getContext<{ id?: string } | undefined>('SMUI:generic:input:props') ?? {},
+  );
+  let nativeChecked: boolean = $state(
+    isUninitializedValue(group)
+      ? isUninitializedValue(checked)
+        ? false
+        : !!checked
+      : group.findIndex((val) => val === value) !== -1,
+  );
   let context = getContext<string | undefined>('SMUI:checkbox:context');
   let dataTableHeader = getContext<boolean | undefined>(
-    'SMUI:data-table:row:header'
+    'SMUI:data-table:row:header',
   );
 
   let previousChecked = checked;
   let previousGroup = isUninitializedValue(group) ? [] : [...group];
   let previousNativeChecked = nativeChecked;
-  $: {
-    // This is a substitute for an on:change listener that is
+  $effect(() => {
+    // This is a substitute for an onchange listener that is
     // smarter about when it calls the instance's handler. I do
     // this so that a group of changes will only trigger one
     // handler call, since the handler will reset currently
@@ -163,19 +217,17 @@
     if (!isUninitializedValue(group)) {
       if (previousNativeChecked !== nativeChecked) {
         // The change needs to flow up.
-        const idx = group.indexOf(value);
+        const idx = group.findIndex((val) => val === value);
         if (nativeChecked && idx === -1) {
           group.push(value);
-          group = group;
         } else if (!nativeChecked && idx !== -1) {
           group.splice(idx, 1);
-          group = group;
         }
         callHandleChange = true;
       } else {
         // Potential changes need to flow down.
-        const idxPrev = previousGroup.indexOf(value);
-        const idx = group.indexOf(value);
+        const idxPrev = previousGroup.findIndex((val) => val === value);
+        const idx = group.findIndex((val) => val === value);
 
         if (idxPrev > -1 && idx === -1) {
           // The checkbox was removed from the group.
@@ -191,22 +243,28 @@
 
     // Now check individual state.
     if (isUninitializedValue(checked)) {
-      if (!!previousNativeChecked !== !!nativeChecked) {
+      if (previousNativeChecked !== nativeChecked) {
         // The checkbox was clicked by the user.
         callHandleChange = true;
       }
-    } else if (checked !== (nativeChecked ?? null)) {
-      if (checked === previousChecked) {
+    } else if (
+      checked !== (indeterminate ? null : nativeChecked) ||
+      nativeChecked !== previousNativeChecked
+    ) {
+      if (
+        checked === previousChecked &&
+        nativeChecked !== previousNativeChecked
+      ) {
         // The checkbox was clicked by the user
         // and the change needs to flow up.
-        checked = nativeChecked ?? null;
+        checked = nativeChecked;
         if (!isUninitializedValue(indeterminate)) {
           indeterminate = false;
         }
       } else {
         // The checkbox was changed programmatically
         // and the change needs to flow down.
-        nativeChecked = checked ?? undefined;
+        nativeChecked = !!checked;
       }
       callHandleChange = true;
     }
@@ -225,6 +283,7 @@
           callHandleChange = true;
         } else if (indeterminate && !checkbox.indeterminate) {
           checkbox.indeterminate = true;
+          nativeChecked = false;
           callHandleChange = true;
         }
       }
@@ -236,18 +295,35 @@
     if (callHandleChange && instance) {
       instance.handleChange();
     }
-  }
+  });
+
+  const SMUIGenericInputMount = getContext<
+    ((accessor: SMUICheckboxInputAccessor) => void) | undefined
+  >('SMUI:generic:input:mount');
+  const SMUIGenericInputUnmount = getContext<
+    ((accessor: SMUICheckboxInputAccessor) => void) | undefined
+  >('SMUI:generic:input:unmount');
+  const SMUICheckboxMount = getContext<
+    ((accessor: SMUICheckboxInputAccessor) => void) | undefined
+  >('SMUI:checkbox:mount');
+  const SMUICheckboxUnmount = getContext<
+    ((accessor: SMUICheckboxInputAccessor) => void) | undefined
+  >('SMUI:checkbox:unmount');
 
   onMount(() => {
+    if (checkbox == null) {
+      throw new Error('Checkbox is not defined.');
+    }
+
     checkbox.indeterminate =
       !isUninitializedValue(indeterminate) && indeterminate;
 
     instance = new MDCCheckboxFoundation({
       addClass,
-      forceLayout: () => element.offsetWidth,
+      forceLayout: () => getElement().offsetWidth,
       hasNativeControl: () => true,
-      isAttachedToDOM: () => Boolean(element.parentNode),
-      isChecked: () => nativeChecked ?? false,
+      isAttachedToDOM: () => Boolean(getElement().parentNode),
+      isChecked: () => nativeChecked,
       isIndeterminate: () =>
         isUninitializedValue(indeterminate) ? false : indeterminate,
       removeClass,
@@ -262,7 +338,7 @@
         return getElement();
       },
       get checked() {
-        return nativeChecked ?? false;
+        return nativeChecked;
       },
       set checked(value) {
         if (nativeChecked !== value) {
@@ -285,16 +361,16 @@
       },
     };
 
-    dispatch(element, 'SMUIGenericInput:mount', accessor);
-    dispatch(element, 'SMUICheckbox:mount', accessor);
+    SMUIGenericInputMount && SMUIGenericInputMount(accessor);
+    SMUICheckboxMount && SMUICheckboxMount(accessor);
 
     instance.init();
 
     return () => {
-      dispatch(element, 'SMUIGenericInput:unmount', accessor);
-      dispatch(element, 'SMUICheckbox:unmount', accessor);
+      SMUIGenericInputUnmount && SMUIGenericInputUnmount(accessor);
+      SMUICheckboxUnmount && SMUICheckboxUnmount(accessor);
 
-      instance.destroy();
+      instance?.destroy();
     };
   });
 
@@ -314,7 +390,6 @@
     if (internalStyles[name] != value) {
       if (value === '' || value == null) {
         delete internalStyles[name];
-        internalStyles = internalStyles;
       } else {
         internalStyles[name] = value;
       }

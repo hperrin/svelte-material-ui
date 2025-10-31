@@ -7,9 +7,9 @@
     bind:value
     label="Name"
   >
-    <HelperText slot="helper"
-      >This field should autocomplete with your name.</HelperText
-    >
+    {#snippet helper()}
+      <HelperText>This field should autocomplete with your name.</HelperText>
+    {/snippet}
   </Textfield>
 </div>
 
@@ -17,5 +17,5 @@
   import Textfield from '@smui/textfield';
   import HelperText from '@smui/textfield/helper-text';
 
-  let value = '';
+  let value = $state('');
 </script>

@@ -1,6 +1,6 @@
 export function exclude<T extends { [k: string]: any }>(
   obj: T,
-  keys: string[]
+  keys: string[],
 ): Partial<T> {
   let names = Object.getOwnPropertyNames(obj);
   const newObj: Partial<T> = {};

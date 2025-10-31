@@ -118,19 +118,19 @@
 @use '@material/typography' with (
   $font-family: unquote('Verdana, Geneva, sans-serif'),
   $styles-headline1: (
-    font-family: unquote('"Palatino Linotype", "Book Antiqua", Palatino, serif'),
+    font-family: unquote('Tahoma, sans-serif'),
     letter-spacing: 0,
   ),
   $styles-headline2: (
-    font-family: unquote('"Palatino Linotype", "Book Antiqua", Palatino, serif'),
+    font-family: unquote('Tahoma, sans-serif'),
     letter-spacing: 0,
   ),
   $styles-headline3: (
-    font-family: unquote('"Palatino Linotype", "Book Antiqua", Palatino, serif'),
+    font-family: unquote('Tahoma, sans-serif'),
     letter-spacing: 0,
   ),
   $styles-headline4: (
-    font-family: unquote('"Palatino Linotype", "Book Antiqua", Palatino, serif'),
+    font-family: unquote('Tahoma, sans-serif'),
     letter-spacing: 0,
   ),
   $styles-headline5: (

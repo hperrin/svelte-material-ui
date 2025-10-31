@@ -64,7 +64,7 @@
 
   let fruits = ['Apple', 'Orange', 'Banana', 'Mango'];
 
-  let valueStandard: string | undefined = undefined;
-  let valueFilled: string | undefined = undefined;
-  let valueOutlined: string | undefined = undefined;
+  let valueStandard: string | undefined = $state();
+  let valueFilled: string | undefined = $state();
+  let valueOutlined: string | undefined = $state();
 </script>

@@ -2,6 +2,40 @@
 
 This doc contains information that will help you migrate your code from an older version of SMUI to a newer one. Things that you will need to change in your existing code will be written here. It would also be helpful to check the MDC changelog if the upstream MDC versions has changed between SMUI versions.
 
+# SMUI 7 -> SMUI 8
+
+SMUI 8 has migrated to Svelte 5's new Runes mode. As such, it expects things like snippets and only some props are bindable.
+
+Note to Devs: update `indexOf()` with `$state` arrays or items to `findIndex()` to avoid bugs.
+
+Note to Devs: remove `x = x;` statements after `push()` and the like. They aren't needed anymore with Svelte 5's new $state rune.
+
+## Breaking Changes
+
+- Svelte 5 is required! Svelte 4 will not work.
+- Events have been renamed, removing colons and adopting CamelCase. (ex: SMUISwitch:change to SMUISwitchChange)
+- Event modifiers are now wrapper functions, exported from `@smui/common/events`.
+- Slots must be migrated to snippets.
+- The deprecated "MDC" events have been removed. All event names should be migrated to the corresponding "SMUI" event names.
+- The "Fixation" theme now uses Tahoma as its large header font.
+- Select no longer defaults the value to an empty string, meaning you must either set the value given to it to an empty string or provide a key function that returns an empty string for an undefined value.
+- TabBar now expects a `tab` snippet instead of using `let:tab`.
+- Chips' Set now expects a `chip` snippet instead of using `let:chip`.
+- Chips' Set key function is now required to return `string`, not `string | number`.
+- SegmentedButton now expects a `segment` snippet instead of using `let:segment`.
+- `classAdderBuilder` is no longer available. Instead, the `ClassAdder` component is exported.
+  - Svelte 5 doesn't seem to provide a way to reuse components the way classAdderBuilder needs. The version in beta.2 and before works only on the first render, but props were not reactive.
+
+## Changes
+
+- Event listeners for DOM events no longer need to use the CustomEvent type. They can use the correct type, like MouseEvent and KeyboardEvent.
+- New premade theme, "Bubblegum".
+
+### Components
+
+- Chip Input
+  - A new component!
+
 # SMUI 6 -> SMUI 7
 
 SMUI 7 migrated to upstream MDC 14.0 from 13.0:
@@ -13,6 +47,7 @@ I spent a day [flexing every graphic design muscle in my body](https://i.kym-cdn
 
 ## Breaking Changes
 
+- Tooling now **must** be Svelte-aware. This means adding conditional export names to Rollup and Webpack config. See installation docs.
 - SMUI 7 (after v7.0.0-beta.9) is no longer compatible with Svelte 3. It now requires Svelte 4.
 - If you had started using `component={Svg}`, you need to use `tag="svg"` after v7.0.0-beta.12.
 - The `@smui/common/elements` components are gone. Just set the `tag` prop on components now (like `<Button tag="div">`).

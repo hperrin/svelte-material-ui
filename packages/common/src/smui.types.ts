@@ -1,3 +1,4 @@
+import type { SvelteComponent, Component } from 'svelte';
 import type {
   HTMLAttributes,
   HTMLAnchorAttributes,
@@ -48,19 +49,225 @@ import type {
   HTMLTrackAttributes,
   HTMLVideoAttributes,
   SVGAttributes,
+  EventHandler,
 } from 'svelte/elements';
+
+export type SmuiComponent<
+  Element extends
+    SmuiElementMap[SmuiEveryElement] = SmuiElementMap[SmuiEveryElement],
+  Props extends Record<string, any> = {},
+  Exports extends Record<string, any> = {},
+  Bindings extends keyof Props | '' = string,
+> = Component<Props, Exports & { getElement(): Element }, Bindings>;
+
+export type ComponentBindings<
+  Comp extends SvelteComponent | Component<any, any>,
+> =
+  Comp extends SvelteComponent<infer Props>
+    ? keyof Props
+    : Comp extends Component<any, any, infer Bindings>
+      ? Bindings
+      : never;
 
 export type SmuiEveryElement = keyof SmuiElementMap;
 export type SmuiHTMLElement = keyof Omit<SmuiElementMap, 'svg'>;
 
 export type SmuiAttrs<
   T extends SmuiEveryElement,
-  E extends string
-> = SmuiElementPropMap<E>[T] & DataAttrs;
+  E extends string,
+> = SmuiElementPropMap<E>[T] & SmuiEventProps<SmuiElementMap[T]> & DataAttrs;
 
 export type DataAttrs = {
   [k: `data-${string}`]: any;
 };
+
+// SMUI Events.
+
+export interface SmuiEventProps<T extends EventTarget> {
+  // UPDATE THE AMBIENT FILE WHEN YOU UPDATE THIS!
+  onselected?: EventHandler<CustomEvent, T> | null;
+  onselectedcapture?: EventHandler<CustomEvent, T> | null;
+
+  onSMUIAction?: EventHandler<CustomEvent, T> | null;
+  onSMUIActioncapture?: EventHandler<CustomEvent, T> | null;
+
+  onSMUIAccordionHeaderActivate?: EventHandler<CustomEvent, T> | null;
+  onSMUIAccordionHeaderActivatecapture?: EventHandler<CustomEvent, T> | null;
+  onSMUIAccordionPanelClosed?: EventHandler<CustomEvent, T> | null;
+  onSMUIAccordionPanelClosedcapture?: EventHandler<CustomEvent, T> | null;
+  onSMUIAccordionPanelClosing?: EventHandler<CustomEvent, T> | null;
+  onSMUIAccordionPanelClosingcapture?: EventHandler<CustomEvent, T> | null;
+  onSMUIAccordionPanelActivate?: EventHandler<CustomEvent, T> | null;
+  onSMUIAccordionPanelActivatecapture?: EventHandler<CustomEvent, T> | null;
+  onSMUIAccordionPanelOpened?: EventHandler<CustomEvent, T> | null;
+  onSMUIAccordionPanelOpenedcapture?: EventHandler<CustomEvent, T> | null;
+  onSMUIAccordionPanelOpening?: EventHandler<CustomEvent, T> | null;
+  onSMUIAccordionPanelOpeningcapture?: EventHandler<CustomEvent, T> | null;
+
+  onSMUIAutocompleteDeselected?: EventHandler<CustomEvent, T> | null;
+  onSMUIAutocompleteDeselectedcapture?: EventHandler<CustomEvent, T> | null;
+  onSMUIAutocompleteNoMatchesAction?: EventHandler<CustomEvent, T> | null;
+  onSMUIAutocompleteNoMatchesActioncapture?: EventHandler<
+    CustomEvent,
+    T
+  > | null;
+  onSMUIAutocompleteSelected?: EventHandler<CustomEvent, T> | null;
+  onSMUIAutocompleteSelectedcapture?: EventHandler<CustomEvent, T> | null;
+
+  onSMUIBannerActionClicked?: EventHandler<CustomEvent, T> | null;
+  onSMUIBannerActionClickedcapture?: EventHandler<CustomEvent, T> | null;
+  onSMUIBannerButtonPrimaryActionClick?: EventHandler<CustomEvent, T> | null;
+  onSMUIBannerButtonPrimaryActionClickcapture?: EventHandler<
+    CustomEvent,
+    T
+  > | null;
+  onSMUIBannerButtonSecondaryActionClick?: EventHandler<CustomEvent, T> | null;
+  onSMUIBannerButtonSecondaryActionClickcapture?: EventHandler<
+    CustomEvent,
+    T
+  > | null;
+  onSMUIBannerClosed?: EventHandler<CustomEvent, T> | null;
+  onSMUIBannerClosedcapture?: EventHandler<CustomEvent, T> | null;
+  onSMUIBannerClosing?: EventHandler<CustomEvent, T> | null;
+  onSMUIBannerClosingcapture?: EventHandler<CustomEvent, T> | null;
+  onSMUIBannerOpened?: EventHandler<CustomEvent, T> | null;
+  onSMUIBannerOpenedcapture?: EventHandler<CustomEvent, T> | null;
+  onSMUIBannerOpening?: EventHandler<CustomEvent, T> | null;
+  onSMUIBannerOpeningcapture?: EventHandler<CustomEvent, T> | null;
+
+  onSMUIChipInputSelect?: EventHandler<CustomEvent, T> | null;
+  onSMUIChipInputEntry?: EventHandler<CustomEvent, T> | null;
+  onSMUIChipInputRemove?: EventHandler<CustomEvent, T> | null;
+
+  onSMUIChipInteraction?: EventHandler<CustomEvent, T> | null;
+  onSMUIChipInteractioncapture?: EventHandler<CustomEvent, T> | null;
+  onSMUIChipNavigation?: EventHandler<CustomEvent, T> | null;
+  onSMUIChipNavigationcapture?: EventHandler<CustomEvent, T> | null;
+  onSMUIChipRemoval?: EventHandler<CustomEvent, T> | null;
+  onSMUIChipRemovalcapture?: EventHandler<CustomEvent, T> | null;
+  onSMUIChipSelection?: EventHandler<CustomEvent, T> | null;
+  onSMUIChipSelectioncapture?: EventHandler<CustomEvent, T> | null;
+  onSMUIChipTrailingIconInteraction?: EventHandler<CustomEvent, T> | null;
+  onSMUIChipTrailingIconInteractioncapture?: EventHandler<
+    CustomEvent,
+    T
+  > | null;
+  onSMUIChipTrailingActionInteraction?: EventHandler<CustomEvent, T> | null;
+  onSMUIChipTrailingActionInteractioncapture?: EventHandler<
+    CustomEvent,
+    T
+  > | null;
+  onSMUIChipTrailingActionNavigation?: EventHandler<CustomEvent, T> | null;
+  onSMUIChipTrailingActionNavigationcapture?: EventHandler<
+    CustomEvent,
+    T
+  > | null;
+
+  onSMUIDataTableBodyCheckboxChange?: EventHandler<CustomEvent, T> | null;
+  onSMUIDataTableBodyCheckboxChangecapture?: EventHandler<
+    CustomEvent,
+    T
+  > | null;
+  onSMUIDataTableClickRow?: EventHandler<CustomEvent, T> | null;
+  onSMUIDataTableClickRowcapture?: EventHandler<CustomEvent, T> | null;
+  onSMUIDataTableHeaderCheckboxChange?: EventHandler<CustomEvent, T> | null;
+  onSMUIDataTableHeaderCheckboxChangecapture?: EventHandler<
+    CustomEvent,
+    T
+  > | null;
+  onSMUIDataTableHeaderClick?: EventHandler<CustomEvent, T> | null;
+  onSMUIDataTableHeaderClickcapture?: EventHandler<CustomEvent, T> | null;
+  onSMUIDataTableRowClick?: EventHandler<CustomEvent, T> | null;
+  onSMUIDataTableRowClickcapture?: EventHandler<CustomEvent, T> | null;
+  onSMUIDataTableSelectedAll?: EventHandler<CustomEvent, T> | null;
+  onSMUIDataTableSelectedAllcapture?: EventHandler<CustomEvent, T> | null;
+  onSMUIDataTableSelectionChanged?: EventHandler<CustomEvent, T> | null;
+  onSMUIDataTableSelectionChangedcapture?: EventHandler<CustomEvent, T> | null;
+  onSMUIDataTableSorted?: EventHandler<CustomEvent, T> | null;
+  onSMUIDataTableSortedcapture?: EventHandler<CustomEvent, T> | null;
+  onSMUIDataTableUnselectedAll?: EventHandler<CustomEvent, T> | null;
+  onSMUIDataTableUnselectedAllcapture?: EventHandler<CustomEvent, T> | null;
+
+  onSMUIDialogClosed?: EventHandler<CustomEvent, T> | null;
+  onSMUIDialogClosedcapture?: EventHandler<CustomEvent, T> | null;
+  onSMUIDialogClosing?: EventHandler<CustomEvent, T> | null;
+  onSMUIDialogClosingcapture?: EventHandler<CustomEvent, T> | null;
+  onSMUIDialogOpened?: EventHandler<CustomEvent, T> | null;
+  onSMUIDialogOpenedcapture?: EventHandler<CustomEvent, T> | null;
+  onSMUIDialogOpening?: EventHandler<CustomEvent, T> | null;
+  onSMUIDialogOpeningcapture?: EventHandler<CustomEvent, T> | null;
+
+  onSMUIDrawerClosed?: EventHandler<CustomEvent, T> | null;
+  onSMUIDrawerClosedcapture?: EventHandler<CustomEvent, T> | null;
+  onSMUIDrawerOpened?: EventHandler<CustomEvent, T> | null;
+  onSMUIDrawerOpenedcapture?: EventHandler<CustomEvent, T> | null;
+  onSMUIDrawerScrimClick?: EventHandler<CustomEvent, T> | null;
+  onSMUIDrawerScrimClickcapture?: EventHandler<CustomEvent, T> | null;
+
+  onSMUIIconButtonToggleChange?: EventHandler<CustomEvent, T> | null;
+
+  onSMUIListAction?: EventHandler<CustomEvent, T> | null;
+  onSMUIListActioncapture?: EventHandler<CustomEvent, T> | null;
+  onSMUIListSelectionChange?: EventHandler<CustomEvent, T> | null;
+  onSMUIListSelectionChangecapture?: EventHandler<CustomEvent, T> | null;
+
+  onSMUIMenuClosedProgrammatically?: EventHandler<CustomEvent, T> | null;
+  onSMUIMenuClosedProgrammaticallycapture?: EventHandler<CustomEvent, T> | null;
+  onSMUIMenuSelected?: EventHandler<CustomEvent, T> | null;
+  onSMUIMenuSelectedcapture?: EventHandler<CustomEvent, T> | null;
+
+  onSMUIMenuSurfaceClosed?: EventHandler<CustomEvent, T> | null;
+  onSMUIMenuSurfaceClosedcapture?: EventHandler<CustomEvent, T> | null;
+  onSMUIMenuSurfaceClosing?: EventHandler<CustomEvent, T> | null;
+  onSMUIMenuSurfaceClosingcapture?: EventHandler<CustomEvent, T> | null;
+  onSMUIMenuSurfaceOpened?: EventHandler<CustomEvent, T> | null;
+  onSMUIMenuSurfaceOpenedcapture?: EventHandler<CustomEvent, T> | null;
+  onSMUIMenuSurfaceOpening?: EventHandler<CustomEvent, T> | null;
+  onSMUIMenuSurfaceOpeningcapture?: EventHandler<CustomEvent, T> | null;
+
+  onSMUISelectChange?: EventHandler<CustomEvent, T> | null;
+  onSMUISelectChangecapture?: EventHandler<CustomEvent, T> | null;
+  onSMUISelectHelperTextId?: EventHandler<CustomEvent, T> | null;
+  onSMUISelectHelperTextIdcapture?: EventHandler<CustomEvent, T> | null;
+  onSMUISelectIcon?: EventHandler<CustomEvent, T> | null;
+  onSMUISelectIconcapture?: EventHandler<CustomEvent, T> | null;
+
+  onSMUISliderChange?: EventHandler<CustomEvent, T> | null;
+  onSMUISliderChangecapture?: EventHandler<CustomEvent, T> | null;
+  onSMUISliderInput?: EventHandler<CustomEvent, T> | null;
+  onSMUISliderInputcapture?: EventHandler<CustomEvent, T> | null;
+
+  onSMUISnackbarClosed?: EventHandler<CustomEvent, T> | null;
+  onSMUISnackbarClosedcapture?: EventHandler<CustomEvent, T> | null;
+  onSMUISnackbarClosing?: EventHandler<CustomEvent, T> | null;
+  onSMUISnackbarClosingcapture?: EventHandler<CustomEvent, T> | null;
+  onSMUISnackbarOpened?: EventHandler<CustomEvent, T> | null;
+  onSMUISnackbarOpenedcapture?: EventHandler<CustomEvent, T> | null;
+  onSMUISnackbarOpening?: EventHandler<CustomEvent, T> | null;
+  onSMUISnackbarOpeningcapture?: EventHandler<CustomEvent, T> | null;
+
+  onSMUISwitchChange?: EventHandler<CustomEvent, T> | null;
+  onSMUISwitchChangecapture?: EventHandler<CustomEvent, T> | null;
+
+  onSMUITabInteracted?: EventHandler<CustomEvent, T> | null;
+  onSMUITabInteractedcapture?: EventHandler<CustomEvent, T> | null;
+
+  onSMUITabBarActivated?: EventHandler<CustomEvent, T> | null;
+  onSMUITabBarActivatedcapture?: EventHandler<CustomEvent, T> | null;
+
+  onSMUITextfieldHelperTextId?: EventHandler<CustomEvent, T> | null;
+  onSMUITextfieldHelperTextIdcapture?: EventHandler<CustomEvent, T> | null;
+  onSMUITextfieldIcon?: EventHandler<CustomEvent, T> | null;
+  onSMUITextfieldIconcapture?: EventHandler<CustomEvent, T> | null;
+
+  onSMUITooltipHidden?: EventHandler<CustomEvent, T> | null;
+  onSMUITooltipHiddencapture?: EventHandler<CustomEvent, T> | null;
+
+  onSMUITopAppBarIconButtonNav?: EventHandler<CustomEvent, T> | null;
+  onSMUITopAppBarIconButtonNavcapture?: EventHandler<CustomEvent, T> | null;
+  onSMUITopAppBarNav?: EventHandler<CustomEvent, T> | null;
+  onSMUITopAppBarNavcapture?: EventHandler<CustomEvent, T> | null;
+}
 
 // Layout listeners.
 
@@ -237,121 +444,121 @@ type HTMLTableRowAttributes = HTMLAttributes<HTMLTableRowElement>;
 type HTMLUListAttributes = HTMLAttributes<HTMLUListElement>;
 
 export interface SmuiElementPropMap<E extends string = ''> {
-  a: Omit<HTMLAnchorAttributes, E>;
-  abbr: Omit<HTMLElementAttributes, E>;
-  address: Omit<HTMLElementAttributes, E>;
-  area: Omit<HTMLAreaAttributes, E>;
-  article: Omit<HTMLElementAttributes, E>;
-  aside: Omit<HTMLElementAttributes, E>;
-  audio: Omit<HTMLAudioAttributes, E>;
-  b: Omit<HTMLElementAttributes, E>;
-  base: Omit<HTMLBaseAttributes, E>;
-  bdi: Omit<HTMLElementAttributes, E>;
-  bdo: Omit<HTMLElementAttributes, E>;
-  // big: Omit<HTMLElementAttributes, E>;
-  blockquote: Omit<HTMLBlockquoteAttributes, E>;
-  // body: Omit<HTMLBodyAttributes, E>;
-  br: Omit<HTMLBRAttributes, E>;
-  button: Omit<HTMLButtonAttributes, E>;
-  canvas: Omit<HTMLCanvasAttributes, E>;
-  caption: Omit<HTMLElementAttributes, E>;
-  cite: Omit<HTMLElementAttributes, E>;
-  code: Omit<HTMLElementAttributes, E>;
-  col: Omit<HTMLColAttributes, E>;
-  colgroup: Omit<HTMLColgroupAttributes, E>;
-  data: Omit<HTMLDataAttributes, E>;
-  datalist: Omit<HTMLDataListAttributes, E>;
-  dd: Omit<HTMLElementAttributes, E>;
-  del: Omit<HTMLDelAttributes, E>;
-  details: Omit<HTMLDetailsAttributes, E>;
-  dfn: Omit<HTMLElementAttributes, E>;
-  dialog: Omit<HTMLDialogAttributes, E>;
-  div: Omit<HTMLDivAttributes, E>;
-  dl: Omit<HTMLDListAttributes, E>;
-  dt: Omit<HTMLElementAttributes, E>;
-  em: Omit<HTMLElementAttributes, E>;
-  // embed: Omit<HTMLEmbedAttributes, E>;
-  fieldset: Omit<HTMLFieldsetAttributes, E>;
-  figcaption: Omit<HTMLElementAttributes, E>;
-  figure: Omit<HTMLElementAttributes, E>;
-  footer: Omit<HTMLElementAttributes, E>;
-  form: Omit<HTMLFormAttributes, E>;
-  h1: Omit<HTMLHeadingAttributes, E>;
-  h2: Omit<HTMLHeadingAttributes, E>;
-  h3: Omit<HTMLHeadingAttributes, E>;
-  h4: Omit<HTMLHeadingAttributes, E>;
-  h5: Omit<HTMLHeadingAttributes, E>;
-  h6: Omit<HTMLHeadingAttributes, E>;
-  head: Omit<HTMLElementAttributes, E>;
-  header: Omit<HTMLElementAttributes, E>;
-  hgroup: Omit<HTMLElementAttributes, E>;
-  hr: Omit<HTMLHRAttributes, E>;
-  // html: Omit<HTMLHtmlAttributes, E>;
-  i: Omit<HTMLElementAttributes, E>;
-  // iframe: Omit<HTMLIframeAttributes, E>;
-  img: Omit<HTMLImgAttributes, E>;
-  input: Omit<HTMLInputAttributes, E>;
-  ins: Omit<HTMLInsAttributes, E>;
-  kbd: Omit<HTMLElementAttributes, E>;
-  // keygen: Omit<HTMLKeygenAttributes, E>;
-  label: Omit<HTMLLabelAttributes, E>;
-  legend: Omit<HTMLLegendAttributes, E>;
-  li: Omit<HTMLLiAttributes, E>;
-  // link: Omit<HTMLLinkAttributes, E>;
-  main: Omit<HTMLElementAttributes, E>;
-  map: Omit<HTMLMapAttributes, E>;
-  mark: Omit<HTMLElementAttributes, E>;
-  // menu: Omit<HTMLMenuAttributes, E>;
-  // menuitem: Omit<HTMLElementAttributes, E>;
-  // meta: Omit<HTMLMetaAttributes, E>;
-  meter: Omit<HTMLMeterAttributes, E>;
-  nav: Omit<HTMLElementAttributes, E>;
-  // noscript: Omit<HTMLElementAttributes, E>;
-  // object: Omit<HTMLObjectAttributes, E>;
-  ol: Omit<HTMLOlAttributes, E>;
-  optgroup: Omit<HTMLOptgroupAttributes, E>;
-  option: Omit<HTMLOptionAttributes, E>;
-  output: Omit<HTMLOutputAttributes, E>;
-  p: Omit<HTMLParagraphAttributes, E>;
-  // param: Omit<HTMLParamAttributes, E>;
-  picture: Omit<HTMLElementAttributes, E>;
-  pre: Omit<HTMLPreAttributes, E>;
-  progress: Omit<HTMLProgressAttributes, E>;
-  q: Omit<HTMLQuoteAttributes, E>;
-  rp: Omit<HTMLElementAttributes, E>;
-  rt: Omit<HTMLElementAttributes, E>;
-  ruby: Omit<HTMLElementAttributes, E>;
-  // s: Omit<HTMLElementAttributes, E>;
-  samp: Omit<HTMLElementAttributes, E>;
-  // slot: Omit<HTMLSlotAttributes, E>;
-  // script: Omit<HTMLScriptAttributes, E>;
-  section: Omit<HTMLElementAttributes, E>;
-  select: Omit<HTMLSelectAttributes, E>;
-  small: Omit<HTMLElementAttributes, E>;
-  source: Omit<HTMLSourceAttributes, E>;
-  span: Omit<HTMLSpanAttributes, E>;
-  strong: Omit<HTMLElementAttributes, E>;
-  style: Omit<HTMLStyleAttributes, E>;
-  sub: Omit<HTMLElementAttributes, E>;
-  summary: Omit<HTMLElementAttributes, E>;
-  sup: Omit<HTMLElementAttributes, E>;
-  svg: Omit<SVGAttributes<SVGSVGElement>, E>;
-  table: Omit<HTMLTableAttributes, E>;
-  // template: Omit<HTMLTemplateAttributes, E>;
-  tbody: Omit<HTMLTableSectionAttributes, E>;
-  td: Omit<HTMLTdAttributes, E>;
-  textarea: Omit<HTMLTextareaAttributes, E>;
-  tfoot: Omit<HTMLTableSectionAttributes, E>;
-  th: Omit<HTMLThAttributes, E>;
-  thead: Omit<HTMLTableSectionAttributes, E>;
-  time: Omit<HTMLTimeAttributes, E>;
-  // title: Omit<HTMLTitleAttributes, E>;
-  tr: Omit<HTMLTableRowAttributes, E>;
-  track: Omit<HTMLTrackAttributes, E>;
-  // u: Omit<HTMLElementAttributes, E>;
-  ul: Omit<HTMLUListAttributes, E>;
-  var: Omit<HTMLElementAttributes, E>;
-  video: Omit<HTMLVideoAttributes, E>;
-  wbr: Omit<HTMLElementAttributes, E>;
-  // webview: Omit<HTMLWebViewAttributes, E>;
+  a: Omit<HTMLAnchorAttributes, E | symbol>;
+  abbr: Omit<HTMLElementAttributes, E | symbol>;
+  address: Omit<HTMLElementAttributes, E | symbol>;
+  area: Omit<HTMLAreaAttributes, E | symbol>;
+  article: Omit<HTMLElementAttributes, E | symbol>;
+  aside: Omit<HTMLElementAttributes, E | symbol>;
+  audio: Omit<HTMLAudioAttributes, E | symbol>;
+  b: Omit<HTMLElementAttributes, E | symbol>;
+  base: Omit<HTMLBaseAttributes, E | symbol>;
+  bdi: Omit<HTMLElementAttributes, E | symbol>;
+  bdo: Omit<HTMLElementAttributes, E | symbol>;
+  // big: Omit<HTMLElementAttributes, E | symbol>;
+  blockquote: Omit<HTMLBlockquoteAttributes, E | symbol>;
+  // body: Omit<HTMLBodyAttributes, E | symbol>;
+  br: Omit<HTMLBRAttributes, E | symbol>;
+  button: Omit<HTMLButtonAttributes, E | symbol>;
+  canvas: Omit<HTMLCanvasAttributes, E | symbol>;
+  caption: Omit<HTMLElementAttributes, E | symbol>;
+  cite: Omit<HTMLElementAttributes, E | symbol>;
+  code: Omit<HTMLElementAttributes, E | symbol>;
+  col: Omit<HTMLColAttributes, E | symbol>;
+  colgroup: Omit<HTMLColgroupAttributes, E | symbol>;
+  data: Omit<HTMLDataAttributes, E | symbol>;
+  datalist: Omit<HTMLDataListAttributes, E | symbol>;
+  dd: Omit<HTMLElementAttributes, E | symbol>;
+  del: Omit<HTMLDelAttributes, E | symbol>;
+  details: Omit<HTMLDetailsAttributes, E | symbol>;
+  dfn: Omit<HTMLElementAttributes, E | symbol>;
+  dialog: Omit<HTMLDialogAttributes, E | symbol>;
+  div: Omit<HTMLDivAttributes, E | symbol>;
+  dl: Omit<HTMLDListAttributes, E | symbol>;
+  dt: Omit<HTMLElementAttributes, E | symbol>;
+  em: Omit<HTMLElementAttributes, E | symbol>;
+  // embed: Omit<HTMLEmbedAttributes, E | symbol>;
+  fieldset: Omit<HTMLFieldsetAttributes, E | symbol>;
+  figcaption: Omit<HTMLElementAttributes, E | symbol>;
+  figure: Omit<HTMLElementAttributes, E | symbol>;
+  footer: Omit<HTMLElementAttributes, E | symbol>;
+  form: Omit<HTMLFormAttributes, E | symbol>;
+  h1: Omit<HTMLHeadingAttributes, E | symbol>;
+  h2: Omit<HTMLHeadingAttributes, E | symbol>;
+  h3: Omit<HTMLHeadingAttributes, E | symbol>;
+  h4: Omit<HTMLHeadingAttributes, E | symbol>;
+  h5: Omit<HTMLHeadingAttributes, E | symbol>;
+  h6: Omit<HTMLHeadingAttributes, E | symbol>;
+  head: Omit<HTMLElementAttributes, E | symbol>;
+  header: Omit<HTMLElementAttributes, E | symbol>;
+  hgroup: Omit<HTMLElementAttributes, E | symbol>;
+  hr: Omit<HTMLHRAttributes, E | symbol>;
+  // html: Omit<HTMLHtmlAttributes, E | symbol>;
+  i: Omit<HTMLElementAttributes, E | symbol>;
+  // iframe: Omit<HTMLIframeAttributes, E | symbol>;
+  img: Omit<HTMLImgAttributes, E | symbol>;
+  input: Omit<HTMLInputAttributes, E | symbol>;
+  ins: Omit<HTMLInsAttributes, E | symbol>;
+  kbd: Omit<HTMLElementAttributes, E | symbol>;
+  // keygen: Omit<HTMLKeygenAttributes, E | symbol>;
+  label: Omit<HTMLLabelAttributes, E | symbol>;
+  legend: Omit<HTMLLegendAttributes, E | symbol>;
+  li: Omit<HTMLLiAttributes, E | symbol>;
+  // link: Omit<HTMLLinkAttributes, E | symbol>;
+  main: Omit<HTMLElementAttributes, E | symbol>;
+  map: Omit<HTMLMapAttributes, E | symbol>;
+  mark: Omit<HTMLElementAttributes, E | symbol>;
+  // menu: Omit<HTMLMenuAttributes, E | symbol>;
+  // menuitem: Omit<HTMLElementAttributes, E | symbol>;
+  // meta: Omit<HTMLMetaAttributes, E | symbol>;
+  meter: Omit<HTMLMeterAttributes, E | symbol>;
+  nav: Omit<HTMLElementAttributes, E | symbol>;
+  // noscript: Omit<HTMLElementAttributes, E | symbol>;
+  // object: Omit<HTMLObjectAttributes, E | symbol>;
+  ol: Omit<HTMLOlAttributes, E | symbol>;
+  optgroup: Omit<HTMLOptgroupAttributes, E | symbol>;
+  option: Omit<HTMLOptionAttributes, E | symbol>;
+  output: Omit<HTMLOutputAttributes, E | symbol>;
+  p: Omit<HTMLParagraphAttributes, E | symbol>;
+  // param: Omit<HTMLParamAttributes, E | symbol>;
+  picture: Omit<HTMLElementAttributes, E | symbol>;
+  pre: Omit<HTMLPreAttributes, E | symbol>;
+  progress: Omit<HTMLProgressAttributes, E | symbol>;
+  q: Omit<HTMLQuoteAttributes, E | symbol>;
+  rp: Omit<HTMLElementAttributes, E | symbol>;
+  rt: Omit<HTMLElementAttributes, E | symbol>;
+  ruby: Omit<HTMLElementAttributes, E | symbol>;
+  // s: Omit<HTMLElementAttributes, E | symbol>;
+  samp: Omit<HTMLElementAttributes, E | symbol>;
+  // slot: Omit<HTMLSlotAttributes, E | symbol>;
+  // script: Omit<HTMLScriptAttributes, E | symbol>;
+  section: Omit<HTMLElementAttributes, E | symbol>;
+  select: Omit<HTMLSelectAttributes, E | symbol>;
+  small: Omit<HTMLElementAttributes, E | symbol>;
+  source: Omit<HTMLSourceAttributes, E | symbol>;
+  span: Omit<HTMLSpanAttributes, E | symbol>;
+  strong: Omit<HTMLElementAttributes, E | symbol>;
+  style: Omit<HTMLStyleAttributes, E | symbol>;
+  sub: Omit<HTMLElementAttributes, E | symbol>;
+  summary: Omit<HTMLElementAttributes, E | symbol>;
+  sup: Omit<HTMLElementAttributes, E | symbol>;
+  svg: Omit<SVGAttributes<SVGSVGElement>, E | symbol>;
+  table: Omit<HTMLTableAttributes, E | symbol>;
+  // template: Omit<HTMLTemplateAttributes, E | symbol>;
+  tbody: Omit<HTMLTableSectionAttributes, E | symbol>;
+  td: Omit<HTMLTdAttributes, E | symbol>;
+  textarea: Omit<HTMLTextareaAttributes, E | symbol>;
+  tfoot: Omit<HTMLTableSectionAttributes, E | symbol>;
+  th: Omit<HTMLThAttributes, E | symbol>;
+  thead: Omit<HTMLTableSectionAttributes, E | symbol>;
+  time: Omit<HTMLTimeAttributes, E | symbol>;
+  // title: Omit<HTMLTitleAttributes, E | symbol>;
+  tr: Omit<HTMLTableRowAttributes, E | symbol>;
+  track: Omit<HTMLTrackAttributes, E | symbol>;
+  // u: Omit<HTMLElementAttributes, E | symbol>;
+  ul: Omit<HTMLUListAttributes, E | symbol>;
+  var: Omit<HTMLElementAttributes, E | symbol>;
+  video: Omit<HTMLVideoAttributes, E | symbol>;
+  wbr: Omit<HTMLElementAttributes, E | symbol>;
+  // webview: Omit<HTMLWebViewAttributes, E | symbol>;
 }

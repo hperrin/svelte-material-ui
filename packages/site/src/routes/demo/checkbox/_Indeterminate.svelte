@@ -8,18 +8,20 @@
     if `checked` is null.
   -->
   <Checkbox bind:checked indeterminate={checked === null} input$required />
-  <span slot="label">I agree to the terms.</span>
+  {#snippet label()}
+    I agree to the terms.
+  {/snippet}
 </FormField>
 
 <br />
-<Button on:click={() => (checked = null)}>Reset</Button>
+<Button onclick={() => (checked = null)}>Reset</Button>
 
-<pre class="status">Checked: {checked}</pre>
+<pre class="status">Checked: {checked ?? 'indeterminate'}</pre>
 
 <script lang="ts">
   import Checkbox from '@smui/checkbox';
   import FormField from '@smui/form-field';
   import Button from '@smui/button';
 
-  let checked: boolean | null = null;
+  let checked: boolean | null = $state(null);
 </script>

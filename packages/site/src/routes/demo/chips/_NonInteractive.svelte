@@ -1,7 +1,9 @@
-<Set chips={['one', 'two', 'three', 'four', 'five']} let:chip nonInteractive>
-  <Chip {chip}>
-    <Text>{chip}</Text>
-  </Chip>
+<Set chips={['one', 'two', 'three', 'four', 'five']} nonInteractive>
+  {#snippet chip(chip)}
+    <Chip {chip}>
+      <Text>{chip}</Text>
+    </Chip>
+  {/snippet}
 </Set>
 
 <script lang="ts">

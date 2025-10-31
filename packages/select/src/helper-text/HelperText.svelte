@@ -1,64 +1,86 @@
+<svelte:options runes />
+
 <div
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
-    [className]: true,
     'mdc-select-helper-text': true,
     'mdc-select-helper-text--validation-msg': validationMsg,
     'mdc-select-helper-text--validation-msg-persistent': persistent,
     ...internalClasses,
+    [className]: true,
   })}
   aria-hidden={persistent ? undefined : 'true'}
   {id}
   {...internalAttrs}
-  {...$$restProps}
+  {...restProps}
 >
-  {#if content == null}<slot />{:else}{content}{/if}
+  {#if content == null}{@render children?.()}{:else}{content}{/if}
 </div>
 
-<script context="module" lang="ts">
+<script module lang="ts">
   let counter = 0;
 </script>
 
 <script lang="ts">
   import { MDCSelectHelperTextFoundation } from '@material/select';
-  import { onMount } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
+  import type { Snippet } from 'svelte';
+  import { onMount, getContext } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    useActions,
-    dispatch,
-  } from '@smui/common/internal';
+  import { classMap, useActions } from '@smui/common/internal';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * The ID of the element.
+     */
     id?: string;
+    /**
+     * Whether the validation helper text persists even if the input is valid.
+     *
+     * If it is, it will be displayed in the normal (grey) color.
+     */
     persistent?: boolean;
+    /**
+     * Whether the helper text acts as a validation message.
+     */
     validationMsg?: boolean;
+
+    children?: Snippet;
   };
-  type $$Props = OwnProps & SmuiAttrs<'div', keyof OwnProps>;
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
-
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let id = 'SMUI-select-helper-text-' + counter++;
-  export let persistent = false;
-  export let validationMsg = false;
+  let {
+    use = [],
+    class: className = '',
+    id = 'SMUI-select-helper-text-' + counter++,
+    persistent = false,
+    validationMsg = false,
+    children,
+    ...restProps
+  }: OwnProps & SmuiAttrs<'div', keyof OwnProps> = $props();
 
   let element: HTMLDivElement;
-  let instance: MDCSelectHelperTextFoundation;
-  let internalClasses: { [k: string]: boolean } = {};
-  let internalAttrs: { [k: string]: string | undefined } = {};
-  let content: string | undefined = undefined;
+  let instance: MDCSelectHelperTextFoundation | undefined = $state();
+  let internalClasses: { [k: string]: boolean } = $state({});
+  let internalAttrs: { [k: string]: string | undefined } = $state({});
+  let content: string | undefined = $state();
+
+  const SMUISelectHelperTextId = getContext<
+    ((accessor: string) => void) | undefined
+  >('SMUI:select:helper-text:id');
+  const SMUISelectHelperTextMount = getContext<
+    ((accessor: MDCSelectHelperTextFoundation) => void) | undefined
+  >('SMUI:select:helper-text:mount');
+  const SMUISelectHelperTextUnmount = getContext<
+    ((accessor: MDCSelectHelperTextFoundation) => void) | undefined
+  >('SMUI:select:helper-text:unmount');
 
   onMount(() => {
     instance = new MDCSelectHelperTextFoundation({
@@ -73,17 +95,17 @@
       },
     });
 
-    if (id.startsWith('SMUI-select-helper-text-')) {
-      dispatch(getElement(), 'SMUISelectHelperText:id', id);
-    }
-    dispatch(getElement(), 'SMUISelectHelperText:mount', instance);
+    SMUISelectHelperTextId && SMUISelectHelperTextId(id);
+    SMUISelectHelperTextMount && SMUISelectHelperTextMount(instance);
 
     instance.init();
 
     return () => {
-      dispatch(getElement(), 'SMUISelectHelperText:unmount', instance);
+      if (SMUISelectHelperTextUnmount && instance) {
+        SMUISelectHelperTextUnmount(instance);
+      }
 
-      instance.destroy();
+      instance?.destroy();
     };
   });
 
@@ -107,7 +129,7 @@
 
   function getAttr(name: string) {
     return name in internalAttrs
-      ? internalAttrs[name] ?? null
+      ? (internalAttrs[name] ?? null)
       : getElement().getAttribute(name);
   }
 

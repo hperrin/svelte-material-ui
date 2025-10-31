@@ -8,20 +8,20 @@
     Build something today, even if it sucks.
   </Content>
   <Actions>
-    <Button on:click={() => (response = 'I will make you! Do it!')}>
+    <Button onclick={() => (response = 'I will make you! Do it!')}>
       <Label>You Can't Make Me</Label>
     </Button>
     <Button
       defaultAction
       use={[InitialFocus]}
-      on:click={() => (response = 'It will be glorious.')}
+      onclick={() => (response = 'It will be glorious.')}
     >
       <Label>I Will</Label>
     </Button>
   </Actions>
 </Dialog>
 
-<Button on:click={() => (open = true)}>
+<Button onclick={() => (open = true)}>
   <Label>Open Dialog</Label>
 </Button>
 
@@ -31,6 +31,6 @@
   import Dialog, { Title, Content, Actions, InitialFocus } from '@smui/dialog';
   import Button, { Label } from '@smui/button';
 
-  let open = false;
-  let response = 'Nothing yet.';
+  let open = $state(false);
+  let response = $state('Nothing yet.');
 </script>

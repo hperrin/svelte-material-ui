@@ -19,10 +19,10 @@
 
   <Demo component={Combobox} file="autocomplete/_Combobox.svelte">
     Combobox
-    <svelte:fragment slot="subtitle">
+    {#snippet subtitle()}
       A combobox lets the user input any text, but provides autocomplete
       functionality as well.
-    </svelte:fragment>
+    {/snippet}
   </Demo>
 
   <Demo component={Objects} file="autocomplete/_Objects.svelte">
@@ -35,21 +35,25 @@
 
   <Demo component={AddToList} file="autocomplete/_AddToList.svelte">
     Add entries to a list
-    <svelte:fragment slot="subtitle">
+    {#snippet subtitle()}
       Leave the menu open and don't fill the textbox upon selection.
-    </svelte:fragment>
+    {/snippet}
   </Demo>
 
   <Demo component={Async} file="autocomplete/_Async.svelte">
     Async options loading
-    <svelte:fragment slot="subtitle">
+    {#snippet subtitle()}
       Autocomplete supports retrieving results asynchronously, like from a REST
       endpoint. Try typing a letter in the box below.
-    </svelte:fragment>
+    {/snippet}
   </Demo>
 
   <Demo component={FullWidth} file="autocomplete/_FullWidth.svelte">
     Full width
+  </Demo>
+
+  <Demo component={CustomDisplay} file="autocomplete/_CustomDisplay.svelte">
+    Custom item display
   </Demo>
 
   <Demo component={Manual} file="autocomplete/_Manual.svelte">
@@ -68,6 +72,7 @@
   import AddToList from './_AddToList.svelte';
   import Async from './_Async.svelte';
   import FullWidth from './_FullWidth.svelte';
+  import CustomDisplay from './_CustomDisplay.svelte';
   import Manual from './_Manual.svelte';
 </script>
 

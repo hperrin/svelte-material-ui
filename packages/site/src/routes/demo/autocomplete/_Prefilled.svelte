@@ -8,5 +8,5 @@
 
   let fruits = ['Apple', 'Orange', 'Banana', 'Mango'];
 
-  let value = 'Orange';
+  let value = $state('Orange');
 </script>

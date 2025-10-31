@@ -1,7 +1,7 @@
 <div class="card-display">
   <div class="card-container">
-    <Card>
-      <PrimaryAction on:click={() => clicked++}>
+    <Card class="mdc-elevation--z12">
+      <PrimaryAction onclick={() => clicked++}>
         <Media class="card-media-16x9" aspectRatio="16x9">
           <MediaContent>
             <div
@@ -17,21 +17,22 @@
           </MediaContent>
         </Media>
         <Content class="mdc-typography--body2">
-          It's all in this card. It's a veritable smorgasbord of card features.
+          And higher elevation. It's all in this card. It's a veritable
+          smorgasbord of card features.
         </Content>
       </PrimaryAction>
       <Actions>
         <ActionButtons>
-          <Button on:click={() => clicked++}>
+          <Button onclick={() => clicked++}>
             <Label>Action</Label>
           </Button>
-          <Button on:click={() => clicked++}>
+          <Button onclick={() => clicked++}>
             <Label>Another</Label>
           </Button>
         </ActionButtons>
         <ActionIcons>
           <IconButton
-            on:click={() => clicked++}
+            onclick={() => clicked++}
             toggle
             aria-label="Add to favorites"
             title="Add to favorites"
@@ -41,12 +42,12 @@
           </IconButton>
           <IconButton
             class="material-icons"
-            on:click={() => clicked++}
+            onclick={() => clicked++}
             title="Share">share</IconButton
           >
           <IconButton
             class="material-icons"
-            on:click={() => clicked++}
+            onclick={() => clicked++}
             title="More options">more_vert</IconButton
           >
         </ActionIcons>
@@ -55,8 +56,8 @@
   </div>
 
   <div class="card-container">
-    <Card>
-      <PrimaryAction on:click={() => clicked++}>
+    <Card class="mdc-elevation--z12">
+      <PrimaryAction onclick={() => clicked++}>
         <Media class="card-media-16x9" aspectRatio="16x9" />
         <Content class="mdc-typography--body2">
           <h2 class="mdc-typography--headline6" style="margin: 0;">
@@ -68,21 +69,22 @@
           >
             And a subtitle.
           </h3>
-          It's all in this card. It's a veritable smorgasbord of card features.
+          And higher elevation. It's all in this card. It's a veritable smorgasbord
+          of card features.
         </Content>
       </PrimaryAction>
       <Actions>
         <ActionButtons>
-          <Button on:click={() => clicked++}>
+          <Button onclick={() => clicked++}>
             <Label>Action</Label>
           </Button>
-          <Button on:click={() => clicked++}>
+          <Button onclick={() => clicked++}>
             <Label>Another</Label>
           </Button>
         </ActionButtons>
         <ActionIcons>
           <IconButton
-            on:click={() => clicked++}
+            onclick={() => clicked++}
             toggle
             aria-label="Add to favorites"
             title="Add to favorites"
@@ -92,12 +94,12 @@
           </IconButton>
           <IconButton
             class="material-icons"
-            on:click={() => clicked++}
+            onclick={() => clicked++}
             title="Share">share</IconButton
           >
           <IconButton
             class="material-icons"
-            on:click={() => clicked++}
+            onclick={() => clicked++}
             title="More options">more_vert</IconButton
           >
         </ActionIcons>
@@ -121,7 +123,7 @@
   import Button, { Label } from '@smui/button';
   import IconButton, { Icon } from '@smui/icon-button';
 
-  let clicked = 0;
+  let clicked = $state(0);
 </script>
 
 <style>

@@ -1,10 +1,10 @@
-<svelte:component
-  this={component}
+<svelte:options runes />
+
+<MyComponent
   {tag}
   bind:this={element}
-  use={[forwardEvents, ...use]}
+  {use}
   class={classMap({
-    [className]: true,
     'mdc-deprecated-list': true,
     'mdc-deprecated-list--non-interactive': nonInteractive,
     'mdc-deprecated-list--dense': dense,
@@ -16,35 +16,46 @@
     'mdc-deprecated-list--video-list': videoList,
     'mdc-deprecated-list--two-line': twoLine,
     'smui-list--three-line': threeLine && !twoLine,
+    [className]: true,
   })}
   {role}
-  on:keydown={handleKeydown}
-  on:focusin={handleFocusin}
-  on:focusout={handleFocusout}
-  on:click={handleClick}
-  on:SMUIListItem:mount={handleItemMount}
-  on:SMUIListItem:unmount={handleItemUnmount}
-  on:SMUI:action={handleAction}
-  {...$$restProps}
+  {...restProps}
+  onkeydown={(e: KeyboardEvent) => {
+    handleKeydown(e);
+    restProps.onkeydown?.(e);
+  }}
+  onfocusin={(e: FocusEvent) => {
+    handleFocusin(e);
+    restProps.onfocusin?.(e);
+  }}
+  onfocusout={(e: FocusEvent) => {
+    handleFocusout(e);
+    restProps.onfocusout?.(e);
+  }}
+  onclick={(e: MouseEvent) => {
+    handleClick(e);
+    restProps.onclick?.(e);
+  }}
+  onSMUIAction={(
+    e: CustomEvent & { currentTarget: SmuiElementMap[TagName] },
+  ) => {
+    handleAction(e);
+    restProps.onSMUIAction?.(e);
+  }}
 >
-  <slot />
-</svelte:component>
+  {@render children?.()}
+</MyComponent>
 
 <script lang="ts" generics="TagName extends SmuiEveryElement = 'ul'">
   import { MDCListFoundation } from '@material/list';
   import { ponyfill } from '@material/dom';
-  import type { SvelteComponent } from 'svelte';
+  import type { Snippet } from 'svelte';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type { AddLayoutListener, RemoveLayoutListener } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    dispatch,
-  } from '@smui/common/internal';
+  import { classMap, dispatch } from '@smui/common/internal';
   import type {
+    SmuiComponent,
     SmuiElementMap,
     SmuiEveryElement,
     SmuiAttrs,
@@ -57,74 +68,137 @@
   const { closest, matches } = ponyfill;
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * Whether the list should ignore all user input.
+     */
     nonInteractive?: boolean;
+    /**
+     * Style the list more compact.
+     */
     dense?: boolean;
+    /**
+     * Style the list as a text list.
+     */
     textualList?: boolean;
+    /**
+     * Style the list as an avatar list.
+     */
     avatarList?: boolean;
+    /**
+     * Style the list as an icon list.
+     */
     iconList?: boolean;
+    /**
+     * Style the list as an image list.
+     */
     imageList?: boolean;
+    /**
+     * Style the list as a thumbnail list.
+     */
     thumbnailList?: boolean;
+    /**
+     * Style the list as a video list.
+     */
     videoList?: boolean;
+    /**
+     * Style the list as a two line list.
+     */
     twoLine?: boolean;
+    /**
+     * Style the list as a three line list.
+     */
     threeLine?: boolean;
+    /**
+     * Set the list to vertical orientation.
+     */
     vertical?: boolean;
+    /**
+     * Whether to wrap focus around the end of the list.
+     */
     wrapFocus?: boolean;
+    /**
+     * Allow a single selection from the list.
+     */
     singleSelection?: boolean;
+    /**
+     * Whether disabled items should be focusable.
+     */
     disabledItemsFocusable?: boolean;
+    /**
+     * The selected item's index.
+     */
     selectedIndex?: number;
+    /**
+     * Whether the list is a radio button list.
+     */
     radioList?: boolean;
+    /**
+     * Whether the list is a checkbox list.
+     */
     checkList?: boolean;
+    /**
+     * Whether the list has typeahead.
+     */
     hasTypeahead?: boolean;
-    component?: typeof SvelteComponent;
+    /**
+     * The component to use to render the element.
+     */
+    component?: SmuiComponent<SmuiElementMap[TagName]>;
+    /**
+     * The tag name of the element to create.
+     */
     tag?: TagName;
+
+    children?: Snippet;
   };
-  type $$Props = OwnProps & SmuiAttrs<TagName, keyof OwnProps>;
+  let nav = getContext<boolean | undefined>('SMUI:list:nav');
+  let {
+    use = [],
+    class: className = '',
+    nonInteractive = false,
+    dense = false,
+    textualList = false,
+    avatarList = false,
+    iconList = false,
+    imageList = false,
+    thumbnailList = false,
+    videoList = false,
+    twoLine = false,
+    threeLine = false,
+    vertical = true,
+    wrapFocus = getContext<boolean | undefined>('SMUI:list:wrapFocus') ?? false,
+    singleSelection = false,
+    disabledItemsFocusable = false,
+    selectedIndex = $bindable(-1),
+    radioList = false,
+    checkList = false,
+    hasTypeahead = false,
+    component: MyComponent = SmuiElement,
+    tag = (nav ? 'nav' : 'ul') as TagName,
+    children,
+    ...restProps
+  }: OwnProps & SmuiAttrs<TagName, keyof OwnProps> = $props();
 
-  const forwardEvents = forwardEventsBuilder(get_current_component());
-
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let nonInteractive = false;
-  export let dense = false;
-  export let textualList = false;
-  export let avatarList = false;
-  export let iconList = false;
-  export let imageList = false;
-  export let thumbnailList = false;
-  export let videoList = false;
-  export let twoLine = false;
-  export let threeLine = false;
-  export let vertical = true;
-  export let wrapFocus: boolean =
-    getContext<boolean | undefined>('SMUI:list:wrapFocus') ?? false;
-  export let singleSelection = false;
-  export let disabledItemsFocusable = false;
-  export let selectedIndex = -1;
-  export let radioList = false;
-  export let checkList = false;
-  export let hasTypeahead = false;
-
-  let element: SvelteComponent;
-  let instance: MDCListFoundation;
+  let element: ReturnType<SmuiComponent<SmuiElementMap[TagName]>>;
+  let instance: MDCListFoundation | undefined = $state();
   let items: SMUIListItemAccessor[] = [];
   let role = getContext<string | undefined>('SMUI:list:role');
-  let nav = getContext<boolean | undefined>('SMUI:list:nav');
   const itemAccessorMap = new WeakMap<Element, SMUIListItemAccessor>();
   let selectionDialog = getContext<boolean | undefined>(
-    'SMUI:dialog:selection'
+    'SMUI:dialog:selection',
   );
   let addLayoutListener = getContext<AddLayoutListener | undefined>(
-    'SMUI:addLayoutListener'
+    'SMUI:addLayoutListener',
   );
   let removeLayoutListener: RemoveLayoutListener | undefined;
-
-  export let component: typeof SvelteComponent = SmuiElement;
-  export let tag: SmuiEveryElement | undefined =
-    component === SmuiElement ? (nav ? 'nav' : 'ul') : undefined;
 
   setContext('SMUI:list:nonInteractive', nonInteractive);
   setContext('SMUI:separator:context', 'list');
@@ -145,33 +219,67 @@
     }
   }
 
-  $: if (instance) {
-    instance.setVerticalOrientation(vertical);
-  }
+  $effect(() => {
+    if (instance) {
+      instance.setVerticalOrientation(vertical);
+    }
+  });
 
-  $: if (instance) {
-    instance.setWrapFocus(wrapFocus);
-  }
+  $effect(() => {
+    if (instance) {
+      instance.setWrapFocus(wrapFocus);
+    }
+  });
 
-  $: if (instance) {
-    instance.setHasTypeahead(hasTypeahead);
-  }
+  $effect(() => {
+    if (instance) {
+      instance.setHasTypeahead(hasTypeahead);
+    }
+  });
 
-  $: if (instance) {
-    instance.setSingleSelection(singleSelection);
-  }
+  $effect(() => {
+    if (instance) {
+      instance.setSingleSelection(singleSelection);
+    }
+  });
 
-  $: if (instance) {
-    instance.setDisabledItemsFocusable(disabledItemsFocusable);
-  }
+  $effect(() => {
+    if (instance) {
+      instance.setDisabledItemsFocusable(disabledItemsFocusable);
+    }
+  });
 
-  $: if (instance && singleSelection && getSelectedIndex() !== selectedIndex) {
-    instance.setSelectedIndex(selectedIndex);
-  }
+  $effect(() => {
+    if (instance && singleSelection && getSelectedIndex() !== selectedIndex) {
+      instance.setSelectedIndex(selectedIndex);
+    }
+  });
 
   if (addLayoutListener) {
     removeLayoutListener = addLayoutListener(layout);
   }
+
+  setContext('SMUI:list:item:mount', (accessor: SMUIListItemAccessor) => {
+    items.push(accessor);
+    itemAccessorMap.set(accessor.element, accessor);
+    if (singleSelection && accessor.selected) {
+      selectedIndex = getListItemIndex(accessor.element);
+    }
+  });
+  setContext('SMUI:list:item:unmount', (accessor: SMUIListItemAccessor) => {
+    const idx = (accessor && items.findIndex((a) => a === accessor)) ?? -1;
+    if (idx !== -1) {
+      items.splice(idx, 1);
+      itemAccessorMap.delete(accessor.element);
+    }
+  });
+
+  const SMUIListMount = getContext<
+    ((accessor: SMUIListAccessor) => void) | undefined
+  >('SMUI:list:mount');
+  const SMUIListUnmount = getContext<
+    ((accessor: SMUIListAccessor) => void) | undefined
+  >('SMUI:list:unmount');
 
   onMount(() => {
     instance = new MDCListFoundation({
@@ -204,12 +312,12 @@
       notifyAction: (index) => {
         selectedIndex = index;
         if (element != null) {
-          dispatch(getElement(), 'SMUIList:action', { index }, undefined, true);
+          dispatch(getElement(), 'SMUIListAction', { index });
         }
       },
       notifySelectionChange: (changedIndices: number[]) => {
         if (element != null) {
-          dispatch(getElement(), 'SMUIList:selectionChange', {
+          dispatch(getElement(), 'SMUIListSelectionChange', {
             changedIndices,
           });
         }
@@ -226,7 +334,7 @@
           listItem.element.querySelectorAll(selector),
           (el: HTMLButtonElement | HTMLAnchorElement) => {
             el.setAttribute('tabindex', tabIndexValue);
-          }
+          },
         );
       },
     });
@@ -239,13 +347,19 @@
         return items;
       },
       get typeaheadInProgress() {
+        if (!instance) {
+          throw new Error('Instance is undefined.');
+        }
         return instance.isTypeaheadInProgress();
       },
       typeaheadMatchItem(nextChar: string, startingIndex?: number) {
+        if (!instance) {
+          throw new Error('Instance is undefined.');
+        }
         return instance.typeaheadMatchItem(
           nextChar,
           startingIndex,
-          /** skipFocus */ true
+          /** skipFocus */ true,
         );
       },
       getOrderedList,
@@ -258,13 +372,15 @@
       getPrimaryTextAtIndex,
     };
 
-    dispatch(getElement(), 'SMUIList:mount', accessor);
+    SMUIListMount && SMUIListMount(accessor);
 
     instance.init();
     instance.layout();
 
     return () => {
-      instance.destroy();
+      SMUIListUnmount && SMUIListUnmount(accessor);
+
+      instance?.destroy();
     };
   });
 
@@ -274,33 +390,14 @@
     }
   });
 
-  function handleItemMount(event: CustomEvent<SMUIListItemAccessor>) {
-    items.push(event.detail);
-    itemAccessorMap.set(event.detail.element, event.detail);
-    if (singleSelection && event.detail.selected) {
-      selectedIndex = getListItemIndex(event.detail.element);
-    }
-    event.stopPropagation();
-  }
-
-  function handleItemUnmount(event: CustomEvent<SMUIListItemAccessor>) {
-    const idx = (event.detail && items.indexOf(event.detail)) ?? -1;
-    if (idx !== -1) {
-      items.splice(idx, 1);
-      items = items;
-      itemAccessorMap.delete(event.detail.element);
-    }
-    event.stopPropagation();
-  }
-
   function handleKeydown(event: KeyboardEvent) {
     if (instance && event.target) {
       instance.handleKeydown(
         event,
         (event.target as Element).classList.contains(
-          'mdc-deprecated-list-item'
+          'mdc-deprecated-list-item',
         ),
-        getListItemIndex(event.target as Element)
+        getListItemIndex(event.target as Element),
       );
     }
   }
@@ -323,9 +420,9 @@
         getListItemIndex(event.target as Element),
         !matches(
           event.target as Element,
-          'input[type="checkbox"], input[type="radio"]'
+          'input[type="checkbox"], input[type="radio"]',
         ),
-        event
+        event,
       );
     }
   }
@@ -339,7 +436,7 @@
           if (
             !matches(
               event.detail.target as Element,
-              'input[type="checkbox"], input[type="radio"]'
+              'input[type="checkbox"], input[type="radio"]',
             )
           ) {
             item.checked = !item.checked;
@@ -361,7 +458,7 @@
     return [...getElement().children]
       .map((element) => itemAccessorMap.get(element))
       .filter(
-        (accessor) => accessor && accessor._smui_list_item_accessor
+        (accessor) => accessor && accessor._smui_list_item_accessor,
       ) as SMUIListItemAccessor[];
   }
 
@@ -383,7 +480,7 @@
   function setAttributeForElementIndex(
     index: number,
     name: string,
-    value: string
+    value: string,
   ) {
     const accessor = getOrderedList()[index];
     accessor && accessor.addAttr(name, value);
@@ -411,7 +508,7 @@
   function getListItemIndex(element: Element) {
     const nearestParent = closest(
       element,
-      '.mdc-deprecated-list-item, .mdc-deprecated-list'
+      '.mdc-deprecated-list-item, .mdc-deprecated-list',
     );
 
     // Get the index of the element if it is a list item.
@@ -424,22 +521,37 @@
   }
 
   export function layout() {
+    if (!instance) {
+      throw new Error('Instance is undefined.');
+    }
     return instance.layout();
   }
 
   export function setEnabled(itemIndex: number, isEnabled: boolean) {
+    if (!instance) {
+      throw new Error('Instance is undefined.');
+    }
     return instance.setEnabled(itemIndex, isEnabled);
   }
 
   export function getTypeaheadInProgress() {
+    if (!instance) {
+      throw new Error('Instance is undefined.');
+    }
     return instance.isTypeaheadInProgress();
   }
 
   export function getSelectedIndex() {
+    if (!instance) {
+      throw new Error('Instance is undefined.');
+    }
     return instance.getSelectedIndex();
   }
 
   export function getFocusedItemIndex() {
+    if (!instance) {
+      throw new Error('Instance is undefined.');
+    }
     return instance.getFocusedItemIndex();
   }
 
@@ -450,7 +562,7 @@
       (accessor.element as HTMLInputElement).focus();
   }
 
-  export function getElement(): SmuiElementMap[TagName] {
+  export function getElement() {
     return element.getElement();
   }
 </script>

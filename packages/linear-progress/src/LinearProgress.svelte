@@ -1,14 +1,15 @@
+<svelte:options runes />
+
 <div
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
-    [className]: true,
     'mdc-linear-progress': true,
     'mdc-linear-progress--indeterminate': indeterminate,
     'mdc-linear-progress--closed': closed,
     'mdc-data-table__linear-progress': context === 'data-table',
     ...internalClasses,
+    [className]: true,
   })}
   style={Object.entries(internalStyles)
     .map(([name, value]) => `${name}: ${value};`)
@@ -18,9 +19,14 @@
   aria-valuemin={0}
   aria-valuemax={1}
   aria-valuenow={indeterminate ? undefined : progress}
-  on:transitionend={() => instance && instance.handleTransitionEnd()}
   {...internalAttrs}
-  {...$$restProps}
+  {...restProps}
+  ontransitionend={(e) => {
+    if (instance) {
+      instance.handleTransitionEnd();
+    }
+    restProps.ontransitionend?.(e);
+  }}
 >
   <div class="mdc-linear-progress__buffer">
     <div
@@ -28,8 +34,8 @@
       style={Object.entries(bufferBarStyles)
         .map(([name, value]) => `${name}: ${value};`)
         .join(' ')}
-    />
-    <div class="mdc-linear-progress__buffer-dots" />
+    ></div>
+    <div class="mdc-linear-progress__buffer-dots"></div>
   </div>
   <div
     class="mdc-linear-progress__bar mdc-linear-progress__primary-bar"
@@ -37,10 +43,10 @@
       .map(([name, value]) => `${name}: ${value};`)
       .join(' ')}
   >
-    <span class="mdc-linear-progress__bar-inner" />
+    <span class="mdc-linear-progress__bar-inner"></span>
   </div>
   <div class="mdc-linear-progress__bar mdc-linear-progress__secondary-bar">
-    <span class="mdc-linear-progress__bar-inner" />
+    <span class="mdc-linear-progress__bar-inner"></span>
   </div>
 </div>
 
@@ -49,78 +55,106 @@
   import { MDCLinearProgressFoundation } from '@material/linear-progress';
   import { onMount, getContext } from 'svelte';
   import type { Writable } from 'svelte/store';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    useActions,
-  } from '@smui/common/internal';
+  import { classMap, useActions } from '@smui/common/internal';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * A list of CSS styles.
+     */
     style?: string;
+    /**
+     * Whether to show indeterminate progress (a throbber).
+     */
     indeterminate?: boolean;
+    /**
+     * Whether the progress indicator is closed.
+     *
+     * Closed progress indicators animate out, then still take up space in the
+     * UI.
+     */
     closed?: boolean;
+    /**
+     * The current progress (between 0 and 1).
+     */
     progress?: number;
+    /**
+     * An optional buffer section of the progress bar.
+     *
+     * This can be used to show when, for example, a video has a current
+     * position and a buffered position.
+     */
     buffer?: number | undefined;
   };
-  type $$Props = OwnProps & SmuiAttrs<'div', keyof OwnProps>;
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
-
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let style = '';
-  export let indeterminate = false;
-  export let closed = false;
-  export let progress = 0;
-  export let buffer: number | undefined = undefined;
+  let {
+    use = [],
+    class: className = '',
+    style = '',
+    indeterminate = false,
+    closed = false,
+    progress = 0,
+    buffer = undefined,
+    ...restProps
+  }: OwnProps & SmuiAttrs<'div', keyof OwnProps> = $props();
 
   let element: HTMLDivElement;
-  let instance: MDCLinearProgressFoundation;
-  let internalClasses: { [k: string]: boolean } = {};
-  let internalAttrs: { [k: string]: string | undefined } = {};
-  let internalStyles: { [k: string]: string } = {};
-  let bufferBarStyles: { [k: string]: string } = {};
-  let primaryBarStyles: { [k: string]: string } = {};
+  let instance: MDCLinearProgressFoundation | undefined = $state();
+  let internalClasses: { [k: string]: boolean } = $state({});
+  let internalAttrs: { [k: string]: string | undefined } = $state({});
+  let internalStyles: { [k: string]: string } = $state({});
+  let bufferBarStyles: { [k: string]: string } = $state({});
+  let primaryBarStyles: { [k: string]: string } = $state({});
   let context = getContext<string | undefined>('SMUI:linear-progress:context');
   let closedStore = getContext<Writable<boolean> | undefined>(
-    'SMUI:linear-progress:closed'
+    'SMUI:linear-progress:closed',
   );
 
-  $: if (closedStore) {
-    $closedStore = closed;
-  }
-
-  $: if (instance && instance.isDeterminate() !== !indeterminate) {
-    instance.setDeterminate(!indeterminate);
-  }
-
-  $: if (instance && instance.getProgress() !== progress) {
-    instance.setProgress(progress);
-  }
-
-  $: if (instance) {
-    if (buffer == null) {
-      instance.setBuffer(1);
-    } else {
-      instance.setBuffer(buffer);
+  $effect(() => {
+    if (closedStore) {
+      $closedStore = closed;
     }
-  }
+  });
 
-  $: if (instance) {
-    if (closed) {
-      instance.close();
-    } else {
-      instance.open();
+  $effect(() => {
+    if (instance && instance.isDeterminate() !== !indeterminate) {
+      instance.setDeterminate(!indeterminate);
     }
-  }
+  });
+
+  $effect(() => {
+    if (instance && instance.getProgress() !== progress) {
+      instance.setProgress(progress);
+    }
+  });
+
+  $effect(() => {
+    if (instance) {
+      if (buffer == null) {
+        instance.setBuffer(1);
+      } else {
+        instance.setBuffer(buffer);
+      }
+    }
+  });
+
+  $effect(() => {
+    if (instance) {
+      if (closed) {
+        instance.close();
+      } else {
+        instance.open();
+      }
+    }
+  });
 
   onMount(() => {
     instance = new MDCLinearProgressFoundation({
@@ -139,7 +173,7 @@
         const RO = window.ResizeObserver;
         if (RO) {
           const ro = new RO(
-            callback as unknown as ResizeObserverCallback
+            callback as unknown as ResizeObserverCallback,
           ) as unknown as MDCResizeObserver;
           ro.observe(getElement());
           return ro;
@@ -153,7 +187,7 @@
     instance.init();
 
     return () => {
-      instance.destroy();
+      instance?.destroy();
     };
   });
 
@@ -191,7 +225,6 @@
     if (internalStyles[name] != value) {
       if (value === '' || value == null) {
         delete internalStyles[name];
-        internalStyles = internalStyles;
       } else {
         internalStyles[name] = value;
       }
@@ -202,7 +235,6 @@
     if (bufferBarStyles[name] != value) {
       if (value === '' || value == null) {
         delete bufferBarStyles[name];
-        bufferBarStyles = bufferBarStyles;
       } else {
         bufferBarStyles[name] = value;
       }
@@ -213,7 +245,6 @@
     if (primaryBarStyles[name] != value) {
       if (value === '' || value == null) {
         delete primaryBarStyles[name];
-        primaryBarStyles = primaryBarStyles;
       } else {
         primaryBarStyles[name] = value;
       }

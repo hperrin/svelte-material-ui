@@ -2,7 +2,7 @@
   <List
     class="demo-list"
     checkList
-    on:SMUIList:selectionChange={(event) => (changeEvent = event)}
+    onSMUIListSelectionChange={(event) => (changeEvent = event)}
   >
     <Item>
       <Label>Bruce Willis</Label>
@@ -47,8 +47,9 @@
   import List, { Item, Meta, Label } from '@smui/list';
   import Checkbox from '@smui/checkbox';
 
-  let selected = ['Tom Hanks'];
-  let changeEvent: CustomEvent<{ changedIndices: number[] }> | null;
+  let selected = $state(['Tom Hanks']);
+  let changeEvent: CustomEvent<{ changedIndices: number[] }> | null =
+    $state(null);
 </script>
 
 <style>

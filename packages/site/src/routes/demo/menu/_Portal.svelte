@@ -5,21 +5,18 @@
 -->
 
 <div style="min-width: 100px;">
-  <Button on:click={() => menu.setOpen(true)}>
+  <Button onclick={() => menu.setOpen(true)}>
     <Label>Open Menu</Label>
   </Button>
-  <Menu
-    bind:this={menu}
-    on:SMUIMenuSurface:closed={() => subMenu.setOpen(false)}
-  >
+  <Menu bind:this={menu} onSMUIMenuSurfaceClosed={() => subMenu.setOpen(false)}>
     <List disabledItemsFocusable>
-      <Item on:SMUI:action={() => (clicked = 'Cut')}>
+      <Item onSMUIAction={() => (clicked = 'Cut')}>
         <Text>Cut</Text>
       </Item>
-      <Item on:SMUI:action={() => (clicked = 'Copy')}>
+      <Item onSMUIAction={() => (clicked = 'Copy')}>
         <Text>Copy</Text>
       </Item>
-      <Item on:SMUI:action={() => (clicked = 'Paste')}>
+      <Item onSMUIAction={() => (clicked = 'Paste')}>
         <Text>Paste</Text>
       </Item>
       <Separator />
@@ -65,12 +62,12 @@
     <Menu
       bind:this={subMenu}
       anchor={false}
-      bind:anchorElement
+      {anchorElement}
       anchorCorner="TOP_END"
     >
       <List>
         <Item
-          on:SMUI:action={() => {
+          onSMUIAction={() => {
             clicked = 'Move';
             menu.setOpen(false);
           }}
@@ -79,7 +76,7 @@
         </Item>
         <Separator />
         <Item
-          on:SMUI:action={() => {
+          onSMUIAction={() => {
             clicked = 'Delete';
             menu.setOpen(false);
           }}
@@ -95,6 +92,7 @@
 
 <script lang="ts">
   import { onMount } from 'svelte';
+  import { on } from 'svelte/events';
   import Portal from 'svelte-portal';
   import Menu from '@smui/menu';
   import { Anchor } from '@smui/menu-surface';
@@ -105,9 +103,9 @@
   let menu: Menu;
   let subMenu: Menu;
   let anchor: Item;
-  let anchorElement: HTMLElement;
-  let anchorClasses: { [k: string]: boolean } = {};
-  let clicked = 'nothing yet';
+  let anchorElement: HTMLElement | undefined = $state();
+  let anchorClasses: { [k: string]: boolean } = $state({});
+  let clicked = $state('nothing yet');
 
   function addClass(className: string) {
     if (!anchorClasses[className]) {
@@ -118,7 +116,6 @@
   function removeClass(className: string) {
     if (anchorClasses[className]) {
       delete anchorClasses[className];
-      anchorClasses = anchorClasses;
     }
   }
 
@@ -159,14 +156,15 @@
       return false;
     }
 
-    anchorElement.addEventListener('mouseenter', (event) => {
+    on(anchorElement, 'mouseenter', (event) => {
       if (!contains(subMenuElement, event.relatedTarget as HTMLElement)) {
         subMenu.setOpen(true);
       }
     });
-    anchorElement.addEventListener('focus', () => {
-      subMenuElement.addEventListener(
-        'SMUIMenuSurface:opened',
+    on(anchorElement, 'focus', () => {
+      on(
+        subMenuElement,
+        'SMUIMenuSurfaceOpened',
         () => {
           const focusEl =
             subMenuElement.querySelector<HTMLElement>('[tabindex="0"]');
@@ -174,17 +172,20 @@
             focusEl.focus();
           }
         },
-        { once: true }
+        { once: true },
       );
       subMenu.setOpen(true);
     });
-    anchorElement.addEventListener('mouseleave', (event) => {
+    on(anchorElement, 'mouseleave', (event) => {
       if (!contains(subMenuElement, event.relatedTarget as HTMLElement)) {
         subMenu.setOpen(false);
       }
     });
-    subMenuElement.addEventListener('mouseleave', (event) => {
-      if (!contains(anchorElement, event.relatedTarget as HTMLElement)) {
+    on(subMenuElement, 'mouseleave', (event) => {
+      if (
+        anchorElement &&
+        !contains(anchorElement, event.relatedTarget as HTMLElement)
+      ) {
         subMenu.setOpen(false);
       }
     });

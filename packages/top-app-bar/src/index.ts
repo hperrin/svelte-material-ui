@@ -2,9 +2,9 @@
 
 import TopAppBar from './TopAppBar.svelte';
 
-import Row from './Row.js';
+import Row from './Row.svelte';
 import Section from './Section.svelte';
-import Title from './Title.js';
+import Title from './Title.svelte';
 import FixedAdjust from './FixedAdjust.js';
 import ProminentFixedAdjust from './ProminentFixedAdjust.js';
 import DenseFixedAdjust from './DenseFixedAdjust.js';

@@ -1,19 +1,19 @@
-<Button on:click={() => clicked++} variant="raised">
+<Button onclick={() => clicked++} variant="raised">
   <Label>Raised</Label>
 </Button>
-<Button on:click={() => clicked++} variant="unelevated">
+<Button onclick={() => clicked++} variant="unelevated">
   <Label>Unelevated</Label>
 </Button>
-<Button on:click={() => clicked++} variant="outlined">
+<Button onclick={() => clicked++} variant="outlined">
   <Label>Outlined</Label>
 </Button>
-<Button color="secondary" on:click={() => clicked++} variant="raised">
+<Button color="secondary" onclick={() => clicked++} variant="raised">
   <Label>Raised</Label>
 </Button>
-<Button color="secondary" on:click={() => clicked++} variant="unelevated">
+<Button color="secondary" onclick={() => clicked++} variant="unelevated">
   <Label>Unelevated</Label>
 </Button>
-<Button color="secondary" on:click={() => clicked++} variant="outlined">
+<Button color="secondary" onclick={() => clicked++} variant="outlined">
   <Label>Outlined</Label>
 </Button>
 
@@ -22,5 +22,5 @@
 <script lang="ts">
   import Button, { Label } from '@smui/button';
 
-  let clicked = 0;
+  let clicked = $state(0);
 </script>

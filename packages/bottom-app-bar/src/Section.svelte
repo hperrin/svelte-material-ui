@@ -1,46 +1,54 @@
+<svelte:options runes />
+
 <Paper
   bind:this={element}
-  use={usePass}
+  {use}
   class={classMap({
-    [className]: true,
     'smui-bottom-app-bar__section': true,
     'smui-bottom-app-bar__section--fab-inset': fabInset,
+    [className]: true,
   })}
   color={$color}
   variant="unelevated"
   square
-  {...$$restProps}><slot /></Paper
+  {...restProps}>{@render children?.()}</Paper
 >
 
 <script lang="ts">
-  import type { ComponentProps } from 'svelte';
+  import type { ComponentProps, Snippet } from 'svelte';
   import { getContext } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type { ActionArray } from '@smui/common/internal';
-  import { forwardEventsBuilder, classMap } from '@smui/common/internal';
+  import { classMap } from '@smui/common/internal';
   import Paper from '@smui/paper';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * Use an inset cutout styling for the FAB.
+     */
     fabInset?: boolean;
+
+    children?: Snippet;
   };
-  type $$Props = Omit<ComponentProps<Paper>, keyof OwnProps> &
+  let {
+    use = [],
+    class: className = '',
+    fabInset = false,
+    children,
+    ...restProps
+  }: Omit<ComponentProps<typeof Paper>, keyof OwnProps> &
     OwnProps & {
       color?: never;
       variant?: never;
       square?: never;
-    };
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
-
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  $: usePass = [forwardEvents, ...use] as ActionArray;
-  let className = '';
-  export { className as class };
-  export let fabInset = false;
+    } = $props();
 
   let element: Paper;
 

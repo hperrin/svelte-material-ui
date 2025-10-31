@@ -6,16 +6,16 @@
         value={option.name}
         disabled={option.disabled}
       />
-      <span slot="label">
+      {#snippet label()}
         {option.name}{option.disabled ? ' (disabled)' : ''}
-      </span>
+      {/snippet}
     </FormField>
   {/each}
 </div>
 
 <div style="margin-top: 1em;">
   <Button
-    on:click={() => {
+    onclick={() => {
       selected = 'Doc';
     }}
   >
@@ -60,7 +60,7 @@
       disabled: false,
     },
   ];
-  let selected = 'Grumpy';
+  let selected = $state('Grumpy');
 </script>
 
 <style>

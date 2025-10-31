@@ -1,9 +1,9 @@
+<svelte:options runes />
+
 <div
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
-    [className]: true,
     'smui-paper': true,
     'smui-paper--raised': variant === 'raised',
     'smui-paper--unelevated': variant === 'unelevated',
@@ -13,45 +13,65 @@
     'smui-paper--rounded': !square,
     ['smui-paper--color-' + color]: color !== 'default',
     'smui-paper-transition': transition,
+    [className]: true,
   })}
-  {...$$restProps}
+  {...restProps}
 >
-  <slot />
+  {@render children?.()}
 </div>
 
 <script lang="ts">
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
+  import type { Snippet } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    useActions,
-  } from '@smui/common/internal';
+  import { classMap, useActions } from '@smui/common/internal';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * The visual variant of the Paper.
+     */
     variant?: 'raised' | 'unelevated' | 'outlined';
+    /**
+     * When true, removes the rounded corners.
+     */
     square?: boolean;
+    /**
+     * The color styling to apply to the Paper.
+     *
+     * Default, primary, and secondary are provided by SMUI. You can use custom
+     * scss styling to add your own color styling.
+     */
     color?: 'default' | 'primary' | 'secondary' | string;
+    /**
+     * The elevation styling to apply to the Paper.
+     */
     elevation?: number;
+    /**
+     * Whether transition animation styling should be applied to the Paper.
+     */
     transition?: boolean;
+
+    children?: Snippet;
   };
-  type $$Props = OwnProps & SmuiAttrs<'div', keyof OwnProps>;
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
-
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let variant: 'raised' | 'unelevated' | 'outlined' = 'raised';
-  export let square = false;
-  export let color: 'default' | 'primary' | 'secondary' | string = 'default';
-  export let elevation = 1;
-  export let transition = false;
+  let {
+    use = [],
+    class: className = '',
+    variant = 'raised',
+    square = false,
+    color = 'default',
+    elevation = 1,
+    transition = false,
+    children,
+    ...restProps
+  }: OwnProps & SmuiAttrs<'div', keyof OwnProps> = $props();
 
   let element: HTMLDivElement;
 

@@ -1,4 +1,4 @@
-<svelte:window on:resize={setMiniWindow} />
+<svelte:window onresize={setMiniWindow} />
 
 <svelte:head>
   <!-- SMUI Styles -->
@@ -6,6 +6,18 @@
 
   <!-- Site Styles -->
   <link rel="stylesheet" href="{assets}/site.css" />
+
+  <!-- Code Hightlighting Theme -->
+  {@html materialDarker}
+
+  {#each themes as theme}
+    <link rel="preload" href="{assets}/smui-{theme.value}.css" as="style" />
+    <link
+      rel="preload"
+      href="{assets}/smui-{theme.value}-dark.css"
+      as="style"
+    />
+  {/each}
 
   {#if theme}
     <!-- SMUI Styles -->
@@ -74,7 +86,7 @@
 </svelte:head>
 
 {#if iframe}
-  <slot />
+  {@render children?.()}
 {:else}
   <TopAppBar variant="static" class="demo-top-app-bar">
     <Row>
@@ -82,13 +94,12 @@
         {#if miniWindow}
           <IconButton
             class="material-icons"
-            on:click={() => (drawerOpen = !drawerOpen)}>menu</IconButton
+            onclick={() => (drawerOpen = !drawerOpen)}>menu</IconButton
           >
         {/if}
         <Title
           tag="a"
           href="/"
-          on:click={() => (activeSection = undefined)}
           class="mdc-theme--on-surface"
           style={miniWindow ? 'padding-left: 0;' : ''}
         >
@@ -134,7 +145,7 @@
         </IconButton>
         <div style="display: inline-block;">
           <IconButton
-            on:click={() => themeMenu.setOpen(true)}
+            onclick={() => themeMenu?.setOpen(true)}
             title="Pick a theme or toggle dark mode."
           >
             <Icon tag="svg" viewBox="0 0 24 24">
@@ -145,7 +156,7 @@
             <List>
               <SelectionGroup>
                 <Item
-                  on:SMUI:action={() => (lightTheme = null)}
+                  onSMUIAction={() => (lightTheme = null)}
                   selected={lightTheme == null}
                 >
                   <SelectionGroupIcon>
@@ -155,7 +166,7 @@
                 </Item>
                 {#each [{ label: 'Light', value: true }, { label: 'Dark', value: false }] as item}
                   <Item
-                    on:SMUI:action={() => (lightTheme = item.value)}
+                    onSMUIAction={() => (lightTheme = item.value)}
                     selected={lightTheme === item.value}
                   >
                     <SelectionGroupIcon>
@@ -168,7 +179,7 @@
               <Separator />
               <SelectionGroup>
                 <Item
-                  on:SMUI:action={() => (theme = null)}
+                  onSMUIAction={() => (theme = null)}
                   selected={theme == null}
                 >
                   <SelectionGroupIcon>
@@ -178,7 +189,7 @@
                 </Item>
                 {#each themes as item}
                   <Item
-                    on:SMUI:action={() => (theme = item.value)}
+                    onSMUIAction={() => (theme = item.value)}
                     selected={theme === item.value}
                   >
                     <SelectionGroupIcon>
@@ -224,14 +235,13 @@
               <Separator />
             {:else}
               <Item
-                bind:this={section.component}
                 nonInteractive={!('route' in section || 'shortcut' in section)}
                 href={'route' in section
                   ? section.route
                   : 'shortcut' in section
-                  ? section.shortcut
-                  : undefined}
-                activated={section === activeSection}
+                    ? section.shortcut
+                    : undefined}
+                activated={section.route === activeSection?.route}
                 style={section.indent
                   ? 'margin-left: ' + section.indent * 25 + 'px;'
                   : ''}
@@ -249,17 +259,19 @@
     {/if}
     <AppContent class="demo-app-content">
       <main class="demo-main-content" bind:this={mainContent}>
-        <slot />
+        {@render children?.()}
       </main>
     </AppContent>
   </div>
 {/if}
 
 <script lang="ts">
+  import type { Snippet } from 'svelte';
   import { onDestroy, onMount } from 'svelte';
   import { mdiFileDocument, mdiPalette } from '@mdi/js';
   import { siDiscord, siMastodon, siGithub } from 'simple-icons';
   import TinyGesture from 'tinygesture';
+  import materialDarker from 'svelte-highlight/styles/material-darker';
   import { assets } from '$app/paths';
   import { page } from '$app/stores';
 
@@ -270,27 +282,29 @@
   import List, { Item, Text, Separator } from '@smui/list';
   import { Icon } from '@smui/common';
 
-  const iframe = $page.url.pathname.includes('/iframe');
+  let { children }: { children: Snippet } = $props();
 
-  let drawer: Drawer;
-  let mainContent: HTMLElement;
-  let miniWindow = false;
-  let drawerOpen = false;
+  const iframe = $derived($page.url.pathname.includes('/iframe'));
+
+  let drawer: Drawer | undefined = $state();
+  let mainContent: HTMLElement | undefined = $state();
+  let miniWindow = $state(false);
+  let drawerOpen = $state(false);
   let drawerGesture: TinyGesture;
   let mainContentGesture: TinyGesture;
 
   const themes = [
     { label: 'Material', value: 'material' },
     { label: 'Fixation', value: 'fixation' },
+    { label: 'Bubblegum', value: 'bubblegum' },
     { label: 'Metro', value: 'metro' },
     { label: 'Unity', value: 'unity' },
   ];
-  let themeMenu: Menu;
-  let lightTheme: boolean | null = null;
-  let theme: string | null = null;
+  let themeMenu: Menu | undefined = $state();
+  let lightTheme: boolean | null = $state(null);
+  let theme: string | null = $state(null);
 
   type DemoSection = {
-    component?: Item<string>; // Items always have href.
     name: string;
     route?: string;
     shortcut?: string;
@@ -491,6 +505,14 @@
       ],
     },
     {
+      name: 'Chip Input',
+      route: '/demo/chip-input/',
+      indent: 1,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/chip-input',
+      ],
+    },
+    {
       name: 'Form Field',
       route: '/demo/form-field/',
       indent: 1,
@@ -655,20 +677,25 @@
     },
   ];
 
-  $: activeSection = sections.find(
-    (section) =>
-      'route' in section && routesEqual(section.route ?? '', $page.url.pathname)
-  ) as DemoSection | undefined;
+  const activeSection = $derived(
+    sections.find(
+      (section) =>
+        'route' in section &&
+        routesEqual(section.route ?? '', $page.url.pathname),
+    ) as DemoSection | undefined,
+  );
   let previousPagePath: string | undefined = undefined;
-  $: if (mainContent && previousPagePath !== $page.url.pathname) {
-    drawerOpen = false;
-    const hashEl =
-      window.location.hash &&
-      document.querySelector<HTMLElement>(window.location.hash);
-    const top = (hashEl && hashEl.offsetTop) || 0;
-    mainContent.scrollTop = top;
-    previousPagePath = $page.url.pathname;
-  }
+  $effect(() => {
+    if (mainContent && previousPagePath !== $page.url.pathname) {
+      drawerOpen = false;
+      const hashEl =
+        window.location.hash &&
+        document.querySelector<HTMLElement>(window.location.hash);
+      const top = (hashEl && hashEl.offsetTop) || 0;
+      mainContent.scrollTop = top;
+      previousPagePath = $page.url.pathname;
+    }
+  });
 
   onMount(() => setTimeout(setMiniWindow, 0));
 

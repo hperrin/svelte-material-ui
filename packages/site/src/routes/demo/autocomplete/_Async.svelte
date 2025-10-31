@@ -5,12 +5,13 @@
     showMenuWithNoInput={false}
     label="Fruit"
   >
-    <Text
-      slot="loading"
-      style="display: flex; width: 100%; justify-content: center; align-items: center;"
-    >
-      <CircularProgress style="height: 24px; width: 24px;" indeterminate />
-    </Text>
+    {#snippet loading()}
+      <Text
+        style="display: flex; width: 100%; justify-content: center; align-items: center;"
+      >
+        <CircularProgress style="height: 24px; width: 24px;" indeterminate />
+      </Text>
+    {/snippet}
   </Autocomplete>
   <pre class="status">Selected: {value || ''}</pre>
 </div>
@@ -31,13 +32,20 @@
     'Grape',
     'Strawberry',
   ];
-  let value: string | undefined = undefined;
+  let value: string | undefined = $state();
 
   let counter = 0;
 
   async function searchItems(input: string) {
     if (input === '') {
       return [];
+    }
+
+    if (value != null) {
+      // Return an array with just the already selected value to hide the menu.
+      // As soon as the user changes the text field, the value is unselected, so
+      // the search should run again.
+      return [value];
     }
 
     // Pretend to have some sort of canceling mechanism.
@@ -56,7 +64,7 @@
 
     // Return a list of matches.
     return fruits.filter((item) =>
-      item.toLowerCase().includes(input.toLowerCase())
+      item.toLowerCase().includes(input.toLowerCase()),
     );
   }
 </script>

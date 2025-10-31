@@ -1,19 +1,25 @@
 <div>
   <FormField>
     <Checkbox class="my-colored-checkbox" />
-    <span slot="label">Custom Color</span>
+    {#snippet label()}
+      Custom Color
+    {/snippet}
   </FormField>
 </div>
 <div>
   <FormField>
     <Checkbox class="my-colored-checkbox" disabled />
-    <span slot="label">Disabled</span>
+    {#snippet label()}
+      Disabled
+    {/snippet}
   </FormField>
 </div>
 <div>
   <FormField>
     <Checkbox class="my-colored-checkbox" disabled checked />
-    <span slot="label">Disabled, Checked</span>
+    {#snippet label()}
+      Disabled, Checked
+    {/snippet}
   </FormField>
 </div>
 <div>
@@ -23,30 +29,38 @@
       bind:checked
       indeterminate={checked === null}
     />
-    <span slot="label">Indeterminate</span>
+    {#snippet label()}
+      Indeterminate
+    {/snippet}
   </FormField>
 </div>
 
 <br />
-<Button on:click={() => (checked = null)}>Reset</Button>
+<Button onclick={() => (checked = null)}>Reset</Button>
 
 <br /><br />
 <div>
   <FormField>
     <Checkbox class="my-fully-colored-checkbox" />
-    <span slot="label">Fully Colored</span>
+    {#snippet label()}
+      Fully Colored
+    {/snippet}
   </FormField>
 </div>
 <div>
   <FormField>
     <Checkbox class="my-fully-colored-checkbox" disabled />
-    <span slot="label">Disabled</span>
+    {#snippet label()}
+      Disabled
+    {/snippet}
   </FormField>
 </div>
 <div>
   <FormField>
     <Checkbox class="my-fully-colored-checkbox" disabled checked />
-    <span slot="label">Disabled, Checked</span>
+    {#snippet label()}
+      Disabled, Checked
+    {/snippet}
   </FormField>
 </div>
 <div>
@@ -56,18 +70,20 @@
       bind:checked={checked2}
       indeterminate={checked2 === null}
     />
-    <span slot="label">Indeterminate</span>
+    {#snippet label()}
+      Indeterminate
+    {/snippet}
   </FormField>
 </div>
 
 <br />
-<Button on:click={() => (checked2 = null)}>Reset</Button>
+<Button onclick={() => (checked2 = null)}>Reset</Button>
 
 <script lang="ts">
   import Checkbox from '@smui/checkbox';
   import FormField from '@smui/form-field';
   import Button from '@smui/button';
 
-  let checked: boolean | null = null;
-  let checked2: boolean | null = null;
+  let checked: boolean | null = $state(null);
+  let checked2: boolean | null = $state(null);
 </script>

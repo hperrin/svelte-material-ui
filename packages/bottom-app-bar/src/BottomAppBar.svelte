@@ -1,70 +1,85 @@
-<svelte:window on:scroll={handleTargetScroll} on:resize={handleWindowResize} />
+<svelte:options runes />
+
+<svelte:window onscroll={handleTargetScroll} onresize={handleWindowResize} />
 
 <div
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
-    [className]: true,
     'smui-bottom-app-bar': true,
     'smui-bottom-app-bar--standard': variant === 'standard',
     'smui-bottom-app-bar--fixed': variant === 'fixed',
+    [className]: true,
   })}
   style={Object.entries(internalStyles)
     .map(([name, value]) => `${name}: ${value};`)
     .concat([style])
     .join(' ')}
-  {...$$restProps}
+  {...restProps}
 >
-  <slot />
+  {@render children?.()}
 </div>
 
 <script lang="ts">
-  import { afterUpdate, setContext } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
+  import type { Snippet } from 'svelte';
+  import { onMount, setContext } from 'svelte';
   import type { Subscriber } from 'svelte/store';
   import { readable, writable } from 'svelte/store';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    useActions,
-  } from '@smui/common/internal';
+  import { classMap, useActions } from '@smui/common/internal';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * A list of CSS styles.
+     */
     style?: string;
-    color?: 'default' | 'primary' | 'secondary' | string;
+    /**
+     * The type of app bar to display.
+     */
     variant?: 'fixed' | 'static' | 'standard';
+    /**
+     * The color of the app bar.
+     */
+    color?: 'default' | 'primary' | 'secondary' | string;
+
+    children?: Snippet;
   };
-  type $$Props = OwnProps & SmuiAttrs<'div', keyof OwnProps>;
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
-
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let style = '';
-  export let color: 'default' | 'primary' | 'secondary' | string = 'primary';
-  export let variant: 'fixed' | 'static' | 'standard' = 'standard';
+  let {
+    use = [],
+    class: className = '',
+    style = '',
+    variant = 'standard',
+    color = 'primary',
+    children,
+    ...restProps
+  }: OwnProps & SmuiAttrs<'div', keyof OwnProps> = $props();
 
   let element: HTMLDivElement;
 
-  let internalStyles: { [k: string]: string } = {};
+  let internalStyles: { [k: string]: string } = $state({});
   const colorStore = writable(color);
-  let withFab = false;
-  let adjustOffset = 0;
-  $: $colorStore = color;
+  let withFab = $state(false);
+  let adjustOffset = $state(0);
+  $effect(() => {
+    $colorStore = color;
+  });
   setContext('SMUI:bottom-app-bar:color', colorStore);
-  let propStoreSet: Subscriber<{
-    withFab: boolean;
-    adjustOffset: number;
-    variant: 'fixed' | 'static' | 'standard';
-  }>;
+  let propStoreSet:
+    | Subscriber<{
+        withFab: boolean;
+        adjustOffset: number;
+        variant: 'fixed' | 'static' | 'standard';
+      }>
+    | undefined = $state();
   let propStore = readable(
     {
       withFab,
@@ -73,27 +88,39 @@
     },
     (set) => {
       propStoreSet = set;
-    }
+    },
   );
-  $: if (propStoreSet) {
-    propStoreSet({
-      withFab,
-      adjustOffset,
-      variant,
-    });
-  }
-
-  afterUpdate(() => {
-    if (variant === 'standard' || variant === 'fixed') {
-      withFab = element.querySelector<HTMLDivElement>('.mdc-fab') != null;
+  $effect(() => {
+    if (propStoreSet) {
+      propStoreSet({
+        withFab,
+        adjustOffset,
+        variant,
+      });
     }
+  });
+
+  onMount(() => {
+    const observer = new MutationObserver(() => {
+      if (variant === 'standard' || variant === 'fixed') {
+        withFab =
+          getElement()?.querySelector<HTMLDivElement>('.mdc-fab') != null;
+      } else {
+        withFab = false;
+      }
+    });
+
+    observer.observe(getElement(), { childList: true, subtree: true });
+
+    return () => {
+      observer.disconnect();
+    };
   });
 
   function addStyle(name: string, value: string) {
     if (internalStyles[name] != value) {
       if (value === '' || value == null) {
         delete internalStyles[name];
-        internalStyles = internalStyles;
       } else {
         internalStyles[name] = value;
       }
@@ -145,21 +172,23 @@
   }
 
   function getTopAppBarHeight() {
-    return element.getBoundingClientRect().height;
+    return getElement().getBoundingClientRect().height;
   }
 
   let oldVariant: 'fixed' | 'static' | 'standard' | null = null;
-  $: if (element && variant !== oldVariant) {
-    if (variant === 'standard') {
-      lastScrollPosition = getViewportScrollY();
-      bottomAppBarHeight = getTopAppBarHeight();
-    } else if (oldVariant === 'standard') {
-      addStyle('bottom', '');
-      addStyle('--smui-bottom-app-bar--fab-offset', '0px');
-      adjustOffset = 0;
+  $effect(() => {
+    if (element && variant !== oldVariant) {
+      if (variant === 'standard') {
+        lastScrollPosition = getViewportScrollY();
+        bottomAppBarHeight = getTopAppBarHeight();
+      } else if (oldVariant === 'standard') {
+        addStyle('bottom', '');
+        addStyle('--smui-bottom-app-bar--fab-offset', '0px');
+        adjustOffset = 0;
+      }
+      oldVariant = variant;
     }
-    oldVariant = variant;
-  }
+  });
 
   /**
    * Scroll handler for the default scroll behavior of the bottom app bar.

@@ -1,17 +1,18 @@
 <SegmentedButton
   segments={aligns}
-  let:segment
   singleSelect
   bind:selected={align}
   key={(segment) => segment.name}
 >
-  <Wrapper>
-    <Segment {segment} touch title={segment.name}>
-      <Icon tag="svg" style="width: 1em; height: auto;" viewBox="0 0 24 24">
-        <path fill="currentColor" d={segment.icon} />
-      </Icon>
-    </Segment>
-  </Wrapper>
+  {#snippet segment(segment)}
+    <Wrapper>
+      <Segment {segment} touch title={segment.name}>
+        <Icon tag="svg" style="width: 1em; height: auto;" viewBox="0 0 24 24">
+          <path fill="currentColor" d={segment.icon} />
+        </Icon>
+      </Segment>
+    </Wrapper>
+  {/snippet}
 </SegmentedButton>
 
 <pre class="status">Aligned: {align.name}</pre>
@@ -45,5 +46,5 @@
     },
   ];
 
-  let align = aligns[0];
+  let align = $state(aligns[0]);
 </script>

@@ -13,10 +13,10 @@
 
   <Demo component={Simple} file="touch-target/_Simple.svelte">
     Touch Target Wrapper
-    <svelte:fragment slot="subtitle">
+    {#snippet subtitle()}
       These interactive components all have large touch targets, and they won't
       overlap because of the touch target wrapper.
-    </svelte:fragment>
+    {/snippet}
   </Demo>
 </section>
 

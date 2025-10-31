@@ -22,11 +22,11 @@
 
   <Demo component={StickyHeader} file="data-table/iframe/+page.svelte">
     Sticky header
-    <svelte:fragment slot="subtitle">
+    {#snippet subtitle()}
       This is displayed in an iframe and the source viewer shows the iframe
       source. Sticky headers don't work if any ancestor element has the
       "overflow" style set to "hidden", "scroll", or "auto".
-    </svelte:fragment>
+    {/snippet}
   </Demo>
 
   <Demo component={RowSelection} file="data-table/_RowSelection.svelte">

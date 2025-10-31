@@ -1,7 +1,9 @@
 <div>
   <FormField>
     <Switch color="secondary" bind:checked={checked1} />
-    <span slot="label">Fields of grain.</span>
+    {#snippet label()}
+      Fields of grain.
+    {/snippet}
   </FormField>
 </div>
 
@@ -10,7 +12,9 @@
 <div style="margin-top: 1em;">
   <FormField align="end">
     <Switch color="secondary" bind:checked={checked2} />
-    <span slot="label">Fields of grain.</span>
+    {#snippet label()}
+      Fields of grain.
+    {/snippet}
   </FormField>
 </div>
 
@@ -20,6 +24,6 @@
   import Switch from '@smui/switch';
   import FormField from '@smui/form-field';
 
-  let checked1 = false;
-  let checked2 = false;
+  let checked1 = $state(false);
+  let checked2 = $state(false);
 </script>

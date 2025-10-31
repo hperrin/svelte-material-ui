@@ -3,6 +3,108 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.0.3](https://github.com/hperrin/svelte-material-ui/compare/v8.0.2...v8.0.3) (2025-08-13)
+
+**Note:** Version bump only for package @smui/ripple
+
+
+
+
+
+## [8.0.1](https://github.com/hperrin/svelte-material-ui/compare/v8.0.0...v8.0.1) (2025-07-18)
+
+**Note:** Version bump only for package @smui/ripple
+
+
+
+
+
+# [8.0.0](https://github.com/hperrin/svelte-material-ui/compare/v8.0.0-beta.3...v8.0.0) (2025-07-18)
+
+**Note:** Version bump only for package @smui/ripple
+
+
+
+
+
+# [8.0.0-beta.3](https://github.com/hperrin/svelte-material-ui/compare/v8.0.0-beta.2...v8.0.0-beta.3) (2024-12-22)
+
+**Note:** Version bump only for package @smui/ripple
+
+
+
+
+
+# [8.0.0-beta.2](https://github.com/hperrin/svelte-material-ui/compare/v8.0.0-beta.1...v8.0.0-beta.2) (2024-12-13)
+
+
+### Bug Fixes
+
+* use svelte event on instead of addEventListener ([11b68e7](https://github.com/hperrin/svelte-material-ui/commit/11b68e7ffa75a87be6cb5b47dd2d92ab59763774))
+
+
+
+
+
+# [8.0.0-beta.1](https://github.com/hperrin/svelte-material-ui/compare/v8.0.0-beta.0...v8.0.0-beta.1) (2024-12-11)
+
+**Note:** Version bump only for package @smui/ripple
+
+
+
+
+
+# [8.0.0-beta.0](https://github.com/hperrin/svelte-material-ui/compare/v8.0.0-alpha.0...v8.0.0-beta.0) (2024-11-19)
+
+**Note:** Version bump only for package @smui/ripple
+
+
+
+
+
+# [8.0.0-alpha.0](https://github.com/hperrin/svelte-material-ui/compare/v7.0.0...v8.0.0-alpha.0) (2024-05-13)
+
+
+### Features
+
+* events for svelte 5, mount events to contexts, event modifiers, remove custom event typing ([52d60b8](https://github.com/hperrin/svelte-material-ui/commit/52d60b8ce9f4796121516bab62a6867f39ae856d))
+
+
+
+
+
+# [7.0.0](https://github.com/hperrin/svelte-material-ui/compare/v7.0.0-beta.18...v7.0.0) (2024-05-04)
+
+**Note:** Version bump only for package @smui/ripple
+
+
+
+
+
+# [7.0.0-beta.18](https://github.com/hperrin/svelte-material-ui/compare/v7.0.0-beta.17...v7.0.0-beta.18) (2024-03-17)
+
+**Note:** Version bump only for package @smui/ripple
+
+
+
+
+
+# [7.0.0-beta.17](https://github.com/hperrin/svelte-material-ui/compare/v7.0.0-beta.16...v7.0.0-beta.17) (2024-03-13)
+
+**Note:** Version bump only for package @smui/ripple
+
+
+
+
+
+# [7.0.0-beta.16](https://github.com/hperrin/svelte-material-ui/compare/v7.0.0-beta.15...v7.0.0-beta.16) (2023-12-27)
+
+**Note:** Version bump only for package @smui/ripple
+
+
+
+
+
 # [7.0.0-beta.15](https://github.com/hperrin/svelte-material-ui/compare/v7.0.0-beta.14...v7.0.0-beta.15) (2023-09-04)
 
 

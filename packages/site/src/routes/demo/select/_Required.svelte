@@ -38,7 +38,7 @@
 
   let fruits = ['Apple', 'Orange', 'Banana', 'Mango'];
 
-  let valueA = '';
-  let valueB = '';
-  let valueC = '';
+  let valueA = $state('');
+  let valueB = $state('');
+  let valueC = $state('');
 </script>

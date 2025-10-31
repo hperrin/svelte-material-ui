@@ -1,42 +1,49 @@
+<svelte:options runes />
+
 <div
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
-    [className]: true,
     'smui-button__group': true,
     'smui-button__group--raised': variant === 'raised',
+    [className]: true,
   })}
-  {...$$restProps}
+  {...restProps}
 >
-  <slot />
+  {@render children?.()}
 </div>
 
 <script lang="ts">
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
+  import type { Snippet } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    useActions,
-  } from '@smui/common/internal';
+  import { classMap, useActions } from '@smui/common/internal';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * The styling variant of the button group.
+     */
     variant?: 'text' | 'raised' | 'unelevated' | 'outlined';
-  };
-  type $$Props = OwnProps & SmuiAttrs<'div', keyof OwnProps>;
 
-  const forwardEvents = forwardEventsBuilder(get_current_component());
+    children?: Snippet;
+  };
 
   // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let variant: 'text' | 'raised' | 'unelevated' | 'outlined' = 'text';
+  let {
+    use = [],
+    class: className = '',
+    variant = 'text',
+    children,
+    ...restProps
+  }: OwnProps & SmuiAttrs<'div', keyof OwnProps> = $props();
 
   let element: HTMLDivElement;
 

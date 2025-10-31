@@ -21,12 +21,16 @@
 
   <Demo component={ShapedFilled} file="textfield/_ShapedFilled.svelte">
     Shaped Filled
-    <svelte:fragment slot="subtitle">Styled with CSS</svelte:fragment>
+    {#snippet subtitle()}
+      Styled with CSS
+    {/snippet}
   </Demo>
 
   <Demo component={ShapedOutlined} file="textfield/_ShapedOutlined.svelte">
     Shaped Outlined
-    <svelte:fragment slot="subtitle">Styled with CSS</svelte:fragment>
+    {#snippet subtitle()}
+      Styled with CSS
+    {/snippet}
   </Demo>
 
   <Demo component={Required} file="textfield/_Required.svelte">Required</Demo>
@@ -95,9 +99,9 @@
     file="textfield/_FixedSizeTextarea.svelte"
   >
     Fixed Size Textarea
-    <svelte:fragment slot="subtitle">
+    {#snippet subtitle()}
       Turn off the browser's native resize feature.
-    </svelte:fragment>
+    {/snippet}
   </Demo>
 
   <Demo component={ElementsInLabel} file="textfield/_ElementsInLabel.svelte">
@@ -118,9 +122,9 @@
 
   <Demo component={Solo} file="textfield/_Solo.svelte">
     Solo style
-    <svelte:fragment slot="subtitle">
+    {#snippet subtitle()}
       Using Paper and an Input outside a Textfield to create a "Solo" input
-    </svelte:fragment>
+    {/snippet}
   </Demo>
 </section>
 

@@ -10,9 +10,9 @@
   {#each positions as pos}
     <FormField>
       <Radio bind:group={position} value={pos} />
-      <span slot="label">
+      {#snippet label()}
         {pos}
-      </span>
+      {/snippet}
     </FormField>
   {/each}
 </div>
@@ -22,9 +22,9 @@
   {#each alignmentsY as alignment}
     <FormField>
       <Radio bind:group={alignY} value={alignment} />
-      <span slot="label">
+      {#snippet label()}
         {alignment}
-      </span>
+      {/snippet}
     </FormField>
   {/each}
 </div>
@@ -34,9 +34,9 @@
   {#each alignmentsX as alignment}
     <FormField>
       <Radio bind:group={alignX} value={alignment} />
-      <span slot="label">
+      {#snippet label()}
         {alignment}
-      </span>
+      {/snippet}
     </FormField>
   {/each}
 </div>
@@ -47,19 +47,21 @@
   import Radio from '@smui/radio';
   import FormField from '@smui/form-field';
 
-  let position: 'inset' | 'middle' | 'outset' = 'middle';
-  let alignY: 'top' | 'middle' | 'bottom' = 'top';
-  let alignX: 'start' | 'middle' | 'end' = 'end';
-  $: align = `${alignY}-${alignX}` as
-    | 'top-start'
-    | 'top-middle'
-    | 'top-end'
-    | 'middle-start'
-    | 'middle-middle'
-    | 'middle-end'
-    | 'bottom-start'
-    | 'bottom-middle'
-    | 'bottom-end';
+  let position: 'inset' | 'middle' | 'outset' = $state('middle');
+  let alignY: 'top' | 'middle' | 'bottom' = $state('top');
+  let alignX: 'start' | 'middle' | 'end' = $state('end');
+  const align = $derived(
+    `${alignY}-${alignX}` as
+      | 'top-start'
+      | 'top-middle'
+      | 'top-end'
+      | 'middle-start'
+      | 'middle-middle'
+      | 'middle-end'
+      | 'bottom-start'
+      | 'bottom-middle'
+      | 'bottom-end',
+  );
 
   const positions = ['inset', 'middle', 'outset'];
   const alignmentsY = ['top', 'middle', 'bottom'];

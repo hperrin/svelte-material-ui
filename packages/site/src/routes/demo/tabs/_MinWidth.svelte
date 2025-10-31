@@ -1,8 +1,10 @@
 <div>
-  <TabBar tabs={['Home', 'Merchandise', 'About Us']} let:tab bind:active>
-    <Tab {tab} minWidth>
-      <Label>{tab}</Label>
-    </Tab>
+  <TabBar tabs={['Home', 'Merchandise', 'About Us']} bind:active>
+    {#snippet tab(tab)}
+      <Tab {tab} minWidth>
+        <Label>{tab}</Label>
+      </Tab>
+    {/snippet}
   </TabBar>
 </div>
 
@@ -10,5 +12,5 @@
   import Tab, { Label } from '@smui/tab';
   import TabBar from '@smui/tab-bar';
 
-  let active = 'Home';
+  let active = $state('Home');
 </script>

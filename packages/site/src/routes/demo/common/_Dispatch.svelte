@@ -1,5 +1,5 @@
 <!-- This event will continue to bubble up beyond this component. -->
-<div class="event" on:MyEvent={(e) => (event = e)}>
+<div class="event" onMyEvent={(e) => (event = e)}>
   I'm the event listener.
 
   <div class="event">
@@ -11,7 +11,7 @@
 
 <br />
 
-<Button on:click={dispatchEvent}>Dispatch Event</Button>
+<Button onclick={dispatchEvent}>Dispatch Event</Button>
 
 <pre class="status">Caught Event Detail: {event &&
     JSON.stringify(event.detail)}</pre>
@@ -21,7 +21,7 @@
   import Button from '@smui/button';
 
   let target: HTMLDivElement;
-  let event: CustomEvent<{ time: string }>;
+  let event: CustomEvent<{ time: string }> | false = $state(false);
 
   function dispatchEvent() {
     dispatch(
@@ -35,7 +35,7 @@
         // This is the eventInit object.
         bubbles: true, // this is the default when no eventInit object is provided.
         cancelable: true, // you can make it cancelable like this.
-      }
+      },
     );
   }
 </script>

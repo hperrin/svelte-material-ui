@@ -1,5 +1,5 @@
 <div style="margin-bottom: 1em;">
-  <Button on:click={() => loadThings(true)}>Do Pretend Loading</Button>
+  <Button onclick={() => loadThings(true)}>Do Pretend Loading</Button>
 </div>
 
 <DataTable table$aria-label="User list" style="width: 100%;">
@@ -22,12 +22,13 @@
     {/each}
   </Body>
 
-  <LinearProgress
-    indeterminate
-    bind:closed={loaded}
-    aria-label="Data is being loaded..."
-    slot="progress"
-  />
+  {#snippet progress()}
+    <LinearProgress
+      indeterminate
+      closed={loaded}
+      aria-label="Data is being loaded..."
+    />
+  {/snippet}
 </DataTable>
 
 <script lang="ts">
@@ -42,8 +43,8 @@
     email: string;
     website: string;
   };
-  let items: User[] = [];
-  let loaded = false;
+  let items: User[] = $state([]);
+  let loaded = $state(false);
 
   loadThings(false);
 
@@ -52,7 +53,7 @@
       loaded = false;
 
       fetch(
-        'https://gist.githubusercontent.com/hperrin/e24a4ebd9afdf2a8c283338ae5160a62/raw/dcbf8e6382db49b0dcab70b22f56b1cc444f26d4/users.json'
+        'https://gist.githubusercontent.com/hperrin/e24a4ebd9afdf2a8c283338ae5160a62/raw/dcbf8e6382db49b0dcab70b22f56b1cc444f26d4/users.json',
       )
         .then((response) => response.json())
         .then((json) =>
@@ -62,8 +63,8 @@
               loaded = true;
             },
             // Simulate a long load time.
-            wait ? 2000 : 0
-          )
+            wait ? 2000 : 0,
+          ),
         );
     }
   }

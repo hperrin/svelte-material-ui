@@ -17,7 +17,7 @@
       bind:value={valueA}
       label="Objects"
     >
-      <Option value={null} />
+      <Option value={undefined} />
       {#each fruits as fruit (fruit.label)}
         <Option value={fruit}>{fruit.label}</Option>
       {/each}
@@ -65,7 +65,7 @@
     { id: 4, label: 'Mango', price: 25 },
   ];
 
-  let valueA: Fruit | null = null;
-  let valueB: boolean = true;
-  let valueC: number | null = null;
+  let valueA: Fruit | undefined = $state();
+  let valueB: boolean = $state(true);
+  let valueC: number | null = $state(null);
 </script>

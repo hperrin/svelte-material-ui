@@ -2,7 +2,7 @@
 
 You will need to install the packages you use individually as well as the theme package.
 
-Note: After you install a new package, you will need to restart SvelteKit.
+Note: After you install a new package, you will need rebuild your themes and restart SvelteKit.
 
 ```sh
 npm install --save-dev @smui/button
@@ -64,19 +64,39 @@ Or, without Dark Mode support.
 
 ### Fonts
 
-Material uses the Roboto fonts, so include those as well. If you'd like to use the Material Icons font, include that as well.
+Material uses the Roboto fonts, so be sure to include these stylesheets (or include them from a package).
 
 ```html
 <!-- Hint where we get fonts from. -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-<!-- Material Icons, Roboto, and Roboto Mono fonts -->
+<!-- Roboto, and Roboto Mono fonts -->
 <link
-  href="https://fonts.googleapis.com/css2?family=Material+Icons&Roboto+Mono:ital@0;1&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+  href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital@0;1&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
   rel="stylesheet"
 />
 ```
+
+### Icons
+
+The easiest way to get Material icons is the font. If you'd like to use the Material Icons font, include that, also in the `head` section.
+
+```html
+<!-- Material Icons fonts -->
+<link
+  href="https://fonts.googleapis.com/css2?family=Material+Icons&display=swap"
+  rel="stylesheet"
+/>
+```
+
+However, you can get a greatly expanded icon library and reduce over-the-wire sizes by using [the MDI library](https://pictogrammers.com/library/mdi/) instead.
+
+```sh
+npm install --save-dev @mdi/js
+```
+
+You can see how to use these icons on the "Using SVGs" demo on the [Icon Button demo page](https://sveltematerialui.com/demo/icon-button/).
 
 ## Finishing Up
 

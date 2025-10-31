@@ -9,13 +9,13 @@
     removeClass: (className) => {
       if (anchorClasses[className]) {
         delete anchorClasses[className];
-        anchorClasses = anchorClasses;
       }
     },
   }}
   bind:this={anchor}
+  style="display: inline-block;"
 >
-  <Button on:click={() => surface.setOpen(true)}>Open Menu Surface</Button>
+  <Button onclick={() => surface.setOpen(true)}>Open Menu Surface</Button>
   <MenuSurface bind:this={surface} anchor={false} bind:anchorElement={anchor}>
     <ImageList class="menu-surface-image-list">
       {#each Array(4) as _unused, i}
@@ -33,6 +33,7 @@
 </div>
 
 <script lang="ts">
+  import { onMount } from 'svelte';
   import MenuSurface, { Anchor } from '@smui/menu-surface';
   import ImageList, {
     Item as ImageListItem,
@@ -42,6 +43,12 @@
   import Button from '@smui/button';
 
   let surface: MenuSurface;
-  let anchor: HTMLDivElement;
-  let anchorClasses: { [k: string]: boolean } = {};
+  let anchor: HTMLDivElement | undefined = $state();
+  let anchorClasses: { [k: string]: boolean } = $state({});
+
+  onMount(() => {
+    // This sets the menu surface's origin corner to the top end instead of the
+    // top start.
+    surface.flipCornerHorizontally();
+  });
 </script>

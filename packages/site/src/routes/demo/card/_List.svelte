@@ -2,11 +2,11 @@
   <div class="card-container">
     <Card>
       <Content component={List}>
-        <Item on:click={() => clicked++}>
+        <Item onclick={() => clicked++}>
           <Text>A card with a list as content.</Text>
         </Item>
         {#each [...Array(5)].map((_v, i) => i + 1) as item}
-          <Item on:click={() => clicked++}>
+          <Item onclick={() => clicked++}>
             <Text>Item #{item}</Text>
           </Item>
         {/each}
@@ -21,5 +21,5 @@
   import Card, { Content } from '@smui/card';
   import List, { Item, Text } from '@smui/list';
 
-  let clicked = 0;
+  let clicked = $state(0);
 </script>

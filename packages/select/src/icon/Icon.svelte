@@ -1,61 +1,84 @@
+<svelte:options runes />
+
 <i
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
-    [className]: true,
     'mdc-select__icon': true,
+    [className]: true,
   })}
   aria-hidden={tabindex === -1 ? 'true' : 'false'}
   aria-disabled={role === 'button' ? (disabled ? 'true' : 'false') : undefined}
   {...roleProps}
   {...internalAttrs}
-  {...$$restProps}
-  >{#if content == null}<slot />{:else}{content}{/if}</i
+  {...restProps}
+  >{#if content == null}{@render children?.()}{:else}{content}{/if}</i
 >
 
 <script lang="ts">
   import { MDCSelectIconFoundation } from '@material/select';
-  import { onMount } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
+  import type { Snippet } from 'svelte';
+  import { onMount, getContext } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
-    forwardEventsBuilder,
     classMap,
     useActions,
     dispatch,
+    SvelteEventManager,
   } from '@smui/common/internal';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * The element's role.
+     */
     role?: string | undefined;
+    /**
+     * The tab index.
+     */
     tabindex?: number;
+    /**
+     * Whether the element is disabled.
+     */
     disabled?: boolean;
+
+    children?: Snippet;
   };
-  type $$Props = OwnProps & SmuiAttrs<'i', keyof OwnProps>;
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
-
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let role: string | undefined = undefined;
-  export let tabindex = role === 'button' ? 0 : -1;
-  export let disabled = false;
+  let {
+    use = [],
+    class: className = '',
+    role = undefined,
+    tabindex = role === 'button' ? 0 : -1,
+    disabled = false,
+    children,
+    ...restProps
+  }: OwnProps & SmuiAttrs<'i', keyof OwnProps> = $props();
 
   let element: HTMLElement;
-  let instance: MDCSelectIconFoundation;
-  let internalAttrs: { [k: string]: string | undefined } = {};
-  let content: string | undefined = undefined;
+  let instance: MDCSelectIconFoundation | undefined = $state();
+  let eventManager = new SvelteEventManager();
+  let internalAttrs: { [k: string]: string | undefined } = $state({});
+  let content: string | undefined = $state();
 
-  $: roleProps = {
+  const roleProps = $derived({
     role,
     tabindex,
-  };
+  });
+
+  const SMUISelectLeadingIconMount = getContext<
+    ((accessor: MDCSelectIconFoundation) => void) | undefined
+  >('SMUI:select:leading-icon:mount');
+  const SMUISelectLeadingIconUnmount = getContext<
+    ((accessor: MDCSelectIconFoundation) => void) | undefined
+  >('SMUI:select:leading-icon:unmount');
 
   onMount(() => {
     instance = new MDCSelectIconFoundation({
@@ -66,27 +89,29 @@
         content = value;
       },
       registerInteractionHandler: (evtType, handler) =>
-        getElement().addEventListener(evtType, handler),
+        eventManager.on(getElement(), evtType, handler),
       deregisterInteractionHandler: (evtType, handler) =>
-        getElement().removeEventListener(evtType, handler),
-      notifyIconAction: () =>
-        dispatch(getElement(), 'SMUISelect:icon', undefined, undefined, true),
+        eventManager.off(getElement(), evtType, handler),
+      notifyIconAction: () => dispatch(getElement(), 'SMUISelectIcon'),
     });
 
-    dispatch(getElement(), 'SMUISelectLeadingIcon:mount', instance);
+    SMUISelectLeadingIconMount && SMUISelectLeadingIconMount(instance);
 
     instance.init();
 
     return () => {
-      dispatch(getElement(), 'SMUISelectLeadingIcon:unmount', instance);
+      if (SMUISelectLeadingIconUnmount && instance) {
+        SMUISelectLeadingIconUnmount(instance);
+      }
 
-      instance.destroy();
+      instance?.destroy();
+      eventManager.clear();
     };
   });
 
   function getAttr(name: string) {
     return name in internalAttrs
-      ? internalAttrs[name] ?? null
+      ? (internalAttrs[name] ?? null)
       : getElement().getAttribute(name);
   }
 

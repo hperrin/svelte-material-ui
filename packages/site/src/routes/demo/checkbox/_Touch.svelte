@@ -1,6 +1,8 @@
 <FormField>
   <Checkbox bind:checked touch />
-  <span slot="label">Remember me.</span>
+  {#snippet label()}
+    Remember me.
+  {/snippet}
 </FormField>
 
 <pre class="status">Checked: {checked}</pre>
@@ -9,5 +11,5 @@
   import Checkbox from '@smui/checkbox';
   import FormField from '@smui/form-field';
 
-  let checked = false;
+  let checked = $state(false);
 </script>

@@ -15,9 +15,9 @@
 
   <Demo component={Multiple} file="accordion/_Multiple.svelte">
     Multiple
-    <svelte:fragment slot="subtitle">
+    {#snippet subtitle()}
       Allow multiple open panels.
-    </svelte:fragment>
+    {/snippet}
   </Demo>
 
   <Demo
@@ -49,10 +49,10 @@
 
   <Demo component={PaperProps} file="accordion/_PaperProps.svelte">
     Paper props
-    <svelte:fragment slot="subtitle">
+    {#snippet subtitle()}
       The panels are Paper components, so they can take any property that Paper
       can.
-    </svelte:fragment>
+    {/snippet}
   </Demo>
 
   <Demo component={Complex} file="accordion/_Complex.svelte">

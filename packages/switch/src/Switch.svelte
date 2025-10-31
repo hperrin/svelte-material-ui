@@ -1,7 +1,8 @@
+<svelte:options runes />
+
 <button
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   use:Ripple={{
     unbounded: true,
     color,
@@ -13,37 +14,42 @@
     // Don't need addStyle, since we don't set style prop.
   }}
   class={classMap({
-    [className]: true,
     'mdc-switch': true,
     'mdc-switch--unselected': !selected,
     'mdc-switch--selected': selected,
     'mdc-switch--processing': processing,
     'smui-switch--color-secondary': color === 'secondary',
     ...internalClasses,
+    [className]: true,
   })}
   type="button"
   role="switch"
   aria-checked={selected ? 'true' : 'false'}
   {disabled}
-  on:click={() => instance && instance.handleClick()}
   {...inputProps}
-  {...exclude($$restProps, ['icons$'])}
+  {...exclude(restProps, ['icons$'])}
+  onclick={(e) => {
+    if (instance) {
+      instance.handleClick();
+    }
+    restProps.onclick?.(e);
+  }}
 >
-  <div class="mdc-switch__track" />
+  <div class="mdc-switch__track"></div>
   <div class="mdc-switch__handle-track">
     <div class="mdc-switch__handle">
       <div class="mdc-switch__shadow">
-        <div class="mdc-elevation-overlay" />
+        <div class="mdc-elevation-overlay"></div>
       </div>
-      <div class="mdc-switch__ripple" bind:this={rippleElement} />
+      <div class="mdc-switch__ripple" bind:this={rippleElement}></div>
       {#if icons}
         <div
           use:useActions={icons$use}
           class={classMap({
-            [icons$class]: true,
             'mdc-switch__icons': true,
+            [icons$class]: true,
           })}
-          {...prefixFilter($$restProps, 'icons$')}
+          {...prefixFilter(restProps, 'icons$')}
         >
           <svg
             class="mdc-switch__icon mdc-switch__icon--on"
@@ -65,7 +71,7 @@
   </div>
   {#if focusRing}
     <div class="mdc-switch__focus-ring-wrapper">
-      <div class="mdc-switch__focus-ring" />
+      <div class="mdc-switch__focus-ring"></div>
     </div>
   {/if}
 </button>
@@ -77,8 +83,6 @@
   } from '@material/switch';
   import { MDCSwitchRenderFoundation } from '@material/switch';
   import { onMount, getContext } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type {
     SmuiAttrs,
     SmuiElementPropMap,
@@ -86,7 +90,6 @@
   } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
-    forwardEventsBuilder,
     classMap,
     exclude,
     prefixFilter,
@@ -95,62 +98,103 @@
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
 
-  type OwnProps = {
-    use?: ActionArray;
-    class?: string;
-    disabled?: boolean;
-    focusRing?: boolean;
-    color?: 'primary' | 'secondary';
-    group?: any[];
-    checked?: boolean;
-    value?: any;
-    /** This currently does nothing. */
-    processing?: boolean;
-    icons?: boolean;
-    icons$use?: ActionArray;
-    icons$class?: string;
-  };
-  type $$Props = OwnProps &
-    SmuiAttrs<'button', keyof OwnProps> & {
-      [k in keyof SmuiElementPropMap['div'] as `icons\$${k}`]?: SmuiElementPropMap['div'][k];
-    };
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
   interface UninitializedValue extends Function {}
   let uninitializedValue: UninitializedValue = () => {};
   function isUninitializedValue(value: any): value is UninitializedValue {
     return value === uninitializedValue;
   }
 
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let disabled = false;
-  export let focusRing = false;
-  export let color: 'primary' | 'secondary' = 'primary';
-  export let group: UninitializedValue | any[] = uninitializedValue;
-  export let checked: UninitializedValue | boolean = uninitializedValue;
-  export let value: any = null;
-  /** This currently does nothing. */
-  export let processing = false;
-  export let icons = true;
-  export let icons$use: ActionArray = [];
-  export let icons$class = '';
+  type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
+    use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
+    class?: string;
+    /**
+     * Whether the input is disabled.
+     */
+    disabled?: boolean;
+    /**
+     * Whether to show a focus fing.
+     */
+    focusRing?: boolean;
+    /**
+     * The color of the switch.
+     */
+    color?: 'primary' | 'secondary';
+    /**
+     * An array of items to pick from.
+     *
+     * If the switch is in a group, the values for the checked items will be
+     * added to the array passed in the `value` prop.
+     */
+    group?: any[];
+    /**
+     * Whether the switch is checked.
+     */
+    checked?: boolean;
+    /**
+     * An array of currently selected values.
+     *
+     * This is the array that is added to/taken from when the switch is in a
+     * group.
+     */
+    value?: any;
+    /**
+     * This currently does nothing.
+     */
+    processing?: boolean;
+    /**
+     * Whether to show icons.
+     */
+    icons?: boolean;
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
+    icons$use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
+    icons$class?: string;
+  };
+  let {
+    use = [],
+    class: className = '',
+    disabled = $bindable(false),
+    focusRing = false,
+    color = 'primary',
+    group = $bindable(uninitializedValue as unknown as any[]),
+    checked = $bindable(uninitializedValue as unknown as boolean),
+    value = null,
+    processing = false,
+    icons = true,
+    icons$use = [],
+    icons$class = '',
+    ...restProps
+  }: OwnProps &
+    SmuiAttrs<'button', keyof OwnProps> & {
+      [k in keyof SmuiElementPropMap['div'] as `icons\$${k}`]?: SmuiElementPropMap['div'][k];
+    } = $props();
 
   let element: HTMLButtonElement;
-  let instance: MDCSwitchRenderFoundation;
-  let internalClasses: { [k: string]: boolean } = {};
-  let rippleElement: HTMLDivElement;
-  let rippleActive = false;
-  let inputProps =
-    getContext<{ id?: string } | undefined>('SMUI:generic:input:props') ?? {};
-  let selected = isUninitializedValue(group)
-    ? isUninitializedValue(checked)
-      ? false
-      : checked
-    : group.indexOf(value) !== -1;
-  let state = {
+  let instance: MDCSwitchRenderFoundation | undefined = $state();
+  let internalClasses: { [k: string]: boolean } = $state({});
+  let rippleElement: HTMLDivElement | undefined = $state();
+  let rippleActive = $state(false);
+  let inputProps = $state(
+    getContext<{ id?: string } | undefined>('SMUI:generic:input:props') ?? {},
+  );
+  let selected = $state(
+    isUninitializedValue(group)
+      ? isUninitializedValue(checked)
+        ? false
+        : checked
+      : group.findIndex((val) => val === value) !== -1,
+  );
+  let switchState = {
     get disabled() {
       return disabled;
     },
@@ -174,8 +218,8 @@
   let previousChecked = checked;
   let previousGroup = isUninitializedValue(group) ? [] : [...group];
   let previousSelected = selected;
-  $: {
-    // This is a substitute for an on:change listener that is
+  $effect(() => {
+    // This is a substitute for an onchange listener that is
     // smarter about when it calls the instance's handler. I do
     // this so that a group of changes will only trigger one
     // handler call, since the handler will reset currently
@@ -187,26 +231,24 @@
     if (!isUninitializedValue(group)) {
       if (previousSelected !== selected) {
         // The change needs to flow up.
-        const idx = group.indexOf(value);
+        const idx = group.findIndex((val) => val === value);
         if (selected && idx === -1) {
           group.push(value);
-          group = group;
         } else if (!selected && idx !== -1) {
           group.splice(idx, 1);
-          group = group;
         }
         notifyChange = true;
       } else {
         // Potential changes need to flow down.
-        const idxPrev = previousGroup.indexOf(value);
-        const idx = group.indexOf(value);
+        const idxPrev = previousGroup.findIndex((val) => val === value);
+        const idx = group.findIndex((val) => val === value);
 
         if (idxPrev > -1 && idx === -1) {
           // The checkbox was removed from the group.
-          state.selected = false;
+          switchState.selected = false;
         } else if (idx > -1 && idxPrev === -1) {
           // The checkbox was added to the group.
-          state.selected = true;
+          switchState.selected = true;
         }
       }
     }
@@ -226,17 +268,24 @@
       } else {
         // The checkbox was changed programmatically
         // and the change needs to flow down.
-        state.selected = checked;
+        switchState.selected = checked;
       }
     }
 
     previousChecked = checked;
     previousGroup = isUninitializedValue(group) ? [] : [...group];
     previousSelected = selected;
-    if (notifyChange && element) {
-      dispatch(element, 'SMUISwitch:change', { selected, value });
+    if (notifyChange && getElement()) {
+      dispatch(getElement(), 'SMUISwitchChange', { selected, value });
     }
-  }
+  });
+
+  const SMUIGenericInputMount = getContext<
+    ((accessor: SMUISwitchInputAccessor) => void) | undefined
+  >('SMUI:generic:input:mount');
+  const SMUIGenericInputUnmount = getContext<
+    ((accessor: SMUISwitchInputAccessor) => void) | undefined
+  >('SMUI:generic:input:unmount');
 
   onMount(() => {
     instance = new MDCSwitchRenderFoundation({
@@ -250,7 +299,7 @@
       setDisabled: (value: boolean) => {
         disabled = value;
       },
-      state,
+      state: switchState,
     } as MDCSwitchRenderAdapter);
 
     const accessor: SMUISwitchInputAccessor = {
@@ -262,9 +311,9 @@
       },
       set checked(checked) {
         if (selected !== checked) {
-          state.selected = checked;
-          if (element) {
-            dispatch(element, 'SMUISwitch:change', {
+          switchState.selected = checked;
+          if (getElement()) {
+            dispatch(getElement(), 'SMUISwitchChange', {
               selected: checked,
               value,
             });
@@ -281,15 +330,15 @@
       },
     };
 
-    dispatch(element, 'SMUIGenericInput:mount', accessor);
+    SMUIGenericInputMount && SMUIGenericInputMount(accessor);
 
     instance.init();
     instance.initFromDOM();
 
     return () => {
-      dispatch(element, 'SMUIGenericInput:unmount', accessor);
+      SMUIGenericInputUnmount && SMUIGenericInputUnmount(accessor);
 
-      instance.destroy();
+      instance?.destroy();
     };
   });
 

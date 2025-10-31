@@ -21,7 +21,9 @@
       {#each fruits as fruit}
         <Option value={fruit}>{fruit}</Option>
       {/each}
-      <svelte:fragment slot="helperText">Helper text.</svelte:fragment>
+      {#snippet helperText()}
+        Helper text.
+      {/snippet}
     </Select>
 
     <pre class="status">Selected: {valueHelperText}</pre>
@@ -34,7 +36,9 @@
       bind:value={valueLeadingIcon}
       label="Leading Icon"
     >
-      <Icon class="material-icons" slot="leadingIcon">event</Icon>
+      {#snippet leadingIcon()}
+        <Icon class="material-icons">event</Icon>
+      {/snippet}
       <Option value="" />
       {#each fruits as fruit}
         <Option value={fruit}>{fruit}</Option>
@@ -68,10 +72,10 @@
 
   let fruits = ['Apple', 'Orange', 'Banana', 'Mango'];
 
-  let value = '';
-  let valueHelperText = '';
-  let valueLeadingIcon = '';
-  let valueInvalid = '';
+  let value = $state('');
+  let valueHelperText = $state('');
+  let valueLeadingIcon = $state('');
+  let valueInvalid = $state('');
 </script>
 
 <style>
@@ -84,25 +88,27 @@
     padding-right: 0;
   }
   *
-    :global(.shaped-outlined
-      .mdc-notched-outline
-      .mdc-notched-outline__leading) {
+    :global(
+      .shaped-outlined .mdc-notched-outline .mdc-notched-outline__leading
+    ) {
     border-radius: 28px 0 0 28px;
     width: 28px;
   }
   *
-    :global(.shaped-outlined
-      .mdc-notched-outline
-      .mdc-notched-outline__trailing) {
+    :global(
+      .shaped-outlined .mdc-notched-outline .mdc-notched-outline__trailing
+    ) {
     border-radius: 0 28px 28px 0;
   }
   * :global(.shaped-outlined .mdc-notched-outline .mdc-notched-outline__notch) {
     max-width: calc(100% - 28px * 2);
   }
   *
-    :global(.shaped-outlined.mdc-select--with-leading-icon
-      .mdc-notched-outline:not(.mdc-notched-outline--notched)
-      .mdc-floating-label) {
+    :global(
+      .shaped-outlined.mdc-select--with-leading-icon
+        .mdc-notched-outline:not(.mdc-notched-outline--notched)
+        .mdc-floating-label
+    ) {
     left: 16px;
   }
 </style>

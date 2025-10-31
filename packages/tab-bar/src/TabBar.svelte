@@ -1,40 +1,45 @@
+<svelte:options runes />
+
 <div
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
-    [className]: true,
     'mdc-tab-bar': true,
+    [className]: true,
   })}
   role="tablist"
   {tabindex}
-  on:SMUITab:mount={handleTabMount}
-  on:SMUITab:unmount={handleTabUnmount}
-  on:SMUITab:interacted={instance &&
-    instance.handleTabInteraction.bind(instance)}
-  on:keydown={instance && instance.handleKeyDown.bind(instance)}
-  {...exclude($$restProps, ['tabScroller$'])}
+  {...exclude(restProps, ['tabScroller$'])}
+  onkeydown={(e) => {
+    if (instance) {
+      instance.handleKeyDown(e);
+    }
+    restProps.onkeydown?.(e);
+  }}
+  onSMUITabInteracted={(e) => {
+    if (instance) {
+      instance.handleTabInteraction(e);
+    }
+    restProps.onSMUITabInteracted?.(e);
+  }}
 >
   <TabScroller
     bind:this={tabScroller}
-    {...prefixFilter($$restProps, 'tabScroller$')}
+    {...prefixFilter(restProps, 'tabScroller$')}
   >
-    {#each tabs as tab (key(tab))}
-      <slot {tab} />
+    {#each tabs as tabKey (key(tabKey))}
+      {@render tab(tabKey)}
     {/each}
   </TabScroller>
 </div>
 
 <script lang="ts" generics="TabKey extends Object | string | number">
   import { MDCTabBarFoundation } from '@material/tab-bar';
-  import type { ComponentProps } from 'svelte';
+  import type { ComponentProps, Snippet } from 'svelte';
   import { onMount, setContext } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
-    forwardEventsBuilder,
     classMap,
     exclude,
     prefixFilter,
@@ -45,74 +50,140 @@
   import TabScroller from '@smui/tab-scroller';
 
   type PrimitiveKey = string | number;
-  interface $$Slots {
-    default: { tab: TabKey };
-  }
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * An array of tab objects.
+     */
     tabs?: TabKey[];
+    /**
+     * A function that takes a tab object and returns a unique string or number.
+     *
+     * If your tabs are strings or numbers, you don't need this.
+     */
     key?: (tab: TabKey) => PrimitiveKey;
+    /**
+     * Whether tabs should focus themselves when activated by the user.
+     *
+     * The user will always set focus to the tab when they click on it or tab to
+     * it. Setting this to false just means that the user will focus on the tab
+     * when they click on it like always, but will not focus the next tab if
+     * they hit the right arrow key like they normally would.
+     */
     focusOnActivate?: boolean;
+    /**
+     * Whether tabs should focus themselves when activated programmatically.
+     */
     focusOnProgrammatic?: boolean;
+    /**
+     * Switches between automatic and manual activation modes.
+     */
     useAutomaticActivation?: boolean;
+    /**
+     * The tab that is currently active.
+     */
     active?: TabKey | undefined;
+    /**
+     * The tab index of the control.
+     *
+     * (This is the element's tabindex attribute, as in the index when cycling
+     * focus with the Tab key, not anything to do with the tabs.)
+     */
     tabindex?: number;
+
+    tab: Snippet<[TabKey]>;
   };
-  type $$Props = OwnProps &
+  let {
+    use = [],
+    class: className = '',
+    tabs = [],
+    key = (tab) => tab as PrimitiveKey,
+    focusOnActivate = true,
+    focusOnProgrammatic = false,
+    useAutomaticActivation = true,
+    active = $bindable(),
+    tabindex = 0,
+    tab,
+    ...restProps
+  }: OwnProps &
     SmuiAttrs<'div', keyof OwnProps> & {
-      [k in keyof ComponentProps<TabScroller> as `tabScroller\$${k}`]?: ComponentProps<TabScroller>[k];
-    };
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
-
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let tabs: TabKey[] = [];
-  export let key: (tab: TabKey) => PrimitiveKey = (tab) => tab as PrimitiveKey;
-  export let focusOnActivate = true;
-  export let focusOnProgrammatic = false;
-  export let useAutomaticActivation = true;
-  export let active: TabKey | undefined = undefined;
-  export let tabindex = 0;
+      [k in keyof ComponentProps<
+        typeof TabScroller
+      > as `tabScroller\$${k}`]?: ComponentProps<typeof TabScroller>[k];
+    } = $props();
 
   let element: HTMLDivElement;
-  let instance: MDCTabBarFoundation;
+  let instance: MDCTabBarFoundation | undefined = $state();
   let tabScroller: TabScroller;
-  let activeIndex = tabs.indexOf(active!);
-  let tabAccessorMap: Record<PrimitiveKey, SMUITabAccessor> = {};
-  let tabAccessorWeakMap = new WeakMap<Object, SMUITabAccessor>();
+  let activeIndex = $state(
+    active == null
+      ? -1
+      : tabs.findIndex((tab) => active && key(tab) === key(active)),
+  );
+  let tabAccessorMap: Record<PrimitiveKey, SMUITabAccessor> = $state({});
+  let tabAccessorWeakMap = $state.raw(new WeakMap<Object, SMUITabAccessor>());
   let skipFocus = false;
 
   setContext('SMUI:tab:focusOnActivate', focusOnActivate);
-  setContext('SMUI:tab:initialActive', active);
+  setContext('SMUI:tab:initialActive', {
+    active: active == null ? null : key(active),
+    key,
+  });
 
-  $: if (active !== tabs[activeIndex]) {
-    activeIndex = tabs.indexOf(active!);
-    if (instance) {
-      skipFocus = !focusOnProgrammatic;
-      instance.activateTab(activeIndex);
-      skipFocus = false;
+  $effect(() => {
+    if (
+      (active == null && activeIndex !== -1) ||
+      (active != null && activeIndex === -1) ||
+      (active != null && key(active) !== key(tabs[activeIndex]))
+    ) {
+      activeIndex = tabs.findIndex((tab) => active && key(tab) === key(active));
+      if (instance) {
+        skipFocus = !focusOnProgrammatic;
+        instance.activateTab(activeIndex);
+        skipFocus = false;
+      }
     }
-  }
+  });
 
-  $: if (tabs.length) {
-    // Manually get the accessor so it is reactive.
-    const accessor =
-      tabs[0] instanceof Object
-        ? tabAccessorWeakMap.get(tabs[0])
-        : tabAccessorMap[tabs[0] as PrimitiveKey];
+  $effect(() => {
+    if (tabs.length) {
+      // Manually get the accessor so it is reactive.
+      const accessor =
+        tabs[0] instanceof Object
+          ? tabAccessorWeakMap.get(tabs[0])
+          : tabAccessorMap[tabs[0] as PrimitiveKey];
 
-    if (accessor) {
-      accessor.forceAccessible(activeIndex === -1);
+      if (accessor) {
+        accessor.forceAccessible(activeIndex === -1);
+      }
     }
-  }
+  });
 
-  $: if (instance) {
-    instance.setUseAutomaticActivation(useAutomaticActivation);
-  }
+  let setUseAutomaticActivation = false;
+  $effect(() => {
+    if (!instance) {
+      setUseAutomaticActivation = false;
+      return;
+    }
+    if (!setUseAutomaticActivation) {
+      setUseAutomaticActivation = true;
+      instance.setUseAutomaticActivation(useAutomaticActivation);
+    }
+  });
+
+  setContext('SMUI:tab:mount', (accessor: SMUITabAccessor) => {
+    addAccessor(accessor.tabId, accessor);
+  });
+  setContext('SMUI:tab:unmount', (accessor: SMUITabAccessor) => {
+    removeAccessor(accessor.tabId);
+  });
 
   onMount(() => {
     instance = new MDCTabBarFoundation({
@@ -127,7 +198,7 @@
       setActiveTab: (index) => {
         active = tabs[index];
         activeIndex = index;
-        instance.activateTab(index);
+        instance?.activateTab(index);
       },
       activateTabAtIndex: (index, clientRect) =>
         getAccessor(tabs[index])?.activate(clientRect as DOMRect, skipFocus),
@@ -155,36 +226,19 @@
         const activeElement = document.activeElement;
         return tabElements.indexOf(activeElement as HTMLElement);
       },
-      getIndexOfTabById: (id) => tabs.indexOf(id as TabKey),
+      getIndexOfTabById: (id) =>
+        tabs.findIndex((tab) => key(tab) === key(id as TabKey)),
       getTabListLength: () => tabs.length,
       notifyTabActivated: (index) =>
-        dispatch(
-          getElement(),
-          'SMUITabBar:activated',
-          { index },
-          undefined,
-          true
-        ),
+        dispatch(getElement(), 'SMUITabBarActivated', { index }),
     });
 
     instance.init();
 
     return () => {
-      instance.destroy();
+      instance?.destroy();
     };
   });
-
-  function handleTabMount(event: CustomEvent<SMUITabAccessor>) {
-    const accessor = event.detail;
-
-    addAccessor(accessor.tabId, accessor);
-  }
-
-  function handleTabUnmount(event: CustomEvent<SMUITabAccessor>) {
-    const accessor = event.detail;
-
-    removeAccessor(accessor.tabId);
-  }
 
   function getAccessor(tabId: any) {
     return tabId instanceof Object
@@ -198,7 +252,6 @@
       tabAccessorWeakMap = tabAccessorWeakMap;
     } else {
       tabAccessorMap[tabId] = accessor;
-      tabAccessorMap = tabAccessorMap;
     }
   }
 
@@ -208,12 +261,11 @@
       tabAccessorWeakMap = tabAccessorWeakMap;
     } else {
       delete tabAccessorMap[tabId];
-      tabAccessorMap = tabAccessorMap;
     }
   }
 
   export function scrollIntoView(index: number) {
-    instance.scrollIntoView(index);
+    instance?.scrollIntoView(index);
   }
 
   export function getElement() {

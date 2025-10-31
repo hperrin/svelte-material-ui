@@ -1,3 +1,5 @@
+<svelte:options runes />
+
 <div
   bind:this={element}
   use:Ripple={{
@@ -8,47 +10,50 @@
     addStyle,
   }}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
-    [className]: true,
     'mdc-radio': true,
     'mdc-radio--disabled': disabled,
     'mdc-radio--touch': touch,
     ...internalClasses,
+    [className]: true,
   })}
   style={Object.entries(internalStyles)
     .map(([name, value]) => `${name}: ${value};`)
     .concat([style])
     .join(' ')}
-  {...exclude($$restProps, ['input$'])}
+  {...exclude(restProps, ['input$'])}
 >
   <input
     use:useActions={input$use}
     class={classMap({
-      [input$class]: true,
       'mdc-radio__native-control': true,
+      [input$class]: true,
     })}
     type="radio"
     {...inputProps}
     {disabled}
     value={isUninitializedValue(valueKey) ? value : valueKey}
     bind:group
-    on:blur
-    on:focus
-    {...prefixFilter($$restProps, 'input$')}
+    {...prefixFilter(restProps, 'input$')}
+    onblur={(e) => {
+      dispatch(getElement(), 'blur', e);
+      restProps.input$onblur?.(e);
+    }}
+    onfocus={(e) => {
+      dispatch(getElement(), 'focus', e);
+      restProps.input$onfocus?.(e);
+    }}
   />
   <div class="mdc-radio__background">
-    <div class="mdc-radio__outer-circle" />
-    <div class="mdc-radio__inner-circle" />
+    <div class="mdc-radio__outer-circle"></div>
+    <div class="mdc-radio__inner-circle"></div>
   </div>
-  <div class="mdc-radio__ripple" />
+  <div class="mdc-radio__ripple"></div>
 </div>
 
 <script lang="ts">
   import { MDCRadioFoundation } from '@material/radio';
   import { onMount, getContext } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type {
     SmuiAttrs,
     SmuiElementPropMap,
@@ -56,7 +61,6 @@
   } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
-    forwardEventsBuilder,
     classMap,
     exclude,
     prefixFilter,
@@ -65,19 +69,69 @@
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
 
+  interface UninitializedValue extends Function {}
+  let uninitializedValue: UninitializedValue = () => {};
+  function isUninitializedValue(value: any): value is UninitializedValue {
+    return value === uninitializedValue;
+  }
+
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * A list of CSS styles.
+     */
     style?: string;
+    /**
+     * Whether the input is disabled.
+     */
     disabled?: boolean;
+    /**
+     * Whether to use touch styling
+     */
     touch?: boolean;
-    group?: any | undefined;
+    /**
+     * The value of the currently selected item.
+     */
+    group?: any;
+    /**
+     * The value of the item this radio button represents.
+     */
     value?: any;
+    /**
+     * A string representation of the value.
+     *
+     * Use this if it can't be converted to a unique string in its group.
+     */
     valueKey?: string;
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     input$use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     input$class?: string;
   };
-  type $$Props = OwnProps &
+  let {
+    use = [],
+    class: className = '',
+    style = '',
+    disabled = $bindable(false),
+    touch = false,
+    group = $bindable(),
+    value = null,
+    valueKey = uninitializedValue as unknown as string,
+    input$use = [],
+    input$class = '',
+    ...restProps
+  }: OwnProps &
     SmuiAttrs<'div', keyof OwnProps> & {
       [k in keyof SmuiElementPropMap['input'] as `input\$${k}`]?: SmuiElementPropMap['input'][k];
     } & {
@@ -86,35 +140,23 @@
       input$value?: never;
       input$checked?: never;
       input$group?: never;
-    };
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
-  interface UninitializedValue extends Function {}
-  let uninitializedValue: UninitializedValue = () => {};
-  function isUninitializedValue(value: any): value is UninitializedValue {
-    return value === uninitializedValue;
-  }
-
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let style = '';
-  export let disabled = false;
-  export let touch = false;
-  export let group: any | undefined = undefined;
-  export let value: any = null;
-  export let valueKey: UninitializedValue | string = uninitializedValue;
-  export let input$use: ActionArray = [];
-  export let input$class = '';
+    } = $props();
 
   let element: HTMLDivElement;
-  let instance: MDCRadioFoundation;
-  let internalClasses: { [k: string]: boolean } = {};
-  let internalStyles: { [k: string]: string } = {};
-  let rippleActive = false;
-  let inputProps =
-    getContext<{ id?: string } | undefined>('SMUI:generic:input:props') ?? {};
+  let instance: MDCRadioFoundation | undefined = $state();
+  let internalClasses: { [k: string]: boolean } = $state({});
+  let internalStyles: { [k: string]: string } = $state({});
+  let rippleActive = $state(false);
+  let inputProps = $state(
+    getContext<{ id?: string } | undefined>('SMUI:generic:input:props') ?? {},
+  );
+
+  const SMUIGenericInputMount = getContext<
+    ((accessor: SMUIRadioInputAccessor) => void) | undefined
+  >('SMUI:generic:input:mount');
+  const SMUIGenericInputUnmount = getContext<
+    ((accessor: SMUIRadioInputAccessor) => void) | undefined
+  >('SMUI:generic:input:unmount');
 
   onMount(() => {
     instance = new MDCRadioFoundation({
@@ -148,14 +190,14 @@
       },
     };
 
-    dispatch(element, 'SMUIGenericInput:mount', accessor);
+    SMUIGenericInputMount && SMUIGenericInputMount(accessor);
 
     instance.init();
 
     return () => {
-      dispatch(element, 'SMUIGenericInput:unmount', accessor);
+      SMUIGenericInputUnmount && SMUIGenericInputUnmount(accessor);
 
-      instance.destroy();
+      instance?.destroy();
     };
   });
 
@@ -175,7 +217,6 @@
     if (internalStyles[name] != value) {
       if (value === '' || value == null) {
         delete internalStyles[name];
-        internalStyles = internalStyles;
       } else {
         internalStyles[name] = value;
       }

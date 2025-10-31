@@ -29,7 +29,9 @@
 
   <Demo component={Input} file="chips/_Input.svelte">Input chips</Demo>
 
-  <Demo component={Keyed} file="chips/_Keyed.svelte">Keyed chips</Demo>
+  <Demo component={Keyed} file="chips/_Keyed.svelte"
+    >Keyed filter input chips</Demo
+  >
 </section>
 
 <script lang="ts">

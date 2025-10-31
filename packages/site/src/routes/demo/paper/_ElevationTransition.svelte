@@ -17,27 +17,34 @@
               max={24}
               discrete
             />
-            <span
-              slot="label"
-              style="padding-right: 12px; width: max-content; display: block;"
-            >
-              Elevation
-            </span>
+            {#snippet label()}
+              <span
+                style="padding-inline-end: 12px; width: max-content; display: block;"
+              >
+                Elevation
+              </span>
+            {/snippet}
           </FormField>
         </div>
 
         <div>
           <FormField>
             <Radio bind:group={color} value="default" />
-            <span slot="label">Default</span>
+            {#snippet label()}
+              Default
+            {/snippet}
           </FormField>
           <FormField>
             <Radio bind:group={color} value="primary" />
-            <span slot="label">Primary</span>
+            {#snippet label()}
+              Primary
+            {/snippet}
           </FormField>
           <FormField>
             <Radio bind:group={color} value="secondary" />
-            <span slot="label">Secondary</span>
+            {#snippet label()}
+              Secondary
+            {/snippet}
           </FormField>
         </div>
       </Paper>
@@ -51,6 +58,6 @@
   import Radio from '@smui/radio';
   import FormField from '@smui/form-field';
 
-  let elevation = 1;
-  let color = 'default';
+  let elevation = $state(1);
+  let color = $state('default');
 </script>

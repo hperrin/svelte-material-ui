@@ -1,9 +1,7 @@
 <!--
-  Icons are normally discovered through their slot,
-  but Svelte slots cannot be conditional, so you can
-  use a fragment with a conditional icon inside and
-  pass the `withLeadingIcon` prop to use a
-  conditional icon.
+  Icons are normally discovered through their snippet, but Svelte snippets
+  cannot be conditional, so you can use a fragment with a conditional icon
+  inside and pass the `withLeadingIcon` prop to use a conditional icon.
 -->
 <div class="columns margins">
   <div>
@@ -12,11 +10,11 @@
       bind:value={valueA}
       label="Standard"
     >
-      <svelte:fragment slot="leadingIcon">
+      {#snippet leadingIcon()}
         {#if showLeadingIcons}
           <Icon class="material-icons">event</Icon>
         {/if}
-      </svelte:fragment>
+      {/snippet}
       <Option value="" />
       {#each fruits as fruit}
         <Option value={fruit}>{fruit}</Option>
@@ -33,11 +31,11 @@
       bind:value={valueB}
       label="Filled"
     >
-      <svelte:fragment slot="leadingIcon">
+      {#snippet leadingIcon()}
         {#if showLeadingIcons}
           <Icon class="material-icons">event</Icon>
         {/if}
-      </svelte:fragment>
+      {/snippet}
       <Option value="" />
       {#each fruits as fruit}
         <Option value={fruit}>{fruit}</Option>
@@ -54,11 +52,11 @@
       bind:value={valueC}
       label="Outlined"
     >
-      <svelte:fragment slot="leadingIcon">
+      {#snippet leadingIcon()}
         {#if showLeadingIcons}
           <Icon class="material-icons">event</Icon>
         {/if}
-      </svelte:fragment>
+      {/snippet}
       <Option value="" />
       {#each fruits as fruit}
         <Option value={fruit}>{fruit}</Option>
@@ -70,7 +68,7 @@
 </div>
 
 <div>
-  <Button on:click={() => (showLeadingIcons = !showLeadingIcons)}>
+  <Button onclick={() => (showLeadingIcons = !showLeadingIcons)}>
     Toggle Leading Icons
   </Button>
 </div>
@@ -82,9 +80,9 @@
 
   let fruits = ['Apple', 'Orange', 'Banana', 'Mango'];
 
-  let valueA = '';
-  let valueB = '';
-  let valueC = '';
+  let valueA = $state('');
+  let valueB = $state('');
+  let valueC = $state('');
 
-  let showLeadingIcons = true;
+  let showLeadingIcons = $state(true);
 </script>

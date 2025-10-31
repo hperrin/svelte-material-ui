@@ -1,105 +1,118 @@
+<svelte:options runes />
+
 <input
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
-    [className]: true,
     'mdc-text-field__input': true,
+    [className]: true,
   })}
-  on:input={(e) => type !== 'file' && valueUpdater(e)}
-  on:change={changeHandler}
-  on:blur
-  on:focus
   {type}
   {placeholder}
   {...valueProp}
   {...internalAttrs}
-  {...$$restProps}
+  {...restProps}
+  oninput={(e) => {
+    if (type !== 'file') {
+      valueUpdater(e);
+    }
+    restProps.oninput?.(e);
+  }}
+  onchange={(e) => {
+    changeHandler(e);
+    restProps.onchange?.(e);
+  }}
 />
 
 <script lang="ts">
   import { onMount } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    useActions,
-  } from '@smui/common/internal';
+  import { classMap, useActions } from '@smui/common/internal';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * The input type.
+     */
     type?: string;
+    /**
+     * A placeholder to show when the input is empty.
+     */
     placeholder?: string;
+    /**
+     * The value of the input.
+     */
     value?: string | number | null | undefined;
+    /**
+     * The selected files of the input if it is "file" type.
+     */
     files?: FileList | null;
+    /**
+     * Whether the input has been changed.
+     */
     dirty?: boolean;
+    /**
+     * Whether the input is invalid.
+     */
     invalid?: boolean;
+    /**
+     * Set to false to prevent updating the value passed to invalid.
+     */
     updateInvalid?: boolean;
-    /** When the value of the input is "", set value prop to null. */
+    /**
+     * Set to true to update the invalid state immediately on instantiation.
+     */
+    initialInvalid?: boolean;
+    /**
+     * When the value of the input is "", set value prop to null.
+     */
     emptyValueNull?: boolean;
-    /** When the value of the input is "", set value prop to undefined. */
+    /**
+     * When the value of the input is "", set value prop to undefined.
+     */
     emptyValueUndefined?: boolean;
   };
-  type $$Props = OwnProps & SmuiAttrs<'input', keyof OwnProps>;
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
-  interface UninitializedValue extends Function {}
-  let uninitializedValue: UninitializedValue = () => {};
-  function isUninitializedValue(value: any): value is UninitializedValue {
-    return value === uninitializedValue;
-  }
-
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let type = 'text';
-  // Always having a placeholder fixes Safari's baseline alignment.
-  // See: https://github.com/philipwalton/flexbugs/issues/270
-  export let placeholder = ' ';
-
-  // Some trickery to detect uninitialized values but also have the right types.
-  export let value: string | number | null | undefined =
-    uninitializedValue as unknown as undefined;
-  const valueUninitialized = isUninitializedValue(value);
-  if (valueUninitialized) {
-    value = '';
-  }
-  // Done with the trickery.
-
-  export let files: FileList | null = null;
-  export let dirty = false;
-  export let invalid = false;
-  export let updateInvalid = true;
-  /** When the value of the input is "", set value prop to null. */
-  export let emptyValueNull = value === null;
-  if (valueUninitialized && emptyValueNull) {
-    value = null;
-  }
-  /** When the value of the input is "", set value prop to undefined. */
-  export let emptyValueUndefined = value === undefined;
-  if (valueUninitialized && emptyValueUndefined) {
-    value = undefined;
-  }
+  let {
+    use = [],
+    class: className = '',
+    type = 'text',
+    // Always having a placeholder fixes Safari's baseline alignment.
+    // See: https://github.com/philipwalton/flexbugs/issues/270
+    placeholder = ' ',
+    value = $bindable(),
+    files = $bindable(null),
+    dirty = $bindable(false),
+    invalid = $bindable(false),
+    updateInvalid = true,
+    initialInvalid = false,
+    emptyValueNull = value === null,
+    emptyValueUndefined = value === undefined,
+    ...restProps
+  }: OwnProps & SmuiAttrs<'input', keyof OwnProps> = $props();
 
   let element: HTMLInputElement;
-  let internalAttrs: { [k: string]: string | undefined } = {};
-  let valueProp: { value?: string | number } = {};
+  let internalAttrs: { [k: string]: string | undefined } = $state({});
+  let valueProp: { value?: string | number } = $state({});
 
-  $: if (type === 'file') {
-    delete valueProp.value;
-    valueProp = valueProp;
-  } else {
-    valueProp.value = value == null ? '' : value;
-  }
+  $effect(() => {
+    if (type === 'file') {
+      delete valueProp.value;
+    } else {
+      valueProp.value = value == null ? '' : value;
+    }
+  });
 
   onMount(() => {
-    if (updateInvalid) {
-      invalid = element.matches(':invalid');
+    if (updateInvalid && initialInvalid) {
+      invalid = getElement().matches(':invalid');
     }
   });
 
@@ -111,7 +124,7 @@
   }
 
   function valueUpdater(
-    e: Event & { currentTarget: EventTarget & HTMLInputElement }
+    e: Event & { currentTarget: EventTarget & HTMLInputElement },
   ) {
     if (type === 'file') {
       files = e.currentTarget.files;
@@ -130,7 +143,6 @@
       case 'range':
         value = toNumber(e.currentTarget.value);
         break;
-      // Fall through.
       default:
         value = e.currentTarget.value;
         break;
@@ -138,20 +150,20 @@
   }
 
   function changeHandler(
-    e: Event & { currentTarget: EventTarget & HTMLInputElement }
+    e: Event & { currentTarget: EventTarget & HTMLInputElement },
   ) {
     if (type === 'file' || type === 'range') {
       valueUpdater(e);
     }
     dirty = true;
     if (updateInvalid) {
-      invalid = element.matches(':invalid');
+      invalid = getElement().matches(':invalid');
     }
   }
 
   export function getAttr(name: string) {
     return name in internalAttrs
-      ? internalAttrs[name] ?? null
+      ? (internalAttrs[name] ?? null)
       : getElement().getAttribute(name);
   }
 

@@ -7,7 +7,5 @@ dist
 /.github
 /lerna.json
 /packages/site/build
-/packages/site/static/smui.css
-/packages/site/static/smui-dark.css
-/packages/site/static/site.css
-/packages/site/static/site-dark.css
+/packages/site/static/*.css
+/packages/svelte-material-ui/themes

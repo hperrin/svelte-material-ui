@@ -1,27 +1,36 @@
+<svelte:options runes />
+
 {#if fixed}
   <div
     bind:this={element}
-    use:forwardEvents
     class="mdc-banner__fixed"
     style={width == null ? undefined : `width: ${width}px;`}
+    {...restProps}
   >
-    <slot />
+    {@render children?.()}
   </div>
 {:else}
-  <slot />
+  {@render children?.()}
 {/if}
 
 <script lang="ts">
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
-  import { forwardEventsBuilder } from '@smui/common/internal';
+  import type { Snippet } from 'svelte';
+  import type { SmuiAttrs } from '@smui/common';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component());
+  type OwnProps = {
+    fixed?: boolean;
+    width?: number;
 
-  export let fixed = false;
-  export let width: number | undefined = undefined;
+    children?: Snippet;
+  };
+  let {
+    fixed = false,
+    width,
+    children,
+    ...restProps
+  }: OwnProps & SmuiAttrs<'div', keyof OwnProps> = $props();
 
-  let element: HTMLDivElement;
+  let element: HTMLDivElement = $state() as HTMLDivElement;
 
   export function getElement() {
     return element;

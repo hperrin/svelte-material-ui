@@ -208,7 +208,7 @@
           <Content>
             With over <a
               href="https://github.com/hperrin/svelte-material-ui/network/dependents?package_id=UGFja2FnZS01NTM5MDg5MDQ"
-              target="_blank">2400 projects</a
+              target="_blank">3,000 projects</a
             > using SMUI components, it is the most popular Svelte UI library. For
             good reason, too. It is the most versatile and adaptable Svelte UI library,
             guaranteed.
@@ -271,7 +271,7 @@
       <a href="https://github.com/hperrin/svelte-material-ui/issues"
         >Issue Tracker</a
       >
-      | &copy; 2019-2023 Hunter Perrin ]
+      | &copy; 2019-2024 Hunter Perrin ]
     </p>
   </div>
 </section>

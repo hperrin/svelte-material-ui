@@ -1,16 +1,16 @@
-<Menu static>
+<Menu static neverRestoreFocus>
   <List>
-    <Item on:SMUI:action={() => (clicked = 'Cut')}>
+    <Item onSMUIAction={() => (clicked = 'Cut')}>
       <Text>Cut</Text>
     </Item>
-    <Item on:SMUI:action={() => (clicked = 'Copy')}>
+    <Item onSMUIAction={() => (clicked = 'Copy')}>
       <Text>Copy</Text>
     </Item>
-    <Item on:SMUI:action={() => (clicked = 'Paste')}>
+    <Item onSMUIAction={() => (clicked = 'Paste')}>
       <Text>Paste</Text>
     </Item>
     <Separator />
-    <Item on:SMUI:action={() => (clicked = 'Delete')}>
+    <Item onSMUIAction={() => (clicked = 'Delete')}>
       <Text>Delete</Text>
     </Item>
   </List>
@@ -22,5 +22,5 @@
   import Menu from '@smui/menu';
   import List, { Item, Separator, Text } from '@smui/list';
 
-  let clicked = 'nothing yet';
+  let clicked = $state('nothing yet');
 </script>

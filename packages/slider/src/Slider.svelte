@@ -1,28 +1,29 @@
+<svelte:options runes />
+
 <div
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   class={Object.entries({
-    [className]: true,
     'mdc-slider': true,
     'mdc-slider--range': range,
     'mdc-slider--discrete': discrete,
     'mdc-slider--tick-marks': discrete && tickMarks,
     'mdc-slider--disabled': disabled,
     ...internalClasses,
+    [className]: true,
   })
     .filter(([name, value]) => name !== '' && value)
     .map(([name]) => name)
     .join(' ')}
   {...range ? { 'data-min-range': `${minRange}` } : {}}
-  {...exclude($$restProps, ['input$'])}
+  {...exclude(restProps, ['input$'])}
 >
   {#if range}
     <input
       bind:this={inputStart}
       class={classMap({
-        [input$class]: true,
         'mdc-slider__input': true,
+        [input$class]: true,
       })}
       type="range"
       {disabled}
@@ -30,16 +31,22 @@
       {min}
       max={end}
       bind:value={start}
-      on:blur
-      on:focus
       {...inputStartAttrs}
-      {...prefixFilter($$restProps, 'input$')}
+      {...prefixFilter(restProps, 'input$')}
+      onblur={(e) => {
+        dispatch(getElement(), 'blur', e);
+        restProps.input$onblur?.(e);
+      }}
+      onfocus={(e) => {
+        dispatch(getElement(), 'focus', e);
+        restProps.input$onfocus?.(e);
+      }}
     />
     <input
       bind:this={input}
       class={classMap({
-        [input$class]: true,
         'mdc-slider__input': true,
+        [input$class]: true,
       })}
       type="range"
       {disabled}
@@ -47,18 +54,24 @@
       min={start}
       {max}
       bind:value={end}
-      on:blur
-      on:focus
       {...inputProps}
       {...inputAttrs}
-      {...prefixFilter($$restProps, 'input$')}
+      {...prefixFilter(restProps, 'input$')}
+      onblur={(e) => {
+        dispatch(getElement(), 'blur', e);
+        restProps.input$onblur?.(e);
+      }}
+      onfocus={(e) => {
+        dispatch(getElement(), 'focus', e);
+        restProps.input$onfocus?.(e);
+      }}
     />
   {:else}
     <input
       bind:this={input}
       class={classMap({
-        [input$class]: true,
         'mdc-slider__input': true,
+        [input$class]: true,
       })}
       type="range"
       {disabled}
@@ -66,23 +79,29 @@
       {min}
       {max}
       bind:value
-      on:blur
-      on:focus
       {...inputProps}
       {...inputAttrs}
-      {...prefixFilter($$restProps, 'input$')}
+      {...prefixFilter(restProps, 'input$')}
+      onblur={(e) => {
+        dispatch(getElement(), 'blur', e);
+        restProps.input$onblur?.(e);
+      }}
+      onfocus={(e) => {
+        dispatch(getElement(), 'focus', e);
+        restProps.input$onfocus?.(e);
+      }}
     />
   {/if}
 
   <div class="mdc-slider__track">
-    <div class="mdc-slider__track--inactive" />
+    <div class="mdc-slider__track--inactive"></div>
     <div class="mdc-slider__track--active">
       <div
         class="mdc-slider__track--active_fill"
         style={Object.entries(trackActiveStyles)
           .map(([name, value]) => `${name}: ${value};`)
           .join(' ')}
-      />
+      ></div>
     </div>
     {#if discrete && tickMarks && step > 0}
       <div class="mdc-slider__tick-marks">
@@ -91,7 +110,7 @@
             class={tickMark === TickMark.ACTIVE
               ? 'mdc-slider__tick-mark--active'
               : 'mdc-slider__tick-mark--inactive'}
-          />
+          ></div>
         {/each}
       </div>
     {/if}
@@ -124,7 +143,7 @@
           </div>
         </div>
       {/if}
-      <div bind:this={thumbKnobStart} class="mdc-slider__thumb-knob" />
+      <div bind:this={thumbKnobStart} class="mdc-slider__thumb-knob"></div>
     </div>
     <div
       bind:this={thumbEl}
@@ -153,7 +172,7 @@
           </div>
         </div>
       {/if}
-      <div bind:this={thumbKnob} class="mdc-slider__thumb-knob" />
+      <div bind:this={thumbKnob} class="mdc-slider__thumb-knob"></div>
     </div>
   {:else}
     <div
@@ -183,7 +202,7 @@
           </div>
         </div>
       {/if}
-      <div bind:this={thumbKnob} class="mdc-slider__thumb-knob" />
+      <div bind:this={thumbKnob} class="mdc-slider__thumb-knob"></div>
     </div>
   {/if}
 </div>
@@ -191,8 +210,6 @@
 <script lang="ts">
   import { MDCSliderFoundation, Thumb, TickMark } from '@material/slider';
   import { onMount, onDestroy, getContext } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type {
     AddLayoutListener,
     RemoveLayoutListener,
@@ -201,34 +218,100 @@
   } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
-    forwardEventsBuilder,
     classMap,
     exclude,
     prefixFilter,
     useActions,
     dispatch,
+    SvelteEventManager,
   } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * Whether the input is disabled.
+     */
     disabled?: boolean;
+    /**
+     * Whether the input is for a range.
+     */
     range?: boolean;
+    /**
+     * Whether to show a discrete value indicator when sliding.
+     */
     discrete?: boolean;
+    /**
+     * Whether to show tick marks on the slider.
+     */
     tickMarks?: boolean;
+    /**
+     * The step in between values.
+     */
     step?: number;
+    /**
+     * The minimum value.
+     */
     min?: number;
+    /**
+     * The maximum value.
+     */
     max?: number;
+    /**
+     * The minimum range.
+     */
     minRange?: number;
+    /**
+     * The value of the input.
+     */
     value?: number | undefined;
+    /**
+     * The value of the start of the range.
+     */
     start?: number | undefined;
+    /**
+     * The value of the end of the range.
+     */
     end?: number | undefined;
+    /**
+     * A function that converts values to their ARIA value strings.
+     */
     valueToAriaValueTextFn?: (value: number, thumb: Thumb) => string;
+    /**
+     * Whether to hide focus styles when a change comes from a pointer (finger).
+     */
     hideFocusStylesForPointerEvents?: boolean;
+    /**
+     * A space separated list of CSS classes.
+     */
     input$class?: string;
   };
-  type $$Props = OwnProps &
+  let {
+    use = [],
+    class: className = '',
+    disabled = false,
+    range = false,
+    discrete = false,
+    tickMarks = false,
+    step = 1,
+    min = 0,
+    max = 100,
+    minRange = 0,
+    value = $bindable(),
+    start = $bindable(),
+    end = $bindable(),
+    valueToAriaValueTextFn = (value) => `${value}`,
+    hideFocusStylesForPointerEvents = false,
+    input$class = '',
+    ...restProps
+  }: OwnProps &
     SmuiAttrs<'div', keyof OwnProps> & {
       [k in keyof SmuiElementPropMap['input'] as `input\$${k}`]?: SmuiElementPropMap['input'][k];
     } & {
@@ -240,96 +323,84 @@
       input$value?: never;
       input$checked?: never;
       input$group?: never;
-    };
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
-
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let disabled = false;
-  export let range = false;
-  export let discrete = false;
-  export let tickMarks = false;
-  export let step = 1;
-  export let min = 0;
-  export let max = 100;
-  export let minRange = 0;
-  export let value: number | undefined = undefined;
-  export let start: number | undefined = undefined;
-  export let end: number | undefined = undefined;
-  export let valueToAriaValueTextFn: (value: number, thumb: Thumb) => string = (
-    value
-  ) => `${value}`;
-  export let hideFocusStylesForPointerEvents = false;
-  export let input$class = '';
+    } = $props();
 
   let element: HTMLDivElement;
-  let instance: MDCSliderFoundation;
-  let input: HTMLInputElement;
-  let inputStart: HTMLInputElement | undefined = undefined;
+  let instance: MDCSliderFoundation | undefined = $state();
+  let eventManager = new SvelteEventManager();
+  let input: HTMLInputElement | undefined = $state();
+  let inputStart: HTMLInputElement | undefined = $state();
   let thumbEl: HTMLDivElement;
   let thumbStart: HTMLDivElement | undefined = undefined;
   let thumbKnob: HTMLDivElement;
   let thumbKnobStart: HTMLDivElement | undefined = undefined;
-  let internalClasses: { [k: string]: boolean } = {};
-  let thumbStartClasses: { [k: string]: boolean } = {};
-  let thumbClasses: { [k: string]: boolean } = {};
-  let inputAttrs: { [k: string]: string | undefined } = {};
-  let inputStartAttrs: { [k: string]: string | undefined } = {};
-  let trackActiveStyles: { [k: string]: string } = {};
-  let thumbStyles: { [k: string]: string } = {};
-  let thumbStartStyles: { [k: string]: string } = {};
-  let thumbRippleActive = false;
-  let thumbStartRippleActive = false;
-  let currentTickMarks: TickMark[];
+  let internalClasses: { [k: string]: boolean } = $state({});
+  let thumbStartClasses: { [k: string]: boolean } = $state({});
+  let thumbClasses: { [k: string]: boolean } = $state({});
+  let inputAttrs: { [k: string]: string | undefined } = $state({});
+  let inputStartAttrs: { [k: string]: string | undefined } = $state({});
+  let trackActiveStyles: { [k: string]: string } = $state({});
+  let thumbStyles: { [k: string]: string } = $state({});
+  let thumbStartStyles: { [k: string]: string } = $state({});
+  let thumbRippleActive = $state(false);
+  let thumbStartRippleActive = $state(false);
+  let currentTickMarks: TickMark[] = $state([]);
   let inputProps =
     getContext<{ id?: string } | undefined>('SMUI:generic:input:props') ?? {};
   let addLayoutListener = getContext<AddLayoutListener | undefined>(
-    'SMUI:addLayoutListener'
+    'SMUI:addLayoutListener',
   );
   let removeLayoutListener: RemoveLayoutListener | undefined;
 
   let previousMin = min;
-  $: if (min !== previousMin) {
-    if (instance) {
-      instance.setMin(min);
+  $effect(() => {
+    if (min !== previousMin) {
+      if (instance) {
+        instance.setMin(min);
+      }
+      previousMin = min;
     }
-    previousMin = min;
-  }
+  });
 
   let previousMax = max;
-  $: if (max !== previousMax) {
-    if (instance) {
-      instance.setMax(max);
+  $effect(() => {
+    if (max !== previousMax) {
+      if (instance) {
+        instance.setMax(max);
+      }
+      previousMax = max;
     }
-    previousMax = max;
-  }
+  });
 
   let previousStep = step;
-  $: if (step !== previousStep) {
-    if (instance) {
-      instance.setStep(step);
+  $effect(() => {
+    if (step !== previousStep) {
+      if (instance) {
+        instance.setStep(step);
+      }
+      previousStep = step;
     }
-    previousStep = step;
-  }
+  });
 
   let previousDiscrete = discrete;
-  $: if (discrete !== previousDiscrete) {
-    if (instance) {
-      instance.setIsDiscrete(discrete);
+  $effect(() => {
+    if (discrete !== previousDiscrete) {
+      if (instance) {
+        instance.setIsDiscrete(discrete);
+      }
+      previousDiscrete = discrete;
     }
-    previousDiscrete = discrete;
-  }
+  });
 
   let previousTickMarks = tickMarks;
-  $: if (tickMarks !== previousTickMarks) {
-    if (instance) {
-      instance.setHasTickMarks(tickMarks);
+  $effect(() => {
+    if (tickMarks !== previousTickMarks) {
+      if (instance) {
+        instance.setHasTickMarks(tickMarks);
+      }
+      previousTickMarks = tickMarks;
     }
-    previousTickMarks = tickMarks;
-  }
+  });
 
   if (tickMarks && step > 0) {
     const absMax = max + Math.abs(min);
@@ -339,7 +410,7 @@
       currentTickMarks = [
         ...Array(absStart / step).map(() => TickMark.INACTIVE),
         ...Array(
-          absMax / step - absStart / step - (absMax - absEnd) / step + 1
+          absMax / step - absStart / step - (absMax - absEnd) / step + 1,
         ).map(() => TickMark.ACTIVE),
         ...Array((absMax - absEnd) / step).map(() => TickMark.INACTIVE),
       ];
@@ -372,22 +443,31 @@
   let previousValue = value;
   let previousStart = start;
   let previousEnd = end;
-  $: if (instance) {
-    if (previousValue !== value && typeof value === 'number') {
-      instance.setValue(value);
+  $effect(() => {
+    if (instance) {
+      if (previousValue !== value && typeof value === 'number') {
+        instance.setValue(value);
+      }
+      if (previousStart !== start && typeof start === 'number') {
+        instance.setValueStart(start);
+      }
+      if (previousEnd !== end && typeof end === 'number') {
+        instance.setValue(end);
+      }
+      previousValue = value;
+      previousStart = start;
+      previousEnd = end;
+      // Needed for range start to take effect.
+      instance.layout();
     }
-    if (previousStart !== start && typeof start === 'number') {
-      instance.setValueStart(start);
-    }
-    if (previousEnd !== end && typeof end === 'number') {
-      instance.setValue(end);
-    }
-    previousValue = value;
-    previousStart = start;
-    previousEnd = end;
-    // Needed for range start to take effect.
-    instance.layout();
-  }
+  });
+
+  const SMUIGenericInputMount = getContext<
+    ((accessor: any) => void) | undefined
+  >('SMUI:generic:input:mount');
+  const SMUIGenericInputUnmount = getContext<
+    ((accessor: any) => void) | undefined
+  >('SMUI:generic:input:unmount');
 
   onMount(() => {
     instance = new MDCSliderFoundation({
@@ -420,7 +500,7 @@
         if (range && thumb === Thumb.START && inputStart) {
           inputStart.focus();
         } else {
-          input.focus();
+          input?.focus();
         }
       },
       isInputFocused: (thumb) =>
@@ -460,22 +540,10 @@
         getElement().setPointerCapture(pointerId);
       },
       emitChangeEvent: (value, thumb) => {
-        dispatch(
-          getElement(),
-          'SMUISlider:change',
-          { value, thumb },
-          undefined,
-          true
-        );
+        dispatch(getElement(), 'SMUISliderChange', { value, thumb });
       },
       emitInputEvent: (value, thumb) => {
-        dispatch(
-          getElement(),
-          'SMUISlider:input',
-          { value, thumb },
-          undefined,
-          true
-        );
+        dispatch(getElement(), 'SMUISliderInput', { value, thumb });
       },
       emitDragStartEvent: (_, thumb) => {
         // Emitting event is not yet implemented. See issue:
@@ -495,48 +563,42 @@
           thumbRippleActive = false;
         }
       },
-      registerEventHandler: (evtType, handler) => {
-        getElement().addEventListener(evtType, handler);
-      },
-      deregisterEventHandler: (evtType, handler) => {
-        getElement().removeEventListener(evtType, handler);
-      },
+      registerEventHandler: (evtType, handler) =>
+        eventManager.on(getElement(), evtType, handler),
+      deregisterEventHandler: (evtType, handler) =>
+        eventManager.off(getElement(), evtType, handler),
       registerThumbEventHandler: (thumb, evtType, handler) => {
-        (range && thumb === Thumb.START
-          ? thumbStart
-          : thumbEl
-        )?.addEventListener(evtType, handler);
+        const el = range && thumb === Thumb.START ? thumbStart : thumbEl;
+        if (el) {
+          eventManager.on(el, evtType, handler);
+        }
       },
       deregisterThumbEventHandler: (thumb, evtType, handler) => {
-        (range && thumb === Thumb.START
-          ? thumbStart
-          : thumbEl
-        )?.removeEventListener(evtType, handler);
+        const el = range && thumb === Thumb.START ? thumbStart : thumbEl;
+        if (el) {
+          eventManager.off(el, evtType, handler);
+        }
       },
       registerInputEventHandler: (thumb, evtType, handler) => {
-        (range && thumb === Thumb.START ? inputStart : input)?.addEventListener(
-          evtType,
-          handler
-        );
+        const el = range && thumb === Thumb.START ? inputStart : input;
+        if (el) {
+          eventManager.on(el, evtType, handler);
+        }
       },
       deregisterInputEventHandler: (thumb, evtType, handler) => {
-        (range && thumb === Thumb.START
-          ? inputStart
-          : input
-        )?.removeEventListener(evtType, handler);
+        const el = range && thumb === Thumb.START ? inputStart : input;
+        if (el) {
+          eventManager.off(el, evtType, handler);
+        }
       },
-      registerBodyEventHandler: (evtType, handler) => {
-        document.body.addEventListener(evtType, handler);
-      },
-      deregisterBodyEventHandler: (evtType, handler) => {
-        document.body.removeEventListener(evtType, handler);
-      },
-      registerWindowEventHandler: (evtType, handler) => {
-        window.addEventListener(evtType, handler);
-      },
-      deregisterWindowEventHandler: (evtType, handler) => {
-        window.removeEventListener(evtType, handler);
-      },
+      registerBodyEventHandler: (evtType, handler) =>
+        eventManager.on(document.body, evtType, handler),
+      deregisterBodyEventHandler: (evtType, handler) =>
+        eventManager.off(document.body, evtType, handler),
+      registerWindowEventHandler: (evtType, handler) =>
+        eventManager.on(window, evtType, handler),
+      deregisterWindowEventHandler: (evtType, handler) =>
+        eventManager.off(window, evtType, handler),
     });
 
     const accessor = {
@@ -553,15 +615,16 @@
       },
     };
 
-    dispatch(element, 'SMUIGenericInput:mount', accessor);
+    SMUIGenericInputMount && SMUIGenericInputMount(accessor);
 
     instance.init();
     instance.layout({ skipUpdateUI: true });
 
     return () => {
-      dispatch(element, 'SMUIGenericInput:unmount', accessor);
+      SMUIGenericInputUnmount && SMUIGenericInputUnmount(accessor);
 
-      instance.destroy();
+      instance?.destroy();
+      eventManager.clear();
     };
   });
 
@@ -618,7 +681,6 @@
       if (thumbStartStyles[name] != value) {
         if (value === '' || value == null) {
           delete thumbStartStyles[name];
-          thumbStartStyles = thumbStartStyles;
         } else {
           thumbStartStyles[name] = value;
         }
@@ -627,7 +689,6 @@
       if (thumbStyles[name] != value) {
         if (value === '' || value == null) {
           delete thumbStyles[name];
-          thumbStyles = thumbStyles;
         } else {
           thumbStyles[name] = value;
         }
@@ -639,12 +700,10 @@
     if (range && thumb === Thumb.START) {
       if (name in thumbStartStyles) {
         delete thumbStartStyles[name];
-        thumbStartStyles = thumbStartStyles;
       }
     } else {
       if (name in thumbStyles) {
         delete thumbStyles[name];
-        thumbStyles = thumbStyles;
       }
     }
   }
@@ -657,15 +716,15 @@
         return `${start}`;
       }
       return name in inputStartAttrs
-        ? inputStartAttrs[name] ?? null
-        : inputStart?.getAttribute(name) ?? null;
+        ? (inputStartAttrs[name] ?? null)
+        : (inputStart?.getAttribute(name) ?? null);
     } else {
       if (name === 'value') {
         return `${range ? end : value}`;
       }
       return name in inputAttrs
-        ? inputAttrs[name] ?? null
-        : input.getAttribute(name);
+        ? (inputAttrs[name] ?? null)
+        : (input?.getAttribute(name) ?? null);
     }
   }
 
@@ -697,7 +756,6 @@
     if (trackActiveStyles[name] != value) {
       if (value === '' || value == null) {
         delete trackActiveStyles[name];
-        trackActiveStyles = trackActiveStyles;
       } else {
         trackActiveStyles[name] = value;
       }
@@ -707,12 +765,11 @@
   function removeTrackActiveStyle(name: string) {
     if (name in trackActiveStyles) {
       delete trackActiveStyles[name];
-      trackActiveStyles = trackActiveStyles;
     }
   }
 
   export function layout() {
-    return instance.layout();
+    return instance?.layout();
   }
 
   export function getId() {

@@ -1,3 +1,3 @@
-export type { ClassAdderInternals } from './ClassAdder.types.js';
+import ClassAdder from './ClassAdder.svelte';
 
-export * from './classAdderBuilder.js';
+export { ClassAdder };

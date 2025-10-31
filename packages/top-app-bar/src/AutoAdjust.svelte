@@ -1,58 +1,74 @@
-<svelte:component
-  this={component}
+<svelte:options runes />
+
+<MyComponent
   {tag}
   bind:this={element}
-  use={[forwardEvents, ...use]}
+  {use}
   class={classMap({
-    [className]: true,
     [adjustClass]: true,
+    [className]: true,
   })}
-  {...$$restProps}
+  {...restProps}
 >
-  <slot />
-</svelte:component>
+  {@render children?.()}
+</MyComponent>
 
 <script lang="ts" generics="TagName extends SmuiEveryElement = 'main'">
-  import type { SvelteComponent } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
+  import type { Snippet } from 'svelte';
   import type { ActionArray } from '@smui/common/internal';
-  import { forwardEventsBuilder, classMap } from '@smui/common/internal';
+  import { classMap } from '@smui/common/internal';
   import type {
+    SmuiComponent,
     SmuiElementMap,
     SmuiEveryElement,
     SmuiAttrs,
   } from '@smui/common';
   import { SmuiElement } from '@smui/common';
 
-  type OwnProps = {
-    use?: ActionArray;
-    class?: string;
-    topAppBar: TopAppBar;
-    component?: typeof SvelteComponent;
-    tag?: TagName;
-  };
-  type $$Props = OwnProps & SmuiAttrs<TagName, keyof OwnProps>;
-
   import type TopAppBar from './TopAppBar.svelte';
 
-  const forwardEvents = forwardEventsBuilder(get_current_component());
+  type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
+    use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
+    class?: string;
+    /**
+     * The Top App Bar that this auto adjuster is for.
+     *
+     * This is REQUIRED! The reason you can provide `null` is so that the
+     * Top App Bar has a chance to mount, then you must provide it.
+     */
+    topAppBar: TopAppBar | null;
+    /**
+     * The component to use to render the element.
+     */
+    component?: SmuiComponent<SmuiElementMap[TagName]>;
+    /**
+     * The tag name of the element to create.
+     */
+    tag?: TagName;
 
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let topAppBar: TopAppBar;
+    children?: Snippet;
+  };
+  let {
+    use = [],
+    class: className = '',
+    topAppBar = null,
+    component: MyComponent = SmuiElement,
+    tag = 'main' as TagName,
+    children,
+    ...restProps
+  }: OwnProps & SmuiAttrs<TagName, keyof OwnProps> = $props();
 
-  let element: SvelteComponent;
+  let element: ReturnType<SmuiComponent<SmuiElementMap[TagName]>>;
 
-  export let component: typeof SvelteComponent = SmuiElement;
-  export let tag: SmuiEveryElement | undefined =
-    component === SmuiElement ? 'main' : undefined;
-
-  $: propStore = topAppBar && topAppBar.getPropStore();
-  $: adjustClass = (() => {
-    if (!propStore || $propStore.variant === 'static') {
+  const propStore = $derived(topAppBar && topAppBar.getPropStore());
+  const adjustClass = $derived.by(() => {
+    if (!propStore || !$propStore || $propStore.variant === 'static') {
       return '';
     }
 
@@ -71,9 +87,9 @@
     }
 
     return 'mdc-top-app-bar--fixed-adjust';
-  })();
+  });
 
-  export function getElement(): SmuiElementMap[TagName] {
+  export function getElement() {
     return element.getElement();
   }
 </script>

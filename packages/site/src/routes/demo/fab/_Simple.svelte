@@ -1,6 +1,6 @@
 <div class="flexy">
   <div class="margins">
-    <Fab on:click={() => clicked++}>
+    <Fab onclick={() => clicked++}>
       <Icon class="material-icons">favorite</Icon>
     </Fab>
   </div>
@@ -11,5 +11,5 @@
 <script lang="ts">
   import Fab, { Icon } from '@smui/fab';
 
-  let clicked = 0;
+  let clicked = $state(0);
 </script>

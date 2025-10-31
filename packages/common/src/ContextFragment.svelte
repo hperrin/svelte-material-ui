@@ -1,16 +1,28 @@
-<slot />
+<svelte:options runes />
+
+{@render children?.()}
 
 <script lang="ts">
+  import type { Snippet } from 'svelte';
   import { onDestroy, setContext } from 'svelte';
   import { writable } from 'svelte/store';
 
-  export let key: string;
-  export let value: any;
+  let {
+    key,
+    value,
+    children,
+  }: {
+    key: string;
+    value: any;
+    children?: Snippet;
+  } = $props();
 
   const storeValue = writable(value);
   setContext(key, storeValue);
 
-  $: $storeValue = value;
+  $effect(() => {
+    $storeValue = value;
+  });
 
   onDestroy(() => {
     storeValue.set(undefined);

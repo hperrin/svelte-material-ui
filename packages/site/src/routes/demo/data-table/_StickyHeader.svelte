@@ -1,9 +1,6 @@
 <!-- Check out iframe.svelte too see how these work. -->
-<iframe
-  class="data-table-iframe"
-  src="/demo/data-table/iframe"
-  title="standard"
-/>
+<iframe class="data-table-iframe" src="/demo/data-table/iframe" title="standard"
+></iframe>
 <a style="display: none;" href="/demo/data-table/iframe"
   >helper needed for sapper export</a
 >

@@ -7,7 +7,7 @@
 
 <Textfield bind:value={text} label="Dynamic Text" required />
 
-<Button on:click={() => snackbar.open()}>
+<Button onclick={() => snackbar.open()}>
   <Label>Open Snackbar</Label>
 </Button>
 
@@ -18,5 +18,5 @@
   import Textfield from '@smui/textfield';
 
   let snackbar: Snackbar;
-  let text = 'This is a snackbar with dynamic text.';
+  let text = $state('This is a snackbar with dynamic text.');
 </script>

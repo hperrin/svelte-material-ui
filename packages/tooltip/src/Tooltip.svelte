@@ -1,12 +1,13 @@
+<svelte:options runes />
+
 <div
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
-    [className]: true,
     'mdc-tooltip': true,
     'mdc-tooltip--rich': rich,
     ...internalClasses,
+    [className]: true,
   })}
   style={Object.entries(internalStyles)
     .map(([name, value]) => `${name}: ${value};`)
@@ -23,28 +24,33 @@
   data-hide-tooltip-from-screenreader={hideFromScreenreader
     ? 'true'
     : undefined}
-  on:transitionend={() => instance && instance.handleTransitionEnd()}
   {...roleProps}
   {...internalAttrs}
-  {...exclude($$restProps, ['surface$'])}
+  {...exclude(restProps, ['surface$'])}
+  ontransitionend={(e) => {
+    if (instance) {
+      instance.handleTransitionEnd();
+    }
+    restProps.ontransitionend?.(e);
+  }}
 >
   <div
     class={classMap({
-      [surface$class]: true,
       'mdc-tooltip__surface': true,
       'mdc-tooltip__surface-animation': true,
+      [surface$class]: true,
     })}
     style={Object.entries(surfaceAnimationStyles)
       .map(([name, value]) => `${name}: ${value};`)
       .concat([surface$style])
       .join(' ')}
-    {...prefixFilter($$restProps, 'surface$')}
+    {...prefixFilter(restProps, 'surface$')}
   >
-    <slot />
+    {@render children?.()}
   </div>
 </div>
 
-<script context="module" lang="ts">
+<script module lang="ts">
   let counter = 0;
 </script>
 
@@ -57,126 +63,188 @@
     YPosition,
     CssClasses,
   } from '@material/tooltip';
+  import type { Snippet } from 'svelte';
   import { onMount, onDestroy, getContext } from 'svelte';
   import type { Writable } from 'svelte/store';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type { SmuiAttrs, SmuiElementPropMap } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
-    forwardEventsBuilder,
     classMap,
     exclude,
     prefixFilter,
     useActions,
     dispatch,
+    SvelteEventManager,
   } from '@smui/common/internal';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * A list of CSS styles.
+     */
     style?: string;
+    /**
+     * The ID of the tooltip.
+     *
+     * If one is not provided, one will be generated.
+     */
     id?: string;
+    /**
+     * Whether the tooltip should use unbounded styling.
+     *
+     * Unbounded styling adds more gap between the anchor element and the
+     * tooltip.
+     */
     unbounded?: boolean;
+    /**
+     * The horizontal position of the tooltip.
+     */
     xPos?: Lowercase<keyof typeof XPosition>;
+    /**
+     * The vertical position of the tooltip.
+     */
     yPos?: Lowercase<keyof typeof YPosition>;
+    /**
+     * Whether the tooltip should act as a persistent popup.
+     *
+     * A persistent rich tooltip shows up when you click or press enter/space
+     * bar on an element and goes away when you activate it again or it loses
+     * focus. Great for informational popups on those little "i" icons.
+     */
     persistent?: boolean;
+    /**
+     * Whether the tooltip will have interative elements inside.
+     *
+     * Using this lets the browser know that this is an interactive area, not
+     * just an informational tooltip, helping with accessibility.
+     */
     interactive?: boolean;
+    /**
+     * Whether the tooltip should be hidden from users using screen readers.
+     *
+     * You should only use this if the information in the tooltip is either
+     * redundant or unhelpful.
+     */
     hideFromScreenreader?: boolean;
+    /**
+     * The delay before the tooltip is shown when the user hovers.
+     *
+     * Defaults to 500ms.
+     */
     showDelay?: number | null | undefined;
+    /**
+     * The delay before the tooltip is hidden when the user quits hovering.
+     *
+     * Defaults to 600ms.
+     */
     hideDelay?: number | null | undefined;
+    /**
+     * A space separated list of CSS classes.
+     */
     surface$class?: string;
+    /**
+     * A list of CSS styles.
+     */
     surface$style?: string;
+
+    children?: Snippet;
   };
-  type $$Props = OwnProps &
+  let {
+    use = [],
+    class: className = '',
+    style = '',
+    id = 'SMUI-tooltip-' + counter++,
+    unbounded = false,
+    xPos = 'detected',
+    yPos = 'detected',
+    persistent = false,
+    interactive = persistent,
+    hideFromScreenreader = false,
+    showDelay = undefined,
+    hideDelay = undefined,
+    surface$class = '',
+    surface$style = '',
+    children,
+    ...restProps
+  }: OwnProps &
     SmuiAttrs<'div', keyof OwnProps> & {
       [k in keyof SmuiElementPropMap['div'] as `surface\$${k}`]?: SmuiElementPropMap['div'][k];
-    };
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
-
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let style = '';
-  export let id = 'SMUI-tooltip-' + counter++;
-  export let unbounded = false;
-  export let xPos: Lowercase<keyof typeof XPosition> = 'detected';
-  export let yPos: Lowercase<keyof typeof YPosition> = 'detected';
-  export let persistent = false;
-  export let interactive = persistent;
-  export let hideFromScreenreader = false;
-  export let showDelay: number | null | undefined = undefined;
-  export let hideDelay: number | null | undefined = undefined;
-  export let surface$class = '';
-  export let surface$style = '';
+    } = $props();
 
   let element: HTMLDivElement;
-  let instance: MDCTooltipFoundation;
+  let instance: MDCTooltipFoundation | undefined = $state();
+  let eventManager = new SvelteEventManager();
   let nonReactiveLocationStore: {
-    readonly parent?: HTMLElement;
-    readonly nextSibling?: HTMLElement;
-    setParent(value: HTMLElement | undefined): void;
-    setNextSibling(value: HTMLElement | undefined): void;
-  } = {
-    setParent(value: HTMLElement | undefined) {
-      Object.defineProperty(this, 'parent', { value });
-    },
-    setNextSibling(value: HTMLElement | undefined) {
-      Object.defineProperty(this, 'nextSibling', { value });
-    },
-  };
-  let internalClasses: { [k: string]: boolean } = {};
-  let internalStyles: { [k: string]: string } = {};
-  let internalAttrs: { [k: string]: string | undefined } = {};
-  let surfaceAnimationStyles: { [k: string]: string } = {};
+    parent?: HTMLElement;
+    nextSibling?: HTMLElement;
+  } = {};
+  let internalClasses: { [k: string]: boolean } = $state({});
+  let internalStyles: { [k: string]: string } = $state({});
+  let internalAttrs: { [k: string]: string | undefined } = $state({});
+  let surfaceAnimationStyles: { [k: string]: string } = $state({});
   let anchor = getContext<Writable<HTMLElement | undefined>>(
-    'SMUI:tooltip:wrapper:anchor'
+    'SMUI:tooltip:wrapper:anchor',
   );
   let tooltip = getContext<Writable<HTMLDivElement | undefined>>(
-    'SMUI:tooltip:wrapper:tooltip'
+    'SMUI:tooltip:wrapper:tooltip',
   );
   const rich = getContext<boolean>('SMUI:tooltip:rich');
 
-  $: roleProps = {
+  const roleProps = $derived({
     role: rich && interactive ? 'dialog' : 'tooltip',
     tabindex: rich && persistent ? -1 : undefined,
-  };
+  });
 
   let previousAnchor: HTMLElement | undefined = undefined;
-  $: if (instance && previousAnchor !== $anchor) {
-    if (previousAnchor) {
-      destroy(previousAnchor);
+  $effect(() => {
+    if (instance && previousAnchor !== $anchor) {
+      if (previousAnchor) {
+        destroy(previousAnchor);
+      }
+
+      if ($anchor) {
+        init($anchor);
+      }
+
+      previousAnchor = $anchor;
     }
+  });
 
-    if ($anchor) {
-      init($anchor);
+  $effect(() => {
+    if (instance) {
+      instance.setAnchorBoundaryType(
+        AnchorBoundaryType[unbounded ? 'UNBOUNDED' : 'BOUNDED'],
+      );
     }
+  });
 
-    previousAnchor = $anchor;
-  }
+  $effect(() => {
+    if (instance) {
+      instance.setTooltipPosition({
+        xPos: XPosition[xPos.toUpperCase() as keyof typeof XPosition],
+        yPos: YPosition[yPos.toUpperCase() as keyof typeof YPosition],
+      });
+    }
+  });
 
-  $: if (instance) {
-    instance.setAnchorBoundaryType(
-      AnchorBoundaryType[unbounded ? 'UNBOUNDED' : 'BOUNDED']
-    );
-  }
+  $effect(() => {
+    if (instance && showDelay != null) {
+      instance.setShowDelay(showDelay);
+    }
+  });
 
-  $: if (instance) {
-    instance.setTooltipPosition({
-      xPos: XPosition[xPos.toUpperCase() as keyof typeof XPosition],
-      yPos: YPosition[yPos.toUpperCase() as keyof typeof YPosition],
-    });
-  }
-
-  $: if (instance && showDelay != null) {
-    instance.setShowDelay(showDelay);
-  }
-
-  $: if (instance && hideDelay != null) {
-    instance.setHideDelay(hideDelay);
-  }
+  $effect(() => {
+    if (instance && hideDelay != null) {
+      instance.setHideDelay(hideDelay);
+    }
+  });
 
   onMount(() => {
     instance = new MDCTooltipFoundation({
@@ -242,52 +310,34 @@
       focusAnchorElement: () => {
         $anchor && $anchor.focus();
       },
-      registerEventHandler: (evt, handler) => {
-        getElement().addEventListener(evt, handler);
-      },
-      deregisterEventHandler: (evt, handler) => {
-        getElement().removeEventListener(evt, handler);
-      },
-      registerAnchorEventHandler: (evt, handler) => {
-        $anchor && $anchor.addEventListener(evt, handler);
-      },
-      deregisterAnchorEventHandler: (evt, handler) => {
-        $anchor && $anchor.removeEventListener(evt, handler);
-      },
-      registerDocumentEventHandler: (evt, handler) => {
-        document.body.addEventListener(evt, handler);
-      },
-      deregisterDocumentEventHandler: (evt, handler) => {
-        document.body.removeEventListener(evt, handler);
-      },
-      registerWindowEventHandler: (evt, handler) => {
-        window.addEventListener(
+      registerEventHandler: (evt, handler) =>
+        eventManager.on(getElement(), evt, handler),
+      deregisterEventHandler: (evt, handler) =>
+        eventManager.off(getElement(), evt, handler),
+      registerAnchorEventHandler: (evt, handler) =>
+        $anchor && eventManager.on($anchor, evt, handler),
+      deregisterAnchorEventHandler: (evt, handler) =>
+        $anchor && eventManager.off($anchor, evt, handler),
+      registerDocumentEventHandler: (evt, handler) =>
+        eventManager.on(document.body, evt, handler),
+      deregisterDocumentEventHandler: (evt, handler) =>
+        eventManager.off(document.body, evt, handler),
+      registerWindowEventHandler: (evt, handler) =>
+        eventManager.on(
+          window,
           evt,
           handler,
-          evt === 'scroll' && { capture: true, passive: true }
-        );
-      },
-      deregisterWindowEventHandler: (evt, handler) => {
-        window.removeEventListener(
-          evt,
-          handler as EventListener,
-          evt === 'scroll' &&
-            ({ capture: true, passive: true } as EventListenerOptions)
-        );
-      },
+          (evt === 'scroll' && { capture: true, passive: true }) || undefined,
+        ),
+      deregisterWindowEventHandler: (evt, handler) =>
+        eventManager.off(window, evt, handler),
       notifyHidden: () => {
-        dispatch(
-          getElement(),
-          'SMUITooltip:hidden',
-          undefined,
-          undefined,
-          true
-        );
+        dispatch(getElement(), 'SMUITooltipHidden');
       },
       // TODO: figure out why MDC-Web included these caret functions, because they're entirely undocumented.
       getTooltipCaretBoundingRect: () => {
         const caret = getElement().querySelector<HTMLElement>(
-          `.${CssClasses.TOOLTIP_CARET_TOP}`
+          `.${CssClasses.TOOLTIP_CARET_TOP}`,
         );
         if (!caret) {
           return null;
@@ -296,10 +346,10 @@
       },
       setTooltipCaretStyle: (propertyName, value) => {
         const topCaret = getElement().querySelector<HTMLElement>(
-          `.${CssClasses.TOOLTIP_CARET_TOP}`
+          `.${CssClasses.TOOLTIP_CARET_TOP}`,
         );
         const bottomCaret = getElement().querySelector<HTMLElement>(
-          `.${CssClasses.TOOLTIP_CARET_BOTTOM}`
+          `.${CssClasses.TOOLTIP_CARET_BOTTOM}`,
         );
 
         if (!topCaret || !bottomCaret) {
@@ -311,10 +361,10 @@
       },
       clearTooltipCaretStyles: () => {
         const topCaret = getElement().querySelector<HTMLElement>(
-          `.${CssClasses.TOOLTIP_CARET_TOP}`
+          `.${CssClasses.TOOLTIP_CARET_TOP}`,
         );
         const bottomCaret = getElement().querySelector<HTMLElement>(
-          `.${CssClasses.TOOLTIP_CARET_BOTTOM}`
+          `.${CssClasses.TOOLTIP_CARET_BOTTOM}`,
         );
 
         if (!topCaret || !bottomCaret) {
@@ -332,6 +382,7 @@
       if ($anchor) {
         destroy($anchor);
       }
+      eventManager.clear();
     };
   });
 
@@ -339,29 +390,29 @@
     if (
       !rich &&
       typeof document !== 'undefined' &&
-      document.body === getElement().parentElement &&
-      nonReactiveLocationStore.parent !== getElement().parentElement &&
+      document.body === getElement()?.parentElement &&
+      nonReactiveLocationStore.parent !== getElement()?.parentElement &&
       nonReactiveLocationStore.parent?.insertBefore &&
       nonReactiveLocationStore.nextSibling
     ) {
-      nonReactiveLocationStore.parent.insertBefore(
+      nonReactiveLocationStore.parent?.insertBefore(
         getElement(),
-        nonReactiveLocationStore.nextSibling
+        nonReactiveLocationStore.nextSibling,
       );
     }
   });
 
   function destroy(anchor: HTMLElement) {
-    anchor.removeEventListener('focusout', handleAnchorFocusOut);
+    eventManager.off(anchor, 'focusout', handleAnchorFocusOut);
     if (rich && persistent) {
-      anchor.removeEventListener('click', handleAnchorActivate);
-      anchor.removeEventListener('keydown', handleAnchorActivate);
+      eventManager.off(anchor, 'click', handleAnchorActivate);
+      eventManager.off(anchor, 'keydown', handleAnchorActivate);
     } else {
-      anchor.removeEventListener('mouseenter', handleAnchorMouseEnter);
-      anchor.removeEventListener('focusin', handleAnchorFocus);
-      anchor.removeEventListener('mouseleave', handleAnchorMouseLeave);
-      anchor.removeEventListener('touchstart', handleAnchorTouchStart);
-      anchor.removeEventListener('touchend', handleAnchorTouchEnd);
+      eventManager.off(anchor, 'mouseenter', handleAnchorMouseEnter);
+      eventManager.off(anchor, 'focusin', handleAnchorFocus);
+      eventManager.off(anchor, 'mouseleave', handleAnchorMouseLeave);
+      eventManager.off(anchor, 'touchstart', handleAnchorTouchStart);
+      eventManager.off(anchor, 'touchend', handleAnchorTouchEnd);
     }
     if (rich && interactive) {
       anchor.removeAttribute('aria-haspopup');
@@ -371,20 +422,20 @@
       anchor.removeAttribute('aria-describedby');
     }
 
-    instance.destroy();
+    instance?.destroy();
   }
 
   function init(anchor: HTMLElement) {
-    anchor.addEventListener('focusout', handleAnchorFocusOut);
+    eventManager.on(anchor, 'focusout', handleAnchorFocusOut);
     if (rich && persistent) {
-      anchor.addEventListener('click', handleAnchorActivate);
-      anchor.addEventListener('keydown', handleAnchorActivate);
+      eventManager.on(anchor, 'click', handleAnchorActivate);
+      eventManager.on(anchor, 'keydown', handleAnchorActivate);
     } else {
-      anchor.addEventListener('mouseenter', handleAnchorMouseEnter);
-      anchor.addEventListener('focusin', handleAnchorFocus);
-      anchor.addEventListener('mouseleave', handleAnchorMouseLeave);
-      anchor.addEventListener('touchstart', handleAnchorTouchStart);
-      anchor.addEventListener('touchend', handleAnchorTouchEnd);
+      eventManager.on(anchor, 'mouseenter', handleAnchorMouseEnter);
+      eventManager.on(anchor, 'focusin', handleAnchorFocus);
+      eventManager.on(anchor, 'mouseleave', handleAnchorMouseLeave);
+      eventManager.on(anchor, 'touchstart', handleAnchorTouchStart);
+      eventManager.on(anchor, 'touchend', handleAnchorTouchEnd);
     }
     if (rich && interactive) {
       anchor.setAttribute('aria-haspopup', 'dialog');
@@ -397,7 +448,7 @@
       hoistToBody();
     }
 
-    instance.init();
+    instance?.init();
   }
 
   function hasClass(className: string) {
@@ -422,7 +473,6 @@
     if (internalStyles[name] != value) {
       if (value === '' || value == null) {
         delete internalStyles[name];
-        internalStyles = internalStyles;
       } else {
         internalStyles[name] = value;
       }
@@ -433,7 +483,6 @@
     if (surfaceAnimationStyles[name] != value) {
       if (value === '' || value == null) {
         delete surfaceAnimationStyles[name];
-        surfaceAnimationStyles = surfaceAnimationStyles;
       } else {
         surfaceAnimationStyles[name] = value;
       }
@@ -442,7 +491,7 @@
 
   function getAttr(name: string) {
     return name in internalAttrs
-      ? internalAttrs[name] ?? null
+      ? (internalAttrs[name] ?? null)
       : getElement().getAttribute(name);
   }
 
@@ -463,7 +512,7 @@
     // doesn't fire on all components you would
     // anchor a tooltip to (since it doesn't
     // bubble), so we handle focusout like a blur.
-    if (element.contains(event.relatedTarget as Node | null)) {
+    if (getElement().contains(event.relatedTarget as Node | null)) {
       return;
     }
     instance && instance.hide();
@@ -504,12 +553,9 @@
 
   function hoistToBody() {
     if ($anchor && document.body !== getElement().parentNode) {
-      nonReactiveLocationStore.setParent(
-        getElement().parentElement ?? undefined
-      );
-      nonReactiveLocationStore.setNextSibling(
-        (getElement().nextElementSibling as HTMLElement | null) ?? undefined
-      );
+      nonReactiveLocationStore.parent = getElement().parentElement ?? undefined;
+      nonReactiveLocationStore.nextSibling =
+        (getElement().nextElementSibling as HTMLElement | null) ?? undefined;
       document.body.appendChild(getElement());
     }
   }
@@ -517,8 +563,8 @@
   export function attachScrollHandler(
     addEventListenerFn: <K extends keyof GlobalEventHandlersEventMap>(
       event: K,
-      handler: SpecificEventListener<K>
-    ) => void
+      handler: SpecificEventListener<K>,
+    ) => void,
   ) {
     instance && instance.attachScrollHandler(addEventListenerFn);
   }
@@ -526,8 +572,8 @@
   export function removeScrollHandler(
     removeEventHandlerFn: <K extends keyof GlobalEventHandlersEventMap>(
       event: K,
-      handler: SpecificEventListener<K>
-    ) => void
+      handler: SpecificEventListener<K>,
+    ) => void,
   ) {
     instance && instance.removeScrollHandler(removeEventHandlerFn);
   }

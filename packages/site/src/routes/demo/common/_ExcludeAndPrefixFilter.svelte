@@ -1,7 +1,7 @@
 <MyComponent
   class="my-class"
   button$disabled={disabled}
-  on:click={() => (disabled = true)}
+  button$onclick={() => (disabled = true)}
 >
   Click Me Only Once
 </MyComponent>
@@ -9,5 +9,5 @@
 <script lang="ts">
   import MyComponent from './_ExcludeAndPrefixFilterComponent.svelte';
 
-  let disabled = false;
+  let disabled = $state(false);
 </script>

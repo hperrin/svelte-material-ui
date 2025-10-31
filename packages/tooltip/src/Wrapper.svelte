@@ -1,49 +1,57 @@
+<svelte:options runes />
+
 {#if rich}
   <div
     bind:this={element}
     use:useActions={use}
-    use:forwardEvents
     class={classMap({
-      [className]: true,
       'mdc-tooltip-wrapper--rich': true,
+      [className]: true,
     })}
-    {...$$restProps}
+    {...restProps}
   >
-    <slot />
+    {@render children?.()}
   </div>
 {:else}
-  <slot />
+  {@render children?.()}
 {/if}
 
 <script lang="ts">
+  import type { Snippet } from 'svelte';
   import { setContext } from 'svelte';
   import { writable } from 'svelte/store';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    useActions,
-  } from '@smui/common/internal';
+  import { classMap, useActions } from '@smui/common/internal';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * Whether this wrapper is for a rich tooltip.
+     *
+     * Rich tooltips can have more than just text content. They are also
+     * automatically wrapped in a div.
+     */
     rich?: boolean;
+
+    children?: Snippet;
   };
-  type $$Props = OwnProps & SmuiAttrs<'div', keyof OwnProps>;
+  let {
+    use = [],
+    class: className = '',
+    rich = false,
+    children,
+    ...restProps
+  }: OwnProps & SmuiAttrs<'div', keyof OwnProps> = $props();
 
-  const forwardEvents = forwardEventsBuilder(get_current_component());
-
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let rich = false;
-
-  let element: HTMLDivElement;
+  let element: HTMLDivElement | undefined;
   const anchor = writable<HTMLElement | undefined>(undefined);
   const tooltip = writable<HTMLDivElement | undefined>(undefined);
 
@@ -51,9 +59,11 @@
   setContext('SMUI:tooltip:wrapper:tooltip', tooltip);
   setContext('SMUI:tooltip:rich', rich);
 
-  $: if ($tooltip && !$anchor) {
-    $anchor = $tooltip.previousElementSibling as HTMLElement;
-  }
+  $effect(() => {
+    if ($tooltip && !$anchor) {
+      $anchor = $tooltip.previousElementSibling as HTMLElement;
+    }
+  });
 
   export function getElement() {
     return element;

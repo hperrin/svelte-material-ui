@@ -21,7 +21,6 @@ const config = {
   extensions: ['.svelte', '.svx', '.md'],
 
   preprocess: [
-    preprocess(),
     mdsvex({
       extensions: ['.svx', '.md'],
       rehypePlugins: [slug],
@@ -31,6 +30,10 @@ const config = {
 
   kit: {
     adapter: staticAdapter(),
+  },
+
+  compilerOptions: {
+    runes: undefined,
   },
 };
 

@@ -1,46 +1,54 @@
+<svelte:options runes />
+
 <div
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
-    [className]: true,
     'mdc-text-field-character-counter': true,
+    [className]: true,
   })}
-  {...$$restProps}
+  {...restProps}
 >
-  {#if content == null}<slot />{:else}{content}{/if}
+  {#if content == null}{@render children?.()}{:else}{content}{/if}
 </div>
 
 <script lang="ts">
   import { MDCTextFieldCharacterCounterFoundation } from '@material/textfield';
-  import { onMount } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
+  import type { Snippet } from 'svelte';
+  import { onMount, getContext } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    useActions,
-    dispatch,
-  } from '@smui/common/internal';
+  import { classMap, useActions } from '@smui/common/internal';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+
+    children?: Snippet;
   };
-  type $$Props = OwnProps & SmuiAttrs<'div', keyof OwnProps>;
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
-
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
+  let {
+    use = [],
+    class: className = '',
+    children,
+    ...restProps
+  }: OwnProps & SmuiAttrs<'div', keyof OwnProps> = $props();
 
   let element: HTMLDivElement;
-  let instance: MDCTextFieldCharacterCounterFoundation;
-  let content: string | undefined = undefined;
+  let instance: MDCTextFieldCharacterCounterFoundation | undefined = $state();
+  let content: string | undefined = $state();
+
+  const SMUITextfieldCharacterCounterMount = getContext<
+    ((accessor: MDCTextFieldCharacterCounterFoundation) => void) | undefined
+  >('SMUI:textfield:character-counter:mount');
+  const SMUITextfieldCharacterCounterUnmount = getContext<
+    ((accessor: MDCTextFieldCharacterCounterFoundation) => void) | undefined
+  >('SMUI:textfield:character-counter:unmount');
 
   onMount(() => {
     instance = new MDCTextFieldCharacterCounterFoundation({
@@ -49,14 +57,17 @@
       },
     });
 
-    dispatch(getElement(), 'SMUITextfieldCharacterCounter:mount', instance);
+    SMUITextfieldCharacterCounterMount &&
+      SMUITextfieldCharacterCounterMount(instance);
 
     instance.init();
 
     return () => {
-      dispatch(getElement(), 'SMUITextfieldCharacterCounter:unmount', instance);
+      if (SMUITextfieldCharacterCounterUnmount && instance) {
+        SMUITextfieldCharacterCounterUnmount(instance);
+      }
 
-      instance.destroy();
+      instance?.destroy();
     };
   });
 

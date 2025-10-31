@@ -1,3 +1,5 @@
+<svelte:options runes />
+
 <button
   bind:this={element}
   use:Ripple={{
@@ -8,12 +10,11 @@
     addStyle,
   }}
   use:useActions={use}
-  use:forwardEvents
   type="button"
   class={classMap({
-    [className]: true,
     'mdc-deprecated-chip-trailing-action': true,
     ...internalClasses,
+    [className]: true,
   })}
   style={Object.entries(internalStyles)
     .map(([name, value]) => `${name}: ${value};`)
@@ -21,34 +22,42 @@
     .join(' ')}
   aria-hidden={nonNavigable ? 'true' : undefined}
   tabindex="-1"
-  on:click={instance && instance.handleClick.bind(instance)}
-  on:keydown={instance && instance.handleKeydown.bind(instance)}
   {...internalAttrs}
-  {...exclude($$restProps, ['icon$'])}
+  {...exclude(restProps, ['icon$'])}
+  onclick={(e) => {
+    if (instance) {
+      instance.handleClick(e);
+    }
+    restProps.onclick?.(e);
+  }}
+  onkeydown={(e) => {
+    if (instance) {
+      instance.handleKeydown(e);
+    }
+    restProps.onkeydown?.(e);
+  }}
 >
-  <span class="mdc-deprecated-chip-trailing-action__ripple" />
+  <span class="mdc-deprecated-chip-trailing-action__ripple"></span>
   {#if touch}
-    <span class="mdc-deprecated-chip-trailing-action__touch" />
+    <span class="mdc-deprecated-chip-trailing-action__touch"></span>
   {/if}
   <span
     use:useActions={icon$use}
     class={classMap({
-      [icon$class]: true,
       'mdc-deprecated-chip-trailing-action__icon': true,
+      [icon$class]: true,
     })}
-    {...prefixFilter($$restProps, 'icon$')}><slot /></span
+    {...prefixFilter(restProps, 'icon$')}>{@render children?.()}</span
   >
 </button>
 
 <script lang="ts">
   import { deprecated } from '@material/chips';
-  import { onMount, tick } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
+  import type { Snippet } from 'svelte';
+  import { onMount, getContext, tick } from 'svelte';
   import type { SmuiAttrs, SmuiElementPropMap } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
-    forwardEventsBuilder,
     classMap,
     exclude,
     prefixFilter,
@@ -62,38 +71,70 @@
   const { MDCChipTrailingActionFoundation } = deprecated;
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * A list of CSS styles.
+     */
     style?: string;
+    /**
+     * Whether to show a ripple animation.
+     */
     ripple?: boolean;
+    /**
+     * Whether to use touch styling
+     */
     touch?: boolean;
+    /**
+     * Whether to hide this element from the accessibility tree.
+     */
     nonNavigable?: boolean;
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     icon$use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     icon$class?: string;
+
+    children?: Snippet;
   };
-  type $$Props = OwnProps &
+  let {
+    use = [],
+    class: className = '',
+    style = '',
+    ripple = true,
+    touch = false,
+    nonNavigable = false,
+    icon$use = [],
+    icon$class = '',
+    children,
+    ...restProps
+  }: OwnProps &
     SmuiAttrs<'button', keyof OwnProps> & {
       [k in keyof SmuiElementPropMap['span'] as `icon\$${k}`]?: SmuiElementPropMap['span'][k];
-    };
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
-
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let style = '';
-  export let ripple = true;
-  export let touch = false;
-  export let nonNavigable = false;
-  export let icon$use: ActionArray = [];
-  export let icon$class = '';
+    } = $props();
 
   let element: HTMLButtonElement;
-  let instance: deprecated.MDCChipTrailingActionFoundation;
-  let internalClasses: { [k: string]: boolean } = {};
-  let internalStyles: { [k: string]: string } = {};
-  let internalAttrs: { [k: string]: string | undefined } = {};
+  let instance: deprecated.MDCChipTrailingActionFoundation | undefined =
+    $state();
+  let internalClasses: { [k: string]: boolean } = $state({});
+  let internalStyles: { [k: string]: string } = $state({});
+  let internalAttrs: { [k: string]: string | undefined } = $state({});
+
+  const SMUIChipsTrailingActionMount = getContext<
+    ((accessor: SMUIChipsTrailingActionAccessor) => void) | undefined
+  >('SMUI:chips:trailing-action:mount');
+  const SMUIChipsTrailingActionUnmount = getContext<
+    ((accessor: SMUIChipsTrailingActionAccessor) => void) | undefined
+  >('SMUI:chips:trailing-action:unmount');
 
   onMount(() => {
     instance = new MDCChipTrailingActionFoundation({
@@ -106,24 +147,11 @@
       },
       getAttribute: getAttr,
       notifyInteraction: (trigger) =>
-        dispatch(
-          getElement(),
-          'SMUIChipTrailingAction:interaction',
-          {
-            trigger,
-          },
-          undefined,
-          true
-        ),
-      notifyNavigation: (key) => {
-        dispatch(
-          getElement(),
-          'SMUIChipTrailingAction:navigation',
-          { key },
-          undefined,
-          true
-        );
-      },
+        dispatch(getElement(), 'SMUIChipTrailingActionInteraction', {
+          trigger,
+        }),
+      notifyNavigation: (key) =>
+        dispatch(getElement(), 'SMUIChipTrailingActionNavigation', { key }),
       setAttribute: addAttr,
     });
 
@@ -133,14 +161,15 @@
       removeFocus,
     };
 
-    dispatch(getElement(), 'SMUIChipsChipTrailingAction:mount', accessor);
+    SMUIChipsTrailingActionMount && SMUIChipsTrailingActionMount(accessor);
 
     instance.init();
 
     return () => {
-      dispatch(getElement(), 'SMUIChipsChipTrailingAction:unmount', accessor);
+      SMUIChipsTrailingActionUnmount &&
+        SMUIChipsTrailingActionUnmount(accessor);
 
-      instance.destroy();
+      instance?.destroy();
     };
   });
 
@@ -160,7 +189,6 @@
     if (internalStyles[name] != value) {
       if (value === '' || value == null) {
         delete internalStyles[name];
-        internalStyles = internalStyles;
       } else {
         internalStyles[name] = value;
       }
@@ -169,7 +197,7 @@
 
   function getAttr(name: string) {
     return name in internalAttrs
-      ? internalAttrs[name] ?? null
+      ? (internalAttrs[name] ?? null)
       : getElement().getAttribute(name);
   }
 
@@ -180,7 +208,7 @@
   }
 
   function waitForTabindex(fn: () => void) {
-    if (internalAttrs['tabindex'] !== element.getAttribute('tabindex')) {
+    if (internalAttrs['tabindex'] !== getElement().getAttribute('tabindex')) {
       tick().then(fn);
     } else {
       fn();
@@ -188,15 +216,18 @@
   }
 
   export function isNavigable() {
+    if (instance == null) {
+      throw new Error('Instance is undefined.');
+    }
     return instance.isNavigable();
   }
 
   export function focus() {
-    instance.focus();
+    instance?.focus();
   }
 
   export function removeFocus() {
-    instance.removeFocus();
+    instance?.removeFocus();
   }
 
   export function getElement() {

@@ -12,19 +12,25 @@
           use={[InitialFocus]}
           style="width: 100%;"
         />
-        <span slot="label">Media Volume</span>
+        {#snippet label()}
+          Media Volume
+        {/snippet}
       </FormField>
     </div>
     <div>
       <FormField style="display: flex; flex-direction: column-reverse;">
         <Slider bind:value={volumeRingtone} style="width: 100%;" />
-        <span slot="label">Ringtone Volume</span>
+        {#snippet label()}
+          Ringtone Volume
+        {/snippet}
       </FormField>
     </div>
     <div>
       <FormField style="display: flex; flex-direction: column-reverse;">
         <Slider bind:value={volumeAlarm} style="width: 100%;" />
-        <span slot="label">Alarm Volume</span>
+        {#snippet label()}
+          Alarm Volume
+        {/snippet}
       </FormField>
     </div>
   </Content>
@@ -35,7 +41,7 @@
   </Actions>
 </Dialog>
 
-<Button on:click={() => (open = true)}>
+<Button onclick={() => (open = true)}>
   <Label>Open Dialog</Label>
 </Button>
 
@@ -45,8 +51,8 @@
   import Slider from '@smui/slider';
   import FormField from '@smui/form-field';
 
-  let open = false;
-  let volumeMedia = 100;
-  let volumeRingtone = 80;
-  let volumeAlarm = 80;
+  let open = $state(false);
+  let volumeMedia = $state(100);
+  let volumeRingtone = $state(80);
+  let volumeAlarm = $state(80);
 </script>

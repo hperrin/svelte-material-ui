@@ -14,6 +14,6 @@
 <script lang="ts">
   import Slider from '@smui/slider';
 
-  let valueStart = 1;
-  let valueEnd = 4;
+  let valueStart = $state(1);
+  let valueEnd = $state(4);
 </script>

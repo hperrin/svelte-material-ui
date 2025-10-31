@@ -1,86 +1,114 @@
-<svelte:component
-  this={component}
+<svelte:options runes />
+
+<MyComponent
   {tag}
-  bind:this={element}
-  use={[forwardEvents, ...use]}
+  bind:this={element as ReturnType<C>}
+  {use}
   class={classMap({
+    [_smuiClass]: true,
+    ..._smuiClassMap,
     [className]: true,
-    [smuiClass]: true,
-    ...smuiClassMap,
   })}
-  {...props}
-  {...$$restProps}><slot /></svelte:component
+  {..._smuiProps}
+  {...restProps}>{@render children?.()}</MyComponent
 >
 
-<script lang="ts" context="module">
-  import type { ClassAdderInternals } from './ClassAdder.types.js';
-  import { SmuiElement } from '../index.js';
-
-  export const internals: ClassAdderInternals = {
-    component: SmuiElement as typeof SvelteComponent,
-    tag: 'div',
-    class: '',
-    classMap: {},
-    contexts: {},
-    props: {},
-  };
-</script>
-
-<script lang="ts">
-  import type { SvelteComponent } from 'svelte';
+<script
+  lang="ts"
+  generics="T extends SmuiEveryElement = keyof SmuiElementPropMap, C extends SmuiComponent = SmuiComponent"
+>
+  import type { Snippet } from 'svelte';
   import { onDestroy, getContext, setContext } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
 
   import type {
+    SmuiComponent,
     SmuiElementPropMap,
     SmuiEveryElement,
     SmuiAttrs,
   } from '../smui.types.js';
   import type { ActionArray } from '../internal/useActions.js';
-  import { forwardEventsBuilder } from '../internal/forwardEventsBuilder.js';
   import { classMap } from '../internal/classMap.js';
+  import { SmuiElement } from '../index.js';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
-    component?: typeof SvelteComponent;
-    tag?: keyof SmuiElementPropMap;
+    /**
+     * The component to use to render the element.
+     */
+    component?: C;
+    /**
+     * The tag name of the element to create.
+     */
+    tag?: T;
+
+    /**
+     * Class to add to the component.
+     *
+     * Do not provide this yourself.
+     */
+    _smuiClass?: string;
+    /**
+     * Map of name to context name. The context should resolve to a Svelte
+     * store, and the class will be added if the Svelte store's value is true.
+     *
+     * Do not provide this yourself.
+     */
+    _smuiClassMap?: { [k: string]: any };
+    /**
+     * Map of contexts to set.
+     *
+     * Do not provide this yourself.
+     */
+    _smuiContexts?: { [k: string]: any };
+    /**
+     * Props to add to the element.
+     *
+     * Do not provide this yourself.
+     */
+    _smuiProps?: { [k: string]: any };
+
+    children?: Snippet;
   };
-  type $$Props = OwnProps & SmuiAttrs<SmuiEveryElement, keyof OwnProps>;
+  let {
+    use = [],
+    class: className = '',
+    component: MyComponent = SmuiElement as unknown as C,
+    tag = 'div' as T,
 
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
+    _smuiClass = '',
+    _smuiClassMap = {},
+    _smuiContexts = {},
+    _smuiProps = {},
 
-  let element: SvelteComponent;
-  const smuiClass = internals.class;
-  const smuiClassMap: { [k: string]: any } = {};
+    children,
+    ...restProps
+  }: OwnProps & SmuiAttrs<SmuiEveryElement, keyof OwnProps> = $props();
+
+  let element: ReturnType<C>;
   const smuiClassUnsubscribes: (() => void)[] = [];
-  const contexts = internals.contexts;
-  const props = internals.props;
 
-  export let component: typeof SvelteComponent = internals.component;
-  export let tag: keyof SmuiElementPropMap | undefined =
-    component === SmuiElement ? internals.tag : undefined;
-
-  Object.entries(internals.classMap).forEach(([name, context]) => {
+  Object.entries(_smuiClassMap).forEach(([name, context]) => {
     const store = getContext(context) as SvelteStore<any>;
 
     if (store && 'subscribe' in store) {
       smuiClassUnsubscribes.push(
         store.subscribe((value) => {
-          smuiClassMap[name] = value;
-        })
+          _smuiClassMap[name] = value;
+        }),
       );
     }
   });
 
-  const forwardEvents = forwardEventsBuilder(get_current_component());
-
-  for (let context in contexts) {
-    if (contexts.hasOwnProperty(context)) {
-      setContext(context, contexts[context]);
+  for (let context in _smuiContexts) {
+    if (_smuiContexts.hasOwnProperty(context)) {
+      setContext(context, _smuiContexts[context]);
     }
   }
 
@@ -90,7 +118,7 @@
     }
   });
 
-  export function getElement(): HTMLElement {
+  export function getElement() {
     return element.getElement();
   }
 </script>

@@ -1,0 +1,42 @@
+@use '@smui-extra/autocomplete/style' as autocomplete-style;
+@use '@smui/chips/style' as chips-style;
+@use '@smui/floating-label/style' as floating-label-style;
+@use '@smui/line-ripple/style' as line-ripple-style;
+@use '@smui/list/style' as list-style;
+@use '@smui/textfield/style' as textfield-style;
+
+.smui-chip-input {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  position: relative;
+  gap: 8px;
+
+  &.smui-chip-input--disabled .mdc-deprecated-chip-trailing-action {
+    display: none;
+  }
+
+  .smui-chip-input__chip-set {
+    padding: 0;
+    gap: 8px;
+  }
+
+  .smui-chip-input__chip-set .mdc-chip {
+    margin: 0;
+  }
+
+  .smui-chip-input__autocomplete {
+    flex-grow: 1;
+  }
+
+  .smui-chip-input__textfield {
+    width: 100%;
+  }
+
+  .smui-chip-input__loading {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+}

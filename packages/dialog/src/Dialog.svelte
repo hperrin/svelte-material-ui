@@ -1,17 +1,15 @@
+<svelte:options runes />
+
 <svelte:window
-  on:resize={() => open && instance && instance.layout()}
-  on:orientationchange={() => open && instance && instance.layout()}
+  onresize={() => open && instance && instance.layout()}
+  onorientationchange={() => open && instance && instance.layout()}
 />
-<svelte:body
-  on:keydown={instance && instance.handleDocumentKeydown.bind(instance)}
-/>
+<svelte:body onkeydown={(e) => instance && instance.handleDocumentKeydown(e)} />
 
 <div
   bind:this={element}
   use:useActions={use}
-  use:forwardEvents
   class={classMap({
-    [className]: true,
     'mdc-dialog': true,
     'mdc-dialog--stacked': !autoStackButtons,
     'mdc-dialog--fullscreen': fullscreen,
@@ -19,55 +17,74 @@
     'mdc-dialog--no-content-padding': noContentPadding,
     'smui-dialog--selection': selection,
     ...internalClasses,
+    [className]: true,
   })}
   role="alertdialog"
   aria-modal="true"
-  on:SMUIDialog:opening={handleDialogOpening}
-  on:SMUIDialog:opened={handleDialogOpened}
-  on:SMUIDialog:closed={handleDialogClosed}
-  on:click={instance && instance.handleClick.bind(instance)}
-  on:keydown={instance && instance.handleKeydown.bind(instance)}
-  {...exclude($$restProps, ['container$', 'surface$'])}
+  {...exclude(restProps, ['container$', 'surface$'])}
+  onSMUIDialogOpening={(e) => {
+    handleDialogOpening();
+    restProps.onSMUIDialogOpening?.(e);
+  }}
+  onSMUIDialogOpened={(e) => {
+    handleDialogOpened();
+    restProps.onSMUIDialogOpened?.(e);
+  }}
+  onSMUIDialogClosed={(e) => {
+    handleDialogClosed();
+    restProps.onSMUIDialogClosed?.(e);
+  }}
+  onclick={(e) => {
+    if (instance) {
+      instance.handleClick(e);
+    }
+    restProps.onclick?.(e);
+  }}
+  onkeydown={(e) => {
+    if (instance) {
+      instance.handleKeydown(e);
+    }
+    restProps.onkeydown?.(e);
+  }}
 >
   <div
     class={classMap({
-      [container$class]: true,
       'mdc-dialog__container': true,
+      [container$class]: true,
     })}
-    {...prefixFilter($$restProps, 'container$')}
+    {...prefixFilter(restProps, 'container$')}
   >
     <div
       class={classMap({
-        [surface$class]: true,
         'mdc-dialog__surface': true,
+        [surface$class]: true,
       })}
       role="alertdialog"
       aria-modal="true"
-      {...prefixFilter($$restProps, 'surface$')}
+      {...prefixFilter(restProps, 'surface$')}
     >
-      <slot />
+      {@render children?.()}
       {#if fullscreen}
         <div
           class="mdc-dialog__surface-scrim"
-          on:transitionend={() =>
+          ontransitionend={() =>
             instance && instance.handleSurfaceScrimTransitionEnd()}
-        />
+        ></div>
       {/if}
     </div>
   </div>
-  <div class="mdc-dialog__scrim" />
+  <div class="mdc-dialog__scrim"></div>
 </div>
 
-<slot name="over" />
+{@render over?.()}
 
 <script lang="ts">
   import { MDCDialogFoundation, util } from '@material/dialog';
   import { focusTrap as domFocusTrap, ponyfill } from '@material/dom';
+  import type { Snippet } from 'svelte';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
   import type { Writable } from 'svelte/store';
   import { writable } from 'svelte/store';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type {
     AddLayoutListener,
     RemoveLayoutListener,
@@ -76,75 +93,123 @@
   } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
-    forwardEventsBuilder,
     classMap,
     exclude,
     prefixFilter,
     useActions,
     dispatch,
+    SvelteEventManager,
   } from '@smui/common/internal';
 
   const { FocusTrap } = domFocusTrap;
   const { closest, matches } = ponyfill;
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * Whether the dialog is open.
+     */
     open?: boolean;
+    /**
+     * Whether this is a selection dialog.
+     */
     selection?: boolean;
+    /**
+     * What action the escape key should trigger.
+     *
+     * Set to an empty string to not trigger an action or close the dialog.
+     */
     escapeKeyAction?: string;
+    /**
+     * What action clicking the scrim should trigger.
+     *
+     * Set to an empty string to not trigger an action or close the dialog.
+     */
     scrimClickAction?: string;
+    /**
+     * Automatically stack buttons that are too wide on mobile screens.
+     */
     autoStackButtons?: boolean;
+    /**
+     * Style as a full screen dialog on mobile screens.
+     */
     fullscreen?: boolean;
     /**
+     * Style as a floating sheet.
+     *
      * Floating sheets are dialogs with a close icon button. Clicking the close
      * icon button closes the sheet. Having the close icon button is mutually
      * exclusive with having action bar buttons (e.g. cancel and OK buttons).
      * The icon button is absolutely positioned.
      */
     sheet?: boolean;
+    /**
+     * Don't pad the content.
+     */
     noContentPadding?: boolean;
+    /**
+     * A space separated list of CSS classes.
+     */
     container$class?: string;
+    /**
+     * A space separated list of CSS classes.
+     */
     surface$class?: string;
+
+    children?: Snippet;
+    /**
+     * A spot to render another dialog over this one.
+     *
+     * According to the Material spec, you should only use this to put a choice
+     * dialog over a fullscreen dialog.
+     */
+    over?: Snippet;
   };
-  type $$Props = OwnProps &
+  let {
+    use = [],
+    class: className = '',
+    open = $bindable(false),
+    selection = false,
+    escapeKeyAction = 'close',
+    scrimClickAction = 'close',
+    autoStackButtons = true,
+    fullscreen = false,
+    sheet = false,
+    noContentPadding = false,
+    container$class = '',
+    surface$class = '',
+    children,
+    over,
+    ...restProps
+  }: OwnProps &
     SmuiAttrs<'div', keyof OwnProps> & {
       [k in keyof SmuiElementPropMap['div'] as `container\$${k}`]?: SmuiElementPropMap['div'][k];
     } & {
       [k in keyof SmuiElementPropMap['div'] as `surface\$${k}`]?: SmuiElementPropMap['div'][k];
-    };
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
-
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let open = false;
-  export let selection = false;
-  export let escapeKeyAction = 'close';
-  export let scrimClickAction = 'close';
-  export let autoStackButtons = true;
-  export let fullscreen = false;
-  export let sheet = false;
-  export let noContentPadding = false;
-  export let container$class = '';
-  export let surface$class = '';
+    } = $props();
 
   let element: HTMLDivElement;
-  let instance: MDCDialogFoundation;
-  let internalClasses: { [k: string]: boolean } = {};
+  let instance: MDCDialogFoundation | undefined = $state();
+  let eventManager = new SvelteEventManager();
+  let internalClasses: { [k: string]: boolean } = $state({});
   let focusTrap: domFocusTrap.FocusTrap;
   let actionButtonsReversed = writable(false);
   let aboveFullscreen = getContext<boolean | undefined>(
-    'SMUI:dialog:aboveFullscreen'
+    'SMUI:dialog:aboveFullscreen',
   );
   let aboveFullscreenShown =
     getContext<Writable<boolean> | undefined>(
-      'SMUI:dialog:aboveFullscreenShown'
+      'SMUI:dialog:aboveFullscreenShown',
     ) ?? writable(false);
   let addLayoutListener = getContext<AddLayoutListener | undefined>(
-    'SMUI:addLayoutListener'
+    'SMUI:addLayoutListener',
   );
   let removeLayoutListener: RemoveLayoutListener | undefined;
   let layoutListeners: (() => void)[] = [];
@@ -168,49 +233,61 @@
     setContext('SMUI:icon-button:context', 'dialog:sheet');
   }
 
-  $: if (instance && instance.getEscapeKeyAction() !== escapeKeyAction) {
-    instance.setEscapeKeyAction(escapeKeyAction);
-  }
+  $effect(() => {
+    if (instance && instance.getEscapeKeyAction() !== escapeKeyAction) {
+      instance.setEscapeKeyAction(escapeKeyAction);
+    }
+  });
 
-  $: if (instance && instance.getScrimClickAction() !== scrimClickAction) {
-    instance.setScrimClickAction(scrimClickAction);
-  }
+  $effect(() => {
+    if (instance && instance.getScrimClickAction() !== scrimClickAction) {
+      instance.setScrimClickAction(scrimClickAction);
+    }
+  });
 
-  $: if (instance && instance.getAutoStackButtons() !== autoStackButtons) {
-    instance.setAutoStackButtons(autoStackButtons);
-  }
+  $effect(() => {
+    if (instance && instance.getAutoStackButtons() !== autoStackButtons) {
+      instance.setAutoStackButtons(autoStackButtons);
+    }
+  });
 
-  $: if (!autoStackButtons) {
-    $actionButtonsReversed = true;
-  }
+  $effect(() => {
+    if (!autoStackButtons) {
+      $actionButtonsReversed = true;
+    }
+  });
 
   if (addLayoutListener) {
     removeLayoutListener = addLayoutListener(layout);
   }
 
-  $: if (instance && instance.isOpen() !== open) {
-    if (open) {
-      instance.open({
-        isAboveFullscreenDialog: !!aboveFullscreen,
-      });
-    } else {
-      instance.close();
+  $effect(() => {
+    if (instance && instance.isOpen() !== open) {
+      if (open) {
+        instance.open({
+          isAboveFullscreenDialog: !!aboveFullscreen,
+        });
+      } else {
+        instance.close();
+      }
     }
-  }
+  });
 
   let previousAboveFullscreenShown = $aboveFullscreenShown;
-  $: if (
-    fullscreen &&
-    instance &&
-    previousAboveFullscreenShown !== $aboveFullscreenShown
-  ) {
-    previousAboveFullscreenShown = $aboveFullscreenShown;
-    if ($aboveFullscreenShown) {
-      instance.showSurfaceScrim();
-    } else {
-      instance.hideSurfaceScrim();
+  $effect(() => {
+    if (
+      fullscreen &&
+      instance &&
+      previousAboveFullscreenShown !== $aboveFullscreenShown
+    ) {
+      previousAboveFullscreenShown = $aboveFullscreenShown;
+      if ($aboveFullscreenShown) {
+        instance.showSurfaceScrim();
+      } else {
+        instance.hideSurfaceScrim();
+      }
     }
-  }
+  });
 
   onMount(() => {
     focusTrap = new FocusTrap(element, {
@@ -235,7 +312,7 @@
         }
         const element = closest(
           evt.target as Element,
-          '[data-mdc-dialog-action]'
+          '[data-mdc-dialog-action]',
         );
         return element && element.getAttribute('data-mdc-dialog-action');
       },
@@ -244,26 +321,12 @@
       isContentScrollable: () => util.isScrollable(getContentEl()),
       notifyClosed: (action) => {
         open = false;
-        dispatch(
-          getElement(),
-          'SMUIDialog:closed',
-          action ? { action } : {},
-          undefined,
-          true
-        );
+        dispatch(getElement(), 'SMUIDialogClosed', action ? { action } : {});
       },
       notifyClosing: (action) =>
-        dispatch(
-          getElement(),
-          'SMUIDialog:closing',
-          action ? { action } : {},
-          undefined,
-          true
-        ),
-      notifyOpened: () =>
-        dispatch(getElement(), 'SMUIDialog:opened', {}, undefined, true),
-      notifyOpening: () =>
-        dispatch(getElement(), 'SMUIDialog:opening', {}, undefined, true),
+        dispatch(getElement(), 'SMUIDialogClosing', action ? { action } : {}),
+      notifyOpened: () => dispatch(getElement(), 'SMUIDialogOpened', {}),
+      notifyOpening: () => dispatch(getElement(), 'SMUIDialogOpening', {}),
       releaseFocus: () => focusTrap.releaseFocus(),
       removeBodyClass: (className) => document.body.classList.remove(className),
       removeClass,
@@ -274,13 +337,13 @@
       registerContentEventHandler: (evt, handler) => {
         const content = getContentEl();
         if (content instanceof HTMLElement) {
-          content.addEventListener(evt, handler);
+          eventManager.on(content, evt, handler);
         }
       },
       deregisterContentEventHandler: (evt, handler) => {
         const content = getContentEl();
         if (content instanceof HTMLElement) {
-          content.removeEventListener(evt, handler);
+          eventManager.off(content, evt, handler);
         }
       },
       isScrollableContentAtTop: () => {
@@ -289,18 +352,17 @@
       isScrollableContentAtBottom: () => {
         return util.isScrollAtBottom(getContentEl());
       },
-      registerWindowEventHandler: (evt, handler) => {
-        window.addEventListener(evt, handler);
-      },
-      deregisterWindowEventHandler: (evt, handler) => {
-        window.removeEventListener(evt, handler);
-      },
+      registerWindowEventHandler: (evt, handler) =>
+        eventManager.on(window, evt, handler),
+      deregisterWindowEventHandler: (evt, handler) =>
+        eventManager.off(window, evt, handler),
     });
 
     instance.init();
 
     return () => {
-      instance.destroy();
+      instance?.destroy();
+      eventManager.clear();
     };
   });
 
@@ -330,23 +392,23 @@
 
   function getButtonEls() {
     return [].slice.call(
-      element.querySelectorAll<HTMLButtonElement>('.mdc-dialog__button')
+      getElement().querySelectorAll<HTMLButtonElement>('.mdc-dialog__button'),
     ) as HTMLButtonElement[];
   }
 
   function getDefaultButtonEl() {
-    return element.querySelector<HTMLButtonElement>(
-      '[data-mdc-dialog-button-default]'
+    return getElement().querySelector<HTMLButtonElement>(
+      '[data-mdc-dialog-button-default]',
     );
   }
 
   function getContentEl() {
-    return element.querySelector<HTMLElement>('.mdc-dialog__content');
+    return getElement().querySelector<HTMLElement>('.mdc-dialog__content');
   }
 
   function getInitialFocusEl() {
-    return element.querySelector<HTMLElement>(
-      '[data-mdc-dialog-initial-focus]'
+    return getElement().querySelector<HTMLElement>(
+      '[data-mdc-dialog-initial-focus]',
     );
   }
 
@@ -378,7 +440,7 @@
   }
 
   export function layout() {
-    return instance.layout();
+    return instance?.layout();
   }
 
   export function getElement() {

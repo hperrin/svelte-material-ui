@@ -3,7 +3,7 @@
   class="bottom-app-bar-iframe"
   src="/demo/bottom-app-bar/iframe/inset-fab"
   title="inset-fab"
-/>
+></iframe>
 <a style="display: none;" href="/demo/bottom-app-bar/iframe/inset-fab"
   >helper needed for export</a
 >
@@ -12,7 +12,7 @@
   class="bottom-app-bar-iframe"
   src="/demo/bottom-app-bar/iframe/inset-fab-right"
   title="inset-fab-right"
-/>
+></iframe>
 <a style="display: none;" href="/demo/bottom-app-bar/iframe/inset-fab-right"
   >helper needed for export</a
 >

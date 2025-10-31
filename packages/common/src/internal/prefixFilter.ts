@@ -1,6 +1,6 @@
 export function prefixFilter(
   obj: { [k: string]: any },
-  prefix: string
+  prefix: string,
 ): { [k: string]: any } {
   let names = Object.getOwnPropertyNames(obj);
   const newObj: { [k: string]: any } = {};

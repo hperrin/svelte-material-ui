@@ -26,15 +26,15 @@
   </Actions>
 </Snackbar>
 
-<Button on:click={() => snackbarSuccess.open()}>
+<Button onclick={() => snackbarSuccess.open()}>
   <Label>Open Success Snackbar</Label>
 </Button>
 
-<Button on:click={() => snackbarWarning.open()}>
+<Button onclick={() => snackbarWarning.open()}>
   <Label>Open Warning Snackbar</Label>
 </Button>
 
-<Button on:click={() => snackbarError.open()}>
+<Button onclick={() => snackbarError.open()}>
   <Label>Open Error Snackbar</Label>
 </Button>
 

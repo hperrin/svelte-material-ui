@@ -17,7 +17,7 @@
   </Actions>
 </Dialog>
 
-<Button on:click={() => (open = true)}>
+<Button onclick={() => (open = true)}>
   <Label>Open Dialog</Label>
 </Button>
 
@@ -26,5 +26,5 @@
   import Button, { Label } from '@smui/button';
   import LoremIpsum from '$lib/LoremIpsum.svelte';
 
-  let open = false;
+  let open = $state(false);
 </script>

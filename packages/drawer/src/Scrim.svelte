@@ -1,30 +1,29 @@
-<svelte:component
-  this={component}
+<svelte:options runes />
+
+<MyComponent
   {tag}
   bind:this={element}
-  use={[forwardEvents, ...use]}
+  {use}
   class={classMap({
-    [className]: true,
     'mdc-drawer-scrim': true,
     'smui-drawer-scrim__absolute': !fixed,
+    [className]: true,
   })}
-  on:click={handleClick}
-  {...$$restProps}
+  {...restProps}
+  onclick={(e: MouseEvent) => {
+    handleClick(e);
+    restProps.onclick?.(e);
+  }}
 >
-  <slot />
-</svelte:component>
+  {@render children?.()}
+</MyComponent>
 
 <script lang="ts" generics="TagName extends SmuiEveryElement = 'div'">
-  import type { SvelteComponent } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
+  import type { Snippet } from 'svelte';
   import type { ActionArray } from '@smui/common/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    dispatch,
-  } from '@smui/common/internal';
+  import { classMap, dispatch } from '@smui/common/internal';
   import type {
+    SmuiComponent,
     SmuiElementMap,
     SmuiEveryElement,
     SmuiAttrs,
@@ -32,33 +31,48 @@
   import { SmuiElement } from '@smui/common';
 
   type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
     use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
     class?: string;
+    /**
+     * Turn this off for non-page-wide drawers.
+     *
+     * This controls whether the drawer uses fixed or absolute positioning.
+     */
     fixed?: boolean;
-    component?: typeof SvelteComponent;
+    /**
+     * The component to use to render the element.
+     */
+    component?: SmuiComponent<SmuiElementMap[TagName]>;
+    /**
+     * The tag name of the element to create.
+     */
     tag?: TagName;
+
+    children?: Snippet;
   };
-  type $$Props = OwnProps & SmuiAttrs<TagName, keyof OwnProps>;
+  let {
+    use = [],
+    class: className = '',
+    fixed = true,
+    component: MyComponent = SmuiElement,
+    tag = 'div' as TagName,
+    children,
+    ...restProps
+  }: OwnProps & SmuiAttrs<TagName, keyof OwnProps> = $props();
 
-  const forwardEvents = forwardEventsBuilder(get_current_component());
-
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let fixed = true;
-
-  let element: SvelteComponent;
-
-  export let component: typeof SvelteComponent = SmuiElement;
-  export let tag: SmuiEveryElement | undefined =
-    component === SmuiElement ? 'div' : undefined;
+  let element: ReturnType<SmuiComponent<SmuiElementMap[TagName]>>;
 
   function handleClick(event: MouseEvent) {
-    dispatch(getElement(), 'SMUIDrawerScrim:click', event);
+    dispatch(getElement(), 'SMUIDrawerScrimClick', event);
   }
 
-  export function getElement(): SmuiElementMap[TagName] {
+  export function getElement() {
     return element.getElement();
   }
 </script>

@@ -1,15 +1,15 @@
-<Button on:click={() => clicked++} variant="raised" class="button-shaped-notch">
+<Button onclick={() => clicked++} variant="raised" class="button-shaped-notch">
   <Label>Raised</Label>
 </Button>
 <Button
-  on:click={() => clicked++}
+  onclick={() => clicked++}
   variant="unelevated"
   class="button-shaped-notch"
 >
   <Label>Unelevated</Label>
 </Button>
 <Button
-  on:click={() => clicked++}
+  onclick={() => clicked++}
   variant="unelevated"
   class="button-shaped-notch"
 >
@@ -17,7 +17,7 @@
   <Label>Icon</Label>
 </Button>
 <Button
-  on:click={() => clicked++}
+  onclick={() => clicked++}
   variant="unelevated"
   class="button-shaped-notch"
 >
@@ -30,5 +30,5 @@
 <script lang="ts">
   import Button, { Label, Icon } from '@smui/button';
 
-  let clicked = 0;
+  let clicked = $state(0);
 </script>

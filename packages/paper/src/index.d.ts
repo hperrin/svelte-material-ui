@@ -2,9 +2,9 @@
 
 import Paper from './Paper.svelte';
 
-import Content from './Content.js';
-import Title from './Title.js';
-import Subtitle from './Subtitle.js';
+import Content from './Content.svelte';
+import Title from './Title.svelte';
+import Subtitle from './Subtitle.svelte';
 
 export default Paper;
 

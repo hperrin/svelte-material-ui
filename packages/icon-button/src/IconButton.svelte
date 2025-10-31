@@ -1,5 +1,6 @@
-<svelte:component
-  this={component}
+<svelte:options runes />
+
+<MyComponent
   {tag}
   bind:this={element}
   use={[
@@ -9,17 +10,15 @@
         ripple,
         unbounded: true,
         color,
-        disabled: !!$$restProps.disabled,
+        disabled: !!restProps.disabled,
         addClass,
         removeClass,
         addStyle,
       },
     ],
-    forwardEvents,
     ...use,
   ]}
   class={classMap({
-    [className]: true,
     'mdc-icon-button': true,
     'mdc-icon-button--on': !isUninitializedValue(pressed) && pressed,
     'mdc-icon-button--touch': touch,
@@ -39,6 +38,7 @@
       (context === 'dialog:header' || context === 'dialog:sheet') &&
       action === 'close',
     ...internalClasses,
+    [className]: true,
   })}
   style={Object.entries(internalStyles)
     .map(([name, value]) => `${name}: ${value};`)
@@ -53,18 +53,23 @@
   data-aria-label-on={ariaLabelOn}
   data-aria-label-off={ariaLabelOff}
   aria-describedby={ariaDescribedby}
-  on:click={() => instance && instance.handleClick()}
-  on:click={() =>
-    context === 'top-app-bar:navigation' &&
-    dispatch(getElement(), 'SMUITopAppBarIconButton:nav')}
   {href}
   {...actionProp}
   {...internalAttrs}
-  {...$$restProps}
-  ><div class="mdc-icon-button__ripple" />
-  <slot />{#if touch}<div
+  {...restProps}
+  onclick={(e: MouseEvent) => {
+    if (instance) {
+      instance.handleClick();
+    }
+    if (context === 'top-app-bar:navigation') {
+      dispatch(getElement(), 'SMUITopAppBarIconButtonNav');
+    }
+    restProps.onclick?.(e);
+  }}
+  ><div class="mdc-icon-button__ripple"></div>
+  {@render children?.()}{#if touch}<div
       class="mdc-icon-button__touch"
-    />{/if}</svelte:component
+    ></div>{/if}</MyComponent
 >
 
 <script
@@ -73,95 +78,129 @@
 >
   import type { MDCIconButtonToggleEventDetail } from '@material/icon-button';
   import { MDCIconButtonToggleFoundation } from '@material/icon-button';
-  import type { SvelteComponent } from 'svelte';
+  import type { Snippet } from 'svelte';
   import { onDestroy, getContext, setContext } from 'svelte';
-  // @ts-ignore Need to use internal Svelte function
-  import { get_current_component } from 'svelte/internal';
   import type { ActionArray } from '@smui/common/internal';
-  import {
-    forwardEventsBuilder,
-    classMap,
-    dispatch,
-  } from '@smui/common/internal';
+  import { classMap, dispatch } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
   import type {
+    SmuiComponent,
     SmuiElementMap,
     SmuiEveryElement,
     SmuiAttrs,
   } from '@smui/common';
   import { SmuiElement } from '@smui/common';
 
-  type OwnProps = {
-    use?: ActionArray;
-    class?: string;
-    style?: string;
-    ripple?: boolean;
-    color?: 'primary' | 'secondary' | undefined;
-    toggle?: boolean;
-    pressed?: boolean;
-    ariaLabelOn?: string | undefined;
-    ariaLabelOff?: string | undefined;
-    touch?: boolean;
-    displayFlex?: boolean;
-    size?: 'normal' | 'mini' | 'button';
-    href?: Href;
-    action?:
-      | 'close'
-      | 'first-page'
-      | 'prev-page'
-      | 'next-page'
-      | 'last-page'
-      | string
-      | undefined;
-    component?: typeof SvelteComponent;
-    tag?: TagName;
-  };
-  type $$Props = OwnProps & SmuiAttrs<TagName, keyof OwnProps>;
-
-  const forwardEvents = forwardEventsBuilder(get_current_component());
   interface UninitializedValue extends Function {}
   let uninitializedValue: UninitializedValue = () => {};
   function isUninitializedValue(value: any): value is UninitializedValue {
     return value === uninitializedValue;
   }
 
-  // Remember to update $$Props if you add/remove/rename props.
-  export let use: ActionArray = [];
-  let className = '';
-  export { className as class };
-  export let style = '';
-  export let ripple = true;
-  export let color: 'primary' | 'secondary' | undefined = undefined;
-  export let toggle = false;
-  export let pressed: UninitializedValue | boolean = uninitializedValue;
-  export let ariaLabelOn: string | undefined = undefined;
-  export let ariaLabelOff: string | undefined = undefined;
-  export let touch = false;
-  export let displayFlex = true;
-  export let size: 'normal' | 'mini' | 'button' = 'normal';
-  export let href: string | undefined = undefined;
-  export let action:
-    | 'close'
-    | 'first-page'
-    | 'prev-page'
-    | 'next-page'
-    | 'last-page'
-    | string
-    | undefined = undefined;
+  type OwnProps = {
+    /**
+     * An array of Action or [Action, ActionProps] to be applied to the element.
+     */
+    use?: ActionArray;
+    /**
+     * A space separated list of CSS classes.
+     */
+    class?: string;
+    /**
+     * A list of CSS styles.
+     */
+    style?: string;
+    /**
+     * Whether to show a ripple animation.
+     */
+    ripple?: boolean;
+    /**
+     * The color of the button.
+     */
+    color?: 'primary' | 'secondary' | undefined;
+    /**
+     * Whether to act as a toggle button.
+     */
+    toggle?: boolean;
+    /**
+     * When acting as a toggle button, whether the button is toggled.
+     */
+    pressed?: boolean;
+    /**
+     * The ARIA label for the pressed state.
+     */
+    ariaLabelOn?: string;
+    /**
+     * The ARIA label for the unpressed stated.
+     */
+    ariaLabelOff?: string;
+    /**
+     * Whether to use touch styling
+     */
+    touch?: boolean;
+    /**
+     * Use flex styling.
+     */
+    displayFlex?: boolean;
+    /**
+     * The size of the button.
+     */
+    size?: 'normal' | 'mini' | 'button';
+    /**
+     * If provided, the button will act as a link.
+     */
+    href?: Href;
+    /**
+     * The action the button represents.
+     */
+    action?:
+      | 'close'
+      | 'first-page'
+      | 'prev-page'
+      | 'next-page'
+      | 'last-page'
+      | string;
+    /**
+     * The component to use to render the element.
+     */
+    component?: SmuiComponent<SmuiElementMap[TagName]>;
+    /**
+     * The tag name of the element to create.
+     */
+    tag?: TagName;
 
-  let element: SvelteComponent;
+    children?: Snippet;
+  };
+  let {
+    use = [],
+    class: className = '',
+    style = '',
+    ripple = true,
+    color,
+    toggle = false,
+    pressed = $bindable(uninitializedValue as unknown as boolean),
+    ariaLabelOn,
+    ariaLabelOff,
+    touch = false,
+    displayFlex = true,
+    size = 'normal',
+    href,
+    action,
+    component: MyComponent = SmuiElement,
+    tag = (href == null ? 'button' : 'a') as TagName,
+    children,
+    ...restProps
+  }: OwnProps & SmuiAttrs<TagName, keyof OwnProps> = $props();
+
+  let element: ReturnType<SmuiComponent<SmuiElementMap[TagName]>>;
   let instance: MDCIconButtonToggleFoundation | undefined;
-  let internalClasses: { [k: string]: boolean } = {};
-  let internalStyles: { [k: string]: string } = {};
-  let internalAttrs: { [k: string]: string | undefined } = {};
+  let internalClasses: { [k: string]: boolean } = $state({});
+  let internalStyles: { [k: string]: string } = $state({});
+  let internalAttrs: { [k: string]: string | undefined } = $state({});
   let context = getContext('SMUI:icon-button:context');
   let ariaDescribedby = getContext('SMUI:icon-button:aria-describedby');
 
-  export let component: typeof SvelteComponent = SmuiElement;
-  export let tag: SmuiEveryElement | undefined =
-    component === SmuiElement ? (href == null ? 'button' : 'a') : undefined;
-
-  $: actionProp = (() => {
+  const actionProp = $derived.by(() => {
     if (context === 'data-table:pagination') {
       switch (action) {
         case 'first-page':
@@ -180,56 +219,58 @@
     } else {
       return { action };
     }
-  })();
+  });
 
-  let previousDisabled = $$restProps.disabled;
-  $: if (previousDisabled !== $$restProps.disabled) {
-    const elem = getElement() as HTMLButtonElement;
-    if ('blur' in elem) {
-      elem.blur();
+  let previousDisabled = !!restProps.disabled;
+  $effect(() => {
+    if (previousDisabled != !!restProps.disabled) {
+      if (element) {
+        const el = getElement();
+        if ('blur' in el) {
+          el.blur();
+        }
+      }
+      previousDisabled = !!restProps.disabled;
     }
-    previousDisabled = $$restProps.disabled;
-  }
+  });
 
   setContext('SMUI:icon:context', 'icon-button');
 
   let oldToggle: boolean | null = null;
-  $: if (element && getElement() && toggle !== oldToggle) {
-    if (toggle && !instance) {
-      instance = new MDCIconButtonToggleFoundation({
-        addClass,
-        hasClass,
-        notifyChange: (evtData) => {
-          handleChange(evtData);
-          dispatch(
-            getElement(),
-            'SMUIIconButtonToggle:change',
-            evtData,
-            undefined,
-            true
-          );
-        },
-        removeClass,
-        getAttr,
-        setAttr: addAttr,
-      });
-      instance.init();
-    } else if (!toggle && instance) {
-      instance.destroy();
-      instance = undefined;
-      internalClasses = {};
-      internalAttrs = {};
+  $effect(() => {
+    if (element && getElement() && toggle !== oldToggle) {
+      if (toggle && !instance) {
+        instance = new MDCIconButtonToggleFoundation({
+          addClass,
+          hasClass,
+          notifyChange: (evtData) => {
+            handleChange(evtData);
+            dispatch(getElement(), 'SMUIIconButtonToggleChange', evtData);
+          },
+          removeClass,
+          getAttr,
+          setAttr: addAttr,
+        });
+        instance.init();
+      } else if (!toggle && instance) {
+        instance.destroy();
+        instance = undefined;
+        internalClasses = {};
+        internalAttrs = {};
+      }
+      oldToggle = toggle;
     }
-    oldToggle = toggle;
-  }
+  });
 
-  $: if (
-    instance &&
-    !isUninitializedValue(pressed) &&
-    instance.isOn() !== pressed
-  ) {
-    instance.toggle(pressed);
-  }
+  $effect(() => {
+    if (
+      instance &&
+      !isUninitializedValue(pressed) &&
+      instance.isOn() !== pressed
+    ) {
+      instance.toggle(pressed);
+    }
+  });
 
   onDestroy(() => {
     instance && instance.destroy();
@@ -257,7 +298,6 @@
     if (internalStyles[name] != value) {
       if (value === '' || value == null) {
         delete internalStyles[name];
-        internalStyles = internalStyles;
       } else {
         internalStyles[name] = value;
       }
@@ -266,7 +306,7 @@
 
   function getAttr(name: string) {
     return name in internalAttrs
-      ? internalAttrs[name] ?? null
+      ? (internalAttrs[name] ?? null)
       : getElement().getAttribute(name);
   }
 
@@ -280,7 +320,7 @@
     pressed = evtData.isOn;
   }
 
-  export function getElement(): SmuiElementMap[TagName] {
+  export function getElement() {
     return element.getElement();
   }
 </script>

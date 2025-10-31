@@ -37,42 +37,46 @@
     Dialog with sliders
   </Demo>
 
+  <Demo component={NonCloseButton} file="dialog/_NonCloseButton.svelte">
+    Dialog with button that doesn't close
+  </Demo>
+
   <Demo component={LargeScroll} file="dialog/_LargeScroll.svelte">
     Large, scrollable dialog
   </Demo>
 
   <Demo component={Fullscreen} file="dialog/_Fullscreen.svelte">
     Fullscreen dialog
-    <svelte:fragment slot="subtitle">
+    {#snippet subtitle()}
       Note that dialogs will only be fullscreen on mobile sized screens. On
       desktop sized screens, it will be shown as a modal dialog.
-    </svelte:fragment>
+    {/snippet}
   </Demo>
 
   <Demo component={OverFullscreen} file="dialog/_OverFullscreen.svelte">
     Dialog over fullscreen dialog
-    <svelte:fragment slot="subtitle">
+    {#snippet subtitle()}
       Note that the Material Spec states that the only time a dialog should be
       placed on top of another dialog is a confirmation dialog showing on top of
       a fullscreen dialog.
-    </svelte:fragment>
+    {/snippet}
   </Demo>
 
   <Demo component={Sheet} file="dialog/_Sheet.svelte">
     Floating sheet dialog
-    <svelte:fragment slot="subtitle">
+    {#snippet subtitle()}
       Floating sheets are dialogs with a close icon button. Having the close
       icon button is mutually exclusive with having action bar buttons (e.g.
       cancel and OK buttons). The icon button is absolutely positioned.
-    </svelte:fragment>
+    {/snippet}
   </Demo>
 
   <Demo component={ManyActions} file="dialog/_ManyActions.svelte">
     Too many action buttons for one line
-    <svelte:fragment slot="subtitle">
+    {#snippet subtitle()}
       Actions buttons will stack automatically if the dialog is too narrow. If
       you want them to stack regardless, you can force it.
-    </svelte:fragment>
+    {/snippet}
   </Demo>
 </section>
 
@@ -86,6 +90,7 @@
   import List from './_List.svelte';
   import Selection from './_Selection.svelte';
   import Sliders from './_Sliders.svelte';
+  import NonCloseButton from './_NonCloseButton.svelte';
   import LargeScroll from './_LargeScroll.svelte';
   import Fullscreen from './_Fullscreen.svelte';
   import OverFullscreen from './_OverFullscreen.svelte';

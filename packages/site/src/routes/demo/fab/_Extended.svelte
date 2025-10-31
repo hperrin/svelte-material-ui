@@ -1,23 +1,23 @@
 <div class="flexy">
   <div class="margins">
-    <Fab on:click={() => clicked++} extended>
+    <Fab onclick={() => clicked++} extended>
       <Icon class="material-icons">favorite</Icon>
       <Label>Extended</Label>
     </Fab>
   </div>
   <div class="margins">
-    <Fab color="primary" on:click={() => clicked++} extended>
+    <Fab color="primary" onclick={() => clicked++} extended>
       <Icon class="material-icons">favorite</Icon>
       <Label>Extended</Label>
     </Fab>
   </div>
   <div class="margins">
-    <Fab on:click={() => clicked++} extended>
+    <Fab onclick={() => clicked++} extended>
       <Label>Extended W/o Icon</Label>
     </Fab>
   </div>
   <div class="margins">
-    <Fab color="primary" on:click={() => clicked++} extended>
+    <Fab color="primary" onclick={() => clicked++} extended>
       <Label>Extended W/o Icon</Label>
     </Fab>
   </div>
@@ -28,5 +28,5 @@
 <script lang="ts">
   import Fab, { Label, Icon } from '@smui/fab';
 
-  let clicked = 0;
+  let clicked = $state(0);
 </script>

@@ -24,7 +24,7 @@
 <script lang="ts">
   import Textfield from '@smui/textfield';
 
-  let valueA = '';
-  let valueB = '';
-  let valueC = '';
+  let valueA = $state('');
+  let valueB = $state('');
+  let valueC = $state('');
 </script>

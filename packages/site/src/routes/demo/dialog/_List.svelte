@@ -9,7 +9,7 @@
     <List>
       {#each [...Array(100)].map((_v, i) => i + 1) as item}
         <Item
-          on:click={() => {
+          onclick={() => {
             clicked = item;
             open = false;
           }}
@@ -21,19 +21,19 @@
   </Content>
 </Dialog>
 
-<Button on:click={() => (open = true)}><Label>Open Dialog</Label></Button>
+<Button onclick={() => (open = true)}><Label>Open Dialog</Label></Button>
 
 <pre class="status">Clicked: {clicked}{clicked === 69
     ? ', nice'
     : clicked === 42
-    ? ', the answer to life, the universe, and everything'
-    : ''}</pre>
+      ? ', the answer to life, the universe, and everything'
+      : ''}</pre>
 
 <script lang="ts">
   import Dialog, { Title, Content } from '@smui/dialog';
   import Button, { Label } from '@smui/button';
   import List, { Item, Text } from '@smui/list';
 
-  let open = false;
-  let clicked: string | number = 'Nothing yet.';
+  let open = $state(false);
+  let clicked: string | number = $state('Nothing yet.');
 </script>

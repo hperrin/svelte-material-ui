@@ -6,23 +6,22 @@
         value={option.name}
         disabled={option.disabled}
       />
-      <span slot="label"
-        >{option.name}{option.disabled ? ' (disabled)' : ''}</span
-      >
+      {#snippet label()}
+        {option.name}{option.disabled ? ' (disabled)' : ''}
+      {/snippet}
     </FormField>
   </div>
 {/each}
 
 <div style="margin-top: 1em;">
   <Button
-    on:click={() => {
-      const idx = selected.indexOf('Doc');
+    onclick={() => {
+      const idx = selected.findIndex((v) => v === 'Doc');
       if (idx > -1) {
         selected.splice(idx, 1);
       } else {
         selected.push('Doc');
       }
-      selected = selected;
     }}
   >
     Toggle Doc Programmatically
@@ -66,5 +65,5 @@
       disabled: false,
     },
   ];
-  let selected = ['Happy', 'Grumpy'];
+  let selected = $state(['Happy', 'Grumpy']);
 </script>

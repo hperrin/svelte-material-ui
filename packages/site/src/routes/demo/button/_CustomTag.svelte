@@ -1,8 +1,8 @@
 <div>
   <Button
     tag="em"
-    on:click={() => clicked++}
-    on:keypress={handleClick}
+    onclick={() => clicked++}
+    onkeypress={handleClick}
     tabindex={0}
     role="button"
   >
@@ -12,8 +12,8 @@
   <ul>
     <Button
       tag="li"
-      on:click={() => clicked++}
-      on:keypress={handleClick}
+      onclick={() => clicked++}
+      onkeypress={handleClick}
       tabindex={0}
       role="button"
     >
@@ -21,8 +21,8 @@
     </Button>
     <Button
       tag="li"
-      on:click={() => clicked++}
-      on:keypress={handleClick}
+      onclick={() => clicked++}
+      onkeypress={handleClick}
       tabindex={0}
       role="button"
     >
@@ -36,10 +36,9 @@
 <script lang="ts">
   import Button, { Label } from '@smui/button';
 
-  let clicked = 0;
+  let clicked = $state(0);
 
-  function handleClick(event: CustomEvent | KeyboardEvent) {
-    event = event as KeyboardEvent;
+  function handleClick(event: KeyboardEvent) {
     if (event.key === 'Enter') {
       clicked++;
     }
