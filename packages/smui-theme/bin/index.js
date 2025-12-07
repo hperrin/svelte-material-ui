@@ -48,31 +48,35 @@ yargs(hideBin(process.argv))
 
       console.log('Compiling SMUI Styles...');
 
-      const result = sass.renderSync({
+      const result = sass.compile(
         // _index imports "smui-theme"
-        file: path.resolve(
+        path.resolve(
           __dirname,
           '..',
           argv.includes.length ? '_index.scss' : '_style.scss',
         ), // require.resolve('smui-theme/' + (argv.includes.length ? '_index.scss' : '_style.scss')),
-        includePaths: [
-          ...argv.includes,
-          // Include the node_modules directory for MDC styles.
-          path.resolve(
-            path.dirname(require.resolve('@smui/dom/package.json')),
-            '..',
-            '..',
-          ),
-          // Include the fallback directory, with no styles, for packages
-          // that aren't installed
-          path.resolve(
-            __dirname,
-            '..', // path.dirname(require.resolve('smui-theme/package.json')),
-            'fallback',
-          ),
-        ],
-        outputStyle: argv.outputStyle,
-      });
+        {
+          importers: [new sass.NodePackageImporter()],
+          loadPaths: [
+            ...argv.includes,
+            // Include the node_modules directory for MDC styles.
+            path.resolve(
+              path.dirname(require.resolve('@smui/dom/package.json')),
+              '..',
+              '..',
+            ),
+            // Include the fallback directory, with no styles, for packages
+            // that aren't installed
+            path.resolve(
+              __dirname,
+              '..', // path.dirname(require.resolve('smui-theme/package.json')),
+              'fallback',
+            ),
+          ],
+          style: argv.outputStyle,
+          // silenceDeprecations: ['mixed-decls'],
+        },
+      );
 
       console.log('Writing CSS to ' + argv.output + '...');
       fs.writeFileSync(argv.output, result.css);

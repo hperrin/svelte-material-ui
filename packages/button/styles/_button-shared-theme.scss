@@ -745,7 +745,7 @@ $disabled-container-color: rgba(
   );
 
   .mdc-button__focus-ring {
-    @if $radius-value != 0 and type-of($radius-value) == 'number' {
+    @if $radius-value != 0 and meta.type-of($radius-value) == 'number' {
       @include focus-ring.focus-ring-radius(
         $ring-radius: $radius-value,
         $query: $query

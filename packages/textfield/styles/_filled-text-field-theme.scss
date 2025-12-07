@@ -185,10 +185,14 @@ $light-theme: (
   );
   @include _hover-state-layer(
     (
-      error-hover-state-layer-color:
-        map.get($theme, error-hover-state-layer-color),
-      error-hover-state-layer-opacity:
-        map.get($theme, error-hover-state-layer-opacity),
+      error-hover-state-layer-color: map.get(
+          $theme,
+          error-hover-state-layer-color
+        ),
+      error-hover-state-layer-opacity: map.get(
+          $theme,
+          error-hover-state-layer-opacity
+        ),
       hover-state-layer-color: map.get($theme, hover-state-layer-color),
       hover-state-layer-opacity: map.get($theme, hover-state-layer-opacity),
     )
@@ -268,8 +272,10 @@ $light-theme: (
     @include ripple-theme.theme-styles(
       (
         hover-state-layer-color: map.get($colors, error-hover-state-layer-color),
-        hover-state-layer-opacity:
-          map.get($colors, error-hover-state-layer-opacity),
+        hover-state-layer-opacity: map.get(
+            $colors,
+            error-hover-state-layer-opacity
+          ),
       ),
       $ripple-target: '.mdc-text-field__ripple'
     );

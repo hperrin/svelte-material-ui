@@ -173,7 +173,7 @@ Sass module variables:
 
 ```scss
 @use '@smui/typography' with (
-  $font-family: unquote('Arial, Helvetica, sans-serif')
+  $font-family: string.unquote('Arial, Helvetica, sans-serif')
 );
 
 @use '@smui/button';
@@ -183,7 +183,7 @@ Sass module variables:
 Sass global variables:
 
 ```scss
-$mdc-typography-font-family: unquote('Arial, Helvetica, sans-serif');
+$mdc-typography-font-family: string.unquote('Arial, Helvetica, sans-serif');
 
 @import '@smui/button/mdc-button';
 ```
@@ -205,10 +205,10 @@ Sass module variables:
 ```scss
 @use '@smui/typography' with (
   $styles-headline1: (
-    font-family: unquote('Arial, Helvetica, sans-serif'),
+    font-family: string.unquote('Arial, Helvetica, sans-serif'),
   ),
   $styles-headline2: (
-    font-family: unquote('Arial, Helvetica, sans-serif'),
+    font-family: string.unquote('Arial, Helvetica, sans-serif'),
     font-size: 3.25rem,
   )
 );
@@ -220,10 +220,10 @@ Sass global variables:
 
 ```scss
 $mdc-typography-styles-headline1: (
-  font-family: unquote('Arial, Helvetica, sans-serif'),
+  font-family: string.unquote('Arial, Helvetica, sans-serif'),
 );
 $mdc-typography-styles-headline2: (
-  font-family: unquote('Arial, Helvetica, sans-serif'),
+  font-family: string.unquote('Arial, Helvetica, sans-serif'),
   font-size: 3.25rem,
 );
 

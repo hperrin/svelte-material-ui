@@ -317,32 +317,32 @@
 
   @include ripple-theme.focus() {
     &.mdc-tab--active .mdc-tab__focus-ring {
+      @include feature-targeting.targets($feat-structure) {
+        margin-top: -2px;
+        // Set z-index to +1 above the .mdc-tab
+        z-index: 2;
+      }
+
       @include focus-ring.focus-ring(
         $query: $query,
         $ring-radius: 10px,
         $container-outer-padding-vertical: -6px,
         $container-outer-padding-horizontal: -4px
       );
-
-      @include feature-targeting.targets($feat-structure) {
-        margin-top: -2px;
-        // Set z-index to +1 above the .mdc-tab
-        z-index: 2;
-      }
     }
 
     .mdc-tab__focus-ring {
+      @include feature-targeting.targets($feat-structure) {
+        // Set z-index to +1 above the .mdc-tab
+        z-index: 2;
+      }
+
       @include focus-ring.focus-ring(
         $query: $query,
         $ring-radius: 10px,
         $container-outer-padding-vertical: -4px,
         $container-outer-padding-horizontal: -4px
       );
-
-      @include feature-targeting.targets($feat-structure) {
-        // Set z-index to +1 above the .mdc-tab
-        z-index: 2;
-      }
     }
   }
 }

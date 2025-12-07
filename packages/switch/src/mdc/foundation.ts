@@ -78,7 +78,7 @@ export class MDCSwitchFoundation extends MDCObserverFoundation<MDCSwitchAdapter>
  * render adapter to keep the component's DOM updated with the state.
  */
 export class MDCSwitchRenderFoundation extends MDCSwitchFoundation {
-  protected declare adapter: MDCSwitchRenderAdapter;
+  declare protected adapter: MDCSwitchRenderAdapter;
 
   /**
    * Initializes the foundation and starts observing state changes.

@@ -88,8 +88,8 @@
     $percent: 100%;
   }
 
-  width: calc(#{$percent} - #{$gutter});
-  width: calc(#{$percent} - var(--mdc-layout-grid-gutter-#{$size}, #{$gutter}));
+  width: calc($percent - $gutter);
+  width: calc($percent - var(--mdc-layout-grid-gutter-$size, $gutter));
 
   @supports (display: grid) {
     width: auto;
@@ -122,7 +122,7 @@
   flex-flow: row wrap;
   align-items: stretch;
   margin: math.div(-$gutter, 2);
-  margin: calc(var(--mdc-layout-grid-gutter-#{$size}, #{$gutter}) / 2 * -1);
+  margin: calc(var(--mdc-layout-grid-gutter-$size, $gutter) / 2 * -1);
 
   @supports (display: grid) {
     display: grid;
@@ -141,11 +141,11 @@
     @error "Invalid style specified! Choose one of #{map.keys(variables.$columns)}";
   }
 
-  @include cell-span_($size, $default-span, $gutter);
-
   box-sizing: border-box;
   margin: math.div($gutter, 2);
-  margin: calc(var(--mdc-layout-grid-gutter-#{$size}, #{$gutter}) / 2);
+  margin: calc(var(--mdc-layout-grid-gutter-$size, $gutter) / 2);
+
+  @include cell-span_($size, $default-span, $gutter);
 
   @supports (display: grid) {
     margin: 0;
@@ -194,8 +194,8 @@
   width: $column-width * $columnCount + $gutter * $gutter-number + $margin *
     $margin-number;
   width: calc(
-    var(--mdc-layout-grid-column-width-#{$size}, #{$column-width}) * #{$columnCount} +
-      var(--mdc-layout-grid-gutter-#{$size}, #{$gutter}) * #{$gutter-number} +
-      var(--mdc-layout-grid-margin-#{$size}, #{$margin}) * #{$margin-number}
+    var(--mdc-layout-grid-column-width-$size, $column-width) * $columnCount +
+      var(--mdc-layout-grid-gutter-$size, $gutter) * $gutter-number +
+      var(--mdc-layout-grid-margin-$size, $margin) * $margin-number
   );
 }

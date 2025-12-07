@@ -43,13 +43,15 @@ $divider-color-on-dark-bg: rgba(255, 255, 255, 0.2) !default;
       padding: 0;
       margin-top: 0;
       margin-bottom: 0;
-      transition: animation.standard(margin-top, $transition-duration),
+      transition:
+        animation.standard(margin-top, $transition-duration),
         animation.standard(margin-bottom, $transition-duration);
 
       &.smui-accordion__panel--extend {
         // Adding width, left, and box-shadow to animate the scaling and
         // elevation change as well.
-        transition: animation.standard(width, $transition-duration),
+        transition:
+          animation.standard(width, $transition-duration),
           animation.standard(left, $transition-duration),
           animation.standard(box-shadow, $transition-duration),
           animation.standard(margin-top, $transition-duration),
@@ -228,7 +230,8 @@ $divider-color-on-dark-bg: rgba(255, 255, 255, 0.2) !default;
 
       & > .smui-paper__content {
         overflow: hidden;
-        transition: animation.standard(height, $content-transition-duration),
+        transition:
+          animation.standard(height, $content-transition-duration),
           animation.standard(padding, $content-transition-duration);
         box-sizing: border-box;
         height: 0;

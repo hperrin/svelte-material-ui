@@ -1,4 +1,5 @@
 @use 'sass:color';
+@use 'sass:string';
 
 // Color scheme: https://coolors.co/222222-fffbfe-a76295-55808b-ff4000
 @use '@smui/theme/index' as theme with (
@@ -116,21 +117,21 @@
 
 // Use custom fonts.
 @use '@smui/typography' with (
-  $font-family: unquote('Verdana, Geneva, sans-serif'),
+  $font-family: string.unquote('Verdana, Geneva, sans-serif'),
   $styles-headline1: (
-    font-family: unquote('Tahoma, sans-serif'),
+    font-family: string.unquote('Tahoma, sans-serif'),
     letter-spacing: 0,
   ),
   $styles-headline2: (
-    font-family: unquote('Tahoma, sans-serif'),
+    font-family: string.unquote('Tahoma, sans-serif'),
     letter-spacing: 0,
   ),
   $styles-headline3: (
-    font-family: unquote('Tahoma, sans-serif'),
+    font-family: string.unquote('Tahoma, sans-serif'),
     letter-spacing: 0,
   ),
   $styles-headline4: (
-    font-family: unquote('Tahoma, sans-serif'),
+    font-family: string.unquote('Tahoma, sans-serif'),
     letter-spacing: 0,
   ),
   $styles-headline5: (

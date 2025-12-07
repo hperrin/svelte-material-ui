@@ -108,8 +108,8 @@ $ripple-target: '.mdc-button__ripple';
 }
 
 @mixin group-mdc-button--raised_($query) {
-  @include mdc-button.shape-radius(small, $query: $query);
   @include mdc-elevation.elevation(0, $query: $query);
+  @include mdc-button.shape-radius(small, $query: $query);
 
   &:hover,
   &:focus {

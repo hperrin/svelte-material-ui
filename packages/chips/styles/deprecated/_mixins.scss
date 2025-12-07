@@ -678,8 +678,8 @@ $ripple-target: '.mdc-chip__ripple';
 
   &.mdc-chip--exit {
     @include feature-targeting.targets($feat-animation) {
-      transition: elevation-functions.transition-value(),
-        variables.$exit-transition;
+      transition:
+        elevation-functions.transition-value(), variables.$exit-transition;
     }
   }
 }

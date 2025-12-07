@@ -80,7 +80,15 @@ $container-outer-padding-default: 2px !default;
     left: 50%;
     @include rtl.ignore-next-line();
     transform: translate(-50%, -50%);
+  }
 
+  @include focus-ring-offset(
+    $container-outer-padding-vertical,
+    $container-outer-padding-horizontal,
+    $query: $query
+  );
+
+  @include feature-targeting.targets($feat-structure) {
     @include dom.forced-colors-mode($exclude-ie11: true) {
       border-color: CanvasText;
     }
@@ -104,12 +112,6 @@ $container-outer-padding-default: 2px !default;
       }
     }
   }
-
-  @include focus-ring-offset(
-    $container-outer-padding-vertical,
-    $container-outer-padding-horizontal,
-    $query: $query
-  );
 }
 
 /// Customizes the color of the focus ring.

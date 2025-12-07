@@ -707,6 +707,10 @@ $_density-config: map.merge(
   $feat-structure: feature-targeting.create-target($query, structure);
   $positionY: variables.get-outlined-label-position-y($height);
 
+  @include feature-targeting.targets($feat-structure) {
+    height: $height;
+  }
+
   // Floating label position
   @include notched-outline-mixins.floating-label-float-position-absolute(
     $positionY,
@@ -725,10 +729,6 @@ $_density-config: map.merge(
       $positionY,
       $query: $query
     );
-  }
-
-  @include feature-targeting.targets($feat-structure) {
-    height: $height;
   }
 }
 
@@ -1206,15 +1206,15 @@ $_density-config: map.merge(
         );
 
         @include rtl.rtl {
+          @include feature-targeting.targets($feat-structure) {
+            @include rtl.ignore-next-line();
+            padding-right: 0;
+          }
           @include _apply-outline-shape-padding(
             padding-left,
             $top-right-radius,
             $query: $query
           );
-          @include feature-targeting.targets($feat-structure) {
-            @include rtl.ignore-next-line();
-            padding-right: 0;
-          }
         }
       } @else {
         @include _padding-horizontal-with-leading-icon($query);
@@ -1227,16 +1227,16 @@ $_density-config: map.merge(
           $top-left-radius-px >
           notched-outline-variables.$leading-width
       ) {
+        @include feature-targeting.targets($feat-structure) {
+          @include rtl.ignore-next-line();
+          padding-right: 0;
+        }
         @include _apply-outline-shape-padding(
           padding-left,
           $top-left-radius,
           $add-label-padding: true,
           $query: $query
         );
-        @include feature-targeting.targets($feat-structure) {
-          @include rtl.ignore-next-line();
-          padding-right: 0;
-        }
 
         @include rtl.rtl {
           @include feature-targeting.targets($feat-structure) {
@@ -1433,6 +1433,20 @@ $_density-config: map.merge(
 @mixin _base($query: feature-targeting.all()) {
   $feat-structure: feature-targeting.create-target($query, structure);
 
+  @include feature-targeting.targets($feat-structure) {
+    // display and align-items are necessary to make the text field participate
+    // in baseline alignment, even though some variants are 'centered'. Those
+    // variants should use the _baseline-center-aligned() mixin
+    display: inline-flex;
+    align-items: baseline;
+    padding: 0 variables.$padding-horizontal;
+    position: relative;
+    box-sizing: border-box;
+    overflow: hidden;
+    /* @alternate */
+    will-change: opacity, transform, color;
+  }
+
   // Shape
   @include shape-radius(variables.$shape-radius, $query: $query);
 
@@ -1462,20 +1476,6 @@ $_density-config: map.merge(
 
   // Floating Label
   @include floating-label_($query);
-
-  @include feature-targeting.targets($feat-structure) {
-    // display and align-items are necessary to make the text field participate
-    // in baseline alignment, even though some variants are 'centered'. Those
-    // variants should use the _baseline-center-aligned() mixin
-    display: inline-flex;
-    align-items: baseline;
-    padding: 0 variables.$padding-horizontal;
-    position: relative;
-    box-sizing: border-box;
-    overflow: hidden;
-    /* @alternate */
-    will-change: opacity, transform, color;
-  }
 }
 
 // This mixin adds styles to visually center the text within the text field.
@@ -1636,6 +1636,10 @@ $_density-config: map.merge(
 @mixin outlined_($query: feature-targeting.all()) {
   $feat-structure: feature-targeting.create-target($query, structure);
 
+  @include feature-targeting.targets($feat-structure) {
+    overflow: visible;
+  }
+
   @include outlined-height(
     $height: variables.$height,
     $keyframe-suffix: text-field-outlined,
@@ -1659,10 +1663,6 @@ $_density-config: map.merge(
     $ripple-target: variables.$ripple-target
   );
   @include _outlined-floating-label($query);
-
-  @include feature-targeting.targets($feat-structure) {
-    overflow: visible;
-  }
 
   .mdc-text-field__input {
     @include feature-targeting.targets($feat-structure) {
@@ -1702,6 +1702,10 @@ $_density-config: map.merge(
 
 @mixin disabled_($query: feature-targeting.all()) {
   $feat-structure: feature-targeting.create-target($query, structure);
+
+  @include feature-targeting.targets($feat-structure) {
+    pointer-events: none;
+  }
 
   @include ink-color_(variables.$disabled-ink-color, $query: $query);
   @include placeholder-color_(
@@ -1765,10 +1769,6 @@ $_density-config: map.merge(
         z-index: 1;
       }
     }
-  }
-
-  @include feature-targeting.targets($feat-structure) {
-    pointer-events: none;
   }
 
   .mdc-floating-label {

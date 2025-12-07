@@ -321,7 +321,7 @@ $light-theme: (
 
   @if $size {
     $value: custom-properties.get-declaration-value($size);
-    @if type-of($value) == 'number' {
+    @if meta.type-of($value) == 'number' {
       @include size($value);
     }
   }

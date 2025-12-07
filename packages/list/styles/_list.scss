@@ -951,8 +951,7 @@ $ripple-target: variables.$ripple-target;
     @include shape-mixins.radius(
       $radius,
       $rtl-reflexive,
-      $component-height:
-        density-functions.prop-value(
+      $component-height: density-functions.prop-value(
           $density-config: variables.$one-line-item-density-config,
           $density-scale: $density-scale,
           $property-name: height
@@ -969,8 +968,7 @@ $ripple-target: variables.$ripple-target;
       @include shape-mixins.radius(
         $radius,
         $rtl-reflexive,
-        $component-height:
-          density-functions.prop-value(
+        $component-height: density-functions.prop-value(
             $density-config: variables.$one-line-item-tall-density-config,
             $density-scale: $density-scale,
             $property-name: height
@@ -984,8 +982,7 @@ $ripple-target: variables.$ripple-target;
       @include shape-mixins.radius(
         $radius,
         $rtl-reflexive,
-        $component-height:
-          density-functions.prop-value(
+        $component-height: density-functions.prop-value(
             $density-config: variables.$one-line-item-taller-density-config,
             $density-scale: $density-scale,
             $property-name: height
@@ -1006,8 +1003,7 @@ $ripple-target: variables.$ripple-target;
     @include shape-mixins.radius(
       $radius,
       $rtl-reflexive,
-      $component-height:
-        density-functions.prop-value(
+      $component-height: density-functions.prop-value(
           $density-config: variables.$two-line-item-density-config,
           $density-scale: $density-scale,
           $property-name: height
@@ -1026,8 +1022,7 @@ $ripple-target: variables.$ripple-target;
       @include shape-mixins.radius(
         $radius,
         $rtl-reflexive,
-        $component-height:
-          density-functions.prop-value(
+        $component-height: density-functions.prop-value(
             $density-config: variables.$two-line-item-tall-density-config,
             $density-scale: $density-scale,
             $property-name: height
@@ -1048,8 +1043,7 @@ $ripple-target: variables.$ripple-target;
     @include shape-mixins.radius(
       $radius,
       $rtl-reflexive,
-      $component-height:
-        density-functions.prop-value(
+      $component-height: density-functions.prop-value(
           $density-config: variables.$three-line-item-density-config,
           $density-scale: $density-scale,
           $property-name: height

@@ -6,7 +6,8 @@
   $mdc-fade-in-duration, $mdc-fade-out-duration, $mdc-light-ink-opacities,
   $mdc-pressed-dark-ink-opacity, $mdc-pressed-light-ink-opacity,
   $mdc-translate-duration;
-@forward '@smui/ripple/styles/variables' as mdc-ripple-* hide $mdc-ripple-states-wash-duration;
+@forward '@smui/ripple/styles/variables' as mdc-ripple-* hide
+  $mdc-ripple-states-wash-duration;
 @forward '@smui/touch-target/styles/variables' as mdc-touch-target-*;
 @forward 'variables' as mdc-radio-*;
 @forward 'mixins' as mdc-radio-*;
@@ -23,7 +24,8 @@
   mdc-ripple-states-selected;
 @forward '@smui/touch-target/styles/mixins' as mdc-* hide mdc-margin,
   mdc-wrapper;
-@forward '@smui/touch-target/styles/mixins' as mdc-touch-target-* hide mdc-touch-target-touch-target;
+@forward '@smui/touch-target/styles/mixins' as mdc-touch-target-* hide
+  mdc-touch-target-touch-target;
 @forward '@smui/animation/functions' as mdc-animation-*;
 @forward '@smui/density/functions' as mdc-density-*;
 @forward '@smui/feature-targeting/functions' as mdc-feature-*;

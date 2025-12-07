@@ -149,7 +149,7 @@
 
   .mdc-image-list__image-aspect-container {
     @include feature-targeting.targets($feat-structure) {
-      padding-bottom: calc(100% / #{$width-height-ratio});
+      padding-bottom: calc(100% / $width-height-ratio);
     }
   }
 }
@@ -195,7 +195,7 @@
     @include feature-targeting.targets($feat-structure) {
       // Subtract extra fraction from each item's width to ensure correct wrapping in IE/Edge which round differently
       width: calc(
-        100% / #{$column-count} - #{$gutter-size + math.div(1, $column-count)}
+        100% / $column-count - ($gutter-size + math.div(1px, $column-count))
       );
       margin: math.div($gutter-size, 2);
     }

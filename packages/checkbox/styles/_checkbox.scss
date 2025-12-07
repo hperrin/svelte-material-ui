@@ -384,12 +384,14 @@
   }
 
   @include feature-targeting.targets($feat-animation) {
-    transition: transition-exit(background-color), transition-exit(border-color);
+    transition:
+      transition-exit(background-color), transition-exit(border-color);
   }
 }
 
 @mixin background--marked_ {
-  transition: transition-enter(border-color), transition-enter(background-color);
+  transition:
+    transition-enter(border-color), transition-enter(background-color);
 }
 
 // stylelint-disable block-no-empty -- For backward compatibility.
@@ -445,11 +447,8 @@
   $feat-structure: feature-targeting.create-target($query, structure);
 
   @include feature-targeting.targets($feat-animation) {
-    transition: transition-enter(
-        opacity,
-        0ms,
-        checkbox-theme.$transition-duration * 2
-      ),
+    transition:
+      transition-enter(opacity, 0ms, checkbox-theme.$transition-duration * 2),
       transition-enter(transform, 0ms, checkbox-theme.$transition-duration * 2);
   }
 
@@ -469,11 +468,8 @@
   }
 
   @include feature-targeting.targets($feat-animation) {
-    transition: transition-exit(
-        opacity,
-        0ms,
-        checkbox-theme.$transition-duration
-      ),
+    transition:
+      transition-exit(opacity, 0ms, checkbox-theme.$transition-duration),
       transition-exit(transform, 0ms, checkbox-theme.$transition-duration);
   }
 }

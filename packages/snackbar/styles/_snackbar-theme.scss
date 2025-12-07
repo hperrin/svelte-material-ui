@@ -134,23 +134,33 @@ $light-theme: (
       (
         focus-label-text-color: map.get($theme, action-focus-label-text-color),
         focus-state-layer-color: map.get($theme, action-focus-state-layer-color),
-        focus-state-layer-opacity:
-          map.get($theme, action-focus-state-layer-opacity),
+        focus-state-layer-opacity: map.get(
+            $theme,
+            action-focus-state-layer-opacity
+          ),
         hover-label-text-color: map.get($theme, action-hover-label-text-color),
         hover-state-layer-color: map.get($theme, action-hover-state-layer-color),
-        hover-state-layer-opacity:
-          map.get($theme, action-hover-state-layer-opacity),
+        hover-state-layer-opacity: map.get(
+            $theme,
+            action-hover-state-layer-opacity
+          ),
         label-text-color: map.get($theme, action-label-text-color),
         label-text-font: map.get($theme, action-label-text-font),
         label-text-size: map.get($theme, action-label-text-size),
         label-text-tracking: map.get($theme, action-label-text-tracking),
         label-text-weight: map.get($theme, action-label-text-weight),
-        pressed-label-text-color:
-          map.get($theme, action-pressed-label-text-color),
-        pressed-state-layer-color:
-          map.get($theme, action-pressed-state-layer-color),
-        pressed-state-layer-opacity:
-          map.get($theme, action-pressed-state-layer-opacity),
+        pressed-label-text-color: map.get(
+            $theme,
+            action-pressed-label-text-color
+          ),
+        pressed-state-layer-color: map.get(
+            $theme,
+            action-pressed-state-layer-color
+          ),
+        pressed-state-layer-opacity: map.get(
+            $theme,
+            action-pressed-state-layer-opacity
+          ),
       )
     );
   }
@@ -161,18 +171,26 @@ $light-theme: (
         icon-size: map.get($theme, icon-size),
         focus-icon-color: map.get($theme, icon-focus-icon-color),
         focus-state-layer-color: map.get($theme, icon-focus-state-layer-color),
-        focus-state-layer-opacity:
-          map.get($theme, icon-focus-state-layer-opacity),
+        focus-state-layer-opacity: map.get(
+            $theme,
+            icon-focus-state-layer-opacity
+          ),
         hover-icon-color: map.get($theme, icon-hover-icon-color),
         hover-state-layer-color: map.get($theme, icon-hover-state-layer-color),
-        hover-state-layer-opacity:
-          map.get($theme, icon-hover-state-layer-opacity),
+        hover-state-layer-opacity: map.get(
+            $theme,
+            icon-hover-state-layer-opacity
+          ),
         icon-color: map.get($theme, icon-color),
         pressed-icon-color: map.get($theme, icon-pressed-icon-color),
-        pressed-state-layer-color:
-          map.get($theme, icon-pressed-state-layer-color),
-        pressed-state-layer-opacity:
-          map.get($theme, icon-pressed-state-layer-opacity),
+        pressed-state-layer-color: map.get(
+            $theme,
+            icon-pressed-state-layer-color
+          ),
+        pressed-state-layer-opacity: map.get(
+            $theme,
+            icon-pressed-state-layer-opacity
+          ),
       )
     );
   }

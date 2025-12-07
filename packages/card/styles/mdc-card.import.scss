@@ -6,7 +6,8 @@
   $mdc-fade-in-duration, $mdc-fade-out-duration, $mdc-light-ink-opacities,
   $mdc-pressed-dark-ink-opacity, $mdc-pressed-light-ink-opacity,
   $mdc-translate-duration;
-@forward '@smui/ripple/styles/variables' as mdc-ripple-* hide $mdc-ripple-states-wash-duration;
+@forward '@smui/ripple/styles/variables' as mdc-ripple-* hide
+  $mdc-ripple-states-wash-duration;
 @forward '@smui/rtl/variables' as mdc-rtl-*;
 @forward '@smui/shape/variables' as mdc-shape-*;
 @forward 'variables' as mdc-card-*;
@@ -15,7 +16,8 @@
   mdc-overlay-common, mdc-overlay-dimensions, mdc-overlay-fill-color,
   mdc-overlay-opacity, mdc-overlay-selector-, mdc-overlay-surface-position,
   mdc-shadow;
-@forward '@smui/elevation/mixins' as mdc-elevation-* hide mdc-elevation-elevation;
+@forward '@smui/elevation/mixins' as mdc-elevation-* hide
+  mdc-elevation-elevation;
 @forward '@smui/ripple/styles/keyframes' as mdc-ripple-*;
 @forward '@smui/ripple/styles/mixins' as mdc-* hide mdc-common, mdc-core-styles,
   mdc-radius-bounded, mdc-radius-unbounded, mdc-surface, mdc-target-common,

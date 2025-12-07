@@ -82,10 +82,10 @@
     }
 
     .mdc-button__focus-ring {
-      @include focus-ring.focus-ring($query: $query);
       @include feature-targeting.targets($feat-structure) {
         display: none;
       }
+      @include focus-ring.focus-ring($query: $query);
     }
 
     @include ripple-theme.focus {

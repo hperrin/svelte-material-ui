@@ -195,7 +195,7 @@
   $query: feature-targeting.all()
 ) {
   @include floating-label-mixins.max-width(
-    calc(100% - #{$truncation}),
+    calc(100% - $truncation),
     $query: $query
   );
 }
@@ -207,7 +207,7 @@
 ) {
   $scale: floating-label-variables.$float-scale;
   @include floating-label-mixins.max-width(
-    calc(100% / #{$scale} - #{$truncation} / #{$scale}),
+    calc(100% / $scale - $truncation / $scale),
     $query: $query
   );
 }

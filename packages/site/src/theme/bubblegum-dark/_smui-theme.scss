@@ -1,5 +1,6 @@
 @use 'sass:math';
 @use 'sass:color';
+@use 'sass:string';
 
 // Color scheme: https://coolors.co/222222-000000-ff4791-37deff-ff7d27
 @use '@smui/theme/index' as theme with (
@@ -32,39 +33,39 @@
 
 // Use custom fonts. Slightly increase font sizes.
 @use '@smui/typography' with (
-  $font-family: unquote('"Poppins", sans-serif'),
+  $font-family: string.unquote('"Poppins", sans-serif'),
   $styles-headline1: (
-    font-family: unquote('"Poetsen One", sans-serif'),
+    font-family: string.unquote('"Poetsen One", sans-serif'),
     font-size: math.div(98px, 16px) * 1rem,
     line-height: math.div(98px, 16px) * 1rem,
     letter-spacing: 0,
   ),
   $styles-headline2: (
-    font-family: unquote('"Poetsen One", sans-serif'),
+    font-family: string.unquote('"Poetsen One", sans-serif'),
     font-size: math.div(62px, 16px) * 1rem,
     line-height: math.div(62px, 16px) * 1rem,
     letter-spacing: 0,
   ),
   $styles-headline3: (
-    font-family: unquote('"Poetsen One", sans-serif'),
+    font-family: string.unquote('"Poetsen One", sans-serif'),
     font-size: math.div(50px, 16px) * 1rem,
     line-height: math.div(52px, 16px) * 1rem,
     letter-spacing: 0,
   ),
   $styles-headline4: (
-    font-family: unquote('"Poetsen One", sans-serif'),
+    font-family: string.unquote('"Poetsen One", sans-serif'),
     font-size: math.div(36px, 16px) * 1rem,
     line-height: math.div(42px, 16px) * 1rem,
     letter-spacing: 0,
   ),
   $styles-headline5: (
-    font-family: unquote('"Poetsen One", sans-serif'),
+    font-family: string.unquote('"Poetsen One", sans-serif'),
     font-size: math.div(26px, 16px) * 1rem,
     line-height: math.div(34px, 16px) * 1rem,
     letter-spacing: 0,
   ),
   $styles-headline6: (
-    font-family: unquote('"Poetsen One", sans-serif'),
+    font-family: string.unquote('"Poetsen One", sans-serif'),
     font-size: math.div(22px, 16px) * 1rem,
     line-height: math.div(34px, 16px) * 1rem,
     letter-spacing: 0,

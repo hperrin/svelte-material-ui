@@ -253,7 +253,8 @@ $ripple-target: '.mdc-switch__ripple';
     left: 0;
     position: absolute;
     top: 0; // IE11 fix
-    transition: animation.standard(background-color, $animation-duration),
+    transition:
+      animation.standard(background-color, $animation-duration),
       animation.standard(border-color, $animation-duration);
     // Move the handle background colors beneath the shadow overlay color,
     // rather than move the overlay on top of the handle with a positive

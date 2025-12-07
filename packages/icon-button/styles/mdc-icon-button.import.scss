@@ -6,7 +6,8 @@
   $mdc-fade-in-duration, $mdc-fade-out-duration, $mdc-light-ink-opacities,
   $mdc-pressed-dark-ink-opacity, $mdc-pressed-light-ink-opacity,
   $mdc-translate-duration;
-@forward '@smui/ripple/styles/variables' as mdc-ripple-* hide $mdc-ripple-states-wash-duration;
+@forward '@smui/ripple/styles/variables' as mdc-ripple-* hide
+  $mdc-ripple-states-wash-duration;
 @forward 'variables' as mdc-icon-button-*;
 @forward '@smui/theme/mixins' as mdc-theme-*;
 @forward '@smui/ripple/styles/keyframes' as mdc-ripple-*;

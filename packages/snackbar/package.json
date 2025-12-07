@@ -10,6 +10,7 @@
       "svelte": "./package.json"
     },
     ".": {
+      "sass": "./_index.scss",
       "types": "./src/index.d.ts",
       "svelte": "./dist/index.js"
     },

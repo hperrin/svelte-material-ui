@@ -58,10 +58,10 @@ $ripple-target: '.mdc-card__ripple';
 
     // Transparent card border for high-contrast mode.
     &::after {
-      @include dom-mixins.transparent-border($query: $query);
       @include feature-targeting.targets($feat-structure) {
         pointer-events: none;
       }
+      @include dom-mixins.transparent-border($query: $query);
     }
   }
 

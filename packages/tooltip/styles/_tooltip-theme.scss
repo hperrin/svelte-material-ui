@@ -249,7 +249,8 @@ $z-index: 9;
 
   @include feature-targeting.targets($feat-animation) {
     .mdc-tooltip--showing-transition .mdc-tooltip__surface-animation {
-      transition: animation-functions.enter(opacity, $enter-duration),
+      transition:
+        animation-functions.enter(opacity, $enter-duration),
         animation-functions.enter(transform, $enter-duration);
     }
   }

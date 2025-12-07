@@ -1,4 +1,5 @@
 @use 'sass:color';
+@use 'sass:string';
 
 @use '@smui/theme/index' as theme with (
   $primary: #008299,
@@ -22,18 +23,18 @@
 
 // Use custom fonts.
 @use '@smui/typography' with (
-  $font-family: unquote('"Selawik", "Segoe UI", sans-serif'),
+  $font-family: string.unquote('"Selawik", "Segoe UI", sans-serif'),
   $styles-headline1: (
-    font-family: unquote('"Selawik Light", "Segoe UI", sans-serif'),
+    font-family: string.unquote('"Selawik Light", "Segoe UI", sans-serif'),
   ),
   $styles-headline2: (
-    font-family: unquote('"Selawik Light", "Segoe UI", sans-serif'),
+    font-family: string.unquote('"Selawik Light", "Segoe UI", sans-serif'),
   ),
   $styles-headline3: (
-    font-family: unquote('"Selawik Light", "Segoe UI", sans-serif'),
+    font-family: string.unquote('"Selawik Light", "Segoe UI", sans-serif'),
   ),
   $styles-headline4: (
-    font-family: unquote('"Selawik Light", "Segoe UI", sans-serif'),
+    font-family: string.unquote('"Selawik Light", "Segoe UI", sans-serif'),
   ),
   $styles-button: (
     text-transform: none,

@@ -14,7 +14,8 @@
   mdc-overlay-common, mdc-overlay-dimensions, mdc-overlay-fill-color,
   mdc-overlay-opacity, mdc-overlay-selector-, mdc-overlay-surface-position,
   mdc-shadow;
-@forward '@smui/elevation/mixins' as mdc-elevation-* hide mdc-elevation-elevation;
+@forward '@smui/elevation/mixins' as mdc-elevation-* hide
+  mdc-elevation-elevation;
 @forward 'mixins' as mdc-menu-surface-*;
 @forward '@smui/feature-targeting/functions' as mdc-feature-*;
 @forward '@smui/theme/functions' as mdc-theme-*;

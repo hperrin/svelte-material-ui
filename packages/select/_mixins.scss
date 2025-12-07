@@ -39,7 +39,8 @@
         (
             select-icon-theme.$icon-size +
               select-icon-theme.$icon-horizontal-margin
-          ) * -1
+          ) *
+          -1
       );
     }
 
@@ -164,7 +165,7 @@
 
   .mdc-floating-label {
     @include floating-label-mixins.max-width(
-      calc(100% - #{$truncation}),
+      calc(100% - $truncation),
       $query: $query
     );
   }
@@ -172,7 +173,7 @@
   .mdc-floating-label--float-above {
     $scale: floating-label-variables.$float-scale;
     @include floating-label-mixins.max-width(
-      calc(100% / #{$scale} - #{$truncation} / #{$scale}),
+      calc(100% / $scale - $truncation / $scale),
       $query: $query
     );
   }

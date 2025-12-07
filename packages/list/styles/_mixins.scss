@@ -115,6 +115,15 @@
       @include deprecated-item-base_;
     }
 
+    @include deprecated-list-item-padding-variant(
+      variables.$deprecated-textual-variant-config,
+      $query
+    );
+    @include deprecated-list-item-height-variant(
+      variables.$deprecated-textual-variant-config,
+      $query
+    );
+
     // For components using aria-activedescendant, the focus pseudoclass is
     // never applied and use `.mdc-ripple-upgraded--background-focused` instead.
     &:not(.mdc-deprecated-list-item--selected):focus::before,
@@ -129,15 +138,6 @@
         $query: $query
       );
     }
-
-    @include deprecated-list-item-padding-variant(
-      variables.$deprecated-textual-variant-config,
-      $query
-    );
-    @include deprecated-list-item-height-variant(
-      variables.$deprecated-textual-variant-config,
-      $query
-    );
 
     .mdc-deprecated-list--icon-list & {
       @include deprecated-list-item-padding-variant(
@@ -518,7 +518,7 @@
       line-height
     );
     $list-subheader-margin: calc(
-      (#{$list-subheader-virtual-height} - #{$list-subheader-leading}) / 2
+      ($list-subheader-virtual-height - $list-subheader-leading) / 2
     );
 
     @include typography.typography(subtitle1, $query);
@@ -973,18 +973,18 @@
   $query: feature-targeting.all()
 ) {
   $feat-structure: feature-targeting.create-target($query, structure);
-  $trailing-inset: if($trailing, variables.$deprecated-trailing-padding, 0);
+  $trailing-inset: if($trailing, variables.$deprecated-trailing-padding, 0px);
   $leading-inset: if(
     $leading,
     if($use-padding, $leading-padding, $text-offset),
-    0
+    0px
   );
 
   @include feature-targeting.targets($feat-structure) {
     @if $leading {
       @include rtl.reflexive-box(margin, left, $leading-inset);
     }
-    width: calc(100% - #{$leading-inset + $trailing-inset});
+    width: calc(100% - ($leading-inset + $trailing-inset));
   }
 }
 

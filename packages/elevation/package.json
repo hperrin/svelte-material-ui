@@ -6,6 +6,9 @@
     "./package.json": {
       "types": "./package.json",
       "svelte": "./package.json"
+    },
+    ".": {
+      "sass": "./_index.scss"
     }
   },
   "keywords": [

@@ -306,8 +306,8 @@
 
     .mdc-evolution-chip__checkmark {
       @include feature-targeting.targets($feat-animation) {
-        transition: animation.linear(opacity, 50ms),
-          animation.standard(transform, 100ms);
+        transition:
+          animation.linear(opacity, 50ms), animation.standard(transform, 100ms);
         @include rtl.ignore-next-line();
         transform: translate(-75%, -50%);
       }
@@ -509,8 +509,8 @@
   }
 
   .mdc-evolution-chip__action--primary:not(
-      .mdc-evolution-chip__action--presentational
-    ) {
+    .mdc-evolution-chip__action--presentational
+  ) {
     @include ripple-theme.focus() {
       .mdc-evolution-chip__focus-ring {
         z-index: 1;
@@ -521,8 +521,8 @@
   }
 
   .mdc-evolution-chip__action--trailing:not(
-      .mdc-evolution-chip__action--presentational
-    ) {
+    .mdc-evolution-chip__action--presentational
+  ) {
     @include ripple-theme.focus() {
       .mdc-evolution-chip__focus-ring {
         z-index: 1;

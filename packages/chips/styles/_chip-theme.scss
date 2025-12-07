@@ -260,8 +260,10 @@ $_custom-property-prefix: 'chip';
     @include _container-elevation(
       (
         enabled: map.get($theme, elevated-selected-container-elevation),
-        disabled:
-          map.get($theme, elevated-selected-disabled-container-elevation),
+        disabled: map.get(
+            $theme,
+            elevated-selected-disabled-container-elevation
+          ),
         hover: map.get($theme, elevated-selected-hover-container-elevation),
         focus: map.get($theme, elevated-selected-focus-container-elevation),
         pressed: map.get($theme, elevated-selected-pressed-container-elevation),
@@ -453,36 +455,60 @@ $_custom-property-prefix: 'chip';
   &.mdc-evolution-chip--selected {
     @include _ripple-theme(
       (
-        focus-state-layer-color:
-          map.get($theme, selected-focus-state-layer-color),
-        focus-state-layer-opacity:
-          map.get($theme, selected-focus-state-layer-opacity),
-        hover-state-layer-color:
-          map.get($theme, selected-hover-state-layer-color),
-        hover-state-layer-opacity:
-          map.get($theme, selected-hover-state-layer-opacity),
-        pressed-state-layer-color:
-          map.get($theme, selected-pressed-state-layer-color),
-        pressed-state-layer-opacity:
-          map.get($theme, selected-pressed-state-layer-opacity),
+        focus-state-layer-color: map.get(
+            $theme,
+            selected-focus-state-layer-color
+          ),
+        focus-state-layer-opacity: map.get(
+            $theme,
+            selected-focus-state-layer-opacity
+          ),
+        hover-state-layer-color: map.get(
+            $theme,
+            selected-hover-state-layer-color
+          ),
+        hover-state-layer-opacity: map.get(
+            $theme,
+            selected-hover-state-layer-opacity
+          ),
+        pressed-state-layer-color: map.get(
+            $theme,
+            selected-pressed-state-layer-color
+          ),
+        pressed-state-layer-opacity: map.get(
+            $theme,
+            selected-pressed-state-layer-opacity
+          ),
       )
     );
   }
   &:not(.mdc-evolution-chip--selected) {
     @include _ripple-theme(
       (
-        focus-state-layer-color:
-          map.get($theme, unselected-focus-state-layer-color),
-        focus-state-layer-opacity:
-          map.get($theme, unselected-focus-state-layer-opacity),
-        hover-state-layer-color:
-          map.get($theme, unselected-hover-state-layer-color),
-        hover-state-layer-opacity:
-          map.get($theme, unselected-hover-state-layer-opacity),
-        pressed-state-layer-color:
-          map.get($theme, unselected-pressed-state-layer-color),
-        pressed-state-layer-opacity:
-          map.get($theme, unselected-pressed-state-layer-opacity),
+        focus-state-layer-color: map.get(
+            $theme,
+            unselected-focus-state-layer-color
+          ),
+        focus-state-layer-opacity: map.get(
+            $theme,
+            unselected-focus-state-layer-opacity
+          ),
+        hover-state-layer-color: map.get(
+            $theme,
+            unselected-hover-state-layer-color
+          ),
+        hover-state-layer-opacity: map.get(
+            $theme,
+            unselected-hover-state-layer-opacity
+          ),
+        pressed-state-layer-color: map.get(
+            $theme,
+            unselected-pressed-state-layer-color
+          ),
+        pressed-state-layer-opacity: map.get(
+            $theme,
+            unselected-pressed-state-layer-opacity
+          ),
       )
     );
   }
@@ -546,15 +572,23 @@ $_custom-property-prefix: 'chip';
     @include ripple-theme.internal-theme-styles(
       (
         focus-state-layer-color: map.get($ripple-theme, focus-state-layer-color),
-        focus-state-layer-opacity:
-          map.get($ripple-theme, focus-state-layer-opacity),
+        focus-state-layer-opacity: map.get(
+            $ripple-theme,
+            focus-state-layer-opacity
+          ),
         hover-state-layer-color: map.get($ripple-theme, hover-state-layer-color),
-        hover-state-layer-opacity:
-          map.get($ripple-theme, hover-state-layer-opacity),
-        pressed-state-layer-color:
-          map.get($ripple-theme, pressed-state-layer-color),
-        pressed-state-layer-opacity:
-          map.get($ripple-theme, pressed-state-layer-opacity),
+        hover-state-layer-opacity: map.get(
+            $ripple-theme,
+            hover-state-layer-opacity
+          ),
+        pressed-state-layer-color: map.get(
+            $ripple-theme,
+            pressed-state-layer-color
+          ),
+        pressed-state-layer-opacity: map.get(
+            $ripple-theme,
+            pressed-state-layer-opacity
+          ),
       ),
       $ripple-target: $ripple-target
     );
@@ -823,8 +857,8 @@ $_custom-property-prefix: 'chip';
   $feat-color: feature-targeting.create-target($query, color);
 
   .mdc-evolution-chip__action--primary:not(
-      .mdc-evolution-chip__action--presentational
-    ) {
+    .mdc-evolution-chip__action--presentational
+  ) {
     @include ripple-theme.focus() {
       &:before {
         @include feature-targeting.targets($feat-color) {
@@ -928,8 +962,8 @@ $_custom-property-prefix: 'chip';
   }
 
   .mdc-evolution-chip__action--primary:not(
-      .mdc-evolution-chip__action--presentational
-    ) {
+    .mdc-evolution-chip__action--presentational
+  ) {
     @include ripple-theme.focus() {
       @include _text-label-color(state.get-focus-state($color-or-map), $query);
     }
@@ -1037,8 +1071,8 @@ $_custom-property-prefix: 'chip';
   }
 
   .mdc-evolution-chip__action--primary:not(
-      .mdc-evolution-chip__action--presentational
-    ) {
+    .mdc-evolution-chip__action--presentational
+  ) {
     @include ripple-theme.focus() {
       @include _icon-color(state.get-focus-state($color-or-map), $query);
     }
@@ -1089,8 +1123,8 @@ $_custom-property-prefix: 'chip';
   }
 
   .mdc-evolution-chip__action--primary:not(
-      .mdc-evolution-chip__action--presentational
-    ) {
+    .mdc-evolution-chip__action--presentational
+  ) {
     @include ripple-theme.focus() {
       @include _icon-container-color(
         state.get-focus-state($color-or-map),

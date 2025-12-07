@@ -64,6 +64,10 @@
   }
 
   .mdc-linear-progress {
+    @include feature-targeting.targets($feat-animation) {
+      transition: animation-functions.exit-temporary(opacity, 250ms);
+    }
+
     @include feature-targeting.targets($feat-structure) {
       position: relative;
       width: 100%;
@@ -75,10 +79,6 @@
       @include dom.forced-colors-mode($exclude-ie11: true) {
         outline-color: CanvasText;
       }
-    }
-
-    @include feature-targeting.targets($feat-animation) {
-      transition: animation-functions.exit-temporary(opacity, 250ms);
     }
 
     &__bar {

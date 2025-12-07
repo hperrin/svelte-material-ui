@@ -40,7 +40,8 @@
 
     @include feature-targeting.targets($feat-animation) {
       &::after {
-        transition: functions.transition-value(transform),
+        transition:
+          functions.transition-value(transform),
           functions.transition-value(opacity);
       }
     }

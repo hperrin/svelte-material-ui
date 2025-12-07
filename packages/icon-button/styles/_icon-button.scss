@@ -97,15 +97,15 @@
   }
 
   .mdc-icon-button__focus-ring {
+    @include feature-targeting.targets($feat-structure) {
+      display: none;
+    }
+
     @include focus-ring.focus-ring(
       $query: $query,
       $container-outer-padding-vertical: 0,
       $container-outer-padding-horizontal: 0
     );
-
-    @include feature-targeting.targets($feat-structure) {
-      display: none;
-    }
   }
 
   .mdc-icon-button__icon {

@@ -54,8 +54,8 @@
 
   .mdc-ripple-surface[data-mdc-ripple-is-unbounded],
   .mdc-ripple-upgraded--unbounded {
-    @include radius-unbounded($query: $query);
     @include unbounded-styles($query: $query);
+    @include radius-unbounded($query: $query);
   }
 }
 

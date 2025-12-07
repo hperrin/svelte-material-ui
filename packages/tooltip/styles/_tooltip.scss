@@ -117,10 +117,6 @@ $_caret-size: 24px;
   }
 
   .mdc-tooltip__surface {
-    &::before {
-      @include dom-mixins.transparent-border($query: $query);
-    }
-
     @include feature-targeting.targets($feat-structure) {
       line-height: $_line-height;
       padding: $_padding-y $_padding-x;
@@ -131,6 +127,10 @@ $_caret-size: 24px;
       box-sizing: border-box;
       overflow: hidden;
       text-align: center;
+    }
+
+    &::before {
+      @include dom-mixins.transparent-border($query: $query);
     }
 
     .mdc-tooltip--rich & {
@@ -171,13 +171,13 @@ $_caret-size: 24px;
 
     .mdc-tooltip__content {
       @include feature-targeting.targets($feat-structure) {
-        max-width: calc(#{$_max-width} - (2 * #{$_content-margin}));
+        max-width: calc($_max-width - (2 * $_content-margin));
         margin: $_content-margin;
       }
 
       .mdc-tooltip--rich & {
         @include feature-targeting.targets($feat-structure) {
-          max-width: calc(#{$_rich_max-width} - (2 * #{$_content-margin}));
+          max-width: calc($_rich_max-width - (2 * $_content-margin));
           align-self: stretch;
         }
       }
@@ -314,7 +314,7 @@ $_caret-size: 24px;
 
       .mdc-tooltip--rich & {
         @include feature-targeting.targets($feat-structure) {
-          max-width: calc(#{$_rich_max-width} - (2 * #{$_content-margin}));
+          max-width: calc($_rich_max-width - (2 * $_content-margin));
           align-self: stretch;
         }
       }

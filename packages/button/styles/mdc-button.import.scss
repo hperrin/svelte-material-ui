@@ -6,7 +6,8 @@
   $mdc-fade-in-duration, $mdc-fade-out-duration, $mdc-light-ink-opacities,
   $mdc-pressed-dark-ink-opacity, $mdc-pressed-light-ink-opacity,
   $mdc-translate-duration;
-@forward '@smui/ripple/styles/variables' as mdc-ripple-* hide $mdc-ripple-states-wash-duration;
+@forward '@smui/ripple/styles/variables' as mdc-ripple-* hide
+  $mdc-ripple-states-wash-duration;
 @forward '@smui/rtl/variables' as mdc-rtl-*;
 @forward '@smui/touch-target/styles/variables' as mdc-touch-target-*;
 @forward '@smui/typography/variables' as mdc-typography-*;
@@ -19,7 +20,8 @@
   mdc-overlay-common, mdc-overlay-dimensions, mdc-overlay-fill-color,
   mdc-overlay-opacity, mdc-overlay-selector-, mdc-overlay-surface-position,
   mdc-shadow;
-@forward '@smui/elevation/mixins' as mdc-elevation-* hide mdc-elevation-elevation;
+@forward '@smui/elevation/mixins' as mdc-elevation-* hide
+  mdc-elevation-elevation;
 @forward '@smui/ripple/styles/keyframes' as mdc-ripple-*;
 @forward '@smui/ripple/styles/mixins' as mdc-* hide mdc-common, mdc-core-styles,
   mdc-radius-bounded, mdc-radius-unbounded, mdc-surface, mdc-target-common,
@@ -35,10 +37,12 @@
 @forward '@smui/rtl/mixins' as mdc-rtl-* hide mdc-rtl-rtl;
 @forward '@smui/touch-target/styles/mixins' as mdc-* hide mdc-margin,
   mdc-wrapper;
-@forward '@smui/touch-target/styles/mixins' as mdc-touch-target-* hide mdc-touch-target-touch-target;
+@forward '@smui/touch-target/styles/mixins' as mdc-touch-target-* hide
+  mdc-touch-target-touch-target;
 @forward '@smui/typography/mixins' as mdc-* hide mdc-base, mdc-baseline-bottom,
   mdc-baseline-strut-, mdc-baseline-top, mdc-core-styles, mdc-overflow-ellipsis;
-@forward '@smui/typography/mixins' as mdc-typography-* hide mdc-typography-typography;
+@forward '@smui/typography/mixins' as mdc-typography-* hide
+  mdc-typography-typography;
 @forward '@smui/shape/mixins' as mdc-shape-*;
 @forward '@smui/feature-targeting/functions' as mdc-feature-*;
 @forward '@smui/theme/functions' as mdc-theme-*;

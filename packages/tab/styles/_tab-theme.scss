@@ -225,8 +225,10 @@ $custom-property-prefix-secondary: 'secondary-navigation-tab';
       default: map.get($theme, with-label-text-inactive-label-text-color),
       hover: map.get($theme, with-label-text-inactive-hover-label-text-color),
       focus: map.get($theme, with-label-text-inactive-focus-label-text-color),
-      pressed:
-        map.get($theme, with-label-text-inactive-pressed-label-text-color),
+      pressed: map.get(
+          $theme,
+          with-label-text-inactive-pressed-label-text-color
+        ),
     )
   );
 

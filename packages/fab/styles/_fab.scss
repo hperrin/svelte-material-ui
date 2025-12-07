@@ -112,11 +112,11 @@
   @include static-styles($query: $query);
 
   .mdc-fab {
+    @include elevation-theme.elevation(6, $query: $query);
     @include fab-theme.container-color(secondary, $query: $query);
     @include fab-theme.icon-size(24px, $query: $query);
     @include fab-theme.ink-color(on-secondary, $query: $query);
     @include fab-theme.shape-radius(fab-theme.$shape-radius, $query: $query);
-    @include elevation-theme.elevation(6, $query: $query);
   }
 }
 

@@ -153,11 +153,6 @@
   }
 
   .mdc-snackbar__surface {
-    // 1px border around the snackbar surface for high contrast mode.
-    &::before {
-      @include dom-mixins.transparent-border($query: $query);
-    }
-
     @include feature-targeting.targets($feat-structure) {
       @include rtl.reflexive-property(padding, 0, snackbar-theme.$padding);
 
@@ -169,6 +164,11 @@
       opacity: 0;
     }
 
+    // 1px border around the snackbar surface for high contrast mode.
+    &::before {
+      @include dom-mixins.transparent-border($query: $query);
+    }
+
     .mdc-snackbar--open & {
       @include feature-targeting.targets($feat-structure) {
         transform: scale(1);
@@ -177,10 +177,8 @@
       }
 
       @include feature-targeting.targets($feat-animation) {
-        transition: animation-functions.enter(
-            opacity,
-            snackbar-theme.$enter-duration
-          ),
+        transition:
+          animation-functions.enter(opacity, snackbar-theme.$enter-duration),
           animation-functions.enter(transform, snackbar-theme.$enter-duration);
       }
     }

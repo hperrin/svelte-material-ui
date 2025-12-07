@@ -10,7 +10,8 @@
   $mdc-fade-in-duration, $mdc-fade-out-duration, $mdc-light-ink-opacities,
   $mdc-pressed-dark-ink-opacity, $mdc-pressed-light-ink-opacity,
   $mdc-translate-duration;
-@forward '@smui/ripple/styles/variables' as mdc-ripple-* hide $mdc-ripple-states-wash-duration;
+@forward '@smui/ripple/styles/variables' as mdc-ripple-* hide
+  $mdc-ripple-states-wash-duration;
 @forward '@smui/density/variables' as mdc-density-*;
 @forward 'icon/variables' as mdc-text-field-*;
 @forward 'variables' as mdc-text-field-*;
@@ -20,7 +21,8 @@
 @forward '@smui/theme/mixins' as mdc-theme-*;
 @forward '@smui/typography/mixins' as mdc-* hide mdc-base, mdc-baseline-bottom,
   mdc-baseline-strut-, mdc-baseline-top, mdc-core-styles, mdc-overflow-ellipsis;
-@forward '@smui/typography/mixins' as mdc-typography-* hide mdc-typography-typography;
+@forward '@smui/typography/mixins' as mdc-typography-* hide
+  mdc-typography-typography;
 @forward '@smui/floating-label/styles/mixins' as mdc-floating-label-*;
 @forward '@smui/line-ripple/styles/mixins' as mdc-line-ripple-*;
 @forward '@smui/shape/mixins' as mdc-shape-*;
@@ -60,7 +62,8 @@
   $mdc-text-field-disabled-placeholder-ink-color,
   $mdc-text-field-disabled-helper-text-color, $mdc-text-field-background,
   $mdc-text-field-disabled-background, $mdc-text-field-secondary-text,
-  $mdc-text-field-outlined-idle-border, $mdc-text-field-outlined-disabled-border,
+  $mdc-text-field-outlined-idle-border,
+  $mdc-text-field-outlined-disabled-border,
   $mdc-text-field-outlined-hover-border, $mdc-text-field-textarea-border,
   $mdc-text-field-textarea-background,
   $mdc-text-field-textarea-disabled-border-color,
@@ -74,9 +77,10 @@
   $mdc-text-field-outlined-dense-label-position-y,
   $mdc-text-field-outlined-with-leading-icon-label-position-x,
   $mdc-text-field-outlined-dense-with-leading-icon-label-position-x,
-  $mdc-text-field-textarea-label-position-y, $mdc-text-field-helper-line-padding,
-  $mdc-text-field-input-padding, $mdc-text-field-input-padding-top,
-  $mdc-text-field-input-padding-bottom, $mdc-text-field-input-border-bottom,
+  $mdc-text-field-textarea-label-position-y,
+  $mdc-text-field-helper-line-padding, $mdc-text-field-input-padding,
+  $mdc-text-field-input-padding-top, $mdc-text-field-input-padding-bottom,
+  $mdc-text-field-input-border-bottom,
   mdc-text-field-get-outlined-label-position-y, mdc-text-field-core-styles,
   mdc-text-field-without-ripple, mdc-text-field-ripple, mdc-text-field-density,
   mdc-text-field-outlined-density,

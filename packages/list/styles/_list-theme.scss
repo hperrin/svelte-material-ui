@@ -262,8 +262,10 @@ $light-theme: (
   @include _list-item-trailing-supporting-text-typography(
     (
       font: map.get($theme, list-item-trailing-supporting-text-font),
-      line-height:
-        map.get($theme, list-item-trailing-supporting-text-line-height),
+      line-height: map.get(
+          $theme,
+          list-item-trailing-supporting-text-line-height
+        ),
       size: map.get($theme, list-item-trailing-supporting-text-size),
       tracking: map.get($theme, list-item-trailing-supporting-text-tracking),
       weight: map.get($theme, list-item-trailing-supporting-text-weight),

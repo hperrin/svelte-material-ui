@@ -473,7 +473,7 @@
     @include typography.typography(subtitle2, $query: $query);
 
     @include feature-targeting.targets($feat-structure) {
-      height: calc(48px - 2 * #{variables.$list-item-spacing});
+      height: calc(48px - 2 * variables.$list-item-spacing);
       // To accomodate margin conflict.
       margin: (variables.$list-item-spacing * 2) 8px;
       padding: 0 math.div(variables.$surface-padding, 2);

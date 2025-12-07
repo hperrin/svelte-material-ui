@@ -68,9 +68,6 @@
   .mdc-dialog {
     // Note: the top padding is only 20px for dialogs without titles; see below for override.
     @include content-padding(20px, 24px, 20px, 24px, $query: $query);
-    @include min-width(variables.$min-width, $query: $query);
-    @include max-width(variables.$max-width, variables.$margin, $query: $query);
-    @include max-height(null, variables.$margin, $query: $query);
 
     @include feature-targeting.targets($feat-structure) {
       // Use `display: none` instead of `visibility: hidden` to avoid recalculating layout when the dialog is closed.
@@ -81,6 +78,10 @@
       );
       @include theme.property(z-index, $z-index);
     }
+
+    @include min-width(variables.$min-width, $query: $query);
+    @include max-width(variables.$max-width, variables.$margin, $query: $query);
+    @include max-height(null, variables.$margin, $query: $query);
 
     &.mdc-dialog--fullscreen {
       @include _fullscreen-dialog-size($query: $query);
@@ -546,6 +547,8 @@
 @mixin core-styles($query: feature-targeting.all()) {
   $feat-structure: feature-targeting.create-target($query, structure);
 
+  @include static-styles($query: $query);
+
   .mdc-dialog {
     @include container-fill-color(surface, $query: $query);
     @include scrim-color(variables.$scrim-color, $query: $query);
@@ -576,8 +579,6 @@
       /** Hook for theming API. */
     }
   }
-
-  @include static-styles($query: $query);
 }
 
 @mixin container-fill-color($color, $query: feature-targeting.all()) {
@@ -760,7 +761,7 @@
   $feat-structure: feature-targeting.create-target($query, structure);
   $max-width-breakpoint: $max-width + ($margin * 2);
   // Fit snugly within the viewport at smaller screen sizes.
-  $below-breakpoint-max-width: calc(100vw - #{$margin * 2});
+  $below-breakpoint-max-width: calc(100vw - ($margin * 2));
 
   @if $max-width {
     @include max-width-with-breakpoint(
@@ -780,7 +781,7 @@
 
 @mixin max-height($max-height, $margin, $query: feature-targeting.all()) {
   $feat-structure: feature-targeting.create-target($query, structure);
-  $max-size-calc-expr: calc(100% - #{$margin * 2});
+  $max-size-calc-expr: calc(100% - ($margin * 2));
 
   .mdc-dialog__surface {
     @include feature-targeting.targets($feat-structure) {
@@ -1004,7 +1005,7 @@
     @media (min-width: 960px) {
       @include feature-targeting.targets($feat-structure) {
         $min-horizontal-margin: 200px;
-        width: calc(100vw - #{$min-horizontal-margin * 2});
+        width: calc(100vw - ($min-horizontal-margin * 2));
         @include _modal-header(
           $close-icon-padding: variables.$close-icon-padding
         );
@@ -1025,7 +1026,7 @@
   $horizontal-margin,
   $max-width
 ) {
-  $max-width-calc-expr: calc(100vw - #{$horizontal-margin * 2});
+  $max-width-calc-expr: calc(100vw - ($horizontal-margin * 2));
   $max-width-breakpoint: $max-width + ($horizontal-margin * 2);
 
   @media (max-width: $max-width-breakpoint) {
@@ -1035,7 +1036,7 @@
     width: $max-width;
   }
 
-  $max-height-calc-expr: calc(100vh - #{$vertical-margin * 2});
+  $max-height-calc-expr: calc(100vh - ($vertical-margin * 2));
   $max-height-breakpoint: $max-height + ($vertical-margin * 2);
 
   @media (max-height: $max-height-breakpoint) {

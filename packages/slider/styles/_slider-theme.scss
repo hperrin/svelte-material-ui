@@ -74,8 +74,7 @@ $light-theme: (
   inactive-track-color: $color,
   inactive-track-height: 4px,
   inactive-track-shape: 9999px,
-  label-container-color:
-    color.mix(
+  label-container-color: color.mix(
       $value-indicator-color,
       theme-color.prop-value(on-primary),
       $value-indicator-opacity * 100%
@@ -694,8 +693,10 @@ $light-theme: (
         focus-state-layer-opacity: map.get($theme, 'focus-state-layer-opacity'),
         hover-state-layer-color: map.get($theme, 'hover-state-layer-color'),
         hover-state-layer-opacity: map.get($theme, 'hover-state-layer-opacity'),
-        pressed-state-layer-opacity:
-          map.get($theme, 'pressed-state-layer-opacity'),
+        pressed-state-layer-opacity: map.get(
+            $theme,
+            'pressed-state-layer-opacity'
+          ),
       )
     );
   }

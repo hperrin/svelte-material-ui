@@ -231,18 +231,30 @@ $error-color: error !default;
   );
   @include _menu-list-item-state-layer(
     (
-      focus-state-layer-color:
-        map.get($theme, menu-list-item-focus-state-layer-color),
-      focus-state-layer-opacity:
-        map.get($theme, menu-list-item-focus-state-layer-opacity),
-      hover-state-layer-color:
-        map.get($theme, menu-list-item-hover-state-layer-color),
-      hover-state-layer-opacity:
-        map.get($theme, menu-list-item-hover-state-layer-opacity),
-      pressed-state-layer-color:
-        map.get($theme, menu-list-item-pressed-state-layer-color),
-      pressed-state-layer-opacity:
-        map.get($theme, menu-list-item-pressed-state-layer-opacity),
+      focus-state-layer-color: map.get(
+          $theme,
+          menu-list-item-focus-state-layer-color
+        ),
+      focus-state-layer-opacity: map.get(
+          $theme,
+          menu-list-item-focus-state-layer-opacity
+        ),
+      hover-state-layer-color: map.get(
+          $theme,
+          menu-list-item-hover-state-layer-color
+        ),
+      hover-state-layer-opacity: map.get(
+          $theme,
+          menu-list-item-hover-state-layer-opacity
+        ),
+      pressed-state-layer-color: map.get(
+          $theme,
+          menu-list-item-pressed-state-layer-color
+        ),
+      pressed-state-layer-opacity: map.get(
+          $theme,
+          menu-list-item-pressed-state-layer-opacity
+        ),
     )
   );
   @include _menu-list-item-selected-container-color(
@@ -1286,6 +1298,10 @@ $error-color: error !default;
   }
 
   .mdc-select__anchor {
+    @include feature-targeting.targets($feat-structure) {
+      @include theme.property(height, $new-height);
+    }
+
     // Floating label position
     @include notched-outline-mixins.floating-label-float-position-absolute(
       $positionY,
@@ -1304,10 +1320,6 @@ $error-color: error !default;
         $positionY,
         $query: $query
       );
-    }
-
-    @include feature-targeting.targets($feat-structure) {
-      @include theme.property(height, $new-height);
     }
   }
 
@@ -1445,16 +1457,18 @@ $error-color: error !default;
       // not currently greater than the default padding.
       $value: custom-properties.create-var($padding);
       @if ($add-label-padding) {
-        $value: calc(#{$value} + #{notched-outline-variables.$padding});
+        $value: calc($value + notched-outline-variables.$padding);
       }
 
+      // TODO: remove this if it's no longer necessary, since interpolation
+      // got migrated away
       // Interpolation is a workaround for sass/sass#3259.
-      @supports (top: max(#{0%})) {
+      @supports (top: max(0%)) {
         // A max() function makes this runtime dynamic. The padding will be
         // whichever is greater: the default horizontal padding, or the
         // calculated custom property plus extra padding.
         @include rtl.ignore-next-line();
-        #{$property}: max(#{$anchor-padding-left}, #{$value});
+        #{$property}: max($anchor-padding-left, #{$value});
       }
     }
   }
@@ -1619,7 +1633,7 @@ $error-color: error !default;
 
   .mdc-floating-label {
     @include floating-label-mixins.max-width(
-      calc(100% - #{$truncation}),
+      calc(100% - $truncation),
       $query: $query
     );
   }
@@ -1627,7 +1641,7 @@ $error-color: error !default;
   .mdc-floating-label--float-above {
     $scale: floating-label-variables.$float-scale;
     @include floating-label-mixins.max-width(
-      calc(100% / #{$scale} - #{$truncation} / #{$scale}),
+      calc(100% / $scale - $truncation / $scale),
       $query: $query
     );
   }
@@ -1655,7 +1669,7 @@ $error-color: error !default;
   }
   .mdc-select__anchor {
     @include notched-outline-mixins.notch-max-width(
-      calc(100% - #{$truncation}),
+      calc(100% - $truncation),
       $query: $query
     );
   }

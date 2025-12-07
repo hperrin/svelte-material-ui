@@ -45,12 +45,12 @@ $shape-radius: medium !default;
     @include feature-targeting.targets($feat-structure) {
       $max-width: custom-properties.create(
         --mdc-menu-max-width,
-        calc(100vw - #{$min-distance-from-edge})
+        calc(100vw - $min-distance-from-edge)
       );
       @include theme.property(max-width, $max-width);
       $max-height: custom-properties.create(
         --mdc-menu-max-height,
-        calc(100vh - #{$min-distance-from-edge})
+        calc(100vh - $min-distance-from-edge)
       );
       @include theme.property(max-height, $max-height);
       z-index: $z-index;
@@ -64,15 +64,15 @@ $shape-radius: medium !default;
         height 250ms animation-variables.$deceleration-curve-timing-function;
     }
 
+    @include fill-color(surface, $query);
+    @include ink-color(on-surface, $query);
+    @include shape-radius($shape-radius, false, $query);
+
     &--animating-closed {
       @include feature-targeting.targets($feat-animation) {
         transition: opacity $fade-out-duration linear;
       }
     }
-
-    @include fill-color(surface, $query);
-    @include ink-color(on-surface, $query);
-    @include shape-radius($shape-radius, false, $query);
   }
   // postcss-bem-linter: end
 }

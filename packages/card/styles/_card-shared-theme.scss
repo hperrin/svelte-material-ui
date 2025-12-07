@@ -65,8 +65,10 @@ $ripple-target: '.mdc-card__ripple';
         hover-state-layer-color: map.get($theme, hover-state-layer-color),
         hover-state-layer-opacity: map.get($theme, hover-state-layer-opacity),
         pressed-state-layer-color: map.get($theme, pressed-state-layer-color),
-        pressed-state-layer-opacity:
-          map.get($theme, pressed-state-layer-opacity),
+        pressed-state-layer-opacity: map.get(
+            $theme,
+            pressed-state-layer-opacity
+          ),
       ),
       $ripple-target: $ripple-target
     );

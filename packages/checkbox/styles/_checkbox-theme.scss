@@ -85,27 +85,37 @@ $light-theme: (
   selected-focus-state-layer-opacity: 0.12,
   selected-hover-icon-color: $baseline-theme-color,
   selected-hover-state-layer-color: $baseline-theme-color,
-  selected-hover-state-layer-opacity:
-    map.get(ripple-theme.$dark-ink-opacities, hover),
+  selected-hover-state-layer-opacity: map.get(
+      ripple-theme.$dark-ink-opacities,
+      hover
+    ),
   selected-icon-color: $baseline-theme-color,
   selected-pressed-icon-color: $baseline-theme-color,
   selected-pressed-state-layer-color: theme-color.$on-surface,
-  selected-pressed-state-layer-opacity:
-    map.get(ripple-theme.$dark-ink-opacities, pressed),
+  selected-pressed-state-layer-opacity: map.get(
+      ripple-theme.$dark-ink-opacities,
+      pressed
+    ),
   state-layer-size: $ripple-size,
   unselected-focus-icon-color: $baseline-theme-color,
   unselected-focus-state-layer-color: theme-color.$on-surface,
-  unselected-focus-state-layer-opacity:
-    map.get(ripple-theme.$dark-ink-opacities, focus),
+  unselected-focus-state-layer-opacity: map.get(
+      ripple-theme.$dark-ink-opacities,
+      focus
+    ),
   unselected-hover-icon-color: $baseline-theme-color,
   unselected-hover-state-layer-color: theme-color.$on-surface,
-  unselected-hover-state-layer-opacity:
-    map.get(ripple-theme.$dark-ink-opacities, hover),
+  unselected-hover-state-layer-opacity: map.get(
+      ripple-theme.$dark-ink-opacities,
+      hover
+    ),
   unselected-icon-color: $border-color,
   unselected-pressed-icon-color: $border-color,
   unselected-pressed-state-layer-color: theme-color.$on-surface,
-  unselected-pressed-state-layer-opacity:
-    map.get(ripple-theme.$dark-ink-opacities, pressed),
+  unselected-pressed-state-layer-opacity: map.get(
+      ripple-theme.$dark-ink-opacities,
+      pressed
+    ),
 );
 
 $forced-colors-theme: (

@@ -25,5 +25,5 @@
   container-color, icon-size, ink-color, focus-outline-width,
   focus-outline-color, shape-radius;
 @forward './fab' show core-styles, without-ripple, ripple, $icon-enter-delay_,
-  $icon-enter-duration_, base_, mini_, extended_, icon_, label_, icon-overrides_,
-  exited_;
+  $icon-enter-duration_, base_, mini_, extended_, icon_, label_,
+  icon-overrides_, exited_;

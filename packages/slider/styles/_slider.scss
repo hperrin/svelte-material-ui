@@ -85,10 +85,6 @@ $_track-inactive-height: 4px;
   $feat-structure: feature-targeting.create-target($query, structure);
 
   .mdc-slider {
-    @include _track($query: $query);
-    @include _thumb($query: $query);
-    @include _tick-marks($query: $query);
-
     @include feature-targeting.targets($feat-structure) {
       cursor: pointer;
       height: $_thumb-ripple-size;
@@ -96,6 +92,10 @@ $_track-inactive-height: 4px;
       position: relative;
       touch-action: pan-y;
     }
+
+    @include _track($query: $query);
+    @include _thumb($query: $query);
+    @include _tick-marks($query: $query);
 
     &--discrete {
       .mdc-slider__thumb,
@@ -188,13 +188,13 @@ $_track-inactive-height: 4px;
   }
 
   .mdc-slider__track--inactive {
-    &::before {
-      @include dom-mixins.transparent-border($query: $query); // For HCM.
-    }
-
     @include feature-targeting.targets($feat-structure) {
       left: 0;
       top: 0;
+    }
+
+    &::before {
+      @include dom-mixins.transparent-border($query: $query); // For HCM.
     }
   }
 }

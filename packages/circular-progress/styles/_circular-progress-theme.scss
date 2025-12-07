@@ -23,6 +23,7 @@
 // stylelint-disable selector-class-pattern --
 // Selector '.mdc-*' should only be used in this project.
 
+@use 'sass:list';
 @use 'sass:map';
 @use 'sass:string';
 @use '@smui/theme/color-palette';
@@ -156,7 +157,7 @@ $light-theme: (
 @mixin indeterminate-colors($colors, $query: feature-targeting.all()) {
   $feat-color: feature-targeting.create-target($query, color);
 
-  @if length($colors) != 4 {
+  @if list.length($colors) != 4 {
     @error "`mdc-circular-progress-colors` accepts exactly 4 colors";
   }
 
@@ -164,7 +165,7 @@ $light-theme: (
     .mdc-circular-progress__color-#{$i}
       .mdc-circular-progress__indeterminate-circle-graphic {
       @include feature-targeting.targets($feat-color) {
-        @include theme.property(stroke, nth($colors, $i));
+        @include theme.property(stroke, list.nth($colors, $i));
 
         @include dom.forced-colors-mode {
           @include theme.property(stroke, CanvasText);
