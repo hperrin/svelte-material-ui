@@ -51,6 +51,6 @@
   :global(#smui-app) {
     display: block;
     height: auto;
-    overflow: auto;
+    overflow: initial;
   }
 </style>

@@ -1,4 +1,4 @@
-<div style="display: flex; flex-wrap: wrap; align-items: center;">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 1em;">
   <Button><Label>Button with a Label</Label></Button>
 
   <Fab extended><Label>Fab with a Label</Label></Fab>

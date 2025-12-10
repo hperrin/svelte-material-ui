@@ -1,7 +1,7 @@
 <Card class="demo-spaced">
   <Content>
     {#if children}
-      <h6 class="mdc-typography--headline6" style="margin: 0;">
+      <h6 class="mdc-typography--headline6" style="margin: 0 0 10px;">
         {@render children()}
       </h6>
     {/if}

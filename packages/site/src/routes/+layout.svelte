@@ -100,7 +100,7 @@
           tag="a"
           href="/"
           class="mdc-theme--on-surface"
-          style={miniWindow ? 'padding-left: 0;' : ''}
+          style="color: inherit; {miniWindow ? 'padding-left: 0;' : ''}"
         >
           {miniWindow ? 'SMUI' : 'Svelte Material UI'}
         </Title>
