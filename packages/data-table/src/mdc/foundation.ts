@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  */
 
-import { MDCFoundation } from '@smui/base/foundation';
+import { MDCFoundation } from '@smui/common/base/foundation';
 
 import type { MDCDataTableAdapter } from './adapter';
 import { cssClasses, SortValue, attributes } from './constants';

@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  */
 
-import { MDCFoundation } from '@smui/base/foundation';
+import { MDCFoundation } from '@smui/common/base/foundation';
 
 import type { MDCTopAppBarAdapter } from './adapter';
 import { cssClasses, numbers, strings } from './constants';

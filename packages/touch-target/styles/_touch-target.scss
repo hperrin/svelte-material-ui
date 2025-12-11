@@ -24,7 +24,7 @@
 // Selector '.mdc-*' should only be used in this project.
 
 @use 'sass:math';
-@use '@smui/base/mixins' as base-mixins;
+@use '@smui/common/styles/base/mixins' as base-mixins;
 @use '@smui/feature-targeting/feature-targeting';
 @use '@smui/rtl/rtl';
 @use '@smui/theme/theme';

@@ -1,7 +1,7 @@
 @forward '@smui/animation' as mdc-animation-*;
 @forward '@smui/density' as mdc-density-*;
 @forward '@smui/feature-targeting' as mdc-feature-*;
-@forward '@smui/base' as mdc-base-*;
+@forward '@smui/common/styles/base' as mdc-base-*;
 @forward '@smui/theme/all-theme-deprecated' as mdc-theme-* hide
     $mdc-theme-red-50,
   $mdc-theme-red-100, $mdc-theme-red-200, $mdc-theme-red-300,

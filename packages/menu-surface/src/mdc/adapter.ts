@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  */
 
-import type { EventType, SpecificEventListener } from '@smui/base/types';
+import type { EventType, SpecificEventListener } from '@smui/common/base/types';
 
 import type { MDCMenuDimensions, MDCMenuDistance, MDCMenuPoint } from './types';
 

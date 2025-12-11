@@ -24,6 +24,37 @@
     "./internal": {
       "types": "./src/internal/index.d.ts",
       "svelte": "./dist/internal/index.js"
+    },
+    "./base": {
+      "sass": "./styles/base/_index.scss",
+      "types": "./dist/base/index.d.ts",
+      "svelte": "./dist/base/index.js",
+      "default": "./dist/base/index.js"
+    },
+    "./base/component": {
+      "types": "./dist/base/component.d.ts",
+      "svelte": "./dist/base/component.js",
+      "default": "./dist/base/component.js"
+    },
+    "./base/foundation": {
+      "types": "./dist/base/foundation.d.ts",
+      "svelte": "./dist/base/foundation.js",
+      "default": "./dist/base/foundation.js"
+    },
+    "./base/observer-foundation": {
+      "types": "./dist/base/observer-foundation.d.ts",
+      "svelte": "./dist/base/observer-foundation.js",
+      "default": "./dist/base/observer-foundation.js"
+    },
+    "./base/observer": {
+      "types": "./dist/base/observer.d.ts",
+      "svelte": "./dist/base/observer.js",
+      "default": "./dist/base/observer.js"
+    },
+    "./base/types": {
+      "types": "./dist/base/types.d.ts",
+      "svelte": "./dist/base/types.js",
+      "default": "./dist/base/types.js"
     }
   },
   "typesVersions": {

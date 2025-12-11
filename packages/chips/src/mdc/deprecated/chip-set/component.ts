@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  */
 
-import { MDCComponent } from '@smui/base/component';
+import { MDCComponent } from '@smui/common/base/component';
 import { announce } from '@smui/dom/announce';
 
 import { MDCChip, type MDCChipFactory } from '../chip/component';

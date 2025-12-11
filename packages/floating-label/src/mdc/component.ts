@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  */
 
-import { MDCComponent } from '@smui/base/component';
+import { MDCComponent } from '@smui/common/base/component';
 import { estimateScrollWidth } from '@smui/dom/ponyfill';
 
 import type { MDCFloatingLabelAdapter } from './adapter';

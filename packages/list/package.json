@@ -70,7 +70,6 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@smui/base": "^8.0.3",
     "@smui/common": "^8.0.3",
     "@smui/density": "^8.0.3",
     "@smui/dom": "^8.0.3",

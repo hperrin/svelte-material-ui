@@ -28,7 +28,7 @@
 @use 'sass:meta';
 @use '@smui/animation/variables' as animation-variables;
 @use '@smui/theme/custom-properties';
-@use '@smui/base/mixins' as base-mixins;
+@use '@smui/common/styles/base/mixins' as base-mixins;
 @use '@smui/feature-targeting/feature-targeting';
 @use '@smui/rtl/rtl';
 @use '@smui/theme/css';

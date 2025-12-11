@@ -27,7 +27,7 @@
 @use 'sass:map';
 @use '@smui/animation/functions' as functions2;
 @use '@smui/animation/variables' as variables2;
-@use '@smui/base/mixins' as base-mixins;
+@use '@smui/common/styles/base/mixins' as base-mixins;
 @use '@smui/feature-targeting/feature-targeting';
 @use '@smui/theme/css';
 @use '@smui/theme/custom-properties';

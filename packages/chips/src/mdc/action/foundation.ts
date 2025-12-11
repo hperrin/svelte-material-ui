@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  */
 
-import { MDCFoundation } from '@smui/base/foundation';
+import { MDCFoundation } from '@smui/common/base/foundation';
 import { isNavigationEvent, KEY, normalizeKey } from '@smui/dom/keyboard';
 
 import type { MDCChipActionAdapter } from './adapter';

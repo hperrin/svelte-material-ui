@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  */
 
-import { MDCComponent } from '@smui/base/component';
+import { MDCComponent } from '@smui/common/base/component';
 import { applyPassive } from '@smui/dom/events';
 import * as ponyfill from '@smui/dom/ponyfill';
 import {

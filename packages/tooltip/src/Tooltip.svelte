@@ -58,7 +58,7 @@
   import type { Snippet } from 'svelte';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
   import type { Writable } from 'svelte/store';
-  import type { SpecificEventListener } from '@smui/base/types';
+  import type { SpecificEventListener } from '@smui/common/base/types';
   import type { SmuiAttrs, SmuiElementPropMap } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {

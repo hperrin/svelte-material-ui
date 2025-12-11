@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  */
 
-import { MDCComponent } from '@smui/base/component';
+import { MDCComponent } from '@smui/common/base/component';
 
 import type { MDCTextFieldHelperTextAdapter } from './adapter';
 import { MDCTextFieldHelperTextFoundation } from './foundation';

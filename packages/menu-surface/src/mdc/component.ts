@@ -22,8 +22,8 @@
  */
 
 import { getCorrectPropertyName } from '@smui/animation/util';
-import { MDCComponent } from '@smui/base/component';
-import type { SpecificEventListener } from '@smui/base/types';
+import { MDCComponent } from '@smui/common/base/component';
+import type { SpecificEventListener } from '@smui/common/base/types';
 
 import type { MDCMenuSurfaceAdapter } from './adapter';
 import { Corner, cssClasses, strings } from './constants';

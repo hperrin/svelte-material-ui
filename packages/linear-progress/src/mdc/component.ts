@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  */
 
-import { MDCComponent } from '@smui/base/component';
+import { MDCComponent } from '@smui/common/base/component';
 import type { MDCProgressIndicator } from '@smui/progress-indicator/component';
 
 import type { MDCLinearProgressAdapter } from './adapter';

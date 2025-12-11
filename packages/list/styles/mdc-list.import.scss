@@ -3,7 +3,7 @@
 @forward '@smui/theme/variables' as mdc-theme-*;
 @forward '@smui/shape/variables' as mdc-shape-*;
 @forward '@smui/animation/variables' as mdc-animation-*;
-@forward '@smui/base/mixins' as mdc-base-*;
+@forward '@smui/common/styles/base/mixins' as mdc-base-*;
 @forward '@smui/ripple/styles/variables' as mdc-* hide $mdc-dark-ink-opacities,
   $mdc-fade-in-duration, $mdc-fade-out-duration, $mdc-light-ink-opacities,
   $mdc-pressed-dark-ink-opacity, $mdc-pressed-light-ink-opacity,

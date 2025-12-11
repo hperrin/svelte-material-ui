@@ -21,8 +21,8 @@
  * THE SOFTWARE.
  */
 
-import { MDCComponent } from '@smui/base/component';
-import type { CustomEventListener } from '@smui/base/types';
+import { MDCComponent } from '@smui/common/base/component';
+import type { CustomEventListener } from '@smui/common/base/types';
 import { announce } from '@smui/dom/announce';
 
 import { MDCChipActionType } from '../action/constants';

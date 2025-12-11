@@ -21,8 +21,8 @@
  * THE SOFTWARE.
  */
 
-import { MDCComponent } from '@smui/base/component';
-import type { EventType, SpecificEventListener } from '@smui/base/types';
+import { MDCComponent } from '@smui/common/base/component';
+import type { EventType, SpecificEventListener } from '@smui/common/base/types';
 import { safeAttrPrefix } from 'safevalues';
 import { setElementPrefixedAttribute } from 'safevalues/dom';
 

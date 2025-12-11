@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  */
 
-import { MDCComponent } from '@smui/base/component';
+import { MDCComponent } from '@smui/common/base/component';
 
 import type { MDCTabIndicatorAdapter } from './adapter';
 import { MDCFadingTabIndicatorFoundation } from './fading-foundation';

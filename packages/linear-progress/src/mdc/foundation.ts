@@ -22,7 +22,7 @@
  */
 
 import { getCorrectPropertyName } from '@smui/animation/util';
-import { MDCFoundation } from '@smui/base/foundation';
+import { MDCFoundation } from '@smui/common/base/foundation';
 import type { MDCProgressIndicatorFoundation } from '@smui/progress-indicator/foundation';
 
 import type { MDCLinearProgressAdapter } from './adapter';

@@ -105,8 +105,7 @@ If you need more configurability over your transitions, use the `transition-valu
   transition:
     elevation.transition-value(),
     /* Configure opacity to use same duration and easing values as elevation */
-      opacity elevation.$transition-duration
-      elevation.$transition-timing-function;
+    opacity elevation.$transition-duration elevation.$transition-timing-function;
   opacity: 0.7;
   will-change: elevation.$property, opacity;
 }

@@ -23,8 +23,8 @@
 
 import { AnimationFrame } from '@smui/animation/animationframe';
 import { getCorrectPropertyName } from '@smui/animation/util';
-import { MDCFoundation } from '@smui/base/foundation';
-import type { SpecificEventListener } from '@smui/base/types';
+import { MDCFoundation } from '@smui/common/base/foundation';
+import type { SpecificEventListener } from '@smui/common/base/types';
 
 import type { MDCSliderAdapter } from './adapter';
 import { attributes, cssClasses, numbers, strings } from './constants';

@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  */
 
-import { MDCObserverFoundation } from '@smui/base/observer-foundation';
+import { MDCObserverFoundation } from '@smui/common/base/observer-foundation';
 
 import type { MDCSwitchAdapter, MDCSwitchRenderAdapter } from './adapter';
 import { CssClasses } from './constants';

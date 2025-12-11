@@ -20,7 +20,7 @@
 // THE SOFTWARE.
 //
 
-@use '@smui/base/mixins' as base-mixins;
+@use '@smui/common/styles/base/mixins' as base-mixins;
 @use './mixins';
 
 // Notched Outline is intended for use by multiple components, but its styles should only be emitted once when bundled

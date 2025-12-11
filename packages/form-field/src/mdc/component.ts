@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  */
 
-import { MDCComponent } from '@smui/base/component';
+import { MDCComponent } from '@smui/common/base/component';
 import { MDCRipple } from '@smui/ripple/component';
 
 import type { MDCFormFieldAdapter } from './adapter';

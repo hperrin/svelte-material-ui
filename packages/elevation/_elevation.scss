@@ -24,7 +24,7 @@
 // Selector '.mdc-*' should only be used in this project.
 
 @use '@smui/theme/custom-properties';
-@use '@smui/base/mixins' as base-mixins;
+@use '@smui/common/styles/base/mixins' as base-mixins;
 @use '@smui/feature-targeting/feature-targeting';
 @use '@smui/theme/theme';
 @use '@smui/theme/theme-color';

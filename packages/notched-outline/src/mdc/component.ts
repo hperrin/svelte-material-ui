@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  */
 
-import { MDCComponent } from '@smui/base/component';
+import { MDCComponent } from '@smui/common/base/component';
 import { MDCFloatingLabelFoundation } from '@smui/floating-label/foundation';
 
 import type { MDCNotchedOutlineAdapter } from './adapter';

@@ -21,8 +21,8 @@
  * THE SOFTWARE.
  */
 
-import { MDCComponent } from '@smui/base/component';
-import type { EventType, SpecificEventListener } from '@smui/base/types';
+import { MDCComponent } from '@smui/common/base/component';
+import type { EventType, SpecificEventListener } from '@smui/common/base/types';
 import { applyPassive } from '@smui/dom/events';
 import { matches } from '@smui/dom/ponyfill';
 import type { MDCRippleAdapter } from '@smui/ripple/adapter';

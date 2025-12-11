@@ -20,7 +20,7 @@
 // THE SOFTWARE.
 //
 
-@use '@smui/base/mixins' as base-mixins;
+@use '@smui/common/styles/base/mixins' as base-mixins;
 @use './mixins';
 
 @include base-mixins.emit-once('mdc-floating-label') {

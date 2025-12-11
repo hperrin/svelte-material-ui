@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  */
 
-import { MDCFoundation } from '@smui/base/foundation';
+import { MDCFoundation } from '@smui/common/base/foundation';
 import { KEY, normalizeKey } from '@smui/dom/keyboard';
 import { Corner } from '@smui/menu-surface/constants';
 

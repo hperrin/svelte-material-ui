@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  */
 
-import type { EventType, SpecificEventListener } from '@smui/base/types';
+import type { EventType, SpecificEventListener } from '@smui/common/base/types';
 
 /**
  * Defines the shape of the adapter expected by the foundation.

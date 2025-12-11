@@ -22,7 +22,7 @@
  */
 
 import { getCorrectEventName } from '@smui/animation/util';
-import { MDCComponent } from '@smui/base/component';
+import { MDCComponent } from '@smui/common/base/component';
 import { applyPassive } from '@smui/dom/events';
 import { matches } from '@smui/dom/ponyfill';
 import type { MDCRippleAdapter } from '@smui/ripple/adapter';

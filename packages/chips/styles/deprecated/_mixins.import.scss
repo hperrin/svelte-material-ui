@@ -128,7 +128,7 @@
   mdc-checkbox-mixedmark--checked-, mdc-checkbox-mixedmark--indeterminate-,
   mdc-checkbox-touch-target-reset-, mdc-checkbox-container-keyframes-,
   mdc-checkbox-mark-keyframes-;
-@forward '@smui/base' as mdc-base-*;
+@forward '@smui/common/styles/base' as mdc-base-*;
 @forward '@smui/feature-targeting' as mdc-feature-*;
 @forward '@smui/elevation' as mdc-elevation-* hide mdc-elevation-elevation;
 @forward '@smui/elevation' as mdc-* hide mdc-core-styles, mdc-overlay-common,

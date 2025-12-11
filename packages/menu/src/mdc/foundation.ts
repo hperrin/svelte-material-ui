@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  */
 
-import { MDCFoundation } from '@smui/base/foundation';
+import { MDCFoundation } from '@smui/common/base/foundation';
 import { cssClasses as listCssClasses } from '@smui/list/constants';
 
 import type { MDCMenuAdapter } from './adapter';

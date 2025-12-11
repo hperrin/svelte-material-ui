@@ -21,8 +21,8 @@
  * THE SOFTWARE.
  */
 
-import { MDCFoundation } from '@smui/base/foundation';
-import type { SpecificEventListener } from '@smui/base/types';
+import { MDCFoundation } from '@smui/common/base/foundation';
+import type { SpecificEventListener } from '@smui/common/base/types';
 
 import type { MDCTextFieldIconAdapter } from './adapter';
 import { cssClasses, strings } from './constants';

@@ -22,11 +22,11 @@
  */
 
 import { AnimationFrame } from '@smui/animation/animationframe';
-import { MDCFoundation } from '@smui/base/foundation';
+import { MDCFoundation } from '@smui/common/base/foundation';
 import type {
   SpecificEventListener,
   SpecificWindowEventListener,
-} from '@smui/base/types';
+} from '@smui/common/base/types';
 
 import type { MDCDialogAdapter } from './adapter';
 import { cssClasses, numbers, strings } from './constants';

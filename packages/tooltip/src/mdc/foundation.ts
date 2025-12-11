@@ -23,8 +23,8 @@
 
 import { AnimationFrame } from '@smui/animation/animationframe';
 import { getCorrectPropertyName } from '@smui/animation/util';
-import { MDCFoundation } from '@smui/base/foundation';
-import type { EventType, SpecificEventListener } from '@smui/base/types';
+import { MDCFoundation } from '@smui/common/base/foundation';
+import type { EventType, SpecificEventListener } from '@smui/common/base/types';
 import { KEY, normalizeKey } from '@smui/dom/keyboard';
 
 import type { MDCTooltipAdapter } from './adapter';

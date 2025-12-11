@@ -105,7 +105,7 @@
 @forward '@smui/floating-label/styles' as mdc-floating-label-*;
 @forward '@smui/shape' as mdc-shape-*;
 @forward '@smui/notched-outline/styles' as mdc-notched-outline-*;
-@forward '@smui/base' as mdc-base-*;
+@forward '@smui/common/styles/base' as mdc-base-*;
 @forward '@smui/ripple/styles' as mdc-* hide $mdc-dark-ink-opacities,
   $mdc-fade-in-duration, $mdc-fade-out-duration, $mdc-light-ink-opacities,
   $mdc-pressed-dark-ink-opacity, $mdc-pressed-light-ink-opacity,

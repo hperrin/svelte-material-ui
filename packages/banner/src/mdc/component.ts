@@ -21,8 +21,8 @@
  * THE SOFTWARE.
  */
 
-import { MDCComponent } from '@smui/base/component';
-import type { SpecificEventListener } from '@smui/base/types';
+import { MDCComponent } from '@smui/common/base/component';
+import type { SpecificEventListener } from '@smui/common/base/types';
 import { FocusTrap } from '@smui/dom/focus-trap';
 import { closest } from '@smui/dom/ponyfill';
 

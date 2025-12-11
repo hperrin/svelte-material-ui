@@ -21,8 +21,8 @@
  * THE SOFTWARE.
  */
 
-import { MDCFoundation } from '@smui/base/foundation';
-import type { SpecificEventListener } from '@smui/base/types';
+import { MDCFoundation } from '@smui/common/base/foundation';
+import type { SpecificEventListener } from '@smui/common/base/types';
 
 import type { MDCLineRippleAdapter } from './adapter';
 import { cssClasses } from './constants';

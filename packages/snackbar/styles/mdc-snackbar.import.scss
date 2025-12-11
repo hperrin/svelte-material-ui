@@ -1,5 +1,5 @@
 @forward '@smui/animation/variables' as mdc-animation-*;
-@forward '@smui/base/mixins' as mdc-base-*;
+@forward '@smui/common/styles/base/mixins' as mdc-base-*;
 @forward '@smui/theme/variables' as mdc-theme-*;
 @forward '@smui/elevation/variables' as mdc-elevation-*;
 @forward '@smui/ripple/styles/variables' as mdc-* hide $mdc-dark-ink-opacities,

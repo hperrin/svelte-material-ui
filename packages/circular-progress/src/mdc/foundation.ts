@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  */
 
-import { MDCFoundation } from '@smui/base/foundation';
+import { MDCFoundation } from '@smui/common/base/foundation';
 import type { MDCProgressIndicatorFoundation } from '@smui/progress-indicator/foundation';
 
 import type { MDCCircularProgressAdapter } from './adapter';

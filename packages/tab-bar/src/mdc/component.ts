@@ -21,11 +21,11 @@
  * THE SOFTWARE.
  */
 
-import { MDCComponent } from '@smui/base/component';
+import { MDCComponent } from '@smui/common/base/component';
 import type {
   CustomEventListener,
   SpecificEventListener,
-} from '@smui/base/types';
+} from '@smui/common/base/types';
 import {
   MDCTabScroller,
   type MDCTabScrollerFactory,

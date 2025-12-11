@@ -21,11 +21,11 @@
  * THE SOFTWARE.
  */
 
-import { MDCComponent } from '@smui/base/component';
+import { MDCComponent } from '@smui/common/base/component';
 import type {
   CustomEventListener,
   SpecificEventListener,
-} from '@smui/base/types';
+} from '@smui/common/base/types';
 import type { MDCRippleAdapter } from '@smui/ripple/adapter';
 import { MDCRipple, type MDCRippleFactory } from '@smui/ripple/component';
 import { MDCRippleFoundation } from '@smui/ripple/foundation';

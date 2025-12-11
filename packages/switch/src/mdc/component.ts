@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  */
 
-import { MDCComponent } from '@smui/base/component';
+import { MDCComponent } from '@smui/common/base/component';
 import type { MDCRippleAdapter } from '@smui/ripple/adapter';
 import { MDCRipple } from '@smui/ripple/component';
 import { MDCRippleFoundation } from '@smui/ripple/foundation';
