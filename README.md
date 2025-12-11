@@ -2,7 +2,7 @@
   <img src="packages/site/static/header-transparent.png" alt="Svelte Material UI" />
 </div>
 
-A library of Svelte Material UI components for Svelte.
+A library of Material UI components for Svelte.
 
 # Demos, Code Samples, and Guides
 
@@ -28,9 +28,9 @@ If you need help installing or using SMUI, join the [Discord server](https://dis
 
 # Svelte 5
 
-SMUI v8 requires Svelte 5. This is the documentation for SMUI v8.
+SMUI v8 and higher requires Svelte 5.
 
-If you are using Svelte 4, you can use SMUI v7, which is the last version to support Svelte 4. Check out the [v7 branch](https://github.com/hperrin/svelte-material-ui/tree/v7) for the current docs.
+If you are using Svelte 4, you can use SMUI v7, which is the last version to support Svelte 4. Check out the [v7 branch](https://github.com/hperrin/svelte-material-ui/tree/v7) for the v7 docs.
 
 # Migration
 
@@ -38,7 +38,7 @@ Upgrading from an old version? Be sure to read the [migration doc](MIGRATING.md)
 
 Upgrading from v8? No more "@material" packages. Check out the [upgrade instructions](MIGRATING.md#smui-8---smui-9).
 
-Upgrading from v7? You need Svelte 5. Event listeners no longer to use the CustomEvent type. Check out the [upgrade instructions](MIGRATING.md#smui-7---smui-8).
+Upgrading from v7? You need Svelte 5. Event listeners no longer need to use the CustomEvent type. Check out the [upgrade instructions](MIGRATING.md#smui-7---smui-8).
 
 Upgrading from v6? You need Svelte 4. No more elemental components; you can now use the "tag" prop to change the element. No more "ComponentDev" types; components can now be used as their type. Check out the [upgrade instructions](MIGRATING.md#smui-6---smui-7).
 
@@ -86,15 +86,15 @@ You can even use them in data URLs. To get a data URL for the icon:
 
 Click a component/package below to go to the documentation. (Note that this documentation is a work in progress. The demo code should be your main source of truth for how something works.)
 
-- [Accordion](packages/accordion/README.md)‡
+- [Accordion](packages/accordion/README.md)
 - Action Buttons
   - [Button](packages/button/README.md)
   - [Floating Action Button](packages/fab/README.md)
   - [Icon Button](packages/icon-button/README.md)
 - App Bars
-  - [Bottom App Bar](packages/bottom-app-bar/README.md)‡
+  - [Bottom App Bar](packages/bottom-app-bar/README.md)
   - [Top App Bar](packages/top-app-bar/README.md)
-- [Badge](packages/badge/README.md)‡
+- [Badge](packages/badge/README.md)
 - [Banner](packages/banner/README.md)
 - [Card](packages/card/README.md)
 - [Common](packages/common/README.md)
@@ -104,10 +104,10 @@ Click a component/package below to go to the documentation. (Note that this docu
 - [Elevation](https://sveltematerialui.com/demo/elevation/)†
 - [Image List](packages/image-list/README.md)
 - Inputs and Controls
-  - [Autocomplete](packages/autocomplete/README.md)‡
+  - [Autocomplete](packages/autocomplete/README.md)
   - [Checkbox](packages/checkbox/README.md)
   - [Chips](packages/chips/README.md)
-  - [Chip Input](packages/chip-input/README.md)‡
+  - [Chip Input](packages/chip-input/README.md)
   - [Floating Label](packages/floating-label/README.md)
   - [Form Field](packages/form-field/README.md)
   - [Line Ripple](packages/line-ripple/README.md)
@@ -127,13 +127,13 @@ Click a component/package below to go to the documentation. (Note that this docu
 - [List](packages/list/README.md)
 - [Menu Surface](packages/menu-surface/README.md)
 - [Menu](packages/menu/README.md)
-- [Paper](packages/paper/README.md)‡
+- [Paper](packages/paper/README.md)
 - Progress Indicators
   - [Circular Progress](packages/circular-progress/README.md)
   - [Linear Progress](packages/linear-progress/README.md)
 - [Ripple](packages/ripple/README.md)
 - [Snackbar](packages/snackbar/README.md)
-  - [Kitchen](packages/snackbar/kitchen/README.md)‡
+  - [Kitchen](packages/snackbar/kitchen/README.md)
 - Tabs
   - [Tab](packages/tab/README.md)
   - [Tab Bar](packages/tab-bar/README.md)
@@ -143,237 +143,21 @@ Click a component/package below to go to the documentation. (Note that this docu
 
 <sub>† This is Sass based, and therefore doesn't require Svelte components. I've included a demo showing how you can use it.</sub>
 
-<sub>‡ This is not an MDC-Web component (upstream library). It is an addition that SMUI provides.</sub>
-
 - Labels and icons are named exports in the components that use them, or you can use the 'Label' and 'Icon' exports from '@smui/common'. (Except for chips labels and icons, textfield icons, and select icons, because they are special snowflakes.)
 
-# Migrating Components from MDC-Web
+# Migrating Away from MDC-Web
 
-SMUI 9 is migrating away from MDC-Web, to become a completely independent project. As such, SMUI will also gain new components to replace the functionality only found in MDC-Web packages.
+SMUI v9 has migrated away from MDC-Web, to become a completely independent project. As such, SMUI v9 also gains new components to replace the functionality only found in MDC-Web packages (animation, density, dom, elevation, feature-targeting, focus, focus-ring, progress-indicator, rtl, shape, theme, tokens).
 
-Migrating away from MDC-Web is a multi-step process. The steps are as follows:
-
-## Step 1. Import all of the styles and JS into SMUI from v14 of MDC-Web, and rewrite anything that needs to be to get it working.
-
-- [x] Accordion
-- [x] Animation (new)
-- Action Buttons
-  - [x] Button
-  - [x] Floating Action Button
-  - [x] Icon Button
-- App Bars
-  - [x] Bottom App Bar
-  - [x] Top App Bar
-- [x] Badge
-- [x] Banner
-- [x] Base (new, temporary)
-- [x] Card
-- [x] Common
-- [x] Data Table
-- [x] Density (new)
-- [x] Dialog
-- [x] DOM (new, possibly temporary)
-- [x] Drawer
-- [x] Elevation
-- [x] Feature Targeting (new)
-- [x] Focus Ring (new)
-- [x] Image List
-- Inputs and Controls
-  - [x] Autocomplete
-  - [x] Checkbox
-  - [x] Chips
-  - [x] Chip Input
-  - [x] Floating Label
-  - [x] Form Field
-  - [x] Line Ripple
-  - [x] Notched Outline
-  - [x] Radio Button
-  - [x] Segmented Button
-  - [x] Select Menu
-    - [x] Select Helper Text
-    - [x] Select Icon
-  - [x] Slider
-  - [x] Switch
-  - [x] Text Field
-    - [x] Text Field Character Counter
-    - [x] Text Field Helper Text
-    - [x] Text Field Icon
-- [x] Layout Grid
-- [x] List
-- [x] Menu Surface
-- [x] Menu
-- [x] Paper
-- Progress Indicators
-  - [x] Progress Indicator (new, possibly temporary)
-  - [x] Circular Progress
-  - [x] Linear Progress
-- [x] Ripple
-- [x] RTL (new)
-- [x] Shape (new)
-- [x] Snackbar
-  - [x] Kitchen
-- Tabs
-  - [x] Tab
-  - [x] Tab Bar
-  - [x] Tab Indicator
-  - [x] Tab Scroller
-- [x] Theme (new)
-- [x] Tokens (new, possibly temporary)
-- [x] Tooltip
-- [x] Touch Target
-- [x] Typography
-
-## Step 2. Redo all of the changes from MDC-Web's commit history that have happened since v14, updating component code as necessary.
-
-- [ ] Accordion
-- [x] Animation (new)
-- Action Buttons
-  - [x] Button
-  - [x] Floating Action Button
-  - [x] Icon Button
-- App Bars
-  - [ ] Bottom App Bar
-  - [x] Top App Bar
-- [ ] Badge
-- [x] Banner
-- [x] Base (new, temporary)
-- [x] Card
-- [ ] Common
-- [x] Data Table
-- [x] Density (new)
-- [x] Dialog
-- [x] DOM (new, possibly temporary)
-- [x] Drawer
-- [x] Elevation
-- [x] Feature Targeting (new)
-- [x] Focus (new)
-- [x] Focus Ring (new)
-- [x] Image List
-- Inputs and Controls
-  - [ ] Autocomplete
-  - [x] Checkbox
-  - [x] Chips
-  - [ ] Chip Input
-  - [x] Floating Label
-  - [x] Form Field
-  - [x] Line Ripple
-  - [x] Notched Outline
-  - [x] Radio Button
-  - [x] Segmented Button
-  - [x] Select Menu
-    - [x] Select Helper Text
-    - [x] Select Icon
-  - [x] Slider
-  - [x] Switch
-  - [x] Text Field
-    - [x] Text Field Character Counter
-    - [x] Text Field Helper Text
-    - [x] Text Field Icon
-- [x] Layout Grid
-- [x] List
-- [x] Menu Surface
-- [x] Menu
-- [ ] Paper
-- Progress Indicators
-  - [x] Progress Indicator (new, possibly temporary)
-  - [x] Circular Progress
-  - [x] Linear Progress
-- [x] Ripple
-- [x] RTL (new)
-- [x] Shape (new)
-- [x] Snackbar
-  - [ ] Kitchen
-- Tabs
-  - [x] Tab
-  - [x] Tab Bar
-  - [x] Tab Indicator
-  - [x] Tab Scroller
-- [x] Theme (new)
-- [x] Tokens (new, possibly temporary)
-- [x] Tooltip
-- [x] Touch Target
-- [x] Typography
-
-## Step 3. Once in a state similar to MDC-Web's archived repo, reimplement all of MDC-Web's JS in the actual Svelte components.
-
-- [ ] Accordion
-- [ ] Animation (new)
-- Action Buttons
-  - [ ] Button
-  - [ ] Floating Action Button
-  - [ ] Icon Button
-- App Bars
-  - [ ] Bottom App Bar
-  - [ ] Top App Bar
-- [ ] Badge
-- [ ] Banner
-- [ ] Base (new, temporary)
-- [ ] Card
-- [ ] Common
-- [ ] Data Table
-- [ ] Density (new)
-- [ ] Dialog
-- [ ] DOM (new, possibly temporary)
-- [ ] Drawer
-- [ ] Elevation
-- [ ] Feature Targeting (new)
-- [ ] Focus (new)
-- [ ] Focus Ring (new)
-- [ ] Image List
-- Inputs and Controls
-  - [ ] Autocomplete
-  - [ ] Checkbox
-  - [ ] Chips
-  - [ ] Chip Input
-  - [ ] Floating Label
-  - [ ] Form Field
-  - [ ] Line Ripple
-  - [ ] Notched Outline
-  - [ ] Radio Button
-  - [ ] Segmented Button
-  - [ ] Select Menu
-    - [ ] Select Helper Text
-    - [ ] Select Icon
-  - [ ] Slider
-  - [ ] Switch
-  - [ ] Text Field
-    - [ ] Text Field Character Counter
-    - [ ] Text Field Helper Text
-    - [ ] Text Field Icon
-- [ ] Layout Grid
-- [ ] List
-- [ ] Menu Surface
-- [ ] Menu
-- [ ] Paper
-- Progress Indicators
-  - [ ] Progress Indicator (new, possibly temporary)
-  - [ ] Circular Progress
-  - [ ] Linear Progress
-- [ ] Ripple
-- [ ] RTL (new)
-- [ ] Shape (new)
-- [ ] Snackbar
-  - [ ] Kitchen
-- Tabs
-  - [ ] Tab
-  - [ ] Tab Bar
-  - [ ] Tab Indicator
-  - [ ] Tab Scroller
-- [ ] Theme (new)
-- [ ] Tokens (new, possibly temporary)
-- [ ] Tooltip
-- [ ] Touch Target
-- [ ] Typography
-
-# MDC-Web
+SMUI v9 includes all of the TypeScript from the upstream MDC-Web (adapters, foundations, components, etc.) in a basically unchanged state (brought up to the latest commit from the upstream repo). SMUI v10 will remove these TS files and concepts, migrating the functionality directly into the Svelte files.
 
 I want to give a major shoutout to Google's amazing [Material Design Components - Web](https://github.com/material-components/material-components-web) library, without which, this project would not have been possible. SMUI has officially diverged from MDC-Web, as MDC-Web has been deprecated, but the incredible work the team at Google put in to making MDC-Web will live on, bringing Material Design to many amazing Svelte projects.
 
 # License
 
-Portions of this project contain code from Google's [MDC-Web](https://github.com/material-components/material-components-web) project, and that code is licensed under the MIT License. This mainly includes the Sass styling, but may also include some TypeScript files. The files that this license applies to will include the MIT license and copyright notice. To the extent allowed under applicable law, these files will be released under the Apache License when included in this project's releases. All other code is released under the following license:
+Portions of this project contain code from Google's [MDC-Web](https://github.com/material-components/material-components-web) project, and that code is licensed under the MIT License. This mainly includes the Sass styling, but may also include some TypeScript files. The files that this license applies to will include the MIT license and copyright notice. To the extent allowed under applicable law, these files will be released under the Apache License, Version 2.0 when included in this project's releases. All other code is released under the following license:
 
-Copyright 2019-2024 Hunter Perrin
+Copyright 2019-2025 Hunter Perrin
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
