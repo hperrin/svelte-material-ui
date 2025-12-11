@@ -1,7 +1,6 @@
 const path = require('path');
 const fs = require('fs');
 const sass = require('sass');
-const fetch = require('node-fetch');
 const yargs = require('yargs/yargs');
 const { hideBin } = require('yargs/helpers');
 const HttpsProxyAgent = require('https-proxy-agent');
