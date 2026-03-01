@@ -24,7 +24,7 @@ To get started, check out the [installation docs](INSTALL.md) or the [SvelteKit 
 
 # Need Help?
 
-If you need help installing or using SMUI, join the [Discord server](https://discord.gg/aFzmkrmg9P).
+If you need help installing or using SMUI, join the [Matrix Space](https://matrix.to/#/#smui:matrix.port87.help) or the [Discord server](https://discord.gg/aFzmkrmg9P).
 
 # Svelte 5
 

@@ -70,7 +70,36 @@
     </div>
 
     <div style="margin: 0.5em 0 6.5em; text-align: center;">
-      <h4 class="mdc-typography--headline6" style="margin: 0;">
+      <div>
+        <IconButton
+          href="https://matrix.to/#/#smui:matrix.port87.help"
+          style="color: var(--mdc-on-surface);"
+          title="Join the Matrix Space"
+        >
+          <Icon tag="svg" viewBox="0 0 24 24">
+            <path fill="currentColor" d={siMatrix.path} />
+          </Icon>
+        </IconButton>
+        <IconButton
+          href="https://discord.gg/aFzmkrmg9P"
+          style="color: var(--mdc-on-surface);"
+          title="Join the Discord Server"
+        >
+          <Icon tag="svg" viewBox="0 0 24 24">
+            <path fill="currentColor" d={siDiscord.path} />
+          </Icon>
+        </IconButton>
+        <IconButton
+          href="https://port87.social/@hperrin"
+          style="color: var(--mdc-on-surface);"
+          title="Hunter Perrin (SMUI Author) on Mastodon"
+        >
+          <Icon tag="svg" viewBox="0 0 24 24">
+            <path fill="currentColor" d={siMastodon.path} />
+          </Icon>
+        </IconButton>
+      </div>
+      <h4 class="mdc-typography--headline6">
         Made with ❤️ by <a
           style="color: #fff;"
           href="https://port87.com/"
@@ -271,6 +300,8 @@
   <div style="margin: 4em 0;">
     <p>
       [
+      <a href="https://matrix.to/#/#smui:matrix.port87.help">Matrix</a>
+      |
       <a href="https://discord.gg/aFzmkrmg9P">Discord</a>
       |
       <a href="https://github.com/hperrin/svelte-material-ui">GitHub</a>
@@ -295,8 +326,16 @@
     mdiClipboardCheck,
     mdiLanguageTypescript,
   } from '@mdi/js';
-  import { siMaterialdesign, siSvelte, siSass } from 'simple-icons';
+  import {
+    siMatrix,
+    siDiscord,
+    siMastodon,
+    siMaterialdesign,
+    siSvelte,
+    siSass,
+  } from 'simple-icons';
   import Paper, { Title, Content } from '@smui/paper';
+  import IconButton from '@smui/icon-button';
   import { Icon } from '@smui/common';
 </script>
 

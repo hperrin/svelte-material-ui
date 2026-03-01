@@ -126,22 +126,6 @@
             </Icon>
           </IconButton>
         {/each}
-        <IconButton
-          href="https://discord.gg/aFzmkrmg9P"
-          title="Join the Discord Server"
-        >
-          <Icon tag="svg" viewBox="0 0 24 24">
-            <path fill="currentColor" d={siDiscord.path} />
-          </Icon>
-        </IconButton>
-        <IconButton
-          href="https://port87.social/@hperrin"
-          title="Hunter Perrin (SMUI Author) on Mastodon"
-        >
-          <Icon tag="svg" viewBox="0 0 24 24">
-            <path fill="currentColor" d={siMastodon.path} />
-          </Icon>
-        </IconButton>
         <div style="display: inline-block;">
           <IconButton
             onclick={() => themeMenu?.setOpen(true)}
@@ -268,7 +252,7 @@
   import type { Snippet } from 'svelte';
   import { onDestroy, onMount } from 'svelte';
   import { mdiFileDocument, mdiPalette } from '@mdi/js';
-  import { siDiscord, siMastodon, siGithub } from 'simple-icons';
+  import { siGithub } from 'simple-icons';
   import TinyGesture from 'tinygesture';
   import materialDarker from 'svelte-highlight/styles/material-darker';
   import { assets } from '$app/paths';
