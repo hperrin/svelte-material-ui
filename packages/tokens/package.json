@@ -41,6 +41,6 @@
     "@smui/elevation": "^8.0.3"
   },
   "devDependencies": {
-    "sass": "^1.96.0"
+    "sass": "^1.97.3"
   }
 }
