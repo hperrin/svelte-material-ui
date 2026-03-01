@@ -12,10 +12,6 @@
 @use '@smui/top-app-bar/styles/mixins' as top-app-bar-mixins;
 @use '@smui/top-app-bar/styles/variables' as top-app-bar-variables;
 .mdc-top-app-bar.demo-top-app-bar {
-  // Color the top bar with "surface" colors.
-  @include top-app-bar-mixins.fill-color(surface);
-  @include top-app-bar-mixins.ink-color(on-surface);
-  @include top-app-bar-mixins.icon-ink-color(on-surface);
   // Give it a shadow.
   @include elevation.elevation(4);
   // Position it above the drawer.

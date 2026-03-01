@@ -88,7 +88,7 @@
 {#if iframe}
   {@render children?.()}
 {:else}
-  <TopAppBar variant="static" class="demo-top-app-bar">
+  <TopAppBar variant="static" class="demo-top-app-bar" color="primary">
     <Row>
       <Section>
         {#if miniWindow}
