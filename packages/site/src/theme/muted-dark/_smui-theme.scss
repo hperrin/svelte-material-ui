@@ -1,0 +1,60 @@
+@use 'sass:color';
+@use 'sass:string';
+
+// Color scheme: https://paletton.com/#uid=65s0s0k5R7H2RkL4meLf47mnA7M
+@use '@smui/theme/index' as theme with (
+  $primary: #6b5d60,
+  $secondary: #5f6759,
+  $surface: color.scale(#3e1e10, $lightness: -75%),
+  $background: #111111,
+  $error: #8f0000
+);
+
+// Increase border radii.
+@use '@smui/shape/index' as shape with (
+  $small-component-radius: 8px,
+  $medium-component-radius: 15px,
+  $large-component-radius: 20px
+);
+
+// Use custom fonts.
+@use '@smui/typography' with (
+  $font-family: string.unquote('"Oxygen", sans-serif'),
+  $styles-headline1: (
+    font-family: string.unquote('"Cormorant Garamond", serif'),
+    font-weight: 300,
+  ),
+  $styles-headline2: (
+    font-family: string.unquote('"Cormorant Garamond", serif'),
+    font-weight: 300,
+  ),
+  $styles-headline3: (
+    font-family: string.unquote('"Cormorant Garamond", serif'),
+    font-weight: 300,
+  ),
+  $styles-headline4: (
+    font-family: string.unquote('"Cormorant Garamond", serif'),
+    font-weight: 300,
+  )
+);
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Oxygen+Mono&family=Oxygen:wght@300;400;700&display=swap');
+
+html,
+body {
+  background-color: theme.$background;
+  color: theme.$on-surface;
+}
+
+// Be more specific than the _Typography.scss file.
+html code,
+html pre {
+  font-family: 'Oxygen Mono', monospace;
+}
+
+a {
+  color: #766a66;
+}
+a:visited {
+  color: #544952;
+}

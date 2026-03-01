@@ -279,6 +279,7 @@
   const themes = [
     { label: 'Material', value: 'material' },
     { label: 'Fixation', value: 'fixation' },
+    { label: 'Muted', value: 'muted' },
     { label: 'Bubblegum', value: 'bubblegum' },
     { label: 'Metro', value: 'metro' },
     { label: 'Unity', value: 'unity' },

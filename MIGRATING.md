@@ -24,6 +24,7 @@ SMUI 9 has migrated away from MDC-Web, since MDC-Web has been abandoned.
 - Tooltip timing has been changed to 250ms to show and 100ms to hide (previously 500ms and 600ms respectively).
 - Plain Tooltips now do not respond to mouse events.
 - Plain Tooltips now actually look like the Material Spec.
+- New premade theme, "Muted".
 
 # SMUI 7 -> SMUI 8
 

@@ -101,7 +101,7 @@
       </div>
       <h4 class="mdc-typography--headline6">
         Made with ❤️ by <a
-          style="color: #fff;"
+          style="color: var(--mdc-on-surface);"
           href="https://port87.com/"
           target="_blank">Port87 Email</a
         >
