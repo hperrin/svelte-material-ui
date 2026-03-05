@@ -1,4 +1,4 @@
-@forward '@smui/animation' as mdc-animation-*;
+@forward '@smui/common/styles/animation' as mdc-animation-*;
 @forward '@smui/common/styles/density' as mdc-density-* hide
   mdc-density-prop-value;
 @forward '@smui/theme/all-theme-deprecated' as mdc-theme-* hide

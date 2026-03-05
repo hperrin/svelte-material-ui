@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  */
 
-import { getCorrectEventName } from '@smui/animation/util';
+import { getCorrectEventName } from '@smui/common/animation/util';
 import { MDCComponent } from '@smui/common/base/component';
 import { applyPassive } from '@smui/dom/events';
 import { matches } from '@smui/dom/ponyfill';

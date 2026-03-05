@@ -26,8 +26,8 @@
 @use 'sass:math';
 @use 'sass:list';
 @use 'sass:meta';
-@use '@smui/animation/functions' as functions2;
-@use '@smui/animation/variables' as animation-variables;
+@use '@smui/common/styles/animation/functions' as functions2;
+@use '@smui/common/styles/animation/variables' as animation-variables;
 @use '@smui/common/styles/feature-targeting/feature-targeting';
 @use '@smui/rtl/rtl';
 @use '@smui/typography/typography';

@@ -1,4 +1,4 @@
-@forward '@smui/animation/variables' as mdc-animation-*;
+@forward '@smui/common/styles/animation/variables' as mdc-animation-*;
 @forward '@smui/theme/variables' as mdc-theme-*;
 @forward '@smui/button/styles/variables' as mdc-button-*;
 @forward '@smui/common/styles/base/mixins' as mdc-base-*;
@@ -25,7 +25,7 @@
 @forward '@smui/typography/mixins' as mdc-typography-* hide
   mdc-typography-typography;
 @forward 'mixins' as mdc-dialog-*;
-@forward '@smui/animation/functions' as mdc-animation-*;
+@forward '@smui/common/styles/animation/functions' as mdc-animation-*;
 @forward '@smui/theme/functions' as mdc-theme-*;
 @forward '@smui/common/styles/feature-targeting/functions' as mdc-feature-*;
 @forward '@smui/elevation/functions' as mdc-elevation-*;

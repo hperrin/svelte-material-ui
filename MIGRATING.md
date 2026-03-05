@@ -8,10 +8,15 @@ SMUI 9 has migrated away from MDC-Web, since MDC-Web has been abandoned.
 
 ## Breaking Changes
 
-- All "@material" packages you're using should be migrated to the equivalent "@smui" packages.
-  - @material/tokens is now @smui/common/styles/tokens
-  - @material/density is now @smui/common/styles/density
-  - @material/feature-targeting is now @smui/common/styles/feature-targeting
+- All "@material" packages you're using should be migrated to "@smui" packages. Many have been moved inside the "@smui/common" package.
+  - Particularly, the following SCSS imports have changed:
+    - @material/tokens is now @smui/common/styles/tokens
+    - @material/density is now @smui/common/styles/density
+    - @material/feature-targeting is now @smui/common/styles/feature-targeting
+    - @material/animation is now @smui/common/styles/animation
+  - And the following JS imports have changed:
+    - @material/base is now @smui/common/base
+    - @material/animation is now @smui/common/animation
 - Plain Tooltips now require a Label component (can be imported from `@smui/tooltip` or `@smui/common`) wrapping their text. (Rich tooltips still use the Content component.)
 - IconButton should now always contain at least one Icon child.
 - Kitchen now includes a `dismissIcon$` prefix. If you used `dismiss$class`, you should probably now change it to `dismissIcon$class`.

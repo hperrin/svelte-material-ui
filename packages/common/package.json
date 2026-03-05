@@ -25,6 +25,24 @@
       "types": "./src/internal/index.d.ts",
       "svelte": "./dist/internal/index.js"
     },
+    "./animation": {
+      "types": "./dist/animation/index.d.ts",
+      "svelte": "./dist/animation/index.js",
+      "default": "./dist/animation/index.js"
+    },
+    "./animation/animationframe": {
+      "types": "./dist/animation/animationframe.d.ts",
+      "svelte": "./dist/animation/animationframe.js",
+      "default": "./dist/animation/animationframe.js"
+    },
+    "./animation/util": {
+      "types": "./dist/animation/util.d.ts",
+      "svelte": "./dist/animation/util.js",
+      "default": "./dist/animation/util.js"
+    },
+    "./animation/*.scss": {
+      "sass": "./styles/animation/*.scss"
+    },
     "./base": {
       "sass": "./styles/base/_index.scss",
       "types": "./dist/base/index.d.ts",

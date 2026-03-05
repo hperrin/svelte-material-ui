@@ -23,7 +23,7 @@
 // stylelint-disable selector-class-pattern --
 // Selector '.mdc-*' should only be used in this project.
 
-@use '@smui/animation/animation';
+@use '@smui/common/styles/animation/animation';
 @use '@smui/dom/dom';
 @use '@smui/elevation/elevation';
 @use '@smui/ripple/styles/ripple-theme';

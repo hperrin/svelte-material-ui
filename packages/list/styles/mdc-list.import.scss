@@ -1,7 +1,7 @@
 @forward '@smui/rtl/variables' as mdc-rtl-*;
 @forward '@smui/theme/variables' as mdc-theme-*;
 @forward '@smui/shape/variables' as mdc-shape-*;
-@forward '@smui/animation/variables' as mdc-animation-*;
+@forward '@smui/common/styles/animation/variables' as mdc-animation-*;
 @forward '@smui/common/styles/base/mixins' as mdc-base-*;
 @forward '@smui/common/styles/density/variables' as mdc-density-*;
 @forward '@smui/ripple/styles/variables' as mdc-* hide $mdc-dark-ink-opacities,
@@ -36,7 +36,7 @@
 @forward '@smui/common/styles/feature-targeting/functions' as mdc-feature-*;
 @forward '@smui/theme/functions' as mdc-theme-*;
 @forward '@smui/shape/functions' as mdc-shape-*;
-@forward '@smui/animation/functions' as mdc-animation-*;
+@forward '@smui/common/styles/animation/functions' as mdc-animation-*;
 @forward '@smui/ripple/styles/functions' as mdc-*;
 @forward '@smui/typography/functions' as mdc-typography-*;
 @forward 'mdc-list';

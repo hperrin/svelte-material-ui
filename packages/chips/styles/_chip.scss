@@ -24,7 +24,7 @@
 // stylelint-disable selector-class-pattern --
 // Internal styling for Chip MDC component.
 
-@use '@smui/animation/animation';
+@use '@smui/common/styles/animation/animation';
 @use '@smui/common/styles/feature-targeting/feature-targeting';
 @use '@smui/dom/dom';
 @use '@smui/elevation/elevation-theme';

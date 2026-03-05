@@ -1,4 +1,4 @@
-@forward '@smui/animation/variables' as mdc-animation-*;
+@forward '@smui/common/styles/animation/variables' as mdc-animation-*;
 @forward '@smui/common/styles/base/mixins' as mdc-base-*;
 @forward '@smui/common/styles/feature-targeting' as mdc-feature-*;
 @forward '@smui/theme/variables' as mdc-theme-*;
@@ -17,7 +17,7 @@
   mdc-ripple-states-hover-opacity, mdc-ripple-states-interactions-,
   mdc-ripple-states-opacities, mdc-ripple-states-press-opacity,
   mdc-ripple-states-selected;
-@forward '@smui/animation/functions' as mdc-animation-*;
+@forward '@smui/common/styles/animation/functions' as mdc-animation-*;
 @forward '@smui/common/styles/feature-targeting/functions' as mdc-feature-*;
 @forward '@smui/theme/functions' as mdc-theme-*;
 @forward 'functions' as mdc-*;

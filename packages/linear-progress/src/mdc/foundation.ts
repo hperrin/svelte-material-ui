@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  */
 
-import { getCorrectPropertyName } from '@smui/animation/util';
+import { getCorrectPropertyName } from '@smui/common/animation/util';
 import { MDCFoundation } from '@smui/common/base/foundation';
 import type { MDCProgressIndicatorFoundation } from '@smui/progress-indicator/foundation';
 

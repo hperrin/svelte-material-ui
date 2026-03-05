@@ -1,4 +1,4 @@
-@forward '@smui/animation/variables' as mdc-animation-*;
+@forward '@smui/common/styles/animation/variables' as mdc-animation-*;
 @forward '@smui/ripple/styles/variables' as mdc-* hide $mdc-dark-ink-opacities,
   $mdc-fade-in-duration, $mdc-fade-out-duration, $mdc-light-ink-opacities,
   $mdc-pressed-dark-ink-opacity, $mdc-pressed-light-ink-opacity,
@@ -45,7 +45,7 @@
 @forward '@smui/typography/mixins' as mdc-typography-* hide
   mdc-typography-typography;
 @forward '@smui/shape/mixins' as mdc-shape-*;
-@forward '@smui/animation/functions' as mdc-animation-*;
+@forward '@smui/common/styles/animation/functions' as mdc-animation-*;
 @forward '@smui/theme/functions' as mdc-theme-*;
 @forward '@smui/checkbox/styles/functions' as mdc-checkbox-*;
 @forward '@smui/common/styles/feature-targeting/functions' as mdc-feature-*;

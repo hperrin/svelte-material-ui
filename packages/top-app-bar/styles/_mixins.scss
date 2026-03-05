@@ -25,7 +25,7 @@
 
 @use 'sass:list';
 @use 'sass:meta';
-@use '@smui/animation/variables' as animation-variables;
+@use '@smui/common/styles/animation/variables' as animation-variables;
 @use '@smui/ripple/styles/ripple-theme';
 @use '@smui/theme/theme-color';
 @use '@smui/theme/theme';

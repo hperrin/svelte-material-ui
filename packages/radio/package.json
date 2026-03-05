@@ -50,7 +50,6 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@smui/animation": "^8.0.3",
     "@smui/common": "^8.0.3",
     "@smui/dom": "^8.0.3",
     "@smui/focus-ring": "^8.0.3",

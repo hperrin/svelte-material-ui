@@ -21,7 +21,7 @@
 //
 
 @use 'sass:color';
-@use '@smui/animation/variables' as animation-variables;
+@use '@smui/common/styles/animation/variables' as animation-variables;
 @use '@smui/common/styles/density/variables' as density-variables;
 @use '@smui/theme/theme-color';
 

@@ -93,7 +93,8 @@
   $mdc-theme-blue-grey-200, $mdc-theme-blue-grey-300, $mdc-theme-blue-grey-400,
   $mdc-theme-blue-grey-500, $mdc-theme-blue-grey-600, $mdc-theme-blue-grey-700,
   $mdc-theme-blue-grey-800, $mdc-theme-blue-grey-900;
-@forward '@smui/animation' as mdc-animation-* hide mdc-animation-enter,
+@forward '@smui/common/styles/animation' as mdc-animation-* hide
+    mdc-animation-enter,
   mdc-animation-exit-permanent, mdc-animation-exit-temporary,
   mdc-animation-standard;
 @forward './index' as mdc-line-ripple-*;

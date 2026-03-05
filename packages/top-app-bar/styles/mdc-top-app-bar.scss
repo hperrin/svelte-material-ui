@@ -23,8 +23,8 @@
 // stylelint-disable selector-class-pattern --
 // Selector '.mdc-*' should only be used in this project.
 
+@use '@smui/common/styles/animation/variables' as animation-variables;
 @use '@smui/elevation/mixins' as elevation-mixins;
-@use '@smui/animation/variables' as animation-variables;
 @use '@smui/rtl/rtl';
 @use '@smui/typography/typography';
 @use './mixins';

@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  */
 
-import { getCorrectPropertyName } from '@smui/animation/util';
+import { getCorrectPropertyName } from '@smui/common/animation/util';
 import { MDCComponent } from '@smui/common/base/component';
 import type { SpecificEventListener } from '@smui/common/base/types';
 

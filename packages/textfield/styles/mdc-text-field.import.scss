@@ -1,4 +1,4 @@
-@forward '@smui/animation/variables' as mdc-animation-*;
+@forward '@smui/common/styles/animation/variables' as mdc-animation-*;
 @forward '@smui/common/styles/base/mixins' as mdc-base-*;
 @forward '@smui/common/styles/density/variables' as mdc-density-*;
 @forward '@smui/rtl/variables' as mdc-rtl-*;
@@ -46,9 +46,10 @@
 @forward '@smui/typography/functions' as mdc-typography-*;
 @forward '@smui/line-ripple/styles/functions' as mdc-line-ripple-*;
 @forward '@smui/shape/functions' as mdc-shape-*;
-@forward '@smui/animation/functions' as mdc-animation-*;
+@forward '@smui/common/styles/animation/functions' as mdc-animation-*;
 @forward '@smui/ripple/styles/functions' as mdc-*;
-@forward '@smui/animation' as mdc-animation-* hide mdc-animation-enter,
+@forward '@smui/common/styles/animation' as mdc-animation-* hide
+    mdc-animation-enter,
   mdc-animation-exit-permanent, mdc-animation-exit-temporary,
   mdc-animation-standard;
 @forward './index' as mdc-text-field-* hide $mdc-text-field-error,

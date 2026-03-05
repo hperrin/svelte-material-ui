@@ -1,4 +1,4 @@
-@forward '@smui/animation' as mdc-animation-*;
+@forward '@smui/common/styles/animation' as mdc-animation-*;
 @forward '@smui/ripple/styles' as mdc-* hide $mdc-dark-ink-opacities,
   $mdc-fade-in-duration, $mdc-fade-out-duration, $mdc-light-ink-opacities,
   $mdc-pressed-dark-ink-opacity, $mdc-pressed-light-ink-opacity,

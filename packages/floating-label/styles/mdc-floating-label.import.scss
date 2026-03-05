@@ -1,7 +1,7 @@
 @forward '@smui/common/styles/base/mixins' as mdc-base-*;
 @forward '@smui/rtl/variables' as mdc-rtl-*;
 @forward '@smui/theme/variables' as mdc-theme-*;
-@forward '@smui/animation/variables' as mdc-animation-*;
+@forward '@smui/common/styles/animation/variables' as mdc-animation-*;
 @forward '@smui/typography/variables' as mdc-typography-*;
 @forward 'variables' as mdc-floating-label-*;
 @forward '@smui/rtl/mixins' as mdc-* hide mdc-property-, mdc-reflexive,

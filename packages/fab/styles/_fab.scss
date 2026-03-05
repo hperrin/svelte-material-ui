@@ -21,7 +21,7 @@
 // stylelint-disable selector-class-pattern --
 // Selector '.mdc-*' should only be used in this project.
 
-@use '@smui/animation/functions' as animation-functions;
+@use '@smui/common/styles/animation/functions' as animation-functions;
 @use '@smui/common/styles/feature-targeting/feature-targeting';
 @use '@smui/elevation/elevation-theme';
 @use '@smui/elevation/elevation';

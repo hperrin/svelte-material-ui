@@ -1,4 +1,5 @@
-@forward '@smui/animation' as mdc-animation-* hide mdc-animation-enter,
+@forward '@smui/common/styles/animation' as mdc-animation-* hide
+    mdc-animation-enter,
   mdc-animation-exit-permanent, mdc-animation-exit-temporary,
   mdc-animation-standard;
 @forward '@smui/common/styles/density' as mdc-density-* hide

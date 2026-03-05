@@ -20,7 +20,7 @@
 // THE SOFTWARE.
 //
 
-@use '@smui/animation/variables';
+@use '@smui/common/styles/animation/variables';
 
 @function transition-value($property) {
   @return #{$property} 180ms variables.$standard-curve-timing-function;

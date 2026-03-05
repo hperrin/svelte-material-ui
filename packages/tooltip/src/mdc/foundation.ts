@@ -21,8 +21,8 @@
  * THE SOFTWARE.
  */
 
-import { AnimationFrame } from '@smui/animation/animationframe';
-import { getCorrectPropertyName } from '@smui/animation/util';
+import { AnimationFrame } from '@smui/common/animation/animationframe';
+import { getCorrectPropertyName } from '@smui/common/animation/util';
 import { MDCFoundation } from '@smui/common/base/foundation';
 import type { EventType, SpecificEventListener } from '@smui/common/base/types';
 import { KEY, normalizeKey } from '@smui/dom/keyboard';

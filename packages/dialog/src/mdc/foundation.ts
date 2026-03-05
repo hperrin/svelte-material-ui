@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  */
 
-import { AnimationFrame } from '@smui/animation/animationframe';
+import { AnimationFrame } from '@smui/common/animation/animationframe';
 import { MDCFoundation } from '@smui/common/base/foundation';
 import type {
   SpecificEventListener,

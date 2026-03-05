@@ -1,4 +1,4 @@
-@forward '@smui/animation/variables' as mdc-animation-*;
+@forward '@smui/common/styles/animation/variables' as mdc-animation-*;
 @forward '@smui/common/styles/base/mixins' as mdc-base-*;
 @forward '@smui/theme/variables' as mdc-theme-*;
 @forward '@smui/ripple/styles/variables' as mdc-* hide $mdc-dark-ink-opacities,
@@ -31,7 +31,7 @@
 @forward '@smui/tab-indicator/styles/mixins' as mdc-tab-indicator-*;
 @forward 'mixins' as mdc-tab-*;
 @forward '@smui/common/styles/feature-targeting/functions' as mdc-feature-*;
-@forward '@smui/animation/functions' as mdc-animation-*;
+@forward '@smui/common/styles/animation/functions' as mdc-animation-*;
 @forward '@smui/theme/functions' as mdc-theme-*;
 @forward '@smui/ripple/styles/functions' as mdc-*;
 @forward '@smui/typography/functions' as mdc-typography-*;
