@@ -1,4 +1,5 @@
 @forward '@smui/common/styles/base' as mdc-base-*;
+@forward '@smui/common/styles/density' as mdc-density-*;
 @forward '@smui/feature-targeting' as mdc-feature-*;
 @forward '@smui/theme/all-theme-deprecated' as mdc-theme-* hide
     $mdc-theme-red-50,
@@ -103,7 +104,6 @@
 @forward '@smui/rtl' as mdc-rtl-* hide mdc-rtl-rtl;
 @forward '@smui/rtl' as mdc-* hide mdc-property-, mdc-reflexive,
   mdc-reflexive-box, mdc-reflexive-position, mdc-reflexive-property;
-@forward '@smui/density' as mdc-density-*;
 @forward '@smui/shape' as mdc-shape-*;
 @forward '@smui/ripple/styles' as mdc-* hide $mdc-dark-ink-opacities,
   $mdc-fade-in-duration, $mdc-fade-out-duration, $mdc-light-ink-opacities,

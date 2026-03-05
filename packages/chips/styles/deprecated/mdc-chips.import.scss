@@ -6,9 +6,9 @@
 @forward '@smui/ripple/styles/variables' as mdc-ripple-* hide
   $mdc-ripple-states-wash-duration;
 @forward '@smui/theme/variables' as mdc-theme-*;
-@forward '@smui/density/variables' as mdc-density-*;
 @forward '@smui/checkbox/styles/variables' as mdc-checkbox-*;
 @forward '@smui/common/styles/base/mixins' as mdc-base-*;
+@forward '@smui/common/styles/density/variables' as mdc-density-*;
 @forward '@smui/elevation/variables' as mdc-elevation-*;
 @forward '@smui/rtl/variables' as mdc-rtl-*;
 @forward '@smui/touch-target/styles/variables' as mdc-touch-target-*;
@@ -50,7 +50,7 @@
 @forward '@smui/checkbox/styles/functions' as mdc-checkbox-*;
 @forward '@smui/feature-targeting/functions' as mdc-feature-*;
 @forward '@smui/elevation/functions' as mdc-elevation-*;
-@forward '@smui/density/functions' as mdc-density-*;
+@forward '@smui/common/styles/density/functions' as mdc-density-*;
 @forward '@smui/ripple/styles/functions' as mdc-*;
 @forward '@smui/typography/functions' as mdc-typography-*;
 @forward '@smui/shape/functions' as mdc-shape-*;

@@ -1,5 +1,6 @@
 @forward '@smui/animation/variables' as mdc-animation-*;
 @forward '@smui/common/styles/base/mixins' as mdc-base-*;
+@forward '@smui/common/styles/density/variables' as mdc-density-*;
 @forward '@smui/theme/variables' as mdc-theme-*;
 @forward '@smui/elevation/variables' as mdc-elevation-*;
 @forward '@smui/ripple/styles/variables' as mdc-* hide $mdc-dark-ink-opacities,
@@ -12,7 +13,6 @@
 @forward '@smui/touch-target/styles/variables' as mdc-touch-target-*;
 @forward '@smui/typography/variables' as mdc-typography-*;
 @forward '@smui/shape/variables' as mdc-shape-*;
-@forward '@smui/density/variables' as mdc-density-*;
 @forward '@smui/button/styles/variables' as mdc-button-*;
 @forward '@smui/button/styles/mixins' as mdc-button-*;
 @forward '@smui/icon-button/styles/variables' as mdc-icon-button-*;
@@ -55,5 +55,5 @@
 @forward '@smui/ripple/styles/functions' as mdc-*;
 @forward '@smui/typography/functions' as mdc-typography-*;
 @forward '@smui/shape/functions' as mdc-shape-*;
-@forward '@smui/density/functions' as mdc-density-*;
+@forward '@smui/common/styles/density/functions' as mdc-density-*;
 @forward 'mdc-snackbar';

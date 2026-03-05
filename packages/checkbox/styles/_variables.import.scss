@@ -113,7 +113,8 @@
   $mdc-theme-blue-grey-200, $mdc-theme-blue-grey-300, $mdc-theme-blue-grey-400,
   $mdc-theme-blue-grey-500, $mdc-theme-blue-grey-600, $mdc-theme-blue-grey-700,
   $mdc-theme-blue-grey-800, $mdc-theme-blue-grey-900;
-@forward '@smui/density' as mdc-density-* hide mdc-density-prop-value;
+@forward '@smui/common/styles/density' as mdc-density-* hide
+  mdc-density-prop-value;
 @forward './index' as mdc-checkbox-* hide $mdc-checkbox-ripple-target,
   mdc-checkbox-core-styles, mdc-checkbox-without-ripple, mdc-checkbox-ripple,
   mdc-checkbox-density, mdc-checkbox-ripple-size, mdc-checkbox-container-colors,

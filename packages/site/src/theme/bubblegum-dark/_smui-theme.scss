@@ -12,7 +12,7 @@
 );
 
 // Less dense default scale.
-@use '@smui/density/index' as density with (
+@use '@smui/common/styles/density/index' as density with (
   $default-scale: maximum
 );
 

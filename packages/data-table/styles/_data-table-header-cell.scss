@@ -26,7 +26,7 @@
 
 @use 'sass:list';
 @use '@smui/animation/functions';
-@use '@smui/density/functions' as density-functions;
+@use '@smui/common/styles/density/functions' as density-functions;
 @use '@smui/dom/mixins' as dom;
 @use '@smui/feature-targeting/feature-targeting';
 @use '@smui/icon-button/styles/icon-button-theme';

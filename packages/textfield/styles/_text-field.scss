@@ -29,7 +29,7 @@
 @use 'sass:map';
 @use '@smui/animation/animation';
 @use '@smui/theme/css';
-@use '@smui/density/functions' as density-functions;
+@use '@smui/common/styles/density/functions' as density-functions;
 @use '@smui/dom/dom';
 @use '@smui/floating-label/styles/mixins' as floating-label-mixins;
 @use '@smui/floating-label/styles/variables' as floating-label-variables;

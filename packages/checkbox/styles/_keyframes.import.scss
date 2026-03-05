@@ -117,7 +117,8 @@
   mdc-ripple-states-interactions-, mdc-ripple-target-selector,
   mdc-ripple-target-common, mdc-ripple-keyframes-, mdc-ripple-states-opacity,
   mdc-ripple-states-opacities-;
-@forward '@smui/density' as mdc-density-* hide mdc-density-prop-value;
+@forward '@smui/common/styles/density' as mdc-density-* hide
+  mdc-density-prop-value;
 @forward './index' as mdc-checkbox-* hide $mdc-checkbox-ripple-target,
   mdc-checkbox-core-styles, mdc-checkbox-without-ripple, mdc-checkbox-ripple,
   mdc-checkbox-density, mdc-checkbox-ripple-size, mdc-checkbox-container-colors,

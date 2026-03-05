@@ -1,8 +1,8 @@
 @forward '@smui/animation/variables' as mdc-animation-*;
 @forward '@smui/common/styles/base/mixins' as mdc-base-*;
+@forward '@smui/common/styles/density/variables' as mdc-density-*;
 @forward '@smui/theme/variables' as mdc-theme-*;
 @forward '@smui/elevation/variables' as mdc-elevation-*;
-@forward '@smui/density/variables' as mdc-density-*;
 @forward '@smui/ripple/styles/variables' as mdc-* hide $mdc-dark-ink-opacities,
   $mdc-fade-in-duration, $mdc-fade-out-duration, $mdc-light-ink-opacities,
   $mdc-pressed-dark-ink-opacity, $mdc-pressed-light-ink-opacity,
@@ -51,7 +51,7 @@
 @forward '@smui/feature-targeting/functions' as mdc-feature-*;
 @forward '@smui/theme/functions' as mdc-theme-*;
 @forward '@smui/elevation/functions' as mdc-elevation-*;
-@forward '@smui/density/functions' as mdc-density-*;
+@forward '@smui/common/styles/density/functions' as mdc-density-*;
 @forward '@smui/ripple/styles/functions' as mdc-*;
 @forward '@smui/checkbox/styles/functions' as mdc-checkbox-*;
 @forward '@smui/shape/functions' as mdc-shape-*;

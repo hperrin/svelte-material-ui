@@ -28,8 +28,8 @@
 @use '@smui/animation/variables' as animation-variables;
 @use '@smui/checkbox/styles/functions' as checkbox-functions;
 @use '@smui/checkbox/styles/variables' as checkbox-variables;
+@use '@smui/common/styles/density/functions' as density-functions;
 @use '@smui/elevation/mixins' as elevation-mixins;
-@use '@smui/density/functions' as density-functions;
 @use '@smui/feature-targeting/feature-targeting';
 @use '@smui/focus-ring/focus-ring';
 @use '@smui/ripple/styles/ripple';

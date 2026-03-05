@@ -1,5 +1,6 @@
 @forward '@smui/animation/variables' as mdc-animation-*;
 @forward '@smui/common/styles/base/mixins' as mdc-base-*;
+@forward '@smui/common/styles/density/variables' as mdc-density-*;
 @forward '@smui/rtl/variables' as mdc-rtl-*;
 @forward '@smui/theme/variables' as mdc-theme-*;
 @forward '@smui/typography/variables' as mdc-typography-*;
@@ -12,7 +13,6 @@
   $mdc-translate-duration;
 @forward '@smui/ripple/styles/variables' as mdc-ripple-* hide
   $mdc-ripple-states-wash-duration;
-@forward '@smui/density/variables' as mdc-density-*;
 @forward 'icon/variables' as mdc-text-field-*;
 @forward 'variables' as mdc-text-field-*;
 @forward '@smui/rtl/mixins' as mdc-* hide mdc-property-, mdc-reflexive,
@@ -116,5 +116,5 @@
   mdc-text-field-hover-bottom-line-color-, mdc-text-field-line-ripple-color-,
   mdc-text-field-label-ink-color-, mdc-text-field-if-enabled-,
   mdc-text-field-if-disabled-;
-@forward '@smui/density/functions' as mdc-density-*;
+@forward '@smui/common/styles/density/functions' as mdc-density-*;
 @forward 'mdc-text-field';

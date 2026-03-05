@@ -71,7 +71,6 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@smui/common": "^8.0.3",
-    "@smui/density": "^8.0.3",
     "@smui/dom": "^8.0.3",
     "@smui/feature-targeting": "^8.0.3",
     "@smui/ripple": "^8.0.3",

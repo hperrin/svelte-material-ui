@@ -2,12 +2,6 @@
 
 Density subsystem provides adaptive layout to components. Material Design uses low-density space by default but offers high-density space when it improves the user experience. Components with high density enable users to process and take action against large amounts of information in a more manageable way. List, tables, and long forms are components that benefit from increased density.
 
-# Installation
-
-```sh
-npm install --save-dev @smui/feature-targeting
-```
-
 # Design
 
 https://m2.material.io/design/layout/applying-density.html
@@ -32,16 +26,16 @@ This would apply `-3` (high density) to button component instance.
 
 Here are the components that do provide density Sass mixins:
 
-- [Button](../button/README.md#sass-mixins)
-- [Checkbox](../checkbox/README.md#sass-mixins)
-- [Chip](../chips/README.md#sass-mixins)
-- [Data Table](../data-table/README.md#sass-mixins)
-- [Icon Button](../icon-button/README.md#sass-mixins)
-- [List](../list/README.md#sass-mixins)
-- [Radio](../radio/README.md#sass-mixins)
-- [Switch](../switch/README.md#sass-mixins)
-- [Tab Bar](../tab-bar/README.md#sass-mixins)
-- [Text Field](../textfield/README.md#sass-mixins)
+- Button
+- Checkbox
+- Chip
+- Data Table
+- Icon Button
+- List
+- Radio
+- Switch
+- Tab Bar
+- Text Field
 
 # Density Mixins
 
@@ -53,7 +47,7 @@ The height or size of a component is calculated with the following formula:
 
 ```scss
 @use '@smui/button';
-@use '@smui/density';
+@use '@smui/common/styles/density';
 
 $height: button.$height + density.$interval * $density-scale;
 /// @example 36px + 4px * (-3) => 24px

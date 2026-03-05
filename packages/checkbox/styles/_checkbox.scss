@@ -27,7 +27,7 @@
 @use 'sass:math';
 @use '@smui/animation/functions' as functions2;
 @use '@smui/animation/variables' as animation-variables;
-@use '@smui/density/functions' as density-functions;
+@use '@smui/common/styles/density/functions' as density-functions;
 @use '@smui/dom/dom';
 @use '@smui/feature-targeting/feature-targeting';
 @use '@smui/focus-ring/focus-ring';

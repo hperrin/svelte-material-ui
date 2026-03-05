@@ -1,5 +1,6 @@
 @forward '@smui/animation' as mdc-animation-*;
 @forward '@smui/common/styles/base' as mdc-base-*;
+@forward '@smui/common/styles/density' as mdc-density-*;
 @forward '@smui/feature-targeting' as mdc-feature-*;
 @forward '@smui/theme/all-theme-deprecated' as mdc-theme-* hide
     $mdc-theme-red-50,
@@ -100,7 +101,6 @@
   mdc-overlay-dimensions, mdc-overlay-fill-color, mdc-overlay-opacity,
   mdc-overlay-selector-, mdc-overlay-surface-position, mdc-shadow,
   mdc-transition-value, mdc-overlay-transition-value;
-@forward '@smui/density' as mdc-density-*;
 @forward '@smui/ripple/styles' as mdc-* hide $mdc-dark-ink-opacities,
   $mdc-fade-in-duration, $mdc-fade-out-duration, $mdc-light-ink-opacities,
   $mdc-pressed-dark-ink-opacity, $mdc-pressed-light-ink-opacity,

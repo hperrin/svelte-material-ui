@@ -58,6 +58,9 @@
     },
     "./tokens/*.scss": {
       "sass": "./styles/tokens/*.scss"
+    },
+    "./density/*.scss": {
+      "sass": "./styles/density/*.scss"
     }
   },
   "typesVersions": {

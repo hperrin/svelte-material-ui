@@ -23,7 +23,7 @@
 
 @use 'sass:list';
 @use 'sass:map';
-@use '@smui/density/functions' as density-functions;
+@use '@smui/common/styles/density/functions' as density-functions;
 @use '@smui/dom/mixins' as dom-mixins;
 @use '@smui/rtl/rtl';
 @use '@smui/theme/theme';

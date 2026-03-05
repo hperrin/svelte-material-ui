@@ -93,5 +93,6 @@
   $mdc-theme-blue-grey-500, $mdc-theme-blue-grey-600, $mdc-theme-blue-grey-700,
   $mdc-theme-blue-grey-800, $mdc-theme-blue-grey-900, mdc-theme-core-styles,
   mdc-theme-prop;
-@forward '@smui/density' as mdc-density-* hide mdc-density-prop-value;
+@forward '@smui/common/styles/density' as mdc-density-* hide
+  mdc-density-prop-value;
 @forward './variables' as mdc-data-table-*;

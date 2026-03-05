@@ -26,8 +26,8 @@
 @use 'sass:map';
 @use 'sass:math';
 @use '@smui/animation/functions' as functions2;
-@use '@smui/density/functions' as density-functions;
-@use '@smui/density/variables' as density-variables;
+@use '@smui/common/styles/density/functions' as density-functions;
+@use '@smui/common/styles/density/variables' as density-variables;
 @use '@smui/feature-targeting/feature-targeting';
 @use '@smui/ripple/styles/ripple';
 @use '@smui/ripple/styles/ripple-theme';

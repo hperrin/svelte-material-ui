@@ -44,7 +44,6 @@
     "@smui/circular-progress": "^8.0.3",
     "@smui/common": "^8.0.3",
     "@smui/data-table": "^8.0.3",
-    "@smui/density": "^8.0.3",
     "@smui/dialog": "^8.0.3",
     "@smui/dom": "^8.0.3",
     "@smui/drawer": "^8.0.3",

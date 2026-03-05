@@ -1,4 +1,5 @@
-@forward '@smui/density' as mdc-density-* hide mdc-density-prop-value;
+@forward '@smui/common/styles/density' as mdc-density-* hide
+  mdc-density-prop-value;
 @forward '@smui/floating-label/styles' as mdc-floating-label-* hide
     mdc-floating-label-core-styles,
   mdc-floating-label-ink-color, mdc-floating-label-fill-color,

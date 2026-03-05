@@ -1,7 +1,8 @@
 @forward '@smui/animation' as mdc-animation-* hide mdc-animation-enter,
   mdc-animation-exit-permanent, mdc-animation-exit-temporary,
   mdc-animation-standard;
-@forward '@smui/density' as mdc-density-* hide mdc-density-prop-value;
+@forward '@smui/common/styles/density' as mdc-density-* hide
+  mdc-density-prop-value;
 @forward '@smui/theme/all-theme-deprecated' as mdc-theme-* hide
     $mdc-theme-red-50,
   $mdc-theme-red-100, $mdc-theme-red-200, $mdc-theme-red-300,
