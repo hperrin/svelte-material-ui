@@ -22,7 +22,11 @@
  */
 
 import { MDCFoundation } from '@smui/common/base/foundation';
-import { isNavigationEvent, KEY, normalizeKey } from '@smui/dom/keyboard';
+import {
+  isNavigationEvent,
+  KEY,
+  normalizeKey,
+} from '@smui/common/dom/keyboard';
 
 import type { MDCChipActionAdapter } from './adapter';
 import {

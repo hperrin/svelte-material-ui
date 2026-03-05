@@ -25,8 +25,8 @@
 
 @use '@smui/button/styles/button-theme';
 @use '@smui/common/styles/animation/functions' as animation-functions;
+@use '@smui/common/styles/dom/mixins' as dom-mixins;
 @use '@smui/common/styles/feature-targeting/feature-targeting';
-@use '@smui/dom/mixins' as dom-mixins;
 @use '@smui/icon-button/styles/icon-button-theme';
 @use '@smui/ripple/styles/ripple-theme';
 @use '@smui/rtl/rtl';

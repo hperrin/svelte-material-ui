@@ -1,6 +1,6 @@
-import { events, ponyfill } from '@smui/dom';
 import { getContext } from 'svelte';
 import type { AddLayoutListener, RemoveLayoutListener } from '@smui/common';
+import { events, ponyfill } from '@smui/common/dom';
 import { SvelteEventManager } from '@smui/common/internal';
 
 import { MDCRippleFoundation, util } from './mdc';

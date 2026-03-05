@@ -23,7 +23,7 @@
 
 import { MDCComponent } from '@smui/common/base/component';
 import type { CustomEventListener } from '@smui/common/base/types';
-import { announce } from '@smui/dom/announce';
+import { announce } from '@smui/common/dom/announce';
 
 import { MDCChipActionType } from '../action/constants';
 import { MDCChip, type MDCChipFactory } from '../chip/component';

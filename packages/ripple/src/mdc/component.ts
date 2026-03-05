@@ -22,8 +22,8 @@
  */
 
 import { MDCComponent } from '@smui/common/base/component';
-import { applyPassive } from '@smui/dom/events';
-import { matches } from '@smui/dom/ponyfill';
+import { applyPassive } from '@smui/common/dom/events';
+import { matches } from '@smui/common/dom/ponyfill';
 
 import type { MDCRippleAdapter } from './adapter';
 import { MDCRippleFoundation } from './foundation';

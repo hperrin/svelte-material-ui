@@ -90,7 +90,6 @@
 {@render over?.()}
 
 <script lang="ts">
-  import { focusTrap as domFocusTrap, ponyfill } from '@smui/dom';
   import type { Snippet } from 'svelte';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
   import type { Writable } from 'svelte/store';
@@ -101,6 +100,7 @@
     SmuiAttrs,
     SmuiElementPropMap,
   } from '@smui/common';
+  import { focusTrap as domFocusTrap, ponyfill } from '@smui/common/dom';
   import type { ActionArray } from '@smui/common/internal';
   import {
     classMap,

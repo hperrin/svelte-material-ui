@@ -22,7 +22,7 @@
  */
 
 import { MDCFoundation } from '@smui/common/base/foundation';
-import { normalizeKey } from '@smui/dom/keyboard';
+import { normalizeKey } from '@smui/common/dom/keyboard';
 
 import type { MDCListAdapter } from './adapter';
 import { cssClasses, numbers, strings } from './constants';

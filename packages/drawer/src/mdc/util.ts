@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  */
 
-import { type FocusOptions, FocusTrap } from '@smui/dom/focus-trap';
+import { type FocusOptions, FocusTrap } from '@smui/common/dom/focus-trap';
 
 /** MDC Drawer Focus Trap Factory */
 export type MDCDrawerFocusTrapFactory = (

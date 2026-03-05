@@ -29,10 +29,10 @@
 </aside>
 
 <script lang="ts">
-  import { focusTrap as domFocusTrap } from '@smui/dom';
   import type { Snippet } from 'svelte';
   import { onMount, onDestroy, setContext } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
+  import { focusTrap as domFocusTrap } from '@smui/common/dom';
   import type { ActionArray } from '@smui/common/internal';
   import {
     classMap,

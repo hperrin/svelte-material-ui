@@ -25,11 +25,11 @@
 // Internal styling for Tooltip MDC component.
 
 @use 'sass:math';
+@use '@smui/common/styles/dom/dom';
+@use '@smui/common/styles/dom/mixins' as dom-mixins;
 @use '@smui/common/styles/feature-targeting/feature-targeting';
 @use '@smui/elevation/mixins' as elevation-mixins;
-@use '@smui/dom/dom';
 @use '@smui/rtl/rtl' as rtl;
-@use '@smui/dom/mixins' as dom-mixins;
 @use './tooltip-theme';
 @use '@smui/typography/typography';
 

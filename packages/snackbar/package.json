@@ -66,7 +66,6 @@
   "dependencies": {
     "@smui/button": "^8.0.3",
     "@smui/common": "^8.0.3",
-    "@smui/dom": "^8.0.3",
     "@smui/elevation": "^8.0.3",
     "@smui/icon-button": "^8.0.3",
     "@smui/ripple": "^8.0.3",

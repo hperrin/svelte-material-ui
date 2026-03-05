@@ -23,7 +23,7 @@
 
 import { MDCComponent } from '@smui/common/base/component';
 import type { SpecificEventListener } from '@smui/common/base/types';
-import { FocusTrap } from '@smui/dom/focus-trap';
+import { FocusTrap } from '@smui/common/dom/focus-trap';
 import { MDCList, type MDCListFactory } from '@smui/list/component';
 
 import type { MDCDrawerAdapter } from './adapter';

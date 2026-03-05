@@ -29,9 +29,9 @@
 @use 'sass:math';
 @use 'sass:color';
 @use '@smui/common/styles/density/density';
+@use '@smui/common/styles/dom/dom';
 @use '@smui/common/styles/feature-targeting/feature-targeting';
 @use '@smui/common/styles/tokens/resolvers';
-@use '@smui/dom/dom';
 @use '@smui/shape/shape';
 @use '@smui/ripple/styles/ripple-theme';
 @use '@smui/rtl/rtl';

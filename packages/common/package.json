@@ -7,7 +7,8 @@
   "exports": {
     "./package.json": {
       "types": "./package.json",
-      "svelte": "./package.json"
+      "svelte": "./package.json",
+      "default": "./package.json"
     },
     ".": {
       "types": "./src/index.d.ts",
@@ -74,6 +75,39 @@
       "svelte": "./dist/base/types.js",
       "default": "./dist/base/types.js"
     },
+    "./dom": {
+      "types": "./dist/dom/index.d.ts",
+      "svelte": "./dist/dom/index.js",
+      "default": "./dist/dom/index.js"
+    },
+    "./dom/announce": {
+      "types": "./dist/dom/announce.d.ts",
+      "svelte": "./dist/dom/announce.js",
+      "default": "./dist/dom/announce.js"
+    },
+    "./dom/events": {
+      "types": "./dist/dom/events.d.ts",
+      "svelte": "./dist/dom/events.js",
+      "default": "./dist/dom/events.js"
+    },
+    "./dom/focus-trap": {
+      "types": "./dist/dom/focus-trap.d.ts",
+      "svelte": "./dist/dom/focus-trap.js",
+      "default": "./dist/dom/focus-trap.js"
+    },
+    "./dom/keyboard": {
+      "types": "./dist/dom/keyboard.d.ts",
+      "svelte": "./dist/dom/keyboard.js",
+      "default": "./dist/dom/keyboard.js"
+    },
+    "./dom/ponyfill": {
+      "types": "./dist/dom/ponyfill.d.ts",
+      "svelte": "./dist/dom/ponyfill.js",
+      "default": "./dist/dom/ponyfill.js"
+    },
+    "./dom/*.scss": {
+      "sass": "./styles/dom/*.scss"
+    },
     "./tokens/*.scss": {
       "sass": "./styles/tokens/*.scss"
     },
@@ -134,8 +168,8 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@smui/dom": "^8.0.3",
-    "@smui/elevation": "^8.0.3"
+    "@smui/elevation": "^8.0.3",
+    "@smui/rtl": "^8.0.3"
   },
   "devDependencies": {
     "@tsconfig/svelte": "^5.0.8",

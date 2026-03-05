@@ -23,8 +23,8 @@
 
 import { MDCComponent } from '@smui/common/base/component';
 import type { EventType, SpecificEventListener } from '@smui/common/base/types';
-import { applyPassive } from '@smui/dom/events';
-import { matches } from '@smui/dom/ponyfill';
+import { applyPassive } from '@smui/common/dom/events';
+import { matches } from '@smui/common/dom/ponyfill';
 import type { MDCRippleAdapter } from '@smui/ripple/adapter';
 import { MDCRipple } from '@smui/ripple/component';
 import { MDCRippleFoundation } from '@smui/ripple/foundation';

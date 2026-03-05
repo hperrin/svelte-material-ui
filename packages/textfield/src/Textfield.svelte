@@ -242,7 +242,6 @@
 {/if}
 
 <script lang="ts">
-  import { events } from '@smui/dom';
   import type { ComponentProps, Snippet } from 'svelte';
   import { onMount, onDestroy, getContext, setContext, tick } from 'svelte';
   import type {
@@ -251,6 +250,7 @@
     SmuiAttrs,
     SmuiElementPropMap,
   } from '@smui/common';
+  import { events } from '@smui/common/dom';
   import type { ActionArray } from '@smui/common/internal';
   import {
     classMap,

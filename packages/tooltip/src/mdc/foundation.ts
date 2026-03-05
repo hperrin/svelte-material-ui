@@ -25,7 +25,7 @@ import { AnimationFrame } from '@smui/common/animation/animationframe';
 import { getCorrectPropertyName } from '@smui/common/animation/util';
 import { MDCFoundation } from '@smui/common/base/foundation';
 import type { EventType, SpecificEventListener } from '@smui/common/base/types';
-import { KEY, normalizeKey } from '@smui/dom/keyboard';
+import { KEY, normalizeKey } from '@smui/common/dom/keyboard';
 
 import type { MDCTooltipAdapter } from './adapter';
 import {

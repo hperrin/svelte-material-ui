@@ -23,7 +23,7 @@
 
 import { AnimationFrame } from '@smui/common/animation/animationframe';
 import { MDCFoundation } from '@smui/common/base/foundation';
-import { KEY } from '@smui/dom/keyboard';
+import { KEY } from '@smui/common/dom/keyboard';
 
 import {
   MDCChipActionFocusBehavior,

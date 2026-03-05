@@ -26,7 +26,7 @@ import type {
   CustomEventListener,
   SpecificEventListener,
 } from '@smui/common/base/types';
-import { closest } from '@smui/dom/ponyfill';
+import { closest } from '@smui/common/dom/ponyfill';
 import { MDCList, type MDCListFactory } from '@smui/list/component';
 import { numbers as listConstants } from '@smui/list/constants';
 import { MDCListFoundation } from '@smui/list/foundation';

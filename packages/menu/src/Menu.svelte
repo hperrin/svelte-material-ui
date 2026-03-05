@@ -32,9 +32,9 @@
 >
 
 <script lang="ts">
-  import { ponyfill } from '@smui/dom';
   import type { ComponentProps, Snippet } from 'svelte';
   import { onMount, getContext, setContext } from 'svelte';
+  import { ponyfill } from '@smui/common/dom';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, dispatch } from '@smui/common/internal';
   import type { SMUIListAccessor } from '@smui/list';

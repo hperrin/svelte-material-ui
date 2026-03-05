@@ -22,11 +22,11 @@
 // Selector '.mdc-*' should only be used in this project.
 
 @use '@smui/common/styles/animation/functions' as animation-functions;
+@use '@smui/common/styles/dom/mixins' as dom-mixins;
 @use '@smui/common/styles/feature-targeting/feature-targeting';
 @use '@smui/elevation/elevation-theme';
 @use '@smui/elevation/elevation';
 @use '@smui/focus-ring/focus-ring';
-@use '@smui/dom/mixins' as dom-mixins;
 @use '@smui/ripple/styles/ripple';
 @use '@smui/ripple/styles/ripple-theme';
 @use '@smui/shape/mixins' as shape-mixins;

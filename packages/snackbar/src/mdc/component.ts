@@ -23,7 +23,7 @@
 
 import { MDCComponent } from '@smui/common/base/component';
 import type { SpecificEventListener } from '@smui/common/base/types';
-import { closest } from '@smui/dom/ponyfill';
+import { closest } from '@smui/common/dom/ponyfill';
 
 import type { MDCSnackbarAdapter } from './adapter';
 import { strings } from './constants';

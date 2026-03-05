@@ -22,7 +22,7 @@
  */
 
 import { MDCComponent } from '@smui/common/base/component';
-import { announce } from '@smui/dom/announce';
+import { announce } from '@smui/common/dom/announce';
 
 import { MDCChip, type MDCChipFactory } from '../chip/component';
 import { MDCChipFoundation } from '../chip/foundation';

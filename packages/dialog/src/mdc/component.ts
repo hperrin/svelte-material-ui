@@ -23,8 +23,8 @@
 
 import { MDCComponent } from '@smui/common/base/component';
 import type { SpecificEventListener } from '@smui/common/base/types';
-import { FocusTrap } from '@smui/dom/focus-trap';
-import { closest, matches } from '@smui/dom/ponyfill';
+import { FocusTrap } from '@smui/common/dom/focus-trap';
+import { closest, matches } from '@smui/common/dom/ponyfill';
 import { MDCRipple } from '@smui/ripple/component';
 
 import type { MDCDialogAdapter } from './adapter';

@@ -66,7 +66,6 @@
 </div>
 
 <script lang="ts">
-  import { ponyfill } from '@smui/dom';
   import type { Snippet } from 'svelte';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
   import { writable } from 'svelte/store';
@@ -76,6 +75,7 @@
     SmuiAttrs,
     SmuiElementPropMap,
   } from '@smui/common';
+  import { ponyfill } from '@smui/common/dom';
   import type { ActionArray } from '@smui/common/internal';
   import {
     classMap,

@@ -22,7 +22,7 @@
  */
 
 import { MDCComponent } from '@smui/common/base/component';
-import { estimateScrollWidth } from '@smui/dom/ponyfill';
+import { estimateScrollWidth } from '@smui/common/dom/ponyfill';
 
 import type { MDCFloatingLabelAdapter } from './adapter';
 import { MDCFloatingLabelFoundation } from './foundation';

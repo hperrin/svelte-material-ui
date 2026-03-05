@@ -23,7 +23,7 @@
 // stylelint-disable selector-class-pattern --
 // Selector '.mdc-*' should only be used in this project.
 
-@use '@smui/dom/dom';
+@use '@smui/common/styles/dom/dom';
 @use './checkbox-theme';
 @use './checkbox';
 

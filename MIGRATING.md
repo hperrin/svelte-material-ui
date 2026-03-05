@@ -14,9 +14,19 @@ SMUI 9 has migrated away from MDC-Web, since MDC-Web has been abandoned.
     - @material/density is now @smui/common/styles/density
     - @material/feature-targeting is now @smui/common/styles/feature-targeting
     - @material/animation is now @smui/common/styles/animation
+    - @material/dom is now @smui/common/styles/dom
+    - todo: elevation
+    - todo: focus
+    - todo: focus-ring
+    - todo: rtl
+    - todo: shape
+    - todo: theme
+    - todo: typography
   - And the following JS imports have changed:
     - @material/base is now @smui/common/base
     - @material/animation is now @smui/common/animation
+    - @material/dom is now @smui/common/dom
+    - todo: progress-indicator
 - Plain Tooltips now require a Label component (can be imported from `@smui/tooltip` or `@smui/common`) wrapping their text. (Rich tooltips still use the Content component.)
 - IconButton should now always contain at least one Icon child.
 - Kitchen now includes a `dismissIcon$` prefix. If you used `dismiss$class`, you should probably now change it to `dismissIcon$class`.

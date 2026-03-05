@@ -82,7 +82,6 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@smui/common": "^8.0.3",
-    "@smui/dom": "^8.0.3",
     "@smui/floating-label": "^8.0.3",
     "@smui/line-ripple": "^8.0.3",
     "@smui/notched-outline": "^8.0.3",

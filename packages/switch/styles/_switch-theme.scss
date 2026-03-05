@@ -27,8 +27,8 @@
 @use 'sass:map';
 @use 'sass:meta';
 @use '@smui/common/styles/density/density';
+@use '@smui/common/styles/dom/dom';
 @use '@smui/common/styles/tokens/resolvers';
-@use '@smui/dom/dom';
 @use '@smui/elevation/elevation-theme';
 @use '@smui/ripple/styles/ripple-theme';
 @use '@smui/theme/color-palette';

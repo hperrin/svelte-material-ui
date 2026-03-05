@@ -22,7 +22,7 @@
  */
 
 import { MDCFoundation } from '@smui/common/base/foundation';
-import { KEY, normalizeKey } from '@smui/dom/keyboard';
+import { KEY, normalizeKey } from '@smui/common/dom/keyboard';
 import { Corner } from '@smui/menu-surface/constants';
 
 import type { MDCSelectAdapter } from './adapter';

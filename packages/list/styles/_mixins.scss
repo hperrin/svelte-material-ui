@@ -24,8 +24,8 @@
 @use 'sass:list';
 @use 'sass:map';
 @use '@smui/common/styles/density/functions' as density-functions;
+@use '@smui/common/styles/dom/mixins' as dom-mixins;
 @use '@smui/common/styles/feature-targeting/feature-targeting';
-@use '@smui/dom/mixins' as dom-mixins;
 @use '@smui/rtl/rtl';
 @use '@smui/theme/theme';
 @use '@smui/shape/functions' as shape-functions;

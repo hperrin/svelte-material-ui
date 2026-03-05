@@ -4,23 +4,11 @@ SMUI DOM provides commonly-used utilities for inspecting, traversing, and manipu
 
 Most of the time, you shouldn't need to depend on `smui-dom` directly. It is useful however if you'd like to write custom components that follow SMUI's pattern and elegantly integrate with the SMUI ecosystem.
 
-# Installation
-
-```sh
-npm install --save-dev @smui/dom
-```
-
-# Design
-
-https://m2.material.io/design/motion/understanding-motion.html
-
 # Basic Usage
 
 ```js
-import * as ponyfill from '@smui/dom/ponyfill';
+import * as ponyfill from '@smui/common/dom/ponyfill';
 ```
-
-> See [Importing the JS component](../../docs/importing-js.md) for more information on how to import JavaScript.
 
 # Ponyfill Functions
 

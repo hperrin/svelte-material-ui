@@ -23,7 +23,7 @@
 
 import { MDCComponent } from '@smui/common/base/component';
 import type { SpecificEventListener } from '@smui/common/base/types';
-import { closest, matches } from '@smui/dom/ponyfill';
+import { closest, matches } from '@smui/common/dom/ponyfill';
 
 import type { MDCListAdapter } from './adapter';
 import {

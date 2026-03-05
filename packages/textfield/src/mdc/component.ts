@@ -22,8 +22,8 @@
  */
 
 import { MDCComponent } from '@smui/common/base/component';
-import { applyPassive } from '@smui/dom/events';
-import * as ponyfill from '@smui/dom/ponyfill';
+import { applyPassive } from '@smui/common/dom/events';
+import * as ponyfill from '@smui/common/dom/ponyfill';
 import {
   MDCFloatingLabel,
   type MDCFloatingLabelFactory,

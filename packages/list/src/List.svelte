@@ -47,10 +47,10 @@
 </MyComponent>
 
 <script lang="ts" generics="TagName extends SmuiEveryElement = 'ul'">
-  import { ponyfill } from '@smui/dom';
   import type { Snippet } from 'svelte';
   import { onMount, onDestroy, getContext, setContext } from 'svelte';
   import type { AddLayoutListener, RemoveLayoutListener } from '@smui/common';
+  import { ponyfill } from '@smui/common/dom';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, dispatch } from '@smui/common/internal';
   import type {

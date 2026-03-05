@@ -28,8 +28,8 @@
 @use 'sass:meta';
 @use '@smui/common/styles/density/functions' as density-functions;
 @use '@smui/common/styles/density/variables' as density-variables;
+@use '@smui/common/styles/dom/mixins' as dom-mixins;
 @use '@smui/common/styles/feature-targeting/feature-targeting';
-@use '@smui/dom/mixins' as dom-mixins;
 @use '@smui/elevation/elevation-theme';
 @use '@smui/focus-ring/focus-ring';
 @use '@smui/ripple/styles/ripple-theme';

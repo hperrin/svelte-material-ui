@@ -24,7 +24,7 @@
 import { MDCComponent } from '@smui/common/base/component';
 import type { SpecificEventListener } from '@smui/common/base/types';
 import { MDCCheckbox, type MDCCheckboxFactory } from '@smui/checkbox/component';
-import { closest } from '@smui/dom/ponyfill';
+import { closest } from '@smui/common/dom/ponyfill';
 import { MDCLinearProgress } from '@smui/linear-progress/component';
 
 import type { MDCDataTableAdapter } from './adapter';

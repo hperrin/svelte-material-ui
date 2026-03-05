@@ -23,8 +23,8 @@
 
 import { MDCComponent } from '@smui/common/base/component';
 import type { SpecificEventListener } from '@smui/common/base/types';
-import { applyPassive } from '@smui/dom/events';
-import { matches } from '@smui/dom/ponyfill';
+import { applyPassive } from '@smui/common/dom/events';
+import { matches } from '@smui/common/dom/ponyfill';
 
 import type { MDCTabScrollerAdapter } from './adapter';
 import { MDCTabScrollerFoundation } from './foundation';

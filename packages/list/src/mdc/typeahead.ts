@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  */
 
-import { normalizeKey } from '@smui/dom/keyboard';
+import { normalizeKey } from '@smui/common/dom/keyboard';
 
 import { numbers } from './constants';
 import { preventDefaultEvent } from './events';
