@@ -26,8 +26,8 @@
 @use 'sass:list';
 @use 'sass:map';
 @use 'sass:string';
+@use '@smui/common/styles/feature-targeting/feature-targeting';
 @use '@smui/theme/color-palette';
-@use '@smui/feature-targeting/feature-targeting';
 @use '@smui/theme/keys';
 @use '@smui/theme/theme';
 @use '@smui/theme/theme-color';

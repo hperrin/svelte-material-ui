@@ -1,5 +1,5 @@
 @use 'sass:color';
-@use '@smui/feature-targeting/index' as feature-targeting;
+@use '@smui/common/styles/feature-targeting/index' as feature-targeting;
 @use '@smui/theme/theme-color';
 @use '@smui/theme/index' as theme;
 @use './styles/index' as switch;

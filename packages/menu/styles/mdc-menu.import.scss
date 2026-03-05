@@ -41,7 +41,7 @@
   mdc-typography-typography;
 @forward '@smui/list/styles/mixins' as mdc-list-*;
 @forward 'mixins' as mdc-menu-*;
-@forward '@smui/feature-targeting/functions' as mdc-feature-*;
+@forward '@smui/common/styles/feature-targeting/functions' as mdc-feature-*;
 @forward '@smui/theme/functions' as mdc-theme-*;
 @forward '@smui/elevation/functions' as mdc-elevation-*;
 @forward '@smui/common/styles/density/functions' as mdc-density-*;

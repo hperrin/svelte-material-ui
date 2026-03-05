@@ -129,7 +129,7 @@
   mdc-checkbox-mark-keyframes-;
 @forward '@smui/common/styles/base' as mdc-base-*;
 @forward '@smui/common/styles/density' as mdc-density-*;
-@forward '@smui/feature-targeting' as mdc-feature-*;
+@forward '@smui/common/styles/feature-targeting' as mdc-feature-*;
 @forward '@smui/elevation' as mdc-elevation-* hide mdc-elevation-elevation;
 @forward '@smui/elevation' as mdc-* hide mdc-core-styles, mdc-overlay-common,
   mdc-overlay-dimensions, mdc-overlay-fill-color, mdc-overlay-opacity,

@@ -29,8 +29,8 @@
 @use '@smui/checkbox/styles/functions' as checkbox-functions;
 @use '@smui/checkbox/styles/variables' as checkbox-variables;
 @use '@smui/common/styles/density/functions' as density-functions;
+@use '@smui/common/styles/feature-targeting/feature-targeting';
 @use '@smui/elevation/mixins' as elevation-mixins;
-@use '@smui/feature-targeting/feature-targeting';
 @use '@smui/focus-ring/focus-ring';
 @use '@smui/ripple/styles/ripple';
 @use '@smui/ripple/styles/ripple-theme';

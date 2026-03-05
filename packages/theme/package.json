@@ -40,7 +40,7 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@smui/feature-targeting": "^8.0.3"
+    "@smui/common": "^8.0.3"
   },
   "devDependencies": {
     "sass": "^1.97.3"

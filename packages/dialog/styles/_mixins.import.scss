@@ -110,7 +110,7 @@
   mdc-button-raised-, mdc-button-container-fill-color-,
   mdc-button-outline-color-, mdc-button-icon-color-, mdc-button-ink-color-;
 @forward '@smui/common/styles/base' as mdc-base-*;
-@forward '@smui/feature-targeting' as mdc-feature-*;
+@forward '@smui/common/styles/feature-targeting' as mdc-feature-*;
 @forward '@smui/elevation' as mdc-elevation-*;
 @forward '@smui/elevation' as mdc-* hide $mdc-baseline-color,
   $mdc-umbra-opacity, $mdc-penumbra-opacity, $mdc-ambient-opacity,

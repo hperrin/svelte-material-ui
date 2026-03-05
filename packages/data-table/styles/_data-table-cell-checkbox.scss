@@ -24,7 +24,7 @@
 // NOTE: We disable `selector-class-pattern` above to allow using `mdc-` class
 // selectors.
 
-@use '@smui/feature-targeting/feature-targeting';
+@use '@smui/common/styles/feature-targeting/feature-targeting';
 
 /// Styles related to checkbox for cell.
 @mixin static-styles($query: feature-targeting.all()) {

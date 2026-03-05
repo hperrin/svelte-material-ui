@@ -20,8 +20,8 @@
 // THE SOFTWARE.
 //
 
+@use '@smui/common/styles/feature-targeting/feature-targeting';
 @use '@smui/common/styles/tokens/resolvers';
-@use '@smui/feature-targeting/feature-targeting';
 @use '@smui/theme/keys';
 @use '@smui/theme/theme';
 @use './button-shared-theme';

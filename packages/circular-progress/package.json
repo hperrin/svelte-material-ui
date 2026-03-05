@@ -53,7 +53,6 @@
     "@smui/animation": "^8.0.3",
     "@smui/common": "^8.0.3",
     "@smui/dom": "^8.0.3",
-    "@smui/feature-targeting": "^8.0.3",
     "@smui/progress-indicator": "^8.0.3",
     "@smui/rtl": "^8.0.3",
     "@smui/theme": "^8.0.3"

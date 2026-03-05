@@ -24,8 +24,8 @@
 // Selector '.mdc-*' should only be used in this project.
 
 @use '@smui/animation/variables';
+@use '@smui/common/styles/feature-targeting/feature-targeting';
 @use '@smui/theme/theme';
-@use '@smui/feature-targeting/feature-targeting';
 
 @mixin static-styles($query: feature-targeting.all()) {
   $feat-structure: feature-targeting.create-target($query, structure);

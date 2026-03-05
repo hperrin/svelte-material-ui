@@ -22,7 +22,7 @@
   mdc-ripple-states-selected;
 @forward 'mixins' as mdc-icon-button-*;
 @forward '@smui/common/styles/density/functions' as mdc-density-*;
-@forward '@smui/feature-targeting/functions' as mdc-feature-*;
+@forward '@smui/common/styles/feature-targeting/functions' as mdc-feature-*;
 @forward '@smui/animation/functions' as mdc-animation-*;
 @forward '@smui/theme/functions' as mdc-theme-*;
 @forward '@smui/ripple/styles/functions' as mdc-*;

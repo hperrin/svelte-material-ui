@@ -33,7 +33,7 @@
 @forward '@smui/rtl/mixins' as mdc-rtl-* hide mdc-rtl-rtl;
 @forward '@smui/shape/mixins' as mdc-shape-*;
 @forward 'mixins' as mdc-card-*;
-@forward '@smui/feature-targeting/functions' as mdc-feature-*;
+@forward '@smui/common/styles/feature-targeting/functions' as mdc-feature-*;
 @forward '@smui/theme/functions' as mdc-theme-*;
 @forward '@smui/elevation/functions' as mdc-elevation-*;
 @forward '@smui/animation/functions' as mdc-animation-*;

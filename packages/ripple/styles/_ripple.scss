@@ -29,8 +29,8 @@
 @use '@smui/animation/functions' as functions2;
 @use '@smui/animation/variables' as variables2;
 @use '@smui/common/styles/base/mixins' as base-mixins;
+@use '@smui/common/styles/feature-targeting/feature-targeting';
 @use '@smui/theme/custom-properties';
-@use '@smui/feature-targeting/feature-targeting';
 @use '@smui/rtl/rtl';
 @use '@smui/theme/theme';
 @use './ripple-theme';

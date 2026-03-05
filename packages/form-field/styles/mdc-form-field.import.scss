@@ -11,7 +11,7 @@
 @forward '@smui/typography/mixins' as mdc-typography-* hide
   mdc-typography-typography;
 @forward 'mixins' as mdc-form-field-*;
-@forward '@smui/feature-targeting/functions' as mdc-feature-*;
+@forward '@smui/common/styles/feature-targeting/functions' as mdc-feature-*;
 @forward '@smui/theme/functions' as mdc-theme-*;
 @forward '@smui/typography/functions' as mdc-typography-*;
 @forward 'mdc-form-field';

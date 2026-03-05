@@ -44,7 +44,7 @@
 @forward '@smui/typography/mixins' as mdc-typography-* hide
   mdc-typography-typography;
 @forward '@smui/animation/functions' as mdc-animation-*;
-@forward '@smui/feature-targeting/functions' as mdc-feature-*;
+@forward '@smui/common/styles/feature-targeting/functions' as mdc-feature-*;
 @forward '@smui/theme/functions' as mdc-theme-*;
 @forward '@smui/elevation/functions' as mdc-elevation-*;
 @forward '@smui/ripple/styles/functions' as mdc-*;

@@ -61,6 +61,9 @@
     },
     "./density/*.scss": {
       "sass": "./styles/density/*.scss"
+    },
+    "./feature-targeting/*.scss": {
+      "sass": "./styles/feature-targeting/*.scss"
     }
   },
   "typesVersions": {

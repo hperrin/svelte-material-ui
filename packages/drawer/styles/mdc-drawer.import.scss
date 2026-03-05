@@ -1,4 +1,4 @@
-@forward '@smui/feature-targeting' as mdc-feature-*;
+@forward '@smui/common/styles/feature-targeting' as mdc-feature-*;
 @forward '@smui/animation/variables' as mdc-animation-*;
 @forward '@smui/rtl/variables' as mdc-rtl-*;
 @forward '@smui/typography/variables' as mdc-typography-*;
@@ -42,7 +42,7 @@
 @forward '@smui/elevation/mixins' as mdc-elevation-* hide
   mdc-elevation-elevation;
 @forward 'mixins' as mdc-drawer-*;
-@forward '@smui/feature-targeting/functions' as mdc-feature-*;
+@forward '@smui/common/styles/feature-targeting/functions' as mdc-feature-*;
 @forward '@smui/animation/functions' as mdc-animation-*;
 @forward '@smui/typography/functions' as mdc-typography-*;
 @forward '@smui/theme/functions' as mdc-theme-*;

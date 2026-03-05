@@ -17,7 +17,7 @@
   mdc-ripple-states-opacities, mdc-ripple-states-press-opacity,
   mdc-ripple-states-selected;
 @forward '@smui/animation/functions' as mdc-animation-*;
-@forward '@smui/feature-targeting/functions' as mdc-feature-*;
+@forward '@smui/common/styles/feature-targeting/functions' as mdc-feature-*;
 @forward '@smui/theme/functions' as mdc-theme-*;
 @forward 'functions' as mdc-*;
 @forward 'mdc-ripple';

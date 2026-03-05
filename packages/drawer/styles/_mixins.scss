@@ -26,9 +26,9 @@
 @use 'sass:math';
 @use 'sass:list';
 @use 'sass:meta';
-@use '@smui/feature-targeting/feature-targeting';
 @use '@smui/animation/functions' as functions2;
 @use '@smui/animation/variables' as animation-variables;
+@use '@smui/common/styles/feature-targeting/feature-targeting';
 @use '@smui/rtl/rtl';
 @use '@smui/typography/typography';
 @use '@smui/theme/theme';

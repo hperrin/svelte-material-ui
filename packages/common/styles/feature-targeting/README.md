@@ -4,12 +4,6 @@ SMUI Feature Targeting provides infrastructure to allow CSS styles to be include
 
 Most of the time, you shouldn't need to depend on `smui-feature-targeting` directly. However, understanding it can be useful if you're interested in having more control over when certain types of SMUI styles are emitted.
 
-# Installation
-
-```sh
-npm install --save-dev @smui/feature-targeting
-```
-
 # Basic Usage
 
 ## Styles
@@ -17,7 +11,7 @@ npm install --save-dev @smui/feature-targeting
 Authoring component styles:
 
 ```scss
-@use '@smui/feature-targeting';
+@use '@smui/common/styles/feature-targeting';
 
 @mixin my-component-core-styles($query: feature-targeting.all()) {
   $feat-structure: feature-targeting.create-target($query, structure);
@@ -31,7 +25,7 @@ Authoring component styles:
 Consuming component styles:
 
 ```scss
-@use '@smui/feature-targeting';
+@use '@smui/common/styles/feature-targeting';
 @use 'my-component-mixins';
 
 // To include all styles (using the default of mdc-feature-all() defined above):

@@ -2,6 +2,6 @@
 @forward 'mixins' as mdc-* hide mdc-base, mdc-baseline-bottom,
   mdc-baseline-strut-, mdc-baseline-top, mdc-core-styles, mdc-overflow-ellipsis;
 @forward 'mixins' as mdc-typography-* hide mdc-typography-typography;
-@forward '@smui/feature-targeting/functions' as mdc-feature-*;
+@forward '@smui/common/styles/feature-targeting/functions' as mdc-feature-*;
 @forward 'functions' as mdc-typography-*;
 @forward 'mdc-typography';

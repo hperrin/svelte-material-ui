@@ -2,6 +2,6 @@
 @forward '@smui/theme/variables' as mdc-theme-*;
 @forward '@smui/theme/mixins' as mdc-theme-*;
 @forward 'mixins' as mdc-tab-indicator-*;
-@forward '@smui/feature-targeting/functions' as mdc-feature-*;
+@forward '@smui/common/styles/feature-targeting/functions' as mdc-feature-*;
 @forward '@smui/theme/functions' as mdc-theme-*;
 @forward 'mdc-tab-indicator';

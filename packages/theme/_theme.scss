@@ -23,7 +23,7 @@
 @use 'sass:list';
 @use 'sass:map';
 @use 'sass:meta';
-@use '@smui/feature-targeting/feature-targeting';
+@use '@smui/common/styles/feature-targeting/feature-targeting';
 @use './css';
 @use './custom-properties';
 @use './gss';

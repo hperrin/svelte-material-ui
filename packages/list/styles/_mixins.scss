@@ -24,6 +24,7 @@
 @use 'sass:list';
 @use 'sass:map';
 @use '@smui/common/styles/density/functions' as density-functions;
+@use '@smui/common/styles/feature-targeting/feature-targeting';
 @use '@smui/dom/mixins' as dom-mixins;
 @use '@smui/rtl/rtl';
 @use '@smui/theme/theme';
@@ -32,7 +33,6 @@
 @use '@smui/ripple/styles/ripple';
 @use '@smui/ripple/styles/ripple-theme';
 @use '@smui/typography/typography';
-@use '@smui/feature-targeting/feature-targeting';
 @use './variables';
 @use '@smui/theme/theme-color';
 @use './evolution-mixins';

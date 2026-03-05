@@ -25,12 +25,12 @@
 
 @use 'sass:list';
 @use 'sass:meta';
+@use '@smui/common/styles/feature-targeting/feature-targeting';
 @use '@smui/theme/custom-properties';
 @use '@smui/theme/theme';
 @use '@smui/shape/functions' as shape-functions;
 @use '@smui/shape/mixins' as shape-mixins;
 @use '@smui/floating-label/styles/mixins' as floating-label-mixins;
-@use '@smui/feature-targeting/feature-targeting';
 @use '@smui/rtl/rtl';
 
 // Keep this in sync with constants.numbers.MIN_LEADING_STROKE_EDGE_POSITION

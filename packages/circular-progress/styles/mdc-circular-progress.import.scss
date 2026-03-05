@@ -5,6 +5,6 @@
 @forward 'keyframes' as mdc-circular-progress-*;
 @forward 'mixins' as mdc-circular-progress-*;
 @forward '@smui/animation/functions' as mdc-animation-*;
-@forward '@smui/feature-targeting/functions' as mdc-feature-*;
+@forward '@smui/common/styles/feature-targeting/functions' as mdc-feature-*;
 @forward '@smui/theme/functions' as mdc-theme-*;
 @forward 'mdc-circular-progress';

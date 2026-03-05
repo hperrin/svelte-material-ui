@@ -26,9 +26,9 @@
 
 @use 'sass:map';
 @use 'sass:meta';
+@use '@smui/common/styles/feature-targeting/feature-targeting';
 @use '@smui/common/styles/tokens/resolvers';
 @use '@smui/elevation/elevation-theme';
-@use '@smui/feature-targeting/feature-targeting';
 @use '@smui/rtl/rtl';
 @use '@smui/shape/mixins' as shape-mixins;
 @use '@smui/button/styles/button-text-theme';

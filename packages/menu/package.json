@@ -68,7 +68,6 @@
     "@smui/common": "^8.0.3",
     "@smui/dom": "^8.0.3",
     "@smui/elevation": "^8.0.3",
-    "@smui/feature-targeting": "^8.0.3",
     "@smui/list": "^8.0.3",
     "@smui/menu-surface": "^8.0.3",
     "@smui/ripple": "^8.0.3",

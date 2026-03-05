@@ -57,7 +57,6 @@
   "dependencies": {
     "@smui/animation": "^8.0.3",
     "@smui/common": "^8.0.3",
-    "@smui/feature-targeting": "^8.0.3",
     "@smui/theme": "^8.0.3"
   },
   "devDependencies": {

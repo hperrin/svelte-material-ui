@@ -4,12 +4,6 @@ Shadows provide important visual cues about objects’ depth and directional mov
 
 > **A note about "z-space"**: Within the spec, elevation is normally referred to as having a `dp` value. In other words, how many "pixels" above the base material is a piece of material elevated. On a computer, this is normally represented by a 3-d coordinate system. We like `z-space` (or just "z" for short) because it aligns with the technical definition of, and nomenclature for, a 3-d coordinate system. Therefore, we feel it makes more sense than `dp`. However, when we refer to `z-space` (or `z`), that can be used interchangeably with the spec's `dp`.
 
-# Installation
-
-```sh
-npm install --save-dev @smui/feature-targeting
-```
-
 # Design
 
 https://m2.material.io/design/environment/elevation.html
@@ -105,8 +99,7 @@ If you need more configurability over your transitions, use the `transition-valu
   transition:
     elevation.transition-value(),
     /* Configure opacity to use same duration and easing values as elevation */
-      opacity elevation.$transition-duration
-      elevation.$transition-timing-function;
+    opacity elevation.$transition-duration elevation.$transition-timing-function;
   opacity: 0.7;
   will-change: elevation.$property, opacity;
 }

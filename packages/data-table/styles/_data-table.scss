@@ -28,9 +28,9 @@
 @use '@smui/animation/functions';
 @use '@smui/checkbox/styles/mixins' as checkbox-mixins;
 @use '@smui/common/styles/density/functions' as density-functions;
+@use '@smui/common/styles/feature-targeting/feature-targeting';
 @use '@smui/dom/mixins' as dom;
 @use '@smui/elevation/mixins';
-@use '@smui/feature-targeting/feature-targeting';
 @use '@smui/rtl/rtl';
 @use '@smui/shape/mixins' as shape-mixins;
 @use '@smui/theme/theme';
