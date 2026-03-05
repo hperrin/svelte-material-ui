@@ -25,6 +25,7 @@
 
 @use 'sass:color';
 @use 'sass:map';
+@use '@smui/common/styles/tokens/resolvers';
 @use '@smui/elevation/elevation-theme';
 @use '@smui/elevation/mixins' as elevation-mixins;
 @use '@smui/feature-targeting/feature-targeting';
@@ -34,7 +35,6 @@
 @use '@smui/theme/state';
 @use '@smui/theme/theme';
 @use '@smui/theme/theme-color';
-@use '@smui/tokens/resolvers';
 @use '@smui/typography/typography';
 
 /// Default color for slider (track, thumb, ripple).

@@ -24,10 +24,10 @@
 // Selector '.mdc-*' should only be used in this project.
 
 @use 'sass:map';
+@use '@smui/common/styles/tokens/resolvers';
 @use '@smui/feature-targeting/feature-targeting';
 @use '@smui/theme/keys';
 @use '@smui/theme/theme';
-@use '@smui/tokens/resolvers';
 @use './button-shared-theme';
 
 $custom-property-prefix: 'text-button';

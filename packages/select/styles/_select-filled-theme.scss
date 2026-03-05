@@ -21,9 +21,9 @@
 //
 
 @use 'sass:map';
+@use '@smui/common/styles/tokens/resolvers';
 @use '@smui/theme/theme';
 @use '@smui/theme/keys';
-@use '@smui/tokens/resolvers';
 @use './select-theme';
 @use './select-shared-theme';
 

@@ -26,6 +26,7 @@
 
 @use 'sass:map';
 @use 'sass:meta';
+@use '@smui/common/styles/tokens/resolvers';
 @use '@smui/elevation/elevation-theme';
 @use '@smui/list/styles/list-theme';
 @use '@smui/shape/shape';
@@ -33,7 +34,6 @@
 @use '@smui/theme/map-ext';
 @use '@smui/theme/theme';
 @use '@smui/theme/validate';
-@use '@smui/tokens/resolvers';
 
 $custom-property-prefix: 'menu';
 

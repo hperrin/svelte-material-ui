@@ -28,6 +28,7 @@
 @use 'sass:meta';
 @use 'sass:math';
 @use 'sass:color';
+@use '@smui/common/styles/tokens/resolvers';
 @use '@smui/dom/dom';
 @use '@smui/density/density';
 @use '@smui/feature-targeting/feature-targeting';
@@ -37,7 +38,6 @@
 @use '@smui/theme/theme';
 @use '@smui/theme/keys';
 @use '@smui/elevation/elevation-theme';
-@use '@smui/tokens/resolvers';
 @use '@smui/theme/state';
 @use '@smui/theme/theme-color';
 @use '@smui/typography/typography';

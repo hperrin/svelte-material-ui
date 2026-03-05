@@ -21,8 +21,9 @@
 // stylelint-disable selector-class-pattern --
 // Selector '.mdc-*' should only be used in this project.
 
-@use '@smui/elevation/elevation-theme';
 @use '@smui/animation/functions' as animation-functions;
+@use '@smui/common/styles/tokens/resolvers';
+@use '@smui/elevation/elevation-theme';
 @use '@smui/feature-targeting/feature-targeting';
 @use '@smui/ripple/styles/ripple-theme';
 @use '@smui/shape/mixins' as shape-mixins;
@@ -33,7 +34,6 @@
 @use '@smui/theme/state';
 @use '@smui/theme/theme';
 @use '@smui/theme/theme-color';
-@use '@smui/tokens/resolvers';
 @use './fab-custom-properties';
 @use 'sass:math';
 @use 'sass:list';

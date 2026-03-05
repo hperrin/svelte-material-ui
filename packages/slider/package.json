@@ -58,7 +58,6 @@
     "@smui/ripple": "^8.0.3",
     "@smui/rtl": "^8.0.3",
     "@smui/theme": "^8.0.3",
-    "@smui/tokens": "^8.0.3",
     "@smui/typography": "^8.0.3"
   },
   "devDependencies": {

@@ -61,7 +61,6 @@
     "@smui/rtl": "^8.0.3",
     "@smui/shape": "^8.0.3",
     "@smui/theme": "^8.0.3",
-    "@smui/tokens": "^8.0.3",
     "safevalues": "^1.2.0"
   },
   "devDependencies": {

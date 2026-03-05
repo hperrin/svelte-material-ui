@@ -25,12 +25,12 @@
 // NOTE: this is the implementation of the aforementioned classes.
 
 @use 'sass:map';
+@use '@smui/common/styles/tokens/resolvers';
 @use '@smui/line-ripple/styles/mixins' as line-ripple-mixins;
 @use '@smui/ripple/styles/ripple-theme';
 @use '@smui/theme/keys';
 @use '@smui/theme/theme';
 @use '@smui/theme/validate';
-@use '@smui/tokens/resolvers';
 @use './text-field-theme';
 @use './mixins';
 

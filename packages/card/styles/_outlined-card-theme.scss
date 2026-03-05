@@ -21,8 +21,8 @@
 
 @use './mixins' as card;
 @use 'sass:map';
+@use '@smui/common/styles/tokens/resolvers';
 @use '@smui/elevation/elevation-theme';
-@use '@smui/tokens/resolvers';
 @use '@smui/theme/state';
 @use '@smui/theme/theme';
 @use '@smui/theme/keys';

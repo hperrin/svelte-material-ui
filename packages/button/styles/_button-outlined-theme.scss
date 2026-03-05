@@ -25,13 +25,13 @@
 
 @use 'sass:map';
 @use 'sass:math';
+@use '@smui/common/styles/tokens/resolvers';
 @use '@smui/feature-targeting/feature-targeting';
 @use '@smui/theme/custom-properties';
 @use '@smui/theme/keys';
 @use '@smui/theme/state';
 @use '@smui/theme/theme';
 @use '@smui/theme/theme-color';
-@use '@smui/tokens/resolvers';
 @use '@smui/ripple/styles/ripple-theme';
 @use './button-base';
 @use './button-shared-theme';

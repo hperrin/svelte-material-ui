@@ -26,6 +26,7 @@
 
 @use 'sass:map';
 @use 'sass:meta';
+@use '@smui/common/styles/tokens/resolvers';
 @use '@smui/elevation/elevation-theme';
 @use '@smui/feature-targeting/feature-targeting';
 @use '@smui/rtl/rtl';
@@ -35,7 +36,6 @@
 @use '@smui/theme/theme-color';
 @use '@smui/theme/keys';
 @use '@smui/typography/typography';
-@use '@smui/tokens/resolvers';
 
 $fill-color: surface;
 $text-color: on-surface;

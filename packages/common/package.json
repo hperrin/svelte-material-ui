@@ -55,6 +55,9 @@
       "types": "./dist/base/types.d.ts",
       "svelte": "./dist/base/types.js",
       "default": "./dist/base/types.js"
+    },
+    "./tokens/*.scss": {
+      "sass": "./styles/tokens/*.scss"
     }
   },
   "typesVersions": {
@@ -107,7 +110,8 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@smui/dom": "^8.0.3"
+    "@smui/dom": "^8.0.3",
+    "@smui/elevation": "^8.0.3"
   },
   "devDependencies": {
     "@tsconfig/svelte": "^5.0.8",

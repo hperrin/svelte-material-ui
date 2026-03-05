@@ -25,7 +25,7 @@
 // NOTE: this is the implementation of the aforementioned classes.
 
 @use 'sass:map';
-@use '@smui/tokens/resolvers';
+@use '@smui/common/styles/tokens/resolvers';
 @use '@smui/floating-label/styles/mixins' as floating-label-mixins;
 @use '@smui/theme/theme';
 @use '@smui/typography/typography';
