@@ -26,7 +26,7 @@ SMUI 9 has migrated away from MDC-Web, since MDC-Web has been abandoned.
     - @material/base is now @smui/common/base
     - @material/animation is now @smui/common/animation
     - @material/dom is now @smui/common/dom
-    - todo: progress-indicator
+    - @material/progress-indicator is now @smui/common/progress-indicator
 - Plain Tooltips now require a Label component (can be imported from `@smui/tooltip` or `@smui/common`) wrapping their text. (Rich tooltips still use the Content component.)
 - IconButton should now always contain at least one Icon child.
 - Kitchen now includes a `dismissIcon$` prefix. If you used `dismiss$class`, you should probably now change it to `dismissIcon$class`.

@@ -22,7 +22,7 @@
  */
 
 import { MDCComponent } from '@smui/common/base/component';
-import type { MDCProgressIndicator } from '@smui/progress-indicator/component';
+import type { MDCProgressIndicator } from '@smui/common/progress-indicator/component';
 
 import type { MDCLinearProgressAdapter } from './adapter';
 import { MDCLinearProgressFoundation } from './foundation';

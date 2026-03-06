@@ -22,7 +22,7 @@
  */
 
 import { MDCFoundation } from '@smui/common/base/foundation';
-import type { MDCProgressIndicatorFoundation } from '@smui/progress-indicator/foundation';
+import type { MDCProgressIndicatorFoundation } from '@smui/common/progress-indicator/foundation';
 
 import type { MDCCircularProgressAdapter } from './adapter';
 import { cssClasses, strings } from './constants';

@@ -2,12 +2,6 @@
 
 The SMUI Progress Indicator component exposes common foundation and component interfaces for a progress indicator. Components that implement these interfaces include linear progress and circular progress.
 
-# Installation
-
-```sh
-npm install --save-dev @smui/progress-indicator
-```
-
 # Design
 
 https://m2.material.io/components/progress-indicators

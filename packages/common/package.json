@@ -108,6 +108,21 @@
     "./dom/*.scss": {
       "sass": "./styles/dom/*.scss"
     },
+    "./progress-indicator": {
+      "types": "./dist/progress-indicator/index.d.ts",
+      "svelte": "./dist/progress-indicator/index.js",
+      "default": "./dist/progress-indicator/index.js"
+    },
+    "./progress-indicator/component": {
+      "types": "./dist/progress-indicator/component.d.ts",
+      "svelte": "./dist/progress-indicator/component.js",
+      "default": "./dist/progress-indicator/component.js"
+    },
+    "./progress-indicator/foundation": {
+      "types": "./dist/progress-indicator/foundation.d.ts",
+      "svelte": "./dist/progress-indicator/foundation.js",
+      "default": "./dist/progress-indicator/foundation.js"
+    },
     "./tokens/*.scss": {
       "sass": "./styles/tokens/*.scss"
     },
