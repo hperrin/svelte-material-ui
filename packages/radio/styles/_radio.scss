@@ -27,12 +27,12 @@
 @use '@smui/common/styles/animation/animation';
 @use '@smui/common/styles/dom/dom';
 @use '@smui/common/styles/feature-targeting/feature-targeting';
+@use '@smui/common/styles/focus-ring/focus-ring';
 @use '@smui/ripple/styles/ripple';
 @use '@smui/ripple/styles/ripple-theme';
 @use '@smui/touch-target/styles/mixins' as touch-target-mixins;
 @use '@smui/touch-target/styles/variables' as touch-target-variables;
 @use './radio-theme';
-@use '@smui/focus-ring/focus-ring';
 
 $ripple-target: radio-theme.$ripple-target;
 

@@ -134,6 +134,18 @@
     },
     "./feature-targeting/*.scss": {
       "sass": "./styles/feature-targeting/*.scss"
+    },
+    "./focus": {
+      "sass": "./styles/focus/_focus-ring.scss"
+    },
+    "./focus/*.scss": {
+      "sass": "./styles/focus/*.scss"
+    },
+    "./focus-ring": {
+      "sass": "./styles/focus-ring/_focus-ring.scss"
+    },
+    "./focus-ring/*.scss": {
+      "sass": "./styles/focus-ring/*.scss"
     }
   },
   "typesVersions": {
@@ -188,6 +200,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@smui/rtl": "^8.0.3",
+    "@smui/shape": "^8.0.3",
     "@smui/theme": "^8.0.3"
   },
   "devDependencies": {

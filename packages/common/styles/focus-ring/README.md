@@ -2,12 +2,6 @@
 
 This package contains focus-related utilities.
 
-# Installation
-
-```sh
-npm install --save-dev @smui/focus-ring
-```
-
 # Focus rings
 
 To add a focus ring to an element, ensure the following requirements:

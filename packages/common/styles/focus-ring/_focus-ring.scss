@@ -22,8 +22,8 @@
 @use 'sass:list';
 @use 'sass:math';
 @use 'sass:meta';
-@use '@smui/common/styles/dom/dom';
-@use '@smui/common/styles/feature-targeting/feature-targeting';
+@use '../dom/dom';
+@use '../feature-targeting/feature-targeting';
 @use '@smui/rtl/rtl';
 @use '@smui/shape/shape';
 @use '@smui/theme/gss';
