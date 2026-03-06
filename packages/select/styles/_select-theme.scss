@@ -31,9 +31,9 @@
 @use 'sass:meta';
 @use '@smui/common/styles/density/functions' as density-functions;
 @use '@smui/common/styles/density/variables' as density-variables;
+@use '@smui/common/styles/elevation/elevation-theme';
 @use '@smui/common/styles/feature-targeting/feature-targeting';
 @use '@smui/common/styles/tokens/resolvers';
-@use '@smui/elevation/elevation-theme';
 @use '@smui/floating-label/styles/mixins' as floating-label-mixins;
 @use '@smui/floating-label/styles/variables' as floating-label-variables;
 @use '@smui/line-ripple/styles/mixins' as line-ripple-mixins;

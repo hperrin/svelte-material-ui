@@ -2,7 +2,7 @@
 @forward '@smui/common/styles/base/mixins' as mdc-base-*;
 @forward '@smui/common/styles/density/variables' as mdc-density-*;
 @forward '@smui/theme/variables' as mdc-theme-*;
-@forward '@smui/elevation/variables' as mdc-elevation-*;
+@forward '@smui/common/styles/elevation/variables' as mdc-elevation-*;
 @forward '@smui/ripple/styles/variables' as mdc-* hide $mdc-dark-ink-opacities,
   $mdc-fade-in-duration, $mdc-fade-out-duration, $mdc-light-ink-opacities,
   $mdc-pressed-dark-ink-opacity, $mdc-pressed-light-ink-opacity,
@@ -17,11 +17,11 @@
 @forward '@smui/typography/variables' as mdc-typography-*;
 @forward 'variables' as mdc-data-table-*;
 @forward '@smui/theme/mixins' as mdc-theme-*;
-@forward '@smui/elevation/mixins' as mdc-* hide mdc-core-styles,
+@forward '@smui/common/styles/elevation/mixins' as mdc-* hide mdc-core-styles,
   mdc-overlay-common, mdc-overlay-dimensions, mdc-overlay-fill-color,
   mdc-overlay-opacity, mdc-overlay-selector-, mdc-overlay-surface-position,
   mdc-shadow;
-@forward '@smui/elevation/mixins' as mdc-elevation-* hide
+@forward '@smui/common/styles/elevation/mixins' as mdc-elevation-* hide
   mdc-elevation-elevation;
 @forward '@smui/ripple/styles/keyframes' as mdc-ripple-*;
 @forward '@smui/ripple/styles/mixins' as mdc-* hide mdc-common, mdc-core-styles,
@@ -50,7 +50,7 @@
 @forward '@smui/common/styles/animation/functions' as mdc-animation-*;
 @forward '@smui/common/styles/feature-targeting/functions' as mdc-feature-*;
 @forward '@smui/theme/functions' as mdc-theme-*;
-@forward '@smui/elevation/functions' as mdc-elevation-*;
+@forward '@smui/common/styles/elevation/functions' as mdc-elevation-*;
 @forward '@smui/common/styles/density/functions' as mdc-density-*;
 @forward '@smui/ripple/styles/functions' as mdc-*;
 @forward '@smui/checkbox/styles/functions' as mdc-checkbox-*;

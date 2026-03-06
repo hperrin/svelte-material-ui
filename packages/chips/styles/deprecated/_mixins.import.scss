@@ -130,11 +130,12 @@
 @forward '@smui/common/styles/base' as mdc-base-*;
 @forward '@smui/common/styles/density' as mdc-density-*;
 @forward '@smui/common/styles/feature-targeting' as mdc-feature-*;
-@forward '@smui/elevation' as mdc-elevation-* hide mdc-elevation-elevation;
-@forward '@smui/elevation' as mdc-* hide mdc-core-styles, mdc-overlay-common,
-  mdc-overlay-dimensions, mdc-overlay-fill-color, mdc-overlay-opacity,
-  mdc-overlay-selector-, mdc-overlay-surface-position, mdc-shadow,
-  mdc-transition-value, mdc-overlay-transition-value;
+@forward '@smui/common/styles/elevation' as mdc-elevation-* hide
+  mdc-elevation-elevation;
+@forward '@smui/common/styles/elevation' as mdc-* hide mdc-core-styles,
+  mdc-overlay-common, mdc-overlay-dimensions, mdc-overlay-fill-color,
+  mdc-overlay-opacity, mdc-overlay-selector-, mdc-overlay-surface-position,
+  mdc-shadow, mdc-transition-value, mdc-overlay-transition-value;
 @forward '@smui/rtl' as mdc-rtl-* hide mdc-rtl-rtl;
 @forward '@smui/rtl' as mdc-* hide mdc-property-, mdc-reflexive,
   mdc-reflexive-box, mdc-reflexive-position, mdc-reflexive-property;

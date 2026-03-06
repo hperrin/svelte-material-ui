@@ -1,7 +1,7 @@
 @use 'sass:math';
 @use '@smui/common/styles/animation/index' as animation;
+@use '@smui/common/styles/elevation/index' as elevation;
 @use '@smui/common/styles/feature-targeting/index' as feature-targeting;
-@use '@smui/elevation/index' as elevation;
 @use '@smui/theme/index' as theme;
 @use '@smui/typography/index' as typography;
 @use '@smui/ripple/styles/ripple' as ripple;

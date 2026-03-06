@@ -31,7 +31,7 @@
 );
 
 // Increase elevations.
-@use '@smui/elevation/index' as elevation with (
+@use '@smui/common/styles/elevation/index' as elevation with (
   $umbra-map: (
     0: '0px 0px 0px 0px',
     1: '0px 3px 3px -2px',

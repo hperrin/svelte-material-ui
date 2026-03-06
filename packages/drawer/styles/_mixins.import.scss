@@ -119,9 +119,10 @@
   mdc-ripple-states-interactions-, mdc-ripple-states-opacity,
   mdc-ripple-states-opacities-;
 @forward '@smui/list/styles' as mdc-list-*;
-@forward '@smui/elevation' as mdc-elevation-* hide mdc-elevation-elevation;
-@forward '@smui/elevation' as mdc-* hide mdc-core-styles, mdc-overlay-common,
-  mdc-overlay-dimensions, mdc-overlay-fill-color, mdc-overlay-opacity,
-  mdc-overlay-selector-, mdc-overlay-surface-position, mdc-shadow,
-  mdc-transition-value, mdc-overlay-transition-value;
+@forward '@smui/common/styles/elevation' as mdc-elevation-* hide
+  mdc-elevation-elevation;
+@forward '@smui/common/styles/elevation' as mdc-* hide mdc-core-styles,
+  mdc-overlay-common, mdc-overlay-dimensions, mdc-overlay-fill-color,
+  mdc-overlay-opacity, mdc-overlay-selector-, mdc-overlay-surface-position,
+  mdc-shadow, mdc-transition-value, mdc-overlay-transition-value;
 @forward './index' as mdc-drawer-*;

@@ -29,8 +29,9 @@
 @use '@smui/common/styles/animation/functions';
 @use '@smui/common/styles/animation/variables' as animation-variables;
 @use '@smui/common/styles/density/functions' as density-functions;
+@use '@smui/common/styles/elevation/functions' as elevation-functions;
+@use '@smui/common/styles/elevation/mixins' as elevation-mixins;
 @use '@smui/common/styles/feature-targeting/feature-targeting';
-@use '@smui/elevation/mixins' as elevation-mixins;
 @use '@smui/focus-ring/focus-ring';
 @use '@smui/ripple/styles/ripple';
 @use '@smui/ripple/styles/ripple-theme';
@@ -41,7 +42,6 @@
 @use '@smui/shape/mixins' as shape-mixins;
 @use '@smui/shape/functions' as shape-functions;
 @use './variables';
-@use '@smui/elevation/functions' as elevation-functions;
 @use '@smui/theme/theme-color';
 @use './trailingaction/mixins' as trailing-action-mixins;
 

@@ -12,7 +12,7 @@
 @forward '@smui/ripple/styles/variables' as mdc-ripple-* hide
   $mdc-ripple-states-wash-duration;
 @forward '@smui/list/styles/variables' as mdc-list-*;
-@forward '@smui/elevation/variables' as mdc-elevation-*;
+@forward '@smui/common/styles/elevation/variables' as mdc-elevation-*;
 @forward 'variables' as mdc-drawer-*;
 @forward '@smui/rtl/mixins' as mdc-* hide mdc-property-, mdc-reflexive,
   mdc-reflexive-box, mdc-reflexive-position, mdc-reflexive-property;
@@ -34,11 +34,11 @@
   mdc-ripple-states-opacities, mdc-ripple-states-press-opacity,
   mdc-ripple-states-selected;
 @forward '@smui/list/styles/mixins' as mdc-list-*;
-@forward '@smui/elevation/mixins' as mdc-* hide mdc-core-styles,
+@forward '@smui/common/styles/elevation/mixins' as mdc-* hide mdc-core-styles,
   mdc-overlay-common, mdc-overlay-dimensions, mdc-overlay-fill-color,
   mdc-overlay-opacity, mdc-overlay-selector-, mdc-overlay-surface-position,
   mdc-shadow;
-@forward '@smui/elevation/mixins' as mdc-elevation-* hide
+@forward '@smui/common/styles/elevation/mixins' as mdc-elevation-* hide
   mdc-elevation-elevation;
 @forward 'mixins' as mdc-drawer-*;
 @forward '@smui/common/styles/feature-targeting/functions' as mdc-feature-*;
@@ -48,5 +48,5 @@
 @forward '@smui/common/styles/density/functions' as mdc-density-*;
 @forward '@smui/shape/functions' as mdc-shape-*;
 @forward '@smui/ripple/styles/functions' as mdc-*;
-@forward '@smui/elevation/functions' as mdc-elevation-*;
+@forward '@smui/common/styles/elevation/functions' as mdc-elevation-*;
 @forward 'common';

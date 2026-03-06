@@ -5,9 +5,11 @@
 <section>
   <h2>Elevation</h2>
 
+  <p>Part of <code>@smui/common</code>.</p>
+
   <h5>Installation</h5>
 
-  <pre class="demo-spaced">npm i -D @smui/elevation</pre>
+  <pre class="demo-spaced">npm i -D @smui/common</pre>
 
   <h5>Demos</h5>
 

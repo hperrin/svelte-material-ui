@@ -10,7 +10,7 @@
 );
 
 // Elevation shadow color. (Since surface is #000.)
-@use '@smui/elevation/index' as elevation with (
+@use '@smui/common/styles/elevation/index' as elevation with (
   $baseline-color: #333333
 );
 

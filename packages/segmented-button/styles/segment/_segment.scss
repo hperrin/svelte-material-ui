@@ -25,11 +25,11 @@
 // stylelint-disable selector-class-pattern --
 // Selector '.mdc-*' should only be used in this project.
 
+@use '@smui/common/styles/elevation/elevation';
+@use '@smui/common/styles/elevation/elevation-theme';
 @use '@smui/common/styles/feature-targeting/feature-targeting';
 @use '@smui/typography/typography';
 @use '@smui/touch-target/styles/touch-target';
-@use '@smui/elevation/elevation';
-@use '@smui/elevation/elevation-theme';
 @use './segment-theme';
 
 @mixin core-styles($query: feature-targeting.all()) {

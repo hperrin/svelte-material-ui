@@ -25,8 +25,8 @@
 
 @use 'sass:map';
 @use 'sass:meta';
+@use '@smui/common/styles/elevation/elevation-theme';
 @use '@smui/common/styles/tokens/resolvers';
-@use '@smui/elevation/elevation-theme';
 @use '@smui/ripple/styles/ripple-theme';
 @use '@smui/theme/keys';
 @use '@smui/theme/state';
