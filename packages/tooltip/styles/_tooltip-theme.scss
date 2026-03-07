@@ -24,13 +24,13 @@
 // stylelint-disable selector-class-pattern --
 // Internal styling for Tooltip SMUI component.
 
-@use '@smui/common/styles/animation/functions' as animation-functions;
-@use '@smui/common/styles/feature-targeting/feature-targeting';
-@use '@smui/common/styles/shape/mixins' as shape-mixins;
-@use '@smui/common/styles/theme/theme';
-@use '@smui/common/styles/theme/custom-properties';
-@use '@smui/common/styles/theme/css';
-@use '@smui/common/styles/theme/theme-color';
+@use '@smui/common/animation/functions' as animation-functions;
+@use '@smui/common/feature-targeting/feature-targeting';
+@use '@smui/common/shape/mixins' as shape-mixins;
+@use '@smui/common/theme/theme';
+@use '@smui/common/theme/custom-properties';
+@use '@smui/common/theme/css';
+@use '@smui/common/theme/theme-color';
 
 $background-color: rgba(97, 97, 97, theme-color.text-emphasis(high));
 $border-radius: small;

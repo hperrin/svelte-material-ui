@@ -1,8 +1,8 @@
-@forward '@smui/common/styles/feature-targeting' as mdc-feature-*;
-@forward '@smui/common/styles/rtl' as mdc-rtl-* hide mdc-rtl-rtl;
-@forward '@smui/common/styles/rtl' as mdc-* hide mdc-property-, mdc-reflexive,
+@forward '@smui/common/feature-targeting' as mdc-feature-*;
+@forward '@smui/common/rtl' as mdc-rtl-* hide mdc-rtl-rtl;
+@forward '@smui/common/rtl' as mdc-* hide mdc-property-, mdc-reflexive,
   mdc-reflexive-box, mdc-reflexive-position, mdc-reflexive-property;
-@forward '@smui/common/styles/theme/all-theme-deprecated' as mdc-theme-* hide
+@forward '@smui/common/theme/all-theme-deprecated' as mdc-theme-* hide
     $mdc-theme-red-50,
   $mdc-theme-red-100, $mdc-theme-red-200, $mdc-theme-red-300,
   $mdc-theme-red-400, $mdc-theme-red-500, $mdc-theme-red-600,
@@ -96,10 +96,9 @@
   $mdc-theme-blue-grey-200, $mdc-theme-blue-grey-300, $mdc-theme-blue-grey-400,
   $mdc-theme-blue-grey-500, $mdc-theme-blue-grey-600, $mdc-theme-blue-grey-700,
   $mdc-theme-blue-grey-800, $mdc-theme-blue-grey-900;
-@forward '@smui/common/styles/typography' as mdc-typography-* hide
+@forward '@smui/common/typography' as mdc-typography-* hide
   mdc-typography-typography;
-@forward '@smui/common/styles/typography' as mdc-* hide mdc-base,
-  mdc-baseline-bottom, mdc-baseline-strut-, mdc-baseline-top, mdc-core-styles,
-  mdc-overflow-ellipsis, mdc-get-global-variable-, mdc-set-styles-,
-  mdc-get-letter-spacing-;
+@forward '@smui/common/typography' as mdc-* hide mdc-base, mdc-baseline-bottom,
+  mdc-baseline-strut-, mdc-baseline-top, mdc-core-styles, mdc-overflow-ellipsis,
+  mdc-get-global-variable-, mdc-set-styles-, mdc-get-letter-spacing-;
 @forward './index' as mdc-form-field-*;

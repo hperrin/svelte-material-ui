@@ -23,12 +23,12 @@
 // stylelint-disable selector-class-pattern --
 // Selector '.mdc-*' should only be used in this project.
 
-@use '@smui/common/styles/animation/animation';
-@use '@smui/common/styles/dom/dom';
-@use '@smui/common/styles/elevation/elevation';
-@use '@smui/common/styles/focus-ring/focus-ring';
-@use '@smui/common/styles/rtl/rtl';
-@use '@smui/common/styles/theme/gss';
+@use '@smui/common/animation/animation';
+@use '@smui/common/dom/dom';
+@use '@smui/common/elevation/elevation';
+@use '@smui/common/focus-ring/focus-ring';
+@use '@smui/common/rtl/rtl';
+@use '@smui/common/theme/gss';
 @use '@smui/ripple/styles/ripple-theme';
 @use '@smui/ripple/styles/ripple';
 

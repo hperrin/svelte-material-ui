@@ -57,16 +57,16 @@ Or if you don't need dark mode support.
 
 ### Theme Variables
 
-The most important part of theming (and probably the only one you want) is setting the [theme colors](https://github.com/hperrin/svelte-material-ui/blob/master/packages/common/styles/theme/README.md#color-scheme). For the Material color palette, you can @use ["@smui/common/styles/theme/color-palette"](https://github.com/hperrin/svelte-material-ui/blob/master/packages/common/styles/theme/_color-palette.scss). You might also want to style the [border radius variables](https://github.com/hperrin/svelte-material-ui/blob/master/packages/common/styles/shape/README.md#sass-variables). For more common theming variables, you can check out the READMEs in the sass folders in [the common package](https://github.com/hperrin/svelte-material-ui/tree/master/packages/common/styles). To learn how to deeply style the individual components, you can check out the sass files in the [the packages](https://github.com/hperrin/svelte-material-ui/tree/master/packages).
+The most important part of theming (and probably the only one you want) is setting the [theme colors](https://github.com/hperrin/svelte-material-ui/blob/master/packages/common/theme/README.md#color-scheme). For the Material color palette, you can @use ["@smui/common/theme/color-palette"](https://github.com/hperrin/svelte-material-ui/blob/master/packages/common/theme/_color-palette.scss). You might also want to style the [border radius variables](https://github.com/hperrin/svelte-material-ui/blob/master/packages/common/shape/README.md#sass-variables). For more common theming variables, you can check out the READMEs in the sass folders in [the common package](https://github.com/hperrin/svelte-material-ui/tree/master/packages/common). To learn how to deeply style the individual components, you can check out the sass files in the [the packages](https://github.com/hperrin/svelte-material-ui/tree/master/packages).
 
 Here is an example `_smui-theme.scss` file you can use as a starting point.
 
 ```scss
-@use '@smui/common/styles/theme/color-palette';
+@use '@smui/common/theme/color-palette';
 
 $background: #fff;
 
-@use '@smui/common/styles/theme/index' as theme with (
+@use '@smui/common/theme/index' as theme with (
   $primary: color-palette.$purple-500,
   $secondary: color-palette.$teal-600,
   $surface: #fff,
@@ -90,24 +90,24 @@ a:visited {
 
 ### Customizing Further
 
-If you'd like to customize the styles even further, you can set additional variables in other SMUI components. Some notable ones are the [shape variables](https://github.com/hperrin/svelte-material-ui/blob/master/packages/common/styles/shape/README.md#sass-variables) and the [typography variables](https://github.com/hperrin/svelte-material-ui/tree/master/packages/common/styles/typography#sass-variables-and-mixins). You can add them to your `_smui-theme.scss` file. For example, you can remove rounded corners in SMUI by setting the shape variables.
+If you'd like to customize the styles even further, you can set additional variables in other SMUI components. Some notable ones are the [shape variables](https://github.com/hperrin/svelte-material-ui/blob/master/packages/common/shape/README.md#sass-variables) and the [typography variables](https://github.com/hperrin/svelte-material-ui/tree/master/packages/common/typography#sass-variables-and-mixins). You can add them to your `_smui-theme.scss` file. For example, you can remove rounded corners in SMUI by setting the shape variables.
 
 ```scss
-@use '@smui/common/styles/shape/index' as shape with (
+@use '@smui/common/shape/index' as shape with (
   $small-component-radius: 0,
   $medium-component-radius: 0,
   $large-component-radius: 0
 );
 ```
 
-Just make sure that you put that directly after the `@use '@smui/common/styles/theme/index'` block. All `@use` statements in a file must precede any styles in Sass. Also, remember to include it in both your light and dark theme files if you're using both.
+Just make sure that you put that directly after the `@use '@smui/common/theme/index'` block. All `@use` statements in a file must precede any styles in Sass. Also, remember to include it in both your light and dark theme files if you're using both.
 
 ### Adding Classes and Variables
 
 If you want to use CSS classes and variables (like `var(--mdc-theme-primary)` and `class="mdc-theme--primary-bg"`), you can add the following line somewhere in your Sass files. A great place to add it is in your `_smui-theme.scss` files.
 
 ```scss
-@use '@smui/common/styles/theme/styles';
+@use '@smui/common/theme/styles';
 ```
 
 ## Adding Material Typography

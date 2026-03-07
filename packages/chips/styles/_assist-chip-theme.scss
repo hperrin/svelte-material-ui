@@ -21,9 +21,9 @@
 //
 
 @use 'sass:map';
-@use '@smui/common/styles/theme/theme';
-@use '@smui/common/styles/theme/keys';
-@use '@smui/common/styles/tokens/resolvers';
+@use '@smui/common/theme/theme';
+@use '@smui/common/theme/keys';
+@use '@smui/common/tokens/resolvers';
 @use './chip-theme';
 
 $_light-theme: (

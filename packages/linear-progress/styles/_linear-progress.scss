@@ -23,12 +23,12 @@
 // stylelint-disable selector-class-pattern --
 // Selector '.mdc-*' should only be used in this project.
 
-@use '@smui/common/styles/animation/functions' as animation-functions;
-@use '@smui/common/styles/dom/dom';
-@use '@smui/common/styles/feature-targeting/feature-targeting';
-@use '@smui/common/styles/rtl/rtl';
-@use '@smui/common/styles/theme/custom-properties';
-@use '@smui/common/styles/theme/theme';
+@use '@smui/common/animation/functions' as animation-functions;
+@use '@smui/common/dom/dom';
+@use '@smui/common/feature-targeting/feature-targeting';
+@use '@smui/common/rtl/rtl';
+@use '@smui/common/theme/custom-properties';
+@use '@smui/common/theme/theme';
 @use './linear-progress-theme';
 
 /// @deprecated Use static-styles() and theme-styles() instead.

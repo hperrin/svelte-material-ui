@@ -1,10 +1,8 @@
-@forward '@smui/common/styles/animation' as mdc-animation-* hide
-    mdc-animation-enter,
+@forward '@smui/common/animation' as mdc-animation-* hide mdc-animation-enter,
   mdc-animation-exit-permanent, mdc-animation-exit-temporary,
   mdc-animation-standard;
-@forward '@smui/common/styles/density' as mdc-density-* hide
-  mdc-density-prop-value;
-@forward '@smui/common/styles/theme/all-theme-deprecated' as mdc-theme-* hide
+@forward '@smui/common/density' as mdc-density-* hide mdc-density-prop-value;
+@forward '@smui/common/theme/all-theme-deprecated' as mdc-theme-* hide
     $mdc-theme-red-50,
   $mdc-theme-red-100, $mdc-theme-red-200, $mdc-theme-red-300,
   $mdc-theme-red-400, $mdc-theme-red-500, $mdc-theme-red-600,

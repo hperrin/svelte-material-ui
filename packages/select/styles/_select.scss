@@ -25,10 +25,10 @@
 // NOTE: this is the implementation of the aforementioned classes.
 
 @use 'sass:math';
-@use '@smui/common/styles/dom/mixins' as dom-mixins;
-@use '@smui/common/styles/feature-targeting/feature-targeting';
-@use '@smui/common/styles/rtl/rtl';
-@use '@smui/common/styles/typography/mixins' as typography-mixins;
+@use '@smui/common/dom/mixins' as dom-mixins;
+@use '@smui/common/feature-targeting/feature-targeting';
+@use '@smui/common/rtl/rtl';
+@use '@smui/common/typography/mixins' as typography-mixins;
 @use '@smui/floating-label/styles/mixins' as floating-label-mixins;
 @use '@smui/floating-label/styles/variables' as floating-label-variables;
 @use '@smui/list/styles/mixins' as list-mixins;

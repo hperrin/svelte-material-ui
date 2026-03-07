@@ -1,5 +1,5 @@
-@use '@smui/common/styles/feature-targeting/feature-targeting';
-@use '@smui/common/styles/theme/index' as theme;
+@use '@smui/common/feature-targeting/feature-targeting';
+@use '@smui/common/theme/index' as theme;
 
 $ripple-target: '.mdc-chip__ripple';
 

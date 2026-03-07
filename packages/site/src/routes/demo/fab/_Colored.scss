@@ -1,5 +1,5 @@
 @use '@smui/fab/styles/mixins' as fab;
-@use '@smui/common/styles/theme/color-palette';
+@use '@smui/common/theme/color-palette';
 
 .my-colored-fab {
   @include fab.accessible(color-palette.$green-600);

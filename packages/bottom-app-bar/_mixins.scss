@@ -1,6 +1,6 @@
 @use 'sass:math';
-@use '@smui/common/styles/feature-targeting/index' as feature-targeting;
-@use '@smui/common/styles/theme/index' as theme;
+@use '@smui/common/feature-targeting/index' as feature-targeting;
+@use '@smui/common/theme/index' as theme;
 
 // Default styles
 $section-height: 56px !default;

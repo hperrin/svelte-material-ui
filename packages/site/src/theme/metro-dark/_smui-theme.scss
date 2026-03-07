@@ -1,7 +1,7 @@
 @use 'sass:color';
 @use 'sass:string';
 
-@use '@smui/common/styles/theme/index' as theme with (
+@use '@smui/common/theme/index' as theme with (
   $primary: #008299,
   $secondary: #8c0095,
   $surface: #000000,
@@ -10,19 +10,19 @@
 );
 
 // Elevation shadow color. (Since surface is #000.)
-@use '@smui/common/styles/elevation/index' as elevation with (
+@use '@smui/common/elevation/index' as elevation with (
   $baseline-color: #333333
 );
 
 // Sharp corners.
-@use '@smui/common/styles/shape/index' as shape with (
+@use '@smui/common/shape/index' as shape with (
   $small-component-radius: 0,
   $medium-component-radius: 0,
   $large-component-radius: 0
 );
 
 // Use custom fonts.
-@use '@smui/common/styles/typography' with (
+@use '@smui/common/typography' with (
   $font-family: string.unquote('"Selawik", "Segoe UI", sans-serif'),
   $styles-headline1: (
     font-family: string.unquote('"Selawik Light", "Segoe UI", sans-serif'),

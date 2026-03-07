@@ -18,8 +18,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-@use '@smui/common/styles/density/variables' as density-variables;
-@use '@smui/common/styles/theme/theme-color';
+@use '@smui/common/density/variables' as density-variables;
+@use '@smui/common/theme/theme-color';
 
 $deprecated-ripple-target: '.mdc-deprecated-list-item__ripple';
 $deprecated-temporary-ripple-target: '.mdc-list-item__ripple';

@@ -23,8 +23,8 @@
 // Selector '.mdc-*' should only be used in this project.
 
 @use './mixins' as card;
-@use '@smui/common/styles/elevation/elevation-theme';
-@use '@smui/common/styles/theme/state';
+@use '@smui/common/elevation/elevation-theme';
+@use '@smui/common/theme/state';
 @use '@smui/ripple/styles/ripple-theme';
 @use 'sass:map';
 

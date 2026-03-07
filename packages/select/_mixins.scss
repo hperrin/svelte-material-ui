@@ -1,8 +1,8 @@
 @use 'sass:math';
 @use './styles/select-theme';
 @use './styles/select-icon-theme';
-@use '@smui/common/styles/feature-targeting/index' as feature-targeting;
-@use '@smui/common/styles/rtl/mixins' as rtl-mixins;
+@use '@smui/common/feature-targeting/index' as feature-targeting;
+@use '@smui/common/rtl/mixins' as rtl-mixins;
 @use '@smui/menu-surface/styles/mixins' as menu-surface-mixins;
 @use '@smui/floating-label/styles/mixins' as floating-label-mixins;
 @use '@smui/floating-label/styles/variables' as floating-label-variables;

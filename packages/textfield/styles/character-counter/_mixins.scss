@@ -23,10 +23,10 @@
 // stylelint-disable selector-class-pattern --
 // Selector '.mdc-*' should only be used in this project.
 
-@use '@smui/common/styles/feature-targeting/feature-targeting';
-@use '@smui/common/styles/rtl/rtl';
-@use '@smui/common/styles/theme/theme';
-@use '@smui/common/styles/typography/typography';
+@use '@smui/common/feature-targeting/feature-targeting';
+@use '@smui/common/rtl/rtl';
+@use '@smui/common/theme/theme';
+@use '@smui/common/typography/typography';
 
 // Public mixins
 

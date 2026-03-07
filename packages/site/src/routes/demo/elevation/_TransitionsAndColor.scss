@@ -2,8 +2,8 @@
 @use 'smui-theme';
 
 // Elevation and theme mixins.
-@use '@smui/common/styles/elevation/mixins' as elevation;
-@use '@smui/common/styles/theme/index' as theme;
+@use '@smui/common/elevation/mixins' as elevation;
+@use '@smui/common/theme/index' as theme;
 
 .my-primary {
   // Set the font color.

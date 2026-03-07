@@ -131,7 +131,7 @@ html {
 Sass module variables:
 
 ```scss
-@use '@smui/common/styles/typography' with (
+@use '@smui/common/typography' with (
   $styles-button: (
     font-size: 16px,
     text-transform: none,
@@ -166,7 +166,7 @@ html {
 Sass module variables:
 
 ```scss
-@use '@smui/common/styles/typography' with (
+@use '@smui/common/typography' with (
   $font-family: string.unquote('Arial, Helvetica, sans-serif')
 );
 
@@ -197,7 +197,7 @@ html {
 Sass module variables:
 
 ```scss
-@use '@smui/common/styles/typography' with (
+@use '@smui/common/typography' with (
   $styles-headline1: (
     font-family: string.unquote('Arial, Helvetica, sans-serif'),
   ),

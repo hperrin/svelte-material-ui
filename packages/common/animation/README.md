@@ -13,7 +13,7 @@ https://m2.material.io/design/motion/understanding-motion.html
 We provide timing functions which you can use with the `animation` or `transition` CSS properties
 
 ```scss
-@use '@smui/common/styles/animation';
+@use '@smui/common/animation';
 
 .my-element--animating {
   animation: foo-keyframe 175ms animation.$standard-curve-timing-function;
@@ -30,7 +30,7 @@ We provide timing functions which you can use with the `animation` or `transitio
 The following functions create transitions given `$name` and the `$duration`. You can also specify `$delay`, but the default is 0ms. `$name` can either refer to the keyframe, or to CSS property used in `transition`.
 
 ```scss
-@use '@smui/common/styles/animation';
+@use '@smui/common/animation';
 
 .my-element {
   transition: animation.exit-permanent(
@@ -49,7 +49,7 @@ The following functions create transitions given `$name` and the `$duration`. Yo
 ```
 
 ```scss
-@use '@smui/common/styles/animation';
+@use '@smui/common/animation';
 
 @keyframes fade-in {
   from {
@@ -79,7 +79,7 @@ The following functions create transitions given `$name` and the `$duration`. Yo
 These functions handle prefixing across various browsers
 
 ```js
-import { getCorrectEventName } from '@smui/common/styles/animation';
+import { getCorrectEventName } from '@smui/common/animation';
 
 const eventToListenFor = getCorrectEventName(window, 'animationstart');
 ```

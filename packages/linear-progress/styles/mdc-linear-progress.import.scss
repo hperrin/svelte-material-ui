@@ -1,10 +1,10 @@
-@forward '@smui/common/styles/animation/variables' as mdc-animation-*;
-@forward '@smui/common/styles/theme/variables' as mdc-theme-*;
+@forward '@smui/common/animation/variables' as mdc-animation-*;
+@forward '@smui/common/theme/variables' as mdc-theme-*;
 @forward 'variables' as mdc-linear-progress-*;
-@forward '@smui/common/styles/theme/mixins' as mdc-theme-*;
+@forward '@smui/common/theme/mixins' as mdc-theme-*;
 @forward 'keyframes' as mdc-linear-progress-*;
 @forward 'mixins' as mdc-linear-progress-*;
-@forward '@smui/common/styles/animation/functions' as mdc-animation-*;
-@forward '@smui/common/styles/feature-targeting/functions' as mdc-feature-*;
-@forward '@smui/common/styles/theme/functions' as mdc-theme-*;
+@forward '@smui/common/animation/functions' as mdc-animation-*;
+@forward '@smui/common/feature-targeting/functions' as mdc-feature-*;
+@forward '@smui/common/theme/functions' as mdc-theme-*;
 @forward 'mdc-linear-progress';

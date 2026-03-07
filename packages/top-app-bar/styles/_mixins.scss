@@ -25,12 +25,12 @@
 
 @use 'sass:list';
 @use 'sass:meta';
-@use '@smui/common/styles/animation/variables' as animation-variables;
-@use '@smui/common/styles/rtl/rtl';
-@use '@smui/common/styles/shape/functions';
-@use '@smui/common/styles/shape/mixins' as shape-mixins;
-@use '@smui/common/styles/theme/theme-color';
-@use '@smui/common/styles/theme/theme';
+@use '@smui/common/animation/variables' as animation-variables;
+@use '@smui/common/rtl/rtl';
+@use '@smui/common/shape/functions';
+@use '@smui/common/shape/mixins' as shape-mixins;
+@use '@smui/common/theme/theme-color';
+@use '@smui/common/theme/theme';
 @use '@smui/ripple/styles/ripple-theme';
 @use './variables';
 

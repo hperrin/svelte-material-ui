@@ -13,7 +13,7 @@ https://m2.material.io/design/material-theming/overview.html
 You can define the theme color variables before importing any SMUI components:
 
 ```scss
-@use '@smui/common/styles/theme' with (
+@use '@smui/common/theme' with (
   $primary: #fcb8ab,
   $secondary: #feeae6,
   $on-primary: #442b2d,
@@ -108,13 +108,13 @@ Material theme key names below can be used as the `$value` argument for the `the
 
 The `theme.property()` mixin also accepts a custom property Map for the `$value` argument. The map must contain a `varname` key with the name of the custom property, and an optional `fallback` key with the value of the custom property.
 
-Use the `@smui/common/styles/theme/custom-properties` module to create custom property Maps.
+Use the `@smui/common/theme/custom-properties` module to create custom property Maps.
 
 For example, the following Sass...
 
 ```scss
-@use '@smui/common/styles/theme';
-@use '@smui/common/styles/theme/custom-properties';
+@use '@smui/common/theme';
+@use '@smui/common/theme/custom-properties';
 
 .foo {
   @include theme.property(color, custom-properties.create(--foo-color, red));

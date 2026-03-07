@@ -3,7 +3,7 @@
 @use 'sass:string';
 
 // Color scheme: https://coolors.co/222222-fffbfe-ff99c2-85ebff-ffa970
-@use '@smui/common/styles/theme/index' as theme with (
+@use '@smui/common/theme/index' as theme with (
   $primary: #ff99c2,
   $secondary: #85ebff,
   $surface: #fffbfe,
@@ -12,12 +12,12 @@
 );
 
 // Less dense default scale.
-@use '@smui/common/styles/density/index' as density with (
+@use '@smui/common/density/index' as density with (
   $default-scale: maximum
 );
 
 // Custon animation curves.
-@use '@smui/common/styles/animation/index' as animation with (
+@use '@smui/common/animation/index' as animation with (
   $deceleration-curve-timing-function: cubic-bezier(0, 0.5, 0.1, 1),
   $standard-curve-timing-function: cubic-bezier(0.6, 0, 0.4, 1),
   $acceleration-curve-timing-function: cubic-bezier(0.5, 0, 1, 0.7),
@@ -25,14 +25,14 @@
 );
 
 // Increase border radii.
-@use '@smui/common/styles/shape/index' as shape with (
+@use '@smui/common/shape/index' as shape with (
   $small-component-radius: 10px,
   $medium-component-radius: 18px,
   $large-component-radius: 24px
 );
 
 // Use custom fonts. Slightly increase font sizes.
-@use '@smui/common/styles/typography' with (
+@use '@smui/common/typography' with (
   $font-family: string.unquote('"Poppins", sans-serif'),
   $styles-headline1: (
     font-family: string.unquote('"Poetsen One", sans-serif'),

@@ -1,7 +1,6 @@
-@forward '@smui/common/styles/animation' as mdc-animation-*;
-@forward '@smui/common/styles/density' as mdc-density-* hide
-  mdc-density-prop-value;
-@forward '@smui/common/styles/theme/all-theme-deprecated' as mdc-theme-* hide
+@forward '@smui/common/animation' as mdc-animation-*;
+@forward '@smui/common/density' as mdc-density-* hide mdc-density-prop-value;
+@forward '@smui/common/theme/all-theme-deprecated' as mdc-theme-* hide
     $mdc-theme-red-50,
   $mdc-theme-red-100, $mdc-theme-red-200, $mdc-theme-red-300,
   $mdc-theme-red-400, $mdc-theme-red-500, $mdc-theme-red-600,
@@ -109,10 +108,10 @@
   mdc-button-icon-contained-trailing-, mdc-button-outlined-, mdc-button-filled-,
   mdc-button-raised-, mdc-button-container-fill-color-,
   mdc-button-outline-color-, mdc-button-icon-color-, mdc-button-ink-color-;
-@forward '@smui/common/styles/base' as mdc-base-*;
-@forward '@smui/common/styles/feature-targeting' as mdc-feature-*;
-@forward '@smui/common/styles/elevation' as mdc-elevation-*;
-@forward '@smui/common/styles/elevation' as mdc-* hide $mdc-baseline-color,
+@forward '@smui/common/base' as mdc-base-*;
+@forward '@smui/common/feature-targeting' as mdc-feature-*;
+@forward '@smui/common/elevation' as mdc-elevation-*;
+@forward '@smui/common/elevation' as mdc-* hide $mdc-baseline-color,
   $mdc-umbra-opacity, $mdc-penumbra-opacity, $mdc-ambient-opacity,
   $mdc-umbra-map, $mdc-penumbra-map, $mdc-ambient-map, $mdc-property,
   $mdc-overlay-color, $mdc-overlay-property, $mdc-transition-duration,
@@ -120,16 +119,15 @@
   mdc-overlay-dimensions, mdc-overlay-fill-color, mdc-overlay-opacity,
   mdc-overlay-selector-, mdc-overlay-surface-position, mdc-shadow,
   mdc-transition-value, mdc-overlay-transition-value;
-@forward '@smui/common/styles/rtl' as mdc-rtl-*;
-@forward '@smui/common/styles/rtl' as mdc-* hide $mdc-include, mdc-property-,
+@forward '@smui/common/rtl' as mdc-rtl-*;
+@forward '@smui/common/rtl' as mdc-* hide $mdc-include, mdc-property-,
   mdc-reflexive, mdc-reflexive-box, mdc-reflexive-position,
   mdc-reflexive-property;
-@forward '@smui/common/styles/shape' as mdc-shape-*;
+@forward '@smui/common/shape' as mdc-shape-*;
 @forward '@smui/touch-target/styles' as mdc-touch-target-*;
-@forward '@smui/common/styles/typography' as mdc-typography-*;
-@forward '@smui/common/styles/typography' as mdc-* hide $mdc-font-family,
-  $mdc-base, $mdc-font-weight-values, $mdc-styles, mdc-base,
-  mdc-baseline-bottom, mdc-baseline-strut-, mdc-baseline-top, mdc-core-styles,
-  mdc-overflow-ellipsis, mdc-get-global-variable-, mdc-set-styles-,
-  mdc-get-letter-spacing-;
+@forward '@smui/common/typography' as mdc-typography-*;
+@forward '@smui/common/typography' as mdc-* hide $mdc-font-family, $mdc-base,
+  $mdc-font-weight-values, $mdc-styles, mdc-base, mdc-baseline-bottom,
+  mdc-baseline-strut-, mdc-baseline-top, mdc-core-styles, mdc-overflow-ellipsis,
+  mdc-get-global-variable-, mdc-set-styles-, mdc-get-letter-spacing-;
 @forward './index' as mdc-dialog-*;

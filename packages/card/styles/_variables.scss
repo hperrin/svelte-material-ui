@@ -21,8 +21,8 @@
 //
 
 @use 'sass:color';
-@use '@smui/common/styles/theme/theme';
-@use '@smui/common/styles/theme/theme-color';
+@use '@smui/common/theme/theme';
+@use '@smui/common/theme/theme-color';
 
 $action-icon-color: rgba(
   theme-color.prop-value(on-surface),

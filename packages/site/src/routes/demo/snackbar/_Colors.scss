@@ -1,8 +1,8 @@
 // Make sure the "style" import happens first, since it specifies variables.
 @use '@smui/snackbar/style' as smui-snackabar;
 @use '@smui/snackbar/styles/mixins' as snackbar;
-@use '@smui/common/styles/theme/color-palette';
-@use '@smui/common/styles/theme/theme-color';
+@use '@smui/common/theme/color-palette';
+@use '@smui/common/theme/theme-color';
 
 .mdc-snackbar.demo-success {
   @include snackbar.fill-color(color-palette.$green-500);

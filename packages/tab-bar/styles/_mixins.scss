@@ -23,9 +23,9 @@
 // stylelint-disable selector-class-pattern --
 // Selector '.mdc-*' should only be used in this project.
 
-@use '@smui/common/styles/animation/variables' as animation-variables;
-@use '@smui/common/styles/density/functions' as density-functions;
-@use '@smui/common/styles/feature-targeting/feature-targeting';
+@use '@smui/common/animation/variables' as animation-variables;
+@use '@smui/common/density/functions' as density-functions;
+@use '@smui/common/feature-targeting/feature-targeting';
 @use '@smui/tab-scroller/styles/mixins' as tab-scroller-mixins;
 @use '@smui/tab/styles/mixins' as tab-mixins;
 @use './variables';

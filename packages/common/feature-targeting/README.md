@@ -11,7 +11,7 @@ Most of the time, you shouldn't need to depend on `smui-feature-targeting` direc
 Authoring component styles:
 
 ```scss
-@use '@smui/common/styles/feature-targeting';
+@use '@smui/common/feature-targeting';
 
 @mixin my-component-core-styles($query: feature-targeting.all()) {
   $feat-structure: feature-targeting.create-target($query, structure);
@@ -25,7 +25,7 @@ Authoring component styles:
 Consuming component styles:
 
 ```scss
-@use '@smui/common/styles/feature-targeting';
+@use '@smui/common/feature-targeting';
 @use 'my-component-mixins';
 
 // To include all styles (using the default of mdc-feature-all() defined above):

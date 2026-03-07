@@ -47,7 +47,7 @@ The height or size of a component is calculated with the following formula:
 
 ```scss
 @use '@smui/button';
-@use '@smui/common/styles/density';
+@use '@smui/common/density';
 
 $height: button.$height + density.$interval * $density-scale;
 /// @example 36px + 4px * (-3) => 24px

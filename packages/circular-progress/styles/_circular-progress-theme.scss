@@ -26,12 +26,12 @@
 @use 'sass:list';
 @use 'sass:map';
 @use 'sass:string';
-@use '@smui/common/styles/dom/dom';
-@use '@smui/common/styles/feature-targeting/feature-targeting';
-@use '@smui/common/styles/theme/color-palette';
-@use '@smui/common/styles/theme/keys';
-@use '@smui/common/styles/theme/theme';
-@use '@smui/common/styles/theme/theme-color';
+@use '@smui/common/dom/dom';
+@use '@smui/common/feature-targeting/feature-targeting';
+@use '@smui/common/theme/color-palette';
+@use '@smui/common/theme/keys';
+@use '@smui/common/theme/theme';
+@use '@smui/common/theme/theme-color';
 
 $color: primary !default;
 $track-color: transparent !default;

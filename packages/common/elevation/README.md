@@ -40,7 +40,7 @@ This ensures the ripple parts are rendered _above_ the overlay.
 ## Styles
 
 ```scss
-@use '@smui/common/styles/elevation/mdc-elevation';
+@use '@smui/common/elevation/mdc-elevation';
 ```
 
 # Style Customization
@@ -93,7 +93,7 @@ If you need more configurability over your transitions, use the `transition-valu
 If you need more configurability over your transitions, use the `transition-value` function in conjunction with the exported sass variables.
 
 ```scss
-@use '@smui/common/styles/elevation';
+@use '@smui/common/elevation';
 
 .my-component-with-custom-transitions {
   transition:

@@ -1,5 +1,5 @@
 <!--
-  You need to use `@smui/common/styles/elevation` mixins in SCSS for
+  You need to use `@smui/common/elevation` mixins in SCSS for
   these to work. Check out "_TransitionsAndColor.scss"
 -->
 

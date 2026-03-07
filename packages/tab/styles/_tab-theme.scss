@@ -25,14 +25,14 @@
 
 @use 'sass:map';
 @use 'sass:meta';
-@use '@smui/common/styles/elevation/elevation-theme';
-@use '@smui/common/styles/theme/keys';
-@use '@smui/common/styles/theme/state';
-@use '@smui/common/styles/theme/theme';
-@use '@smui/common/styles/theme/validate';
-@use '@smui/common/styles/theme/theme-color';
-@use '@smui/common/styles/tokens/resolvers';
-@use '@smui/common/styles/typography/typography';
+@use '@smui/common/elevation/elevation-theme';
+@use '@smui/common/theme/keys';
+@use '@smui/common/theme/state';
+@use '@smui/common/theme/theme';
+@use '@smui/common/theme/validate';
+@use '@smui/common/theme/theme-color';
+@use '@smui/common/tokens/resolvers';
+@use '@smui/common/typography/typography';
 @use '@smui/ripple/styles/ripple-theme';
 
 $primary-light-theme: (

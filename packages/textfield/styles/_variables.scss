@@ -22,9 +22,9 @@
 
 @use 'sass:math';
 @use 'sass:color';
-@use '@smui/common/styles/density/variables' as density-variables;
-@use '@smui/common/styles/theme/custom-properties';
-@use '@smui/common/styles/theme/theme-color';
+@use '@smui/common/density/variables' as density-variables;
+@use '@smui/common/theme/custom-properties';
+@use '@smui/common/theme/theme-color';
 @use '@smui/floating-label/styles/variables' as floating-label-variables;
 @use '@smui/notched-outline/styles/variables' as notched-outline-variables;
 

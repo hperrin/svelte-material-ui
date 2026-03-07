@@ -1,5 +1,4 @@
-@forward '@smui/common/styles/animation' as mdc-animation-* hide
-    mdc-animation-enter,
+@forward '@smui/common/animation' as mdc-animation-* hide mdc-animation-enter,
   mdc-animation-exit-permanent, mdc-animation-exit-temporary,
   mdc-animation-standard;
 @forward './index' as mdc-* hide $mdc-dark-ink-opacities, $mdc-fade-in-duration,

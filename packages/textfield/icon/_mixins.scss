@@ -1,7 +1,7 @@
 @use 'sass:math';
 @use '../styles/icon/variables';
-@use '@smui/common/styles/feature-targeting/index' as feature-targeting;
-@use '@smui/common/styles/rtl/mixins' as rtl-mixins;
+@use '@smui/common/feature-targeting/index' as feature-targeting;
+@use '@smui/common/rtl/mixins' as rtl-mixins;
 
 @mixin core-styles($query: feature-targeting.all()) {
   .mdc-text-field__icon--leading {

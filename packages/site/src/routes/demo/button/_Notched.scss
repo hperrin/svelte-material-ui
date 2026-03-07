@@ -1,4 +1,4 @@
-@use '@smui/common/styles/shape/variables' as mdc-shape;
+@use '@smui/common/shape/variables' as mdc-shape;
 
 .button-shaped-notch {
   --notchSize: #{mdc-shape.$small-component-radius * 2};

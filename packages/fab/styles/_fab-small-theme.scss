@@ -18,10 +18,10 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-@use '@smui/common/styles/theme/keys';
-@use '@smui/common/styles/theme/theme';
-@use '@smui/common/styles/theme/theme-color';
-@use '@smui/common/styles/tokens/resolvers';
+@use '@smui/common/theme/keys';
+@use '@smui/common/theme/theme';
+@use '@smui/common/theme/theme-color';
+@use '@smui/common/tokens/resolvers';
 @use './fab-theme';
 @use 'sass:map';
 

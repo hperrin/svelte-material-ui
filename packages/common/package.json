@@ -42,10 +42,10 @@
       "default": "./dist/animation/util.js"
     },
     "./animation/*.scss": {
-      "sass": "./styles/animation/*.scss"
+      "sass": "./animation/*.scss"
     },
     "./base": {
-      "sass": "./styles/base/_index.scss",
+      "sass": "./base/_index.scss",
       "types": "./dist/base/index.d.ts",
       "svelte": "./dist/base/index.js",
       "default": "./dist/base/index.js"
@@ -106,7 +106,7 @@
       "default": "./dist/dom/ponyfill.js"
     },
     "./dom/*.scss": {
-      "sass": "./styles/dom/*.scss"
+      "sass": "./dom/*.scss"
     },
     "./progress-indicator": {
       "types": "./dist/progress-indicator/index.d.ts",
@@ -124,40 +124,40 @@
       "default": "./dist/progress-indicator/foundation.js"
     },
     "./elevation/*.scss": {
-      "sass": "./styles/elevation/*.scss"
+      "sass": "./elevation/*.scss"
     },
     "./tokens/*.scss": {
-      "sass": "./styles/tokens/*.scss"
+      "sass": "./tokens/*.scss"
     },
     "./density/*.scss": {
-      "sass": "./styles/density/*.scss"
+      "sass": "./density/*.scss"
     },
     "./feature-targeting/*.scss": {
-      "sass": "./styles/feature-targeting/*.scss"
+      "sass": "./feature-targeting/*.scss"
     },
     "./focus": {
-      "sass": "./styles/focus/_focus-ring.scss"
+      "sass": "./focus/_focus-ring.scss"
     },
     "./focus/*.scss": {
-      "sass": "./styles/focus/*.scss"
+      "sass": "./focus/*.scss"
     },
     "./focus-ring": {
-      "sass": "./styles/focus-ring/_focus-ring.scss"
+      "sass": "./focus-ring/_focus-ring.scss"
     },
     "./focus-ring/*.scss": {
-      "sass": "./styles/focus-ring/*.scss"
+      "sass": "./focus-ring/*.scss"
     },
     "./rtl/*.scss": {
-      "sass": "./styles/rtl/*.scss"
+      "sass": "./rtl/*.scss"
     },
     "./shape/*.scss": {
-      "sass": "./styles/shape/*.scss"
+      "sass": "./shape/*.scss"
     },
     "./theme/*.scss": {
-      "sass": "./styles/theme/*.scss"
+      "sass": "./theme/*.scss"
     },
     "./typography/*.scss": {
-      "sass": "./styles/typography/*.scss"
+      "sass": "./typography/*.scss"
     }
   },
   "typesVersions": {
@@ -191,7 +191,7 @@
   "scripts": {
     "build": "npm run build:js && npm run build:sass && npm run build:svelte",
     "build:js": "tsc -p . --outDir dist/ --rootDir src/",
-    "build:sass": "sass --no-source-map -I node_modules -I ../smui-theme/node_modules -I ../../node_modules styles/_style.scss bare.css",
+    "build:sass": "sass --no-source-map -I node_modules -I ../smui-theme/node_modules -I ../../node_modules _style.scss bare.css",
     "build:svelte": "cp src/*.svelte dist/ && cp src/classadder/*.svelte dist/classadder/",
     "clean": "git status --ignored -u --porcelain . | grep -v node_modules/ | grep -e '^!! ' | sed 's/^!! packages\\/[a-z-]*\\///g' | tr '\\n' ' ' | xargs rm",
     "check": "npx svelte-check --ignore dist",

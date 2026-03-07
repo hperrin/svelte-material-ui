@@ -10,18 +10,18 @@ SMUI 9 has migrated away from MDC-Web, since MDC-Web has been abandoned.
 
 - All "@material" packages you're using should be migrated to "@smui" packages. Many have been moved inside the "@smui/common" package.
   - Particularly, the following SCSS imports have changed:
-    - @material/tokens is now @smui/common/styles/tokens
-    - @material/density is now @smui/common/styles/density
-    - @material/feature-targeting is now @smui/common/styles/feature-targeting
-    - @material/animation is now @smui/common/styles/animation
-    - @material/dom is now @smui/common/styles/dom
-    - @material/elevation is now @smui/common/styles/elevation
-    - @material/focus is now @smui/common/styles/focus
-    - @material/focus-ring is now @smui/common/styles/focus-ring
-    - @material/rtl is now @smui/common/styles/rtl
-    - @material/shape is now @smui/common/styles/shape
-    - @material/theme is now @smui/common/styles/theme
-    - @material/typography is now @smui/common/styles/typography
+    - @material/tokens is now @smui/common/tokens
+    - @material/density is now @smui/common/density
+    - @material/feature-targeting is now @smui/common/feature-targeting
+    - @material/animation is now @smui/common/animation
+    - @material/dom is now @smui/common/dom
+    - @material/elevation is now @smui/common/elevation
+    - @material/focus is now @smui/common/focus
+    - @material/focus-ring is now @smui/common/focus-ring
+    - @material/rtl is now @smui/common/rtl
+    - @material/shape is now @smui/common/shape
+    - @material/theme is now @smui/common/theme
+    - @material/typography is now @smui/common/typography
   - And the following JS imports have changed:
     - @material/base is now @smui/common/base
     - @material/animation is now @smui/common/animation

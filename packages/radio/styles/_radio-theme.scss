@@ -24,12 +24,12 @@
 // Selector '.mdc-*' should only be used in this project.
 
 @use 'sass:map';
-@use '@smui/common/styles/density/functions' as density-functions;
-@use '@smui/common/styles/density/variables' as density-variables;
-@use '@smui/common/styles/feature-targeting/feature-targeting';
-@use '@smui/common/styles/theme/theme';
-@use '@smui/common/styles/theme/keys';
-@use '@smui/common/styles/theme/theme-color';
+@use '@smui/common/density/functions' as density-functions;
+@use '@smui/common/density/variables' as density-variables;
+@use '@smui/common/feature-targeting/feature-targeting';
+@use '@smui/common/theme/theme';
+@use '@smui/common/theme/keys';
+@use '@smui/common/theme/theme-color';
 @use '@smui/ripple/styles/ripple-theme';
 
 $ripple-size: 40px !default;

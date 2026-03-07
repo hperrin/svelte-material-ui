@@ -23,13 +23,13 @@
 // stylelint-disable selector-class-pattern --
 // Selector '.mdc-*' should only be used in this project.
 
-@use '@smui/common/styles/dom/dom';
-@use '@smui/common/styles/elevation/elevation';
-@use '@smui/common/styles/elevation/elevation-theme';
-@use '@smui/common/styles/feature-targeting/feature-targeting';
-@use '@smui/common/styles/focus-ring/focus-ring';
-@use '@smui/common/styles/rtl/rtl';
-@use '@smui/common/styles/typography/typography';
+@use '@smui/common/dom/dom';
+@use '@smui/common/elevation/elevation';
+@use '@smui/common/elevation/elevation-theme';
+@use '@smui/common/feature-targeting/feature-targeting';
+@use '@smui/common/focus-ring/focus-ring';
+@use '@smui/common/rtl/rtl';
+@use '@smui/common/typography/typography';
 @use '@smui/ripple/styles/ripple-theme';
 @use '@smui/touch-target/styles/touch-target';
 @use './button-shared-theme';

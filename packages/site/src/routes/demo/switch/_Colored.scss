@@ -1,6 +1,6 @@
 @use 'sass:color';
 @use '@smui/switch/styles' as switch;
-@use '@smui/common/styles/theme/color-palette';
+@use '@smui/common/theme/color-palette';
 
 $base-color: color-palette.$green-600;
 $on-base-color: color-palette.$green-200;

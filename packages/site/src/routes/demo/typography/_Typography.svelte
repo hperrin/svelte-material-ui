@@ -1,5 +1,5 @@
 <!--
-  You need to import `@smui/common/styles/typography/mdc-typography` in SCSS for
+  You need to import `@smui/common/typography/mdc-typography` in SCSS for
   these classes to work. Check out "_Typography.scss"
 -->
 

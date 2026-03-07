@@ -20,7 +20,7 @@
 // THE SOFTWARE.
 //
 
-@use '@smui/common/styles/density/variables' as density-variables;
+@use '@smui/common/density/variables' as density-variables;
 @use '@smui/tab/styles/variables' as tab-variables;
 
 $height: tab-variables.$height !default;

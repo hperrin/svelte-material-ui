@@ -2,7 +2,7 @@
 @use 'sass:string';
 
 // Color scheme: https://paletton.com/#uid=65s0s0k5R7H2RkL4meLf47mnA7M
-@use '@smui/common/styles/theme/index' as theme with (
+@use '@smui/common/theme/index' as theme with (
   $primary: #382e30,
   $secondary: #30362c,
   $surface: color.scale(#a59b97, $lightness: +75%),
@@ -11,14 +11,14 @@
 );
 
 // Increase border radii.
-@use '@smui/common/styles/shape/index' as shape with (
+@use '@smui/common/shape/index' as shape with (
   $small-component-radius: 8px,
   $medium-component-radius: 15px,
   $large-component-radius: 20px
 );
 
 // Use custom fonts.
-@use '@smui/common/styles/typography' with (
+@use '@smui/common/typography' with (
   $font-family: string.unquote('"Oxygen", sans-serif'),
   $styles-headline1: (
     font-family: string.unquote('"Cormorant Garamond", serif'),

@@ -25,10 +25,10 @@
 // stylelint-disable selector-class-pattern --
 // Selector '.mdc-*' should only be used in this project.
 
-@use '@smui/common/styles/elevation/elevation';
-@use '@smui/common/styles/elevation/elevation-theme';
-@use '@smui/common/styles/feature-targeting/feature-targeting';
-@use '@smui/common/styles/typography/typography';
+@use '@smui/common/elevation/elevation';
+@use '@smui/common/elevation/elevation-theme';
+@use '@smui/common/feature-targeting/feature-targeting';
+@use '@smui/common/typography/typography';
 @use '@smui/touch-target/styles/touch-target';
 @use './segment-theme';
 

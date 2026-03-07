@@ -23,8 +23,8 @@
 // stylelint-disable selector-class-pattern --
 // Selector '.mdc-*' should only be used in this project.
 
-@use '@smui/common/styles/feature-targeting/feature-targeting';
-@use '@smui/common/styles/tokens/resolvers';
+@use '@smui/common/feature-targeting/feature-targeting';
+@use '@smui/common/tokens/resolvers';
 @use './button-ripple';
 @use './button-shared-theme';
 @use './button-text-theme';

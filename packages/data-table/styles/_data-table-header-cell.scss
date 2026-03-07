@@ -25,12 +25,12 @@
 // selectors.
 
 @use 'sass:list';
-@use '@smui/common/styles/animation/functions';
-@use '@smui/common/styles/density/functions' as density-functions;
-@use '@smui/common/styles/dom/mixins' as dom;
-@use '@smui/common/styles/feature-targeting/feature-targeting';
-@use '@smui/common/styles/rtl/rtl';
-@use '@smui/common/styles/typography/typography';
+@use '@smui/common/animation/functions';
+@use '@smui/common/density/functions' as density-functions;
+@use '@smui/common/dom/mixins' as dom;
+@use '@smui/common/feature-targeting/feature-targeting';
+@use '@smui/common/rtl/rtl';
+@use '@smui/common/typography/typography';
 @use '@smui/icon-button/styles/icon-button-theme';
 @use './data-table-cell';
 @use './data-table-header-cell-checkbox-sorting';

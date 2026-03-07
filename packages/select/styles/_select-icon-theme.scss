@@ -23,11 +23,11 @@
 // stylelint-disable selector-class-pattern --
 // Selector '.mdc-*' should only be used in this project.
 
-@use '@smui/common/styles/feature-targeting/feature-targeting';
-@use '@smui/common/styles/rtl/rtl';
-@use '@smui/common/styles/theme/state';
-@use '@smui/common/styles/theme/theme';
-@use '@smui/common/styles/theme/variables' as theme-variables;
+@use '@smui/common/feature-targeting/feature-targeting';
+@use '@smui/common/rtl/rtl';
+@use '@smui/common/theme/state';
+@use '@smui/common/theme/theme';
+@use '@smui/common/theme/variables' as theme-variables;
 
 $icon-size: 24px !default;
 $dense-icon-size: 20px !default;

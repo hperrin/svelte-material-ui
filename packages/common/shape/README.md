@@ -13,7 +13,7 @@ https://m2.material.io/design/shape/about-shape.html
 ## Styles
 
 ```scss
-@use '@smui/common/styles/shape';
+@use '@smui/common/shape';
 ```
 
 # Style Customization
