@@ -102,7 +102,7 @@
   mdc-baseline-strut-, mdc-baseline-top, mdc-core-styles, mdc-overflow-ellipsis,
   mdc-get-global-variable-, mdc-set-styles-, mdc-get-letter-spacing-;
 @forward '@smui/floating-label/styles' as mdc-floating-label-*;
-@forward '@smui/shape' as mdc-shape-*;
+@forward '@smui/common/styles/shape' as mdc-shape-*;
 @forward '@smui/notched-outline/styles' as mdc-notched-outline-*;
 @forward '@smui/common/styles/base' as mdc-base-*;
 @forward '@smui/ripple/styles' as mdc-* hide $mdc-dark-ink-opacities,

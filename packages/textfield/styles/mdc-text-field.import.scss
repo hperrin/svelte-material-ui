@@ -5,7 +5,7 @@
 @forward '@smui/theme/variables' as mdc-theme-*;
 @forward '@smui/typography/variables' as mdc-typography-*;
 @forward '@smui/floating-label/styles/variables' as mdc-floating-label-*;
-@forward '@smui/shape/variables' as mdc-shape-*;
+@forward '@smui/common/styles/shape/variables' as mdc-shape-*;
 @forward '@smui/notched-outline/styles/variables' as mdc-notched-outline-*;
 @forward '@smui/ripple/styles/variables' as mdc-* hide $mdc-dark-ink-opacities,
   $mdc-fade-in-duration, $mdc-fade-out-duration, $mdc-light-ink-opacities,
@@ -26,7 +26,7 @@
   mdc-typography-typography;
 @forward '@smui/floating-label/styles/mixins' as mdc-floating-label-*;
 @forward '@smui/line-ripple/styles/mixins' as mdc-line-ripple-*;
-@forward '@smui/shape/mixins' as mdc-shape-*;
+@forward '@smui/common/styles/shape/mixins' as mdc-shape-*;
 @forward '@smui/notched-outline/styles/mixins' as mdc-notched-outline-*;
 @forward '@smui/ripple/styles/keyframes' as mdc-ripple-*;
 @forward '@smui/ripple/styles/mixins' as mdc-* hide mdc-common, mdc-core-styles,
@@ -46,7 +46,7 @@
 @forward '@smui/common/styles/feature-targeting/functions' as mdc-feature-*;
 @forward '@smui/typography/functions' as mdc-typography-*;
 @forward '@smui/line-ripple/styles/functions' as mdc-line-ripple-*;
-@forward '@smui/shape/functions' as mdc-shape-*;
+@forward '@smui/common/styles/shape/functions' as mdc-shape-*;
 @forward '@smui/common/styles/animation/functions' as mdc-animation-*;
 @forward '@smui/ripple/styles/functions' as mdc-*;
 @forward '@smui/common/styles/animation' as mdc-animation-* hide

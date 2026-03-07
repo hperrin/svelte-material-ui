@@ -25,7 +25,7 @@
 @use '../dom/dom';
 @use '../feature-targeting/feature-targeting';
 @use '../rtl/rtl';
-@use '@smui/shape/shape';
+@use '../shape/shape';
 @use '@smui/theme/gss';
 
 $ring-radius-default: 8px !default;

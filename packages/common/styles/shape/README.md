@@ -4,12 +4,6 @@ Shapes direct attention, identify components, communicate state, and express bra
 
 > Currently shape system for web only supports rounded corners.
 
-# Installation
-
-```sh
-npm install --save-dev @smui/shape
-```
-
 # Design
 
 https://m2.material.io/design/shape/about-shape.html
@@ -19,7 +13,7 @@ https://m2.material.io/design/shape/about-shape.html
 ## Styles
 
 ```scss
-@use '@smui/shape';
+@use '@smui/common/styles/shape';
 ```
 
 # Style Customization

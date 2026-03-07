@@ -4,7 +4,7 @@
 @forward '@smui/common/styles/animation/variables' as mdc-animation-*;
 @forward '@smui/common/styles/elevation/variables' as mdc-elevation-*;
 @forward '@smui/common/styles/rtl/variables' as mdc-rtl-*;
-@forward '@smui/shape/variables' as mdc-shape-*;
+@forward '@smui/common/styles/shape/variables' as mdc-shape-*;
 @forward '@smui/ripple/styles/variables' as mdc-* hide $mdc-dark-ink-opacities,
   $mdc-fade-in-duration, $mdc-fade-out-duration, $mdc-light-ink-opacities,
   $mdc-pressed-dark-ink-opacity, $mdc-pressed-light-ink-opacity,
@@ -25,7 +25,7 @@
   mdc-reflexive, mdc-reflexive-box, mdc-reflexive-position,
   mdc-reflexive-property;
 @forward '@smui/common/styles/rtl/mixins' as mdc-rtl-* hide mdc-rtl-rtl;
-@forward '@smui/shape/mixins' as mdc-shape-*;
+@forward '@smui/common/styles/shape/mixins' as mdc-shape-*;
 @forward '@smui/ripple/styles/keyframes' as mdc-ripple-*;
 @forward '@smui/ripple/styles/mixins' as mdc-* hide mdc-common, mdc-core-styles,
   mdc-radius-bounded, mdc-radius-unbounded, mdc-surface, mdc-target-common,
@@ -46,7 +46,7 @@
 @forward '@smui/theme/functions' as mdc-theme-*;
 @forward '@smui/common/styles/elevation/functions' as mdc-elevation-*;
 @forward '@smui/common/styles/density/functions' as mdc-density-*;
-@forward '@smui/shape/functions' as mdc-shape-*;
+@forward '@smui/common/styles/shape/functions' as mdc-shape-*;
 @forward '@smui/common/styles/animation/functions' as mdc-animation-*;
 @forward '@smui/ripple/styles/functions' as mdc-*;
 @forward '@smui/typography/functions' as mdc-typography-*;

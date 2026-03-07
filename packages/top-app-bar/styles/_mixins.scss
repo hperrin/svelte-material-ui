@@ -27,11 +27,11 @@
 @use 'sass:meta';
 @use '@smui/common/styles/animation/variables' as animation-variables;
 @use '@smui/common/styles/rtl/rtl';
+@use '@smui/common/styles/shape/functions';
+@use '@smui/common/styles/shape/mixins' as shape-mixins;
 @use '@smui/ripple/styles/ripple-theme';
 @use '@smui/theme/theme-color';
 @use '@smui/theme/theme';
-@use '@smui/shape/mixins' as shape-mixins;
-@use '@smui/shape/functions';
 @use './variables';
 
 //

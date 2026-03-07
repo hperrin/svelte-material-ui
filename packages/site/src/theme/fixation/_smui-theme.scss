@@ -24,7 +24,7 @@
 );
 
 // Increase border radii.
-@use '@smui/shape/index' as shape with (
+@use '@smui/common/styles/shape/index' as shape with (
   $small-component-radius: 8px,
   $medium-component-radius: 15px,
   $large-component-radius: 20px

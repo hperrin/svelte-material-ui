@@ -52,7 +52,6 @@
   "dependencies": {
     "@smui/common": "^8.0.3",
     "@smui/ripple": "^8.0.3",
-    "@smui/shape": "^8.0.3",
     "@smui/theme": "^8.0.3",
     "safevalues": "^1.2.0"
   },

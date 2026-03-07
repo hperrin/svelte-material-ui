@@ -15,7 +15,7 @@
 );
 
 // Sharp corners.
-@use '@smui/shape/index' as shape with (
+@use '@smui/common/styles/shape/index' as shape with (
   $small-component-radius: 0,
   $medium-component-radius: 0,
   $large-component-radius: 0

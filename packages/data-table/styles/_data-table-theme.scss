@@ -35,11 +35,11 @@
 @use '@smui/common/styles/elevation/mixins';
 @use '@smui/common/styles/feature-targeting/feature-targeting';
 @use '@smui/common/styles/rtl/rtl';
+@use '@smui/common/styles/shape/functions' as shape-functions;
+@use '@smui/common/styles/shape/mixins' as shape-mixins;
 @use '@smui/icon-button/styles/icon-button-theme';
 @use '@smui/list/styles/evolution-mixins' as list-theme;
 @use '@smui/select/styles/select-theme';
-@use '@smui/shape/functions' as shape-functions;
-@use '@smui/shape/mixins' as shape-mixins;
 @use '@smui/theme/keys';
 @use '@smui/theme/theme';
 @use '@smui/theme/theme-color';

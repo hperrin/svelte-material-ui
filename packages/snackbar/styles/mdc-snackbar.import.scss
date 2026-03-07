@@ -12,7 +12,7 @@
 @forward '@smui/common/styles/rtl/variables' as mdc-rtl-*;
 @forward '@smui/touch-target/styles/variables' as mdc-touch-target-*;
 @forward '@smui/typography/variables' as mdc-typography-*;
-@forward '@smui/shape/variables' as mdc-shape-*;
+@forward '@smui/common/styles/shape/variables' as mdc-shape-*;
 @forward '@smui/button/styles/variables' as mdc-button-*;
 @forward '@smui/button/styles/mixins' as mdc-button-*;
 @forward '@smui/icon-button/styles/variables' as mdc-icon-button-*;
@@ -46,7 +46,7 @@
   mdc-baseline-strut-, mdc-baseline-top, mdc-core-styles, mdc-overflow-ellipsis;
 @forward '@smui/typography/mixins' as mdc-typography-* hide
   mdc-typography-typography;
-@forward '@smui/shape/mixins' as mdc-shape-*;
+@forward '@smui/common/styles/shape/mixins' as mdc-shape-*;
 @forward '@smui/icon-button/styles/mixins' as mdc-icon-button-*;
 @forward 'mixins' as mdc-snackbar-*;
 @forward '@smui/common/styles/feature-targeting/functions' as mdc-feature-*;
@@ -55,6 +55,6 @@
 @forward '@smui/common/styles/elevation/functions' as mdc-elevation-*;
 @forward '@smui/ripple/styles/functions' as mdc-*;
 @forward '@smui/typography/functions' as mdc-typography-*;
-@forward '@smui/shape/functions' as mdc-shape-*;
+@forward '@smui/common/styles/shape/functions' as mdc-shape-*;
 @forward '@smui/common/styles/density/functions' as mdc-density-*;
 @forward 'mdc-snackbar';

@@ -105,7 +105,7 @@
 @forward '@smui/common/styles/rtl' as mdc-rtl-* hide mdc-rtl-rtl;
 @forward '@smui/common/styles/rtl' as mdc-* hide mdc-property-, mdc-reflexive,
   mdc-reflexive-box, mdc-reflexive-position, mdc-reflexive-property;
-@forward '@smui/shape' as mdc-shape-*;
+@forward '@smui/common/styles/shape' as mdc-shape-*;
 @forward '@smui/ripple/styles' as mdc-* hide $mdc-dark-ink-opacities,
   $mdc-fade-in-duration, $mdc-fade-out-duration, $mdc-light-ink-opacities,
   $mdc-pressed-dark-ink-opacity, $mdc-pressed-light-ink-opacity,

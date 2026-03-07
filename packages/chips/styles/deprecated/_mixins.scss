@@ -34,13 +34,13 @@
 @use '@smui/common/styles/feature-targeting/feature-targeting';
 @use '@smui/common/styles/focus-ring/focus-ring';
 @use '@smui/common/styles/rtl/rtl';
+@use '@smui/common/styles/shape/functions' as shape-functions;
+@use '@smui/common/styles/shape/mixins' as shape-mixins;
 @use '@smui/ripple/styles/ripple';
 @use '@smui/ripple/styles/ripple-theme';
 @use '@smui/theme/theme';
 @use '@smui/touch-target/styles/mixins' as touch-target-mixins;
 @use '@smui/typography/typography';
-@use '@smui/shape/mixins' as shape-mixins;
-@use '@smui/shape/functions' as shape-functions;
 @use './variables';
 @use '@smui/theme/theme-color';
 @use './trailingaction/mixins' as trailing-action-mixins;

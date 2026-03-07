@@ -124,7 +124,7 @@
 @forward '@smui/common/styles/rtl' as mdc-* hide $mdc-include, mdc-property-,
   mdc-reflexive, mdc-reflexive-box, mdc-reflexive-position,
   mdc-reflexive-property;
-@forward '@smui/shape' as mdc-shape-*;
+@forward '@smui/common/styles/shape' as mdc-shape-*;
 @forward '@smui/touch-target/styles' as mdc-touch-target-*;
 @forward '@smui/typography' as mdc-typography-*;
 @forward '@smui/typography' as mdc-* hide $mdc-font-family, $mdc-base,

@@ -19,7 +19,7 @@ SMUI 9 has migrated away from MDC-Web, since MDC-Web has been abandoned.
     - @material/focus is now @smui/common/styles/focus
     - @material/focus-ring is now @smui/common/styles/focus-ring
     - @material/rtl is now @smui/common/styles/rtl
-    - todo: shape
+    - @material/shape is now @smui/common/styles/shape
     - todo: theme
     - todo: typography
   - And the following JS imports have changed:

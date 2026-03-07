@@ -95,7 +95,7 @@ a:visited {
 If you'd like to customize the styles even further, you can set additional variables in other MDC or SMUI components. Some notable ones are the [shape variables](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-shape#sass-variables) and the [typography variables](https://github.com/material-components/material-components-web/blob/v14.0.0/packages/mdc-typography/_typography.scss#L93). You can add them to your `_smui-theme.scss` file. For example, you can remove rounded corners in SMUI by setting the shape variables.
 
 ```scss
-@use '@smui/shape/index' as shape with (
+@use '@smui/common/styles/shape/index' as shape with (
   $small-component-radius: 0,
   $medium-component-radius: 0,
   $large-component-radius: 0

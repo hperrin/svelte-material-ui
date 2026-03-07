@@ -24,8 +24,8 @@
 @use 'sass:map';
 @use 'sass:math';
 @use 'sass:meta';
-@use '@smui/common/styles/feature-targeting/feature-targeting';
-@use '@smui/common/styles/rtl/rtl';
+@use '../feature-targeting/feature-targeting';
+@use '../rtl/rtl';
 @use '@smui/theme/custom-properties';
 @use '@smui/theme/css';
 @use '@smui/theme/keys';

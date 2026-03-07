@@ -149,6 +149,9 @@
     },
     "./rtl/*.scss": {
       "sass": "./styles/rtl/*.scss"
+    },
+    "./shape/*.scss": {
+      "sass": "./styles/shape/*.scss"
     }
   },
   "typesVersions": {
@@ -202,7 +205,6 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@smui/shape": "^8.0.3",
     "@smui/theme": "^8.0.3"
   },
   "devDependencies": {

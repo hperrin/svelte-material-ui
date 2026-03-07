@@ -1,6 +1,6 @@
 @forward '@smui/theme/variables' as mdc-theme-*;
 @forward '@smui/common/styles/rtl/variables' as mdc-rtl-*;
-@forward '@smui/shape/variables' as mdc-shape-*;
+@forward '@smui/common/styles/shape/variables' as mdc-shape-*;
 @forward '@smui/common/styles/animation/variables' as mdc-animation-*;
 @forward '@smui/common/styles/base/mixins' as mdc-base-*;
 @forward '@smui/common/styles/elevation/variables' as mdc-elevation-*;
@@ -10,7 +10,7 @@
   mdc-reflexive, mdc-reflexive-box, mdc-reflexive-position,
   mdc-reflexive-property;
 @forward '@smui/common/styles/rtl/mixins' as mdc-rtl-* hide mdc-rtl-rtl;
-@forward '@smui/shape/mixins' as mdc-shape-*;
+@forward '@smui/common/styles/shape/mixins' as mdc-shape-*;
 @forward '@smui/common/styles/elevation/mixins' as mdc-* hide mdc-core-styles,
   mdc-overlay-common, mdc-overlay-dimensions, mdc-overlay-fill-color,
   mdc-overlay-opacity, mdc-overlay-selector-, mdc-overlay-surface-position,
@@ -20,6 +20,6 @@
 @forward 'mixins' as mdc-menu-surface-*;
 @forward '@smui/common/styles/feature-targeting/functions' as mdc-feature-*;
 @forward '@smui/theme/functions' as mdc-theme-*;
-@forward '@smui/shape/functions' as mdc-shape-*;
+@forward '@smui/common/styles/shape/functions' as mdc-shape-*;
 @forward '@smui/common/styles/elevation/functions' as mdc-elevation-*;
 @forward 'mdc-menu-surface';

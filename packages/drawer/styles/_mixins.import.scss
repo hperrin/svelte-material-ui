@@ -101,7 +101,7 @@
   $mdc-theme-blue-grey-200, $mdc-theme-blue-grey-300, $mdc-theme-blue-grey-400,
   $mdc-theme-blue-grey-500, $mdc-theme-blue-grey-600, $mdc-theme-blue-grey-700,
   $mdc-theme-blue-grey-800, $mdc-theme-blue-grey-900;
-@forward '@smui/shape' as mdc-shape-*;
+@forward '@smui/common/styles/shape' as mdc-shape-*;
 @forward '@smui/common/styles/base' as mdc-base-*;
 @forward '@smui/common/styles/density' as mdc-density-*;
 @forward '@smui/ripple/styles' as mdc-* hide $mdc-dark-ink-opacities,

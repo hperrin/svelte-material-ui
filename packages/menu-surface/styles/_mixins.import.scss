@@ -96,7 +96,7 @@
 @forward '@smui/common/styles/rtl' as mdc-rtl-* hide mdc-rtl-rtl;
 @forward '@smui/common/styles/rtl' as mdc-* hide mdc-property-, mdc-reflexive,
   mdc-reflexive-box, mdc-reflexive-position, mdc-reflexive-property;
-@forward '@smui/shape' as mdc-shape-*;
+@forward '@smui/common/styles/shape' as mdc-shape-*;
 @forward '@smui/common/styles/animation' as mdc-animation-* hide
     mdc-animation-enter,
   mdc-animation-exit-permanent, mdc-animation-exit-temporary,

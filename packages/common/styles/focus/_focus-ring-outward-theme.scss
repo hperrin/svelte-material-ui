@@ -6,7 +6,7 @@
 
 @use '@smui/theme/keys';
 @use '@smui/theme/validate';
-@use '@smui/shape/shape';
+@use '../shape/shape';
 @use './focus-ring-shared-theme';
 
 $_custom-property-prefix: 'focus-ring-outward';

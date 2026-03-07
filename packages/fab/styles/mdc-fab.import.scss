@@ -9,7 +9,7 @@
 @forward '@smui/ripple/styles/variables' as mdc-ripple-* hide
   $mdc-ripple-states-wash-duration;
 @forward '@smui/common/styles/rtl/variables' as mdc-rtl-*;
-@forward '@smui/shape/variables' as mdc-shape-*;
+@forward '@smui/common/styles/shape/variables' as mdc-shape-*;
 @forward '@smui/touch-target/styles/variables' as mdc-touch-target-*;
 @forward '@smui/typography/variables' as mdc-typography-*;
 @forward 'variables' as mdc-fab-*;
@@ -35,7 +35,7 @@
   mdc-reflexive, mdc-reflexive-box, mdc-reflexive-position,
   mdc-reflexive-property;
 @forward '@smui/common/styles/rtl/mixins' as mdc-rtl-* hide mdc-rtl-rtl;
-@forward '@smui/shape/mixins' as mdc-shape-*;
+@forward '@smui/common/styles/shape/mixins' as mdc-shape-*;
 @forward '@smui/touch-target/styles/mixins' as mdc-* hide mdc-margin,
   mdc-wrapper;
 @forward '@smui/touch-target/styles/mixins' as mdc-touch-target-* hide
@@ -49,6 +49,6 @@
 @forward '@smui/theme/functions' as mdc-theme-*;
 @forward '@smui/common/styles/elevation/functions' as mdc-elevation-*;
 @forward '@smui/ripple/styles/functions' as mdc-*;
-@forward '@smui/shape/functions' as mdc-shape-*;
+@forward '@smui/common/styles/shape/functions' as mdc-shape-*;
 @forward '@smui/typography/functions' as mdc-typography-*;
 @forward 'mdc-fab';

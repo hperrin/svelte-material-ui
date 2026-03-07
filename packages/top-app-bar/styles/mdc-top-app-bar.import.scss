@@ -10,7 +10,7 @@
   $mdc-translate-duration;
 @forward '@smui/ripple/styles/variables' as mdc-ripple-* hide
   $mdc-ripple-states-wash-duration;
-@forward '@smui/shape/variables' as mdc-shape-*;
+@forward '@smui/common/styles/shape/variables' as mdc-shape-*;
 @forward 'variables' as mdc-top-app-bar-*;
 @forward '@smui/theme/mixins' as mdc-theme-*;
 @forward '@smui/common/styles/elevation/mixins' as mdc-* hide mdc-core-styles,
@@ -37,7 +37,7 @@
   mdc-ripple-states-hover-opacity, mdc-ripple-states-interactions-,
   mdc-ripple-states-opacities, mdc-ripple-states-press-opacity,
   mdc-ripple-states-selected;
-@forward '@smui/shape/mixins' as mdc-shape-*;
+@forward '@smui/common/styles/shape/mixins' as mdc-shape-*;
 @forward 'mixins' as mdc-top-app-bar-*;
 @forward '@smui/common/styles/feature-targeting/functions' as mdc-feature-*;
 @forward '@smui/theme/functions' as mdc-theme-*;
@@ -45,5 +45,5 @@
 @forward '@smui/typography/functions' as mdc-typography-*;
 @forward '@smui/common/styles/animation/functions' as mdc-animation-*;
 @forward '@smui/ripple/styles/functions' as mdc-*;
-@forward '@smui/shape/functions' as mdc-shape-*;
+@forward '@smui/common/styles/shape/functions' as mdc-shape-*;
 @forward 'mdc-top-app-bar';
