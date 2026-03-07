@@ -1,10 +1,10 @@
 # Material Typography
 
-If you'd like to style your entire app using Material's typography, you can add Sass like this to your `_smui-theme.scss` files.
+If you'd like to style your entire app using Material's typography, you can add this Sass to your `_smui-theme.scss` files.
 
 ```scss
 // Import the mixins.
-@use '@smui/typography/index' as typography;
+@use '@smui/common/styles/typography/index' as typography;
 
 html {
   @include typography.typography('body1');

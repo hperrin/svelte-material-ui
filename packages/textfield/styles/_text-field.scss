@@ -37,6 +37,7 @@
 @use '@smui/common/styles/theme/css';
 @use '@smui/common/styles/theme/custom-properties';
 @use '@smui/common/styles/theme/theme';
+@use '@smui/common/styles/typography/typography';
 @use '@smui/floating-label/styles/mixins' as floating-label-mixins;
 @use '@smui/floating-label/styles/variables' as floating-label-variables;
 @use '@smui/line-ripple/styles/mixins' as line-ripple-mixins;
@@ -44,7 +45,6 @@
 @use '@smui/notched-outline/styles/variables' as notched-outline-variables;
 @use '@smui/ripple/styles/ripple';
 @use '@smui/ripple/styles/ripple-theme';
-@use '@smui/typography/typography';
 @use './helper-text/mixins' as helper-text-mixins;
 @use './character-counter/mixins' as character-counter-mixins;
 @use './icon/mixins' as icon-mixins;

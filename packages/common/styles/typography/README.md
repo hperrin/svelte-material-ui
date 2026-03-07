@@ -18,12 +18,6 @@ This module includes the following styling:
 - Button
 - Overline
 
-# Installation
-
-```sh
-npm install --save-dev @smui/typography
-```
-
 # Examples and Usage Information
 
 https://sveltematerialui.com/demo/typography
@@ -137,7 +131,7 @@ html {
 Sass module variables:
 
 ```scss
-@use '@smui/typography' with (
+@use '@smui/common/styles/typography' with (
   $styles-button: (
     font-size: 16px,
     text-transform: none,
@@ -172,7 +166,7 @@ html {
 Sass module variables:
 
 ```scss
-@use '@smui/typography' with (
+@use '@smui/common/styles/typography' with (
   $font-family: string.unquote('Arial, Helvetica, sans-serif')
 );
 
@@ -203,7 +197,7 @@ html {
 Sass module variables:
 
 ```scss
-@use '@smui/typography' with (
+@use '@smui/common/styles/typography' with (
   $styles-headline1: (
     font-family: string.unquote('Arial, Helvetica, sans-serif'),
   ),

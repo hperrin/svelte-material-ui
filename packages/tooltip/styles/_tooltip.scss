@@ -30,8 +30,8 @@
 @use '@smui/common/styles/elevation/mixins' as elevation-mixins;
 @use '@smui/common/styles/feature-targeting/feature-targeting';
 @use '@smui/common/styles/rtl/rtl' as rtl;
+@use '@smui/common/styles/typography/typography';
 @use './tooltip-theme';
-@use '@smui/typography/typography';
 
 $_padding-y: 4px;
 $_padding-x: 8px;

@@ -155,6 +155,9 @@
     },
     "./theme/*.scss": {
       "sass": "./styles/theme/*.scss"
+    },
+    "./typography/*.scss": {
+      "sass": "./styles/typography/*.scss"
     }
   },
   "typesVersions": {

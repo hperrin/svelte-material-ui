@@ -21,7 +21,7 @@ SMUI 9 has migrated away from MDC-Web, since MDC-Web has been abandoned.
     - @material/rtl is now @smui/common/styles/rtl
     - @material/shape is now @smui/common/styles/shape
     - @material/theme is now @smui/common/styles/theme
-    - todo: typography
+    - @material/typography is now @smui/common/styles/typography
   - And the following JS imports have changed:
     - @material/base is now @smui/common/base
     - @material/animation is now @smui/common/animation

@@ -34,8 +34,8 @@
 @use '@smui/common/styles/theme/theme';
 @use '@smui/common/styles/theme/theme-color';
 @use '@smui/common/styles/tokens/resolvers';
+@use '@smui/common/styles/typography/typography';
 @use '@smui/ripple/styles/ripple-theme';
-@use '@smui/typography/typography';
 
 /// Default color for slider (track, thumb, ripple).
 $color: primary;

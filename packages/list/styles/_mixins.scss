@@ -31,9 +31,9 @@
 @use '@smui/common/styles/shape/mixins' as shape-mixins;
 @use '@smui/common/styles/theme/theme';
 @use '@smui/common/styles/theme/theme-color';
+@use '@smui/common/styles/typography/typography';
 @use '@smui/ripple/styles/ripple';
 @use '@smui/ripple/styles/ripple-theme';
-@use '@smui/typography/typography';
 @use './variables';
 @use './evolution-mixins';
 

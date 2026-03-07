@@ -6,7 +6,7 @@
 @use '@smui/common/styles/theme/mixins' as theme;
 
 // Typography mixins.
-@use '@smui/typography/mixins' as typography;
+@use '@smui/common/styles/typography/mixins' as typography;
 
 // Main Top App Bar styling.
 @use '@smui/top-app-bar/styles/mixins' as top-app-bar-mixins;

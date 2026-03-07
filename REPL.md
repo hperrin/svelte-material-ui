@@ -16,11 +16,8 @@ SMUI components provide "bare.css" files to use in the REPL. In a `<svelte:head>
     href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700"
   />
 
-  <!-- Material Typography -->
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/@smui/typography/dist/mdc.typography.css"
-  />
+  <!-- Common CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/@smui/common/bare.css" />
 
   <!-- SMUI -->
   <link rel="stylesheet" href="https://unpkg.com/svelte-material-ui/bare.css" />

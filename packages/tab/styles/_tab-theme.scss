@@ -32,8 +32,8 @@
 @use '@smui/common/styles/theme/validate';
 @use '@smui/common/styles/theme/theme-color';
 @use '@smui/common/styles/tokens/resolvers';
+@use '@smui/common/styles/typography/typography';
 @use '@smui/ripple/styles/ripple-theme';
-@use '@smui/typography/typography';
 
 $primary-light-theme: (
   active-focus-state-layer-color: theme-color.$primary,

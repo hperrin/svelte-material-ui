@@ -3,7 +3,7 @@
 @use '@smui/common/styles/rtl/rtl';
 @use '@smui/common/styles/shape/index' as shape;
 @use '@smui/common/styles/theme/index' as theme;
-@use '@smui/typography/index' as typography;
+@use '@smui/common/styles/typography/index' as typography;
 
 $minimum-size: 24px;
 $radius: $minimum-size;

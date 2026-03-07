@@ -10,7 +10,7 @@
 );
 
 // Use custom fonts.
-@use '@smui/typography' with (
+@use '@smui/common/styles/typography' with (
   $font-family: string.unquote('"Ubuntu", sans-serif'),
   $styles-headline1: (
     font-family: string.unquote('"Ubuntu", sans-serif'),

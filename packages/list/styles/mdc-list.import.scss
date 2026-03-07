@@ -10,7 +10,7 @@
   $mdc-translate-duration;
 @forward '@smui/ripple/styles/variables' as mdc-ripple-* hide
   $mdc-ripple-states-wash-duration;
-@forward '@smui/typography/variables' as mdc-typography-*;
+@forward '@smui/common/styles/typography/variables' as mdc-typography-*;
 @forward 'variables' as mdc-list-*;
 @forward '@smui/common/styles/rtl/mixins' as mdc-* hide mdc-property-,
   mdc-reflexive, mdc-reflexive-box, mdc-reflexive-position,
@@ -28,9 +28,10 @@
   mdc-ripple-states-hover-opacity, mdc-ripple-states-interactions-,
   mdc-ripple-states-opacities, mdc-ripple-states-press-opacity,
   mdc-ripple-states-selected;
-@forward '@smui/typography/mixins' as mdc-* hide mdc-base, mdc-baseline-bottom,
-  mdc-baseline-strut-, mdc-baseline-top, mdc-core-styles, mdc-overflow-ellipsis;
-@forward '@smui/typography/mixins' as mdc-typography-* hide
+@forward '@smui/common/styles/typography/mixins' as mdc-* hide mdc-base,
+  mdc-baseline-bottom, mdc-baseline-strut-, mdc-baseline-top, mdc-core-styles,
+  mdc-overflow-ellipsis;
+@forward '@smui/common/styles/typography/mixins' as mdc-typography-* hide
   mdc-typography-typography;
 @forward 'mixins' as mdc-list-*;
 @forward '@smui/common/styles/density/functions' as mdc-density-*;
@@ -39,5 +40,5 @@
 @forward '@smui/common/styles/shape/functions' as mdc-shape-*;
 @forward '@smui/common/styles/animation/functions' as mdc-animation-*;
 @forward '@smui/ripple/styles/functions' as mdc-*;
-@forward '@smui/typography/functions' as mdc-typography-*;
+@forward '@smui/common/styles/typography/functions' as mdc-typography-*;
 @forward 'mdc-list';

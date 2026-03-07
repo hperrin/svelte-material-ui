@@ -3,7 +3,7 @@
 @forward '@smui/common/styles/density/variables' as mdc-density-*;
 @forward '@smui/common/styles/rtl/variables' as mdc-rtl-*;
 @forward '@smui/common/styles/theme/variables' as mdc-theme-*;
-@forward '@smui/typography/variables' as mdc-typography-*;
+@forward '@smui/common/styles/typography/variables' as mdc-typography-*;
 @forward '@smui/floating-label/styles/variables' as mdc-floating-label-*;
 @forward '@smui/common/styles/shape/variables' as mdc-shape-*;
 @forward '@smui/notched-outline/styles/variables' as mdc-notched-outline-*;
@@ -20,9 +20,10 @@
   mdc-reflexive-property;
 @forward '@smui/common/styles/rtl/mixins' as mdc-rtl-* hide mdc-rtl-rtl;
 @forward '@smui/common/styles/theme/mixins' as mdc-theme-*;
-@forward '@smui/typography/mixins' as mdc-* hide mdc-base, mdc-baseline-bottom,
-  mdc-baseline-strut-, mdc-baseline-top, mdc-core-styles, mdc-overflow-ellipsis;
-@forward '@smui/typography/mixins' as mdc-typography-* hide
+@forward '@smui/common/styles/typography/mixins' as mdc-* hide mdc-base,
+  mdc-baseline-bottom, mdc-baseline-strut-, mdc-baseline-top, mdc-core-styles,
+  mdc-overflow-ellipsis;
+@forward '@smui/common/styles/typography/mixins' as mdc-typography-* hide
   mdc-typography-typography;
 @forward '@smui/floating-label/styles/mixins' as mdc-floating-label-*;
 @forward '@smui/line-ripple/styles/mixins' as mdc-line-ripple-*;
@@ -44,7 +45,7 @@
 @forward 'mixins' as mdc-text-field-*;
 @forward '@smui/common/styles/theme/functions' as mdc-theme-*;
 @forward '@smui/common/styles/feature-targeting/functions' as mdc-feature-*;
-@forward '@smui/typography/functions' as mdc-typography-*;
+@forward '@smui/common/styles/typography/functions' as mdc-typography-*;
 @forward '@smui/line-ripple/styles/functions' as mdc-line-ripple-*;
 @forward '@smui/common/styles/shape/functions' as mdc-shape-*;
 @forward '@smui/common/styles/animation/functions' as mdc-animation-*;

@@ -71,8 +71,7 @@
     "@smui/textfield": "^8.0.3",
     "@smui/tooltip": "^8.0.3",
     "@smui/top-app-bar": "^8.0.3",
-    "@smui/touch-target": "^8.0.3",
-    "@smui/typography": "^8.0.3"
+    "@smui/touch-target": "^8.0.3"
   },
   "dependencies": {
     "@smui/common": "^8.0.3",

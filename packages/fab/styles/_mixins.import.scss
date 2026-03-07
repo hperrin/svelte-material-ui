@@ -122,8 +122,10 @@
 @forward '@smui/touch-target/styles' as mdc-touch-target-* hide
   mdc-touch-target-touch-target;
 @forward '@smui/touch-target/styles' as mdc-* hide mdc-margin, mdc-wrapper;
-@forward '@smui/typography' as mdc-typography-* hide mdc-typography-typography;
-@forward '@smui/typography' as mdc-* hide mdc-base, mdc-baseline-bottom,
-  mdc-baseline-strut-, mdc-baseline-top, mdc-core-styles, mdc-overflow-ellipsis,
-  mdc-get-global-variable-, mdc-set-styles-, mdc-get-letter-spacing-;
+@forward '@smui/common/styles/typography' as mdc-typography-* hide
+  mdc-typography-typography;
+@forward '@smui/common/styles/typography' as mdc-* hide mdc-base,
+  mdc-baseline-bottom, mdc-baseline-strut-, mdc-baseline-top, mdc-core-styles,
+  mdc-overflow-ellipsis, mdc-get-global-variable-, mdc-set-styles-,
+  mdc-get-letter-spacing-;
 @forward './index' as mdc-fab-*;

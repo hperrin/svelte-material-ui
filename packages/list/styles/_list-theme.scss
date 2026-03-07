@@ -30,7 +30,7 @@
 @use '@smui/common/styles/theme/keys';
 @use '@smui/common/styles/theme/validate';
 @use '@smui/common/styles/tokens/resolvers';
-@use '@smui/typography/typography';
+@use '@smui/common/styles/typography/typography';
 @use './evolution-mixins' as list;
 @use 'sass:meta';
 

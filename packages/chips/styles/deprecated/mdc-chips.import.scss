@@ -12,7 +12,7 @@
 @forward '@smui/common/styles/elevation/variables' as mdc-elevation-*;
 @forward '@smui/common/styles/rtl/variables' as mdc-rtl-*;
 @forward '@smui/touch-target/styles/variables' as mdc-touch-target-*;
-@forward '@smui/typography/variables' as mdc-typography-*;
+@forward '@smui/common/styles/typography/variables' as mdc-typography-*;
 @forward '@smui/common/styles/shape/variables' as mdc-shape-*;
 @forward 'variables' as mdc-chip-*;
 @forward 'mixins' as mdc-chip-*;
@@ -41,9 +41,10 @@
   mdc-wrapper;
 @forward '@smui/touch-target/styles/mixins' as mdc-touch-target-* hide
   mdc-touch-target-touch-target;
-@forward '@smui/typography/mixins' as mdc-* hide mdc-base, mdc-baseline-bottom,
-  mdc-baseline-strut-, mdc-baseline-top, mdc-core-styles, mdc-overflow-ellipsis;
-@forward '@smui/typography/mixins' as mdc-typography-* hide
+@forward '@smui/common/styles/typography/mixins' as mdc-* hide mdc-base,
+  mdc-baseline-bottom, mdc-baseline-strut-, mdc-baseline-top, mdc-core-styles,
+  mdc-overflow-ellipsis;
+@forward '@smui/common/styles/typography/mixins' as mdc-typography-* hide
   mdc-typography-typography;
 @forward '@smui/common/styles/shape/mixins' as mdc-shape-*;
 @forward '@smui/common/styles/animation/functions' as mdc-animation-*;
@@ -53,6 +54,6 @@
 @forward '@smui/common/styles/elevation/functions' as mdc-elevation-*;
 @forward '@smui/common/styles/density/functions' as mdc-density-*;
 @forward '@smui/ripple/styles/functions' as mdc-*;
-@forward '@smui/typography/functions' as mdc-typography-*;
+@forward '@smui/common/styles/typography/functions' as mdc-typography-*;
 @forward '@smui/common/styles/shape/functions' as mdc-shape-*;
 @forward 'mdc-chips';

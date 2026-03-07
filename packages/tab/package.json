@@ -67,8 +67,7 @@
   "dependencies": {
     "@smui/common": "^8.0.3",
     "@smui/ripple": "^8.0.3",
-    "@smui/tab-indicator": "^8.0.3",
-    "@smui/typography": "^8.0.3"
+    "@smui/tab-indicator": "^8.0.3"
   },
   "devDependencies": {
     "@tsconfig/svelte": "^5.0.8",

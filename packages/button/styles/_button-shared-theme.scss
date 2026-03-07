@@ -37,8 +37,8 @@
 @use '@smui/common/styles/theme/state';
 @use '@smui/common/styles/theme/theme';
 @use '@smui/common/styles/theme/theme-color';
+@use '@smui/common/styles/typography/typography';
 @use '@smui/ripple/styles/ripple-theme';
-@use '@smui/typography/typography';
 @use './button-ripple';
 
 $height: 36px !default;

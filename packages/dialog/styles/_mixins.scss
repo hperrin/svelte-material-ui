@@ -36,9 +36,9 @@
 @use '@smui/common/styles/theme/custom-properties';
 @use '@smui/common/styles/theme/theme';
 @use '@smui/common/styles/theme/theme-color';
+@use '@smui/common/styles/typography/typography';
 @use '@smui/icon-button/styles/icon-button-theme';
 @use '@smui/touch-target/styles/variables' as touch-target-variables;
-@use '@smui/typography/typography';
 @use './dialog-custom-properties';
 @use './variables';
 

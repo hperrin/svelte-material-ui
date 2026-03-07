@@ -28,9 +28,9 @@
 @use '@smui/common/styles/theme/keys';
 @use '@smui/common/styles/theme/validate';
 @use '@smui/common/styles/tokens/resolvers';
+@use '@smui/common/styles/typography/typography';
 @use '@smui/tab/styles/tab-theme';
 @use '@smui/tab-indicator/styles/tab-indicator-theme';
-@use '@smui/typography/typography';
 
 // stylelint-disable selector-class-pattern --
 // Selector '.mdc-*' should only be used in this project.

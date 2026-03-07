@@ -35,10 +35,10 @@
 @use '@smui/common/styles/theme/state';
 @use '@smui/common/styles/theme/theme-color';
 @use '@smui/common/styles/theme/theme';
+@use '@smui/common/styles/typography/typography';
 @use '@smui/ripple/styles/ripple';
 @use '@smui/ripple/styles/ripple-theme';
 @use '@smui/touch-target/styles/mixins' as touch-target-mixins;
-@use '@smui/typography/typography';
 @use './fab-custom-properties';
 @use './extended-fab-theme';
 @use './fab-theme';
