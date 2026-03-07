@@ -30,7 +30,7 @@ External frameworks and libraries can use the following event utility methods.
 
 # Focus Trap
 
-The `FocusTrap` utility traps focus within a given element. It is intended for usage from MDC-internal
+The `FocusTrap` utility traps focus within a given element. It is intended for usage from SMUI-internal
 components like dialog and modal drawer.
 
 | Method Signature         | Description                                                                                                                                   |
@@ -40,7 +40,7 @@ components like dialog and modal drawer.
 
 # Announce
 
-The `announce` utility file contains a single helper method for announcing a message via an `aria-live` region. It is intended for usage from MDC-internal components.
+The `announce` utility file contains a single helper method for announcing a message via an `aria-live` region. It is intended for usage from SMUI-internal components.
 
 | Method Signature                                                                                | Description                                                                                                                                                                                                |
 | ----------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -49,7 +49,7 @@ The `announce` utility file contains a single helper method for announcing a mes
 
 # Keyboard
 
-The `keyboard` utility provides helper methods for normalizing `KeyboardEvent` keys across browsers. It is intended for usage from MDC-internal components.
+The `keyboard` utility provides helper methods for normalizing `KeyboardEvent` keys across browsers. It is intended for usage from SMUI-internal components.
 
 | Method Signature                                     | Description                                                                                                   |
 | ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |

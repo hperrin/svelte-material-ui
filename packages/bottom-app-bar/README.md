@@ -14,4 +14,4 @@ https://sveltematerialui.com/demo/bottom-app-bar
 
 # More Information
 
-See [App bars: bottom](https://material.io/components/app-bars-bottom) in the Material design spec.
+See [App bars: bottom](https://m2.material.io/components/app-bars-bottom) in the Material design spec.

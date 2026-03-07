@@ -41,7 +41,3 @@ An icon button.
 A graphic icon.
 
 See the [common icon readme](/packages/common/README.md#icon).
-
-# More Information
-
-See [Icon Button](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-icon-button) in MDC-Web for information about the upstream library's architecture.

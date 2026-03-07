@@ -41,7 +41,7 @@ The action accepts an array, with two entries. The first is a boolean, whether t
 
 # Usage
 
-A ripple can be applied to a variety of elements to represent interactive surfaces. Several MDC Web components, such as Button, FAB, Checkbox and Radio, also use ripples.
+A ripple can be applied to a variety of elements to represent interactive surfaces. Several SMUI components, such as Button, FAB, Checkbox and Radio, also use ripples.
 
 A ripple can be added to an element through either a JavaScript or CSS-only implementation. When a ripple is initialized on an element using JS, it dynamically adds a `mdc-ripple-upgraded` class to that element. If ripple JS is not initialized but Sass mixins are included on the element, the ripple uses a simpler CSS-only implementation which relies on the `:hover`, `:focus`, and `:active` pseudo-classes.
 
@@ -201,7 +201,7 @@ MDCRipple.attachTo(document.querySelector('.my-surface'));
 
 ## Using a sentinel element for a ripple
 
-Usually, you'll want to leverage `::before` and `::after` pseudo-elements when integrating the ripple into MDC Web components. If you can't use pseudo-elements, create a sentinel element inside your root element. The sentinel element covers the root element's surface.
+Usually, you'll want to leverage `::before` and `::after` pseudo-elements when integrating the ripple into SMUI components. If you can't use pseudo-elements, create a sentinel element inside your root element. The sentinel element covers the root element's surface.
 
 ```html
 <div class="my-component">
@@ -212,7 +212,7 @@ Usually, you'll want to leverage `::before` and `::after` pseudo-elements when i
 
 ## Unbounded ripple
 
-You can set a ripple to be _unbounded_, such as those used for MDC Checkboxes and MDC Radio Buttons, either imperatively in JS _or_ declaratively using the DOM.
+You can set a ripple to be _unbounded_, such as those used for SMUI Checkboxes and SMUI Radio Buttons, either imperatively in JS _or_ declaratively using the DOM.
 
 ### Using JS
 

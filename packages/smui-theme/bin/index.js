@@ -58,7 +58,7 @@ yargs(hideBin(process.argv))
           importers: [new sass.NodePackageImporter()],
           loadPaths: [
             ...argv.includes,
-            // Include the node_modules directory for MDC styles.
+            // Include the node_modules directory for SMUI styles.
             path.resolve(
               path.dirname(require.resolve('@smui/common/package.json')),
               '..',

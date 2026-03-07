@@ -28,7 +28,7 @@ Components are categorized as small, medium, and large in the Material shape sys
 | `$medium-component-radius` | Rounded shape radius size for medium components. Default value `4px`. |
 | `$large-component-radius`  | Rounded shape radius size for large components. Default value `0`.    |
 
-Please refer [Material Design guidelines: Shape](https://material.io/go/design-shape) to learn about how components are categorized.
+Please refer [Material Design guidelines: Shape](https://m2.material.io/go/design-shape) to learn about how components are categorized.
 
 **Note: Only rounded shape designs are currently supported.**
 

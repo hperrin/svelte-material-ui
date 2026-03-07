@@ -10,7 +10,7 @@ https://m2.material.io/components/progress-indicators
 
 ## MDCProgressIndicatorFoundation API
 
-MDC Progress Indicator Foundation exposes the following methods:
+SMUI Progress Indicator Foundation exposes the following methods:
 
 | Method Signature                         | Description                                                            |
 | ---------------------------------------- | ---------------------------------------------------------------------- |
@@ -24,7 +24,7 @@ MDC Progress Indicator Foundation exposes the following methods:
 
 ## MDCProgressIndicator Component API
 
-MDC Progress Indicator exposes the following API:
+SMUI Progress Indicator exposes the following API:
 
 | Method Signature       | Description                                                         |
 | ---------------------- | ------------------------------------------------------------------- |

@@ -35,7 +35,7 @@ export interface MDCRippleAttachOpts {
 
 /**
  * See Material Design spec for more details on when to use ripples.
- * https://material.io/guidelines/motion/choreography.html#choreography-creation
+ * https://m2.material.io/guidelines/motion/choreography.html#choreography-creation
  * unbounded Whether or not the ripple bleeds out of the bounds of the element.
  * disabled Whether or not the ripple is attached to a disabled component.
  */

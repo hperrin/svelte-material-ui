@@ -30,6 +30,4 @@ A Linear Progress component.
 
 # More Information
 
-See [Progress indicators](https://material.io/components/progress-indicators) in the Material design spec.
-
-See [Linear Progress](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-linear-progress) in MDC-Web for information about the upstream library's architecture.
+See [Progress indicators](https://m2.material.io/components/progress-indicators) in the Material design spec.

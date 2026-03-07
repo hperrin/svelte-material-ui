@@ -76,6 +76,4 @@ todo...
 
 # More Information
 
-See [Chips](https://material.io/components/chips) in the Material design spec.
-
-See [Chips](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-chips) in MDC-Web for information about the upstream library's architecture.
+See [Chips](https://m2.material.io/components/chips) in the Material design spec.

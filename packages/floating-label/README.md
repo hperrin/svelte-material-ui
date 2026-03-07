@@ -38,6 +38,4 @@ A Floating Label component.
 
 # More Information
 
-See [Text fields](https://material.io/components/text-fields) in the Material design spec.
-
-See [Floating Label](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-floating-label) in MDC-Web for information about the upstream library's architecture.
+See [Text fields](https://m2.material.io/components/text-fields) in the Material design spec.

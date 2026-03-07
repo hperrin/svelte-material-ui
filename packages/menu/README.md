@@ -14,6 +14,4 @@ https://sveltematerialui.com/demo/menu
 
 # More Information
 
-See [Menus](https://material.io/components/menus) in the Material design spec.
-
-See [Menu](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-menu) in MDC-Web for information about the upstream library's architecture.
+See [Menus](https://m2.material.io/components/menus) in the Material design spec.

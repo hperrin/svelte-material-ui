@@ -57,7 +57,7 @@ Or if you don't need dark mode support.
 
 ### Theme Variables
 
-The most important part of theming (and probably the only one you want) is setting the [theme colors](https://github.com/hperrin/svelte-material-ui/blob/master/packages/common/styles/theme/README.md#color-scheme). For the Material color palette, you can @use ["@smui/common/styles/theme/color-palette"](https://github.com/hperrin/svelte-material-ui/blob/master/packages/common/styles/theme/_color-palette.scss). You might also want to style the [border radius variables](https://github.com/hperrin/svelte-material-ui/blob/v9/packages/common/styles/shape/README.md#sass-variables). For more common theming variables, you can check out the READMEs in the sass folders in [the common package](https://github.com/hperrin/svelte-material-ui/tree/master/packages/common/styles). To learn how to deeply style the individual components, you can check out the sass files in the [the packages](https://github.com/hperrin/svelte-material-ui/tree/master/packages).
+The most important part of theming (and probably the only one you want) is setting the [theme colors](https://github.com/hperrin/svelte-material-ui/blob/master/packages/common/styles/theme/README.md#color-scheme). For the Material color palette, you can @use ["@smui/common/styles/theme/color-palette"](https://github.com/hperrin/svelte-material-ui/blob/master/packages/common/styles/theme/_color-palette.scss). You might also want to style the [border radius variables](https://github.com/hperrin/svelte-material-ui/blob/master/packages/common/styles/shape/README.md#sass-variables). For more common theming variables, you can check out the READMEs in the sass folders in [the common package](https://github.com/hperrin/svelte-material-ui/tree/master/packages/common/styles). To learn how to deeply style the individual components, you can check out the sass files in the [the packages](https://github.com/hperrin/svelte-material-ui/tree/master/packages).
 
 Here is an example `_smui-theme.scss` file you can use as a starting point.
 
@@ -90,7 +90,7 @@ a:visited {
 
 ### Customizing Further
 
-If you'd like to customize the styles even further, you can set additional variables in other MDC or SMUI components. Some notable ones are the [shape variables](https://github.com/hperrin/svelte-material-ui/blob/v9/packages/common/styles/shape/README.md#sass-variables) and the [typography variables](https://github.com/material-components/material-components-web/blob/v14.0.0/packages/mdc-typography/_typography.scss#L93). You can add them to your `_smui-theme.scss` file. For example, you can remove rounded corners in SMUI by setting the shape variables.
+If you'd like to customize the styles even further, you can set additional variables in other SMUI components. Some notable ones are the [shape variables](https://github.com/hperrin/svelte-material-ui/blob/master/packages/common/styles/shape/README.md#sass-variables) and the [typography variables](https://github.com/hperrin/svelte-material-ui/tree/master/packages/common/styles/typography#sass-variables-and-mixins). You can add them to your `_smui-theme.scss` file. For example, you can remove rounded corners in SMUI by setting the shape variables.
 
 ```scss
 @use '@smui/common/styles/shape/index' as shape with (
@@ -104,7 +104,7 @@ Just make sure that you put that directly after the `@use '@smui/common/styles/t
 
 ### Adding Classes and Variables
 
-If you want to use MDC's classes and variables (like `var(--mdc-theme-primary)` and `class="mdc-theme--primary-bg"`), you can add the following line somewhere in your Sass files. A great place to add it is in your `_smui-theme.scss` files.
+If you want to use CSS classes and variables (like `var(--mdc-theme-primary)` and `class="mdc-theme--primary-bg"`), you can add the following line somewhere in your Sass files. A great place to add it is in your `_smui-theme.scss` files.
 
 ```scss
 @use '@smui/common/styles/theme/styles';

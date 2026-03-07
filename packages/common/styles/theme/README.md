@@ -10,7 +10,7 @@ https://m2.material.io/design/material-theming/overview.html
 
 ## Color Scheme
 
-You can define the theme color variables before importing any MDC Web components:
+You can define the theme color variables before importing any SMUI components:
 
 ```scss
 @use '@smui/common/styles/theme' with (

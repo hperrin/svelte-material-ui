@@ -1,7 +1,3 @@
-/*
- Temporary addition until support for three-line added to @material
-https://github.com/material-components/material-components-web/issues/31
-*/
 @use '@smui/common/styles/feature-targeting/index' as feature-targeting;
 
 @mixin core-styles($query: feature-targeting.all()) {

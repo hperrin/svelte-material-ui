@@ -40,6 +40,4 @@ A checkbox.
 
 # More Information
 
-See [Checkboxes](https://material.io/components/checkboxes) in the Material design spec.
-
-See [Checkbox](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-checkbox) in MDC-Web for information about the upstream library's architecture.
+See [Checkboxes](https://m2.material.io/components/checkboxes) in the Material design spec.

@@ -47,7 +47,7 @@ This ensures the ripple parts are rendered _above_ the overlay.
 
 ## CSS Classes
 
-Some components have a set elevation. For example, a raised MDC Button has elevation 2.
+Some components have a set elevation. For example, a raised SMUI Button has elevation 2.
 
 If you want to set the elevation of an element, which is not a Material Design component, you
 can apply the following CSS classes.

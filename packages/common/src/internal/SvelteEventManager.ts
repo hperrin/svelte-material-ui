@@ -4,8 +4,7 @@ import { on } from 'svelte/events';
  * A way to keep track of things you've "on"ed so you can "off" them too.
  *
  * This is needed because Svelte doesn't have an "off" function, it returns
- * unlisten functions from its "on" function, and MDC-Web expects register and
- * deregister functions in the adapters.
+ * unlisten functions from its "on" function.
  */
 export class SvelteEventManager {
   elementMap = new Map<

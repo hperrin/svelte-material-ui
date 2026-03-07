@@ -14,6 +14,4 @@ https://sveltematerialui.com/demo/textfield
 
 # More Information
 
-See [Text fields](https://material.io/components/text-fields) in the Material design spec.
-
-See [Text Field](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-textfield) in MDC-Web for information about the upstream library's architecture.
+See [Text fields](https://m2.material.io/components/text-fields) in the Material design spec.

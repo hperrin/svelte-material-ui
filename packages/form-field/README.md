@@ -2,7 +2,7 @@
 
 A wrapper to align an input and its label.
 
-MDC Form Fields make the Input/Label RTL-aware and also activates a ripple effect.
+SMUI Form Fields make the Input/Label RTL-aware and also activates a ripple effect.
 
 # Installation
 
@@ -32,7 +32,3 @@ The ID is generated using a module context counter, so you don't need to provide
 ### Forwarded Props
 
 - `label$` - Props forwarded to the label element.
-
-# More Information
-
-See [Form Field](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-form-field) in MDC-Web for information about the upstream library's architecture.

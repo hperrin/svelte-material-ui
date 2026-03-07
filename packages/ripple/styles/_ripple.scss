@@ -93,9 +93,10 @@
 @mixin common($query: feature-targeting.all()) {
   $feat-animation: feature-targeting.create-target($query, animation);
 
-  // Ensure that styles needed by any component using MDC Ripple are emitted, but only once.
-  // (Every component using MDC Ripple imports these mixins, but doesn't necessarily import
-  // mdc-ripple.scss.)
+  // Ensure that styles needed by any component using SMUI Ripple are emitted,
+  // but only once.
+  // (Every component using SMUI Ripple imports these mixins, but doesn't
+  // necessarily import mdc-ripple.scss.)
   @include feature-targeting.targets($feat-animation) {
     @include base-mixins.emit-once('mdc-ripple/common/animation') {
       @include keyframes_;

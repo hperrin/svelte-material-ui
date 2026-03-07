@@ -65,6 +65,4 @@ See the [common icon readme](/packages/common/README.md#icon).
 
 # More Information
 
-See [Buttons](https://material.io/components/buttons) in the Material design spec.
-
-See [Button](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-button) in MDC-Web for information about the upstream library's architecture.
+See [Buttons](https://m2.material.io/components/buttons) in the Material design spec.

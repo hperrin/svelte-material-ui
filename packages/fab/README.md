@@ -45,6 +45,4 @@ See the [common icon readme](/packages/common/README.md#icon).
 
 # More Information
 
-See [Buttons: floating action button](https://material.io/components/buttons-floating-action-button) in the Material design spec.
-
-See [FAB](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-fab) in MDC-Web for information about the upstream library's architecture.
+See [Buttons: floating action button](https://m2.material.io/components/buttons-floating-action-button) in the Material design spec.

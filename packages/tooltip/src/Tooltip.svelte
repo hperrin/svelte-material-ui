@@ -16,7 +16,7 @@
   aria-hidden="true"
   {id}
   data-mdc-tooltip-persist={rich && persistent ? 'true' : undefined}
-  data-mdc-tooltip-persistent={/* MDC uses this attr, but document the one above */ rich &&
+  data-mdc-tooltip-persistent={/* MDC uses this attr, but documents the one above */ rich &&
   persistent
     ? 'true'
     : undefined}

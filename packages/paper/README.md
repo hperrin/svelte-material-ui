@@ -48,6 +48,4 @@ Equivalent to the [`ClassAdder` with `Div` common component](/packages/common/RE
 
 # More Information
 
-See [Elevation](https://material.io/design/environment/elevation.html) in the Material design spec.
-
-See [Elevation](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-elevation) in MDC-Web for information about the upstream library's architecture.
+See [Elevation](https://m2.material.io/design/environment/elevation.html) in the Material design spec.

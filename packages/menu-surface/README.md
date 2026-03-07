@@ -13,7 +13,3 @@ npm install --save-dev @smui/menu-surface
 # Examples and Usage Information
 
 https://sveltematerialui.com/demo/menu-surface
-
-# More Information
-
-See [Menu Surface](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-menu-surface) in MDC-Web for information about the upstream library's architecture.

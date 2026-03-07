@@ -50,7 +50,7 @@ The typography styles (referred to as `<STYLE>` below) used in the type system:
 
 ## CSS Classes
 
-Some components have a set typographic style. For example, a raised MDC Card uses Body 1, Body 2, and Headline styles.
+Some components have a set typographic style. For example, a raised SMUI Card uses Body 1, Body 2, and Headline styles.
 
 If you want to set the typographic style of an element, which is not a Material Design component, you can apply the following CSS classes.
 

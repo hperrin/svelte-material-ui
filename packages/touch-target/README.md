@@ -31,6 +31,4 @@ Equivalent to the [`ClassAdder` with `Div` common component](/packages/common/RE
 
 # More Information
 
-See [Layout and typography](https://material.io/design/usability/accessibility.html#layout-and-typography) in the Material design spec.
-
-See [Touch Target](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-touch-target) in MDC-Web for information about the upstream library's architecture.
+See [Layout and typography](https://m2.material.io/design/usability/accessibility.html#layout-and-typography) in the Material design spec.

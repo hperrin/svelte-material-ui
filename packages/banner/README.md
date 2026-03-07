@@ -16,6 +16,4 @@ https://sveltematerialui.com/demo/banner
 
 # More Information
 
-See [Banners](https://material.io/components/banners) in the Material design spec.
-
-See [Banner](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-banner) in MDC-Web for information about the upstream library's architecture.
+See [Banners](https://m2.material.io/components/banners) in the Material design spec.

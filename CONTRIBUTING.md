@@ -21,7 +21,7 @@ cd smui
 npm i
 ```
 
-Now you're set up. If there are package-lock.json files in the package directories after setting up, feel free to delete them. Run this to start up the dev site.
+Now you're set up. If there are package-lock.json changes in the package directories after setting up, feel free to revert them. Run this to start up the dev site.
 
 ```
 cd packages/site
@@ -47,7 +47,7 @@ Personally, I don't scope my commit messages by package. It's fine if you do, bu
 - `style:` - A change to the code that doesn't affect the code at all. (Code style fixes, formatting.)
 - `refactor:` - A change to the code that doesn't affect the functionality of the code or the API at all.
 - `fix:` - A change to the code that fixes an issue without changing the API.
-- `feat:` - A change to the code that changes the API. Also any dependency updates that change the upstream API, like updating to a new MDC-Web version.
+- `feat:` - A change to the code that changes the API.
 
 Remember to include `BREAKING CHANGE:` in the commit message footer if it changes the API in a backward incompatible way.
 

@@ -55,7 +55,7 @@ Consuming component styles:
 
 ## Supported Features
 
-MDC Web's styles are currently split according to the following features:
+SMUI's styles are currently split according to the following features:
 
 - `structure` - All baseline styles that don't fit into any other category
 - `animation` - Styles responsible for causing animations and transitions to occur
