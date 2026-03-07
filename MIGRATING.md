@@ -10,21 +10,21 @@ SMUI 9 has migrated away from MDC-Web, since MDC-Web has been abandoned.
 
 - All "@material" packages you're using should be migrated to "@smui" packages. Many have been moved inside the "@smui/common" package.
   - Particularly, the following SCSS imports have changed:
-    - @material/tokens is now @smui/common/tokens
-    - @material/density is now @smui/common/density
-    - @material/feature-targeting is now @smui/common/feature-targeting
     - @material/animation is now @smui/common/animation
+    - @material/density is now @smui/common/density
     - @material/dom is now @smui/common/dom
     - @material/elevation is now @smui/common/elevation
+    - @material/feature-targeting is now @smui/common/feature-targeting
     - @material/focus is now @smui/common/focus
     - @material/focus-ring is now @smui/common/focus-ring
     - @material/rtl is now @smui/common/rtl
     - @material/shape is now @smui/common/shape
     - @material/theme is now @smui/common/theme
+    - @material/tokens is now @smui/common/tokens
     - @material/typography is now @smui/common/typography
   - And the following JS imports have changed:
-    - @material/base is now @smui/common/base
     - @material/animation is now @smui/common/animation
+    - @material/base is now @smui/common/base
     - @material/dom is now @smui/common/dom
     - @material/progress-indicator is now @smui/common/progress-indicator
 - Plain Tooltips now require a Label component (can be imported from `@smui/tooltip` or `@smui/common`) wrapping their text. (Rich tooltips still use the Content component.)
