@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.0.0-beta.0](https://github.com/hperrin/svelte-material-ui/compare/v8.0.3...v9.0.0-beta.0) (2026-03-07)
+
+
+### Bug Fixes
+
+* prettier version, node fetch dependency ([b170dc4](https://github.com/hperrin/svelte-material-ui/commit/b170dc4c336f75599704a92178bb259d3d323bfb))
+* update sass syntax and api to fix all deprecation warnings ([06e1ec8](https://github.com/hperrin/svelte-material-ui/commit/06e1ec83244a1d0160cfe9d949fbe932cb857788)), closes [#684](https://github.com/hperrin/svelte-material-ui/issues/684) [#663](https://github.com/hperrin/svelte-material-ui/issues/663) [#559](https://github.com/hperrin/svelte-material-ui/issues/559) [#353](https://github.com/hperrin/svelte-material-ui/issues/353) [#347](https://github.com/hperrin/svelte-material-ui/issues/347)
+
+
+### Features
+
+* add new packages pulled from mdc, update sass and ts, start pulling in components ([79cd438](https://github.com/hperrin/svelte-material-ui/commit/79cd43814c38ff48439170c0519eaba75cb24bab))
+* move common scss to root common dir instead of styles dir ([091db71](https://github.com/hperrin/svelte-material-ui/commit/091db71f3b80ed1fa2ac15b466bba5d8565c9e94))
+* move feature-targeting package into common ([0d73d0d](https://github.com/hperrin/svelte-material-ui/commit/0d73d0df9cfa7fdb8756e5803cad863e7675e550))
+* move theme package into common ([865d88e](https://github.com/hperrin/svelte-material-ui/commit/865d88e555c12277027df9fc542af9f6c7c3235e))
+
+
+
+
+
 ## [8.0.3](https://github.com/hperrin/svelte-material-ui/compare/v8.0.2...v8.0.3) (2025-08-13)
 
 **Note:** Version bump only for package @smui-extra/bottom-app-bar

@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.0.0-beta.0](https://github.com/hperrin/svelte-material-ui/compare/v8.0.3...v9.0.0-beta.0) (2026-03-07)
+
+
+### Bug Fixes
+
+* prettier version, node fetch dependency ([b170dc4](https://github.com/hperrin/svelte-material-ui/commit/b170dc4c336f75599704a92178bb259d3d323bfb))
+
+
+### Features
+
+* add new premade theme, muted ([ba4b01f](https://github.com/hperrin/svelte-material-ui/commit/ba4b01fc93bed844676789db69b2fddbf0896ba8))
+* migrate the rest of the packages, fix some issues, remove all mdc packages ([7d5e852](https://github.com/hperrin/svelte-material-ui/commit/7d5e8529bb446843f85c139a6e235c162cd1d2cd))
+
+
+
+
+
 ## [8.0.3](https://github.com/hperrin/svelte-material-ui/compare/v8.0.2...v8.0.3) (2025-08-13)
 
 **Note:** Version bump only for package svelte-material-ui

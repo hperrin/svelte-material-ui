@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.0.0-beta.0](https://github.com/hperrin/svelte-material-ui/compare/v8.0.3...v9.0.0-beta.0) (2026-03-07)
+
+
+### Bug Fixes
+
+* prettier version, node fetch dependency ([b170dc4](https://github.com/hperrin/svelte-material-ui/commit/b170dc4c336f75599704a92178bb259d3d323bfb))
+* update sass syntax and api to fix all deprecation warnings ([06e1ec8](https://github.com/hperrin/svelte-material-ui/commit/06e1ec83244a1d0160cfe9d949fbe932cb857788)), closes [#684](https://github.com/hperrin/svelte-material-ui/issues/684) [#663](https://github.com/hperrin/svelte-material-ui/issues/663) [#559](https://github.com/hperrin/svelte-material-ui/issues/559) [#353](https://github.com/hperrin/svelte-material-ui/issues/353) [#347](https://github.com/hperrin/svelte-material-ui/issues/347)
+
+
+### Features
+
+* add new packages pulled from mdc, update sass and ts, start pulling in components ([79cd438](https://github.com/hperrin/svelte-material-ui/commit/79cd43814c38ff48439170c0519eaba75cb24bab))
+* migrate the rest of the packages, fix some issues, remove all mdc packages ([7d5e852](https://github.com/hperrin/svelte-material-ui/commit/7d5e8529bb446843f85c139a6e235c162cd1d2cd))
+* move animation package into common ([93b8d3c](https://github.com/hperrin/svelte-material-ui/commit/93b8d3c79567e55f9c70baaddcf42a4323d934fe))
+* move base files into common, remove base ([850f483](https://github.com/hperrin/svelte-material-ui/commit/850f48334a5edefbfeca58702889abb29b4cffca))
+* move density package into common ([0e43ee6](https://github.com/hperrin/svelte-material-ui/commit/0e43ee676728235f834ebc577b5d44d3e3f8e11f))
+* move dom package into common ([dbf8b57](https://github.com/hperrin/svelte-material-ui/commit/dbf8b57c25ed2c245854522038f01e991d070b4f))
+* move elevation package into common ([f03a6c7](https://github.com/hperrin/svelte-material-ui/commit/f03a6c72cbf0d7640a0ee42a85412c6ad8eb9fbf))
+* move feature-targeting package into common ([0d73d0d](https://github.com/hperrin/svelte-material-ui/commit/0d73d0df9cfa7fdb8756e5803cad863e7675e550))
+* move focus and focus-ring packages into common ([ba3f811](https://github.com/hperrin/svelte-material-ui/commit/ba3f81157ffebae2c327ceb73843847a1ac84cbe))
+* move rtl package into common ([25f5bc7](https://github.com/hperrin/svelte-material-ui/commit/25f5bc79f265c5536104b19901223210fe861a78))
+* move shape package into common ([3835a40](https://github.com/hperrin/svelte-material-ui/commit/3835a406bfb513093201c51dfcf690615f0a8427))
+* move theme package into common ([865d88e](https://github.com/hperrin/svelte-material-ui/commit/865d88e555c12277027df9fc542af9f6c7c3235e))
+* move tokens package into common ([9ba7ad5](https://github.com/hperrin/svelte-material-ui/commit/9ba7ad58bc7b230f52e177eb2bc19757c322db90))
+* move typography package into common ([23a969d](https://github.com/hperrin/svelte-material-ui/commit/23a969d769f251d4f48b2cafc60081dea5b94f02))
+
+
+
+
+
 ## [8.0.3](https://github.com/hperrin/svelte-material-ui/compare/v8.0.2...v8.0.3) (2025-08-13)
 
 **Note:** Version bump only for package smui-theme

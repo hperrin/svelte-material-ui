@@ -3,6 +3,72 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.0.0-beta.0](https://github.com/hperrin/svelte-material-ui/compare/v8.0.3...v9.0.0-beta.0) (2026-03-07)
+
+
+### Bug Fixes
+
+* issues with demos and banner styling ([b609d55](https://github.com/hperrin/svelte-material-ui/commit/b609d553008dcf24defffc18debf776073860c84))
+* prettier version, node fetch dependency ([b170dc4](https://github.com/hperrin/svelte-material-ui/commit/b170dc4c336f75599704a92178bb259d3d323bfb))
+* tooltip styling and delays ([9e9abe0](https://github.com/hperrin/svelte-material-ui/commit/9e9abe0c0499313ee10e0c3e712b27fcad6dd3c0))
+* update sass syntax and api to fix all deprecation warnings ([06e1ec8](https://github.com/hperrin/svelte-material-ui/commit/06e1ec83244a1d0160cfe9d949fbe932cb857788)), closes [#684](https://github.com/hperrin/svelte-material-ui/issues/684) [#663](https://github.com/hperrin/svelte-material-ui/issues/663) [#559](https://github.com/hperrin/svelte-material-ui/issues/559) [#353](https://github.com/hperrin/svelte-material-ui/issues/353) [#347](https://github.com/hperrin/svelte-material-ui/issues/347)
+
+
+### Features
+
+* add new packages pulled from mdc, update sass and ts, start pulling in components ([79cd438](https://github.com/hperrin/svelte-material-ui/commit/79cd43814c38ff48439170c0519eaba75cb24bab))
+* add new premade theme, muted ([ba4b01f](https://github.com/hperrin/svelte-material-ui/commit/ba4b01fc93bed844676789db69b2fddbf0896ba8))
+* implement all commits from mdc-web since v14.0.0 ([094eaa9](https://github.com/hperrin/svelte-material-ui/commit/094eaa97f5796c1ad477ef98fadc1dbb3cf9af0f))
+* migrate the rest of the packages, fix some issues, remove all mdc packages ([7d5e852](https://github.com/hperrin/svelte-material-ui/commit/7d5e8529bb446843f85c139a6e235c162cd1d2cd))
+* move animation package into common ([93b8d3c](https://github.com/hperrin/svelte-material-ui/commit/93b8d3c79567e55f9c70baaddcf42a4323d934fe))
+* move base files into common, remove base ([850f483](https://github.com/hperrin/svelte-material-ui/commit/850f48334a5edefbfeca58702889abb29b4cffca))
+* move common scss to root common dir instead of styles dir ([091db71](https://github.com/hperrin/svelte-material-ui/commit/091db71f3b80ed1fa2ac15b466bba5d8565c9e94))
+* move density package into common ([0e43ee6](https://github.com/hperrin/svelte-material-ui/commit/0e43ee676728235f834ebc577b5d44d3e3f8e11f))
+* move dom package into common ([dbf8b57](https://github.com/hperrin/svelte-material-ui/commit/dbf8b57c25ed2c245854522038f01e991d070b4f))
+* move elevation package into common ([f03a6c7](https://github.com/hperrin/svelte-material-ui/commit/f03a6c72cbf0d7640a0ee42a85412c6ad8eb9fbf))
+* move feature-targeting package into common ([0d73d0d](https://github.com/hperrin/svelte-material-ui/commit/0d73d0df9cfa7fdb8756e5803cad863e7675e550))
+* move focus and focus-ring packages into common ([ba3f811](https://github.com/hperrin/svelte-material-ui/commit/ba3f81157ffebae2c327ceb73843847a1ac84cbe))
+* move progress-indicator package into common ([215e355](https://github.com/hperrin/svelte-material-ui/commit/215e35548b37b56f06dc138e1dfbd313d4299454))
+* move rtl package into common ([25f5bc7](https://github.com/hperrin/svelte-material-ui/commit/25f5bc79f265c5536104b19901223210fe861a78))
+* move shape package into common ([3835a40](https://github.com/hperrin/svelte-material-ui/commit/3835a406bfb513093201c51dfcf690615f0a8427))
+* move theme package into common ([865d88e](https://github.com/hperrin/svelte-material-ui/commit/865d88e555c12277027df9fc542af9f6c7c3235e))
+* move tokens package into common ([9ba7ad5](https://github.com/hperrin/svelte-material-ui/commit/9ba7ad58bc7b230f52e177eb2bc19757c322db90))
+* move typography package into common ([23a969d](https://github.com/hperrin/svelte-material-ui/commit/23a969d769f251d4f48b2cafc60081dea5b94f02))
+* pull in button and touch-target ([550be59](https://github.com/hperrin/svelte-material-ui/commit/550be59e6f892b4d591efa2297061fbe20aea0cd))
+* pull in card ([94c2895](https://github.com/hperrin/svelte-material-ui/commit/94c2895f6d07bfe2497e4cecd4a7772f4d39da27))
+* pull in checkbox ([5e5d55c](https://github.com/hperrin/svelte-material-ui/commit/5e5d55c8b70a2467f1ece3c2ac43da1d7c4cec4c))
+* pull in chips ([880ba0e](https://github.com/hperrin/svelte-material-ui/commit/880ba0eefc672f9555e1810ad91b85edd5ef94d5))
+* pull in circular progress ([d9c5298](https://github.com/hperrin/svelte-material-ui/commit/d9c5298355f388a910be35f4042fe6b0a3cb01f7))
+* pull in data table ([1446b85](https://github.com/hperrin/svelte-material-ui/commit/1446b854793307104d5c8d30b031e6ab2ed97223))
+* pull in dialog ([c10727c](https://github.com/hperrin/svelte-material-ui/commit/c10727c9ff1e59dad46b1c208a475691ef514b28))
+* pull in drawer ([eec3d8b](https://github.com/hperrin/svelte-material-ui/commit/eec3d8b6fc1ae65a3182bedfe9e1594645cb16ec))
+* pull in fab ([d20a3ff](https://github.com/hperrin/svelte-material-ui/commit/d20a3ff87904f8f307f51a1cfb9216e0ccbadf02))
+* pull in floating label ([2cf47b3](https://github.com/hperrin/svelte-material-ui/commit/2cf47b36f61edb40bc5136d3ecbbd9d0953bca3c))
+* pull in form field ([091edad](https://github.com/hperrin/svelte-material-ui/commit/091edad476f03f22f114ca8d26b5d8525408679d))
+* pull in icon button ([0c05d53](https://github.com/hperrin/svelte-material-ui/commit/0c05d53a33228060ad16c396814fe584ee6ead5c))
+* pull in image list ([cf6241d](https://github.com/hperrin/svelte-material-ui/commit/cf6241d3495917b0ac37fa925a86a9fc63f6a312))
+* pull in layout grid ([994c154](https://github.com/hperrin/svelte-material-ui/commit/994c154ab6ce4b0f7afdd703be8ce087fedfd428))
+* pull in line ripple ([324799c](https://github.com/hperrin/svelte-material-ui/commit/324799c9a9a5fafe4a5d7a10d54b656df35fede2))
+* pull in linear progress ([9eef4c2](https://github.com/hperrin/svelte-material-ui/commit/9eef4c250e41b905f4315221e55a53cc1d9dbadd))
+* pull in list ([78d6d19](https://github.com/hperrin/svelte-material-ui/commit/78d6d19666ea3e355fa84d18d6f4a0263810f72d))
+* pull in menu ([caa3a7f](https://github.com/hperrin/svelte-material-ui/commit/caa3a7fcd9817b7e2f57de62b0999e7f0c046024))
+* pull in menu surface ([575ef1a](https://github.com/hperrin/svelte-material-ui/commit/575ef1a593fa12d25c4685ba0753c8a8305de8ec))
+* pull in notched outline ([0d2cf9a](https://github.com/hperrin/svelte-material-ui/commit/0d2cf9ac79251ccba263764f35a93eaa3a5881e0))
+* pull in radio ([c8436bd](https://github.com/hperrin/svelte-material-ui/commit/c8436bd9cea5d3db4fc2c669e4f70a8aba0f1ccb))
+* pull in segmented button ([855f64a](https://github.com/hperrin/svelte-material-ui/commit/855f64a2ac482e26d50501ab58e59ed3e25bd1ab))
+* pull in select ([fe4a857](https://github.com/hperrin/svelte-material-ui/commit/fe4a85751817ab150d421f5c53c9f51ed3374207))
+* pull in slider ([920a834](https://github.com/hperrin/svelte-material-ui/commit/920a8344a46349d2ba0821ff602a51524816417b))
+* pull in snackbar ([59bd200](https://github.com/hperrin/svelte-material-ui/commit/59bd2001aca4424cd6b988222a640f84265cb749))
+* pull in switch ([7ac57f2](https://github.com/hperrin/svelte-material-ui/commit/7ac57f2d67714cdbbc28b47cd16de0749f4e3fee))
+* pull in tab, tab bar, tab indicator, and tab scroller ([4ae29a4](https://github.com/hperrin/svelte-material-ui/commit/4ae29a416249f38132bc18b419738651e4b0c677))
+* pull in textfield ([e0c605a](https://github.com/hperrin/svelte-material-ui/commit/e0c605a0f8733eb1e4d8662a56e26292ee56c538))
+* pull in tooltip ([31be56c](https://github.com/hperrin/svelte-material-ui/commit/31be56c58aaf1bf10a0277fe1702c98daaf19c3e))
+* pull in top app bar ([cd71454](https://github.com/hperrin/svelte-material-ui/commit/cd71454c7e675ec2778e61e32b16993262785b3b))
+
+
+
+
+
 ## [8.0.3](https://github.com/hperrin/svelte-material-ui/compare/v8.0.2...v8.0.3) (2025-08-13)
 
 

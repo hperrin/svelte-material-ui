@@ -1,6 +1,6 @@
 {
   "name": "@smui/data-table",
-  "version": "8.0.3",
+  "version": "9.0.0-beta.0",
   "description": "Svelte Material UI - Data Table",
   "type": "module",
   "main": "dist/index.js",
@@ -50,15 +50,15 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@smui/checkbox": "^8.0.3",
-    "@smui/common": "^8.0.3",
-    "@smui/icon-button": "^8.0.3",
-    "@smui/linear-progress": "^8.0.3",
-    "@smui/list": "^8.0.3",
-    "@smui/menu": "^8.0.3",
-    "@smui/ripple": "^8.0.3",
-    "@smui/select": "^8.0.3",
-    "@smui/touch-target": "^8.0.3"
+    "@smui/checkbox": "^9.0.0-beta.0",
+    "@smui/common": "^9.0.0-beta.0",
+    "@smui/icon-button": "^9.0.0-beta.0",
+    "@smui/linear-progress": "^9.0.0-beta.0",
+    "@smui/list": "^9.0.0-beta.0",
+    "@smui/menu": "^9.0.0-beta.0",
+    "@smui/ripple": "^9.0.0-beta.0",
+    "@smui/select": "^9.0.0-beta.0",
+    "@smui/touch-target": "^9.0.0-beta.0"
   },
   "devDependencies": {
     "@tsconfig/svelte": "^5.0.8",
