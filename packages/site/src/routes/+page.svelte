@@ -42,8 +42,8 @@
             href="https://m2.material.io/"
             target="_blank">Material Spec</a
           >, by Google. As well as implementing the components from the spec as
-          closely as possible, SMUI provides additional components that attempt
-          to match the Material design while giving you flexibility and ease of
+          closely as possible, SMUI provides additional components that aim to
+          match the Material design while giving you flexibility and ease of
           development.
         </Content>
       </Paper>
@@ -57,10 +57,9 @@
           </Icon>
         </Title>
         <Content>
-          Like MDC-Web, SMUI is styled through Sass. SMUI supports all of the
-          mixins provided by Material Design Components for Web, and provides
-          some additional helpful mixins. You can customize the look of your UI
-          with <a
+          SMUI is styled with Sass. SMUI provides variables to customize the
+          look of the UI and mixins to help style your own elements. You can
+          customize the look of your UI with <a
             style="color: #fff;"
             href="https://github.com/hperrin/svelte-material-ui/blob/master/packages/site/src/theme/_smui-theme.scss"
             target="_blank">just a few variables</a
@@ -203,9 +202,9 @@
         <div style="flex-grow: 1;">
           <Title>Fully Themable</Title>
           <Content>
-            Components are themable using Sass variables, provided by MDC-Web.
-            Everything from their shape, color, density, borders, interaction
-            states, and more is themable.
+            Components are themable using Sass variables. Everything from their
+            shape, color, density, borders, interaction states, and more is
+            themable.
           </Content>
         </div>
       </Paper>
