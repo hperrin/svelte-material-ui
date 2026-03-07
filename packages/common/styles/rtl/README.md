@@ -2,12 +2,6 @@
 
 UIs for languages that are read from right-to-left (RTL), such as Arabic and Hebrew, should be mirrored to ensure content is easy to understand.
 
-# Installation
-
-```sh
-npm install --save-dev @smui/rtl
-```
-
 # Design
 
 https://m2.material.io/design/usability/bidirectionality.html

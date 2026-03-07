@@ -1,5 +1,5 @@
-@forward '@smui/rtl' as mdc-rtl-* hide mdc-rtl-rtl;
-@forward '@smui/rtl' as mdc-* hide mdc-property-, mdc-reflexive,
+@forward '@smui/common/styles/rtl' as mdc-rtl-* hide mdc-rtl-rtl;
+@forward '@smui/common/styles/rtl' as mdc-* hide mdc-property-, mdc-reflexive,
   mdc-reflexive-box, mdc-reflexive-position, mdc-reflexive-property;
 @forward '@smui/theme/all-theme-deprecated' as mdc-theme-* hide
     $mdc-theme-red-50,

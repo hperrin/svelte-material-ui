@@ -3,7 +3,7 @@
 @forward '@smui/theme/variables' as mdc-theme-*;
 @forward '@smui/common/styles/animation/variables' as mdc-animation-*;
 @forward '@smui/common/styles/elevation/variables' as mdc-elevation-*;
-@forward '@smui/rtl/variables' as mdc-rtl-*;
+@forward '@smui/common/styles/rtl/variables' as mdc-rtl-*;
 @forward '@smui/shape/variables' as mdc-shape-*;
 @forward '@smui/ripple/styles/variables' as mdc-* hide $mdc-dark-ink-opacities,
   $mdc-fade-in-duration, $mdc-fade-out-duration, $mdc-light-ink-opacities,
@@ -21,9 +21,10 @@
   mdc-shadow;
 @forward '@smui/common/styles/elevation/mixins' as mdc-elevation-* hide
   mdc-elevation-elevation;
-@forward '@smui/rtl/mixins' as mdc-* hide mdc-property-, mdc-reflexive,
-  mdc-reflexive-box, mdc-reflexive-position, mdc-reflexive-property;
-@forward '@smui/rtl/mixins' as mdc-rtl-* hide mdc-rtl-rtl;
+@forward '@smui/common/styles/rtl/mixins' as mdc-* hide mdc-property-,
+  mdc-reflexive, mdc-reflexive-box, mdc-reflexive-position,
+  mdc-reflexive-property;
+@forward '@smui/common/styles/rtl/mixins' as mdc-rtl-* hide mdc-rtl-rtl;
 @forward '@smui/shape/mixins' as mdc-shape-*;
 @forward '@smui/ripple/styles/keyframes' as mdc-ripple-*;
 @forward '@smui/ripple/styles/mixins' as mdc-* hide mdc-common, mdc-core-styles,

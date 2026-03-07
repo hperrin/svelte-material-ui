@@ -26,7 +26,7 @@
 @use 'sass:math';
 @use '@smui/common/styles/animation/functions' as animation-functions;
 @use '@smui/common/styles/feature-targeting/feature-targeting';
-@use '@smui/rtl/rtl';
+@use '@smui/common/styles/rtl/rtl';
 @use '@smui/theme/gss';
 @use '@smui/theme/theme';
 @use './circular-progress-theme';

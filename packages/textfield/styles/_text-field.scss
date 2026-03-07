@@ -31,6 +31,7 @@
 @use '@smui/common/styles/density/functions' as density-functions;
 @use '@smui/common/styles/dom/dom';
 @use '@smui/common/styles/feature-targeting/feature-targeting';
+@use '@smui/common/styles/rtl/rtl';
 @use '@smui/theme/css';
 @use '@smui/floating-label/styles/mixins' as floating-label-mixins;
 @use '@smui/floating-label/styles/variables' as floating-label-variables;
@@ -44,12 +45,11 @@
 @use '@smui/shape/mixins' as shape-mixins;
 @use '@smui/shape/functions' as shape-functions;
 @use '@smui/typography/typography';
-@use 'helper-text/mixins' as helper-text-mixins;
-@use 'character-counter/mixins' as character-counter-mixins;
-@use 'icon/mixins' as icon-mixins;
-@use 'icon/variables' as icon-variables;
+@use './helper-text/mixins' as helper-text-mixins;
+@use './character-counter/mixins' as character-counter-mixins;
+@use './icon/mixins' as icon-mixins;
+@use './icon/variables' as icon-variables;
 @use './variables';
-@use '@smui/rtl/rtl';
 
 $_density-config: map.merge(
   variables.$density-config,

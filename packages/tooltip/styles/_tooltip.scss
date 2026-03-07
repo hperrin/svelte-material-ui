@@ -29,7 +29,7 @@
 @use '@smui/common/styles/dom/mixins' as dom-mixins;
 @use '@smui/common/styles/elevation/mixins' as elevation-mixins;
 @use '@smui/common/styles/feature-targeting/feature-targeting';
-@use '@smui/rtl/rtl' as rtl;
+@use '@smui/common/styles/rtl/rtl' as rtl;
 @use './tooltip-theme';
 @use '@smui/typography/typography';
 

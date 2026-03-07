@@ -9,7 +9,7 @@
   $mdc-translate-duration;
 @forward '@smui/ripple/styles/variables' as mdc-ripple-* hide
   $mdc-ripple-states-wash-duration;
-@forward '@smui/rtl/variables' as mdc-rtl-*;
+@forward '@smui/common/styles/rtl/variables' as mdc-rtl-*;
 @forward '@smui/touch-target/styles/variables' as mdc-touch-target-*;
 @forward '@smui/typography/variables' as mdc-typography-*;
 @forward '@smui/shape/variables' as mdc-shape-*;
@@ -34,9 +34,10 @@
   mdc-ripple-states-hover-opacity, mdc-ripple-states-interactions-,
   mdc-ripple-states-opacities, mdc-ripple-states-press-opacity,
   mdc-ripple-states-selected;
-@forward '@smui/rtl/mixins' as mdc-* hide mdc-property-, mdc-reflexive,
-  mdc-reflexive-box, mdc-reflexive-position, mdc-reflexive-property;
-@forward '@smui/rtl/mixins' as mdc-rtl-* hide mdc-rtl-rtl;
+@forward '@smui/common/styles/rtl/mixins' as mdc-* hide mdc-property-,
+  mdc-reflexive, mdc-reflexive-box, mdc-reflexive-position,
+  mdc-reflexive-property;
+@forward '@smui/common/styles/rtl/mixins' as mdc-rtl-* hide mdc-rtl-rtl;
 @forward '@smui/touch-target/styles/mixins' as mdc-* hide mdc-margin,
   mdc-wrapper;
 @forward '@smui/touch-target/styles/mixins' as mdc-touch-target-* hide

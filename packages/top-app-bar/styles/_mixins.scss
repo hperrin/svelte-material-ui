@@ -26,13 +26,13 @@
 @use 'sass:list';
 @use 'sass:meta';
 @use '@smui/common/styles/animation/variables' as animation-variables;
+@use '@smui/common/styles/rtl/rtl';
 @use '@smui/ripple/styles/ripple-theme';
 @use '@smui/theme/theme-color';
 @use '@smui/theme/theme';
 @use '@smui/shape/mixins' as shape-mixins;
 @use '@smui/shape/functions';
 @use './variables';
-@use '@smui/rtl/rtl';
 
 //
 // Public

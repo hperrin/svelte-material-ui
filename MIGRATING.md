@@ -18,7 +18,7 @@ SMUI 9 has migrated away from MDC-Web, since MDC-Web has been abandoned.
     - @material/elevation is now @smui/common/styles/elevation
     - @material/focus is now @smui/common/styles/focus
     - @material/focus-ring is now @smui/common/styles/focus-ring
-    - todo: rtl
+    - @material/rtl is now @smui/common/styles/rtl
     - todo: shape
     - todo: theme
     - todo: typography

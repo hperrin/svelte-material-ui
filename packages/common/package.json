@@ -146,6 +146,9 @@
     },
     "./focus-ring/*.scss": {
       "sass": "./styles/focus-ring/*.scss"
+    },
+    "./rtl/*.scss": {
+      "sass": "./styles/rtl/*.scss"
     }
   },
   "typesVersions": {
@@ -199,7 +202,6 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@smui/rtl": "^8.0.3",
     "@smui/shape": "^8.0.3",
     "@smui/theme": "^8.0.3"
   },

@@ -93,8 +93,8 @@
   $mdc-theme-blue-grey-200, $mdc-theme-blue-grey-300, $mdc-theme-blue-grey-400,
   $mdc-theme-blue-grey-500, $mdc-theme-blue-grey-600, $mdc-theme-blue-grey-700,
   $mdc-theme-blue-grey-800, $mdc-theme-blue-grey-900;
-@forward '@smui/rtl' as mdc-rtl-* hide mdc-rtl-rtl;
-@forward '@smui/rtl' as mdc-* hide mdc-property-, mdc-reflexive,
+@forward '@smui/common/styles/rtl' as mdc-rtl-* hide mdc-rtl-rtl;
+@forward '@smui/common/styles/rtl' as mdc-* hide mdc-property-, mdc-reflexive,
   mdc-reflexive-box, mdc-reflexive-position, mdc-reflexive-property;
 @forward '@smui/shape' as mdc-shape-*;
 @forward '@smui/common/styles/animation' as mdc-animation-* hide

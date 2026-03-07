@@ -1,15 +1,16 @@
 @forward '@smui/common/styles/base/mixins' as mdc-base-*;
 @forward '@smui/theme/variables' as mdc-theme-*;
-@forward '@smui/rtl/variables' as mdc-rtl-*;
+@forward '@smui/common/styles/rtl/variables' as mdc-rtl-*;
 @forward '@smui/shape/variables' as mdc-shape-*;
 @forward '@smui/common/styles/animation/variables' as mdc-animation-*;
 @forward '@smui/typography/variables' as mdc-typography-*;
 @forward '@smui/floating-label/styles/variables' as mdc-floating-label-*;
 @forward 'variables' as mdc-notched-outline-*;
 @forward '@smui/theme/mixins' as mdc-theme-*;
-@forward '@smui/rtl/mixins' as mdc-* hide mdc-property-, mdc-reflexive,
-  mdc-reflexive-box, mdc-reflexive-position, mdc-reflexive-property;
-@forward '@smui/rtl/mixins' as mdc-rtl-* hide mdc-rtl-rtl;
+@forward '@smui/common/styles/rtl/mixins' as mdc-* hide mdc-property-,
+  mdc-reflexive, mdc-reflexive-box, mdc-reflexive-position,
+  mdc-reflexive-property;
+@forward '@smui/common/styles/rtl/mixins' as mdc-rtl-* hide mdc-rtl-rtl;
 @forward '@smui/shape/mixins' as mdc-shape-*;
 @forward '@smui/typography/mixins' as mdc-* hide mdc-base, mdc-baseline-bottom,
   mdc-baseline-strut-, mdc-baseline-top, mdc-core-styles, mdc-overflow-ellipsis;

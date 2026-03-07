@@ -113,8 +113,8 @@
 @forward '@smui/typography' as mdc-* hide mdc-base, mdc-baseline-bottom,
   mdc-baseline-strut-, mdc-baseline-top, mdc-core-styles, mdc-overflow-ellipsis,
   mdc-get-global-variable-, mdc-set-styles-, mdc-get-letter-spacing-;
-@forward '@smui/rtl' as mdc-rtl-* hide mdc-rtl-rtl;
-@forward '@smui/rtl' as mdc-* hide mdc-property-, mdc-reflexive,
+@forward '@smui/common/styles/rtl' as mdc-rtl-* hide mdc-rtl-rtl;
+@forward '@smui/common/styles/rtl' as mdc-* hide mdc-property-, mdc-reflexive,
   mdc-reflexive-box, mdc-reflexive-position, mdc-reflexive-property;
 @forward './index' as mdc-tab-*;
 @forward '@smui/tab-indicator/styles' as mdc-tab-indicator-*;

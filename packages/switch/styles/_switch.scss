@@ -27,9 +27,9 @@
 @use '@smui/common/styles/dom/dom';
 @use '@smui/common/styles/elevation/elevation';
 @use '@smui/common/styles/focus-ring/focus-ring';
+@use '@smui/common/styles/rtl/rtl';
 @use '@smui/ripple/styles/ripple-theme';
 @use '@smui/ripple/styles/ripple';
-@use '@smui/rtl/rtl';
 @use '@smui/theme/gss';
 
 $animation-duration: 75ms;

@@ -8,7 +8,7 @@
   $mdc-translate-duration;
 @forward '@smui/ripple/styles/variables' as mdc-ripple-* hide
   $mdc-ripple-states-wash-duration;
-@forward '@smui/rtl/variables' as mdc-rtl-*;
+@forward '@smui/common/styles/rtl/variables' as mdc-rtl-*;
 @forward '@smui/shape/variables' as mdc-shape-*;
 @forward 'variables' as mdc-card-*;
 @forward '@smui/theme/mixins' as mdc-theme-*;
@@ -28,9 +28,10 @@
   mdc-ripple-states-hover-opacity, mdc-ripple-states-interactions-,
   mdc-ripple-states-opacities, mdc-ripple-states-press-opacity,
   mdc-ripple-states-selected;
-@forward '@smui/rtl/mixins' as mdc-* hide mdc-property-, mdc-reflexive,
-  mdc-reflexive-box, mdc-reflexive-position, mdc-reflexive-property;
-@forward '@smui/rtl/mixins' as mdc-rtl-* hide mdc-rtl-rtl;
+@forward '@smui/common/styles/rtl/mixins' as mdc-* hide mdc-property-,
+  mdc-reflexive, mdc-reflexive-box, mdc-reflexive-position,
+  mdc-reflexive-property;
+@forward '@smui/common/styles/rtl/mixins' as mdc-rtl-* hide mdc-rtl-rtl;
 @forward '@smui/shape/mixins' as mdc-shape-*;
 @forward 'mixins' as mdc-card-*;
 @forward '@smui/common/styles/feature-targeting/functions' as mdc-feature-*;

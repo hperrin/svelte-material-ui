@@ -102,8 +102,8 @@
   mdc-overlay-common, mdc-overlay-dimensions, mdc-overlay-fill-color,
   mdc-overlay-opacity, mdc-overlay-selector-, mdc-overlay-surface-position,
   mdc-shadow, mdc-transition-value, mdc-overlay-transition-value;
-@forward '@smui/rtl' as mdc-rtl-* hide mdc-rtl-rtl;
-@forward '@smui/rtl' as mdc-* hide mdc-property-, mdc-reflexive,
+@forward '@smui/common/styles/rtl' as mdc-rtl-* hide mdc-rtl-rtl;
+@forward '@smui/common/styles/rtl' as mdc-* hide mdc-property-, mdc-reflexive,
   mdc-reflexive-box, mdc-reflexive-position, mdc-reflexive-property;
 @forward '@smui/shape' as mdc-shape-*;
 @forward '@smui/ripple/styles' as mdc-* hide $mdc-dark-ink-opacities,

@@ -28,8 +28,8 @@
 @use '@smui/common/styles/animation/functions';
 @use '@smui/common/styles/dom/mixins' as dom;
 @use '@smui/common/styles/feature-targeting/feature-targeting';
+@use '@smui/common/styles/rtl/rtl';
 @use '@smui/icon-button/styles/icon-button-theme';
-@use '@smui/rtl/rtl';
 @use './data-table-theme';
 
 /// Styles related to checkbox and sorting for the header cell.
