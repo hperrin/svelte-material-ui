@@ -6,7 +6,7 @@
 @use 'smui-theme';
 
 // This adds classes like "mdc-theme--primary-bg".
-@use '@smui/theme/styles';
+@use '@smui/common/styles/theme/styles';
 
 // App styles.
 @use './app';

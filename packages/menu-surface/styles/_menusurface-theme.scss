@@ -26,8 +26,8 @@
 @use '@smui/common/styles/animation/variables' as animation-variables;
 @use '@smui/common/styles/feature-targeting/feature-targeting';
 @use '@smui/common/styles/shape/mixins' as shape-mixins;
-@use '@smui/theme/custom-properties';
-@use '@smui/theme/theme';
+@use '@smui/common/styles/theme/custom-properties';
+@use '@smui/common/styles/theme/theme';
 
 $fade-in-duration: 0.03s !default;
 $fade-out-duration: 0.075s !default;

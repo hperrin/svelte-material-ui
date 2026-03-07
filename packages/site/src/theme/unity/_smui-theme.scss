@@ -1,7 +1,7 @@
 @use 'sass:color';
 @use 'sass:string';
 
-@use '@smui/theme/index' as theme with (
+@use '@smui/common/styles/theme/index' as theme with (
   $primary: #e95420,
   $secondary: #77216f,
   $surface: #f2f1f0,

@@ -2,7 +2,7 @@
 @forward '@smui/common/styles/rtl' as mdc-rtl-* hide mdc-rtl-rtl;
 @forward '@smui/common/styles/rtl' as mdc-* hide mdc-property-, mdc-reflexive,
   mdc-reflexive-box, mdc-reflexive-position, mdc-reflexive-property;
-@forward '@smui/theme/all-theme-deprecated' as mdc-theme-* hide
+@forward '@smui/common/styles/theme/all-theme-deprecated' as mdc-theme-* hide
     $mdc-theme-red-50,
   $mdc-theme-red-100, $mdc-theme-red-200, $mdc-theme-red-300,
   $mdc-theme-red-400, $mdc-theme-red-500, $mdc-theme-red-600,

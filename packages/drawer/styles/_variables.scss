@@ -20,7 +20,7 @@
 // THE SOFTWARE.
 //
 
-@use '@smui/theme/theme-color';
+@use '@smui/common/styles/theme/theme-color';
 
 // Colors
 $title-ink-color: theme-color.prop-value(on-surface) !default;

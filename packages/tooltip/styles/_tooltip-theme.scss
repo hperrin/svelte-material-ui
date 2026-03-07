@@ -27,10 +27,10 @@
 @use '@smui/common/styles/animation/functions' as animation-functions;
 @use '@smui/common/styles/feature-targeting/feature-targeting';
 @use '@smui/common/styles/shape/mixins' as shape-mixins;
-@use '@smui/theme/theme';
-@use '@smui/theme/custom-properties';
-@use '@smui/theme/css';
-@use '@smui/theme/theme-color';
+@use '@smui/common/styles/theme/theme';
+@use '@smui/common/styles/theme/custom-properties';
+@use '@smui/common/styles/theme/css';
+@use '@smui/common/styles/theme/theme-color';
 
 $background-color: rgba(97, 97, 97, theme-color.text-emphasis(high));
 $border-radius: small;
@@ -274,6 +274,7 @@ $z-index: 9;
   .mdc-tooltip__label {
     display: -webkit-box;
     -webkit-line-clamp: $num-line-clamp;
+    line-clamp: $num-line-clamp;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }

@@ -54,7 +54,6 @@
     "@smui/tab": "^8.0.3",
     "@smui/tab-indicator": "^8.0.3",
     "@smui/tab-scroller": "^8.0.3",
-    "@smui/theme": "^8.0.3",
     "@smui/typography": "^8.0.3"
   },
   "devDependencies": {

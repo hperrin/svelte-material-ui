@@ -36,6 +36,13 @@
 @use '@smui/common/styles/rtl/rtl';
 @use '@smui/common/styles/shape/functions' as shape-functions;
 @use '@smui/common/styles/shape/mixins' as shape-mixins;
+@use '@smui/common/styles/theme/css';
+@use '@smui/common/styles/theme/custom-properties';
+@use '@smui/common/styles/theme/gss';
+@use '@smui/common/styles/theme/keys';
+@use '@smui/common/styles/theme/state';
+@use '@smui/common/styles/theme/theme';
+@use '@smui/common/styles/theme/variables' as theme-variables;
 @use '@smui/common/styles/tokens/resolvers';
 @use '@smui/floating-label/styles/mixins' as floating-label-mixins;
 @use '@smui/floating-label/styles/variables' as floating-label-variables;
@@ -46,13 +53,6 @@
 @use '@smui/notched-outline/styles/mixins' as notched-outline-mixins;
 @use '@smui/notched-outline/styles/variables' as notched-outline-variables;
 @use '@smui/ripple/styles/ripple-theme';
-@use '@smui/theme/css';
-@use '@smui/theme/custom-properties';
-@use '@smui/theme/gss';
-@use '@smui/theme/keys';
-@use '@smui/theme/state';
-@use '@smui/theme/theme';
-@use '@smui/theme/variables' as theme-variables;
 @use '@smui/typography/mixins' as typography-mixins;
 @use '@smui/typography/typography';
 @use './select-helper-text-theme';

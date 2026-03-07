@@ -2,7 +2,7 @@
 @use 'sass:string';
 
 // Color scheme: https://coolors.co/222222-fffbfe-a76295-55808b-ff4000
-@use '@smui/theme/index' as theme with (
+@use '@smui/common/styles/theme/index' as theme with (
   $primary: #a76295,
   $secondary: #55808b,
   $surface: #fffbfe,

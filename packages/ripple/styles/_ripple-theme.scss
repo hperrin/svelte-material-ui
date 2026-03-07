@@ -29,12 +29,12 @@
 @use '@smui/common/styles/animation/variables' as variables2;
 @use '@smui/common/styles/base/mixins' as base-mixins;
 @use '@smui/common/styles/feature-targeting/feature-targeting';
-@use '@smui/theme/css';
-@use '@smui/theme/custom-properties';
-@use '@smui/theme/theme';
-@use '@smui/theme/keys';
-@use '@smui/theme/shadow-dom';
-@use '@smui/theme/theme-color';
+@use '@smui/common/styles/theme/css';
+@use '@smui/common/styles/theme/custom-properties';
+@use '@smui/common/styles/theme/theme';
+@use '@smui/common/styles/theme/keys';
+@use '@smui/common/styles/theme/shadow-dom';
+@use '@smui/common/styles/theme/theme-color';
 
 $custom-property-prefix: 'ripple';
 

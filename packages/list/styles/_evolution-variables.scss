@@ -1,5 +1,5 @@
-@use '@smui/theme/theme-color';
 @use '@smui/common/styles/density/variables' as density-variables;
+@use '@smui/common/styles/theme/theme-color';
 
 $ripple-target: '.mdc-list-item__ripple';
 $divider-color-on-light-bg: rgba(0, 0, 0, 0.12) !default;

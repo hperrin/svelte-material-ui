@@ -1,3 +1,4 @@
 // Import all of the things that output actual styles here.
 
-@use './elevation/styles';
+@use './elevation/styles' as elevation-styles;
+@use './theme/styles' as theme-styles;

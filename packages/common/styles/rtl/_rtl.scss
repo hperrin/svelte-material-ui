@@ -23,9 +23,9 @@
 @use 'sass:list';
 @use 'sass:meta';
 @use 'sass:selector';
-@use '@smui/theme/gss';
-@use '@smui/theme/selector-ext';
-@use '@smui/theme/theme';
+@use '../theme/gss';
+@use '../theme/selector-ext';
+@use '../theme/theme';
 
 $include: true !default;
 

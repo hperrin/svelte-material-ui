@@ -24,8 +24,8 @@
 
 @use './mixins' as card;
 @use '@smui/common/styles/elevation/elevation-theme';
+@use '@smui/common/styles/theme/state';
 @use '@smui/ripple/styles/ripple-theme';
-@use '@smui/theme/state';
 @use 'sass:map';
 
 $ripple-target: '.mdc-card__ripple';

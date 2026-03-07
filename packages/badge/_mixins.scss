@@ -2,7 +2,7 @@
 @use '@smui/common/styles/feature-targeting/index' as feature-targeting;
 @use '@smui/common/styles/rtl/rtl';
 @use '@smui/common/styles/shape/index' as shape;
-@use '@smui/theme/index' as theme;
+@use '@smui/common/styles/theme/index' as theme;
 @use '@smui/typography/index' as typography;
 
 $minimum-size: 24px;

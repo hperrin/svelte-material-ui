@@ -1,7 +1,7 @@
 @forward '@smui/common/styles/animation/variables' as mdc-animation-*;
 @forward '@smui/common/styles/base/mixins' as mdc-base-*;
 @forward '@smui/common/styles/density/variables' as mdc-density-*;
-@forward '@smui/theme/variables' as mdc-theme-*;
+@forward '@smui/common/styles/theme/variables' as mdc-theme-*;
 @forward '@smui/common/styles/elevation/variables' as mdc-elevation-*;
 @forward '@smui/ripple/styles/variables' as mdc-* hide $mdc-dark-ink-opacities,
   $mdc-fade-in-duration, $mdc-fade-out-duration, $mdc-light-ink-opacities,
@@ -17,7 +17,7 @@
 @forward '@smui/button/styles/mixins' as mdc-button-*;
 @forward '@smui/icon-button/styles/variables' as mdc-icon-button-*;
 @forward 'variables' as mdc-snackbar-*;
-@forward '@smui/theme/mixins' as mdc-theme-*;
+@forward '@smui/common/styles/theme/mixins' as mdc-theme-*;
 @forward '@smui/common/styles/elevation/mixins' as mdc-* hide mdc-core-styles,
   mdc-overlay-common, mdc-overlay-dimensions, mdc-overlay-fill-color,
   mdc-overlay-opacity, mdc-overlay-selector-, mdc-overlay-surface-position,
@@ -51,7 +51,7 @@
 @forward 'mixins' as mdc-snackbar-*;
 @forward '@smui/common/styles/feature-targeting/functions' as mdc-feature-*;
 @forward '@smui/common/styles/animation/functions' as mdc-animation-*;
-@forward '@smui/theme/functions' as mdc-theme-*;
+@forward '@smui/common/styles/theme/functions' as mdc-theme-*;
 @forward '@smui/common/styles/elevation/functions' as mdc-elevation-*;
 @forward '@smui/ripple/styles/functions' as mdc-*;
 @forward '@smui/typography/functions' as mdc-typography-*;

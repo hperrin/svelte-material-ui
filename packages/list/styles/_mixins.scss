@@ -29,12 +29,12 @@
 @use '@smui/common/styles/rtl/rtl';
 @use '@smui/common/styles/shape/functions' as shape-functions;
 @use '@smui/common/styles/shape/mixins' as shape-mixins;
-@use '@smui/theme/theme';
+@use '@smui/common/styles/theme/theme';
+@use '@smui/common/styles/theme/theme-color';
 @use '@smui/ripple/styles/ripple';
 @use '@smui/ripple/styles/ripple-theme';
 @use '@smui/typography/typography';
 @use './variables';
-@use '@smui/theme/theme-color';
 @use './evolution-mixins';
 
 @mixin deprecated-core-styles($query: feature-targeting.all()) {

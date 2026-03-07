@@ -1,5 +1,5 @@
 @use '@smui/checkbox/styles/mixins' as checkbox;
-@use '@smui/theme/color-palette';
+@use '@smui/common/styles/theme/color-palette';
 
 .my-colored-checkbox {
   --mdc-checkbox-checked-color: #{color-palette.$green-600};

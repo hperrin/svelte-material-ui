@@ -36,13 +36,13 @@
 @use '@smui/common/styles/rtl/rtl';
 @use '@smui/common/styles/shape/functions' as shape-functions;
 @use '@smui/common/styles/shape/mixins' as shape-mixins;
+@use '@smui/common/styles/theme/theme';
+@use '@smui/common/styles/theme/theme-color';
 @use '@smui/ripple/styles/ripple';
 @use '@smui/ripple/styles/ripple-theme';
-@use '@smui/theme/theme';
 @use '@smui/touch-target/styles/mixins' as touch-target-mixins;
 @use '@smui/typography/typography';
 @use './variables';
-@use '@smui/theme/theme-color';
 @use './trailingaction/mixins' as trailing-action-mixins;
 
 $ripple-target: '.mdc-chip__ripple';

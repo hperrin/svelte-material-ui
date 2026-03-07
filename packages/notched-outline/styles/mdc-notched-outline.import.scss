@@ -1,12 +1,12 @@
 @forward '@smui/common/styles/base/mixins' as mdc-base-*;
-@forward '@smui/theme/variables' as mdc-theme-*;
+@forward '@smui/common/styles/theme/variables' as mdc-theme-*;
 @forward '@smui/common/styles/rtl/variables' as mdc-rtl-*;
 @forward '@smui/common/styles/shape/variables' as mdc-shape-*;
 @forward '@smui/common/styles/animation/variables' as mdc-animation-*;
 @forward '@smui/typography/variables' as mdc-typography-*;
 @forward '@smui/floating-label/styles/variables' as mdc-floating-label-*;
 @forward 'variables' as mdc-notched-outline-*;
-@forward '@smui/theme/mixins' as mdc-theme-*;
+@forward '@smui/common/styles/theme/mixins' as mdc-theme-*;
 @forward '@smui/common/styles/rtl/mixins' as mdc-* hide mdc-property-,
   mdc-reflexive, mdc-reflexive-box, mdc-reflexive-position,
   mdc-reflexive-property;
@@ -19,7 +19,7 @@
 @forward '@smui/floating-label/styles/mixins' as mdc-floating-label-*;
 @forward 'mixins' as mdc-notched-outline-*;
 @forward '@smui/common/styles/feature-targeting/functions' as mdc-feature-*;
-@forward '@smui/theme/functions' as mdc-theme-*;
+@forward '@smui/common/styles/theme/functions' as mdc-theme-*;
 @forward '@smui/common/styles/shape/functions' as mdc-shape-*;
 @forward '@smui/typography/functions' as mdc-typography-*;
 @forward 'mdc-notched-outline';

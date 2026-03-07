@@ -25,9 +25,9 @@
 
 @use '@smui/common/styles/feature-targeting/feature-targeting';
 @use '@smui/common/styles/rtl/rtl';
-@use '@smui/theme/state';
-@use '@smui/theme/theme';
-@use '@smui/theme/variables' as theme-variables;
+@use '@smui/common/styles/theme/state';
+@use '@smui/common/styles/theme/theme';
+@use '@smui/common/styles/theme/variables' as theme-variables;
 
 $icon-size: 24px !default;
 $dense-icon-size: 20px !default;

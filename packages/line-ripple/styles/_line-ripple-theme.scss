@@ -24,7 +24,7 @@
 // Selector '.mdc-*' should only be used in this project.
 
 @use '@smui/common/styles/feature-targeting/feature-targeting';
-@use '@smui/theme/theme';
+@use '@smui/common/styles/theme/theme';
 @use './functions';
 
 @mixin theme-styles($query: feature-targeting.all()) {

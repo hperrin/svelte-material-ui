@@ -24,10 +24,10 @@
 // Selector '.mdc-*' should only be used in this project.
 
 @use 'sass:map';
-@use '@smui/theme/keys';
-@use '@smui/theme/theme';
-@use '@smui/theme/validate';
-@use '@smui/theme/theme-color';
+@use '@smui/common/styles/theme/keys';
+@use '@smui/common/styles/theme/theme';
+@use '@smui/common/styles/theme/validate';
+@use '@smui/common/styles/theme/theme-color';
 
 $light-theme: (
   active-indicator-color: theme-color.$primary,

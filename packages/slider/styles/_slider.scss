@@ -28,10 +28,10 @@
 @use '@smui/common/styles/dom/mixins' as dom-mixins;
 @use '@smui/common/styles/feature-targeting/feature-targeting';
 @use '@smui/common/styles/rtl/rtl';
+@use '@smui/common/styles/theme/css';
+@use '@smui/common/styles/theme/theme-color';
 @use '@smui/ripple/styles/ripple';
 @use '@smui/ripple/styles/ripple-theme';
-@use '@smui/theme/css';
-@use '@smui/theme/theme-color';
 @use '@smui/typography/typography';
 @use './slider-theme';
 

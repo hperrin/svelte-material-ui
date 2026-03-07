@@ -51,7 +51,6 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@smui/common": "^8.0.3",
-    "@smui/theme": "^8.0.3",
     "@smui/typography": "^8.0.3"
   },
   "devDependencies": {

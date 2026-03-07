@@ -26,10 +26,10 @@
 // NOTE: this is the implementation of the aforementioned classes.
 
 @use 'sass:map';
+@use '@smui/common/styles/theme/theme';
+@use '@smui/common/styles/theme/keys';
+@use '@smui/common/styles/theme/validate';
 @use '@smui/common/styles/tokens/resolvers';
-@use '@smui/theme/theme';
-@use '@smui/theme/keys';
-@use '@smui/theme/validate';
 @use '@smui/typography/typography';
 @use './evolution-mixins' as list;
 @use 'sass:meta';

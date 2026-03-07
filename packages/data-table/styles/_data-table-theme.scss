@@ -37,12 +37,12 @@
 @use '@smui/common/styles/rtl/rtl';
 @use '@smui/common/styles/shape/functions' as shape-functions;
 @use '@smui/common/styles/shape/mixins' as shape-mixins;
+@use '@smui/common/styles/theme/keys';
+@use '@smui/common/styles/theme/theme';
+@use '@smui/common/styles/theme/theme-color';
 @use '@smui/icon-button/styles/icon-button-theme';
 @use '@smui/list/styles/evolution-mixins' as list-theme;
 @use '@smui/select/styles/select-theme';
-@use '@smui/theme/keys';
-@use '@smui/theme/theme';
-@use '@smui/theme/theme-color';
 @use '@smui/touch-target/styles/touch-target';
 @use '@smui/typography/typography';
 

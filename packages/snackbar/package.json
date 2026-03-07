@@ -68,7 +68,6 @@
     "@smui/common": "^8.0.3",
     "@smui/icon-button": "^8.0.3",
     "@smui/ripple": "^8.0.3",
-    "@smui/theme": "^8.0.3",
     "@smui/typography": "^8.0.3"
   },
   "devDependencies": {

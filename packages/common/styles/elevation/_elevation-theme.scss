@@ -30,11 +30,11 @@
 @use '../base/mixins' as base-mixins;
 @use '../feature-targeting/feature-targeting';
 @use '../rtl/rtl';
-@use '@smui/theme/css';
-@use '@smui/theme/custom-properties';
-@use '@smui/theme/theme';
-@use '@smui/theme/validate';
-@use '@smui/theme/theme-color';
+@use '../theme/css';
+@use '../theme/custom-properties';
+@use '../theme/theme';
+@use '../theme/validate';
+@use '../theme/theme-color';
 
 $baseline-color: black !default;
 $umbra-opacity: 0.2 !default;

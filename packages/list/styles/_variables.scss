@@ -19,7 +19,7 @@
 // THE SOFTWARE.
 
 @use '@smui/common/styles/density/variables' as density-variables;
-@use '@smui/theme/theme-color';
+@use '@smui/common/styles/theme/theme-color';
 
 $deprecated-ripple-target: '.mdc-deprecated-list-item__ripple';
 $deprecated-temporary-ripple-target: '.mdc-list-item__ripple';

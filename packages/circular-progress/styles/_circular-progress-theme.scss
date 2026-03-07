@@ -28,10 +28,10 @@
 @use 'sass:string';
 @use '@smui/common/styles/dom/dom';
 @use '@smui/common/styles/feature-targeting/feature-targeting';
-@use '@smui/theme/color-palette';
-@use '@smui/theme/keys';
-@use '@smui/theme/theme';
-@use '@smui/theme/theme-color';
+@use '@smui/common/styles/theme/color-palette';
+@use '@smui/common/styles/theme/keys';
+@use '@smui/common/styles/theme/theme';
+@use '@smui/common/styles/theme/theme-color';
 
 $color: primary !default;
 $track-color: transparent !default;

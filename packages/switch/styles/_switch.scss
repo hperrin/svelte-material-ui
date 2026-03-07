@@ -28,9 +28,9 @@
 @use '@smui/common/styles/elevation/elevation';
 @use '@smui/common/styles/focus-ring/focus-ring';
 @use '@smui/common/styles/rtl/rtl';
+@use '@smui/common/styles/theme/gss';
 @use '@smui/ripple/styles/ripple-theme';
 @use '@smui/ripple/styles/ripple';
-@use '@smui/theme/gss';
 
 $animation-duration: 75ms;
 $icon-exit-duration: 0.4 * $animation-duration;

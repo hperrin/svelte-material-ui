@@ -2,7 +2,7 @@
 @use 'sass:string';
 
 // Color scheme: https://paletton.com/#uid=65s0s0k5R7H2RkL4meLf47mnA7M
-@use '@smui/theme/index' as theme with (
+@use '@smui/common/styles/theme/index' as theme with (
   $primary: #6b5d60,
   $secondary: #5f6759,
   $surface: color.scale(#3e1e10, $lightness: -75%),

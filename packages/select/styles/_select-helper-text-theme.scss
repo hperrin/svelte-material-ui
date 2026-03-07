@@ -24,9 +24,9 @@
 // Selector '.mdc-*' should only be used in this project.
 
 @use '@smui/common/styles/feature-targeting/feature-targeting';
-@use '@smui/theme/state';
-@use '@smui/theme/theme';
-@use '@smui/theme/variables' as theme-variables;
+@use '@smui/common/styles/theme/state';
+@use '@smui/common/styles/theme/theme';
+@use '@smui/common/styles/theme/variables' as theme-variables;
 
 $helper-text-color: rgba(theme-variables.prop-value(on-surface), 0.6) !default;
 $disabled-helper-text-color: rgba(

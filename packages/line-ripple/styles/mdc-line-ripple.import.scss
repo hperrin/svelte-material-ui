@@ -1,9 +1,9 @@
 @forward '@smui/common/styles/base/mixins' as mdc-base-*;
-@forward '@smui/theme/variables' as mdc-theme-*;
+@forward '@smui/common/styles/theme/variables' as mdc-theme-*;
 @forward '@smui/common/styles/animation/variables' as mdc-animation-*;
-@forward '@smui/theme/mixins' as mdc-theme-*;
+@forward '@smui/common/styles/theme/mixins' as mdc-theme-*;
 @forward 'mixins' as mdc-line-ripple-*;
 @forward '@smui/common/styles/feature-targeting/functions' as mdc-feature-*;
-@forward '@smui/theme/functions' as mdc-theme-*;
+@forward '@smui/common/styles/theme/functions' as mdc-theme-*;
 @forward 'functions' as mdc-line-ripple-*;
 @forward 'mdc-line-ripple';

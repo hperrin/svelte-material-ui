@@ -12,7 +12,7 @@
   mdc-notched-outline-floating-label-float-position,
   mdc-notched-outline-floating-label-float-position-absolute,
   mdc-notched-outline-base-;
-@forward '@smui/theme/all-theme-deprecated' as mdc-theme-* hide
+@forward '@smui/common/styles/theme/all-theme-deprecated' as mdc-theme-* hide
     $mdc-theme-red-50,
   $mdc-theme-red-100, $mdc-theme-red-200, $mdc-theme-red-300,
   $mdc-theme-red-400, $mdc-theme-red-500, $mdc-theme-red-600,

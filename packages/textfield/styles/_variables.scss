@@ -23,10 +23,10 @@
 @use 'sass:math';
 @use 'sass:color';
 @use '@smui/common/styles/density/variables' as density-variables;
+@use '@smui/common/styles/theme/custom-properties';
+@use '@smui/common/styles/theme/theme-color';
 @use '@smui/floating-label/styles/variables' as floating-label-variables;
 @use '@smui/notched-outline/styles/variables' as notched-outline-variables;
-@use '@smui/theme/custom-properties';
-@use '@smui/theme/theme-color';
 
 ///
 /// Returns outlined text field floating label position for given height.

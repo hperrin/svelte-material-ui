@@ -1,7 +1,7 @@
 @forward '@smui/common/styles/animation/variables' as mdc-animation-*;
 @forward '@smui/common/styles/base/mixins' as mdc-base-*;
 @forward '@smui/common/styles/density/variables' as mdc-density-*;
-@forward '@smui/theme/variables' as mdc-theme-*;
+@forward '@smui/common/styles/theme/variables' as mdc-theme-*;
 @forward '@smui/ripple/styles/variables' as mdc-* hide $mdc-dark-ink-opacities,
   $mdc-fade-in-duration, $mdc-fade-out-duration, $mdc-light-ink-opacities,
   $mdc-pressed-dark-ink-opacity, $mdc-pressed-light-ink-opacity,
@@ -9,7 +9,7 @@
 @forward '@smui/ripple/styles/variables' as mdc-ripple-* hide
   $mdc-ripple-states-wash-duration;
 @forward 'variables' as mdc-icon-button-*;
-@forward '@smui/theme/mixins' as mdc-theme-*;
+@forward '@smui/common/styles/theme/mixins' as mdc-theme-*;
 @forward '@smui/ripple/styles/keyframes' as mdc-ripple-*;
 @forward '@smui/ripple/styles/mixins' as mdc-* hide mdc-common, mdc-core-styles,
   mdc-radius-bounded, mdc-radius-unbounded, mdc-surface, mdc-target-common,
@@ -24,6 +24,6 @@
 @forward '@smui/common/styles/density/functions' as mdc-density-*;
 @forward '@smui/common/styles/feature-targeting/functions' as mdc-feature-*;
 @forward '@smui/common/styles/animation/functions' as mdc-animation-*;
-@forward '@smui/theme/functions' as mdc-theme-*;
+@forward '@smui/common/styles/theme/functions' as mdc-theme-*;
 @forward '@smui/ripple/styles/functions' as mdc-*;
 @forward 'mdc-icon-button';

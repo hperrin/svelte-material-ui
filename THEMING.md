@@ -57,18 +57,18 @@ Or if you don't need dark mode support.
 
 ### Theme Variables
 
-The most important part of theming (and probably the only one you want) is setting the [theme colors](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-theme#color-scheme). For the Material color palette, you can @use ["@smui/theme/color-palette"](https://github.com/material-components/material-components-web/blob/v14.0.0/packages/mdc-theme/_color-palette.scss). You might also want to style the [border radius variables](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-shape#sass-variables).
+The most important part of theming (and probably the only one you want) is setting the [theme colors](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-theme#color-scheme). For the Material color palette, you can @use ["@smui/common/styles/theme/color-palette"](https://github.com/material-components/material-components-web/blob/v14.0.0/packages/mdc-theme/_color-palette.scss). You might also want to style the [border radius variables](https://github.com/material-components/material-components-web/tree/v14.0.0/packages/mdc-shape#sass-variables).
 
 To learn how to deeply style the individual components, you can check out the READMEs of [the MDC-Web components](https://github.com/material-components/material-components-web/tree/v14.0.0/packages). If you need more help, check out the [theming guide](https://m2.material.io/develop/web/theming/theming-guide) on the MDC-Web website. SMUI uses all the styles from MDC-Web, so everything regarding Sass and CSS from that guide should work with SMUI.
 
 Here is an example `_smui-theme.scss` file you can use as a starting point.
 
 ```scss
-@use '@smui/theme/color-palette';
+@use '@smui/common/styles/theme/color-palette';
 
 $background: #fff;
 
-@use '@smui/theme/index' as theme with (
+@use '@smui/common/styles/theme/index' as theme with (
   $primary: color-palette.$purple-500,
   $secondary: color-palette.$teal-600,
   $surface: #fff,
@@ -102,14 +102,14 @@ If you'd like to customize the styles even further, you can set additional varia
 );
 ```
 
-Just make sure that you put that directly after the `@use '@smui/theme/index'` block. All `@use` statements in a file must precede any styles in Sass. Also, remember to include it in both your light and dark theme files if you're using both.
+Just make sure that you put that directly after the `@use '@smui/common/styles/theme/index'` block. All `@use` statements in a file must precede any styles in Sass. Also, remember to include it in both your light and dark theme files if you're using both.
 
 ### Adding Classes and Variables
 
 If you want to use MDC's classes and variables (like `var(--mdc-theme-primary)` and `class="mdc-theme--primary-bg"`), you can add the following line somewhere in your Sass files. A great place to add it is in your `_smui-theme.scss` files.
 
 ```scss
-@use '@smui/theme/styles';
+@use '@smui/common/styles/theme/styles';
 ```
 
 ## Adding Material Typography

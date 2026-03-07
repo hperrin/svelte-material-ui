@@ -1,4 +1,4 @@
-@forward '@smui/common/styles/feature-targeting' as mdc-feature-*;
+@forward '../feature-targeting' as mdc-feature-*;
 @forward './all-theme-deprecated' as mdc-theme-* hide $mdc-theme-red-50,
   $mdc-theme-red-100, $mdc-theme-red-200, $mdc-theme-red-300,
   $mdc-theme-red-400, $mdc-theme-red-500, $mdc-theme-red-600,

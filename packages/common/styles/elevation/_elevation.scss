@@ -25,9 +25,9 @@
 
 @use '../base/mixins' as base-mixins;
 @use '../feature-targeting/feature-targeting';
-@use '@smui/theme/custom-properties';
-@use '@smui/theme/theme';
-@use '@smui/theme/theme-color';
+@use '../theme/custom-properties';
+@use '../theme/theme';
+@use '../theme/theme-color';
 @use './elevation-theme';
 
 @mixin core-styles($query: feature-targeting.all()) {

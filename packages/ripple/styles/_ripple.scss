@@ -31,8 +31,8 @@
 @use '@smui/common/styles/base/mixins' as base-mixins;
 @use '@smui/common/styles/feature-targeting/feature-targeting';
 @use '@smui/common/styles/rtl/rtl';
-@use '@smui/theme/custom-properties';
-@use '@smui/theme/theme';
+@use '@smui/common/styles/theme/custom-properties';
+@use '@smui/common/styles/theme/theme';
 @use './ripple-theme';
 
 @mixin core-styles($query: feature-targeting.all()) {

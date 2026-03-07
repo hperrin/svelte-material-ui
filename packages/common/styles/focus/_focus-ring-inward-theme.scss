@@ -4,8 +4,8 @@
 @use 'sass:list';
 @use 'sass:meta';
 
-@use '@smui/theme/keys';
-@use '@smui/theme/validate';
+@use '../theme/keys';
+@use '../theme/validate';
 @use './focus-ring-shared-theme';
 
 $_custom-property-prefix: 'focus-ring-inward';

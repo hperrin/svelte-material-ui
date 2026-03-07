@@ -26,10 +26,10 @@
 @use 'sass:meta';
 @use '../feature-targeting/feature-targeting';
 @use '../rtl/rtl';
-@use '@smui/theme/custom-properties';
-@use '@smui/theme/css';
-@use '@smui/theme/keys';
-@use '@smui/theme/theme';
+@use '../theme/custom-properties';
+@use '../theme/css';
+@use '../theme/keys';
+@use '../theme/theme';
 
 // Shape categories
 $small-component-radius: 4px !default;

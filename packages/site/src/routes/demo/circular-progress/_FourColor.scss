@@ -1,5 +1,5 @@
 @use '@smui/circular-progress/styles/mixins' as circular-progress;
-@use '@smui/theme/color-palette';
+@use '@smui/common/styles/theme/color-palette';
 
 .my-four-colors {
   @include circular-progress.indeterminate-colors(

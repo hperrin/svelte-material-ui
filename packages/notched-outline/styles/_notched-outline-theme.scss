@@ -29,8 +29,8 @@
 @use '@smui/common/styles/rtl/rtl';
 @use '@smui/common/styles/shape/functions' as shape-functions;
 @use '@smui/common/styles/shape/mixins' as shape-mixins;
-@use '@smui/theme/custom-properties';
-@use '@smui/theme/theme';
+@use '@smui/common/styles/theme/custom-properties';
+@use '@smui/common/styles/theme/theme';
 @use '@smui/floating-label/styles/mixins' as floating-label-mixins;
 
 // Keep this in sync with constants.numbers.MIN_LEADING_STROKE_EDGE_POSITION

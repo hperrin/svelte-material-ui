@@ -23,7 +23,7 @@
 @use 'sass:color';
 @use '@smui/common/styles/animation/variables' as animation-variables;
 @use '@smui/common/styles/density/variables' as density-variables;
-@use '@smui/theme/theme-color';
+@use '@smui/common/styles/theme/theme-color';
 
 $fill-color-default: color.mix(
   theme-color.prop-value(on-surface),

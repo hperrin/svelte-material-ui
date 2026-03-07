@@ -1,6 +1,6 @@
 @use '@smui-extra/badge/mixins' as badge;
-@use '@smui/theme/color-palette';
-@use '@smui/theme/theme-color';
+@use '@smui/common/styles/theme/color-palette';
+@use '@smui/common/styles/theme/theme-color';
 
 @include badge.badge-color(
   custom-green,

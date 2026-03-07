@@ -2,7 +2,7 @@
 @forward '@smui/common/styles/base/mixins' as mdc-base-*;
 @forward '@smui/common/styles/density/variables' as mdc-density-*;
 @forward '@smui/common/styles/rtl/variables' as mdc-rtl-*;
-@forward '@smui/theme/variables' as mdc-theme-*;
+@forward '@smui/common/styles/theme/variables' as mdc-theme-*;
 @forward '@smui/typography/variables' as mdc-typography-*;
 @forward '@smui/floating-label/styles/variables' as mdc-floating-label-*;
 @forward '@smui/common/styles/shape/variables' as mdc-shape-*;
@@ -19,7 +19,7 @@
   mdc-reflexive, mdc-reflexive-box, mdc-reflexive-position,
   mdc-reflexive-property;
 @forward '@smui/common/styles/rtl/mixins' as mdc-rtl-* hide mdc-rtl-rtl;
-@forward '@smui/theme/mixins' as mdc-theme-*;
+@forward '@smui/common/styles/theme/mixins' as mdc-theme-*;
 @forward '@smui/typography/mixins' as mdc-* hide mdc-base, mdc-baseline-bottom,
   mdc-baseline-strut-, mdc-baseline-top, mdc-core-styles, mdc-overflow-ellipsis;
 @forward '@smui/typography/mixins' as mdc-typography-* hide
@@ -42,7 +42,7 @@
 @forward 'helper-text/mixins' as mdc-text-field-*;
 @forward 'character-counter/mixins' as mdc-text-field-*;
 @forward 'mixins' as mdc-text-field-*;
-@forward '@smui/theme/functions' as mdc-theme-*;
+@forward '@smui/common/styles/theme/functions' as mdc-theme-*;
 @forward '@smui/common/styles/feature-targeting/functions' as mdc-feature-*;
 @forward '@smui/typography/functions' as mdc-typography-*;
 @forward '@smui/line-ripple/styles/functions' as mdc-line-ripple-*;

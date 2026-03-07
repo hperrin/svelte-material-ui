@@ -1,12 +1,12 @@
 @forward '@smui/common/styles/animation/variables' as mdc-animation-*;
 @forward '@smui/common/styles/base/mixins' as mdc-base-*;
-@forward '@smui/theme/variables' as mdc-theme-*;
+@forward '@smui/common/styles/theme/variables' as mdc-theme-*;
 @forward 'variables' as mdc-* hide $mdc-dark-ink-opacities,
   $mdc-fade-in-duration, $mdc-fade-out-duration, $mdc-light-ink-opacities,
   $mdc-pressed-dark-ink-opacity, $mdc-pressed-light-ink-opacity,
   $mdc-translate-duration;
 @forward 'variables' as mdc-ripple-* hide $mdc-ripple-states-wash-duration;
-@forward '@smui/theme/mixins' as mdc-theme-*;
+@forward '@smui/common/styles/theme/mixins' as mdc-theme-*;
 @forward 'keyframes' as mdc-ripple-*;
 @forward 'mixins' as mdc-* hide mdc-common, mdc-core-styles, mdc-radius-bounded,
   mdc-radius-unbounded, mdc-surface, mdc-target-common, mdc-target-selector;
@@ -18,6 +18,6 @@
   mdc-ripple-states-selected;
 @forward '@smui/common/styles/animation/functions' as mdc-animation-*;
 @forward '@smui/common/styles/feature-targeting/functions' as mdc-feature-*;
-@forward '@smui/theme/functions' as mdc-theme-*;
+@forward '@smui/common/styles/theme/functions' as mdc-theme-*;
 @forward 'functions' as mdc-*;
 @forward 'mdc-ripple';

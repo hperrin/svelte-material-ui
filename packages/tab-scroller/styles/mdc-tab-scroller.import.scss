@@ -1,6 +1,6 @@
 @forward '@smui/common/styles/animation/variables' as mdc-animation-*;
 @forward '@smui/common/styles/base/mixins' as mdc-base-*;
-@forward '@smui/theme/variables' as mdc-theme-*;
+@forward '@smui/common/styles/theme/variables' as mdc-theme-*;
 @forward '@smui/ripple/styles/variables' as mdc-* hide $mdc-dark-ink-opacities,
   $mdc-fade-in-duration, $mdc-fade-out-duration, $mdc-light-ink-opacities,
   $mdc-pressed-dark-ink-opacity, $mdc-pressed-light-ink-opacity,
@@ -11,7 +11,7 @@
 @forward '@smui/common/styles/rtl/variables' as mdc-rtl-*;
 @forward '@smui/tab/styles/variables' as mdc-tab-*;
 @forward 'variables' as mdc-tab-scroller-*;
-@forward '@smui/theme/mixins' as mdc-theme-*;
+@forward '@smui/common/styles/theme/mixins' as mdc-theme-*;
 @forward '@smui/ripple/styles/keyframes' as mdc-ripple-*;
 @forward '@smui/ripple/styles/mixins' as mdc-* hide mdc-common, mdc-core-styles,
   mdc-radius-bounded, mdc-radius-unbounded, mdc-surface, mdc-target-common,
@@ -35,7 +35,7 @@
 @forward 'mixins' as mdc-tab-scroller-*;
 @forward '@smui/common/styles/feature-targeting/functions' as mdc-feature-*;
 @forward '@smui/common/styles/animation/functions' as mdc-animation-*;
-@forward '@smui/theme/functions' as mdc-theme-*;
+@forward '@smui/common/styles/theme/functions' as mdc-theme-*;
 @forward '@smui/ripple/styles/functions' as mdc-*;
 @forward '@smui/typography/functions' as mdc-typography-*;
 @forward 'mdc-tab-scroller';

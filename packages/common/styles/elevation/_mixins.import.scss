@@ -1,7 +1,6 @@
 @forward '../base' as mdc-base-*;
 @forward '../feature-targeting' as mdc-feature-*;
-@forward '@smui/theme/all-theme-deprecated' as mdc-theme-* hide
-    $mdc-theme-red-50,
+@forward '../theme/all-theme-deprecated' as mdc-theme-* hide $mdc-theme-red-50,
   $mdc-theme-red-100, $mdc-theme-red-200, $mdc-theme-red-300,
   $mdc-theme-red-400, $mdc-theme-red-500, $mdc-theme-red-600,
   $mdc-theme-red-700, $mdc-theme-red-800, $mdc-theme-red-900,

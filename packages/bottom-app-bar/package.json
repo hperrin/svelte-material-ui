@@ -51,8 +51,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@smui/common": "^8.0.3",
-    "@smui/paper": "^8.0.3",
-    "@smui/theme": "^8.0.3"
+    "@smui/paper": "^8.0.3"
   },
   "devDependencies": {
     "@tsconfig/svelte": "^5.0.8",

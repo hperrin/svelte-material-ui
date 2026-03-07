@@ -26,7 +26,7 @@
 @use '../feature-targeting/feature-targeting';
 @use '../rtl/rtl';
 @use '../shape/shape';
-@use '@smui/theme/gss';
+@use '../theme/gss';
 
 $ring-radius-default: 8px !default;
 $inner-ring-width-default: 2px !default;
