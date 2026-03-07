@@ -4,7 +4,11 @@
 
 <section>
   <h2>Common</h2>
-  <p>A common Label and Icon, helper utilities, and elemental components.</p>
+
+  <p>
+    A common Label and Icon, helper utilities, elemental components, and
+    styling.
+  </p>
 
   <h5>Installation</h5>
 

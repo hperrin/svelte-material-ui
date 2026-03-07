@@ -5,6 +5,8 @@
 <section>
   <h2>Typography</h2>
 
+  <p>Part of <code>@smui/common</code>.</p>
+
   <h5>Installation</h5>
 
   <pre class="demo-spaced">npm i -D @smui/common</pre>
