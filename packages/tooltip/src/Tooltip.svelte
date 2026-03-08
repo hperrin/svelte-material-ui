@@ -184,7 +184,7 @@
   let eventManager = new SvelteEventManager();
   let nonReactiveLocationStore: {
     parent?: HTMLElement;
-    nextSibling?: HTMLElement;
+    nextSibling?: HTMLElement | null;
   } = {};
   let internalClasses: { [k: string]: boolean } = $state({});
   let internalStyles: { [k: string]: string } = $state({});
@@ -395,17 +395,17 @@
   });
 
   onDestroy(() => {
+    instance?.destroy();
     if (
       !rich &&
       typeof document !== 'undefined' &&
       document.body === getElement()?.parentElement &&
       nonReactiveLocationStore.parent !== getElement()?.parentElement &&
-      nonReactiveLocationStore.parent?.insertBefore &&
-      nonReactiveLocationStore.nextSibling
+      nonReactiveLocationStore.parent?.insertBefore
     ) {
       nonReactiveLocationStore.parent?.insertBefore(
         getElement(),
-        nonReactiveLocationStore.nextSibling,
+        nonReactiveLocationStore.nextSibling ?? null,
       );
     }
   });
@@ -562,8 +562,8 @@
   function hoistToBody() {
     if ($anchor && document.body !== getElement().parentNode) {
       nonReactiveLocationStore.parent = getElement().parentElement ?? undefined;
-      nonReactiveLocationStore.nextSibling =
-        (getElement().nextElementSibling as HTMLElement | null) ?? undefined;
+      nonReactiveLocationStore.nextSibling = getElement()
+        .nextElementSibling as HTMLElement | null;
       document.body.appendChild(getElement());
     }
   }

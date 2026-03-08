@@ -25,6 +25,10 @@
   <Demo component={Rich} file="tooltip/_Rich.svelte">Rich</Demo>
 
   <Demo component={Delayed} file="tooltip/_Delayed.svelte">Delayed</Demo>
+
+  <Demo component={Disappearing} file="tooltip/_Disappearing.svelte"
+    >Disappearing</Demo
+  >
 </section>
 
 <script lang="ts">
@@ -34,4 +38,5 @@
   import Positioning from './_Positioning.svelte';
   import Rich from './_Rich.svelte';
   import Delayed from './_Delayed.svelte';
+  import Disappearing from './_Disappearing.svelte';
 </script>
