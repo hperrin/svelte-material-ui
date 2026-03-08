@@ -146,7 +146,7 @@ Click a component/package below to go to the documentation. (Note that this docu
 
 # License
 
-Copyright 2019-2024 Hunter Perrin
+Copyright 2019-2026 Hunter Perrin
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
