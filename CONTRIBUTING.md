@@ -2,7 +2,18 @@
 
 Thank you for contributing!
 
-Svelte Material UI is a mature library, but is always looking for ways to improve. If you'd like to contribute, there are some guidelines you should know. First, let's get you started.
+Svelte Material UI is a mature library, but is always looking for ways to improve. If you'd like to contribute, there are some guidelines you should know.
+
+## AI Generated Code Policy
+
+SMUI does not accept AI generated code. We have chosen to refuse this code for a number of reasons:
+
+- [AI generated code is frequenty insecure.](https://securitytoday.com/articles/2025/08/05/ai-generated-code-poses-major-security-risks-in-nearly-half-of-all-development-tasks.aspx)
+- [AI generated code is hard to maintain.](https://towardsdatascience.com/the-black-box-problem-why-ai-generated-code-stops-being-maintainable/)
+- [AI generated code is probably not copyrightable.](https://www.congress.gov/crs-product/LSB10922)
+- [AI generated code can infringe on others' copyrights, including the copyrighted code in SMUI.](https://www.youtube.com/shorts/6XiSUwdys0A)
+
+Please do not attempt to submit AI generated code into SMUI.
 
 ## Setting up Your Dev Environment
 
