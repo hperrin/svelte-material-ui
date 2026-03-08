@@ -1,6 +1,6 @@
 {
   "name": "@smui/snackbar",
-  "version": "9.0.0-beta.0",
+  "version": "9.0.0-beta.1",
   "description": "Svelte Material UI - Snackbar",
   "type": "module",
   "svelte": "./dist/index.js",
@@ -64,10 +64,10 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@smui/button": "^9.0.0-beta.0",
-    "@smui/common": "^9.0.0-beta.0",
-    "@smui/icon-button": "^9.0.0-beta.0",
-    "@smui/ripple": "^9.0.0-beta.0"
+    "@smui/button": "^9.0.0-beta.1",
+    "@smui/common": "^9.0.0-beta.1",
+    "@smui/icon-button": "^9.0.0-beta.1",
+    "@smui/ripple": "^9.0.0-beta.1"
   },
   "devDependencies": {
     "@tsconfig/svelte": "^5.0.8",

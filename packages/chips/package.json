@@ -1,6 +1,6 @@
 {
   "name": "@smui/chips",
-  "version": "9.0.0-beta.0",
+  "version": "9.0.0-beta.1",
   "description": "Svelte Material UI - Chips",
   "type": "module",
   "main": "dist/index.js",
@@ -50,10 +50,10 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@smui/checkbox": "^9.0.0-beta.0",
-    "@smui/common": "^9.0.0-beta.0",
-    "@smui/ripple": "^9.0.0-beta.0",
-    "@smui/touch-target": "^9.0.0-beta.0",
+    "@smui/checkbox": "^9.0.0-beta.1",
+    "@smui/common": "^9.0.0-beta.1",
+    "@smui/ripple": "^9.0.0-beta.1",
+    "@smui/touch-target": "^9.0.0-beta.1",
     "safevalues": "^1.2.0"
   },
   "devDependencies": {

@@ -1,6 +1,6 @@
 {
   "name": "@smui/floating-label",
-  "version": "9.0.0-beta.0",
+  "version": "9.0.0-beta.1",
   "description": "Svelte Material UI - Floating Label",
   "type": "module",
   "main": "dist/index.js",
@@ -60,7 +60,7 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@smui/common": "^9.0.0-beta.0"
+    "@smui/common": "^9.0.0-beta.1"
   },
   "devDependencies": {
     "@tsconfig/svelte": "^5.0.8",

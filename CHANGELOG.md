@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.0.0-beta.1](https://github.com/hperrin/svelte-material-ui/compare/v9.0.0-beta.0...v9.0.0-beta.1) (2026-03-08)
+
+
+### Bug Fixes
+
+* tooltip still showing when container disappears ([70b625f](https://github.com/hperrin/svelte-material-ui/commit/70b625f01dc657b01d2f0ca9b70707583d8597d3))
+
+
+
+
+
 # [9.0.0-beta.0](https://github.com/hperrin/svelte-material-ui/compare/v8.0.3...v9.0.0-beta.0) (2026-03-07)
 
 
