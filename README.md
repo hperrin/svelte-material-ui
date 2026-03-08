@@ -157,7 +157,7 @@ I want to give a major shoutout to Google's amazing [Material Design Components 
 
 Portions of this project contain code from Google's [MDC-Web](https://github.com/material-components/material-components-web) project, and that code is licensed under the MIT License. This mainly includes the Sass styling, but may also include some TypeScript files. The files that this license applies to will include the MIT license and copyright notice. To the extent allowed under applicable law, these files will be released under the Apache License, Version 2.0 when included in this project's releases. All other code is released under the following license:
 
-Copyright 2019-2025 Hunter Perrin
+Copyright 2019-2026 Hunter Perrin
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

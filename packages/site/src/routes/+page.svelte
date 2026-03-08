@@ -308,7 +308,7 @@
       <a href="https://github.com/hperrin/svelte-material-ui/issues"
         >Issue Tracker</a
       >
-      | &copy; 2019-2025 Hunter Perrin ]
+      | &copy; 2019-2026 Hunter Perrin ]
     </p>
   </div>
 </section>
