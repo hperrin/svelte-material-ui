@@ -78,7 +78,7 @@
   generics="Href extends string | undefined = undefined, TagName extends SmuiEveryElement = Href extends string ? 'a' : 'button'"
 >
   import type { Snippet } from 'svelte';
-  import { onDestroy, getContext, setContext } from 'svelte';
+  import { onMount, getContext, setContext } from 'svelte';
   import type { ActionArray } from '@smui/common/internal';
   import { classMap, dispatch } from '@smui/common/internal';
   import Ripple from '@smui/ripple';
@@ -279,9 +279,11 @@
     }
   });
 
-  onDestroy(() => {
-    instance?.destroy();
-    instance = undefined;
+  onMount(() => {
+    return () => {
+      instance?.destroy();
+      instance = undefined;
+    };
   });
 
   function hasClass(className: string) {

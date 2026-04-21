@@ -73,7 +73,7 @@
   generics="Href extends string | undefined = undefined, TagName extends SmuiEveryElement = Href extends string ? 'a' : 'li'"
 >
   import type { Snippet } from 'svelte';
-  import { onMount, onDestroy, setContext, getContext } from 'svelte';
+  import { onMount, setContext, getContext } from 'svelte';
   import type {
     SMUICheckboxInputAccessor,
     SMUIGenericInputAccessor,
@@ -345,13 +345,11 @@
 
     return () => {
       SMUIListItemUnmount && SMUIListItemUnmount(accessor);
-    };
-  });
 
-  onDestroy(() => {
-    if (addTabindexIfNoItemsSelectedRaf) {
-      window.cancelAnimationFrame(addTabindexIfNoItemsSelectedRaf);
-    }
+      if (addTabindexIfNoItemsSelectedRaf) {
+        window.cancelAnimationFrame(addTabindexIfNoItemsSelectedRaf);
+      }
+    };
   });
 
   function hasClass(className: string) {

@@ -22,7 +22,7 @@
 
   let progress = $state(0);
   let closed = $state(false);
-  let timer: NodeJS.Timer;
+  let timer: NodeJS.Timeout;
 
   onMount(reset);
 

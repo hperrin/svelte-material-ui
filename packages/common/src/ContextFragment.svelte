@@ -17,7 +17,9 @@
     children?: Snippet;
   } = $props();
 
+  // svelte-ignore state_referenced_locally
   const storeValue = writable(value);
+  // svelte-ignore state_referenced_locally
   setContext(key, storeValue);
 
   $effect(() => {

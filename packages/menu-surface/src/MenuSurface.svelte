@@ -32,7 +32,7 @@
 
 <script lang="ts">
   import type { Snippet } from 'svelte';
-  import { onMount, onDestroy, setContext, getContext } from 'svelte';
+  import { onMount, setContext, getContext } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
   import {
@@ -350,22 +350,24 @@
     return () => {
       SMUIMenuSurfaceUnmount && SMUIMenuSurfaceUnmount(accessor);
 
+      if (anchor) {
+        getElement() &&
+          getElement().parentElement?.classList.remove(
+            'mdc-menu-surface--anchor',
+          );
+      }
+
       const isHoisted = (instance as any).isHoistedElement;
       instance?.destroy();
       instance = undefined;
       if (isHoisted) {
-        getElement().parentNode?.removeChild(getElement());
+        try {
+          getElement()?.parentNode?.removeChild(getElement());
+        } catch (e: any) {
+          // Ignore error.
+        }
       }
     };
-  });
-
-  onDestroy(() => {
-    if (anchor) {
-      getElement() &&
-        getElement().parentElement?.classList.remove(
-          'mdc-menu-surface--anchor',
-        );
-    }
   });
 
   function hasClass(className: string) {

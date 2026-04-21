@@ -56,7 +56,7 @@
 
 <script lang="ts">
   import type { Snippet } from 'svelte';
-  import { onMount, onDestroy, getContext, setContext } from 'svelte';
+  import { onMount, getContext, setContext } from 'svelte';
   import type { Writable } from 'svelte/store';
   import type { SpecificEventListener } from '@smui/common/base/types';
   import type { SmuiAttrs, SmuiElementPropMap } from '@smui/common';
@@ -390,25 +390,24 @@
       if ($anchor) {
         destroy($anchor);
       }
-      eventManager.clear();
-    };
-  });
 
-  onDestroy(() => {
-    instance?.destroy();
-    instance = undefined;
-    if (
-      !rich &&
-      typeof document !== 'undefined' &&
-      document.body === getElement()?.parentElement &&
-      nonReactiveLocationStore.parent !== getElement()?.parentElement &&
-      nonReactiveLocationStore.parent?.insertBefore
-    ) {
-      nonReactiveLocationStore.parent?.insertBefore(
-        getElement(),
-        nonReactiveLocationStore.nextSibling ?? null,
-      );
-    }
+      instance?.destroy();
+      instance = undefined;
+      eventManager.clear();
+
+      if (
+        !rich &&
+        typeof document !== 'undefined' &&
+        document.body === getElement()?.parentElement &&
+        nonReactiveLocationStore.parent !== getElement()?.parentElement &&
+        nonReactiveLocationStore.parent?.insertBefore
+      ) {
+        nonReactiveLocationStore.parent?.insertBefore(
+          getElement(),
+          nonReactiveLocationStore.nextSibling ?? null,
+        );
+      }
+    };
   });
 
   function destroy(anchor: HTMLElement) {

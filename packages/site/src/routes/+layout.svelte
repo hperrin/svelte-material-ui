@@ -250,7 +250,7 @@
 
 <script lang="ts">
   import type { Snippet } from 'svelte';
-  import { onDestroy, onMount } from 'svelte';
+  import { onMount } from 'svelte';
   import { mdiFileDocument, mdiPalette } from '@mdi/js';
   import { siGithub } from 'simple-icons';
   import TinyGesture from 'tinygesture';
@@ -707,15 +707,15 @@
         drawerOpen = false;
       });
     }
-  });
 
-  onDestroy(() => {
-    if (mainContentGesture) {
-      mainContentGesture.destroy();
-    }
-    if (drawerGesture) {
-      drawerGesture.destroy();
-    }
+    return () => {
+      if (mainContentGesture) {
+        mainContentGesture.destroy();
+      }
+      if (drawerGesture) {
+        drawerGesture.destroy();
+      }
+    };
   });
 
   function routesEqual(a: string, b: string) {

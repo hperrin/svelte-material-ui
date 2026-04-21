@@ -30,7 +30,7 @@
 
 <script lang="ts">
   import type { Snippet } from 'svelte';
-  import { onMount, onDestroy, setContext } from 'svelte';
+  import { onMount, setContext } from 'svelte';
   import type { SmuiAttrs } from '@smui/common';
   import { focusTrap as domFocusTrap } from '@smui/common/dom';
   import type { ActionArray } from '@smui/common/internal';
@@ -135,13 +135,14 @@
 
     instance = getInstance();
     instance?.init();
-  });
 
-  onDestroy(() => {
-    instance?.destroy();
-    instance = undefined;
-    scrim && eventManager.off(scrim, 'SMUIDrawerScrimClick', handleScrimClick);
-    eventManager.clear();
+    return () => {
+      instance?.destroy();
+      instance = undefined;
+      scrim &&
+        eventManager.off(scrim, 'SMUIDrawerScrimClick', handleScrimClick);
+      eventManager.clear();
+    };
   });
 
   function getInstance() {
