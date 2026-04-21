@@ -275,8 +275,9 @@
           dispatch(getElement(), 'SMUIMenuSurfaceOpening');
         }
       },
-      isElementInContainer: (el) => getElement().contains(el),
+      isElementInContainer: (el) => getElement()?.contains(el) ?? false,
       isRtl: () =>
+        getElement() &&
         getComputedStyle(getElement()).getPropertyValue('direction') === 'rtl',
       setTransformOrigin: (origin) => {
         internalStyles['transform-origin'] = origin;
@@ -289,7 +290,7 @@
       restoreFocus: () => {
         if (
           !neverRestoreFocus &&
-          (!element || getElement().contains(document.activeElement)) &&
+          (!element || getElement()?.contains(document.activeElement)) &&
           previousFocus &&
           document.contains(previousFocus) &&
           'focus' in previousFocus
