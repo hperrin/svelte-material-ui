@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.0.0-beta.12](https://github.com/hperrin/svelte-material-ui/compare/v9.0.0-beta.11...v9.0.0-beta.12) (2026-04-21)
+
+
+### Bug Fixes
+
+* getPrimaryText throws when element is null ([9c78340](https://github.com/hperrin/svelte-material-ui/commit/9c78340119879ced644def0a43210b57801f3b73))
+
+
+
+
+
 # [9.0.0-beta.11](https://github.com/hperrin/svelte-material-ui/compare/v9.0.0-beta.10...v9.0.0-beta.11) (2026-04-21)
 
 
