@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.0.0-beta.2](https://github.com/hperrin/svelte-material-ui/compare/v9.0.0-beta.1...v9.0.0-beta.2) (2026-04-21)
+
+
+### Bug Fixes
+
+* menu surface unmount error ([34275c1](https://github.com/hperrin/svelte-material-ui/commit/34275c1966386705d1e4c59dc218b5d57e87f28a))
+
+
+
+
+
 # [9.0.0-beta.1](https://github.com/hperrin/svelte-material-ui/compare/v9.0.0-beta.0...v9.0.0-beta.1) (2026-03-08)
 
 

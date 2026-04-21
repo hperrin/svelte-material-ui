@@ -1,6 +1,6 @@
 {
   "name": "@smui/card",
-  "version": "9.0.0-beta.1",
+  "version": "9.0.0-beta.2",
   "description": "Svelte Material UI - Card",
   "type": "module",
   "main": "dist/index.js",
@@ -50,10 +50,10 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@smui/button": "^9.0.0-beta.1",
-    "@smui/common": "^9.0.0-beta.1",
-    "@smui/icon-button": "^9.0.0-beta.1",
-    "@smui/ripple": "^9.0.0-beta.1"
+    "@smui/button": "^9.0.0-beta.2",
+    "@smui/common": "^9.0.0-beta.2",
+    "@smui/icon-button": "^9.0.0-beta.2",
+    "@smui/ripple": "^9.0.0-beta.2"
   },
   "devDependencies": {
     "@tsconfig/svelte": "^5.0.8",
