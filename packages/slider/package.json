@@ -1,6 +1,6 @@
 {
   "name": "@smui/slider",
-  "version": "9.0.0-beta.8",
+  "version": "9.0.0-beta.9",
   "description": "Svelte Material UI - Slider",
   "type": "module",
   "main": "dist/index.js",
@@ -50,8 +50,8 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@smui/common": "^9.0.0-beta.8",
-    "@smui/ripple": "^9.0.0-beta.8"
+    "@smui/common": "^9.0.0-beta.9",
+    "@smui/ripple": "^9.0.0-beta.9"
   },
   "devDependencies": {
     "@tsconfig/svelte": "^5.0.8",

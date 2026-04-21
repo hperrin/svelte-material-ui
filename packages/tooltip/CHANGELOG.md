@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.0.0-beta.9](https://github.com/hperrin/svelte-material-ui/compare/v9.0.0-beta.8...v9.0.0-beta.9) (2026-04-21)
+
+
+### Bug Fixes
+
+* tooltip not being replaced into dom or removed from dom on destruction ([d067de9](https://github.com/hperrin/svelte-material-ui/commit/d067de978026678873f9506cba4382de79b14b9f))
+
+
+
+
+
 # [9.0.0-beta.8](https://github.com/hperrin/svelte-material-ui/compare/v9.0.0-beta.7...v9.0.0-beta.8) (2026-04-21)
 
 
