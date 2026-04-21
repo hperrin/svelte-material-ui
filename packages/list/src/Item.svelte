@@ -436,19 +436,23 @@
   }
 
   export function getPrimaryText() {
-    const element = getElement();
+    if (!element) {
+      return '';
+    }
 
-    const primaryText = element.querySelector(
+    const el = element.getElement();
+
+    const primaryText = el.querySelector(
       '.mdc-deprecated-list-item__primary-text',
     );
     if (primaryText) {
       return primaryText.textContent ?? '';
     }
-    const text = element.querySelector('.mdc-deprecated-list-item__text');
+    const text = el.querySelector('.mdc-deprecated-list-item__text');
     if (text) {
       return text.textContent ?? '';
     }
-    return element.textContent ?? '';
+    return el.textContent ?? '';
   }
 
   export function getElement() {
