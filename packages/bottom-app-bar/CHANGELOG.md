@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.0.0-beta.7](https://github.com/hperrin/svelte-material-ui/compare/v9.0.0-beta.6...v9.0.0-beta.7) (2026-04-21)
+
+**Note:** Version bump only for package @smui-extra/bottom-app-bar
+
+
+
+
+
 # [9.0.0-beta.6](https://github.com/hperrin/svelte-material-ui/compare/v9.0.0-beta.5...v9.0.0-beta.6) (2026-04-21)
 
 **Note:** Version bump only for package @smui-extra/bottom-app-bar

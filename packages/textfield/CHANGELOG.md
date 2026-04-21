@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.0.0-beta.7](https://github.com/hperrin/svelte-material-ui/compare/v9.0.0-beta.6...v9.0.0-beta.7) (2026-04-21)
+
+
+### Bug Fixes
+
+* ensure instance is always unset after it's destroyed ([758f3aa](https://github.com/hperrin/svelte-material-ui/commit/758f3aa65a3a3e50d3597336f89fda9a49f739da))
+
+
+
+
+
 # [9.0.0-beta.6](https://github.com/hperrin/svelte-material-ui/compare/v9.0.0-beta.5...v9.0.0-beta.6) (2026-04-21)
 
 **Note:** Version bump only for package @smui/textfield
