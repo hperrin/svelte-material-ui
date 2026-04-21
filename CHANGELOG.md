@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.0.0-beta.10](https://github.com/hperrin/svelte-material-ui/compare/v9.0.0-beta.9...v9.0.0-beta.10) (2026-04-21)
+
+
+### Bug Fixes
+
+* menusurface component still makes requests to foundation after element removed ([5df611e](https://github.com/hperrin/svelte-material-ui/commit/5df611e684b9e476e8c04e97cb0e76923a87262c))
+
+
+
+
+
 # [9.0.0-beta.9](https://github.com/hperrin/svelte-material-ui/compare/v9.0.0-beta.8...v9.0.0-beta.9) (2026-04-21)
 
 
