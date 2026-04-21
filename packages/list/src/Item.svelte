@@ -249,7 +249,7 @@
     // Tabindex needs to be '0' if this is the first non-disabled list item, and
     // no other item is selected.
 
-    if (!selected && !nonInteractive) {
+    if (!selected && !nonInteractive && element) {
       let first = true;
       let el: Element = element.getElement();
       while (el.previousElementSibling) {
