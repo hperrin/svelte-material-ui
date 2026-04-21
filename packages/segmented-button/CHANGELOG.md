@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.0.0-beta.11](https://github.com/hperrin/svelte-material-ui/compare/v9.0.0-beta.10...v9.0.0-beta.11) (2026-04-21)
+
+**Note:** Version bump only for package @smui/segmented-button
+
+
+
+
+
 # [9.0.0-beta.10](https://github.com/hperrin/svelte-material-ui/compare/v9.0.0-beta.9...v9.0.0-beta.10) (2026-04-21)
 
 **Note:** Version bump only for package @smui/segmented-button

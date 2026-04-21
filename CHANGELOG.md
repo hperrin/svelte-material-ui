@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.0.0-beta.11](https://github.com/hperrin/svelte-material-ui/compare/v9.0.0-beta.10...v9.0.0-beta.11) (2026-04-21)
+
+
+### Bug Fixes
+
+* error when element is null in list loading ([49b2d7a](https://github.com/hperrin/svelte-material-ui/commit/49b2d7ae255763a34db1c755403ad7c24a0cb72b))
+
+
+
+
+
 # [9.0.0-beta.10](https://github.com/hperrin/svelte-material-ui/compare/v9.0.0-beta.9...v9.0.0-beta.10) (2026-04-21)
 
 
