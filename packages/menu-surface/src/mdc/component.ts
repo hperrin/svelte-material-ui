@@ -61,7 +61,7 @@ export class MDCMenuSurface extends MDCComponent<MDCMenuSurfaceFoundation> {
         ? parentEl
         : null;
 
-    if (this.root.classList.contains(cssClasses.FIXED)) {
+    if (this.root?.classList.contains(cssClasses.FIXED)) {
       this.setFixedPosition(true);
     }
 
@@ -129,9 +129,9 @@ export class MDCMenuSurface extends MDCComponent<MDCMenuSurfaceFoundation> {
   /** Sets the menu-surface to position: fixed. */
   setFixedPosition(isFixed: boolean) {
     if (isFixed) {
-      this.root.classList.add(cssClasses.FIXED);
+      this.root?.classList.add(cssClasses.FIXED);
     } else {
-      this.root.classList.remove(cssClasses.FIXED);
+      this.root?.classList.remove(cssClasses.FIXED);
     }
 
     this.foundation.setFixedPosition(isFixed);
@@ -164,12 +164,12 @@ export class MDCMenuSurface extends MDCComponent<MDCMenuSurfaceFoundation> {
     // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
     const adapter: MDCMenuSurfaceAdapter = {
       addClass: (className) => {
-        this.root.classList.add(className);
+        this.root?.classList.add(className);
       },
       removeClass: (className) => {
-        this.root.classList.remove(className);
+        this.root?.classList.remove(className);
       },
-      hasClass: (className) => this.root.classList.contains(className),
+      hasClass: (className) => !!this.root?.classList.contains(className),
       hasAnchor: () => !!this.anchorElement,
       notifyClose: () => {
         this.emit(MDCMenuSurfaceFoundation.strings.CLOSED_EVENT, {});
@@ -183,12 +183,12 @@ export class MDCMenuSurface extends MDCComponent<MDCMenuSurfaceFoundation> {
       notifyOpening: () => {
         this.emit(MDCMenuSurfaceFoundation.strings.OPENING_EVENT, {});
       },
-      isElementInContainer: (el) => this.root.contains(el),
+      isElementInContainer: (el) => !!this.root?.contains(el),
       isRtl: () =>
         getComputedStyle(this.root).getPropertyValue('direction') === 'rtl',
       setTransformOrigin: (origin) => {
         const propertyName = `${getCorrectPropertyName(window, 'transform')}-origin`;
-        this.root.style.setProperty(propertyName, origin);
+        this.root?.style.setProperty(propertyName, origin);
       },
 
       isFocused: () => document.activeElement === this.root,
@@ -199,14 +199,17 @@ export class MDCMenuSurface extends MDCComponent<MDCMenuSurfaceFoundation> {
           | null;
       },
       restoreFocus: () => {
-        if (this.root.contains(document.activeElement)) {
+        if (this.root?.contains(document.activeElement)) {
           if (this.previousFocus && this.previousFocus.focus) {
             this.previousFocus.focus();
           }
         }
       },
       getInnerDimensions: () => {
-        return { width: this.root.offsetWidth, height: this.root.offsetHeight };
+        return {
+          width: this.root?.offsetWidth ?? 0,
+          height: this.root?.offsetHeight ?? 0,
+        };
       },
       getAnchorDimensions: () =>
         this.anchorElement ? this.anchorElement.getBoundingClientRect() : null,
@@ -231,7 +234,9 @@ export class MDCMenuSurface extends MDCComponent<MDCMenuSurfaceFoundation> {
           'bottom' in position ? `${position.bottom}px` : '';
       },
       setMaxHeight: (height) => {
-        this.root.style.maxHeight = height;
+        if (this.root) {
+          this.root.style.maxHeight = height;
+        }
       },
       registerWindowEventHandler: (eventType, handler) => {
         window.addEventListener(eventType, handler);

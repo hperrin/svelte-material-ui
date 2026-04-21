@@ -299,8 +299,8 @@
       },
       getInnerDimensions: () => {
         return {
-          width: getElement().offsetWidth,
-          height: getElement().offsetHeight,
+          width: getElement()?.offsetWidth ?? 0,
+          height: getElement()?.offsetHeight ?? 0,
         };
       },
       getAnchorDimensions: () =>
