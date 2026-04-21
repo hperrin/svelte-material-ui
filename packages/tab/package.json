@@ -1,6 +1,6 @@
 {
   "name": "@smui/tab",
-  "version": "9.0.0-beta.3",
+  "version": "9.0.0-beta.4",
   "description": "Svelte Material UI - Tab",
   "type": "module",
   "main": "dist/index.js",
@@ -65,9 +65,9 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@smui/common": "^9.0.0-beta.3",
-    "@smui/ripple": "^9.0.0-beta.3",
-    "@smui/tab-indicator": "^9.0.0-beta.3"
+    "@smui/common": "^9.0.0-beta.4",
+    "@smui/ripple": "^9.0.0-beta.4",
+    "@smui/tab-indicator": "^9.0.0-beta.4"
   },
   "devDependencies": {
     "@tsconfig/svelte": "^5.0.8",

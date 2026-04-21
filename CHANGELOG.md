@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.0.0-beta.4](https://github.com/hperrin/svelte-material-ui/compare/v9.0.0-beta.3...v9.0.0-beta.4) (2026-04-21)
+
+
+### Bug Fixes
+
+* that shouldn't even be a thrown error ([daa8c75](https://github.com/hperrin/svelte-material-ui/commit/daa8c75859359ef127f58dd0cd7eceefba85915f))
+
+
+
+
+
 # [9.0.0-beta.3](https://github.com/hperrin/svelte-material-ui/compare/v9.0.0-beta.2...v9.0.0-beta.3) (2026-04-21)
 
 
