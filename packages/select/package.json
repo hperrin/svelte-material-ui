@@ -1,6 +1,6 @@
 {
   "name": "@smui/select",
-  "version": "9.0.0-beta.2",
+  "version": "9.0.0-beta.3",
   "description": "Svelte Material UI - Select",
   "type": "module",
   "svelte": "./dist/index.js",
@@ -73,15 +73,15 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@smui/common": "^9.0.0-beta.2",
-    "@smui/floating-label": "^9.0.0-beta.2",
-    "@smui/line-ripple": "^9.0.0-beta.2",
-    "@smui/list": "^9.0.0-beta.2",
-    "@smui/menu": "^9.0.0-beta.2",
-    "@smui/menu-surface": "^9.0.0-beta.2",
-    "@smui/notched-outline": "^9.0.0-beta.2",
-    "@smui/ripple": "^9.0.0-beta.2",
-    "@smui/touch-target": "^9.0.0-beta.2"
+    "@smui/common": "^9.0.0-beta.3",
+    "@smui/floating-label": "^9.0.0-beta.3",
+    "@smui/line-ripple": "^9.0.0-beta.3",
+    "@smui/list": "^9.0.0-beta.3",
+    "@smui/menu": "^9.0.0-beta.3",
+    "@smui/menu-surface": "^9.0.0-beta.3",
+    "@smui/notched-outline": "^9.0.0-beta.3",
+    "@smui/ripple": "^9.0.0-beta.3",
+    "@smui/touch-target": "^9.0.0-beta.3"
   },
   "devDependencies": {
     "@tsconfig/svelte": "^5.0.8",

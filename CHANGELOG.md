@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.0.0-beta.3](https://github.com/hperrin/svelte-material-ui/compare/v9.0.0-beta.2...v9.0.0-beta.3) (2026-04-21)
+
+
+### Bug Fixes
+
+* tried to dipatch event without element ([0b5c3e2](https://github.com/hperrin/svelte-material-ui/commit/0b5c3e2748421112ed3b97403dd5620baebb653e)), closes [#647](https://github.com/hperrin/svelte-material-ui/issues/647)
+
+
+
+
+
 # [9.0.0-beta.2](https://github.com/hperrin/svelte-material-ui/compare/v9.0.0-beta.1...v9.0.0-beta.2) (2026-04-21)
 
 
