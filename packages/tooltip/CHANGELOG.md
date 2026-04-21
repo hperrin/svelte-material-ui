@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.0.0-beta.8](https://github.com/hperrin/svelte-material-ui/compare/v9.0.0-beta.7...v9.0.0-beta.8) (2026-04-21)
+
+
+### Bug Fixes
+
+* move dom manipulations from onDestroy to onMount return function ([dd5e12a](https://github.com/hperrin/svelte-material-ui/commit/dd5e12aa5c690021882c1f9f666e5aec8ba65277))
+
+
+
+
+
 # [9.0.0-beta.7](https://github.com/hperrin/svelte-material-ui/compare/v9.0.0-beta.6...v9.0.0-beta.7) (2026-04-21)
 
 
