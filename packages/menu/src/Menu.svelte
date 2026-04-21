@@ -140,7 +140,7 @@
       elementContainsClass: (element, className) =>
         element.classList.contains(className),
       closeSurface: (skipRestoreFocus) => {
-        if (!managed) {
+        if (!managed && getElement()) {
           menuSurfaceAccessor?.closeProgrammatic(skipRestoreFocus);
           dispatch(getElement(), 'SMUIMenuClosedProgrammatically');
         }
