@@ -168,6 +168,7 @@
       SMUIFloatingLabelUnmount && SMUIFloatingLabelUnmount(accessor);
 
       instance?.destroy();
+      instance = undefined;
       eventManager.clear();
     };
   });

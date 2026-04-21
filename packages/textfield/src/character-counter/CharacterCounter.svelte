@@ -70,6 +70,7 @@
       }
 
       instance?.destroy();
+      instance = undefined;
     };
   });
 

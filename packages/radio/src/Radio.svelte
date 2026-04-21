@@ -199,6 +199,7 @@
       SMUIGenericInputUnmount && SMUIGenericInputUnmount(accessor);
 
       instance?.destroy();
+      instance = undefined;
     };
   });
 

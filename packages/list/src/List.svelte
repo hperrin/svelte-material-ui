@@ -381,6 +381,7 @@
       SMUIListUnmount && SMUIListUnmount(accessor);
 
       instance?.destroy();
+      instance = undefined;
     };
   });
 

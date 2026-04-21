@@ -119,10 +119,11 @@
   $effect(() => {
     if (oldVariant !== variant) {
       oldVariant = variant;
-      instance && instance.destroy();
+      instance?.destroy();
+      instance = undefined;
       internalClasses = {};
       instance = getInstance();
-      instance && instance.init();
+      instance?.init();
     }
   });
 
@@ -133,11 +134,12 @@
     });
 
     instance = getInstance();
-    instance && instance.init();
+    instance?.init();
   });
 
   onDestroy(() => {
-    instance && instance.destroy();
+    instance?.destroy();
+    instance = undefined;
     scrim && eventManager.off(scrim, 'SMUIDrawerScrimClick', handleScrimClick);
     eventManager.clear();
   });
@@ -145,6 +147,7 @@
   function getInstance() {
     if (scrim) {
       eventManager.off(scrim, 'SMUIDrawerScrimClick', handleScrimClick);
+      scrim = false;
     }
 
     if (variant === 'modal') {

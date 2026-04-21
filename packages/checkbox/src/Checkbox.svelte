@@ -372,6 +372,7 @@
       SMUICheckboxUnmount && SMUICheckboxUnmount(accessor);
 
       instance?.destroy();
+      instance = undefined;
     };
   });
 

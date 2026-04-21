@@ -107,7 +107,8 @@
   $effect(() => {
     if (oldTransition !== transition) {
       oldTransition = transition;
-      instance && instance.destroy();
+      instance?.destroy();
+      instance = undefined;
       internalClasses = {};
       contentStyles = {};
       instance = getInstance();
@@ -134,6 +135,7 @@
 
     return () => {
       instance?.destroy();
+      instance = undefined;
     };
   });
 

@@ -182,6 +182,7 @@
     if (oldVariant !== variant && instance) {
       oldVariant = variant;
       instance.destroy();
+      instance = undefined;
       internalClasses = {};
       internalStyles = {};
       instance = getInstance();
@@ -195,6 +196,7 @@
 
     return () => {
       instance?.destroy();
+      instance = undefined;
       eventManager.clear();
     };
   });

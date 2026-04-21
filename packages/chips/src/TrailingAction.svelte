@@ -170,6 +170,7 @@
         SMUIChipsTrailingActionUnmount(accessor);
 
       instance?.destroy();
+      instance = undefined;
     };
   });
 

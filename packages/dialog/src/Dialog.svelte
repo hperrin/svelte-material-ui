@@ -388,6 +388,7 @@
 
     return () => {
       instance?.destroy();
+      instance = undefined;
       eventManager.clear();
     };
   });

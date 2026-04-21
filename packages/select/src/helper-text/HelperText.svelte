@@ -107,6 +107,7 @@
       }
 
       instance?.destroy();
+      instance = undefined;
     };
   });
 

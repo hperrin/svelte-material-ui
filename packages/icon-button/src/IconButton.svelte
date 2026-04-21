@@ -280,7 +280,8 @@
   });
 
   onDestroy(() => {
-    instance && instance.destroy();
+    instance?.destroy();
+    instance = undefined;
   });
 
   function hasClass(className: string) {

@@ -262,6 +262,7 @@
 
     return () => {
       instance?.destroy();
+      instance = undefined;
     };
   });
 

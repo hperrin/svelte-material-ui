@@ -189,6 +189,7 @@
         SMUISegmentedButtonSegmentUnmount(accessor);
 
       instance?.destroy();
+      instance = undefined;
     };
   });
 

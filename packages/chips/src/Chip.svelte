@@ -365,6 +365,7 @@
       SMUIChipsChipUnmount && SMUIChipsChipUnmount(accessor);
 
       instance?.destroy();
+      instance = undefined;
     };
   });
 

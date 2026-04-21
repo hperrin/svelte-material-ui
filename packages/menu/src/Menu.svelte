@@ -220,6 +220,7 @@
       }
 
       instance?.destroy();
+      instance = undefined;
     };
   });
 

@@ -281,6 +281,7 @@
       SMUITabUnmount && SMUITabUnmount(accessor);
 
       instance?.destroy();
+      instance = undefined;
     };
   });
 

@@ -352,6 +352,7 @@
 
       const isHoisted = (instance as any).isHoistedElement;
       instance?.destroy();
+      instance = undefined;
       if (isHoisted) {
         getElement().parentNode?.removeChild(getElement());
       }

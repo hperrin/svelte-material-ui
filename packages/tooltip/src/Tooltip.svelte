@@ -396,6 +396,7 @@
 
   onDestroy(() => {
     instance?.destroy();
+    instance = undefined;
     if (
       !rich &&
       typeof document !== 'undefined' &&
@@ -431,6 +432,7 @@
     }
 
     instance?.destroy();
+    instance = undefined;
   }
 
   function init(anchor: HTMLElement) {
