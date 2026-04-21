@@ -404,8 +404,14 @@
       ) {
         nonReactiveLocationStore.parent?.insertBefore(
           getElement(),
-          nonReactiveLocationStore.nextSibling ?? null,
+          nonReactiveLocationStore.nextSibling &&
+            nonReactiveLocationStore.nextSibling.parentElement ===
+              nonReactiveLocationStore.parent
+            ? nonReactiveLocationStore.nextSibling
+            : null,
         );
+      } else if (getElement()?.parentElement) {
+        getElement()?.remove();
       }
     };
   });
