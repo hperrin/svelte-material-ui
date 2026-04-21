@@ -250,7 +250,7 @@
         if (!managed) {
           open = isStatic;
         }
-        if (!open) {
+        if (!open && getElement()) {
           dispatch(getElement(), 'SMUIMenuSurfaceClosed');
         }
       },
@@ -258,7 +258,7 @@
         if (!managed) {
           open = isStatic;
         }
-        if (!open) {
+        if (!open && getElement()) {
           dispatch(getElement(), 'SMUIMenuSurfaceClosing');
         }
       },
@@ -266,12 +266,12 @@
         if (!managed) {
           open = true;
         }
-        if (open) {
+        if (open && getElement()) {
           dispatch(getElement(), 'SMUIMenuSurfaceOpened');
         }
       },
       notifyOpening: () => {
-        if (!open) {
+        if (!open && getElement()) {
           dispatch(getElement(), 'SMUIMenuSurfaceOpening');
         }
       },
