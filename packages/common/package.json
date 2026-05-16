@@ -210,6 +210,9 @@
     "url": "https://github.com/hperrin/svelte-material-ui/issues"
   },
   "license": "Apache-2.0",
+  "dependencies": {
+    "safevalues": "^1.2.0"
+  },
   "devDependencies": {
     "@tsconfig/svelte": "^5.0.8",
     "sass": "^1.97.3",
