@@ -1,6 +1,6 @@
 {
   "name": "@smui/tooltip",
-  "version": "9.0.0-beta.12",
+  "version": "9.0.0-beta.13",
   "description": "Svelte Material UI - Tooltip",
   "type": "module",
   "main": "dist/index.js",
@@ -50,8 +50,8 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@smui/button": "^9.0.0-beta.12",
-    "@smui/common": "^9.0.0-beta.12",
+    "@smui/button": "^9.0.0-beta.13",
+    "@smui/common": "^9.0.0-beta.13",
     "safevalues": "^1.2.0"
   },
   "devDependencies": {
