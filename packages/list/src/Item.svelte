@@ -442,6 +442,10 @@
 
     const el = element.getElement();
 
+    if (!el) {
+      return '';
+    }
+
     const primaryText = el.querySelector(
       '.mdc-deprecated-list-item__primary-text',
     );
