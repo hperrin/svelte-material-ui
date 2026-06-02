@@ -54,11 +54,6 @@ export class SvelteEventManager {
     const eventMap = this.elementMap.get(element);
 
     if (eventMap == null || !(event in eventMap)) {
-      console.warn(
-        "Attempted to off an event that couldn't be found.",
-        element,
-        event,
-      );
       return;
     }
 
@@ -75,12 +70,6 @@ export class SvelteEventManager {
           this.elementMap.delete(element);
         }
       }
-    } else {
-      console.warn(
-        "Attempted to off an event that couldn't be found.",
-        element,
-        event,
-      );
     }
   }
 
