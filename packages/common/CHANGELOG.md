@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.0.1](https://github.com/hperrin/svelte-material-ui/compare/v9.0.0...v9.0.1) (2026-06-02)
+
+
+### Bug Fixes
+
+* get rid of console warnings for event off ([670b7b7](https://github.com/hperrin/svelte-material-ui/commit/670b7b7a4b16bd38d16c3f5abc5b34fd6d7a5057))
+
+
+
+
+
 # [9.0.0](https://github.com/hperrin/svelte-material-ui/compare/v9.0.0-beta.14...v9.0.0) (2026-05-20)
 
 **Note:** Version bump only for package @smui/common
