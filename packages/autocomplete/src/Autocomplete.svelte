@@ -329,7 +329,7 @@
   let previousText = text;
   $effect(() => {
     if (previousText !== text) {
-      if (value != null && getOptionLabel(value) !== text) {
+      if (value != null && getOptionLabel(value) !== text && !combobox) {
         deselectOption(value, false);
       }
 
