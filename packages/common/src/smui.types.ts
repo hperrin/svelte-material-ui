@@ -53,8 +53,8 @@ import type {
 } from 'svelte/elements';
 
 export type SmuiComponent<
-  Element extends
-    SmuiElementMap[SmuiEveryElement] = SmuiElementMap[SmuiEveryElement],
+  Element extends SmuiElementMap[SmuiEveryElement] =
+    SmuiElementMap[SmuiEveryElement],
   Props extends Record<string, any> = {},
   Exports extends Record<string, any> = {},
   Bindings extends keyof Props | '' = string,

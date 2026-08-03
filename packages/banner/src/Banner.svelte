@@ -166,11 +166,17 @@
     ...restProps
   }: OwnProps &
     SmuiAttrs<'div', keyof OwnProps> & {
-      [k in keyof SmuiElementPropMap['div'] as `content\$${k}`]?: SmuiElementPropMap['div'][k];
+      [
+        k in keyof SmuiElementPropMap['div'] as `content\$${k}`
+      ]?: SmuiElementPropMap['div'][k];
     } & {
-      [k in keyof SmuiElementPropMap['div'] as `textWrapper\$${k}`]?: SmuiElementPropMap['div'][k];
+      [
+        k in keyof SmuiElementPropMap['div'] as `textWrapper\$${k}`
+      ]?: SmuiElementPropMap['div'][k];
     } & {
-      [k in keyof SmuiElementPropMap['div'] as `graphic\$${k}`]?: SmuiElementPropMap['div'][k];
+      [
+        k in keyof SmuiElementPropMap['div'] as `graphic\$${k}`
+      ]?: SmuiElementPropMap['div'][k];
     } = $props();
 
   let element: HTMLDivElement;

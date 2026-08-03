@@ -292,9 +292,9 @@
         typeof Menu
       >[k];
     } & {
-      [k in keyof ComponentProps<
-        typeof Textfield
-      > as `textfield\$${k}`]?: ComponentProps<typeof Textfield>[k];
+      [
+        k in keyof ComponentProps<typeof Textfield> as `textfield\$${k}`
+      ]?: ComponentProps<typeof Textfield>[k];
     } & {
       [k in keyof ComponentProps<typeof List> as `list\$${k}`]?: ComponentProps<
         typeof List

@@ -52,15 +52,9 @@ interface EventHandlerNonNull {
 }
 
 type ActivationEventType =
-  | 'touchstart'
-  | 'pointerdown'
-  | 'mousedown'
-  | 'keydown';
+  'touchstart' | 'pointerdown' | 'mousedown' | 'keydown';
 type DeactivationEventType =
-  | 'touchend'
-  | 'pointerup'
-  | 'mouseup'
-  | 'contextmenu';
+  'touchend' | 'pointerup' | 'mouseup' | 'contextmenu';
 
 // Activation events registered on the root element of each instance for
 // activation

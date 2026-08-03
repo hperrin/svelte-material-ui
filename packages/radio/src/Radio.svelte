@@ -134,7 +134,9 @@
     ...restProps
   }: OwnProps &
     SmuiAttrs<'div', keyof OwnProps> & {
-      [k in keyof SmuiElementPropMap['input'] as `input\$${k}`]?: SmuiElementPropMap['input'][k];
+      [
+        k in keyof SmuiElementPropMap['input'] as `input\$${k}`
+      ]?: SmuiElementPropMap['input'][k];
     } & {
       input$type?: never;
       input$disabled?: never;

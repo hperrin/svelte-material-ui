@@ -156,8 +156,7 @@ $light-theme: (
       // TODO(b/254356584): We don't add hover styles on selected rows.
       'row-item-selected-hover-state-layer-opacity',
       // TODO(b/254356584): We don't have state layers on rows.
-      'row-item-unselected-hover-state-layer-color'
-        // TODO(b/254356584): We don't have state layers on rows.
+      'row-item-unselected-hover-state-layer-color' // TODO(b/254356584): We don't have state layers on rows.
       'row-item-unselected-hover-state-layer-opacity'
     )
   );

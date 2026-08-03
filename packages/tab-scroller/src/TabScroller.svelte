@@ -140,9 +140,13 @@
     ...restProps
   }: OwnProps &
     SmuiAttrs<'div', keyof OwnProps> & {
-      [k in keyof SmuiElementPropMap['div'] as `scrollArea\$${k}`]?: SmuiElementPropMap['div'][k];
+      [
+        k in keyof SmuiElementPropMap['div'] as `scrollArea\$${k}`
+      ]?: SmuiElementPropMap['div'][k];
     } & {
-      [k in keyof SmuiElementPropMap['div'] as `scrollContent\$${k}`]?: SmuiElementPropMap['div'][k];
+      [
+        k in keyof SmuiElementPropMap['div'] as `scrollContent\$${k}`
+      ]?: SmuiElementPropMap['div'][k];
     } = $props();
 
   let element: HTMLDivElement;

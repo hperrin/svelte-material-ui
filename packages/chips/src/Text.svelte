@@ -83,13 +83,17 @@
     ...restProps
   }: OwnProps &
     SmuiAttrs<'span', keyof OwnProps> & {
-      [k in keyof ComponentProps<
-        typeof Checkmark
-      > as `checkmark\$${k}`]?: ComponentProps<typeof Checkmark>[k];
+      [
+        k in keyof ComponentProps<typeof Checkmark> as `checkmark\$${k}`
+      ]?: ComponentProps<typeof Checkmark>[k];
     } & {
-      [k in keyof SmuiElementPropMap['span'] as `container\$${k}`]?: SmuiElementPropMap['span'][k];
+      [
+        k in keyof SmuiElementPropMap['span'] as `container\$${k}`
+      ]?: SmuiElementPropMap['span'][k];
     } & {
-      [k in keyof SmuiElementPropMap['span'] as `text\$${k}`]?: SmuiElementPropMap['span'][k];
+      [
+        k in keyof SmuiElementPropMap['span'] as `text\$${k}`
+      ]?: SmuiElementPropMap['span'][k];
     } = $props();
 
   let element: HTMLSpanElement;

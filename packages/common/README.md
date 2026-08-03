@@ -263,10 +263,9 @@ Exclude a set of properties from an object. It differs from normal `omit` functi
     ...restProps
   }: OwnProps &
     SmuiAttrs<'div', keyof OwnProps> & {
-      [k in keyof SmuiAttrs<
-        'button',
-        keyof OwnProps
-      > as `button\$${k}`]?: SmuiAttrs<'button', keyof OwnProps>[k];
+      [
+        k in keyof SmuiAttrs<'button', keyof OwnProps> as `button\$${k}`
+      ]?: SmuiAttrs<'button', keyof OwnProps>[k];
     } = $props();
 </script>
 ```
@@ -316,10 +315,9 @@ Filter an object for only properties with a certain prefix. It is usually used a
     ...restProps
   }: OwnProps &
     SmuiAttrs<'div', keyof OwnProps> & {
-      [k in keyof SmuiAttrs<
-        'button',
-        keyof OwnProps
-      > as `button\$${k}`]?: SmuiAttrs<'button', keyof OwnProps>[k];
+      [
+        k in keyof SmuiAttrs<'button', keyof OwnProps> as `button\$${k}`
+      ]?: SmuiAttrs<'button', keyof OwnProps>[k];
     } = $props();
 </script>
 ```

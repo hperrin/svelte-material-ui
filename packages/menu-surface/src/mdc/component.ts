@@ -194,9 +194,7 @@ export class MDCMenuSurface extends MDCComponent<MDCMenuSurfaceFoundation> {
       isFocused: () => document.activeElement === this.root,
       saveFocus: () => {
         this.previousFocus = document.activeElement as
-          | HTMLElement
-          | SVGElement
-          | null;
+          HTMLElement | SVGElement | null;
       },
       restoreFocus: () => {
         if (this.root?.contains(document.activeElement)) {

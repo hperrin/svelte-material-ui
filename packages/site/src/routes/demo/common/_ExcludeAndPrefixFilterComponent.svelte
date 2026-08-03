@@ -22,6 +22,8 @@
     ...restProps
   }: OwnProps &
     SmuiAttrs<'div', keyof OwnProps> & {
-      [k in keyof ComponentProps<Button> as `button\$${k}`]?: ComponentProps<Button>[k];
+      [
+        k in keyof ComponentProps<Button> as `button\$${k}`
+      ]?: ComponentProps<Button>[k];
     } = $props();
 </script>

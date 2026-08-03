@@ -102,7 +102,9 @@
     ...restProps
   }: OwnProps &
     SmuiAttrs<'div', keyof OwnProps> & {
-      [k in keyof SmuiElementPropMap['label'] as `label\$${k}`]?: SmuiElementPropMap['label'][k];
+      [
+        k in keyof SmuiElementPropMap['label'] as `label\$${k}`
+      ]?: SmuiElementPropMap['label'][k];
     } = $props();
 
   let element: HTMLDivElement;

@@ -14,8 +14,7 @@
   onchange={(e) => {
     changeHandler();
     restProps.onchange?.(e);
-  }}
-></textarea>
+  }}></textarea>
 
 <script lang="ts">
   import { onMount } from 'svelte';

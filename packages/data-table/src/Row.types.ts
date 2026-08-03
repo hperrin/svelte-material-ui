@@ -11,8 +11,7 @@ interface SMUIDataTableBodyRowAccessor {
 }
 
 export type SMUIDataTableRowAccessor = (
-  | SMUIDataTableHeaderRowAccessor
-  | SMUIDataTableBodyRowAccessor
+  SMUIDataTableHeaderRowAccessor | SMUIDataTableBodyRowAccessor
 ) & {
   readonly element: HTMLTableRowElement;
   readonly checkbox: SMUICheckboxInputAccessor | undefined;

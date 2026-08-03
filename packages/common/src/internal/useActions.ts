@@ -9,8 +9,7 @@ export type SvelteHTMLActionType<P> = (
 ) => SvelteActionReturnType<P>;
 
 export type HTMLActionEntry<P extends any = any> =
-  | SvelteHTMLActionType<P>
-  | [SvelteHTMLActionType<P>, P];
+  SvelteHTMLActionType<P> | [SvelteHTMLActionType<P>, P];
 
 export type HTMLActionArray = HTMLActionEntry[];
 
@@ -20,8 +19,7 @@ export type SvelteSVGActionType<P> = (
 ) => SvelteActionReturnType<P>;
 
 export type SVGActionEntry<P extends any = any> =
-  | SvelteSVGActionType<P>
-  | [SvelteSVGActionType<P>, P];
+  SvelteSVGActionType<P> | [SvelteSVGActionType<P>, P];
 
 export type SVGActionArray = SVGActionEntry[];
 

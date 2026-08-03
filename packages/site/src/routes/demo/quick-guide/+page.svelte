@@ -15,8 +15,8 @@
   >
     Targeting Classes
     {#snippet subtitle()}
-      Because Svelte limits your CSS to <em>only</em> the current component, you
-      need to use a ":global" selector to target SMUI elements.
+      Because Svelte limits your CSS to <em>only</em> the current component, you need
+      to use a ":global" selector to target SMUI elements.
     {/snippet}
   </Demo>
 

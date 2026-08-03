@@ -156,12 +156,7 @@
      * The action the button represents.
      */
     action?:
-      | 'close'
-      | 'first-page'
-      | 'prev-page'
-      | 'next-page'
-      | 'last-page'
-      | string;
+      'close' | 'first-page' | 'prev-page' | 'next-page' | 'last-page' | string;
     /**
      * If false, hides the high contrast mode focus ring element.
      */

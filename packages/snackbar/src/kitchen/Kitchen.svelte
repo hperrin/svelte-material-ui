@@ -70,13 +70,13 @@
     dismiss,
     ...restProps
   }: {
-    [k in keyof ComponentProps<
-      typeof Snackbar
-    > as `snackbar\$${k}`]?: ComponentProps<typeof Snackbar>[k];
+    [
+      k in keyof ComponentProps<typeof Snackbar> as `snackbar\$${k}`
+    ]?: ComponentProps<typeof Snackbar>[k];
   } & {
-    [k in keyof ComponentProps<
-      typeof Button
-    > as `action\$${k}`]?: ComponentProps<typeof Button>[k];
+    [
+      k in keyof ComponentProps<typeof Button> as `action\$${k}`
+    ]?: ComponentProps<typeof Button>[k];
   } & {
     /**
      * If provided, the button will act as a link.

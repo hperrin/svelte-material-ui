@@ -521,12 +521,8 @@ $_custom-property-prefix: 'chip';
   }
 
   $elevation-pairs: (
-    container-shadow-color: (
-      container-elevation,
-    ),
-    flat-container-shadow-color: (
-      flat-container-elevation,
-    ),
+    container-shadow-color: (container-elevation),
+    flat-container-shadow-color: (flat-container-elevation),
     elevated-container-shadow-color: (
       elevated-container-elevation,
       elevated-disabled-container-elevation,

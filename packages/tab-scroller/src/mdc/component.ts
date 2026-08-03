@@ -31,11 +31,7 @@ import { MDCTabScrollerFoundation } from './foundation';
 import * as util from './util';
 
 type InteractionEventType =
-  | 'wheel'
-  | 'touchstart'
-  | 'pointerdown'
-  | 'mousedown'
-  | 'keydown';
+  'wheel' | 'touchstart' | 'pointerdown' | 'mousedown' | 'keydown';
 
 /** MDC Tab Scroller Factory */
 export type MDCTabScrollerFactory = (

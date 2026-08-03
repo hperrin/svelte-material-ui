@@ -177,11 +177,13 @@
     ...restProps
   }: OwnProps &
     SmuiAttrs<TagName, keyof OwnProps> & {
-      [k in keyof SmuiElementPropMap['span'] as `content\$${k}`]?: SmuiElementPropMap['span'][k];
+      [
+        k in keyof SmuiElementPropMap['span'] as `content\$${k}`
+      ]?: SmuiElementPropMap['span'][k];
     } & {
-      [k in keyof ComponentProps<
-        typeof TabIndicator
-      > as `tabIndicator\$${k}`]?: ComponentProps<typeof TabIndicator>[k];
+      [
+        k in keyof ComponentProps<typeof TabIndicator> as `tabIndicator\$${k}`
+      ]?: ComponentProps<typeof TabIndicator>[k];
     } = $props();
 
   let element: ReturnType<SmuiComponent<SmuiElementMap[TagName]>>;

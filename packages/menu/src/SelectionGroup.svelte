@@ -49,7 +49,9 @@
     ...restProps
   }: OwnProps &
     SmuiAttrs<'li', keyof OwnProps> & {
-      [k in keyof SmuiElementPropMap['ul'] as `list\$${k}`]?: SmuiElementPropMap['ul'][k];
+      [
+        k in keyof SmuiElementPropMap['ul'] as `list\$${k}`
+      ]?: SmuiElementPropMap['ul'][k];
     } = $props();
 
   let element: HTMLLIElement;

@@ -92,9 +92,8 @@
 
   let element: HTMLElement;
   let instance:
-    | MDCDismissibleDrawerFoundation
-    | MDCModalDrawerFoundation
-    | undefined = $state(undefined);
+    MDCDismissibleDrawerFoundation | MDCModalDrawerFoundation | undefined =
+    $state(undefined);
   let eventManager = new SvelteEventManager();
   let internalClasses: { [k: string]: boolean } = $state({});
   let previousFocus: Element | null = $state(null);

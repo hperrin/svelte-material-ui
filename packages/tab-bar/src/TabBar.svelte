@@ -115,9 +115,9 @@
     ...restProps
   }: OwnProps &
     SmuiAttrs<'div', keyof OwnProps> & {
-      [k in keyof ComponentProps<
-        typeof TabScroller
-      > as `tabScroller\$${k}`]?: ComponentProps<typeof TabScroller>[k];
+      [
+        k in keyof ComponentProps<typeof TabScroller> as `tabScroller\$${k}`
+      ]?: ComponentProps<typeof TabScroller>[k];
     } = $props();
 
   let element: HTMLDivElement;

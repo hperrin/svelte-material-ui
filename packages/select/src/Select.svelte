@@ -451,31 +451,41 @@
     ...restProps
   }: OwnProps &
     SmuiAttrs<'div', keyof OwnProps> & {
-      [k in keyof ComponentProps<
-        typeof HelperText
-      > as `helperText\$${k}`]?: ComponentProps<typeof HelperText>[k];
+      [
+        k in keyof ComponentProps<typeof HelperText> as `helperText\$${k}`
+      ]?: ComponentProps<typeof HelperText>[k];
     } & {
-      [k in keyof SmuiElementPropMap['input'] as `input\$${k}`]?: SmuiElementPropMap['input'][k];
+      [
+        k in keyof SmuiElementPropMap['input'] as `input\$${k}`
+      ]?: SmuiElementPropMap['input'][k];
     } & {
-      [k in keyof SmuiElementPropMap['div'] as `anchor\$${k}`]?: SmuiElementPropMap['div'][k];
+      [
+        k in keyof SmuiElementPropMap['div'] as `anchor\$${k}`
+      ]?: SmuiElementPropMap['div'][k];
     } & {
-      [k in keyof ComponentProps<
-        typeof FloatingLabel
-      > as `label\$${k}`]?: ComponentProps<typeof FloatingLabel>[k];
+      [
+        k in keyof ComponentProps<typeof FloatingLabel> as `label\$${k}`
+      ]?: ComponentProps<typeof FloatingLabel>[k];
     } & {
-      [k in keyof ComponentProps<
-        typeof NotchedOutline
-      > as `outline\$${k}`]?: ComponentProps<typeof NotchedOutline>[k];
+      [
+        k in keyof ComponentProps<typeof NotchedOutline> as `outline\$${k}`
+      ]?: ComponentProps<typeof NotchedOutline>[k];
     } & {
-      [k in keyof SmuiElementPropMap['span'] as `selectedTextContainer\$${k}`]?: SmuiElementPropMap['span'][k];
+      [
+        k in keyof SmuiElementPropMap['span'] as `selectedTextContainer\$${k}`
+      ]?: SmuiElementPropMap['span'][k];
     } & {
-      [k in keyof SmuiElementPropMap['span'] as `selectedText\$${k}`]?: SmuiElementPropMap['span'][k];
+      [
+        k in keyof SmuiElementPropMap['span'] as `selectedText\$${k}`
+      ]?: SmuiElementPropMap['span'][k];
     } & {
-      [k in keyof SmuiElementPropMap['span'] as `dropdownIcon\$${k}`]?: SmuiElementPropMap['span'][k];
+      [
+        k in keyof SmuiElementPropMap['span'] as `dropdownIcon\$${k}`
+      ]?: SmuiElementPropMap['span'][k];
     } & {
-      [k in keyof ComponentProps<
-        typeof LineRipple
-      > as `ripple\$${k}`]?: ComponentProps<typeof LineRipple>[k];
+      [
+        k in keyof ComponentProps<typeof LineRipple> as `ripple\$${k}`
+      ]?: ComponentProps<typeof LineRipple>[k];
     } & {
       [k in keyof ComponentProps<typeof Menu> as `menu\$${k}`]?: ComponentProps<
         typeof Menu

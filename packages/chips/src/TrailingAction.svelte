@@ -119,7 +119,9 @@
     ...restProps
   }: OwnProps &
     SmuiAttrs<'button', keyof OwnProps> & {
-      [k in keyof SmuiElementPropMap['span'] as `icon\$${k}`]?: SmuiElementPropMap['span'][k];
+      [
+        k in keyof SmuiElementPropMap['span'] as `icon\$${k}`
+      ]?: SmuiElementPropMap['span'][k];
     } = $props();
 
   let element: HTMLButtonElement;

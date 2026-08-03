@@ -9,8 +9,7 @@ interface SMUIDataTableBodyCellAccessor {
 }
 
 export type SMUIDataTableCellAccessor = (
-  | SMUIDataTableHeaderCellAccessor
-  | SMUIDataTableBodyCellAccessor
+  SMUIDataTableHeaderCellAccessor | SMUIDataTableBodyCellAccessor
 ) & {
   readonly element: HTMLTableCellElement;
   addClass(className: string): void;
