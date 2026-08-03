@@ -1,16 +1,16 @@
-<Set chips={choices} filter bind:selected>
+<ChipSet chips={choices} filter bind:selected>
   {#snippet chip(chip)}
     <Chip {chip} touch>
       <LeadingIcon class="material-icons">checkroom</LeadingIcon>
       <Text>{chip}</Text>
     </Chip>
   {/snippet}
-</Set>
+</ChipSet>
 
 <pre class="status">Selected: {selected.join(', ')}</pre>
 
 <script lang="ts">
-  import Chip, { Set, LeadingIcon, Text } from '@smui/chips';
+  import Chip, { ChipSet, LeadingIcon, Text } from '@smui/chips';
 
   let choices = ['Shoes', 'Pants', 'Shirts', 'Hats', 'Coats'];
   let selected = $state(['Shoes', 'Shirts', 'Coats']);

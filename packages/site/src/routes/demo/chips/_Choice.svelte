@@ -1,10 +1,10 @@
-<Set chips={choices} choice bind:selected>
+<ChipSet chips={choices} choice bind:selected>
   {#snippet chip(chip)}
     <Chip {chip}>
       <Text>{chip}</Text>
     </Chip>
   {/snippet}
-</Set>
+</ChipSet>
 
 <div style="margin-top: 1em;">Programmatically select:</div>
 <Button onclick={() => (selected = 'Morning')}>
@@ -23,7 +23,7 @@
 <pre class="status">Selected: {selected}</pre>
 
 <script lang="ts">
-  import Chip, { Set, Text } from '@smui/chips';
+  import Chip, { ChipSet, Text } from '@smui/chips';
   import Button, { Label } from '@smui/button';
 
   let choices = ['Morning', 'Afternoon', 'Evening', 'Night'];

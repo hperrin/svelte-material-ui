@@ -3,7 +3,7 @@
 import Chip from './Chip.svelte';
 export * from './Chip.types.js';
 
-import Set from './Set.svelte';
+import ChipSet from './ChipSet.svelte';
 import Text from './Text.svelte';
 export * from './Text.types.js';
 import LeadingIcon from './LeadingIcon.svelte';
@@ -13,4 +13,11 @@ export * from './TrailingAction.types.js';
 
 export default Chip;
 
-export { Set, Text, LeadingIcon, TrailingIcon, TrailingAction };
+export {
+  ChipSet,
+  ChipSet as Set,
+  Text,
+  LeadingIcon,
+  TrailingIcon,
+  TrailingAction,
+};

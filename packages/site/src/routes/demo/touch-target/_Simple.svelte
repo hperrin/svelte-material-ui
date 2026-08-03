@@ -17,13 +17,13 @@
     </Fab>
   </Wrapper>
   <Wrapper>
-    <Set chips={['Chip']} style="display: inline-flex;">
+    <ChipSet chips={['Chip']} style="display: inline-flex;">
       {#snippet chip(chip)}
         <Chip {chip} onclick={() => clicked++} touch>
           <Text tabindex={0}>{chip}</Text>
         </Chip>
       {/snippet}
-    </Set>
+    </ChipSet>
   </Wrapper>
   <Wrapper>
     <Checkbox bind:checked touch />
@@ -47,7 +47,7 @@
   import Button from '@smui/button';
   import IconButton from '@smui/icon-button';
   import Fab from '@smui/fab';
-  import Chip, { Set, Text } from '@smui/chips';
+  import Chip, { ChipSet, Text } from '@smui/chips';
   import Checkbox from '@smui/checkbox';
   import Radio from '@smui/radio';
   import Switch from '@smui/switch';

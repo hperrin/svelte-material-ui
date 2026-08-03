@@ -21,7 +21,7 @@
     'ripple$',
   ])}
 >
-  <Set
+  <ChipSet
     bind:chips
     class={classMap({
       'smui-chip-input__chip-set': true,
@@ -53,7 +53,7 @@
         </TrailingAction>
       </Chip>
     {/snippet}
-  </Set>
+  </ChipSet>
   <Autocomplete
     bind:this={autocomplete}
     class={classMap({
@@ -129,7 +129,7 @@
   import Textfield, { Input } from '@smui/textfield';
   import FloatingLabel from '@smui/floating-label';
   import LineRipple from '@smui/line-ripple';
-  import Chip, { Set, TrailingAction, Text as ChipText } from '@smui/chips';
+  import Chip, { ChipSet, TrailingAction, Text as ChipText } from '@smui/chips';
   import { Text as ListText } from '@smui/list';
 
   type OwnProps = {
@@ -233,8 +233,8 @@
   }: OwnProps &
     SmuiAttrs<'div', keyof OwnProps> & {
       [
-        k in keyof ComponentProps<typeof Set> as `chipSet\$${k}`
-      ]?: ComponentProps<typeof Set>[k];
+        k in keyof ComponentProps<typeof ChipSet> as `chipSet\$${k}`
+      ]?: ComponentProps<typeof ChipSet>[k];
     } & {
       [k in keyof ComponentProps<typeof Chip> as `chip\$${k}`]?: ComponentProps<
         typeof Chip

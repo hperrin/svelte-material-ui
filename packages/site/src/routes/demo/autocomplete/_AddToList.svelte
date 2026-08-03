@@ -1,14 +1,14 @@
 <div>
   <div class="status">
     <pre style="display: inline-block;">Selected:</pre>
-    <Set style="display: inline-block;" bind:chips={selected}>
+    <ChipSet style="display: inline-block;" bind:chips={selected}>
       {#snippet chip(chip)}
         <Chip {chip}>
           <Text tabindex={0}>{chip}</Text>
           <TrailingAction icon$class="material-icons">cancel</TrailingAction>
         </Chip>
       {/snippet}
-    </Set>
+    </ChipSet>
   </div>
 
   <Autocomplete
@@ -23,7 +23,7 @@
 <script lang="ts">
   import Autocomplete from '@smui-extra/autocomplete';
 
-  import Chip, { Set, TrailingAction, Text } from '@smui/chips';
+  import Chip, { ChipSet, TrailingAction, Text } from '@smui/chips';
 
   let fruits = ['Apple', 'Orange', 'Banana', 'Mango'];
   let selected: string[] = $state([]);

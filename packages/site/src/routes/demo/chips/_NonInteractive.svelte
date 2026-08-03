@@ -1,11 +1,11 @@
-<Set chips={['one', 'two', 'three', 'four', 'five']} nonInteractive>
+<ChipSet chips={['one', 'two', 'three', 'four', 'five']} nonInteractive>
   {#snippet chip(chip)}
     <Chip {chip}>
       <Text>{chip}</Text>
     </Chip>
   {/snippet}
-</Set>
+</ChipSet>
 
 <script lang="ts">
-  import Chip, { Set, Text } from '@smui/chips';
+  import Chip, { ChipSet, Text } from '@smui/chips';
 </script>

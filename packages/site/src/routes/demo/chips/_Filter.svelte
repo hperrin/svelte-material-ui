@@ -1,10 +1,10 @@
-<Set chips={choices} filter bind:selected>
+<ChipSet chips={choices} filter bind:selected>
   {#snippet chip(chip)}
     <Chip {chip} touch>
       <Text>{chip}</Text>
     </Chip>
   {/snippet}
-</Set>
+</ChipSet>
 
 <div style="margin-top: 1em;">Programmatically add:</div>
 {#each choices as choice}
@@ -23,7 +23,7 @@
 <pre class="status">Selected: {selected.join(', ')}</pre>
 
 <script lang="ts">
-  import Chip, { Set, Text } from '@smui/chips';
+  import Chip, { ChipSet, Text } from '@smui/chips';
   import Button, { Label } from '@smui/button';
 
   let choices = ['Shoes', 'Pants', 'Shirts', 'Hats', 'Coats'];

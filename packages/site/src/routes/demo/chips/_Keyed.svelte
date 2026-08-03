@@ -1,4 +1,4 @@
-<Set
+<ChipSet
   bind:chips={myChips}
   bind:selected
   key={(chip) => `${chip.i}`}
@@ -11,7 +11,7 @@
       <TrailingAction icon$class="material-icons">cancel</TrailingAction>
     </Chip>
   {/snippet}
-</Set>
+</ChipSet>
 <Button onclick={addKeyedChip}><Label>Add</Label></Button>
 
 <pre class="status">Selected: {selected && selected.length
@@ -19,7 +19,7 @@
     : 'None'}</pre>
 
 <script lang="ts">
-  import Chip, { Set, TrailingAction, Text } from '@smui/chips';
+  import Chip, { ChipSet, TrailingAction, Text } from '@smui/chips';
   import Button, { Label } from '@smui/button';
 
   type ChipObject = {
