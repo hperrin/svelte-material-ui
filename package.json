@@ -40,14 +40,21 @@
     "packages/*"
   ],
   "devDependencies": {
-    "@commitlint/cli": "^21.0.1",
-    "@commitlint/config-conventional": "^21.0.1",
+    "@commitlint/cli": "^21.2.1",
+    "@commitlint/config-conventional": "^21.2.0",
     "husky": "^9.1.7",
-    "lerna": "^9.0.7",
-    "lint-staged": "^17.0.5",
-    "prettier": "~3.8.3",
-    "prettier-plugin-svelte": "^3.5.2",
-    "sass": "^1.99.0",
-    "svelte": "^5.55.9"
+    "lerna": "^10.0.0",
+    "lint-staged": "^17.3.0",
+    "prettier": "~3.9.6",
+    "prettier-plugin-svelte": "^4.1.1",
+    "sass": "^1.102.0",
+    "svelte": "^5.56.8"
+  },
+  "allowScripts": {
+    "@parcel/watcher@2.5.1": true,
+    "esbuild@0.27.3": true,
+    "fsevents@2.3.3": true,
+    "svelte-preprocess@6.0.5": true,
+    "nx@23.1.1": true
   }
 }

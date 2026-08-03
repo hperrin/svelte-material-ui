@@ -85,9 +85,9 @@
   },
   "devDependencies": {
     "@tsconfig/svelte": "^5.0.8",
-    "sass": "^1.99.0",
-    "svelte-check": "^4.4.8",
+    "sass": "^1.102.0",
+    "svelte-check": "^4.7.4",
     "tslib": "^2.8.1",
-    "typescript": "^5.9.3"
+    "typescript": "^6.0.3"
   }
 }
