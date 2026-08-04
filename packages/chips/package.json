@@ -1,6 +1,6 @@
 {
   "name": "@smui/chips",
-  "version": "9.0.2",
+  "version": "9.0.3",
   "description": "Svelte Material UI - Chips",
   "type": "module",
   "main": "dist/index.js",

@@ -1,6 +1,6 @@
 {
   "name": "svelte-material-ui",
-  "version": "9.0.2",
+  "version": "9.0.3",
   "description": "Svelte Material UI Components",
   "keywords": [
     "svelte",
@@ -53,12 +53,12 @@
     "@smui-extra/autocomplete": "^9.0.2",
     "@smui-extra/badge": "^9.0.2",
     "@smui-extra/bottom-app-bar": "^9.0.2",
-    "@smui-extra/chip-input": "^9.0.2",
+    "@smui-extra/chip-input": "^9.0.3",
     "@smui/banner": "^9.0.2",
     "@smui/button": "^9.0.2",
     "@smui/card": "^9.0.2",
     "@smui/checkbox": "^9.0.2",
-    "@smui/chips": "^9.0.2",
+    "@smui/chips": "^9.0.3",
     "@smui/circular-progress": "^9.0.2",
     "@smui/common": "^9.0.2",
     "@smui/data-table": "^9.0.2",
@@ -94,6 +94,6 @@
     "@smui/touch-target": "^9.0.2"
   },
   "devDependencies": {
-    "smui-theme": "^9.0.2"
+    "smui-theme": "^9.0.3"
   }
 }

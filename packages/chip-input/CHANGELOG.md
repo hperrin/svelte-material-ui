@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.0.3](https://github.com/hperrin/svelte-material-ui/compare/v9.0.2...v9.0.3) (2026-08-04)
+
+### Bug Fixes
+
+* chip set export causing issues in latest svelte ([09a985d](https://github.com/hperrin/svelte-material-ui/commit/09a985d2dc442f81830e8b30f3fa702494b0fab3)), closes [#717](https://github.com/hperrin/svelte-material-ui/issues/717)
+
+
 ## [9.0.2](https://github.com/hperrin/svelte-material-ui/compare/v9.0.1...v9.0.2) (2026-08-03)
 
 **Note:** Version bump only for package @smui-extra/chip-input
