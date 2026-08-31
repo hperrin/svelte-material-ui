@@ -1,0 +1,1 @@
+function e(e,t){let n=Object.getOwnPropertyNames(e),r={};for(let i=0;i<n.length;i++){let a=n[i],o=a.indexOf(`$`);(o===-1||t.indexOf(a.substring(0,o+1))===-1)&&t.indexOf(a)===-1&&(r[a]=e[a])}return r}function t(e,t){let n=Object.getOwnPropertyNames(e),r={};for(let i=0;i<n.length;i++){let a=n[i];a.substring(0,t.length)===t&&(r[a.substring(t.length)]=e[a])}return r}export{e as n,t};

@@ -1,0 +1,1 @@
+function e(e,{addClass:t=t=>e.classList.add(t),removeClass:n=t=>e.classList.remove(t)}={}){return t(`mdc-menu-surface--anchor`),{destroy(){n(`mdc-menu-surface--anchor`)}}}export{e as t};
