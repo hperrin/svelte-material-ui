@@ -243,6 +243,7 @@
 
 <script lang="ts">
   import type { ComponentProps, Snippet } from 'svelte';
+  import type { HTMLInputTypeAttribute } from 'svelte/elements';
   import { onMount, onDestroy, getContext, setContext, tick } from 'svelte';
   import type {
     AddLayoutListener,
@@ -330,7 +331,7 @@
     /**
      * The input type.
      */
-    type?: string;
+    type?: HTMLInputTypeAttribute;
     /**
      * The value of the input.
      */
