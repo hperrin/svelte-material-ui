@@ -1,6 +1,6 @@
 {
   "name": "@smui/flyout-panel",
-  "version": "9.0.3",
+  "version": "9.0.4",
   "description": "Svelte Material UI - Flyout Panel",
   "type": "module",
   "main": "dist/index.js",

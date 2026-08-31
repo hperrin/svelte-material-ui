@@ -1,6 +1,6 @@
 {
   "name": "smui-theme",
-  "version": "9.0.3",
+  "version": "9.0.4",
   "description": "Svelte Material UI - Theme Builder",
   "bin": {
     "smui-theme": "smui-theme"
@@ -32,7 +32,7 @@
   "devDependencies": {
     "@smui-extra/accordion": "^9.0.2",
     "@smui-extra/autocomplete": "^9.0.2",
-    "@smui-extra/badge": "^9.0.2",
+    "@smui-extra/badge": "^9.0.4",
     "@smui-extra/bottom-app-bar": "^9.0.2",
     "@smui-extra/chip-input": "^9.0.3",
     "@smui/banner": "^9.0.2",
@@ -46,7 +46,7 @@
     "@smui/drawer": "^9.0.2",
     "@smui/fab": "^9.0.2",
     "@smui/floating-label": "^9.0.2",
-    "@smui/flyout-panel": "^9.0.3",
+    "@smui/flyout-panel": "^9.0.4",
     "@smui/form-field": "^9.0.2",
     "@smui/icon-button": "^9.0.2",
     "@smui/image-list": "^9.0.2",
