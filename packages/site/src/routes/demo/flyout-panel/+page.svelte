@@ -13,15 +13,19 @@
 
   <Demo component={Simple} file="flyout-panel/_Simple.svelte" />
 
-  <Demo component={Sticky} file="radio/_Sticky.svelte">Sticky positioning</Demo>
+  <Demo component={Sticky} file="flyout-panel/_Sticky.svelte">
+    Sticky positioning
+  </Demo>
 
-  <Demo component={Fixed} file="radio/_Fixed.svelte">Fixed positioning</Demo>
+  <Demo component={Fixed} file="flyout-panel/_Fixed.svelte">
+    Fixed positioning
+  </Demo>
 
-  <Demo component={PositionAlign} file="radio/_PositionAlign.svelte">
+  <Demo component={PositionAlign} file="flyout-panel/_PositionAlign.svelte">
     Position and Alignment
   </Demo>
 
-  <Demo component={SizeColor} file="radio/_SizeColor.svelte">
+  <Demo component={SizeColor} file="flyout-panel/_SizeColor.svelte">
     Size and Color
   </Demo>
 </section>
