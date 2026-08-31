@@ -2,7 +2,7 @@
 
 ## Theming with Sass
 
-If you're going to theme with Sass, reading an [introduction to Sass](https://sass-lang.com/guide) would be helpful. Hoever, you don't need to know much about Sass to make basic themes for SMUI.
+If you're going to theme with Sass, reading an [introduction to Sass](https://sass-lang.com/guide) would be helpful. However, you don't need to know much about Sass to make basic themes for SMUI.
 
 To create a custom Sass theme, install the SMUI Theme Builder.
 
