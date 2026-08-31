@@ -453,6 +453,14 @@
       indent: 0,
     },
     {
+      name: 'Flyout Panel',
+      route: '/demo/flyout-panel/',
+      indent: 0,
+      repos: [
+        'https://github.com/hperrin/svelte-material-ui/tree/master/packages/flyout-panel',
+      ],
+    },
+    {
       name: 'Image List',
       route: '/demo/image-list/',
       indent: 0,

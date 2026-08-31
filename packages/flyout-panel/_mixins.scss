@@ -1,0 +1,155 @@
+@use 'sass:math';
+@use '@smui/common/feature-targeting/index' as feature-targeting;
+@use '@smui/common/rtl/rtl';
+@use '@smui/common/theme/index' as theme;
+@use '@smui/common/typography/index' as typography;
+
+$size: var(--smui-flyout-panel--size, 36px) !default;
+$padding: 6px !default;
+$inset: 15px !default;
+$z-index: 8 !default; // One above mdc-dialog
+
+@mixin core-styles($query: feature-targeting.all()) {
+  $feat-color: feature-targeting.create-target($query, color);
+  $feat-animation: feature-targeting.create-target($query, animation);
+  $feat-structure: feature-targeting.create-target($query, structure);
+
+  .smui-flyout-panel {
+    @include typography.typography(body1, $query: $query);
+
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: $z-index;
+    opacity: 0;
+
+    padding: $padding;
+
+    &.smui-flyout-panel--open {
+      opacity: 1;
+    }
+
+    &.smui-flyout-panel--sticky {
+      position: sticky;
+    }
+
+    &.smui-flyout-panel--fixed {
+      position: fixed;
+    }
+
+    &.smui-flyout-panel--position-left {
+      @include width($size, $padding);
+      flex-direction: column;
+      transition:
+        left 0.3s ease,
+        opacity 0.3s ease;
+      left: calc(-1 * $size);
+      top: 0;
+      bottom: 0;
+      height: fit-content;
+      margin: auto 0;
+
+      &.smui-flyout-panel--align-start {
+        margin: $inset 0 auto 0;
+      }
+
+      &.smui-flyout-panel--align-end {
+        margin: auto 0 $inset 0;
+      }
+
+      &.smui-flyout-panel--open {
+        left: $inset;
+      }
+    }
+
+    &.smui-flyout-panel--position-top {
+      @include height($size, $padding);
+      transition:
+        top 0.3s ease,
+        opacity 0.3s ease;
+      top: calc(-1 * $size);
+      left: 0;
+      right: 0;
+      width: fit-content;
+      margin: 0 auto;
+
+      &.smui-flyout-panel--align-start {
+        margin: 0 auto 0 $inset;
+      }
+
+      &.smui-flyout-panel--align-end {
+        margin: 0 $inset 0 auto;
+      }
+
+      &.smui-flyout-panel--open {
+        top: $inset;
+      }
+    }
+
+    &.smui-flyout-panel--position-right {
+      @include width($size, $padding);
+      flex-direction: column;
+      transition:
+        right 0.3s ease,
+        opacity 0.3s ease;
+      right: calc(-1 * $size);
+      top: 0;
+      bottom: 0;
+      height: fit-content;
+      margin: auto 0;
+
+      &.smui-flyout-panel--align-start {
+        margin: $inset 0 auto 0;
+      }
+
+      &.smui-flyout-panel--align-end {
+        margin: auto 0 $inset 0;
+      }
+
+      &.smui-flyout-panel--open {
+        right: $inset;
+      }
+    }
+
+    &.smui-flyout-panel--position-bottom {
+      @include height($size, $padding);
+      transition:
+        bottom 0.3s ease,
+        opacity 0.3s ease;
+      bottom: calc(-1 * $size);
+      left: 0;
+      right: 0;
+      width: fit-content;
+      margin: 0 auto;
+
+      &.smui-flyout-panel--align-start {
+        margin: 0 auto 0 $inset;
+      }
+
+      &.smui-flyout-panel--align-end {
+        margin: 0 $inset 0 auto;
+      }
+
+      &.smui-flyout-panel--open {
+        bottom: $inset;
+      }
+    }
+  }
+}
+
+@mixin height($size, $padding, $query: feature-targeting.all()) {
+  $feat-structure: feature-targeting.create-target($query, structure);
+
+  @include feature-targeting.targets($feat-structure) {
+    @include theme.property(height, $size);
+  }
+}
+
+@mixin width($size, $padding, $query: feature-targeting.all()) {
+  $feat-structure: feature-targeting.create-target($query, structure);
+
+  @include feature-targeting.targets($feat-structure) {
+    @include theme.property(width, $size);
+  }
+}

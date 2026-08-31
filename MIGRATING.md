@@ -44,6 +44,11 @@ SMUI 9 has migrated away from MDC-Web, since MDC-Web has been abandoned.
 - Plain Tooltips now actually look like the Material Spec.
 - New premade theme, "Muted".
 
+### Components
+
+- Flyout Panel
+  - A new component!
+
 # SMUI 7 -> SMUI 8
 
 SMUI 8 has migrated to Svelte 5's new Runes mode. As such, it expects things like snippets and only some props are bindable.

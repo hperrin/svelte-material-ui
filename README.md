@@ -102,6 +102,7 @@ Click a component/package below to go to the documentation. (Note that this docu
 - [Dialog](packages/dialog/README.md)
 - [Drawer](packages/drawer/README.md)
 - [Elevation](https://sveltematerialui.com/demo/elevation/)†
+- [Flyout Panel](packages/flyout-panel/README.md)
 - [Image List](packages/image-list/README.md)
 - Inputs and Controls
   - [Autocomplete](packages/autocomplete/README.md)

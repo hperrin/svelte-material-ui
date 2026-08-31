@@ -66,6 +66,7 @@
     "@smui/drawer": "^9.0.2",
     "@smui/fab": "^9.0.2",
     "@smui/floating-label": "^9.0.2",
+    "@smui/flyout-panel": "^9.0.3",
     "@smui/form-field": "^9.0.2",
     "@smui/icon-button": "^9.0.2",
     "@smui/image-list": "^9.0.2",
