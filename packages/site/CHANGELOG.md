@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.0.5](https://github.com/hperrin/svelte-material-ui/compare/v9.0.4...v9.0.5) (2026-10-09)
+
+### Bug Fixes
+
+* source file links in flyout panel demos ([c1c7f15](https://github.com/hperrin/svelte-material-ui/commit/c1c7f15bf11e91906ad1e7979571eae16de0e847))
+
+
 ## [9.0.4](https://github.com/hperrin/svelte-material-ui/compare/v9.0.3...v9.0.4) (2026-08-31)
 
 ### Features

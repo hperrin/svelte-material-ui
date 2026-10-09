@@ -1,6 +1,6 @@
 {
   "name": "svelte-material-ui",
-  "version": "9.0.4",
+  "version": "9.0.5",
   "description": "Svelte Material UI Components",
   "keywords": [
     "svelte",
@@ -95,6 +95,6 @@
     "@smui/touch-target": "^9.0.2"
   },
   "devDependencies": {
-    "smui-theme": "^9.0.4"
+    "smui-theme": "^9.0.5"
   }
 }

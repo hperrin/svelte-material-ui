@@ -1,6 +1,6 @@
 {
   "name": "@smui-extra/site",
-  "version": "9.0.4",
+  "version": "9.0.5",
   "description": "SMUI Website (You're not meant to install this.)",
   "type": "module",
   "scripts": {
@@ -124,7 +124,7 @@
     "rehype-slug": "^6.0.0",
     "sass": "^1.102.0",
     "simple-icons": "^16.28.0",
-    "smui-theme": "^9.0.4",
+    "smui-theme": "^9.0.5",
     "svelte": "^5.56.8",
     "svelte-check": "^4.7.4",
     "svelte-highlight": "^7.16.2",
