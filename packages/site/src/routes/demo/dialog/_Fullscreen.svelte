@@ -44,7 +44,7 @@
   } from '@smui/dialog';
   import IconButton, { Icon } from '@smui/icon-button';
   import Button, { Label } from '@smui/button';
-  import LoremIpsum from '$lib/LoremIpsum.svelte';
+  import LoremIpsum from '#lib/LoremIpsum.svelte';
 
   let open = $state(false);
   let response = $state('Nothing yet.');

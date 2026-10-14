@@ -38,7 +38,7 @@
   import IconButton from '@smui/icon-button';
   import Fab from '@smui/fab';
   import { Icon } from '@smui/common';
-  import LoremIpsum from '$lib/LoremIpsum.svelte';
+  import LoremIpsum from '#lib/LoremIpsum.svelte';
 
   let bottomAppBar: BottomAppBar | null = $state(null);
 </script>

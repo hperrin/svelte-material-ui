@@ -120,7 +120,7 @@
 </section>
 
 <script lang="ts">
-  import Demo from '$lib/Demo.svelte';
+  import Demo from '#lib/Demo.svelte';
 
   import CommonLabelIcon from './_CommonLabelIcon.svelte';
   import SmuiElement from './_SmuiElement.svelte';

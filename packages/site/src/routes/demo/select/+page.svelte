@@ -64,7 +64,7 @@
 </section>
 
 <script lang="ts">
-  import Demo from '$lib/Demo.svelte';
+  import Demo from '#lib/Demo.svelte';
 
   import Showcase from './_Showcase.svelte';
   import Keys from './_Keys.svelte';

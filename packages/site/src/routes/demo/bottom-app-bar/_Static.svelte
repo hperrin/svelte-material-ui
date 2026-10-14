@@ -78,7 +78,7 @@
   import IconButton, { Icon } from '@smui/icon-button';
   import Checkbox from '@smui/checkbox';
   import FormField from '@smui/form-field';
-  import LoremIpsum from '$lib/LoremIpsum.svelte';
+  import LoremIpsum from '#lib/LoremIpsum.svelte';
 
   let secondaryColor = $state(false);
 </script>

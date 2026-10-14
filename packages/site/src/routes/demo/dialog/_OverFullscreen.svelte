@@ -88,7 +88,7 @@
   import Button, { Label } from '@smui/button';
   import List, { Item, Graphic, Text } from '@smui/list';
   import Radio from '@smui/radio';
-  import LoremIpsum from '$lib/LoremIpsum.svelte';
+  import LoremIpsum from '#lib/LoremIpsum.svelte';
 
   let open = $state(false);
   let subOpen = $state(false);

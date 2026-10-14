@@ -30,7 +30,7 @@
     AutoAdjust,
   } from '@smui/top-app-bar';
   import IconButton, { Icon } from '@smui/icon-button';
-  import LoremIpsum from '$lib/LoremIpsum.svelte';
+  import LoremIpsum from '#lib/LoremIpsum.svelte';
 
   let topAppBar: TopAppBar | null = $state(null);
 </script>

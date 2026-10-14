@@ -66,7 +66,7 @@
   import { Icon } from '@smui/common';
   import Checkbox from '@smui/checkbox';
   import FormField from '@smui/form-field';
-  import LoremIpsum from '$lib/LoremIpsum.svelte';
+  import LoremIpsum from '#lib/LoremIpsum.svelte';
 
   let bottomAppBar: BottomAppBar | null = $state(null);
   let snackbar: Snackbar | undefined = $state();

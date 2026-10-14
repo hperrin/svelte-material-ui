@@ -2,82 +2,98 @@
 
 <svelte:head>
   <!-- SMUI Styles -->
-  <link rel="stylesheet" href="{assets}/smui.css" />
-
+  <link rel="stylesheet" href={asset('smui.css')} />
+  <link
+    rel="stylesheet"
+    href={asset('site-dark.css')}
+    media="screen and (prefers-color-scheme: dark)"
+  />
   <!-- Site Styles -->
-  <link rel="stylesheet" href="{assets}/site.css" />
-
+  <link rel="stylesheet" href={asset('site.css')} />
   <!-- Code Hightlighting Theme -->
   {@html materialDarker}
 
   {#each themes as theme}
-    <link rel="preload" href="{assets}/smui-{theme.value}.css" as="style" />
+    <link rel="preload" href={asset(`smui-${theme.value}.css`)} as="style" />
+
     <link
       rel="preload"
-      href="{assets}/smui-{theme.value}-dark.css"
+      href={asset(`smui-${theme.value}-dark.css`)}
       as="style"
     />
   {/each}
 
   {#if theme}
     <!-- SMUI Styles -->
-    <link rel="stylesheet" href="{assets}/smui-{theme}.css" />
+
+    <link rel="stylesheet" href={asset(`smui-${theme}.css`)} />
 
     <!-- Site Styles -->
-    <link rel="stylesheet" href="{assets}/site-{theme}.css" />
+
+    <link rel="stylesheet" href={asset(`site-${theme}.css`)} />
 
     {#if lightTheme === false}
       <!-- SMUI Styles -->
+
       <link
         rel="stylesheet"
-        href="{assets}/smui-{theme}-dark.css"
+        href={asset(`smui-${theme}-dark.css`)}
         media="screen"
       />
+
       <!-- Site Styles -->
+
       <link
         rel="stylesheet"
-        href="{assets}/site-{theme}-dark.css"
+        href={asset(`site-${theme}-dark.css`)}
         media="screen"
       />
     {:else if lightTheme !== true}
       <!-- SMUI Styles -->
+
       <link
         rel="stylesheet"
-        href="{assets}/smui-{theme}-dark.css"
+        href={asset(`smui-${theme}-dark.css`)}
         media="screen and (prefers-color-scheme: dark)"
       />
 
       <!-- Site Styles -->
+
       <link
         rel="stylesheet"
-        href="{assets}/site-{theme}-dark.css"
+        href={asset(`site-${theme}-dark.css`)}
         media="screen and (prefers-color-scheme: dark)"
       />
     {/if}
   {:else if lightTheme === false}
     <!-- SMUI Styles -->
-    <link rel="stylesheet" href="{assets}/smui-dark.css" media="screen" />
+
+    <link rel="stylesheet" href={asset('smui-dark.css')} media="screen" />
 
     <!-- Site Styles -->
-    <link rel="stylesheet" href="{assets}/site-dark.css" media="screen" />
+
+    <link rel="stylesheet" href={asset('site-dark.css')} media="screen" />
   {:else if lightTheme !== true}
     <!-- SMUI Styles -->
+
     <link
       rel="stylesheet"
-      href="{assets}/smui-dark.css"
+      href={asset('smui-dark.css')}
       media="screen and (prefers-color-scheme: dark)"
     />
 
     <!-- Site Styles -->
+
     <link
       rel="stylesheet"
-      href="{assets}/site-dark.css"
+      href={asset('site-dark.css')}
       media="screen and (prefers-color-scheme: dark)"
     />
   {/if}
 
   {#if !iframe}
     <!-- It Matters -->
+
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/itmatters@2.0.1/index.css"
@@ -92,49 +108,49 @@
     <Row>
       <Section>
         {#if miniWindow}
-          <IconButton onclick={() => (drawerOpen = !drawerOpen)}>
-            <Icon class="material-icons">menu</Icon>
-          </IconButton>
+          <IconButton onclick={() => (drawerOpen = !drawerOpen)}
+            ><Icon class="material-icons">menu</Icon></IconButton
+          >
         {/if}
+
         <Title
           tag="a"
           href="/"
           class="mdc-theme--on-surface"
           style="color: inherit; {miniWindow ? 'padding-left: 0;' : ''}"
+          >{miniWindow ? 'SMUI' : 'Svelte Material UI'}</Title
         >
-          {miniWindow ? 'SMUI' : 'Svelte Material UI'}
-        </Title>
       </Section>
+
       <Section align="end" toolbar style="color: var(--mdc-on-surface, #000);">
         {#each (activeSection && activeSection.repos) || [] as repo}
           <IconButton
             href={repo}
             target="_blank"
             title="View Docs: {repo.split('/').slice(-1)[0]}"
+            ><Icon tag="svg" viewBox="0 0 24 24"
+              ><path fill="currentColor" d={mdiFileDocument}></path></Icon
+            ></IconButton
           >
-            <Icon tag="svg" viewBox="0 0 24 24">
-              <path fill="currentColor" d={mdiFileDocument} />
-            </Icon>
-          </IconButton>
         {:else}
           <IconButton
             href="https://github.com/hperrin/svelte-material-ui"
             title="SMUI on GitHub"
+            ><Icon tag="svg" viewBox="0 0 24 24"
+              ><path fill="currentColor" d={siGithub.path}></path></Icon
+            ></IconButton
           >
-            <Icon tag="svg" viewBox="0 0 24 24">
-              <path fill="currentColor" d={siGithub.path} />
-            </Icon>
-          </IconButton>
         {/each}
+
         <div style="display: inline-block;">
           <IconButton
             onclick={() => themeMenu?.setOpen(true)}
             title="Pick a theme or toggle dark mode."
+            ><Icon tag="svg" viewBox="0 0 24 24"
+              ><path fill="currentColor" d={mdiPalette}></path></Icon
+            ></IconButton
           >
-            <Icon tag="svg" viewBox="0 0 24 24">
-              <path fill="currentColor" d={mdiPalette} />
-            </Icon>
-          </IconButton>
+
           <Menu bind:this={themeMenu}>
             <List>
               <SelectionGroup>
@@ -142,65 +158,70 @@
                   onSMUIAction={() => (lightTheme = null)}
                   selected={lightTheme == null}
                 >
-                  <SelectionGroupIcon>
-                    <i class="material-icons">check</i>
-                  </SelectionGroupIcon>
+                  <SelectionGroupIcon
+                    ><i class="material-icons">check</i></SelectionGroupIcon
+                  >
                   <Text>Follow System</Text>
                 </Item>
+
                 {#each [{ label: 'Light', value: true }, { label: 'Dark', value: false }] as item}
                   <Item
                     onSMUIAction={() => (lightTheme = item.value)}
                     selected={lightTheme === item.value}
                   >
-                    <SelectionGroupIcon>
-                      <i class="material-icons">check</i>
-                    </SelectionGroupIcon>
+                    <SelectionGroupIcon
+                      ><i class="material-icons">check</i></SelectionGroupIcon
+                    >
                     <Text>{item.label}</Text>
                   </Item>
                 {/each}
               </SelectionGroup>
+
               <Separator />
+
               <SelectionGroup>
                 <Item
                   onSMUIAction={() => (theme = null)}
                   selected={theme == null}
                 >
-                  <SelectionGroupIcon>
-                    <i class="material-icons">check</i>
-                  </SelectionGroupIcon>
+                  <SelectionGroupIcon
+                    ><i class="material-icons">check</i></SelectionGroupIcon
+                  >
                   <Text>Svelte</Text>
                 </Item>
+
                 {#each themes as item}
                   <Item
                     onSMUIAction={() => (theme = item.value)}
                     selected={theme === item.value}
                   >
-                    <SelectionGroupIcon>
-                      <i class="material-icons">check</i>
-                    </SelectionGroupIcon>
+                    <SelectionGroupIcon
+                      ><i class="material-icons">check</i></SelectionGroupIcon
+                    >
                     <Text>{item.label}</Text>
                   </Item>
                 {/each}
               </SelectionGroup>
+
               <Separator />
-              <Item tag="a" href="/THEMING.md" style="color: inherit;">
-                <Text>Learn about theming</Text>
-              </Item>
+              <Item tag="a" href="/THEMING.md" style="color: inherit;"
+                ><Text>Learn about theming</Text></Item
+              >
+
               <Item
                 tag="a"
                 href="https://github.com/hperrin/svelte-material-ui/tree/master/packages/site/src/theme"
                 target="_blank"
                 rel="noreferrer noorigin"
-                style="color: inherit;"
+                style="color: inherit;"><Text>See the theme source</Text></Item
               >
-                <Text>See the theme source</Text>
-              </Item>
             </List>
           </Menu>
         </div>
       </Section>
     </Row>
   </TopAppBar>
+
   <div class="drawer-container">
     <Drawer
       bind:this={drawer}
@@ -211,6 +232,7 @@
         : 'hide-initial-small'}"
     >
       <!-- 44px padding to offset the space taken by Glory to Ukraine and Trans Rights messages -->
+
       <Content style="padding-bottom: 44px;">
         <List>
           {#each sections as section (section.name)}
@@ -228,9 +250,9 @@
                 style={section.indent
                   ? 'margin-left: ' + section.indent * 25 + 'px;'
                   : ''}
+                ><Text class="mdc-theme--on-secondary">{section.name}</Text
+                ></Item
               >
-                <Text class="mdc-theme--on-secondary">{section.name}</Text>
-              </Item>
             {/if}
           {/each}
         </List>
@@ -240,11 +262,12 @@
     {#if miniWindow}
       <Scrim />
     {/if}
-    <AppContent class="demo-app-content">
-      <main class="demo-main-content" bind:this={mainContent}>
+
+    <AppContent class="demo-app-content"
+      ><main class="demo-main-content" bind:this={mainContent}>
         {@render children?.()}
-      </main>
-    </AppContent>
+      </main></AppContent
+    >
   </div>
 {/if}
 
@@ -255,8 +278,8 @@
   import { siGithub } from 'simple-icons';
   import TinyGesture from 'tinygesture';
   import materialDarker from 'svelte-highlight/styles/material-darker';
-  import { assets } from '$app/paths';
-  import { page } from '$app/stores';
+  import { asset } from '$app/paths';
+  import { page } from '$app/state';
 
   import TopAppBar, { Row, Section, Title } from '@smui/top-app-bar';
   import Drawer, { Content, Scrim, AppContent } from '@smui/drawer';
@@ -267,7 +290,7 @@
 
   let { children }: { children: Snippet } = $props();
 
-  const iframe = $derived($page.url.pathname.includes('/iframe'));
+  const iframe = $derived(page.url.pathname.includes('/iframe'));
 
   let drawer: Drawer | undefined = $state();
   let mainContent: HTMLElement | undefined = $state();
@@ -295,46 +318,15 @@
     indent: number;
     repos?: string[];
   };
-  const sections: (
-    | DemoSection
-    | {
-        name: string;
-        separator: true;
-      }
-  )[] = [
-    {
-      name: 'Installation',
-      route: '/INSTALL.md',
-      indent: 0,
-    },
-    {
-      name: 'SvelteKit',
-      route: '/SVELTEKIT.md',
-      indent: 1,
-    },
-    {
-      name: 'Theming',
-      route: '/THEMING.md',
-      indent: 0,
-    },
-    {
-      name: 'Migrating',
-      route: '/MIGRATING.md',
-      indent: 0,
-    },
-    {
-      name: 'sep1',
-      separator: true,
-    },
-    {
-      name: 'Quick Guide',
-      route: '/demo/quick-guide/',
-      indent: 0,
-    },
-    {
-      name: 'sep2',
-      separator: true,
-    },
+
+  const sections: (DemoSection | { name: string; separator: true })[] = [
+    { name: 'Installation', route: '/INSTALL.md', indent: 0 },
+    { name: 'SvelteKit', route: '/SVELTEKIT.md', indent: 1 },
+    { name: 'Theming', route: '/THEMING.md', indent: 0 },
+    { name: 'Migrating', route: '/MIGRATING.md', indent: 0 },
+    { name: 'sep1', separator: true },
+    { name: 'Quick Guide', route: '/demo/quick-guide/', indent: 0 },
+    { name: 'sep2', separator: true },
     {
       name: 'Accordion',
       route: '/demo/accordion/',
@@ -343,10 +335,7 @@
         'https://github.com/hperrin/svelte-material-ui/tree/master/packages/accordion',
       ],
     },
-    {
-      name: 'Action Buttons',
-      indent: 0,
-    },
+    { name: 'Action Buttons', indent: 0 },
     {
       name: 'Button',
       route: '/demo/button/',
@@ -371,10 +360,7 @@
         'https://github.com/hperrin/svelte-material-ui/tree/master/packages/icon-button',
       ],
     },
-    {
-      name: 'App Bars',
-      indent: 0,
-    },
+    { name: 'App Bars', indent: 0 },
     {
       name: 'Bottom App Bar',
       route: '/demo/bottom-app-bar/',
@@ -447,11 +433,7 @@
         'https://github.com/hperrin/svelte-material-ui/tree/master/packages/drawer',
       ],
     },
-    {
-      name: 'Elevation',
-      route: '/demo/elevation/',
-      indent: 0,
-    },
+    { name: 'Elevation', route: '/demo/elevation/', indent: 0 },
     {
       name: 'Flyout Panel',
       route: '/demo/flyout-panel/',
@@ -468,10 +450,7 @@
         'https://github.com/hperrin/svelte-material-ui/tree/master/packages/image-list',
       ],
     },
-    {
-      name: 'Inputs and Controls',
-      indent: 0,
-    },
+    { name: 'Inputs and Controls', indent: 0 },
     {
       name: 'Autocomplete',
       route: '/demo/autocomplete/',
@@ -600,10 +579,7 @@
         'https://github.com/hperrin/svelte-material-ui/tree/master/packages/paper',
       ],
     },
-    {
-      name: 'Progress Indicators',
-      indent: 0,
-    },
+    { name: 'Progress Indicators', indent: 0 },
     {
       name: 'Circular Progress',
       route: '/demo/circular-progress/',
@@ -673,19 +649,21 @@
     sections.find(
       (section) =>
         'route' in section &&
-        routesEqual(section.route ?? '', $page.url.pathname),
+        routesEqual(section.route ?? '', page.url.pathname),
     ) as DemoSection | undefined,
   );
   let previousPagePath: string | undefined = undefined;
   $effect(() => {
-    if (mainContent && previousPagePath !== $page.url.pathname) {
+    if (mainContent && previousPagePath !== page.url.pathname) {
       drawerOpen = false;
+
       const hashEl =
         window.location.hash &&
         document.querySelector<HTMLElement>(window.location.hash);
       const top = (hashEl && hashEl.offsetTop) || 0;
+
       mainContent.scrollTop = top;
-      previousPagePath = $page.url.pathname;
+      previousPagePath = page.url.pathname;
     }
   });
 

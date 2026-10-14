@@ -42,7 +42,7 @@
 </section>
 
 <script lang="ts">
-  import Demo from '$lib/Demo.svelte';
+  import Demo from '#lib/Demo.svelte';
 
   import Simple from './_Simple.svelte';
   import Indeterminate from './_Indeterminate.svelte';
