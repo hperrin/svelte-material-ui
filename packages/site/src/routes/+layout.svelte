@@ -14,11 +14,15 @@
   {@html materialDarker}
 
   {#each themes as theme}
-    <link rel="preload" href={asset(`smui-${theme.value}.css`)} as="style" />
+    <link
+      rel="preload"
+      href={asset(`smui-${theme.value as 'material'}.css`)}
+      as="style"
+    />
 
     <link
       rel="preload"
-      href={asset(`smui-${theme.value}-dark.css`)}
+      href={asset(`smui-${theme.value as 'material'}-dark.css`)}
       as="style"
     />
   {/each}
@@ -26,18 +30,18 @@
   {#if theme}
     <!-- SMUI Styles -->
 
-    <link rel="stylesheet" href={asset(`smui-${theme}.css`)} />
+    <link rel="stylesheet" href={asset(`smui-${theme as 'material'}.css`)} />
 
     <!-- Site Styles -->
 
-    <link rel="stylesheet" href={asset(`site-${theme}.css`)} />
+    <link rel="stylesheet" href={asset(`site-${theme as 'material'}.css`)} />
 
     {#if lightTheme === false}
       <!-- SMUI Styles -->
 
       <link
         rel="stylesheet"
-        href={asset(`smui-${theme}-dark.css`)}
+        href={asset(`smui-${theme as 'material'}-dark.css`)}
         media="screen"
       />
 
@@ -45,7 +49,7 @@
 
       <link
         rel="stylesheet"
-        href={asset(`site-${theme}-dark.css`)}
+        href={asset(`site-${theme as 'material'}-dark.css`)}
         media="screen"
       />
     {:else if lightTheme !== true}
@@ -53,7 +57,7 @@
 
       <link
         rel="stylesheet"
-        href={asset(`smui-${theme}-dark.css`)}
+        href={asset(`smui-${theme as 'material'}-dark.css`)}
         media="screen and (prefers-color-scheme: dark)"
       />
 
@@ -61,7 +65,7 @@
 
       <link
         rel="stylesheet"
-        href={asset(`site-${theme}-dark.css`)}
+        href={asset(`site-${theme as 'material'}-dark.css`)}
         media="screen and (prefers-color-scheme: dark)"
       />
     {/if}
