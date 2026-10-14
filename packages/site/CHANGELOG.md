@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.0.6](https://github.com/hperrin/svelte-material-ui/compare/v9.0.5...v9.0.6) (2026-10-14)
+
+### Bug Fixes
+
+* very silly type issue ([79411cd](https://github.com/hperrin/svelte-material-ui/commit/79411cd64992078d3c2d8d5803f69a494e8b1044))
+
+
 ## [9.0.5](https://github.com/hperrin/svelte-material-ui/compare/v9.0.4...v9.0.5) (2026-10-09)
 
 ### Bug Fixes
