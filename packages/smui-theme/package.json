@@ -77,7 +77,7 @@
   "dependencies": {
     "@smui/common": "^9.0.2",
     "https-proxy-agent": "^9.1.0",
-    "sass": "^1.102.0",
-    "yargs": "^18.1.0"
+    "sass": "^1.105.1",
+    "yargs": "^18.2.0"
   }
 }
