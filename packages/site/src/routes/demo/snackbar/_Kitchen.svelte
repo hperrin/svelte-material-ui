@@ -1,4 +1,4 @@
-<Kitchen bind:this={kitchen} dismissIcon$class="material-icons" />
+<Kitchen bind:this={kitchen} dismissIconProps={{ class: 'material-icons' }} />
 
 <Button onclick={pushToKitchen}><Label>Push a New Snackbar</Label></Button>
 

@@ -5,22 +5,22 @@
     bind:this={element}
     labelText={config.label}
     {...(config && config.props) || {}}
-    {...prefixFilter(restProps, 'snackbar$')}
+    {...snackbarProps}
     onSMUISnackbarClosed={(e) => {
       handleClosed(e);
-      restProps.snackbar$onSMUISnackbarClosed?.(e);
+      snackbarProps.onSMUISnackbarClosed?.(e);
     }}
   >
-    <Label {...prefixFilter(restProps, 'label$')} />
+    <Label {...labelProps} />
     {#if config.actions || config.dismissButton}
       <Actions>
         {#if config.actions}
           {#each config.actions as action}
             <Button
-              {...prefixFilter(restProps, 'action$')}
+              {...actionProps}
               onclick={(e) => {
                 handleActionClick(action, e);
-                restProps.action$onclick?.(e as unknown as any);
+                actionProps.onclick?.(e as unknown as any);
               }}>{action.text}</Button
             >
           {/each}
@@ -28,12 +28,12 @@
         {#if config.dismissButton}
           <IconButton
             title={config.dismissTitle || 'Dismiss'}
-            {...prefixFilter(restProps, 'dismiss$')}
+            {...dismissProps}
             onclick={(e) => {
               handleDismiss(e);
-              (restProps as unknown as any).dismiss$onclick?.(e);
+              dismissProps.onclick?.(e);
             }}
-            ><Icon {...prefixFilter(restProps, 'dismissIcon$')}
+            ><Icon {...dismissIconProps}
               >{#if dismiss}{@render dismiss?.()}{:else}{config.dismissText ??
                   'close'}{/if}</Icon
             ></IconButton
@@ -50,7 +50,6 @@
 >
   import type { ComponentProps, Snippet } from 'svelte';
   import { tick } from 'svelte';
-  import { prefixFilter } from '@smui/common/internal';
   import type { SmuiEveryElement } from '@smui/common';
   import { Label } from '@smui/common';
   import Button from '@smui/button';
@@ -61,39 +60,25 @@
   import Snackbar from '../Snackbar.svelte';
   import Actions from '../Actions.svelte';
 
-  type IconButtonProps = Omit<
-    ComponentProps<typeof IconButton<DismissHref, DismissTagName>>,
-    symbol
-  >;
-  type IconProps = Omit<ComponentProps<typeof Icon>, symbol>;
   let {
     dismiss,
-    ...restProps
+    snackbarProps = $bindable({}),
+    labelProps = $bindable({}),
+    actionProps = $bindable({}),
+    dismissProps = $bindable({}),
+    dismissIconProps = $bindable({}),
   }: {
-    [
-      k in keyof ComponentProps<typeof Snackbar> as `snackbar\$${k}`
-    ]?: ComponentProps<typeof Snackbar>[k];
-  } & {
-    [
-      k in keyof ComponentProps<typeof Button> as `action\$${k}`
-    ]?: ComponentProps<typeof Button>[k];
-  } & {
-    /**
-     * If provided, the button will act as a link.
-     */
-    dismiss$href?: DismissHref;
-    /**
-     * The tag name of the element to create.
-     */
-    dismiss$tag?: DismissTagName;
     /**
      * A spot for the dismiss icon contents.
      */
     dismiss?: Snippet;
-  } & {
-    [k in keyof IconButtonProps as `dismiss\$${k}`]?: IconButtonProps[k];
-  } & {
-    [k in keyof IconProps as `dismissIcon\$${k}`]?: IconProps[k];
+    snackbarProps?: ComponentProps<typeof Snackbar>;
+    labelProps?: ComponentProps<typeof Label>;
+    actionProps?: ComponentProps<typeof Button>;
+    dismissProps?: ComponentProps<
+      typeof IconButton<DismissHref, DismissTagName>
+    >;
+    dismissIconProps?: ComponentProps<typeof Icon>;
   } = $props();
 
   let element: Snackbar | undefined = $state();
