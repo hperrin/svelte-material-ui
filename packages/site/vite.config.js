@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite';
 import staticAdapter from '@sveltejs/adapter-static';
-import preprocess from 'svelte-preprocess';
 import { mdsvex } from 'mdsvex';
 import hljs from 'highlight.js';
 import hljs_svelte from 'highlightjs-svelte';

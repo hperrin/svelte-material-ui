@@ -1,9 +1,14 @@
 {
-  "extends": "@tsconfig/svelte/tsconfig.json",
-
   "compilerOptions": {
-    "noImplicitAny": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "target": "es2022",
+    "verbatimModuleSyntax": true,
+    "sourceMap": true,
     "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "noImplicitAny": true,
     "declaration": true
   },
   "include": ["src/**/*.ts", "src/**/*.svelte"],

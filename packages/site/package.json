@@ -129,7 +129,6 @@
     "svelte-check": "^4.7.6",
     "svelte-highlight": "^7.23.1",
     "svelte-portal": "^2.2.1",
-    "svelte-preprocess": "^6.0.5",
     "tinygesture": "^3.0.1",
     "tslib": "^2.8.1",
     "typescript": "^6.0.3",

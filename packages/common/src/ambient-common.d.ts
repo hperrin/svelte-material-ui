@@ -1,7 +1,10 @@
 /// <reference types="svelte" />
 
 declare namespace svelteHTML {
-  type EventHandler<E, T> = import('svelte/elements').EventHandler<E, T>;
+  type EventHandler<
+    E extends Event = Event,
+    T extends EventTarget = Element,
+  > = import('svelte/elements').EventHandler<E, T>;
 
   interface HTMLAttributes<T extends EventTarget = any> {
     // UPDATE THE TYPES FILE WHEN YOU UPDATE THIS!
