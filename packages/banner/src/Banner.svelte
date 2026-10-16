@@ -17,7 +17,7 @@
     .concat([style])
     .join(' ')}
   role="banner"
-  {...exclude(restProps, ['content$', 'textWrapper$', 'graphic$'])}
+  {...restProps}
   onSMUIBannerButtonPrimaryActionClick={(e) => {
     handlePrimaryActionClick();
     restProps.onSMUIBannerButtonPrimaryActionClick?.(e);
@@ -30,31 +30,31 @@
   <Fixed {fixed} {width}>
     <div
       bind:this={content}
-      class={classMap({
-        'mdc-banner__content': true,
-        [content$class]: true,
-      })}
       role="alertdialog"
       aria-live="assertive"
-      {...prefixFilter(restProps, 'content$')}
+      {...contentProps}
+      class={classMap({
+        'mdc-banner__content': true,
+        [`${contentProps.class ?? ''}`]: true,
+      })}
     >
       {#if icon || label}
         <div
+          {...textWrapperProps}
           class={classMap({
             'mdc-banner__graphic-text-wrapper': true,
-            [textWrapper$class]: true,
+            [`${textWrapperProps.class ?? ''}`]: true,
           })}
-          {...prefixFilter(restProps, 'textWrapper$')}
         >
           {#if icon}
             <div
-              class={classMap({
-                'mdc-banner__graphic': true,
-                [graphic$class]: true,
-              })}
               role="img"
               {...altProp}
-              {...prefixFilter(restProps, 'graphic$')}
+              {...graphicProps}
+              class={classMap({
+                'mdc-banner__graphic': true,
+                [`${graphicProps.class ?? ''}`]: true,
+              })}
             >
               {@render icon?.()}
             </div>
@@ -82,13 +82,7 @@
   } from '@smui/common';
   import { focusTrap as domFocusTrap } from '@smui/common/dom';
   import type { ActionArray } from '@smui/common/internal';
-  import {
-    classMap,
-    exclude,
-    prefixFilter,
-    useActions,
-    dispatch,
-  } from '@smui/common/internal';
+  import { classMap, useActions, dispatch } from '@smui/common/internal';
 
   import { CloseReason, MDCBannerFoundation } from './mdc';
   import Fixed from './Fixed.svelte';
@@ -128,24 +122,16 @@
      * Stack the buttons under the content on mobile displays.
      */
     mobileStacked?: boolean;
-    /**
-     * A space separated list of CSS classes.
-     */
-    content$class?: string;
-    /**
-     * A space separated list of CSS classes.
-     */
-    textWrapper$class?: string;
-    /**
-     * A space separated list of CSS classes.
-     */
-    graphic$class?: string;
 
     children?: Snippet;
 
     icon?: Snippet;
     label?: Snippet;
     actions?: Snippet;
+
+    contentProps?: SmuiElementPropMap['div'];
+    textWrapperProps?: SmuiElementPropMap['div'];
+    graphicProps?: SmuiElementPropMap['div'];
   };
   let {
     use = [],
@@ -156,28 +142,15 @@
     centered = false,
     fixed = false,
     mobileStacked = false,
-    content$class = '',
-    textWrapper$class = '',
-    graphic$class = '',
     children,
     icon,
     label,
     actions,
+    contentProps = $bindable({}),
+    textWrapperProps = $bindable({}),
+    graphicProps = $bindable({}),
     ...restProps
-  }: OwnProps &
-    SmuiAttrs<'div', keyof OwnProps> & {
-      [
-        k in keyof SmuiElementPropMap['div'] as `content\$${k}`
-      ]?: SmuiElementPropMap['div'][k];
-    } & {
-      [
-        k in keyof SmuiElementPropMap['div'] as `textWrapper\$${k}`
-      ]?: SmuiElementPropMap['div'][k];
-    } & {
-      [
-        k in keyof SmuiElementPropMap['div'] as `graphic\$${k}`
-      ]?: SmuiElementPropMap['div'][k];
-    } = $props();
+  }: OwnProps & SmuiAttrs<'div', keyof OwnProps> = $props();
 
   let element: HTMLDivElement;
   let instance: MDCBannerFoundation | undefined = $state();

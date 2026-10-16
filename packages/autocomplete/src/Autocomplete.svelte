@@ -8,7 +8,7 @@
     'smui-autocomplete': true,
     [className]: true,
   })}
-  {...exclude(restProps, ['menu$', 'textfield$', 'list$'])}
+  {...restProps}
   onfocusout={(
     event: FocusEvent & { currentTarget: EventTarget & HTMLDivElement },
   ) => {
@@ -37,29 +37,24 @@
     {#if children}
       {@render children?.()}
     {:else}
-      <Textfield
-        {label}
-        {disabled}
-        bind:value={text}
-        {...prefixFilter(restProps, 'textfield$')}
-      />
+      <Textfield {label} {disabled} bind:value={text} {...textfieldProps} />
     {/if}
   </div>
   <Menu
-    class={classMap({
-      'smui-autocomplete__menu': true,
-      [menu$class]: true,
-    })}
     id={menuId}
     managed
     neverRestoreFocus
     open={menuOpen}
     bind:anchorElement={element}
-    anchor={menu$anchor}
-    anchorCorner={menu$anchorCorner}
-    {...prefixFilter(restProps, 'menu$')}
+    anchor={menuProps.anchor ?? false}
+    anchorCorner={menuProps.anchorCorner ?? 'BOTTOM_START'}
+    {...menuProps}
+    class={classMap({
+      'smui-autocomplete__menu': true,
+      [`${menuProps.class ?? ''}`]: true,
+    })}
   >
-    <List {...prefixFilter(restProps, 'list$')}>
+    <List {...listProps}>
       {#if loadingState}
         <Item disabled>
           {#if loading}
@@ -121,13 +116,7 @@
   import { on } from 'svelte/events';
   import type { SmuiAttrs } from '@smui/common';
   import type { ActionArray } from '@smui/common/internal';
-  import {
-    classMap,
-    exclude,
-    prefixFilter,
-    useActions,
-    dispatch,
-  } from '@smui/common/internal';
+  import { classMap, useActions, dispatch } from '@smui/common/internal';
   import Textfield from '@smui/textfield';
   import Menu from '@smui/menu';
   import type { SMUIListAccessor, SMUIListItemAccessor } from '@smui/list';
@@ -203,21 +192,6 @@
      * A function that takes a search input and returns options.
      */
     search?: (input: string) => Promise<any[] | false>;
-    /**
-     * A space separated list of CSS classes.
-     */
-    menu$class?: string;
-    /**
-     * Anchor the menu surface automatically to its parent element.
-     *
-     * If you set this to false, you need to provide an element to
-     * `anchorElement`.
-     */
-    menu$anchor?: boolean;
-    /**
-     * Default anchor corner alignment of top left menu surface corner.
-     */
-    menu$anchorCorner?: ComponentProps<typeof Menu>['anchorCorner'];
 
     children?: Snippet;
     /**
@@ -236,6 +210,13 @@
      * A spot for the item text when no matches were found.
      */
     noMatches?: Snippet;
+
+    menuProps?: ComponentProps<typeof Menu>;
+    textfieldProps?: ComponentProps<typeof Textfield> & {
+      label?: never;
+      value?: never;
+    };
+    listProps?: ComponentProps<typeof List>;
   };
   let {
     use = [],
@@ -277,32 +258,16 @@
       });
       return result;
     },
-    menu$class = '',
-    menu$anchor = false,
-    menu$anchorCorner = 'BOTTOM_START',
     children,
     loading,
     error,
     match,
     noMatches,
+    menuProps = $bindable({}),
+    textfieldProps = $bindable({}),
+    listProps = $bindable({}),
     ...restProps
-  }: OwnProps &
-    SmuiAttrs<'div', keyof OwnProps> & {
-      [k in keyof ComponentProps<typeof Menu> as `menu\$${k}`]?: ComponentProps<
-        typeof Menu
-      >[k];
-    } & {
-      [
-        k in keyof ComponentProps<typeof Textfield> as `textfield\$${k}`
-      ]?: ComponentProps<typeof Textfield>[k];
-    } & {
-      [k in keyof ComponentProps<typeof List> as `list\$${k}`]?: ComponentProps<
-        typeof List
-      >[k];
-    } & {
-      textfield$label?: never;
-      textfield$value?: never;
-    } = $props();
+  }: OwnProps & SmuiAttrs<'div', keyof OwnProps> = $props();
 
   let element: HTMLDivElement;
   let inputContainer: HTMLDivElement;
@@ -314,7 +279,7 @@
   let focusedIndex = $state(-1);
   let focusedItem: SMUIListItemAccessor | undefined = $state();
   let menuId: string =
-    restProps['menu$id'] ?? 'SMUI-autocomplete-' + counter++ + '-menu';
+    menuProps.id ?? 'SMUI-autocomplete-' + counter++ + '-menu';
 
   const menuOpen = $derived(
     focused &&
